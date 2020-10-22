@@ -1,0 +1,9 @@
+[Desktop Entry]
+Name=QThePrompter
+Comment=QThePrompter Kirigami Application
+Version=1.0
+Exec=qtheprompter
+Icon=applications-development
+Type=Application
+Terminal=false
+Categories=Qt;KDE;
