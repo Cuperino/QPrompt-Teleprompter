@@ -1,0 +1,41 @@
+[Buildset]
+BuildItems=@Variant(\x00\x00\x00\t\x00\x00\x00\x00\x01\x00\x00\x00\x0b\x00\x00\x00\x00\x01\x00\x00\x00\x18\x00Q\x00T\x00h\x00e\x00P\x00r\x00o\x00m\x00p\x00t\x00e\x00r)
+
+[CMake]
+Build Directory Count=1
+Current Build Directory Index-Host System=0
+
+[CMake][CMake Build Directory 0]
+Build Directory Path=/home/javier/Imaginary/Tech/teleprompter/QThePrompter/build
+Build Type=Debug
+CMake Binary=/usr/bin/cmake
+CMake Executable=/usr/bin/cmake
+Environment Profile=
+Extra Arguments=
+Install Directory=/usr
+Runtime=Host System
+
+[Launch]
+Launch Configurations=Launch Configuration 0
+
+[Launch][Launch Configuration 0]
+Configured Launch Modes=execute
+Configured Launchers=nativeAppLauncher
+Name=qtheprompter
+Type=Native Application
+
+[Launch][Launch Configuration 0][Data]
+Arguments=
+Dependencies=@Variant(\x00\x00\x00\t\x00\x00\x00\x00\x01\x00\x00\x00\x0b\x00\x00\x00\x00\x03\x00\x00\x00\x18\x00Q\x00T\x00h\x00e\x00P\x00r\x00o\x00m\x00p\x00t\x00e\x00r\x00\x00\x00\x06\x00s\x00r\x00c\x00\x00\x00\x18\x00q\x00t\x00h\x00e\x00p\x00r\x00o\x00m\x00p\x00t\x00e\x00r)
+Dependency Action=Build
+EnvironmentGroup=
+Executable=file:///home/javier/Imaginary/Tech/teleprompter/QThePrompter
+External Terminal=konsole --noclose --workdir %workdir -e %exe
+Kill Before Executing Again=4194304
+Project Target=QThePrompter,src,qtheprompter
+Use External Terminal=false
+Working Directory=
+isExecutable=false
+
+[Project]
+VersionControlSupport=kdevgit

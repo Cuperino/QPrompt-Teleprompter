@@ -1,5 +1,10 @@
 <RCC>
     <qresource prefix="/">
         <file alias="main.qml">contents/ui/main.qml</file>
+        <file>qtquickcontrols2.conf</file>
+        <file>images/logo.png</file>
+        <file>fonts/fontello.ttf</file>
+        <file>texteditor.html</file>
+        <file>texteditor.html</file>
     </qresource>
 </RCC>

@@ -8,7 +8,7 @@ Kirigami.ApplicationWindow {
     title: i18n("QThePrompter")
 
     globalDrawer: Kirigami.GlobalDrawer {
-        title: i18n("QThePrompter")
+        title: i18n("QthePrompter")
         titleIcon: "applications-graphics"
         actions: [
             Kirigami.Action {
@@ -49,7 +49,7 @@ Kirigami.ApplicationWindow {
             actions {
                 main: Kirigami.Action {
                     iconName: "go-home"
-                    onTriggered: showPassiveNotification(i18n("Main action triggered"))
+                    onTriggered: showPassiveNotification(i18n("Prompt started"))
                 }
                 left: Kirigami.Action {
                     iconName: "go-previous"
@@ -74,4 +74,47 @@ Kirigami.ApplicationWindow {
             }
         }
     }
+
+    DocumentHandler {
+        id: document
+        document: textArea.textDocument
+        cursorPosition: textArea.cursorPosition
+        selectionStart: textArea.selectionStart
+        selectionEnd: textArea.selectionEnd
+        Component.onCompleted: document.load("qrc:/texteditor.html")
+        onLoaded: {
+            textArea.text = text
+        }
+        onError: {
+            errorDialog.text = message
+            errorDialog.visible = true
+        }
+    }
+
+    Flickable {
+        id: flickable
+        flickableDirection: Flickable.VerticalFlick
+        anchors.fill: parent
+
+        TextArea.flickable: TextArea {
+            id: textArea
+            textFormat: Qt.RichText
+            wrapMode: TextArea.Wrap
+            readOnly: true
+            persistentSelection: true
+            // Different styles have different padding and background
+            // decorations, but since this editor is almost taking up the
+            // entire window, we don't need them.
+            leftPadding: 6
+            rightPadding: 6
+            topPadding: 0
+            bottomPadding: 0
+            background: null
+
+            onLinkActivated: Qt.openUrlExternally(link)
+        }
+
+        ScrollBar.vertical: ScrollBar {}
+    }
+
 }

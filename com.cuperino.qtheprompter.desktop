@@ -1,0 +1,9 @@
+[Desktop Entry]
+Name=QThePrompter
+Comment=Free and open source teleprompter software for professionals
+Version=1.0
+Exec=qtheprompter
+Icon=applications-development
+Type=Application
+Terminal=false
+Categories=teleprompter;video;media;word;text;processing;television;tv;live;kinnematic;
