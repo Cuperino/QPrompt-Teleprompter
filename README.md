@@ -4,7 +4,7 @@ Cue the Prompter
 Free and open source teleprompter software for professionals accross industries. Built on the Qt and Kirigami frameworks for accuracy and portability.
 
 # Copyright
-Copyright (C) 2020 Javier O. Cordero Pérez <javiercorderoperez@gmail.com>
+Copyright (C) 2020 Javier O. Cordero Pérez
 
 # License
 Cue the Prompter is free software: you can redistribute it and/or modify
