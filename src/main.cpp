@@ -46,7 +46,7 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
     if (fontDatabase.addApplicationFont(":/fonts/fontello.ttf") == -1)
         qWarning() << "Failed to load fontello.ttf";
 
-//     qmlRegisterType<DocumentHandler>("com.cuperino.qprompt", 1, 0, "DocumentHandler");
+    qmlRegisterType<DocumentHandler>("com.cuperino.qprompt.document", 1, 0, "DocumentHandler");
 
     QStringList selectors;
 #ifdef QT_EXTRA_FILE_SELECTOR

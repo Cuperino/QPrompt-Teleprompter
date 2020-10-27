@@ -1,0 +1,24 @@
+TEMPLATE = app
+TARGET = qprompt
+QT += quick quickcontrols2
+qtHaveModule(widgets): QT += widgets
+
+cross_compile: DEFINES += QT_EXTRA_FILE_SELECTOR=\\\"touch\\\"
+
+HEADERS += \
+    documenthandler.h
+
+SOURCES += \
+    texteditor.cpp \
+    documenthandler.cpp
+
+OTHER_FILES += \
+    qml/*.qml
+
+RESOURCES += \
+    texteditor.qrc
+
+# Default rules for deployment.
+qnx: target.path = /tmp/$${TARGET}/bin
+else: unix:!android: target.path = /opt/$${TARGET}/bin
+!isEmpty(target.path): INSTALLS += target

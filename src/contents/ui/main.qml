@@ -25,7 +25,7 @@ import QtQuick.Controls 2.15 as Controls
 import QtQuick.Window 2.0
 import Qt.labs.platform 1.0
 
-//import com.cuperino.qprompt 1.0
+import com.cuperino.qprompt.document 1.0
 //import io.qt.examples.texteditor 1.0
 
 Kirigami.ApplicationWindow {
