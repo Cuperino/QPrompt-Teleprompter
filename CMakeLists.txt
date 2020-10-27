@@ -4,6 +4,7 @@ project(qprompt)
 
 include(FeatureSummary)
 
+# QT 5.12 for Ubuntu 20.04
 set(QT5_MIN_VERSION 5.12)
 set(KF5_MIN_VERSION 5.65)
 

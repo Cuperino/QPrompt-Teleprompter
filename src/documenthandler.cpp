@@ -1,52 +1,52 @@
 /****************************************************************************
-**
-** Copyright (C) 2017 The Qt Company Ltd.
-** Contact: https://www.qt.io/licensing/
-**
-** This file is part of the examples of the Qt Toolkit.
-**
-** $QT_BEGIN_LICENSE:BSD$
-** Commercial License Usage
-** Licensees holding valid commercial Qt licenses may use this file in
-** accordance with the commercial license agreement provided with the
-** Software or, alternatively, in accordance with the terms contained in
-** a written agreement between you and The Qt Company. For licensing terms
-** and conditions see https://www.qt.io/terms-conditions. For further
-** information use the contact form at https://www.qt.io/contact-us.
-**
-** BSD License Usage
-** Alternatively, you may use this file under the terms of the BSD license
-** as follows:
-**
-** "Redistribution and use in source and binary forms, with or without
-** modification, are permitted provided that the following conditions are
-** met:
-**   * Redistributions of source code must retain the above copyright
-**     notice, this list of conditions and the following disclaimer.
-**   * Redistributions in binary form must reproduce the above copyright
-**     notice, this list of conditions and the following disclaimer in
-**     the documentation and/or other materials provided with the
-**     distribution.
-**   * Neither the name of The Qt Company Ltd nor the names of its
-**     contributors may be used to endorse or promote products derived
-**     from this software without specific prior written permission.
-**
-**
-** THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
-** "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
-** LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
-** A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
-** OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
-** SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
-** LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
-** DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
-** THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
-** (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
-** OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE."
-**
-** $QT_END_LICENSE$
-**
-****************************************************************************/
+ * *
+ ** Copyright (C) 2017 The Qt Company Ltd.
+ ** Contact: https://www.qt.io/licensing/
+ **
+ ** This file is part of the examples of the Qt Toolkit.
+ **
+ ** $QT_BEGIN_LICENSE:BSD$
+ ** Commercial License Usage
+ ** Licensees holding valid commercial Qt licenses may use this file in
+ ** accordance with the commercial license agreement provided with the
+ ** Software or, alternatively, in accordance with the terms contained in
+ ** a written agreement between you and The Qt Company. For licensing terms
+ ** and conditions see https://www.qt.io/terms-conditions. For further
+ ** information use the contact form at https://www.qt.io/contact-us.
+ **
+ ** BSD License Usage
+ ** Alternatively, you may use this file under the terms of the BSD license
+ ** as follows:
+ **
+ ** "Redistribution and use in source and binary forms, with or without
+ ** modification, are permitted provided that the following conditions are
+ ** met:
+ **   * Redistributions of source code must retain the above copyright
+ **     notice, this list of conditions and the following disclaimer.
+ **   * Redistributions in binary form must reproduce the above copyright
+ **     notice, this list of conditions and the following disclaimer in
+ **     the documentation and/or other materials provided with the
+ **     distribution.
+ **   * Neither the name of The Qt Company Ltd nor the names of its
+ **     contributors may be used to endorse or promote products derived
+ **     from this software without specific prior written permission.
+ **
+ **
+ ** THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+ ** "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+ ** LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+ ** A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
+ ** OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+ ** SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+ ** LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+ ** DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+ ** THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+ ** (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+ ** OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE."
+ **
+ ** $QT_END_LICENSE$
+ **
+ ****************************************************************************/
 
 #include "documenthandler.h"
 
@@ -63,11 +63,11 @@
 #include <QDebug>
 
 DocumentHandler::DocumentHandler(QObject *parent)
-    : QObject(parent)
-    , m_document(nullptr)
-    , m_cursorPosition(-1)
-    , m_selectionStart(0)
-    , m_selectionEnd(0)
+: QObject(parent)
+, m_document(nullptr)
+, m_cursorPosition(-1)
+, m_selectionStart(0)
+, m_selectionEnd(0)
 {
 }
 
@@ -80,7 +80,7 @@ void DocumentHandler::setDocument(QQuickTextDocument *document)
 {
     if (document == m_document)
         return;
-
+    
     if (m_document)
         m_document->textDocument()->disconnect(this);
     m_document = document;
@@ -98,7 +98,7 @@ void DocumentHandler::setCursorPosition(int position)
 {
     if (position == m_cursorPosition)
         return;
-
+    
     m_cursorPosition = position;
     reset();
     emit cursorPositionChanged();
@@ -113,7 +113,7 @@ void DocumentHandler::setSelectionStart(int position)
 {
     if (position == m_selectionStart)
         return;
-
+    
     m_selectionStart = position;
     emit selectionStartChanged();
 }
@@ -127,7 +127,7 @@ void DocumentHandler::setSelectionEnd(int position)
 {
     if (position == m_selectionEnd)
         return;
-
+    
     m_selectionEnd = position;
     emit selectionEndChanged();
 }
@@ -244,17 +244,17 @@ void DocumentHandler::setFontSize(int size)
 {
     if (size <= 0)
         return;
-
+    
     QTextCursor cursor = textCursor();
     if (cursor.isNull())
         return;
-
+    
     if (!cursor.hasSelection())
         cursor.select(QTextCursor::WordUnderCursor);
-
+    
     if (cursor.charFormat().property(QTextFormat::FontPointSize).toInt() == size)
         return;
-
+    
     QTextCharFormat format;
     format.setFontPointSize(size);
     mergeFormatOnWordOrSelection(format);
@@ -284,13 +284,13 @@ void DocumentHandler::load(const QUrl &fileUrl)
 {
     if (fileUrl == m_fileUrl)
         return;
-
+    
     QQmlEngine *engine = qmlEngine(this);
     if (!engine) {
         qWarning() << "load() called before DocumentHandler has QQmlEngine";
         return;
     }
-
+    
     const QUrl path = QQmlFileSelector::get(engine)->selector()->select(fileUrl);
     const QString fileName = QQmlFile::urlToLocalFileOrQrc(path);
     if (QFile::exists(fileName)) {
@@ -308,11 +308,11 @@ void DocumentHandler::load(const QUrl &fileUrl)
                 }
                 doc->setModified(false);
             }
-
+            
             reset();
         }
     }
-
+    
     m_fileUrl = fileUrl;
     emit fileUrlChanged();
 }
@@ -322,7 +322,7 @@ void DocumentHandler::saveAs(const QUrl &fileUrl)
     QTextDocument *doc = textDocument();
     if (!doc)
         return;
-
+    
     const QString filePath = fileUrl.toLocalFile();
     const bool isHtml = QFileInfo(filePath).suffix().contains(QLatin1String("htm"));
     QFile file(filePath);
@@ -332,10 +332,10 @@ void DocumentHandler::saveAs(const QUrl &fileUrl)
     }
     file.write((isHtml ? doc->toHtml() : doc->toPlainText()).toUtf8());
     file.close();
-
+    
     if (fileUrl == m_fileUrl)
         return;
-
+    
     m_fileUrl = fileUrl;
     emit fileUrlChanged();
 }
@@ -356,7 +356,7 @@ QTextCursor DocumentHandler::textCursor() const
     QTextDocument *doc = textDocument();
     if (!doc)
         return QTextCursor();
-
+    
     QTextCursor cursor = QTextCursor(doc);
     if (m_selectionStart != m_selectionEnd) {
         cursor.setPosition(m_selectionStart);
@@ -371,7 +371,7 @@ QTextDocument *DocumentHandler::textDocument() const
 {
     if (!m_document)
         return nullptr;
-
+    
     return m_document->textDocument();
 }
 
