@@ -31,10 +31,10 @@ import Qt.labs.platform 1.0
 Kirigami.ApplicationWindow {
     id: root
 
-    title: i18n("Q the Prompter")
+    title: i18n("Q Prompt")
 
     globalDrawer: Kirigami.GlobalDrawer {
-        title: i18n("Q the Prompter")
+        title: i18n("Q Prompt")
         titleIcon: "applications-graphics"
         actions: [
             Kirigami.Action {
@@ -71,7 +71,7 @@ Kirigami.ApplicationWindow {
 
         Kirigami.ScrollablePage {
         //Kirigami.Page {
-            title: i18n("Q the Prompter")
+            title: i18n("Q Prompt")
 
             actions {
                 main: Kirigami.Action {
@@ -88,32 +88,37 @@ Kirigami.ApplicationWindow {
                 }
                 contextualActions: [
                     Kirigami.Action {
-                        text: i18n("Contextual Action 1")
+                        text: i18n("Start Prompting")
                         iconName: "bookmarks"
                         onTriggered: showPassiveNotification(i18n("Contextual action 1 clicked"))
                     },
                     Kirigami.Action {
-                        text: i18n("Contextual Action 2")
+                        text: i18n("View Markers")
                         iconName: "folder"
                         enabled: false
                     }
                 ]
             }
 
+            // Define Flickable element using the flickable property only íf the flickable component (the prompter and editor in this case)
+            // has some non standard properties, such as not covering the whole Page. Otherwise, use element like everywhere else
+            // and use Kirigami.ScrollablePage instead of page.
+            //flickable: Flickable {
             Flickable {
                 id: flickable
                 flickableDirection: Flickable.VerticalFlick
                 anchors.fill: parent
-            
+
                 Controls.TextArea.flickable: Controls.TextArea {
                     id: textArea
                     textFormat: Qt.RichText
                     wrapMode: Controls.TextArea.Wrap
                     readOnly: true
+                    text: "QPrompt is a Free Software and open source teleprompter software for professionals."
                     persistentSelection: true
-                    // Different styles have different padding and background
-                    // decorations, but since this editor is almost taking up the
-                    // entire window, we don't need them.
+                    //Different styles have different padding and background
+                    //decorations, but since this editor is almost taking up the
+                    //entire window, we don't need them.
                     leftPadding: 6
                     rightPadding: 6
                     topPadding: 0
