@@ -1,6 +1,6 @@
 /****************************************************************************
  **
- ** Q the Prompter
+ ** QPrompt
  ** Copyright (C) 2020 Javier O. Cordero Pérez
  **
  ** This program is free software: you can redistribute it and/or modify
@@ -25,16 +25,16 @@ import QtQuick.Controls 2.15 as Controls
 import QtQuick.Window 2.0
 import Qt.labs.platform 1.0
 
-//import com.cuperino.qtheprompter 1.0
+//import com.cuperino.qprompt 1.0
 //import io.qt.examples.texteditor 1.0
 
 Kirigami.ApplicationWindow {
     id: root
 
-    title: i18n("Q Prompt")
+    title: i18n("QPrompt")
 
     globalDrawer: Kirigami.GlobalDrawer {
-        title: i18n("Q Prompt")
+        title: i18n("QPrompt")
         titleIcon: "applications-graphics"
         actions: [
             Kirigami.Action {
@@ -64,14 +64,14 @@ Kirigami.ApplicationWindow {
         id: contextDrawer
     }
 
-    pageStack.initialPage: mainPageComponent
+    pageStack.initialPage: prompterPageComponent
 
     Component {
-        id: mainPageComponent
+        id: prompterPageComponent
 
         Kirigami.ScrollablePage {
         //Kirigami.Page {
-            title: i18n("Q Prompt")
+            title: i18n("QPrompt")
 
             actions {
                 main: Kirigami.Action {

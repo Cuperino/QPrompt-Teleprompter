@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.0)
 
-project(qtheprompter)
+project(qprompt)
 
 include(FeatureSummary)
 
@@ -23,7 +23,7 @@ find_package(KF5 ${KF5_MIN_VERSION} REQUIRED COMPONENTS Kirigami2 I18n)
 
 add_subdirectory(src)
 
-install(PROGRAMS org.kde.qtheprompter.desktop DESTINATION ${KDE_INSTALL_APPDIR})
-install(FILES org.kde.qtheprompter.appdata.xml DESTINATION ${KDE_INSTALL_METAINFODIR})
+install(PROGRAMS com.cuperino.qprompt.desktop DESTINATION ${KDE_INSTALL_APPDIR})
+install(FILES com.cuperino.qprompt.appdata.xml DESTINATION ${KDE_INSTALL_METAINFODIR})
 
 feature_summary(WHAT ALL INCLUDE_QUIET_PACKAGES FATAL_ON_MISSING_REQUIRED_PACKAGES)

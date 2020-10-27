@@ -1,6 +1,6 @@
 /****************************************************************************
  **
- ** Q the Prompter
+ ** QPrompt
  ** Copyright (C) 2020 Javier O. Cordero Pérez
  **
  ** This program is free software: you can redistribute it and/or modify
@@ -39,14 +39,14 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
     QGuiApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
     QApplication app(argc, argv);
     QCoreApplication::setOrganizationName("Cuperino");
-    QCoreApplication::setOrganizationDomain("javiercordero.info");
-    QCoreApplication::setApplicationName("QThePrompter");
+    QCoreApplication::setOrganizationDomain("cuperino.com");
+    QCoreApplication::setApplicationName("QPrompt");
 
     QFontDatabase fontDatabase;
     if (fontDatabase.addApplicationFont(":/fonts/fontello.ttf") == -1)
         qWarning() << "Failed to load fontello.ttf";
 
-//     qmlRegisterType<DocumentHandler>("io.qt.examples.texteditor", 1, 0, "DocumentHandler");
+//     qmlRegisterType<DocumentHandler>("com.cuperino.qprompt", 1, 0, "DocumentHandler");
 
     QStringList selectors;
 #ifdef QT_EXTRA_FILE_SELECTOR

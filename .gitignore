@@ -45,7 +45,6 @@ Makefile
 
 # Build folders
 **/build
-**/built-dualPrint-Desktop-Debug
 
 # KDE Plasma directory folder
 .directory
