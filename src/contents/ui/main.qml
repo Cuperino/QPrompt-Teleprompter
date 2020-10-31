@@ -110,17 +110,17 @@ Kirigami.ApplicationWindow {
                     Kirigami.Action {
                         text: i18n("&Copy")
                         iconName: "copy"
-                        onTriggered: textArea.copy()
+                        onTriggered: editor.copy()
                     },
                     Kirigami.Action {
                         text: i18n("Cut")
                         iconName: "cut"
-                        onTriggered: textArea.cut()
+                        onTriggered: editor.cut()
                     },
                     Kirigami.Action {
                         text: i18n("&Paste")
                         iconName: "paste"
-                        onTriggered: textArea.paste()
+                        onTriggered: editor.paste()
                     },
                     Kirigami.Action {
                         text: i18n("&Bold")
@@ -155,33 +155,72 @@ Kirigami.ApplicationWindow {
                 anchors.fill: parent
 
                 Controls.TextArea.flickable: Controls.TextArea {
-                    id: textArea
+                    id: editor
                     textFormat: Qt.RichText
                     wrapMode: Controls.TextArea.Wrap
                     readOnly: true
                     text: "QPrompt is a Free Software and open source teleprompter software for professionals."
-                    font.pixelSize: flickable.width*0.05
                     persistentSelection: true
                     //Different styles have different padding and background
-                    //decorations, but since this editor is almost taking up the
-                    //entire window, we don't need them.
+                    //decorations, but since this editor must resemble the
+                    //teleprompter output, we don't need them.
                     leftPadding: 0
                     rightPadding: 0
                     topPadding: 0
                     bottomPadding: 0
                     background: null
+                    
+                    // Start with the editor in focus
+                    focus: true
+                    // Make base font size relative to editor's width
+                    font.pixelSize: flickable.width*0.05
+                    
+                    // Key bindings                 
+                    Keys.onPressed: {
+                        switch (event.key) {
+                            case Qt.Key_Down:
+                                showPassiveNotification(i18n("Increase Velocity")); break;
+                            case Qt.Key_Up:
+                                showPassiveNotification(i18n("Decrease Velocity")); break;
+                            case Qt.Key_Space:
+                                showPassiveNotification(i18n("Toggle Playback")); break;
+                            case Qt.Key_Tab:
+                                if (event.modifiers & Qt.ShiftModifier)
+                                    // Not reached...
+                                    showPassiveNotification(i18n("Shift Tab Pressed"));
+                                else
+                                    showPassiveNotification(i18n("Tab Pressed"));
+                                break;
+                            case Qt.Key_PageUp:
+                                showPassiveNotification(i18n("Page Up Pressed")); break;
+                            case Qt.Key_PageDown:
+                                showPassiveNotification(i18n("Page Down Pressed")); break;
+                            case Qt.Key_Home:
+                                showPassiveNotification(i18n("Home Pressed")); break;
+                            case Qt.Key_End:
+                                showPassiveNotification(i18n("End Pressed")); break;
+                            default:
+                                // Show key code
+                                showPassiveNotification(event.key)
+                        }
+                        //// Undo and redo key bindings
+                        //if (event.matches(StandardKey.Undo))
+                        //    document.undo();
+                        //else if (event.matches(StandardKey.Redo))
+                        //    document.redo();
+                    }
 
                     onLinkActivated: Qt.openUrlExternally(link)
                 }
                 DocumentHandler {
                     id: document
-                    document: textArea.textDocument
-                    cursorPosition: textArea.cursorPosition
-                    selectionStart: textArea.selectionStart
-                    selectionEnd: textArea.selectionEnd
+                    document: editor.textDocument
+                    cursorPosition: editor.cursorPosition
+                    selectionStart: editor.selectionStart
+                    selectionEnd: editor.selectionEnd
                     Component.onCompleted: document.load("qrc:/texteditor.html")
                     onLoaded: {
-                        textArea.text = text
+                        editor.text = text
                     }
                     onError: {
                         errorDialog.text = message
@@ -225,18 +264,18 @@ Kirigami.ApplicationWindow {
 
             MenuItem {
                 text: qsTr("&Copy")
-                enabled: textArea.selectedText
-                onTriggered: textArea.copy()
+                enabled: editor.selectedText
+                onTriggered: editor.copy()
             }
             MenuItem {
                 text: qsTr("Cu&t")
-                enabled: textArea.selectedText
-                onTriggered: textArea.cut()
+                enabled: editor.selectedText
+                onTriggered: editor.cut()
             }
             MenuItem {
                 text: qsTr("&Paste")
-                enabled: textArea.canPaste
-                onTriggered: textArea.paste()
+                enabled: editor.canPaste
+                onTriggered: editor.paste()
             }
         }
 
@@ -314,18 +353,18 @@ Kirigami.ApplicationWindow {
 
         MenuItem {
             text: qsTr("Copy")
-            enabled: textArea.selectedText
-            onTriggered: textArea.copy()
+            enabled: editor.selectedText
+            onTriggered: editor.copy()
         }
         MenuItem {
             text: qsTr("Cut")
-            enabled: textArea.selectedText
-            onTriggered: textArea.cut()
+            enabled: editor.selectedText
+            onTriggered: editor.cut()
         }
         MenuItem {
             text: qsTr("Paste")
-            enabled: textArea.canPaste
-            onTriggered: textArea.paste()
+            enabled: editor.canPaste
+            onTriggered: editor.paste()
         }
 
         MenuSeparator {}
