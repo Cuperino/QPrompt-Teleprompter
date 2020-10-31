@@ -38,7 +38,27 @@ Kirigami.ApplicationWindow {
         titleIcon: "applications-graphics"
         actions: [
             Kirigami.Action {
-                text: i18n("View")
+                text: i18n("New")
+                iconName: "folder"
+                onTriggered: showPassiveNotification(i18n("New clicked"))
+            },
+            Kirigami.Action {
+                text: i18n("Open")
+                iconName: "folder"
+                onTriggered: openDialog.open()
+            },
+            Kirigami.Action {
+                text: i18n("Save")
+                iconName: "folder"
+                onTriggered: showPassiveNotification(i18n("Save clicked"))
+            },
+            Kirigami.Action {
+                text: i18n("Save As")
+                iconName: "folder"
+                onTriggered: saveDialog.open()
+            },
+            Kirigami.Action {
+                text: i18n("File")
                 iconName: "view-list-icons"
                 Kirigami.Action {
                     text: i18n("View Action 1")
@@ -50,12 +70,9 @@ Kirigami.ApplicationWindow {
                 }
             },
             Kirigami.Action {
-                text: i18n("Action 1")
-                onTriggered: showPassiveNotification(i18n("Action 1 clicked"))
-            },
-            Kirigami.Action {
-                text: i18n("Action 2")
-                onTriggered: showPassiveNotification(i18n("Action 2 clicked"))
+                text: i18n("&Quit")
+                iconName: "close"
+                onTriggered: close()
             }
         ]
     }
@@ -64,10 +81,10 @@ Kirigami.ApplicationWindow {
         id: contextDrawer
     }
 
-    pageStack.initialPage: prompterPageComponent
+    pageStack.initialPage: prompterPage
 
     Component {
-        id: prompterPageComponent
+        id: prompterPage
 
         Kirigami.ScrollablePage {
         //Kirigami.Page {
@@ -75,7 +92,8 @@ Kirigami.ApplicationWindow {
 
             actions {
                 main: Kirigami.Action {
-                    iconName: "go-home"
+                    text: i18n("Start Prompting")
+                    iconName: "go-next"
                     onTriggered: showPassiveNotification(i18n("Prompt started"))
                 }
                 left: Kirigami.Action {
@@ -86,23 +104,50 @@ Kirigami.ApplicationWindow {
                     iconName: "go-next"
                     onTriggered: showPassiveNotification(i18n("Right action triggered"))
                 }
+                // Use action toolbar instead?
+                //ActionToolBar
                 contextualActions: [
                     Kirigami.Action {
-                        text: i18n("Start Prompting")
-                        iconName: "bookmarks"
-                        onTriggered: showPassiveNotification(i18n("Contextual action 1 clicked"))
+                        text: i18n("&Copy")
+                        iconName: "copy"
+                        onTriggered: textArea.copy()
                     },
                     Kirigami.Action {
-                        text: i18n("View Markers")
-                        iconName: "folder"
-                        enabled: false
+                        text: i18n("Cut")
+                        iconName: "cut"
+                        onTriggered: textArea.cut()
+                    },
+                    Kirigami.Action {
+                        text: i18n("&Paste")
+                        iconName: "paste"
+                        onTriggered: textArea.paste()
+                    },
+                    Kirigami.Action {
+                        text: i18n("&Bold")
+                        iconName: "bold"
+                        onTriggered: document.bold = !document.bold
+                    },
+                    Kirigami.Action {
+                        text: i18n("&Italic")
+                        iconName: "italic"
+                        onTriggered: document.italic = !document.italic
+                    },
+                    Kirigami.Action {
+                        text: i18n("&Underline")
+                        iconName: "underline"
+                        onTriggered: document.underline = !document.underline
                     }
+//                    Kirigami.Action {
+//                        text: i18n("LOL")
+//                         iconName: "go-next"
+//                        onTriggered: showPassiveNotification(i18n("Contextual action 1 clicked"))
+//                    }
                 ]
             }
 
-            // Define Flickable element using the flickable property only íf the flickable component (the prompter and editor in this case)
-            // has some non standard properties, such as not covering the whole Page. Otherwise, use element like everywhere else
-            // and use Kirigami.ScrollablePage instead of page.
+            //// Define Flickable element using the flickable property only íf the flickable component (the prompter and editor in this case)
+            //// has some non standard properties, such as not covering the whole Page. Otherwise, use element like everywhere else
+            //// and use Kirigami.ScrollablePage instead of page.
             //flickable: Flickable {
             Flickable {
                 id: flickable
@@ -115,37 +160,45 @@ Kirigami.ApplicationWindow {
                     wrapMode: Controls.TextArea.Wrap
                     readOnly: true
                     text: "QPrompt is a Free Software and open source teleprompter software for professionals."
+                    font.pixelSize: flickable.width*0.05
                     persistentSelection: true
                     //Different styles have different padding and background
                     //decorations, but since this editor is almost taking up the
                     //entire window, we don't need them.
-                    leftPadding: 6
-                    rightPadding: 6
+                    leftPadding: 0
+                    rightPadding: 0
                     topPadding: 0
                     bottomPadding: 0
                     background: null
 
                     onLinkActivated: Qt.openUrlExternally(link)
                 }
+                DocumentHandler {
+                    id: document
+                    document: textArea.textDocument
+                    cursorPosition: textArea.cursorPosition
+                    selectionStart: textArea.selectionStart
+                    selectionEnd: textArea.selectionEnd
+                    Component.onCompleted: document.load("qrc:/texteditor.html")
+                    onLoaded: {
+                        textArea.text = text
+                    }
+                    onError: {
+                        errorDialog.text = message
+                        errorDialog.visible = true
+                    }
+                }
                 Controls.ScrollBar.vertical: Controls.ScrollBar {}
             }
 
-            //DocumentHandler {
-                //id: document
-                //document: textArea.textDocument
-                //cursorPosition: textArea.cursorPosition
-                //selectionStart: textArea.selectionStart
-                //selectionEnd: textArea.selectionEnd
-                //Component.onCompleted: document.load("qrc:/texteditor.html")
-                //onLoaded: {
-                    //textArea.text = text
-                //}
-                //onError: {
-                    //errorDialog.text = message
-                    //errorDialog.visible = true
+            //Kirigami.OverlaySheet {
+                //id: sheet
+                //onSheetOpenChanged: page.actions.main.checked = sheetOpen
+                //Controls.Label {
+                    //wrapMode: Text.WordWrap
+                    //text: "Lorem ipsum dolor sit amet"
                 //}
             //}
-
         }
     }
     
@@ -193,7 +246,7 @@ Kirigami.ApplicationWindow {
             MenuItem {
                 text: qsTr("&Bold")
                 checkable: true
-                checked: document.bold
+                checked: flickable.document.bold
                 onTriggered: document.bold = !document.bold
             }
             MenuItem {
