@@ -21,17 +21,17 @@
 import QtQuick 2.12
 import org.kde.kirigami 2.4 as Kirigami
 import QtQuick.Controls 2.15 as Controls
-//import QtQuick.Controls 2.0 as Controls
 import QtQuick.Window 2.0
 import Qt.labs.platform 1.0
 
 import com.cuperino.qprompt.document 1.0
-//import io.qt.examples.texteditor 1.0
 
 Kirigami.ApplicationWindow {
     id: root
 
     title: i18n("QPrompt")
+    minimumWidth: 480
+    minimumHeight: 380
 
     globalDrawer: Kirigami.GlobalDrawer {
         title: i18n("QPrompt")
@@ -149,6 +149,7 @@ Kirigami.ApplicationWindow {
             //// has some non standard properties, such as not covering the whole Page. Otherwise, use element like everywhere else
             //// and use Kirigami.ScrollablePage instead of page.
             //flickable: Flickable {
+            // Flickable makes the element touch scrollable
             Flickable {
                 id: flickable
                 flickableDirection: Flickable.VerticalFlick
