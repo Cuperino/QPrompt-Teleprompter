@@ -20,7 +20,7 @@
 
 import QtQuick 2.12
 import org.kde.kirigami 2.4 as Kirigami
-import QtQuick.Controls 2.15 as Controls
+import QtQuick.Controls 2.15
 import QtQuick.Window 2.0
 import Qt.labs.platform 1.0
 
@@ -98,11 +98,11 @@ Kirigami.ApplicationWindow {
                 }
                 left: Kirigami.Action {
                     iconName: "go-previous"
-                    onTriggered: showPassiveNotification(i18n("Left action triggered"))
+                    onTriggered: showPassiveNotification(i18n("Decrease Velocity"))
                 }
                 right: Kirigami.Action {
                     iconName: "go-next"
-                    onTriggered: showPassiveNotification(i18n("Right action triggered"))
+                    onTriggered: showPassiveNotification(i18n("Increase Velocity"))
                 }
                 // Use action toolbar instead?
                 //ActionToolBar
@@ -155,10 +155,11 @@ Kirigami.ApplicationWindow {
                 flickableDirection: Flickable.VerticalFlick
                 anchors.fill: parent
 
-                Controls.TextArea.flickable: Controls.TextArea {
+                TextArea.flickable: TextArea {
+                    property int __i: 0
                     id: editor
                     textFormat: Qt.RichText
-                    wrapMode: Controls.TextArea.Wrap
+                    wrapMode: TextArea.Wrap
                     readOnly: true
                     text: "QPrompt is a Free Software and open source teleprompter software for professionals."
                     persistentSelection: true
@@ -179,10 +180,16 @@ Kirigami.ApplicationWindow {
                     // Key bindings                 
                     Keys.onPressed: {
                         switch (event.key) {
+                            case Qt.Key_S:
                             case Qt.Key_Down:
-                                showPassiveNotification(i18n("Increase Velocity")); break;
+                                showPassiveNotification(i18n("Increase Velocity"));
+                                editor.state = "prompting";
+                                break;
+                            case Qt.Key_W:
                             case Qt.Key_Up:
-                                showPassiveNotification(i18n("Decrease Velocity")); break;
+                                showPassiveNotification(i18n("Decrease Velocity"));
+                                editor.state = "rewinding";
+                                break;
                             case Qt.Key_Space:
                                 showPassiveNotification(i18n("Toggle Playback")); break;
                             case Qt.Key_Tab:
@@ -209,9 +216,45 @@ Kirigami.ApplicationWindow {
                         //    document.undo();
                         //else if (event.matches(StandardKey.Redo))
                         //    document.redo();
+                        
                     }
 
                     onLinkActivated: Qt.openUrlExternally(link)
+                    
+                    states: [
+                        State {
+                            name: "still"
+                            PropertyChanges { target: scroller; position: position }
+                        },
+                        State {
+                            name: "prompting"
+                            PropertyChanges { target: scroller; position: 1 }
+                        },
+                        State {
+                            name: "rewinding"
+                            PropertyChanges { target: scroller; position: 0 }
+                        }//,
+                        //State {
+                            //name: "paused"
+                            //PropertyChanges { target: scroller; position: position }
+                        //}
+                    ]
+                    state: "still"
+                    
+                    transitions: [
+                        Transition {
+                            from: "*"; to : "prompting"
+                            NumberAnimation {
+                                targets: [scroller]
+                                properties: "position"; duration: 500
+                            }
+                        }
+                    ]
+                }
+                ScrollBar.vertical: ScrollBar {
+                    id: scroller
+                    policy: ScrollBar.AlwaysOn
+                    // position: 1
                 }
                 DocumentHandler {
                     id: document
@@ -228,13 +271,12 @@ Kirigami.ApplicationWindow {
                         errorDialog.visible = true
                     }
                 }
-                Controls.ScrollBar.vertical: Controls.ScrollBar {}
             }
 
             //Kirigami.OverlaySheet {
                 //id: sheet
                 //onSheetOpenChanged: page.actions.main.checked = sheetOpen
-                //Controls.Label {
+                //Label {
                     //wrapMode: Text.WordWrap
                     //text: "Lorem ipsum dolor sit amet"
                 //}
@@ -265,18 +307,18 @@ Kirigami.ApplicationWindow {
 
             MenuItem {
                 text: qsTr("&Copy")
-                enabled: editor.selectedText
-                onTriggered: editor.copy()
+                enabled: this.editor.selectedText
+                onTriggered: this.editor.copy()
             }
             MenuItem {
                 text: qsTr("Cu&t")
-                enabled: editor.selectedText
-                onTriggered: editor.cut()
+                enabled: this.editor.selectedText
+                onTriggered: this.editor.cut()
             }
             MenuItem {
                 text: qsTr("&Paste")
-                enabled: editor.canPaste
-                onTriggered: editor.paste()
+                enabled: this.editor.canPaste
+                onTriggered: this.editor.paste()
             }
         }
 
@@ -286,7 +328,7 @@ Kirigami.ApplicationWindow {
             MenuItem {
                 text: qsTr("&Bold")
                 checkable: true
-                checked: flickable.document.bold
+                checked: this.flickable.document.bold
                 onTriggered: document.bold = !document.bold
             }
             MenuItem {
