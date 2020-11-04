@@ -151,12 +151,17 @@ Kirigami.ApplicationWindow {
             //flickable: Flickable {
             // Flickable makes the element touch scrollable
             Flickable {
-                id: flickable
+                id: prompter
+                property int __i: 0
+                property int __time_to_arival: (prompter.contentHeight - prompter.contentY)
                 flickableDirection: Flickable.VerticalFlick
                 anchors.fill: parent
 
+                Behavior on contentY {
+                    NumberAnimation { duration: prompter.__time_to_arival }
+                }
+                
                 TextArea.flickable: TextArea {
-                    property int __i: 0
                     id: editor
                     textFormat: Qt.RichText
                     wrapMode: TextArea.Wrap
@@ -175,20 +180,26 @@ Kirigami.ApplicationWindow {
                     // Start with the editor in focus
                     focus: true
                     // Make base font size relative to editor's width
-                    font.pixelSize: flickable.width*0.05
+                    font.pixelSize: prompter.width*0.05
                     
                     // Key bindings                 
                     Keys.onPressed: {
                         switch (event.key) {
                             case Qt.Key_S:
                             case Qt.Key_Down:
+                                parent.__i--
+                                //prompter.__time_to_arival = 5000
+                                prompter.contentY = prompter.contentHeight - prompter.height
+//                                 editor.state = "prompt";
                                 showPassiveNotification(i18n("Increase Velocity"));
-                                editor.state = "prompting";
                                 break;
                             case Qt.Key_W:
                             case Qt.Key_Up:
+                                parent.__i++
+                                //prompter.__time_to_arival = 50
+                                prompter.contentY = 0
+//                                 editor.state = "rewind";
                                 showPassiveNotification(i18n("Decrease Velocity"));
-                                editor.state = "rewinding";
                                 break;
                             case Qt.Key_Space:
                                 showPassiveNotification(i18n("Toggle Playback")); break;
@@ -218,44 +229,64 @@ Kirigami.ApplicationWindow {
                         //    document.redo();
                         
                     }
-
-                    onLinkActivated: Qt.openUrlExternally(link)
                     
-                    states: [
-                        State {
-                            name: "still"
-                            PropertyChanges { target: scroller; position: position }
-                        },
-                        State {
-                            name: "prompting"
-                            PropertyChanges { target: scroller; position: 1 }
-                        },
-                        State {
-                            name: "rewinding"
-                            PropertyChanges { target: scroller; position: 0 }
-                        }//,
+                    //states: [
+                        //State {
+                            //name: "still"
+                            //PropertyChanges {
+                                //target: prompter;
+                                //contentY: prompter.contentY
+                            //}
+                        //},
+                        //State {
+                            //name: "prompt"
+                            //PropertyChanges {
+                                //target: prompter;
+                                //contentY: 1000
+                            //}
+                        //},
+                        //State {
+                            //name: "rewind"
+                            //PropertyChanges {
+                                //target: prompter;
+                                //contentY: 0
+                            //}
+                        //}//,
                         //State {
                             //name: "paused"
                             //PropertyChanges { target: scroller; position: position }
                         //}
-                    ]
-                    state: "still"
+                    //]
+                    //state: "rewinding"
                     
-                    transitions: [
-                        Transition {
-                            from: "*"; to : "prompting"
-                            NumberAnimation {
-                                targets: [scroller]
-                                properties: "position"; duration: 500
-                            }
-                        }
-                    ]
+//                     transitions: [
+//                         Transition {
+//                             from: "*"; to : "prompt"
+//                             NumberAnimation {
+//                                 targets: [prompter]
+//                                 properties: "contentY"
+//                                 duration: parent.__time_to_arival
+//                             }
+//                         },
+//                         Transition {
+//                             from: "*"; to : "rewind"
+//                             NumberAnimation {
+//                                 targets: [prompter]
+//                                 properties: "contentY"
+//                                 duration: parent.__time_to_arival
+//                             }
+//                         }
+//                     ]
+
+                    // Make links responsive
+                    onLinkActivated: Qt.openUrlExternally(link)
                 }
-                ScrollBar.vertical: ScrollBar {
-                    id: scroller
-                    policy: ScrollBar.AlwaysOn
-                    // position: 1
-                }
+                //ScrollBar.vertical: ScrollBar {
+                ////ScrollIndicator.vertical: ScrollIndicator{
+                    //id: scroller
+                    //policy: ScrollBar.AlwaysOn
+                    //position: 1
+                //}
                 DocumentHandler {
                     id: document
                     document: editor.textDocument
@@ -328,7 +359,7 @@ Kirigami.ApplicationWindow {
             MenuItem {
                 text: qsTr("&Bold")
                 checkable: true
-                checked: this.flickable.document.bold
+                checked: this.prompter.document.bold
                 onTriggered: document.bold = !document.bold
             }
             MenuItem {
