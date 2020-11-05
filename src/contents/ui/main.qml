@@ -158,7 +158,7 @@ Kirigami.ApplicationWindow {
                 property int __i: 0
                 property double __vw: prompter.width*0.01
                 property double __baseSpeed: 1.0
-                property double __curvature: 1.45
+                property double __curvature: 1.35
                 property double __velocity: __baseSpeed * Math.pow(Math.abs(__i), __curvature)
                 property double __time_to_arival: __i ? (__i<0 ? prompter.contentY : (prompter.contentHeight-prompter.contentY)) / (Math.abs(__velocity * __vw)) << 9 : 0;
                 property int __destination: (__i ? (__i<0 ? __i%2*(__i%2?1:2) : prompter.contentHeight - __i%2*(__i%2?1:2)) : prompter.contentY);
@@ -178,7 +178,6 @@ Kirigami.ApplicationWindow {
                         //from: "*"
                         //to: "*"
                     }
-                    //easing.type: Easing.Linear
                     //finished: {
                     //    prompter.__i = 0
                     //}
