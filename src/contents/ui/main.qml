@@ -23,6 +23,7 @@ import org.kde.kirigami 2.4 as Kirigami
 import QtQuick.Controls 2.15
 import QtQuick.Window 2.0
 import Qt.labs.platform 1.0
+//import Qt.Math 1.0
 
 import com.cuperino.qprompt.document 1.0
 
@@ -145,20 +146,42 @@ Kirigami.ApplicationWindow {
                 ]
             }
 
-            //// Define Flickable element using the flickable property only íf the flickable component (the prompter and editor in this case)
+            // Flickable makes the element scrollable and touch friendly
+            //// Define Flickable element using the flickable property only íf the flickable component (the prompter in this case)
             //// has some non standard properties, such as not covering the whole Page. Otherwise, use element like everywhere else
             //// and use Kirigami.ScrollablePage instead of page.
             //flickable: Flickable {
-            // Flickable makes the element touch scrollable
             Flickable {
                 id: prompter
+                // property int __unit: 1
+                property bool __play: true
                 property int __i: 0
-                property int __time_to_arival: (prompter.contentHeight - prompter.contentY)
+                property double __vw: prompter.width*0.01
+                property double __baseSpeed: 1.0
+                property double __curvature: 1.45
+                property double __velocity: __baseSpeed * Math.pow(Math.abs(__i), __curvature)
+                property double __time_to_arival: __i ? (__i<0 ? prompter.contentY : (prompter.contentHeight-prompter.contentY)) / (Math.abs(__velocity * __vw)) << 9 : 0;
+                property int __destination: (__i ? (__i<0 ? __i%2*(__i%2?1:2) : prompter.contentHeight - __i%2*(__i%2?1:2)) : prompter.contentY);
+
+                //
+                contentY: __destination
+
+                //property int __time_to_arival: (prompter.contentHeight - prompter.contentY)
                 flickableDirection: Flickable.VerticalFlick
                 anchors.fill: parent
 
                 Behavior on contentY {
-                    NumberAnimation { duration: prompter.__time_to_arival }
+                    NumberAnimation {
+                        id: motion
+                        //paused: !__play
+                        duration: prompter.__time_to_arival
+                        //from: "*"
+                        //to: "*"
+                    }
+                    //easing.type: Easing.Linear
+                    //finished: {
+                    //    prompter.__i = 0
+                    //}
                 }
                 
                 TextArea.flickable: TextArea {
@@ -180,29 +203,36 @@ Kirigami.ApplicationWindow {
                     // Start with the editor in focus
                     focus: true
                     // Make base font size relative to editor's width
-                    font.pixelSize: prompter.width*0.05
+                    font.pixelSize: 10 * prompter.__vw
                     
                     // Key bindings                 
                     Keys.onPressed: {
                         switch (event.key) {
                             case Qt.Key_S:
                             case Qt.Key_Down:
-                                parent.__i--
+                                prompter.__i++
                                 //prompter.__time_to_arival = 5000
-                                prompter.contentY = prompter.contentHeight - prompter.height
-//                                 editor.state = "prompt";
+                                //prompter.contentY = prompter.contentY
+                                //prompter.contentY = prompter.contentHeight - prompter.height
                                 showPassiveNotification(i18n("Increase Velocity"));
                                 break;
                             case Qt.Key_W:
                             case Qt.Key_Up:
-                                parent.__i++
+                                prompter.__i--
                                 //prompter.__time_to_arival = 50
-                                prompter.contentY = 0
-//                                 editor.state = "rewind";
+                                //prompter.contentY = prompter.contentY
+                                //prompter.contentY = 0
                                 showPassiveNotification(i18n("Decrease Velocity"));
                                 break;
                             case Qt.Key_Space:
-                                showPassiveNotification(i18n("Toggle Playback")); break;
+                                showPassiveNotification(i18n("Toggle Playback"));
+                                console.log(motion.paused)
+                                motion.paused = !motion.paused
+                                //if (motion.paused)
+                                    //motion.resume()
+                                //else
+                                    //motion.pause()
+                                break;
                             case Qt.Key_Tab:
                                 if (event.modifiers & Qt.ShiftModifier)
                                     // Not reached...
@@ -218,9 +248,9 @@ Kirigami.ApplicationWindow {
                                 showPassiveNotification(i18n("Home Pressed")); break;
                             case Qt.Key_End:
                                 showPassiveNotification(i18n("End Pressed")); break;
-                            default:
-                                // Show key code
-                                showPassiveNotification(event.key)
+                            //default:
+                            //    // Show key code
+                            //    showPassiveNotification(event.key)
                         }
                         //// Undo and redo key bindings
                         //if (event.matches(StandardKey.Undo))
@@ -230,54 +260,6 @@ Kirigami.ApplicationWindow {
                         
                     }
                     
-                    //states: [
-                        //State {
-                            //name: "still"
-                            //PropertyChanges {
-                                //target: prompter;
-                                //contentY: prompter.contentY
-                            //}
-                        //},
-                        //State {
-                            //name: "prompt"
-                            //PropertyChanges {
-                                //target: prompter;
-                                //contentY: 1000
-                            //}
-                        //},
-                        //State {
-                            //name: "rewind"
-                            //PropertyChanges {
-                                //target: prompter;
-                                //contentY: 0
-                            //}
-                        //}//,
-                        //State {
-                            //name: "paused"
-                            //PropertyChanges { target: scroller; position: position }
-                        //}
-                    //]
-                    //state: "rewinding"
-                    
-//                     transitions: [
-//                         Transition {
-//                             from: "*"; to : "prompt"
-//                             NumberAnimation {
-//                                 targets: [prompter]
-//                                 properties: "contentY"
-//                                 duration: parent.__time_to_arival
-//                             }
-//                         },
-//                         Transition {
-//                             from: "*"; to : "rewind"
-//                             NumberAnimation {
-//                                 targets: [prompter]
-//                                 properties: "contentY"
-//                                 duration: parent.__time_to_arival
-//                             }
-//                         }
-//                     ]
-
                     // Make links responsive
                     onLinkActivated: Qt.openUrlExternally(link)
                 }
