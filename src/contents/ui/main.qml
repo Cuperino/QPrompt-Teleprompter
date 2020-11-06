@@ -23,6 +23,7 @@ import org.kde.kirigami 2.4 as Kirigami
 import QtQuick.Controls 2.15
 import QtQuick.Window 2.0
 import Qt.labs.platform 1.0
+//import QColor 1.0
 //import Qt.Math 1.0
 
 import com.cuperino.qprompt.document 1.0
@@ -145,7 +146,56 @@ Kirigami.ApplicationWindow {
 //                    }
                 ]
             }
-
+            Item {
+                id: overlay
+                //enabled: false
+                property double __opacity: 0.4
+                property color __color: Kirigami.Theme.View.activeBackgroundColor
+                anchors.fill: parent
+//                 MouseArea {
+//                     anchors.fill: parent
+//                     cursorShape: Qt.CrossCursor
+//                     propagateComposedEvents: true
+//                 }
+                Item {
+                    id: readRegion
+                    height: 21 * prompter.__vw
+                    y: parent.height / 2 - this.height/2
+                    anchors.left: parent.left
+                    anchors.right: parent.right
+                    MouseArea {
+                        anchors.fill: parent
+                        drag.target: parent
+                        drag.axis: Drag.YAxis
+                        drag.smoothed: false
+                        drag.minimumY: 0
+                        drag.maximumY: overlay.height - this.height
+                        cursorShape: Qt.PointingHandCursor
+                        onReleased: {
+                            console.log(parent.y);
+                        }
+                    }
+                    
+                }
+                Rectangle {
+                    anchors.top: parent.top
+                    anchors.bottom: readRegion.top
+                    anchors.left: parent.left
+                    anchors.right: parent.right
+                    opacity: overlay.__opacity
+                    color: overlay.__color
+                }
+                Rectangle {
+                    anchors.top: readRegion.bottom
+                    anchors.bottom: parent.bottom
+                    anchors.left: parent.left
+                    anchors.right: parent.right
+                    opacity: overlay.__opacity
+                    color: overlay.__color
+                }
+            }
+            
+            
             // Flickable makes the element scrollable and touch friendly
             //// Define Flickable element using the flickable property only íf the flickable component (the prompter in this case)
             //// has some non standard properties, such as not covering the whole Page. Otherwise, use element like everywhere else
@@ -154,33 +204,34 @@ Kirigami.ApplicationWindow {
             Flickable {
                 id: prompter
                 // property int __unit: 1
+                property alias position: prompter.contentY
                 property bool __play: true
                 property int __i: 0
-                property double __vw: prompter.width*0.01
                 property double __baseSpeed: 1.0
                 property double __curvature: 1.35
-                property double __velocity: __baseSpeed * Math.pow(Math.abs(__i), __curvature)
-                property double __time_to_arival: __i ? (__i<0 ? prompter.contentY : (prompter.contentHeight-prompter.contentY)) / (Math.abs(__velocity * __vw)) << 9 : 0;
-                property int __destination: (__i ? (__i<0 ? __i%2*(__i%2?1:2) : prompter.contentHeight - __i%2*(__i%2?1:2)) : prompter.contentY);
-
+                readonly property double __vw: prompter.width*0.01
+                readonly property double __velocity: __baseSpeed * Math.pow(Math.abs(__i), __curvature)
+                readonly property double __time_to_arival: __i ? (__i<0 ? prompter.position : (prompter.contentHeight-prompter.position)) / (Math.abs(__velocity * __vw)) << 8 : 0;
+                readonly property int __destination: (__i ? (__i<0 ? __i%2*(__i%2?1:1) : prompter.contentHeight - __i%2*(__i%2?1:1)) : prompter.position);
                 //
                 contentY: __destination
 
-                //property int __time_to_arival: (prompter.contentHeight - prompter.contentY)
+                //property int __time_to_arival: (prompter.contentHeight - prompter.position)
                 flickableDirection: Flickable.VerticalFlick
                 anchors.fill: parent
 
-                Behavior on contentY {
+                Behavior on position {
                     NumberAnimation {
                         id: motion
                         //paused: !__play
                         duration: prompter.__time_to_arival
                         //from: "*"
                         //to: "*"
+                        onFinished: {
+                            console.log("Animation Completed")
+                            prompter.__i = 0
+                        }
                     }
-                    //finished: {
-                    //    prompter.__i = 0
-                    //}
                 }
                 
                 TextArea.flickable: TextArea {
@@ -211,16 +262,16 @@ Kirigami.ApplicationWindow {
                             case Qt.Key_Down:
                                 prompter.__i++
                                 //prompter.__time_to_arival = 5000
-                                //prompter.contentY = prompter.contentY
-                                //prompter.contentY = prompter.contentHeight - prompter.height
+                                //prompter.position = prompter.position
+                                //prompter.position = prompter.contentHeight - prompter.height
                                 showPassiveNotification(i18n("Increase Velocity"));
                                 break;
                             case Qt.Key_W:
                             case Qt.Key_Up:
                                 prompter.__i--
                                 //prompter.__time_to_arival = 50
-                                //prompter.contentY = prompter.contentY
-                                //prompter.contentY = 0
+                                //prompter.position = prompter.position
+                                //prompter.position = 0
                                 showPassiveNotification(i18n("Decrease Velocity"));
                                 break;
                             case Qt.Key_Space:
@@ -284,7 +335,6 @@ Kirigami.ApplicationWindow {
                     }
                 }
             }
-
             //Kirigami.OverlaySheet {
                 //id: sheet
                 //onSheetOpenChanged: page.actions.main.checked = sheetOpen
