@@ -212,10 +212,18 @@ Kirigami.ApplicationWindow {
                 readonly property double __vw: prompter.width*0.01
                 readonly property double __velocity: __baseSpeed * Math.pow(Math.abs(__i), __curvature)
                 readonly property double __time_to_arival: __i ? (__i<0 ? prompter.position : (prompter.contentHeight-prompter.position)) / (Math.abs(__velocity * __vw)) << 8 : 0;
-                readonly property int __destination: (__i ? (__i<0 ? __i%2*(__i%2?1:1) : prompter.contentHeight - __i%2*(__i%2?1:1)) : prompter.position);
+                property int __destination: (__i ? (__i<0 ? __i%2*(__i%2?1:1) : prompter.contentHeight - __i%2*(__i%2?1:1)) : prompter.position);
                 //
                 contentY: __destination
-
+                onFlickStarted: {
+                    console.log("Flick started")
+//                     contentY = contentY
+                }
+                onFlickEnded: {
+                    console.log("Flick ended")
+//                     contentY: __destination
+                }
+                
                 //property int __time_to_arival: (prompter.contentHeight - prompter.position)
                 flickableDirection: Flickable.VerticalFlick
                 anchors.fill: parent
@@ -260,6 +268,7 @@ Kirigami.ApplicationWindow {
                         switch (event.key) {
                             case Qt.Key_S:
                             case Qt.Key_Down:
+                                event.accepted = true;
                                 prompter.__i++
                                 //prompter.__time_to_arival = 5000
                                 //prompter.position = prompter.position
@@ -268,6 +277,7 @@ Kirigami.ApplicationWindow {
                                 break;
                             case Qt.Key_W:
                             case Qt.Key_Up:
+                                event.accepted = true;
                                 prompter.__i--
                                 //prompter.__time_to_arival = 50
                                 //prompter.position = prompter.position
