@@ -150,17 +150,18 @@ Kirigami.ApplicationWindow {
                 id: overlay
                 //enabled: false
                 property double __opacity: 0.4
-                property color __color: Kirigami.Theme.View.activeBackgroundColor
+                property color __color: 'black'
                 anchors.fill: parent
-//                 MouseArea {
-//                     anchors.fill: parent
-//                     cursorShape: Qt.CrossCursor
-//                     propagateComposedEvents: true
-//                 }
+                //MouseArea {
+                //    anchors.fill: parent
+                //    cursorShape: Qt.CrossCursor
+                //    propagateComposedEvents: true
+                //}
                 Item {
                     id: readRegion
+                    property double __placement: 0.5
                     height: 21 * prompter.__vw
-                    y: parent.height / 2 - this.height/2
+                    y: readRegion.__placement * (overlay.height - readRegion.height)
                     anchors.left: parent.left
                     anchors.right: parent.right
                     MouseArea {
@@ -172,10 +173,9 @@ Kirigami.ApplicationWindow {
                         drag.maximumY: overlay.height - this.height
                         cursorShape: Qt.PointingHandCursor
                         onReleased: {
-                            console.log(parent.y);
+                            readRegion.__placement = readRegion.y / (overlay.height - readRegion.height)
                         }
                     }
-                    
                 }
                 Rectangle {
                     anchors.top: parent.top
