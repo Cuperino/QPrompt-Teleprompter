@@ -24,6 +24,7 @@ import QtQuick.Controls 2.15
 import QtQuick.Shapes 1.15
 import QtQuick.Window 2.0
 import Qt.labs.platform 1.0
+import QtQuick.Layouts 1.15
 //import QColor 1.0
 //import Qt.Math 1.0
 
@@ -31,11 +32,12 @@ import com.cuperino.qprompt.document 1.0
 
 Kirigami.ApplicationWindow {
     id: root
-
+    
     title: i18n("QPrompt")
     minimumWidth: 480
     minimumHeight: 380
 
+    //     visibility: Window.FullScreen
     globalDrawer: Kirigami.GlobalDrawer {
         title: i18n("QPrompt")
         titleIcon: "applications-graphics"
@@ -97,7 +99,12 @@ Kirigami.ApplicationWindow {
                 main: Kirigami.Action {
                     text: i18n("Start Prompting")
                     iconName: "go-next"
-                    onTriggered: showPassiveNotification(i18n("Prompt started"))
+                    onTriggered: {
+                        showPassiveNotification(i18n("Prompt started"))
+                        // Enter full screen
+                        root.showFullScreen()
+                        root.controlsVisible = false
+                    }
                 }
                 left: Kirigami.Action {
                     iconName: "go-previous"
@@ -115,36 +122,6 @@ Kirigami.ApplicationWindow {
                         text: i18n("Region")
                         iconName: "middle"
                         onTriggered: readRegion.toggle()
-                    },
-                    Kirigami.Action {
-                        text: i18n("&Copy")
-                        iconName: "copy"
-                        onTriggered: editor.copy()
-                    },
-                    Kirigami.Action {
-                        text: i18n("Cut")
-                        iconName: "cut"
-                        onTriggered: editor.cut()
-                    },
-                    Kirigami.Action {
-                        text: i18n("&Paste")
-                        iconName: "paste"
-                        onTriggered: editor.paste()
-                    },
-                    Kirigami.Action {
-                        text: i18n("&Bold")
-                        iconName: "bold"
-                        onTriggered: document.bold = !document.bold
-                    },
-                    Kirigami.Action {
-                        text: i18n("&Italic")
-                        iconName: "italic"
-                        onTriggered: document.italic = !document.italic
-                    },
-                    Kirigami.Action {
-                        text: i18n("&Underline")
-                        iconName: "underline"
-                        onTriggered: document.underline = !document.underline
                     }
 //                    Kirigami.Action {
 //                        text: i18n("LOL")
@@ -153,12 +130,47 @@ Kirigami.ApplicationWindow {
 //                    }
                 ]
             }
-
+            
+            //footer: ToolBar {
+                //RowLayout {
+                    //anchors.fill: parent
+                    //ToolButton {
+                        //text: i18n("&Copy")
+                        //icon.name: "copy"
+                        //onClicked: editor.copy()
+                    //}
+                    //ToolButton {
+                        //text: i18n("Cut")
+                        //icon.name: "cut"
+                        //onClicked: editor.cut()
+                    //}
+                    //ToolButton {
+                        //text: i18n("&Paste")
+                        //icon.name: "paste"
+                        //onClicked: editor.paste()
+                    //}
+                    //ToolButton {
+                        //text: i18n("&Bold")
+                        //icon.name: "bold"
+                        //onClicked: document.bold = !document.bold
+                    //}
+                    //ToolButton {
+                        //text: i18n("&Italic")
+                        //icon.name: "italic"
+                        //onClicked: document.italic = !document.italic
+                    //}
+                    //ToolButton {
+                        //text: i18n("&Underline")
+                        //icon.name: "underline"
+                        //onClicked: document.underline = !document.underline
+                    //}
+                //}
+            //}
+            
             Item {
                 id: overlay
-                property double __opacity: 0.4
+                property double __opacity: 0
                 property color __color: 'black'
-//                 anchors.fill: parent
                 anchors {
                     left: editor.left
                     top: parent.top
@@ -221,6 +233,14 @@ Kirigami.ApplicationWindow {
                         State {
                             name: "free"
                             PropertyChanges {
+                                target: overlay
+                                __opacity: 0.4
+                            }
+                            PropertyChanges {
+                                target: triangles
+                                __opacity: 0.4
+                            }
+                            PropertyChanges {
                                 target: readRegion
                                 enabled: true
                             }
@@ -257,8 +277,16 @@ Kirigami.ApplicationWindow {
                         Transition {
                             from: "*"; to: "*"
                             PropertyAnimation {
-                                targets: [readRegion, triangles]
+                                targets: readRegion
                                 properties: "__placement"; duration: 200; easing.type: Easing.OutQuad
+                            }
+                            PropertyAnimation {
+                                targets: overlay
+                                properties: "__opacity"; duration: 200; easing.type: Easing.OutQuad
+                            }
+                            PropertyAnimation {
+                                targets: triangles
+                                properties: "__fillColor"; duration: 200; easing.type: Easing.OutQuad
                             }
                         }/*,
                         Transition {
@@ -283,7 +311,7 @@ Kirigami.ApplicationWindow {
                     }
                     Item {
                         id: triangles
-                        property double __opacity: 0.4
+                        property double __opacity: 0.08
                         property color __strokeColor: "lightgray"
                         property color __fillColor: "#001800"
                         property double __offsetX: 0.3333
@@ -363,12 +391,12 @@ Kirigami.ApplicationWindow {
                 //
                 contentY: __destination
                 onFlickStarted: {
-                    console.log("Flick started")
+                    //console.log("Flick started")
                     //motion.enabled = false
                     //contentY = contentY
                 }
                 onFlickEnded: {
-                    console.log("Flick ended")
+                    //console.log("Flick ended")
                     //motion.enabled = true
                     //contentY: __destination
                 }
