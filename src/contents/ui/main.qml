@@ -21,6 +21,7 @@
 import QtQuick 2.12
 import org.kde.kirigami 2.4 as Kirigami
 import QtQuick.Controls 2.15
+import QtQuick.Shapes 1.15
 import QtQuick.Window 2.0
 import Qt.labs.platform 1.0
 //import QColor 1.0
@@ -146,12 +147,19 @@ Kirigami.ApplicationWindow {
 //                    }
                 ]
             }
+
             Item {
                 id: overlay
                 //enabled: false
                 property double __opacity: 0.4
                 property color __color: 'black'
-                anchors.fill: parent
+//                 anchors.fill: parent
+                anchors {
+                    left: editor.left
+                    top: parent.top
+                    bottom: parent.bottom
+                }
+                width: editor.width
                 //MouseArea {
                 //    anchors.fill: parent
                 //    cursorShape: Qt.CrossCursor
@@ -176,6 +184,49 @@ Kirigami.ApplicationWindow {
                             readRegion.__placement = readRegion.y / (overlay.height - readRegion.height)
                         }
                     }
+                    Item {
+                        id: triangles
+                        property double __opacity: 0.4
+                        property color __strokeColor: "lightgray"
+                        property color __fillColor: "#001800"
+                        property double __offsetX: 0.3333
+                        property double __stretchX: 0.3333
+                        readonly property double __triangleUnit: parent.height / 6
+                        Shape {
+                            opacity: triangles.__opacity
+                            ShapePath {
+                                strokeWidth: 3
+                                strokeColor: triangles.__strokeColor
+                                fillColor: triangles.__fillColor
+                                // Top left starting point                                
+                                startX: triangles.__offsetX*triangles.__triangleUnit; startY: 1*triangles.__triangleUnit
+                                // Bottom left
+                                PathLine { x: triangles.__offsetX*triangles.__triangleUnit; y: 5*triangles.__triangleUnit }
+                                // Center right
+                                PathLine { x: (3*triangles.__stretchX+triangles.__offsetX)*triangles.__triangleUnit; y: 3*triangles.__triangleUnit }
+                                // Top left return
+                                PathLine { x: triangles.__offsetX*triangles.__triangleUnit; y: 1*triangles.__triangleUnit }
+                            }
+                        }
+                        Shape {
+                            opacity: triangles.__opacity
+                            x: parent.parent.width
+                            anchors.right: parent.parent.right
+                            ShapePath {
+                                strokeWidth: 3
+                                strokeColor: triangles.__strokeColor
+                                fillColor: triangles.__fillColor
+                                // Top right starting point                                
+                                startX: -triangles.__offsetX*triangles.__triangleUnit; startY: 1*triangles.__triangleUnit
+                                // Bottom right
+                                PathLine { x: -triangles.__offsetX*triangles.__triangleUnit; y: 5*triangles.__triangleUnit }
+                                // Center left
+                                PathLine { x: -(3*triangles.__stretchX+triangles.__offsetX)*triangles.__triangleUnit; y: 3*triangles.__triangleUnit }
+                                // Top right return
+                                PathLine { x: -triangles.__offsetX*triangles.__triangleUnit; y: 1*triangles.__triangleUnit }
+                            }
+                        }
+                    }
                 }
                 Rectangle {
                     anchors.top: parent.top
@@ -193,9 +244,9 @@ Kirigami.ApplicationWindow {
                     opacity: overlay.__opacity
                     color: overlay.__color
                 }
+
             }
-            
-            
+
             // Flickable makes the element scrollable and touch friendly
             //// Define Flickable element using the flickable property only íf the flickable component (the prompter in this case)
             //// has some non standard properties, such as not covering the whole Page. Otherwise, use element like everywhere else
@@ -212,16 +263,18 @@ Kirigami.ApplicationWindow {
                 readonly property double __vw: prompter.width*0.01
                 readonly property double __velocity: __baseSpeed * Math.pow(Math.abs(__i), __curvature)
                 readonly property double __time_to_arival: __i ? (__i<0 ? prompter.position : (prompter.contentHeight-prompter.position)) / (Math.abs(__velocity * __vw)) << 8 : 0;
-                property int __destination: (__i ? (__i<0 ? __i%2*(__i%2?1:1) : prompter.contentHeight - __i%2*(__i%2?1:1)) : prompter.position);
+                property int __destination: (__i ? (__i<0 ? __i%2 : prompter.contentHeight - __i%2) : prompter.position);
                 //
                 contentY: __destination
                 onFlickStarted: {
                     console.log("Flick started")
-//                     contentY = contentY
+                    //motion.enabled = false
+                    //contentY = contentY
                 }
                 onFlickEnded: {
                     console.log("Flick ended")
-//                     contentY: __destination
+                    //motion.enabled = true
+                    //contentY: __destination
                 }
                 
                 //property int __time_to_arival: (prompter.contentHeight - prompter.position)
@@ -229,8 +282,9 @@ Kirigami.ApplicationWindow {
                 anchors.fill: parent
 
                 Behavior on position {
-                    NumberAnimation {
-                        id: motion
+                    id: motion
+                    enabled: true
+                    animation: NumberAnimation {
                         //paused: !__play
                         duration: prompter.__time_to_arival
                         //from: "*"
@@ -246,8 +300,8 @@ Kirigami.ApplicationWindow {
                     id: editor
                     textFormat: Qt.RichText
                     wrapMode: TextArea.Wrap
-                    readOnly: true
-                    text: "QPrompt is a Free Software and open source teleprompter software for professionals."
+                    readOnly: false
+                    text: "Error loading file"
                     persistentSelection: true
                     //Different styles have different padding and background
                     //decorations, but since this editor must resemble the
@@ -266,7 +320,7 @@ Kirigami.ApplicationWindow {
                     // Key bindings                 
                     Keys.onPressed: {
                         switch (event.key) {
-                            case Qt.Key_S:
+                            //case Qt.Key_S:
                             case Qt.Key_Down:
                                 event.accepted = true;
                                 prompter.__i++
@@ -275,7 +329,7 @@ Kirigami.ApplicationWindow {
                                 //prompter.position = prompter.contentHeight - prompter.height
                                 showPassiveNotification(i18n("Increase Velocity"));
                                 break;
-                            case Qt.Key_W:
+                            //case Qt.Key_W:
                             case Qt.Key_Up:
                                 event.accepted = true;
                                 prompter.__i--
@@ -287,7 +341,7 @@ Kirigami.ApplicationWindow {
                             case Qt.Key_Space:
                                 showPassiveNotification(i18n("Toggle Playback"));
                                 console.log(motion.paused)
-                                motion.paused = !motion.paused
+                                //motion.paused = !motion.paused
                                 //if (motion.paused)
                                     //motion.resume()
                                 //else
