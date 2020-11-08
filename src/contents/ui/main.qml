@@ -111,6 +111,12 @@ Kirigami.ApplicationWindow {
                 //ActionToolBar
                 contextualActions: [
                     Kirigami.Action {
+                        id: readRegionButton
+                        text: i18n("Region")
+                        iconName: "middle"
+                        onTriggered: readRegion.toggle()
+                    },
+                    Kirigami.Action {
                         text: i18n("&Copy")
                         iconName: "copy"
                         onTriggered: editor.copy()
@@ -150,7 +156,6 @@ Kirigami.ApplicationWindow {
 
             Item {
                 id: overlay
-                //enabled: false
                 property double __opacity: 0.4
                 property color __color: 'black'
 //                 anchors.fill: parent
@@ -167,11 +172,103 @@ Kirigami.ApplicationWindow {
                 //}
                 Item {
                     id: readRegion
-                    property double __placement: 0.5
+                    enabled: false
+                    property double __customPlacement: 0.5
+                    property double __placement: __customPlacement
                     height: 21 * prompter.__vw
                     y: readRegion.__placement * (overlay.height - readRegion.height)
                     anchors.left: parent.left
                     anchors.right: parent.right
+                    states: [
+                        State {
+                            name: "top"
+                            PropertyChanges {
+                                target: readRegion
+                                __placement: 0
+                            }
+                            PropertyChanges {
+                                target: readRegionButton
+                                text: i18n("Top")
+                                iconName: "go-up"
+                                //iconName: "gtk-goto-top"
+                            }
+                        },
+                        State {
+                            name: "middle"
+                            PropertyChanges {
+                                target: readRegion
+                                __placement: 0.5
+                            }
+                            PropertyChanges {
+                                target: readRegionButton
+                                text: i18n("Middle")
+                                iconName: "remove"
+                            }
+                        },
+                        State {
+                            name: "bottom"
+                            PropertyChanges {
+                                target: readRegion
+                                __placement: 1
+                            }
+                            PropertyChanges {
+                                target: readRegionButton
+                                text: i18n("Bottom")
+                                iconName: "go-down"
+                                //iconName: "gtk-goto-bottom"
+                            }
+                        },
+                        State {
+                            name: "free"
+                            PropertyChanges {
+                                target: readRegion
+                                enabled: true
+                            }
+                            PropertyChanges {
+                                target: triangles
+                                __fillColor: "#180000"
+                            }
+                            PropertyChanges {
+                                target: readRegionButton
+                                text: i18n("Free")
+                                iconName: "gtk-edit"
+                            }
+                        },
+                        State {
+                            name: "fixed"
+                            PropertyChanges {
+                                target: readRegion
+                                __placement: readRegion.__placement
+                            }
+                            PropertyChanges {
+                                target: readRegionButton
+                                text: i18n("Custom")
+                                iconName: "gtk-apply"
+                            }
+                        }
+                    ]
+                    state: "middle"
+                    function toggle() {
+                        var states = ["top", "middle", "bottom", "free", "fixed"]
+                        var nextIndex = ( states.indexOf(readRegion.state) + 1 ) % states.length
+                        readRegion.state = states[nextIndex]
+                    }
+                    transitions: [
+                        Transition {
+                            from: "*"; to: "*"
+                            PropertyAnimation {
+                                targets: [readRegion, triangles]
+                                properties: "__placement"; duration: 200; easing.type: Easing.OutQuad
+                            }
+                        }/*,
+                        Transition {
+                            from: "*"; to: "*"
+                            PropertyAnimation {
+                                targets: readRegion
+                                properties: "__placement"; duration: 200; easing.type: Easing.OutQuad
+                            }
+                        }*/
+                    ]
                     MouseArea {
                         anchors.fill: parent
                         drag.target: parent
@@ -181,7 +278,7 @@ Kirigami.ApplicationWindow {
                         drag.maximumY: overlay.height - this.height
                         cursorShape: Qt.PointingHandCursor
                         onReleased: {
-                            readRegion.__placement = readRegion.y / (overlay.height - readRegion.height)
+                            readRegion.__customPlacement = readRegion.y / (overlay.height - readRegion.height)
                         }
                     }
                     Item {
@@ -244,7 +341,6 @@ Kirigami.ApplicationWindow {
                     opacity: overlay.__opacity
                     color: overlay.__color
                 }
-
             }
 
             // Flickable makes the element scrollable and touch friendly
