@@ -36,6 +36,9 @@ Kirigami.ApplicationWindow {
     title: i18n("QPrompt")
     minimumWidth: 480
     minimumHeight: 380
+    //flags: Qt.FramelessWindowHint
+    //color: "transparent"
+    //color: Kirigami.Theme.View.backgroundColor
 
     //     visibility: Window.FullScreen
     globalDrawer: Kirigami.GlobalDrawer {
@@ -108,7 +111,10 @@ Kirigami.ApplicationWindow {
                 }
                 left: Kirigami.Action {
                     iconName: "go-previous"
-                    onTriggered: showPassiveNotification(i18n("Decrease Velocity"))
+                    onTriggered: {
+                        showPassiveNotification(i18n("Decrease Velocity"))
+                        console.log(Kirigami.Theme.View.backgroundColor)
+                    }
                 }
                 right: Kirigami.Action {
                     iconName: "go-next"
