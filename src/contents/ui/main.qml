@@ -36,11 +36,8 @@ Kirigami.ApplicationWindow {
     title: i18n("QPrompt")
     minimumWidth: 480
     minimumHeight: 380
-    //flags: Qt.FramelessWindowHint
-    //color: "transparent"
-    //color: Kirigami.Theme.View.backgroundColor
+    //visibility: Window.FullScreen
 
-    //     visibility: Window.FullScreen
     globalDrawer: Kirigami.GlobalDrawer {
         title: i18n("QPrompt")
         titleIcon: "applications-graphics"
@@ -95,9 +92,7 @@ Kirigami.ApplicationWindow {
         id: prompterPage
 
         Kirigami.ScrollablePage {
-        //Kirigami.Page {
             title: i18n("QPrompt")
-
             actions {
                 main: Kirigami.Action {
                     text: i18n("Start Prompting")
@@ -128,6 +123,7 @@ Kirigami.ApplicationWindow {
                         text: i18n("Region")
                         iconName: "middle"
                         onTriggered: readRegion.toggle()
+                        tooltip: i18n("Toggle read line position")
                     }
 //                    Kirigami.Action {
 //                        text: i18n("LOL")
@@ -137,52 +133,17 @@ Kirigami.ApplicationWindow {
                 ]
             }
             
-            //footer: ToolBar {
-                //RowLayout {
-                    //anchors.fill: parent
-                    //ToolButton {
-                        //text: i18n("&Copy")
-                        //icon.name: "copy"
-                        //onClicked: editor.copy()
-                    //}
-                    //ToolButton {
-                        //text: i18n("Cut")
-                        //icon.name: "cut"
-                        //onClicked: editor.cut()
-                    //}
-                    //ToolButton {
-                        //text: i18n("&Paste")
-                        //icon.name: "paste"
-                        //onClicked: editor.paste()
-                    //}
-                    //ToolButton {
-                        //text: i18n("&Bold")
-                        //icon.name: "bold"
-                        //onClicked: document.bold = !document.bold
-                    //}
-                    //ToolButton {
-                        //text: i18n("&Italic")
-                        //icon.name: "italic"
-                        //onClicked: document.italic = !document.italic
-                    //}
-                    //ToolButton {
-                        //text: i18n("&Underline")
-                        //icon.name: "underline"
-                        //onClicked: document.underline = !document.underline
-                    //}
-                //}
-            //}
-            
             Item {
                 id: overlay
                 property double __opacity: 0
                 property color __color: 'black'
                 anchors {
-                    left: editor.left
+                    left: parent.left
                     top: parent.top
-                    bottom: parent.bottom
+                    //bottom: parent.bottom// - prompter.parent.implicitFooterHeight 
                 }
-                width: editor.width
+                width: editor.implicitWidth
+                height: prompter.height //prompter.parent.implicitFooterHeight
                 //MouseArea {
                 //    anchors.fill: parent
                 //    cursorShape: Qt.CrossCursor
@@ -342,7 +303,6 @@ Kirigami.ApplicationWindow {
                         Shape {
                             opacity: triangles.__opacity
                             x: parent.parent.width
-                            anchors.right: parent.parent.right
                             ShapePath {
                                 strokeWidth: 3
                                 strokeColor: triangles.__strokeColor
@@ -376,6 +336,11 @@ Kirigami.ApplicationWindow {
                     color: overlay.__color
                 }
             }
+            
+            ScrollBar.vertical: ScrollBar {
+                id: scroller
+                
+            }
 
             // Flickable makes the element scrollable and touch friendly
             //// Define Flickable element using the flickable property only íf the flickable component (the prompter in this case)
@@ -383,6 +348,7 @@ Kirigami.ApplicationWindow {
             //// and use Kirigami.ScrollablePage instead of page.
             //flickable: Flickable {
             Flickable {
+                //ScrollIndicator.vertical: ScrollIndicator{
                 id: prompter
                 // property int __unit: 1
                 property alias position: prompter.contentY
@@ -394,8 +360,8 @@ Kirigami.ApplicationWindow {
                 readonly property double __velocity: __baseSpeed * Math.pow(Math.abs(__i), __curvature)
                 readonly property double __time_to_arival: __i ? (__i<0 ? prompter.position : (prompter.contentHeight-prompter.position)) / (Math.abs(__velocity * __vw)) << 8 : 0;
                 property int __destination: (__i ? (__i<0 ? __i%2 : prompter.contentHeight - __i%2) : prompter.position);
+
                 //
-                contentY: __destination
                 onFlickStarted: {
                     //console.log("Flick started")
                     //motion.enabled = false
@@ -406,10 +372,13 @@ Kirigami.ApplicationWindow {
                     //motion.enabled = true
                     //contentY = __destination
                 }
-                
+
                 //property int __time_to_arival: (prompter.contentHeight - prompter.position)
                 flickableDirection: Flickable.VerticalFlick
-                anchors.fill: parent
+//                 anchors.top: parent.top
+//                 anchors.left: parent.left
+//                 anchors.right: parent.right
+//                 anchors.bottom: toolbar.top
 
                 Behavior on position {
                     id: motion
@@ -425,7 +394,7 @@ Kirigami.ApplicationWindow {
                         }
                     }
                 }
-                
+
                 TextArea.flickable: TextArea {
                     id: editor
                     textFormat: Qt.RichText
@@ -441,72 +410,16 @@ Kirigami.ApplicationWindow {
                     topPadding: 0
                     bottomPadding: 0
                     background: null
-                    
+
                     // Start with the editor in focus
                     focus: true
                     // Make base font size relative to editor's width
                     font.pixelSize: 10 * prompter.__vw
                     
-                    // Key bindings                 
-                    Keys.onPressed: {
-                        switch (event.key) {
-                            //case Qt.Key_S:
-                            case Qt.Key_Down:
-                                event.accepted = true;
-                                prompter.__i++
-                                //prompter.__time_to_arival = 5000
-                                //prompter.position = prompter.position
-                                //prompter.position = prompter.contentHeight - prompter.height
-                                showPassiveNotification(i18n("Increase Velocity"));
-                                break;
-                            //case Qt.Key_W:
-                            case Qt.Key_Up:
-                                event.accepted = true;
-                                prompter.__i--
-                                //prompter.__time_to_arival = 50
-                                //prompter.position = prompter.position
-                                //prompter.position = 0
-                                showPassiveNotification(i18n("Decrease Velocity"));
-                                break;
-                            case Qt.Key_Space:
-                                showPassiveNotification(i18n("Toggle Playback"));
-                                console.log(motion.paused)
-                                //motion.paused = !motion.paused
-                                //if (motion.paused)
-                                    //motion.resume()
-                                //else
-                                    //motion.pause()
-                                break;
-                            case Qt.Key_Tab:
-                                if (event.modifiers & Qt.ShiftModifier)
-                                    // Not reached...
-                                    showPassiveNotification(i18n("Shift Tab Pressed"));
-                                else
-                                    showPassiveNotification(i18n("Tab Pressed"));
-                                break;
-                            case Qt.Key_PageUp:
-                                showPassiveNotification(i18n("Page Up Pressed")); break;
-                            case Qt.Key_PageDown:
-                                showPassiveNotification(i18n("Page Down Pressed")); break;
-                            case Qt.Key_Home:
-                                showPassiveNotification(i18n("Home Pressed")); break;
-                            case Qt.Key_End:
-                                showPassiveNotification(i18n("End Pressed")); break;
-                            //default:
-                            //    // Show key code
-                            //    showPassiveNotification(event.key)
-                        }
-                        //// Undo and redo key bindings
-                        //if (event.matches(StandardKey.Undo))
-                        //    document.undo();
-                        //else if (event.matches(StandardKey.Redo))
-                        //    document.redo();
-                        
-                    }
-                    
                     // Make links responsive
                     onLinkActivated: Qt.openUrlExternally(link)
                 }
+
                 DocumentHandler {
                     id: document
                     document: editor.textDocument
@@ -522,7 +435,109 @@ Kirigami.ApplicationWindow {
                         errorDialog.visible = true
                     }
                 }
+                
+                // Key bindings                 
+                Keys.onPressed: {
+                    switch (event.key) {
+                        //case Qt.Key_S:
+                        case Qt.Key_Down:
+                            event.accepted = true;
+                            prompter.__i++
+                            prompter.contentY = prompter.__destination
+                            prompter.__play = true
+                            showPassiveNotification(i18n("Increase Velocity"));
+                            break;
+                        //case Qt.Key_W:
+                        case Qt.Key_Up:
+                            event.accepted = true;
+                            prompter.__i--
+                            prompter.contentY = prompter.__destination
+                            prompter.__play = true
+                            showPassiveNotification(i18n("Decrease Velocity"));
+                            break;
+                        case Qt.Key_Space:
+                            showPassiveNotification(i18n("Toggle Playback"));
+                            //console.log(motion.paused)
+                            //motion.paused = !motion.paused
+                            if (prompter.__play) //{
+                                prompter.contentY = prompter.contentY
+                                //    motion.resume()
+                            //}
+                            else //{
+                                prompter.contentY = prompter.__destination
+                                //    motion.pause()
+                            //}
+                            prompter.__play = !prompter.__play
+                            break;
+                        case Qt.Key_Tab:
+                            if (event.modifiers & Qt.ShiftModifier)
+                                // Not reached...
+                                showPassiveNotification(i18n("Shift Tab Pressed"));
+                            else
+                                showPassiveNotification(i18n("Tab Pressed"));
+                            break;
+                        case Qt.Key_PageUp:
+                            showPassiveNotification(i18n("Page Up Pressed")); break;
+                        case Qt.Key_PageDown:
+                            showPassiveNotification(i18n("Page Down Pressed")); break;
+                        case Qt.Key_Home:
+                            showPassiveNotification(i18n("Home Pressed")); break;
+                        case Qt.Key_End:
+                            showPassiveNotification(i18n("End Pressed")); break;
+                        //default:
+                        //    // Show key code
+                        //    showPassiveNotification(event.key)
+                    }
+                    //// Undo and redo key bindings
+                    //if (event.matches(StandardKey.Undo))
+                    //    document.undo();
+                    //else if (event.matches(StandardKey.Redo))
+                    //    document.redo();
+                }
             }
+
+            footer: ToolBar {
+                id: toolbar
+
+                background: null
+//                 anchors.bottom: parent.bottom
+//                 anchors.left: parent.left
+//                 anchors.right: parent.right
+                RowLayout {
+                    anchors.fill: parent
+                    ToolButton {
+                        text: i18n("&Copy")
+                        icon.name: "copy"
+                        onClicked: editor.copy()
+                    }
+                    ToolButton {
+                        text: i18n("Cut")
+                        icon.name: "cut"
+                        onClicked: editor.cut()
+                    }
+                    ToolButton {
+                        text: i18n("&Paste")
+                        icon.name: "paste"
+                        onClicked: editor.paste()
+                    }
+                    ToolButton {
+                        text: i18n("&Bold")
+                        icon.name: "bold"
+                        onClicked: document.bold = !document.bold
+                    }
+                    ToolButton {
+                        text: i18n("&Italic")
+                        icon.name: "italic"
+                        onClicked: document.italic = !document.italic
+                    }
+                    ToolButton {
+                        text: i18n("&Underline")
+                        icon.name: "underline"
+                        onClicked: document.underline = !document.underline
+                    }
+                }
+            }
+            
             //Kirigami.OverlaySheet {
                 //id: sheet
                 //onSheetOpenChanged: page.actions.main.checked = sheetOpen
@@ -531,18 +546,6 @@ Kirigami.ApplicationWindow {
                     //text: "Lorem ipsum dolor sit amet"
                 //}
             //}
-            ScrollBar.vertical: ScrollBar {
-            //ScrollIndicator.vertical: ScrollIndicator{
-                id: scroller
-                //hoverEnabled: false
-                //active: hovered || pressed
-                //parent: prompter.parent
-                //policy: ScrollBar.AlwaysOn
-                //size: prompter.height / editor.height
-                //anchors.top: parent.top
-                //anchors.right: parent.right
-                //anchors.bottom: parent.bottom
-            }
             // Having a separate layer for backgrounds doesn't work because of QtQuick renderer optimizations.
             //Item {
                 //id: backgrounds
