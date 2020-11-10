@@ -404,7 +404,7 @@ Kirigami.ApplicationWindow {
                 onFlickEnded: {
                     //console.log("Flick ended")
                     //motion.enabled = true
-                    //contentY: __destination
+                    //contentY = __destination
                 }
                 
                 //property int __time_to_arival: (prompter.contentHeight - prompter.position)
@@ -507,12 +507,6 @@ Kirigami.ApplicationWindow {
                     // Make links responsive
                     onLinkActivated: Qt.openUrlExternally(link)
                 }
-                //ScrollBar.vertical: ScrollBar {
-                ////ScrollIndicator.vertical: ScrollIndicator{
-                    //id: scroller
-                    //policy: ScrollBar.AlwaysOn
-                    //position: 1
-                //}
                 DocumentHandler {
                     id: document
                     document: editor.textDocument
@@ -535,6 +529,38 @@ Kirigami.ApplicationWindow {
                 //Label {
                     //wrapMode: Text.WordWrap
                     //text: "Lorem ipsum dolor sit amet"
+                //}
+            //}
+            ScrollBar.vertical: ScrollBar {
+            //ScrollIndicator.vertical: ScrollIndicator{
+                id: scroller
+                //hoverEnabled: false
+                //active: hovered || pressed
+                //parent: prompter.parent
+                //policy: ScrollBar.AlwaysOn
+                //size: prompter.height / editor.height
+                //anchors.top: parent.top
+                //anchors.right: parent.right
+                //anchors.bottom: parent.bottom
+            }
+            // Having a separate layer for backgrounds doesn't work because of QtQuick renderer optimizations.
+            //Item {
+                //id: backgrounds
+                //anchors.fill: parent
+                //Rectangle {
+                    //id: headerBackgrounds
+                    //color: "white"
+                    //anchors.top: parent.top
+                    //anchors.left: parent.left
+                    //anchors.right: parent.right
+                    //anchors.bottom: editor.top
+                    //height: 50
+                //}
+                //Rectangle {
+                //id: bodyBackgrounds
+                //color: "white"
+                //opacity: 0.2
+                //anchors.fill: prompter
                 //}
             //}
         }
