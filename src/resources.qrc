@@ -1,6 +1,7 @@
 <RCC>
     <qresource prefix="/">
         <file alias="main.qml">contents/ui/main.qml</file>
+<!--         <file alias="ScrollBar.qml">contents/ui/ScrollBar.qml</file> -->
         <file>qtquickcontrols2.conf</file>
         <file>images/logo.png</file>
         <file>fonts/fontello.ttf</file>
