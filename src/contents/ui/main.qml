@@ -33,9 +33,12 @@ import com.cuperino.qprompt.document 1.0
 Kirigami.ApplicationWindow {
     id: root
     
+    property int prompterVisibility: Kirigami.ApplicationWindow.AutomaticVisibility
+
     title: i18n("QPrompt")
     minimumWidth: 480
     minimumHeight: 380
+    visibility: prompterVisibility
     //visibility: Window.FullScreen
 
     globalDrawer: Kirigami.GlobalDrawer {
@@ -95,13 +98,27 @@ Kirigami.ApplicationWindow {
             title: i18n("QPrompt")
             actions {
                 main: Kirigami.Action {
-                    text: i18n("Start Prompting")
+                    id: promptingButton
+                    text: i18n("Start prompting")
                     iconName: "go-next"
                     onTriggered: {
-                        showPassiveNotification(i18n("Prompt started"))
                         // Enter full screen
-                        root.showFullScreen()
-                        root.controlsVisible = false
+                        var states = ["editing", "prompting"]
+                        var nextIndex = ( states.indexOf(prompter.state) + 1 ) % states.length
+                        prompter.state = states[nextIndex]
+                        
+                        switch (prompter.state) {
+                            case "editing":
+                                showPassiveNotification(i18n("Editing"))
+                                //root.leaveFullScreen()
+                                //root.controlsVisible = true
+                                break;
+                            case "prompting":
+                                showPassiveNotification(i18n("Prompt started"))
+                                //root.showFullScreen()
+                                //root.controlsVisible = false
+                                break;
+                        }
                     }
                 }
                 left: Kirigami.Action {
@@ -337,10 +354,10 @@ Kirigami.ApplicationWindow {
                 }
             }
             
-            ScrollBar.vertical: ScrollBar {
-                id: scroller
-                
-            }
+            // Having the scrollbar here has absolutely no effect.
+            //ScrollBar.vertical: ScrollBar {
+            //    id: scroller
+            //}
 
             // Flickable makes the element scrollable and touch friendly
             //// Define Flickable element using the flickable property only íf the flickable component (the prompter in this case)
@@ -353,7 +370,7 @@ Kirigami.ApplicationWindow {
                 // property int __unit: 1
                 property alias position: prompter.contentY
                 property bool __play: true
-                property int __i: 0
+                property int __i: 1
                 property double __baseSpeed: 1.0
                 property double __curvature: 1.35
                 readonly property double __vw: prompter.width*0.01
@@ -373,12 +390,7 @@ Kirigami.ApplicationWindow {
                     //contentY = __destination
                 }
 
-                //property int __time_to_arival: (prompter.contentHeight - prompter.position)
                 flickableDirection: Flickable.VerticalFlick
-//                 anchors.top: parent.top
-//                 anchors.left: parent.left
-//                 anchors.right: parent.right
-//                 anchors.bottom: toolbar.top
 
                 Behavior on position {
                     id: motion
@@ -436,73 +448,132 @@ Kirigami.ApplicationWindow {
                     }
                 }
                 
-                // Key bindings                 
+                // Key bindings
                 Keys.onPressed: {
-                    switch (event.key) {
-                        //case Qt.Key_S:
-                        case Qt.Key_Down:
-                            event.accepted = true;
-                            prompter.__i++
-                            prompter.contentY = prompter.__destination
-                            prompter.__play = true
-                            showPassiveNotification(i18n("Increase Velocity"));
-                            break;
-                        //case Qt.Key_W:
-                        case Qt.Key_Up:
-                            event.accepted = true;
-                            prompter.__i--
-                            prompter.contentY = prompter.__destination
-                            prompter.__play = true
-                            showPassiveNotification(i18n("Decrease Velocity"));
-                            break;
-                        case Qt.Key_Space:
-                            showPassiveNotification(i18n("Toggle Playback"));
-                            //console.log(motion.paused)
-                            //motion.paused = !motion.paused
-                            if (prompter.__play) //{
-                                prompter.contentY = prompter.contentY
-                                //    motion.resume()
-                            //}
-                            else //{
+                    if (prompter.state === "prompting")
+                        switch (event.key) {
+                            //case Qt.Key_S:
+                            case Qt.Key_Down:
+                                event.accepted = true;
+                                prompter.__i++
                                 prompter.contentY = prompter.__destination
-                                //    motion.pause()
-                            //}
-                            prompter.__play = !prompter.__play
-                            break;
-                        case Qt.Key_Tab:
-                            if (event.modifiers & Qt.ShiftModifier)
-                                // Not reached...
-                                showPassiveNotification(i18n("Shift Tab Pressed"));
-                            else
-                                showPassiveNotification(i18n("Tab Pressed"));
-                            break;
-                        case Qt.Key_PageUp:
-                            showPassiveNotification(i18n("Page Up Pressed")); break;
-                        case Qt.Key_PageDown:
-                            showPassiveNotification(i18n("Page Down Pressed")); break;
-                        case Qt.Key_Home:
-                            showPassiveNotification(i18n("Home Pressed")); break;
-                        case Qt.Key_End:
-                            showPassiveNotification(i18n("End Pressed")); break;
-                        //default:
-                        //    // Show key code
-                        //    showPassiveNotification(event.key)
-                    }
+                                prompter.__play = true
+                                showPassiveNotification(i18n("Increase Velocity"));
+                                break;
+                            //case Qt.Key_W:
+                            case Qt.Key_Up:
+                                event.accepted = true;
+                                prompter.__i--
+                                prompter.contentY = prompter.__destination
+                                prompter.__play = true
+                                showPassiveNotification(i18n("Decrease Velocity"));
+                                break;
+                            case Qt.Key_Space:
+                                showPassiveNotification(i18n("Toggle Playback"));
+                                //console.log(motion.paused)
+                                //motion.paused = !motion.paused
+                                if (prompter.__play) //{
+                                    prompter.contentY = prompter.contentY
+                                    //    motion.resume()
+                                //}
+                                else //{
+                                    prompter.contentY = prompter.__destination
+                                    //    motion.pause()
+                                //}
+                                prompter.__play = !prompter.__play
+                                break;
+                            case Qt.Key_Tab:
+                                if (event.modifiers & Qt.ShiftModifier)
+                                    // Not reached...
+                                    showPassiveNotification(i18n("Shift Tab Pressed"));
+                                else
+                                    showPassiveNotification(i18n("Tab Pressed"));
+                                break;
+                            case Qt.Key_PageUp:
+                                showPassiveNotification(i18n("Page Up Pressed")); break;
+                            case Qt.Key_PageDown:
+                                showPassiveNotification(i18n("Page Down Pressed")); break;
+                            case Qt.Key_Home:
+                                showPassiveNotification(i18n("Home Pressed")); break;
+                            case Qt.Key_End:
+                                showPassiveNotification(i18n("End Pressed")); break;
+                            //default:
+                            //    // Show key code
+                            //    showPassiveNotification(event.key)
+                        }
                     //// Undo and redo key bindings
                     //if (event.matches(StandardKey.Undo))
                     //    document.undo();
                     //else if (event.matches(StandardKey.Redo))
                     //    document.redo();
                 }
+                
+                states: [
+                    State {
+                        name: "editing"
+                        //PropertyChanges {
+                            //target: readRegion
+                            //__placement: readRegion.__placement
+                        //}
+                        //PropertyChanges {
+                            //target: readRegionButton
+                            //text: i18n("Custom")
+                            //iconName: "gtk-apply"
+                        //}
+                        PropertyChanges {
+                            target: root
+                            prompterVisibility: Kirigami.ApplicationWindow.AutomaticVisibility
+                        }
+                        PropertyChanges {
+                            target: prompter
+                            __i: 0
+                            contentY: prompter.__destination
+                            //play: false
+                        }
+                        PropertyChanges {
+                            target: editor
+                            focus: true
+                        }
+                    },
+                    State {
+                        name: "prompting"
+                        PropertyChanges {
+                            target: overlay
+                            __opacity: 0.4
+                        }
+                        PropertyChanges {
+                            target: triangles
+                            __opacity: 0.4
+                        }
+                        PropertyChanges {
+                            target: readRegion
+                            enabled: false
+                        }
+                        PropertyChanges {
+                            target: root
+                            prompterVisibility: Kirigami.ApplicationWindow.FullScreen
+                        }
+                        PropertyChanges {
+                            target: promptingButton
+                            text: i18n("Return to edit mode")
+                        }
+                        PropertyChanges {
+                            target: prompter
+                            //__i: 0
+                            contentY: prompter.__destination
+                            //play: true
+                        }
+                    }
+                ]
+                state: "editing"
+
             }
 
             footer: ToolBar {
                 id: toolbar
+                //background: null
+                //palette.text: "white"
 
-                background: null
-//                 anchors.bottom: parent.bottom
-//                 anchors.left: parent.left
-//                 anchors.right: parent.right
                 RowLayout {
                     anchors.fill: parent
                     ToolButton {
