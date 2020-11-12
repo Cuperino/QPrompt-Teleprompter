@@ -39,7 +39,10 @@ Kirigami.ApplicationWindow {
     minimumWidth: 480
     minimumHeight: 380
     visibility: prompterVisibility
-    //visibility: Window.FullScreen
+    onVisibilityChanged: {
+        if (visibility!=Kirigami.ApplicationWindow.FullScreen)
+            console.log("left fullscreen");
+    }
 
     globalDrawer: Kirigami.GlobalDrawer {
         title: i18n("QPrompt")
@@ -370,6 +373,8 @@ Kirigami.ApplicationWindow {
                 // property int __unit: 1
                 property alias position: prompter.contentY
                 property bool __play: true
+                property bool __flipX: false
+                property bool __flipY: false
                 property int __i: 1
                 property double __baseSpeed: 1.0
                 property double __curvature: 1.35
@@ -377,7 +382,8 @@ Kirigami.ApplicationWindow {
                 readonly property double __velocity: __baseSpeed * Math.pow(Math.abs(__i), __curvature)
                 readonly property double __time_to_arival: __i ? (__i<0 ? prompter.position : (prompter.contentHeight-prompter.position)) / (Math.abs(__velocity * __vw)) << 8 : 0;
                 property int __destination: (__i ? (__i<0 ? __i%2 : prompter.contentHeight - __i%2) : prompter.position);
-
+                // origin.y is being roughly approximated. This may not work across all systems and displays...
+                transform: Scale {origin.x: width/2; origin.y: (height-2*implicitFooterHeight+8)/2; xScale: prompter.__flipX?-1:1; yScale: prompter.__flipY?-1:1}
                 //
                 onFlickStarted: {
                     //console.log("Flick started")
@@ -422,6 +428,10 @@ Kirigami.ApplicationWindow {
                     topPadding: 0
                     bottomPadding: 0
                     background: null
+                    
+                    //transform.origin: Item.Center
+                    //layer.enabled: true
+                    //layer.textureMirroring: ShaderEffectSource.MirrorHorizontally
 
                     // Start with the editor in focus
                     focus: true
@@ -456,31 +466,43 @@ Kirigami.ApplicationWindow {
                             case Qt.Key_Down:
                                 event.accepted = true;
                                 prompter.__i++
-                                prompter.contentY = prompter.__destination
                                 prompter.__play = true
+                                prompter.position = prompter.__destination
+                                //prompter.state = "play"
+                                //prompter.animationState = "play"
                                 showPassiveNotification(i18n("Increase Velocity"));
                                 break;
                             //case Qt.Key_W:
                             case Qt.Key_Up:
                                 event.accepted = true;
                                 prompter.__i--
-                                prompter.contentY = prompter.__destination
                                 prompter.__play = true
+                                prompter.position = prompter.__destination
+                                //prompter.state = "play"
+                                //prompter.animationState = "play"
                                 showPassiveNotification(i18n("Decrease Velocity"));
                                 break;
                             case Qt.Key_Space:
                                 showPassiveNotification(i18n("Toggle Playback"));
                                 //console.log(motion.paused)
                                 //motion.paused = !motion.paused
-                                if (prompter.__play) //{
-                                    prompter.contentY = prompter.contentY
+                                if (prompter.__play/*prompter.state=="play"*/) {
+                                    prompter.__play = false
+                                    prompter.position = prompter.position
+                                    //prompter.state = "pause"
+                                    //prompter.animationState = "pause"
                                     //    motion.resume()
-                                //}
-                                else //{
-                                    prompter.contentY = prompter.__destination
+                                }
+                                else {
+                                    prompter.__play = true
+                                    prompter.position = prompter.__destination
+                                    //prompter.state = "play"
+                                    //prompter.animationState = "play"
                                     //    motion.pause()
-                                //}
-                                prompter.__play = !prompter.__play
+                                }
+                                //var states = ["play", "pause"]
+                                //var nextIndex = ( states.indexOf(prompter.animationState) + 1 ) % states.length
+                                //prompter.animationState = states[nextIndex]
                                 break;
                             case Qt.Key_Tab:
                                 if (event.modifiers & Qt.ShiftModifier)
@@ -527,8 +549,6 @@ Kirigami.ApplicationWindow {
                         PropertyChanges {
                             target: prompter
                             __i: 0
-                            contentY: prompter.__destination
-                            //play: false
                         }
                         PropertyChanges {
                             target: editor
@@ -559,17 +579,48 @@ Kirigami.ApplicationWindow {
                         }
                         PropertyChanges {
                             target: prompter
-                            //__i: 0
-                            contentY: prompter.__destination
-                            //play: true
+                            position: prompter.__destination
+                            focus: true
+                            __play: true
                         }
+                        //childMode: QState.ParallelStates
+                        //State {
+                        //    name: "play"
+                        //    PropertyChanges {
+                        //        target: prompter
+                        //        position: prompter.__destination
+                        //    }
+                        //}
+                        //State {
+                        //    name: "pause"
+                        //    PropertyChanges {
+                        //        target: prompter
+                        //        position: prompter.position
+                        //    }
+                        //}
                     }
                 ]
                 state: "editing"
-
+//                 animationStates: [
+//                     State {
+//                         name: "play"
+//                         PropertyChanges {
+//                             target: prompter
+//                             position: prompter.__destination
+//                         }
+//                     },
+//                     State {
+//                         name: "pause"
+//                         PropertyChanges {
+//                             target: prompter
+//                             position: prompter.position
+//                         }
+//                     }
+//                 ]
+//                 property State animationState: "play"
             }
 
-            footer: ToolBar {
+            footer: ToolBar {   
                 id: toolbar
                 //background: null
                 //palette.text: "white"
