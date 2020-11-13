@@ -105,6 +105,11 @@ Kirigami.ApplicationWindow {
                     text: i18n("Start prompting")
                     iconName: "go-next"
                     onTriggered: {
+                        // Update position
+                        var verticalPosition = prompter.position + readRegion.__placement*overlay.height
+                        var cursorPosition = editor.positionAt(0, verticalPosition)
+                        editor.cursorPosition = cursorPosition
+
                         // Enter full screen
                         var states = ["editing", "prompting"]
                         var nextIndex = ( states.indexOf(prompter.state) + 1 ) % states.length
@@ -128,7 +133,6 @@ Kirigami.ApplicationWindow {
                     iconName: "go-previous"
                     onTriggered: {
                         showPassiveNotification(i18n("Decrease Velocity"))
-                        console.log(Kirigami.Theme.View.backgroundColor)
                     }
                 }
                 right: Kirigami.Action {
@@ -140,16 +144,37 @@ Kirigami.ApplicationWindow {
                 contextualActions: [
                     Kirigami.Action {
                         id: readRegionButton
-                        text: i18n("Region")
                         iconName: "middle"
+                        text: i18n("Region")
                         onTriggered: readRegion.toggle()
                         tooltip: i18n("Toggle read line position")
+                    },
+                    Kirigami.Action {
+                        id: flipButton
+                        text: i18n("Flip")
+                        iconName: "refresh"
+                        onTriggered: {
+                            if (prompter.__flipX && prompter.__flipY) {
+                                prompter.__flipX = false
+                                prompter.__flipY = false
+                                text = i18n("No Flip")
+                            }
+                            else if (prompter.__flipY) {
+                                prompter.__flipX = true
+                                text = i18n("XY Flip")
+                            }
+                            else if (prompter.__flipX) {
+                                prompter.__flipX = false
+                                prompter.__flipY = true
+                                text = i18n("Y Flip")
+                            }
+                            else {
+                                prompter.__flipX = true
+                                text = i18n("X Flip")
+                            }
+                            showPassiveNotification(i18n("Flip contents"))
+                        }
                     }
-//                    Kirigami.Action {
-//                        text: i18n("LOL")
-//                         iconName: "go-next"
-//                        onTriggered: showPassiveNotification(i18n("Contextual action 1 clicked"))
-//                    }
                 ]
             }
             
@@ -164,11 +189,13 @@ Kirigami.ApplicationWindow {
                 }
                 width: editor.implicitWidth
                 height: prompter.height //prompter.parent.implicitFooterHeight
-                //MouseArea {
-                //    anchors.fill: parent
-                //    cursorShape: Qt.CrossCursor
-                //    propagateComposedEvents: true
-                //}
+                MouseArea {
+                    id: overlayMouseArea
+                    enabled: false
+                    anchors.fill: parent
+                    cursorShape: Qt.DefaultCursor
+                    propagateComposedEvents: true
+                }
                 Item {
                     id: readRegion
                     enabled: false
@@ -263,26 +290,19 @@ Kirigami.ApplicationWindow {
                     transitions: [
                         Transition {
                             from: "*"; to: "*"
-                            PropertyAnimation {
+                            NumberAnimation {
                                 targets: readRegion
                                 properties: "__placement"; duration: 200; easing.type: Easing.OutQuad
                             }
-                            PropertyAnimation {
-                                targets: overlay
-                                properties: "__opacity"; duration: 200; easing.type: Easing.OutQuad
-                            }
-                            PropertyAnimation {
+                            NumberAnimation {
                                 targets: triangles
-                                properties: "__fillColor"; duration: 200; easing.type: Easing.OutQuad
+                                properties: "__fillColor"; duration: 250;
                             }
-                        }/*,
-                        Transition {
-                            from: "*"; to: "*"
-                            PropertyAnimation {
-                                targets: readRegion
-                                properties: "__placement"; duration: 200; easing.type: Easing.OutQuad
+                            NumberAnimation {
+                                targets: overlay
+                                properties: "__opacity"; duration: 250;
                             }
-                        }*/
+                        }
                     ]
                     MouseArea {
                         anchors.fill: parent
@@ -373,8 +393,6 @@ Kirigami.ApplicationWindow {
                 // property int __unit: 1
                 property alias position: prompter.contentY
                 property bool __play: true
-                property bool __flipX: false
-                property bool __flipY: false
                 property int __i: 1
                 property double __baseSpeed: 1.0
                 property double __curvature: 1.35
@@ -383,8 +401,33 @@ Kirigami.ApplicationWindow {
                 readonly property double __time_to_arival: __i ? (__i<0 ? prompter.position : (prompter.contentHeight-prompter.position)) / (Math.abs(__velocity * __vw)) << 8 : 0;
                 property int __destination: (__i ? (__i<0 ? __i%2 : prompter.contentHeight - __i%2) : prompter.position);
                 // origin.y is being roughly approximated. This may not work across all systems and displays...
-                transform: Scale {origin.x: width/2; origin.y: (height-2*implicitFooterHeight+8)/2; xScale: prompter.__flipX?-1:1; yScale: prompter.__flipY?-1:1}
-                //
+                
+                // Flips
+                property bool __flipX: false
+                property bool __flipY: false
+                readonly property Scale __flips: Scale {
+                    origin.x: width/2
+                    origin.y: (height-2*implicitFooterHeight+8)/2
+                    xScale: prompter.state==="prompting" && prompter.__flipX ? -1 : 1
+                    yScale: prompter.state==="prompting" && prompter.__flipY ? -1 : 1
+                }
+                transform: __flips
+                Behavior on __flips.xScale {
+                    enabled: true
+                    animation: NumberAnimation {
+                        duration: 250
+                        easing.type: Easing.OutQuad
+                    }
+                }
+                Behavior on __flips.yScale {
+                    enabled: true
+                    animation: NumberAnimation {
+                        duration: 250
+                        easing.type: Easing.OutQuad
+                    }
+                }
+
+                // Prompter animation
                 onFlickStarted: {
                     //console.log("Flick started")
                     //motion.enabled = false
@@ -428,10 +471,6 @@ Kirigami.ApplicationWindow {
                     topPadding: 0
                     bottomPadding: 0
                     background: null
-                    
-                    //transform.origin: Item.Center
-                    //layer.enabled: true
-                    //layer.textureMirroring: ShaderEffectSource.MirrorHorizontally
 
                     // Start with the editor in focus
                     focus: true
@@ -543,16 +582,18 @@ Kirigami.ApplicationWindow {
                             //iconName: "gtk-apply"
                         //}
                         PropertyChanges {
+                            target: editor
+                            focus: true
+                            //cursorPosition: editor.positionAt(0, editor.position + 1*overlay.height/2)
+                        }
+                        PropertyChanges {
                             target: root
                             prompterVisibility: Kirigami.ApplicationWindow.AutomaticVisibility
                         }
                         PropertyChanges {
                             target: prompter
                             __i: 0
-                        }
-                        PropertyChanges {
-                            target: editor
-                            focus: true
+                            // 
                         }
                     },
                     State {
@@ -581,7 +622,13 @@ Kirigami.ApplicationWindow {
                             target: prompter
                             position: prompter.__destination
                             focus: true
+                            //transform: __flips
                             __play: true
+                        }
+                        PropertyChanges {
+                            target: overlayMouseArea
+                            enabled: true
+                            cursorShape: Qt.CrossCursor
                         }
                         //childMode: QState.ParallelStates
                         //State {
@@ -601,23 +648,6 @@ Kirigami.ApplicationWindow {
                     }
                 ]
                 state: "editing"
-//                 animationStates: [
-//                     State {
-//                         name: "play"
-//                         PropertyChanges {
-//                             target: prompter
-//                             position: prompter.__destination
-//                         }
-//                     },
-//                     State {
-//                         name: "pause"
-//                         PropertyChanges {
-//                             target: prompter
-//                             position: prompter.position
-//                         }
-//                     }
-//                 ]
-//                 property State animationState: "play"
             }
 
             footer: ToolBar {   
