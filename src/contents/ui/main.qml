@@ -32,16 +32,18 @@ import com.cuperino.qprompt.document 1.0
 
 Kirigami.ApplicationWindow {
     id: root
-    
+
+    property bool autoFullScreen: true
     property int prompterVisibility: Kirigami.ApplicationWindow.AutomaticVisibility
 
     title: i18n("QPrompt")
     minimumWidth: 480
     minimumHeight: 380
-    visibility: prompterVisibility
+    visibility: autoFullScreen ? prompterVisibility : Kirigami.ApplicationWindow.AutomaticVisibility
     onVisibilityChanged: {
         if (visibility!=Kirigami.ApplicationWindow.FullScreen)
             console.log("left fullscreen");
+            //position = editor.positionAt(0, prompter.position + readRegion.__placement*overlay.height)
     }
 
     globalDrawer: Kirigami.GlobalDrawer {
@@ -127,12 +129,14 @@ Kirigami.ApplicationWindow {
                                 //root.controlsVisible = false
                                 break;
                         }
+                        console.log(editor.lineCount)
                     }
                 }
                 left: Kirigami.Action {
                     iconName: "go-previous"
                     onTriggered: {
                         showPassiveNotification(i18n("Decrease Velocity"))
+                        console.log(editor.positionAt(0, 800))
                     }
                 }
                 right: Kirigami.Action {
@@ -187,7 +191,7 @@ Kirigami.ApplicationWindow {
                     top: parent.top
                     //bottom: parent.bottom// - prompter.parent.implicitFooterHeight 
                 }
-                width: editor.implicitWidth
+                width: editor.width
                 height: prompter.height //prompter.parent.implicitFooterHeight
                 MouseArea {
                     id: overlayMouseArea
@@ -431,12 +435,12 @@ Kirigami.ApplicationWindow {
                 onFlickStarted: {
                     //console.log("Flick started")
                     //motion.enabled = false
-                    //contentY = contentY
+                    //position = position
                 }
                 onFlickEnded: {
                     //console.log("Flick ended")
                     //motion.enabled = true
-                    //contentY = __destination
+                    //position = __destination
                 }
 
                 flickableDirection: Flickable.VerticalFlick
@@ -471,7 +475,6 @@ Kirigami.ApplicationWindow {
                     topPadding: 0
                     bottomPadding: 0
                     background: null
-
                     // Start with the editor in focus
                     focus: true
                     // Make base font size relative to editor's width
@@ -648,6 +651,24 @@ Kirigami.ApplicationWindow {
                     }
                 ]
                 state: "editing"
+                transitions: [
+                    Transition {
+                        enabled: !root.autoFullScreen
+                        from: "*"; to: "*"
+                        NumberAnimation {
+                            targets: triangles
+                            properties: "__opacity"; duration: 250;
+                        }
+                        NumberAnimation {
+                            targets: overlay
+                            properties: "__opacity"; duration: 250;
+                        }
+                        //PropertyAnimation {
+                            //targets: root
+                            //properties: "visibility"; duration: 250;
+                        //}
+                    }
+                ]
             }
 
             footer: ToolBar {   
@@ -758,7 +779,17 @@ Kirigami.ApplicationWindow {
                 onTriggered: this.editor.paste()
             }
         }
-
+        
+        Menu {
+            title: qsTr("V&iew")
+            
+            MenuItem {
+                text: qsTr("&Auto full screen on start")
+                checkable: true
+                checked: root.autoFullScreen
+                onTriggered: root.autoFullScreen = !root.autoFullScreen
+            }
+        }
         Menu {
             title: qsTr("F&ormat")
 
