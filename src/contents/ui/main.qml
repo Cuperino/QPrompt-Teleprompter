@@ -25,20 +25,28 @@ import QtQuick.Shapes 1.15
 import QtQuick.Window 2.0
 import Qt.labs.platform 1.0
 import QtQuick.Layouts 1.15
-//import QColor 1.0
-//import Qt.Math 1.0
+import QtQuick.Controls.Material 2.12
 
 import com.cuperino.qprompt.document 1.0
 
 Kirigami.ApplicationWindow {
     id: root
-
+    
     property bool autoFullScreen: true
     property int prompterVisibility: Kirigami.ApplicationWindow.AutomaticVisibility
 
     title: i18n("QPrompt")
     minimumWidth: 480
     minimumHeight: 380
+    // Changing the theme in this way does not affect the whole app for some reason.
+    //Material.theme: Material.Light
+    background: Rectangle {
+        id: appBackground
+        property color __color: parent.Material.theme==Material.Light ? "#fafafa" : "#424242"
+        color: __color
+        opacity: 1
+    }
+    // Full screen
     visibility: autoFullScreen ? prompterVisibility : Kirigami.ApplicationWindow.AutomaticVisibility
     onVisibilityChanged: {
         if (visibility!=Kirigami.ApplicationWindow.FullScreen)
@@ -49,6 +57,11 @@ Kirigami.ApplicationWindow {
     globalDrawer: Kirigami.GlobalDrawer {
         title: i18n("QPrompt")
         titleIcon: "applications-graphics"
+        background: Rectangle {
+            color: appBackground.__color
+            opacity: 1
+        }
+        
         actions: [
             Kirigami.Action {
                 text: i18n("New")
@@ -405,12 +418,13 @@ Kirigami.ApplicationWindow {
                 readonly property double __time_to_arival: __i ? (__i<0 ? prompter.position : (prompter.contentHeight-prompter.position)) / (Math.abs(__velocity * __vw)) << 8 : 0;
                 property int __destination: (__i ? (__i<0 ? __i%2 : prompter.contentHeight - __i%2) : prompter.position);
                 // origin.y is being roughly approximated. This may not work across all systems and displays...
-                
+                // Opacity
+                property double __opacity: 0.8
                 // Flips
                 property bool __flipX: false
                 property bool __flipY: false
                 readonly property Scale __flips: Scale {
-                    origin.x: width/2
+                    origin.x: editor.width/2
                     origin.y: (height-2*implicitFooterHeight+8)/2
                     xScale: prompter.state==="prompting" && prompter.__flipX ? -1 : 1
                     yScale: prompter.state==="prompting" && prompter.__flipY ? -1 : 1
@@ -474,7 +488,14 @@ Kirigami.ApplicationWindow {
                     rightPadding: 0
                     topPadding: 0
                     bottomPadding: 0
-                    background: null
+                    //background: transparent
+                    //background: Rectangle{
+                    //    color: QColor(40,41,35,127)
+                    //}
+                    //background: Rectangle {
+                        //color: "#424242"
+                        //opacity: 0.8
+                    //}
                     // Start with the editor in focus
                     focus: true
                     // Make base font size relative to editor's width
@@ -596,7 +617,6 @@ Kirigami.ApplicationWindow {
                         PropertyChanges {
                             target: prompter
                             __i: 0
-                            // 
                         }
                     },
                     State {
@@ -616,6 +636,10 @@ Kirigami.ApplicationWindow {
                         PropertyChanges {
                             target: root
                             prompterVisibility: Kirigami.ApplicationWindow.FullScreen
+                        }
+                        PropertyChanges{
+                            target: appBackground
+                            opacity: prompter.__opacity
                         }
                         PropertyChanges {
                             target: promptingButton
@@ -656,11 +680,7 @@ Kirigami.ApplicationWindow {
                         enabled: !root.autoFullScreen
                         from: "*"; to: "*"
                         NumberAnimation {
-                            targets: triangles
-                            properties: "__opacity"; duration: 250;
-                        }
-                        NumberAnimation {
-                            targets: overlay
+                            targets: [triangles, overlay, appBackground]
                             properties: "__opacity"; duration: 250;
                         }
                         //PropertyAnimation {
@@ -673,7 +693,9 @@ Kirigami.ApplicationWindow {
 
             footer: ToolBar {   
                 id: toolbar
-                //background: null
+                background: Rectangle {
+                    color: appBackground.__color
+                }
                 //palette.text: "white"
 
                 RowLayout {

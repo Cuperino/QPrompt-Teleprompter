@@ -4,6 +4,7 @@
 <!--         <file alias="ScrollBar.qml">contents/ui/ScrollBar.qml</file> -->
         <file>qtquickcontrols2.conf</file>
         <file>images/logo.png</file>
+        <file>images/bg_gray_16.png</file>
         <file>fonts/fontello.ttf</file>
         <file>texteditor.html</file>
     </qresource>
