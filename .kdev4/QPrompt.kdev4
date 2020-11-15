@@ -27,23 +27,50 @@ parserArgumentsOpenCL=-ferror-limit=100 -fspell-checking -Wdocumentation -Wunuse
 Name=Clang
 
 [Launch]
-Launch Configurations=Launch Configuration 0
+Launch Configurations=Launch Configuration 0,Launch Configuration 1
 
 [Launch][Launch Configuration 0]
 Configured Launch Modes=execute
 Configured Launchers=nativeAppLauncher
-Name=qprompt
+Name=qprompt Mobile
 Type=Native Application
 
 [Launch][Launch Configuration 0][Data]
 Arguments=
 Dependencies=@Variant(\x00\x00\x00\t\x00\x00\x00\x00\x01\x00\x00\x00\x0b\x00\x00\x00\x00\x03\x00\x00\x00\x0e\x00Q\x00P\x00r\x00o\x00m\x00p\x00t\x00\x00\x00\x06\x00s\x00r\x00c\x00\x00\x00\x0e\x00q\x00p\x00r\x00o\x00m\x00p\x00t)
 Dependency Action=Build
-EnvironmentGroup=
+EnvironmentGroup=Mobile
 Executable=file:///home/javier/Imaginary/Tech/teleprompter/QPrompt
 External Terminal=konsole --noclose --workdir %workdir -e %exe
 Kill Before Executing Again=4194304
 Project Target=QPrompt,src,qprompt
+Use External Terminal=false
+Working Directory=
+isExecutable=false
+
+[Launch][Launch Configuration 1]
+Configured Launch Modes=execute
+Configured Launchers=nativeAppLauncher
+Name=qprompt Desktop
+Type=Native Application
+
+[Launch][Launch Configuration 1][Data]
+Arguments=
+Debugger Shell=
+Dependencies=@Variant(\x00\x00\x00\t\x00\x00\x00\x00\x01\x00\x00\x00\x0b\x00\x00\x00\x00\x03\x00\x00\x00\x0e\x00Q\x00P\x00r\x00o\x00m\x00p\x00t\x00\x00\x00\x06\x00s\x00r\x00c\x00\x00\x00\x0e\x00q\x00p\x00r\x00o\x00m\x00p\x00t)
+Dependency Action=Build
+Display Demangle Names=true
+Display Static Members=false
+EnvironmentGroup=
+Executable=file:///home/javier/Imaginary/Tech/teleprompter/QPrompt
+External Terminal=konsole --noclose --workdir %workdir -e %exe
+GDB Path=
+Kill Before Executing Again=4194304
+Project Target=QPrompt,src,qprompt
+Remote GDB Config Script=
+Remote GDB Run Script=
+Remote GDB Shell Script=
+Start With=ApplicationOutput
 Use External Terminal=false
 Working Directory=
 isExecutable=false
