@@ -663,6 +663,7 @@ Kirigami.ApplicationWindow {
                         PropertyChanges {
                             target: promptingButton
                             text: i18n("Return to edit mode")
+                            iconName: "edit-undo"
                         }
                         PropertyChanges {
                             target: prompter
