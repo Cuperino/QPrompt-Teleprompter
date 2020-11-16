@@ -171,25 +171,15 @@ Kirigami.ApplicationWindow {
                 }
                 left: Kirigami.Action {
                     iconName: "go-previous"
-                    onTriggered: {
-                        showPassiveNotification(i18n("Decrease Velocity"))
-                        console.log(editor.positionAt(0, 800))
-                    }
+                    onTriggered: prompter.decreaseVelocity(false)
                 }
                 right: Kirigami.Action {
                     iconName: "go-next"
-                    onTriggered: showPassiveNotification(i18n("Increase Velocity"))
+                    onTriggered: prompter.increaseVelocity(false)
                 }
                 // Use action toolbar instead?
                 //ActionToolBar
                 contextualActions: [
-                    Kirigami.Action {
-                        id: readRegionButton
-                        iconName: "middle"
-                        text: i18n("Region")
-                        onTriggered: readRegion.toggle()
-                        tooltip: i18n("Toggle read line position")
-                    },
                     Kirigami.Action {
                         id: flipButton
                         text: i18n("Flip")
@@ -218,6 +208,13 @@ Kirigami.ApplicationWindow {
                                 showPassiveNotification(i18n("Horizontal Flip"))
                             }
                         }
+                    },
+                    Kirigami.Action {
+                        id: readRegionButton
+                        iconName: "middle"
+                        text: i18n("Region")
+                        onTriggered: readRegion.toggle()
+                        tooltip: i18n("Toggle read line position")
                     }
                 ]
             }
@@ -496,7 +493,29 @@ Kirigami.ApplicationWindow {
                         }
                     }
                 }
-
+                
+                function increaseVelocity(event) {
+                    if (event)
+                        event.accepted = true;
+                    this.__i++
+                    this.__play = true
+                    this.position = this.__destination
+                    //this.state = "play"
+                    //this.animationState = "play"
+                    showPassiveNotification(i18n("Increase Velocity"));
+                }
+                
+                function decreaseVelocity(event) {
+                    if (event)
+                        event.accepted = true;
+                    this.__i--
+                    this.__play = true
+                    this.position = this.__destination
+                    //this.state = "play"
+                    //this.animationState = "play"
+                    showPassiveNotification(i18n("Decrease Velocity"));
+                }
+                
                 TextArea.flickable: TextArea {
                     id: editor
                     textFormat: Qt.RichText
@@ -550,23 +569,11 @@ Kirigami.ApplicationWindow {
                         switch (event.key) {
                             //case Qt.Key_S:
                             case Qt.Key_Down:
-                                event.accepted = true;
-                                prompter.__i++
-                                prompter.__play = true
-                                prompter.position = prompter.__destination
-                                //prompter.state = "play"
-                                //prompter.animationState = "play"
-                                showPassiveNotification(i18n("Increase Velocity"));
+                                prompter.increaseVelocity(event)
                                 break;
                             //case Qt.Key_W:
                             case Qt.Key_Up:
-                                event.accepted = true;
-                                prompter.__i--
-                                prompter.__play = true
-                                prompter.position = prompter.__destination
-                                //prompter.state = "play"
-                                //prompter.animationState = "play"
-                                showPassiveNotification(i18n("Decrease Velocity"));
+                                prompter.decreaseVelocity(event)
                                 break;
                             case Qt.Key_Space:
                                 showPassiveNotification(i18n("Toggle Playback"));
