@@ -228,10 +228,11 @@ Kirigami.ApplicationWindow {
                 property color __color: 'black'
                 anchors {
                     left: parent.left
+                    right: parent.right
                     top: parent.top
                     //bottom: parent.bottom// - prompter.parent.implicitFooterHeight 
                 }
-                width: editor.width
+                //width: editor.width
                 height: prompter.height //prompter.parent.implicitFooterHeight
                 MouseArea {
                     id: overlayMouseArea
