@@ -199,21 +199,24 @@ Kirigami.ApplicationWindow {
                                 prompter.__flipX = false
                                 prompter.__flipY = false
                                 text = i18n("No Flip")
+                                showPassiveNotification(i18n("No Flip"))
                             }
                             else if (prompter.__flipY) {
                                 prompter.__flipX = true
                                 text = i18n("XY Flip")
+                                showPassiveNotification(i18n("180° rotation"))
                             }
                             else if (prompter.__flipX) {
                                 prompter.__flipX = false
                                 prompter.__flipY = true
                                 text = i18n("Y Flip")
+                                showPassiveNotification(i18n("Vertical Flip"))
                             }
                             else {
                                 prompter.__flipX = true
                                 text = i18n("X Flip")
+                                showPassiveNotification(i18n("Horizontal Flip"))
                             }
-                            showPassiveNotification(i18n("Flip contents"))
                         }
                     }
                 ]
