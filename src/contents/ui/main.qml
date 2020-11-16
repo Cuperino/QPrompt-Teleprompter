@@ -54,6 +54,30 @@ Kirigami.ApplicationWindow {
             //position = editor.positionAt(0, prompter.position + readRegion.__placement*overlay.height)
     }
 
+    ////The following code should be implemented on the Kirigami framework itself and contributed upstream.
+    //MouseArea{
+    //    property int prevX: 0
+    //    property int prevY: 0
+    //
+    //    anchors.fill: parent
+    //    propagateComposedEvents: true
+    //
+    //    onPressed: {
+    //        prevX=mouse.x
+    //        prevY=mouse.y
+    //    }
+    //    onPositionChanged: {
+    //        var deltaX = mouse.x - prevX;
+    //
+    //        root.x += deltaX;
+    //        prevX = mouse.x - deltaX;
+    //
+    //        var deltaY = mouse.y - prevY
+    //        root.y += deltaY;
+    //        prevY = mouse.y - deltaY;
+    //    }
+    //}
+    
     globalDrawer: Kirigami.GlobalDrawer {
         title: i18n("QPrompt")
         titleIcon: "applications-graphics"
