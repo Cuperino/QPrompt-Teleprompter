@@ -34,7 +34,7 @@ Kirigami.ApplicationWindow {
     
     property bool autoFullScreen: true
     property int prompterVisibility: Kirigami.ApplicationWindow.AutomaticVisibility
-
+    
     title: i18n("QPrompt")
     minimumWidth: 480
     minimumHeight: 380
@@ -393,11 +393,6 @@ Kirigami.ApplicationWindow {
                     color: overlay.__color
                 }
             }
-            
-            // Having the scrollbar here has absolutely no effect.
-            //ScrollBar.vertical: ScrollBar {
-            //    id: scroller
-            //}
 
             // Flickable makes the element scrollable and touch friendly
             //// Define Flickable element using the flickable property only íf the flickable component (the prompter in this case)
@@ -689,45 +684,87 @@ Kirigami.ApplicationWindow {
                         //}
                     }
                 ]
+                
+                ScrollBar.vertical: ScrollBar {
+                    id: scroller
+                    policy: ScrollBar.AlwaysOn
+                    interactive: false
+                    leftPadding: 0
+                    rightPadding: 0
+                    leftInset: 0
+                    rightInset: 0
+                }
             }
 
             footer: ToolBar {   
                 id: toolbar
+                
                 background: Rectangle {
                     color: appBackground.__color
                 }
-                //palette.text: "white"
-
+                palette.text: "white"
                 RowLayout {
                     anchors.fill: parent
                     ToolButton {
-                        text: i18n("&Copy")
-                        icon.name: "copy"
+                        //text: i18n("Bookmark")
+                        icon.name: "bookmarks"
+                        icon.color: palette.buttonText
+                        onClicked: editor.bookmark()
+                    }
+                    ToolButton {
+                        //text: i18n("Undo")
+                        icon.name: "edit-undo"
+                        icon.color: palette.buttonText
+                        onClicked: editor.undo()
+                    }
+                    ToolButton {
+                        //text: i18n("Redo")
+                        icon.name: "edit-redo"
+                        icon.color: palette.buttonText
+                        onClicked: editor.redo()
+                    }
+                    ToolButton {
+                        //text: i18n("&Copy")
+                        icon.name: "edit-copy"
+                        icon.color: palette.buttonText
                         onClicked: editor.copy()
                     }
                     ToolButton {
-                        text: i18n("Cut")
-                        icon.name: "cut"
+                        //text: i18n("Cut")
+                        icon.name: "edit-cut"
+                        icon.color: palette.buttonText
                         onClicked: editor.cut()
                     }
                     ToolButton {
-                        text: i18n("&Paste")
-                        icon.name: "paste"
+                        //text: i18n("&Paste")
+                        icon.name: "edit-paste"
+                        icon.color: palette.buttonText
                         onClicked: editor.paste()
                     }
                     ToolButton {
-                        text: i18n("&Bold")
-                        icon.name: "bold"
+                        //text: i18n("&Bold")
+                        icon.name: "gtk-bold"
+                        icon.color: palette.buttonText
                         onClicked: document.bold = !document.bold
                     }
                     ToolButton {
-                        text: i18n("&Italic")
-                        icon.name: "italic"
+                        //text: i18n("&Italic")
+                        icon.name: "gtk-italic"
+                        icon.color: palette.buttonText
                         onClicked: document.italic = !document.italic
                     }
                     ToolButton {
-                        text: i18n("&Underline")
-                        icon.name: "underline"
+                        //Text {
+                            //text: i18n("Underline")
+                            //color: palette.buttonText
+                            //anchors.fill: parent
+                            //fontSizeMode: Text.Fit
+                            //horizontalAlignment: Text.AlignHCenter
+                            //verticalAlignment: Text.AlignVCenter
+                        //}
+                        //text: i18n("&Underline")
+                        icon.name: "gtk-underline"
+                        icon.color: palette.buttonText
                         onClicked: document.underline = !document.underline
                     }
                 }
