@@ -32,7 +32,7 @@ import com.cuperino.qprompt.document 1.0
 Kirigami.ApplicationWindow {
     id: root
     
-    property bool autoFullScreen: true
+    property bool __autoFullScreen: false
     property int prompterVisibility: Kirigami.ApplicationWindow.AutomaticVisibility
     
     title: i18n("QPrompt")
@@ -42,14 +42,14 @@ Kirigami.ApplicationWindow {
     //Material.theme: Material.Light
     background: Rectangle {
         id: appBackground
-        property color __color: parent.Material.theme==Material.Light ? "#fafafa" : "#424242"
+        property color __color: parent.Material.theme===Material.Light ? "#fafafa" : "#424242"
         color: __color
         opacity: 1
     }
     // Full screen
-    visibility: autoFullScreen ? prompterVisibility : Kirigami.ApplicationWindow.AutomaticVisibility
+    visibility: __autoFullScreen ? prompterVisibility : Kirigami.ApplicationWindow.AutomaticVisibility
     onVisibilityChanged: {
-        if (visibility!=Kirigami.ApplicationWindow.FullScreen)
+        if (visibility!==Kirigami.ApplicationWindow.FullScreen)
             console.log("left fullscreen");
             //position = editor.positionAt(0, prompter.position + readRegion.__placement*overlay.height)
     }
@@ -432,17 +432,23 @@ Kirigami.ApplicationWindow {
                 property bool __play: true
                 property int __i: 1
                 property double __baseSpeed: 1.0
-                property double __curvature: 1.35
-                readonly property double __vw: prompter.width*0.01
-                readonly property double __velocity: __baseSpeed * Math.pow(Math.abs(__i), __curvature)
-                readonly property double __time_to_arival: __i ? (__i<0 ? prompter.position : (prompter.contentHeight-prompter.position)) / (Math.abs(__velocity * __vw)) << 8 : 0;
-                property int __destination: (__i ? (__i<0 ? __i%2 : prompter.contentHeight - __i%2) : prompter.position);
+                property double __curvature: 1.3
+                readonly property int __jitterMargin: 1
+                readonly property bool __possitiveDirection: __i>=0
+                readonly property double __vw: width / 100
+                readonly property double __speed: __baseSpeed * Math.pow(Math.abs(__i), __curvature)
+                readonly property double __velocity: (__possitiveDirection ? 1 : -1) * __speed
+                readonly property double __timeToArival: __i ? (__possitiveDirection ? contentHeight-position : position) / (__speed * __vw) << 8 : 0
+                readonly property int __destination: (__i ? (__possitiveDirection ? contentHeight - __i%(__jitterMargin+1) : __i%(__jitterMargin+1)) : position)
                 // origin.y is being roughly approximated. This may not work across all systems and displays...
+                readonly property bool __atStart: position<=__jitterMargin+2
+                readonly property bool __atEnd: position>=contentHeight-__jitterMargin-2
                 // Opacity
                 property double __opacity: 0.8
                 // Flips
                 property bool __flipX: false
                 property bool __flipY: false
+                readonly property int __speedLimit: __vw * 10
                 readonly property Scale __flips: Scale {
                     origin.x: editor.width/2
                     origin.y: (height-2*implicitFooterHeight+8)/2
@@ -483,13 +489,14 @@ Kirigami.ApplicationWindow {
                     id: motion
                     enabled: true
                     animation: NumberAnimation {
-                        //paused: !__play
-                        duration: prompter.__time_to_arival
-                        //from: "*"
-                        //to: "*"
-                        onFinished: {
-                            console.log("Animation Completed")
-                            prompter.__i = 0
+                        id: animationX
+                        duration: prompter.__timeToArival
+                        easing.type: Easing.Linear
+                        onRunningChanged: {
+                            if (!animationX.running && prompter.__i) {
+                                prompter.__i = 0
+                                showPassiveNotification(i18n("Animation Completed"));
+                            }
                         }
                     }
                 }
@@ -497,23 +504,33 @@ Kirigami.ApplicationWindow {
                 function increaseVelocity(event) {
                     if (event)
                         event.accepted = true;
-                    this.__i++
-                    this.__play = true
-                    this.position = this.__destination
-                    //this.state = "play"
-                    //this.animationState = "play"
-                    showPassiveNotification(i18n("Increase Velocity"));
+                    if (this.__atEnd)
+                        this.__i=0
+                    else
+                        if (this.__velocity < this.__speedLimit) {
+                        this.__i++
+                        this.__play = true
+                        this.position = this.__destination
+                        //this.state = "play"
+                        //this.animationState = "play"
+                        showPassiveNotification(i18n("Increase Velocity"));
+                    }
                 }
                 
                 function decreaseVelocity(event) {
                     if (event)
                         event.accepted = true;
-                    this.__i--
-                    this.__play = true
-                    this.position = this.__destination
-                    //this.state = "play"
-                    //this.animationState = "play"
-                    showPassiveNotification(i18n("Decrease Velocity"));
+                    if (this.__atStart)
+                        this.__i=0
+                    else
+                        if (this.__velocity > -this.__speedLimit) {
+                        this.__i--
+                        this.__play = true
+                        this.position = this.__destination
+                        //this.state = "play"
+                        //this.animationState = "play"
+                        showPassiveNotification(i18n("Decrease Velocity"));
+                    }
                 }
                 
                 TextArea.flickable: TextArea {
@@ -708,7 +725,7 @@ Kirigami.ApplicationWindow {
                 state: "editing"
                 transitions: [
                     Transition {
-                        enabled: !root.autoFullScreen
+                        enabled: !root.__autoFullScreen
                         from: "*"; to: "*"
                         NumberAnimation {
                             targets: [triangles, overlay, appBackground]
@@ -881,8 +898,8 @@ Kirigami.ApplicationWindow {
             MenuItem {
                 text: qsTr("&Auto full screen on start")
                 checkable: true
-                checked: root.autoFullScreen
-                onTriggered: root.autoFullScreen = !root.autoFullScreen
+                checked: root.__autoFullScreen
+                onTriggered: root.__autoFullScreen = !root.__autoFullScreen
             }
         }
         Menu {
