@@ -6,5 +6,6 @@ target_link_libraries(qprompt
     Qt5::Quick
     Qt5::QuickControls2
     Qt5::Svg
-    KF5::I18n)
+    KF5::I18n
+    KF5::Kirigami2)
 install(TARGETS qprompt ${KDE_INSTALL_TARGETS_DEFAULT_ARGS})
