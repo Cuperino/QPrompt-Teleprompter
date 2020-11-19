@@ -2,9 +2,10 @@
     <qresource prefix="/">
         <file alias="main.qml">contents/ui/main.qml</file>
         <file alias="ReadRegionOverlay.qml">contents/ui/ReadRegionOverlay.qml</file>
+        <file alias="Prompter.qml">contents/ui/Prompter.qml</file>
         <file>qtquickcontrols2.conf</file>
         <file>images/logo.png</file>
         <file>fonts/fontello.ttf</file>
-        <file>texteditor.html</file>
+        <file>instructions.html</file>
     </qresource>
 </RCC>

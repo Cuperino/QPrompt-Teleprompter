@@ -1,9 +1,13 @@
 [Desktop Entry]
 Name=QPrompt
+GenericName=Teleprompter Software
 Comment=Free and open source teleprompter software for professionals
 Version=1.0
-Exec=qprompt
-Icon=applications-development
+Exec=qprompt %u
+# Icon=applications-development
+Icon=images/logo.png
 Type=Application
 Terminal=false
-Categories=teleprompter;autocue;video;media;word;text;processing;television;tv;stream;live;kinnematic;
+Categories=AudioVideo;Video;Qt;
+X-DocPath=qprompt/instructions.html
+MimeType=text/html;
