@@ -9,14 +9,14 @@ HEADERS += \
     documenthandler.h
 
 SOURCES += \
-    texteditor.cpp \
+    main.cpp
     documenthandler.cpp
 
 OTHER_FILES += \
-    qml/*.qml
+    contents/ui/*.qml
 
 RESOURCES += \
-    texteditor.qrc
+    resources.qrc
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

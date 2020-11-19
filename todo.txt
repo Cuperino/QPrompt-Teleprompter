@@ -1,0 +1,72 @@
+QPrompt
+	Animation
+		Add countdown animation
+		Start at 0, increase speed at countdown animation end
+	Files
+		Load files
+		Save file dialog on quit
+		New file
+		Show file title
+	Editing
+		Toggle WYSIWYG
+	UX
+		Perfect acceleration curve
+		Compute acceleration limits
+	UI
+		Change flip toggle for a dropdown
+		Change app palette on QML
+	Formatting
+		Add Hue based colorwheel
+		Manually set background color
+		Manually set font color
+		Add toolbar icons
+		Add system font support
+		Toggle LTR paragraph support
+		Add second, darker, background to teleprompter for decoration on flip animations
+	Text Editor
+		Add text alignments
+		Add undo redo actions
+		Apply system fonts
+		Add custom font set
+		Add custom text color
+		Add custom highlight color
+		Add search
+		Add search and replace
+		Add Spell Check indicator
+		Show spell check suggestions
+		Apply spell check suggestion
+		Set spell check language/s
+		Show spell check custom dictionary
+		Have dynamic image sizes
+		Have text selection work right
+		Have text editor flick work right on native UI
+	UX
+		Run event on certain line reached
+		Parse text to split between sentences
+		Highlight current sentence
+		Send HTTP requests from QPrompt
+	Markers
+		Add nameless marker
+		Add named marker
+		Go to marker position in editor
+		Go to marker position while prompting
+		List markers in order
+		Skip between markers in order
+		Animate skipping between markers
+	Prompter
+		Prepare translations sheet
+		Scroll while prompting
+		Flick while prompting
+		Alight editor after prompt ends
+		Align to various heights on prompt start
+		Add top margin before prompter start
+		Separate prompter from other screen actions through variable abstracting?
+	Window
+		Communicate between two windows
+		Grab image on change, send to other window
+		Auto scale image on other window
+		Flip cloned instance
+		Remember cloned instance flip settings
+		Hide clone instance option on unsupported platforms
+		Support having multiple cloned instances
+		Add about window
