@@ -31,11 +31,17 @@ import QtQuick.Controls.Material 2.12
 import com.cuperino.qprompt.document 1.0
 
 
-Item {
+// Flickable makes the element scrollable and touch friendly
+//// Define Flickable element using the flickable property only íf the flickable component (the prompter in this case)
+//// has some non standard properties, such as not covering the whole Page. Otherwise, use element like everywhere else
+//// and use Kirigami.ScrollablePage instead of page.
+//flickable: Flickable {
+Flickable {
     //ScrollIndicator.vertical: ScrollIndicator{
     id: prompter
-    anchors.fill: parent
     // property int __unit: 1
+    property alias position: prompter.contentY
+    property alias editor: editor
     property bool __play: true
     property int __i: 1
     property double __baseSpeed: 1.0
@@ -45,11 +51,11 @@ Item {
     readonly property double __vw: width / 100
     readonly property double __speed: __baseSpeed * Math.pow(Math.abs(__i), __curvature)
     readonly property double __velocity: (__possitiveDirection ? 1 : -1) * __speed
-    readonly property double __timeToArival: __i ? (__possitiveDirection ? viewport.contentHeight-viewport.position : viewport.position) / (__speed * __vw) << 8 : 0
-    readonly property int __destination: (__i ? (__possitiveDirection ? viewport.contentHeight - __i%(__jitterMargin+1) : __i%(__jitterMargin+1)) : viewport.position)
+    readonly property double __timeToArival: __i ? (__possitiveDirection ? contentHeight-position : position) / (__speed * __vw) << 8 : 0
+    readonly property int __destination: (__i ? (__possitiveDirection ? contentHeight - __i%(__jitterMargin+1) : __i%(__jitterMargin+1)) : position)
     // origin.y is being roughly approximated. This may not work across all systems and displays...
-    readonly property bool __atStart: viewport.position<=__jitterMargin+2
-    readonly property bool __atEnd: viewport.position>=viewport.contentHeight-__jitterMargin-2
+    readonly property bool __atStart: position<=__jitterMargin+2
+    readonly property bool __atEnd: position>=contentHeight-__jitterMargin-2
     // Opacity
     property double __opacity: 0.8
     // Flips
@@ -59,11 +65,10 @@ Item {
     readonly property Scale __flips: Scale {
         origin.x: editor.width/2
         origin.y: (height-2*implicitFooterHeight+8)/2
-        xScale: state==="prompting" && __flipX ? -1 : 1
-        yScale: state==="prompting" && __flipY ? -1 : 1
+        xScale: prompter.state==="prompting" && prompter.__flipX ? -1 : 1
+        yScale: prompter.state==="prompting" && prompter.__flipY ? -1 : 1
     }
     transform: __flips
-    
     Behavior on __flips.xScale {
         enabled: true
         animation: NumberAnimation {
@@ -71,27 +76,56 @@ Item {
             easing.type: Easing.OutQuad
         }
     }
-    
     Behavior on __flips.yScale {
         enabled: true
         animation: NumberAnimation {
             duration: 250
             easing.type: Easing.OutQuad
         }
-    }    
+    }
     
-    function toggleMode() {
+    // Prompter animation
+    onFlickStarted: {
+        //console.log("Flick started")
+        //motion.enabled = false
+        //position = position
+    }
+    onFlickEnded: {
+        //console.log("Flick ended")
+        //motion.enabled = true
+        //position = __destination
+    }
+    
+    flickableDirection: Flickable.VerticalFlick
+    
+    Behavior on position {
+        id: motion
+        enabled: true
+        animation: NumberAnimation {
+            id: animationX
+            duration: prompter.__timeToArival
+            easing.type: Easing.Linear
+            onRunningChanged: {
+                if (!animationX.running && prompter.__i) {
+                    prompter.__i = 0
+                    showPassiveNotification(i18n("Animation Completed"));
+                }
+            }
+        }
+    }
+    
+    function toggle() {
         // Update position
-        var verticalPosition = viewport.position + overlay.__readRegionPlacement*overlay.height
+        var verticalPosition = position + overlay.__readRegionPlacement*overlay.height
         var cursorPosition = editor.positionAt(0, verticalPosition)
         editor.cursorPosition = cursorPosition
         
         // Enter full screen
         var states = ["editing", "prompting"]
         var nextIndex = ( states.indexOf(state) + 1 ) % states.length
-        prompter.state = states[nextIndex]
+        state = states[nextIndex]
         
-        switch (prompter.state) {
+        switch (state) {
             case "editing":
                 showPassiveNotification(i18n("Editing"))
                 //root.leaveFullScreen()
@@ -111,14 +145,15 @@ Item {
             event.accepted = true;
         if (this.__atEnd)
             this.__i=0
-        else if (this.__velocity < this.__speedLimit) {
-            this.__i++
-            this.__play = true
-            this.position = this.__destination
-            //this.state = "play"
-            //this.animationState = "play"
-            showPassiveNotification(i18n("Increase Velocity"));
-        }
+            else
+                if (this.__velocity < this.__speedLimit) {
+                    this.__i++
+                    this.__play = true
+                    this.position = this.__destination
+                    //this.state = "play"
+                    //this.animationState = "play"
+                    showPassiveNotification(i18n("Increase Velocity"));
+                }
     }
     
     function decreaseVelocity(event) {
@@ -126,14 +161,122 @@ Item {
             event.accepted = true;
         if (this.__atStart)
             this.__i=0
-        else if (this.__velocity > -this.__speedLimit) {
-            this.__i--
-            this.__play = true
-            this.position = this.__destination
-            //this.state = "play"
-            //this.animationState = "play"
-            showPassiveNotification(i18n("Decrease Velocity"));
+            else
+                if (this.__velocity > -this.__speedLimit) {
+                    this.__i--
+                    this.__play = true
+                    this.position = this.__destination
+                    //this.state = "play"
+                    //this.animationState = "play"
+                    showPassiveNotification(i18n("Decrease Velocity"));
+                }
+    }
+    
+    TextArea.flickable: TextArea {
+        id: editor
+        textFormat: Qt.RichText
+        wrapMode: TextArea.Wrap
+        readOnly: false
+        text: "Error loading file"
+        persistentSelection: true
+        //Different styles have different padding and background
+        //decorations, but since this editor must resemble the
+        //teleprompter output, we don't need them.
+        leftPadding: 0
+        rightPadding: 0
+        topPadding: 0
+        bottomPadding: 0
+        //background: transparent
+        //background: Rectangle{
+        //    color: QColor(40,41,35,127)
+        //}
+        //background: Rectangle {
+        //color: "#424242"
+        //opacity: 0.8
+        //}
+        // Start with the editor in focus
+        focus: true
+        // Make base font size relative to editor's width
+        font.pixelSize: 10 * prompter.__vw
+        
+        // Make links responsive
+        onLinkActivated: Qt.openUrlExternally(link)
+    }
+    
+    DocumentHandler {
+        id: document
+        document: editor.textDocument
+        cursorPosition: editor.cursorPosition
+        selectionStart: editor.selectionStart
+        selectionEnd: editor.selectionEnd
+        Component.onCompleted: document.load("qrc:/instructions.html")
+        onLoaded: {
+            editor.text = text
         }
+        onError: {
+            errorDialog.text = message
+            errorDialog.visible = true
+        }
+    }
+    
+    // Key bindings
+    Keys.onPressed: {
+        if (prompter.state === "prompting")
+            switch (event.key) {
+                //case Qt.Key_S:
+                case Qt.Key_Down:
+                    prompter.increaseVelocity(event)
+                    break;
+                    //case Qt.Key_W:
+                case Qt.Key_Up:
+                    prompter.decreaseVelocity(event)
+                    break;
+                case Qt.Key_Space:
+                    showPassiveNotification(i18n("Toggle Playback"));
+                    //console.log(motion.paused)
+                    //motion.paused = !motion.paused
+                    if (prompter.__play/*prompter.state=="play"*/) {
+                        prompter.__play = false
+                        prompter.position = prompter.position
+                        //prompter.state = "pause"
+                        //prompter.animationState = "pause"
+                        //    motion.resume()
+                    }
+                    else {
+                        prompter.__play = true
+                        prompter.position = prompter.__destination
+                        //prompter.state = "play"
+                        //prompter.animationState = "play"
+                        //    motion.pause()
+                    }
+                    //var states = ["play", "pause"]
+                    //var nextIndex = ( states.indexOf(prompter.animationState) + 1 ) % states.length
+                    //prompter.animationState = states[nextIndex]
+                    break;
+                case Qt.Key_Tab:
+                    if (event.modifiers & Qt.ShiftModifier)
+                        // Not reached...
+                        showPassiveNotification(i18n("Shift Tab Pressed"));
+                    else
+                        showPassiveNotification(i18n("Tab Pressed"));
+                    break;
+                case Qt.Key_PageUp:
+                    showPassiveNotification(i18n("Page Up Pressed")); break;
+                case Qt.Key_PageDown:
+                    showPassiveNotification(i18n("Page Down Pressed")); break;
+                case Qt.Key_Home:
+                    showPassiveNotification(i18n("Home Pressed")); break;
+                case Qt.Key_End:
+                    showPassiveNotification(i18n("End Pressed")); break;
+                    //default:
+                    //    // Show key code
+                    //    showPassiveNotification(event.key)
+            }
+            //// Undo and redo key bindings
+            //if (event.matches(StandardKey.Undo))
+            //    document.undo();
+            //else if (event.matches(StandardKey.Redo))
+            //    document.redo();
     }
     
     states: [
@@ -173,7 +316,7 @@ Item {
                 __opacity: 0.4
             }
             PropertyChanges {
-                target: readRegion
+                target: overlay
                 enabled: false
             }
             PropertyChanges {
@@ -213,7 +356,7 @@ Item {
             //    name: "pause"
             //    PropertyChanges {
             //        target: prompter
-            //        position: viewport.position
+            //        position: prompter.position
             //    }
             //}
         }
@@ -227,169 +370,20 @@ Item {
                 targets: [triangles, overlay, appBackground]
                 properties: "__opacity"; duration: 250;
             }
+            //PropertyAnimation {
+            //targets: root
+            //properties: "visibility"; duration: 250;
+            //}
         }
     ]
     
-    ReadRegionOverlay {
-        id: overlay
+    ScrollBar.vertical: ScrollBar {
+        id: scroller
+        policy: ScrollBar.AlwaysOn
+        interactive: false
+        leftPadding: 0
+        rightPadding: 0
+        leftInset: 0
+        rightInset: 0
     }
-    
-    // Flickable makes the element scrollable and touch friendly
-    //// Define Flickable element using the flickable property only íf the flickable component (the prompter in this case)
-    //// has some non standard properties, such as not covering the whole Page. Otherwise, use element like everywhere else
-    //// and use Kirigami.ScrollablePage instead of page.
-    //flickable: Flickable {
-    Flickable {
-        id: viewport
-        
-        property alias position: viewport.contentY
-        anchors.fill: parent
-        
-        // Prompter animation
-        onFlickStarted: {
-            //console.log("Flick started")
-            //motion.enabled = false
-            //position = position
-        }
-        
-        onFlickEnded: {
-            //console.log("Flick ended")
-            //motion.enabled = true
-            //position = __destination
-        }
-        
-        flickableDirection: Flickable.VerticalFlick
-        
-        Behavior on position {
-            id: motion
-            enabled: true
-            animation: NumberAnimation {
-                id: animationX
-                duration: prompter.__timeToArival
-                easing.type: Easing.Linear
-                onRunningChanged: {
-                    if (!animationX.running && __i) {
-                        __i = 0
-                        showPassiveNotification(i18n("Animation Completed"));
-                    }
-                }
-            }
-        }
-            
-        TextArea.flickable: TextArea {
-            id: editor
-            textFormat: Qt.RichText
-            wrapMode: TextArea.Wrap
-            readOnly: false
-            text: "Error loading file"
-            persistentSelection: true
-            //Different styles have different padding and background
-            //decorations, but since this editor must resemble the
-            //teleprompter output, we don't need them.
-            leftPadding: 0
-            rightPadding: 0
-            topPadding: 0
-            bottomPadding: 0
-            //background: transparent
-            //background: Rectangle{
-            //    color: QColor(40,41,35,127)
-            //}
-            //background: Rectangle {
-            //color: "#424242"
-            //opacity: 0.8
-            //}
-            // Start with the editor in focus
-            focus: true
-            // Make base font size relative to editor's width
-            font.pixelSize: 10 * prompter.__vw
-            
-            // Make links responsive
-            onLinkActivated: Qt.openUrlExternally(link)
-        }
-        
-        DocumentHandler {
-            id: document
-            document: editor.textDocument
-            cursorPosition: editor.cursorPosition
-            selectionStart: editor.selectionStart
-            selectionEnd: editor.selectionEnd
-            Component.onCompleted: document.load("qrc:/texteditor.html")
-            onLoaded: {
-                editor.text = text
-            }
-            onError: {
-                errorDialog.text = message
-                errorDialog.visible = true
-            }
-        }
-        
-        // Key bindings
-        Keys.onPressed: {
-            if (prompter.state === "prompting")
-                switch (event.key) {
-                    //case Qt.Key_S:
-                    case Qt.Key_Down:
-                        prompter.increaseVelocity(event)
-                        break;
-                        //case Qt.Key_W:
-                    case Qt.Key_Up:
-                        prompter.decreaseVelocity(event)
-                        break;
-                    case Qt.Key_Space:
-                        showPassiveNotification(i18n("Toggle Playback"));
-                        //console.log(motion.paused)
-                        //motion.paused = !motion.paused
-                        if (prompter.__play/*prompter.state=="play"*/) {
-                            prompter.__play = false
-                            viewport.position = viewport.position
-                            //prompter.state = "pause"
-                            //prompter.animationState = "pause"
-                            //    motion.resume()
-                        }
-                        else {
-                            prompter.__play = true
-                            viewport.position = prompter.__destination
-                            //prompter.state = "play"
-                            //prompter.animationState = "play"
-                            //    motion.pause()
-                        }
-                        //var states = ["play", "pause"]
-                        //var nextIndex = ( states.indexOf(prompter.animationState) + 1 ) % states.length
-                        //prompter.animationState = states[nextIndex]
-                        break;
-                    case Qt.Key_Tab:
-                        if (event.modifiers & Qt.ShiftModifier)
-                            // Not reached...
-                            showPassiveNotification(i18n("Shift Tab Pressed"));
-                        else
-                            showPassiveNotification(i18n("Tab Pressed"));
-                        break;
-                    case Qt.Key_PageUp:
-                        showPassiveNotification(i18n("Page Up Pressed")); break;
-                    case Qt.Key_PageDown:
-                        showPassiveNotification(i18n("Page Down Pressed")); break;
-                    case Qt.Key_Home:
-                        showPassiveNotification(i18n("Home Pressed")); break;
-                    case Qt.Key_End:
-                        showPassiveNotification(i18n("End Pressed")); break;
-                        //default:
-                        //    // Show key code
-                        //    showPassiveNotification(event.key)
-                }
-                //// Undo and redo key bindings
-                //if (event.matches(StandardKey.Undo))
-                //    document.undo();
-                //else if (event.matches(StandardKey.Redo))
-                //    document.redo();
-        }
-        ScrollBar.vertical: ScrollBar {
-            id: scroller
-            policy: ScrollBar.AlwaysOn
-            interactive: false
-            leftPadding: 0
-            rightPadding: 0
-            leftInset: 0
-            rightInset: 0
-        }
-    }
-}            
+}
