@@ -35,9 +35,11 @@ Kirigami.ApplicationWindow {
     id: root
     
     property bool __autoFullScreen: false
+    property bool __translucidBackground: false
     property int prompterVisibility: Kirigami.ApplicationWindow.AutomaticVisibility
     
-    title: i18n("QPrompt")
+    title: document.fileName + " - QPrompt"
+    
     minimumWidth: 480
     minimumHeight: 380
     // Changing the theme in this way does not affect the whole app for some reason.
@@ -47,13 +49,21 @@ Kirigami.ApplicationWindow {
         property color __color: parent.Material.theme===Material.Light ? "#fafafa" : "#424242"
         color: __color
         opacity: 1
+        
+        Behavior on opacity {
+            enabled: true
+            animation: NumberAnimation {
+                duration: 250
+                easing.type: Easing.OutQuad
+            }
+        }
     }
     // Full screen
     visibility: __autoFullScreen ? prompterVisibility : Kirigami.ApplicationWindow.AutomaticVisibility
     onVisibilityChanged: {
         if (visibility!==Kirigami.ApplicationWindow.FullScreen)
             console.log("left fullscreen");
-            //position = editor.positionAt(0, prompter.position + readRegion.__placement*overlay.height)
+            //position = prompter.positionAt(0, prompter.position + readRegion.__placement*overlay.height)
     }
 
     ////The following code should be implemented on the Kirigami framework itself and contributed upstream.
@@ -81,7 +91,7 @@ Kirigami.ApplicationWindow {
     //}
     
     globalDrawer: Kirigami.GlobalDrawer {
-        title: i18n("QPrompt")
+        title: "QPrompt"
         titleIcon: "applications-graphics"
         background: Rectangle {
             color: appBackground.__color
@@ -139,7 +149,7 @@ Kirigami.ApplicationWindow {
         id: prompterPage
 
         Kirigami.ScrollablePage {
-            title: i18n("QPrompt")
+            title: "QPrompt"
             actions {
                 main: Kirigami.Action {
                     id: promptingButton
@@ -148,44 +158,104 @@ Kirigami.ApplicationWindow {
                     onTriggered: prompter.toggle()
                 }
                 left: Kirigami.Action {
+                    id: decreaseVelocityButton
+                    enabled: false
                     iconName: "go-previous"
                     onTriggered: prompter.decreaseVelocity(false)
                 }
                 right: Kirigami.Action {
+                    id: increaseVelocityButton
+                    enabled: false
                     iconName: "go-next"
                     onTriggered: prompter.increaseVelocity(false)
                 }
                 // Use action toolbar instead?
                 //ActionToolBar
                 contextualActions: [
+                
+                    Kirigami.Action {
+                        id: wysiwygButton
+                        text: prompter.__wysiwyg ? i18n("WYSIWYG: On") : i18n("WYSIWYG: Off")
+                        iconName: "edit-left"
+                        checkable: true
+                        checked: prompter.__wysiwyg
+                        tooltip: prompter.__wysiwyg ? i18n("\"What you see is what you get\" mode is On") : i18n("\"What you see is what you get\" mode Off")
+                        onTriggered: prompter.__wysiwyg = !prompter.__wysiwyg
+                    },
                     Kirigami.Action {
                         id: flipButton
                         text: i18n("Flip")
                         iconName: "refresh"
-                        onTriggered: {
-                            if (prompter.__flipX && prompter.__flipY) {
+
+                        function updateButton(context) {
+                            text = context.shortName
+                            iconName = context.iconName
+                        }
+                        
+                        Kirigami.Action {
+                            text: i18n("No Flip")
+                            iconName: "refresh"
+                            readonly property string shortName: "No Flip"
+                            onTriggered: {
+                                parent.updateButton(this)
                                 prompter.__flipX = false
                                 prompter.__flipY = false
-                                text = i18n("No Flip")
-                                showPassiveNotification(i18n("No Flip"))
-                            }
-                            else if (prompter.__flipY) {
-                                prompter.__flipX = true
-                                text = i18n("XY Flip")
-                                showPassiveNotification(i18n("180° rotation"))
-                            }
-                            else if (prompter.__flipX) {
-                                prompter.__flipX = false
-                                prompter.__flipY = true
-                                text = i18n("Y Flip")
-                                showPassiveNotification(i18n("Vertical Flip"))
-                            }
-                            else {
-                                prompter.__flipX = true
-                                text = i18n("X Flip")
-                                showPassiveNotification(i18n("Horizontal Flip"))
                             }
                         }
+                        Kirigami.Action {
+                            text: i18n("Horizontal Flip")
+                            iconName: "refresh"
+                            readonly property string shortName: "H Flip"
+                            onTriggered: {
+                                parent.updateButton(this)
+                                prompter.__flipX = true
+                                prompter.__flipY = false
+                            }
+                        }
+                        Kirigami.Action {
+                            text: i18n("Vertical Flip")
+                            iconName: "refresh"
+                            readonly property string shortName: "V Flip"
+                            onTriggered: {
+                                parent.updateButton(this)
+                                prompter.__flipX = false
+                                prompter.__flipY = true
+                            }
+                        }
+                        Kirigami.Action {
+                            text: i18n("180° rotation")
+                            iconName: "refresh"
+                            readonly property string shortName: "HV Flip"
+                            onTriggered: {
+                                parent.updateButton(this)
+                                prompter.__flipX = true
+                                prompter.__flipY = true
+                            }
+                        }
+                        //onTriggered: {
+                            //if (prompter.__flipX && prompter.__flipY) {
+                                //prompter.__flipX = false
+                                //prompter.__flipY = false
+                                //text = i18n("No Flip")
+                                //showPassiveNotification(i18n("No Flip"))
+                            //}
+                            //else if (prompter.__flipY) {
+                                //prompter.__flipX = true
+                                //text = i18n("XY Flip")
+                                //showPassiveNotification(i18n("180° rotation"))
+                            //}
+                            //else if (prompter.__flipX) {
+                                //prompter.__flipX = false
+                                //prompter.__flipY = true
+                                //text = i18n("Y Flip")
+                                //showPassiveNotification(i18n("Vertical Flip"))
+                            //}
+                            //else {
+                                //prompter.__flipX = true
+                                //text = i18n("X Flip")
+                                //showPassiveNotification(i18n("Horizontal Flip"))
+                            //}
+                        //}
                     },
                     Kirigami.Action {
                         id: readRegionButton
@@ -218,49 +288,49 @@ Kirigami.ApplicationWindow {
                         //text: i18n("Bookmark")
                         icon.name: "bookmarks"
                         icon.color: palette.buttonText
-                        onClicked: editor.bookmark()
+                        onClicked: prompter.bookmark()
                     }
                     ToolButton {
                         //text: i18n("Undo")
                         icon.name: "edit-undo"
                         icon.color: palette.buttonText
-                        onClicked: editor.undo()
+                        onClicked: prompter.undo()
                     }
                     ToolButton {
-                        //text: i18n("Redo")
+                        //text: i18n("Redo")f
                         icon.name: "edit-redo"
                         icon.color: palette.buttonText
-                        onClicked: editor.redo()
+                        onClicked: prompter.redo()
                     }
                     ToolButton {
                         //text: i18n("&Copy")
                         icon.name: "edit-copy"
                         icon.color: palette.buttonText
-                        onClicked: editor.copy()
+                        onClicked: prompter.copy()
                     }
                     ToolButton {
                         //text: i18n("Cut")
                         icon.name: "edit-cut"
                         icon.color: palette.buttonText
-                        onClicked: editor.cut()
+                        onClicked: prompter.cut()
                     }
                     ToolButton {
                         //text: i18n("&Paste")
                         icon.name: "edit-paste"
                         icon.color: palette.buttonText
-                        onClicked: editor.paste()
+                        onClicked: prompter.paste()
                     }
                     ToolButton {
                         //text: i18n("&Bold")
                         icon.name: "gtk-bold"
                         icon.color: palette.buttonText
-                        onClicked: document.bold = !document.bold
+                        onClicked: prompter.bold = !prompter.bold
                     }
                     ToolButton {
                         //text: i18n("&Italic")
                         icon.name: "gtk-italic"
                         icon.color: palette.buttonText
-                        onClicked: document.italic = !document.italic
+                        onClicked: prompter.italic = !prompter.italic
                     }
                     ToolButton {
                         //Text {
@@ -274,7 +344,7 @@ Kirigami.ApplicationWindow {
                         //text: i18n("&Underline")
                         icon.name: "gtk-underline"
                         icon.color: palette.buttonText
-                        onClicked: document.underline = !document.underline
+                        onClicked: prompter.underline = !prompter.underline
                     }
                 }
             }
@@ -285,26 +355,6 @@ Kirigami.ApplicationWindow {
                 //Label {
                     //wrapMode: Text.WordWrap
                     //text: "Lorem ipsum dolor sit amet"
-                //}
-            //}
-            // Having a separate layer for backgrounds doesn't work because of QtQuick renderer optimizations.
-            //Item {
-                //id: backgrounds
-                //anchors.fill: parent
-                //Rectangle {
-                    //id: headerBackgrounds
-                    //color: "white"
-                    //anchors.top: parent.top
-                    //anchors.left: parent.left
-                    //anchors.right: parent.right
-                    //anchors.bottom: editor.top
-                    //height: 50
-                //}
-                //Rectangle {
-                //id: bodyBackgrounds
-                //color: "white"
-                //opacity: 0.2
-                //anchors.fill: prompter
                 //}
             //}
         }
@@ -333,18 +383,18 @@ Kirigami.ApplicationWindow {
 
             MenuItem {
                 text: qsTr("&Copy")
-                enabled: this.editor.selectedText
-                onTriggered: this.editor.copy()
+                enabled: prompter.selectedText
+                onTriggered: prompter.copy()
             }
             MenuItem {
                 text: qsTr("Cu&t")
-                enabled: this.editor.selectedText
-                onTriggered: this.editor.cut()
+                enabled: prompter.selectedText
+                onTriggered: prompter.cut()
             }
             MenuItem {
                 text: qsTr("&Paste")
-                enabled: this.editor.canPaste
-                onTriggered: this.editor.paste()
+                enabled: prompter.canPaste
+                onTriggered: prompter.paste()
             }
         }
         
@@ -352,10 +402,16 @@ Kirigami.ApplicationWindow {
             title: qsTr("V&iew")
             
             MenuItem {
-                text: qsTr("&Auto full screen on start")
+                text: qsTr("&Auto full screen")
                 checkable: true
                 checked: root.__autoFullScreen
                 onTriggered: root.__autoFullScreen = !root.__autoFullScreen
+            }
+            MenuItem {
+                text: qsTr("Make background &translucid")
+                checkable: true
+                checked: root.__translucidBackground
+                onTriggered: root.__translucidBackground = !root.__translucidBackground
             }
         }
         Menu {
@@ -364,58 +420,41 @@ Kirigami.ApplicationWindow {
             MenuItem {
                 text: qsTr("&Bold")
                 checkable: true
-                checked: this.prompter.document.bold
-                onTriggered: document.bold = !document.bold
+                checked: prompter.bold
+                onTriggered: prompter.bold = !prompter.bold
             }
             MenuItem {
                 text: qsTr("&Italic")
                 checkable: true
-                checked: document.italic
-                onTriggered: document.italic = !document.italic
+                checked: prompter.italic
+                onTriggered: prompter.italic = !prompter.italic
             }
             MenuItem {
                 text: qsTr("&Underline")
                 checkable: true
-                checked: document.underline
-                onTriggered: document.underline = !document.underline
+                checked: prompter.underline
+                onTriggered: prompter.underline = !prompter.underline
             }
         }
     }
-
+    
     FileDialog {
         id: openDialog
         fileMode: FileDialog.OpenFile
         selectedNameFilter.index: 1
         nameFilters: ["Text files (*.txt)", "HTML files (*.html *.htm)"]
         folder: StandardPaths.writableLocation(StandardPaths.DocumentsLocation)
-        onAccepted: document.load(file)
+        onAccepted: prompter.load(file)
     }
 
     FileDialog {
         id: saveDialog
         fileMode: FileDialog.SaveFile
-        defaultSuffix: document.fileType
+        defaultSuffix: prompter.fileType
         nameFilters: openDialog.nameFilters
-        selectedNameFilter.index: document.fileType === "txt" ? 0 : 1
+        selectedNameFilter.index: prompter.fileType === "txt" ? 0 : 1
         folder: StandardPaths.writableLocation(StandardPaths.DocumentsLocation)
-        onAccepted: document.saveAs(file)
-    }
-
-    FontDialog {
-        id: fontDialog
-        onAccepted: {
-            document.fontFamily = font.family;
-            document.fontSize = font.pointSize;
-        }
-    }
-
-    ColorDialog {
-        id: colorDialog
-        currentColor: "black"
-    }
-
-    MessageDialog {
-        id: errorDialog
+        onAccepted: prompter.saveAs(file)
     }
 
     MessageDialog {
@@ -426,45 +465,11 @@ Kirigami.ApplicationWindow {
         onYesClicked: Qt.quit()
     }
 
-    // Context Menu
-    Menu {
-        id: contextMenu
-
-        MenuItem {
-            text: qsTr("Copy")
-            enabled: editor.selectedText
-            onTriggered: editor.copy()
-        }
-        MenuItem {
-            text: qsTr("Cut")
-            enabled: editor.selectedText
-            onTriggered: editor.cut()
-        }
-        MenuItem {
-            text: qsTr("Paste")
-            enabled: editor.canPaste
-            onTriggered: editor.paste()
-        }
-
-        MenuSeparator {}
-
-        MenuItem {
-            text: qsTr("Font...")
-            onTriggered: fontDialog.open()
-        }
-
-        MenuItem {
-            text: qsTr("Color...")
-            onTriggered: colorDialog.open()
-        }
-    }
-
     // Open save dialog on closing
     onClosing: {
-        if (document.modified) {
+        if (prompter.modified) {
             quitDialog.open()
             close.accepted = false
         }
     }
-
 }
