@@ -39,9 +39,15 @@ import com.cuperino.qprompt.document 1.0
 Flickable {
     //ScrollIndicator.vertical: ScrollIndicator{
     id: prompter
+    // Text 
+    property alias bold: document.bold
+    property alias italic: document.italic
+    property alias underline: document.underline
+    property alias modified: document.modified
+    property alias fileType: document.fileType
     // property int __unit: 1
     property alias position: prompter.contentY
-    property alias editor: editor
+    property bool __wysiwyg: true
     property bool __play: true
     property int __i: 1
     property double __baseSpeed: 1.0
@@ -56,7 +62,7 @@ Flickable {
     // origin.y is being roughly approximated. This may not work across all systems and displays...
     readonly property bool __atStart: position<=__jitterMargin+2
     readonly property bool __atEnd: position>=contentHeight-__jitterMargin-2
-    // Opacity
+    // Background
     property double __opacity: 0.8
     // Flips
     property bool __flipX: false
@@ -64,7 +70,7 @@ Flickable {
     readonly property int __speedLimit: __vw * 10
     readonly property Scale __flips: Scale {
         origin.x: editor.width/2
-        origin.y: (height-2*implicitFooterHeight+8)/2
+        origin.y: height/2
         xScale: prompter.state==="prompting" && prompter.__flipX ? -1 : 1
         yScale: prompter.state==="prompting" && prompter.__flipY ? -1 : 1
     }
@@ -112,6 +118,31 @@ Flickable {
                 }
             }
         }
+    }
+    
+    function bookmark(event) {
+        editor.bookmark(event)
+    }
+    function undo(event) {
+        editor.undo(event)
+    }
+    function redo(event) {
+        editor.redo(event)
+    }
+    function copy(event) {
+        editor.copy(event)
+    }
+    function cut(event) {
+        editor.cut(event)
+    }
+    function paste(event) {
+        editor.paste(event)
+    }
+    function load(file) {
+        editor.load(file)
+    }
+    function saveAs(file) {
+        editor.saveAs(file)
     }
     
     function toggle() {
@@ -177,7 +208,8 @@ Flickable {
         textFormat: Qt.RichText
         wrapMode: TextArea.Wrap
         readOnly: false
-        text: "Error loading file"
+        text: "Error loading file..."
+        selectByMouse: true
         persistentSelection: true
         //Different styles have different padding and background
         //decorations, but since this editor must resemble the
@@ -190,17 +222,23 @@ Flickable {
         //background: Rectangle{
         //    color: QColor(40,41,35,127)
         //}
-        //background: Rectangle {
+        //ground: Rectangle {
         //color: "#424242"
         //opacity: 0.8
         //}
         // Start with the editor in focus
         focus: true
         // Make base font size relative to editor's width
-        font.pixelSize: 10 * prompter.__vw
+        font.pixelSize: prompter.state==="editing" && !prompter.__wysiwyg ? 16 : 10 * prompter.__vw
         
         // Make links responsive
         onLinkActivated: Qt.openUrlExternally(link)
+        
+        MouseArea {
+            acceptedButtons: Qt.RightButton
+            anchors.fill: parent
+            onClicked: contextMenu.open()
+        }
     }
     
     DocumentHandler {
@@ -209,14 +247,71 @@ Flickable {
         cursorPosition: editor.cursorPosition
         selectionStart: editor.selectionStart
         selectionEnd: editor.selectionEnd
-        Component.onCompleted: document.load("qrc:/instructions.html")
+        Component.onCompleted: {
+            if (Qt.application.arguments.length === 2)
+                document.load("file:" + Qt.application.arguments[1]);
+            else
+                document.load("qrc:/instructions.html")
+        }
+        //Component.onCompleted: document.load("qrc:/instructions.html")
         onLoaded: {
+            //textArea.textFormat = format
             editor.text = text
         }
         onError: {
             errorDialog.text = message
             errorDialog.visible = true
         }
+    }
+    
+    MessageDialog {
+        id: errorDialog
+    }
+    
+    // Context Menu
+    Menu {
+        id: contextMenu
+        
+        MenuItem {
+            text: qsTr("Copy")
+            enabled: editor.selectedText
+            onTriggered: editor.copy()
+        }
+        MenuItem {
+            text: qsTr("Cut")
+            enabled: editor.selectedText
+            onTriggered: editor.cut()
+        }
+        MenuItem {
+            text: qsTr("Paste")
+            enabled: editor.canPaste
+            onTriggered: editor.paste()
+        }
+        
+        MenuSeparator {}
+        
+        MenuItem {
+            text: qsTr("Font...")
+            onTriggered: fontDialog.open()
+        }
+        
+        MenuItem {
+            text: qsTr("Color...")
+            onTriggered: colorDialog.open()
+        }
+    }
+    
+    FontDialog {
+        id: fontDialog
+        onAccepted: {
+            document.fontFamily = font.family;
+            document.fontSize = font.pointSize;
+        }
+    }
+    
+    ColorDialog {
+        id: colorDialog
+        currentColor: "black"
     }
     
     // Key bindings
@@ -310,10 +405,7 @@ Flickable {
             PropertyChanges {
                 target: overlay
                 __opacity: 0.4
-            }
-            PropertyChanges {
-                target: triangles
-                __opacity: 0.4
+                __trianglesOpacity: 0.4
             }
             PropertyChanges {
                 target: overlay
@@ -325,7 +417,7 @@ Flickable {
             }
             PropertyChanges{
                 target: appBackground
-                opacity: prompter.__opacity
+                opacity: root.__translucidBackground ? __opacity : 1
             }
             PropertyChanges {
                 target: promptingButton
@@ -343,6 +435,14 @@ Flickable {
                 target: overlayMouseArea
                 enabled: true
                 cursorShape: Qt.CrossCursor
+            }
+            PropertyChanges {
+                target: decreaseVelocityButton
+                enabled: true
+            }
+            PropertyChanges {
+                target: increaseVelocityButton
+                enabled: true
             }
             //childMode: QState.ParallelStates
             //State {
@@ -367,7 +467,7 @@ Flickable {
             enabled: !root.__autoFullScreen
             from: "*"; to: "*"
             NumberAnimation {
-                targets: [triangles, overlay, appBackground]
+                targets: [triangles, overlay]
                 properties: "__opacity"; duration: 250;
             }
             //PropertyAnimation {
@@ -377,13 +477,7 @@ Flickable {
         }
     ]
     
-    ScrollBar.vertical: ScrollBar {
-        id: scroller
-        policy: ScrollBar.AlwaysOn
-        interactive: false
-        leftPadding: 0
-        rightPadding: 0
-        leftInset: 0
-        rightInset: 0
-    }
+    // Progress indicator
+    ScrollBar.vertical: ProgressIndicator {}
+    
 }

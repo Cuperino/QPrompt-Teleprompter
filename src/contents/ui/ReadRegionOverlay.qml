@@ -31,6 +31,7 @@ import QtQuick.Controls.Material 2.12
 Item {
     id: overlay
     property double __opacity: 0
+    property double __trianglesOpacity: 0.08
     property color __color: 'black'
     readonly property double __vw: width/100
     property alias __readRegionPlacement: readRegion.__placement
@@ -174,7 +175,7 @@ Item {
         }
         Item {
             id: triangles
-            property double __opacity: 0.08
+            property double __opacity: overlay.__trianglesOpacity
             property color __strokeColor: "lightgray"
             property color __fillColor: "#001800"
             property double __offsetX: 0.3333
