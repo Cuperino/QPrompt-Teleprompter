@@ -20,13 +20,13 @@
  **
  ****************************************************************************/
 
-import QtQuick 2.12
+import QtQuick 2.15
 import QtQuick.Shapes 1.15
 import QtQuick.Controls 2.15
 import QtQuick.Window 2.0
 import Qt.labs.platform 1.0
 import QtQuick.Layouts 1.15
-import QtQuick.Controls.Material 2.12
+import QtQuick.Controls.Material 2.15
 
 Item {
     id: overlay
@@ -58,6 +58,37 @@ Item {
         cursorShape: Qt.DefaultCursor
         propagateComposedEvents: true
     }
+    states: [
+        State {
+            name: "prompting"
+            PropertyChanges {
+                target: overlay
+                __opacity: 0.4
+                __trianglesOpacity: 0.4
+                enabled: false
+            }
+            PropertyChanges {
+                target: overlayMouseArea
+                enabled: true
+                cursorShape: Qt.CrossCursor
+            }
+        }
+    ]
+    state: "editing"
+    transitions: [
+        Transition {
+            enabled: !root.__autoFullScreen
+            from: "*"; to: "*"
+            NumberAnimation {
+                targets: [overlay]
+                properties: "__opacity"; duration: 250;
+            }
+            //PropertyAnimation {
+            //targets: root
+            //properties: "visibility"; duration: 250;
+            //}
+        }
+    ]
     Item {
         id: readRegion
         enabled: false

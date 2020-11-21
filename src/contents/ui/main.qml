@@ -20,14 +20,14 @@
  **
  ****************************************************************************/
 
-import QtQuick 2.12
+import QtQuick 2.15
 import org.kde.kirigami 2.4 as Kirigami
 import QtQuick.Controls 2.15
 import QtQuick.Shapes 1.15
 import QtQuick.Window 2.0
 import Qt.labs.platform 1.0
 import QtQuick.Layouts 1.15
-import QtQuick.Controls.Material 2.12
+import QtQuick.Controls.Material 2.15
 
 import com.cuperino.qprompt.document 1.0
 
@@ -141,6 +141,9 @@ Kirigami.ApplicationWindow {
 
     contextDrawer: Kirigami.ContextDrawer {
         id: contextDrawer
+        background: Rectangle {
+            color: appBackground.__color
+        }
     }
 
     pageStack.initialPage: prompterPage
@@ -265,6 +268,10 @@ Kirigami.ApplicationWindow {
                         tooltip: i18n("Toggle read line position")
                     }
                 ]
+            }
+            
+            Countdown {
+                id: countdown
             }
             
             ReadRegionOverlay {

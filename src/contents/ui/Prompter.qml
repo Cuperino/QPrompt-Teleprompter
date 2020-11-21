@@ -20,13 +20,13 @@
  **
  ****************************************************************************/
 
-import QtQuick 2.12
+import QtQuick 2.15
 import org.kde.kirigami 2.4 as Kirigami
 import QtQuick.Controls 2.15
 import QtQuick.Window 2.0
 import Qt.labs.platform 1.0
 import QtQuick.Layouts 1.15
-import QtQuick.Controls.Material 2.12
+import QtQuick.Controls.Material 2.15
 
 import com.cuperino.qprompt.document 1.0
 
@@ -52,6 +52,7 @@ Flickable {
     property int __i: 1
     property double __baseSpeed: 1.0
     property double __curvature: 1.3
+    property int __lastRecordedPosition: 0
     readonly property int __jitterMargin: 1
     readonly property bool __possitiveDirection: __i>=0
     readonly property double __vw: width / 100
@@ -109,12 +110,16 @@ Flickable {
         enabled: true
         animation: NumberAnimation {
             id: animationX
-            duration: prompter.__timeToArival
+            duration: __timeToArival
             easing.type: Easing.Linear
             onRunningChanged: {
                 if (!animationX.running && prompter.__i) {
-                    prompter.__i = 0
+                    __i = 0
                     showPassiveNotification(i18n("Animation Completed"));
+                }
+                else {
+                    __lastRecordedPosition = position
+                    console.log(__lastRecordedPosition)
                 }
             }
         }
@@ -168,7 +173,6 @@ Flickable {
                 //root.controlsVisible = false
                 break;
         }
-        console.log(editor.lineCount)
     }
     
     function increaseVelocity(event) {
@@ -214,8 +218,8 @@ Flickable {
         //Different styles have different padding and background
         //decorations, but since this editor must resemble the
         //teleprompter output, we don't need them.
-        leftPadding: 0
-        rightPadding: 0
+        leftPadding: 20
+        rightPadding: 20
         topPadding: 0
         bottomPadding: 0
         //background: transparent
@@ -234,10 +238,38 @@ Flickable {
         // Make links responsive
         onLinkActivated: Qt.openUrlExternally(link)
         
+        // Width drag controls
+        width: prompter.width - x
         MouseArea {
             acceptedButtons: Qt.RightButton
             anchors.fill: parent
             onClicked: contextMenu.open()
+        }
+        MouseArea {
+            anchors.left: parent.left
+            anchors.top: parent.top
+            anchors.bottom: parent.bottom
+            width: 25
+            drag.target: parent
+            drag.axis: Drag.XAxis
+            drag.smoothed: false
+            drag.minimumX: 0
+            drag.maximumX: prompter.width*2/5
+            cursorShape: Qt.SizeHorCursor
+            //onReleased: {}
+        }
+        MouseArea {
+            anchors.right: parent.right
+            anchors.top: parent.top
+            anchors.bottom: parent.bottom
+            width: 25
+            drag.target: parent
+            drag.axis: Drag.XAxis
+            drag.smoothed: false
+            drag.minimumX: -prompter.width*2/5
+            drag.maximumX: 0
+            cursorShape: Qt.SizeHorCursor
+            //onReleased: {}
         }
     }
     
@@ -327,7 +359,7 @@ Flickable {
                     prompter.decreaseVelocity(event)
                     break;
                 case Qt.Key_Space:
-                    showPassiveNotification(i18n("Toggle Playback"));
+                    //showPassiveNotification__lastRecordedPosition(i18n("Toggle Playback"));
                     //console.log(motion.paused)
                     //motion.paused = !motion.paused
                     if (prompter.__play/*prompter.state=="play"*/) {
@@ -387,8 +419,13 @@ Flickable {
             //iconName: "gtk-apply"
             //}
             PropertyChanges {
+                target: overlay
+                state: "editing"
+            }
+            PropertyChanges {
                 target: editor
                 focus: true
+                selectByMouse: true
                 //cursorPosition: editor.positionAt(0, editor.position + 1*overlay.height/2)
             }
             PropertyChanges {
@@ -404,12 +441,7 @@ Flickable {
             name: "prompting"
             PropertyChanges {
                 target: overlay
-                __opacity: 0.4
-                __trianglesOpacity: 0.4
-            }
-            PropertyChanges {
-                target: overlay
-                enabled: false
+                state: "prompting"
             }
             PropertyChanges {
                 target: root
@@ -432,9 +464,8 @@ Flickable {
                 __play: true
             }
             PropertyChanges {
-                target: overlayMouseArea
-                enabled: true
-                cursorShape: Qt.CrossCursor
+                target: editor
+                selectByMouse: false
             }
             PropertyChanges {
                 target: decreaseVelocityButton
@@ -462,20 +493,6 @@ Flickable {
         }
     ]
     state: "editing"
-    transitions: [
-        Transition {
-            enabled: !root.__autoFullScreen
-            from: "*"; to: "*"
-            NumberAnimation {
-                targets: [triangles, overlay]
-                properties: "__opacity"; duration: 250;
-            }
-            //PropertyAnimation {
-            //targets: root
-            //properties: "visibility"; duration: 250;
-            //}
-        }
-    ]
     
     // Progress indicator
     ScrollBar.vertical: ProgressIndicator {}
