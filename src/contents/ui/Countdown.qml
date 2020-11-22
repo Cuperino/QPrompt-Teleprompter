@@ -22,27 +22,59 @@
 
 import QtQuick 2.15
 import QtQuick.Controls 2.15
+import QtQuick.Shapes 1.15
 
 Rectangle {
     id: countdown
-    
     anchors.fill: parent
+    readonly property real __vh: parent.height / 100
+    readonly property real __vw: parent.width / 100
+    readonly property real __minv: __vw<__vh ? __vw : __vh
+    readonly property real __maxv: __vw>__vh ? __vw : __vh
+    // __countdownRadius is of the size from the center to any corner, which is also the hypotenuse formed by taking half of the width and height as hicks (catetos).
+    readonly property real __countdownRadius: Math.sqrt(Math.pow(parent.height/2, 2)+Math.pow(parent.width/2, 2))
+    
     color: "#999999"
-    //color: "#333333"
+    property color __destinationColor: "#222222"
     //opacity: 0.75
     
-    PathView {
+    Canvas {
+        id: canvas
         anchors.fill: parent
-        //model: ContactModel {}
-        delegate: delegate
-        path: Path {
-            startX: 0; startY: 100
+        
+        property real progress: 0
+        
+        onProgressChanged: requestPaint()
+        
+        onPaint: {
+            const ctx = getContext("2d");
+            ctx.reset();
             
-            PathArc {
-                x: 100; y: 200
-                radiusX: 100; radiusY: 100
-                useLargeArc: true
-                direction: PathArc.Clockwise
+            const centreX = width / 2;
+            const centreY = height / 2;
+            
+            ctx.beginPath();
+            ctx.fillStyle = "#FFF";
+            ctx.strokeStyle = "#000";
+            ctx.lineWidth = 4;
+            //ctx.fillStyle = countdown.__destinationColor;
+            ctx.moveTo(centreX, centreY);
+            ctx.arc(centreX, centreY, __countdownRadius, -Math.PI/2, 2*Math.PI*progress-Math.PI/2, false);
+            ctx.lineTo(centreX, centreY);
+            ctx.fill();
+        }
+        
+        NumberAnimation on progress {
+            from: 0;
+            to: 1;
+            duration: 1000;
+            easing.type: Easing.Linear
+            alwaysRunToEnd: true
+            loops: Animation.Infinite
+            //loops: 3
+            
+            onFinished: {
+                showPassiveNotification(i18n("Animation Completed"));
             }
         }
     }
