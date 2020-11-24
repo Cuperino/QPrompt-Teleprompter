@@ -26,12 +26,14 @@ import QtQuick.Shapes 1.15
 
 Item {
     id: countdown
-    property int __iterations: 3
+    property bool running: false
+    visible: false
+    property int __iterations: 2
+    property int  __disappearWithin: 1
     readonly property real __vh: parent.height / 100
     readonly property real __vw: parent.width / 100
     readonly property real __minv: __vw<__vh ? __vw : __vh
     readonly property real __maxv: __vw>__vh ? __vw : __vh
-    visible: true
     anchors {
         left: parent.left
         right: parent.right
@@ -103,7 +105,8 @@ Item {
         }
         
         NumberAnimation {
-            running: true
+            id: countdownAnimation
+            running: countdown.running
             target: canvas
             property: "rotations"
             from: 0;
@@ -113,19 +116,20 @@ Item {
             //loops: Animation.Infinite
             easing.type: Easing.Linear
             alwaysRunToEnd: true
-            onStopped: {
-                if (canvas.__iteration>0) {
+            onFinished: {
+                if (countdown.running && canvas.__iteration>0) {
+                    if (canvas.__iteration===countdown.__disappearWithin) {
+                        dissolveOut.running = true
+                    }
                     canvas.__iteration--;
                     console.log(canvas.__iteration);
                     running = true;
-                    if (canvas.__iteration===1) {
-                        dissolveOut.running = true
-                    }
-                }
-                else {
+                } else {
+                    state: "ready"
                     canvas.__iteration = countdown.__iterations;
-                    countdown.visible = false
-                    //showPassiveNotification(i18n("Prompting Started"));
+                    prompter.state = "prompting"
+                    //untdown.visible = false
+                    //owPassiveNotification(i18n("Prompting Started"));
                 }
             }
         }
@@ -150,4 +154,48 @@ Item {
         verticalAlignment: Text.AlignVCenter
         color: "#FFF"
     }
+    
+    states: [
+    State {
+        name: "ready"
+        PropertyChanges {
+            target: countdown
+            running: false
+            visible: false
+            opacity: 0
+        }
+        PropertyChanges {
+            target: dissolveOut
+            running: false
+        }
+        PropertyChanges {
+            target: canvas
+            __iteration: 0
+        }
+    },
+    State {
+        name: "running"
+        PropertyChanges {
+            target: countdownAnimation
+            running: true
+        }
+        PropertyChanges {
+            target: canvas
+            __iteration: countdown.__iterations - 1
+//             __iteration: 2
+        }
+        PropertyChanges {
+            target: countdown
+            running: true
+            visible: true
+            opacity: 1
+//             __iteration: __iterations - 1
+        }
+        PropertyChanges {
+            target: dissolveOut
+            running: false
+        }
+    }
+    ]
+    state: "ready"
 }
