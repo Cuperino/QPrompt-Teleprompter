@@ -53,12 +53,14 @@ Flickable {
     property double __baseSpeed: 1.0
     property double __curvature: 1.3
     property int __lastRecordedPosition: 0
+    readonly property real centreX: width / 2;
+    readonly property real centreY: height / 2;
     readonly property int __jitterMargin: 1
     readonly property bool __possitiveDirection: __i>=0
-    readonly property double __vw: width / 100
-    readonly property double __speed: __baseSpeed * Math.pow(Math.abs(__i), __curvature)
-    readonly property double __velocity: (__possitiveDirection ? 1 : -1) * __speed
-    readonly property double __timeToArival: __i ? (__possitiveDirection ? contentHeight-position : position) / (__speed * __vw) << 8 : 0
+    readonly property real __vw: width / 100
+    readonly property real __speed: __baseSpeed * Math.pow(Math.abs(__i), __curvature)
+    readonly property real __velocity: (__possitiveDirection ? 1 : -1) * __speed
+    readonly property real __timeToArival: __i ? (__possitiveDirection ? contentHeight-position : position) / (__speed * __vw) << 8 : 0
     readonly property int __destination: (__i ? (__possitiveDirection ? contentHeight - __i%(__jitterMargin+1) : __i%(__jitterMargin+1)) : position)
     // origin.y is being roughly approximated. This may not work across all systems and displays...
     readonly property bool __atStart: position<=__jitterMargin+2
@@ -94,12 +96,12 @@ Flickable {
     // Prompter animation
     onFlickStarted: {
         //console.log("Flick started")
-        //motion.enabled = false
+        motion.enabled = false
         //position = position
     }
     onFlickEnded: {
         //console.log("Flick ended")
-        //motion.enabled = true
+        motion.enabled = true
         //position = __destination
     }
     
@@ -118,7 +120,7 @@ Flickable {
                     showPassiveNotification(i18n("Animation Completed"));
                 }
                 else {
-                    __lastRecordedPosition = position
+                    //__lastRecordedPosition = position
                     console.log(__lastRecordedPosition)
                 }
             }
@@ -157,7 +159,7 @@ Flickable {
         editor.cursorPosition = cursorPosition
         
         // Enter full screen
-        var states = ["editing", "prompting"]
+        var states = ["editing", "countdown", "prompting"]
         var nextIndex = ( states.indexOf(state) + 1 ) % states.length
         state = states[nextIndex]
         
@@ -167,6 +169,7 @@ Flickable {
                 //root.leaveFullScreen()
                 //root.controlsVisible = true
                 break;
+            case "countdown":
             case "prompting":
                 showPassiveNotification(i18n("Prompt started"))
                 //root.showFullScreen()
@@ -180,15 +183,14 @@ Flickable {
             event.accepted = true;
         if (this.__atEnd)
             this.__i=0
-            else
-                if (this.__velocity < this.__speedLimit) {
-                    this.__i++
-                    this.__play = true
-                    this.position = this.__destination
-                    //this.state = "play"
-                    //this.animationState = "play"
-                    showPassiveNotification(i18n("Increase Velocity"));
-                }
+        else if (this.__velocity < this.__speedLimit) {
+            this.__i++
+            this.__play = true
+            this.position = this.__destination
+            //this.state = "play"
+            //this.animationState = "play"
+            showPassiveNotification(i18n("Increase Velocity"));
+        }
     }
     
     function decreaseVelocity(event) {
@@ -196,17 +198,16 @@ Flickable {
             event.accepted = true;
         if (this.__atStart)
             this.__i=0
-            else
-                if (this.__velocity > -this.__speedLimit) {
-                    this.__i--
-                    this.__play = true
-                    this.position = this.__destination
-                    //this.state = "play"
-                    //this.animationState = "play"
-                    showPassiveNotification(i18n("Decrease Velocity"));
-                }
+        else if (this.__velocity > -this.__speedLimit) {
+            this.__i--
+            this.__play = true
+            this.position = this.__destination
+            //this.state = "play"
+            //this.animationState = "play"
+            showPassiveNotification(i18n("Decrease Velocity"));
+        }
     }
-    
+        
     TextArea.flickable: TextArea {
         id: editor
         textFormat: Qt.RichText
@@ -244,7 +245,29 @@ Flickable {
             acceptedButtons: Qt.RightButton
             anchors.fill: parent
             onClicked: contextMenu.open()
+            onWheel: {
+                if (prompter.state==="prompting" && wheel.modifiers & Qt.ControlModifier) {
+                    if (wheel.angleDelta.y > 0)
+                        increaseVelocity();
+                    else
+                        decreaseVelocity();
+                }
+                else {
+                    // Regular scroll
+                    if (prompter.position+wheel.angleDelta.y > 0 && prompter.position+wheel.angleDelta.y<prompter.contentHeight-prompter.height) {
+                        var i=__i;
+                        __i=0;
+                        prompter.position = prompter.position + wheel.angleDelta.y;
+                        __i=i;
+                        
+                        prompter.__play = true
+                        prompter.position = prompter.__destination
+                        
+                    }
+                }
+            }
         }
+        //
         MouseArea {
             anchors.left: parent.left
             anchors.top: parent.top
@@ -423,6 +446,10 @@ Flickable {
                 state: "editing"
             }
             PropertyChanges {
+                target: countdown
+                state: "ready"
+            }
+            PropertyChanges {
                 target: editor
                 focus: true
                 selectByMouse: true
@@ -438,6 +465,52 @@ Flickable {
             }
         },
         State {
+            name: "countdown"
+            PropertyChanges {
+                target: overlay
+                state: "prompting"
+            }
+            PropertyChanges {
+                target: countdown
+                state: "running"
+            }
+            PropertyChanges {
+                target: root
+                prompterVisibility: Kirigami.ApplicationWindow.FullScreen
+            }
+            PropertyChanges {
+                target: appTheme
+                opacity: root.__translucidBackground ? __opacity : 1
+            }
+            PropertyChanges {
+                target: promptingButton
+                text: i18n("Return to edit mode")
+                iconName: "edit-undo"
+            }
+            PropertyChanges {
+                target: editor
+                selectByMouse: false
+            }
+            //State {
+                //name: "prompting"
+                //PropertyChanges {
+                    //target: prompter
+                    //position: prompter.__destination
+                    //focus: true
+                    //__play: true
+                //}
+                //PropertyChanges {
+                    //target: decreaseVelocityButton
+                    //enabled: true
+                //}
+                //PropertyChanges {
+                    //target: increaseVelocityButton
+                    //enabled: true
+                //}
+            //}
+            //childMode: QState.ParallelStates
+        },
+        State {
             name: "prompting"
             PropertyChanges {
                 target: overlay
@@ -447,8 +520,8 @@ Flickable {
                 target: root
                 prompterVisibility: Kirigami.ApplicationWindow.FullScreen
             }
-            PropertyChanges{
-                target: appBackground
+            PropertyChanges {
+                target: appTheme
                 opacity: root.__translucidBackground ? __opacity : 1
             }
             PropertyChanges {
@@ -460,7 +533,6 @@ Flickable {
                 target: prompter
                 position: prompter.__destination
                 focus: true
-                //transform: __flips
                 __play: true
             }
             PropertyChanges {
@@ -475,26 +547,11 @@ Flickable {
                 target: increaseVelocityButton
                 enabled: true
             }
-            //childMode: QState.ParallelStates
-            //State {
-            //    name: "play"
-            //    PropertyChanges {
-            //        target: prompter
-            //        position: prompter.__destination
-            //    }
-            //}
-            //State {
-            //    name: "pause"
-            //    PropertyChanges {
-            //        target: prompter
-            //        position: prompter.position
-            //    }
-            //}
         }
     ]
     state: "editing"
     
     // Progress indicator
     ScrollBar.vertical: ProgressIndicator {}
-    
+        
 }
