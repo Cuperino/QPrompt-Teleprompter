@@ -207,7 +207,8 @@ Flickable {
             showPassiveNotification(i18n("Decrease Velocity"));
         }
     }
-        
+    topMargin: prompter.height    
+    bottomMargin: prompter.height
     TextArea.flickable: TextArea {
         id: editor
         textFormat: Qt.RichText
@@ -245,27 +246,6 @@ Flickable {
             acceptedButtons: Qt.RightButton
             anchors.fill: parent
             onClicked: contextMenu.open()
-            onWheel: {
-                if (prompter.state==="prompting" && wheel.modifiers & Qt.ControlModifier) {
-                    if (wheel.angleDelta.y > 0)
-                        increaseVelocity();
-                    else
-                        decreaseVelocity();
-                }
-                else {
-                    // Regular scroll
-                    if (prompter.position+wheel.angleDelta.y > 0 && prompter.position+wheel.angleDelta.y<prompter.contentHeight-prompter.height) {
-                        var i=__i;
-                        __i=0;
-                        prompter.position = prompter.position + wheel.angleDelta.y;
-                        __i=i;
-                        
-                        prompter.__play = true
-                        prompter.position = prompter.__destination
-                        
-                    }
-                }
-            }
         }
         //
         MouseArea {
@@ -293,6 +273,31 @@ Flickable {
             drag.maximumX: 0
             cursorShape: Qt.SizeHorCursor
             //onReleased: {}
+        }
+    }
+    
+    MouseArea {
+        anchors.fill: parent
+        onWheel: {
+            if (prompter.state==="prompting" && wheel.modifiers & Qt.ControlModifier) {
+                if (wheel.angleDelta.y > 0)
+                    increaseVelocity();
+                else
+                    decreaseVelocity();
+            }
+            else {
+                // Regular scroll
+                const delta = wheel.angleDelta.y/2;
+                if (prompter.position-delta > -prompter.height/*0*/ && prompter.position-delta<prompter.contentHeight/*-prompter.height*/) {
+                    var i=__i;
+                    __i=0;
+                    prompter.position = prompter.position - delta;
+                    __i=i;
+                    //prompter.__play = true
+                    prompter.position = prompter.__destination
+                    
+                }
+            }
         }
     }
     
