@@ -28,7 +28,7 @@ Item {
     id: countdown
     property bool running: false
     visible: false
-    property int __iterations: 2
+    property int __iterations: 0
     property int  __disappearWithin: 1
     readonly property real __vh: parent.height / 100
     readonly property real __vw: parent.width / 100
@@ -148,7 +148,7 @@ Item {
     
     Label {
         anchors.fill: parent
-        text: String(canvas.__iteration)
+        text: String(canvas.__iteration+1)
         font.pixelSize: 42*__minv
         horizontalAlignment: Text.AlignHCenter
         verticalAlignment: Text.AlignVCenter

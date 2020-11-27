@@ -45,9 +45,11 @@ Kirigami.ApplicationWindow {
     // Changing the theme in this way does not affect the whole app for some reason.
     //Material.theme: Material.Light
     background: Rectangle {
-        id: appBackground
-        property color __color: parent.Material.theme===Material.Light ? "#fafafa" : "#424242"
-        color: __color
+        id: appTheme
+        property color __backgroundColor: parent.Material.theme===Material.Light ? "#fafafa" : "#303030"
+        property color __fontColor: parent.Material.theme===Material.Light ? "#212121" : "#fff"
+        property color __iconColor: parent.Material.theme===Material.Light ? "232629" : "#c3c7d1"
+        color: __backgroundColor
         opacity: 1
         
         Behavior on opacity {
@@ -94,7 +96,7 @@ Kirigami.ApplicationWindow {
         title: "QPrompt"
         titleIcon: "applications-graphics"
         background: Rectangle {
-            color: appBackground.__color
+            color: appTheme.__backgroundColor
             opacity: 1
         }
         
@@ -142,7 +144,7 @@ Kirigami.ApplicationWindow {
     contextDrawer: Kirigami.ContextDrawer {
         id: contextDrawer
         background: Rectangle {
-            color: appBackground.__color
+            color: appTheme.__backgroundColor
         }
     }
 
@@ -278,6 +280,10 @@ Kirigami.ApplicationWindow {
                 id: overlay
             }
             
+            //TimerClock {
+                //id: timer
+            //}
+            
             Prompter {
                 id: prompter
             }
@@ -286,63 +292,62 @@ Kirigami.ApplicationWindow {
                 id: toolbar
                 
                 background: Rectangle {
-                    color: appBackground.__color
+                    color: appTheme.__backgroundColor
                 }
-                palette.text: "white"
                 RowLayout {
                     anchors.fill: parent
                     ToolButton {
                         //text: i18n("Bookmark")
                         icon.name: "bookmarks"
-                        icon.color: palette.buttonText
+                        icon.color: appTheme.__iconColor
                         onClicked: prompter.bookmark()
                     }
                     ToolButton {
                         //text: i18n("Undo")
                         icon.name: "edit-undo"
-                        icon.color: palette.buttonText
+                        icon.color: appTheme.__iconColor
                         onClicked: prompter.undo()
                     }
                     ToolButton {
                         //text: i18n("Redo")f
                         icon.name: "edit-redo"
-                        icon.color: palette.buttonText
+                        icon.color: appTheme.__iconColor
                         onClicked: prompter.redo()
                     }
                     ToolButton {
                         //text: i18n("&Copy")
                         icon.name: "edit-copy"
-                        icon.color: palette.buttonText
+                        icon.color: appTheme.__iconColor
                         onClicked: prompter.copy()
                     }
                     ToolButton {
                         //text: i18n("Cut")
                         icon.name: "edit-cut"
-                        icon.color: palette.buttonText
+                        icon.color: appTheme.__iconColor
                         onClicked: prompter.cut()
                     }
                     ToolButton {
                         //text: i18n("&Paste")
                         icon.name: "edit-paste"
-                        icon.color: palette.buttonText
+                        icon.color: appTheme.__iconColor
                         onClicked: prompter.paste()
                     }
                     ToolButton {
                         //text: i18n("&Bold")
                         icon.name: "gtk-bold"
-                        icon.color: palette.buttonText
+                        icon.color: appTheme.__iconColor
                         onClicked: prompter.bold = !prompter.bold
                     }
                     ToolButton {
                         //text: i18n("&Italic")
                         icon.name: "gtk-italic"
-                        icon.color: palette.buttonText
+                        icon.color: appTheme.__iconColor
                         onClicked: prompter.italic = !prompter.italic
                     }
                     ToolButton {
                         //Text {
                         //text: i18n("Underline")
-                        //color: palette.buttonText
+                        //color: appTheme.__iconColor
                         //anchors.fill: parent
                         //fontSizeMode: Text.Fit
                         //horizontalAlignment: Text.AlignHCenter
@@ -350,7 +355,7 @@ Kirigami.ApplicationWindow {
                         //}
                         //text: i18n("&Underline")
                         icon.name: "gtk-underline"
-                        icon.color: palette.buttonText
+                        icon.color: appTheme.__iconColor
                         onClicked: prompter.underline = !prompter.underline
                     }
                 }
