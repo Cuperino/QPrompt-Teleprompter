@@ -36,6 +36,7 @@ Item {
     readonly property double __vw: width/100
     property alias __readRegionPlacement: readRegion.__placement
     property alias enabled: readRegion.enabled
+    property string positionState: null
     //anchors.fill: parent
     anchors {
        left: parent.left
@@ -108,8 +109,7 @@ Item {
                 PropertyChanges {
                     target: readRegionButton
                     text: i18n("Top")
-                    iconName: "go-up"
-                    //iconName: "gtk-goto-top"
+                    //iconName: "go-up"
                 }
             },
             State {
@@ -121,7 +121,7 @@ Item {
                 PropertyChanges {
                     target: readRegionButton
                     text: i18n("Middle")
-                    iconName: "remove"
+                    //iconName: "remove"
                 }
             },
             State {
@@ -133,8 +133,7 @@ Item {
                 PropertyChanges {
                     target: readRegionButton
                     text: i18n("Bottom")
-                    iconName: "go-down"
-                    //iconName: "gtk-goto-bottom"
+                    //iconName: "go-down"
                 }
             },
             State {
@@ -158,23 +157,23 @@ Item {
                 PropertyChanges {
                     target: readRegionButton
                     text: i18n("Free")
-                    iconName: "gtk-edit"
+                    //iconName: "gtk-edit"
                 }
             },
             State {
                 name: "fixed"
                 PropertyChanges {
                     target: readRegion
-                    __placement: readRegion.__placement
+                    __placement: readRegion.__customPlacement
                 }
                 PropertyChanges {
                     target: readRegionButton
                     text: i18n("Custom")
-                    iconName: "gtk-apply"
+                    //iconName: "gtk-apply"
                 }
             }
         ]
-        state: "middle"
+        state: overlay.positionState
         transitions: [
             Transition {
                 from: "*"; to: "*"
