@@ -94,7 +94,7 @@ Kirigami.ApplicationWindow {
     
     globalDrawer: Kirigami.GlobalDrawer {
         title: "QPrompt"
-        titleIcon: "applications-graphics"
+        titleIcon: "logo.png"
         background: Rectangle {
             color: appTheme.__backgroundColor
             opacity: 1
@@ -264,11 +264,54 @@ Kirigami.ApplicationWindow {
                     },
                     Kirigami.Action {
                         id: readRegionButton
-                        iconName: "middle"
-                        text: i18n("Region")
-                        onTriggered: overlay.toggle()
-                        tooltip: i18n("Toggle read line position")
+                        // iconName: "middle"
+                        text: i18n("Reading region")
+                        //onTriggered: overlay.toggle()
+                        tooltip: i18n("Change reading region placement")
+
+                        Kirigami.Action {
+                            id: readRegionTopButton
+                            iconName: "go-up"
+                            text: i18n("Top")
+                            onTriggered: overlay.positionState = "top"
+                            tooltip: i18n("Move reading region to the top, convenient for use with webcams")
+                        }
+                        Kirigami.Action {
+                            id: readRegionMiddleButton
+                            iconName: "remove"
+                            text: i18n("Middle")
+                            onTriggered: overlay.positionState = "middle"
+                            tooltip: i18n("Move reading region to the vertical center")
+                        }
+                        Kirigami.Action {
+                            id: readRegionBottomButton
+                            iconName: "go-down"
+                            text: i18n("Bottom")
+                            onTriggered: overlay.positionState = "bottom"
+                            tooltip: i18n("Move reading region to the bottom")
+                        }
+                        Kirigami.Action {
+                            id: readRegionFreeButton
+                            iconName: "gtk-edit"
+                            text: i18n("Free")
+                            onTriggered: overlay.positionState = "free"
+                            tooltip: i18n("Move reading region freely by dragging and droping")
+                        }
+                        Kirigami.Action {
+                            id: readRegionCustomButton
+                            iconName: "gtk-apply"
+                            text: i18n("Custom")
+                            onTriggered: overlay.positionState = "fixed"
+                            tooltip: i18n("Fix reading region to the position set using free placement mode")
+                        }
                     }
+//                    Kirigami.Action {
+//                        id: readRegionButton
+//                        iconName: "middle"
+//                        text: i18n("Region")
+//                        onTriggered: overlay.toggle()
+//                        tooltip: i18n("Toggle read line position")
+//                    }
                 ]
             }
             
