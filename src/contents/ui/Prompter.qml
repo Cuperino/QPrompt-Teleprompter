@@ -39,7 +39,7 @@ import com.cuperino.qprompt.document 1.0
 Flickable {
     //ScrollIndicator.vertical: ScrollIndicator{
     id: prompter
-    // Text 
+    // Text
     property alias bold: document.bold
     property alias italic: document.italic
     property alias underline: document.underline
@@ -61,7 +61,7 @@ Flickable {
     readonly property real __speed: __baseSpeed * Math.pow(Math.abs(__i), __curvature)
     readonly property real __velocity: (__possitiveDirection ? 1 : -1) * __speed
     readonly property real __timeToArival: __i ? (__possitiveDirection ? contentHeight-position : position) / (__speed * __vw) << 8 : 0
-    readonly property int __destination: (__i ? (__possitiveDirection ? contentHeight - __i%(__jitterMargin+1) : __i%(__jitterMargin+1)) : position)
+    readonly property int __destination: (__i ? (__possitiveDirection ? contentHeight - prompter.height - __i%(__jitterMargin+1) : __i%(__jitterMargin+1)) - prompter.height : position)
     // origin.y is being roughly approximated. This may not work across all systems and displays...
     readonly property bool __atStart: position<=__jitterMargin+2
     readonly property bool __atEnd: position>=contentHeight-__jitterMargin-2
@@ -74,8 +74,8 @@ Flickable {
     readonly property Scale __flips: Scale {
         origin.x: editor.width/2
         origin.y: height/2
-        xScale: prompter.state==="prompting" && prompter.__flipX ? -1 : 1
-        yScale: prompter.state==="prompting" && prompter.__flipY ? -1 : 1
+        xScale: prompter.state!=="editing" && prompter.__flipX ? -1 : 1
+        yScale: prompter.state!=="editing" && prompter.__flipY ? -1 : 1
     }
     transform: __flips
     Behavior on __flips.xScale {
@@ -92,7 +92,7 @@ Flickable {
             easing.type: Easing.OutQuad
         }
     }
-    
+
     // Prompter animation
     onFlickStarted: {
         //console.log("Flick started")
@@ -104,9 +104,9 @@ Flickable {
         motion.enabled = true
         //position = __destination
     }
-    
+
     flickableDirection: Flickable.VerticalFlick
-    
+
     Behavior on position {
         id: motion
         enabled: true
@@ -121,12 +121,12 @@ Flickable {
                 }
                 else {
                     //__lastRecordedPosition = position
-                    console.log(__lastRecordedPosition)
+                    //console.log(__lastRecordedPosition)
                 }
             }
         }
     }
-    
+
     function bookmark(event) {
         editor.bookmark(event)
     }
@@ -151,18 +151,18 @@ Flickable {
     function saveAs(file) {
         editor.saveAs(file)
     }
-    
+
     function toggle() {
         // Update position
         var verticalPosition = position + overlay.__readRegionPlacement*overlay.height
         var cursorPosition = editor.positionAt(0, verticalPosition)
         editor.cursorPosition = cursorPosition
-        
+
         // Enter full screen
         var states = ["editing", "countdown", "prompting"]
         var nextIndex = ( states.indexOf(state) + 1 ) % states.length
         state = states[nextIndex]
-        
+
         switch (state) {
             case "editing":
                 showPassiveNotification(i18n("Editing"))
@@ -177,7 +177,7 @@ Flickable {
                 break;
         }
     }
-    
+
     function increaseVelocity(event) {
         if (event)
             event.accepted = true;
@@ -192,7 +192,7 @@ Flickable {
             showPassiveNotification(i18n("Increase Velocity"));
         }
     }
-    
+
     function decreaseVelocity(event) {
         if (event)
             event.accepted = true;
@@ -207,8 +207,8 @@ Flickable {
             showPassiveNotification(i18n("Decrease Velocity"));
         }
     }
-    topMargin: prompter.height    
-    bottomMargin: prompter.height
+//    topMargin: prompter.height
+    bottomMargin: editor.height+prompter.height
     TextArea.flickable: TextArea {
         id: editor
         textFormat: Qt.RichText
@@ -236,10 +236,10 @@ Flickable {
         focus: true
         // Make base font size relative to editor's width
         font.pixelSize: prompter.state==="editing" && !prompter.__wysiwyg ? 16 : 10 * prompter.__vw
-        
+
         // Make links responsive
         onLinkActivated: Qt.openUrlExternally(link)
-        
+
         // Width drag controls
         width: prompter.width - x
         MouseArea {
@@ -275,7 +275,17 @@ Flickable {
             //onReleased: {}
         }
     }
-    
+
+    contentHeight: prompter.height+editor.implicitHeight
+
+    Rectangle {
+        id: rect
+        anchors.left: parent.left
+        anchors.right: parent.right
+        anchors.top: editor.bottom
+        height: parent.height
+    }
+
     MouseArea {
         anchors.fill: parent
         onWheel: {
@@ -288,19 +298,19 @@ Flickable {
             else {
                 // Regular scroll
                 const delta = wheel.angleDelta.y/2;
-                if (prompter.position-delta > -prompter.height/*0*/ && prompter.position-delta<prompter.contentHeight/*-prompter.height*/) {
+                if (prompter.position-delta > -prompter.height/*0*/ && prompter.position-delta<editor.implicitHeight/*-prompter.height*/) {
                     var i=__i;
                     __i=0;
                     prompter.position = prompter.position - delta;
                     __i=i;
                     //prompter.__play = true
                     prompter.position = prompter.__destination
-                    
+
                 }
             }
         }
     }
-    
+
     DocumentHandler {
         id: document
         document: editor.textDocument
@@ -323,15 +333,15 @@ Flickable {
             errorDialog.visible = true
         }
     }
-    
+
     MessageDialog {
         id: errorDialog
     }
-    
+
     // Context Menu
     Menu {
         id: contextMenu
-        
+
         MenuItem {
             text: qsTr("Copy")
             enabled: editor.selectedText
@@ -347,20 +357,20 @@ Flickable {
             enabled: editor.canPaste
             onTriggered: editor.paste()
         }
-        
+
         MenuSeparator {}
-        
+
         MenuItem {
             text: qsTr("Font...")
             onTriggered: fontDialog.open()
         }
-        
+
         MenuItem {
             text: qsTr("Color...")
             onTriggered: colorDialog.open()
         }
     }
-    
+
     FontDialog {
         id: fontDialog
         onAccepted: {
@@ -368,12 +378,12 @@ Flickable {
             document.fontSize = font.pointSize;
         }
     }
-    
+
     ColorDialog {
         id: colorDialog
         currentColor: "black"
     }
-    
+
     // Key bindings
     Keys.onPressed: {
         if (prompter.state === "prompting")
@@ -433,7 +443,7 @@ Flickable {
             //else if (event.matches(StandardKey.Redo))
             //    document.redo();
     }
-    
+
     states: [
         State {
             name: "editing"
@@ -555,8 +565,8 @@ Flickable {
         }
     ]
     state: "editing"
-    
+
     // Progress indicator
     ScrollBar.vertical: ProgressIndicator {}
-        
+
 }
