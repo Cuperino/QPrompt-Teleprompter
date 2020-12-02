@@ -30,13 +30,14 @@ import QtQuick.Controls.Material 2.15
 
 Item {
     id: overlay
-    property double __opacity: 0
+    property double __opacity: 0.03
     property double __trianglesOpacity: 0.08
     property color __color: 'black'
     readonly property double __vw: width/100
     property alias __readRegionPlacement: readRegion.__placement
     property alias enabled: readRegion.enabled
-    property string positionState: null
+    property string positionState: "middle"
+    property string styleState: "all"
     //anchors.fill: parent
     anchors {
        left: parent.left
@@ -84,10 +85,6 @@ Item {
                 targets: [overlay]
                 properties: "__opacity"; duration: 250;
             }
-            //PropertyAnimation {
-            //targets: root
-            //properties: "visibility"; duration: 250;
-            //}
         }
     ]
     Item {
@@ -106,11 +103,6 @@ Item {
                     target: readRegion
                     __placement: 0
                 }
-                PropertyChanges {
-                    target: readRegionButton
-                    text: i18n("Top")
-                    //iconName: "go-up"
-                }
             },
             State {
                 name: "middle"
@@ -118,22 +110,12 @@ Item {
                     target: readRegion
                     __placement: 0.5
                 }
-                PropertyChanges {
-                    target: readRegionButton
-                    text: i18n("Middle")
-                    //iconName: "remove"
-                }
             },
             State {
                 name: "bottom"
                 PropertyChanges {
                     target: readRegion
                     __placement: 1
-                }
-                PropertyChanges {
-                    target: readRegionButton
-                    text: i18n("Bottom")
-                    //iconName: "go-down"
                 }
             },
             State {
@@ -154,22 +136,12 @@ Item {
                     target: triangles
                     __fillColor: "#180000"
                 }
-                PropertyChanges {
-                    target: readRegionButton
-                    text: i18n("Free")
-                    //iconName: "gtk-edit"
-                }
             },
             State {
                 name: "fixed"
                 PropertyChanges {
                     target: readRegion
                     __placement: readRegion.__customPlacement
-                }
-                PropertyChanges {
-                    target: readRegionButton
-                    text: i18n("Custom")
-                    //iconName: "gtk-apply"
                 }
             }
         ]
@@ -178,16 +150,8 @@ Item {
             Transition {
                 from: "*"; to: "*"
                 NumberAnimation {
-                    targets: readRegion
-                    properties: "__placement"; duration: 200; easing.type: Easing.OutQuad
-                }
-                NumberAnimation {
-                    targets: triangles
-                    properties: "__fillColor"; duration: 250;
-                }
-                NumberAnimation {
-                    targets: overlay
-                    properties: "__opacity"; duration: 250;
+                    targets: [readRegion, triangles, overlay]
+                    properties: "__placement,__fillColor,__opacity"; duration: 200; easing.type: Easing.OutQuad
                 }
             }
         ]
@@ -212,6 +176,7 @@ Item {
             property double __stretchX: 0.3333
             readonly property double __triangleUnit: parent.height / 6
             Shape {
+                id: leftTriangle
                 opacity: triangles.__opacity
                 ShapePath {
                     strokeWidth: 3
@@ -228,6 +193,7 @@ Item {
                 }
             }
             Shape {
+                id: rightTriangle
                 opacity: triangles.__opacity
                 x: parent.parent.width
                 ShapePath {
@@ -244,9 +210,120 @@ Item {
                     PathLine { x: -triangles.__offsetX*triangles.__triangleUnit; y: 1*triangles.__triangleUnit }
                 }
             }
+            states: [
+                State {
+                    name: "none"
+                    PropertyChanges {
+                        target: triangles
+                        opacity: 0
+                    }
+                    PropertyChanges {
+                        target: topBar
+                        opacity: 0
+                    }
+                    PropertyChanges {
+                        target: bottomBar
+                        opacity: 0
+                    }
+                },
+                State {
+                    name: "triangles"
+                    PropertyChanges {
+                        target: triangles
+                        opacity: 1
+                    }
+                    PropertyChanges {
+                        target: topBar
+                        opacity: 0
+                    }
+                    PropertyChanges {
+                        target: bottomBar
+                        opacity: 0
+                    }
+                },
+                State {
+                    name: "leftTriangle"
+                    PropertyChanges {
+                        target: triangles
+                        opacity: 1
+                    }
+                    PropertyChanges {
+                        target: rightTriangle
+                        opacity: 0
+                    }
+                    PropertyChanges {
+                        target: topBar
+                        opacity: 0
+                    }
+                    PropertyChanges {
+                        target: bottomBar
+                        opacity: 0
+                    }
+                },
+                State {
+                    name: "rightTriangle"
+                    PropertyChanges {
+                        target: triangles
+                        opacity: 1
+                    }
+                    PropertyChanges {
+                        target: leftTriangle
+                        opacity: 0
+                    }
+                    PropertyChanges {
+                        target: topBar
+                        opacity: 0
+                    }
+                    PropertyChanges {
+                        target: bottomBar
+                        opacity: 0
+                    }
+                },
+                State {
+                    name: "bars"
+                    PropertyChanges {
+                        target: triangles
+                        opacity: 0
+                    }
+                    PropertyChanges {
+                        target: topBar
+                        opacity: overlay.__opacity
+                    }
+                    PropertyChanges {
+                        target: bottomBar
+                        opacity: overlay.__opacity
+                    }
+                },
+                State {
+                    name: "all"
+                    PropertyChanges {
+                        target: triangles
+                        opacity: 1
+                    }
+                    PropertyChanges {
+                        target: topBar
+                        opacity: overlay.__opacity
+                    }
+                    PropertyChanges {
+                        target: bottomBar
+                        opacity: overlay.__opacity
+                    }
+                }
+            ]
+            state: overlay.styleState
+            transitions: [
+                Transition {
+                    from: "*"; to: "*"
+                    NumberAnimation {
+                        targets: [triangles, leftTriangle, rightTriangle, topBar, bottomBar]
+                        properties: "opacity"; duration: 200; easing.type: Easing.OutQuad
+                    }
+                }
+            ]
         }
     }
     Rectangle {
+        id: topBar
         anchors.top: parent.top
         anchors.bottom: readRegion.top
         anchors.left: parent.left
@@ -255,6 +332,7 @@ Item {
         color: overlay.__color
     }
     Rectangle {
+        id: bottomBar
         anchors.top: readRegion.bottom
         anchors.bottom: parent.bottom
         anchors.left: parent.left

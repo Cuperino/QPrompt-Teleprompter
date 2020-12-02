@@ -33,11 +33,10 @@ import com.cuperino.qprompt.document 1.0
 
 Kirigami.ApplicationWindow {
     id: root
-    
     property bool __autoFullScreen: false
     property bool __translucidBackground: false
     property int prompterVisibility: Kirigami.ApplicationWindow.AutomaticVisibility
-    
+
     title: document.fileName + " - QPrompt"
     
     minimumWidth: 480
@@ -62,44 +61,32 @@ Kirigami.ApplicationWindow {
     }
     // Full screen
     visibility: __autoFullScreen ? prompterVisibility : Kirigami.ApplicationWindow.AutomaticVisibility
+    onWindowTitleChanged: {
+        root.setIcon(
+
+        )
+    }
     onVisibilityChanged: {
         if (visibility!==Kirigami.ApplicationWindow.FullScreen)
             console.log("left fullscreen");
             //position = prompter.positionAt(0, prompter.position + readRegion.__placement*overlay.height)
     }
-
-    ////The following code should be implemented on the Kirigami framework itself and contributed upstream.
-    //MouseArea{
-    //    property int prevX: 0
-    //    property int prevY: 0
-    //
-    //    anchors.fill: parent
-    //    propagateComposedEvents: true
-    //
-    //    onPressed: {
-    //        prevX=mouse.x
-    //        prevY=mouse.y
-    //    }
-    //    onPositionChanged: {
-    //        var deltaX = mouse.x - prevX;
-    //
-    //        root.x += deltaX;
-    //        prevX = mouse.x - deltaX;
-    //
-    //        var deltaY = mouse.y - prevY
-    //        root.y += deltaY;
-    //        prevY = mouse.y - deltaY;
-    //    }
-    //}
     
     globalDrawer: Kirigami.GlobalDrawer {
+        property int bannerCounter: 0
         title: "QPrompt"
-        titleIcon: "logo.png"
+        titleIcon: "qrc:/images/logo.png"
+        bannerVisible: true
         background: Rectangle {
             color: appTheme.__backgroundColor
             opacity: 1
         }
-        
+        onBannerClicked: {
+            bannerCounter++;
+            if (!(bannerCounter%10)) {
+                // Insert easter egg here.
+            }
+        }
         actions: [
             Kirigami.Action {
                 text: i18n("New")
@@ -152,7 +139,6 @@ Kirigami.ApplicationWindow {
 
     Component {
         id: prompterPage
-
         Kirigami.ScrollablePage {
             title: "QPrompt"
             actions {
@@ -206,6 +192,7 @@ Kirigami.ApplicationWindow {
                                 prompter.__flipX = false
                                 prompter.__flipY = false
                             }
+                            enabled: prompter.__flipX || prompter.__flipY
                         }
                         Kirigami.Action {
                             text: i18n("Horizontal Flip")
@@ -216,6 +203,7 @@ Kirigami.ApplicationWindow {
                                 prompter.__flipX = true
                                 prompter.__flipY = false
                             }
+                            enabled: (!prompter.__flipX) || prompter.__flipY
                         }
                         Kirigami.Action {
                             text: i18n("Vertical Flip")
@@ -226,6 +214,7 @@ Kirigami.ApplicationWindow {
                                 prompter.__flipX = false
                                 prompter.__flipY = true
                             }
+                            enabled: prompter.__flipX || !prompter.__flipY
                         }
                         Kirigami.Action {
                             text: i18n("180° rotation")
@@ -236,31 +225,8 @@ Kirigami.ApplicationWindow {
                                 prompter.__flipX = true
                                 prompter.__flipY = true
                             }
+                            enabled: !(prompter.__flipX && prompter.__flipY)
                         }
-                        //onTriggered: {
-                            //if (prompter.__flipX && prompter.__flipY) {
-                                //prompter.__flipX = false
-                                //prompter.__flipY = false
-                                //text = i18n("No Flip")
-                                //showPassiveNotification(i18n("No Flip"))
-                            //}
-                            //else if (prompter.__flipY) {
-                                //prompter.__flipX = true
-                                //text = i18n("XY Flip")
-                                //showPassiveNotification(i18n("180° rotation"))
-                            //}
-                            //else if (prompter.__flipX) {
-                                //prompter.__flipX = false
-                                //prompter.__flipY = true
-                                //text = i18n("Y Flip")
-                                //showPassiveNotification(i18n("Vertical Flip"))
-                            //}
-                            //else {
-                                //prompter.__flipX = true
-                                //text = i18n("X Flip")
-                                //showPassiveNotification(i18n("Horizontal Flip"))
-                            //}
-                        //}
                     },
                     Kirigami.Action {
                         id: readRegionButton
@@ -274,6 +240,7 @@ Kirigami.ApplicationWindow {
                             iconName: "go-up"
                             text: i18n("Top")
                             onTriggered: overlay.positionState = "top"
+                            enabled: overlay.positionState!=="top"
                             tooltip: i18n("Move reading region to the top, convenient for use with webcams")
                         }
                         Kirigami.Action {
@@ -281,6 +248,7 @@ Kirigami.ApplicationWindow {
                             iconName: "remove"
                             text: i18n("Middle")
                             onTriggered: overlay.positionState = "middle"
+                            enabled: overlay.positionState!=="middle"
                             tooltip: i18n("Move reading region to the vertical center")
                         }
                         Kirigami.Action {
@@ -288,6 +256,7 @@ Kirigami.ApplicationWindow {
                             iconName: "go-down"
                             text: i18n("Bottom")
                             onTriggered: overlay.positionState = "bottom"
+                            enabled: overlay.positionState!=="bottom"
                             tooltip: i18n("Move reading region to the bottom")
                         }
                         Kirigami.Action {
@@ -295,6 +264,7 @@ Kirigami.ApplicationWindow {
                             iconName: "gtk-edit"
                             text: i18n("Free")
                             onTriggered: overlay.positionState = "free"
+                            enabled: overlay.positionState!=="free"
                             tooltip: i18n("Move reading region freely by dragging and droping")
                         }
                         Kirigami.Action {
@@ -302,7 +272,57 @@ Kirigami.ApplicationWindow {
                             iconName: "gtk-apply"
                             text: i18n("Custom")
                             onTriggered: overlay.positionState = "fixed"
+                            enabled: overlay.positionState!=="fixed"
                             tooltip: i18n("Fix reading region to the position set using free placement mode")
+                        }
+                    },
+                    Kirigami.Action {
+                        id: readRegionStyleButton
+                        //iconName: "middle"
+                        text: i18n("Pointers")
+                        tooltip: i18n("Change pointers that indicate reading region")
+
+                        Kirigami.Action {
+                            id: readRegionTrianglesButton
+                            text: i18n("Triangles")
+                            onTriggered: overlay.styleState = "triangles"
+                            tooltip: i18n("Mark reading area using bars")
+                            enabled: overlay.styleState!=="triangles"
+                        }
+                        Kirigami.Action {
+                            id: readRegionLeftTriangleButton
+                            text: i18n("Left Triangle")
+                            onTriggered: overlay.styleState = "leftTriangle"
+                            tooltip: i18n("Left triangle points towards reading region")
+                            enabled: overlay.styleState!=="leftTriangle"
+                        }
+                        Kirigami.Action {
+                            id: readRegionRightTriangleButton
+                            text: i18n("Right Triangle")
+                            onTriggered: overlay.styleState = "rightTriangle"
+                            tooltip: i18n("Right triangle points towards reading region")
+                            enabled: overlay.styleState!=="rightTriangle"
+                        }
+                        Kirigami.Action {
+                            id: readRegionBarsButton
+                            text: i18n("Bars")
+                            onTriggered: overlay.styleState = "bars"
+                            tooltip: i18n("Mark reading region using translucid bars")
+                            enabled: overlay.styleState!=="bars"
+                        }
+                        Kirigami.Action {
+                            id: readRegionAllButton
+                            text: i18n("All")
+                            onTriggered: overlay.styleState = "all"
+                            tooltip: i18n("Use triangles to point towards reading region")
+                            enabled: overlay.styleState!=="all"
+                        }
+                        Kirigami.Action {
+                            id: readRegionNoneButton
+                            text: i18n("None")
+                            onTriggered: overlay.styleState = "none"
+                            tooltip: i18n("Disable reading region entirelly")
+                            enabled: overlay.styleState!=="none"
                         }
                     }
 //                    Kirigami.Action {
@@ -318,15 +338,15 @@ Kirigami.ApplicationWindow {
             Countdown {
                 id: countdown
             }
-            
+
             ReadRegionOverlay {
                 id: overlay
             }
-            
+
             //TimerClock {
                 //id: timer
             //}
-            
+
             Prompter {
                 id: prompter
             }
