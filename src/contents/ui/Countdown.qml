@@ -28,7 +28,7 @@ Item {
     id: countdown
     property bool running: false
     visible: false
-    property int __iterations: 0
+    property int __iterations: 1
     property int  __disappearWithin: 1
     readonly property real __vh: parent.height / 100
     readonly property real __vw: parent.width / 100
@@ -116,11 +116,13 @@ Item {
             //loops: Animation.Infinite
             easing.type: Easing.Linear
             alwaysRunToEnd: true
+            onStarted: {
+                if (canvas.__iteration===countdown.__disappearWithin) {
+                    dissolveOut.running = true
+                }
+            }
             onFinished: {
                 if (countdown.running && canvas.__iteration>0) {
-                    if (canvas.__iteration===countdown.__disappearWithin) {
-                        dissolveOut.running = true
-                    }
                     canvas.__iteration--;
                     console.log(canvas.__iteration);
                     running = true;
@@ -186,10 +188,10 @@ Item {
         }
         PropertyChanges {
             target: countdown
-            running: true
-            visible: true
-            opacity: 1
-//             __iteration: __iterations - 1
+            running: countdown.__iterations>0
+            visible: countdown.__iterations>0
+            opacity: countdown.__iterations>0
+//             __iteration: countdown.__iterations - 1
         }
         PropertyChanges {
             target: dissolveOut
