@@ -30,24 +30,57 @@
 // #include <QQmlContext>
 #include <QQmlFileSelector>
 #include <QQuickStyle>
+#include <QIcon>
+#include <KI18n/KLocalizedString>
+#include <KCoreAddons/KAboutData>
 
 #include "documenthandler.h"
+#include "timer/promptertimer.h"
 
 
 Q_DECL_EXPORT int main(int argc, char *argv[])
 {
-    QGuiApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
     QApplication app(argc, argv);
     QCoreApplication::setOrganizationName("Cuperino");
     QCoreApplication::setOrganizationDomain("cuperino.com");
     QCoreApplication::setApplicationName("QPrompt");
 
+    KAboutData aboutData("qprompt", i18n("QPrompt"), "0.14.0",
+                         i18n("Free Software teleprompter for professionals across industries."),
+                         //KAboutLicense::GPL_V3,
+                         KAboutLicense::Custom,
+                         i18n("Copyright 2020, Javier O. Cordero Pérez"), QString(),
+                         "https://javiercordero.info");
+    // Overwrite default-generated values of organizationDomain & desktopFileName
+    aboutData.setOrganizationDomain("cuperino.com");
+    aboutData.setDesktopFileName("com.cuperino.com");
+    aboutData.addAuthor (
+        QString("Javier O. Cordero Pérez"),
+        QString("Leader Developer"),
+        QString("cuperino@protonmail.com"),
+        QString("https://cuperino.com"),
+        QString("cuperino")
+    );
+    aboutData.setTranslator (
+        QString("Javier O. Cordero Pérez"),
+        QString("cuperino@protonmail.com")
+    );
+    aboutData.addLicense(
+        KAboutLicense::LGPL_V3
+    );
+    aboutData.addLicense(
+        KAboutLicense::GPL_V3
+    );
+    // set the application metadata
+    KAboutData::setApplicationData(aboutData);
+    
     QFontDatabase fontDatabase;
     if (fontDatabase.addApplicationFont(":/fonts/fontello.ttf") == -1)
         qWarning() << "Failed to load fontello.ttf";
 
+    qmlRegisterType<PrompterTimer>("com.cuperino.qprompt.promptertimer", 1, 0, "PrompterTimer");
     qmlRegisterType<DocumentHandler>("com.cuperino.qprompt.document", 1, 0, "DocumentHandler");
-
+    
     QStringList selectors;
 #ifdef QT_EXTRA_FILE_SELECTOR
     selectors += QT_EXTRA_FILE_SELECTOR;
@@ -59,7 +92,10 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
     QQmlApplicationEngine engine;
     QQmlFileSelector::get(&engine)->setExtraSelectors(selectors);
 
+    app.setWindowIcon(QIcon(":/images/logo.png"));
     engine.rootContext()->setContextObject(new KLocalizedContext(&engine));
+    engine.rootContext()->setContextProperty(QStringLiteral("aboutData"), QVariant::fromValue(KAboutData::applicationData()));
+
     engine.load(QUrl(QStringLiteral("qrc:///main.qml")));
 
     if (engine.rootObjects().isEmpty()) {
