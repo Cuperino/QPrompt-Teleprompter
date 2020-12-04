@@ -138,9 +138,13 @@ Kirigami.ApplicationWindow {
         topContent: RowLayout {
             Button {
                 text: i18n("Instructions")
+                onClicked: {
+                }
             }
             Button {
                 text: i18n("Change Theme")
+                onClicked: {
+                }
             }
         }
         //Kirigami.ActionToolBar {
@@ -324,7 +328,7 @@ Kirigami.ApplicationWindow {
                             text: i18n("Free")
                             onTriggered: overlay.positionState = "free"
                             enabled: overlay.positionState!=="free"
-                            tooltip: i18n("Move reading region freely by dragging and droping")
+                            tooltip: i18n("Move reading region freely by dragging and dropping")
                         }
                         Kirigami.Action {
                             id: readRegionCustomButton
@@ -365,7 +369,7 @@ Kirigami.ApplicationWindow {
                             id: readRegionBarsButton
                             text: i18n("Bars")
                             onTriggered: overlay.styleState = "bars"
-                            tooltip: i18n("Mark reading region using translucid bars")
+                            tooltip: i18n("Mark reading region using translucent bars")
                             enabled: overlay.styleState!=="bars"
                         }
                         Kirigami.Action {
@@ -379,7 +383,7 @@ Kirigami.ApplicationWindow {
                             id: readRegionNoneButton
                             text: i18n("None")
                             onTriggered: overlay.styleState = "none"
-                            tooltip: i18n("Disable reading region entirelly")
+                            tooltip: i18n("Disable reading region entirely")
                             enabled: overlay.styleState!=="none"
                         }
                     }
