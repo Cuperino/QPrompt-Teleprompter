@@ -1,7 +1,7 @@
 QPrompt
 =========
 
-Free and open source teleprompter software for professionals accross industries. Built on the Qt and Kirigami frameworks for accuracy and portability.
+Free and open source teleprompter software for professionals across industries. Built on the Qt and Kirigami frameworks for accuracy and portability.
 
 # Copyright
 Copyright (C) 2020 Javier O. Cordero Pérez
