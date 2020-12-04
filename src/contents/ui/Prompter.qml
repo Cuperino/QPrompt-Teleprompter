@@ -50,27 +50,29 @@ Flickable {
     property bool __wysiwyg: true
     property bool __play: true
     property int __i: 1
-    property double __baseSpeed: 1.0
-    property double __curvature: 1.3
+    property real __baseSpeed: 2
+    property real __curvature: 1.2
     property int __lastRecordedPosition: 0
     readonly property real centreX: width / 2;
     readonly property real centreY: height / 2;
-    readonly property int __jitterMargin: 1
+    readonly property int __jitterMargin: __i%2
     readonly property bool __possitiveDirection: __i>=0
     readonly property real __vw: width / 100
     readonly property real __speed: __baseSpeed * Math.pow(Math.abs(__i), __curvature)
     readonly property real __velocity: (__possitiveDirection ? 1 : -1) * __speed
-    readonly property real __timeToArival: __i ? (__possitiveDirection ? contentHeight-position : position) / (__speed * __vw) << 8 : 0
-    readonly property int __destination: (__i ? (__possitiveDirection ? contentHeight - prompter.height - __i%(__jitterMargin+1) : __i%(__jitterMargin+1)) - prompter.height : position)
+    readonly property real __timeToArival: __i ? (((__possitiveDirection ? editor.height-position-prompter.height : position+prompter.height)) / (__speed * __vw)) * 1000 /*<< 7*/ : 0
+    readonly property int __destination: __i  ? (__possitiveDirection ? editor.height-__jitterMargin : __jitterMargin)-prompter.height : position
     // origin.y is being roughly approximated. This may not work across all systems and displays...
-    readonly property bool __atStart: position<=__jitterMargin+2
-    readonly property bool __atEnd: position>=contentHeight-__jitterMargin-2
+    readonly property bool __atStart: position<=__jitterMargin-prompter.height+1
+    readonly property bool __atEnd: position>=editor.height-prompter.height-__jitterMargin-1
+    //readonly property bool __atStart: false
+    //readonly property bool __atEnd: false
     // Background
     property double __opacity: 0.8
     // Flips
     property bool __flipX: false
     property bool __flipY: false
-    readonly property int __speedLimit: __vw * 10
+    readonly property int __speedLimit: __vw * 1000 // 2*width
     readonly property Scale __flips: Scale {
         origin.x: editor.width/2
         origin.y: height/2
@@ -189,7 +191,7 @@ Flickable {
             this.position = this.__destination
             //this.state = "play"
             //this.animationState = "play"
-            showPassiveNotification(i18n("Increase Velocity"));
+            //showPassiveNotification(i18n("Increase Velocity"));
         }
     }
 
@@ -204,11 +206,11 @@ Flickable {
             this.position = this.__destination
             //this.state = "play"
             //this.animationState = "play"
-            showPassiveNotification(i18n("Decrease Velocity"));
+            //showPassiveNotification(i18n("Decrease Velocity"));
         }
     }
-//    topMargin: prompter.height
-    bottomMargin: editor.height+prompter.height
+    bottomMargin: prompter.height
+    topMargin: prompter.height
     TextArea.flickable: TextArea {
         id: editor
         textFormat: Qt.RichText
@@ -284,6 +286,7 @@ Flickable {
         anchors.right: parent.right
         anchors.top: editor.bottom
         height: parent.height
+        color: "#242424"
     }
 
     MouseArea {
@@ -425,14 +428,14 @@ Flickable {
                     else
                         showPassiveNotification(i18n("Tab Pressed"));
                     break;
-                case Qt.Key_PageUp:
-                    showPassiveNotification(i18n("Page Up Pressed")); break;
-                case Qt.Key_PageDown:
-                    showPassiveNotification(i18n("Page Down Pressed")); break;
-                case Qt.Key_Home:
-                    showPassiveNotification(i18n("Home Pressed")); break;
-                case Qt.Key_End:
-                    showPassiveNotification(i18n("End Pressed")); break;
+                //case Qt.Key_PageUp:
+                //    showPassiveNotification(i18n("Page Up Pressed")); break;
+                //case Qt.Key_PageDown:
+                //    showPassiveNotification(i18n("Page Down Pressed")); break;
+                //case Qt.Key_Home:
+                //    showPassiveNotification(i18n("Home Pressed")); break;
+                //case Qt.Key_End:
+                //    showPassiveNotification(i18n("End Pressed")); break;
                     //default:
                     //    // Show key code
                     //    showPassiveNotification(event.key)
