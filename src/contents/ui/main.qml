@@ -21,7 +21,7 @@
  ****************************************************************************/
 
 import QtQuick 2.15
-import org.kde.kirigami 2.4 as Kirigami
+import org.kde.kirigami 2.9 as Kirigami
 import QtQuick.Controls 2.15
 import QtQuick.Shapes 1.15
 import QtQuick.Window 2.0
@@ -37,12 +37,13 @@ Kirigami.ApplicationWindow {
     property bool __translucidBackground: false
     property int prompterVisibility: Kirigami.ApplicationWindow.AutomaticVisibility
 
-    title: document.fileName + " - QPrompt"
+    title: document.fileName + " - " + aboutData.displayName
     
     minimumWidth: 480
     minimumHeight: 380
     // Changing the theme in this way does not affect the whole app for some reason.
     //Material.theme: Material.Light
+    //Material.theme: themeSwitch.checked ? Material.Dark : Material.Light
     background: Rectangle {
         id: appTheme
         property color __backgroundColor: parent.Material.theme===Material.Light ? "#fafafa" : "#303030"
@@ -71,10 +72,11 @@ Kirigami.ApplicationWindow {
             console.log("left fullscreen");
             //position = prompter.positionAt(0, prompter.position + readRegion.__placement*overlay.height)
     }
-    
+
     globalDrawer: Kirigami.GlobalDrawer {
         property int bannerCounter: 0
-        title: "QPrompt"
+        // isMenu: true
+        title: aboutData.displayName
         titleIcon: "qrc:/images/logo.png"
         bannerVisible: true
         background: Rectangle {
@@ -84,7 +86,7 @@ Kirigami.ApplicationWindow {
         onBannerClicked: {
             bannerCounter++;
             if (!(bannerCounter%10)) {
-                // Insert easter egg here.
+                // Insert Easter egg here.
             }
         }
         actions: [
@@ -109,21 +111,80 @@ Kirigami.ApplicationWindow {
                 onTriggered: saveDialog.open()
             },
             Kirigami.Action {
-                text: i18n("File")
+                text: i18n("Recent Files")
                 iconName: "view-list-icons"
                 Kirigami.Action {
                     text: i18n("View Action 1")
                     onTriggered: showPassiveNotification(i18n("View Action 1 clicked"))
                 }
-                Kirigami.Action {
-                    text: i18n("View Action 2")
-                    onTriggered: showPassiveNotification(i18n("View Action 2 clicked"))
+            },
+            Kirigami.Action {
+                text: i18n("About") + " " + aboutData.displayName
+                iconName: "help-about"
+                onTriggered: {
+                    if (root.pageStack.layers.depth < 2) {
+                        root.pageStack.layers.push(aboutPage)
+                        //root.pageStack.layers.currentItem.aboutData = aboutData
+                        //root.pageStack.layers.currentItem.aboutData.licenses.concat(aboutData.licenses)
+                    }
                 }
             },
             Kirigami.Action {
                 text: i18n("&Quit")
                 iconName: "close"
                 onTriggered: close()
+            }
+        ]
+        topContent: RowLayout {
+            Button {
+                text: i18n("Instructions")
+            }
+            Button {
+                text: i18n("Change Theme")
+            }
+        }
+        //Kirigami.ActionToolBar {
+            //Kirigami.Action {
+                //text: i18n("View Action 1")
+                //onTriggered: showPassiveNotification(i18n("View Action 1 clicked"))
+            //},
+            //Kirigami.Action {
+                //text: i18n("View Action 2")
+                //onTriggered: showPassiveNotification(i18n("View Action 2 clicked"))
+            //}
+        //}
+        content: [
+            Label {
+                text: i18n("Base speed:") + " " + baseSpeedSlider.value.toFixed(2)
+                Layout.leftMargin: 8
+                Layout.rightMargin: 8
+            },
+            Slider {
+                id: baseSpeedSlider
+                from: 0.1
+                value: 0.5
+                to: 2
+                stepSize: 0.1
+                Layout.fillWidth: true
+                Layout.leftMargin: 16
+                Layout.rightMargin: 16
+                onMoved: {}
+            },
+            Label {
+                text: i18n("Acceleration curve:") + " " + baseAccelerationSlider.value.toFixed(2)
+                Layout.leftMargin: 8
+                Layout.rightMargin: 8
+            },
+            Slider {
+                id: baseAccelerationSlider
+                from: 0.5
+                value: 1.2
+                to: 3
+                stepSize: 0.05
+                Layout.fillWidth: true
+                Layout.leftMargin: 16
+                Layout.rightMargin: 16
+                onMoved: {}
             }
         ]
     }
@@ -163,24 +224,23 @@ Kirigami.ApplicationWindow {
                 // Use action toolbar instead?
                 //ActionToolBar
                 contextualActions: [
-                
                     Kirigami.Action {
                         id: wysiwygButton
-                        text: prompter.__wysiwyg ? i18n("WYSIWYG: On") : i18n("WYSIWYG: Off")
-                        iconName: "edit-left"
+                        text: i18n("WYSIWYG")
                         checkable: true
                         checked: prompter.__wysiwyg
                         tooltip: prompter.__wysiwyg ? i18n("\"What you see is what you get\" mode is On") : i18n("\"What you see is what you get\" mode Off")
-                        onTriggered: prompter.__wysiwyg = !prompter.__wysiwyg
+                        onTriggered: {
+                            prompter.__wysiwyg = !prompter.__wysiwyg
+                        }
                     },
                     Kirigami.Action {
                         id: flipButton
                         text: i18n("Flip")
-                        iconName: "refresh"
 
                         function updateButton(context) {
                             text = context.shortName
-                            iconName = context.iconName
+                            //iconName = context.iconName
                         }
                         
                         Kirigami.Action {
@@ -230,7 +290,6 @@ Kirigami.ApplicationWindow {
                     },
                     Kirigami.Action {
                         id: readRegionButton
-                        // iconName: "middle"
                         text: i18n("Reading region")
                         //onTriggered: overlay.toggle()
                         tooltip: i18n("Change reading region placement")
@@ -278,7 +337,6 @@ Kirigami.ApplicationWindow {
                     },
                     Kirigami.Action {
                         id: readRegionStyleButton
-                        //iconName: "middle"
                         text: i18n("Pointers")
                         tooltip: i18n("Change pointers that indicate reading region")
 
@@ -343,9 +401,9 @@ Kirigami.ApplicationWindow {
                 id: overlay
             }
 
-            //TimerClock {
-                //id: timer
-            //}
+            TimerClock {
+                id: timer
+            }
 
             Prompter {
                 id: prompter
@@ -435,7 +493,7 @@ Kirigami.ApplicationWindow {
         }
     }
     
-    MenuBar {
+    /*menuBar: */MenuBar {
         Menu {
             title: qsTr("&File")
 
@@ -472,10 +530,10 @@ Kirigami.ApplicationWindow {
                 onTriggered: prompter.paste()
             }
         }
-        
+
         Menu {
             title: qsTr("V&iew")
-            
+
             MenuItem {
                 text: qsTr("&Auto full screen")
                 checkable: true
@@ -511,8 +569,14 @@ Kirigami.ApplicationWindow {
                 onTriggered: prompter.underline = !prompter.underline
             }
         }
+        Menu {
+            title: i18n("&Help")
+            MenuItem { text: i18n("&Report Bug...") }
+            MenuItem { text: i18n("&Get Studio Edition") }
+        }
+
     }
-    
+
     FileDialog {
         id: openDialog
         fileMode: FileDialog.OpenFile
@@ -546,5 +610,11 @@ Kirigami.ApplicationWindow {
             quitDialog.open()
             close.accepted = false
         }
+    }
+
+    // About Page
+    Component {
+        id: aboutPage
+        AboutPage {}
     }
 }
