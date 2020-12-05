@@ -34,8 +34,13 @@ Kirigami.ApplicationWindow {
     id: root
     property bool __autoFullScreen: false
     property bool __translucidBackground: false
+    // Scrolling settings
+    property bool __scrollAsDial: false
+    property bool __invertArrowKeys: false
+    property bool __invertScrollDirection: false
+    
     property int prompterVisibility: Kirigami.ApplicationWindow.AutomaticVisibility
-
+    
     title: document.fileName + " - " + aboutData.displayName
     
     minimumWidth: 480
@@ -498,83 +503,106 @@ Kirigami.ApplicationWindow {
     
     /*menuBar:*/ MenuBar {
         Menu {
-            title: qsTr("&File")
+            title: i18n("&File")
 
             MenuItem {
-                text: qsTr("&Open")
+                text: i18n("&Open")
                 onTriggered: openDialog.open()
             }
             MenuItem {
-                text: qsTr("&Save As...")
+                text: i18n("&Save As...")
                 onTriggered: saveDialog.open()
             }
             MenuSeparator { }
             MenuItem {
-                text: qsTr("&Quit")
+                text: i18n("&Quit")
                 onTriggered: close()
             }
         }
 
         Menu {
-            title: qsTr("&Edit")
+            title: i18n("&Edit")
 
             MenuItem {
-                text: qsTr("&Copy")
+                text: i18n("&Copy")
                 enabled: prompter.selectedText
                 onTriggered: prompter.copy()
             }
             MenuItem {
-                text: qsTr("Cu&t")
+                text: i18n("Cu&t")
                 enabled: prompter.selectedText
                 onTriggered: prompter.cut()
             }
             MenuItem {
-                text: qsTr("&Paste")
+                text: i18n("&Paste")
                 enabled: prompter.canPaste
                 onTriggered: prompter.paste()
             }
         }
 
         Menu {
-            title: qsTr("V&iew")
+            title: i18n("V&iew")
 
             MenuItem {
-                text: qsTr("&Auto full screen")
+                text: i18n("&Auto full screen")
                 checkable: true
                 checked: root.__autoFullScreen
                 onTriggered: root.__autoFullScreen = !root.__autoFullScreen
             }
             MenuItem {
-                text: qsTr("Make background &translucid")
+                text: i18n("Make background &translucid")
                 checkable: true
                 checked: root.__translucidBackground
                 onTriggered: root.__translucidBackground = !root.__translucidBackground
             }
         }
         Menu {
-            title: qsTr("F&ormat")
+            title: i18n("F&ormat")
 
             MenuItem {
-                text: qsTr("&Bold")
+                text: i18n("&Bold")
                 checkable: true
                 checked: prompter.bold
                 onTriggered: prompter.bold = !prompter.bold
             }
             MenuItem {
-                text: qsTr("&Italic")
+                text: i18n("&Italic")
                 checkable: true
                 checked: prompter.italic
                 onTriggered: prompter.italic = !prompter.italic
             }
             MenuItem {
-                text: qsTr("&Underline")
+                text: i18n("&Underline")
                 checkable: true
                 checked: prompter.underline
                 onTriggered: prompter.underline = !prompter.underline
             }
         }
         Menu {
-            title: i18n("&Help")
+            title: i18n("Controls")
+            
+            MenuItem {
+                text: i18n("Use scroll as speed dial while prompting")
+                checkable: true
+                checked: root.__scrollAsDial
+                onTriggered: root.__scrollAsDial = !root.__scrollAsDial
+            }
+            MenuSeparator { }
+            MenuItem {
+                text: i18n("Invert arrow keys")
+                checkable: true
+                checked: root.__invertArrowKeys
+                onTriggered: root.__invertArrowKeys = !root.__invertArrowKeys
+            }
+            MenuItem {
+                text: i18n("Invert scroll direction")
+                checkable: true
+                checked: root.__invertScrollDirection
+                onTriggered: root.__invertScrollDirection = !root.__invertScrollDirection
+            }
+        }
+        Menu {
+            //title: i18n("&Help")
             MenuItem { text: i18n("&Report Bug...") }
             MenuItem { text: i18n("&Get Studio Edition") }
         }
@@ -602,8 +630,8 @@ Kirigami.ApplicationWindow {
 
     MessageDialog {
         id : quitDialog
-        title: qsTr("Quit?")
-        text: qsTr("The file has been modified. Quit anyway?")
+        title: i18n("Quit?")
+        text: i18n("The file has been modified. Quit anyway?")
         buttons: (MessageDialog.Yes | MessageDialog.No)
         onYesClicked: Qt.quit()
     }
