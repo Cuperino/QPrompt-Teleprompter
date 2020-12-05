@@ -47,9 +47,13 @@ Flickable {
     property alias fileType: document.fileType
     // property int __unit: 1
     property alias position: prompter.contentY
+    // Scrolling settings
+    property bool __scrollAsDial: root.__scrollAsDial
+    property bool __invertArrowKeys: root.__invertArrowKeys
+    property bool __invertScrollDirection: root.__invertScrollDirection
     property bool __wysiwyg: true
-    property bool __play: true
     property int __i: 1
+    property bool __play: true
     property real __baseSpeed: 2
     property real __curvature: 1.2
     property int __lastRecordedPosition: 0
@@ -292,11 +296,18 @@ Flickable {
     MouseArea {
         anchors.fill: parent
         onWheel: {
-            if (prompter.state==="prompting" && wheel.modifiers & Qt.ControlModifier) {
-                if (wheel.angleDelta.y > 0)
-                    increaseVelocity();
+            if (prompter.state==="prompting" && (prompter.__scrollAsDial && !(wheel.modifiers & Qt.ControlModifier) || !prompter.__scrollAsDial && wheel.modifiers & Qt.ControlModifier)) {
+                if (wheel.angleDelta.y > 0) {
+                    if (prompter.__invertScrollDirection)
+                        increaseVelocity();
+                    else
+                        decreaseVelocity();
+                }
                 else
-                    decreaseVelocity();
+                    if (prompter.__invertScrollDirection)
+                        decreaseVelocity();
+                    else
+                        increaseVelocity();
             }
             else {
                 // Regular scroll
@@ -304,7 +315,10 @@ Flickable {
                 if (prompter.position-delta > -prompter.height/*0*/ && prompter.position-delta<editor.implicitHeight/*-prompter.height*/) {
                     var i=__i;
                     __i=0;
-                    prompter.position = prompter.position - delta;
+                    if (prompter.__invertScrollDirection)
+                        prompter.position = prompter.position + delta;
+                    else
+                        prompter.position = prompter.position - delta;
                     __i=i;
                     //prompter.__play = true
                     prompter.position = prompter.__destination
@@ -393,11 +407,17 @@ Flickable {
             switch (event.key) {
                 //case Qt.Key_S:
                 case Qt.Key_Down:
-                    prompter.increaseVelocity(event)
+                    if (prompter.__invertArrowKeys)
+                        prompter.decreaseVelocity(event)                        
+                    else
+                        prompter.increaseVelocity(event)
                     break;
                     //case Qt.Key_W:
                 case Qt.Key_Up:
-                    prompter.decreaseVelocity(event)
+                    if (prompter.__invertArrowKeys)
+                        prompter.increaseVelocity(event)                        
+                    else
+                        prompter.decreaseVelocity(event)
                     break;
                 case Qt.Key_Space:
                     //showPassiveNotification__lastRecordedPosition(i18n("Toggle Playback"));
