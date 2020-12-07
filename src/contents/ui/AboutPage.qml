@@ -24,6 +24,7 @@ import QtQuick 2.15
 import org.kde.kirigami 2.9 as Kirigami
 
 Kirigami.AboutPage {
+/*
     // property var licenses: []
     aboutData: {
         "displayName" : "QPrompt",
@@ -1192,4 +1193,5 @@ Creative Commons may be contacted at creativecommons.org.
         }
         ]
     }
+*/
 }

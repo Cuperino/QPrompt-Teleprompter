@@ -328,17 +328,27 @@ Flickable {
         }
     }
 
+    function newDocument() {
+        document.load("qrc:/untitled.html")
+        document.isNewFile = true
+    }
+    
     DocumentHandler {
         id: document
+        property bool isNewFile: false
         document: editor.textDocument
         cursorPosition: editor.cursorPosition
         selectionStart: editor.selectionStart
         selectionEnd: editor.selectionEnd
         Component.onCompleted: {
-            if (Qt.application.arguments.length === 2)
+            if (Qt.application.arguments.length === 2) {
                 document.load("file:" + Qt.application.arguments[1]);
-            else
+                isNewFile = false
+            }
+            else {
                 document.load("qrc:/instructions.html")
+                isNewFile = true
+            }
         }
         //Component.onCompleted: document.load("qrc:/instructions.html")
         onLoaded: {
