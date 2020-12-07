@@ -38,9 +38,11 @@ Kirigami.ApplicationWindow {
     property bool __scrollAsDial: false
     property bool __invertArrowKeys: false
     property bool __invertScrollDirection: false
+    property bool italic
     
     property int prompterVisibility: Kirigami.ApplicationWindow.AutomaticVisibility
     
+    property var document
     title: document.fileName + " - " + aboutData.displayName
     
     minimumWidth: 480
@@ -76,7 +78,15 @@ Kirigami.ApplicationWindow {
             console.log("left fullscreen");
             //position = prompter.positionAt(0, prompter.position + readRegion.__placement*overlay.height)
     }
-
+    // Open save dialog on closing
+    onClosing: {
+        if (prompter.modified) {
+            quitDialog.open()
+            close.accepted = false
+        }
+    }
+    
+    // Left Global Drawer
     globalDrawer: Kirigami.GlobalDrawer {
         property int bannerCounter: 0
         // isMenu: true
@@ -97,7 +107,10 @@ Kirigami.ApplicationWindow {
             Kirigami.Action {
                 text: i18n("New")
                 iconName: "folder"
-                onTriggered: showPassiveNotification(i18n("New clicked"))
+                onTriggered: {
+                    prompter.newDocument()
+                    showPassiveNotification(i18n("New document"))
+                }
             },
             Kirigami.Action {
                 text: i18n("Open")
@@ -126,11 +139,8 @@ Kirigami.ApplicationWindow {
                 text: i18n("About") + " " + aboutData.displayName
                 iconName: "help-about"
                 onTriggered: {
-                    if (root.pageStack.layers.depth < 2) {
-                        root.pageStack.layers.push(aboutPage)
-                        //root.pageStack.layers.currentItem.aboutData = aboutData
-                        //root.pageStack.layers.currentItem.aboutData.licenses.concat(aboutData.licenses)
-                    }
+                    if (root.pageStack.layers.depth < 2)
+                        root.pageStack.layers.push(aboutPage, {aboutData: aboutData})
                 }
             },
             Kirigami.Action {
@@ -161,6 +171,8 @@ Kirigami.ApplicationWindow {
                 //onTriggered: showPassiveNotification(i18n("View Action 2 clicked"))
             //}
         //}
+        
+        // Slider settings
         content: [
             Label {
                 text: i18n("Base speed:") + " " + baseSpeedSlider.value.toFixed(2)
@@ -196,7 +208,121 @@ Kirigami.ApplicationWindow {
             }
         ]
     }
+    
+    // Window Menu Bar
+    /*menuBar:*/ MenuBar {
+        Menu {
+            title: i18n("&File")
+            
+            MenuItem {
+                text: i18n("&New")
+                onTriggered: prompter.newDocument()
+            }
+            MenuItem {
+                text: i18n("&Open")
+                onTriggered: openDialog.open()
+            }
+            MenuItem {
+                text: i18n("&Save As...")
+                onTriggered: saveDialog.open()
+            }
+            MenuSeparator { }
+            MenuItem {
+                text: i18n("&Quit")
+                onTriggered: close()
+            }
+        }
+        
+        Menu {
+            title: i18n("&Edit")
+            
+            MenuItem {
+                text: i18n("&Copy")
+                enabled: prompter.selectedText
+                onTriggered: prompter.copy()
+            }
+            MenuItem {
+                text: i18n("Cu&t")
+                enabled: prompter.selectedText
+                onTriggered: prompter.cut()
+            }
+            MenuItem {
+                text: i18n("&Paste")
+                enabled: prompter.canPaste
+                onTriggered: prompter.paste()
+            }
+        }
+        
+        Menu {
+            title: i18n("V&iew")
+            
+            MenuItem {
+                text: i18n("&Auto full screen")
+                checkable: true
+                checked: root.__autoFullScreen
+                onTriggered: root.__autoFullScreen = !root.__autoFullScreen
+            }
+            MenuItem {
+                text: i18n("Make background &translucid")
+                checkable: true
+                checked: root.__translucidBackground
+                onTriggered: root.__translucidBackground = !root.__translucidBackground
+            }
+        }
+        Menu {
+            title: i18n("F&ormat")
+            
+            MenuItem {
+                text: i18n("&Bold")
+                checkable: true
+                checked: prompter.bold
+                onTriggered: prompter.bold = !prompter.bold
+            }
+            MenuItem {
+                text: i18n("&Italic")
+                checkable: true
+                checked: root.pageStack.layers.item.italic
+                onTriggered: root.pageStack.layers.currentItem.italic = !root.pageStack.layers.currentItem.italic
+            }
+            MenuItem {
+                text: i18n("&Underline")
+                checkable: true
+                checked: prompter.underline
+                onTriggered: prompter.underline = !prompter.underline
+            }
+        }
+        Menu {
+            title: i18n("Controls")
+            
+            MenuItem {
+                text: i18n("Use scroll as speed dial while prompting")
+                checkable: true
+                checked: root.__scrollAsDial
+                onTriggered: root.__scrollAsDial = !root.__scrollAsDial
+            }
+            MenuSeparator { }
+            MenuItem {
+                text: i18n("Invert arrow keys")
+                checkable: true
+                checked: root.__invertArrowKeys
+                onTriggered: root.__invertArrowKeys = !root.__invertArrowKeys
+            }
+            MenuItem {
+                text: i18n("Invert scroll direction")
+                checkable: true
+                checked: root.__invertScrollDirection
+                onTriggered: root.__invertScrollDirection = !root.__invertScrollDirection
+            }
+        }
+        Menu {
+            //title: i18n("&Help")
+            MenuItem { text: i18n("&Report Bug...") }
+            MenuItem { text: i18n("&Get Studio Edition") }
+        }
+        
+    }
 
+    // Right Context Drawer
     contextDrawer: Kirigami.ContextDrawer {
         id: contextDrawer
         background: Rectangle {
@@ -204,11 +330,33 @@ Kirigami.ApplicationWindow {
         }
     }
 
+    // Page Stack
     pageStack.initialPage: prompterPage
 
+    /*Binding {
+        //target: pageStack.layers.item
+        //target: pageStack.initialPage
+        //target: pageStack.layers.currentItem
+        //target: prompter
+        property: "italic"
+        value: root.italic
+    }*/
+    
+    /*Connections {
+        target: pageStack.layers.currentItem
+        //onEventInComponent: {
+            //Bind to actions in outer context
+        //}
+    }*/
+    
+    // Prompter Page Contents
+    //pageStack.initialPage:
     Component {
+    //Item {
         id: prompterPage
         Kirigami.ScrollablePage {
+            property alias italic: prompter.italic
+            //anchors.fill: parent
             title: "QPrompt"
             actions {
                 main: Kirigami.Action {
@@ -391,13 +539,6 @@ Kirigami.ApplicationWindow {
                             enabled: overlay.styleState!=="none"
                         }
                     }
-//                    Kirigami.Action {
-//                        id: readRegionButton
-//                        iconName: "middle"
-//                        text: i18n("Region")
-//                        onTriggered: overlay.toggle()
-//                        tooltip: i18n("Toggle read line position")
-//                    }
                 ]
             }
             
@@ -417,6 +558,7 @@ Kirigami.ApplicationWindow {
                 id: prompter
             }
             
+            // Editor Toolbar
             footer: ToolBar {   
                 id: toolbar
                 
@@ -500,115 +642,14 @@ Kirigami.ApplicationWindow {
             //}
         }
     }
-    
-    /*menuBar:*/ MenuBar {
-        Menu {
-            title: i18n("&File")
 
-            MenuItem {
-                text: i18n("&Open")
-                onTriggered: openDialog.open()
-            }
-            MenuItem {
-                text: i18n("&Save As...")
-                onTriggered: saveDialog.open()
-            }
-            MenuSeparator { }
-            MenuItem {
-                text: i18n("&Quit")
-                onTriggered: close()
-            }
-        }
-
-        Menu {
-            title: i18n("&Edit")
-
-            MenuItem {
-                text: i18n("&Copy")
-                enabled: prompter.selectedText
-                onTriggered: prompter.copy()
-            }
-            MenuItem {
-                text: i18n("Cu&t")
-                enabled: prompter.selectedText
-                onTriggered: prompter.cut()
-            }
-            MenuItem {
-                text: i18n("&Paste")
-                enabled: prompter.canPaste
-                onTriggered: prompter.paste()
-            }
-        }
-
-        Menu {
-            title: i18n("V&iew")
-
-            MenuItem {
-                text: i18n("&Auto full screen")
-                checkable: true
-                checked: root.__autoFullScreen
-                onTriggered: root.__autoFullScreen = !root.__autoFullScreen
-            }
-            MenuItem {
-                text: i18n("Make background &translucid")
-                checkable: true
-                checked: root.__translucidBackground
-                onTriggered: root.__translucidBackground = !root.__translucidBackground
-            }
-        }
-        Menu {
-            title: i18n("F&ormat")
-
-            MenuItem {
-                text: i18n("&Bold")
-                checkable: true
-                checked: prompter.bold
-                onTriggered: prompter.bold = !prompter.bold
-            }
-            MenuItem {
-                text: i18n("&Italic")
-                checkable: true
-                checked: prompter.italic
-                onTriggered: prompter.italic = !prompter.italic
-            }
-            MenuItem {
-                text: i18n("&Underline")
-                checkable: true
-                checked: prompter.underline
-                onTriggered: prompter.underline = !prompter.underline
-            }
-        }
-        Menu {
-            title: i18n("Controls")
-            
-            MenuItem {
-                text: i18n("Use scroll as speed dial while prompting")
-                checkable: true
-                checked: root.__scrollAsDial
-                onTriggered: root.__scrollAsDial = !root.__scrollAsDial
-            }
-            MenuSeparator { }
-            MenuItem {
-                text: i18n("Invert arrow keys")
-                checkable: true
-                checked: root.__invertArrowKeys
-                onTriggered: root.__invertArrowKeys = !root.__invertArrowKeys
-            }
-            MenuItem {
-                text: i18n("Invert scroll direction")
-                checkable: true
-                checked: root.__invertScrollDirection
-                onTriggered: root.__invertScrollDirection = !root.__invertScrollDirection
-            }
-        }
-        Menu {
-            //title: i18n("&Help")
-            MenuItem { text: i18n("&Report Bug...") }
-            MenuItem { text: i18n("&Get Studio Edition") }
-        }
-
+    // About Page Component
+    Component {
+        id: aboutPage
+        AboutPage {}
     }
-
+    
+    // Dialogues
     FileDialog {
         id: openDialog
         fileMode: FileDialog.OpenFile
@@ -634,19 +675,5 @@ Kirigami.ApplicationWindow {
         text: i18n("The file has been modified. Quit anyway?")
         buttons: (MessageDialog.Yes | MessageDialog.No)
         onYesClicked: Qt.quit()
-    }
-
-    // Open save dialog on closing
-    onClosing: {
-        if (prompter.modified) {
-            quitDialog.open()
-            close.accepted = false
-        }
-    }
-
-    // About Page
-    Component {
-        id: aboutPage
-        AboutPage {}
     }
 }
