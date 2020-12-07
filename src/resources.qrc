@@ -11,5 +11,6 @@
         <file>images/logo.png</file>
         <file>fonts/fontello.ttf</file>
         <file>instructions.html</file>
+        <file>untitled.html</file>
     </qresource>
 </RCC>
