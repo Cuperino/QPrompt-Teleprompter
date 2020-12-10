@@ -476,7 +476,6 @@ Flickable {
             //else if (event.matches(StandardKey.Redo))
             //    document.redo();
     }
-
     states: [
         State {
             name: "editing"
@@ -510,6 +509,8 @@ Flickable {
             PropertyChanges {
                 target: prompter
                 __i: 0
+                __play: false
+                position: position
             }
         },
         State {
@@ -534,6 +535,10 @@ Flickable {
                 target: promptingButton
                 text: i18n("Return to edit mode")
                 iconName: "edit-undo"
+            }
+            PropertyChanges {
+                target: prompter
+                position: position
             }
             PropertyChanges {
                 target: editor
@@ -598,7 +603,11 @@ Flickable {
         }
     ]
     state: "editing"
-
+    onStateChanged: {
+        var pos = prompter.position
+        position = pos
+    }
+    
     // Progress indicator
     ScrollBar.vertical: ProgressIndicator {}
 
