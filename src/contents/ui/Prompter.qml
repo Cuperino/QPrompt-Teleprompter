@@ -167,6 +167,9 @@ Flickable {
         // Enter full screen
         var states = ["editing", "countdown", "prompting"]
         var nextIndex = ( states.indexOf(state) + 1 ) % states.length
+        // Skip countdown if countdown.__iterations is 0
+        if (states[nextIndex]===states[1] && countdown.__iterations===0)
+            nextIndex = ( states.indexOf(state) + 2 ) % states.length
         state = states[nextIndex]
 
         switch (state) {

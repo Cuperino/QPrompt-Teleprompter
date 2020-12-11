@@ -28,8 +28,9 @@ Item {
     id: countdown
     property bool running: false
     visible: false
+    opacity: 0  // Initial opacity should be 0 to prevent animation jitters on first run.
     property int __iterations: 1
-    property int  __disappearWithin: 1
+    property int __disappearWithin: 1
     readonly property real __vh: parent.height / 100
     readonly property real __vw: parent.width / 100
     readonly property real __minv: __vw<__vh ? __vw : __vh
@@ -52,7 +53,7 @@ Item {
         id: canvas
         anchors.fill: parent
         
-        property int __iteration: __iterations - 1
+        property int __iteration: countdown.__iterations - 1
         property real rotations: 0
         // __countdownRadius is of the size from the center to any corner, which is also the hypotenuse formed by taking half of the width and height as hicks (catetos).
         readonly property real __hypotenuse: Math.sqrt(Math.pow(parent.height/2, 2)+Math.pow(parent.width/2, 2))
@@ -117,13 +118,18 @@ Item {
             easing.type: Easing.Linear
             alwaysRunToEnd: true
             onStarted: {
-                if (canvas.__iteration===countdown.__disappearWithin) {
+                console.log("onStartedRan")
+                console.log(canvas.__iteration)
+                console.log(countdown.__disappearWithin-1)
+                if (canvas.__iteration===countdown.__disappearWithin-1) {
+                    console.log("dissolveOut.running")
                     dissolveOut.running = true
                 }
             }
             onFinished: {
                 if (countdown.running && canvas.__iteration>0) {
                     canvas.__iteration--;
+                    console.log("onFinished");
                     console.log(canvas.__iteration);
                     running = true;
                 } else {
@@ -137,6 +143,17 @@ Item {
         }
         
         NumberAnimation {
+            id: dissolveIn
+            running: false
+            target: countdown
+            property: "opacity"
+            from: 0
+            to: 1
+            duration: 200
+            alwaysRunToEnd: false
+            easing.type: Easing.OutQuint
+        }
+        NumberAnimation {
             id: dissolveOut
             running: false
             target: countdown
@@ -144,6 +161,7 @@ Item {
             from: 1
             to: 0
             duration: 1000
+            alwaysRunToEnd: true
             easing.type: Easing.InQuint
         }
     }
@@ -159,6 +177,30 @@ Item {
     
     states: [
     State {
+        name: "running"
+        PropertyChanges {
+            target: dissolveIn
+            running: true
+        }
+        PropertyChanges {
+            target: countdownAnimation
+            running: true
+        }
+        PropertyChanges {
+            target: canvas
+            __iteration: countdown.__iterations - 1
+        }
+        PropertyChanges {
+            target: countdown
+            running: countdown.__iterations>0
+            visible: countdown.__iterations>0
+        }
+        PropertyChanges {
+            target: dissolveOut
+            running: false
+        }
+    },
+    State {
         name: "ready"
         PropertyChanges {
             target: countdown
@@ -172,30 +214,8 @@ Item {
         }
         PropertyChanges {
             target: canvas
-            __iteration: 0
-        }
-    },
-    State {
-        name: "running"
-        PropertyChanges {
-            target: countdownAnimation
-            running: true
-        }
-        PropertyChanges {
-            target: canvas
+//             __iteration: 0
             __iteration: countdown.__iterations - 1
-//             __iteration: 2
-        }
-        PropertyChanges {
-            target: countdown
-            running: countdown.__iterations>0
-            visible: countdown.__iterations>0
-            opacity: countdown.__iterations>0
-//             __iteration: countdown.__iterations - 1
-        }
-        PropertyChanges {
-            target: dissolveOut
-            running: false
         }
     }
     ]
