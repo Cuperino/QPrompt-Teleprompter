@@ -64,11 +64,11 @@ Flickable {
     readonly property real __vw: width / 100
     readonly property real __speed: __baseSpeed * Math.pow(Math.abs(__i), __curvature)
     readonly property real __velocity: (__possitiveDirection ? 1 : -1) * __speed
-    readonly property real __timeToArival: __i ? (((__possitiveDirection ? editor.height-position-prompter.height : position+prompter.height)) / (__speed * __vw)) * 1000 /*<< 7*/ : 0
-    readonly property int __destination: __i  ? (__possitiveDirection ? editor.height-__jitterMargin : __jitterMargin)-prompter.height : position
+    readonly property real __timeToArival: __i ? (((__possitiveDirection ? editor.height-position : position+prompter.height)) / (__speed * __vw)) * 1000 /*<< 7*/ : 0
+    readonly property int __destination: __i  ? (__possitiveDirection ? editor.height+prompter.height-__jitterMargin : __jitterMargin)-prompter.height : position
     // origin.y is being roughly approximated. This may not work across all systems and displays...
     readonly property bool __atStart: position<=__jitterMargin-prompter.height+1
-    readonly property bool __atEnd: position>=editor.height-prompter.height-__jitterMargin-1
+    readonly property bool __atEnd: position>=editor.height-__jitterMargin-1
     //readonly property bool __atStart: false
     //readonly property bool __atEnd: false
     // Background
@@ -213,8 +213,8 @@ Flickable {
             //showPassiveNotification(i18n("Decrease Velocity"));
         }
     }
-    bottomMargin: prompter.height
     topMargin: prompter.height
+    bottomMargin: prompter.height
     TextArea.flickable: TextArea {
         id: editor
         textFormat: Qt.RichText
@@ -282,19 +282,27 @@ Flickable {
         }
     }
 
-    contentHeight: prompter.height+editor.implicitHeight
+    // Should I stay or should I go?
+    //contentHeight: editor.implicitHeight//+prompter.height
 
+    // Bottom margin hack
     Rectangle {
         id: rect
         anchors.left: parent.left
         anchors.right: parent.right
         anchors.top: editor.bottom
         height: parent.height
-        color: "#242424"
+        color: "#000"
+        opacity: 0.2
     }
 
     MouseArea {
-        anchors.fill: parent
+        // The following placement allows covering beyond the boundaries of the editor and into the prompter's margins.
+        anchors.left: parent.left
+        anchors.right: parent.right
+        y: -prompter.height
+        height: parent.height+2*prompter.height
+        // Mouse wheel controls
         onWheel: {
             if (prompter.state==="prompting" && (prompter.__scrollAsDial && !(wheel.modifiers & Qt.ControlModifier) || !prompter.__scrollAsDial && wheel.modifiers & Qt.ControlModifier)) {
                 if (wheel.angleDelta.y > 0) {
@@ -511,6 +519,9 @@ Flickable {
                 __i: 0
                 __play: false
                 position: position
+                // Bottom margin hack
+                //topMargin: prompter.height
+                //bottomMargin: prompter.height
             }
         },
         State {
@@ -539,6 +550,9 @@ Flickable {
             PropertyChanges {
                 target: prompter
                 position: position
+                // Bottom margin hack
+                //topMargin: prompter.height
+                //bottomMargin: prompter.height
             }
             PropertyChanges {
                 target: editor
@@ -587,6 +601,9 @@ Flickable {
                 position: prompter.__destination
                 focus: true
                 __play: true
+                // Bottom margin hack
+                //topMargin: prompter.height
+                //bottomMargin: prompter.height
             }
             PropertyChanges {
                 target: editor
