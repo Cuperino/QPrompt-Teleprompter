@@ -547,8 +547,8 @@ Flickable {
             }
             PropertyChanges {
                 target: promptingButton
-                text: i18n("Return to edit mode")
-                iconName: "edit-undo"
+                text: i18n("Skip countdown")
+                //iconName: "edit-undo"
             }
             PropertyChanges {
                 target: prompter
