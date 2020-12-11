@@ -550,9 +550,9 @@ Kirigami.ApplicationWindow {
                 id: overlay
             }
 
-            TimerClock {
-                id: timer
-            }
+            //TimerClock {
+                //id: timer
+            //}
 
             Prompter {
                 id: prompter
