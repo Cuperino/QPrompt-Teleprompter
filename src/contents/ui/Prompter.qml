@@ -83,6 +83,7 @@ Flickable {
         xScale: prompter.state!=="editing" && prompter.__flipX ? -1 : 1
         yScale: prompter.state!=="editing" && prompter.__flipY ? -1 : 1
     }
+    layer.enabled: true
     transform: __flips
     Behavior on __flips.xScale {
         enabled: true
