@@ -256,7 +256,18 @@ Flickable {
             anchors.fill: parent
             onClicked: contextMenu.open()
         }
-        //
+        
+        // Draggable width adjustment borders
+        Component {
+            id: editorSidesBorder
+            Rectangle {
+                width: 2
+                gradient: Gradient {
+                    GradientStop { position: 0.0; color: "#AA9" }
+                    GradientStop { position: 1.0; color: "#776" }
+                }
+            }
+        }
         MouseArea {
             anchors.left: parent.left
             anchors.top: parent.top
@@ -269,13 +280,9 @@ Flickable {
             drag.minimumX: 0
             drag.maximumX: prompter.width*2/5
             cursorShape: Qt.SizeHorCursor
-            Rectangle {
+            Loader {
+                sourceComponent: editorSidesBorder
                 anchors {top: parent.top; bottom: parent.bottom; horizontalCenter: parent.horizontalCenter}
-                width: 2
-                gradient: Gradient {
-                    GradientStop { position: 0.0; color: "#AA9" }
-                    GradientStop { position: 1.0; color: "#776" }
-                }
             }
             onPressed: {
                 if (parent.x<0)
@@ -294,13 +301,9 @@ Flickable {
             drag.minimumX: -prompter.width*2/5
             drag.maximumX: 0
             cursorShape: Qt.SizeHorCursor
-            Rectangle {
+            Loader {
+                sourceComponent: editorSidesBorder
                 anchors {top: parent.top; bottom: parent.bottom; horizontalCenter: parent.horizontalCenter}
-                width: 2
-                gradient: Gradient {
-                    GradientStop { position: 0.0; color: "#AA9" }
-                    GradientStop { position: 1.0; color: "#776" }
-                }
             }
             onPressed: {
                 if (parent.x>0)
