@@ -539,19 +539,19 @@ Kirigami.ApplicationWindow {
                             tooltip: i18n("Disable reading region entirely")
                             enabled: overlay.styleState!=="none"
                         }
-                    },
-                    Kirigami.Action {
-                        id: countdownConfigButton
-                        text: i18n("Countdown")
-                        tooltip: i18n("Set countdown timer")
-                        //onTriggered: 
-                    },
-                    Kirigami.Action {
-                        id: projectionConfigButton
-                        text: i18n("Clone")
-                        tooltip: i18n("Duplicate teleprompter contents into separate screens")
-                        onTriggered: projectionWindow.visible = !projectionWindow.visible
-                    }
+                    }//,
+                    //Kirigami.Action {
+                    //    id: countdownConfigButton
+                    //    text: i18n("Countdown")
+                    //    tooltip: i18n("Set countdown timer")
+                    //    //onTriggered: 
+                    //}//,
+                    //Kirigami.Action {
+                    //    id: projectionConfigButton
+                    //    text: i18n("Clone")
+                    //    tooltip: i18n("Duplicate teleprompter contents into separate screens")
+                    //    onTriggered: projectionWindow.visible = !projectionWindow.visible
+                    //}
                 ]
             }
             
