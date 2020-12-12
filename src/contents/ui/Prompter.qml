@@ -435,9 +435,10 @@ Flickable {
 
     FontDialog {
         id: fontDialog
+        options: FontDialog.ScalableFonts|FontDialog.MonospacedFonts|FontDialog.ProportionalFonts|!FontDialog.nonScalableFonts
         onAccepted: {
             document.fontFamily = font.family;
-            document.fontSize = font.pointSize;
+            document.fontSize = font.pointSize*editor.font.pixelSize/6;
         }
     }
 
