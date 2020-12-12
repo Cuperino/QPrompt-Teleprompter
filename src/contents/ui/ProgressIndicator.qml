@@ -25,9 +25,12 @@ import QtQuick.Controls 2.15
 ScrollBar {
     id: scroller
     policy: ScrollBar.AlwaysOn
+    //interactive: true
     interactive: false
     leftPadding: 0
     rightPadding: 0
     leftInset: 0
     rightInset: 0
+    //parent: prompter.parent
+    //position: -prompter.height / (editor.height + prompter.height)
 }
