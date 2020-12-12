@@ -494,6 +494,9 @@ Flickable {
                     else
                         showPassiveNotification(i18n("Tab Pressed"));
                     break;
+                case Qt.Key_Escape:
+                    prompter.toggle();
+                    break;
                 //case Qt.Key_PageUp:
                 //    showPassiveNotification(i18n("Page Up Pressed")); break;
                 //case Qt.Key_PageDown:
