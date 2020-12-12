@@ -230,8 +230,8 @@ Flickable {
         //Different styles have different padding and background
         //decorations, but since this editor must resemble the
         //teleprompter output, we don't need them.
-        leftPadding: 20
-        rightPadding: 20
+        leftPadding: 20+2*(x<0?-x:0)
+        rightPadding: 20+2*(x>0?x:0)
         topPadding: 0
         bottomPadding: 0
         //background: transparent
@@ -249,9 +249,8 @@ Flickable {
 
         // Make links responsive
         onLinkActivated: Qt.openUrlExternally(link)
-
         // Width drag controls
-        width: prompter.width - x
+        //width: prompter.width-2*position.x
         MouseArea {
             acceptedButtons: Qt.RightButton
             anchors.fill: parent
@@ -262,6 +261,7 @@ Flickable {
             anchors.left: parent.left
             anchors.top: parent.top
             anchors.bottom: parent.bottom
+            anchors.leftMargin: parent.x<0?-2*parent.x:0
             width: 25
             drag.target: parent
             drag.axis: Drag.XAxis
@@ -269,12 +269,24 @@ Flickable {
             drag.minimumX: 0
             drag.maximumX: prompter.width*2/5
             cursorShape: Qt.SizeHorCursor
-            //onReleased: {}
+            Rectangle {
+                anchors {top: parent.top; bottom: parent.bottom; horizontalCenter: parent.horizontalCenter}
+                width: 2
+                gradient: Gradient {
+                    GradientStop { position: 0.0; color: "#AA9" }
+                    GradientStop { position: 1.0; color: "#776" }
+                }
+            }
+            onPressed: {
+                if (parent.x<0)
+                    parent.x = -parent.x
+            }
         }
         MouseArea {
             anchors.right: parent.right
             anchors.top: parent.top
             anchors.bottom: parent.bottom
+            anchors.rightMargin: parent.x>0?2*parent.x:0
             width: 25
             drag.target: parent
             drag.axis: Drag.XAxis
@@ -282,12 +294,20 @@ Flickable {
             drag.minimumX: -prompter.width*2/5
             drag.maximumX: 0
             cursorShape: Qt.SizeHorCursor
-            //onReleased: {}
+            Rectangle {
+                anchors {top: parent.top; bottom: parent.bottom; horizontalCenter: parent.horizontalCenter}
+                width: 2
+                gradient: Gradient {
+                    GradientStop { position: 0.0; color: "#AA9" }
+                    GradientStop { position: 1.0; color: "#776" }
+                }
+            }
+            onPressed: {
+                if (parent.x>0)
+                    parent.x = -parent.x
+            }
         }
     }
-
-    // Should I stay or should I go?
-    //contentHeight: editor.implicitHeight//+prompter.height
 
     // Bottom margin hack
     Rectangle {
