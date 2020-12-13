@@ -57,7 +57,7 @@ Item {
         id: overlayMouseArea
         enabled: false
         anchors.fill: parent
-        cursorShape: Qt.DefaultCursor
+        //cursorShape: Qt.DefaultCursor
         propagateComposedEvents: true
     }
     states: [
