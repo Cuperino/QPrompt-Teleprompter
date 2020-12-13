@@ -227,9 +227,6 @@ Flickable {
         text: "Error loading file..."
         selectByMouse: true
         persistentSelection: true
-        // Right to left layout in editor
-        horizontalAlignment: Qt.application.layoutDirection
-        LayoutMirroring.enabled: true
         //Different styles have different padding and background
         //decorations, but since this editor must resemble the
         //teleprompter output, we don't need them.
