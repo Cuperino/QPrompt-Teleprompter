@@ -363,19 +363,19 @@ Kirigami.ApplicationWindow {
                 main: Kirigami.Action {
                     id: promptingButton
                     text: i18n("Start prompting")
-                    iconName: "go-next"
+                    iconName: Qt.application.layoutDirection === Qt.RightToLeft ? "go-previous" : "go-next"
                     onTriggered: prompter.toggle()
                 }
                 left: Kirigami.Action {
                     id: decreaseVelocityButton
                     enabled: false
-                    iconName: "go-previous"
+                    iconName: Qt.application.layoutDirection === Qt.RightToLeft ? "go-next" : "go-previous"
                     onTriggered: prompter.decreaseVelocity(false)
                 }
                 right: Kirigami.Action {
                     id: increaseVelocityButton
                     enabled: false
-                    iconName: "go-next"
+                    iconName: Qt.application.layoutDirection === Qt.RightToLeft ? "go-previous" : "go-next"
                     onTriggered: prompter.increaseVelocity(false)
                 }
                 // Use action toolbar instead?
