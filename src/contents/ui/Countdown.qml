@@ -29,7 +29,7 @@ Item {
     property bool running: false
     visible: false
     opacity: 0  // Initial opacity should be 0 to prevent animation jitters on first run.
-    property int __iterations: 1
+    property int __iterations: 2
     property int __disappearWithin: 1
     readonly property real __vh: parent.height / 100
     readonly property real __vw: parent.width / 100
