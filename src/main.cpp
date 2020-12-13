@@ -92,7 +92,10 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
     QQmlApplicationEngine engine;
     QQmlFileSelector::get(&engine)->setExtraSelectors(selectors);
 
+    // Un-comment to debug RightToLeft Layout
+    app.setLayoutDirection(Qt::RightToLeft);
     app.setWindowIcon(QIcon(":/images/logo.png"));
+
     engine.rootContext()->setContextObject(new KLocalizedContext(&engine));
     engine.rootContext()->setContextProperty(QStringLiteral("aboutData"), QVariant::fromValue(KAboutData::applicationData()));
 

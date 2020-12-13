@@ -227,6 +227,9 @@ Flickable {
         text: "Error loading file..."
         selectByMouse: true
         persistentSelection: true
+        // Right to left layout in editor
+        horizontalAlignment: Qt.application.layoutDirection
+        LayoutMirroring.enabled: true
         //Different styles have different padding and background
         //decorations, but since this editor must resemble the
         //teleprompter output, we don't need them.
@@ -272,20 +275,20 @@ Flickable {
             anchors.left: parent.left
             anchors.top: parent.top
             anchors.bottom: parent.bottom
-            anchors.leftMargin: parent.x<0?-2*parent.x:0
+            anchors.leftMargin: Qt.application.layoutDirection===Qt.LeftToRight&&parent.x<0?-2*parent.x:(Qt.application.layoutDirection===Qt.RightToLeft&&parent.x>0?2*parent.x:0)
             width: 25
             drag.target: parent
             drag.axis: Drag.XAxis
             drag.smoothed: false
-            drag.minimumX: 0
-            drag.maximumX: prompter.width*2/5
+            drag.minimumX: Qt.application.layoutDirection===Qt.LeftToRight ? 0 : -prompter.width*2/5
+            drag.maximumX: Qt.application.layoutDirection===Qt.LeftToRight ? prompter.width*2/5 : 0
             cursorShape: Qt.SizeHorCursor
             Loader {
                 sourceComponent: editorSidesBorder
                 anchors {top: parent.top; bottom: parent.bottom; horizontalCenter: parent.horizontalCenter}
             }
             onPressed: {
-                if (parent.x<0)
+                if (Qt.application.layoutDirection===Qt.LeftToRight&&parent.x<0 || Qt.application.layoutDirection===Qt.RightToLeft&&parent.x>0)
                     parent.x = -parent.x
             }
         }
@@ -293,20 +296,20 @@ Flickable {
             anchors.right: parent.right
             anchors.top: parent.top
             anchors.bottom: parent.bottom
-            anchors.rightMargin: parent.x>0?2*parent.x:0
+            anchors.rightMargin: Qt.application.layoutDirection===Qt.LeftToRight&&parent.x>0?2*parent.x:(Qt.application.layoutDirection===Qt.RightToLeft&&parent.x<0?-2*parent.x:0)
             width: 25
             drag.target: parent
             drag.axis: Drag.XAxis
             drag.smoothed: false
-            drag.minimumX: -prompter.width*2/5
-            drag.maximumX: 0
+            drag.minimumX: Qt.application.layoutDirection===Qt.LeftToRight ? -prompter.width*2/5 : 0
+            drag.maximumX: Qt.application.layoutDirection===Qt.LeftToRight ? 0 : prompter.width*2/5
             cursorShape: Qt.SizeHorCursor
             Loader {
                 sourceComponent: editorSidesBorder
                 anchors {top: parent.top; bottom: parent.bottom; horizontalCenter: parent.horizontalCenter}
             }
             onPressed: {
-                if (parent.x>0)
+                if (Qt.application.layoutDirection===Qt.LeftToRight&&parent.x>0 || Qt.application.layoutDirection===Qt.RightToLeft&&parent.x<0)
                     parent.x = -parent.x
             }
         }
@@ -435,7 +438,7 @@ Flickable {
 
     FontDialog {
         id: fontDialog
-        options: FontDialog.ScalableFonts|FontDialog.MonospacedFonts|FontDialog.ProportionalFonts|!FontDialog.nonScalableFonts
+        options: FontDialog.ScalableFonts|FontDialog.MonospacedFonts|FontDialog.ProportionalFonts
         onAccepted: {
             document.fontFamily = font.family;
             document.fontSize = font.pointSize*editor.font.pixelSize/6;
