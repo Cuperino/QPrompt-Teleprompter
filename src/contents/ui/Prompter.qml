@@ -269,6 +269,7 @@ Flickable {
             }
         }
         MouseArea {
+            scrollGestureEnabled: false
             anchors.left: parent.left
             anchors.top: parent.top
             anchors.bottom: parent.bottom
@@ -290,6 +291,7 @@ Flickable {
             }
         }
         MouseArea {
+            scrollGestureEnabled: false
             anchors.right: parent.right
             anchors.top: parent.top
             anchors.bottom: parent.bottom
@@ -324,6 +326,8 @@ Flickable {
     }
 
     MouseArea {
+        //propagateComposedEvents: false
+        scrollGestureEnabled: false
         // The following placement allows covering beyond the boundaries of the editor and into the prompter's margins.
         anchors.left: parent.left
         anchors.right: parent.right
