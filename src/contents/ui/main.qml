@@ -562,7 +562,7 @@ Kirigami.ApplicationWindow {
 
             ReadRegionOverlay {
                 id: overlay
-                z: 2
+                z: 1
             }
 
             //TimerClock {
@@ -572,7 +572,7 @@ Kirigami.ApplicationWindow {
 
             Prompter {
                 id: prompter
-                z: 1
+                z: 0
             }
             
             // Editor Toolbar

@@ -551,6 +551,7 @@ Flickable {
             }
             PropertyChanges {
                 target: prompter
+                z: 2
                 __i: 0
                 __play: false
                 position: position
@@ -584,6 +585,7 @@ Flickable {
             }
             PropertyChanges {
                 target: prompter
+                z: 0
                 position: position
                 // Bottom margin hack
                 //topMargin: prompter.height
@@ -633,6 +635,7 @@ Flickable {
             }
             PropertyChanges {
                 target: prompter
+                z: 0
                 position: prompter.__destination
                 focus: true
                 __play: true

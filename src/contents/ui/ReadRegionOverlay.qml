@@ -30,7 +30,7 @@ import QtQuick.Controls.Material 2.15
 
 Item {
     id: overlay
-    property double __opacity: 0.03
+    property double __opacity: 0.06
     property double __trianglesOpacity: 0.08
     property color __color: 'black'
     readonly property double __vw: width/100
