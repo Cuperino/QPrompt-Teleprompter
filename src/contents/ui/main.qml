@@ -53,11 +53,36 @@ Kirigami.ApplicationWindow {
     //Material.theme: themeSwitch.checked ? Material.Dark : Material.Light
     background: Rectangle {
         id: appTheme
+        property alias hasBackgroundImage: backgroundImage.visible
         property color __backgroundColor: parent.Material.theme===Material.Light ? "#fafafa" : "#303030"
         property color __fontColor: parent.Material.theme===Material.Light ? "#212121" : "#fff"
         property color __iconColor: parent.Material.theme===Material.Light ? "232629" : "#c3c7d1"
+        property var backgroundImage: null
         color: __backgroundColor
         opacity: 1
+
+        function toggleBackgroundImage() {
+            if (!hasBackgroundImage)
+                openBackgroundDialog.open()
+            backgroundImage.visible = false
+        }
+
+        function setBackgroundImage(file) {
+            backgroundImage.source = file
+            backgroundImage.visible = true
+        }
+
+        Image {
+            id: backgroundImage
+            visible: false
+            fillMode: Image.PreserveAspectCrop
+            width: parent.width
+            height: parent.height
+            opacity: parent.opacity/2
+            autoTransform: true
+            asynchronous: true
+            mipmap: false
+        }
         
         Behavior on opacity {
             enabled: true
@@ -359,6 +384,12 @@ Kirigami.ApplicationWindow {
             property alias italic: prompter.italic
             //anchors.fill: parent
             title: "QPrompt"
+            background: Rectangle {
+                color: appTheme.__backgroundColor
+                opacity: 1
+                // Fixing height like this might be a mistake
+                height: 42
+            }
             actions {
                 main: Kirigami.Action {
                     id: promptingButton
@@ -539,7 +570,15 @@ Kirigami.ApplicationWindow {
                             tooltip: i18n("Disable reading region entirely")
                             enabled: overlay.styleState!=="none"
                         }
-                    }//,
+                    },
+                    Kirigami.Action {
+                        id: backgroundButton
+                        text: i18n("Background")
+                        checkable: true
+                        checked: appTheme.hasBackgroundImage
+                        tooltip: appTheme.hasBackgroundImage ? i18n("Remove background image") : i18n("Set an image as a background")
+                        onTriggered: appTheme.toggleBackgroundImage()
+                    }
                     //Kirigami.Action {
                     //    id: countdownConfigButton
                     //    text: i18n("Countdown")
@@ -576,7 +615,7 @@ Kirigami.ApplicationWindow {
             }
             
             // Editor Toolbar
-            footer: ToolBar {   
+            footer: ToolBar {
                 id: toolbar
                 
                 background: Rectangle {
@@ -708,7 +747,17 @@ Kirigami.ApplicationWindow {
         folder: StandardPaths.writableLocation(StandardPaths.DocumentsLocation)
         onAccepted: prompter.load(file)
     }
-
+    
+    FileDialog {
+        id: openBackgroundDialog
+        fileMode: FileDialog.OpenFile
+        selectedNameFilter.index: 1
+        nameFilters: ["JPEG image (*.jpg *.jpeg *.JPG *.JPEG)", "PNG image (*.png *.PNG)", "GIF animation (*.gif *.GIF)"]
+        folder: StandardPaths.writableLocation(StandardPaths.DocumentsLocation)
+        onAccepted: appTheme.setBackgroundImage(file)
+        onRejected: appTheme.hasBackgroundImage = false
+    }
+    
     FileDialog {
         id: saveDialog
         fileMode: FileDialog.SaveFile
