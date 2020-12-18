@@ -356,8 +356,21 @@ Kirigami.ApplicationWindow {
         }
     }
 
-    // Page Stack
+    Rectangle {
+        color: appTheme.__backgroundColor
+        anchors{ top:parent.top; left:parent.left; right: parent.right }
+        height: 42
+        z: -1
+    }
+    
+    // Kirigami PageStack and PageRow
+    pageStack.globalToolBar.toolbarActionAlignment: Qt.AlignHCenter
     pageStack.initialPage: prompterPage
+    // The following is not possible in the current version of Kirigami, but it should be:
+    //pageStack.globalToolBar.background: Rectangle {
+        //color: appTheme.__backgroundColor
+    //}
+    // End of Kirigami PageStack configuration
 
     /*Binding {
         //target: pageStack.layers.item
@@ -384,12 +397,6 @@ Kirigami.ApplicationWindow {
             property alias italic: prompter.italic
             //anchors.fill: parent
             title: "QPrompt"
-            background: Rectangle {
-                color: appTheme.__backgroundColor
-                opacity: 1
-                // Fixing height like this might be a mistake
-                height: 42
-            }
             actions {
                 main: Kirigami.Action {
                     id: promptingButton
