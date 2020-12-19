@@ -42,6 +42,9 @@ Kirigami.ApplicationWindow {
     property bool italic
     
     property int prompterVisibility: Kirigami.ApplicationWindow.AutomaticVisibility
+    property double __opacity: 0.8
+    property real __baseSpeed: 2
+    property real __curvature: 1.2
     
     property var document
     title: document.fileName + " - " + aboutData.displayName
@@ -209,12 +212,14 @@ Kirigami.ApplicationWindow {
                 id: baseSpeedSlider
                 from: 0.1
                 value: 0.5
-                to: 2
+                to: 5
                 stepSize: 0.1
                 Layout.fillWidth: true
                 Layout.leftMargin: 16
                 Layout.rightMargin: 16
-                onMoved: {}
+                onMoved: {
+                    root.__baseSpeed = value
+                }
             },
             Label {
                 text: i18n("Acceleration curve:") + " " + baseAccelerationSlider.value.toFixed(2)
@@ -230,7 +235,29 @@ Kirigami.ApplicationWindow {
                 Layout.fillWidth: true
                 Layout.leftMargin: 16
                 Layout.rightMargin: 16
-                onMoved: {}
+                onMoved: {
+                    root.__curvature = value
+                }
+            },
+            Label {
+                text: i18n("Background opacity:") + " " + backgroundOpacitySlider.value.toFixed(2)
+                visible: root.__translucidBackground
+                Layout.leftMargin: 8
+                Layout.rightMargin: 8
+            },
+            Slider {
+                id: backgroundOpacitySlider
+                visible: root.__translucidBackground
+                from: 0
+                to: 1
+                value: 0.8
+                stepSize: 0.01
+                Layout.fillWidth: true
+                Layout.leftMargin: 16
+                Layout.rightMargin: 16
+                onMoved: {
+                    root.__opacity = value
+                }
             }
         ]
     }
@@ -357,6 +384,7 @@ Kirigami.ApplicationWindow {
     }
 
     Rectangle {
+        visible: visibility!==Kirigami.ApplicationWindow.FullScreen
         color: appTheme.__backgroundColor
         anchors{ top:parent.top; left:parent.left; right: parent.right }
         height: 42
@@ -366,6 +394,8 @@ Kirigami.ApplicationWindow {
     // Kirigami PageStack and PageRow
     pageStack.globalToolBar.toolbarActionAlignment: Qt.AlignHCenter
     pageStack.initialPage: prompterPage
+    // Auto hide global toolbar on fullscreen
+    pageStack.globalToolBar.style: visibility===Kirigami.ApplicationWindow.FullScreen ? Kirigami.ApplicationHeaderStyle.None :  Kirigami.ApplicationHeaderStyle.Auto
     // The following is not possible in the current version of Kirigami, but it should be:
     //pageStack.globalToolBar.background: Rectangle {
         //color: appTheme.__backgroundColor
@@ -407,12 +437,14 @@ Kirigami.ApplicationWindow {
                 left: Kirigami.Action {
                     id: decreaseVelocityButton
                     enabled: false
+                    tooltip: i18n("Decrease velocity")
                     iconName: Qt.application.layoutDirection === Qt.RightToLeft ? "go-next" : "go-previous"
                     onTriggered: prompter.decreaseVelocity(false)
                 }
                 right: Kirigami.Action {
                     id: increaseVelocityButton
                     enabled: false
+                    tooltip: i18n("Increase velocity")
                     iconName: Qt.application.layoutDirection === Qt.RightToLeft ? "go-previous" : "go-next"
                     onTriggered: prompter.increaseVelocity(false)
                 }
@@ -624,7 +656,8 @@ Kirigami.ApplicationWindow {
             // Editor Toolbar
             footer: ToolBar {
                 id: toolbar
-                
+                enabled: visibility!==Kirigami.ApplicationWindow.FullScreen
+                height: enabled ? implicitHeight : 0
                 background: Rectangle {
                     color: appTheme.__backgroundColor
                 }
