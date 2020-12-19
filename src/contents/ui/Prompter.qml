@@ -54,8 +54,10 @@ Flickable {
     property bool __wysiwyg: true
     property int __i: 1
     property bool __play: true
-    property real __baseSpeed: 2
-    property real __curvature: 1.2
+    property real __baseSpeed: root.__baseSpeed
+    property real __curvature: root.__curvature
+    //property alias __baseSpeed: parent.__baseSpeed
+    //property alias __curvature: parent.__curvature
     property int __lastRecordedPosition: 0
     readonly property real centreX: width / 2;
     readonly property real centreY: height / 2;
@@ -72,7 +74,8 @@ Flickable {
     //readonly property bool __atStart: false
     //readonly property bool __atEnd: false
     // Background
-    property double __opacity: 0.8
+    property double __opacity: root.__opacity
+    //property alias __opacity: parent.__opacity
     // Flips
     property bool __flipX: false
     property bool __flipY: false
