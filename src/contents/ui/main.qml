@@ -348,7 +348,7 @@ Kirigami.ApplicationWindow {
             title: i18n("Controls")
             
             MenuItem {
-                text: i18n("Use scroll as speed dial while prompting")
+                text: i18n("Use mouse and touchpad scroll as speed dial while prompting")
                 checkable: true
                 checked: root.__scrollAsDial
                 onTriggered: root.__scrollAsDial = !root.__scrollAsDial
@@ -437,14 +437,14 @@ Kirigami.ApplicationWindow {
                 left: Kirigami.Action {
                     id: decreaseVelocityButton
                     enabled: false
-                    tooltip: i18n("Decrease velocity")
+                    text: pageStack.globalToolBar.actualStyle === Kirigami.ApplicationHeaderStyle.None ? i18n("Decrease velocity") : ""
                     iconName: Qt.application.layoutDirection === Qt.RightToLeft ? "go-next" : "go-previous"
                     onTriggered: prompter.decreaseVelocity(false)
                 }
                 right: Kirigami.Action {
                     id: increaseVelocityButton
                     enabled: false
-                    tooltip: i18n("Increase velocity")
+                    text: pageStack.globalToolBar.actualStyle === Kirigami.ApplicationHeaderStyle.None ? i18n("Increase velocity") : ""
                     iconName: Qt.application.layoutDirection === Qt.RightToLeft ? "go-previous" : "go-next"
                     onTriggered: prompter.increaseVelocity(false)
                 }
