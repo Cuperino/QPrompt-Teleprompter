@@ -56,35 +56,51 @@ Kirigami.ApplicationWindow {
     //Material.theme: themeSwitch.checked ? Material.Dark : Material.Light
     background: Rectangle {
         id: appTheme
-        property alias hasBackgroundImage: backgroundImage.visible
+        property bool hasBackgroundImage: backgroundImage.opacity>0//backgroundImage.visible
         property color __backgroundColor: parent.Material.theme===Material.Light ? "#fafafa" : "#303030"
         property color __fontColor: parent.Material.theme===Material.Light ? "#212121" : "#fff"
-        property color __iconColor: parent.Material.theme===Material.Light ? "232629" : "#c3c7d1"
+        property color __iconColor: parent.Material.theme===Material.Light ? "#232629" : "#c3c7d1"
         property var backgroundImage: null
         color: __backgroundColor
         opacity: 1
 
-        function toggleBackgroundImage() {
-            if (!hasBackgroundImage)
-                openBackgroundDialog.open()
-            backgroundImage.visible = false
+        function loadBackgroundImage() {
+            openBackgroundDialog.open()
         }
 
+        function clearBackgroundImage() {
+            backgroundImage.opacity = 0
+        }
+        
         function setBackgroundImage(file) {
-            backgroundImage.source = file
-            backgroundImage.visible = true
+            if (file) {
+                backgroundImage.source = file
+            }
         }
 
         Image {
             id: backgroundImage
-            visible: false
+            //visible: opacity!==0
             fillMode: Image.PreserveAspectCrop
             width: parent.width
             height: parent.height
-            opacity: parent.opacity/2
+            opacity: 0
             autoTransform: true
             asynchronous: true
             mipmap: false
+            
+            onStatusChanged: {
+                if (backgroundImage.status === Image.Ready && !backgroundImage.opacity)
+                    backgroundImage.opacity = parent.opacity/2
+            }
+            
+            Behavior on opacity {
+                enabled: true
+                animation: NumberAnimation {
+                    duration: 2800
+                    easing.type: Easing.OutExpo
+                }
+            }
         }
         
         Behavior on opacity {
@@ -611,12 +627,20 @@ Kirigami.ApplicationWindow {
                         }
                     },
                     Kirigami.Action {
-                        id: backgroundButton
+                        id: loadBackgroundButton
                         text: i18n("Background")
-                        checkable: true
-                        checked: appTheme.hasBackgroundImage
-                        tooltip: appTheme.hasBackgroundImage ? i18n("Remove background image") : i18n("Set an image as a background")
-                        onTriggered: appTheme.toggleBackgroundImage()
+                        
+                        Kirigami.Action {
+                            id: changeBackgroundButton
+                            text: i18n("Set Image")
+                            onTriggered: appTheme.loadBackgroundImage()
+                        }
+                        Kirigami.Action {
+                            id: clearBackgroundButton
+                            text: i18n("Clear Background")
+                            enabled: appTheme.hasBackgroundImage
+                            onTriggered: appTheme.clearBackgroundImage()
+                        }
                     }
                     //Kirigami.Action {
                     //    id: countdownConfigButton
@@ -724,6 +748,24 @@ Kirigami.ApplicationWindow {
                         icon.name: "gtk-underline"
                         icon.color: appTheme.__iconColor
                         onClicked: prompter.underline = !prompter.underline
+                    }
+                    ToolButton {
+                        //text: i18n("&Left")
+                        icon.name: "gtk-justify-left"
+                        icon.color: appTheme.__iconColor
+                        onClicked: prompter.alignment = Text.AlignLeft
+                    }
+                    ToolButton {
+                        //text: i18n("&Center")
+                        icon.name: "gtk-justify-center"
+                        icon.color: appTheme.__iconColor
+                        onClicked: prompter.alignment = Text.AlignHCenter
+                    }
+                    ToolButton {
+                        //text: i18n("&Right")
+                        icon.name: "gtk-justify-right"
+                        icon.color: appTheme.__iconColor
+                        onClicked: prompter.alignment = Text.AlignRight
                     }
                 }
             }
