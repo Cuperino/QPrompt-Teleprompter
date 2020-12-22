@@ -197,12 +197,16 @@ Kirigami.ApplicationWindow {
         topContent: RowLayout {
             Button {
                 text: i18n("Instructions")
+                flat: true
                 onClicked: {
+                    console.log("c1")
                 }
             }
             Button {
-                text: i18n("Change Theme")
+                text: i18n("Theme")
+                flat: true
                 onClicked: {
+                    console.log("c2")
                 }
             }
         }
@@ -631,9 +635,14 @@ Kirigami.ApplicationWindow {
                         text: i18n("Background")
                         
                         Kirigami.Action {
-                            id: changeBackgroundButton
+                            id: changeBackgroundImageButton
                             text: i18n("Set Image")
                             onTriggered: appTheme.loadBackgroundImage()
+                        }
+                        Kirigami.Action {
+                            id: changeBackgroundColorButton
+                            text: i18n("Set Color")
+                            onTriggered: backgroundColorDialog.open()
                         }
                         Kirigami.Action {
                             id: clearBackgroundButton
@@ -821,6 +830,15 @@ Kirigami.ApplicationWindow {
     }
     
     // Dialogues
+    ColorDialog {
+        id: backgroundColorDialog
+        currentColor: appTheme.__backgroundColor
+        onAccepted: {
+            console.log(color)
+            appTheme.__backgroundColor = color
+        }
+    }
+    
     FileDialog {
         id: openDialog
         fileMode: FileDialog.OpenFile
