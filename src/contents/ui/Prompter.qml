@@ -59,6 +59,7 @@ Flickable {
     //property alias __baseSpeed: parent.__baseSpeed
     //property alias __curvature: parent.__curvature
     property int __lastRecordedPosition: 0
+    property int alignment: Text.AlignCenter
     readonly property real centreX: width / 2;
     readonly property real centreY: height / 2;
     readonly property int __jitterMargin: __i%2
@@ -178,15 +179,11 @@ Flickable {
 
         switch (state) {
             case "editing":
-                showPassiveNotification(i18n("Editing"))
-                //root.leaveFullScreen()
-                //root.controlsVisible = true
+                showPassiveNotification(i18n("Editing"), 850*countdown.__iterations)
                 break;
             case "countdown":
             case "prompting":
-                showPassiveNotification(i18n("Prompt started"))
-                //root.showFullScreen()
-                //root.controlsVisible = false
+                showPassiveNotification(i18n("Prompt started"), 850*countdown.__iterations)
                 break;
         }
     }
@@ -272,7 +269,10 @@ Flickable {
             }
         }
         MouseArea {
+            id: leftWidthAdjustmentBar
             scrollGestureEnabled: false
+            propagateComposedEvents: true
+            hoverEnabled: false
             anchors.left: parent.left
             anchors.top: parent.top
             anchors.bottom: parent.bottom
@@ -289,12 +289,22 @@ Flickable {
                 anchors {top: parent.top; bottom: parent.bottom; horizontalCenter: parent.horizontalCenter}
             }
             onPressed: {
-                if (Qt.application.layoutDirection===Qt.LeftToRight&&parent.x<0 || Qt.application.layoutDirection===Qt.RightToLeft&&parent.x>0)
+                // Hack: Workaround to prevent covering the editor toolbar's buttons, placed at the window's footer.
+                if (mouse.y >= position+prompter.height)
+                    mouse.accepted = false
+                // Adjust widths
+                else if (Qt.application.layoutDirection===Qt.LeftToRight&&parent.x<0 || Qt.application.layoutDirection===Qt.RightToLeft&&parent.x>0)
                     parent.x = -parent.x
+            }
+            onClicked: {
+                mouse.accepted = false
             }
         }
         MouseArea {
+            id: rightWidthAdjustmentBar
             scrollGestureEnabled: false
+            propagateComposedEvents: true
+            hoverEnabled: false
             anchors.right: parent.right
             anchors.top: parent.top
             anchors.bottom: parent.bottom
@@ -311,9 +321,16 @@ Flickable {
                 anchors {top: parent.top; bottom: parent.bottom; horizontalCenter: parent.horizontalCenter}
             }
             onPressed: {
-                if (Qt.application.layoutDirection===Qt.LeftToRight&&parent.x>0 || Qt.application.layoutDirection===Qt.RightToLeft&&parent.x<0)
+                // Hack: Workaround to prevent covering the editor toolbar's buttons, placed at the window's footer.
+                if (mouse.y >= position+prompter.height)
+                    mouse.accepted = false
+                // Adjust widths
+                else if (Qt.application.layoutDirection===Qt.LeftToRight&&parent.x>0 || Qt.application.layoutDirection===Qt.RightToLeft&&parent.x<0)
                     parent.x = -parent.x
             }
+            //onClicked: {
+                //mouse.accepted = false
+            //}
         }
     }
 
@@ -330,6 +347,8 @@ Flickable {
 
     MouseArea {
         //propagateComposedEvents: false
+        acceptedButtons: Qt.NoButton
+        hoverEnabled: false
         scrollGestureEnabled: false
         // The following placement allows covering beyond the boundaries of the editor and into the prompter's margins.
         anchors.left: parent.left
@@ -358,11 +377,10 @@ Flickable {
                     var i=__i;
                     __i=0;
                     if (prompter.__invertScrollDirection)
-                        prompter.position = prompter.position + delta;
+                        prompter.position += delta;
                     else
-                        prompter.position = prompter.position - delta;
+                        prompter.position -= delta;
                     __i=i;
-                    //prompter.__play = true
                     prompter.position = prompter.__destination
 
                 }
@@ -504,23 +522,45 @@ Flickable {
                 case Qt.Key_Escape:
                     prompter.toggle();
                     break;
-                //case Qt.Key_PageUp:
-                //    showPassiveNotification(i18n("Page Up Pressed")); break;
-                //case Qt.Key_PageDown:
-                //    showPassiveNotification(i18n("Page Down Pressed")); break;
-                //case Qt.Key_Home:
-                //    showPassiveNotification(i18n("Home Pressed")); break;
-                //case Qt.Key_End:
-                //    showPassiveNotification(i18n("End Pressed")); break;
-                    //default:
-                    //    // Show key code
-                    //    showPassiveNotification(event.key)
+                //default:
+                //    // Show key code
+                //    showPassiveNotification(event.key)
             }
             //// Undo and redo key bindings
             //if (event.matches(StandardKey.Undo))
             //    document.undo();
             //else if (event.matches(StandardKey.Redo))
             //    document.redo();
+        
+        // Keys presses that apply the same to all states
+        switch (event.key) {
+            case Qt.Key_PageUp:
+                if (!this.__atStart) {
+                    var i=__i;
+                    __i=0;
+                    //prompter.position -= prompter.height/4
+                    prompter.position = prompter.position
+                    scrollBar.decrease()
+                    __i=i
+                    prompter.position = __destination
+                }
+                break;
+            case Qt.Key_PageDown:
+                if (!this.__atEnd) {
+                    var i=__i;
+                    __i=0;
+                    //prompter.position += prompter.height/4
+                    prompter.position = prompter.position
+                    scrollBar.increase()
+                    __i=i
+                    prompter.position = __destination
+                }
+                break;
+            //case Qt.Key_Home:
+            //    showPassiveNotification(i18n("Home Pressed")); break;
+            //case Qt.Key_End:
+            //    showPassiveNotification(i18n("End Pressed")); break;
+        }
     }
     states: [
         State {
@@ -598,6 +638,16 @@ Flickable {
                 target: editor
                 selectByMouse: false
             }
+            PropertyChanges {
+                target: leftWidthAdjustmentBar
+                opacity: 0
+                enabled: false
+            }
+            PropertyChanges {
+                target: rightWidthAdjustmentBar
+                opacity: 0
+                enabled: false
+            }
             //State {
                 //name: "prompting"
                 //PropertyChanges {
@@ -658,6 +708,16 @@ Flickable {
                 target: increaseVelocityButton
                 enabled: true
             }
+            PropertyChanges {
+                target: leftWidthAdjustmentBar
+                opacity: 0
+                enabled: false
+            }
+            PropertyChanges {
+                target: rightWidthAdjustmentBar
+                opacity: 0
+                enabled: false
+            }
         }
     ]
     state: "editing"
@@ -667,6 +727,8 @@ Flickable {
     }
     
     // Progress indicator
-    ScrollBar.vertical: ProgressIndicator {}
+    ScrollBar.vertical: ProgressIndicator {
+        id: scrollBar
+    }
 
 }
