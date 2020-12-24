@@ -27,7 +27,6 @@ import QtQuick.Window 2.15
 import Qt.labs.platform 1.1
 import QtQuick.Layouts 1.15
 import QtQuick.Controls.Material 2.15
-//import QtQuick3D 1.15
 
 import com.cuperino.qprompt.document 1.0
 
@@ -56,7 +55,7 @@ Kirigami.ApplicationWindow {
     //Material.theme: themeSwitch.checked ? Material.Dark : Material.Light
     background: Rectangle {
         id: appTheme
-        property bool hasBackgroundImage: backgroundImage.opacity>0//backgroundImage.visible
+        property bool hasBackground: color!==__backgroundColor || backgroundImage.opacity>0//backgroundImage.visible
         property color __backgroundColor: parent.Material.theme===Material.Light ? "#fafafa" : "#303030"
         property color __fontColor: parent.Material.theme===Material.Light ? "#212121" : "#fff"
         property color __iconColor: parent.Material.theme===Material.Light ? "#232629" : "#c3c7d1"
@@ -68,8 +67,9 @@ Kirigami.ApplicationWindow {
             openBackgroundDialog.open()
         }
 
-        function clearBackgroundImage() {
+        function clearBackground() {
             backgroundImage.opacity = 0
+            appTheme.color = appTheme.__backgroundColor
         }
         
         function setBackgroundImage(file) {
@@ -407,7 +407,7 @@ Kirigami.ApplicationWindow {
         visible: visibility!==Kirigami.ApplicationWindow.FullScreen
         color: appTheme.__backgroundColor
         anchors{ top:parent.top; left:parent.left; right: parent.right }
-        height: 42
+        height: 40
         z: -1
     }
     
@@ -647,8 +647,8 @@ Kirigami.ApplicationWindow {
                         Kirigami.Action {
                             id: clearBackgroundButton
                             text: i18n("Clear Background")
-                            enabled: appTheme.hasBackgroundImage
-                            onTriggered: appTheme.clearBackgroundImage()
+                            enabled: appTheme.hasBackground
+                            onTriggered: appTheme.clearBackground()
                         }
                     }
                     //Kirigami.Action {
@@ -835,7 +835,7 @@ Kirigami.ApplicationWindow {
         currentColor: appTheme.__backgroundColor
         onAccepted: {
             console.log(color)
-            appTheme.__backgroundColor = color
+            appTheme.color = color
         }
     }
     
@@ -855,7 +855,7 @@ Kirigami.ApplicationWindow {
         nameFilters: ["JPEG image (*.jpg *.jpeg *.JPG *.JPEG)", "PNG image (*.png *.PNG)", "GIF animation (*.gif *.GIF)"]
         folder: StandardPaths.writableLocation(StandardPaths.DocumentsLocation)
         onAccepted: appTheme.setBackgroundImage(file)
-        onRejected: appTheme.hasBackgroundImage = false
+        onRejected: appTheme.hasBackground = false
     }
     
     FileDialog {
