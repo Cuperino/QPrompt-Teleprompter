@@ -172,7 +172,7 @@ Item {
             property double __opacity: overlay.__trianglesOpacity
             property color __strokeColor: "lightgray"
             property color __fillColor: "#001800"
-            property double __offsetX: 0.3333
+            property double __offsetX: 0.1111
             property double __stretchX: 0.3333
             readonly property double __triangleUnit: parent.height / 6
             Shape {

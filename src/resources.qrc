@@ -6,7 +6,9 @@
         <file alias="Countdown.qml">contents/ui/Countdown.qml</file>
         <file alias="ProgressIndicator.qml">contents/ui/ProgressIndicator.qml</file>
         <file alias="TimerClock.qml">contents/ui/TimerClock.qml</file>
+        <file alias="PrompterPage.qml">contents/ui/PrompterPage.qml</file>
         <file alias="AboutPage.qml">contents/ui/AboutPage.qml</file>
+        <file alias="ProjectionWindow.qml">contents/ui/ProjectionWindow.qml</file>
         <file>qtquickcontrols2.conf</file>
         <file>images/logo.png</file>
         <file>fonts/fontello.ttf</file>
