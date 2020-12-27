@@ -47,8 +47,8 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
 
     KAboutData aboutData("qprompt", i18n("QPrompt"), "0.14.0",
                          i18n("Free Software teleprompter for professionals across industries."),
-                         //KAboutLicense::GPL_V3,
-                         KAboutLicense::Custom,
+                         KAboutLicense::GPL_V3,
+                         //KAboutLicense::Custom,
                          i18n("Copyright 2020, Javier O. Cordero Pérez"), QString(),
                          "https://javiercordero.info");
     // Overwrite default-generated values of organizationDomain & desktopFileName
@@ -56,20 +56,20 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
     aboutData.setDesktopFileName("com.cuperino.com");
     aboutData.addAuthor (
         QString("Javier O. Cordero Pérez"),
-        QString("Leader Developer"),
+        QString("Lead Developer & Project Manager"),
         QString("cuperino@protonmail.com"),
         QString("https://cuperino.com"),
         QString("cuperino")
     );
     aboutData.setTranslator (
-        QString("Javier O. Cordero Pérez"),
-        QString("cuperino@protonmail.com")
-    );
-    aboutData.addLicense(
-        KAboutLicense::LGPL_V3
+        QString("Su nombre irá aquí"),
+        QString("name@protonmail.com")
     );
     aboutData.addLicense(
         KAboutLicense::GPL_V3
+    );
+    aboutData.addLicense(
+        KAboutLicense::LGPL_V3
     );
     // set the application metadata
     KAboutData::setApplicationData(aboutData);
