@@ -25,7 +25,7 @@ import org.kde.kirigami 2.9 as Kirigami
 import QtQuick.Controls 2.15
 import QtQuick.Window 2.15
 import Qt.labs.platform 1.1
-import QtQuick.Dialogs 1.3 as QmlDialogs
+//import QtQuick.Dialogs 1.3 as QmlDialogs
 import QtQuick.Layouts 1.15
 import QtQuick.Controls.Material 2.15
 
@@ -161,7 +161,10 @@ Kirigami.ApplicationWindow {
             Kirigami.Action {
                 text: i18n("Open")
                 iconName: "folder"
-                onTriggered: openDialog.open()
+                onTriggered: {
+                    console.log(root.pageStack.layers.currentItem)
+                    root.pageStack.layers.currentItem.openFile()
+                }
             },
             Kirigami.Action {
                 text: i18n("Save")
@@ -262,22 +265,31 @@ Kirigami.ApplicationWindow {
             },
             Label {
                 text: i18n("Background opacity:") + " " + backgroundOpacitySlider.value.toFixed(2)
-                visible: root.__translucidBackground
+                enabled: root.__translucidBackground
+                visible: parent.Material.background.a === 0
                 Layout.leftMargin: 8
                 Layout.rightMargin: 8
             },
-            Slider {
-                id: backgroundOpacitySlider
-                visible: root.__translucidBackground
-                from: 0
-                to: 1
-                value: 0.8
-                stepSize: 0.01
-                Layout.fillWidth: true
-                Layout.leftMargin: 16
-                Layout.rightMargin: 16
-                onMoved: {
-                    root.__opacity = value
+            RowLayout {
+                visible: parent.Material.background.a === 0
+                CheckBox {
+                    id: checkBackgroundTranslucid
+                    checked: root.__translucidBackground
+                    onToggled: root.__translucidBackground = !root.__translucidBackground
+                }
+                Slider {
+                    id: backgroundOpacitySlider
+                    enabled: root.__translucidBackground
+                    from: 0
+                    to: 1
+                    value: 0.8
+                    stepSize: 0.01
+                    Layout.fillWidth: true
+                    Layout.leftMargin: 16
+                    Layout.rightMargin: 16
+                    onMoved: {
+                        root.__opacity = value
+                    }
                 }
             }
         ]
@@ -294,7 +306,7 @@ Kirigami.ApplicationWindow {
             }
             MenuItem {
                 text: i18n("&Open")
-                onTriggered: openDialog.open()
+                onTriggered: openDialog.openFile()
             }
             MenuItem {
                 text: i18n("&Save As...")
@@ -464,14 +476,14 @@ Kirigami.ApplicationWindow {
         }
     }
     
-    FileDialog {
-        id: openDialog
-        fileMode: FileDialog.OpenFile
-        selectedNameFilter.index: 1
-        nameFilters: ["Text files (*.txt)", "HTML files (*.html *.htm)"]
-        folder: StandardPaths.writableLocation(StandardPaths.DocumentsLocation)
-        onAccepted: prompter.load(file)
-    }
+    //FileDialog {
+        //id: openDialog
+        //fileMode: FileDialog.OpenFile
+        //selectedNameFilter.index: 1
+        //nameFilters: ["Text files (*.txt)", "HTML files (*.html *.htm)"]
+        //folder: StandardPaths.writableLocation(StandardPaths.DocumentsLocation)
+        //onAccepted: prompter.load(file)
+    //}
     
     FileDialog {
         id: openBackgroundDialog
