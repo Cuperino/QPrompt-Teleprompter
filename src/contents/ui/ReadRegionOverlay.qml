@@ -169,15 +169,14 @@ Item {
         }
         Item {
             id: triangles
-            property double __opacity: overlay.__trianglesOpacity
-            property color __strokeColor: "lightgray"
+            property alias __opacity: overlay.__trianglesOpacity
+            property color __strokeColor: "gray"
             property color __fillColor: "#001800"
             property double __offsetX: 0.1111
             property double __stretchX: 0.3333
             readonly property double __triangleUnit: parent.height / 6
             Shape {
                 id: leftTriangle
-                opacity: triangles.__opacity
                 ShapePath {
                     strokeWidth: 3
                     strokeColor: triangles.__strokeColor
@@ -194,7 +193,6 @@ Item {
             }
             Shape {
                 id: rightTriangle
-                opacity: triangles.__opacity
                 x: parent.parent.width
                 ShapePath {
                     strokeWidth: 3
@@ -230,7 +228,7 @@ Item {
                     name: "triangles"
                     PropertyChanges {
                         target: triangles
-                        opacity: 1
+                        opacity: __opacity
                     }
                     PropertyChanges {
                         target: topBar
@@ -245,7 +243,7 @@ Item {
                     name: "leftTriangle"
                     PropertyChanges {
                         target: triangles
-                        opacity: 1
+                        opacity: __opacity
                     }
                     PropertyChanges {
                         target: rightTriangle
@@ -264,7 +262,7 @@ Item {
                     name: "rightTriangle"
                     PropertyChanges {
                         target: triangles
-                        opacity: 1
+                        opacity: __opacity
                     }
                     PropertyChanges {
                         target: leftTriangle
@@ -295,10 +293,48 @@ Item {
                     }
                 },
                 State {
+                    name: "barsLeft"
+                    PropertyChanges {
+                        target: triangles
+                        opacity: __opacity
+                    }
+                    PropertyChanges {
+                        target: rightTriangle
+                        opacity: 0
+                    }
+                    PropertyChanges {
+                        target: topBar
+                        opacity: overlay.__opacity
+                    }
+                    PropertyChanges {
+                        target: bottomBar
+                        opacity: overlay.__opacity
+                    }
+                },
+                State {
+                    name: "barsRight"
+                    PropertyChanges {
+                        target: triangles
+                        opacity: __opacity
+                    }
+                    PropertyChanges {
+                        target: leftTriangle
+                        opacity: 0
+                    }
+                    PropertyChanges {
+                        target: topBar
+                        opacity: overlay.__opacity
+                    }
+                    PropertyChanges {
+                        target: bottomBar
+                        opacity: overlay.__opacity
+                    }
+                },
+                State {
                     name: "all"
                     PropertyChanges {
                         target: triangles
-                        opacity: 1
+                        opacity: __opacity
                     }
                     PropertyChanges {
                         target: topBar

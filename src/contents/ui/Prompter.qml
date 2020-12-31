@@ -27,6 +27,7 @@ import QtQuick.Window 2.0
 import Qt.labs.platform 1.0
 import QtQuick.Layouts 1.15
 import QtQuick.Controls.Material 2.15
+import QtGraphicalEffects 1.15
 
 import com.cuperino.qprompt.document 1.0
 
@@ -332,6 +333,13 @@ Flickable {
                 //mouse.accepted = false
             //}
         }
+    }
+    
+    FastBlur {
+        anchors.fill: editor
+        source: editor
+        //radius: 32
+        radius: 0
     }
 
     // Bottom margin hack
