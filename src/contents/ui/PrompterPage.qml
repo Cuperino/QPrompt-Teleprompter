@@ -201,6 +201,20 @@ Kirigami.ScrollablePage {
                 enabled: overlay.styleState!=="bars"
             }
             Kirigami.Action {
+                id: readRegionBarsLeftButton
+                text: i18n("Bars && Left Triangle")
+                onTriggered: overlay.styleState = "barsLeft"
+                tooltip: i18n("Mark reading region using translucent bars and left triangle")
+                enabled: overlay.styleState!=="barsLeft"
+            }
+            Kirigami.Action {
+                id: readRegionBarsRightButton
+                text: i18n("Bars && Right Triangle")
+                onTriggered: overlay.styleState = "barsRight"
+                tooltip: i18n("Mark reading region using translucent bars and right triangle")
+                enabled: overlay.styleState!=="barsRight"
+            }
+            Kirigami.Action {
                 id: readRegionAllButton
                 text: i18n("All")
                 onTriggered: overlay.styleState = "all"
@@ -279,9 +293,11 @@ Kirigami.ScrollablePage {
         background: Rectangle {
             color: appTheme.__backgroundColor
         }
-        RowLayout {
+        GridLayout {
             anchors.fill: parent
+            columns: width / bookmarkToggleButton.implicitWidth - 1
             ToolButton {
+                id: bookmarkToggleButton
                 //text: i18n("Bookmark")
                 icon.name: "bookmarks"
                 icon.color: appTheme.__iconColor
@@ -375,6 +391,25 @@ Kirigami.ScrollablePage {
     
     function openFile() {
         openDialog.open()
+    }
+    
+    FileDialog {
+        id: openDialog
+        fileMode: FileDialog.OpenFile
+        selectedNameFilter.index: 1
+        nameFilters: ["Text files (*.txt)", "HTML files (*.html *.htm)"]
+        folder: StandardPaths.writableLocation(StandardPaths.DocumentsLocation)
+        onAccepted: prompter.load(file)
+    }
+    
+    FileDialog {
+        id: saveDialog
+        fileMode: FileDialog.SaveFile
+        defaultSuffix: prompter.fileType
+            nameFilters: openDialog.nameFilters
+            selectedNameFilter.index: prompter.fileType === "txt" ? 0 : 1
+            folder: StandardPaths.writableLocation(StandardPaths.DocumentsLocation)
+            onAccepted: prompter.saveAs(file)
     }
     
     // Prompter Page Component {
