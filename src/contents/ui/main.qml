@@ -28,6 +28,7 @@ import Qt.labs.platform 1.1
 //import QtQuick.Dialogs 1.3 as QmlDialogs
 import QtQuick.Layouts 1.15
 import QtQuick.Controls.Material 2.15
+import QtGraphicalEffects 1.15
 
 import com.cuperino.qprompt.document 1.0
 
@@ -82,9 +83,8 @@ Kirigami.ApplicationWindow {
         Image {
             id: backgroundImage
             //visible: opacity!==0
+            anchors.fill: parent
             fillMode: Image.PreserveAspectCrop
-            width: parent.width
-            height: parent.height
             opacity: 0
             autoTransform: true
             asynchronous: true
@@ -104,6 +104,12 @@ Kirigami.ApplicationWindow {
             }
         }
         
+        GaussianBlur {
+            anchors.fill: backgroundImage
+            source: backgroundImage
+            radius: 2
+        }
+        
         Behavior on opacity {
             enabled: true
             animation: NumberAnimation {
@@ -112,6 +118,7 @@ Kirigami.ApplicationWindow {
             }
         }
     }
+    
     // Full screen
     visibility: __autoFullScreen ? prompterVisibility : Kirigami.ApplicationWindow.AutomaticVisibility
     onWindowTitleChanged: {
@@ -163,7 +170,7 @@ Kirigami.ApplicationWindow {
                 iconName: "folder"
                 onTriggered: {
                     console.log(root.pageStack.layers.currentItem)
-                    root.pageStack.layers.currentItem.openFile()
+                    root.pageStack.layers.currentItem.openFile
                 }
             },
             Kirigami.Action {
