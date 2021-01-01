@@ -1,5 +1,5 @@
 /****************************************************************************
- * *
+ **
  ** Copyright (C) 2017 The Qt Company Ltd.
  ** Contact: https://www.qt.io/licensing/
  **

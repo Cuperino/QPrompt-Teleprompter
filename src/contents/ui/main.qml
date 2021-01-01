@@ -412,7 +412,6 @@ Kirigami.ApplicationWindow {
             MenuItem { text: i18n("&Report Bug...") }
             MenuItem { text: i18n("&Get Studio Edition") }
         }
-        
     }
 
     // Right Context Drawer
