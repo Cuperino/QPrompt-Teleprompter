@@ -44,8 +44,16 @@ Flickable {
     property alias bold: document.bold
     property alias italic: document.italic
     property alias underline: document.underline
+    property alias fontFamily: document.fontFamily
+    property alias fontSize: document.fontSize
+    property alias font: editor.font
+    property alias textColor: document.textColor
+    property alias alignment: document.alignment
     property alias modified: document.modified
     property alias fileType: document.fileType
+    property alias canPaste: editor.canPaste
+    property alias selectedText: editor.selectedText
+    property color textColor: "#FFF"
     // property int __unit: 1
     property alias position: prompter.contentY
     // Scrolling settings
@@ -60,7 +68,7 @@ Flickable {
     //property alias __baseSpeed: parent.__baseSpeed
     //property alias __curvature: parent.__curvature
     property int __lastRecordedPosition: 0
-    property int alignment: Text.AlignCenter
+//     property int alignment: Text.AlignCenter
     readonly property real centreX: width / 2;
     readonly property real centreY: height / 2;
     readonly property int __jitterMargin: __i%2
@@ -247,7 +255,8 @@ Flickable {
         focus: true
         // Make base font size relative to editor's width
         font.pixelSize: prompter.state==="editing" && !prompter.__wysiwyg ? 16 : 10 * prompter.__vw
-
+        font.family: "Anjali Old Lipi"
+        font.hintingPreference: Font.PreferFullHinting
         // Make links responsive
         onLinkActivated: Qt.openUrlExternally(link)
         // Width drag controls
@@ -408,6 +417,7 @@ Flickable {
         cursorPosition: editor.cursorPosition
         selectionStart: editor.selectionStart
         selectionEnd: editor.selectionEnd
+        textColor: textColor
         Component.onCompleted: {
             if (Qt.application.arguments.length === 2) {
                 document.load("file:" + Qt.application.arguments[1]);
@@ -464,20 +474,6 @@ Flickable {
             text: qsTr("Color...")
             onTriggered: colorDialog.open()
         }
-    }
-
-    FontDialog {
-        id: fontDialog
-        options: FontDialog.ScalableFonts|FontDialog.MonospacedFonts|FontDialog.ProportionalFonts
-        onAccepted: {
-            document.fontFamily = font.family;
-            document.fontSize = font.pointSize*editor.font.pixelSize/6;
-        }
-    }
-
-    ColorDialog {
-        id: colorDialog
-        currentColor: "black"
     }
 
     // Key bindings

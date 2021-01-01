@@ -283,6 +283,22 @@ Kirigami.ScrollablePage {
     Prompter {
         id: prompter
         z: 0
+        textColor: colorDialog.color
+    }
+    
+    FontDialog {
+        id: fontDialog
+        options: FontDialog.ScalableFonts|FontDialog.MonospacedFonts|FontDialog.ProportionalFonts
+        onAccepted: {
+            prompter.fontFamily = font.family;
+            prompter.fontSize = font.pointSize*prompter.font.pixelSize/6;
+        }
+    }
+    
+    ColorDialog {
+        id: colorDialog
+        currentColor: appTheme.__fontColor
+        
     }
     
     // Editor Toolbar
@@ -293,89 +309,320 @@ Kirigami.ScrollablePage {
         background: Rectangle {
             color: appTheme.__backgroundColor
         }
-        GridLayout {
+        Flow {
+            id: flow
             anchors.fill: parent
-            columns: width / bookmarkToggleButton.implicitWidth - 1
-            ToolButton {
-                id: bookmarkToggleButton
-                //text: i18n("Bookmark")
-                icon.name: "bookmarks"
-                icon.color: appTheme.__iconColor
-                onClicked: prompter.bookmark()
+            Row {
+                id: anchorsRow
+                
+                ToolButton {
+                    id: bookmarkToggleButton
+                    //text: "\u2605" // icon-docs
+                    //contentItem: Text {
+                        //text: parent.text
+                        //font: parent.font
+                        //color: parent.down ? appTheme.__fontColor : appTheme.__iconColor
+                        //horizontalAlignment: Text.AlignHCenter
+                        //verticalAlignment: Text.AlignVCenter
+                        //elide: Text.ElideRight
+                    //}
+                    //font.family: "fontello"
+                    icon.name: "bookmarks"
+                    icon.color: down ? appTheme.__fontColor : appTheme.__iconColor
+                    focusPolicy: Qt.TabFocus
+                    onClicked: prompter.bookmark()
+                }
+                ToolSeparator {
+                    contentItem.visible: anchorsRow.y === undoRedoRow.y
+                }
             }
-            ToolButton {
-                //text: i18n("Undo")
-                icon.name: "edit-undo"
-                icon.color: appTheme.__iconColor
-                onClicked: prompter.undo()
+            Row {
+                id: undoRedoRow
+                ToolButton {
+                    //text: "\u2B8C"
+                    //contentItem: Text {
+                        //text: parent.text
+                        //font: parent.font
+                        //color: parent.down ? appTheme.__fontColor : appTheme.__iconColor
+                        //horizontalAlignment: Text.AlignHCenter
+                        //verticalAlignment: Text.AlignVCenter
+                        //elide: Text.ElideRight
+                    //}
+                    //font.family: "fontello"
+                    icon.name: "edit-undo"
+                    icon.color: down ? appTheme.__fontColor : appTheme.__iconColor
+                    focusPolicy: Qt.TabFocus
+                    onClicked: prompter.undo()
+                }
+                ToolButton {
+                    //text: "\u2B8C"
+                    //contentItem: Text {
+                        //text: parent.text
+                        //font: parent.font
+                        //color: parent.down ? appTheme.__fontColor : appTheme.__iconColor
+                        //horizontalAlignment: Text.AlignHCenter
+                        //verticalAlignment: Text.AlignVCenter
+                        //elide: Text.ElideRight
+                    //}
+                    icon.name: "edit-redo"
+                    icon.color: down ? appTheme.__fontColor : appTheme.__iconColor
+                    onClicked: prompter.redo()
+                }
+                ToolSeparator {
+                    contentItem.visible: undoRedoRow.y === editRow.y
+                }
             }
-            ToolButton {
-                //text: i18n("Redo")f
-                icon.name: "edit-redo"
-                icon.color: appTheme.__iconColor
-                onClicked: prompter.redo()
+            Row {
+                id: editRow
+                ToolButton {
+                    id: copyButton
+                    //text: "\uF0C5" // icon-docs
+                    //contentItem: Text {
+                        //text: parent.text
+                        //font: parent.font
+                        //color: parent.down ? appTheme.__fontColor : appTheme.__iconColor
+                        //horizontalAlignment: Text.AlignHCenter
+                        //verticalAlignment: Text.AlignVCenter
+                        //elide: Text.ElideRight
+                    //}
+                    //font.family: "fontello"
+                    icon.name: "edit-copy"
+                    icon.color: down ? appTheme.__fontColor : appTheme.__iconColor
+                    focusPolicy: Qt.TabFocus
+                    enabled: prompter.selectedText
+                    onClicked: prompter.copy()
+                }
+                ToolButton {
+                    id: cutButton
+                    //text: "\uE802" // icon-scissors
+                    //contentItem: Text {
+                        //text: parent.text
+                        //font: parent.font
+                        //color: parent.down ? appTheme.__fontColor : appTheme.__iconColor
+                        //horizontalAlignment: Text.AlignHCenter
+                        //verticalAlignment: Text.AlignVCenter
+                        //elide: Text.ElideRight
+                    //}
+                    //font.family: "fontello"
+                    icon.name: "edit-cut"
+                    icon.color: down ? appTheme.__fontColor : appTheme.__iconColor
+                    focusPolicy: Qt.TabFocus
+                    enabled: prompter.selectedText
+                    onClicked: prompter.cut()
+                }
+                ToolButton {
+                    id: pasteButton
+                    //text: "\uF0EA" // icon-paste
+                    //font.family: "fontello"
+                    //contentItem: Text {
+                        //text: parent.text
+                        //font: parent.font
+                        //color: parent.down ? appTheme.__fontColor : appTheme.__iconColor
+                        //horizontalAlignment: Text.AlignHCenter
+                        //verticalAlignment: Text.AlignVCenter
+                        //elide: Text.ElideRight
+                    //}
+                    icon.name: "edit-paste"
+                    icon.color: down ? appTheme.__fontColor : appTheme.__iconColor
+                    focusPolicy: Qt.TabFocus
+                    enabled: prompter.canPaste
+                    onClicked: prompter.paste()
+                }
+                ToolSeparator {
+                    contentItem.visible: editRow.y === formatRow.y
+                }
             }
-            ToolButton {
-                //text: i18n("&Copy")
-                icon.name: "edit-copy"
-                icon.color: appTheme.__iconColor
-                onClicked: prompter.copy()
+            Row {
+                id: formatRow
+                ToolButton {
+                    id: boldButton
+                    text: "\uE800" // icon-bold
+                    contentItem: Text {
+                        text: parent.text
+                        font: parent.font
+                        color: parent.down ? appTheme.__fontColor : appTheme.__iconColor
+                        horizontalAlignment: Text.AlignHCenter
+                        verticalAlignment: Text.AlignVCenter
+                        elide: Text.ElideRight
+                    }
+                    font.family: "fontello"
+                    //icon.name: "gtk-bold"
+                    //icon.color: down ? appTheme.__fontColor : appTheme.__iconColor
+                    focusPolicy: Qt.TabFocus
+                    checkable: true
+                    checked: prompter.bold
+                    onClicked: prompter.bold = !prompter.bold
+                }
+                ToolButton {
+                    id: italicButton
+                    text: "\uE801" // icon-italic
+                    contentItem: Text {
+                        text: parent.text
+                        font: parent.font
+                        color: parent.down ? appTheme.__fontColor : appTheme.__iconColor
+                        horizontalAlignment: Text.AlignHCenter
+                        verticalAlignment: Text.AlignVCenter
+                        elide: Text.ElideRight
+                    }
+                    font.family: "fontello"
+                    //icon.name: "gtk-italic"
+                    //icon.color: down ? appTheme.__fontColor : appTheme.__iconColor
+                    focusPolicy: Qt.TabFocus
+                    checkable: true
+                    checked: prompter.italic
+                    onClicked: prompter.italic = !prompter.italic
+                }
+                ToolButton {
+                    id: underlineButton
+                    text: "\uF0CD" // icon-underline
+                    contentItem: Text {
+                        text: parent.text
+                        font: parent.font
+                        color: parent.down ? appTheme.__fontColor : appTheme.__iconColor
+                        horizontalAlignment: Text.AlignHCenter
+                        verticalAlignment: Text.AlignVCenter
+                        elide: Text.ElideRight
+                    }
+                    //icon.name: "gtk-underline"
+                    //icon.color: down ? appTheme.__fontColor : appTheme.__iconColor
+                    font.family: "fontello"
+                    focusPolicy: Qt.TabFocus
+                    checkable: true
+                    checked: prompter.underline
+                    onClicked: prompter.underline = !prompter.underline
+                }
+                ToolSeparator {
+                    contentItem.visible: formatRow.y === fontRow.y
+                }
             }
-            ToolButton {
-                //text: i18n("Cut")
-                icon.name: "edit-cut"
-                icon.color: appTheme.__iconColor
-                onClicked: prompter.cut()
+            Row {
+                id: fontRow
+                ToolButton {
+                    id: fontFamilyToolButton
+                    text: qsTr("\uE808") // icon-font
+                    contentItem: Text {
+                        text: parent.text
+                        font: parent.font
+                        color: parent.down ? appTheme.__fontColor : appTheme.__iconColor
+                        horizontalAlignment: Text.AlignHCenter
+                        verticalAlignment: Text.AlignVCenter
+                        elide: Text.ElideRight
+                    }
+                    font.family: "fontello"
+                    font.bold: prompter.bold
+                    font.italic: prompter.italic
+                    font.underline: prompter.underline
+                    onClicked: {
+                        fontDialog.currentFont.family = prompter.fontFamily;
+                        fontDialog.currentFont.pointSize = prompter.fontSize;
+                        fontDialog.open();
+                    }
+                }
+                ToolButton {
+                    id: textColorButton
+                    text: "\uF1FC" // icon-brush
+                    contentItem: Text {
+                        text: parent.text
+                        font: parent.font
+                        color: parent.down ? appTheme.__fontColor : appTheme.__iconColor
+                        horizontalAlignment: Text.AlignHCenter
+                        verticalAlignment: Text.AlignVCenter
+                        elide: Text.ElideRight
+                    }
+                    font.family: "fontello"
+                    focusPolicy: Qt.TabFocus
+                    onClicked: colorDialog.open()
+                    
+                    Rectangle {
+                        width: aFontMetrics.width + 3
+                        height: 2
+                        color: prompter.textColor
+                        parent: textColorButton.contentItem
+                        anchors.horizontalCenter: parent.horizontalCenter
+                        anchors.baseline: parent.baseline
+                        anchors.baselineOffset: 6
+                        
+                        TextMetrics {
+                            id: aFontMetrics
+                            font: textColorButton.font
+                            text: textColorButton.text
+                        }
+                    }
+                }
+                ToolSeparator {
+                    contentItem.visible: fontRow.y === alignmentRow.y
+                }
             }
-            ToolButton {
-                //text: i18n("&Paste")
-                icon.name: "edit-paste"
-                icon.color: appTheme.__iconColor
-                onClicked: prompter.paste()
-            }
-            ToolButton {
-                //text: i18n("&Bold")
-                icon.name: "gtk-bold"
-                icon.color: appTheme.__iconColor
-                onClicked: prompter.bold = !prompter.bold
-            }
-            ToolButton {
-                //text: i18n("&Italic")
-                icon.name: "gtk-italic"
-                icon.color: appTheme.__iconColor
-                onClicked: prompter.italic = !prompter.italic
-            }
-            ToolButton {
-                //Text {
-                //text: i18n("Underline")
-                //color: appTheme.__iconColor
-                //anchors.fill: parent
-                //fontSizeMode: Text.Fit
-                //horizontalAlignment: Text.AlignHCenter
-                //verticalAlignment: Text.AlignVCenter
-                //}
-                //text: i18n("&Underline")
-                icon.name: "gtk-underline"
-                icon.color: appTheme.__iconColor
-                onClicked: prompter.underline = !prompter.underline
-            }
-            ToolButton {
-                //text: i18n("&Left")
-                icon.name: "gtk-justify-left"
-                icon.color: appTheme.__iconColor
-                onClicked: prompter.alignment = Text.AlignLeft
-            }
-            ToolButton {
-                //text: i18n("&Center")
-                icon.name: "gtk-justify-center"
-                icon.color: appTheme.__iconColor
-                onClicked: prompter.alignment = Text.AlignHCenter
-            }
-            ToolButton {
-                //text: i18n("&Right")
-                icon.name: "gtk-justify-right"
-                icon.color: appTheme.__iconColor
-                onClicked: prompter.alignment = Text.AlignRight
+            Row {
+                id: alignmentRow
+                ToolButton {
+                    id: alignLeftButton
+                    text: "\uE803" // icon-align-left
+                    contentItem: Text {
+                        text: parent.text
+                        font: parent.font
+                        color: parent.down ? appTheme.__fontColor : appTheme.__iconColor
+                        horizontalAlignment: Text.AlignHCenter
+                        verticalAlignment: Text.AlignVCenter
+                        elide: Text.ElideRight
+                    }
+                    font.family: "fontello"
+                    focusPolicy: Qt.TabFocus
+                    checkable: true
+                    checked: prompter.alignment === Qt.AlignLeft
+                    onClicked: prompter.alignment = Qt.AlignLeft
+                }
+                ToolButton {
+                    id: alignCenterButton
+                    text: "\uE804" // icon-align-center
+                    font.family: "fontello"
+                    contentItem: Text {
+                        text: parent.text
+                        font: parent.font
+                        color: parent.down ? appTheme.__fontColor : appTheme.__iconColor
+                        horizontalAlignment: Text.AlignHCenter
+                        verticalAlignment: Text.AlignVCenter
+                        elide: Text.ElideRight
+                    }
+                    focusPolicy: Qt.TabFocus
+                    checkable: true
+                    checked: prompter.alignment === Qt.AlignHCenter
+                    onClicked: prompter.alignment = Qt.AlignHCenter
+                }
+                ToolButton {
+                    id: alignRightButton
+                    text: "\uE805" // icon-align-right
+                    contentItem: Text {
+                        text: parent.text
+                        font: parent.font
+                        color: parent.down ? appTheme.__fontColor : appTheme.__iconColor
+                        horizontalAlignment: Text.AlignHCenter
+                        verticalAlignment: Text.AlignVCenter
+                        elide: Text.ElideRight
+                    }
+                    font.family: "fontello"
+                    focusPolicy: Qt.TabFocus
+                    checkable: true
+                    checked: prompter.alignment === Qt.AlignRight
+                    onClicked: prompter.alignment = Qt.AlignRight
+                }
+                ToolButton {
+                    id: alignJustifyButton
+                    text: "\uE806" // icon-align-justify
+                    contentItem: Text {
+                        text: parent.text
+                        font: parent.font
+                        color: parent.down ? appTheme.__fontColor : appTheme.__iconColor
+                        horizontalAlignment: Text.AlignHCenter
+                        verticalAlignment: Text.AlignVCenter
+                        elide: Text.ElideRight
+                    }
+                    font.family: "fontello"
+                    focusPolicy: Qt.TabFocus
+                    checkable: true
+                    checked: prompter.alignment === Qt.AlignJustify
+                    onClicked: prompter.alignment = Qt.AlignJustify
+                }
             }
         }
     }
