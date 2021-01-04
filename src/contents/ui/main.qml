@@ -129,6 +129,11 @@ Kirigami.ApplicationWindow {
         }
     }
     
+    function loadAboutPage() {
+        if (root.pageStack.layers.depth < 2)
+            root.pageStack.layers.push(aboutPageComponent, {aboutData: aboutData})
+    }
+    
     // Left Global Drawer
     globalDrawer: Kirigami.GlobalDrawer {
         id: globalMenu
@@ -180,10 +185,7 @@ Kirigami.ApplicationWindow {
             Kirigami.Action {
                 text: i18n("About") + " " + aboutData.displayName
                 iconName: "help-about"
-                onTriggered: {
-                    if (root.pageStack.layers.depth < 2)
-                        root.pageStack.layers.push(aboutPageComponent, {aboutData: aboutData})
-                }
+                onTriggered: loadAboutPage()
             },
             Kirigami.Action {
                 text: i18n("&Quit")
@@ -204,7 +206,7 @@ Kirigami.ApplicationWindow {
                 text: i18n("Theme")
                 flat: true
                 onClicked: {
-                    console.log("c2")
+                    showPassiveNotification(i18n("Live theme mode switching has not yet been implemented."));
                 }
             }
         }
@@ -317,17 +319,17 @@ Kirigami.ApplicationWindow {
             MenuItem {
                 text: i18n("&Copy")
                 enabled: prompterPage.editor.selectedText
-                onTriggered: prompterPage.document.copy()
+                onTriggered: prompterPage.editor.copy()
             }
             MenuItem {
                 text: i18n("Cu&t")
                 enabled: prompterPage.editor.selectedText
-                onTriggered: prompterPage.document.cut()
+                onTriggered: prompterPage.editor.cut()
             }
             MenuItem {
                 text: i18n("&Paste")
                 enabled: prompterPage.editor.canPaste
-                onTriggered: prompterPage.document.paste()
+                onTriggered: prompterPage.editor.paste()
             }
         }
         
@@ -394,9 +396,25 @@ Kirigami.ApplicationWindow {
             }
         }
         Menu {
-            //title: i18n("&Help")
-            MenuItem { text: i18n("&Report Bug...") }
-            MenuItem { text: i18n("&Get Studio Edition") }
+            title: i18n("&Help")
+            
+            MenuItem {
+                text: i18n("&Report Bug...")
+                onTriggered: Qt.openUrlExternally("https://github.com/Cuperino/QPrompt/issues")
+                icon.name: "tools-report-bug"
+            }
+            MenuSeparator { }
+            //MenuItem {
+            //    text: i18n("&Get Studio Edition")
+            //    onTriggered: Qt.openUrlExternally("https://cuperino.com/qprompt")
+            //    icon.name: "software-center"
+            //}
+            //MenuSeparator { }
+            MenuItem {
+                text: i18n("&About QPrompt")
+                onTriggered: root.loadAboutPage()
+                icon.source: "qrc:/images/logo.png"
+            }
         }
     }
 
