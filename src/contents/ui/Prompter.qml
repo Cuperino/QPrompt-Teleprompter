@@ -366,10 +366,10 @@ Flickable {
     // Bottom margin hack
     Rectangle {
         id: rect
-        anchors.left: parent.left
-        anchors.right: parent.right
+        anchors.left: editor.left
+        anchors.right: editor.right
         anchors.top: editor.bottom
-        height: parent.height
+        height: prompter.height
         color: "#000"
         opacity: 0.2
     }
