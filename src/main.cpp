@@ -1,7 +1,9 @@
 /****************************************************************************
  **
  ** QPrompt
- ** Copyright (C) 2020 Javier O. Cordero Pérez
+ ** Copyright (C) 2020-2021 Javier O. Cordero Pérez
+ **
+ ** This file is part of QPrompt.
  **
  ** This program is free software: you can redistribute it and/or modify
  ** it under the terms of the GNU General Public License as published by
@@ -49,7 +51,7 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
                          i18n("Free Software teleprompter for professionals across industries."),
                          KAboutLicense::GPL_V3,
                          //KAboutLicense::Custom,
-                         i18n("Copyright 2020, Javier O. Cordero Pérez"), QString(),
+                         i18n("Copyright 2020-2021, Javier O. Cordero Pérez"), QString(),
                          "https://javiercordero.info");
     // Overwrite default-generated values of organizationDomain & desktopFileName
     aboutData.setOrganizationDomain("cuperino.com");

@@ -1,7 +1,7 @@
 /****************************************************************************
  **
  ** QPrompt
- ** Copyright (C) 2020 Javier O. Cordero Pérez
+ ** Copyright (C) 2020-2021 Javier O. Cordero Pérez
  **
  ** This file is part of QPrompt.
  **
@@ -29,7 +29,14 @@ import Qt.labs.platform 1.1
 
 Kirigami.ScrollablePage {
     id: prompterPage
-    property alias italic: prompter.italic
+    
+    // Unused signal. Leaving for reference.
+    //signal bla( bool data )
+
+    property alias editor: prompter.editor
+    property alias document: prompter.document
+
+    //property alias italic: prompter.italic
     //anchors.fill: parent
     title: "QPrompt"
     actions {
@@ -249,7 +256,7 @@ Kirigami.ScrollablePage {
                 enabled: appTheme.hasBackground
                 onTriggered: appTheme.clearBackground()
             }
-        }
+        },
         //Kirigami.Action {
         //    id: countdownConfigButton
         //    text: i18n("Countdown")
@@ -262,6 +269,15 @@ Kirigami.ScrollablePage {
         //    tooltip: i18n("Duplicate teleprompter contents into separate screens")
         //    onTriggered: projectionWindow.visible = !projectionWindow.visible
         //}
+        Kirigami.Action {
+           id: debug
+           text: i18n("Debug")
+           tooltip: i18n("Debug Action")
+           onTriggered: {
+                console.log("Debug Action")
+                prompterPage.bla( true )
+           }
+        }
         ]
     }
     
@@ -290,8 +306,8 @@ Kirigami.ScrollablePage {
         id: fontDialog
         options: FontDialog.ScalableFonts|FontDialog.MonospacedFonts|FontDialog.ProportionalFonts
         onAccepted: {
-            prompter.fontFamily = font.family;
-            prompter.fontSize = font.pointSize*prompter.font.pixelSize/6;
+            prompter.document.fontFamily = font.family;
+            prompter.document.fontSize = font.pointSize*prompter.editor.font.pixelSize/6;
         }
     }
     
@@ -377,7 +393,8 @@ Kirigami.ScrollablePage {
                     icon.name: "edit-undo"
                     icon.color: down ? appTheme.__fontColor : appTheme.__iconColor
                     focusPolicy: Qt.TabFocus
-                    onClicked: prompter.undo()
+                    enabled: prompter.editor.canUndo
+                    onClicked: prompter.editor.undo()
                 }
                 ToolButton {
                     //text: "\u2B8C"
@@ -393,7 +410,8 @@ Kirigami.ScrollablePage {
                     //font.pointSize: 13
                     icon.name: "edit-redo"
                     icon.color: down ? appTheme.__fontColor : appTheme.__iconColor
-                    onClicked: prompter.redo()
+                    enabled: prompter.editor.canRedo
+                    onClicked: prompter.editor.redo()
                 }
                 ToolSeparator {
                     contentItem.visible: undoRedoRow.y === editRow.y
@@ -403,60 +421,60 @@ Kirigami.ScrollablePage {
                 id: editRow
                 ToolButton {
                     id: copyButton
-                    //text: "\uF0C5" // icon-docs
-                    //contentItem: Text {
-                        //text: parent.text
-                        //font: parent.font
-                        //color: parent.down ? appTheme.__fontColor : appTheme.__iconColor
-                        //horizontalAlignment: Text.AlignHCenter
-                        //verticalAlignment: Text.AlignVCenter
-                        //elide: Text.ElideRight
-                    //}
-                    //font.family: "fontello"
-                    //font.pointSize: 13
-                    icon.name: "edit-copy"
-                    icon.color: down ? appTheme.__fontColor : appTheme.__iconColor
+                    text: "\uF0C5" // icon-docs
+                    contentItem: Text {
+                        text: parent.text
+                        font: parent.font
+                        color: parent.down ? appTheme.__fontColor : appTheme.__iconColor
+                        horizontalAlignment: Text.AlignHCenter
+                        verticalAlignment: Text.AlignVCenter
+                        elide: Text.ElideRight
+                    }
+                    font.family: "fontello"
+                    font.pointSize: 13
+                    //icon.name: "edit-copy"
+                    //icon.color: down ? appTheme.__fontColor : appTheme.__iconColor
                     focusPolicy: Qt.TabFocus
-                    enabled: prompter.selectedText
-                    onClicked: prompter.copy()
+                    enabled: prompter.editor.selectedText
+                    onClicked: prompter.editor.copy()
                 }
                 ToolButton {
                     id: cutButton
-                    //text: "\uE802" // icon-scissors
-                    //contentItem: Text {
-                        //text: parent.text
-                        //font: parent.font
-                        //color: parent.down ? appTheme.__fontColor : appTheme.__iconColor
-                        //horizontalAlignment: Text.AlignHCenter
-                        //verticalAlignment: Text.AlignVCenter
-                        //elide: Text.ElideRight
-                    //}
-                    //font.family: "fontello"
-                    //font.pointSize: 13
-                    icon.name: "edit-cut"
-                    icon.color: down ? appTheme.__fontColor : appTheme.__iconColor
+                    text: "\uE802" // icon-scissors
+                    contentItem: Text {
+                        text: parent.text
+                        font: parent.font
+                        color: parent.down ? appTheme.__fontColor : appTheme.__iconColor
+                        horizontalAlignment: Text.AlignHCenter
+                        verticalAlignment: Text.AlignVCenter
+                        elide: Text.ElideRight
+                    }
+                    font.family: "fontello"
+                    font.pointSize: 13
+                    //icon.name: "edit-cut"
+                    //icon.color: down ? appTheme.__fontColor : appTheme.__iconColor
                     focusPolicy: Qt.TabFocus
-                    enabled: prompter.selectedText
-                    onClicked: prompter.cut()
+                    enabled: prompter.editor.selectedText
+                    onClicked: prompter.editor.cut()
                 }
                 ToolButton {
                     id: pasteButton
-                    //text: "\uF0EA" // icon-paste
-                    //contentItem: Text {
-                        //text: parent.text
-                        //font: parent.font
-                        //color: parent.down ? appTheme.__fontColor : appTheme.__iconColor
-                        //horizontalAlignment: Text.AlignHCenter
-                        //verticalAlignment: Text.AlignVCenter
-                        //elide: Text.ElideRight
-                    //}
-                    //font.family: "fontello"
-                    //font.pointSize: 13
-                    icon.name: "edit-paste"
-                    icon.color: down ? appTheme.__fontColor : appTheme.__iconColor
+                    text: "\uF0EA" // icon-paste
+                    contentItem: Text {
+                        text: parent.text
+                        font: parent.font
+                        color: parent.down ? appTheme.__fontColor : appTheme.__iconColor
+                        horizontalAlignment: Text.AlignHCenter
+                        verticalAlignment: Text.AlignVCenter
+                        elide: Text.ElideRight
+                    }
+                    font.family: "fontello"
+                    font.pointSize: 13
+                    //icon.name: "edit-paste"
+                    //icon.color: down ? appTheme.__fontColor : appTheme.__iconColor
                     focusPolicy: Qt.TabFocus
-                    enabled: prompter.canPaste
-                    onClicked: prompter.paste()
+                    enabled: prompter.editor.canPaste
+                    onClicked: prompter.editor.paste()
                 }
                 ToolSeparator {
                     contentItem.visible: editRow.y === formatRow.y
@@ -481,8 +499,8 @@ Kirigami.ScrollablePage {
                     //icon.color: down ? appTheme.__fontColor : appTheme.__iconColor
                     focusPolicy: Qt.TabFocus
                     checkable: true
-                    checked: prompter.bold
-                    onClicked: prompter.bold = !prompter.bold
+                    checked: prompter.document.bold
+                    onClicked: prompter.document.bold = !prompter.document.bold
                 }
                 ToolButton {
                     id: italicButton
@@ -501,8 +519,8 @@ Kirigami.ScrollablePage {
                     //icon.color: down ? appTheme.__fontColor : appTheme.__iconColor
                     focusPolicy: Qt.TabFocus
                     checkable: true
-                    checked: prompter.italic
-                    onClicked: prompter.italic = !prompter.italic
+                    checked: prompter.document.italic
+                    onClicked: prompter.document.italic = !prompter.document.italic
                 }
                 ToolButton {
                     id: underlineButton
@@ -521,8 +539,8 @@ Kirigami.ScrollablePage {
                     font.pointSize: 13
                     focusPolicy: Qt.TabFocus
                     checkable: true
-                    checked: prompter.underline
-                    onClicked: prompter.underline = !prompter.underline
+                    checked: prompter.document.underline
+                    onClicked: prompter.document.underline = !prompter.document.underline
                 }
                 ToolSeparator {
                     contentItem.visible: formatRow.y === fontRow.y
@@ -543,12 +561,12 @@ Kirigami.ScrollablePage {
                     }
                     font.family: "fontello"
                     font.pointSize: 13
-                    font.bold: prompter.bold
-                    font.italic: prompter.italic
-                    font.underline: prompter.underline
+                    font.bold: prompter.document.bold
+                    font.italic: prompter.document.italic
+                    font.underline: prompter.document.underline
                     onClicked: {
-                        fontDialog.currentFont.family = prompter.fontFamily;
-                        fontDialog.currentFont.pointSize = prompter.fontSize;
+                        fontDialog.currentFont.family = prompter.document.fontFamily;
+                        fontDialog.currentFont.pointSize = prompter.document.fontSize;
                         fontDialog.open();
                     }
                 }
@@ -571,7 +589,7 @@ Kirigami.ScrollablePage {
                     Rectangle {
                         width: aFontMetrics.width + 3
                         height: 2
-                        color: prompter.textColor
+                        color: prompter.document.textColor
                         parent: textColorButton.contentItem
                         anchors.horizontalCenter: parent.horizontalCenter
                         anchors.baseline: parent.baseline
@@ -605,8 +623,8 @@ Kirigami.ScrollablePage {
                     font.pointSize: 13
                     focusPolicy: Qt.TabFocus
                     checkable: true
-                    checked: prompter.alignment === Qt.AlignLeft
-                    onClicked: prompter.alignment = Qt.AlignLeft
+                    checked: prompter.document.alignment === Qt.AlignLeft
+                    onClicked: prompter.document.alignment = Qt.AlignLeft
                 }
                 ToolButton {
                     id: alignCenterButton
@@ -623,8 +641,8 @@ Kirigami.ScrollablePage {
                     }
                     focusPolicy: Qt.TabFocus
                     checkable: true
-                    checked: prompter.alignment === Qt.AlignHCenter
-                    onClicked: prompter.alignment = Qt.AlignHCenter
+                    checked: prompter.document.alignment === Qt.AlignHCenter
+                    onClicked: prompter.document.alignment = Qt.AlignHCenter
                 }
                 ToolButton {
                     id: alignRightButton
@@ -641,8 +659,8 @@ Kirigami.ScrollablePage {
                     font.pointSize: 13
                     focusPolicy: Qt.TabFocus
                     checkable: true
-                    checked: prompter.alignment === Qt.AlignRight
-                    onClicked: prompter.alignment = Qt.AlignRight
+                    checked: prompter.document.alignment === Qt.AlignRight
+                    onClicked: prompter.document.alignment = Qt.AlignRight
                 }
                 ToolButton {
                     id: alignJustifyButton
@@ -659,8 +677,8 @@ Kirigami.ScrollablePage {
                     font.pointSize: 13
                     focusPolicy: Qt.TabFocus
                     checkable: true
-                    checked: prompter.alignment === Qt.AlignJustify
-                    onClicked: prompter.alignment = Qt.AlignJustify
+                    checked: prompter.document.alignment === Qt.AlignJustify
+                    onClicked: prompter.document.alignment = Qt.AlignJustify
                 }
             }
         }
@@ -674,30 +692,7 @@ Kirigami.ScrollablePage {
     //text: "Lorem ipsum dolor sit amet"
     //}
     //}
-    
-    function openFile() {
-        openDialog.open()
-    }
-    
-    FileDialog {
-        id: openDialog
-        fileMode: FileDialog.OpenFile
-        selectedNameFilter.index: 1
-        nameFilters: ["Text files (*.txt)", "HTML files (*.html *.htm)"]
-        folder: StandardPaths.writableLocation(StandardPaths.DocumentsLocation)
-        onAccepted: prompter.load(file)
-    }
-    
-    FileDialog {
-        id: saveDialog
-        fileMode: FileDialog.SaveFile
-        defaultSuffix: prompter.fileType
-            nameFilters: openDialog.nameFilters
-            selectedNameFilter.index: prompter.fileType === "txt" ? 0 : 1
-            folder: StandardPaths.writableLocation(StandardPaths.DocumentsLocation)
-            onAccepted: prompter.saveAs(file)
-    }
-    
+
     // Prompter Page Component {
     Component {
         id: projectionWindow

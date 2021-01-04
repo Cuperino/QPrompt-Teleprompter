@@ -1,7 +1,7 @@
 /****************************************************************************
  **
  ** QPrompt
- ** Copyright (C) 2020 Javier O. Cordero Pérez
+ ** Copyright (C) 2020-2021 Javier O. Cordero Pérez
  **
  ** This file is part of QPrompt.
  **
@@ -20,13 +20,63 @@
  **
  ****************************************************************************/
 
+/****************************************************************************
+ **
+ ** Copyright (C) 2017 The Qt Company Ltd.
+ ** Contact: https://www.qt.io/licensing/
+ **
+ ** This file contains code originating from examples from the Qt Toolkit.
+ **
+ ** $QT_BEGIN_LICENSE:BSD$
+ ** Commercial License Usage
+ ** Licensees holding valid commercial Qt licenses may use this file in
+ ** accordance with the commercial license agreement provided with the
+ ** Software or, alternatively, in accordance with the terms contained in
+ ** a written agreement between you and The Qt Company. For licensing terms
+ ** and conditions see https://www.qt.io/terms-conditions. For further
+ ** information use the contact form at https://www.qt.io/contact-us.
+ **
+ ** BSD License Usage
+ ** Alternatively, you may use this file under the terms of the BSD license
+ ** as follows:
+ **
+ ** "Redistribution and use in source and binary forms, with or without
+ ** modification, are permitted provided that the following conditions are
+ ** met:
+ **   * Redistributions of source code must retain the above copyright
+ **     notice, this list of conditions and the following disclaimer.
+ **   * Redistributions in binary form must reproduce the above copyright
+ **     notice, this list of conditions and the following disclaimer in
+ **     the documentation and/or other materials provided with the
+ **     distribution.
+ **   * Neither the name of The Qt Company Ltd nor the names of its
+ **     contributors may be used to endorse or promote products derived
+ **     from this software without specific prior written permission.
+ **
+ **
+ ** THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+ ** "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+ ** LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+ ** A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
+ ** OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+ ** SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+ ** LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+ ** DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+ ** THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+ ** (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+ ** OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE."
+ **
+ ** $QT_END_LICENSE$
+ **
+ ****************************************************************************/
+
 import QtQuick 2.15
-import org.kde.kirigami 2.4 as Kirigami
+import org.kde.kirigami 2.9 as Kirigami
 import QtQuick.Controls 2.15
-import QtQuick.Window 2.0
-import Qt.labs.platform 1.0
-import QtQuick.Layouts 1.15
 import QtQuick.Controls.Material 2.15
+import QtQuick.Layouts 1.15
+import QtQuick.Window 2.15
+import Qt.labs.platform 1.1
 import QtGraphicalEffects 1.15
 
 import com.cuperino.qprompt.document 1.0
@@ -40,22 +90,13 @@ import com.cuperino.qprompt.document 1.0
 Flickable {
     //ScrollIndicator.vertical: ScrollIndicator{
     id: prompter
-    // Text
-    property alias bold: document.bold
-    property alias italic: document.italic
-    property alias underline: document.underline
-    property alias fontFamily: document.fontFamily
-    property alias fontSize: document.fontSize
-    property alias font: editor.font
+    // Patch through aliases
+    property alias editor: editor
+    property alias document: document
     property alias textColor: document.textColor
-    property alias alignment: document.alignment
-    property alias modified: document.modified
-    property alias fileType: document.fileType
-    property alias canPaste: editor.canPaste
-    property alias selectedText: editor.selectedText
-    property color textColor: "#FFF"
-    // property int __unit: 1
+    // Create position alias to make code more readable
     property alias position: prompter.contentY
+    //property int __unit: 1
     // Scrolling settings
     property bool __scrollAsDial: root.__scrollAsDial
     property bool __invertArrowKeys: root.__invertArrowKeys
@@ -68,7 +109,7 @@ Flickable {
     //property alias __baseSpeed: parent.__baseSpeed
     //property alias __curvature: parent.__curvature
     property int __lastRecordedPosition: 0
-//     property int alignment: Text.AlignCenter
+    //property int alignment: Text.AlignCenter
     readonly property real centreX: width / 2;
     readonly property real centreY: height / 2;
     readonly property int __jitterMargin: __i%2
@@ -81,11 +122,10 @@ Flickable {
     // origin.y is being roughly approximated. This may not work across all systems and displays...
     readonly property bool __atStart: position<=__jitterMargin-prompter.height+1
     readonly property bool __atEnd: position>=editor.height-__jitterMargin-1
-    //readonly property bool __atStart: false
-    //readonly property bool __atEnd: false
+    //readonly property bool __atStart: false  // debug code
+    //readonly property bool __atEnd: false  // debug code
     // Background
     property double __opacity: root.__opacity
-    //property alias __opacity: parent.__opacity
     // Flips
     property bool __flipX: false
     property bool __flipY: false
@@ -147,31 +187,7 @@ Flickable {
         }
     }
 
-    function bookmark(event) {
-        editor.bookmark(event)
-    }
-    function undo(event) {
-        editor.undo(event)
-    }
-    function redo(event) {
-        editor.redo(event)
-    }
-    function copy(event) {
-        editor.copy(event)
-    }
-    function cut(event) {
-        editor.cut(event)
-    }
-    function paste(event) {
-        editor.paste(event)
-    }
-    function load(file) {
-        editor.load(file)
-    }
-    function saveAs(file) {
-        editor.saveAs(file)
-    }
-
+    // Toggle prompter state
     function toggle() {
         // Update position
         var verticalPosition = position + overlay.__readRegionPlacement*overlay.height
@@ -206,8 +222,6 @@ Flickable {
             this.__i++
             this.__play = true
             this.position = this.__destination
-            //this.state = "play"
-            //this.animationState = "play"
             //showPassiveNotification(i18n("Increase Velocity"));
         }
     }
@@ -221,8 +235,6 @@ Flickable {
             this.__i--
             this.__play = true
             this.position = this.__destination
-            //this.state = "play"
-            //this.animationState = "play"
             //showPassiveNotification(i18n("Decrease Velocity"));
         }
     }
@@ -243,7 +255,7 @@ Flickable {
         rightPadding: 20+2*(x>0?x:0)
         topPadding: 0
         bottomPadding: 0
-        //background: transparent
+        background: transparent
         //background: Rectangle{
         //    color: QColor(40,41,35,127)
         //}
@@ -405,11 +417,6 @@ Flickable {
         }
     }
 
-    function newDocument() {
-        document.load("qrc:/untitled.html")
-        document.isNewFile = true
-    }
-    
     DocumentHandler {
         id: document
         property bool isNewFile: false
@@ -417,7 +424,7 @@ Flickable {
         cursorPosition: editor.cursorPosition
         selectionStart: editor.selectionStart
         selectionEnd: editor.selectionEnd
-        textColor: textColor
+        textColor: "#FFF"
         Component.onCompleted: {
             if (Qt.application.arguments.length === 2) {
                 document.load("file:" + Qt.application.arguments[1]);
@@ -430,15 +437,66 @@ Flickable {
         }
         //Component.onCompleted: document.load("qrc:/instructions.html")
         onLoaded: {
-            //textArea.textFormat = format
+            editor.textFormat = format
             editor.text = text
         }
         onError: {
             errorDialog.text = message
             errorDialog.visible = true
         }
-    }
 
+        function newDocument() {
+            load("qrc:/untitled.html")
+            isNewFile = true
+            showPassiveNotification(i18n("New document"))
+        }
+        
+        function loadInstructions() {
+            document.load("qrc:/instructions.html")
+            isNewFile = true
+        }
+        
+        function open() {
+            openDialog.open()
+        }
+        function saveAsDialog() {
+            saveDialog.open()
+        }
+        function saveDialog() {
+            if (isNewFile)
+                saveAsDialog()
+            else// if (modified)
+                document.saveAs(document.fileUrl)
+        }
+    }
+    FileDialog {
+        id: openDialog
+        fileMode: FileDialog.OpenFile
+        selectedNameFilter.index: 1
+        nameFilters: ["Text files (*.txt)", "HTML files (*.html *.htm)"]
+        folder: StandardPaths.writableLocation(StandardPaths.DocumentsLocation)
+        onAccepted: {
+            document.load(file)
+            document.isNewFile = false
+        }
+    }
+    
+    FileDialog {
+        id: saveDialog
+        fileMode: FileDialog.SaveFile
+        defaultSuffix: document.fileType
+        nameFilters: openDialog.nameFilters
+        // Always in the same format as original file
+        //selectedNameFilter.index: document.fileType === "txt" ? 0 : 1
+        // Always save as HTML
+        selectedNameFilter.index: 1
+        folder: StandardPaths.writableLocation(StandardPaths.DocumentsLocation)
+        onAccepted: {
+            document.saveAs(file)
+            document.isNewFile = false
+        }
+    }
+    
     MessageDialog {
         id: errorDialog
     }
@@ -538,6 +596,9 @@ Flickable {
         
         // Keys presses that apply the same to all states
         switch (event.key) {
+            case Qt.Key_F9:
+                prompter.toggle();
+                break;
             case Qt.Key_PageUp:
                 if (!this.__atStart) {
                     var i=__i;
