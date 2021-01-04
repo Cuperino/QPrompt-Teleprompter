@@ -60,7 +60,7 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
         QString("Javier O. Cordero Pérez"),
         QString("Lead Developer & Project Manager"),
         QString("cuperino@protonmail.com"),
-        QString("https://cuperino.com"),
+        QString("https://javiercordero.info"),
         QString("cuperino")
     );
     aboutData.setTranslator (
