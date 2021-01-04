@@ -298,7 +298,6 @@ Kirigami.ScrollablePage {
     ColorDialog {
         id: colorDialog
         currentColor: appTheme.__fontColor
-        
     }
     
     // Editor Toolbar
@@ -315,6 +314,30 @@ Kirigami.ScrollablePage {
             Row {
                 id: anchorsRow
                 
+//                 Component {
+//                     id: editorButton
+//                     ToolButton {
+//                         contentItem: Text {
+//                             text: parent.text
+//                             font: parent.font
+//                             color: parent.down ? appTheme.__fontColor : appTheme.__iconColor
+//                             horizontalAlignment: Text.AlignHCenter
+//                             verticalAlignment: Text.AlignVCenter
+//                             elide: Text.ElideRight
+//                         }
+//                         font.family: "fontello"
+//                         font.pointSize: 13
+//                         icon.color: down ? appTheme.__fontColor : appTheme.__iconColor
+//                         focusPolicy: Qt.TabFocus
+//                     }
+//                 }
+//                 Loader {
+//                     sourceComponent: editorButton
+//                     id: bookmarkToggleButton
+//                     icon.name: "bookmarks"
+//                     icon.color: down ? appTheme.__fontColor : appTheme.__iconColor
+//                     onClicked: prompter.bookmark()
+//                 }
                 ToolButton {
                     id: bookmarkToggleButton
                     //text: "\u2605" // icon-docs
@@ -327,6 +350,7 @@ Kirigami.ScrollablePage {
                         //elide: Text.ElideRight
                     //}
                     //font.family: "fontello"
+                    //font.pointSize: 13
                     icon.name: "bookmarks"
                     icon.color: down ? appTheme.__fontColor : appTheme.__iconColor
                     focusPolicy: Qt.TabFocus
@@ -349,6 +373,7 @@ Kirigami.ScrollablePage {
                         //elide: Text.ElideRight
                     //}
                     //font.family: "fontello"
+                    //font.pointSize: 13
                     icon.name: "edit-undo"
                     icon.color: down ? appTheme.__fontColor : appTheme.__iconColor
                     focusPolicy: Qt.TabFocus
@@ -364,6 +389,8 @@ Kirigami.ScrollablePage {
                         //verticalAlignment: Text.AlignVCenter
                         //elide: Text.ElideRight
                     //}
+                    //font.family: "fontello"
+                    //font.pointSize: 13
                     icon.name: "edit-redo"
                     icon.color: down ? appTheme.__fontColor : appTheme.__iconColor
                     onClicked: prompter.redo()
@@ -386,6 +413,7 @@ Kirigami.ScrollablePage {
                         //elide: Text.ElideRight
                     //}
                     //font.family: "fontello"
+                    //font.pointSize: 13
                     icon.name: "edit-copy"
                     icon.color: down ? appTheme.__fontColor : appTheme.__iconColor
                     focusPolicy: Qt.TabFocus
@@ -404,6 +432,7 @@ Kirigami.ScrollablePage {
                         //elide: Text.ElideRight
                     //}
                     //font.family: "fontello"
+                    //font.pointSize: 13
                     icon.name: "edit-cut"
                     icon.color: down ? appTheme.__fontColor : appTheme.__iconColor
                     focusPolicy: Qt.TabFocus
@@ -413,7 +442,6 @@ Kirigami.ScrollablePage {
                 ToolButton {
                     id: pasteButton
                     //text: "\uF0EA" // icon-paste
-                    //font.family: "fontello"
                     //contentItem: Text {
                         //text: parent.text
                         //font: parent.font
@@ -422,6 +450,8 @@ Kirigami.ScrollablePage {
                         //verticalAlignment: Text.AlignVCenter
                         //elide: Text.ElideRight
                     //}
+                    //font.family: "fontello"
+                    //font.pointSize: 13
                     icon.name: "edit-paste"
                     icon.color: down ? appTheme.__fontColor : appTheme.__iconColor
                     focusPolicy: Qt.TabFocus
@@ -446,6 +476,7 @@ Kirigami.ScrollablePage {
                         elide: Text.ElideRight
                     }
                     font.family: "fontello"
+                    font.pointSize: 13
                     //icon.name: "gtk-bold"
                     //icon.color: down ? appTheme.__fontColor : appTheme.__iconColor
                     focusPolicy: Qt.TabFocus
@@ -465,6 +496,7 @@ Kirigami.ScrollablePage {
                         elide: Text.ElideRight
                     }
                     font.family: "fontello"
+                    font.pointSize: 13
                     //icon.name: "gtk-italic"
                     //icon.color: down ? appTheme.__fontColor : appTheme.__iconColor
                     focusPolicy: Qt.TabFocus
@@ -486,6 +518,7 @@ Kirigami.ScrollablePage {
                     //icon.name: "gtk-underline"
                     //icon.color: down ? appTheme.__fontColor : appTheme.__iconColor
                     font.family: "fontello"
+                    font.pointSize: 13
                     focusPolicy: Qt.TabFocus
                     checkable: true
                     checked: prompter.underline
@@ -509,6 +542,7 @@ Kirigami.ScrollablePage {
                         elide: Text.ElideRight
                     }
                     font.family: "fontello"
+                    font.pointSize: 13
                     font.bold: prompter.bold
                     font.italic: prompter.italic
                     font.underline: prompter.underline
@@ -530,6 +564,7 @@ Kirigami.ScrollablePage {
                         elide: Text.ElideRight
                     }
                     font.family: "fontello"
+                    font.pointSize: 13
                     focusPolicy: Qt.TabFocus
                     onClicked: colorDialog.open()
                     
@@ -567,6 +602,7 @@ Kirigami.ScrollablePage {
                         elide: Text.ElideRight
                     }
                     font.family: "fontello"
+                    font.pointSize: 13
                     focusPolicy: Qt.TabFocus
                     checkable: true
                     checked: prompter.alignment === Qt.AlignLeft
@@ -576,6 +612,7 @@ Kirigami.ScrollablePage {
                     id: alignCenterButton
                     text: "\uE804" // icon-align-center
                     font.family: "fontello"
+                    font.pointSize: 13
                     contentItem: Text {
                         text: parent.text
                         font: parent.font
@@ -601,6 +638,7 @@ Kirigami.ScrollablePage {
                         elide: Text.ElideRight
                     }
                     font.family: "fontello"
+                    font.pointSize: 13
                     focusPolicy: Qt.TabFocus
                     checkable: true
                     checked: prompter.alignment === Qt.AlignRight
@@ -618,6 +656,7 @@ Kirigami.ScrollablePage {
                         elide: Text.ElideRight
                     }
                     font.family: "fontello"
+                    font.pointSize: 13
                     focusPolicy: Qt.TabFocus
                     checkable: true
                     checked: prompter.alignment === Qt.AlignJustify
