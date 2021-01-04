@@ -1,7 +1,9 @@
 /****************************************************************************
  **
  ** QPrompt
- ** Copyright (C) 2020 Javier O. Cordero Pérez
+ ** Copyright (C) 2020-2021 Javier O. Cordero Pérez
+ **
+ ** This file is part of QPrompt.
  **
  ** This program is free software: you can redistribute it and/or modify
  ** it under the terms of the GNU General Public License as published by

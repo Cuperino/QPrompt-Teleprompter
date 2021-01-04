@@ -1,7 +1,7 @@
 /****************************************************************************
  **
  ** QPrompt
- ** Copyright (C) 2020 Javier O. Cordero Pérez
+ ** Copyright (C) 2020-2021 Javier O. Cordero Pérez
  **
  ** This file is part of QPrompt.
  **
@@ -44,11 +44,11 @@ Kirigami.ApplicationWindow {
     
     property int prompterVisibility: Kirigami.ApplicationWindow.AutomaticVisibility
     property double __opacity: 0.8
-    property real __baseSpeed: 2
-    property real __curvature: 1.2
+    property real __baseSpeed: baseSpeedSlider.value
+    property real __curvature: baseAccelerationSlider.value
     
     property var document
-    title: document.fileName + " - " + aboutData.displayName
+    title: prompterPage.document.fileName + " - " + aboutData.displayName
     
     minimumWidth: 480
     minimumHeight: 380
@@ -121,19 +121,9 @@ Kirigami.ApplicationWindow {
     
     // Full screen
     visibility: __autoFullScreen ? prompterVisibility : Kirigami.ApplicationWindow.AutomaticVisibility
-    onWindowTitleChanged: {
-        root.setIcon(
-
-        )
-    }
-    onVisibilityChanged: {
-        if (visibility!==Kirigami.ApplicationWindow.FullScreen)
-            console.log("left fullscreen");
-            //position = prompter.positionAt(0, prompter.position + readRegion.__placement*overlay.height)
-    }
     // Open save dialog on closing
     onClosing: {
-        if (prompter.modified) {
+        if (prompterPage.document.modified) {
             quitDialog.open()
             close.accepted = false
         }
@@ -141,6 +131,8 @@ Kirigami.ApplicationWindow {
     
     // Left Global Drawer
     globalDrawer: Kirigami.GlobalDrawer {
+        id: globalMenu
+        
         property int bannerCounter: 0
         // isMenu: true
         title: aboutData.displayName
@@ -160,43 +152,37 @@ Kirigami.ApplicationWindow {
             Kirigami.Action {
                 text: i18n("New")
                 iconName: "folder"
-                onTriggered: {
-                    prompter.newDocument()
-                    showPassiveNotification(i18n("New document"))
-                }
+                onTriggered: prompterPage.document.newDocument()
             },
             Kirigami.Action {
                 text: i18n("Open")
                 iconName: "folder"
-                onTriggered: {
-                    console.log(root.pageStack.layers.currentItem)
-                    root.pageStack.layers.currentItem.openFile
-                }
+                onTriggered: prompterPage.document.open()
             },
             Kirigami.Action {
                 text: i18n("Save")
                 iconName: "folder"
-                onTriggered: showPassiveNotification(i18n("Save clicked"))
+                onTriggered: prompterPage.document.saveDialog()
             },
             Kirigami.Action {
                 text: i18n("Save As")
                 iconName: "folder"
-                onTriggered: saveDialog.open()
+                onTriggered: prompterPage.document.saveAsDialog()
             },
-            Kirigami.Action {
-                text: i18n("Recent Files")
-                iconName: "view-list-icons"
-                Kirigami.Action {
-                    text: i18n("View Action 1")
-                    onTriggered: showPassiveNotification(i18n("View Action 1 clicked"))
-                }
-            },
+            //Kirigami.Action {
+                //text: i18n("Recent Files")
+                //iconName: "view-list-icons"
+                //Kirigami.Action {
+                    //text: i18n("View Action 1")
+                    //onTriggered: showPassiveNotification(i18n("View Action 1 clicked"))
+                //}
+            //},
             Kirigami.Action {
                 text: i18n("About") + " " + aboutData.displayName
                 iconName: "help-about"
                 onTriggered: {
                     if (root.pageStack.layers.depth < 2)
-                        root.pageStack.layers.push(aboutPage, {aboutData: aboutData})
+                        root.pageStack.layers.push(aboutPageComponent, {aboutData: aboutData})
                 }
             },
             Kirigami.Action {
@@ -210,7 +196,8 @@ Kirigami.ApplicationWindow {
                 text: i18n("Instructions")
                 flat: true
                 onClicked: {
-                    console.log("c1")
+                    prompterPage.document.loadInstructions()
+                    globalMenu.close()
                 }
             }
             Button {
@@ -242,15 +229,12 @@ Kirigami.ApplicationWindow {
             Slider {
                 id: baseSpeedSlider
                 from: 0.1
-                value: 0.5
-                to: 5
+                value: 2
+                to: 10
                 stepSize: 0.1
                 Layout.fillWidth: true
                 Layout.leftMargin: 16
                 Layout.rightMargin: 16
-                onMoved: {
-                    root.__baseSpeed = value
-                }
             },
             Label {
                 text: i18n("Acceleration curve:") + " " + baseAccelerationSlider.value.toFixed(2)
@@ -266,9 +250,6 @@ Kirigami.ApplicationWindow {
                 Layout.fillWidth: true
                 Layout.leftMargin: 16
                 Layout.rightMargin: 16
-                onMoved: {
-                    root.__curvature = value
-                }
             },
             Label {
                 text: i18n("Background opacity:") + " " + backgroundOpacitySlider.value.toFixed(2)
@@ -309,15 +290,19 @@ Kirigami.ApplicationWindow {
             
             MenuItem {
                 text: i18n("&New")
-                onTriggered: prompter.newDocument()
+                onTriggered: prompterPage.document.newDocument()
             }
             MenuItem {
                 text: i18n("&Open")
-                onTriggered: openDialog.openFile()
+                onTriggered: prompterPage.document.open()
             }
             MenuItem {
-                text: i18n("&Save As...")
-                onTriggered: saveDialog.open()
+                text: i18n("&Save")
+                onTriggered: prompterPage.document.save()
+            }
+            MenuItem {
+                text: i18n("Save As...")
+                onTriggered: prompterPage.document.saveAs()
             }
             MenuSeparator { }
             MenuItem {
@@ -331,18 +316,18 @@ Kirigami.ApplicationWindow {
             
             MenuItem {
                 text: i18n("&Copy")
-                enabled: prompter.selectedText
-                onTriggered: prompter.copy()
+                enabled: prompterPage.editor.selectedText
+                onTriggered: prompterPage.document.copy()
             }
             MenuItem {
                 text: i18n("Cu&t")
-                enabled: prompter.selectedText
-                onTriggered: prompter.cut()
+                enabled: prompterPage.editor.selectedText
+                onTriggered: prompterPage.document.cut()
             }
             MenuItem {
                 text: i18n("&Paste")
-                enabled: prompter.canPaste
-                onTriggered: prompter.paste()
+                enabled: prompterPage.editor.canPaste
+                onTriggered: prompterPage.document.paste()
             }
         }
         
@@ -350,6 +335,7 @@ Kirigami.ApplicationWindow {
             title: i18n("V&iew")
             
             MenuItem {
+                id: autoFullScreenCheckbox
                 text: i18n("&Auto full screen")
                 checkable: true
                 checked: root.__autoFullScreen
@@ -368,20 +354,20 @@ Kirigami.ApplicationWindow {
             MenuItem {
                 text: i18n("&Bold")
                 checkable: true
-                checked: prompter.bold
-                onTriggered: prompter.bold = !prompter.bold
+                checked: prompterPage.document.bold
+                onTriggered: prompterPage.document.bold = !prompterPage.document.bold
             }
             MenuItem {
                 text: i18n("&Italic")
                 checkable: true
-                checked: root.pageStack.layers.item.italic
-                onTriggered: root.pageStack.layers.currentItem.italic = !root.pageStack.layers.currentItem.italic
+                checked: prompterPage.document.italic
+                onTriggered: prompterPage.document.italic = !prompterPage.document.italic
             }
             MenuItem {
                 text: i18n("&Underline")
                 checkable: true
-                checked: prompter.underline
-                onTriggered: prompter.underline = !prompter.underline
+                checked: prompterPage.document.underline
+                onTriggered: prompterPage.document.underline = !prompterPage.document.underline
             }
         }
         Menu {
@@ -432,14 +418,24 @@ Kirigami.ApplicationWindow {
     
     // Kirigami PageStack and PageRow
     pageStack.globalToolBar.toolbarActionAlignment: Qt.AlignHCenter
-    pageStack.initialPage: prompterPage
+    pageStack.initialPage: prompterPageComponent
     // Auto hide global toolbar on fullscreen
     pageStack.globalToolBar.style: visibility===Kirigami.ApplicationWindow.FullScreen ? Kirigami.ApplicationHeaderStyle.None :  Kirigami.ApplicationHeaderStyle.Auto
     // The following is not possible in the current version of Kirigami, but it should be:
     //pageStack.globalToolBar.background: Rectangle {
         //color: appTheme.__backgroundColor
     //}
+    property alias prompterPage: root.pageStack.currentItem
     // End of Kirigami PageStack configuration
+    
+    // Patch current page's events to outside its scope.
+    //Connections {
+        //target: pageStack.currentItem
+        ////onBla: {  // Old syntax, use to support 5.12 and lower.
+        //function onBla(data) {
+            //console.log("Connection successful, received:", data)
+        //}
+    //}
 
     /*Binding {
         //target: pageStack.layers.item
@@ -450,25 +446,18 @@ Kirigami.ApplicationWindow {
         value: root.italic
     }*/
     
-    /*Connections {
-        target: pageStack.layers.currentItem
-        //onEventInComponent: {
-            //Bind to actions in outer context
-        //}
-    }*/
-    
     // Prompter Page Contents
     //pageStack.initialPage:
 
     // Prompter Page Component {
     Component {
-        id: prompterPage
+        id: prompterPageComponent
         PrompterPage {}
     }
 
     // About Page Component
     Component {
-        id: aboutPage
+        id: aboutPageComponent
         AboutPage {}
     }
     
@@ -482,45 +471,16 @@ Kirigami.ApplicationWindow {
         }
     }
     
-    //FileDialog {
-        //id: openDialog
-        //fileMode: FileDialog.OpenFile
-        //selectedNameFilter.index: 1
-        //nameFilters: ["Text files (*.txt)", "HTML files (*.html *.htm)"]
-        //folder: StandardPaths.writableLocation(StandardPaths.DocumentsLocation)
-        //onAccepted: prompter.load(file)
-    //}
-    
     FileDialog {
         id: openBackgroundDialog
         fileMode: FileDialog.OpenFile
-        selectedNameFilter.index: 1
+        selectedNameFilter.index: 0
         nameFilters: ["JPEG image (*.jpg *.jpeg *.JPG *.JPEG)", "PNG image (*.png *.PNG)", "GIF animation (*.gif *.GIF)"]
         folder: StandardPaths.writableLocation(StandardPaths.DocumentsLocation)
         onAccepted: appTheme.setBackgroundImage(file)
         onRejected: appTheme.hasBackground = false
     }
-    
-    //Dialog {
-    MessageDialog {
-        id : countdownDialog
-        //visible: true
-        title: "Countdown Settings"
-        //standardButtons: StandardButton.Ok | StandardButton.Cancel
-        buttons: (MessageDialog.Yes | MessageDialog.No)
-        onAccepted: console.log("Accepted")
-    }
-    
-    FileDialog {
-        id: saveDialog
-        fileMode: FileDialog.SaveFile
-        defaultSuffix: prompter.fileType
-            nameFilters: openDialog.nameFilters
-            selectedNameFilter.index: prompter.fileType === "txt" ? 0 : 1
-            folder: StandardPaths.writableLocation(StandardPaths.DocumentsLocation)
-            onAccepted: prompter.saveAs(file)
-    }
-    
+
     MessageDialog {
         id : quitDialog
         title: i18n("Quit?")
