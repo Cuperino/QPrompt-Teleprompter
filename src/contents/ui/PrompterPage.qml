@@ -256,7 +256,7 @@ Kirigami.ScrollablePage {
                 enabled: appTheme.hasBackground
                 onTriggered: appTheme.clearBackground()
             }
-        },
+        }//,
         //Kirigami.Action {
         //    id: countdownConfigButton
         //    text: i18n("Countdown")
@@ -269,15 +269,15 @@ Kirigami.ScrollablePage {
         //    tooltip: i18n("Duplicate teleprompter contents into separate screens")
         //    onTriggered: projectionWindow.visible = !projectionWindow.visible
         //}
-        Kirigami.Action {
-           id: debug
-           text: i18n("Debug")
-           tooltip: i18n("Debug Action")
-           onTriggered: {
-                console.log("Debug Action")
-                prompterPage.bla( true )
-           }
-        }
+        //Kirigami.Action {
+           //id: debug
+           //text: i18n("Debug")
+           //tooltip: i18n("Debug Action")
+           //onTriggered: {
+                //console.log("Debug Action")
+                //prompterPage.bla( true )
+           //}
+        //}
         ]
     }
     
