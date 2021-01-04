@@ -23,6 +23,7 @@
 import QtQuick 2.15
 import QtQuick.Controls 2.15
 import QtQuick.Shapes 1.15
+import org.kde.kirigami 2.9 as Kirigami
 
 Item {
     id: countdown
@@ -110,9 +111,9 @@ Item {
             running: countdown.running
             target: canvas
             property: "rotations"
-            from: 0;
-            to: 2;
-            duration: 1000;
+            from: 0
+            to: 2
+            duration: 2*Kirigami.Units.veryLongDuration
             // Uncomment loops to debug animation
             //loops: Animation.Infinite
             easing.type: Easing.Linear
@@ -149,7 +150,7 @@ Item {
             property: "opacity"
             from: 0
             to: 1
-            duration: 200
+            duration: (Kirigami.Units.shortDuration + Kirigami.Units.shortDuration) / 2
             alwaysRunToEnd: false
             easing.type: Easing.OutQuint
         }
@@ -160,7 +161,7 @@ Item {
             property: "opacity"
             from: 1
             to: 0
-            duration: 1000
+            duration: 2*Kirigami.Units.longDuration
             alwaysRunToEnd: true
             easing.type: Easing.InQuint
         }

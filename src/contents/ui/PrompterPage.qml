@@ -60,8 +60,6 @@ Kirigami.ScrollablePage {
             iconName: Qt.application.layoutDirection === Qt.RightToLeft ? "go-previous" : "go-next"
             onTriggered: prompter.increaseVelocity(false)
         }
-        // Use action toolbar instead?
-        //ActionToolBar
         contextualActions: [
         Kirigami.Action {
             id: wysiwygButton
@@ -180,25 +178,25 @@ Kirigami.ScrollablePage {
             tooltip: i18n("Change pointers that indicate reading region")
             
             Kirigami.Action {
-                id: readRegionTrianglesButton
-                text: i18n("Triangles")
-                onTriggered: overlay.styleState = "triangles"
+                id: readRegionPointersButton
+                text: i18n("Pointers")
+                onTriggered: overlay.styleState = "pointers"
                 tooltip: i18n("Mark reading area using bars")
-                enabled: overlay.styleState!=="triangles"
+                enabled: overlay.styleState!=="pointers"
             }
             Kirigami.Action {
-                id: readRegionLeftTriangleButton
-                text: i18n("Left Triangle")
-                onTriggered: overlay.styleState = "leftTriangle"
-                tooltip: i18n("Left triangle points towards reading region")
-                enabled: overlay.styleState!=="leftTriangle"
+                id: readRegionLeftPointerButton
+                text: i18n("Left Pointer")
+                onTriggered: overlay.styleState = "leftPointer"
+                tooltip: i18n("Left pointer points towards reading region")
+                enabled: overlay.styleState!=="leftPointer"
             }
             Kirigami.Action {
-                id: readRegionRightTriangleButton
-                text: i18n("Right Triangle")
-                onTriggered: overlay.styleState = "rightTriangle"
-                tooltip: i18n("Right triangle points towards reading region")
-                enabled: overlay.styleState!=="rightTriangle"
+                id: readRegionRightPointerButton
+                text: i18n("Right Pointer")
+                onTriggered: overlay.styleState = "rightPointer"
+                tooltip: i18n("Right pointer points towards reading region")
+                enabled: overlay.styleState!=="rightPointer"
             }
             Kirigami.Action {
                 id: readRegionBarsButton
@@ -209,23 +207,23 @@ Kirigami.ScrollablePage {
             }
             Kirigami.Action {
                 id: readRegionBarsLeftButton
-                text: i18n("Bars && Left Triangle")
+                text: i18n("Bars && Left Pointer")
                 onTriggered: overlay.styleState = "barsLeft"
-                tooltip: i18n("Mark reading region using translucent bars and left triangle")
+                tooltip: i18n("Mark reading region using translucent bars and left pointer")
                 enabled: overlay.styleState!=="barsLeft"
             }
             Kirigami.Action {
                 id: readRegionBarsRightButton
-                text: i18n("Bars && Right Triangle")
+                text: i18n("Bars && Right Pointer")
                 onTriggered: overlay.styleState = "barsRight"
-                tooltip: i18n("Mark reading region using translucent bars and right triangle")
+                tooltip: i18n("Mark reading region using translucent bars and right pointer")
                 enabled: overlay.styleState!=="barsRight"
             }
             Kirigami.Action {
                 id: readRegionAllButton
                 text: i18n("All")
                 onTriggered: overlay.styleState = "all"
-                tooltip: i18n("Use triangles to point towards reading region")
+                tooltip: i18n("Use pointers to point towards reading region")
                 enabled: overlay.styleState!=="all"
             }
             Kirigami.Action {

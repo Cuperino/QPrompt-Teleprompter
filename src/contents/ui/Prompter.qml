@@ -129,7 +129,7 @@ Flickable {
     // Flips
     property bool __flipX: false
     property bool __flipY: false
-    readonly property int __speedLimit: __vw * 1000 // 2*width
+    readonly property int __speedLimit: __vw * 10000 // 2*width
     readonly property Scale __flips: Scale {
         origin.x: editor.width/2
         origin.y: height/2
@@ -141,14 +141,14 @@ Flickable {
     Behavior on __flips.xScale {
         enabled: true
         animation: NumberAnimation {
-            duration: 250
+            duration: Kirigami.Units.longDuration
             easing.type: Easing.OutQuad
         }
     }
     Behavior on __flips.yScale {
         enabled: true
         animation: NumberAnimation {
-            duration: 250
+            duration: Kirigami.Units.longDuration
             easing.type: Easing.OutQuad
         }
     }
