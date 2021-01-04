@@ -47,7 +47,7 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
     QCoreApplication::setOrganizationDomain("cuperino.com");
     QCoreApplication::setApplicationName("QPrompt");
 
-    KAboutData aboutData("qprompt", i18n("QPrompt"), "0.14.0",
+    KAboutData aboutData("qprompt", i18n("QPrompt"), "0.20.0",
                          i18n("Free Software teleprompter for professionals across industries."),
                          KAboutLicense::GPL_V3,
                          //KAboutLicense::Custom,
@@ -67,9 +67,9 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
         QString("Su nombre irá aquí"),
         QString("name@protonmail.com")
     );
-    aboutData.addLicense(
-        KAboutLicense::GPL_V3
-    );
+    //aboutData.addLicense(
+    //    KAboutLicense::GPL_V3
+    //);
     aboutData.addLicense(
         KAboutLicense::LGPL_V3
     );
