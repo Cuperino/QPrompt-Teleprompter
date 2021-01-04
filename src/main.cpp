@@ -29,7 +29,6 @@
 #include <KLocalizedContext>
 #include <QFontDatabase>
 #include <QDebug>
-// #include <QQmlContext>
 #include <QQmlFileSelector>
 #include <QQuickStyle>
 #include <QIcon>

@@ -27,11 +27,12 @@ import QtQuick.Window 2.0
 import Qt.labs.platform 1.0
 import QtQuick.Layouts 1.15
 import QtQuick.Controls.Material 2.15
+import org.kde.kirigami 2.9 as Kirigami
 
 Item {
     id: overlay
     property double __opacity: 0.06
-    property double __trianglesOpacity: 0.08
+    property double __pointersOpacity: 0.08
     property color __color: 'black'
     readonly property double __vw: width/100
     property alias __readRegionPlacement: readRegion.__placement
@@ -66,7 +67,7 @@ Item {
             PropertyChanges {
                 target: overlay
                 __opacity: 0.4
-                __trianglesOpacity: 0.4
+                __pointersOpacity: 0.4
                 enabled: false
             }
             PropertyChanges {
@@ -83,7 +84,7 @@ Item {
             from: "*"; to: "*"
             NumberAnimation {
                 targets: [overlay]
-                properties: "__opacity"; duration: 250;
+                properties: "__opacity"; duration: Kirigami.Units.longDuration;
             }
         }
     ]
@@ -123,9 +124,10 @@ Item {
                 PropertyChanges {
                     target: overlay
                     __opacity: 0.4
+                    z: 3
                 }
                 PropertyChanges {
-                    target: triangles
+                    target: pointers
                     __opacity: 0.4
                 }
                 PropertyChanges {
@@ -133,7 +135,7 @@ Item {
                     enabled: true
                 }
                 PropertyChanges {
-                    target: triangles
+                    target: pointers
                     __fillColor: "#180000"
                 }
             },
@@ -150,7 +152,7 @@ Item {
             Transition {
                 from: "*"; to: "*"
                 NumberAnimation {
-                    targets: [readRegion, triangles, overlay]
+                    targets: [readRegion, pointers, overlay]
                     properties: "__placement,__fillColor,__opacity"; duration: 200; easing.type: Easing.OutQuad
                 }
             }
@@ -168,51 +170,51 @@ Item {
             }
         }
         Item {
-            id: triangles
-            property alias __opacity: overlay.__trianglesOpacity
+            id: pointers
+            property alias __opacity: overlay.__pointersOpacity
             property color __strokeColor: "gray"
             property color __fillColor: "#001800"
             property double __offsetX: 0.1111
             property double __stretchX: 0.3333
-            readonly property double __triangleUnit: parent.height / 6
+            readonly property double __pointerUnit: parent.height / 6
             Shape {
-                id: leftTriangle
+                id: leftPointer
                 ShapePath {
                     strokeWidth: 3
-                    strokeColor: triangles.__strokeColor
-                    fillColor: triangles.__fillColor
+                    strokeColor: pointers.__strokeColor
+                    fillColor: pointers.__fillColor
                     // Top left starting point                                
-                    startX: triangles.__offsetX*triangles.__triangleUnit; startY: 1*triangles.__triangleUnit
+                    startX: pointers.__offsetX*pointers.__pointerUnit; startY: 1*pointers.__pointerUnit
                     // Bottom left
-                    PathLine { x: triangles.__offsetX*triangles.__triangleUnit; y: 5*triangles.__triangleUnit }
+                    PathLine { x: pointers.__offsetX*pointers.__pointerUnit; y: 5*pointers.__pointerUnit }
                     // Center right
-                    PathLine { x: (3*triangles.__stretchX+triangles.__offsetX)*triangles.__triangleUnit; y: 3*triangles.__triangleUnit }
+                    PathLine { x: (3*pointers.__stretchX+pointers.__offsetX)*pointers.__pointerUnit; y: 3*pointers.__pointerUnit }
                     // Top left return
-                    PathLine { x: triangles.__offsetX*triangles.__triangleUnit; y: 1*triangles.__triangleUnit }
+                    PathLine { x: pointers.__offsetX*pointers.__pointerUnit; y: 1*pointers.__pointerUnit }
                 }
             }
             Shape {
-                id: rightTriangle
+                id: rightPointer
                 x: parent.parent.width
                 ShapePath {
                     strokeWidth: 3
-                    strokeColor: triangles.__strokeColor
-                    fillColor: triangles.__fillColor
+                    strokeColor: pointers.__strokeColor
+                    fillColor: pointers.__fillColor
                     // Top right starting point                                
-                    startX: -triangles.__offsetX*triangles.__triangleUnit; startY: 1*triangles.__triangleUnit
+                    startX: -pointers.__offsetX*pointers.__pointerUnit; startY: 1*pointers.__pointerUnit
                     // Bottom right
-                    PathLine { x: -triangles.__offsetX*triangles.__triangleUnit; y: 5*triangles.__triangleUnit }
+                    PathLine { x: -pointers.__offsetX*pointers.__pointerUnit; y: 5*pointers.__pointerUnit }
                     // Center left
-                    PathLine { x: -(3*triangles.__stretchX+triangles.__offsetX)*triangles.__triangleUnit; y: 3*triangles.__triangleUnit }
+                    PathLine { x: -(3*pointers.__stretchX+pointers.__offsetX)*pointers.__pointerUnit; y: 3*pointers.__pointerUnit }
                     // Top right return
-                    PathLine { x: -triangles.__offsetX*triangles.__triangleUnit; y: 1*triangles.__triangleUnit }
+                    PathLine { x: -pointers.__offsetX*pointers.__pointerUnit; y: 1*pointers.__pointerUnit }
                 }
             }
             states: [
                 State {
                     name: "none"
                     PropertyChanges {
-                        target: triangles
+                        target: pointers
                         opacity: 0
                     }
                     PropertyChanges {
@@ -225,9 +227,9 @@ Item {
                     }
                 },
                 State {
-                    name: "triangles"
+                    name: "pointers"
                     PropertyChanges {
-                        target: triangles
+                        target: pointers
                         opacity: __opacity
                     }
                     PropertyChanges {
@@ -240,13 +242,13 @@ Item {
                     }
                 },
                 State {
-                    name: "leftTriangle"
+                    name: "leftPointer"
                     PropertyChanges {
-                        target: triangles
+                        target: pointers
                         opacity: __opacity
                     }
                     PropertyChanges {
-                        target: rightTriangle
+                        target: rightPointer
                         opacity: 0
                     }
                     PropertyChanges {
@@ -259,13 +261,13 @@ Item {
                     }
                 },
                 State {
-                    name: "rightTriangle"
+                    name: "rightPointer"
                     PropertyChanges {
-                        target: triangles
+                        target: pointers
                         opacity: __opacity
                     }
                     PropertyChanges {
-                        target: leftTriangle
+                        target: leftPointer
                         opacity: 0
                     }
                     PropertyChanges {
@@ -280,7 +282,7 @@ Item {
                 State {
                     name: "bars"
                     PropertyChanges {
-                        target: triangles
+                        target: pointers
                         opacity: 0
                     }
                     PropertyChanges {
@@ -295,11 +297,11 @@ Item {
                 State {
                     name: "barsLeft"
                     PropertyChanges {
-                        target: triangles
+                        target: pointers
                         opacity: __opacity
                     }
                     PropertyChanges {
-                        target: rightTriangle
+                        target: rightPointer
                         opacity: 0
                     }
                     PropertyChanges {
@@ -314,11 +316,11 @@ Item {
                 State {
                     name: "barsRight"
                     PropertyChanges {
-                        target: triangles
+                        target: pointers
                         opacity: __opacity
                     }
                     PropertyChanges {
-                        target: leftTriangle
+                        target: leftPointer
                         opacity: 0
                     }
                     PropertyChanges {
@@ -333,7 +335,7 @@ Item {
                 State {
                     name: "all"
                     PropertyChanges {
-                        target: triangles
+                        target: pointers
                         opacity: __opacity
                     }
                     PropertyChanges {
@@ -351,7 +353,7 @@ Item {
                 Transition {
                     from: "*"; to: "*"
                     NumberAnimation {
-                        targets: [triangles, leftTriangle, rightTriangle, topBar, bottomBar]
+                        targets: [pointers, leftPointer, rightPointer, topBar, bottomBar]
                         properties: "opacity"; duration: 200; easing.type: Easing.OutQuad
                     }
                 }

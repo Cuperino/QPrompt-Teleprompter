@@ -370,6 +370,8 @@ void DocumentHandler::saveAs(const QUrl &fileUrl)
     }
     file.write((isHtml ? doc->toHtml() : doc->toPlainText()).toUtf8());
     file.close();
+
+    doc->setModified(false);
     
     if (fileUrl == m_fileUrl)
         return;

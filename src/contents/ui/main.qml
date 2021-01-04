@@ -47,9 +47,9 @@ Kirigami.ApplicationWindow {
     property real __baseSpeed: baseSpeedSlider.value
     property real __curvature: baseAccelerationSlider.value
     
-    property var document
     title: prompterPage.document.fileName + (prompterPage.document.modified?"*":"") + " - " + aboutData.displayName
-    
+    width: 960  // Keep bellow 1024, preferably at 960, for usability with common 4:3 resolutions
+    height: 728  // Keep and test at 728 so that it works well with 1366x768 screens.
     minimumWidth: 480
     minimumHeight: 380
     // Changing the theme in this way does not affect the whole app for some reason.
@@ -113,7 +113,7 @@ Kirigami.ApplicationWindow {
         Behavior on opacity {
             enabled: true
             animation: NumberAnimation {
-                duration: 250
+                duration: Kirigami.Units.longDuration
                 easing.type: Easing.OutQuad
             }
         }
@@ -157,21 +157,25 @@ Kirigami.ApplicationWindow {
             Kirigami.Action {
                 text: i18n("New")
                 iconName: "folder"
+                shortcut: "Ctrl+N"
                 onTriggered: prompterPage.document.newDocument()
             },
             Kirigami.Action {
                 text: i18n("Open")
                 iconName: "folder"
+                shortcut: "Ctrl+O"
                 onTriggered: prompterPage.document.open()
             },
             Kirigami.Action {
                 text: i18n("Save")
                 iconName: "folder"
+                shortcut: "Ctrl+S"
                 onTriggered: prompterPage.document.saveDialog()
             },
             Kirigami.Action {
                 text: i18n("Save As")
                 iconName: "folder"
+                shortcut: "Ctrl+Shift+S"
                 onTriggered: prompterPage.document.saveAsDialog()
             },
             //Kirigami.Action {
@@ -190,6 +194,7 @@ Kirigami.ApplicationWindow {
             Kirigami.Action {
                 text: i18n("&Quit")
                 iconName: "close"
+                shortcut: "Ctrl+Q"
                 onTriggered: close()
             }
         ]
