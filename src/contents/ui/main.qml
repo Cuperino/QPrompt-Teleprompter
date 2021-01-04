@@ -48,7 +48,7 @@ Kirigami.ApplicationWindow {
     property real __curvature: baseAccelerationSlider.value
     
     property var document
-    title: prompterPage.document.fileName + " - " + aboutData.displayName
+    title: prompterPage.document.fileName + (prompterPage.document.modified?"*":"") + " - " + aboutData.displayName
     
     minimumWidth: 480
     minimumHeight: 380
