@@ -380,10 +380,15 @@ Kirigami.ApplicationWindow {
             }
             MenuSeparator { }
             MenuItem {
-                text: i18n("&Left")
+                text: Qt.application.layoutDirection===Qt.LeftToRight ? i18n("&Left") : i18n("&Right")
                 checkable: true
-                checked: prompterPage.document.alignment === Qt.AlignLeft
-                onTriggered: prompterPage.document.alignment = Qt.AlignLeft
+                checked: Qt.application.layoutDirection===Qt.LeftToRight ? prompterPage.document.alignment === Qt.AlignLeft : prompterPage.document.alignment === Qt.AlignRight
+                onTriggered: {
+                    if (Qt.application.layoutDirection===Qt.LeftToRight)
+                        prompterPage.document.alignment = Qt.AlignLeft
+                    else
+                        prompterPage.document.alignment = Qt.AlignRight
+                }
             }
             MenuItem {
                 text: i18n("&Center")
@@ -392,10 +397,15 @@ Kirigami.ApplicationWindow {
                 onTriggered: prompterPage.document.alignment = Qt.AlignHCenter
             }
             MenuItem {
-                text: i18n("&Right")
+                text: Qt.application.layoutDirection===Qt.LeftToRight ? i18n("&Right") : i18n("&Left")
                 checkable: true
-                checked: prompterPage.document.alignment === Qt.AlignRight
-                onTriggered: prompterPage.document.alignment = Qt.AlignRight
+                checked: Qt.application.layoutDirection===Qt.LeftToRight ? prompterPage.document.alignment === Qt.AlignRight : prompterPage.document.alignment === Qt.AlignLeft
+                onTriggered: {
+                    if (Qt.application.layoutDirection===Qt.LeftToRight)
+                        prompterPage.document.alignment = Qt.AlignRight
+                    else
+                        prompterPage.document.alignment = Qt.AlignLeft
+                }
             }
             MenuItem {
                 text: i18n("&Justify")
