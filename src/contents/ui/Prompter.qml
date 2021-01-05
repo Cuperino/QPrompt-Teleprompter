@@ -101,7 +101,7 @@ Flickable {
     property bool __scrollAsDial: root.__scrollAsDial
     property bool __invertArrowKeys: root.__invertArrowKeys
     property bool __invertScrollDirection: root.__invertScrollDirection
-    property bool __wysiwyg: true
+    property bool __wysiwyg: false
     property int __i: 1
     property bool __play: true
     property real __baseSpeed: root.__baseSpeed
