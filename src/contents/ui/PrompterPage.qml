@@ -391,7 +391,7 @@ Kirigami.ScrollablePage {
                     //}
                     //font.family: "fontello"
                     //font.pointSize: 13
-                    icon.name: "edit-undo"
+                    icon.name: Qt.application.layoutDirection===Qt.LeftToRight?"edit-undo":"edit-redo"
                     icon.color: down ? appTheme.__fontColor : appTheme.__iconColor
                     focusPolicy: Qt.TabFocus
                     enabled: prompter.editor.canUndo
@@ -409,7 +409,7 @@ Kirigami.ScrollablePage {
                     //}
                     //font.family: "fontello"
                     //font.pointSize: 13
-                    icon.name: "edit-redo"
+                    icon.name: Qt.application.layoutDirection===Qt.LeftToRight?"edit-redo":"edit-undo"
                     icon.color: down ? appTheme.__fontColor : appTheme.__iconColor
                     enabled: prompter.editor.canRedo
                     onClicked: prompter.editor.redo()
@@ -611,7 +611,7 @@ Kirigami.ScrollablePage {
                 id: alignmentRow
                 ToolButton {
                     id: alignLeftButton
-                    text: "\uE803" // icon-align-left
+                    text: Qt.application.layoutDirection===Qt.LeftToRight ? "\uE803" : "\uE805"
                     contentItem: Text {
                         text: parent.text
                         font: parent.font
@@ -624,8 +624,13 @@ Kirigami.ScrollablePage {
                     font.pointSize: 13
                     focusPolicy: Qt.TabFocus
                     checkable: true
-                    checked: prompter.document.alignment === Qt.AlignLeft
-                    onClicked: prompter.document.alignment = Qt.AlignLeft
+                    checked: Qt.application.layoutDirection===Qt.LeftToRight ? prompter.document.alignment === Qt.AlignLeft : prompter.document.alignment === Qt.AlignRight
+                    onClicked: {
+                        if (Qt.application.layoutDirection===Qt.LeftToRight)
+                            prompter.document.alignment = Qt.AlignLeft
+                        else
+                            prompter.document.alignment = Qt.AlignRight
+                    }
                 }
                 ToolButton {
                     id: alignCenterButton
@@ -647,7 +652,7 @@ Kirigami.ScrollablePage {
                 }
                 ToolButton {
                     id: alignRightButton
-                    text: "\uE805" // icon-align-right
+                    text: Qt.application.layoutDirection===Qt.LeftToRight ? "\uE805" : "\uE803"
                     contentItem: Text {
                         text: parent.text
                         font: parent.font
@@ -660,8 +665,13 @@ Kirigami.ScrollablePage {
                     font.pointSize: 13
                     focusPolicy: Qt.TabFocus
                     checkable: true
-                    checked: prompter.document.alignment === Qt.AlignRight
-                    onClicked: prompter.document.alignment = Qt.AlignRight
+                    checked: Qt.application.layoutDirection===Qt.LeftToRight ? prompter.document.alignment === Qt.AlignRight : prompter.document.alignment === Qt.AlignLeft
+                    onClicked: {
+                        if (Qt.application.layoutDirection===Qt.LeftToRight)
+                            prompter.document.alignment = Qt.AlignRight
+                        else
+                            prompter.document.alignment = Qt.AlignLeft
+                    }
                 }
                 ToolButton {
                     id: alignJustifyButton
