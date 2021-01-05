@@ -303,8 +303,8 @@ Flickable {
             drag.target: parent
             drag.axis: Drag.XAxis
             drag.smoothed: false
-            drag.minimumX: Qt.application.layoutDirection===Qt.LeftToRight ? 0 : -prompter.width*2/5
-            drag.maximumX: Qt.application.layoutDirection===Qt.LeftToRight ? prompter.width*2/5 : 0
+            drag.minimumX: Qt.application.layoutDirection===Qt.LeftToRight ? 0 : -prompter.width*6/20
+            drag.maximumX: Qt.application.layoutDirection===Qt.LeftToRight ? prompter.width*6/20 : 0
             cursorShape: Qt.SizeHorCursor
             Loader {
                 sourceComponent: editorSidesBorder
@@ -335,8 +335,8 @@ Flickable {
             drag.target: parent
             drag.axis: Drag.XAxis
             drag.smoothed: false
-            drag.minimumX: Qt.application.layoutDirection===Qt.LeftToRight ? -prompter.width*2/5 : 0
-            drag.maximumX: Qt.application.layoutDirection===Qt.LeftToRight ? 0 : prompter.width*2/5
+            drag.minimumX: Qt.application.layoutDirection===Qt.LeftToRight ? -prompter.width*6/20 : 0
+            drag.maximumX: Qt.application.layoutDirection===Qt.LeftToRight ? 0 : prompter.width*6/20
             cursorShape: Qt.SizeHorCursor
             Loader {
                 sourceComponent: editorSidesBorder
@@ -366,10 +366,10 @@ Flickable {
     // Bottom margin hack
     Rectangle {
         id: rect
-        anchors.left: editor.left
-        anchors.right: editor.right
+        anchors.left: parent.left
         anchors.top: editor.bottom
         height: prompter.height
+        width: prompter.width
         color: "#000"
         opacity: 0.2
     }
@@ -435,7 +435,6 @@ Flickable {
                 isNewFile = true
             }
         }
-        //Component.onCompleted: document.load("qrc:/instructions.html")
         onLoaded: {
             editor.textFormat = format
             editor.text = text

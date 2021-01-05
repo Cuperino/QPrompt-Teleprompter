@@ -31,13 +31,13 @@ Kirigami.ScrollablePage {
     id: prompterPage
     
     // Unused signal. Leaving for reference.
-    //signal bla( bool data )
+    //signal test( bool data )
 
+    property alias fontDialog: fontDialog
+    property alias colorDialog: colorDialog
     property alias editor: prompter.editor
     property alias document: prompter.document
 
-    //property alias italic: prompter.italic
-    //anchors.fill: parent
     title: "QPrompt"
     actions {
         main: Kirigami.Action {
@@ -273,7 +273,7 @@ Kirigami.ScrollablePage {
            //tooltip: i18n("Debug Action")
            //onTriggered: {
                 //console.log("Debug Action")
-                //prompterPage.bla( true )
+                //prompterPage.test( true )
            //}
         //}
         ]
@@ -290,8 +290,8 @@ Kirigami.ScrollablePage {
     }
     
     //TimerClock {
-    //id: timer
-    //z: 4
+    //    id: timer
+    //    z: 4
     //}
     
     Prompter {
@@ -368,7 +368,10 @@ Kirigami.ScrollablePage {
                     icon.name: "bookmarks"
                     icon.color: down ? appTheme.__fontColor : appTheme.__iconColor
                     focusPolicy: Qt.TabFocus
-                    onClicked: prompter.bookmark()
+                    onClicked: {
+                        showPassiveNotification(i18n("Markers have not been implemented yet."));
+                        prompter.bookmark()
+                    }
                 }
                 ToolSeparator {
                     contentItem.visible: anchorsRow.y === undoRedoRow.y
@@ -683,12 +686,12 @@ Kirigami.ScrollablePage {
     }
     
     //Kirigami.OverlaySheet {
-    //id: sheet
-    //onSheetOpenChanged: page.actions.main.checked = sheetOpen
-    //Label {
-    //wrapMode: Text.WordWrap
-    //text: "Lorem ipsum dolor sit amet"
-    //}
+        //id: sheet
+        //onSheetOpenChanged: page.actions.main.checked = sheetOpen
+        //Label {
+            //wrapMode: Text.WordWrap
+            //text: "Lorem ipsum dolor sit amet"
+        //}
     //}
 
     // Prompter Page Component {
