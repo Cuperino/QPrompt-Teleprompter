@@ -57,7 +57,7 @@ Kirigami.ApplicationWindow {
     //Material.theme: themeSwitch.checked ? Material.Dark : Material.Light
     background: Rectangle {
         id: appTheme
-        property bool hasBackground: color!==__backgroundColor || backgroundImage.opacity>0//backgroundImage.visible
+        property bool hasBackground: appTheme.color!==__backgroundColor || backgroundImage.opacity>0//backgroundImage.visible
         property color __backgroundColor: parent.Material.theme===Material.Light ? "#fafafa" : "#303030"
         property color __fontColor: parent.Material.theme===Material.Light ? "#212121" : "#fff"
         property color __iconColor: parent.Material.theme===Material.Light ? "#232629" : "#c3c7d1"
@@ -79,20 +79,26 @@ Kirigami.ApplicationWindow {
                 backgroundImage.source = file
             }
         }
-
+        Behavior on color {
+            enabled: true
+            animation: ColorAnimation {
+                duration: 2800
+                easing.type: Easing.OutExpo
+            }
+        }
         Image {
             id: backgroundImage
-            //visible: opacity!==0
             anchors.fill: parent
             fillMode: Image.PreserveAspectCrop
             opacity: 0
+            visible: opacity!==0
             autoTransform: true
             asynchronous: true
             mipmap: false
             
             onStatusChanged: {
                 if (backgroundImage.status === Image.Ready && !backgroundImage.opacity)
-                    backgroundImage.opacity = parent.opacity/2
+                    backgroundImage.opacity = 0.72*parent.opacity
             }
             
             Behavior on opacity {
@@ -103,13 +109,7 @@ Kirigami.ApplicationWindow {
                 }
             }
         }
-        
-        GaussianBlur {
-            anchors.fill: backgroundImage
-            source: backgroundImage
-            radius: 2
-        }
-        
+
         Behavior on opacity {
             enabled: true
             animation: NumberAnimation {
@@ -121,6 +121,7 @@ Kirigami.ApplicationWindow {
     
     // Full screen
     visibility: __autoFullScreen ? prompterVisibility : Kirigami.ApplicationWindow.AutomaticVisibility
+
     // Open save dialog on closing
     onClosing: {
         if (prompterPage.document.modified) {
@@ -205,13 +206,14 @@ Kirigami.ApplicationWindow {
                 onClicked: {
                     prompterPage.document.loadInstructions()
                     globalMenu.close()
+                    showPassiveNotification(i18n("User guide loaded"))
                 }
             }
             Button {
                 text: i18n("Theme")
                 flat: true
                 onClicked: {
-                    showPassiveNotification(i18n("Live theme mode switching has not yet been implemented."));
+                    showPassiveNotification(i18n("Live theme mode switching has not yet been implemented."))
                 }
             }
         }
@@ -305,11 +307,11 @@ Kirigami.ApplicationWindow {
             }
             MenuItem {
                 text: i18n("&Save")
-                onTriggered: prompterPage.document.save()
+                onTriggered: prompterPage.document.saveDialog()
             }
             MenuItem {
                 text: i18n("Save As...")
-                onTriggered: prompterPage.document.saveAs()
+                onTriggered: prompterPage.document.saveAsDialog()
             }
             MenuSeparator { }
             MenuItem {
@@ -375,6 +377,40 @@ Kirigami.ApplicationWindow {
                 checkable: true
                 checked: prompterPage.document.underline
                 onTriggered: prompterPage.document.underline = !prompterPage.document.underline
+            }
+            MenuSeparator { }
+            MenuItem {
+                text: i18n("&Left")
+                checkable: true
+                checked: prompterPage.document.alignment === Qt.AlignLeft
+                onTriggered: prompterPage.document.alignment = Qt.AlignLeft
+            }
+            MenuItem {
+                text: i18n("&Center")
+                checkable: true
+                checked: prompterPage.document.alignment === Qt.AlignHCenter
+                onTriggered: prompterPage.document.alignment = Qt.AlignHCenter
+            }
+            MenuItem {
+                text: i18n("&Right")
+                checkable: true
+                checked: prompterPage.document.alignment === Qt.AlignRight
+                onTriggered: prompterPage.document.alignment = Qt.AlignRight
+            }
+            MenuItem {
+                text: i18n("&Justify")
+                checkable: true
+                checked: prompterPage.document.alignment === Qt.AlignJustify
+                onTriggered: prompterPage.document.alignment = Qt.AlignJustify
+            }
+            MenuSeparator { }
+            MenuItem {
+                text: i18n("Character")
+                onTriggered: prompterPage.fontDialog.open();
+            }
+            MenuItem {
+                text: i18n("Font Color")
+                onTriggered: prompterPage.colorDialog.open()
             }
         }
         Menu {
@@ -454,8 +490,8 @@ Kirigami.ApplicationWindow {
     // Patch current page's events to outside its scope.
     //Connections {
         //target: pageStack.currentItem
-        ////onBla: {  // Old syntax, use to support 5.12 and lower.
-        //function onBla(data) {
+        ////onTest: {  // Old syntax, use to support 5.12 and lower.
+        //function onTest(data) {
             //console.log("Connection successful, received:", data)
         //}
     //}
