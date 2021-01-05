@@ -113,7 +113,7 @@ Item {
             property: "rotations"
             from: 0
             to: 2
-            duration: 2*Kirigami.Units.veryLongDuration
+            duration: 1000
             // Uncomment loops to debug animation
             //loops: Animation.Infinite
             easing.type: Easing.Linear
@@ -150,7 +150,7 @@ Item {
             property: "opacity"
             from: 0
             to: 1
-            duration: (Kirigami.Units.shortDuration + Kirigami.Units.shortDuration) / 2
+            duration: 200
             alwaysRunToEnd: false
             easing.type: Easing.OutQuint
         }
@@ -161,7 +161,7 @@ Item {
             property: "opacity"
             from: 1
             to: 0
-            duration: 2*Kirigami.Units.longDuration
+            duration: 1000
             alwaysRunToEnd: true
             easing.type: Easing.InQuint
         }
