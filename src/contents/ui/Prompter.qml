@@ -136,8 +136,8 @@ Flickable {
         xScale: prompter.state!=="editing" && prompter.__flipX ? -1 : 1
         yScale: prompter.state!=="editing" && prompter.__flipY ? -1 : 1
     }
-    layer.enabled: true
     transform: __flips
+    layer.enabled: true
     Behavior on __flips.xScale {
         enabled: true
         animation: NumberAnimation {
@@ -195,10 +195,16 @@ Flickable {
         editor.cursorPosition = cursorPosition
 
         // Enter full screen
-        var states = ["editing", "countdown", "prompting"]
+        var states = ["editing", "standby", "countdown", "prompting"]
         var nextIndex = ( states.indexOf(state) + 1 ) % states.length
         // Skip countdown if countdown.__iterations is 0
-        if (states[nextIndex]===states[1] && countdown.__iterations===0)
+        if (states[nextIndex]===states[1]) {
+            if (!countdown.enabled)
+                nextIndex = ( states.indexOf(state) + 3 ) % states.length
+            else if (countdown.autoStart)
+                nextIndex = ( states.indexOf(state) + 2 ) % states.length
+        }
+        if (states[nextIndex]===states[2] && countdown.__iterations===0)
             nextIndex = ( states.indexOf(state) + 2 ) % states.length
         state = states[nextIndex]
 
@@ -410,7 +416,8 @@ Flickable {
                     else
                         prompter.position -= delta;
                     __i=i;
-                    prompter.position = prompter.__destination
+                    if (prompter.state==="prompting")
+                        prompter.position = prompter.__destination
 
                 }
             }
@@ -453,6 +460,7 @@ Flickable {
         function loadInstructions() {
             document.load("qrc:/instructions.html")
             isNewFile = true
+            showPassiveNotification(i18n("User guide loaded"))
         }
         
         function open() {
@@ -644,7 +652,7 @@ Flickable {
             }
             PropertyChanges {
                 target: countdown
-                state: "ready"
+                state: "standby"
             }
             PropertyChanges {
                 target: editor
@@ -665,6 +673,52 @@ Flickable {
                 // Bottom margin hack
                 //topMargin: prompter.height
                 //bottomMargin: prompter.height
+            }
+        },
+        State {
+            name: "standby"
+            PropertyChanges {
+                target: overlay
+                state: "prompting"
+            }
+            PropertyChanges {
+                target: countdown
+                state: "standby"
+            }
+            PropertyChanges {
+                target: root
+                prompterVisibility: Kirigami.ApplicationWindow.FullScreen
+            }
+            PropertyChanges {
+                target: appTheme
+                opacity: root.__translucidBackground ? __opacity : 1
+            }
+            PropertyChanges {
+                target: promptingButton
+                text: i18n("Begin countdown")
+                //iconName: "edit-undo"
+            }
+            PropertyChanges {
+                target: prompter
+                z: 0
+                position: position
+                // Bottom margin hack
+                //topMargin: prompter.height
+                //bottomMargin: prompter.height
+            }
+            PropertyChanges {
+                target: editor
+                selectByMouse: false
+            }
+            PropertyChanges {
+                target: leftWidthAdjustmentBar
+                opacity: 0
+                enabled: false
+            }
+            PropertyChanges {
+                target: rightWidthAdjustmentBar
+                opacity: 0
+                enabled: false
             }
         },
         State {
@@ -712,24 +766,6 @@ Flickable {
                 opacity: 0
                 enabled: false
             }
-            //State {
-                //name: "prompting"
-                //PropertyChanges {
-                    //target: prompter
-                    //position: prompter.__destination
-                    //focus: true
-                    //__play: true
-                //}
-                //PropertyChanges {
-                    //target: decreaseVelocityButton
-                    //enabled: true
-                //}
-                //PropertyChanges {
-                    //target: increaseVelocityButton
-                    //enabled: true
-                //}
-            //}
-            //childMode: QState.ParallelStates
         },
         State {
             name: "prompting"
@@ -748,7 +784,7 @@ Flickable {
             PropertyChanges {
                 target: promptingButton
                 text: i18n("Return to edit mode")
-                iconName: "edit-undo"
+                iconName: Qt.application.layoutDirection===Qt.LeftToRight ? "edit-undo" : "edit-redo"
             }
             PropertyChanges {
                 target: prompter

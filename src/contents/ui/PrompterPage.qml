@@ -42,7 +42,7 @@ Kirigami.ScrollablePage {
     actions {
         main: Kirigami.Action {
             id: promptingButton
-            text: i18n("Start prompting")
+            text: i18n("Start prompter")
             iconName: Qt.application.layoutDirection === Qt.RightToLeft ? "go-previous" : "go-next"
             onTriggered: prompter.toggle()
         }
@@ -178,59 +178,59 @@ Kirigami.ScrollablePage {
             tooltip: i18n("Change pointers that indicate reading region")
             
             Kirigami.Action {
-                id: readRegionPointersButton
-                text: i18n("Pointers")
-                onTriggered: overlay.styleState = "pointers"
-                tooltip: i18n("Mark reading area using bars")
-                enabled: overlay.styleState!=="pointers"
-            }
-            Kirigami.Action {
                 id: readRegionLeftPointerButton
                 text: i18n("Left Pointer")
                 onTriggered: overlay.styleState = "leftPointer"
-                tooltip: i18n("Left pointer points towards reading region")
+                tooltip: i18n("Left pointer indicates reading region")
                 enabled: overlay.styleState!=="leftPointer"
             }
             Kirigami.Action {
                 id: readRegionRightPointerButton
                 text: i18n("Right Pointer")
                 onTriggered: overlay.styleState = "rightPointer"
-                tooltip: i18n("Right pointer points towards reading region")
+                tooltip: i18n("Right pointer indicates reading region")
                 enabled: overlay.styleState!=="rightPointer"
+            }
+            Kirigami.Action {
+                id: readRegionPointersButton
+                text: i18n("Both Pointers")
+                onTriggered: overlay.styleState = "pointers"
+                tooltip: i18n("Left and right pointers indicate reading region")
+                enabled: overlay.styleState!=="pointers"
             }
             Kirigami.Action {
                 id: readRegionBarsButton
                 text: i18n("Bars")
                 onTriggered: overlay.styleState = "bars"
-                tooltip: i18n("Mark reading region using translucent bars")
+                tooltip: i18n("Translucent bars indicate reading region")
                 enabled: overlay.styleState!=="bars"
             }
             Kirigami.Action {
                 id: readRegionBarsLeftButton
                 text: i18n("Bars && Left Pointer")
                 onTriggered: overlay.styleState = "barsLeft"
-                tooltip: i18n("Mark reading region using translucent bars and left pointer")
+                tooltip: i18n("Translucent bars and left pointer indicate reading region")
                 enabled: overlay.styleState!=="barsLeft"
             }
             Kirigami.Action {
                 id: readRegionBarsRightButton
                 text: i18n("Bars && Right Pointer")
                 onTriggered: overlay.styleState = "barsRight"
-                tooltip: i18n("Mark reading region using translucent bars and right pointer")
+                tooltip: i18n("Translucent bars and right pointer indicate reading region")
                 enabled: overlay.styleState!=="barsRight"
             }
             Kirigami.Action {
                 id: readRegionAllButton
                 text: i18n("All")
                 onTriggered: overlay.styleState = "all"
-                tooltip: i18n("Use pointers to point towards reading region")
+                tooltip: i18n("Use all reading region indicators")
                 enabled: overlay.styleState!=="all"
             }
             Kirigami.Action {
                 id: readRegionNoneButton
                 text: i18n("None")
                 onTriggered: overlay.styleState = "none"
-                tooltip: i18n("Disable reading region entirely")
+                tooltip: i18n("Disable reading region indicators")
                 enabled: overlay.styleState!=="none"
             }
         },
@@ -254,13 +254,35 @@ Kirigami.ScrollablePage {
                 enabled: appTheme.hasBackground
                 onTriggered: appTheme.clearBackground()
             }
+        },
+        Kirigami.Action {
+            id: countdownConfigButton
+            text: i18n("Countdown")
+            Kirigami.Action {
+                id: enableCountdownButton
+                checkable: true
+                checked: countdown.enabled
+                text: i18n("Countdown")
+                onTriggered: countdown.enabled = !countdown.enabled
+            }
+            Kirigami.Action {
+                id: autoStartCountdownButton
+                enabled: countdown.enabled
+                checkable: true
+                checked: countdown.autoStart
+                text: i18n("Auto Countdown")
+                tooltip: i18n("Start countdown automatically")
+                onTriggered: countdown.autoStart = !countdown.autoStart
+            }
+            Kirigami.Action {
+                id: setCountdownButton
+                enabled: countdown.enabled
+                text: i18n("Set Countdown")
+                onTriggered: {
+                    showPassiveNotification(i18n("Countdown setup has not been implemented yet."));
+                }
+            }
         }//,
-        //Kirigami.Action {
-        //    id: countdownConfigButton
-        //    text: i18n("Countdown")
-        //    tooltip: i18n("Set countdown timer")
-        //    //onTriggered: 
-        //}//,
         //Kirigami.Action {
         //    id: projectionConfigButton
         //    text: i18n("Clone")

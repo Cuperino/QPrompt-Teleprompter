@@ -38,7 +38,14 @@ Item {
     property alias __readRegionPlacement: readRegion.__placement
     property alias enabled: readRegion.enabled
     property string positionState: "middle"
-    property string styleState: "all"
+    property string styleState: "barsLeft"
+    readonly property Scale __flips: Scale {
+        origin.x: width/2
+        origin.y: height/2
+        xScale: prompter.state!=="editing" && prompter.__flipX ? -1 : 1
+        yScale: prompter.state!=="editing" && prompter.__flipY ? -1 : 1
+    }
+    transform: __flips
     //anchors.fill: parent
     anchors {
        left: parent.left

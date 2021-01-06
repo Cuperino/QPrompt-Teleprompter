@@ -27,6 +27,8 @@ import org.kde.kirigami 2.9 as Kirigami
 
 Item {
     id: countdown
+    enabled: false
+    property bool autoStart: false
     property bool running: false
     visible: false
     opacity: 0  // Initial opacity should be 0 to prevent animation jitters on first run.
@@ -36,6 +38,13 @@ Item {
     readonly property real __vw: parent.width / 100
     readonly property real __minv: __vw<__vh ? __vw : __vh
     readonly property real __maxv: __vw>__vh ? __vw : __vh
+    readonly property Scale __flips: Scale {
+        origin.x: width/2
+        origin.y: height/2
+        xScale: prompter.state!=="editing" && prompter.__flipX ? -1 : 1
+        yScale: prompter.state!=="editing" && prompter.__flipY ? -1 : 1
+    }
+    transform: __flips
     anchors {
         left: parent.left
         right: parent.right
@@ -178,6 +187,42 @@ Item {
     
     states: [
     State {
+        name: "standby"
+        PropertyChanges {
+            target: countdown
+            running: false
+            visible: false
+            opacity: 0
+        }
+        PropertyChanges {
+            target: dissolveOut
+            running: false
+        }
+        PropertyChanges {
+            target: canvas
+            //__iteration: 0
+            __iteration: countdown.__iterations - 1
+        }
+    },
+    State {
+        name: "ready"
+        PropertyChanges {
+            target: countdown
+            running: false
+            visible: true
+            opacity: 1
+        }
+        PropertyChanges {
+            target: dissolveOut
+            running: false
+        }
+        PropertyChanges {
+            target: canvas
+            //__iteration: 0
+            __iteration: countdown.__iterations - 1
+        }
+    },
+    State {
         name: "running"
         PropertyChanges {
             target: dissolveIn
@@ -200,25 +245,7 @@ Item {
             target: dissolveOut
             running: false
         }
-    },
-    State {
-        name: "ready"
-        PropertyChanges {
-            target: countdown
-            running: false
-            visible: false
-            opacity: 0
-        }
-        PropertyChanges {
-            target: dissolveOut
-            running: false
-        }
-        PropertyChanges {
-            target: canvas
-//             __iteration: 0
-            __iteration: countdown.__iterations - 1
-        }
     }
     ]
-    state: "ready"
+    state: "standby"
 }
