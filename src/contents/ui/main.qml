@@ -206,7 +206,6 @@ Kirigami.ApplicationWindow {
                 onClicked: {
                     prompterPage.document.loadInstructions()
                     globalMenu.close()
-                    showPassiveNotification(i18n("User guide loaded"))
                 }
             }
             Button {
@@ -461,6 +460,12 @@ Kirigami.ApplicationWindow {
             //    icon.name: "software-center"
             //}
             //MenuSeparator { }
+            MenuItem {
+                text: i18n("User Guide")
+                icon.name: "help-info"
+                onTriggered: prompterPage.document.loadInstructions()
+            }
+            MenuSeparator { }
             MenuItem {
                 text: i18n("&About QPrompt")
                 onTriggered: root.loadAboutPage()
