@@ -77,7 +77,7 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
     
     QFontDatabase fontDatabase;
     if (fontDatabase.addApplicationFont(":/fonts/fontello.ttf") == -1)
-        qWarning() << "Failed to load fontello.ttf";
+        qWarning() << "Failed to load icons from fontello.ttf";
 
     qmlRegisterType<PrompterTimer>("com.cuperino.qprompt.promptertimer", 1, 0, "PrompterTimer");
     qmlRegisterType<DocumentHandler>("com.cuperino.qprompt.document", 1, 0, "DocumentHandler");
@@ -93,8 +93,8 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
     QQmlApplicationEngine engine;
     QQmlFileSelector::get(&engine)->setExtraSelectors(selectors);
 
-    // Un-comment to debug RightToLeft Layout
-    app.setLayoutDirection(Qt::RightToLeft);
+    // Un-comment to force RightToLeft Layout for debugging purposes
+    //app.setLayoutDirection(Qt::RightToLeft);
     app.setWindowIcon(QIcon(":/images/logo.png"));
 
     engine.rootContext()->setContextObject(new KLocalizedContext(&engine));
