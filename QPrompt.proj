@@ -1,24 +1,12 @@
-TEMPLATE = app
-TARGET = qprompt
-QT += quick quickcontrols2
-qtHaveModule(widgets): QT += widgets
+EMPLATE = subdirs
 
-cross_compile: DEFINES += QT_EXTRA_FILE_SELECTOR=\\\"touch\\\"
+SUBDIRS = \
+        kirigami \
+        ki18n \
+        src
 
-HEADERS += \
-    documenthandler.h
+src.subdir = src
+kirigami.subdir  = 3rdparty/kirigami
+ki18n.subdir  = 3rdparty/ki18n
 
-SOURCES += \
-    main.cpp
-    documenthandler.cpp
-
-OTHER_FILES += \
-    contents/ui/*.qml
-
-RESOURCES += \
-    resources.qrc
-
-# Default rules for deployment.
-qnx: target.path = /tmp/$${TARGET}/bin
-else: unix:!android: target.path = /opt/$${TARGET}/bin
-!isEmpty(target.path): INSTALLS += target
+src.depends = kirigami ki18n

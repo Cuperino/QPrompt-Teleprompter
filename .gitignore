@@ -46,5 +46,12 @@ Makefile
 # Build folders
 **/build
 
+# Web Assembly Build
+**/build_wasm/QPrompt.wasm
+**/build_wasm/QPrompt.js
+**/build_wasm/qtlogo.svg
+**/build_wasm/qtloader.js
+**/build_wasm/QPrompt.html
+
 # KDE Plasma directory folder
 .directory
