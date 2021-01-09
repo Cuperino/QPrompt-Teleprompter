@@ -18,18 +18,18 @@ HEADERS += \
     src/documenthandler.h
 
 SOURCES += \
-    src/main.cpp \
-    src/documenthandler.cpp
+    main.cpp \
+    documenthandler.cpp
 
 OTHER_FILES += \
-    src/contents/ui/*.qml
+    contents/ui/*.qml
 
 RESOURCES += \
-    src/resources.qrc
+    resources.qrc
 
 LIBS += \
-	../3rdparty/kirigami/org/kde/kirigami.2/libkirigamiplugin.a \
-	../3rdparty/ki18n/org/kde/ki18n/libki18nplugin.a
+        ../3rdparty/kirigami/org/kde/kirigami.2/libkirigamiplugin.a \
+        ../3rdparty/ki18n/org/kde/ki18n/libki18nplugin.a
 
 # Additional import path used to resolve QML modules in Qt Creator's code model
 QML_IMPORT_PATH =
