@@ -36,6 +36,7 @@ Kirigami.ScrollablePage {
     property alias fontDialog: fontDialog
     property alias colorDialog: colorDialog
     property alias editor: prompter.editor
+    property alias overlay: overlay
     property alias document: prompter.document
 
     title: "QPrompt"
@@ -392,7 +393,7 @@ Kirigami.ScrollablePage {
                     focusPolicy: Qt.TabFocus
                     onClicked: {
                         showPassiveNotification(i18n("Markers have not been implemented yet."));
-                        prompter.bookmark()
+                        prompter.document.marker = !prompter.document.marker
                     }
                 }
                 ToolSeparator {
@@ -564,6 +565,26 @@ Kirigami.ScrollablePage {
                     checkable: true
                     checked: prompter.document.underline
                     onClicked: prompter.document.underline = !prompter.document.underline
+                }
+                ToolButton {
+                    id: strikeOutButton
+                    text: "\uF0CC" // icon-underline
+                    contentItem: Text {
+                        text: parent.text
+                        font: parent.font
+                        color: parent.down ? appTheme.__fontColor : appTheme.__iconColor
+                        horizontalAlignment: Text.AlignHCenter
+                        verticalAlignment: Text.AlignVCenter
+                        elide: Text.ElideRight
+                    }
+                    //icon.name: "gtk-underline"
+                    //icon.color: down ? appTheme.__fontColor : appTheme.__iconColor
+                    font.family: "fontello"
+                    font.pointSize: 13
+                    focusPolicy: Qt.TabFocus
+                    checkable: true
+                    checked: prompter.document.strike
+                    onClicked: prompter.document.strike = !prompter.document.strike
                 }
                 ToolSeparator {
                     contentItem.visible: formatRow.y === fontRow.y

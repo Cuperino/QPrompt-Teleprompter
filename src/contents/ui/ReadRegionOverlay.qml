@@ -55,11 +55,11 @@ Item {
     ////width: editor.width
     height: prompter.height //parent.implicitFooterHeight
     //height: parent.height //parent.implicitFooterHeight
-    function toggle() {
-        var states = ["top", "middle", "bottom", "free", "fixed"]
-        var nextIndex = ( states.indexOf(readRegion.state) + 1 ) % states.length
-        readRegion.state = states[nextIndex]
-    }
+    //function toggle() {
+    //    var states = ["top", "middle", "bottom", "free", "fixed"]
+    //    var nextIndex = ( states.indexOf(readRegion.state) + 1 ) % states.length
+    //    readRegion.state = states[nextIndex]
+    //}
     MouseArea {
         id: overlayMouseArea
         enabled: false

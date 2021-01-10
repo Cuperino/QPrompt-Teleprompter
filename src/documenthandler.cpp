@@ -269,6 +269,43 @@ void DocumentHandler::setUnderline(bool underline)
     emit underlineChanged();
 }
 
+bool DocumentHandler::strike() const
+{
+    QTextCursor cursor = textCursor();
+    if (cursor.isNull())
+        return false;
+    return textCursor().charFormat().fontStrikeOut();
+}
+
+void DocumentHandler::setStrike(bool strike)
+{
+    QTextCharFormat format;
+    format.setFontStrikeOut(strike);
+    mergeFormatOnWordOrSelection(format);
+    emit strikeChanged();
+}
+
+bool DocumentHandler::marker() const
+{
+    QTextCursor cursor = textCursor();
+    if (cursor.isNull())
+        return false;
+    return textCursor().charFormat().isAnchor();
+}
+
+void DocumentHandler::setMarker(bool marker)
+{
+    QTextCharFormat format;
+    format.setAnchor(marker);
+    if (marker) {
+        format.setAnchorHref("#");
+        format.setForeground(QColor("lightblue"));
+        format.setAnchorNames(QStringList("marker"));
+    }
+    mergeFormatOnWordOrSelection(format);
+    emit markerChanged();
+}
+
 int DocumentHandler::fontSize() const
 {
     QTextCursor cursor = textCursor();
@@ -393,6 +430,8 @@ void DocumentHandler::reset()
     emit boldChanged();
     emit italicChanged();
     emit underlineChanged();
+    emit strikeChanged();
+    emit markerChanged();
     emit fontSizeChanged();
     emit textColorChanged();
 }
