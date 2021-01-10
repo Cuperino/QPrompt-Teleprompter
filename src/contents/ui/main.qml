@@ -323,6 +323,17 @@ Kirigami.ApplicationWindow {
             title: i18n("&Edit")
             
             MenuItem {
+                text: i18n("&Undo")
+                enabled: prompterPage.editor.canUndo
+                onTriggered: prompterPage.editor.undo()
+            }
+            MenuItem {
+                text: i18n("&Redo")
+                enabled: prompterPage.editor.canRedo
+                onTriggered: prompterPage.editor.redo()
+            }
+            MenuSeparator { }
+            MenuItem {
                 text: i18n("&Copy")
                 enabled: prompterPage.editor.selectedText
                 onTriggered: prompterPage.editor.copy()
@@ -354,6 +365,94 @@ Kirigami.ApplicationWindow {
                 checkable: true
                 checked: root.__translucidBackground
                 onTriggered: root.__translucidBackground = !root.__translucidBackground
+            }
+            MenuSeparator { }
+            Menu {
+                title: i18n("&Pointers")
+                MenuItem {
+                    text: i18n("&Left Pointer")
+                    checkable: true
+                    checked: prompterPage.overlay.styleState === "leftPointer"
+                    onTriggered: prompterPage.overlay.styleState = "leftPointer"
+                }
+                MenuItem {
+                    text: i18n("&Right Pointer")
+                    checkable: true
+                    checked: prompterPage.overlay.styleState === "rightPointer"
+                    onTriggered: prompterPage.overlay.styleState = "rightPointer"
+                }
+                MenuItem {
+                    text: i18n("B&oth Pointer")
+                    checkable: true
+                    checked: prompterPage.overlay.styleState === "pointers"
+                    onTriggered: prompterPage.overlay.styleState = "pointers"
+                }
+                MenuSeparator { }
+                MenuItem {
+                    text: i18n("&Bars")
+                    checkable: true
+                    checked: prompterPage.overlay.styleState === "bars"
+                    onTriggered: prompterPage.overlay.styleState = "bars"
+                }
+                MenuItem {
+                    text: i18n("Bars L&eft")
+                    checkable: true
+                    checked: prompterPage.overlay.styleState === "barsLeft"
+                    onTriggered: prompterPage.overlay.styleState = "barsLeft"
+                }
+                MenuItem {
+                    text: i18n("Bars R&ight")
+                    checkable: true
+                    checked: prompterPage.overlay.styleState === "barsRight"
+                    onTriggered: prompterPage.overlay.styleState = "barsRight"
+                }
+                MenuSeparator { }
+                MenuItem {
+                    text: i18n("&All")
+                    checkable: true
+                    checked: prompterPage.overlay.styleState === "all"
+                    onTriggered: prompterPage.overlay.styleState = "all"
+                }
+                MenuItem {
+                    text: i18n("&None")
+                    checkable: true
+                    checked: prompterPage.overlay.styleState === "none"
+                    onTriggered: prompterPage.overlay.styleState = "none"
+                }
+            }
+            Menu {
+                title: i18n("&Reading region")
+                MenuItem {
+                    text: i18n("&Top")
+                    checkable: true
+                    checked: prompterPage.overlay.positionState === "top"
+                    onTriggered: prompterPage.overlay.positionState = "top"
+                }
+                MenuItem {
+                    text: i18n("&Middle")
+                    checkable: true
+                    checked: prompterPage.overlay.positionState === "middle"
+                    onTriggered: prompterPage.overlay.positionState = "middle"
+                }
+                MenuItem {
+                    text: i18n("&Bottom")
+                    checkable: true
+                    checked: prompterPage.overlay.positionState === "bottom"
+                    onTriggered: prompterPage.overlay.positionState = "bottom"
+                }
+                MenuSeparator { }
+                MenuItem {
+                    text: i18n("&Free placement")
+                    checkable: true
+                    checked: prompterPage.overlay.positionState === "free"
+                    onTriggered: prompterPage.overlay.positionState = "free"
+                }
+                MenuItem {
+                    text: i18n("&Custom (Fixed placement)")
+                    checkable: true
+                    checked: prompterPage.overlay.positionState === "fixed"
+                    onTriggered: prompterPage.overlay.positionState = "fixed"
+                }
             }
         }
         Menu {

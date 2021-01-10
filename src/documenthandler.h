@@ -99,6 +99,9 @@ class DocumentHandler : public QObject
     Q_PROPERTY(bool bold READ bold WRITE setBold NOTIFY boldChanged)
     Q_PROPERTY(bool italic READ italic WRITE setItalic NOTIFY italicChanged)
     Q_PROPERTY(bool underline READ underline WRITE setUnderline NOTIFY underlineChanged)
+    Q_PROPERTY(bool strike READ strike WRITE setStrike NOTIFY strikeChanged)
+    
+    Q_PROPERTY(bool marker READ marker WRITE setMarker NOTIFY markerChanged)
     
     Q_PROPERTY(int fontSize READ fontSize WRITE setFontSize NOTIFY fontSizeChanged)
     
@@ -144,6 +147,12 @@ public:
     bool underline() const;
     void setUnderline(bool underline);
     
+    bool strike() const;
+    void setStrike(bool strike);
+    
+    bool marker() const;
+    void setMarker(bool marker);
+    
     int fontSize() const;
     void setFontSize(int size);
     
@@ -169,12 +178,13 @@ Q_SIGNALS:
     void textColorChanged();
     void alignmentChanged();
     
-    //void anchorChanged();
-
     void boldChanged();
     void italicChanged();
     void underlineChanged();
+    void strikeChanged();
     
+    void markerChanged();
+
     void fontSizeChanged();
     
     void textChanged();
