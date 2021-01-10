@@ -205,22 +205,22 @@ void DocumentHandler::setAlignment(Qt::Alignment alignment)
     emit alignmentChanged();
 }
 
-bool DocumentHandler::anchor() const
-{
-    QTextCursor cursor = textCursor();
-    if (cursor.isNull())
-        return false;
-    return textCursor().charFormat().fontWeight() == QFont::Bold;
-}
-
-void DocumentHandler::setAnchor(QStringList names)
-{
-    QTextCharFormat format;
-    format.setAnchorNames(names);
-    mergeFormatOnWordOrSelection(format);
-    emit anchorChanged();
-}
-
+// bool DocumentHandler::anchor() const
+// {
+//     QTextCursor cursor = textCursor();
+//     if (cursor.isNull())
+//         return false;
+//     return textCursor().charFormat().fontWeight() == QFont::Bold;
+// }
+// 
+// void DocumentHandler::setAnchor(QStringList names)
+// {
+//     QTextCharFormat format;
+//     format.setAnchorNames(names);
+//     mergeFormatOnWordOrSelection(format);
+//     emit anchorChanged();
+// }
+// 
 bool DocumentHandler::bold() const
 {
     QTextCursor cursor = textCursor();
