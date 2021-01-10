@@ -132,8 +132,8 @@ public:
     Qt::Alignment alignment() const;
     void setAlignment(Qt::Alignment alignment);
 
-    bool anchor() const;
-    void setAnchor(QStringList anchorNames);
+    //bool anchor() const;
+    //void setAnchor(QStringList anchorNames);
     
     bool bold() const;
     void setBold(bool bold);
@@ -169,7 +169,7 @@ Q_SIGNALS:
     void textColorChanged();
     void alignmentChanged();
     
-    void anchorChanged();
+    //void anchorChanged();
 
     void boldChanged();
     void italicChanged();
