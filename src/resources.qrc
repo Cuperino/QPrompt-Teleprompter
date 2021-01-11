@@ -12,7 +12,7 @@
         <file>qtquickcontrols2.conf</file>
         <file>images/logo.png</file>
         <file>fonts/fontello.ttf</file>
-        <file>instructions.html</file>
+        <file alias="guide_en.html">documents/guide_en.html</file>
         <file>untitled.html</file>
     </qresource>
 </RCC>
