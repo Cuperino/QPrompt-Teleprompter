@@ -438,8 +438,7 @@ Flickable {
                 isNewFile = false
             }
             else {
-                document.load("qrc:/instructions.html")
-                isNewFile = true
+                loadInstructions();
             }
         }
         onLoaded: {
@@ -458,9 +457,9 @@ Flickable {
         }
         
         function loadInstructions() {
-            document.load("qrc:/instructions.html")
+            document.load("qrc:/"+i18n("guide_en.html"))
             isNewFile = true
-            showPassiveNotification(i18n("User guide loaded"))
+            //showPassiveNotification(i18n("User guide loaded"))
         }
         
         function open() {
