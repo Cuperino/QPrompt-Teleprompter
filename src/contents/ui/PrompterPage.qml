@@ -321,6 +321,9 @@ Kirigami.ScrollablePage {
         id: prompter
         z: 0
         textColor: colorDialog.color
+        property double delta: 16
+        fontSize:  (prompter.state==="editing" && !prompter.__wysiwyg) ? (Math.pow(fontSizeSlider.value/185,4)*185) : (Math.pow(fontWYSIWYGSizeSlider.value/185,4)*185)*prompter.__vw/10
+        //Math.pow((fontSizeSlider.value*prompter.__vw),3)
     }
     
     FontDialog {
@@ -328,7 +331,7 @@ Kirigami.ScrollablePage {
         options: FontDialog.ScalableFonts|FontDialog.MonospacedFonts|FontDialog.ProportionalFonts
         onAccepted: {
             prompter.document.fontFamily = font.family;
-            prompter.document.fontSize = font.pointSize*prompter.editor.font.pixelSize/6;
+            //prompter.document.fontSize = font.pointSize*prompter.editor.font.pixelSize/6;
         }
     }
     
@@ -733,6 +736,44 @@ Kirigami.ScrollablePage {
                     checkable: true
                     checked: prompter.document.alignment === Qt.AlignJustify
                     onClicked: prompter.document.alignment = Qt.AlignJustify
+                }
+            }
+            Row {
+                visible: !wysiwygButton.checked && prompter.state!=="prompting"
+                Label {
+                    text: i18n("Editing font size:") + " " + prompter.fontSize + " (" + (fontSizeSlider.value/1000).toFixed(3).slice(2) + "%)"
+                    font.family: font.MonospacedFonts
+                    Layout.leftMargin: 8
+                    Layout.rightMargin: 8
+                }
+                Slider {
+                    id: fontSizeSlider
+                    from: 90
+                    value: 100
+                    to: 158
+                    stepSize: 1
+                    Layout.fillWidth: true
+                    Layout.leftMargin: 16
+                    Layout.rightMargin: 16
+                }
+            }
+            Row {
+                visible: wysiwygButton.checked || prompter.state==="prompting"
+                Label {
+                    text: i18n("Prompting font size:") + " " + (prompter.fontSize/1000).toFixed(3).slice(2) + " (" + (fontWYSIWYGSizeSlider.value/1000).toFixed(3).slice(2) + "%)"
+                    font.family: font.MonospacedFonts
+                    Layout.leftMargin: 8
+                    Layout.rightMargin: 8
+                }
+                Slider {
+                    id: fontWYSIWYGSizeSlider
+                    from: 90
+                    value: 144
+                    to: 180 // 200
+                    stepSize: 0.5
+                    Layout.fillWidth: true
+                    Layout.leftMargin: 16
+                    Layout.rightMargin: 16
                 }
             }
         }
