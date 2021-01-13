@@ -102,6 +102,7 @@ Flickable {
     property bool __invertArrowKeys: root.__invertArrowKeys
     property bool __invertScrollDirection: root.__invertScrollDirection
     property bool __wysiwyg: false
+    property alias fontSize: editor.font.pixelSize
     property int __i: 1
     property bool __play: true
     property real __baseSpeed: root.__baseSpeed
@@ -272,7 +273,7 @@ Flickable {
         // Start with the editor in focus
         focus: true
         // Make base font size relative to editor's width
-        font.pixelSize: prompter.state==="editing" && !prompter.__wysiwyg ? 16 : 10 * prompter.__vw
+        font.pixelSize: 14
         font.family: "Anjali Old Lipi"
         font.hintingPreference: Font.PreferFullHinting
         // Make links responsive
