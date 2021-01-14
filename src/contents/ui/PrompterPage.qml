@@ -319,9 +319,9 @@ Kirigami.ScrollablePage {
     
     Prompter {
         id: prompter
+        property double delta: 16
         z: 0
         textColor: colorDialog.color
-        property double delta: 16
         fontSize:  (prompter.state==="editing" && !prompter.__wysiwyg) ? (Math.pow(fontSizeSlider.value/185,4)*185) : (Math.pow(fontWYSIWYGSizeSlider.value/185,4)*185)*prompter.__vw/10
         //Math.pow((fontSizeSlider.value*prompter.__vw),3)
     }
@@ -738,30 +738,32 @@ Kirigami.ScrollablePage {
                     onClicked: prompter.document.alignment = Qt.AlignJustify
                 }
             }
-            Row {
+            RowLayout {
                 visible: !wysiwygButton.checked && prompter.state!=="prompting"
                 Label {
-                    text: i18n("Editing font size:") + " " + prompter.fontSize + " (" + (fontSizeSlider.value/1000).toFixed(3).slice(2) + "%)"
-                    font.family: font.MonospacedFonts
+                    text: i18n("Font size for editing:") + " " + prompter.fontSize + " (" + (fontSizeSlider.value/1000).toFixed(3).slice(2) + "%)"
+                    color: appTheme.__fontColor
+                    Layout.topMargin: 4
+                    Layout.bottomMargin: 4
                     Layout.leftMargin: 8
                     Layout.rightMargin: 8
                 }
                 Slider {
                     id: fontSizeSlider
+                    focusPolicy: Qt.TabFocus
                     from: 90
                     value: 100
                     to: 158
                     stepSize: 1
-                    Layout.fillWidth: true
-                    Layout.leftMargin: 16
-                    Layout.rightMargin: 16
                 }
             }
-            Row {
+            RowLayout {
                 visible: wysiwygButton.checked || prompter.state==="prompting"
                 Label {
-                    text: i18n("Prompting font size:") + " " + (prompter.fontSize/1000).toFixed(3).slice(2) + " (" + (fontWYSIWYGSizeSlider.value/1000).toFixed(3).slice(2) + "%)"
-                    font.family: font.MonospacedFonts
+                    text: i18n("Font size for prompting:") + " " + (prompter.fontSize/1000).toFixed(3).slice(2) + " (" + (fontWYSIWYGSizeSlider.value/1000).toFixed(3).slice(2) + "%)"
+                    color: appTheme.__fontColor
+                    Layout.topMargin: 4
+                    Layout.bottomMargin: 4
                     Layout.leftMargin: 8
                     Layout.rightMargin: 8
                 }
@@ -771,9 +773,7 @@ Kirigami.ScrollablePage {
                     value: 144
                     to: 180 // 200
                     stepSize: 0.5
-                    Layout.fillWidth: true
-                    Layout.leftMargin: 16
-                    Layout.rightMargin: 16
+                    focusPolicy: Qt.TabFocus
                 }
             }
         }
