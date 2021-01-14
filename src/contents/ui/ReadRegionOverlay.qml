@@ -99,7 +99,7 @@ Item {
         enabled: false
         property double __customPlacement: 0.5
         property double __placement: __customPlacement
-        height: 21 * __vw
+        height: 2.1 * prompter.fontSize
         y: readRegion.__placement * (overlay.height - readRegion.height)
         anchors.left: parent.left
         anchors.right: parent.right
