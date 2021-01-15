@@ -776,6 +776,29 @@ Kirigami.ScrollablePage {
                     focusPolicy: Qt.TabFocus
                 }
             }
+            RowLayout {
+                visible: prompter.state==="prompting"
+                Label {
+                    text: i18n("Speed control:") + " " + (prompter.__i/100).toFixed(2).slice(prompter.__i<0?3:2)
+                    color: appTheme.__fontColor
+                    Layout.topMargin: 4
+                    Layout.bottomMargin: 4
+                    Layout.leftMargin: 8
+                    Layout.rightMargin: 8
+                }
+                Slider {
+                    id: speedControlSlider
+                    value: prompter.__i
+                    to: 40
+                    from: -speedControlSlider.to
+                    stepSize: 1
+                    focusPolicy: Qt.TabFocus
+                    onMoved: {
+                        if (!(prompter.__atEnd && value>=0 || prompter.__atStart && value<0))
+                            prompter.__i = value
+                    }
+                }
+            }
         }
     }
     
