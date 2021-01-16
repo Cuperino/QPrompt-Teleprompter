@@ -90,7 +90,8 @@ Item {
             from: "*"; to: "*"
             NumberAnimation {
                 targets: [overlay]
-                properties: "__opacity"; duration: Kirigami.Units.longDuration;
+                properties: "__opacity"
+                duration: Kirigami.Units.longDuration
             }
         }
     ]
@@ -159,7 +160,15 @@ Item {
                 from: "*"; to: "*"
                 NumberAnimation {
                     targets: [readRegion, pointers, overlay]
-                    properties: "__placement,__fillColor,__opacity"; duration: 200; easing.type: Easing.OutQuad
+                    properties: "__placement,__opacity"
+                    duration: Kirigami.Units.shortDuration
+                    easing.type: Easing.OutQuad
+                }
+                ColorAnimation {
+                    targets: [pointers]
+                    properties: "__fillColor,__strokeColor"
+                    duration: Kirigami.Units.shortDuration
+                    easing.type: Easing.OutQuad
                 }
             }
         ]
@@ -360,7 +369,9 @@ Item {
                     from: "*"; to: "*"
                     NumberAnimation {
                         targets: [pointers, leftPointer, rightPointer, topBar, bottomBar]
-                        properties: "opacity"; duration: 200; easing.type: Easing.OutQuad
+                        properties: "opacity"
+                        duration: Kirigami.Units.shortDuration
+                        easing.type: Easing.OutQuad
                     }
                 }
             ]
