@@ -779,7 +779,7 @@ Kirigami.ScrollablePage {
             RowLayout {
                 visible: prompter.state==="prompting"
                 Label {
-                    text: i18n("Speed control:") + " " + (prompter.__i/100).toFixed(2).slice(prompter.__i<0?3:2)
+                    text: i18n("Velocity control:") + (prompter.__i<0 ? '  -' + (prompter.__i/100).toFixed(2).slice(3) : ' +' + (prompter.__i/100).toFixed(2).slice(2))
                     color: appTheme.__fontColor
                     Layout.topMargin: 4
                     Layout.bottomMargin: 4
