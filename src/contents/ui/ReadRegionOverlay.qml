@@ -31,7 +31,6 @@ import org.kde.kirigami 2.9 as Kirigami
 Item {
     id: overlay
     property double __opacity: 0.06
-    property double __pointersOpacity: 0.08
     property color __color: 'black'
     readonly property double __vw: width/100
     property alias __readRegionPlacement: readRegion.__placement
@@ -73,7 +72,6 @@ Item {
             PropertyChanges {
                 target: overlay
                 __opacity: 0.4
-                __pointersOpacity: 0.4
                 enabled: false
             }
             PropertyChanges {
@@ -186,43 +184,45 @@ Item {
         }
         Item {
             id: pointers
-            property alias __opacity: overlay.__pointersOpacity
-            property color __strokeColor: "gray"
-            property color __fillColor: "#001800"
-            property double __offsetX: 0.1111
+            property double __opacity: 1
+            property color __strokeColor: parent.Material.theme===Material.Light ? "#4d94cf" : "#2b72ad"
+            property color __fillColor: "#00000000"
+            property double __offsetX: 0
+            //property double __offsetX: -0.1111
             property double __stretchX: 0.3333
             readonly property double __pointerUnit: parent.height / 6
             Shape {
                 id: leftPointer
+                x: prompter.contentsWidth*overlay.width - (2.8*pointers.__stretchX+pointers.__offsetX)*pointers.__pointerUnit
                 ShapePath {
-                    strokeWidth: 3
+                    strokeWidth: pointers.__pointerUnit/3
                     strokeColor: pointers.__strokeColor
                     fillColor: pointers.__fillColor
                     // Top left starting point                                
-                    startX: pointers.__offsetX*pointers.__pointerUnit; startY: 1*pointers.__pointerUnit
-                    // Bottom left
-                    PathLine { x: pointers.__offsetX*pointers.__pointerUnit; y: 5*pointers.__pointerUnit }
+                    startX: pointers.__offsetX*pointers.__pointerUnit; startY: 2*pointers.__pointerUnit
                     // Center right
                     PathLine { x: (3*pointers.__stretchX+pointers.__offsetX)*pointers.__pointerUnit; y: 3*pointers.__pointerUnit }
-                    // Top left return
-                    PathLine { x: pointers.__offsetX*pointers.__pointerUnit; y: 1*pointers.__pointerUnit }
+                    // Bottom left
+                    PathLine { x: pointers.__offsetX*pointers.__pointerUnit; y: 4*pointers.__pointerUnit }
+                    //// Top left return
+                    //PathLine { x: pointers.__offsetX*pointers.__pointerUnit; y: 1*pointers.__pointerUnit }
                 }
             }
             Shape {
                 id: rightPointer
-                x: parent.parent.width
+                x: parent.parent.width - prompter.contentsWidth*overlay.width + (2.7*pointers.__stretchX+pointers.__offsetX)*pointers.__pointerUnit
                 ShapePath {
-                    strokeWidth: 3
+                    strokeWidth: pointers.__pointerUnit/3
                     strokeColor: pointers.__strokeColor
                     fillColor: pointers.__fillColor
                     // Top right starting point                                
-                    startX: -pointers.__offsetX*pointers.__pointerUnit; startY: 1*pointers.__pointerUnit
-                    // Bottom right
-                    PathLine { x: -pointers.__offsetX*pointers.__pointerUnit; y: 5*pointers.__pointerUnit }
+                    startX: -pointers.__offsetX*pointers.__pointerUnit; startY: 2*pointers.__pointerUnit
                     // Center left
                     PathLine { x: -(3*pointers.__stretchX+pointers.__offsetX)*pointers.__pointerUnit; y: 3*pointers.__pointerUnit }
-                    // Top right return
-                    PathLine { x: -pointers.__offsetX*pointers.__pointerUnit; y: 1*pointers.__pointerUnit }
+                    // Bottom right
+                    PathLine { x: -pointers.__offsetX*pointers.__pointerUnit; y: 4*pointers.__pointerUnit }
+                    //// Top right return
+                    //PathLine { x: -pointers.__offsetX*pointers.__pointerUnit; y: 2*pointers.__pointerUnit }
                 }
             }
             states: [
