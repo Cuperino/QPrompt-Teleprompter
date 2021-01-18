@@ -193,7 +193,7 @@ Item {
             readonly property double __pointerUnit: parent.height / 6
             Shape {
                 id: leftPointer
-                x: prompter.contentsWidth*overlay.width - (2.8*pointers.__stretchX+pointers.__offsetX)*pointers.__pointerUnit
+                x: prompter.editorXOffset*overlay.width - (2.8*pointers.__stretchX+pointers.__offsetX)*pointers.__pointerUnit
                 ShapePath {
                     strokeWidth: pointers.__pointerUnit/3
                     strokeColor: pointers.__strokeColor
@@ -210,7 +210,7 @@ Item {
             }
             Shape {
                 id: rightPointer
-                x: parent.parent.width - prompter.contentsWidth*overlay.width + (2.7*pointers.__stretchX+pointers.__offsetX)*pointers.__pointerUnit
+                x: parent.parent.width - prompter.editorXOffset*overlay.width + (2.7*pointers.__stretchX+pointers.__offsetX)*pointers.__pointerUnit
                 ShapePath {
                     strokeWidth: pointers.__pointerUnit/3
                     strokeColor: pointers.__strokeColor

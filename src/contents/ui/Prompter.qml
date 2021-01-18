@@ -113,6 +113,7 @@ Flickable {
     //property int alignment: Text.AlignCenter
     //property real customContentsPlacement: 0.1
     property real contentsPlacement //: customContentsPlacement//Math.abs(editor.x)/prompter.width
+    readonly property real editorXOffset: Math.abs(editor.x)/prompter.width
     readonly property real centreX: width / 2;
     readonly property real centreY: height / 2;
     readonly property int __jitterMargin: __i%2
