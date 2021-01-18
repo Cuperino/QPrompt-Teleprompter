@@ -111,6 +111,8 @@ Flickable {
     //property alias __curvature: parent.__curvature
     property int __lastRecordedPosition: 0
     //property int alignment: Text.AlignCenter
+    //property real customContentsPlacement: 0.1
+    property real contentsPlacement //: customContentsPlacement//Math.abs(editor.x)/prompter.width
     readonly property real centreX: width / 2;
     readonly property real centreY: height / 2;
     readonly property int __jitterMargin: __i%2
@@ -137,8 +139,13 @@ Flickable {
         xScale: prompter.state!=="editing" && prompter.__flipX ? -1 : 1
         yScale: prompter.state!=="editing" && prompter.__flipY ? -1 : 1
     }
+    // Clipping improves performance on large files and font sizes.
+    // It also provides a workaround to the lack of background in the global toolbar when using transparent backgrounds in Material theme.
+    clip: true
     transform: __flips
-    layer.enabled: true
+    // Progress indicator
+    readonly property real progress: (position+__jitterMargin)/editor.height
+    //layer.enabled: true
     Behavior on __flips.xScale {
         enabled: true
         animation: NumberAnimation {
@@ -245,121 +252,174 @@ Flickable {
             //showPassiveNotification(i18n("Decrease Velocity"));
         }
     }
+    
+    function setContentWidth() {
+        //contentsPlacement = Math.abs(editor.x)/prompter.width
+        contentsPlacement = (Math.abs(editor.x)-fontSize/2)/(prompter.width-fontSize)
+        //console.log(customContentsPlacement)
+        console.log(contentsPlacement)
+        console.log(editor.x)
+    }
+    
+    contentHeight: flickableContent.height
+    //contentHeight: editor.paintedHeight
     topMargin: prompter.height
     bottomMargin: prompter.height
-    TextArea.flickable: TextArea {
-        id: editor
-        textFormat: Qt.RichText
-        wrapMode: TextArea.Wrap
-        readOnly: false
-        text: "Error loading file..."
-        selectByMouse: true
-        persistentSelection: true
-        //Different styles have different padding and background
-        //decorations, but since this editor must resemble the
-        //teleprompter output, we don't need them.
-        leftPadding: 20+2*(x<0?-x:0)
-        rightPadding: 20+2*(x>0?x:0)
-        topPadding: 0
-        bottomPadding: 0
-        background: transparent
-        //background: Rectangle{
-        //    color: QColor(40,41,35,127)
-        //}
-        //ground: Rectangle {
-        //color: "#424242"
-        //opacity: 0.8
-        //}
-        // Start with the editor in focus
-        focus: true
-        // Make base font size relative to editor's width
-        font.pixelSize: 14
-        font.family: "Anjali Old Lipi"
-        font.hintingPreference: Font.PreferFullHinting
-        // Make links responsive
-        onLinkActivated: Qt.openUrlExternally(link)
-        // Width drag controls
-        //width: prompter.width-2*position.x
-        MouseArea {
-            acceptedButtons: Qt.RightButton
-            anchors.fill: parent
-            onClicked: contextMenu.open()
-        }
-        
-        // Draggable width adjustment borders
-        Component {
-            id: editorSidesBorder
+    function ensureVisible(r)
+    {
+        if (contentX >= r.x)
+            contentX = r.x;
+        else if (contentX+width <= r.x+r.width)
+            contentX = r.x+r.width-width;
+        if (contentY >= r.y)
+            contentY = r.y;
+        else if (contentY+height <= r.y+r.height)
+            contentY = r.y+r.height-height;
+    }
+    Item {
+        id: flickableContent
+        anchors.left: parent.left
+        anchors.right: parent.right
+        anchors.top: parent.top
+        height: editor.implicitHeight
+        TextArea {
+        //TextArea.flickable: TextArea {
+            id: editor
+            onCursorRectangleChanged: prompter.ensureVisible(cursorRectangle)
+            textFormat: Qt.RichText
+            wrapMode: TextArea.Wrap
+            readOnly: false
+            text: "Error loading file..."
+            selectByMouse: true
+            persistentSelection: true
+            //Different styles have different padding and background
+            //decorations, but since this editor must resemble the
+            //teleprompter output, we don't need them.
+            x: fontSize/2 + contentsPlacement*(prompter.width-fontSize)
+            //leftPadding: 20+2*(x<0?-x:0)
+            //rightPadding: 20+2*(x>0?x:0)
+            topPadding: 0
+            bottomPadding: 0
+            //background: Rectangle{
+            //    color: QColor(40,41,35,127)
+            //}
+            //ground: Rectangle {
+            //color: "#424242"
+            //opacity: 0.8
+            //}
+            // Start with the editor in focus
+            focus: true
+            // Make base font size relative to editor's width
+            font.pixelSize: 14
+            font.family: "Anjali Old Lipi"
+            font.hintingPreference: Font.PreferFullHinting
+            // Make links responsive
+            onLinkActivated: Qt.openUrlExternally(link)
+            // Width drag controls
+            //width: prompter.width-2*Math.abs(position.x)
+            width: prompter.width-2*Math.abs(x)
+            MouseArea {
+                acceptedButtons: Qt.RightButton
+                anchors.fill: parent
+                onClicked: contextMenu.open()
+            }
+
+            // Bottom margin hack
             Rectangle {
-                width: 2
-                gradient: Gradient {
-                    GradientStop { position: 0.0; color: "#AA9" }
-                    GradientStop { position: 1.0; color: "#776" }
+                id: rect
+                anchors.left: parent.left
+                anchors.right: parent.right
+                anchors.top: editor.bottom
+                height: prompter.height
+                color: "#000"
+                opacity: 0.2
+            }
+
+            // Draggable width adjustment borders
+            Component {
+                id: editorSidesBorder
+                Rectangle {
+                    width: 2
+                    gradient: Gradient {
+                        GradientStop { position: 0.0; color: "#AA9" }
+                        GradientStop { position: 1.0; color: "#776" }
+                    }
                 }
             }
-        }
-        MouseArea {
-            id: leftWidthAdjustmentBar
-            scrollGestureEnabled: false
-            propagateComposedEvents: true
-            hoverEnabled: false
-            anchors.left: parent.left
-            anchors.top: parent.top
-            anchors.bottom: parent.bottom
-            anchors.leftMargin: Qt.application.layoutDirection===Qt.LeftToRight&&parent.x<0?-2*parent.x:(Qt.application.layoutDirection===Qt.RightToLeft&&parent.x>0?2*parent.x:0)
-            width: 25
-            drag.target: parent
-            drag.axis: Drag.XAxis
-            drag.smoothed: false
-            drag.minimumX: Qt.application.layoutDirection===Qt.LeftToRight ? 0 : -prompter.width*6/20
-            drag.maximumX: Qt.application.layoutDirection===Qt.LeftToRight ? prompter.width*6/20 : 0
-            cursorShape: Qt.SizeHorCursor
-            Loader {
-                sourceComponent: editorSidesBorder
-                anchors {top: parent.top; bottom: parent.bottom; horizontalCenter: parent.horizontalCenter}
-            }
-            onPressed: {
-                // Hack: Workaround to prevent covering the editor toolbar's buttons, placed at the window's footer.
-                if (mouse.y >= position+prompter.height)
-                    mouse.accepted = false
-                // Adjust widths
-                else if (Qt.application.layoutDirection===Qt.LeftToRight&&parent.x<0 || Qt.application.layoutDirection===Qt.RightToLeft&&parent.x>0)
-                    parent.x = -parent.x
-            }
-            onClicked: {
-                mouse.accepted = false
-            }
-        }
-        MouseArea {
-            id: rightWidthAdjustmentBar
-            scrollGestureEnabled: false
-            propagateComposedEvents: true
-            hoverEnabled: false
-            anchors.right: parent.right
-            anchors.top: parent.top
-            anchors.bottom: parent.bottom
-            anchors.rightMargin: Qt.application.layoutDirection===Qt.LeftToRight&&parent.x>0?2*parent.x:(Qt.application.layoutDirection===Qt.RightToLeft&&parent.x<0?-2*parent.x:0)
-            width: 25
-            drag.target: parent
-            drag.axis: Drag.XAxis
-            drag.smoothed: false
-            drag.minimumX: Qt.application.layoutDirection===Qt.LeftToRight ? -prompter.width*6/20 : 0
-            drag.maximumX: Qt.application.layoutDirection===Qt.LeftToRight ? 0 : prompter.width*6/20
-            cursorShape: Qt.SizeHorCursor
-            Loader {
-                sourceComponent: editorSidesBorder
-                anchors {top: parent.top; bottom: parent.bottom; horizontalCenter: parent.horizontalCenter}
-            }
-            onPressed: {
-                // Hack: Workaround to prevent covering the editor toolbar's buttons, placed at the window's footer.
-                if (mouse.y >= position+prompter.height)
-                    mouse.accepted = false
-                // Adjust widths
-                else if (Qt.application.layoutDirection===Qt.LeftToRight&&parent.x>0 || Qt.application.layoutDirection===Qt.RightToLeft&&parent.x<0)
-                    parent.x = -parent.x
-            }
-            //onClicked: {
+            MouseArea {
+                id: leftWidthAdjustmentBar
+                scrollGestureEnabled: false
+                propagateComposedEvents: true
+                hoverEnabled: false
+                anchors.left: editor.left
+                anchors.top: parent.top
+                anchors.bottom: parent.bottom
+                //anchors.leftMargin: Qt.application.layoutDirection===Qt.LeftToRight&&parent.x<0?-2*parent.x:(Qt.application.layoutDirection===Qt.RightToLeft&&parent.x>0?2*parent.x:0)
+                width: 25
+                drag.target: editor
+                drag.axis: Drag.XAxis
+                drag.smoothed: false
+                drag.minimumX: Qt.application.layoutDirection===Qt.LeftToRight ? fontSize/2 : -prompter.width*6/20
+                drag.maximumX: Qt.application.layoutDirection===Qt.LeftToRight ? prompter.width*6/20 : -fontSize/2
+                cursorShape: Qt.SizeHorCursor
+                Loader {
+                    sourceComponent: editorSidesBorder
+                    anchors {top: parent.top; bottom: parent.bottom; horizontalCenter: parent.horizontalCenter}
+                }
+                onPressed: {
+                    // Hack: Workaround to prevent covering the editor toolbar's buttons, placed at the window's footer.
+                    if (mouse.y >= position+prompter.height)
+                        mouse.accepted = false
+                        //// Adjust widths
+                        //else if (Qt.application.layoutDirection===Qt.LeftToRight&&parent.x<0 || Qt.application.layoutDirection===Qt.RightToLeft&&parent.x>0)
+                        //    parent.x = -parent.x
+                }
+                //onClicked: {
                 //mouse.accepted = false
-            //}
+                //}
+                onReleased: prompter.setContentWidth()
+            }
+            Item {
+                id: rightWidthAdjustmentBar
+                x: parent.width-width
+                //anchors.right: parent.right
+                anchors.top: parent.top
+                anchors.bottom: parent.bottom
+                width: 25
+                MouseArea {
+                    scrollGestureEnabled: false
+                    propagateComposedEvents: true
+                    hoverEnabled: false
+                    anchors.fill: parent
+                    //anchors.right: parent.right
+                    //anchors.top: parent.top
+                    //anchors.bottom: parent.bottom
+                    //anchors.rightMargin: Qt.application.layoutDirection===Qt.LeftToRight&&parent.x>0?2*parent.x:(Qt.application.layoutDirection===Qt.RightToLeft&&parent.x<0?-2*parent.x:0)
+                    //width: 25
+                    drag.target: parent
+                    drag.axis: Drag.XAxis
+                    drag.smoothed: false
+                    drag.minimumX: Qt.application.layoutDirection===Qt.LeftToRight ? -prompter.width*6/20 : editor.fontSize/2
+                    drag.maximumX: Qt.application.layoutDirection===Qt.LeftToRight ? -editor.fontSize/2 : editor.prompter.width*6/20
+                    cursorShape: Qt.SizeHorCursor
+                    Loader {
+                        sourceComponent: editorSidesBorder
+                        anchors {top: parent.top; bottom: parent.bottom; horizontalCenter: parent.horizontalCenter}
+                    }
+                    onPressed: {
+                        // Hack: Workaround to prevent covering the editor toolbar's buttons, placed at the window's footer.
+                        if (mouse.y >= position+prompter.height)
+                            mouse.accepted = false
+                            //// Adjust widths
+                            //else if (Qt.application.layoutDirection===Qt.LeftToRight&&parent.x>0 || Qt.application.layoutDirection===Qt.RightToLeft&&parent.x<0)
+                            //    parent.x = -parent.x
+                    }
+                    //onClicked: {
+                    //mouse.accepted = false
+                    //}
+                    onReleased: prompter.setContentWidth()
+                }
+            }
         }
     }
     
@@ -368,17 +428,6 @@ Flickable {
         source: editor
         //radius: 32
         radius: 0
-    }
-
-    // Bottom margin hack
-    Rectangle {
-        id: rect
-        anchors.left: parent.left
-        anchors.top: editor.bottom
-        height: prompter.height
-        width: prompter.width
-        color: "#000"
-        opacity: 0.2
     }
 
     MouseArea {
@@ -417,9 +466,8 @@ Flickable {
                     else
                         prompter.position -= delta;
                     __i=i;
-                    if (prompter.state==="prompting")
+                    if (prompter.state==="prompting" && prompter.__play)
                         prompter.position = prompter.__destination
-
                 }
             }
         }
