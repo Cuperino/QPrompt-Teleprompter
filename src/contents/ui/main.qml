@@ -245,7 +245,7 @@ Kirigami.ApplicationWindow {
                 Layout.rightMargin: 16
             },
             Label {
-                text: i18n("Acceleration curve:") + " " + baseAccelerationSlider.value.toFixed(2)
+                text: i18n("Acceleration curvature:") + " " + baseAccelerationSlider.value.toFixed(2)
                 Layout.leftMargin: 8
                 Layout.rightMargin: 8
             },
@@ -582,7 +582,7 @@ Kirigami.ApplicationWindow {
     }
 
     Rectangle {
-        visible: visibility!==Kirigami.ApplicationWindow.FullScreen
+        visible: pageStack.globalToolBar.actualStyle !== Kirigami.ApplicationHeaderStyle.None
         color: appTheme.__backgroundColor
         anchors{ top:parent.top; left:parent.left; right: parent.right }
         height: 40
