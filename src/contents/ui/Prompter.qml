@@ -262,9 +262,8 @@ Flickable {
     }
     
     contentHeight: flickableContent.height
-    //contentHeight: editor.paintedHeight
-    topMargin: prompter.height
-    bottomMargin: prompter.height
+    topMargin: overlay.__readRegionPlacement*prompter.height
+    bottomMargin: (1-overlay.__readRegionPlacement)*prompter.height
     function ensureVisible(r)
     {
         if (contentX >= r.x)
@@ -298,6 +297,8 @@ Flickable {
             x: fontSize/2 + contentsPlacement*(prompter.width-fontSize)
             //leftPadding: 20+2*(x<0?-x:0)
             //rightPadding: 20+2*(x>0?x:0)
+            leftPadding: 14
+            rightPadding: 14
             topPadding: 0
             bottomPadding: 0
             //background: Rectangle{
@@ -316,7 +317,6 @@ Flickable {
             // Make links responsive
             onLinkActivated: Qt.openUrlExternally(link)
             // Width drag controls
-            //width: prompter.width-2*Math.abs(position.x)
             width: prompter.width-2*Math.abs(x)
             MouseArea {
                 acceptedButtons: Qt.RightButton
@@ -458,17 +458,29 @@ Flickable {
             else {
                 // Regular scroll
                 const delta = wheel.angleDelta.y/2;
-                if (prompter.position-delta > -prompter.height/*0*/ && prompter.position-delta<editor.implicitHeight/*-prompter.height*/) {
-                    var i=__i;
+                var i=__i;
+                if (prompter.position-delta >= -prompter.topMargin/*0*/ && prompter.position-delta<=editor.implicitHeight/*-prompter.height*/) {
                     __i=0;
                     if (prompter.__invertScrollDirection)
                         prompter.position += delta;
                     else
                         prompter.position -= delta;
                     __i=i;
-                    if (prompter.state==="prompting" && prompter.__play)
-                        prompter.position = prompter.__destination
                 }
+                // If scroll were to go out of bounds, cap it
+                else if (prompter.position-delta > -prompter.topMargin) {
+                    __i=0;
+                    prompter.position = editor.implicitHeight
+                    __i=i;
+                }
+                else {
+                    __i=0;
+                    prompter.position = -prompter.topMargin
+                    __i=i;
+                }
+                // Resume prompting
+                if (prompter.state==="prompting" && prompter.__play)
+                    prompter.position = prompter.__destination
             }
         }
     }
