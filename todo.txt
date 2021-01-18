@@ -3,10 +3,10 @@ QPrompt
 V		Add countdown animation
 V		Start at 0, increase speed at countdown animation end
 	Files
-		Load files
-		Save file dialog on quit
-		New file
-		Show file title
+V		Load files
+\		Save file dialog on quit
+V		New file
+V		Show file title
 	Editing
 V		Toggle WYSIWYG
 	UX
@@ -17,18 +17,18 @@ V		Change flip toggle for a dropdown
 		Change app palette on QML
 	Formatting
 		Add Hue based colorwheel
-		Manually set background color
-		Manually set font color
+V		Manually set background color
+V		Manually set font color
 V		Add toolbar icons
-		Add system font support
-X		Toggle LTR paragraph support
-		Add second, darker, background to teleprompter for decoration on flip animations
+V		Add system font support
+C		Toggle LTR paragraph support
+X		Add second, darker, background to teleprompter for decoration on flip animations
 	Text Editor
-		Add text alignments
+V		Add text alignments
 V		Add undo redo actions
-		Apply system fonts
-		Add custom font set
-		Add custom text color
+V		Apply system fonts
+V		Add custom font set
+V		Add custom text color
 		Add custom highlight color
 		Search and Replace
 			Add search
@@ -48,7 +48,7 @@ V		Have text editor flick work right on native UI
 		Highlight current sentence
 		Send HTTP requests from QPrompt
 	Markers
-		Add nameless marker
+V		Add nameless marker
 		Add named marker
 		Go to marker position in editor
 		Go to marker position while prompting
@@ -59,10 +59,10 @@ V		Have text editor flick work right on native UI
 		Prepare translations sheet
 V		Scroll while prompting
 		Flick while prompting
-		Alight editor after prompt ends
-		Align to various heights on prompt start
-		Add top margin before prompter start
-		Separate prompter from other screen actions through variable abstracting?
+C		Align editor after prompt ends
+C		Align to various heights on prompt start
+V		Add top margin before prompter start
+V		Separate prompter from other screen actions through proper abstractions
 	Window
 		Communicate between two windows
 		Grab image on change, send to other window
