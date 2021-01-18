@@ -41,7 +41,8 @@ Kirigami.Page {
 
     title: "QPrompt"
     globalToolBarStyle: Kirigami.Settings.isMobile ? Kirigami.ApplicationHeaderStyle.None : Kirigami.ApplicationHeaderStyle.ToolBar
-    
+    padding: 0
+
     actions {
         main: Kirigami.Action {
             id: promptingButton
