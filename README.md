@@ -1,10 +1,12 @@
 QPrompt
 =========
 
-Free and open source teleprompter software for professionals across industries. Built on the Qt and Kirigami frameworks for accuracy and portability.
+Open source personal teleprompter software for professionals. Built with ease of use, fast performance, control accuracy, and cross-platform support in mind. QPrompt's convergent user interface can be built to run on Linux, Windows, macOS, iOS, and Android.
+
+QPrompt is written in QML and C++, using the Qt and Kirigami frameworks.
 
 # Copyright
-Copyright (C) 2020 Javier O. Cordero Pérez
+Copyright (C) 2021 Javier O. Cordero Pérez
 
 # License
 QPrompt is free software: you can redistribute it and/or modify
@@ -21,4 +23,4 @@ You should have received a copy of the GNU General Public License
 along with QPrompt.  If not, see <https://www.gnu.org/licenses/>.
 
 # Pun Facts
-Teleprompters are sometimes called "autocues" and a TV director should always cue the prompter operator. That's why QPrompt is short for Cue Prompter. Also, QPrompt is built using the Qt framework. The Q is meant to reference that and also mean Quick, because teleprompter operators need to be fast in their work.
+QPrompt is short for Cue Prompter, something TV directors say to cue teleprompter operators. Teleprompters are sometimes referred to as "autocue". Also, QPrompt is built using the Qt framework. The Q is meant to reference all of these things and also the word "quick", because teleprompter operators must be quick to respond to what happens on set.
