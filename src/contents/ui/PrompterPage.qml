@@ -27,7 +27,7 @@ import QtQuick.Layouts 1.15
 import QtQuick.Window 2.15
 import Qt.labs.platform 1.1
 
-Kirigami.ScrollablePage {
+Kirigami.Page {
     id: prompterPage
     
     // Unused signal. Leaving for reference.
@@ -40,6 +40,8 @@ Kirigami.ScrollablePage {
     property alias document: prompter.document
 
     title: "QPrompt"
+    globalToolBarStyle: Kirigami.Settings.isMobile ? Kirigami.ApplicationHeaderStyle.None : Kirigami.ApplicationHeaderStyle.ToolBar
+    
     actions {
         main: Kirigami.Action {
             id: promptingButton
@@ -305,26 +307,31 @@ Kirigami.ScrollablePage {
     Countdown {
         id: countdown
         z: 3
+        anchors.fill: parent
     }
     
     ReadRegionOverlay {
         id: overlay
         z: 1
+        anchors.fill: parent
     }
     
     //TimerClock {
     //    id: timer
     //    z: 4
+    //    anchors.fill: parent
     //}
     
     Prompter {
         id: prompter
         property double delta: 16
+        anchors.fill: parent
         z: 0
         textColor: colorDialog.color
         fontSize:  (prompter.state==="editing" && !prompter.__wysiwyg) ? (Math.pow(fontSizeSlider.value/185,4)*185) : (Math.pow(fontWYSIWYGSizeSlider.value/185,4)*185)*prompter.__vw/10
         //Math.pow((fontSizeSlider.value*prompter.__vw),3)
     }
+    progress: prompter.state==="prompting" ? prompter.progress : undefined
     
     FontDialog {
         id: fontDialog
@@ -779,7 +786,7 @@ Kirigami.ScrollablePage {
             RowLayout {
                 visible: prompter.state==="prompting"
                 Label {
-                    text: i18n("Velocity control:") + (prompter.__i<0 ? '  -' + (prompter.__i/100).toFixed(2).slice(3) : ' +' + (prompter.__i/100).toFixed(2).slice(2))
+                    text: i18n("Velocity:") + (prompter.__i<0 ? '  -' + (prompter.__i/100).toFixed(2).slice(3) : ' +' + (prompter.__i/100).toFixed(2).slice(2))
                     color: appTheme.__fontColor
                     Layout.topMargin: 4
                     Layout.bottomMargin: 4

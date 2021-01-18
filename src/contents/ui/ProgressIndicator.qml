@@ -25,8 +25,8 @@ import QtQuick.Controls 2.15
 ScrollBar {
     id: scroller
     policy: ScrollBar.AlwaysOn
-    //interactive: true
-    interactive: false
+    interactive: true
+    //interactive: false
     leftPadding: 0
     rightPadding: 0
     leftInset: 0
