@@ -101,7 +101,7 @@ Flickable {
     property bool __scrollAsDial: root.__scrollAsDial
     property bool __invertArrowKeys: root.__invertArrowKeys
     property bool __invertScrollDirection: root.__invertScrollDirection
-    property bool __wysiwyg: false
+    property bool __wysiwyg: true
     property alias fontSize: editor.font.pixelSize
     property int __i: 1
     property bool __play: true
@@ -112,7 +112,7 @@ Flickable {
     property int __lastRecordedPosition: 0
     //property int alignment: Text.AlignCenter
     //property real customContentsPlacement: 0.1
-    property real contentsPlacement //: customContentsPlacement//Math.abs(editor.x)/prompter.width
+    property real contentsPlacement//: 1-rightWidthAdjustmentBar.x
     readonly property real editorXOffset: Math.abs(editor.x)/prompter.width
     readonly property real centreX: width / 2;
     readonly property real centreY: height / 2;
@@ -267,14 +267,16 @@ Flickable {
     bottomMargin: (1-overlay.__readRegionPlacement)*prompter.height
     function ensureVisible(r)
     {
-        if (contentX >= r.x)
-            contentX = r.x;
-        else if (contentX+width <= r.x+r.width)
-            contentX = r.x+r.width-width;
-        if (contentY >= r.y)
-            contentY = r.y;
-        else if (contentY+height <= r.y+r.height)
-            contentY = r.y+r.height-height;
+        if (prompter.state !== "prompting") {
+            if (contentX >= r.x)
+                contentX = r.x;
+            else if (contentX+width <= r.x+r.width)
+                contentX = r.x+r.width-width;
+            if (contentY >= r.y)
+                contentY = r.y;
+            else if (contentY+height <= r.y+r.height)
+                contentY = r.y+r.height-height;
+        }
     }
     Item {
         id: flickableContent
@@ -367,14 +369,6 @@ Flickable {
                     sourceComponent: editorSidesBorder
                     anchors {top: parent.top; bottom: parent.bottom; horizontalCenter: parent.horizontalCenter}
                 }
-                onPressed: {
-                    // Hack: Workaround to prevent covering the editor toolbar's buttons, placed at the window's footer.
-                    if (mouse.y >= position+prompter.height)
-                        mouse.accepted = false
-                        //// Adjust widths
-                        //else if (Qt.application.layoutDirection===Qt.LeftToRight&&parent.x<0 || Qt.application.layoutDirection===Qt.RightToLeft&&parent.x>0)
-                        //    parent.x = -parent.x
-                }
                 //onClicked: {
                 //mouse.accepted = false
                 //}
@@ -382,12 +376,14 @@ Flickable {
             }
             Item {
                 id: rightWidthAdjustmentBar
+                ////x: (1-contentsPlacement)*(prompter.width-fontSize) - fontSize/2
                 x: parent.width-width
-                //anchors.right: parent.right
+//                 anchors.right: parent.right
                 anchors.top: parent.top
                 anchors.bottom: parent.bottom
                 width: 25
                 MouseArea {
+                    //id: rightWidthAdjustmentBar
                     scrollGestureEnabled: false
                     propagateComposedEvents: true
                     hoverEnabled: false
@@ -400,37 +396,40 @@ Flickable {
                     drag.target: parent
                     drag.axis: Drag.XAxis
                     drag.smoothed: false
-                    drag.minimumX: Qt.application.layoutDirection===Qt.LeftToRight ? -prompter.width*6/20 : editor.fontSize/2
-                    drag.maximumX: Qt.application.layoutDirection===Qt.LeftToRight ? -editor.fontSize/2 : editor.prompter.width*6/20
+                    //drag.minimumX: Qt.application.layoutDirection===Qt.LeftToRight ? -prompter.width*6/20 : editor.fontSize/2
+                    //drag.maximumX: Qt.application.layoutDirection===Qt.LeftToRight ? -editor.fontSize/2 : editor.prompter.width*6/20
+                    drag.minimumX: prompter.width - editor.x - parent.width - leftWidthAdjustmentBar.drag.maximumX
+                    drag.maximumX: prompter.width - editor.x - parent.width - leftWidthAdjustmentBar.drag.minimumX
                     cursorShape: Qt.SizeHorCursor
                     Loader {
                         sourceComponent: editorSidesBorder
                         anchors {top: parent.top; bottom: parent.bottom; horizontalCenter: parent.horizontalCenter}
                     }
-                    onPressed: {
-                        // Hack: Workaround to prevent covering the editor toolbar's buttons, placed at the window's footer.
-                        if (mouse.y >= position+prompter.height)
-                            mouse.accepted = false
-                            //// Adjust widths
-                            //else if (Qt.application.layoutDirection===Qt.LeftToRight&&parent.x>0 || Qt.application.layoutDirection===Qt.RightToLeft&&parent.x<0)
-                            //    parent.x = -parent.x
-                    }
                     //onClicked: {
                     //mouse.accepted = false
                     //}
+                    onPositionChanged: {
+                        if (pressed) {
+                            //contentsPlacement = 1-((parent.x-parent.width)/prompter.width) //fontSize/2 + contentsPlacement*(prompter.width-fontSize)
+                            //editor.x = parent.width-width
+                        }
+                    }
                     onReleased: prompter.setContentWidth()
                 }
+                //Drag.onDragStarted: {
+                    //console.log("lol")
+                //}
             }
         }
+        // This is what's causing the OpenGL texture out of bound problems...
+        //FastBlur {
+        //    anchors.fill: editor
+        //    source: editor
+        //    radius: 32
+        //    //radius: 0
+        //}
     }
     
-    FastBlur {
-        anchors.fill: editor
-        source: editor
-        //radius: 32
-        radius: 0
-    }
-
     MouseArea {
         //propagateComposedEvents: false
         acceptedButtons: Qt.NoButton
