@@ -36,7 +36,7 @@ Item {
     property alias __readRegionPlacement: readRegion.__placement
     property alias enabled: readRegion.enabled
     property string positionState: "middle"
-    property string styleState: "barsLeft"
+    property string styleState: Qt.application.layoutDirection===Qt.LeftToRight ? "barsLeft" : "barsRight"
     readonly property Scale __flips: Scale {
         origin.x: width/2
         origin.y: height/2
