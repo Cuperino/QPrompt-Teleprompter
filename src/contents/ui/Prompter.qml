@@ -121,10 +121,10 @@ Flickable {
     readonly property real __vw: width / 100
     readonly property real __speed: __baseSpeed * Math.pow(Math.abs(__i), __curvature)
     readonly property real __velocity: (__possitiveDirection ? 1 : -1) * __speed
-    readonly property real __timeToArival: __i ? (((__possitiveDirection ? editor.height-position+__jitterMargin : position+prompter.height-__jitterMargin)) / (__speed * __vw)) * 1000 /*<< 7*/ : 0
-    readonly property int __destination: __i  ? (__possitiveDirection ? editor.height+prompter.height-__jitterMargin : __jitterMargin)-prompter.height : position
+    readonly property real __timeToArival: __i ? (((__possitiveDirection ? editor.height-position+__jitterMargin : position+topMargin-__jitterMargin)) / (__speed * __vw)) * 1000 /*<< 7*/ : 0
+    readonly property int __destination: __i  ? (__possitiveDirection ? editor.height+bottomMargin-__jitterMargin : __jitterMargin)-topMargin : position
     // origin.y is being roughly approximated. This may not work across all systems and displays...
-    readonly property bool __atStart: position<=__jitterMargin-prompter.height+1
+    readonly property bool __atStart: position<=__jitterMargin-topMargin+1
     readonly property bool __atEnd: position>=editor.height-__jitterMargin-1
     //readonly property bool __atStart: false  // debug code
     //readonly property bool __atEnd: false  // debug code
@@ -217,7 +217,7 @@ Flickable {
             nextIndex = ( states.indexOf(state) + 2 ) % states.length
         state = states[nextIndex]
 
-        switch (state) {
+        /*switch (state) {
             case "editing":
                 showPassiveNotification(i18n("Editing"), 850*countdown.__iterations)
                 break;
@@ -225,7 +225,7 @@ Flickable {
             case "prompting":
                 showPassiveNotification(i18n("Prompt started"), 850*countdown.__iterations)
                 break;
-        }
+        }*/
     }
 
     function increaseVelocity(event) {

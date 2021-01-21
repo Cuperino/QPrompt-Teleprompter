@@ -795,10 +795,10 @@ Kirigami.Page {
                     Layout.rightMargin: 8
                 }
                 Slider {
-                    id: speedControlSlider
+                    id: velocityControlSlider
                     value: prompter.__i
                     to: 40
-                    from: -speedControlSlider.to
+                    from: -velocityControlSlider.to
                     stepSize: 1
                     focusPolicy: Qt.TabFocus
                     onMoved: {
