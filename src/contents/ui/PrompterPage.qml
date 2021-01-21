@@ -785,7 +785,7 @@ Kirigami.Page {
                 }
             }
             RowLayout {
-                visible: prompter.state==="prompting"
+                enabled: prompter.state==="prompting"
                 Label {
                     text: i18n("Velocity:") + (prompter.__i<0 ? '  -' + (prompter.__i/100).toFixed(2).slice(3) : ' +' + (prompter.__i/100).toFixed(2).slice(2))
                     color: appTheme.__fontColor
