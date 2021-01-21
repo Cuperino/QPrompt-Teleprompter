@@ -294,12 +294,6 @@ Flickable {
             text: "Error loading file..."
             selectByMouse: true
             persistentSelection: true
-            //Different styles have different padding and background
-            //decorations, but since this editor must resemble the
-            //teleprompter output, we don't need them.
-            x: fontSize/2 + contentsPlacement*(prompter.width-fontSize)
-            //leftPadding: 20+2*(x<0?-x:0)
-            //rightPadding: 20+2*(x>0?x:0)
             leftPadding: 14
             rightPadding: 14
             topPadding: 0
@@ -319,8 +313,18 @@ Flickable {
             font.hintingPreference: Font.PreferFullHinting
             // Make links responsive
             onLinkActivated: Qt.openUrlExternally(link)
+
+            //Different styles have different padding and background
+            //decorations, but since this editor must resemble the
+            //teleprompter output, we don't need them.
+            property bool invertDrag: false
+            x: invertDrag ? -fontSize + editor.implicitWidth - rightWidthAdjustmentBar.x : fontSize/2 + contentsPlacement*(prompter.width-fontSize)
+            //x: fontSize/2 + contentsPlacement*(prompter.width-implicitWidth/2)
+
             // Width drag controls
             width: prompter.width-2*Math.abs(x)
+            //width: (1-2*contentsPlacement)*prompter.width
+
             MouseArea {
                 acceptedButtons: Qt.RightButton
                 anchors.fill: parent
@@ -351,10 +355,12 @@ Flickable {
             }
             MouseArea {
                 id: leftWidthAdjustmentBar
+                opacity: 0.9
                 scrollGestureEnabled: false
                 propagateComposedEvents: true
                 hoverEnabled: false
-                anchors.left: editor.left
+                anchors.left: Qt.application.layoutDirection===Qt.LeftToRight ? editor.left : undefined
+                anchors.right: Qt.application.layoutDirection===Qt.RightToLeft ? editor.right : undefined
                 anchors.top: parent.top
                 anchors.bottom: parent.bottom
                 //anchors.leftMargin: Qt.application.layoutDirection===Qt.LeftToRight&&parent.x<0?-2*parent.x:(Qt.application.layoutDirection===Qt.RightToLeft&&parent.x>0?2*parent.x:0)
@@ -362,8 +368,8 @@ Flickable {
                 drag.target: editor
                 drag.axis: Drag.XAxis
                 drag.smoothed: false
-                drag.minimumX: Qt.application.layoutDirection===Qt.LeftToRight ? fontSize/2 : -prompter.width*6/20
-                drag.maximumX: Qt.application.layoutDirection===Qt.LeftToRight ? prompter.width*6/20 : -fontSize/2
+                drag.minimumX: fontSize/2 //: -prompter.width*6/20 + width
+                drag.maximumX: prompter.width*6/20 //: -fontSize/2 + width
                 cursorShape: Qt.SizeHorCursor
                 Loader {
                     sourceComponent: editorSidesBorder
@@ -376,9 +382,13 @@ Flickable {
             }
             Item {
                 id: rightWidthAdjustmentBar
+                enabled: false
+                opacity: 0.5
                 ////x: (1-contentsPlacement)*(prompter.width-fontSize) - fontSize/2
-                x: parent.width-width
-//                 anchors.right: parent.right
+                x: /*editor.invertDrag ? x :*/ parent.width-width
+                //x: (1-contentsPlacement)*(prompter.width-fontSize) - fontSize/2 - editor.x
+                //x: fontSize/2 + contentsPlacement*(prompter.width-implicitWidth/2)
+                //anchors.right: editor.right
                 anchors.top: parent.top
                 anchors.bottom: parent.bottom
                 width: 25
@@ -414,7 +424,11 @@ Flickable {
                             //editor.x = parent.width-width
                         }
                     }
-                    onReleased: prompter.setContentWidth()
+                    onPressed: editor.invertDrag = true
+                    onReleased: {
+                        editor.invertDrag = false
+                        prompter.setContentWidth()
+                    }
                 }
                 //Drag.onDragStarted: {
                     //console.log("lol")
