@@ -121,8 +121,8 @@ Flickable {
     readonly property real __vw: width / 100
     readonly property real __speed: __baseSpeed * Math.pow(Math.abs(__i), __curvature)
     readonly property real __velocity: (__possitiveDirection ? 1 : -1) * __speed
-    readonly property real __timeToArival: __i ? (((__possitiveDirection ? editor.height-position+__jitterMargin : position+topMargin-__jitterMargin)) / (__speed * __vw)) * 1000 /*<< 7*/ : 0
-    readonly property int __destination: __i  ? (__possitiveDirection ? editor.height+bottomMargin-__jitterMargin : __jitterMargin)-topMargin : position
+    readonly property real __timeToArival: __i ? (((__possitiveDirection ? editor.height-fontSize-position+__jitterMargin : position+topMargin-__jitterMargin)) / (__speed * __vw)) * 1000 /*<< 7*/ : 0
+    readonly property int __destination: __i  ? (__possitiveDirection ? editor.height+fontSize-__jitterMargin : __jitterMargin)-topMargin : position
     // origin.y is being roughly approximated. This may not work across all systems and displays...
     readonly property bool __atStart: position<=__jitterMargin-topMargin+1
     readonly property bool __atEnd: position>=editor.height-__jitterMargin-1
@@ -263,8 +263,8 @@ Flickable {
     }
     
     contentHeight: flickableContent.height
-    topMargin: overlay.__readRegionPlacement*prompter.height
-    bottomMargin: (1-overlay.__readRegionPlacement)*prompter.height
+    topMargin: overlay.__readRegionPlacement*(prompter.height-overlay.readRegionHeight)+fontSize
+    bottomMargin: (1-overlay.__readRegionPlacement)*(prompter.height-overlay.readRegionHeight)+overlay.readRegionHeight
     function ensureVisible(r)
     {
         if (prompter.state !== "prompting") {
@@ -337,7 +337,7 @@ Flickable {
                 anchors.left: parent.left
                 anchors.right: parent.right
                 anchors.top: editor.bottom
-                height: prompter.height
+                height: prompter.bottomMargin
                 color: "#000"
                 opacity: 0.2
             }
@@ -473,7 +473,7 @@ Flickable {
                 // Regular scroll
                 const delta = wheel.angleDelta.y/2;
                 var i=__i;
-                if (prompter.position-delta >= -prompter.topMargin/*0*/ && prompter.position-delta<=editor.implicitHeight/*-prompter.height*/) {
+                if (prompter.position-delta >= -prompter.topMargin && prompter.position-delta<=editor.implicitHeight-(overlay.height-prompter.bottomMargin)) {
                     __i=0;
                     if (prompter.__invertScrollDirection)
                         prompter.position += delta;
@@ -484,7 +484,7 @@ Flickable {
                 // If scroll were to go out of bounds, cap it
                 else if (prompter.position-delta > -prompter.topMargin) {
                     __i=0;
-                    prompter.position = editor.implicitHeight
+                    prompter.position = editor.implicitHeight-(overlay.height-prompter.bottomMargin)
                     __i=i;
                 }
                 else {
