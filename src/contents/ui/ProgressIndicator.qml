@@ -25,12 +25,10 @@ import QtQuick.Controls 2.15
 ScrollBar {
     id: scroller
     policy: ScrollBar.AlwaysOn
-    interactive: true
+    interactive: prompter.state==="prompting" || prompter.state==="countdown" ? false : true
     leftPadding: 0
     rightPadding: 0
     leftInset: 0
     rightInset: 0
-    stepSize: (prompter.height)/(/*4*/5*(editor.height + prompter.height))
-    //parent: prompter.parent
-    //position: -prompter.height / (editor.height + prompter.height)
+    stepSize: prompter.height/(2*(editor.height + prompter.topMargin + prompter.bottomMargin))
 }
