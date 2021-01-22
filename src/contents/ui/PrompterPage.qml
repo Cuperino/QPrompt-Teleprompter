@@ -26,6 +26,7 @@ import QtQuick.Controls 2.15
 import QtQuick.Layouts 1.15
 import QtQuick.Window 2.15
 import Qt.labs.platform 1.1
+import QtGraphicalEffects 1.15
 
 Kirigami.Page {
     id: prompterPage
@@ -281,7 +282,7 @@ Kirigami.Page {
             Kirigami.Action {
                 id: setCountdownButton
                 enabled: countdown.enabled
-                text: i18n("Set Countdown")
+                text: i18n("Set Duration")
                 onTriggered: {
                     showPassiveNotification(i18n("Countdown setup has not been implemented yet."));
                 }
@@ -333,6 +334,13 @@ Kirigami.Page {
         //Math.pow((fontSizeSlider.value*prompter.__vw),3)
     }
     progress: prompter.state==="prompting" ? prompter.progress : undefined
+    
+    //FastBlur {
+        //anchors.fill: prompter
+        //source: prompter
+        //radius: 32
+        //radius: 0
+    //}
     
     FontDialog {
         id: fontDialog
@@ -802,8 +810,11 @@ Kirigami.Page {
                     stepSize: 1
                     focusPolicy: Qt.TabFocus
                     onMoved: {
-                        if (!(prompter.__atEnd && value>=0 || prompter.__atStart && value<0))
+                        if (!(prompter.__atEnd && value>=0 || prompter.__atStart && value<0)) {
                             prompter.__i = value
+                            prompter.__play = true
+                            prompter.position = prompter.__destination
+                        }
                     }
                 }
             }
