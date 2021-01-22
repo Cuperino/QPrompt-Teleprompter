@@ -75,11 +75,11 @@ Item {
                 __opacity: 0.4
                 enabled: false
             }
-            PropertyChanges {
-                target: overlayMouseArea
-                enabled: true
-                cursorShape: Qt.CrossCursor
-            }
+            //PropertyChanges {
+            //    target: overlayMouseArea
+            //    enabled: true
+            //    cursorShape: Qt.CrossCursor
+            //}
         }
     ]
     state: "editing"
