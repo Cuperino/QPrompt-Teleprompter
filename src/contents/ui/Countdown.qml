@@ -55,7 +55,8 @@ Item {
     
     Rectangle {
         anchors.fill: parent
-        opacity: 0.78
+        //opacity: 0.78
+        opacity: 0.3
         color: "#333"
     }
     
@@ -69,6 +70,8 @@ Item {
         readonly property real __hypotenuse: Math.sqrt(Math.pow(parent.height/2, 2)+Math.pow(parent.width/2, 2))
         
         onRotationsChanged: requestPaint()
+        onWidthChanged: requestPaint()
+        onHeightChanged: requestPaint()
         
         onPaint: {
             const centreX = prompter.centreX;
@@ -213,6 +216,10 @@ Item {
             opacity: 1
         }
         PropertyChanges {
+            target: dissolveIn
+            running: true
+        }
+        PropertyChanges {
             target: dissolveOut
             running: false
         }
@@ -220,6 +227,13 @@ Item {
             target: canvas
             //__iteration: 0
             __iteration: countdown.__iterations - 1
+        }
+        StateChangeScript {
+            name: "paintReady"
+            script: {
+                console.log("I ready")
+                canvas.requestPaint()
+            }
         }
     },
     State {
@@ -240,6 +254,7 @@ Item {
             target: countdown
             running: countdown.__iterations>0
             visible: countdown.__iterations>0
+            opacity: 1
         }
         PropertyChanges {
             target: dissolveOut
@@ -248,4 +263,13 @@ Item {
     }
     ]
     state: "standby"
+    transitions: [
+    Transition {
+        from: "standby"
+        to: "ready"
+        SequentialAnimation {
+            ScriptAction { scriptName: "paintReady" }
+        }
+    }
+    ]
 }
