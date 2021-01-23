@@ -28,10 +28,11 @@ project(qprompt)
 include(FeatureSummary)
 
 # QT 5.12 for Ubuntu 20.04
-#set(QT5_MIN_VERSION 5.12)
-
+set(QT5_MIN_VERSION 5.12)
 # QT 5.15 to be able to use new Connect methods syntax and get rid of warning.
-set(QT5_MIN_VERSION 5.15)
+#set(QT5_MIN_VERSION 5.15)
+
+# KF5 5.68 for Ubuntu 20.04
 set(KF5_MIN_VERSION 5.65)
 
 find_package(ECM ${KF5_MIN_VERSION} REQUIRED NO_MODULE)
