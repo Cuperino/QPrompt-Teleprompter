@@ -3,6 +3,7 @@
         <file alias="main.qml">contents/ui/main.qml</file>
         <file alias="ReadRegionOverlay.qml">contents/ui/ReadRegionOverlay.qml</file>
         <file alias="Prompter.qml">contents/ui/Prompter.qml</file>
+        <file alias="PrompterBackground.qml">contents/ui/PrompterBackground.qml</file>
         <file alias="Countdown.qml">contents/ui/Countdown.qml</file>
         <file alias="ProgressIndicator.qml">contents/ui/ProgressIndicator.qml</file>
         <file alias="TimerClock.qml">contents/ui/TimerClock.qml</file>
