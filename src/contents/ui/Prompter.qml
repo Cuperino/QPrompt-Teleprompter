@@ -113,12 +113,39 @@ Flickable {
     readonly property real __vw: width / 100
     readonly property real __speed: __baseSpeed * Math.pow(Math.abs(__i), __curvature)
     readonly property real __velocity: (__possitiveDirection ? 1 : -1) * __speed
-    readonly property real __timeToArival: __i ? (((__possitiveDirection ? editor.height-position-topMargin+__jitterMargin : position+topMargin-__jitterMargin)) / (__speed * __vw)) * 1000 /*<< 7*/ : 0
+    readonly property real __timeToArival: __i ? (((__possitiveDirection ? editor.height+fontSize-position-topMargin+__jitterMargin : position+topMargin-__jitterMargin)) / (__speed * __vw)) * 1000 /*<< 7*/ : 0
     readonly property int __destination: __i  ? (__possitiveDirection ? editor.height+fontSize-__jitterMargin : __jitterMargin)-topMargin : position
+
+    // At start and at end rules
     readonly property bool __atStart: position<=__jitterMargin-topMargin+1
-    readonly property bool __atEnd: position>=editor.height-__jitterMargin-1
-    //readonly property bool __atStart: false  // debug code
-    //readonly property bool __atEnd: false  // debug code
+    readonly property bool __atEnd: position>=editor.height-topMargin+fontSize+__jitterMargin-1
+    // Tools to debug __atStart and __atEnd
+    //readonly property bool __atStart: false
+    //readonly property bool __atEnd: false
+    //Rectangle {
+    //    id: startPositionDeebug
+    //    // Set this value to the same as __atStart's evaluated equation
+    //    y: __jitterMargin-topMargin+1
+    //    anchors {
+    //        id: startPositionDeebug
+    //        left: parent.left
+    //        right: parent.right
+    //    }
+    //    height: 2
+    //    color: "red"
+    //}
+    //Rectangle {
+    //    id: endPositionDeebug
+    //    // Set this value to the same as __atStart's evaluated equation
+    //    y: editor.height-topMargin+fontSize+__jitterMargin-1
+    //    anchors {
+    //        left: parent.left
+    //        right: parent.right
+    //    }
+    //    height: 2
+    //    color: "red"
+    //}
+
     // Background
     property double __opacity: root.__opacity
     // Flips
