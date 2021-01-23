@@ -39,6 +39,7 @@ Kirigami.Page {
     property alias editor: prompter.editor
     property alias overlay: overlay
     property alias document: prompter.document
+    property alias prompterBackground: prompterBackground
 
     title: "QPrompt"
     globalToolBarStyle: Kirigami.Settings.isMobile ? Kirigami.ApplicationHeaderStyle.None : Kirigami.ApplicationHeaderStyle.ToolBar
@@ -246,18 +247,18 @@ Kirigami.Page {
             Kirigami.Action {
                 id: changeBackgroundImageButton
                 text: i18n("Set Image")
-                onTriggered: appTheme.loadBackgroundImage()
+                onTriggered: prompterBackground.loadBackgroundImage()
             }
             Kirigami.Action {
                 id: changeBackgroundColorButton
                 text: i18n("Set Color")
-                onTriggered: backgroundColorDialog.open()
+                onTriggered: prompterBackground.backgroundColorDialog.open()
             }
             Kirigami.Action {
                 id: clearBackgroundButton
                 text: i18n("Clear Background")
-                enabled: appTheme.hasBackground
-                onTriggered: appTheme.clearBackground()
+                enabled: prompterBackground.hasBackground
+                onTriggered: prompterBackground.clearBackground()
             }
         },
         Kirigami.Action {
@@ -289,10 +290,10 @@ Kirigami.Page {
             }
         }//,
         //Kirigami.Action {
-        //    id: projectionConfigButton
-        //    text: i18n("Clone")
-        //    tooltip: i18n("Duplicate teleprompter contents into separate screens")
-        //    onTriggered: projectionWindow.visible = !projectionWindow.visible
+           //id: projectionConfigButton
+           //text: i18n("Clone")
+           //tooltip: i18n("Duplicate teleprompter contents into separate screens")
+           //onTriggered: projectionWindow.visible = !projectionWindow.visible
         //}
         //Kirigami.Action {
            //id: debug
@@ -306,42 +307,60 @@ Kirigami.Page {
         ]
     }
     
-    Countdown {
-        id: countdown
-        z: 3
+    Item {
+        id: viewport
         anchors.fill: parent
+        //layer.enabled: true
+        // Undersample
+        //layer.mipmap: true
+        // Oversample
+        //layer.samples: 2
+        //layer.smooth: true
+        // Make texture the size of the largest destinations.
+        //layer.textureSize: Qt.size(projectionWindow.width, projectionWindow.height)
+        
+        Countdown {
+            id: countdown
+            z: 3
+            anchors.fill: parent
+        }
+        
+        ReadRegionOverlay {
+            id: overlay
+            z: 2
+            anchors.fill: parent
+        }
+        
+        //TimerClock {
+        //    id: timer
+        //    z: 4
+        //    anchors.fill: parent
+        //}
+        
+        Prompter {
+            id: prompter
+            property double delta: 16
+            anchors.fill: parent
+            z: 1
+            textColor: colorDialog.color
+            fontSize:  (prompter.state==="editing" && !prompter.__wysiwyg) ? (Math.pow(fontSizeSlider.value/185,4)*185) : (Math.pow(fontWYSIWYGSizeSlider.value/185,4)*185)*prompter.__vw/10
+            //Math.pow((fontSizeSlider.value*prompter.__vw),3)
+        }
+        //FastBlur {
+            //anchors.fill: prompter
+            //source: prompter
+            //radius: 32
+            //radius: 0
+        //}
+
+        PrompterBackground {
+            id: prompterBackground
+            z: 0
+        }
     }
     
-    ReadRegionOverlay {
-        id: overlay
-        z: 1
-        anchors.fill: parent
-    }
-    
-    //TimerClock {
-    //    id: timer
-    //    z: 4
-    //    anchors.fill: parent
-    //}
-    
-    Prompter {
-        id: prompter
-        property double delta: 16
-        anchors.fill: parent
-        z: 0
-        textColor: colorDialog.color
-        fontSize:  (prompter.state==="editing" && !prompter.__wysiwyg) ? (Math.pow(fontSizeSlider.value/185,4)*185) : (Math.pow(fontWYSIWYGSizeSlider.value/185,4)*185)*prompter.__vw/10
-        //Math.pow((fontSizeSlider.value*prompter.__vw),3)
-    }
     progress: prompter.state==="prompting" ? prompter.progress : undefined
-    
-    //FastBlur {
-        //anchors.fill: prompter
-        //source: prompter
-        //radius: 32
-        //radius: 0
-    //}
-    
+
     FontDialog {
         id: fontDialog
         options: FontDialog.ScalableFonts|FontDialog.MonospacedFonts|FontDialog.ProportionalFonts
@@ -355,6 +374,17 @@ Kirigami.Page {
         id: colorDialog
         currentColor: appTheme.__fontColor
     }
+    
+//     ShaderEffectSource {
+//         id: layerOfLayer
+//         width: parent.width; height: parent.height
+//         sourceItem: viewport
+//         hideSource: true
+//     }
+
+//     ProjectionWindow {
+//         id: projectionWindow
+//     }
     
     // Editor Toolbar
     footer: ToolBar {
@@ -818,6 +848,37 @@ Kirigami.Page {
                     }
                 }
             }
+            RowLayout {
+                visible: root.__translucidBackground
+                Label {
+                    text: i18n("Opacity:") + " " + (root.__opacity/10).toFixed(3).slice(2)
+                    color: appTheme.__fontColor
+                    Layout.topMargin: 4
+                    Layout.bottomMargin: 4
+                    Layout.leftMargin: 8
+                    Layout.rightMargin: 8
+                }
+                Slider {
+                    id: opacitySlider
+                    value: 100*root.__opacity
+                    from: 0
+                    to: 100
+                    stepSize: 1
+                    focusPolicy: Qt.TabFocus
+                    onMoved: {
+                        root.__opacity = value/100
+                    }
+                    //handle: Rectangle {
+                        //x: opacitySlider.leftPadding + opacitySlider.visualPosition * (opacitySlider.availableWidth - width)
+                        //y: opacitySlider.topPadding + opacitySlider.availableHeight / 2 - height / 2
+                        //implicitWidth: 26
+                        //implicitHeight: 26
+                        //radius: 13
+                        //color: opacitySlider.pressed ? "#f0f0f0" : "#f6f6f6"
+                        //border.color: "#bdbebf"
+                    //}
+                }
+            }
         }
     }
     
@@ -831,9 +892,8 @@ Kirigami.Page {
     //}
 
     // Prompter Page Component {
-    Component {
-        id: projectionWindow
-        ProjectionWindow {}
-    }
-
+    //Component {
+        //id: projectionWindow
+        //ProjectionWindow {}
+    //}
 }
