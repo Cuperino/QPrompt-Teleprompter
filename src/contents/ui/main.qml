@@ -25,7 +25,6 @@ import org.kde.kirigami 2.9 as Kirigami
 import QtQuick.Controls 2.15
 import QtQuick.Window 2.15
 import Qt.labs.platform 1.1
-//import QtQuick.Dialogs 1.3 as QmlDialogs
 import QtQuick.Layouts 1.15
 import QtQuick.Controls.Material 2.15
 import QtGraphicalEffects 1.15
@@ -35,7 +34,7 @@ import com.cuperino.qprompt.document 1.0
 Kirigami.ApplicationWindow {
     id: root
     property bool __autoFullScreen: false
-    property bool __translucidBackground: false
+    readonly property bool __translucidBackground: Material.background.a === 0
     // Scrolling settings
     property bool __scrollAsDial: false
     property bool __invertArrowKeys: false
@@ -43,12 +42,12 @@ Kirigami.ApplicationWindow {
     property bool italic
     
     property int prompterVisibility: Kirigami.ApplicationWindow.AutomaticVisibility
-    property double __opacity: 0.8
+    property double __opacity: 1
     property real __baseSpeed: baseSpeedSlider.value
     property real __curvature: baseAccelerationSlider.value
     
     title: prompterPage.document.fileName + (prompterPage.document.modified?"*":"") + " - " + aboutData.displayName
-    width: 1024  // Keep at or bellow 1024 and at or above 960, for usability with common 4:3 resolutions
+    width: 1064  // Keep at or bellow 1024 and at or above 960, for best usability with common 4:3 resolutions
     height: 728  // Keep and test at 728 so that it works well with 1366x768 screens.
     minimumWidth: 480
     minimumHeight: 380
@@ -57,66 +56,11 @@ Kirigami.ApplicationWindow {
     //Material.theme: themeSwitch.checked ? Material.Dark : Material.Light
     background: Rectangle {
         id: appTheme
-        property bool hasBackground: appTheme.color!==__backgroundColor || backgroundImage.opacity>0//backgroundImage.visible
-        property color __backgroundColor: parent.Material.theme===Material.Light ? "#fafafa" : "#303030"
-        property color __fontColor: parent.Material.theme===Material.Light ? "#212121" : "#fff"
-        property color __iconColor: parent.Material.theme===Material.Light ? "#232629" : "#c3c7d1"
-        property var backgroundImage: null
         color: __backgroundColor
-        opacity: 1
-
-        function loadBackgroundImage() {
-            openBackgroundDialog.open()
-        }
-
-        function clearBackground() {
-            backgroundImage.opacity = 0
-            appTheme.color = appTheme.__backgroundColor
-        }
-        
-        function setBackgroundImage(file) {
-            if (file) {
-                backgroundImage.source = file
-            }
-        }
-        Behavior on color {
-            enabled: true
-            animation: ColorAnimation {
-                duration: 2800
-                easing.type: Easing.OutExpo
-            }
-        }
-        Image {
-            id: backgroundImage
-            anchors.fill: parent
-            fillMode: Image.PreserveAspectCrop
-            opacity: 0
-            visible: opacity!==0
-            autoTransform: true
-            asynchronous: true
-            mipmap: false
-            
-            onStatusChanged: {
-                if (backgroundImage.status === Image.Ready && !backgroundImage.opacity)
-                    backgroundImage.opacity = 0.72*parent.opacity
-            }
-            
-            Behavior on opacity {
-                enabled: true
-                animation: NumberAnimation {
-                    duration: 2800
-                    easing.type: Easing.OutExpo
-                }
-            }
-        }
-
-        Behavior on opacity {
-            enabled: true
-            animation: NumberAnimation {
-                duration: Kirigami.Units.longDuration
-                easing.type: Easing.OutQuad
-            }
-        }
+        opacity: !root.__translucidBackground || prompterPage.prompterBackground.opacity===1
+        readonly property color __backgroundColor: parent.Material.theme===Material.Light ? "#fafafa" : "#303030"
+        readonly property color __fontColor: parent.Material.theme===Material.Light ? "#212121" : "#fff"
+        readonly property color __iconColor: parent.Material.theme===Material.Light ? "#232629" : "#c3c7d1"
     }
     
     // Full screen
@@ -265,28 +209,6 @@ Kirigami.ApplicationWindow {
                 visible: parent.Material.background.a === 0
                 Layout.leftMargin: 8
                 Layout.rightMargin: 8
-            },
-            RowLayout {
-                visible: parent.Material.background.a === 0
-                CheckBox {
-                    id: checkBackgroundTranslucid
-                    checked: root.__translucidBackground
-                    onToggled: root.__translucidBackground = !root.__translucidBackground
-                }
-                Slider {
-                    id: backgroundOpacitySlider
-                    enabled: root.__translucidBackground
-                    from: 0
-                    to: 1
-                    value: 0.8
-                    stepSize: 0.01
-                    Layout.fillWidth: true
-                    Layout.leftMargin: 16
-                    Layout.rightMargin: 16
-                    onMoved: {
-                        root.__opacity = value
-                    }
-                }
             }
         ]
     }
@@ -360,12 +282,12 @@ Kirigami.ApplicationWindow {
                 checked: root.__autoFullScreen
                 onTriggered: root.__autoFullScreen = !root.__autoFullScreen
             }
-            MenuItem {
-                text: i18n("Make background &translucid")
-                checkable: true
-                checked: root.__translucidBackground
-                onTriggered: root.__translucidBackground = !root.__translucidBackground
-            }
+            //MenuItem {
+                //text: i18n("Make background &translucid")
+                //checkable: true
+                //checked: root.__translucidBackground
+                //onTriggered: root.__translucidBackground = !root.__translucidBackground
+            //}
             MenuSeparator { }
             Menu {
                 title: i18n("&Pointers")
@@ -635,25 +557,6 @@ Kirigami.ApplicationWindow {
     }
     
     // Dialogues
-    ColorDialog {
-        id: backgroundColorDialog
-        currentColor: appTheme.__backgroundColor
-        onAccepted: {
-            console.log(color)
-            appTheme.color = color
-        }
-    }
-    
-    FileDialog {
-        id: openBackgroundDialog
-        fileMode: FileDialog.OpenFile
-        selectedNameFilter.index: 0
-        nameFilters: ["JPEG image (*.jpg *.jpeg *.JPG *.JPEG)", "PNG image (*.png *.PNG)", "GIF animation (*.gif *.GIF)"]
-        folder: StandardPaths.writableLocation(StandardPaths.DocumentsLocation)
-        onAccepted: appTheme.setBackgroundImage(file)
-        onRejected: appTheme.hasBackground = false
-    }
-
     MessageDialog {
         id : quitDialog
         title: i18n("Quit?")
