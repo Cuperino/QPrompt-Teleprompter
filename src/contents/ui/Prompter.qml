@@ -724,7 +724,7 @@ Flickable {
             }
             PropertyChanges {
                 target: prompter
-                z: 2
+                z: 3
                 __i: 0
                 __play: false
 //                 position: position
@@ -745,17 +745,16 @@ Flickable {
                 prompterVisibility: Kirigami.ApplicationWindow.FullScreen
             }
             PropertyChanges {
-                target: appTheme
-                opacity: root.__translucidBackground ? __opacity : 1
+                target: prompterBackground
+                opacity: root.__translucidBackground ? root.__opacity : 1
             }
             PropertyChanges {
                 target: promptingButton
                 text: i18n("Begin countdown")
-                //iconName: "edit-undo"
             }
             PropertyChanges {
                 target: prompter
-                z: 0
+                z: 1
                 __iBackup: 0
 //                 position: position
             }
@@ -790,22 +789,18 @@ Flickable {
                 prompterVisibility: Kirigami.ApplicationWindow.FullScreen
             }
             PropertyChanges {
-                target: appTheme
-                opacity: root.__translucidBackground ? __opacity : 1
+                target: prompterBackground
+                opacity: root.__translucidBackground ? root.__opacity : 1
             }
             PropertyChanges {
                 target: promptingButton
                 text: i18n("Skip countdown")
-                //iconName: "edit-undo"
             }
             PropertyChanges {
                 target: prompter
-                z: 0
+                z: 1
                 __iBackup: 0
 //                 position: position
-                // Bottom margin hack
-                //topMargin: prompter.height
-                //bottomMargin: prompter.height
             }
             PropertyChanges {
                 target: editor
@@ -834,8 +829,8 @@ Flickable {
                 prompterVisibility: Kirigami.ApplicationWindow.FullScreen
             }
             PropertyChanges {
-                target: appTheme
-                opacity: root.__translucidBackground ? __opacity : 1
+                target: prompterBackground
+                opacity: root.__translucidBackground ? root.__opacity : 1
             }
             PropertyChanges {
                 target: promptingButton
@@ -844,7 +839,8 @@ Flickable {
             }
             PropertyChanges {
                 target: prompter
-                z: 0
+                z: 1
+                __i: 1
                 __iBackup: 0
                 position: prompter.__destination
                 focus: true
@@ -876,6 +872,7 @@ Flickable {
         }
     ]
     state: "editing"
+    
     onStateChanged: {
         var pos = prompter.position
         position = pos
