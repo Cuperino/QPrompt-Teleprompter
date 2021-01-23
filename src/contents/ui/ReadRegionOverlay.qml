@@ -192,6 +192,7 @@ Item {
             //property double __offsetX: -0.1111
             property double __stretchX: 0.3333
             readonly property double __pointerUnit: parent.height / 6
+            //layer.enabled: true
             Shape {
                 id: leftPointer
                 x: prompter.editorXOffset*overlay.width - (2.8*pointers.__stretchX+pointers.__offsetX)*pointers.__pointerUnit

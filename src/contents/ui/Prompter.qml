@@ -26,6 +26,7 @@
  ** Contact: https://www.qt.io/licensing/
  **
  ** This file contains code originating from examples from the Qt Toolkit.
+ ** The code from the examples was licensed under the following license:
  **
  ** $QT_BEGIN_LICENSE:BSD$
  ** Commercial License Usage
@@ -80,14 +81,7 @@ import Qt.labs.platform 1.1
 
 import com.cuperino.qprompt.document 1.0
 
-
-// Flickable makes the element scrollable and touch friendly
-//// Define Flickable element using the flickable property only íf the flickable component (the prompter in this case)
-//// has some non standard properties, such as not covering the whole Page. Otherwise, use element like everywhere else
-//// and use Kirigami.ScrollablePage instead of page.
-//flickable: Flickable {
 Flickable {
-    //ScrollIndicator.vertical: ScrollIndicator{
     id: prompter
     // Patch through aliases
     property alias editor: editor
@@ -200,10 +194,6 @@ Flickable {
                 if (!animationX.running && prompter.__i) {
                     __i = 0
                     showPassiveNotification(i18n("Animation Completed"));
-                }
-                else {
-                    //__lastRecordedPosition = position
-                    //console.log(__lastRecordedPosition)
                 }
             }
         }
