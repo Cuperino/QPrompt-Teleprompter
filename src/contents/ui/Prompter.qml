@@ -220,6 +220,7 @@ Flickable {
             onRunningChanged: {
                 if (!animationX.running && prompter.__i) {
                     __i = 0
+                    root.alert(0)
                     showPassiveNotification(i18n("Animation Completed"));
                 }
             }
