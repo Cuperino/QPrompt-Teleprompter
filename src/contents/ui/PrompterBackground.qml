@@ -31,7 +31,7 @@ Rectangle {
     property bool hasBackground: color!==appTheme.__backgroundColor || backgroundImage.opacity>0//backgroundImage.visible
     property var backgroundImage: null
     color: appTheme.__backgroundColor
-    opacity: /*backgroundOpacitySlider.pressed ||*/ opacitySlider.pressed ? opacitySlider.value/100 : 1
+    opacity: /*backgroundOpacitySlider.pressed ||*/ parent.toolbar.opacitySlider.pressed ? parent.toolbar.opacitySlider.value/100 : 1
     
     function loadBackgroundImage() {
         openBackgroundDialog.open()

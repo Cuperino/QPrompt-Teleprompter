@@ -10,6 +10,7 @@
         <file alias="PrompterPage.qml">contents/ui/PrompterPage.qml</file>
         <file alias="AboutPage.qml">contents/ui/AboutPage.qml</file>
         <file alias="ProjectionWindow.qml">contents/ui/ProjectionWindow.qml</file>
+        <file alias="EditorToolbar.qml">contents/ui/EditorToolbar.qml</file>
         <file>qtquickcontrols2.conf</file>
         <file>images/logo.png</file>
         <file>fonts/fontello.ttf</file>
