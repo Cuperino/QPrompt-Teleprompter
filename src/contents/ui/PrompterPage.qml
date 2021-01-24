@@ -36,6 +36,7 @@ Kirigami.Page {
 
     property alias fontDialog: fontDialog
     property alias colorDialog: colorDialog
+    property alias prompter: prompter
     property alias editor: prompter.editor
     property alias overlay: overlay
     property alias document: prompter.document
@@ -288,7 +289,7 @@ Kirigami.Page {
                     showPassiveNotification(i18n("Countdown setup has not been implemented yet."));
                 }
             }
-        }//,
+        },
         //Kirigami.Action {
            //id: projectionConfigButton
            //text: i18n("Clone")
@@ -304,6 +305,12 @@ Kirigami.Page {
                 //prompterPage.test( true )
            //}
         //}
+        Kirigami.Action {
+            id: leaveFullscreenButton
+            text: i18n("Leave Fullscreen")
+            visible: root.__fullScreen
+            onTriggered: root.__fullScreen = !root.__fullScreen
+        }
         ]
     }
     
