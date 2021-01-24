@@ -33,6 +33,7 @@ import com.cuperino.qprompt.document 1.0
 
 Kirigami.ApplicationWindow {
     id: root
+    property bool __fullScreen: false
     property bool __autoFullScreen: false
     readonly property bool __translucidBackground: Material.background.a === 0
     // Scrolling settings
@@ -64,7 +65,7 @@ Kirigami.ApplicationWindow {
     }
     
     // Full screen
-    visibility: __autoFullScreen ? prompterVisibility : Kirigami.ApplicationWindow.AutomaticVisibility
+    visibility: __fullScreen ? Kirigami.ApplicationWindow.FullScreen : (__autoFullScreen ? prompterVisibility : Kirigami.ApplicationWindow.AutomaticVisibility)
 
     // Open save dialog on closing
     onClosing: {
@@ -202,13 +203,6 @@ Kirigami.ApplicationWindow {
                 Layout.fillWidth: true
                 Layout.leftMargin: 16
                 Layout.rightMargin: 16
-            },
-            Label {
-                text: i18n("Background opacity:") + " " + backgroundOpacitySlider.value.toFixed(2)
-                enabled: root.__translucidBackground
-                visible: parent.Material.background.a === 0
-                Layout.leftMargin: 8
-                Layout.rightMargin: 8
             }
         ]
     }
@@ -275,6 +269,13 @@ Kirigami.ApplicationWindow {
         Menu {
             title: i18n("V&iew")
             
+            MenuItem {
+                id: fullScreenCheckbox
+                text: i18n("&Full screen")
+                checkable: true
+                checked: root.__fullScreen
+                onTriggered: root.__fullScreen = !root.__fullScreen
+            }
             MenuItem {
                 id: autoFullScreenCheckbox
                 text: i18n("&Auto full screen")
@@ -515,7 +516,9 @@ Kirigami.ApplicationWindow {
     pageStack.globalToolBar.toolbarActionAlignment: Qt.AlignHCenter
     pageStack.initialPage: prompterPageComponent
     // Auto hide global toolbar on fullscreen
-    pageStack.globalToolBar.style: visibility===Kirigami.ApplicationWindow.FullScreen ? Kirigami.ApplicationHeaderStyle.None :  Kirigami.ApplicationHeaderStyle.Auto
+    //pageStack.globalToolBar.style: visibility===Kirigami.ApplicationWindow.FullScreen ? Kirigami.ApplicationHeaderStyle.None :  Kirigami.ApplicationHeaderStyle.Auto
+    pageStack.globalToolBar.style: visibility===Kirigami.ApplicationWindow.FullScreen && prompterPage.prompter.state==="prompting" ? Kirigami.ApplicationHeaderStyle.None :  
+    Kirigami.ApplicationHeaderStyle.Auto
     // The following is not possible in the current version of Kirigami, but it should be:
     //pageStack.globalToolBar.background: Rectangle {
         //color: appTheme.__backgroundColor
