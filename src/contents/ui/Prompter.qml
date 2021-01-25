@@ -114,6 +114,7 @@ Flickable {
     readonly property real __speed: __baseSpeed * Math.pow(Math.abs(__i), __curvature)
     readonly property real __velocity: (__possitiveDirection ? 1 : -1) * __speed
     readonly property real __timeToArival: __i ? (((__possitiveDirection ? editor.height+fontSize-position-topMargin+__jitterMargin : position+topMargin-__jitterMargin)) / (__speed * __vw)) * 1000 /*<< 7*/ : 0
+    property real timeToArival: __timeToArival
     readonly property int __destination: __i  ? (__possitiveDirection ? editor.height+fontSize-__jitterMargin : __jitterMargin)-topMargin : position
 
     // At start and at end rules
@@ -215,7 +216,7 @@ Flickable {
         enabled: true
         animation: NumberAnimation {
             id: animationX
-            duration: __timeToArival
+            duration: timeToArival
             easing.type: Easing.Linear
             onRunningChanged: {
                 if (!animationX.running && prompter.__i) {
@@ -229,13 +230,10 @@ Flickable {
 
     // Toggle prompter state
     function toggle() {
-        // Update position
-        var verticalPosition = position + overlay.__readRegionPlacement*overlay.height
-        var cursorPosition = editor.positionAt(0, verticalPosition)
-        editor.cursorPosition = cursorPosition
-
-        // Enter full screen
+        
         var states = ["editing", "standby", "countdown", "prompting"]
+
+        // If arrived at state, do...
         var nextIndex = ( states.indexOf(state) + 1 ) % states.length
         // Skip countdown if countdown.__iterations is 0
         if (states[nextIndex]===states[1]) {
@@ -442,6 +440,20 @@ Flickable {
                 //}
                 //}
             }
+            
+            Keys.onPressed: {
+                if (prompter.state === "prompting")
+                    switch (event.key) {
+                        case Qt.Key_Space:
+                        if (editor.focus)
+                            break
+                        case Qt.Key_Down:
+                        case Qt.Key_Up:
+                        event.accepted = true
+                        prompter.Keys.onPressed(event)
+                        break
+                    }
+            }
         }
     }
     
@@ -472,27 +484,17 @@ Flickable {
             }
             else {
                 // Regular scroll
-                const delta = wheel.angleDelta.y/2;
+                const delta = (prompter.__invertScrollDirection?-1:1)*wheel.angleDelta.y/2;
                 var i=__i;
-                if (prompter.position-delta >= -prompter.topMargin && prompter.position-delta<=editor.implicitHeight-(overlay.height-prompter.bottomMargin)) {
-                    __i=0;
-                    if (prompter.__invertScrollDirection)
-                        prompter.position += delta;
-                    else
-                        prompter.position -= delta;
-                    __i=i;
-                }
+                __i=0;
+                if (prompter.position-delta >= -prompter.topMargin && prompter.position-delta<=editor.implicitHeight-(overlay.height-prompter.bottomMargin))
+                    prompter.position -= delta;
                 // If scroll were to go out of bounds, cap it
-                else if (prompter.position-delta > -prompter.topMargin) {
-                    __i=0;
+                else if (prompter.position-delta > -prompter.topMargin)
                     prompter.position = editor.implicitHeight-(overlay.height-prompter.bottomMargin)
-                    __i=i;
-                }
-                else {
-                    __i=0;
+                else
                     prompter.position = -prompter.topMargin
-                    __i=i;
-                }
+                __i=i;
                 // Resume prompting
                 if (prompter.state==="prompting" && prompter.__play)
                     prompter.position = prompter.__destination
@@ -620,21 +622,23 @@ Flickable {
     Keys.onPressed: {
         if (prompter.state === "prompting")
             switch (event.key) {
-                //case Qt.Key_S:
                 case Qt.Key_Down:
+                case Qt.Key_VolumeDowm:
                     if (prompter.__invertArrowKeys)
                         prompter.decreaseVelocity(event)                        
                     else
                         prompter.increaseVelocity(event)
                     break;
-                    //case Qt.Key_W:
                 case Qt.Key_Up:
+                case Qt.Key_VolumeUp:
                     if (prompter.__invertArrowKeys)
                         prompter.increaseVelocity(event)                        
                     else
                         prompter.decreaseVelocity(event)
                     break;
                 case Qt.Key_Space:
+                case Qt.Key_Play:
+                case Qt.Key_Pause:
                     //showPassiveNotification__lastRecordedPosition(i18n("Toggle Playback"));
                     //console.log(motion.paused)
                     //motion.paused = !motion.paused
@@ -738,14 +742,15 @@ Flickable {
             }
             PropertyChanges {
                 target: root
-                prompterVisibility: Kirigami.ApplicationWindow.AutomaticVisibility
+                //prompterVisibility: Kirigami.ApplicationWindow.Maximized
             }
             PropertyChanges {
                 target: prompter
                 z: 3
                 __i: 0
                 __play: false
-//                 position: position
+                position: position
+                timeToArival: 0
             }
         },
         State {
@@ -760,7 +765,7 @@ Flickable {
             }
             PropertyChanges {
                 target: root
-                prompterVisibility: Kirigami.ApplicationWindow.FullScreen
+                //prompterVisibility: Kirigami.ApplicationWindow.FullScreen
             }
             PropertyChanges {
                 target: prompterBackground
@@ -774,7 +779,9 @@ Flickable {
                 target: prompter
                 z: 1
                 __iBackup: 0
-//                 position: position
+                position: position
+                timeToArival: 0
+                //timeToArival: Kirigami.Units.shortDuration
             }
             PropertyChanges {
                 target: editor
@@ -804,7 +811,7 @@ Flickable {
             }
             PropertyChanges {
                 target: root
-                prompterVisibility: Kirigami.ApplicationWindow.FullScreen
+                //prompterVisibility: Kirigami.ApplicationWindow.FullScreen
             }
             PropertyChanges {
                 target: prompterBackground
@@ -818,7 +825,8 @@ Flickable {
                 target: prompter
                 z: 1
                 __iBackup: 0
-//                 position: position
+                position: position
+                timeToArival: 0
             }
             PropertyChanges {
                 target: editor
@@ -844,7 +852,7 @@ Flickable {
             }
             PropertyChanges {
                 target: root
-                prompterVisibility: Kirigami.ApplicationWindow.FullScreen
+                //prompterVisibility: Kirigami.ApplicationWindow.FullScreen
             }
             PropertyChanges {
                 target: prompterBackground
@@ -858,15 +866,17 @@ Flickable {
             PropertyChanges {
                 target: prompter
                 z: 1
-                __i: 1
+                __i: 2
                 __iBackup: 0
                 position: prompter.__destination
                 focus: true
                 __play: true
+                timeToArival: __timeToArival
             }
             PropertyChanges {
                 target: editor
                 selectByMouse: false
+                focus: false
                 //readOnly: true
             }
             PropertyChanges {
@@ -890,6 +900,39 @@ Flickable {
         }
     ]
     state: "editing"
+    function setCursorAtCurrentPosition() {
+        // Update cursor
+        var verticalPosition = position + overlay.__readRegionPlacement*(overlay.height-overlay.readRegionHeight)+overlay.readRegionHeight/2
+        var cursorPosition = editor.positionAt(0, verticalPosition)
+        editor.cursorPosition = cursorPosition
+        //position = position + overlay.__readRegionPlacement*(overlay.height-overlay.readRegionHeight)+overlay.readRegionHeight/2
+    }
+    transitions: [
+    Transition {
+        from: "*"
+        to: "*"
+        SequentialAnimation {
+            ScriptAction { script: setCursorAtCurrentPosition() }
+            //ScriptAction { scriptName: "setCursorAtCurrentPosition" }
+            //PauseAnimation { duration: Kirigami.Units.shortDuration/2 }
+            //PropertyAnimation {
+                //property: "position"
+                //// This isn't working
+                //to: editor.cursorRectangle.y + overlay.__readRegionPlacement*(overlay.height-overlay.readRegionHeight)+overlay.readRegionHeight/2 - overlay.height
+                //duration: Kirigami.Units.shortDuration
+            //}
+        }
+    },
+    Transition {
+        to: "standby"
+        ScriptAction  {
+            // Jump into position
+            script: {
+                position = editor.cursorRectangle.y + overlay.__readRegionPlacement*(overlay.height-overlay.readRegionHeight)+overlay.readRegionHeight/2 - overlay.height + 1
+            }
+        }
+    }
+    ]
     
     onStateChanged: {
         var pos = prompter.position
@@ -900,5 +943,4 @@ Flickable {
     ScrollBar.vertical: ProgressIndicator {
         id: scrollBar
     }
-
 }
