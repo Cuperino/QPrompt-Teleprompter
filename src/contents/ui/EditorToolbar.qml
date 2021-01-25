@@ -128,10 +128,7 @@ ToolBar {
                 icon.name: "bookmarks"
                 icon.color: down ? appTheme.__fontColor : appTheme.__iconColor
                 focusPolicy: Qt.TabFocus
-                onClicked: {
-                    showPassiveNotification(i18n("Markers have not been implemented yet."));
-                    prompter.document.marker = !prompter.document.marker
-                }
+                onClicked: prompter.document.marker = !prompter.document.marker
             }
             ToolSeparator {
                 contentItem.visible: anchorsRow.y === undoRedoRow.y

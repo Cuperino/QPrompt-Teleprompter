@@ -297,11 +297,13 @@ void DocumentHandler::setMarker(bool marker)
 {
     QTextCharFormat format;
     format.setAnchor(marker);
-    if (marker) {
-        format.setAnchorHref("#");
-        format.setForeground(QColor("lightblue"));
-        format.setAnchorNames(QStringList("marker"));
-    }
+    format.setFontOverline(marker);
+    format.setFontUnderline(marker);
+    //if (marker) {
+        //format.setAnchorHref("#");
+        //format.setForeground(QColor("lightblue"));
+        //format.setAnchorNames(QStringList("marker"));
+    //}
     mergeFormatOnWordOrSelection(format);
     emit markerChanged();
 }

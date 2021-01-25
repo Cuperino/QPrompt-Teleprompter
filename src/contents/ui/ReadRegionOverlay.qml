@@ -130,7 +130,7 @@ Item {
                 PropertyChanges {
                     target: overlay
                     __opacity: 0.4
-                    z: 3
+                    z: 4
                 }
                 PropertyChanges {
                     target: pointers
