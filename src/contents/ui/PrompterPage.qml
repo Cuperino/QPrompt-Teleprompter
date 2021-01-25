@@ -24,7 +24,6 @@ import QtQuick 2.15
 import org.kde.kirigami 2.9 as Kirigami
 import QtQuick.Window 2.15
 import Qt.labs.platform 1.1
-import QtGraphicalEffects 1.15
 
 Kirigami.Page {
     id: prompterPage
@@ -34,11 +33,11 @@ Kirigami.Page {
 
     property alias fontDialog: fontDialog
     property alias colorDialog: colorDialog
-    property alias prompter: prompter
-    property alias editor: prompter.editor
-    property alias overlay: overlay
-    property alias document: prompter.document
-    property alias prompterBackground: prompterBackground
+    property alias prompter: viewport.prompter
+    property alias editor: viewport.editor
+    property alias overlay: viewport.overlay
+    property alias document: viewport.document
+    property alias prompterBackground: viewport.prompterBackground
 
     title: "QPrompt"
     globalToolBarStyle: Kirigami.Settings.isMobile ? Kirigami.ApplicationHeaderStyle.None : Kirigami.ApplicationHeaderStyle.ToolBar
@@ -56,24 +55,25 @@ Kirigami.Page {
             enabled: false
             text: pageStack.globalToolBar.actualStyle === Kirigami.ApplicationHeaderStyle.None ? i18n("Decrease velocity") : ""
             iconName: Qt.application.layoutDirection === Qt.RightToLeft ? "go-next" : "go-previous"
-            onTriggered: prompter.decreaseVelocity(false)
+            onTriggered: viewport.prompter.decreaseVelocity(false)
         }
         right: Kirigami.Action {
             id: increaseVelocityButton
             enabled: false
             text: pageStack.globalToolBar.actualStyle === Kirigami.ApplicationHeaderStyle.None ? i18n("Increase velocity") : ""
             iconName: Qt.application.layoutDirection === Qt.RightToLeft ? "go-previous" : "go-next"
-            onTriggered: prompter.increaseVelocity(false)
+            onTriggered: viewport.prompter.increaseVelocity(false)
         }
         contextualActions: [
         Kirigami.Action {
             id: wysiwygButton
             text: i18n("WYSIWYG")
             checkable: true
-            checked: prompter.__wysiwyg
-            tooltip: prompter.__wysiwyg ? i18n("\"What you see is what you get\" mode is On") : i18n("\"What you see is what you get\" mode Off")
+            checked: viewport.prompter.__wysiwyg
+            tooltip: viewport.prompter.__wysiwyg ? i18n("\"What you see is what you get\" mode is On") : i18n("\"What you see is what you get\" mode Off")
             onTriggered: {
-                prompter.__wysiwyg = !prompter.__wysiwyg
+                viewport.prompter.__wysiwyg = !viewport.prompter.__wysiwyg
+                editor.focus = true
             }
         },
         Kirigami.Action {
@@ -91,10 +91,10 @@ Kirigami.Page {
                 readonly property string shortName: "No Flip"
                 onTriggered: {
                     parent.updateButton(this)
-                    prompter.__flipX = false
-                    prompter.__flipY = false
+                    viewport.prompter.__flipX = false
+                    viewport.prompter.__flipY = false
                 }
-                enabled: prompter.__flipX || prompter.__flipY
+                enabled: viewport.prompter.__flipX || viewport.prompter.__flipY
             }
             Kirigami.Action {
                 text: i18n("Horizontal Flip")
@@ -102,10 +102,10 @@ Kirigami.Page {
                 readonly property string shortName: "H Flip"
                 onTriggered: {
                     parent.updateButton(this)
-                    prompter.__flipX = true
-                    prompter.__flipY = false
+                    viewport.prompter.__flipX = true
+                    viewport.prompter.__flipY = false
                 }
-                enabled: (!prompter.__flipX) || prompter.__flipY
+                enabled: (!viewport.prompter.__flipX) || viewport.prompter.__flipY
             }
             Kirigami.Action {
                 text: i18n("Vertical Flip")
@@ -113,10 +113,10 @@ Kirigami.Page {
                 readonly property string shortName: "V Flip"
                 onTriggered: {
                     parent.updateButton(this)
-                    prompter.__flipX = false
-                    prompter.__flipY = true
+                    viewport.prompter.__flipX = false
+                    viewport.prompter.__flipY = true
                 }
-                enabled: prompter.__flipX || !prompter.__flipY
+                enabled: viewport.prompter.__flipX || !viewport.prompter.__flipY
             }
             Kirigami.Action {
                 text: i18n("180° rotation")
@@ -124,56 +124,56 @@ Kirigami.Page {
                 readonly property string shortName: "HV Flip"
                 onTriggered: {
                     parent.updateButton(this)
-                    prompter.__flipX = true
-                    prompter.__flipY = true
+                    viewport.prompter.__flipX = true
+                    viewport.prompter.__flipY = true
                 }
-                enabled: !(prompter.__flipX && prompter.__flipY)
+                enabled: !(viewport.prompter.__flipX && viewport.prompter.__flipY)
             }
         },
         Kirigami.Action {
             id: readRegionButton
             text: i18n("Reading region")
-            //onTriggered: overlay.toggle()
+            //onTriggered: viewport.overlay.toggle()
             tooltip: i18n("Change reading region placement")
             
             Kirigami.Action {
                 id: readRegionTopButton
                 iconName: "go-up"
                 text: i18n("Top")
-                onTriggered: overlay.positionState = "top"
-                enabled: overlay.positionState!=="top"
+                onTriggered: viewport.overlay.positionState = "top"
+                enabled: viewport.overlay.positionState!=="top"
                 tooltip: i18n("Move reading region to the top, convenient for use with webcams")
             }
             Kirigami.Action {
                 id: readRegionMiddleButton
                 iconName: "remove"
                 text: i18n("Middle")
-                onTriggered: overlay.positionState = "middle"
-                enabled: overlay.positionState!=="middle"
+                onTriggered: viewport.overlay.positionState = "middle"
+                enabled: viewport.overlay.positionState!=="middle"
                 tooltip: i18n("Move reading region to the vertical center")
             }
             Kirigami.Action {
                 id: readRegionBottomButton
                 iconName: "go-down"
                 text: i18n("Bottom")
-                onTriggered: overlay.positionState = "bottom"
-                enabled: overlay.positionState!=="bottom"
+                onTriggered: viewport.overlay.positionState = "bottom"
+                enabled: viewport.overlay.positionState!=="bottom"
                 tooltip: i18n("Move reading region to the bottom")
             }
             Kirigami.Action {
                 id: readRegionFreeButton
                 iconName: "gtk-edit"
                 text: i18n("Free")
-                onTriggered: overlay.positionState = "free"
-                enabled: overlay.positionState!=="free"
+                onTriggered: viewport.overlay.positionState = "free"
+                enabled: viewport.overlay.positionState!=="free"
                 tooltip: i18n("Move reading region freely by dragging and dropping")
             }
             Kirigami.Action {
                 id: readRegionCustomButton
                 iconName: "gtk-apply"
                 text: i18n("Custom")
-                onTriggered: overlay.positionState = "fixed"
-                enabled: overlay.positionState!=="fixed"
+                onTriggered: viewport.overlay.positionState = "fixed"
+                enabled: viewport.overlay.positionState!=="fixed"
                 tooltip: i18n("Fix reading region to the position set using free placement mode")
             }
         },
@@ -266,22 +266,22 @@ Kirigami.Page {
             Kirigami.Action {
                 id: enableCountdownButton
                 checkable: true
-                checked: countdown.enabled
+                checked: viewport.countdown.enabled
                 text: i18n("Countdown")
-                onTriggered: countdown.enabled = !countdown.enabled
+                onTriggered: viewport.countdown.enabled = !viewport.countdown.enabled
             }
             Kirigami.Action {
                 id: autoStartCountdownButton
-                enabled: countdown.enabled
+                enabled: viewport.countdown.enabled
                 checkable: true
-                checked: countdown.autoStart
+                checked: viewport.countdown.autoStart
                 text: i18n("Auto Countdown")
                 tooltip: i18n("Start countdown automatically")
-                onTriggered: countdown.autoStart = !countdown.autoStart
+                onTriggered: viewport.countdown.autoStart = !viewport.countdown.autoStart
             }
             Kirigami.Action {
                 id: setCountdownButton
-                enabled: countdown.enabled
+                enabled: viewport.countdown.enabled
                 text: i18n("Set Duration")
                 onTriggered: {
                     showPassiveNotification(i18n("Countdown setup has not been implemented yet."));
@@ -312,68 +312,19 @@ Kirigami.Page {
         ]
     }
     
-    Item {
+    PrompterView {
         id: viewport
-        anchors.fill: parent
-        //layer.enabled: true
-        // Undersample
-        //layer.mipmap: true
-        // Oversample
-        //layer.samples: 2
-        //layer.smooth: true
-        // Make texture the size of the largest destinations.
-        //layer.textureSize: Qt.size(projectionWindow.width, projectionWindow.height)
-        
-        Countdown {
-            id: countdown
-            z: 3
-            anchors.fill: parent
-        }
-        
-        ReadRegionOverlay {
-            id: overlay
-            z: 2
-            anchors.fill: parent
-        }
-        
-        //TimerClock {
-        //    id: timer
-        //    z: 4
-        //    anchors.fill: parent
-        //}
-        
-        Prompter {
-            id: prompter
-            property double delta: 16
-            anchors.fill: parent
-            z: 1
-            textColor: colorDialog.color
-            fontSize:  (prompter.state==="editing" && !prompter.__wysiwyg) ? (Math.pow(editorToolbar.fontSizeSlider.value/185,4)*185) : (Math.pow(editorToolbar.fontWYSIWYGSizeSlider.value/185,4)*185)*prompter.__vw/10
-            //Math.pow((fontSizeSlider.value*prompter.__vw),3)
-        }
-        //FastBlur {
-            //anchors.fill: prompter
-            //source: prompter
-            //radius: 32
-            //radius: 0
-        //}
-
-        PrompterBackground {
-            id: prompterBackground
-            z: 0
-        }
-        
         property alias toolbar: editorToolbar
     }
     
-    progress: prompter.state==="prompting" ? prompter.progress : undefined
+    progress: viewport.prompter.state==="prompting" ? viewport.prompter.progress : undefined
 
     FontDialog {
         id: fontDialog
         options: FontDialog.ScalableFonts|FontDialog.MonospacedFonts|FontDialog.ProportionalFonts
         onAccepted: {
-            prompter.document.fontFamily = font.family;
-            //prompter.document.fontSize = font.pointSize*prompter.editor.font.pixelSize/6;
+            viewport.prompter.document.fontFamily = font.family;
+            //viewport.prompter.document.fontSize = font.pointSize*viewport.prompter.editor.font.pixelSize/6;
         }
     }
     
