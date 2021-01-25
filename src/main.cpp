@@ -50,7 +50,7 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
                          i18n("Free Software teleprompter for professionals across industries."),
                          KAboutLicense::GPL_V3,
                          //KAboutLicense::Custom,
-                         i18n("Copyright 2020-2021, Javier O. Cordero Pérez"), QString(),
+                         i18n("Copyright 2021, Javier O. Cordero Pérez"), QString(),
                          "https://javiercordero.info");
     // Overwrite default-generated values of organizationDomain & desktopFileName
     aboutData.setOrganizationDomain("cuperino.com");
