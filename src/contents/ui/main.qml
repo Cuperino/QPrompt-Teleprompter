@@ -22,12 +22,12 @@
 
 import QtQuick 2.15
 import org.kde.kirigami 2.9 as Kirigami
+import QtQuick.Controls 2.15 as OldControls
 import QtQuick.Controls 2.15
 import QtQuick.Window 2.15
 import Qt.labs.platform 1.1
 import QtQuick.Layouts 1.15
 import QtQuick.Controls.Material 2.15
-import QtGraphicalEffects 1.15
 
 import com.cuperino.qprompt.document 1.0
 
@@ -42,7 +42,7 @@ Kirigami.ApplicationWindow {
     property bool __invertScrollDirection: false
     property bool italic
     
-    property int prompterVisibility: Kirigami.ApplicationWindow.AutomaticVisibility
+    //property int prompterVisibility: Kirigami.ApplicationWindow.Maximized
     property double __opacity: 1
     property real __baseSpeed: baseSpeedSlider.value
     property real __curvature: baseAccelerationSlider.value
@@ -65,7 +65,8 @@ Kirigami.ApplicationWindow {
     }
     
     // Full screen
-    visibility: __fullScreen ? Kirigami.ApplicationWindow.FullScreen : (__autoFullScreen ? prompterVisibility : Kirigami.ApplicationWindow.AutomaticVisibility)
+    visibility:
+    __fullScreen ? Kirigami.ApplicationWindow.FullScreen : (!__autoFullScreen ? Kirigami.ApplicationWindow.AutomaticVisibility : (prompterPage.prompter.state==="editing" ? Kirigami.ApplicationWindow.Maximized : Kirigami.ApplicationWindow.FullScreen))
 
     // Open save dialog on closing
     onClosing: {
@@ -146,7 +147,7 @@ Kirigami.ApplicationWindow {
         ]
         topContent: RowLayout {
             Button {
-                text: i18n("Instructions")
+                text: i18n("Load Guide")
                 flat: true
                 onClicked: {
                     prompterPage.document.loadInstructions()
@@ -154,7 +155,7 @@ Kirigami.ApplicationWindow {
                 }
             }
             Button {
-                text: i18n("Theme")
+                text: i18n("Change Theme")
                 flat: true
                 onClicked: {
                     showPassiveNotification(i18n("Live theme mode switching has not yet been implemented."))
@@ -208,7 +209,294 @@ Kirigami.ApplicationWindow {
     }
     
     // Window Menu Bar
-    /*menuBar:*/ MenuBar {
+    /*menuBar: OldControls.MenuBar {
+        //visible: 
+        OldControls.Menu {
+            title: i18n("&File")
+            Action {
+                text: i18n("&New")
+                onTriggered: prompterPage.document.newDocument()
+            }
+            Action {
+                text: i18n("&Open")
+                onTriggered: prompterPage.document.open()
+            }
+            Action {
+                text: i18n("&Save")
+                onTriggered: prompterPage.document.saveDialog()
+            }
+            Action {
+                text: i18n("Save &As")
+                onTriggered: prompterPage.document.saveAsDialog()
+            }
+            OldControls.MenuSeparator { }
+            Action {
+                text: i18n("&Quit")
+                onTriggered: close()
+            }
+        }
+        OldControls.Menu {
+            title: i18n("&Edit")
+            
+            Action {
+                text: i18n("&Undo")
+                enabled: prompterPage.editor.canUndo
+                onTriggered: prompterPage.editor.undo()
+            }
+            Action {
+                text: i18n("&Redo")
+                enabled: prompterPage.editor.canRedo
+                onTriggered: prompterPage.editor.redo()
+            }
+            OldControls.MenuSeparator { }
+            Action {
+                text: i18n("&Copy")
+                enabled: prompterPage.editor.selectedText
+                onTriggered: prompterPage.editor.copy()
+            }
+            Action {
+                text: i18n("Cu&t")
+                enabled: prompterPage.editor.selectedText
+                onTriggered: prompterPage.editor.cut()
+            }
+            Action {
+                text: i18n("&Paste")
+                enabled: prompterPage.editor.canPaste
+                onTriggered: prompterPage.editor.paste()
+            }
+        }
+        
+        OldControls.Menu {
+            title: i18n("V&iew")
+            
+            Action {
+                text: i18n("&Full screen")
+                checkable: true
+                checked: root.__fullScreen
+                onTriggered: root.__fullScreen = !root.__fullScreen
+            }
+            Action {
+                text: i18n("&Auto full screen")
+                checkable: true
+                checked: root.__autoFullScreen
+                onTriggered: root.__autoFullScreen = !root.__autoFullScreen
+            }
+            //MenuItem {
+            //    text: i18n("Make background &translucid")
+            //    checkable: true
+            //    checked: root.__translucidBackground
+            //    onTriggered: root.__translucidBackground = !root.__translucidBackground
+            //}
+            OldControls.MenuSeparator { }
+            OldControls.Menu {
+                title: i18n("&Pointers")
+                Action {
+                    text: i18n("&Left Pointer")
+                    checkable: true
+                    checked: prompterPage.overlay.styleState === "leftPointer"
+                    onTriggered: prompterPage.overlay.styleState = "leftPointer"
+                }
+                Action {
+                    text: i18n("&Right Pointer")
+                    checkable: true
+                    checked: prompterPage.overlay.styleState === "rightPointer"
+                    onTriggered: prompterPage.overlay.styleState = "rightPointer"
+                }
+                Action {
+                    text: i18n("B&oth Pointers")
+                    checkable: true
+                    checked: prompterPage.overlay.styleState === "pointers"
+                    onTriggered: prompterPage.overlay.styleState = "pointers"
+                }
+                OldControls.MenuSeparator { }
+                Action {
+                    text: i18n("&Bars")
+                    checkable: true
+                    checked: prompterPage.overlay.styleState === "bars"
+                    onTriggered: prompterPage.overlay.styleState = "bars"
+                }
+                Action {
+                    text: i18n("Bars L&eft")
+                    checkable: true
+                    checked: prompterPage.overlay.styleState === "barsLeft"
+                    onTriggered: prompterPage.overlay.styleState = "barsLeft"
+                }
+                Action {
+                    text: i18n("Bars R&ight")
+                    checkable: true
+                    checked: prompterPage.overlay.styleState === "barsRight"
+                    onTriggered: prompterPage.overlay.styleState = "barsRight"
+                }
+                OldControls.MenuSeparator { }
+                Action {
+                    text: i18n("&All")
+                    checkable: true
+                    checked: prompterPage.overlay.styleState === "all"
+                    onTriggered: prompterPage.overlay.styleState = "all"
+                }
+                Action {
+                    text: i18n("&None")
+                    checkable: true
+                    checked: prompterPage.overlay.styleState === "none"
+                    onTriggered: prompterPage.overlay.styleState = "none"
+                }
+            }
+            OldControls.Menu {
+                title: i18n("&Reading region")
+                Action {
+                    text: i18n("&Top")
+                    checkable: true
+                    checked: prompterPage.overlay.positionState === "top"
+                    onTriggered: prompterPage.overlay.positionState = "top"
+                }
+                Action {
+                    text: i18n("&Middle")
+                    checkable: true
+                    checked: prompterPage.overlay.positionState === "middle"
+                    onTriggered: prompterPage.overlay.positionState = "middle"
+                }
+                Action {
+                    text: i18n("&Bottom")
+                    checkable: true
+                    checked: prompterPage.overlay.positionState === "bottom"
+                    onTriggered: prompterPage.overlay.positionState = "bottom"
+                }
+                OldControls.MenuSeparator { }
+                Action {
+                    text: i18n("&Free placement")
+                    checkable: true
+                    checked: prompterPage.overlay.positionState === "free"
+                    onTriggered: prompterPage.overlay.positionState = "free"
+                }
+                Action {
+                    text: i18n("&Custom (Fixed placement)")
+                    checkable: true
+                    checked: prompterPage.overlay.positionState === "fixed"
+                    onTriggered: prompterPage.overlay.positionState = "fixed"
+                }
+            }
+        }
+        OldControls.Menu {
+            title: i18n("F&ormat")
+            
+            Action {
+                text: i18n("&Bold")
+                checkable: true
+                checked: prompterPage.document.bold
+                onTriggered: prompterPage.document.bold = !prompterPage.document.bold
+            }
+            Action {
+                text: i18n("&Italic")
+                checkable: true
+                checked: prompterPage.document.italic
+                onTriggered: prompterPage.document.italic = !prompterPage.document.italic
+            }
+            Action {
+                text: i18n("&Underline")
+                checkable: true
+                checked: prompterPage.document.underline
+                onTriggered: prompterPage.document.underline = !prompterPage.document.underline
+            }
+            OldControls.MenuSeparator { }
+            Action {
+                text: Qt.application.layoutDirection===Qt.LeftToRight ? i18n("&Left") : i18n("&Right")
+                checkable: true
+                checked: Qt.application.layoutDirection===Qt.LeftToRight ? prompterPage.document.alignment === Qt.AlignLeft : prompterPage.document.alignment === Qt.AlignRight
+                onTriggered: {
+                    if (Qt.application.layoutDirection===Qt.LeftToRight)
+                        prompterPage.document.alignment = Qt.AlignLeft
+                    else
+                        prompterPage.document.alignment = Qt.AlignRight
+                }
+            }
+            Action {
+                text: i18n("&Center")
+                checkable: true
+                checked: prompterPage.document.alignment === Qt.AlignHCenter
+                onTriggered: prompterPage.document.alignment = Qt.AlignHCenter
+            }
+            Action {
+                text: Qt.application.layoutDirection===Qt.LeftToRight ? i18n("&Right") : i18n("&Left")
+                checkable: true
+                checked: Qt.application.layoutDirection===Qt.LeftToRight ? prompterPage.document.alignment === Qt.AlignRight : prompterPage.document.alignment === Qt.AlignLeft
+                onTriggered: {
+                    if (Qt.application.layoutDirection===Qt.LeftToRight)
+                        prompterPage.document.alignment = Qt.AlignRight
+                    else
+                        prompterPage.document.alignment = Qt.AlignLeft
+                }
+            }
+            Action {
+                text: i18n("&Justify")
+                checkable: true
+                checked: prompterPage.document.alignment === Qt.AlignJustify
+                onTriggered: prompterPage.document.alignment = Qt.AlignJustify
+            }
+            OldControls.MenuSeparator { }
+            Action {
+                text: i18n("Character")
+                onTriggered: prompterPage.fontDialog.open();
+            }
+            Action {
+                text: i18n("Font Color")
+                onTriggered: prompterPage.colorDialog.open()
+            }
+        }
+        OldControls.Menu {
+            title: i18n("Controls")
+            
+            Action {
+                text: i18n("Use mouse and touchpad scroll as speed dial while prompting")
+                checkable: true
+                checked: root.__scrollAsDial
+                onTriggered: root.__scrollAsDial = !root.__scrollAsDial
+            }
+            OldControls.MenuSeparator { }
+            Action {
+                text: i18n("Invert arrow keys")
+                checkable: true
+                checked: root.__invertArrowKeys
+                onTriggered: root.__invertArrowKeys = !root.__invertArrowKeys
+            }
+            Action {
+                text: i18n("Invert scroll direction")
+                checkable: true
+                checked: root.__invertScrollDirection
+                onTriggered: root.__invertScrollDirection = !root.__invertScrollDirection
+            }
+        }
+        OldControls.Menu {
+            title: i18n("&Help")
+            
+            Action {
+                text: i18n("&Report Bug...")
+                onTriggered: Qt.openUrlExternally("https://github.com/Cuperino/QPrompt/issues")
+                icon.name: "tools-report-bug"
+            }
+            OldControls.MenuSeparator { }
+            //MenuItem {
+            //    text: i18n("&Get Studio Edition")
+            //    onTriggered: Qt.openUrlExternally("https://cuperino.com/qprompt")
+            //    icon.name: "software-center"
+            //}
+            //OldControls.MenuSeparator { }
+            Action {
+                text: i18n("Load User Guide")
+                icon.name: "help-info"
+                onTriggered: prompterPage.document.loadInstructions()
+            }
+            OldControls.MenuSeparator { }
+            Action {
+                text: i18n("&About QPrompt")
+                onTriggered: root.loadAboutPage()
+                icon.source: "qrc:/images/logo.png"
+            }
+        }
+    }*/
+    
+    MenuBar {
+        id: nativeMenus
+        window: root
         Menu {
             title: i18n("&File")
             
@@ -305,7 +593,7 @@ Kirigami.ApplicationWindow {
                     onTriggered: prompterPage.overlay.styleState = "rightPointer"
                 }
                 MenuItem {
-                    text: i18n("B&oth Pointer")
+                    text: i18n("B&oth Pointers")
                     checkable: true
                     checked: prompterPage.overlay.styleState === "pointers"
                     onTriggered: prompterPage.overlay.styleState = "pointers"
@@ -483,7 +771,7 @@ Kirigami.ApplicationWindow {
             //}
             //MenuSeparator { }
             MenuItem {
-                text: i18n("User Guide")
+                text: i18n("Load User Guide")
                 icon.name: "help-info"
                 onTriggered: prompterPage.document.loadInstructions()
             }
