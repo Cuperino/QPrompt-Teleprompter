@@ -35,7 +35,9 @@ Kirigami.ApplicationWindow {
     id: root
     property bool __fullScreen: false
     property bool __autoFullScreen: false
-    readonly property bool __translucidBackground: Material.background.a === 0
+    //readonly property bool __translucidBackground: !Material.background.a // === 0
+    readonly property bool __translucidBackground: !Kirigami.Theme.backgroundColor.a
+    //readonly property bool __translucidBackground: false
     // Scrolling settings
     property bool __scrollAsDial: false
     property bool __invertArrowKeys: false
@@ -50,23 +52,34 @@ Kirigami.ApplicationWindow {
     title: prompterPage.document.fileName + (prompterPage.document.modified?"*":"") + " - " + aboutData.displayName
     width: 1064  // Keep at or bellow 1024 and at or above 960, for best usability with common 4:3 resolutions
     height: 728  // Keep and test at 728 so that it works well with 1366x768 screens.
+    // Making width and height start maximized
+    //width: screen.desktopAvailableWidth
+    //height: screen.desktopAvailableHeight
     minimumWidth: 480
     minimumHeight: 380
-    // Changing the theme in this way does not affect the whole app for some reason.
+    // Theme management
     //Material.theme: Material.Light
-    //Material.theme: themeSwitch.checked ? Material.Dark : Material.Light
+    Material.theme: themeSwitch.checked ? Material.Dark : Material.Light  // This is correct, but it isn't work working, likely because of Kirigami
+    // More ways to enforce transparency across systems
+    //visible: true
+    //flags: Qt.FramelessWindowHint
+    // Make backgrounds transparent
+    Material.background: "transparent"
+    color: "transparent"
     background: Rectangle {
         id: appTheme
         color: __backgroundColor
         opacity: !root.__translucidBackground || prompterPage.prompterBackground.opacity===1
-        readonly property color __backgroundColor: parent.Material.theme===Material.Light ? "#fafafa" : "#303030"
-        readonly property color __fontColor: parent.Material.theme===Material.Light ? "#212121" : "#fff"
-        readonly property color __iconColor: parent.Material.theme===Material.Light ? "#232629" : "#c3c7d1"
+        //readonly property color __fontColor: parent.Material.theme===Material.Light ? "#212121" : "#fff"
+        //readonly property color __iconColor: parent.Material.theme===Material.Light ? "#232629" : "#c3c7d1"
+        readonly property color __backgroundColor: __translucidBackground ? (themeSwitch.checked ? "#303030" : "#fafafa") : Kirigami.Theme.backgroundColor
+        //readonly property color __fontColor: /*__translucidBackground ? (Kirigami.Theme.theme===Material.Light ? "#212121" : "#fff") : */Kirigami.Theme.textColor
+        //Kirigami.Theme.colorSet: Kirigami.Theme.Button
+        //readonly property color __iconColor: /*__translucidBackground ? (Kirigami.Theme.theme===Material.Light ? "#232629" : "#c3c7d1") : */Kirigami.Theme.textColor
     }
     
     // Full screen
-    visibility:
-    __fullScreen ? Kirigami.ApplicationWindow.FullScreen : (!__autoFullScreen ? Kirigami.ApplicationWindow.AutomaticVisibility : (prompterPage.prompter.state==="editing" ? Kirigami.ApplicationWindow.Maximized : Kirigami.ApplicationWindow.FullScreen))
+    visibility: __fullScreen ? Kirigami.ApplicationWindow.FullScreen : (!__autoFullScreen ? Kirigami.ApplicationWindow.AutomaticVisibility : (prompterPage.prompter.state==="editing" ? Kirigami.ApplicationWindow.Maximized : Kirigami.ApplicationWindow.FullScreen))
 
     // Open save dialog on closing
     onClosing: {
@@ -155,7 +168,12 @@ Kirigami.ApplicationWindow {
                 }
             }
             Button {
-                text: i18n("Change Theme")
+                id: themeSwitch
+                text: i18n("Dark Mode")
+                visible: false
+                //visible: !Kirigami.Settings.isMobile && root.__translucidBackground
+                checked: true
+                checkable: true
                 flat: true
                 onClicked: {
                     showPassiveNotification(i18n("Live theme mode switching has not yet been implemented."))
@@ -209,8 +227,9 @@ Kirigami.ApplicationWindow {
     }
     
     // Window Menu Bar
-    /*menuBar: OldControls.MenuBar {
-        //visible: 
+    menuBar: OldControls.MenuBar {
+        height: 26
+        visible: !root.__translucidBackground && prompterPage.prompter.state==="editing" && root.visibility!==Kirigami.ApplicationWindow.FullScreen
         OldControls.Menu {
             title: i18n("&File")
             Action {
@@ -275,17 +294,11 @@ Kirigami.ApplicationWindow {
                 checked: root.__fullScreen
                 onTriggered: root.__fullScreen = !root.__fullScreen
             }
-            Action {
-                text: i18n("&Auto full screen")
-                checkable: true
-                checked: root.__autoFullScreen
-                onTriggered: root.__autoFullScreen = !root.__autoFullScreen
-            }
-            //MenuItem {
-            //    text: i18n("Make background &translucid")
+            //Action {
+            //    text: i18n("&Auto full screen")
             //    checkable: true
-            //    checked: root.__translucidBackground
-            //    onTriggered: root.__translucidBackground = !root.__translucidBackground
+            //    checked: root.__autoFullScreen
+            //    onTriggered: root.__autoFullScreen = !root.__autoFullScreen
             //}
             OldControls.MenuSeparator { }
             OldControls.Menu {
@@ -492,8 +505,8 @@ Kirigami.ApplicationWindow {
                 icon.source: "qrc:/images/logo.png"
             }
         }
-    }*/
-    
+    }
+
     MenuBar {
         id: nativeMenus
         window: root
@@ -564,18 +577,12 @@ Kirigami.ApplicationWindow {
                 checked: root.__fullScreen
                 onTriggered: root.__fullScreen = !root.__fullScreen
             }
-            MenuItem {
-                id: autoFullScreenCheckbox
-                text: i18n("&Auto full screen")
-                checkable: true
-                checked: root.__autoFullScreen
-                onTriggered: root.__autoFullScreen = !root.__autoFullScreen
-            }
             //MenuItem {
-                //text: i18n("Make background &translucid")
-                //checkable: true
-                //checked: root.__translucidBackground
-                //onTriggered: root.__translucidBackground = !root.__translucidBackground
+            //    id: autoFullScreenCheckbox
+            //    text: i18n("&Auto full screen")
+            //    checkable: true
+            //    checked: root.__autoFullScreen
+            //    onTriggered: root.__autoFullScreen = !root.__autoFullScreen
             //}
             MenuSeparator { }
             Menu {
@@ -793,7 +800,7 @@ Kirigami.ApplicationWindow {
     }
 
     Rectangle {
-        visible: pageStack.globalToolBar.actualStyle !== Kirigami.ApplicationHeaderStyle.None
+        visible: !Kirigami.Settings.isMobile && pageStack.globalToolBar.actualStyle !== Kirigami.ApplicationHeaderStyle.None
         color: appTheme.__backgroundColor
         anchors{ top:parent.top; left:parent.left; right: parent.right }
         height: 40
@@ -805,8 +812,7 @@ Kirigami.ApplicationWindow {
     pageStack.initialPage: prompterPageComponent
     // Auto hide global toolbar on fullscreen
     //pageStack.globalToolBar.style: visibility===Kirigami.ApplicationWindow.FullScreen ? Kirigami.ApplicationHeaderStyle.None :  Kirigami.ApplicationHeaderStyle.Auto
-    pageStack.globalToolBar.style: visibility===Kirigami.ApplicationWindow.FullScreen && prompterPage.prompter.state==="prompting" ? Kirigami.ApplicationHeaderStyle.None :  
-    Kirigami.ApplicationHeaderStyle.Auto
+    pageStack.globalToolBar.style: visibility===Kirigami.ApplicationWindow.FullScreen && prompterPage.prompter.state!=="editing" ? Kirigami.ApplicationHeaderStyle.None : Kirigami.ApplicationHeaderStyle.ToolBar
     // The following is not possible in the current version of Kirigami, but it should be:
     //pageStack.globalToolBar.background: Rectangle {
         //color: appTheme.__backgroundColor
