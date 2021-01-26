@@ -222,7 +222,8 @@ Flickable {
                 if (!animationX.running && prompter.__i) {
                     __i = 0
                     root.alert(0)
-                    showPassiveNotification(i18n("Animation Completed"));
+                    if (!root.__translucidBackground)
+                        showPassiveNotification(i18n("Animation Completed"));
                 }
             }
         }
@@ -265,7 +266,8 @@ Flickable {
             this.__i++
             this.__play = true
             this.position = this.__destination
-            //showPassiveNotification(i18n("Increase Velocity"));
+            //if (!root.__translucidBackground)
+            //    showPassiveNotification(i18n("Increase Velocity"));
         }
     }
 
@@ -277,7 +279,8 @@ Flickable {
             this.__i--
             this.__play = true
             this.position = this.__destination
-            //showPassiveNotification(i18n("Decrease Velocity"));
+            //if (!root.__translucidBackground)
+            //    showPassiveNotification(i18n("Decrease Velocity"));
         }
     }
     
@@ -327,13 +330,7 @@ Flickable {
             topPadding: 0
             bottomPadding: 0
             
-            //background: Rectangle{
-            //    color: QColor(40,41,35,127)
-            //}
-            //ground: Rectangle {
-            //color: "#424242"
-            //opacity: 0.8
-            //}
+            background: Item {}
             
             // Start with the editor in focus
             focus: true
@@ -354,7 +351,6 @@ Flickable {
             // Width drag controls
             width: prompter.width-2*Math.abs(x)
 
-            // Bottom margin hack
             Rectangle {
                 id: rect
                 anchors.left: parent.left
@@ -531,13 +527,15 @@ Flickable {
         function newDocument() {
             load("qrc:/untitled.html")
             isNewFile = true
-            showPassiveNotification(i18n("New document"))
+            if (!root.__translucidBackground)
+                showPassiveNotification(i18n("New document"))
         }
         
         function loadInstructions() {
             document.load("qrc:/"+i18n("guide_en.html"))
             isNewFile = true
-            //showPassiveNotification(i18n("User guide loaded"))
+            if (!root.__translucidBackground)
+                showPassiveNotification(i18n("User guide loaded"))
         }
         
         function open() {
@@ -639,7 +637,8 @@ Flickable {
                 case Qt.Key_Space:
                 case Qt.Key_Play:
                 case Qt.Key_Pause:
-                    //showPassiveNotification__lastRecordedPosition(i18n("Toggle Playback"));
+                    //if (!root.__translucidBackground)
+                    //    showPassiveNotification((i18n("Toggle Playback"));
                     //console.log(motion.paused)
                     //motion.paused = !motion.paused
                     if (prompter.__play/*prompter.state=="play"*/) {
