@@ -26,12 +26,17 @@
 #include <QtQml>
 #include <QtQml/qqml.h>
 #include <QUrl>
-#include <KLocalizedContext>
 #include <QFontDatabase>
 #include <QDebug>
 #include <QQmlFileSelector>
 #include <QQuickStyle>
 #include <QIcon>
+
+#ifdef Q_OS_ANDROID
+#include "./3rdparty/kirigami/src/kirigamiplugin.h"
+#endif
+
+#include <KLocalizedContext>
 #include <KI18n/KLocalizedString>
 #include <KCoreAddons/KAboutData>
 
@@ -92,11 +97,15 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
 
     QQmlApplicationEngine engine;
     QQmlFileSelector::get(&engine)->setExtraSelectors(selectors);
+    
+    #ifdef Q_OS_ANDROID
+    KirigamiPlugin::getInstance().registerTypes();
+    #endif
 
     // Un-comment to force RightToLeft Layout for debugging purposes
     //app.setLayoutDirection(Qt::RightToLeft);
     app.setWindowIcon(QIcon(":/images/logo.png"));
-
+    
     engine.rootContext()->setContextObject(new KLocalizedContext(&engine));
     engine.rootContext()->setContextProperty(QStringLiteral("aboutData"), QVariant::fromValue(KAboutData::applicationData()));
 
