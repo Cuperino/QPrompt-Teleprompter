@@ -87,7 +87,7 @@ Kirigami.Page {
             
             Kirigami.Action {
                 text: i18n("No Flip")
-                iconName: "refresh"
+                //iconName: "refresh"
                 readonly property string shortName: "No Flip"
                 onTriggered: {
                     parent.updateButton(this)
@@ -98,7 +98,7 @@ Kirigami.Page {
             }
             Kirigami.Action {
                 text: i18n("Horizontal Flip")
-                iconName: "refresh"
+                //iconName: "refresh"
                 readonly property string shortName: "H Flip"
                 onTriggered: {
                     parent.updateButton(this)
@@ -109,7 +109,7 @@ Kirigami.Page {
             }
             Kirigami.Action {
                 text: i18n("Vertical Flip")
-                iconName: "refresh"
+                //iconName: "refresh"
                 readonly property string shortName: "V Flip"
                 onTriggered: {
                     parent.updateButton(this)
@@ -120,7 +120,7 @@ Kirigami.Page {
             }
             Kirigami.Action {
                 text: i18n("180° rotation")
-                iconName: "refresh"
+                //iconName: "refresh"
                 readonly property string shortName: "HV Flip"
                 onTriggered: {
                     parent.updateButton(this)
@@ -314,6 +314,8 @@ Kirigami.Page {
     
     PrompterView {
         id: viewport
+        // Workaround to make regular Page let its contents be covered by action buttons.
+        anchors.bottomMargin: Kirigami.Settings.isMobile ? -68 : 0
         property alias toolbar: editorToolbar
     }
     
@@ -330,7 +332,7 @@ Kirigami.Page {
     
     ColorDialog {
         id: colorDialog
-        currentColor: appTheme.__fontColor
+        currentColor: Kirigami.Theme.textColor
     }
     
 //     ShaderEffectSource {
