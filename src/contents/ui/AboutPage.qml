@@ -25,7 +25,7 @@ import org.kde.kirigami 2.9 as Kirigami
 
 Kirigami.AboutPage {
     background: Rectangle {
-        color: appTheme.__backgroundColor
+        color: Kirigami.Theme.alternateBackgroundColor
     }
 /*
     // property var licenses: []
