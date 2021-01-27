@@ -109,7 +109,7 @@ ToolBar {
             text: parent.parent.text
             font: parent.parent.font
             Kirigami.Theme.colorSet: Kirigami.Theme.Button
-            color: parent.parent.enabled ? (parent.parent.down ? Kirigami.Theme.positiveTextColor : (parent.parent.checked ? Kirigami.Theme.focusColor : Kirigami.Theme.textColor)) : Kirigami.Theme.disabledTextColor
+            color: parent.parent.enabled ? (parent.parent.down ? Kirigami.Theme.positiveTextColor : (parent.parent.checked ? Kirigami.Theme.focusColor : Kirigami.Theme.textColor)) : (root.themeIsMaterial ? Kirigami.Theme.negativeTextColor : Kirigami.Theme.disabledTextColor)
             horizontalAlignment: Text.AlignHCenter
             verticalAlignment: Text.AlignVCenter
             elide: Text.ElideRight
@@ -149,7 +149,7 @@ ToolBar {
                 //font.pointSize: 13
                 icon.name: Qt.application.layoutDirection===Qt.LeftToRight?"edit-undo":"edit-redo"
                 Kirigami.Theme.colorSet: Kirigami.Theme.Button
-                icon.color: enabled ? (down ? Kirigami.Theme.positiveTextColor : (checked ? Kirigami.Theme.focusColor : Kirigami.Theme.textColor)) : Kirigami.Theme.disabledTextColor
+                icon.color: enabled ? (down ? Kirigami.Theme.positiveTextColor : (checked ? Kirigami.Theme.focusColor : Kirigami.Theme.textColor)) : (root.themeIsMaterial ? Kirigami.Theme.negativeTextColor : Kirigami.Theme.disabledTextColor)
                 focusPolicy: Qt.TabFocus
                 enabled: prompter.editor.canUndo
                 onClicked: prompter.editor.undo()
@@ -161,7 +161,7 @@ ToolBar {
                 //font.pointSize: 13
                 icon.name: Qt.application.layoutDirection===Qt.LeftToRight?"edit-redo":"edit-undo"
                 Kirigami.Theme.colorSet: Kirigami.Theme.Button
-                icon.color: enabled ? (down ? Kirigami.Theme.positiveTextColor : (checked ? Kirigami.Theme.focusColor : Kirigami.Theme.textColor)) : Kirigami.Theme.disabledTextColor
+                icon.color: enabled ? (down ? Kirigami.Theme.positiveTextColor : (checked ? Kirigami.Theme.focusColor : Kirigami.Theme.textColor)) : (root.themeIsMaterial ? Kirigami.Theme.negativeTextColor : Kirigami.Theme.disabledTextColor)
                 enabled: prompter.editor.canRedo
                 onClicked: prompter.editor.redo()
             }
