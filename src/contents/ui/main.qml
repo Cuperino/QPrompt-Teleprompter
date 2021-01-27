@@ -37,6 +37,7 @@ Kirigami.ApplicationWindow {
     property bool __autoFullScreen: false
     //readonly property bool __translucidBackground: !Material.background.a // === 0
     readonly property bool __translucidBackground: !Kirigami.Theme.backgroundColor.a
+    readonly property bool themeIsMaterial: __translucidBackground || Kirigami.Settings.isMobile
     //readonly property bool __translucidBackground: false
     // Scrolling settings
     property bool __scrollAsDial: false
