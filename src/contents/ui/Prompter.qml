@@ -525,6 +525,7 @@ Flickable {
         onLoaded: {
             editor.textFormat = format
             editor.text = text
+            prompter.position = -(overlay.__readRegionPlacement*(overlay.height-overlay.readRegionHeight)+overlay.readRegionHeight/2)
         }
         onError: {
             errorDialog.text = message
@@ -923,7 +924,7 @@ Flickable {
             // Jump into position
             script: {
                 // Auto frame to current line
-                position = editor.cursorRectangle.y + overlay.__readRegionPlacement*(overlay.height-overlay.readRegionHeight)+overlay.readRegionHeight/2 - overlay.height + 1
+                position = editor.cursorRectangle.y - (overlay.__readRegionPlacement*(overlay.height-overlay.readRegionHeight)+overlay.readRegionHeight/2)
             }
         }
     }
