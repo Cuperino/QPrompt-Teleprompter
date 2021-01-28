@@ -21,12 +21,17 @@
  ****************************************************************************/
 
 import QtQuick 2.15
+import org.kde.kirigami 2.9 as Kirigami
 import QtQuick.Controls 2.15
 import QtQuick.Shapes 1.15
-import org.kde.kirigami 2.9 as Kirigami
+import QtQuick.Controls 2.15
+import QtQuick.Layouts 1.15
 
 Item {
     id: countdown
+    
+    readonly property alias configuration: configuration
+    
     enabled: false
     property bool autoStart: false
     property bool running: false
@@ -87,17 +92,17 @@ Item {
             ctx.arc(centreX, centreY, __hypotenuse, -Math.PI/2, Math.PI*rotations-Math.PI/2, false);
             ctx.lineTo(centreX, centreY);
             ctx.fill();
-            // Horizontal Line
+            // Vertical Line
             ctx.lineCap = 'butt';
             ctx.strokeStyle = "#282828";
             ctx.beginPath();
             ctx.moveTo(centreX, 0);
             ctx.lineTo(centreX, height);
             ctx.stroke();
-            // Vertical Line
+            // Horizontal Line
             ctx.beginPath();
-            ctx.moveTo(0, centreY);
-            ctx.lineTo(width, centreY);
+            ctx.moveTo(0, overlay.__readRegionPlacement*(height-overlay.readRegionHeight)+overlay.readRegionHeight/2);
+            ctx.lineTo(width, overlay.__readRegionPlacement*(height-overlay.readRegionHeight)+overlay.readRegionHeight/2);
             ctx.stroke();
             // Background Radial Line
             ctx.strokeStyle = "#000";
@@ -231,7 +236,6 @@ Item {
         StateChangeScript {
             name: "paintReady"
             script: {
-                console.log("I ready")
                 canvas.requestPaint()
             }
         }
@@ -272,4 +276,61 @@ Item {
         }
     }
     ]
+    
+    Kirigami.OverlaySheet {
+        id: configuration
+        onSheetOpenChanged: prompterPage.actions.main.checked = sheetOpen
+        
+        background: Rectangle {
+            //color: Kirigami.Theme.activeBackgroundColor
+            color: appTheme.__backgroundColor
+            anchors.fill: parent
+        }
+        header: Kirigami.Heading {
+            text: i18n("Countdown Setup")
+            level: 1
+        }
+        
+        RowLayout {
+            width: parent.width
+            
+            ColumnLayout {
+                Label {
+                    text: i18n("Countdown iterations")
+                }
+                SpinBox {
+                    Layout.fillWidth: true
+                    Layout.leftMargin: Kirigami.Units.smallSpacing
+                    Layout.rightMargin: Kirigami.Units.smallSpacing
+                    value: __iterations
+                    to: 300  // 5*60
+                    onValueModified: {
+                        focus: true
+                        __iterations = value
+                        if (__disappearWithin && __disappearWithin >= __iterations)
+                            __disappearWithin = __iterations-1
+                    }
+                }
+            }
+            ColumnLayout {
+                Label {
+                    text: i18np("Disappear within 1 second",
+                                "Disappear within %1 seconds", __disappearWithin);
+                }
+                SpinBox {
+                    Layout.fillWidth: true
+                    Layout.leftMargin: Kirigami.Units.smallSpacing
+                    Layout.rightMargin: Kirigami.Units.smallSpacing
+                    value: __disappearWithin
+                    to: 10
+                    onValueModified: {
+                        focus: true
+                        __disappearWithin = value
+                        if (__iterations <= __disappearWithin)
+                            __iterations = __disappearWithin+1
+                    }
+                }
+            }
+        }
+    }
 }
