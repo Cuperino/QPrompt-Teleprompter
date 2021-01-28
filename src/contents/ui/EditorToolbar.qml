@@ -79,6 +79,10 @@ import QtQuick.Layouts 1.15
 ToolBar {
     id: toolbar
     
+    readonly property alias fontSizeSlider: fontSizeSlider
+    readonly property alias fontWYSIWYGSizeSlider: fontWYSIWYGSizeSlider
+    readonly property alias opacitySlider: opacitySlider
+    
     // Hide toolbar when read region is set to bottom and prompter is not in editing state.
     enabled: !(prompter.state!=="editing" && overlay.__readRegionPlacement===1)
     height: enabled ? implicitHeight : 0
@@ -109,7 +113,7 @@ ToolBar {
             text: parent.parent.text
             font: parent.parent.font
             Kirigami.Theme.colorSet: Kirigami.Theme.Button
-            color: parent.parent.enabled ? (parent.parent.down ? Kirigami.Theme.positiveTextColor : (parent.parent.checked ? Kirigami.Theme.focusColor : Kirigami.Theme.textColor)) : (root.themeIsMaterial ? Kirigami.Theme.negativeTextColor : Kirigami.Theme.disabledTextColor)
+            color: parent.parent.enabled ? (parent.parent.down ? /*Kirigami.Theme.positiveTextColor*/Kirigami.Theme.focusColor : (parent.parent.checked ? Kirigami.Theme.focusColor : Kirigami.Theme.textColor)) : (root.themeIsMaterial ? "#888" : Kirigami.Theme.textColor)
             horizontalAlignment: Text.AlignHCenter
             verticalAlignment: Text.AlignVCenter
             elide: Text.ElideRight
@@ -123,13 +127,10 @@ ToolBar {
             //visible: prompter.state==="editing"
             ToolButton {
                 id: bookmarkToggleButton
-                //text: "\u2605" // icon-docs
-                //contentItem: Loader { sourceComponent: textComponent }
-                //font.family: "fontello"
-                //font.pointSize: 13
-                icon.name: "bookmarks"
-                Kirigami.Theme.colorSet: Kirigami.Theme.Button
-                icon.color: down ? Kirigami.Theme.positiveTextColor : (checked ? Kirigami.Theme.focusColor : Kirigami.Theme.textColor)
+                text: "\uE844"
+                contentItem: Loader { sourceComponent: textComponent }
+                font.family: "fontello"
+                font.pointSize: 13
                 focusPolicy: Qt.TabFocus
                 checked: prompter.document.marker
                 checkable: true
@@ -143,25 +144,19 @@ ToolBar {
             id: undoRedoRow
             //visible: prompter.state==="editing"
             ToolButton {
-                //text: "\u2B8C"
-                //contentItem: Loader { sourceComponent: textComponent }
-                //font.family: "fontello"
-                //font.pointSize: 13
-                icon.name: Qt.application.layoutDirection===Qt.LeftToRight?"edit-undo":"edit-redo"
-                Kirigami.Theme.colorSet: Kirigami.Theme.Button
-                icon.color: enabled ? (down ? Kirigami.Theme.positiveTextColor : (checked ? Kirigami.Theme.focusColor : Kirigami.Theme.textColor)) : (root.themeIsMaterial ? Kirigami.Theme.negativeTextColor : Kirigami.Theme.disabledTextColor)
+                text: Qt.application.layoutDirection===Qt.LeftToRight?"\uE800":"\uE801"
+                contentItem: Loader { sourceComponent: textComponent }
+                font.family: "fontello"
+                font.pointSize: 13
                 focusPolicy: Qt.TabFocus
                 enabled: prompter.editor.canUndo
                 onClicked: prompter.editor.undo()
             }
             ToolButton {
-                //text: "\u2B8C"
-                //contentItem: Loader { sourceComponent: textComponent }
-                //font.family: "fontello"
-                //font.pointSize: 13
-                icon.name: Qt.application.layoutDirection===Qt.LeftToRight?"edit-redo":"edit-undo"
-                Kirigami.Theme.colorSet: Kirigami.Theme.Button
-                icon.color: enabled ? (down ? Kirigami.Theme.positiveTextColor : (checked ? Kirigami.Theme.focusColor : Kirigami.Theme.textColor)) : (root.themeIsMaterial ? Kirigami.Theme.negativeTextColor : Kirigami.Theme.disabledTextColor)
+                text: Qt.application.layoutDirection===Qt.LeftToRight?"\uE801":"\uE800"
+                contentItem: Loader { sourceComponent: textComponent }
+                font.family: "fontello"
+                font.pointSize: 13
                 enabled: prompter.editor.canRedo
                 onClicked: prompter.editor.redo()
             }
@@ -174,36 +169,30 @@ ToolBar {
             //visible: prompter.state==="editing"
             ToolButton {
                 id: copyButton
-                text: "\uF0C5" // icon-docs
+                text: "\uF0C5"
                 contentItem: Loader { sourceComponent: textComponent }
                 font.family: "fontello"
                 font.pointSize: 13
-                //icon.name: "edit-copy"
-                //icon.color: parent.down ? Kirigami.Theme.positiveTextColor : (parent.checked ? Kirigami.Theme.focusColor : Kirigami.Theme.textColor)
                 focusPolicy: Qt.TabFocus
                 enabled: prompter.editor.selectedText
                 onClicked: prompter.editor.copy()
             }
             ToolButton {
                 id: cutButton
-                text: "\uE802" // icon-scissors
+                text: "\uE80C"
                 contentItem: Loader { sourceComponent: textComponent }
                 font.family: "fontello"
                 font.pointSize: 13
-                //icon.name: "edit-cut"
-                //icon.color: parent.down ? Kirigami.Theme.positiveTextColor : (parent.checked ? Kirigami.Theme.focusColor : Kirigami.Theme.textColor)
                 focusPolicy: Qt.TabFocus
                 enabled: prompter.editor.selectedText
                 onClicked: prompter.editor.cut()
             }
             ToolButton {
                 id: pasteButton
-                text: "\uF0EA" // icon-paste
+                text: "\uF0EA"
                 contentItem: Loader { sourceComponent: textComponent }
                 font.family: "fontello"
                 font.pointSize: 13
-                //icon.name: "edit-paste"
-                //icon.color: parent.down ? Kirigami.Theme.positiveTextColor : (parent.checked ? Kirigami.Theme.focusColor : Kirigami.Theme.textColor)
                 focusPolicy: Qt.TabFocus
                 enabled: prompter.editor.canPaste
                 onClicked: prompter.editor.paste()
@@ -217,12 +206,10 @@ ToolBar {
             //visible: prompter.state==="editing"
             ToolButton {
                 id: boldButton
-                text: "\uE800" // icon-bold
+                text: "\uE802"
                 contentItem: Loader { sourceComponent: textComponent }
                 font.family: "fontello"
                 font.pointSize: 13
-                //icon.name: "gtk-bold"
-                //icon.color: parent.down ? Kirigami.Theme.positiveTextColor : (parent.checked ? Kirigami.Theme.focusColor : Kirigami.Theme.textColor)
                 focusPolicy: Qt.TabFocus
                 checkable: true
                 checked: prompter.document.bold
@@ -230,12 +217,10 @@ ToolBar {
             }
             ToolButton {
                 id: italicButton
-                text: "\uE801" // icon-italic
+                text: "\uE803"
                 contentItem: Loader { sourceComponent: textComponent }
                 font.family: "fontello"
                 font.pointSize: 13
-                //icon.name: "gtk-italic"
-                //icon.color: parent.down ? Kirigami.Theme.positiveTextColor : (parent.checked ? Kirigami.Theme.focusColor : Kirigami.Theme.textColor)
                 focusPolicy: Qt.TabFocus
                 checkable: true
                 checked: prompter.document.italic
@@ -243,10 +228,8 @@ ToolBar {
             }
             ToolButton {
                 id: underlineButton
-                text: "\uF0CD" // icon-underline
+                text: "\uF0CD"
                 contentItem: Loader { sourceComponent: textComponent }
-                //icon.name: "gtk-underline"
-                //icon.color: parent.down ? Kirigami.Theme.positiveTextColor : (parent.checked ? Kirigami.Theme.focusColor : Kirigami.Theme.textColor)
                 font.family: "fontello"
                 font.pointSize: 13
                 focusPolicy: Qt.TabFocus
@@ -256,10 +239,8 @@ ToolBar {
             }
             ToolButton {
                 id: strikeOutButton
-                text: "\uF0CC" // icon-underline
+                text: "\uF0CC"
                 contentItem: Loader { sourceComponent: textComponent }
-                //icon.name: "gtk-underline"
-                //icon.color: parent.down ? Kirigami.Theme.positiveTextColor : (parent.checked ? Kirigami.Theme.focusColor : Kirigami.Theme.textColor)
                 font.family: "fontello"
                 font.pointSize: 13
                 focusPolicy: Qt.TabFocus
@@ -276,13 +257,15 @@ ToolBar {
             //visible: prompter.state==="editing"
             ToolButton {
                 id: fontFamilyToolButton
-                text: qsTr("\uE808") // icon-font
+                text: i18n("\uE805")
                 contentItem: Loader { sourceComponent: textComponent }
                 font.family: "fontello"
                 font.pointSize: 13
                 font.bold: prompter.document.bold
                 font.italic: prompter.document.italic
                 font.underline: prompter.document.underline
+                font.strikeout: prompter.document.strike
+                font.overline: prompter.document.marker
                 onClicked: {
                     fontDialog.currentFont.family = prompter.document.fontFamily;
                     fontDialog.currentFont.pointSize = prompter.document.fontSize;
@@ -291,7 +274,7 @@ ToolBar {
             }
             ToolButton {
                 id: textColorButton
-                text: "\uF1FC" // icon-brush
+                text: "\uF1FC"
                 contentItem: Text {
                     text: parent.text
                     font: parent.font
@@ -331,7 +314,7 @@ ToolBar {
             //visible: prompter.state==="editing"
             ToolButton {
                 id: alignLeftButton
-                text: Qt.application.layoutDirection===Qt.LeftToRight ? "\uE803" : "\uE805"
+                text: Qt.application.layoutDirection===Qt.LeftToRight ? "\uE808" : "\uE80A"
                 contentItem: Loader { sourceComponent: textComponent }
                 font.family: "fontello"
                 font.pointSize: 13
@@ -347,7 +330,7 @@ ToolBar {
             }
             ToolButton {
                 id: alignCenterButton
-                text: "\uE804" // icon-align-center
+                text: "\uE809"
                 font.family: "fontello"
                 font.pointSize: 13
                 contentItem: Loader { sourceComponent: textComponent }
@@ -358,7 +341,7 @@ ToolBar {
             }
             ToolButton {
                 id: alignRightButton
-                text: Qt.application.layoutDirection===Qt.LeftToRight ? "\uE805" : "\uE803"
+                text: Qt.application.layoutDirection===Qt.LeftToRight ? "\uE80A" : "\uE808"
                 contentItem: Loader { sourceComponent: textComponent }
                 font.family: "fontello"
                 font.pointSize: 13
@@ -374,7 +357,7 @@ ToolBar {
             }
             ToolButton {
                 id: alignJustifyButton
-                text: "\uE806" // icon-align-justify
+                text: "\uE80B"
                 contentItem: Loader { sourceComponent: textComponent }
                 font.family: "fontello"
                 font.pointSize: 13
@@ -468,19 +451,7 @@ ToolBar {
                 onMoved: {
                     root.__opacity = value/100
                 }
-                //handle: Rectangle {
-                //x: opacitySlider.leftPadding + opacitySlider.visualPosition * (opacitySlider.availableWidth - width)
-                //y: opacitySlider.topPadding + opacitySlider.availableHeight / 2 - height / 2
-                //implicitWidth: 26
-                //implicitHeight: 26
-                //radius: 13
-                //color: opacitySlider.pressed ? "#f0f0f0" : "#f6f6f6"
-                //border.color: "#bdbebf"
-                //}
             }
         }
     }
-    readonly property alias fontSizeSlider: fontSizeSlider
-    readonly property alias fontWYSIWYGSizeSlider: fontWYSIWYGSizeSlider
-    readonly property alias opacitySlider: opacitySlider
 }
