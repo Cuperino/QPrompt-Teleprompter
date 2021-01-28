@@ -442,13 +442,19 @@ Flickable {
                     switch (event.key) {
                         case Qt.Key_Space:
                         if (editor.focus)
-                            break
+                            return
                         case Qt.Key_Down:
                         case Qt.Key_Up:
-                        event.accepted = true
-                        prompter.Keys.onPressed(event)
-                        break
+                            event.accepted = true
+                            prompter.Keys.onPressed(event)
+                            return
                     }
+                switch (event.key) {
+                    case Qt.Key_Tab:
+                        //event.preventDefault = true
+                        //event.accepted = false
+                        return
+                }
             }
         }
     }
@@ -501,6 +507,7 @@ Flickable {
     DocumentHandler {
         id: document
         property bool isNewFile: false
+        property bool quitOnSave: false
         document: editor.textDocument
         cursorPosition: editor.cursorPosition
         selectionStart: editor.selectionStart
@@ -544,11 +551,15 @@ Flickable {
         function saveAsDialog() {
             saveDialog.open()
         }
-        function saveDialog() {
+        function saveDialog(quit=false) {
+            document.quitOnSave = quit
             if (isNewFile)
                 saveAsDialog()
-            else// if (modified)
+            else {// if (modified)
                 document.saveAs(document.fileUrl)
+                if (quit)
+                    Qt.quit()
+            }
         }
     }
     FileDialog {
@@ -576,6 +587,8 @@ Flickable {
         onAccepted: {
             document.saveAs(file)
             document.isNewFile = false
+            if (document.quitOnSave)
+                Qt.quit()
         }
     }
     
@@ -626,14 +639,14 @@ Flickable {
                         prompter.decreaseVelocity(event)                        
                     else
                         prompter.increaseVelocity(event)
-                    break;
+                    return
                 case Qt.Key_Up:
                 case Qt.Key_VolumeUp:
                     if (prompter.__invertArrowKeys)
                         prompter.increaseVelocity(event)                        
                     else
                         prompter.decreaseVelocity(event)
-                    break;
+                    return
                 case Qt.Key_Space:
                 case Qt.Key_Play:
                 case Qt.Key_Pause:
@@ -658,14 +671,7 @@ Flickable {
                     //var states = ["play", "pause"]
                     //var nextIndex = ( states.indexOf(prompter.animationState) + 1 ) % states.length
                     //prompter.animationState = states[nextIndex]
-                    break;
-                case Qt.Key_Tab:
-                    if (event.modifiers & Qt.ShiftModifier)
-                        // Not reached...
-                        showPassiveNotification(i18n("Shift Tab Pressed"));
-                    else
-                        showPassiveNotification(i18n("Tab Pressed"));
-                    break;
+                    return
                 //default:
                 //    // Show key code
                 //    showPassiveNotification(event.key)
@@ -680,7 +686,7 @@ Flickable {
         switch (event.key) {
             case Qt.Key_F9:
                 prompter.toggle();
-                break;
+                return
             case Qt.Key_PageUp:
                 if (!this.__atStart) {
                     var i=__i;
@@ -691,7 +697,7 @@ Flickable {
                     __i=i
                     prompter.position = __destination
                 }
-                break;
+                return
             case Qt.Key_PageDown:
                 if (!this.__atEnd) {
                     var i=__i;
@@ -702,10 +708,10 @@ Flickable {
                     __i=i
                     prompter.position = __destination
                 }
-                break;
+                return
             case Qt.Key_Escape:
                 prompter.state = "editing";
-                break;
+                return
             //case Qt.Key_Home:
             //    showPassiveNotification(i18n("Home Pressed")); break;
             //case Qt.Key_End:
@@ -899,45 +905,30 @@ Flickable {
         }
     ]
     state: "editing"
+    onStateChanged: {
+        setCursorAtCurrentPosition()
+        var pos = prompter.position
+        position = pos
+    }
     function setCursorAtCurrentPosition() {
         // Update cursor
         var verticalPosition = position + overlay.__readRegionPlacement*(overlay.height-overlay.readRegionHeight)+overlay.readRegionHeight/2
         var cursorPosition = editor.positionAt(0, verticalPosition)
         editor.cursorPosition = cursorPosition
-        //position = position + overlay.__readRegionPlacement*(overlay.height-overlay.readRegionHeight)+overlay.readRegionHeight/2
     }
     transitions: [
-    Transition {
-        from: "*"
-        to: "*"
-        SequentialAnimation {
-            ScriptAction { script: setCursorAtCurrentPosition() }
-            //ScriptAction { scriptName: "setCursorAtCurrentPosition" }
-            //PauseAnimation { duration: Kirigami.Units.shortDuration/2 }
-            //PropertyAnimation {
-                //property: "position"
-                //// This isn't working
-                //to: editor.cursorRectangle.y + overlay.__readRegionPlacement*(overlay.height-overlay.readRegionHeight)+overlay.readRegionHeight/2 - overlay.height
-                //duration: Kirigami.Units.shortDuration
-            //}
-        }
-    },
     Transition {
         to: "standby"
         ScriptAction  {
             // Jump into position
             script: {
+                // Auto frame to current line
                 position = editor.cursorRectangle.y + overlay.__readRegionPlacement*(overlay.height-overlay.readRegionHeight)+overlay.readRegionHeight/2 - overlay.height + 1
             }
         }
     }
     ]
-    
-    onStateChanged: {
-        var pos = prompter.position
-        position = pos
-    }
-    
+        
     // Progress indicator
     ScrollBar.vertical: ProgressIndicator {
         id: scrollBar
