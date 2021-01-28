@@ -98,7 +98,7 @@ ToolBar {
     background: Rectangle {
         Rectangle {
             color: Kirigami.Theme.activeBackgroundColor
-            opacity: prompter.state==="prompting" ? 0.4 : 1
+            opacity: prompter.state!=="editing" ? 0.4 : 1
             height: 3
             anchors.top: parent.top
             anchors.left: parent.left
