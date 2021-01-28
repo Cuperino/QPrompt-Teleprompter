@@ -32,7 +32,7 @@ Item {
     
     readonly property alias configuration: configuration
     
-    enabled: false
+    enabled: true
     property bool autoStart: false
     property bool running: false
     visible: false
