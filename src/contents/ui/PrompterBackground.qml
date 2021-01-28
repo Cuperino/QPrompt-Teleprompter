@@ -30,8 +30,8 @@ Rectangle {
     readonly property alias backgroundColorDialog: backgroundColorDialog
     property bool hasBackground: color!==appTheme.__backgroundColor || backgroundImage.opacity>0//backgroundImage.visible
     property var backgroundImage: null
-    //color: appTheme.__backgroundColor
-    color: Qt.rgba(appTheme.__backgroundColor.r*0.9, appTheme.__backgroundColor.g*0.9, appTheme.__backgroundColor.b*0.9, appTheme.__backgroundColor.a)
+    readonly property real __deepeningFactor: themeSwitch.checked ? 0.89 : 1
+    color: Qt.rgba(appTheme.__backgroundColor.r*__deepeningFactor, appTheme.__backgroundColor.g*__deepeningFactor, appTheme.__backgroundColor.b*__deepeningFactor, appTheme.__backgroundColor.a)
     opacity: /*backgroundOpacitySlider.pressed ||*/ parent.toolbar.opacitySlider.pressed ? parent.toolbar.opacitySlider.value/100 : 1
     
     function loadBackgroundImage() {
