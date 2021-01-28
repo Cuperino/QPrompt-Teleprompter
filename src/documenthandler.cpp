@@ -296,14 +296,24 @@ bool DocumentHandler::marker() const
 void DocumentHandler::setMarker(bool marker)
 {
     QTextCharFormat format;
+    qDebug() << marker;
     format.setAnchor(marker);
-    format.setFontOverline(marker);
     format.setFontUnderline(marker);
-    //if (marker) {
-        //format.setAnchorHref("#");
+    // Avoid dealing with color changes by using FontOverline to distinguish Marker from other properties.
+    format.setFontOverline(marker);
+    if (marker) {
+        // Named markers could have two names attached to them...
+        format.setAnchorNames(QStringList("marker"));
         //format.setForeground(QColor("lightblue"));
-        //format.setAnchorNames(QStringList("marker"));
-    //}
+        // There's no need to set href, this would only conflict with actual links in the document.
+        //format.setAnchorHref("#");
+    }
+    else {
+        format.setAnchorNames(QStringList());
+        //format.clearForeground();
+        // There's no need to set href, this would only conflict with actual links in the document.
+        //format.setAnchorHref("");
+    }
     mergeFormatOnWordOrSelection(format);
     emit markerChanged();
 }
@@ -409,7 +419,7 @@ void DocumentHandler::saveAs(const QUrl &fileUrl)
     }
     file.write((isHtml ? doc->toHtml() : doc->toPlainText()).toUtf8());
     file.close();
-
+    
     doc->setModified(false);
     
     if (fileUrl == m_fileUrl)

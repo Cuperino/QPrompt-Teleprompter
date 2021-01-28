@@ -134,7 +134,7 @@ public:
     
     Qt::Alignment alignment() const;
     void setAlignment(Qt::Alignment alignment);
-
+    
     //bool anchor() const;
     //void setAnchor(QStringList anchorNames);
     
@@ -184,7 +184,7 @@ Q_SIGNALS:
     void strikeChanged();
     
     void markerChanged();
-
+    
     void fontSizeChanged();
     
     void textChanged();
