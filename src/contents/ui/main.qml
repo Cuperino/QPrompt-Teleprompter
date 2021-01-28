@@ -57,25 +57,25 @@ Kirigami.ApplicationWindow {
     //height: screen.desktopAvailableHeight
     minimumWidth: 480
     minimumHeight: 380
-    // Theme management
-    //Material.theme: Material.Light
-    Material.theme: themeSwitch.checked ? Material.Dark : Material.Light  // This is correct, but it isn't work working, likely because of Kirigami
+    
+    //// Theme management
+    //Material.theme: themeSwitch.checked ? Material.Dark : Material.Light  // This is correct, but it isn't work working, likely because of Kirigami
+    
+    // Make backgrounds transparent
+    //Material.background: "transparent"
+    color: "transparent"
     // More ways to enforce transparency across systems
     //visible: true
     //flags: Qt.FramelessWindowHint
-    // Make backgrounds transparent
-    Material.background: "transparent"
-    color: "transparent"
+    
     background: Rectangle {
         id: appTheme
         color: __backgroundColor
         opacity: !root.__translucidBackground || prompterPage.prompterBackground.opacity===1
         //readonly property color __fontColor: parent.Material.theme===Material.Light ? "#212121" : "#fff"
         //readonly property color __iconColor: parent.Material.theme===Material.Light ? "#232629" : "#c3c7d1"
+        //readonly property color __backgroundColor: __translucidBackground ? (parent.Material.theme===Material.Dark ? "#303030" : "#fafafa") : Kirigami.Theme.backgroundColor
         readonly property color __backgroundColor: __translucidBackground ? (themeSwitch.checked ? "#303030" : "#fafafa") : Kirigami.Theme.backgroundColor
-        //readonly property color __fontColor: /*__translucidBackground ? (Kirigami.Theme.theme===Material.Light ? "#212121" : "#fff") : */Kirigami.Theme.textColor
-        //Kirigami.Theme.colorSet: Kirigami.Theme.Button
-        //readonly property color __iconColor: /*__translucidBackground ? (Kirigami.Theme.theme===Material.Light ? "#232629" : "#c3c7d1") : */Kirigami.Theme.textColor
     }
     
     // Full screen
@@ -172,6 +172,7 @@ Kirigami.ApplicationWindow {
                 text: i18n("Dark Mode")
                 visible: false
                 //visible: !Kirigami.Settings.isMobile && root.__translucidBackground
+                //checked: true
                 checked: true
                 checkable: true
                 flat: true
@@ -226,30 +227,36 @@ Kirigami.ApplicationWindow {
         ]
     }
     
-    // Window Menu Bar
+    // QML Window Menu Bar
     menuBar: MenuBar {
-        height: 26
-        visible: !root.__translucidBackground && prompterPage.prompter.state==="editing" && root.visibility!==Kirigami.ApplicationWindow.FullScreen
+        height: 26  // Value for my current Plasma theme. IDK if this will work elsewhere.
+        
+        // Hide menuBar on mobile, on themes with translucid background, on full screen, and when the reading region is on top while not in edit mode.
+        // Algebraically optimized logic
+        visible: !(Kirigami.Settings.isMobile || root.__translucidBackground || root.visibility===Kirigami.ApplicationWindow.FullScreen || !(prompterPage.overlay.__readRegionPlacement || prompterPage.prompter.state==="editing"))
+        // Same thing, readable logic
+        //visible: !Kirigami.Settings.isMobile && !root.__translucidBackground && root.visibility!==Kirigami.ApplicationWindow.FullScreen && !(prompterPage.overlay.__readRegionPlacement===0 && prompterPage.prompter.state!=="editing")
+        
         Menu {
             title: i18n("&File")
-            Action {
+            MenuItem {
                 text: i18n("&New")
                 onTriggered: prompterPage.document.newDocument()
             }
-            Action {
+            MenuItem {
                 text: i18n("&Open")
                 onTriggered: prompterPage.document.open()
             }
-            Action {
+            MenuItem {
                 text: i18n("&Save")
                 onTriggered: prompterPage.document.saveDialog()
             }
-            Action {
+            MenuItem {
                 text: i18n("Save &As")
                 onTriggered: prompterPage.document.saveAsDialog()
             }
             MenuSeparator { }
-            Action {
+            MenuItem {
                 text: i18n("&Quit")
                 onTriggered: close()
             }
@@ -257,28 +264,28 @@ Kirigami.ApplicationWindow {
         Menu {
             title: i18n("&Edit")
             
-            Action {
+            MenuItem {
                 text: i18n("&Undo")
                 enabled: prompterPage.editor.canUndo
                 onTriggered: prompterPage.editor.undo()
             }
-            Action {
+            MenuItem {
                 text: i18n("&Redo")
                 enabled: prompterPage.editor.canRedo
                 onTriggered: prompterPage.editor.redo()
             }
             MenuSeparator { }
-            Action {
+            MenuItem {
                 text: i18n("&Copy")
                 enabled: prompterPage.editor.selectedText
                 onTriggered: prompterPage.editor.copy()
             }
-            Action {
+            MenuItem {
                 text: i18n("Cu&t")
                 enabled: prompterPage.editor.selectedText
                 onTriggered: prompterPage.editor.cut()
             }
-            Action {
+            MenuItem {
                 text: i18n("&Paste")
                 enabled: prompterPage.editor.canPaste
                 onTriggered: prompterPage.editor.paste()
@@ -288,13 +295,13 @@ Kirigami.ApplicationWindow {
         Menu {
             title: i18n("V&iew")
             
-            Action {
+            MenuItem {
                 text: i18n("&Full screen")
                 checkable: true
                 checked: root.__fullScreen
                 onTriggered: root.__fullScreen = !root.__fullScreen
             }
-            //Action {
+            //MenuItem {
             //    text: i18n("&Auto full screen")
             //    checkable: true
             //    checked: root.__autoFullScreen
@@ -303,51 +310,51 @@ Kirigami.ApplicationWindow {
             MenuSeparator { }
             Menu {
                 title: i18n("&Pointers")
-                Action {
+                MenuItem {
                     text: i18n("&Left Pointer")
                     checkable: true
                     checked: prompterPage.overlay.styleState === "leftPointer"
                     onTriggered: prompterPage.overlay.styleState = "leftPointer"
                 }
-                Action {
+                MenuItem {
                     text: i18n("&Right Pointer")
                     checkable: true
                     checked: prompterPage.overlay.styleState === "rightPointer"
                     onTriggered: prompterPage.overlay.styleState = "rightPointer"
                 }
-                Action {
+                MenuItem {
                     text: i18n("B&oth Pointers")
                     checkable: true
                     checked: prompterPage.overlay.styleState === "pointers"
                     onTriggered: prompterPage.overlay.styleState = "pointers"
                 }
                 MenuSeparator { }
-                Action {
+                MenuItem {
                     text: i18n("&Bars")
                     checkable: true
                     checked: prompterPage.overlay.styleState === "bars"
                     onTriggered: prompterPage.overlay.styleState = "bars"
                 }
-                Action {
+                MenuItem {
                     text: i18n("Bars L&eft")
                     checkable: true
                     checked: prompterPage.overlay.styleState === "barsLeft"
                     onTriggered: prompterPage.overlay.styleState = "barsLeft"
                 }
-                Action {
+                MenuItem {
                     text: i18n("Bars R&ight")
                     checkable: true
                     checked: prompterPage.overlay.styleState === "barsRight"
                     onTriggered: prompterPage.overlay.styleState = "barsRight"
                 }
                 MenuSeparator { }
-                Action {
+                MenuItem {
                     text: i18n("&All")
                     checkable: true
                     checked: prompterPage.overlay.styleState === "all"
                     onTriggered: prompterPage.overlay.styleState = "all"
                 }
-                Action {
+                MenuItem {
                     text: i18n("&None")
                     checkable: true
                     checked: prompterPage.overlay.styleState === "none"
@@ -356,32 +363,32 @@ Kirigami.ApplicationWindow {
             }
             Menu {
                 title: i18n("&Reading region")
-                Action {
+                MenuItem {
                     text: i18n("&Top")
                     checkable: true
                     checked: prompterPage.overlay.positionState === "top"
                     onTriggered: prompterPage.overlay.positionState = "top"
                 }
-                Action {
+                MenuItem {
                     text: i18n("&Middle")
                     checkable: true
                     checked: prompterPage.overlay.positionState === "middle"
                     onTriggered: prompterPage.overlay.positionState = "middle"
                 }
-                Action {
+                MenuItem {
                     text: i18n("&Bottom")
                     checkable: true
                     checked: prompterPage.overlay.positionState === "bottom"
                     onTriggered: prompterPage.overlay.positionState = "bottom"
                 }
                 MenuSeparator { }
-                Action {
+                MenuItem {
                     text: i18n("&Free placement")
                     checkable: true
                     checked: prompterPage.overlay.positionState === "free"
                     onTriggered: prompterPage.overlay.positionState = "free"
                 }
-                Action {
+                MenuItem {
                     text: i18n("&Custom (Fixed placement)")
                     checkable: true
                     checked: prompterPage.overlay.positionState === "fixed"
@@ -392,26 +399,26 @@ Kirigami.ApplicationWindow {
         Menu {
             title: i18n("F&ormat")
             
-            Action {
+            MenuItem {
                 text: i18n("&Bold")
                 checkable: true
                 checked: prompterPage.document.bold
                 onTriggered: prompterPage.document.bold = !prompterPage.document.bold
             }
-            Action {
+            MenuItem {
                 text: i18n("&Italic")
                 checkable: true
                 checked: prompterPage.document.italic
                 onTriggered: prompterPage.document.italic = !prompterPage.document.italic
             }
-            Action {
+            MenuItem {
                 text: i18n("&Underline")
                 checkable: true
                 checked: prompterPage.document.underline
                 onTriggered: prompterPage.document.underline = !prompterPage.document.underline
             }
             MenuSeparator { }
-            Action {
+            MenuItem {
                 text: Qt.application.layoutDirection===Qt.LeftToRight ? i18n("&Left") : i18n("&Right")
                 checkable: true
                 checked: Qt.application.layoutDirection===Qt.LeftToRight ? prompterPage.document.alignment === Qt.AlignLeft : prompterPage.document.alignment === Qt.AlignRight
@@ -422,13 +429,13 @@ Kirigami.ApplicationWindow {
                         prompterPage.document.alignment = Qt.AlignRight
                 }
             }
-            Action {
+            MenuItem {
                 text: i18n("&Center")
                 checkable: true
                 checked: prompterPage.document.alignment === Qt.AlignHCenter
                 onTriggered: prompterPage.document.alignment = Qt.AlignHCenter
             }
-            Action {
+            MenuItem {
                 text: Qt.application.layoutDirection===Qt.LeftToRight ? i18n("&Right") : i18n("&Left")
                 checkable: true
                 checked: Qt.application.layoutDirection===Qt.LeftToRight ? prompterPage.document.alignment === Qt.AlignRight : prompterPage.document.alignment === Qt.AlignLeft
@@ -439,18 +446,18 @@ Kirigami.ApplicationWindow {
                         prompterPage.document.alignment = Qt.AlignLeft
                 }
             }
-            Action {
+            MenuItem {
                 text: i18n("&Justify")
                 checkable: true
                 checked: prompterPage.document.alignment === Qt.AlignJustify
                 onTriggered: prompterPage.document.alignment = Qt.AlignJustify
             }
             MenuSeparator { }
-            Action {
+            MenuItem {
                 text: i18n("Character")
                 onTriggered: prompterPage.fontDialog.open();
             }
-            Action {
+            MenuItem {
                 text: i18n("Font Color")
                 onTriggered: prompterPage.colorDialog.open()
             }
@@ -458,20 +465,20 @@ Kirigami.ApplicationWindow {
         Menu {
             title: i18n("Controls")
             
-            Action {
+            MenuItem {
                 text: i18n("Use mouse and touchpad scroll as speed dial while prompting")
                 checkable: true
                 checked: root.__scrollAsDial
                 onTriggered: root.__scrollAsDial = !root.__scrollAsDial
             }
             MenuSeparator { }
-            Action {
+            MenuItem {
                 text: i18n("Invert arrow keys")
                 checkable: true
                 checked: root.__invertArrowKeys
                 onTriggered: root.__invertArrowKeys = !root.__invertArrowKeys
             }
-            Action {
+            MenuItem {
                 text: i18n("Invert scroll direction")
                 checkable: true
                 checked: root.__invertScrollDirection
@@ -481,7 +488,7 @@ Kirigami.ApplicationWindow {
         Menu {
             title: i18n("&Help")
             
-            Action {
+            MenuItem {
                 text: i18n("&Report Bug...")
                 onTriggered: Qt.openUrlExternally("https://github.com/Cuperino/QPrompt/issues")
                 icon.name: "tools-report-bug"
@@ -493,13 +500,13 @@ Kirigami.ApplicationWindow {
             //    icon.name: "software-center"
             //}
             //MenuSeparator { }
-            Action {
+            MenuItem {
                 text: i18n("Load User Guide")
                 icon.name: "help-info"
                 onTriggered: prompterPage.document.loadInstructions()
             }
             MenuSeparator { }
-            Action {
+            MenuItem {
                 text: i18n("&About QPrompt")
                 onTriggered: root.loadAboutPage()
                 icon.source: "qrc:/images/logo.png"
@@ -567,18 +574,16 @@ Kirigami.ApplicationWindow {
             }
         }
         
-        Menu {
+        Labs.Menu {
             title: i18n("V&iew")
             
             Labs.MenuItem {
-                id: fullScreenCheckbox
                 text: i18n("&Full screen")
                 checkable: true
                 checked: root.__fullScreen
                 onTriggered: root.__fullScreen = !root.__fullScreen
             }
             //Labs.MenuItem {
-            //    id: autoFullScreenCheckbox
             //    text: i18n("&Auto full screen")
             //    checkable: true
             //    checked: root.__autoFullScreen
@@ -856,9 +861,10 @@ Kirigami.ApplicationWindow {
     // Dialogues
     Labs.MessageDialog {
         id : quitDialog
-        title: i18n("Quit?")
-        text: i18n("The file has been modified. Quit anyway?")
-        buttons: (MessageDialog.Yes | MessageDialog.No)
-        onYesClicked: Qt.quit()
+        title: i18n("Save Document")
+        text: i18n("Save changes to document before closing?")
+        buttons: (Labs.MessageDialog.Save | Labs.MessageDialog.Discard | Labs.MessageDialog.Cancel)
+        onDiscardClicked: Qt.quit()
+        onSaveClicked: prompterPage.document.saveDialog(true)
     }
 }
