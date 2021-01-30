@@ -233,9 +233,9 @@ Kirigami.ApplicationWindow {
         
         // Hide menuBar on mobile, on themes with translucid background, on full screen, and when the reading region is on top while not in edit mode.
         // Algebraically optimized logic
-        visible: !(Kirigami.Settings.isMobile || root.__translucidBackground || root.visibility===Kirigami.ApplicationWindow.FullScreen || !(prompterPage.overlay.__readRegionPlacement || prompterPage.prompter.state==="editing"))
+        visible: !(Kirigami.Settings.isMobile || root.__translucidBackground || root.visibility===Kirigami.ApplicationWindow.FullScreen || (prompterPage.overlay.atTop && prompterPage.prompter.state!=="editing"))
         // Same thing, readable logic
-        //visible: !Kirigami.Settings.isMobile && !root.__translucidBackground && root.visibility!==Kirigami.ApplicationWindow.FullScreen && !(prompterPage.overlay.__readRegionPlacement===0 && prompterPage.prompter.state!=="editing")
+        //visible: !Kirigami.Settings.isMobile && !root.__translucidBackground && root.visibility!==Kirigami.ApplicationWindow.FullScreen && (!prompterPage.overlay.atTop && prompterPage.prompter.state!=="editing")
         
         Menu {
             title: i18n("&File")
