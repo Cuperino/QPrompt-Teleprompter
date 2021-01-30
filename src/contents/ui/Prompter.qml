@@ -539,11 +539,7 @@ Flickable {
         onLoaded: {
             editor.textFormat = format
             editor.text = text
-<<<<<<< HEAD
             resetDocumentPosition()
-=======
-            prompter.position = -(overlay.__readRegionPlacement*(overlay.height-overlay.readRegionHeight)+overlay.readRegionHeight/2)
->>>>>>> 238ef276624f59163f817f48d50383b6f9156e40
         }
         onError: {
             errorDialog.text = message
@@ -945,11 +941,7 @@ Flickable {
             // Jump into position
             script: {
                 // Auto frame to current line
-<<<<<<< HEAD
                 position = editor.cursorRectangle.y - (overlay.__readRegionPlacement*(overlay.height-overlay.readRegionHeight)+overlay.readRegionHeight/2) + 1
-=======
-                position = editor.cursorRectangle.y - (overlay.__readRegionPlacement*(overlay.height-overlay.readRegionHeight)+overlay.readRegionHeight/2)
->>>>>>> 238ef276624f59163f817f48d50383b6f9156e40
             }
         }
     }
