@@ -31,6 +31,9 @@ Item {
     id: countdown
     
     readonly property alias configuration: configuration
+    function requestPaint() {
+        canvas.requestPaint()
+    }
     
     enabled: true
     property bool autoStart: false
