@@ -212,14 +212,14 @@ Kirigami.Page {
             }
             Kirigami.Action {
                 id: readRegionBarsLeftButton
-                text: i18n("Bars && Left Pointer")
+                text: i18n("Bars and Left Pointer")
                 onTriggered: overlay.styleState = "barsLeft"
                 tooltip: i18n("Translucent bars and left pointer indicate reading region")
                 enabled: overlay.styleState!=="barsLeft"
             }
             Kirigami.Action {
                 id: readRegionBarsRightButton
-                text: i18n("Bars && Right Pointer")
+                text: i18n("Bars and Right Pointer")
                 onTriggered: overlay.styleState = "barsRight"
                 tooltip: i18n("Translucent bars and right pointer indicate reading region")
                 enabled: overlay.styleState!=="barsRight"
@@ -268,7 +268,12 @@ Kirigami.Page {
                 checkable: true
                 checked: viewport.countdown.enabled
                 text: i18n("Countdown")
-                onTriggered: viewport.countdown.enabled = !viewport.countdown.enabled
+                onTriggered: {
+                    viewport.countdown.enabled = !viewport.countdown.enabled
+                    //// Future: Implement way to way to prevent Kirigami.Action from closing parent Action menu.
+                    //if (viewport.countdown.enabled)
+                    //    // Use of implemented feature might go here.
+                }
             }
             Kirigami.Action {
                 id: autoStartCountdownButton
@@ -284,7 +289,7 @@ Kirigami.Page {
                 enabled: viewport.countdown.enabled
                 text: i18n("Set Duration")
                 onTriggered: {
-                    showPassiveNotification(i18n("Countdown setup has not been implemented yet."));
+                    viewport.countdown.configuration.open()
                 }
             }
         },
@@ -350,15 +355,6 @@ Kirigami.Page {
     footer: EditorToolbar {
         id: editorToolbar
     }
-    
-    //Kirigami.OverlaySheet {
-        //id: sheet
-        //onSheetOpenChanged: page.actions.main.checked = sheetOpen
-        //Label {
-            //wrapMode: Text.WordWrap
-            //text: "Lorem ipsum dolor sit amet"
-        //}
-    //}
 
     // Prompter Page Component {
     //Component {
