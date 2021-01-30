@@ -308,6 +308,52 @@ Flickable {
                 contentY = r.y+r.height-height;
         }
     }
+    
+    MouseArea {
+        //propagateComposedEvents: false
+        acceptedButtons: Qt.NoButton
+        hoverEnabled: false
+        scrollGestureEnabled: false
+        // The following placement allows covering beyond the boundaries of the editor and into the prompter's margins.
+        anchors.left: parent.left
+        anchors.right: parent.right
+        y: -prompter.height
+        height: parent.height+2*prompter.height
+        // Mouse wheel controls
+        onWheel: {
+            if (prompter.state==="prompting" && (prompter.__scrollAsDial && !(wheel.modifiers & Qt.ControlModifier) || !prompter.__scrollAsDial && wheel.modifiers & Qt.ControlModifier)) {
+                if (wheel.angleDelta.y > 0) {
+                    if (prompter.__invertScrollDirection)
+                        increaseVelocity(wheel);
+                    else
+                        decreaseVelocity(wheel);
+                }
+                else
+                    if (prompter.__invertScrollDirection)
+                        decreaseVelocity(wheel);
+                    else
+                        increaseVelocity(wheel);
+            }
+            else {
+                // Regular scroll
+                const delta = (prompter.__invertScrollDirection?-1:1)*wheel.angleDelta.y/2;
+                var i=__i;
+                __i=0;
+                if (prompter.position-delta >= -prompter.topMargin && prompter.position-delta<=editor.implicitHeight-(overlay.height-prompter.bottomMargin))
+                    prompter.position -= delta;
+                // If scroll were to go out of bounds, cap it
+                else if (prompter.position-delta > -prompter.topMargin)
+                    prompter.position = editor.implicitHeight-(overlay.height-prompter.bottomMargin)
+                    else
+                        prompter.position = -prompter.topMargin
+                        __i=i;
+                    // Resume prompting
+                    if (prompter.state==="prompting" && prompter.__play)
+                        prompter.position = prompter.__destination
+            }
+        }
+    }
+    
     Item {
         id: flickableContent
         anchors.left: parent.left
@@ -336,9 +382,17 @@ Flickable {
             focus: true
             
             // Make base font size relative to editor's width
+            FontLoader {
+                id: editorFont
+                source: i18n("fonts/libertinus-sans.otf")
+            }
+            font.family: editorFont.name
             font.pixelSize: 14
-            font.family: "Anjali Old Lipi"
             font.hintingPreference: Font.PreferFullHinting
+            font.kerning: true
+            font.preferShaping: true
+            renderType: Text.NativeRendering
+            //renderType: Text.QtRendering
             
             // Make links responsive
             onLinkActivated: Qt.openUrlExternally(link)
@@ -459,51 +513,6 @@ Flickable {
         }
     }
     
-    MouseArea {
-        //propagateComposedEvents: false
-        acceptedButtons: Qt.NoButton
-        hoverEnabled: false
-        scrollGestureEnabled: false
-        // The following placement allows covering beyond the boundaries of the editor and into the prompter's margins.
-        anchors.left: parent.left
-        anchors.right: parent.right
-        y: -prompter.height
-        height: parent.height+2*prompter.height
-        // Mouse wheel controls
-        onWheel: {
-            if (prompter.state==="prompting" && (prompter.__scrollAsDial && !(wheel.modifiers & Qt.ControlModifier) || !prompter.__scrollAsDial && wheel.modifiers & Qt.ControlModifier)) {
-                if (wheel.angleDelta.y > 0) {
-                    if (prompter.__invertScrollDirection)
-                        increaseVelocity(wheel);
-                    else
-                        decreaseVelocity(wheel);
-                }
-                else
-                    if (prompter.__invertScrollDirection)
-                        decreaseVelocity(wheel);
-                    else
-                        increaseVelocity(wheel);
-            }
-            else {
-                // Regular scroll
-                const delta = (prompter.__invertScrollDirection?-1:1)*wheel.angleDelta.y/2;
-                var i=__i;
-                __i=0;
-                if (prompter.position-delta >= -prompter.topMargin && prompter.position-delta<=editor.implicitHeight-(overlay.height-prompter.bottomMargin))
-                    prompter.position -= delta;
-                // If scroll were to go out of bounds, cap it
-                else if (prompter.position-delta > -prompter.topMargin)
-                    prompter.position = editor.implicitHeight-(overlay.height-prompter.bottomMargin)
-                else
-                    prompter.position = -prompter.topMargin
-                __i=i;
-                // Resume prompting
-                if (prompter.state==="prompting" && prompter.__play)
-                    prompter.position = prompter.__destination
-            }
-        }
-    }
-
     DocumentHandler {
         id: document
         property bool isNewFile: false
@@ -517,14 +526,20 @@ Flickable {
             if (Qt.application.arguments.length === 2) {
                 document.load("file:" + Qt.application.arguments[1]);
                 isNewFile = false
+                resetDocumentPosition()
             }
-            else {
+            else
                 loadInstructions();
-            }
         }
+        
+        function resetDocumentPosition() {
+            prompter.position = -(overlay.__readRegionPlacement*(overlay.height-overlay.readRegionHeight)+overlay.readRegionHeight/2)
+        }
+        
         onLoaded: {
             editor.textFormat = format
             editor.text = text
+            resetDocumentPosition()
         }
         onError: {
             errorDialog.text = message
@@ -534,6 +549,7 @@ Flickable {
         function newDocument() {
             load("qrc:/untitled.html")
             isNewFile = true
+            resetDocumentPosition()
             if (!root.__translucidBackground)
                 showPassiveNotification(i18n("New document"))
         }
@@ -541,6 +557,8 @@ Flickable {
         function loadInstructions() {
             document.load("qrc:/"+i18n("guide_en.html"))
             isNewFile = true
+            // Set document position to 0, so we can get to read the instructions faster.
+            prompter.position = 0
             if (!root.__translucidBackground)
                 showPassiveNotification(i18n("User guide loaded"))
         }
@@ -923,7 +941,7 @@ Flickable {
             // Jump into position
             script: {
                 // Auto frame to current line
-                position = editor.cursorRectangle.y + overlay.__readRegionPlacement*(overlay.height-overlay.readRegionHeight)+overlay.readRegionHeight/2 - overlay.height + 1
+                position = editor.cursorRectangle.y - (overlay.__readRegionPlacement*(overlay.height-overlay.readRegionHeight)+overlay.readRegionHeight/2) + 1
             }
         }
     }

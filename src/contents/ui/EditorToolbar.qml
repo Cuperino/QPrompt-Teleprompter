@@ -84,7 +84,7 @@ ToolBar {
     readonly property alias opacitySlider: opacitySlider
     
     // Hide toolbar when read region is set to bottom and prompter is not in editing state.
-    enabled: !(prompter.state!=="editing" && overlay.__readRegionPlacement===1)
+    enabled: !(prompter.state!=="editing" && overlay.atBottom)
     height: enabled ? implicitHeight : 0
     //Behavior on height {
     //    id: height
@@ -94,11 +94,16 @@ ToolBar {
     //        easing.type: Easing.OutQuad
     //    }
     //}
+    
+    FontLoader {
+        id: iconFont
+        source: "fonts/fontello.ttf"
+    }
 
     background: Rectangle {
         Rectangle {
             color: Kirigami.Theme.activeBackgroundColor
-            opacity: prompter.state==="prompting" ? 0.4 : 1
+            opacity: prompter.state!=="editing" ? 0.4 : 1
             height: 3
             anchors.top: parent.top
             anchors.left: parent.left
@@ -129,7 +134,7 @@ ToolBar {
                 id: bookmarkToggleButton
                 text: "\uE844"
                 contentItem: Loader { sourceComponent: textComponent }
-                font.family: "fontello"
+                font.family: iconFont.name
                 font.pointSize: 13
                 focusPolicy: Qt.TabFocus
                 checked: prompter.document.marker
@@ -146,7 +151,7 @@ ToolBar {
             ToolButton {
                 text: Qt.application.layoutDirection===Qt.LeftToRight?"\uE800":"\uE801"
                 contentItem: Loader { sourceComponent: textComponent }
-                font.family: "fontello"
+                font.family: iconFont.name
                 font.pointSize: 13
                 focusPolicy: Qt.TabFocus
                 enabled: prompter.editor.canUndo
@@ -155,7 +160,7 @@ ToolBar {
             ToolButton {
                 text: Qt.application.layoutDirection===Qt.LeftToRight?"\uE801":"\uE800"
                 contentItem: Loader { sourceComponent: textComponent }
-                font.family: "fontello"
+                font.family: iconFont.name
                 font.pointSize: 13
                 enabled: prompter.editor.canRedo
                 onClicked: prompter.editor.redo()
@@ -171,7 +176,7 @@ ToolBar {
                 id: copyButton
                 text: "\uF0C5"
                 contentItem: Loader { sourceComponent: textComponent }
-                font.family: "fontello"
+                font.family: iconFont.name
                 font.pointSize: 13
                 focusPolicy: Qt.TabFocus
                 enabled: prompter.editor.selectedText
@@ -181,7 +186,7 @@ ToolBar {
                 id: cutButton
                 text: "\uE80C"
                 contentItem: Loader { sourceComponent: textComponent }
-                font.family: "fontello"
+                font.family: iconFont.name
                 font.pointSize: 13
                 focusPolicy: Qt.TabFocus
                 enabled: prompter.editor.selectedText
@@ -191,7 +196,7 @@ ToolBar {
                 id: pasteButton
                 text: "\uF0EA"
                 contentItem: Loader { sourceComponent: textComponent }
-                font.family: "fontello"
+                font.family: iconFont.name
                 font.pointSize: 13
                 focusPolicy: Qt.TabFocus
                 enabled: prompter.editor.canPaste
@@ -208,7 +213,7 @@ ToolBar {
                 id: boldButton
                 text: "\uE802"
                 contentItem: Loader { sourceComponent: textComponent }
-                font.family: "fontello"
+                font.family: iconFont.name
                 font.pointSize: 13
                 focusPolicy: Qt.TabFocus
                 checkable: true
@@ -219,7 +224,7 @@ ToolBar {
                 id: italicButton
                 text: "\uE803"
                 contentItem: Loader { sourceComponent: textComponent }
-                font.family: "fontello"
+                font.family: iconFont.name
                 font.pointSize: 13
                 focusPolicy: Qt.TabFocus
                 checkable: true
@@ -230,7 +235,7 @@ ToolBar {
                 id: underlineButton
                 text: "\uF0CD"
                 contentItem: Loader { sourceComponent: textComponent }
-                font.family: "fontello"
+                font.family: iconFont.name
                 font.pointSize: 13
                 focusPolicy: Qt.TabFocus
                 checkable: true
@@ -241,7 +246,7 @@ ToolBar {
                 id: strikeOutButton
                 text: "\uF0CC"
                 contentItem: Loader { sourceComponent: textComponent }
-                font.family: "fontello"
+                font.family: iconFont.name
                 font.pointSize: 13
                 focusPolicy: Qt.TabFocus
                 checkable: true
@@ -259,7 +264,7 @@ ToolBar {
                 id: fontFamilyToolButton
                 text: i18n("\uE805")
                 contentItem: Loader { sourceComponent: textComponent }
-                font.family: "fontello"
+                font.family: iconFont.name
                 font.pointSize: 13
                 font.bold: prompter.document.bold
                 font.italic: prompter.document.italic
@@ -284,7 +289,7 @@ ToolBar {
                     verticalAlignment: Text.AlignVCenter
                     elide: Text.ElideRight
                 }
-                font.family: "fontello"
+                font.family: iconFont.name
                 font.pointSize: 13
                 focusPolicy: Qt.TabFocus
                 onClicked: colorDialog.open()
@@ -316,7 +321,7 @@ ToolBar {
                 id: alignLeftButton
                 text: Qt.application.layoutDirection===Qt.LeftToRight ? "\uE808" : "\uE80A"
                 contentItem: Loader { sourceComponent: textComponent }
-                font.family: "fontello"
+                font.family: iconFont.name
                 font.pointSize: 13
                 focusPolicy: Qt.TabFocus
                 checkable: true
@@ -331,7 +336,7 @@ ToolBar {
             ToolButton {
                 id: alignCenterButton
                 text: "\uE809"
-                font.family: "fontello"
+                font.family: iconFont.name
                 font.pointSize: 13
                 contentItem: Loader { sourceComponent: textComponent }
                 focusPolicy: Qt.TabFocus
@@ -343,7 +348,7 @@ ToolBar {
                 id: alignRightButton
                 text: Qt.application.layoutDirection===Qt.LeftToRight ? "\uE80A" : "\uE808"
                 contentItem: Loader { sourceComponent: textComponent }
-                font.family: "fontello"
+                font.family: iconFont.name
                 font.pointSize: 13
                 focusPolicy: Qt.TabFocus
                 checkable: true
@@ -359,7 +364,7 @@ ToolBar {
                 id: alignJustifyButton
                 text: "\uE80B"
                 contentItem: Loader { sourceComponent: textComponent }
-                font.family: "fontello"
+                font.family: iconFont.name
                 font.pointSize: 13
                 focusPolicy: Qt.TabFocus
                 checkable: true
