@@ -385,6 +385,7 @@ Flickable {
             FontLoader {
                 id: editorFont
                 source: i18n("fonts/libertinus-sans.otf")
+                //source: i18n("fonts/sourcehansans.ttc")
             }
             font.family: editorFont.name
             font.pixelSize: 14
