@@ -34,6 +34,9 @@ Item {
     property color __color: 'black'
     readonly property double __vw: width/100
     property alias __readRegionPlacement: readRegion.__placement
+    on__ReadRegionPlacementChanged: countdown.requestPaint()
+    readonly property bool atTop: !prompter.__flipY && !__readRegionPlacement || prompter.__flipY && __readRegionPlacement===1
+    readonly property bool atBottom: !prompter.__flipY && __readRegionPlacement===1 || prompter.__flipY && !__readRegionPlacement
     property alias enabled: readRegion.enabled
     property string positionState: "middle"
     property string styleState: Qt.application.layoutDirection===Qt.LeftToRight ? "barsLeft" : "barsRight"
