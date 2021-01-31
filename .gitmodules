@@ -7,3 +7,6 @@
 [submodule "3rdparty/breeze-icons"]
 	path = 3rdparty/breeze-icons
 	url = git@invent.kde.org:frameworks/breeze-icons.git
+[submodule "3rdparty/extra-cmake-modules"]
+	path = 3rdparty/extra-cmake-modules
+	url = git@invent.kde.org:frameworks/extra-cmake-modules.git
