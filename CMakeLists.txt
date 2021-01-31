@@ -34,8 +34,13 @@ include(FeatureSummary)
 #   ${BUIL_DIR}/CMakeCache.txt to make make changes here effective.)
 list(APPEND QML_DIRS "/usr/lib/x86_64-linux-gnu/qt5/qml")
 list(APPEND KIRIGAMI_DIRS "/usr/lib/x86_64-linux-gnu/qt5/qml/org/kde/kirigami.2")
+
 # Configuration Issues are Here
-list(APPEND ECM_MODULE_PATH "3rdparty/extra-cmake-modules/build")
+#list(APPEND ECM_MODULE_PATH "3rdparty/extra-cmake-modules/build")
+
+#list(APPEND ECM_MODULE_PATH "/usr/share/ECM/cmake")
+#list(APPEND KF5Kirigami2_PATH "/usr/lib/x86_64-linux-gnu/cmake/KF5Kirigami2")
+#list(APPEND KF5I18n_PATH "/usr/lib/x86_64-linux-gnu/cmake/KF5I18n")
 
 # ------------------------- END: lists to maintain ma/usr/lib/x86_64-linux-gnu/qt5/nually -------------------------
 # Tell Qt Creator where to find QML files.
@@ -55,6 +60,9 @@ set(QT5_MIN_VERSION 5.12)
 set(KF5_MIN_VERSION 5.65)
 
 set(ECM_DIR ${ECM_MODULE_PATH})
+#set(KF5Kirigami2_DIR ${KF5Kirigami2_PATH})
+#set(KF5I18n_DIR ${KF5I18n_PATH})
+
 find_package(ECM ${KF5_MIN_VERSION} REQUIRED NO_MODULE)
 set(CMAKE_MODULE_PATH ${ECM_MODULE_PATH})
 
