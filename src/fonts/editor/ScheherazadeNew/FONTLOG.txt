@@ -1,0 +1,295 @@
+FONTLOG 
+Scheherazade New font
+=================
+
+This file provides detailed information on the Scheherazade font software. 
+This information should be distributed along with the Scheherazade fonts 
+and any derivative works.
+
+Basic Font Information
+----------------------
+
+Scheherazade New, named after the heroine of the classic Arabian Nights tale, 
+is designed in a similar style to traditional typefaces such as Monotype Naskh, 
+extended to cover the full Unicode Arabic repertoire.
+
+The goal for this product is to provide a single Unicode-based font family
+that contains a comprehensive inventory of glyphs needed for almost any
+Arabic-based writing system. This font makes use of state-of-the-art font
+technologies to support complex typographic issues. 
+
+This font provides a simplified rendering of Arabic script, using basic 
+connecting glyphs but not including a wide variety of additional ligatures 
+or contextual alternates (only the required lam-alef ligatures). This 
+simplified style is often preferred for clarity, especially in non-Arabic 
+languages, but may be considered unattractive in more traditional and 
+literate communities.
+
+Two fonts from this typeface family are included in this release:
+
+     * Scheherazade New Regular
+     * Scheherazade New Bold
+
+This release supports virtually all of the Unicode 13.0 Arabic character 
+repertoire (excluding the Arabic Presentation Forms blocks, which are not 
+recommended for normal use). Font smarts are implemented using OpenType 
+and Graphite technologies.
+
+For detailed documentation see the contents of the 'documentation' folder.
+
+A Note Regarding the Open Font License and TypeTuner
+----------------------------------------------------
+
+The OFL prohibits the use of Reserved Font Names "Scheherazade" and "SIL" in
+the name of any font that is derived from the Original Version of 
+Scheherazade. However, SIL International (the Copyright Holder) grants 
+through this separate written agreement the right to use the Reserved Font
+Names in any Modified Version of this font created by using TypeTuner as 
+long as the feature information contained in the Original Version is used, 
+unmodified, as the source for TypeTuner feature information, and 
+"Scheherazade" is not the resulting font family name.
+
+TypeTuner-produced fonts created in this manner are still bound by the
+terms of the OFL. Specifically, the use of Reserved Font Names is
+prohibited when making derivatives of a TypeTuner-produced font. Anyone
+making a derivative of a TypeTuner font will need to find a different
+name. For example a TypeTuner-produced font may be named 
+"Scheherazade SomeFarAwayPlace" but a derivative of that font made 
+with other tools would not be allowed to use the "Scheherazade" and "SIL" 
+Reserved Font Names and would have to be named something like "Nations Naskh".
+
+
+ChangeLog
+---------
+(This should list both major and minor changes, most recent first.)
+
+2020-11-5 (SIL WSTech team) Scheherazade New Version 3.000 (official release)
+- Renamed font to Scheherazade New
+- Resized glyphs to better fit standard Arabic script fonts
+- Adjusted line-spacing to reflect larger characters
+- Adjusted underline and strikethrough positions and weight
+- Updated Arabic script character repertoire to support all characters in the 
+  Unicode 13.0 BMP Arabic blocks (except for U+08E2 disputed end of ayah)
+- Updated Latin script repertoire to support "Recommended characters for Non-Roman fonts"
+  https://scriptsource.org/entry/gg5wm9hhd3
+- Added U+204F and U+2E41 for Sindhi language support
+- Added U+FDFA (sallallahou alayhe wasallam), U+FDFB (jallajalalouhou), and U+FDFD (bismillah)
+- Added Private Use Area honorific ligatures (all of these are in the Unicode pipeline 
+  at non-stable codepoints).
+- Adjusted vertical position of isolate keheh-like characters
+- Changed design of small v and inverted small v characters (U+063D, U+065A,
+  U+065B, U+0692, U+06B5, U+06C9, U+06CE, U+06EE, U+06EF, U+06FF, U+0756,
+  U+0769, U+077E, U+08B2, U+08BE..U+08C2)
+- Changed design of U+06C5 for Kyrgyz language and added feature cv51, Kyrgyz OE,	 
+  supporting the bar design
+- Changed design of U+0677 and U+06C7
+- Changed design of high hamza characters (U+0674..U+0678)
+- Adjusted the weight and position of some dashes to make them consistent
+- Implemented new Allah ligature rules
+- Implemented support for UNICODE ARABIC MARK RENDERING (UTR #53) 
+- Improved kerning - reh/waw, lam-alef ligature, AE+kaf-like initials, and others
+- Added collision fixes for certain combinations
+- Fixed bug in forming of lam/alef ligatures when automatic kashida justification is turned on
+- Added UI name strings for Graphite and OpenType features
+- Removed support for Sindhi-style heh when Sindhi language is selected
+- Removed support for Urdu-style heh when Urdu language is selected
+- Removed "Arabic U" feature
+- Removed "Show invisible characters" feature
+- Removed "Jeh hack" feature
+- Removed "Dotless head of Khah hack" feature
+- Added feature cv54, Yeh hamza, for Kyrgyz language
+- Added Kyrgyz language support in Graphite and OpenType
+- Added Wolof language support in Graphite and OpenType
+- Added support for Comma downward when Sindhi language is selected
+
+2015-08-19 (SIL NRSI team) Scheherazade Version 2.100 (official release)
+- Renamed postscript name of Scheherazade Regular from "Scheherazade" 
+  to "Scheherazade-Regular"
+
+2015-07-17 (SIL NRSI team) Scheherazade Version 2.092 (test release)
+- Added Scheherazade Bold font
+- Slight improvements in design of the Regular face:
+   060C ARABIC COMMA
+   061B ARABIC SEMICOLON
+   065D ARABIC REVERSED DAMMA
+   0671 ARABIC LETTER ALEF WASLA (improvement in wasla)
+   06C1 ARABIC LETTER HEH GOAL
+   08AA ARABIC LETTER REH WITH LOOP
+- Diacritic selection feature of Graphite removed; fixed feature name/value 
+  string mismatches
+- Adjusted sidebearings for U+06EF and U+08B2 to be more consistent
+- Fix OT Character variants to work in all language tags
+- Small kerning adjustments
+- Added three Unicode 8.0 characters
+    08B3 ARABIC LETTER AIN WITH THREE DOTS BELOW
+    08B4 ARABIC LETTER KAF WITH DOT BELOW
+    08E3 ARABIC TURNED DAMMA BELOW
+- Added five characters that are not officially in Unicode. They
+  are in the "pipeline." 
+    08B6 ARABIC LETTER BEH WITH SMALL MEEM ABOVE
+    08B7 ARABIC LETTER PEH WITH SMALL MEEM ABOVE
+    08B8 ARABIC LETTER TEH WITH SMALL TEH ABOVE
+    08B9 ARABIC LETTER REH WITH SMALL NOON ABOVE
+    08BA ARABIC LETTER YEH WITH TWO DOTS BELOW AND SMALL NOON ABOVE
+    08BB ARABIC LETTER AFRICAN FEH
+    08BC ARABIC LETTER AFRICAN QAF
+    08BD ARABIC LETTER AFRICAN NOON
+
+2014-02-12 (SIL NRSI team) Scheherazade Version 2.020 (maintenance release)
+- Fix language-specific OpenType rendering for Sindhi, Urdu, Kurdish
+
+2013-09-11 (SIL NRSI team) Scheherazade Version 2.010 (maintenance release)
+- Fix rendering of mixtures of upper and lower combining marks
+- Fix Graphite shaping for U+08AC ARABIC LETTER ROHINGYA YEH
+- Reduce font size by taking advantage of composite TT glyphs
+
+2013-08-01 (SIL NRSI team) Scheherazade Version 2.000 (official release)
+- Removed white on black glyph for full stop
+
+2013-07-15 (SIL NRSI team) Scheherazade Version 1.940 (test release)
+- Kerning added for reh-like and waw-like characters 
+- Added five characters that are not officially in Unicode. They
+  are in the "pipeline." 
+    061C ARABIC LETTER MARK (ALM)
+    2066 LEFT-TO-RIGHT ISOLATE
+    2067 RIGHT-TO-LEFT ISOLATE
+    2068 FIRST STRONG ISOLATE
+    2069 POP DIRECTIONAL ISOLATE
+- 0603 now supports up to 4 digits
+- fixed lam+alef collisions with combining marks below 
+- upper vowel changed to render below maddah (except for 065E)
+    
+2013-04-18 (SIL NRSI team) Scheherazade Version 1.930 (test release)
+- Typetuner now adjusts Graphite features as well as OpenType 
+
+2013-03-05 (SIL NRSI team) Scheherazade Version 1.920 (test release)
+- Added Rohingya language
+- Shaping for Subtending marks fixed
+- Added line spacing feature for TypeTuner only
+- Moved U+065E ARABIC FATHA WITH TWO DOTS to proper position between 
+  maddah and alef
+
+2013-01-08 (SIL NRSI team) Scheherazade Version 1.910 (test release)
+- Improved positioning and size of dagger-alef (U+0670)
+- Added feature to access variant glyphs for Superscript Alef (default is small)
+- Added Rohingya-style variant to Eastern digits feature
+- Improved design of FDF2
+- Some improvement in collision avoidance
+- Shaping for Subtending marks fixed
+- Changed glyph design of Urdu-style U+06F4
+- Fixed position of hamza with U+06B8 + U+0625 are in isolate form
+- Made U+06BA Arabic Letter Noon Ghunna dotless in all forms
+
+2012-09-18 (SIL NRSI team) Scheherazade Version 1.900 (test release)
+- Improved positioning of combining marks
+- Improved positioning and size of dagger-alef (U+0670)
+- Added support for Unicode 5.1, 6.0 and 6.1 Arabic additions
+- Added eight characters that are not officially in Unicode. They
+  are in the "pipeline." Please note that there is a slight possibility 
+  that these codepoints could change.
+    08A1 ARABIC LETTER BEH WITH HAMZA ABOVE
+    08AD ARABIC LETTER LOW ALEF
+    08AE ARABIC LETTER DAL WITH THREE DOTS BELOW
+    08AF ARABIC LETTER SAD WITH THREE DOTS BELOW
+    08B0 ARABIC LETTER GAF WITH INVERTED STROKE
+    08B1 ARABIC LETTER STRAIGHT WAW
+    08B2 ARABIC LETTER ZAIN WITH INVERTED V ABOVE
+    08FF ARABIC MARK SIDEWAYS NOON GHUNNA
+- Changed glyph design for U+06F4 EXTENDED ARABIC-INDIC DIGIT FOUR
+- Changed default maddah to be smaller size
+  (as mentioned below, ability to change back to larger size was added)
+- Added OpenType support for character variants
+- Added Graphite support
+- Added TypeTuner features to access variant glyphs for:
+		Dal, Meem, Heh, Arabic U, Maddah, Damma, Inverted Damma, Eastern digits
+- Renamed TypeTuner features for:
+	  Six-nine dammatan > Dammatan
+	  Downward comma > Comma
+	  Jeh > Jeh-hack
+	  Dotless head of khah > Dotless head of khah hack
+- Removed TypeTuner feature for
+    Old Shina hack	  
+- Removed AAT support
+
+2011-02-07 (SIL NRSI team) Scheherazade Version 1.005
+- Added TypeTuner feature to access jeh alternate
+- Added developer release
+
+2009-09-01 (SIL NRSI team) Scheherazade Version 1.004
+- Added TypeTuner feature to access language alternates
+
+2009-02-04 (SIL NRSI team) Scheherazade Version 1.003
+- Added TypeTuner feature to control shadda+kasra rendering
+
+2008-10-25 (SIL NRSI team) Scheherazade Version 1.002
+- Added TypeTuner table with Shina hacks
+
+2007-06-21 (SIL NRSI team) Scheherazade Version 1.001
+- Re-released under OFL
+- no other changes from 1.0
+
+2005-06-03 (SIL NRSI team) Scheherazade Version 1.0
+- First public version
+- Released under the SIL Freeware License
+
+
+Information for Contributors
+----------------------------
+We welcome contributions to this font project, such as new glyphs, enhanced 
+smart font code, or bug fixes. The best way to begin the process is to file 
+an issue in the Github project (https://github.com/silnrsi/font-scheherazade) 
+or respond to an existing issue and express your interest. Then we can begin 
+to correspond with you regarding what all might be required and discuss how 
+to best submit your contributions.
+
+To enable us to accept contributions in a way that honors your contribution 
+and respects your copyright while preserving long-term flexibility for open 
+source licensing, you would also need to agree to the SIL International 
+Contributor License Agreement for Font Software (v1.0) prior to sending us 
+your contribution. To read more about this requirement and find out how to 
+submit the required form, please visit the CLA information page
+(https://software.sil.org/fontcla).
+
+
+Acknowledgements
+----------------
+(Here is where contributors can be acknowledged. If you make modifications
+be sure to add your name (N), email (E), web-address (W) and description
+(D). This list is sorted by last name in alphabetical order.)
+
+N: Sharon Correll
+E: fonts@sil.org
+W: http://scripts.sil.org/
+D: Contributing Designer, Graphite, OpenType, and TypeTuner code, and build support
+
+N: Bob Hallissy
+E: fonts@sil.org
+W: http://scripts.sil.org/
+D: Graphite, OpenType, and TypeTuner code, and build support
+
+N: Becca Hirsbrunner
+E: fonts@sil.org
+W: http://scripts.sil.org/
+D: Contributing Designer
+
+N: Jonathan Kew
+E: fonts@sil.org
+W: http://scripts.sil.org/
+D: Original Designer
+
+N: Peter Martin
+E: fonts@sil.org
+W: http://scripts.sil.org/
+D: Contributing Designer
+
+N: Iska Routamaa
+E: fonts@sil.org
+W: http://scripts.sil.org/
+D: Contributing Designer
+
+The Scheherazade project is maintained by SIL International.
+
+For more information please visit the Scheherazade New font page on 
+SIL International's Computers and Writing Systems website:
+http://software.sil.org/scheherazade/
+

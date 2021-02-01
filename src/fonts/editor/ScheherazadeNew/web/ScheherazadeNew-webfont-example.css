@@ -1,0 +1,79 @@
+/*
+Scheherazade-webfont-example.css
+Scheherazade v3.000
+2 Nov 2020
+This file is part of Scheherazade font family (http://software.sil.org/scheherazade)
+and is Copyright (c) 1994-2020 SIL International (http://www.sil.org/),
+with Reserved Font Names "Scheherazade" and "SIL". This Font Software is licensed
+under the SIL Open Font License, Version 1.1. You should have received a copy
+of the license along with this Font Software. If this is not the case, go to
+(http://scripts.sil.org/OFL) for all the details including a FAQ.
+*/
+
+/* use Scheherazade - Regular in .woff format */
+@font-face {
+  font-family: ScheherazadeRW;
+  src: url(ScheherazadeNew-Regular.woff);
+}
+@font-face {
+  font-family: ScheherazadeBW;
+  src: url(ScheherazadeNew-Bold.woff);
+}
+
+
+/* set body to use Scheherazade in .woff format */
+body {
+  font-family: ScheherazadeRW, sans-serif; text-align: left;
+    /* fall back to sans serif so that it's really obvious if the fonts don't load */
+}
+
+h1 {
+  font-family: ScheherazadeBW, sans-serif; text-align: left;	
+}
+h2 {
+  font-family: ScheherazadeBW, sans-serif; text-align: left;	
+}
+.rtl {
+  font-family: ScheherazadeRW, sans-serif; font-size: 200%; direction: rtl; text-align: right;
+    /* fall back to sans serif so that it's really obvious if the fonts don't load */
+}	
+.rtlb {
+  font-family: ScheherazadeBW, sans-serif; font-size: 200%; direction: rtl; text-align: right;
+    /* fall back to sans serif so that it's really obvious if the fonts don't load */
+}	
+.cv120 {
+  font-family: ScheherazadeRW;
+  font-feature-settings: "cv12" 0;
+  -moz-font-feature-settings: "cv12" 0;
+  -webkit-font-feature-settings: "cv12" 0;
+  font-size: 200%; direction: rtl; text-align: right;
+}
+.cv121 {
+  font-family: ScheherazadeRW;
+  font-feature-settings: "cv12" 1;
+  -moz-font-feature-settings: "cv12" 1;
+  -webkit-font-feature-settings: "cv12" 1;
+  font-size: 200%; direction: rtl; text-align: right;
+}
+.cv800 {
+  font-family: ScheherazadeRW; 
+  font-feature-settings: "cv80" 0;
+  -moz-font-feature-settings: "cv80" 0;
+  -webkit-font-feature-settings: "cv80" 0;
+  font-size: 200%; direction: rtl; text-align: right;
+}
+.cv801 {
+  font-family: ScheherazadeRW; 
+  font-feature-settings: "cv80" 1;
+  -moz-font-feature-settings: "cv80" 1;
+  -webkit-font-feature-settings: "cv80" 1;
+  font-size: 200%; direction: rtl; text-align: right;
+}
+.cv121801 {
+  font-family: ScheherazadeRW; 
+  font-feature-settings: "cv12" 1, "cv80" 1; 
+  -moz-font-feature-settings: "cv12" 1, "cv80" 1;
+  -webkit-font-feature-settings: "cv12" 1, "cv80" 1;
+  font-size: 200%; direction: rtl; text-align: right;
+}
+	
