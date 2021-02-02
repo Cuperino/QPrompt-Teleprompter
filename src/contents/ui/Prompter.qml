@@ -387,6 +387,8 @@ Flickable {
                 source: i18n("fonts/libertinus-sans.otf")
                 //source: i18n("fonts/sourcehansans.ttc")
                 //source: i18n("fonts/scheherazadenew-regular.ttf")
+                //source: i18n("fonts/kalpurush.ttf")
+                //source: i18n("fonts/palanquin.ttf")
             }
             font.family: editorFont.name
             font.pixelSize: 14
