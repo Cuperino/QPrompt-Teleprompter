@@ -10,3 +10,6 @@
 [submodule "3rdparty/extra-cmake-modules"]
 	path = 3rdparty/extra-cmake-modules
 	url = git@invent.kde.org:frameworks/extra-cmake-modules.git
+[submodule "src/fonts/editor/Palanquin"]
+	path = src/fonts/editor/Palanquin
+	url = git@github.com:VanillaandCream/Palanquin.git
