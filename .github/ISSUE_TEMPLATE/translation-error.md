@@ -1,5 +1,5 @@
 ---
-name: Translation Error
+name: Translation error
 about: Indicate a problem with a particular translation
 title: "[LANGUAGE] translation error at [LOCATION]"
 labels: ''
