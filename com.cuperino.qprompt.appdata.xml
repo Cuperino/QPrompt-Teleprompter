@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <component type="desktop-application">
-  <id>com.cuperino.qprompt</id>
+  <id>com.cuperino.qprompt.desktop</id>
   <name>QPrompt</name>
   <summary>Free and open source teleprompter software for professionals</summary>
   <metadata_license>CC-BY-4.0</metadata_license>
