@@ -1,18 +1,19 @@
 <RCC>
     <qresource prefix="/">
-        <!-- QML Program Files -->
-        <file alias="main.qml">contents/ui/main.qml</file>
-        <file alias="ReadRegionOverlay.qml">contents/ui/ReadRegionOverlay.qml</file>
-        <file alias="Prompter.qml">contents/ui/Prompter.qml</file>
-        <file alias="PrompterView.qml">contents/ui/PrompterView.qml</file>
-        <file alias="PrompterBackground.qml">contents/ui/PrompterBackground.qml</file>
-        <file alias="Countdown.qml">contents/ui/Countdown.qml</file>
-        <file alias="ProgressIndicator.qml">contents/ui/ProgressIndicator.qml</file>
-        <file alias="TimerClock.qml">contents/ui/TimerClock.qml</file>
-        <file alias="PrompterPage.qml">contents/ui/PrompterPage.qml</file>
-        <file alias="AboutPage.qml">contents/ui/AboutPage.qml</file>
-        <file alias="ProjectionWindow.qml">contents/ui/ProjectionWindow.qml</file>
-        <file alias="EditorToolbar.qml">contents/ui/EditorToolbar.qml</file>
+        <!-- Kirigami UI QML -->
+        <file alias="main.qml">kirigami_ui/main.qml</file>
+        <file alias="AboutPage.qml">kirigami_ui/AboutPage.qml</file>
+        <file alias="PrompterPage.qml">kirigami_ui/PrompterPage.qml</file>
+        <file alias="EditorToolbar.qml">kirigami_ui/EditorToolbar.qml</file>
+        <file alias="ProjectionWindow.qml">kirigami_ui/ProjectionWindow.qml</file>
+        <!-- Prompter QML -->
+        <file alias="PrompterView.qml">prompter/PrompterView.qml</file>
+        <file alias="Prompter.qml">prompter/Prompter.qml</file>
+        <file alias="ProgressIndicator.qml">prompter/ProgressIndicator.qml</file>
+        <file alias="Countdown.qml">prompter/Countdown.qml</file>
+        <file alias="TimerClock.qml">prompter/TimerClock.qml</file>
+        <file alias="ReadRegionOverlay.qml">prompter/ReadRegionOverlay.qml</file>
+        <file alias="PrompterBackground.qml">prompter/PrompterBackground.qml</file>
         <!-- Theme Configuration -->
         <file>qtquickcontrols2.conf</file>
         <!-- Icons -->
@@ -27,7 +28,7 @@
         <!-- <file alias="fonts/palanquin.ttf">fonts/editor/Palanquin/Palanquin/Palanquin/Palanquin-Regular.ttf</file> -->
         <!-- User Guide -->
         <file alias="guide_en.html">documents/guide_en.html</file>
-        <!-- Empty -->
-        <file>untitled.html</file>
+        <!-- Empty Untitled Document -->
+        <file alias="untitled.html">documents/untitled.html</file>
     </qresource>
 </RCC>
