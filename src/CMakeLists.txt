@@ -1,4 +1,4 @@
-add_executable(qprompt main.cpp documenthandler.cpp timer/promptertimer.cpp resources.qrc)
+add_executable(qprompt main.cpp prompter/documenthandler.cpp prompter/timer/promptertimer.cpp resources.qrc)
 target_link_libraries(qprompt
     Qt5::Core
     Qt5::Gui

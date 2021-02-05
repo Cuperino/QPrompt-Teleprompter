@@ -40,8 +40,8 @@
 #include <KI18n/KLocalizedString>
 #include <KCoreAddons/KAboutData>
 
-#include "documenthandler.h"
-#include "timer/promptertimer.h"
+#include "prompter/documenthandler.h"
+#include "prompter/timer/promptertimer.h"
 
 
 Q_DECL_EXPORT int main(int argc, char *argv[])
@@ -51,7 +51,7 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
     QCoreApplication::setOrganizationDomain("cuperino.com");
     QCoreApplication::setApplicationName("QPrompt");
 
-    KAboutData aboutData("qprompt", i18n("QPrompt"), "1.0 (development build 1)",
+    KAboutData aboutData("qprompt", "QPrompt", i18n("1.0 (development build 1)"),
                          i18n("Free Software teleprompter for professionals across industries."),
                          KAboutLicense::GPL_V3,
                          //KAboutLicense::Custom,
@@ -62,14 +62,14 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
     aboutData.setDesktopFileName("com.cuperino.com");
     aboutData.addAuthor (
         QString("Javier O. Cordero Pérez"),
-        QString("Lead Developer & Project Manager"),
+        i18n("Lead Developer & Project Manager"),
         QString("cuperino@protonmail.com"),
         QString("https://javiercordero.info"),
         QString("cuperino")
     );
     aboutData.setTranslator (
-        QString("Su nombre irá aquí"),
-        QString("name@protonmail.com")
+        i18n("Su nombre irá aquí"),
+        i18n("name@protonmail.com")
     );
     //aboutData.addLicense(
     //    KAboutLicense::GPL_V3
@@ -82,7 +82,7 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
     
     QFontDatabase fontDatabase;
     if (fontDatabase.addApplicationFont(":/fonts/fontello.ttf") == -1)
-        qWarning() << "Failed to load icons from fontello.ttf";
+        qWarning() << i18n("Failed to load icons from fontello.ttf");
 
     qmlRegisterType<PrompterTimer>("com.cuperino.qprompt.promptertimer", 1, 0, "PrompterTimer");
     qmlRegisterType<DocumentHandler>("com.cuperino.qprompt.document", 1, 0, "DocumentHandler");
