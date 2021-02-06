@@ -375,7 +375,7 @@ ToolBar {
         RowLayout {
             visible: !wysiwygButton.checked && prompter.state==="editing"
             Label {
-                text: i18n("Font size for editing:") + " " + prompter.fontSize + " (" + (fontSizeSlider.value/1000).toFixed(3).slice(2) + "%)"
+                text: i18n("Font size while editing:") + " " + prompter.fontSize + " (" + (fontSizeSlider.value/1000).toFixed(3).slice(2) + "%)"
                 color: Kirigami.Theme.textColor
                 Layout.topMargin: 4
                 Layout.bottomMargin: 4
@@ -395,7 +395,7 @@ ToolBar {
             visible: wysiwygButton.checked || prompter.state!=="editing"
             enabled: !(prompter.state==="countdown" || prompter.state==="prompting")
             Label {
-                text: i18n("Font size for prompting:") + " " + (prompter.fontSize/1000).toFixed(3).slice(2) + " (" + (fontWYSIWYGSizeSlider.value/1000).toFixed(3).slice(2) + "%)"
+                text: i18n("Font size for prompter:") + " " + (prompter.fontSize/1000).toFixed(3).slice(2) + " (" + (fontWYSIWYGSizeSlider.value/1000).toFixed(3).slice(2) + "%)"
                 color: Kirigami.Theme.textColor
                 Layout.topMargin: 4
                 Layout.bottomMargin: 4

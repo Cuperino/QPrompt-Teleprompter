@@ -26,7 +26,7 @@ import QtQuick.Window 2.15
 // External Windows
 Window {
     id: projectionWindow
-    title: "Projection Window"
+    title: i18n("Projection Window")
     //transientParent: parent.parent
     //transientParent: null
     visible: true

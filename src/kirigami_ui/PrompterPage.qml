@@ -70,7 +70,7 @@ Kirigami.Page {
             text: i18n("WYSIWYG")
             checkable: true
             checked: viewport.prompter.__wysiwyg
-            tooltip: viewport.prompter.__wysiwyg ? i18n("\"What you see is what you get\" mode is On") : i18n("\"What you see is what you get\" mode Off")
+            tooltip: viewport.prompter.__wysiwyg ? i18n("\"What you see is what you get\" mode is On") : i18n("\"What you see is what you get\" mode is Off")
             onTriggered: {
                 viewport.prompter.__wysiwyg = !viewport.prompter.__wysiwyg
                 editor.focus = true
@@ -88,7 +88,7 @@ Kirigami.Page {
             Kirigami.Action {
                 text: i18n("No Flip")
                 //iconName: "refresh"
-                readonly property string shortName: "No Flip"
+                readonly property string shortName: i18n("No Flip")
                 onTriggered: {
                     parent.updateButton(this)
                     viewport.prompter.__flipX = false
@@ -99,7 +99,7 @@ Kirigami.Page {
             Kirigami.Action {
                 text: i18n("Horizontal Flip")
                 //iconName: "refresh"
-                readonly property string shortName: "H Flip"
+                readonly property string shortName: i18n("H Flip")
                 onTriggered: {
                     parent.updateButton(this)
                     viewport.prompter.__flipX = true
@@ -110,7 +110,7 @@ Kirigami.Page {
             Kirigami.Action {
                 text: i18n("Vertical Flip")
                 //iconName: "refresh"
-                readonly property string shortName: "V Flip"
+                readonly property string shortName: i18n("V Flip")
                 onTriggered: {
                     parent.updateButton(this)
                     viewport.prompter.__flipX = false
@@ -121,7 +121,7 @@ Kirigami.Page {
             Kirigami.Action {
                 text: i18n("180° rotation")
                 //iconName: "refresh"
-                readonly property string shortName: "HV Flip"
+                readonly property string shortName: i18n("HV Flip")
                 onTriggered: {
                     parent.updateButton(this)
                     viewport.prompter.__flipX = true
