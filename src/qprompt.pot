@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/Cuperino/QPrompt/issues/new/choose\n"
-"POT-Creation-Date: 2021-02-05 02:57-0400\n"
+"POT-Creation-Date: 2021-02-06 01:32-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -23,11 +23,11 @@ msgid ""
 msgstr ""
 
 #: kirigami_ui/EditorToolbar.qml:378
-msgid "Font size for editing:"
+msgid "Font size while editing:"
 msgstr ""
 
 #: kirigami_ui/EditorToolbar.qml:398
-msgid "Font size for prompting:"
+msgid "Font size for prompter:"
 msgstr ""
 
 #: kirigami_ui/EditorToolbar.qml:417
@@ -38,246 +38,270 @@ msgstr ""
 msgid "Opacity:"
 msgstr ""
 
-#: kirigami_ui/main.qml:118
-msgid "New"
-msgstr ""
-
-#: kirigami_ui/main.qml:124
-msgid "Open"
-msgstr ""
-
-#: kirigami_ui/main.qml:130
-msgid "Save"
-msgstr ""
-
-#: kirigami_ui/main.qml:136
-msgid "Save As"
-msgstr ""
-
-#: kirigami_ui/main.qml:150
-msgid "About"
-msgstr ""
-
-#: kirigami_ui/main.qml:155 kirigami_ui/main.qml:260 kirigami_ui/main.qml:541
-msgid "&Quit"
-msgstr ""
-
-#: kirigami_ui/main.qml:163
-msgid "Load Guide"
-msgstr ""
-
-#: kirigami_ui/main.qml:172
-msgid "Dark Mode"
-msgstr ""
-
-#: kirigami_ui/main.qml:180
-msgid "Live theme mode switching has not yet been implemented."
-msgstr ""
-
-#: kirigami_ui/main.qml:198
-msgid "Base speed:"
-msgstr ""
-
-#: kirigami_ui/main.qml:213
-msgid "Acceleration curvature:"
-msgstr ""
-
-#: kirigami_ui/main.qml:241 kirigami_ui/main.qml:521
-msgid "&File"
-msgstr ""
-
-#: kirigami_ui/main.qml:243 kirigami_ui/main.qml:524
+#: kirigami_ui/main.qml:118 kirigami_ui/main.qml:244 kirigami_ui/main.qml:527
 msgid "&New"
 msgstr ""
 
-#: kirigami_ui/main.qml:247 kirigami_ui/main.qml:528
+#: kirigami_ui/main.qml:120
+msgid "Ctrl+N"
+msgstr ""
+
+#: kirigami_ui/main.qml:124 kirigami_ui/main.qml:248 kirigami_ui/main.qml:531
 msgid "&Open"
 msgstr ""
 
-#: kirigami_ui/main.qml:251 kirigami_ui/main.qml:532
+#: kirigami_ui/main.qml:126
+msgid "Ctrl+O"
+msgstr ""
+
+#: kirigami_ui/main.qml:130 kirigami_ui/main.qml:252 kirigami_ui/main.qml:535
 msgid "&Save"
 msgstr ""
 
-#: kirigami_ui/main.qml:255
+#: kirigami_ui/main.qml:132
+msgid "Ctrl+S"
+msgstr ""
+
+#: kirigami_ui/main.qml:136 kirigami_ui/main.qml:256
 msgid "Save &As"
 msgstr ""
 
-#: kirigami_ui/main.qml:265 kirigami_ui/main.qml:547
+#: kirigami_ui/main.qml:138
+msgid "Ctrl+Shift+S"
+msgstr ""
+
+#: kirigami_ui/main.qml:143
+msgid "&Recent Files"
+msgstr ""
+
+#: kirigami_ui/main.qml:151
+msgid "Abou&t"
+msgstr ""
+
+#: kirigami_ui/main.qml:156 kirigami_ui/main.qml:261 kirigami_ui/main.qml:544
+msgid "&Quit"
+msgstr ""
+
+#: kirigami_ui/main.qml:158
+msgid "Ctrl+Q"
+msgstr ""
+
+#: kirigami_ui/main.qml:164
+msgid "Load &Guide"
+msgstr ""
+
+#: kirigami_ui/main.qml:173
+msgid "Dark &Mode"
+msgstr ""
+
+#: kirigami_ui/main.qml:181
+msgid "Theme mode switching has not been implemented yet"
+msgstr ""
+
+#: kirigami_ui/main.qml:199
+msgid "Base speed:"
+msgstr ""
+
+#: kirigami_ui/main.qml:214
+msgid "Acceleration curvature:"
+msgstr ""
+
+#: kirigami_ui/main.qml:242 kirigami_ui/main.qml:524
+msgid "&File"
+msgstr ""
+
+#: kirigami_ui/main.qml:266 kirigami_ui/main.qml:550
 msgid "&Edit"
 msgstr ""
 
-#: kirigami_ui/main.qml:268 kirigami_ui/main.qml:550
+#: kirigami_ui/main.qml:269 kirigami_ui/main.qml:553
 msgid "&Undo"
 msgstr ""
 
-#: kirigami_ui/main.qml:273 kirigami_ui/main.qml:555
+#: kirigami_ui/main.qml:274 kirigami_ui/main.qml:558
 msgid "&Redo"
 msgstr ""
 
-#: kirigami_ui/main.qml:279 kirigami_ui/main.qml:561
+#: kirigami_ui/main.qml:280 kirigami_ui/main.qml:564 prompter/Prompter.qml:625
 msgid "&Copy"
 msgstr ""
 
-#: kirigami_ui/main.qml:284 kirigami_ui/main.qml:566
+#: kirigami_ui/main.qml:285 kirigami_ui/main.qml:569 prompter/Prompter.qml:630
 msgid "Cu&t"
 msgstr ""
 
-#: kirigami_ui/main.qml:289 kirigami_ui/main.qml:571
+#: kirigami_ui/main.qml:290 kirigami_ui/main.qml:574 prompter/Prompter.qml:635
 msgid "&Paste"
 msgstr ""
 
-#: kirigami_ui/main.qml:296 kirigami_ui/main.qml:578
-msgid "V&iew"
+#: kirigami_ui/main.qml:297 kirigami_ui/main.qml:581
+msgid "&View"
 msgstr ""
 
-#: kirigami_ui/main.qml:299 kirigami_ui/main.qml:581
-msgid "&Full screen"
+#: kirigami_ui/main.qml:300 kirigami_ui/main.qml:584
+msgid "Full &screen"
 msgstr ""
 
-#: kirigami_ui/main.qml:312 kirigami_ui/main.qml:594
+#: kirigami_ui/main.qml:313 kirigami_ui/main.qml:597
 msgid "&Pointers"
 msgstr ""
 
-#: kirigami_ui/main.qml:314 kirigami_ui/main.qml:596
+#: kirigami_ui/main.qml:315 kirigami_ui/main.qml:599
 msgid "&Left Pointer"
 msgstr ""
 
-#: kirigami_ui/main.qml:320 kirigami_ui/main.qml:602
+#: kirigami_ui/main.qml:321 kirigami_ui/main.qml:605
 msgid "&Right Pointer"
 msgstr ""
 
-#: kirigami_ui/main.qml:326 kirigami_ui/main.qml:608
+#: kirigami_ui/main.qml:327 kirigami_ui/main.qml:611
 msgid "B&oth Pointers"
 msgstr ""
 
-#: kirigami_ui/main.qml:333 kirigami_ui/main.qml:615
+#: kirigami_ui/main.qml:334 kirigami_ui/main.qml:618
 msgid "&Bars"
 msgstr ""
 
-#: kirigami_ui/main.qml:339 kirigami_ui/main.qml:621
-msgid "Bars L&eft"
+#: kirigami_ui/main.qml:340 kirigami_ui/main.qml:624
+msgid "Bars Lef&t"
 msgstr ""
 
-#: kirigami_ui/main.qml:345 kirigami_ui/main.qml:627
-msgid "Bars R&ight"
+#: kirigami_ui/main.qml:346 kirigami_ui/main.qml:630
+msgid "Bars Ri&ght"
 msgstr ""
 
-#: kirigami_ui/main.qml:352 kirigami_ui/main.qml:634
+#: kirigami_ui/main.qml:353 kirigami_ui/main.qml:637
 msgid "&All"
 msgstr ""
 
-#: kirigami_ui/main.qml:358 kirigami_ui/main.qml:640
+#: kirigami_ui/main.qml:359 kirigami_ui/main.qml:643
 msgid "&None"
 msgstr ""
 
-#: kirigami_ui/main.qml:365 kirigami_ui/main.qml:647
-msgid "&Reading region"
+#: kirigami_ui/main.qml:366 kirigami_ui/main.qml:650
+msgid "Readin&g region"
 msgstr ""
 
-#: kirigami_ui/main.qml:367 kirigami_ui/main.qml:649
+#: kirigami_ui/main.qml:368 kirigami_ui/main.qml:652
 msgid "&Top"
 msgstr ""
 
-#: kirigami_ui/main.qml:373 kirigami_ui/main.qml:655
+#: kirigami_ui/main.qml:374 kirigami_ui/main.qml:658
 msgid "&Middle"
 msgstr ""
 
-#: kirigami_ui/main.qml:379 kirigami_ui/main.qml:661
+#: kirigami_ui/main.qml:380 kirigami_ui/main.qml:664
 msgid "&Bottom"
 msgstr ""
 
-#: kirigami_ui/main.qml:386 kirigami_ui/main.qml:668
-msgid "&Free placement"
+#: kirigami_ui/main.qml:387 kirigami_ui/main.qml:671
+msgid "F&ree placement"
 msgstr ""
 
-#: kirigami_ui/main.qml:392 kirigami_ui/main.qml:674
-msgid "&Custom (Fixed placement)"
+#: kirigami_ui/main.qml:393 kirigami_ui/main.qml:677
+msgid "C&ustom (Fixed placement)"
 msgstr ""
 
-#: kirigami_ui/main.qml:400 kirigami_ui/main.qml:682
-msgid "F&ormat"
+#: kirigami_ui/main.qml:401 kirigami_ui/main.qml:685
+msgid "For&mat"
 msgstr ""
 
-#: kirigami_ui/main.qml:403 kirigami_ui/main.qml:685
+#: kirigami_ui/main.qml:404 kirigami_ui/main.qml:688
 msgid "&Bold"
 msgstr ""
 
-#: kirigami_ui/main.qml:409 kirigami_ui/main.qml:691
+#: kirigami_ui/main.qml:410 kirigami_ui/main.qml:694
 msgid "&Italic"
 msgstr ""
 
-#: kirigami_ui/main.qml:415 kirigami_ui/main.qml:697
+#: kirigami_ui/main.qml:416 kirigami_ui/main.qml:700
 msgid "&Underline"
 msgstr ""
 
-#: kirigami_ui/main.qml:422 kirigami_ui/main.qml:439 kirigami_ui/main.qml:704
-#: kirigami_ui/main.qml:721
+#: kirigami_ui/main.qml:423 kirigami_ui/main.qml:440 kirigami_ui/main.qml:707
+#: kirigami_ui/main.qml:724
 msgid "&Left"
 msgstr ""
 
-#: kirigami_ui/main.qml:422 kirigami_ui/main.qml:439 kirigami_ui/main.qml:704
-#: kirigami_ui/main.qml:721
+#: kirigami_ui/main.qml:423 kirigami_ui/main.qml:440 kirigami_ui/main.qml:707
+#: kirigami_ui/main.qml:724
 msgid "&Right"
 msgstr ""
 
-#: kirigami_ui/main.qml:433 kirigami_ui/main.qml:715
-msgid "&Center"
+#: kirigami_ui/main.qml:434 kirigami_ui/main.qml:718
+msgid "Cen&ter"
 msgstr ""
 
-#: kirigami_ui/main.qml:450 kirigami_ui/main.qml:732
+#: kirigami_ui/main.qml:451 kirigami_ui/main.qml:735
 msgid "&Justify"
 msgstr ""
 
-#: kirigami_ui/main.qml:457 kirigami_ui/main.qml:739
-msgid "Character"
+#: kirigami_ui/main.qml:458 kirigami_ui/main.qml:742
+msgid "C&haracter"
 msgstr ""
 
-#: kirigami_ui/main.qml:461 kirigami_ui/main.qml:743
-msgid "Font Color"
+#: kirigami_ui/main.qml:462 kirigami_ui/main.qml:746
+msgid "Fo&nt Color"
 msgstr ""
 
-#: kirigami_ui/main.qml:466 kirigami_ui/main.qml:748
-msgid "Controls"
+#: kirigami_ui/main.qml:467
+msgid "&Controls"
 msgstr ""
 
-#: kirigami_ui/main.qml:469 kirigami_ui/main.qml:751
+#: kirigami_ui/main.qml:470 kirigami_ui/main.qml:754
+msgid "Use scroll as velocity &dial"
+msgstr ""
+
+#: kirigami_ui/main.qml:471
 msgid "Use mouse and touchpad scroll as speed dial while prompting"
 msgstr ""
 
-#: kirigami_ui/main.qml:476 kirigami_ui/main.qml:758
-msgid "Invert arrow keys"
+#: kirigami_ui/main.qml:478 kirigami_ui/main.qml:761
+msgid "Invert &arrow keys"
 msgstr ""
 
-#: kirigami_ui/main.qml:482 kirigami_ui/main.qml:764
-msgid "Invert scroll direction"
+#: kirigami_ui/main.qml:484 kirigami_ui/main.qml:767
+msgid "Invert &scroll direction"
 msgstr ""
 
-#: kirigami_ui/main.qml:489 kirigami_ui/main.qml:771
+#: kirigami_ui/main.qml:491 kirigami_ui/main.qml:774
 msgid "&Help"
 msgstr ""
 
-#: kirigami_ui/main.qml:492 kirigami_ui/main.qml:774
-msgid "&Report Bug..."
+#: kirigami_ui/main.qml:494 kirigami_ui/main.qml:777
+msgid "Report &Bug..."
 msgstr ""
 
-#: kirigami_ui/main.qml:504 kirigami_ui/main.qml:786
-msgid "Load User Guide"
+#: kirigami_ui/main.qml:501 kirigami_ui/main.qml:784
+msgid "Get &Studio Edition"
 msgstr ""
 
-#: kirigami_ui/main.qml:510 kirigami_ui/main.qml:792
-msgid "&About QPrompt"
+#: kirigami_ui/main.qml:507 kirigami_ui/main.qml:790
+msgid "Load User &Guide"
 msgstr ""
 
-#: kirigami_ui/main.qml:536
-msgid "Save As..."
+#: kirigami_ui/main.qml:513 kirigami_ui/main.qml:796
+msgid "Abou&t QPrompt"
 msgstr ""
 
-#: kirigami_ui/main.qml:864
+#: kirigami_ui/main.qml:539
+msgid "Save &As..."
+msgstr ""
+
+#: kirigami_ui/main.qml:751
+msgid "Controls"
+msgstr ""
+
+#: kirigami_ui/main.qml:868
 msgid "Save Document"
 msgstr ""
 
-#: kirigami_ui/main.qml:865
+#: kirigami_ui/main.qml:869
 msgid "Save changes to document before closing?"
+msgstr ""
+
+#: kirigami_ui/ProjectionWindow.qml:29
+msgid "Projection Window"
 msgstr ""
 
 #: kirigami_ui/PrompterPage.qml:49
@@ -301,14 +325,14 @@ msgid "\"What you see is what you get\" mode is On"
 msgstr ""
 
 #: kirigami_ui/PrompterPage.qml:73
-msgid "\"What you see is what you get\" mode Off"
+msgid "\"What you see is what you get\" mode is Off"
 msgstr ""
 
 #: kirigami_ui/PrompterPage.qml:81
 msgid "Flip"
 msgstr ""
 
-#: kirigami_ui/PrompterPage.qml:89
+#: kirigami_ui/PrompterPage.qml:89 kirigami_ui/PrompterPage.qml:91
 msgid "No Flip"
 msgstr ""
 
@@ -316,12 +340,24 @@ msgstr ""
 msgid "Horizontal Flip"
 msgstr ""
 
+#: kirigami_ui/PrompterPage.qml:102
+msgid "H Flip"
+msgstr ""
+
 #: kirigami_ui/PrompterPage.qml:111
 msgid "Vertical Flip"
 msgstr ""
 
+#: kirigami_ui/PrompterPage.qml:113
+msgid "V Flip"
+msgstr ""
+
 #: kirigami_ui/PrompterPage.qml:122
 msgid "180° rotation"
+msgstr ""
+
+#: kirigami_ui/PrompterPage.qml:124
+msgid "HV Flip"
 msgstr ""
 
 #: kirigami_ui/PrompterPage.qml:135
@@ -508,15 +544,19 @@ msgstr ""
 msgid "Failed to load icons from fontello.ttf"
 msgstr ""
 
-#: prompter/Countdown.qml:293
+#: prompter/Countdown.qml:201 prompter/Prompter.qml:386
+msgid "fonts/libertinus-sans.otf"
+msgstr ""
+
+#: prompter/Countdown.qml:299
 msgid "Countdown Setup"
 msgstr ""
 
-#: prompter/Countdown.qml:302
+#: prompter/Countdown.qml:308
 msgid "Countdown iterations"
 msgstr ""
 
-#: prompter/Countdown.qml:320
+#: prompter/Countdown.qml:326
 msgid "Disappear within 1 second"
 msgid_plural "Disappear within %1 seconds"
 msgstr[0] ""
@@ -526,31 +566,47 @@ msgstr[1] ""
 msgid "Animation Completed"
 msgstr ""
 
-#: prompter/Prompter.qml:387
-msgid "fonts/libertinus-sans.otf"
+#: prompter/Prompter.qml:368
+msgid "Error loading file..."
 msgstr ""
 
-#: prompter/Prompter.qml:558
+#: prompter/Prompter.qml:557
 msgid "New document"
 msgstr ""
 
-#: prompter/Prompter.qml:562
+#: prompter/Prompter.qml:561
 msgid "guide_en.html"
 msgstr ""
 
-#: prompter/Prompter.qml:567
+#: prompter/Prompter.qml:566
 msgid "User guide loaded"
 msgstr ""
 
-#: prompter/Prompter.qml:803
+#: prompter/Prompter.qml:590
+msgid "Text files"
+msgstr ""
+
+#: prompter/Prompter.qml:590
+msgid "HTML files"
+msgstr ""
+
+#: prompter/Prompter.qml:643
+msgid "Fo&nt..."
+msgstr ""
+
+#: prompter/Prompter.qml:648
+msgid "Co&lor..."
+msgstr ""
+
+#: prompter/Prompter.qml:802
 msgid "Begin countdown"
 msgstr ""
 
-#: prompter/Prompter.qml:849
+#: prompter/Prompter.qml:848
 msgid "Skip countdown"
 msgstr ""
 
-#: prompter/Prompter.qml:890
+#: prompter/Prompter.qml:889
 msgid "Return to edit mode"
 msgstr ""
 

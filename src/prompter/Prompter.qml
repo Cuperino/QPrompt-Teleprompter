@@ -95,7 +95,7 @@ Flickable {
     property bool __invertScrollDirection: root.__invertScrollDirection
     property bool __wysiwyg: true
     property alias fontSize: editor.font.pixelSize
-    property int __i: 1
+    property int __i: 2
     property int __iBackup: 0
     property bool __play: true
     property real __baseSpeed: root.__baseSpeed
@@ -124,11 +124,11 @@ Flickable {
     //readonly property bool __atStart: false
     //readonly property bool __atEnd: false
     //Rectangle {
-    //    id: startPositionDeebug
+    //    id: startPositionDebug
     //    // Set this value to the same as __atStart's evaluated equation
     //    y: __jitterMargin-topMargin+1
     //    anchors {
-    //        id: startPositionDeebug
+    //        id: startPositionDebug
     //        left: parent.left
     //        right: parent.right
     //    }
@@ -136,7 +136,7 @@ Flickable {
     //    color: "red"
     //}
     //Rectangle {
-    //    id: endPositionDeebug
+    //    id: endPositionDebug
     //    // Set this value to the same as __atStart's evaluated equation
     //    y: editor.height-topMargin+fontSize+__jitterMargin-1
     //    anchors {
@@ -183,8 +183,8 @@ Flickable {
 
     // Flick while prompting
     onDragStarted: {
-        console.log("Drag started")
-        console.log(__iBackup, __i, position)
+        //console.log("Drag started")
+        //console.log(__iBackup, __i, position)
         if (__iBackup===0) {
             __iBackup = __i
             __i = 0
@@ -192,14 +192,14 @@ Flickable {
         }
     }
     onDragEnded: {
-        console.log("Drag ended")
+        //console.log("Drag ended")
     }
     onFlickStarted: {
-        console.log("Flick started")
+        //console.log("Flick started")
     }
     onMovementEnded: {
-        console.log("Movement ended")
-        console.log(__iBackup, __i, position)
+        //console.log("Movement ended")
+        //console.log(__iBackup, __i, position)
         __i = __iBackup
         if (prompter.state==="prompting") {
             __iBackup = 0
@@ -287,9 +287,8 @@ Flickable {
     function setContentWidth() {
         //contentsPlacement = Math.abs(editor.x)/prompter.width
         contentsPlacement = (Math.abs(editor.x)-fontSize/2)/(prompter.width-fontSize)
-        //console.log(customContentsPlacement)
-        console.log(contentsPlacement)
-        console.log(editor.x)
+        //console.log(contentsPlacement)
+        //console.log(editor.x)
     }
     
     contentHeight: flickableContent.height
@@ -366,7 +365,7 @@ Flickable {
             textFormat: Qt.RichText
             wrapMode: TextArea.Wrap
             readOnly: false
-            text: "Error loading file..."
+            text: i18n("Error loading file...")
             
             selectByMouse: true
             persistentSelection: true
@@ -588,7 +587,7 @@ Flickable {
         id: openDialog
         fileMode: FileDialog.OpenFile
         selectedNameFilter.index: 1
-        nameFilters: ["Text files (*.txt)", "HTML files (*.html *.htm)"]
+        nameFilters: [i18n("Text files") + " (*.txt)", i18n("HTML files") + " (*.html *.htm)"]
         folder: StandardPaths.writableLocation(StandardPaths.DocumentsLocation)
         onAccepted: {
             document.load(file)
@@ -623,17 +622,17 @@ Flickable {
         id: contextMenu
 
         MenuItem {
-            text: qsTr("Copy")
+            text: i18n("&Copy")
             enabled: editor.selectedText
             onTriggered: editor.copy()
         }
         MenuItem {
-            text: qsTr("Cut")
+            text: i18n("Cu&t")
             enabled: editor.selectedText
             onTriggered: editor.cut()
         }
         MenuItem {
-            text: qsTr("Paste")
+            text: i18n("&Paste")
             enabled: editor.canPaste
             onTriggered: editor.paste()
         }
@@ -641,12 +640,12 @@ Flickable {
         MenuSeparator {}
 
         MenuItem {
-            text: qsTr("Font...")
+            text: i18n("Fo&nt...")
             onTriggered: fontDialog.open()
         }
 
         MenuItem {
-            text: qsTr("Color...")
+            text: i18n("Co&lor...")
             onTriggered: colorDialog.open()
         }
     }

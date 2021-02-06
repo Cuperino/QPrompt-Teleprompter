@@ -115,52 +115,53 @@ Kirigami.ApplicationWindow {
         }
         actions: [
             Kirigami.Action {
-                text: i18n("New")
+                text: i18n("&New")
                 iconName: "folder"
-                shortcut: "Ctrl+N"
+                shortcut: i18n("Ctrl+N")
                 onTriggered: prompterPage.document.newDocument()
             },
             Kirigami.Action {
-                text: i18n("Open")
+                text: i18n("&Open")
                 iconName: "folder"
-                shortcut: "Ctrl+O"
+                shortcut: i18n("Ctrl+O")
                 onTriggered: prompterPage.document.open()
             },
             Kirigami.Action {
-                text: i18n("Save")
+                text: i18n("&Save")
                 iconName: "folder"
-                shortcut: "Ctrl+S"
+                shortcut: i18n("Ctrl+S")
                 onTriggered: prompterPage.document.saveDialog()
             },
             Kirigami.Action {
-                text: i18n("Save As")
+                text: i18n("Save &As")
                 iconName: "folder"
-                shortcut: "Ctrl+Shift+S"
+                shortcut: i18n("Ctrl+Shift+S")
                 onTriggered: prompterPage.document.saveAsDialog()
             },
-            //Kirigami.Action {
-                //text: i18n("Recent Files")
+            Kirigami.Action {
+                visible: false
+                text: i18n("&Recent Files")
                 //iconName: "view-list-icons"
                 //Kirigami.Action {
                     //text: i18n("View Action 1")
                     //onTriggered: showPassiveNotification(i18n("View Action 1 clicked"))
                 //}
-            //},
+            },
             Kirigami.Action {
-                text: i18n("About") + " " + aboutData.displayName
+                text: i18n("Abou&t") + " " + aboutData.displayName
                 iconName: "help-about"
                 onTriggered: loadAboutPage()
             },
             Kirigami.Action {
                 text: i18n("&Quit")
                 iconName: "close"
-                shortcut: "Ctrl+Q"
+                shortcut: i18n("Ctrl+Q")
                 onTriggered: close()
             }
         ]
         topContent: RowLayout {
             Button {
-                text: i18n("Load Guide")
+                text: i18n("Load &Guide")
                 flat: true
                 onClicked: {
                     prompterPage.document.loadInstructions()
@@ -169,7 +170,7 @@ Kirigami.ApplicationWindow {
             }
             Button {
                 id: themeSwitch
-                text: i18n("Dark Mode")
+                text: i18n("Dark &Mode")
                 visible: false
                 //visible: !Kirigami.Settings.isMobile && root.__translucidBackground
                 //checked: true
@@ -177,7 +178,7 @@ Kirigami.ApplicationWindow {
                 checkable: true
                 flat: true
                 onClicked: {
-                    showPassiveNotification(i18n("Live theme mode switching has not yet been implemented."))
+                    showPassiveNotification(i18n("Theme mode switching has not been implemented yet"))
                 }
             }
         }
@@ -293,10 +294,10 @@ Kirigami.ApplicationWindow {
         }
         
         Menu {
-            title: i18n("V&iew")
+            title: i18n("&View")
             
             MenuItem {
-                text: i18n("&Full screen")
+                text: i18n("Full &screen")
                 checkable: true
                 checked: root.__fullScreen
                 onTriggered: root.__fullScreen = !root.__fullScreen
@@ -336,13 +337,13 @@ Kirigami.ApplicationWindow {
                     onTriggered: prompterPage.overlay.styleState = "bars"
                 }
                 MenuItem {
-                    text: i18n("Bars L&eft")
+                    text: i18n("Bars Lef&t")
                     checkable: true
                     checked: prompterPage.overlay.styleState === "barsLeft"
                     onTriggered: prompterPage.overlay.styleState = "barsLeft"
                 }
                 MenuItem {
-                    text: i18n("Bars R&ight")
+                    text: i18n("Bars Ri&ght")
                     checkable: true
                     checked: prompterPage.overlay.styleState === "barsRight"
                     onTriggered: prompterPage.overlay.styleState = "barsRight"
@@ -362,7 +363,7 @@ Kirigami.ApplicationWindow {
                 }
             }
             Menu {
-                title: i18n("&Reading region")
+                title: i18n("Readin&g region")
                 MenuItem {
                     text: i18n("&Top")
                     checkable: true
@@ -383,13 +384,13 @@ Kirigami.ApplicationWindow {
                 }
                 MenuSeparator { }
                 MenuItem {
-                    text: i18n("&Free placement")
+                    text: i18n("F&ree placement")
                     checkable: true
                     checked: prompterPage.overlay.positionState === "free"
                     onTriggered: prompterPage.overlay.positionState = "free"
                 }
                 MenuItem {
-                    text: i18n("&Custom (Fixed placement)")
+                    text: i18n("C&ustom (Fixed placement)")
                     checkable: true
                     checked: prompterPage.overlay.positionState === "fixed"
                     onTriggered: prompterPage.overlay.positionState = "fixed"
@@ -397,7 +398,7 @@ Kirigami.ApplicationWindow {
             }
         }
         Menu {
-            title: i18n("F&ormat")
+            title: i18n("For&mat")
             
             MenuItem {
                 text: i18n("&Bold")
@@ -430,7 +431,7 @@ Kirigami.ApplicationWindow {
                 }
             }
             MenuItem {
-                text: i18n("&Center")
+                text: i18n("Cen&ter")
                 checkable: true
                 checked: prompterPage.document.alignment === Qt.AlignHCenter
                 onTriggered: prompterPage.document.alignment = Qt.AlignHCenter
@@ -454,32 +455,33 @@ Kirigami.ApplicationWindow {
             }
             MenuSeparator { }
             MenuItem {
-                text: i18n("Character")
+                text: i18n("C&haracter")
                 onTriggered: prompterPage.fontDialog.open();
             }
             MenuItem {
-                text: i18n("Font Color")
+                text: i18n("Fo&nt Color")
                 onTriggered: prompterPage.colorDialog.open()
             }
         }
         Menu {
-            title: i18n("Controls")
+            title: i18n("&Controls")
             
             MenuItem {
-                text: i18n("Use mouse and touchpad scroll as speed dial while prompting")
+                text: i18n("Use scroll as velocity &dial")
+                ToolTip.text: i18n("Use mouse and touchpad scroll as speed dial while prompting")
                 checkable: true
                 checked: root.__scrollAsDial
                 onTriggered: root.__scrollAsDial = !root.__scrollAsDial
             }
             MenuSeparator { }
             MenuItem {
-                text: i18n("Invert arrow keys")
+                text: i18n("Invert &arrow keys")
                 checkable: true
                 checked: root.__invertArrowKeys
                 onTriggered: root.__invertArrowKeys = !root.__invertArrowKeys
             }
             MenuItem {
-                text: i18n("Invert scroll direction")
+                text: i18n("Invert &scroll direction")
                 checkable: true
                 checked: root.__invertScrollDirection
                 onTriggered: root.__invertScrollDirection = !root.__invertScrollDirection
@@ -489,25 +491,26 @@ Kirigami.ApplicationWindow {
             title: i18n("&Help")
             
             MenuItem {
-                text: i18n("&Report Bug...")
+                text: i18n("Report &Bug...")
                 onTriggered: Qt.openUrlExternally("https://github.com/Cuperino/QPrompt/issues")
                 icon.name: "tools-report-bug"
             }
             MenuSeparator { }
-            //MenuItem {
-            //    text: i18n("&Get Studio Edition")
-            //    onTriggered: Qt.openUrlExternally("https://cuperino.com/qprompt")
-            //    icon.name: "software-center"
-            //}
+            MenuItem {
+                visible: false
+                text: i18n("Get &Studio Edition")
+                onTriggered: Qt.openUrlExternally("https://cuperino.com/qprompt")
+                icon.name: "software-center"
+            }
             //MenuSeparator { }
             MenuItem {
-                text: i18n("Load User Guide")
+                text: i18n("Load User &Guide")
                 icon.name: "help-info"
                 onTriggered: prompterPage.document.loadInstructions()
             }
             MenuSeparator { }
             MenuItem {
-                text: i18n("&About QPrompt")
+                text: i18n("Abou&t QPrompt")
                 onTriggered: root.loadAboutPage()
                 icon.source: "qrc:/images/logo.png"
             }
@@ -533,7 +536,7 @@ Kirigami.ApplicationWindow {
                 onTriggered: prompterPage.document.saveDialog()
             }
             Labs.MenuItem {
-                text: i18n("Save As...")
+                text: i18n("Save &As...")
                 onTriggered: prompterPage.document.saveAsDialog()
             }
             Labs.MenuSeparator { }
@@ -575,10 +578,10 @@ Kirigami.ApplicationWindow {
         }
         
         Labs.Menu {
-            title: i18n("V&iew")
+            title: i18n("&View")
             
             Labs.MenuItem {
-                text: i18n("&Full screen")
+                text: i18n("Full &screen")
                 checkable: true
                 checked: root.__fullScreen
                 onTriggered: root.__fullScreen = !root.__fullScreen
@@ -618,13 +621,13 @@ Kirigami.ApplicationWindow {
                     onTriggered: prompterPage.overlay.styleState = "bars"
                 }
                 Labs.MenuItem {
-                    text: i18n("Bars L&eft")
+                    text: i18n("Bars Lef&t")
                     checkable: true
                     checked: prompterPage.overlay.styleState === "barsLeft"
                     onTriggered: prompterPage.overlay.styleState = "barsLeft"
                 }
                 Labs.MenuItem {
-                    text: i18n("Bars R&ight")
+                    text: i18n("Bars Ri&ght")
                     checkable: true
                     checked: prompterPage.overlay.styleState === "barsRight"
                     onTriggered: prompterPage.overlay.styleState = "barsRight"
@@ -644,7 +647,7 @@ Kirigami.ApplicationWindow {
                 }
             }
             Labs.Menu {
-                title: i18n("&Reading region")
+                title: i18n("Readin&g region")
                 Labs.MenuItem {
                     text: i18n("&Top")
                     checkable: true
@@ -665,13 +668,13 @@ Kirigami.ApplicationWindow {
                 }
                 Labs.MenuSeparator { }
                 Labs.MenuItem {
-                    text: i18n("&Free placement")
+                    text: i18n("F&ree placement")
                     checkable: true
                     checked: prompterPage.overlay.positionState === "free"
                     onTriggered: prompterPage.overlay.positionState = "free"
                 }
                 Labs.MenuItem {
-                    text: i18n("&Custom (Fixed placement)")
+                    text: i18n("C&ustom (Fixed placement)")
                     checkable: true
                     checked: prompterPage.overlay.positionState === "fixed"
                     onTriggered: prompterPage.overlay.positionState = "fixed"
@@ -679,7 +682,7 @@ Kirigami.ApplicationWindow {
             }
         }
         Labs.Menu {
-            title: i18n("F&ormat")
+            title: i18n("For&mat")
             
             Labs.MenuItem {
                 text: i18n("&Bold")
@@ -712,7 +715,7 @@ Kirigami.ApplicationWindow {
                 }
             }
             Labs.MenuItem {
-                text: i18n("&Center")
+                text: i18n("Cen&ter")
                 checkable: true
                 checked: prompterPage.document.alignment === Qt.AlignHCenter
                 onTriggered: prompterPage.document.alignment = Qt.AlignHCenter
@@ -736,11 +739,11 @@ Kirigami.ApplicationWindow {
             }
             Labs.MenuSeparator { }
             Labs.MenuItem {
-                text: i18n("Character")
+                text: i18n("C&haracter")
                 onTriggered: prompterPage.fontDialog.open();
             }
             Labs.MenuItem {
-                text: i18n("Font Color")
+                text: i18n("Fo&nt Color")
                 onTriggered: prompterPage.colorDialog.open()
             }
         }
@@ -748,20 +751,20 @@ Kirigami.ApplicationWindow {
             title: i18n("Controls")
             
             Labs.MenuItem {
-                text: i18n("Use mouse and touchpad scroll as speed dial while prompting")
+                text: i18n("Use scroll as velocity &dial")
                 checkable: true
                 checked: root.__scrollAsDial
                 onTriggered: root.__scrollAsDial = !root.__scrollAsDial
             }
             Labs.MenuSeparator { }
             Labs.MenuItem {
-                text: i18n("Invert arrow keys")
+                text: i18n("Invert &arrow keys")
                 checkable: true
                 checked: root.__invertArrowKeys
                 onTriggered: root.__invertArrowKeys = !root.__invertArrowKeys
             }
             Labs.MenuItem {
-                text: i18n("Invert scroll direction")
+                text: i18n("Invert &scroll direction")
                 checkable: true
                 checked: root.__invertScrollDirection
                 onTriggered: root.__invertScrollDirection = !root.__invertScrollDirection
@@ -771,25 +774,26 @@ Kirigami.ApplicationWindow {
             title: i18n("&Help")
             
             Labs.MenuItem {
-                text: i18n("&Report Bug...")
+                text: i18n("Report &Bug...")
                 onTriggered: Qt.openUrlExternally("https://github.com/Cuperino/QPrompt/issues")
                 icon.name: "tools-report-bug"
             }
             Labs.MenuSeparator { }
-            //Labs.MenuItem {
-            //    text: i18n("&Get Studio Edition")
-            //    onTriggered: Qt.openUrlExternally("https://cuperino.com/qprompt")
-            //    icon.name: "software-center"
-            //}
+            Labs.MenuItem {
+                visible: false
+                text: i18n("Get &Studio Edition")
+                onTriggered: Qt.openUrlExternally("https://cuperino.com/qprompt")
+                icon.name: "software-center"
+            }
             //Labs.MenuSeparator { }
             Labs.MenuItem {
-                text: i18n("Load User Guide")
+                text: i18n("Load User &Guide")
                 icon.name: "help-info"
                 onTriggered: prompterPage.document.loadInstructions()
             }
             Labs.MenuSeparator { }
             Labs.MenuItem {
-                text: i18n("&About QPrompt")
+                text: i18n("Abou&t QPrompt")
                 onTriggered: root.loadAboutPage()
                 icon.source: "qrc:/images/logo.png"
             }
