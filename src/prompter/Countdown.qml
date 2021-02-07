@@ -63,8 +63,8 @@ Item {
     
     Rectangle {
         anchors.fill: parent
-        //opacity: 0.78
-        opacity: 0.3
+        opacity: 0.48
+        //opacity: 0.3
         color: "#333"
     }
     
@@ -190,10 +190,16 @@ Item {
     Label {
         anchors.fill: parent
         text: String(canvas.__iteration+1)
-        font.pixelSize: 42*__minv
         horizontalAlignment: Text.AlignHCenter
         verticalAlignment: Text.AlignVCenter
         color: "#FFF"
+        // Make base font size relative to editor's width
+        font.pixelSize: canvas.__iteration > 98 ? 48*__minv : canvas.__iteration > 8 ? 54*__minv : 68*__minv
+        font.family: numbersFont.name
+        FontLoader {
+            id: numbersFont
+            source: i18n("fonts/libertinus-sans.otf")
+        }
     }
     
     states: [
