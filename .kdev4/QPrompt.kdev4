@@ -6,7 +6,7 @@ Build Directory Count=1
 Current Build Directory Index-Host System=0
 
 [CMake][CMake Build Directory 0]
-Build Directory Path=/home/javier/Development/Teleprompters/qprompt/build
+Build Directory Path=/home/javier/Development/Teleprompters/qprompt/QPrompt/build
 Build Type=Debug
 CMake Binary=/usr/bin/cmake
 CMake Executable=/usr/bin/cmake
