@@ -71,7 +71,7 @@ Kirigami.ApplicationWindow {
     background: Rectangle {
         id: appTheme
         color: __backgroundColor
-        opacity: !root.__translucidBackground || prompterPage.prompterBackground.opacity===1
+        opacity: root.pageStack.layers.depth > 1 || (!root.__translucidBackground || prompterPage.prompterBackground.opacity===1)
         //readonly property color __fontColor: parent.Material.theme===Material.Light ? "#212121" : "#fff"
         //readonly property color __iconColor: parent.Material.theme===Material.Light ? "#232629" : "#c3c7d1"
         //readonly property color __backgroundColor: __translucidBackground ? (parent.Material.theme===Material.Dark ? "#303030" : "#fafafa") : Kirigami.Theme.backgroundColor
