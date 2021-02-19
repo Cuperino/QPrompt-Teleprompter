@@ -175,7 +175,7 @@ QColor DocumentHandler::textColor() const
 {
     QTextCursor cursor = textCursor();
     if (cursor.isNull())
-        return QColor(Qt::black);
+        return QColor(Qt::white);
     QTextCharFormat format = cursor.charFormat();
     return format.foreground().color();
 }
