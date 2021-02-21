@@ -381,15 +381,36 @@ Flickable {
             focus: true
             
             // Make base font size relative to editor's width
+            // Western Fonts
             FontLoader {
-                id: editorFont
-                source: i18n("fonts/libertinus-sans.otf")
-                //source: i18n("fonts/sourcehansans.ttc")
-                //source: i18n("fonts/scheherazadenew-regular.ttf")
-                //source: i18n("fonts/kalpurush.ttf")
-                //source: i18n("fonts/palanquin.ttf")
+                id: westernSeriousSansfFont
+                source: i18n("fonts/dejavu-sans.otf")
             }
-            font.family: editorFont.name
+            FontLoader {
+                id: westernHumaneSansFont
+                source: i18n("fonts/libertinus-sans.otf")
+            }
+            FontLoader {
+                id: westernDyslexicFont
+                source: i18n("fonts/opendyslexic-bold.otf")
+            }
+            FontLoader {
+                id: asianSeriousSansFont
+                source: i18n("fonts/sourcehansans.ttc")
+            }
+            FontLoader {
+                id: arabicHumaneSansFont
+                source: i18n("fonts/scheherazadenew-regular.ttf")
+            }
+            FontLoader {
+                id: devanagariSeriousSansFont
+                source: i18n("fonts/palanquin.ttf")
+            }
+            FontLoader {
+                id: bangalaHumaneSerifFont
+                source: i18n("fonts/kalpurush.ttf")
+            }
+            font.family: westernSeriousSansfFont.name
             font.pixelSize: 14
             font.hintingPreference: Font.PreferFullHinting
             font.kerning: true
