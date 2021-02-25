@@ -93,6 +93,7 @@ Flickable {
     property bool __scrollAsDial: root.__scrollAsDial
     property bool __invertArrowKeys: root.__invertArrowKeys
     property bool __invertScrollDirection: root.__invertScrollDirection
+    property bool __noScroll: root.__noScroll
     property bool __wysiwyg: true
     property alias fontSize: editor.font.pixelSize
     property int __i: 2
@@ -320,7 +321,9 @@ Flickable {
         height: parent.height+2*prompter.height
         // Mouse wheel controls
         onWheel: {
-            if (prompter.state==="prompting" && (prompter.__scrollAsDial && !(wheel.modifiers & Qt.ControlModifier) || !prompter.__scrollAsDial && wheel.modifiers & Qt.ControlModifier)) {
+            if (prompter.__noScroll && prompter.state==="prompting")
+                return;
+            else if (prompter.state==="prompting" && (prompter.__scrollAsDial && !(wheel.modifiers & Qt.ControlModifier) || !prompter.__scrollAsDial && wheel.modifiers & Qt.ControlModifier)) {
                 if (wheel.angleDelta.y > 0) {
                     if (prompter.__invertScrollDirection)
                         increaseVelocity(wheel);

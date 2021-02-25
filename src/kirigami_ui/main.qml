@@ -42,6 +42,7 @@ Kirigami.ApplicationWindow {
     property bool __scrollAsDial: false
     property bool __invertArrowKeys: false
     property bool __invertScrollDirection: false
+    property bool __noScroll: false
     property bool italic
     
     //property int prompterVisibility: Kirigami.ApplicationWindow.Maximized
@@ -467,7 +468,14 @@ Kirigami.ApplicationWindow {
             title: i18n("&Controls")
             
             MenuItem {
+                text: i18n("Disable scrolling while prompting")
+                checkable: true
+                checked: root.__noScroll
+                onTriggered: root.__noScroll = !root.__noScroll
+            }
+            MenuItem {
                 text: i18n("Use scroll as velocity &dial")
+                enabled: !root.__noScroll
                 ToolTip.text: i18n("Use mouse and touchpad scroll as speed dial while prompting")
                 checkable: true
                 checked: root.__scrollAsDial
@@ -476,12 +484,14 @@ Kirigami.ApplicationWindow {
             MenuSeparator { }
             MenuItem {
                 text: i18n("Invert &arrow keys")
+                enabled: !root.__noScroll
                 checkable: true
                 checked: root.__invertArrowKeys
                 onTriggered: root.__invertArrowKeys = !root.__invertArrowKeys
             }
             MenuItem {
                 text: i18n("Invert &scroll direction")
+                enabled: !root.__noScroll
                 checkable: true
                 checked: root.__invertScrollDirection
                 onTriggered: root.__invertScrollDirection = !root.__invertScrollDirection
@@ -749,9 +759,16 @@ Kirigami.ApplicationWindow {
         }
         Labs.Menu {
             title: i18n("Controls")
-            
+
+            Labs.MenuItem {
+                text: i18n("Disable scrolling while prompting")
+                checkable: true
+                checked: root.__noScroll
+                onTriggered: root.__noScroll = !root.__noScroll
+            }
             Labs.MenuItem {
                 text: i18n("Use scroll as velocity &dial")
+                enabled: !root.__noScroll
                 checkable: true
                 checked: root.__scrollAsDial
                 onTriggered: root.__scrollAsDial = !root.__scrollAsDial
@@ -759,12 +776,14 @@ Kirigami.ApplicationWindow {
             Labs.MenuSeparator { }
             Labs.MenuItem {
                 text: i18n("Invert &arrow keys")
+                enabled: !root.__noScroll
                 checkable: true
                 checked: root.__invertArrowKeys
                 onTriggered: root.__invertArrowKeys = !root.__invertArrowKeys
             }
             Labs.MenuItem {
                 text: i18n("Invert &scroll direction")
+                enabled: !root.__noScroll
                 checkable: true
                 checked: root.__invertScrollDirection
                 onTriggered: root.__invertScrollDirection = !root.__invertScrollDirection
