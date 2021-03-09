@@ -67,7 +67,7 @@ Item {
         id: overlayMouseArea
         enabled: false
         anchors.fill: parent
-        //cursorShape: Qt.DefaultCursor
+        cursorShape: Qt.CrossCursor
         propagateComposedEvents: true
     }
     states: [
@@ -137,15 +137,12 @@ Item {
                 }
                 PropertyChanges {
                     target: pointers
-                    __opacity: 0.4
+                    // Workaround to ensure pointer color does not remain in its free state setting when changing to other prompter states
+                    __strokeColor: prompter.state==="editing" ? "#2a71ad" : "#4d94cf"
                 }
                 PropertyChanges {
                     target: readRegion
                     enabled: true
-                }
-                PropertyChanges {
-                    target: pointers
-                    __fillColor: "#180000"
                 }
             },
             State {
@@ -181,7 +178,7 @@ Item {
             drag.smoothed: false
             drag.minimumY: 0
             drag.maximumY: overlay.height - this.height
-            cursorShape: Qt.PointingHandCursor
+            cursorShape: (pressed||drag.active) ? Qt.ClosedHandCursor : Qt.OpenHandCursor
             onReleased: {
                 readRegion.__customPlacement = readRegion.y / (overlay.height - readRegion.height)
             }
