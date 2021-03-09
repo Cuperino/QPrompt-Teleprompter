@@ -196,6 +196,7 @@ Item {
         // Make base font size relative to editor's width
         font.pixelSize: canvas.__iteration > 98 ? 48*__minv : canvas.__iteration > 8 ? 54*__minv : 68*__minv
         font.family: numbersFont.name
+        renderType: Text.NativeRendering
         FontLoader {
             id: numbersFont
             source: i18n("fonts/libertinus-sans.otf")
