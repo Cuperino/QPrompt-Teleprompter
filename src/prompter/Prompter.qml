@@ -106,7 +106,7 @@ Flickable {
     //property int __lastRecordedPosition: 0
     //property real customContentsPlacement: 0.1
     property real contentsPlacement//: 1-rightWidthAdjustmentBar.x
-    readonly property real editorXOffset: Math.abs(editor.x)/prompter.width
+    readonly property real editorXOffset: Math.abs(editor.x + positionHandler.x)/prompter.width
     readonly property real centreX: width / 2;
     readonly property real centreY: height / 2;
     readonly property int __jitterMargin: __i%2
@@ -319,6 +319,7 @@ Flickable {
         anchors.right: parent.right
         y: -prompter.height
         height: parent.height+2*prompter.height
+        cursorShape: Qt.PointingHandCursor
         // Mouse wheel controls
         onWheel: {
             if (prompter.__noScroll && prompter.state==="prompting")
@@ -357,189 +358,198 @@ Flickable {
     }
     
     Item {
-        id: flickableContent
-        anchors.left: parent.left
-        anchors.right: parent.right
-        anchors.top: parent.top
+        id: positionHandler
+
+        // Force positionHandler's position to reset to center on resize.
+        x: (editor.x - (width - editor.width)/2) / 2
+
+        // Keep dimensions at their right size, but adjustable
+        width: parent.width
         height: editor.implicitHeight
-        TextArea {
-            id: editor
-            onCursorRectangleChanged: prompter.ensureVisible(cursorRectangle)
-            textFormat: Qt.RichText
-            wrapMode: TextArea.Wrap
-            readOnly: false
-            text: i18n("Error loading file...")
-            
-            selectByMouse: true
-            persistentSelection: true
-            
-            leftPadding: 14
-            rightPadding: 14
-            topPadding: 0
-            bottomPadding: 0
-            
-            background: Item {}
-            
-            // Start with the editor in focus
-            focus: true
-            
-            // Make base font size relative to editor's width
-            // Western Fonts
-            FontLoader {
-                id: westernSeriousSansfFont
-                source: i18n("fonts/dejavu-sans.otf")
-            }
-            FontLoader {
-                id: westernHumaneSansFont
-                source: i18n("fonts/libertinus-sans.otf")
-            }
-            FontLoader {
-                id: westernDyslexicFont
-                source: i18n("fonts/opendyslexic-bold.otf")
-            }
-            FontLoader {
-                id: asianSeriousSansFont
-                source: i18n("fonts/sourcehansans.ttc")
-            }
-            FontLoader {
-                id: arabicHumaneSansFont
-                source: i18n("fonts/scheherazadenew-regular.ttf")
-            }
-            FontLoader {
-                id: devanagariSeriousSansFont
-                source: i18n("fonts/palanquin.ttf")
-            }
-            FontLoader {
-                id: bangalaHumaneSerifFont
-                source: i18n("fonts/kalpurush.ttf")
-            }
-            font.family: westernSeriousSansfFont.name
-            font.pixelSize: 14
-            font.hintingPreference: Font.PreferFullHinting
-            font.kerning: true
-            font.preferShaping: true
-            renderType: Text.NativeRendering
-            //renderType: Text.QtRendering
-            
-            // Make links responsive
-            onLinkActivated: Qt.openUrlExternally(link)
 
-            //Different styles have different padding and background
-            //decorations, but since this editor must resemble the
-            //teleprompter output, we don't need them.
-            x: fontSize/2 + contentsPlacement*(prompter.width-fontSize)
+        Item {
+            id: flickableContent
+            anchors.fill: parent
 
-            // Width drag controls
-            width: prompter.width-2*Math.abs(x)
+            TextArea {
+                id: editor
+                onCursorRectangleChanged: prompter.ensureVisible(cursorRectangle)
+                textFormat: Qt.RichText
+                wrapMode: TextArea.Wrap
+                readOnly: false
+                text: i18n("Error loading file...")
+                
+                selectByMouse: true
+                persistentSelection: true
+                
+                leftPadding: 14
+                rightPadding: 14
+                topPadding: 0
+                bottomPadding: 0
+                
+                background: Item {}
+                
+                // Start with the editor in focus
+                focus: true
+                
+                // Make base font size relative to editor's width
+                // Western Fonts
+                FontLoader {
+                    id: westernSeriousSansfFont
+                    source: i18n("fonts/dejavu-sans.otf")
+                }
+                FontLoader {
+                    id: westernHumaneSansFont
+                    source: i18n("fonts/libertinus-sans.otf")
+                }
+                FontLoader {
+                    id: westernDyslexicFont
+                    source: i18n("fonts/opendyslexic-bold.otf")
+                }
+                FontLoader {
+                    id: asianSeriousSansFont
+                    source: i18n("fonts/sourcehansans.ttc")
+                }
+                FontLoader {
+                    id: arabicHumaneSansFont
+                    source: i18n("fonts/scheherazadenew-regular.ttf")
+                }
+                FontLoader {
+                    id: devanagariSeriousSansFont
+                    source: i18n("fonts/palanquin.ttf")
+                }
+                FontLoader {
+                    id: bangalaHumaneSerifFont
+                    source: i18n("fonts/kalpurush.ttf")
+                }
+                font.family: westernSeriousSansfFont.name
+                font.pixelSize: 14
+                font.hintingPreference: Font.PreferFullHinting
+                font.kerning: true
+                font.preferShaping: true
+                renderType: Text.NativeRendering
+                //renderType: Text.QtRendering
+                
+                // Make links responsive
+                onLinkActivated: Qt.openUrlExternally(link)
 
-            Rectangle {
-                id: rect
-                anchors.left: parent.left
-                anchors.right: parent.right
-                anchors.top: editor.bottom
-                height: prompter.bottomMargin
-                color: "#000"
-                opacity: 0.2
-            }
+                //Different styles have different padding and background
+                //decorations, but since this editor must resemble the
+                //teleprompter output, we don't need them.
+                x: fontSize/2 + contentsPlacement*(prompter.width-fontSize)
 
-            // Draggable width adjustment borders
-            Component {
-                id: editorSidesBorder
+                // Width drag controls
+                width: prompter.width-2*Math.abs(x)
+
+                // Draggable width adjustment borders
+                Component {
+                    id: editorSidesBorder
+                    Rectangle {
+                        width: 2
+                        gradient: Gradient {
+                            GradientStop { position: 0.0; color: "#AA9" }
+                            GradientStop { position: 1.0; color: "#776" }
+                        }
+                    }
+                }
+                
                 Rectangle {
-                    width: 2
-                    gradient: Gradient {
-                        GradientStop { position: 0.0; color: "#AA9" }
-                        GradientStop { position: 1.0; color: "#776" }
+                    id: rect
+                    anchors.left: parent.left
+                    anchors.right: parent.right
+                    anchors.top: editor.bottom
+                    height: prompter.bottomMargin
+                    color: "#000"
+                    opacity: 0.2
+                }
+
+                MouseArea {
+                    acceptedButtons: Qt.RightButton
+                    anchors.fill: parent
+                    onClicked: contextMenu.open()
+                    cursorShape: Qt.IBeamCursor
+                }
+                
+                MouseArea {
+                    id: leftWidthAdjustmentBar
+                    opacity: 0.9
+                    anchors.top: parent.top
+                    anchors.bottom: parent.bottom
+                    width: 25
+                    acceptedButtons: Qt.LeftButton
+                    scrollGestureEnabled: false
+                    propagateComposedEvents: true
+                    hoverEnabled: false
+                    anchors.left: Qt.application.layoutDirection===Qt.LeftToRight ? editor.left : undefined
+                    anchors.right: Qt.application.layoutDirection===Qt.RightToLeft ? editor.right : undefined
+                    drag.target: editor
+                    drag.axis: Drag.XAxis
+                    drag.smoothed: false
+                    drag.minimumX: fontSize/2 //: -prompter.width*6/20 + width
+                    drag.maximumX: prompter.width*6/20 //: -fontSize/2 + width
+                    cursorShape: Qt.SizeHorCursor
+                    Loader {
+                        sourceComponent: editorSidesBorder
+                        anchors {top: parent.top; bottom: parent.bottom; horizontalCenter: parent.horizontalCenter}
                     }
+                    onReleased: prompter.setContentWidth()
+                    //onClicked: {
+                    //    mouse.accepted = false
+                    //}
                 }
-            }
-            
-            MouseArea {
-                acceptedButtons: Qt.RightButton
-                anchors.fill: parent
-                onClicked: contextMenu.open()
-            }
-            
-            MouseArea {
-                id: leftWidthAdjustmentBar
-                acceptedButtons: Qt.LeftButton
-                opacity: 0.9
-                scrollGestureEnabled: false
-                propagateComposedEvents: true
-                hoverEnabled: false
-                anchors.left: Qt.application.layoutDirection===Qt.LeftToRight ? editor.left : undefined
-                anchors.right: Qt.application.layoutDirection===Qt.RightToLeft ? editor.right : undefined
-                anchors.top: parent.top
-                anchors.bottom: parent.bottom
-                width: 25
-                drag.target: editor
-                drag.axis: Drag.XAxis
-                drag.smoothed: false
-                drag.minimumX: fontSize/2 //: -prompter.width*6/20 + width
-                drag.maximumX: prompter.width*6/20 //: -fontSize/2 + width
-                cursorShape: Qt.SizeHorCursor
-                Loader {
-                    sourceComponent: editorSidesBorder
-                    anchors {top: parent.top; bottom: parent.bottom; horizontalCenter: parent.horizontalCenter}
+                MouseArea {
+                //Item {
+                    id: rightWidthAdjustmentBar
+                    opacity: 0.5
+                    x: parent.width-width
+                    anchors.top: parent.top
+                    anchors.bottom: parent.bottom
+                    width: 25
+                    scrollGestureEnabled: false
+                    acceptedButtons: Qt.LeftButton
+                    propagateComposedEvents: true
+                    hoverEnabled: false
+                    drag.target: positionHandler
+                    drag.axis: Drag.XAxis
+                    drag.smoothed: false
+                    drag.minimumX: -editor.x + fontSize/2 //prompter.width - editor.x - editor.width - leftWidthAdjustmentBar.drag.maximumX
+                    drag.maximumX: prompter.width - editor.x - parent.width - leftWidthAdjustmentBar.drag.minimumX
+                    cursorShape: (pressed||drag.active) ? Qt.ClosedHandCursor : Qt.OpenHandCursor
+                    Loader {
+                        sourceComponent: editorSidesBorder
+                        anchors {top: parent.top; bottom: parent.bottom; horizontalCenter: parent.horizontalCenter}
+                    }
+                    //onPressed: editor.invertDrag = true
+                    //onReleased: {
+                    //editor.invertDrag   = false
+                    //prompter.setContentWidth()
+                    //}
+                    //}
                 }
-                onReleased: prompter.setContentWidth()
-                //onClicked: {
-                //    mouse.accepted = false
-                //}
-            }
-            Item {
-                id: rightWidthAdjustmentBar
-                enabled: false
-                opacity: 0.5
-                x: parent.width-width
-                anchors.top: parent.top
-                anchors.bottom: parent.bottom
-                width: 25
-                //MouseArea {
-                //scrollGestureEnabled: false
-                //propagateComposedEvents: true
-                //hoverEnabled: false
-                //anchors.fill: parent
-                //drag.target: parent
-                //drag.axis: Drag.XAxis
-                //drag.smoothed: false
-                //drag.minimumX: prompter.width - editor.x - parent.width - leftWidthAdjustmentBar.drag.maximumX
-                //drag.maximumX: prompter.width - editor.x - parent.width - leftWidthAdjustmentBar.drag.minimumX
-                //cursorShape: Qt.SizeHorCursor
-                Loader {
-                    sourceComponent: editorSidesBorder
-                    anchors {top: parent.top; bottom: parent.bottom; horizontalCenter: parent.horizontalCenter}
-                }
-                //onPressed: editor.invertDrag = true
-                //onReleased: {
-                //editor.invertDrag   = false
-                //prompter.setContentWidth()
-                //}
-                //}
-            }
-            
-            Keys.onPressed: {
-                if (prompter.state === "prompting")
+                
+                Keys.onPressed: {
+                    if (prompter.state === "prompting")
+                        switch (event.key) {
+                            case Qt.Key_Space:
+                            if (editor.focus)
+                                return
+                            case Qt.Key_Down:
+                            case Qt.Key_Up:
+                                event.accepted = true
+                                prompter.Keys.onPressed(event)
+                                return
+                        }
                     switch (event.key) {
-                        case Qt.Key_Space:
-                        if (editor.focus)
-                            return
-                        case Qt.Key_Down:
-                        case Qt.Key_Up:
-                            event.accepted = true
-                            prompter.Keys.onPressed(event)
+                        case Qt.Key_Tab:
+                            //event.preventDefault = true
+                            //event.accepted = false
                             return
                     }
-                switch (event.key) {
-                    case Qt.Key_Tab:
-                        //event.preventDefault = true
-                        //event.accepted = false
-                        return
                 }
             }
         }
     }
-    
+
     DocumentHandler {
         id: document
         property bool isNewFile: false
