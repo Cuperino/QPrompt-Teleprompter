@@ -195,7 +195,7 @@ Item {
             //layer.enabled: true
             Shape {
                 id: leftPointer
-                x: prompter.editorXOffset*overlay.width - (2.8*pointers.__stretchX+pointers.__offsetX)*pointers.__pointerUnit
+                x: prompter.editorXWidth*overlay.width + prompter.editorXOffset*overlay.width - (2.8*pointers.__stretchX+pointers.__offsetX)*pointers.__pointerUnit
                 ShapePath {
                     strokeWidth: pointers.__pointerUnit/3
                     strokeColor: pointers.__strokeColor
@@ -212,7 +212,7 @@ Item {
             }
             Shape {
                 id: rightPointer
-                x: parent.parent.width - prompter.editorXOffset*overlay.width + (2.7*pointers.__stretchX+pointers.__offsetX)*pointers.__pointerUnit
+                x: parent.parent.width - prompter.editorXWidth*overlay.width + prompter.editorXOffset*overlay.width + (2.7*pointers.__stretchX+pointers.__offsetX)*pointers.__pointerUnit
                 ShapePath {
                     strokeWidth: pointers.__pointerUnit/3
                     strokeColor: pointers.__strokeColor

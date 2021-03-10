@@ -106,7 +106,8 @@ Flickable {
     //property int __lastRecordedPosition: 0
     //property real customContentsPlacement: 0.1
     property real contentsPlacement//: 1-rightWidthAdjustmentBar.x
-    readonly property real editorXOffset: Math.abs(editor.x + positionHandler.x)/prompter.width
+    readonly property real editorXWidth: Math.abs(editor.x)/prompter.width
+    readonly property real editorXOffset: positionHandler.x/prompter.width
     readonly property real centreX: width / 2;
     readonly property real centreY: height / 2;
     readonly property int __jitterMargin: __i%2
@@ -311,7 +312,7 @@ Flickable {
     
     MouseArea {
         //propagateComposedEvents: false
-        acceptedButtons: Qt.NoButton
+        acceptedButtons: Qt.LeftButton
         hoverEnabled: false
         scrollGestureEnabled: false
         // The following placement allows covering beyond the boundaries of the editor and into the prompter's margins.
@@ -319,7 +320,7 @@ Flickable {
         anchors.right: parent.right
         y: -prompter.height
         height: parent.height+2*prompter.height
-        cursorShape: Qt.PointingHandCursor
+        cursorShape: (pressed || dragging) ? Qt.ClosedHandCursor : Qt.OpenHandCursor
         // Mouse wheel controls
         onWheel: {
             if (prompter.__noScroll && prompter.state==="prompting")
@@ -487,7 +488,7 @@ Flickable {
                     drag.smoothed: false
                     drag.minimumX: fontSize/2 //: -prompter.width*6/20 + width
                     drag.maximumX: prompter.width*6/20 //: -fontSize/2 + width
-                    cursorShape: Qt.SizeHorCursor
+                    cursorShape: prompter.dragging ? Qt.ClosedHandCursor : ((pressed || drag.active) ? Qt.SplitHCursor : (flicking ? Qt.OpenHandCursor : Qt.SizeHorCursor))
                     Loader {
                         sourceComponent: editorSidesBorder
                         anchors {top: parent.top; bottom: parent.bottom; horizontalCenter: parent.horizontalCenter}
@@ -514,7 +515,7 @@ Flickable {
                     drag.smoothed: false
                     drag.minimumX: -editor.x + fontSize/2 //prompter.width - editor.x - editor.width - leftWidthAdjustmentBar.drag.maximumX
                     drag.maximumX: prompter.width - editor.x - parent.width - leftWidthAdjustmentBar.drag.minimumX
-                    cursorShape: (pressed||drag.active) ? Qt.ClosedHandCursor : Qt.OpenHandCursor
+                    cursorShape: (pressed||drag.active||prompter.dragging) ? Qt.ClosedHandCursor : flicking ? Qt.OpenHandCursor : (contentsPlacement ? Qt.PointingHandCursor : Qt.OpenHandCursor)
                     Loader {
                         sourceComponent: editorSidesBorder
                         anchors {top: parent.top; bottom: parent.bottom; horizontalCenter: parent.horizontalCenter}
