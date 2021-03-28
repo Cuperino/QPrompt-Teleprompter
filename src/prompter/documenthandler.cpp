@@ -390,7 +390,7 @@ void DocumentHandler::load(const QUrl &fileUrl)
                 if (mime.inherits("text/markdown")) {
                     emit loaded(QString::fromUtf8(data), Qt::MarkdownText);
                 } else {
-                    QTextCodec *codec = QTextCodec::codecForHtml(data);
+                    QTextCodec *codec = QTextCodec::codecForName("UTF-8");
                     emit loaded(codec->toUnicode(data), Qt::AutoText);
                 }
                 doc->setModified(false);
