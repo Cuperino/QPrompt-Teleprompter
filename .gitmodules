@@ -16,3 +16,6 @@
 [submodule "src/fonts/editor/opendyslexic"]
 	path = src/fonts/editor/opendyslexic
 	url = git@github.com:antijingoist/opendyslexic.git
+[submodule "3rdparty/calligra"]
+	path = 3rdparty/calligra
+	url = git@invent.kde.org:office/calligra.git
