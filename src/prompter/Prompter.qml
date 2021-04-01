@@ -374,6 +374,7 @@ Flickable {
 
             TextArea {
                 id: editor
+
                 onCursorRectangleChanged: prompter.ensureVisible(cursorRectangle)
                 textFormat: Qt.RichText
                 wrapMode: TextArea.Wrap
@@ -530,12 +531,16 @@ Flickable {
                 
                 Keys.onPressed: {
                     if (prompter.state === "prompting")
+                        // Prevent programmable keys from typing on editor while prompting
                         switch (event.key) {
-                            case Qt.Key_Space:
-                            if (editor.focus)
-                                return
-                            case Qt.Key_Down:
-                            case Qt.Key_Up:
+                            case keys.increaseVelocity:
+                            case keys.decreaseVelocity:
+                            case keys.pause:
+                            case keys.skipBackwards:
+                            case keys.skipForward:
+                            case keys.previousMarker:
+                            case keys.nextMarker:
+                            case keys.toggle:
                                 event.accepted = true
                                 prompter.Keys.onPressed(event)
                                 return
@@ -685,25 +690,38 @@ Flickable {
         }
     }
 
+    // Configurable keys commands
+    property var keys: {
+        "increaseVelocity": Qt.Key_Down,
+        "decreaseVelocity": Qt.Key_Up,
+        "pause": Qt.Key_Space,
+        "skipBackwards": Qt.Key_PageUp,
+        "skipForward": Qt.Key_PageDown,
+        "previousMarker": Qt.Key_Home,
+        "nextMarker": Qt.Key_End,
+        "toggle": Qt.Key_F9
+    };
+    
     // Key bindings
     Keys.onPressed: {
         if (prompter.state === "prompting")
             switch (event.key) {
-                case Qt.Key_Down:
+                case keys.increaseVelocity:
                 case Qt.Key_VolumeDowm:
                     if (prompter.__invertArrowKeys)
                         prompter.decreaseVelocity(event)                        
                     else
                         prompter.increaseVelocity(event)
                     return
-                case Qt.Key_Up:
+                case keys.decreaseVelocity:
                 case Qt.Key_VolumeUp:
                     if (prompter.__invertArrowKeys)
                         prompter.increaseVelocity(event)                        
                     else
                         prompter.decreaseVelocity(event)
                     return
-                case Qt.Key_Space:
+                case keys.pause:
+                case Qt.Key_SysReq:
                 case Qt.Key_Play:
                 case Qt.Key_Pause:
                     //if (!root.__translucidBackground)
@@ -740,10 +758,10 @@ Flickable {
         
         // Keys presses that apply the same to all states
         switch (event.key) {
-            case Qt.Key_F9:
+            case keys.toggle:
                 prompter.toggle();
                 return
-            case Qt.Key_PageUp:
+            case keys.skipBackwards:
                 if (!this.__atStart) {
                     var i=__i;
                     __i=0;
@@ -754,7 +772,7 @@ Flickable {
                     prompter.position = __destination
                 }
                 return
-            case Qt.Key_PageDown:
+            case keys.skipForward:
                 if (!this.__atEnd) {
                     var i=__i;
                     __i=0;
@@ -766,11 +784,14 @@ Flickable {
                 }
                 return
             case Qt.Key_Escape:
-                prompter.state = "editing";
-                return
-            //case Qt.Key_Home:
+            case Qt.Key_Back:
+                if (prompter.state !== "editing") {
+                    prompter.state = "editing";
+                    return
+                }
+            //case keys.previousMarker:
             //    showPassiveNotification(i18n("Home Pressed")); break;
-            //case Qt.Key_End:
+            //case keys.nextMarker:
             //    showPassiveNotification(i18n("End Pressed")); break;
         }
     }

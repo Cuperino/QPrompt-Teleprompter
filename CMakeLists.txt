@@ -102,6 +102,7 @@ find_package(KF5 ${KF_MIN_VERSION} REQUIRED COMPONENTS
 add_subdirectory("3rdparty/kirigami" build/kirigami)
 add_subdirectory("3rdparty/ki18n" build/ki18n)
 add_subdirectory("3rdparty/breeze-icons" build/icons)
+#add_subdirectory("3rdparty/calligra/filters/libmsooxml" build/libmsooxml)
 add_subdirectory(src build)
 
 #find_package(KF5I18n NO_MODULE)

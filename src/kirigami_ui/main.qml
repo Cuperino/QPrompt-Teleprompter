@@ -149,6 +149,14 @@ Kirigami.ApplicationWindow {
                 //}
             },
             Kirigami.Action {
+                visible: ["android", "ios", "tvos", "ipados", "qnx"].indexOf(Qt.platform.os)===-1
+                text: i18n("Configure Inputs")
+                iconName: "keyboard"
+                onTriggered: {
+                    prompterPage.key_configuration_overlay.open()
+                }
+            },
+            Kirigami.Action {
                 text: i18n("Abou&t") + " " + aboutData.displayName
                 iconName: "help-about"
                 onTriggered: loadAboutPage()
