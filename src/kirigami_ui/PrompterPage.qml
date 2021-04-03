@@ -41,6 +41,8 @@ Kirigami.Page {
     property alias document: viewport.document
     property alias prompterBackground: viewport.prompterBackground
     property alias key_configuration_overlay: key_configuration_overlay
+    
+    property int hideDecorations: 0
 
     title: "QPrompt"
     globalToolBarStyle: Kirigami.Settings.isMobile ? Kirigami.ApplicationHeaderStyle.None : Kirigami.ApplicationHeaderStyle.ToolBar
@@ -178,6 +180,36 @@ Kirigami.Page {
                 onTriggered: viewport.overlay.positionState = "fixed"
                 enabled: viewport.overlay.positionState!=="fixed"
                 tooltip: i18n("Fix reading region to the position set using free placement mode")
+            }
+            Kirigami.Action {
+                id: hideDecorationsButton
+                text: hideDecorations===0 ? i18n("Frame Settings") : (hideDecorations===1 ? i18n("Auto hide frame") : i18n("Always hide frame"))
+                visible: ['android', 'ios', 'wasm', 'tvos', 'qnx', 'ipados'].indexOf(Qt.platform.os)===-1
+                tooltip: i18n("Auto hide window decorations when not editing and read region is set to top")
+                Kirigami.Action {
+                    text: i18n("Normal frame")
+                    tooltip: i18n("Shows windows frame when in windowed mode")
+                    onTriggered: {
+                        hideDecorations = 0
+                        parent.text = text
+                    }
+                }
+                Kirigami.Action {
+                    text: i18n("Auto hide frame")
+                    tooltip: i18n("Auto hide window decorations when not editing and read region is set to top")
+                    onTriggered: {
+                        hideDecorations = 1
+                        parent.text = text
+                    }
+                }
+                Kirigami.Action {
+                    text: i18n("Always hide frame")
+                    tooltip: i18n("Always hide window decorations")
+                    onTriggered: {
+                        hideDecorations = 2
+                        parent.text = text
+                    }
+                }
             }
         },
         Kirigami.Action {

@@ -67,8 +67,8 @@ Kirigami.ApplicationWindow {
     color: "transparent"
     // More ways to enforce transparency across systems
     //visible: true
-    //flags: Qt.FramelessWindowHint
-    
+    flags: prompterPage.hideDecorations===2 || prompterPage.hideDecorations===1 && prompterPage.overlay.atTop && prompterPage.prompter.state!=="editing" ? Qt.FramelessWindowHint : Qt.Window
+
     background: Rectangle {
         id: appTheme
         color: __backgroundColor
@@ -117,25 +117,25 @@ Kirigami.ApplicationWindow {
         actions: [
             Kirigami.Action {
                 text: i18n("&New")
-                iconName: "folder"
+                iconName: "document-new"
                 shortcut: i18n("Ctrl+N")
                 onTriggered: prompterPage.document.newDocument()
             },
             Kirigami.Action {
                 text: i18n("&Open")
-                iconName: "folder"
+                iconName: "document-open"
                 shortcut: i18n("Ctrl+O")
                 onTriggered: prompterPage.document.open()
             },
             Kirigami.Action {
                 text: i18n("&Save")
-                iconName: "folder"
+                iconName: "document-save"
                 shortcut: i18n("Ctrl+S")
                 onTriggered: prompterPage.document.saveDialog()
             },
             Kirigami.Action {
                 text: i18n("Save &As")
-                iconName: "folder"
+                iconName: "document-save-as"
                 shortcut: i18n("Ctrl+Shift+S")
                 onTriggered: prompterPage.document.saveAsDialog()
             },
@@ -157,13 +157,45 @@ Kirigami.ApplicationWindow {
                 }
             },
             Kirigami.Action {
+                text: i18n("&Controls Settings")
+                iconName: "hand"
+                Kirigami.Action {
+                    text: i18n("Disable scrolling while prompting")
+                    checkable: true
+                    checked: root.__noScroll
+                    onTriggered: root.__noScroll = !root.__noScroll
+                }
+                Kirigami.Action {
+                    text: i18n("Use scroll as velocity &dial")
+                    enabled: !root.__noScroll
+                    ToolTip.text: i18n("Use mouse and touchpad scroll as speed dial while prompting")
+                    checkable: true
+                    checked: root.__scrollAsDial
+                    onTriggered: root.__scrollAsDial = !root.__scrollAsDial
+                }
+                Kirigami.Action {
+                    text: i18n("Invert &arrow keys")
+                    enabled: !root.__noScroll
+                    checkable: true
+                    checked: root.__invertArrowKeys
+                    onTriggered: root.__invertArrowKeys = !root.__invertArrowKeys
+                }
+                Kirigami.Action {
+                    text: i18n("Invert &scroll direction")
+                    enabled: !root.__noScroll
+                    checkable: true
+                    checked: root.__invertScrollDirection
+                    onTriggered: root.__invertScrollDirection = !root.__invertScrollDirection
+                }
+            },
+            Kirigami.Action {
                 text: i18n("Abou&t") + " " + aboutData.displayName
                 iconName: "help-about"
                 onTriggered: loadAboutPage()
             },
             Kirigami.Action {
                 text: i18n("&Quit")
-                iconName: "close"
+                iconName: "exit"
                 shortcut: i18n("Ctrl+Q")
                 onTriggered: close()
             }
@@ -175,6 +207,15 @@ Kirigami.ApplicationWindow {
                 onClicked: {
                     prompterPage.document.loadInstructions()
                     globalMenu.close()
+                }
+            }
+            Button {
+                text: i18n("&Full Screen")
+                flat: true
+                checkable: true
+                checked: root.__fullScreen
+                onClicked: {
+                    root.__fullScreen = !root.__fullScreen
                 }
             }
             Button {
