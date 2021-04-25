@@ -299,7 +299,21 @@ Kirigami.Page {
             id: countdownConfigButton
             text: i18n("Countdown")
             Kirigami.Action {
+                id: enableFramingButton
+                enabled: !autoStartCountdownButton.checked
+                checkable: true
+                checked: viewport.countdown.frame && !autoStartCountdownButton.checked
+                text: i18n("Auto Frame")
+                onTriggered: {
+                    viewport.countdown.frame = !viewport.countdown.frame
+                    //// Future: Implement way to way to prevent Kirigami.Action from closing parent Action menu.
+                    //if (viewport.countdown.enabled)
+                    //    // Use of implemented feature might go here.
+                }
+            }
+            Kirigami.Action {
                 id: enableCountdownButton
+                enabled: viewport.countdown.frame
                 checkable: true
                 checked: viewport.countdown.enabled
                 text: i18n("Countdown")
@@ -312,7 +326,7 @@ Kirigami.Page {
             }
             Kirigami.Action {
                 id: autoStartCountdownButton
-                enabled: viewport.countdown.enabled
+                enabled: enableCountdownButton.enabled && viewport.countdown.enabled
                 checkable: true
                 checked: viewport.countdown.autoStart
                 text: i18n("Auto Countdown")
@@ -321,7 +335,7 @@ Kirigami.Page {
             }
             Kirigami.Action {
                 id: setCountdownButton
-                enabled: viewport.countdown.enabled
+                enabled: enableCountdownButton.enabled && viewport.countdown.enabled
                 text: i18n("Set Duration")
                 onTriggered: {
                     viewport.countdown.configuration.open()
