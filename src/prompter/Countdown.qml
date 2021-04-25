@@ -40,7 +40,7 @@ Item {
     property bool running: false
     visible: false
     opacity: 0  // Initial opacity should be 0 to prevent animation jitters on first run.
-    property int __iterations: 2
+    property int __iterations: 1
     property int __disappearWithin: 1
     readonly property real __vh: parent.height / 100
     readonly property real __vw: parent.width / 100
@@ -331,31 +331,33 @@ Item {
                     Layout.leftMargin: Kirigami.Units.smallSpacing
                     Layout.rightMargin: Kirigami.Units.smallSpacing
                     value: __iterations
+                    from: 1
                     to: 300  // 5*60
                     onValueModified: {
                         focus: true
                         __iterations = value
                         if (__disappearWithin && __disappearWithin >= __iterations)
-                            __disappearWithin = __iterations-1
+                            __disappearWithin = __iterations
                     }
                 }
             }
             ColumnLayout {
                 Label {
-                    text: i18np("Disappear within 1 second",
-                                "Disappear within %1 seconds", __disappearWithin);
+                    text: i18np("Disappear within 1 second to go",
+                                "Disappear within %1 seconds to go", __disappearWithin);
                 }
                 SpinBox {
                     Layout.fillWidth: true
                     Layout.leftMargin: Kirigami.Units.smallSpacing
                     Layout.rightMargin: Kirigami.Units.smallSpacing
                     value: __disappearWithin
+                    from: 1
                     to: 10
                     onValueModified: {
                         focus: true
                         __disappearWithin = value
                         if (__iterations <= __disappearWithin)
-                            __iterations = __disappearWithin+1
+                            __iterations = __disappearWithin
                     }
                 }
             }
