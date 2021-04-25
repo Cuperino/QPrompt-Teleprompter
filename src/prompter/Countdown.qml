@@ -34,8 +34,8 @@ Item {
     function requestPaint() {
         canvas.requestPaint()
     }
-    
     enabled: true
+    property bool frame: true
     property bool autoStart: false
     property bool running: false
     visible: false
@@ -61,9 +61,17 @@ Item {
     }
     height: prompter.height
     
+//     Behavior on opacity {
+//         enabled: true
+//         animation: NumberAnimation {
+//             duration: Kirigami.Units.shortDuration
+//             easing.type: Easing.OutQuad
+//         }
+//     }
+    
     Rectangle {
         anchors.fill: parent
-        opacity: 0.48
+        opacity: canvas.enabled ? 0.48 : 0.24
         //opacity: 0.3
         color: "#333"
     }
@@ -75,14 +83,14 @@ Item {
         property int __iteration: countdown.__iterations - 1
         property real rotations: 0
         // __countdownRadius is of the size from the center to any corner, which is also the hypotenuse formed by taking half of the width and height as hicks (catetos).
-        readonly property real __hypotenuse: Math.sqrt(Math.pow(parent.height/2, 2)+Math.pow(parent.width/2, 2))
+        readonly property real __hypotenuse: 1.4333*Math.sqrt(Math.pow(parent.height/2, 2)+Math.pow(parent.width/2, 2))
         
         onRotationsChanged: requestPaint()
         onWidthChanged: requestPaint()
         onHeightChanged: requestPaint()
         
         onPaint: {
-            const centreX = prompter.centreX;
+            const centreX = prompter.editorXOffset*prompter.width+prompter.centreX;
             const centreY = prompter.centreY;
             // Initial canvas values
             const ctx = getContext("2d");
@@ -107,23 +115,25 @@ Item {
             ctx.moveTo(0, overlay.__readRegionPlacement*(height-overlay.readRegionHeight)+overlay.readRegionHeight/2);
             ctx.lineTo(width, overlay.__readRegionPlacement*(height-overlay.readRegionHeight)+overlay.readRegionHeight/2);
             ctx.stroke();
-            // Background Radial Line
-            ctx.strokeStyle = "#000";
-            ctx.lineCap = 'round';
-            ctx.beginPath();
-            ctx.arc(centreX, centreY, __hypotenuse+ctx.lineWidth, -Math.PI/2, Math.PI*rotations-Math.PI/2, false);
-            ctx.lineTo(centreX, centreY);
-            ctx.stroke();
-            // Concentric circles
-            ctx.strokeStyle = "#FFF";
-            // Outer circle
-            ctx.beginPath();
-            ctx.arc(centreX, centreY, 84*__minv/2, 0, 2*Math.PI, false);
-            ctx.stroke();
-            // Inner circle
-            ctx.beginPath();
-            ctx.arc(centreX, centreY, 74*__minv/2, 0, 2*Math.PI, false);
-            ctx.stroke();
+            if (canvas.enabled) {
+                // Background Radial Line
+                ctx.strokeStyle = "#333";
+                ctx.lineCap = 'round';
+                ctx.beginPath();
+                ctx.arc(centreX, centreY, __hypotenuse+ctx.lineWidth, -Math.PI/2, Math.PI*rotations-Math.PI/2, false);
+                ctx.lineTo(centreX, centreY);
+                ctx.stroke();
+                // Concentric circles
+                ctx.strokeStyle = "#FFF";
+                // Outer circle
+                ctx.beginPath();
+                ctx.arc(centreX, centreY, 84*__minv/2, 0, 2*Math.PI, false);
+                ctx.stroke();
+                // Inner circle
+                ctx.beginPath();
+                ctx.arc(centreX, centreY, 74*__minv/2, 0, 2*Math.PI, false);
+                ctx.stroke();
+            }
         }
         
         NumberAnimation {
@@ -188,8 +198,16 @@ Item {
     }
     
     Label {
-        anchors.fill: parent
+        visible: countdown.enabled
+//         anchors.fill: parent
+        anchors.top: parent.top
+        anchors.bottom: parent.bottom
         text: String(canvas.__iteration+1)
+        x: editor.x + prompter.editorXOffset*prompter.width // +prompter.centreX // -font.pixelSize/4
+        width: editor.width
+        //leftMargin: prompter.editorXOffset*prompter.width+prompter.centreX
+        //anchors.leftMargin: prompter.editorXOffset*prompter.width+prompter.centreX
+        //anchors.rightMargin: prompter.editorXOffset*prompter.width+prompter.centreX
         horizontalAlignment: Text.AlignHCenter
         verticalAlignment: Text.AlignVCenter
         color: "#FFF"

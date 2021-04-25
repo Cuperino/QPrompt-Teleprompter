@@ -240,12 +240,12 @@ Flickable {
         var nextIndex = ( states.indexOf(state) + 1 ) % states.length
         // Skip countdown if countdown.__iterations is 0
         if (states[nextIndex]===states[1]) {
-            if (!countdown.enabled)
+            if (!countdown.frame)
                 nextIndex = ( states.indexOf(state) + 3 ) % states.length
             else if (countdown.autoStart)
                 nextIndex = ( states.indexOf(state) + 2 ) % states.length
         }
-        if (states[nextIndex]===states[2] && countdown.__iterations===0)
+        if (states[nextIndex]===states[2] && (countdown.__iterations===0 || !countdown.enabled))
             nextIndex = ( states.indexOf(state) + 2 ) % states.length
         state = states[nextIndex]
 
