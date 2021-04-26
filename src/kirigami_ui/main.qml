@@ -43,6 +43,7 @@ Kirigami.ApplicationWindow {
     property bool __invertArrowKeys: false
     property bool __invertScrollDirection: false
     property bool __noScroll: false
+    property bool __telemetry: true
     property bool italic
     
     //property int prompterVisibility: Kirigami.ApplicationWindow.Maximized
@@ -150,7 +151,7 @@ Kirigami.ApplicationWindow {
             },
             Kirigami.Action {
                 visible: ["android", "ios", "tvos", "ipados", "qnx"].indexOf(Qt.platform.os)===-1
-                text: i18n("Configure Inputs")
+                text: i18n("Keyboard Inputs")
                 iconName: "keyboard"
                 onTriggered: {
                     prompterPage.key_configuration_overlay.open()
@@ -186,6 +187,16 @@ Kirigami.ApplicationWindow {
                     checkable: true
                     checked: root.__invertScrollDirection
                     onTriggered: root.__invertScrollDirection = !root.__invertScrollDirection
+                }
+            },
+            Kirigami.Action {
+                text: i18n("Other &Settings")
+                iconName: "configure"
+                Kirigami.Action {
+                    text: i18n("Telemetry")
+                    onTriggered: {
+                        prompterPage.telemetry_overlay.open()
+                    }
                 }
             },
             Kirigami.Action {

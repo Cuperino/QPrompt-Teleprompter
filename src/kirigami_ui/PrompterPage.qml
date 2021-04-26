@@ -41,6 +41,7 @@ Kirigami.Page {
     property alias document: viewport.document
     property alias prompterBackground: viewport.prompterBackground
     property alias key_configuration_overlay: key_configuration_overlay
+    property alias telemetry_overlay: telemetry_overlay
     
     property int hideDecorations: 0
 
@@ -722,6 +723,152 @@ Kirigami.Page {
                 }
             }
             */
+        }
+    }
+    Kirigami.OverlaySheet {
+        id: telemetry_overlay
+        onSheetOpenChanged: prompterPage.actions.main.checked = sheetOpen
+        
+        background: Rectangle {
+            color: appTheme.__backgroundColor
+            anchors.fill: parent
+        }
+        header: Kirigami.Heading {
+            text: i18n("Telemetry Settings")
+            level: 1
+        }
+        
+        GridLayout {
+            id: telemetry_settings
+            width: parent.implicitWidth
+            columns: 2
+            Label {
+                text: i18n("Telemetry")
+            }
+            Button {
+                text: root.__telemetry ? i18n("Enabled") : i18n("Disabled")
+                checkable: true
+                checked: root.__telemetry
+                flat: true
+                Layout.fillWidth: true
+                onClicked: root.__telemetry = !root.__telemetry
+            }
+            Label {
+                text: ""
+            }
+            TextArea {
+                implicitWidth: parent.width-80
+                //height: 300
+                background: Item{}
+                readOnly: true
+                wrapMode: TextEdit.Wrap
+                text: i18n("You can help improve QPrompt by contributing information on how you use it. Contributing this information is optional and entirely anonymous. We never collect your personal data, files you use, contents you work with, or information that could identify you.")
+            }
+            Button {
+                text: checked ? i18n("On") : i18n("Off")
+                enabled: root.__telemetry
+                checkable: true
+                checked: root.__telemetry
+                flat: true
+                Layout.fillWidth: true
+                //onClicked: root.__telemetry = !root.__telemetry
+            }
+                //text: i18n("Information collected once per session")
+            TextArea {
+                //id: platformTelemetryToggle
+                implicitWidth: parent.width-80
+                background: Item{}
+                readOnly: true
+                wrapMode: TextEdit.Wrap
+                text: i18n("Basic program and system information")+"\n"+
+                " + " + i18n("Application version")+"\n"+
+                " + " + i18n("Platform information")+"\n"+
+                " + " + i18n("Qt version information")+"\n"+
+                " + " + i18n("Locale information (timezone and keyboard layout)")
+            }
+            Button {
+                text: checked ? i18n("On") : i18n("Off")
+                enabled: root.__telemetry
+                checkable: true
+                checked: root.__telemetry
+                flat: true
+                Layout.fillWidth: true
+                //onClicked: root.__telemetry = !root.__telemetry
+            }
+            TextArea {
+                //id: runsTelemetryToggle
+                implicitWidth: parent.width-80
+                background: Item{}
+                readOnly: true
+                wrapMode: TextEdit.Wrap
+                text: i18n("Program run statistics: Help us study user retention")+"\n"+
+                " + " + i18n("Randomly generated install ID")+"\n"+
+                " + " + i18n("Launch times")+"\n"+
+                " + " + i18n("Usage time")+"\n"+
+                " + " + i18n("Locale information (timezone and keyboard layout)")
+            }
+                //text: i18n("Information collected once per prompt")
+            Button {
+                text: checked ? i18n("On") : i18n("Off")
+                enabled: root.__telemetry
+                checkable: true
+                checked: root.__telemetry
+                flat: true
+                Layout.fillWidth: true
+                //onClicked: root.__telemetry = !root.__telemetry
+            }
+            TextArea {
+                //id: featureTelemetryToggle
+                implicitWidth: parent.width-80
+                background: Item{}
+                readOnly: true
+                wrapMode: TextEdit.Wrap
+                text: i18n("Feature use frequency: Help us know what features are most important")+"\n"+
+                " + " + i18n("Flip settings")+"\n"+
+                " + " + i18n("Reading region settings")+"\n"+
+                " + " + i18n("Pointer settings")+"\n"+
+                " + " + i18n("Countdown settings")+"\n"+
+                " + " + i18n("Keyboard shortcut settings")+"\n"+
+                " + " + i18n("Input control settings")+"\n"+
+                " + " + i18n("Base speed and acceleration curvature settings")+"\n"+
+                " + " + i18n("Background color and opacity settings")+"\n"+
+                " + " + i18n("Presence of a background image")
+            }
+            Button {
+                //id: operationsTelemetryToggle
+                text: checked ? i18n("On") : i18n("Off")
+                enabled: root.__telemetry
+                checkable: true
+                checked: root.__telemetry
+                flat: true
+                Layout.fillWidth: true
+                //onClicked: root.__telemetry = !root.__telemetry
+            }
+            TextArea {
+                implicitWidth: parent.width-80
+                background: Item{}
+                readOnly: true
+                wrapMode: TextEdit.Wrap
+                text: i18n("Help us understand how users operate QPrompt.")+"\n"+
+                " + " + i18n("Random session ID")+"\n"+
+                " + " + i18n("Session number")+"\n"+
+                " + " + i18n("Session prompt number")+"\n"+
+                " + " + i18n("Window dimensions")+"\n"+
+                " + " + i18n("Prompt area dimensions")+"\n"+
+                " + " + i18n("Dimensions of lines of text being prompted")+"\n"+
+                " + " + i18n("Font settings per block of lines of text being prompted")+"\n"+
+                " + " + i18n("Languages likely present in the text being prompted")+"\n"+
+                " + " + i18n("Prompt starting line number and position")+"\n"+
+                " + " + i18n("Manual scroll start and end timestamps")+"\n"+
+                " + " + i18n("Scroll starting line number and position")+"\n"+
+                " + " + i18n("Scroll end line number and position")+"\n"+
+                " + " + i18n("Scroll duration")+"\n"+
+                " + " + i18n("Prompt duration")+"\n"+
+                " + " + i18n("Velocity changes with timestamp")+"\n"+
+                " + " + i18n("Source of changes to velocity")+"\n"+
+                " + " + i18n("Source of manual changes to scroll position")+"\n\n"+
+                "***" + i18n("This information is very important to me, Javier, the project author. I've gone the extra mile not to collect any of the text you work with, so I ask you: please leave the operations telemetry enabled.") + "***"
+            }
         }
     }
 }

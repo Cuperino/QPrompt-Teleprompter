@@ -590,7 +590,7 @@ Flickable {
         }
 
         function newDocument() {
-            load("qrc:/untitled.html")
+            document.load("qrc:/untitled.html")
             isNewFile = true
             resetDocumentPosition()
             if (!root.__translucidBackground)
