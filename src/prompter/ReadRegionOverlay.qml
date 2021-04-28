@@ -41,12 +41,7 @@ Item {
     property string positionState: "middle"
     property string styleState: Qt.application.layoutDirection===Qt.LeftToRight ? "barsLeft" : "barsRight"
     readonly property alias readRegionHeight: readRegion.height
-    readonly property Scale __flips: Scale {
-        origin.x: width/2
-        origin.y: height/2
-        xScale: prompter.state!=="editing" && prompter.__flipX ? -1 : 1
-        yScale: prompter.state!=="editing" && prompter.__flipY ? -1 : 1
-    }
+    readonly property Scale __flips: Flip{}
     transform: __flips
     //anchors.fill: parent
     anchors {

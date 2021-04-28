@@ -46,12 +46,7 @@ Item {
     readonly property real __vw: parent.width / 100
     readonly property real __minv: __vw<__vh ? __vw : __vh
     readonly property real __maxv: __vw>__vh ? __vw : __vh
-    readonly property Scale __flips: Scale {
-        origin.x: width/2
-        origin.y: height/2
-        xScale: prompter.state!=="editing" && prompter.__flipX ? -1 : 1
-        yScale: prompter.state!=="editing" && prompter.__flipY ? -1 : 1
-    }
+    readonly property Scale __flips: Flip{}
     transform: __flips
     anchors {
         left: parent.left
