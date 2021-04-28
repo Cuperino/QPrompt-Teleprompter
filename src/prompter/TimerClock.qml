@@ -65,4 +65,17 @@ Item {
         topPadding: 2 * timer.size * prompter.__vw
         bottomPadding: 2 * timer.size * prompter.__vw
     }
+    
+    // This timer implementation is incorrect but it will suffice for now. Results aren't wrong, but they can become so, as it does not measure elapsed time but time deltas.
+    Timer {
+        property int elapsedSeconds: 0 // 3599*100
+        interval: 1000; running: true; repeat: true
+        onTriggered: {
+            ++elapsedSeconds;
+            let seconds = elapsedSeconds % 60 / 100;
+            let minutes = Math.floor((elapsedSeconds / 60) % 60) / 100;
+            let hours = Math.floor((elapsedSeconds / 3600) % 100) / 100;
+            clock.text = (hours).toFixed(2).toString().slice(2)+":"+(minutes).toFixed(2).toString().slice(2)+":"+(seconds).toFixed(2).toString().slice(2);
+        }
+    }
 }
