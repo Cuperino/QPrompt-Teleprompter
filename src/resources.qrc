@@ -14,6 +14,7 @@
         <file alias="TimerClock.qml">prompter/TimerClock.qml</file>
         <file alias="ReadRegionOverlay.qml">prompter/ReadRegionOverlay.qml</file>
         <file alias="PrompterBackground.qml">prompter/PrompterBackground.qml</file>
+        <file alias="Flip.qml">prompter/Flip.qml</file>
         <!-- Theme Configuration -->
         <file>qtquickcontrols2.conf</file>
         <!-- Icons -->

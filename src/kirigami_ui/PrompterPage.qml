@@ -343,6 +343,28 @@ Kirigami.Page {
                 }
             }
         },
+        Kirigami.Action {
+            id: timerButton
+            text: i18n("Timer")
+            Kirigami.Action {
+                id: enableStopwatchButton
+                checkable: true
+                checked: viewport.timer.stopwatch
+                text: i18n("Stopwatch")
+                onTriggered: {
+                    viewport.timer.stopwatch = !viewport.timer.stopwatch
+                }
+            }
+            Kirigami.Action {
+                id: enableETAButton
+                checkable: true
+                checked: viewport.timer.eta
+                text: i18n("ETA")
+                onTriggered: {
+                    viewport.timer.eta = !viewport.timer.eta
+                }
+            }
+        },
         //Kirigami.Action {
            //id: projectionConfigButton
            //text: i18n("Clone")

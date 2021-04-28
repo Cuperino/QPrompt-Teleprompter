@@ -155,12 +155,7 @@ Flickable {
     property bool __flipX: false
     property bool __flipY: false
     readonly property int __speedLimit: __vw * 10000 // 2*width
-    readonly property Scale __flips: Scale {
-        origin.x: prompter.width/2
-        origin.y: height/2
-        xScale: prompter.state!=="editing" && prompter.__flipX ? -1 : 1
-        yScale: prompter.state!=="editing" && prompter.__flipY ? -1 : 1
-    }
+    readonly property Scale __flips: Flip{}
     // Clipping improves performance on large files and font sizes.
     // It also provides a workaround to the lack of background in the global toolbar when using transparent backgrounds in Material theme.
     clip: true
@@ -168,20 +163,6 @@ Flickable {
     // Progress indicator
     readonly property real progress: (position+__jitterMargin)/editor.height
     //layer.enabled: true
-    Behavior on __flips.xScale {
-        enabled: true
-        animation: NumberAnimation {
-            duration: Kirigami.Units.longDuration
-            easing.type: Easing.OutQuad
-        }
-    }
-    Behavior on __flips.yScale {
-        enabled: true
-        animation: NumberAnimation {
-            duration: Kirigami.Units.longDuration
-            easing.type: Easing.OutQuad
-        }
-    }
 
     // Flick while prompting
     onDragStarted: {
