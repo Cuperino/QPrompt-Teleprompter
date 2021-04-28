@@ -32,8 +32,8 @@ Item {
     property alias countdown: countdown
     property alias overlay: overlay
     property alias prompterBackground: prompterBackground
-    //property alias timer: timer
-    
+    property alias timer: timer
+
     anchors.fill: parent
     //layer.enabled: true
     // Undersample
@@ -56,11 +56,11 @@ Item {
         anchors.fill: parent
     }
     
-    //TimerClock {
-    //    id: timer
-    //    z: 4
-    //    anchors.fill: parent
-    //}
+    TimerClock {
+       id: timer
+       z: 4
+       anchors.fill: parent
+    }
     
     Prompter {
         id: prompter
