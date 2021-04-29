@@ -169,7 +169,7 @@ Kirigami.ApplicationWindow {
                 Kirigami.Action {
                     text: i18n("Use scroll as velocity &dial")
                     enabled: !root.__noScroll
-                    ToolTip.text: i18n("Use mouse and touchpad scroll as speed dial while prompting")
+                    // ToolTip.text: i18n("Use mouse and touchpad scroll as speed dial while prompting")
                     checkable: true
                     checked: root.__scrollAsDial
                     onTriggered: root.__scrollAsDial = !root.__scrollAsDial

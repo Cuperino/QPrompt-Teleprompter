@@ -102,7 +102,7 @@ class DocumentHandler : public QObject
     Q_PROPERTY(bool strike READ strike WRITE setStrike NOTIFY strikeChanged)
     
     Q_PROPERTY(bool marker READ marker WRITE setMarker NOTIFY markerChanged)
-    
+
     Q_PROPERTY(int fontSize READ fontSize WRITE setFontSize NOTIFY fontSizeChanged)
     
     Q_PROPERTY(QString fileName READ fileName NOTIFY fileUrlChanged)
@@ -150,9 +150,6 @@ public:
     bool strike() const;
     void setStrike(bool strike);
     
-    bool marker() const;
-    void setMarker(bool marker);
-    
     int fontSize() const;
     void setFontSize(int size);
     
@@ -162,6 +159,10 @@ public:
     
     bool modified() const;
     void setModified(bool m);
+    
+    bool marker() const;
+    void setMarker(bool marker);
+    Q_INVOKABLE void getMarkers();
     
 public Q_SLOTS:
     void load(const QUrl &fileUrl);

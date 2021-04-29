@@ -82,6 +82,7 @@
 #include <QTextCharFormat>
 #include <QTextCodec>
 #include <QTextDocument>
+#include <QTextBlock>
 #include <QDebug>
 
 DocumentHandler::DocumentHandler(QObject *parent)
@@ -489,4 +490,22 @@ void DocumentHandler::setModified(bool m)
 {
     if (m_document)
         m_document->textDocument()->setModified(m);
+}
+
+// Markers (Anchors)
+
+void DocumentHandler::getMarkers() {
+    for (QTextBlock it = this->textDocument()->begin(); it != this->textDocument()->end(); it = it.next()) {
+        QTextBlock::iterator jt;
+        for (jt = it.begin(); !(jt.atEnd()); ++jt) {
+            QTextFragment currentFragment = jt.fragment();
+            if (currentFragment.isValid())
+                // processFragment(currentFragment);
+                if (currentFragment.charFormat().isAnchor()) {
+                    int anchorLocation = currentFragment.position();
+                    QStringList anchorNames = currentFragment.charFormat().anchorNames();
+                    qDebug() << anchorLocation << anchorNames;
+                }
+        }
+    }
 }

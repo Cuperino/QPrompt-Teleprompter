@@ -141,6 +141,15 @@ ToolBar {
                 checkable: true
                 onClicked: prompter.document.marker = !prompter.document.marker
             }
+            ToolButton {
+                id: bookmarkListButton
+                text: "\uE845"
+                contentItem: Loader { sourceComponent: textComponent }
+                font.family: iconFont.name
+                font.pointSize: 13
+                focusPolicy: Qt.TabFocus
+                onClicked: prompter.document.getMarkers()
+            }
             ToolSeparator {
                 contentItem.visible: anchorsRow.y === undoRedoRow.y
             }
