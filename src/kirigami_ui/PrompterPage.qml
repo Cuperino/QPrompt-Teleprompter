@@ -871,7 +871,7 @@ Kirigami.Page {
                 background: Item{}
                 readOnly: true
                 wrapMode: TextEdit.Wrap
-                text: i18n("Help us understand how users operate QPrompt.")+"\n"+
+                text: i18n("Help us understand how users operate QPrompt")+"*\n"+
                 " + " + i18n("Random session ID")+"\n"+
                 " + " + i18n("Session number")+"\n"+
                 " + " + i18n("Session prompt number")+"\n"+
@@ -889,7 +889,7 @@ Kirigami.Page {
                 " + " + i18n("Velocity changes with timestamp")+"\n"+
                 " + " + i18n("Source of changes to velocity")+"\n"+
                 " + " + i18n("Source of manual changes to scroll position")+"\n\n"+
-                "***" + i18n("This information is very important to me, Javier, the project author. I've gone the extra mile not to collect any of the text you work with, so I ask you: please leave the operations telemetry enabled.") + "***"
+                "* " + i18n("This information is very important to me, Javier, the project author, and it would help make QPrompt's development sustainable. I've gone the extra mile not to collect any of the actual text or visual contents that you work with, so I ask you: please leave telemetry enabled.")
             }
         }
     }
