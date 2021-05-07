@@ -38,8 +38,8 @@
  ** information use the contact form at https://www.qt.io/contact-us.
  **
  ** BSD License Usage
- ** Alternatively, you may use this file under the terms of the BSD license
- ** as follows:
+ ** Alternatively, you may use the original examples code in this file under
+ ** the terms of the BSD license as follows:
  **
  ** "Redistribution and use in source and binary forms, with or without
  ** modification, are permitted provided that the following conditions are
