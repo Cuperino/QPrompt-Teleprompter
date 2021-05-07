@@ -48,11 +48,12 @@ Kirigami.ApplicationWindow {
     
     //property int prompterVisibility: Kirigami.ApplicationWindow.Maximized
     property double __opacity: 1
+    property int __iDefault: 3
     property real __baseSpeed: baseSpeedSlider.value
     property real __curvature: baseAccelerationSlider.value
     
     title: prompterPage.document.fileName + (prompterPage.document.modified?"*":"") + " - " + aboutData.displayName
-    width: 1064  // Keep at or bellow 1024 and at or above 960, for best usability with common 4:3 resolutions
+    width: 1200  // Set to 1200 to fit both 1280 4:3 and 1200 height monitors. Keep at or bellow 1024 and at or above 960, for best usability with common 4:3 resolutions
     height: 728  // Keep and test at 728 so that it works well with 1366x768 screens.
     // Making width and height start maximized
     //width: screen.desktopAvailableWidth
@@ -264,9 +265,9 @@ Kirigami.ApplicationWindow {
             Slider {
                 id: baseSpeedSlider
                 from: 0.1
-                value: 2
-                to: 10
-                stepSize: 0.1
+                value: 1.5
+                to: 5
+                stepSize: 0.05
                 Layout.fillWidth: true
                 Layout.leftMargin: 16
                 Layout.rightMargin: 16
@@ -279,8 +280,8 @@ Kirigami.ApplicationWindow {
             Slider {
                 id: baseAccelerationSlider
                 from: 0.5
-                value: 1.2
-                to: 3
+                value: 1.15
+                to: 2
                 stepSize: 0.05
                 Layout.fillWidth: true
                 Layout.leftMargin: 16

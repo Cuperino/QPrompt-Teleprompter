@@ -23,14 +23,18 @@
 import QtQuick 2.15
 import QtQuick.Controls 2.15
 import QtQuick.Shapes 1.15
+import QtQuick.Layouts 1.15
 
 import com.cuperino.qprompt.promptertimer 1.0
 
 Item {
-    id: timer
+    id: clock
+    property alias running: timer.running
+    property alias elapsedSeconds: timer.elapsedSeconds
+//     property alias timeToArival: prompter.__timeToArival
     property bool stopwatch: false
-    property bool eta: false
-    property real size: 1
+    property bool eta: true
+    property real size: 0.5
     enabled: stopwatch || eta
     visible: enabled
     clip: true
@@ -54,13 +58,13 @@ Item {
         id: stopwatch
         readonly property real centreX: width / 2;
         readonly property real centreY: height / 2;
-        readonly property int marginX: 4 * timer.size * prompter.__vw
-        readonly property int marginY: 2 * timer.size * prompter.__vw
-        readonly property real fontSize: timer.size * prompter.__vw << 3
-        x: timer.centreX - centreX
-        y: timer.height - height - centreY / 2
-        width: promptTime.implicitWidth
-        height: (promptTime.visible ? promptTime.implicitHeight : 0) + (etaTimer.visible ? etaTimer.implicitHeight : 0)
+        readonly property int marginX: 4 * clock.size * prompter.__vw
+        readonly property int marginY: 2 * clock.size * prompter.__vw
+        readonly property real fontSize: clock.size * prompter.__vw << 3
+        x: clock.centreX - centreX
+        y: clock.height - height - centreY / 2
+        width: clockGrid.implicitWidth
+        height: clockGrid.implicitHeight
         Rectangle {
             id: background
             anchors.fill: parent
@@ -68,34 +72,39 @@ Item {
             color: "#131619"
             radius: stopwatch.fontSize
         }
-        Label {
-            id: promptTime
-            visible: timer.stopwatch
-            text: i18n("SW") + " " + "00:00:00"
-            anchors.top: parent.top
-            font.family: monoSpacedFont.name
-            font.pixelSize: stopwatch.fontSize
-            leftPadding: stopwatch.marginX
-            rightPadding: stopwatch.marginX
-            topPadding: stopwatch.marginY
-            bottomPadding: etaTimer.visible ? 0 : stopwatch.marginY
-        }
-        Label {
-            id: etaTimer
-            visible: timer.eta
-            text: i18n("ET") + " " + "00:00:00"
-            // anchors.top: promptTime.visible ? promptTime.bottom : parent.top
-            anchors.bottom: parent.bottom
-            font.family: monoSpacedFont.name
-            font.pixelSize: stopwatch.fontSize
-            leftPadding: stopwatch.marginX
-            rightPadding: stopwatch.marginX
-            topPadding: promptTime.visible ? 0 : stopwatch.marginY
-            bottomPadding: stopwatch.marginY
+        GridLayout {
+            id: clockGrid
+            rows: 1
+            columns: 2
+            Label {
+                id: promptTime
+                visible: clock.stopwatch
+                text: /*i18n("SW") + " " +*/ "00:00:00"
+                //anchors.top: parent.top
+                font.family: monoSpacedFont.name
+                font.pixelSize: stopwatch.fontSize
+                leftPadding: stopwatch.marginX
+                rightPadding: stopwatch.marginX
+                topPadding: stopwatch.marginY
+                bottomPadding: stopwatch.marginY
+            }
+            Label {
+                id: etaTimer
+                visible: clock.eta
+                text: /*i18n("ET") + " " +*/ "00:00:00"
+                // anchors.top: promptTime.visible ? promptTime.bottom : parent.top
+                //anchors.bottom: parent.bottom
+                font.family: monoSpacedFont.name
+                font.pixelSize: stopwatch.fontSize
+                leftPadding: stopwatch.marginX
+                rightPadding: stopwatch.marginX
+                topPadding: stopwatch.marginY
+                bottomPadding: stopwatch.marginY
+            }
         }
         MouseArea {
             id: timerDrag
-            readonly property int marginY: 3 * timer.size * prompter.__vw
+            readonly property int marginY: 3 * clock.size * prompter.__vw
             anchors.fill: parent
             scrollGestureEnabled: false
             acceptedButtons: Qt.LeftButton
@@ -108,19 +117,52 @@ Item {
             drag.minimumY: parent.parent.y-this.marginY
             drag.maximumY: parent.parent.height-this.height+this.marginY
             cursorShape: (pressed||drag.active||prompter.dragging) ? Qt.ClosedHandCursor : Qt.PointingHandCursor
+            onDoubleClicked: clock.reset()
         }
     }
-    
     // This timer implementation is incorrect but it will suffice for now. Results aren't wrong, but they can become so after long periods of time if CPU performance is low, as this does not measure elapsed time but time deltas.
     Timer {
+        repeat: true
+        running: clock.eta
+        triggeredOnStart: true
+        interval: 120;
+        onTriggered: {
+            updateETAText();
+        }
+    }
+    Timer {
+        id: timer
         property int elapsedSeconds: 0 // 3599*100
-        interval: 1000; running: true; repeat: true
+        repeat: true
+        running: false
+        triggeredOnStart: false
+        interval: 1000;
         onTriggered: {
             ++elapsedSeconds;
-            let seconds = elapsedSeconds % 60 / 100;
-            let minutes = Math.floor((elapsedSeconds / 60) % 60) / 100;
-            let hours = Math.floor((elapsedSeconds / 3600) % 100) / 100;
-            promptTime.text = i18n("SW") + " " + (hours).toFixed(2).toString().slice(2)+":"+(minutes).toFixed(2).toString().slice(2)+":"+(seconds).toFixed(2).toString().slice(2);
+            parent.updateStopwatchText();
         }
+        function getTimeString(timeInSeconds) {
+            const digitalSeconds = Math.ceil(timeInSeconds) % 60 / 100;
+            const minutes = timeInSeconds / 60
+            const digitalMinutes = Math.floor(minutes % 60) / 100;
+            const digitalHours = Math.floor((minutes / 60) % 100) / 100;
+            return (digitalHours).toFixed(2).toString().slice(2)+":"+(digitalMinutes).toFixed(2).toString().slice(2)+":"+(digitalSeconds).toFixed(2).toString().slice(2);
+        }
+    }
+    function updateStopwatchText() {
+        promptTime.text = /*i18n("SW") + " " +*/ timer.getTimeString(elapsedSeconds);
+    }
+    function updateETAText() {
+        let timeToEnd = prompter.__timeToEnd;
+        if (!isFinite(timeToEnd) || prompter.__i<0) {
+            timeToEnd = (Math.floor(editor.height+prompter.fontSize-prompter.topMargin-1)-prompter.position) / (prompter.__baseSpeed * Math.pow(Math.abs(prompter.__iDefault), prompter.__curvature) * prompter.__vw);
+            if (prompter.__atEnd)
+                timeToEnd = 0
+        }
+        etaTimer.text = /*i18n("SW") + " " +*/ timer.getTimeString(timeToEnd);
+    }
+    function reset() {
+        timer.elapsedSeconds = 0;
+        clock.updateStopwatchText();
     }
 }

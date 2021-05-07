@@ -46,7 +46,7 @@ Item {
     
     Countdown {
         id: countdown
-        z: 3
+        z: 4
         anchors.fill: parent
     }
     
@@ -58,7 +58,7 @@ Item {
     
     TimerClock {
        id: timer
-       z: 4
+       z: 3
        anchors.fill: parent
     }
     
