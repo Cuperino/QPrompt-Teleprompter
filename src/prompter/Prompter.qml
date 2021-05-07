@@ -38,8 +38,8 @@
  ** information use the contact form at https://www.qt.io/contact-us.
  **
  ** BSD License Usage
- ** Alternatively, you may use this file under the terms of the BSD license
- ** as follows:
+ ** Alternatively, you may use the original examples code in this file under
+ ** the terms of the BSD license as follows:
  **
  ** "Redistribution and use in source and binary forms, with or without
  ** modification, are permitted provided that the following conditions are
@@ -96,9 +96,10 @@ Flickable {
     property bool __noScroll: root.__noScroll
     property bool __wysiwyg: true
     property alias fontSize: editor.font.pixelSize
-    property int __i: 2
+    property int __i: __iDefault
     property int __iBackup: 0
     property bool __play: true
+    property int __iDefault:  root.__iDefault
     property real __baseSpeed: root.__baseSpeed
     property real __curvature: root.__curvature
     //property alias __baseSpeed: parent.__baseSpeed
@@ -115,7 +116,8 @@ Flickable {
     readonly property real __vw: width / 100
     readonly property real __speed: __baseSpeed * Math.pow(Math.abs(__i), __curvature)
     readonly property real __velocity: (__possitiveDirection ? 1 : -1) * __speed
-    readonly property real __timeToArival: __i ? (((__possitiveDirection ? editor.height+fontSize-position-topMargin+__jitterMargin : position+topMargin-__jitterMargin)) / (__speed * __vw)) * 1000 /*<< 7*/ : 0
+    readonly property real __timeToEnd: (editor.height+fontSize-position-topMargin+__jitterMargin) / (__speed * __vw)
+    readonly property real __timeToArival: __i ? ((__possitiveDirection ? __timeToEnd : (position+topMargin-__jitterMargin) / (__speed * __vw))) * 1000 /*<< 7*/ : 0
     property real timeToArival: __timeToArival
     readonly property int __destination: __i  ? (__possitiveDirection ? editor.height+fontSize-__jitterMargin : __jitterMargin)-topMargin : position
 
@@ -303,21 +305,26 @@ Flickable {
         height: parent.height+2*prompter.height
         cursorShape: (pressed || dragging) ? Qt.ClosedHandCursor : Qt.OpenHandCursor
         // Mouse wheel controls
+        property int throttledIteration: 0
+        property int throttleIterations: 8
         onWheel: {
             if (prompter.__noScroll && prompter.state==="prompting")
                 return;
             else if (prompter.state==="prompting" && (prompter.__scrollAsDial && !(wheel.modifiers & Qt.ControlModifier) || !prompter.__scrollAsDial && wheel.modifiers & Qt.ControlModifier)) {
-                if (wheel.angleDelta.y > 0) {
-                    if (prompter.__invertScrollDirection)
-                        increaseVelocity(wheel);
+                if (!throttledIteration) {
+                    if (wheel.angleDelta.y > 0) {
+                        if (prompter.__invertScrollDirection)
+                            increaseVelocity(wheel);
+                        else/* if (prompter.__i>1)*/
+                            decreaseVelocity(wheel);
+                    }
                     else
-                        decreaseVelocity(wheel);
+                        if (prompter.__invertScrollDirection/* && prompter.__i>1*/)
+                            decreaseVelocity(wheel);
+                        else
+                            increaseVelocity(wheel);
                 }
-                else
-                    if (prompter.__invertScrollDirection)
-                        decreaseVelocity(wheel);
-                    else
-                        increaseVelocity(wheel);
+                throttledIteration = (throttledIteration+1)%throttleIterations
             }
             else {
                 // Regular scroll
@@ -329,12 +336,12 @@ Flickable {
                 // If scroll were to go out of bounds, cap it
                 else if (prompter.position-delta > -prompter.topMargin)
                     prompter.position = editor.implicitHeight-(overlay.height-prompter.bottomMargin)
-                    else
-                        prompter.position = -prompter.topMargin
-                        __i=i;
-                    // Resume prompting
-                    if (prompter.state==="prompting" && prompter.__play)
-                        prompter.position = prompter.__destination
+                else
+                    prompter.position = -prompter.topMargin
+                __i=i;
+                // Resume prompting
+                if (prompter.state==="prompting" && prompter.__play)
+                    prompter.position = prompter.__destination
             }
         }
     }
@@ -809,7 +816,7 @@ Flickable {
             }
             PropertyChanges {
                 target: prompter
-                z: 3
+                z: 2
                 __i: 0
                 __play: false
                 position: position
@@ -827,9 +834,13 @@ Flickable {
                 state: "ready"
             }
             PropertyChanges {
-                target: root
-                //prompterVisibility: Kirigami.ApplicationWindow.FullScreen
+                target: timer
+                elapsedSeconds: 0
             }
+            //PropertyChanges {
+            //    target: root
+            //    //prompterVisibility: Kirigami.ApplicationWindow.FullScreen
+            //}
             PropertyChanges {
                 target: prompterBackground
                 opacity: root.__translucidBackground ? root.__opacity : 1
@@ -873,6 +884,10 @@ Flickable {
                 state: "running"
             }
             PropertyChanges {
+                target: timer
+                elapsedSeconds: 0
+            }
+            PropertyChanges {
                 target: root
                 //prompterVisibility: Kirigami.ApplicationWindow.FullScreen
             }
@@ -914,6 +929,11 @@ Flickable {
                 state: "prompting"
             }
             PropertyChanges {
+                target: timer
+                running: prompter.__play && prompter.__velocity>0
+                elapsedSeconds: 0
+            }
+            PropertyChanges {
                 target: root
                 //prompterVisibility: Kirigami.ApplicationWindow.FullScreen
             }
@@ -929,7 +949,7 @@ Flickable {
             PropertyChanges {
                 target: prompter
                 z: 1
-                __i: 2
+                __i: __iDefault
                 __iBackup: 0
                 position: prompter.__destination
                 focus: true
@@ -967,6 +987,7 @@ Flickable {
         setCursorAtCurrentPosition()
         var pos = prompter.position
         position = pos
+        timer.updateStopwatchText()
     }
     function setCursorAtCurrentPosition() {
         // Update cursor
@@ -975,16 +996,16 @@ Flickable {
         editor.cursorPosition = cursorPosition
     }
     transitions: [
-    Transition {
-        to: "standby"
-        ScriptAction  {
-            // Jump into position
-            script: {
-                // Auto frame to current line
-                position = editor.cursorRectangle.y - (overlay.__readRegionPlacement*(overlay.height-overlay.readRegionHeight)+overlay.readRegionHeight/2) + 1
+        Transition {
+            to: "standby"
+            ScriptAction  {
+                // Jump into position
+                script: {
+                    // Auto frame to current line
+                    position = editor.cursorRectangle.y - (overlay.__readRegionPlacement*(overlay.height-overlay.readRegionHeight)+overlay.readRegionHeight/2) + 1
+                }
             }
         }
-    }
     ]
         
     // Progress indicator
