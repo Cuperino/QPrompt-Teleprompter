@@ -434,6 +434,62 @@ Kirigami.Page {
         //ProjectionWindow {}
     //}
 
+    Kirigami.OverlayDrawer {
+        id: sideDrawer
+        background: Rectangle {
+            color: appTheme.__backgroundColor
+        }
+        width: 240
+//        width: popupContent.implicitWidth
+        edge: Qt.RightEdge
+        padding: 0
+        leftPadding: 0
+        rightPadding: 0
+        bottomPadding: 0
+        topPadding: 0
+
+        parent: prompterPage.overlay // applicationWindow().overlay
+
+//        header: Kirigami.Heading {
+//            text: i18n("Marker List")
+//            level: 1
+//        }
+
+        Component {
+            id: markerDelegateComponent
+            Rectangle {
+                width: ListView.view.width
+                height: 40
+                Text {
+                    anchors {
+                        fill: parent
+                        margins: 5
+                    }
+                    text: model.lineNo + ", " + model.linePos
+                }
+            }
+        }
+
+        ColumnLayout {
+            id: popupContent
+            width: parent.width
+            height: parent.height
+            spacing: 0
+            ListView {
+                spacing: 2
+                model: _markerModel
+                delegate: markerDelegateComponent
+            }
+            Kirigami.BasicListItem {
+                text: i18n("Close Marker List")
+                anchors.bottom: parent.bottom
+                onClicked: {
+                    sideDrawer.close();
+                }
+            }
+        }
+    }
+
     Kirigami.OverlaySheet {
         id: key_configuration_overlay
         onSheetOpenChanged: prompterPage.actions.main.checked = sheetOpen

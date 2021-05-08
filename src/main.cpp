@@ -35,7 +35,12 @@
 #ifdef Q_OS_ANDROID
 #include "./3rdparty/kirigami/src/kirigamiplugin.h"
 #endif
-
+#ifdef Q_OS_IOS
+#include "./3rdparty/kirigami/src/kirigamiplugin.h"
+#endif
+#ifdef Q_OS_WASM
+#include "./3rdparty/kirigami/src/kirigamiplugin.h"
+#endif
 #include <KLocalizedContext>
 #include <KI18n/KLocalizedString>
 #include <KCoreAddons/KAboutData>
@@ -84,6 +89,9 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
     if (fontDatabase.addApplicationFont(":/fonts/fontello.ttf") == -1)
         qWarning() << i18n("Failed to load icons from fontello.ttf");
 
+//    PlayListModel model;
+//    AllUpperCaseProxyModel proxyModel;
+
     qmlRegisterType<PrompterTimer>("com.cuperino.qprompt.promptertimer", 1, 0, "PrompterTimer");
     qmlRegisterType<DocumentHandler>("com.cuperino.qprompt.document", 1, 0, "DocumentHandler");
     
@@ -97,8 +105,13 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
 
     QQmlApplicationEngine engine;
     QQmlFileSelector::get(&engine)->setExtraSelectors(selectors);
-    
     #ifdef Q_OS_ANDROID
+    KirigamiPlugin::getInstance().registerTypes();
+    #endif
+    #ifdef Q_OS_WASM
+    KirigamiPlugin::getInstance().registerTypes();
+    #endif
+    #ifdef Q_OS_WASM
     KirigamiPlugin::getInstance().registerTypes();
     #endif
 
@@ -108,6 +121,8 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
     
     engine.rootContext()->setContextObject(new KLocalizedContext(&engine));
     engine.rootContext()->setContextProperty(QStringLiteral("aboutData"), QVariant::fromValue(KAboutData::applicationData()));
+//    engine.rootContext()->setContextProperty("_cppModel", &model);
+//    engine.rootContext()->setContextProperty("_cppProxyModel", &proxyModel);ó
 
     //engine.addImportPath(QStringLiteral("../3rdparty/kirigami/"));
     engine.load(QUrl(QStringLiteral("qrc:///main.qml")));
