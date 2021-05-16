@@ -33,7 +33,7 @@ Item {
     property alias elapsedSeconds: timer.elapsedSeconds
 //     property alias timeToArival: prompter.__timeToArival
     property bool stopwatch: false
-    property bool eta: true
+    property bool eta: false
     property real size: 0.5
     enabled: stopwatch || eta
     visible: enabled
