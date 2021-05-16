@@ -455,17 +455,27 @@ Kirigami.Page {
 //            level: 1
 //        }
 
+        // ListModel {
+        //     id: nameModel
+        //     ListElement { lineNo: 2; linePos: 128; lineName: "Alice" }
+        //     ListElement { lineNo: 6; linePos: 386; lineName: "Bob" }
+        //     ListElement { lineNo: 8; linePos: 912; lineName: "Marley" }
+        //     ListElement { lineNo: 9; linePos: 1000; lineName: "Joe" }
+        // }
+
         Component {
             id: markerDelegateComponent
             Rectangle {
                 width: ListView.view.width
                 height: 40
+                color: appTheme.__backgroundColor
                 Text {
                     anchors {
                         fill: parent
                         margins: 5
                     }
-                    text: model.lineNo + ", " + model.linePos
+                    text: model.lineNo + ", " + model.linePos + " (" + model.lineName + ")"
+                    color: "#FFF"
                 }
             }
         }
@@ -476,13 +486,17 @@ Kirigami.Page {
             height: parent.height
             spacing: 0
             ListView {
+                Layout.fillHeight: true
+                Layout.fillWidth: true
                 spacing: 2
-                model: _markerModel
+                model: _markersModel // nameModel
                 delegate: markerDelegateComponent
+                clip: true
+                ScrollBar.vertical: ScrollBar { }
             }
             Kirigami.BasicListItem {
+                Layout.alignment: Qt.AlignBottom
                 text: i18n("Close Marker List")
-                anchors.bottom: parent.bottom
                 onClicked: {
                     sideDrawer.close();
                 }
