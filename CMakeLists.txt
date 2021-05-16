@@ -87,7 +87,7 @@ include(FeatureSummary)
 find_package(Qt5 ${QT5_MIN_VERSION} REQUIRED COMPONENTS
     Core
     # Test
-    # Qml
+    Qml
     Gui
     Quick
     QuickControls2

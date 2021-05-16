@@ -47,6 +47,7 @@
 
 #include "prompter/documenthandler.h"
 #include "prompter/timer/promptertimer.h"
+#include "prompter/markersmodel.h"
 
 
 Q_DECL_EXPORT int main(int argc, char *argv[])
@@ -119,9 +120,10 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
     //app.setLayoutDirection(Qt::RightToLeft);
     app.setWindowIcon(QIcon(":/images/logo.png"));
     
+    MarkersModel markersModel;
     engine.rootContext()->setContextObject(new KLocalizedContext(&engine));
     engine.rootContext()->setContextProperty(QStringLiteral("aboutData"), QVariant::fromValue(KAboutData::applicationData()));
-//    engine.rootContext()->setContextProperty("_cppModel", &model);
+    engine.rootContext()->setContextProperty("_markersModel", &markersModel);
 //    engine.rootContext()->setContextProperty("_cppProxyModel", &proxyModel);ó
 
     //engine.addImportPath(QStringLiteral("../3rdparty/kirigami/"));
