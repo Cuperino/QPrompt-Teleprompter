@@ -36,7 +36,7 @@ int MarkersModel::rowCount(const QModelIndex &parent) const
 
 QVariant MarkersModel::data(const QModelIndex &index, int role) const
 {
-    if (!index.isValid())
+    if ( !index.isValid() )
         return QVariant();
 
     const Data &data = m_data.at(index.row());

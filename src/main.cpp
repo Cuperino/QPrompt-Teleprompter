@@ -33,13 +33,13 @@
 #include <QIcon>
 
 #ifdef Q_OS_ANDROID
-#include "./3rdparty/kirigami/src/kirigamiplugin.h"
+#include "../3rdparty/kirigami/src/kirigamiplugin.h"
 #endif
 #ifdef Q_OS_IOS
-#include "./3rdparty/kirigami/src/kirigamiplugin.h"
+#include "../3rdparty/kirigami/src/kirigamiplugin.h"
 #endif
 #ifdef Q_OS_WASM
-#include "./3rdparty/kirigami/src/kirigamiplugin.h"
+#include "../3rdparty/kirigami/src/kirigamiplugin.h"
 #endif
 #include <KLocalizedContext>
 #include <KI18n/KLocalizedString>
@@ -95,7 +95,8 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
 
     qmlRegisterType<PrompterTimer>("com.cuperino.qprompt.promptertimer", 1, 0, "PrompterTimer");
     qmlRegisterType<DocumentHandler>("com.cuperino.qprompt.document", 1, 0, "DocumentHandler");
-    
+//    qmlRegisterType<DocumentHandler>("org.kde.kirigami", 2, 9, "KirigamiPlugin");
+
     QStringList selectors;
 #ifdef QT_EXTRA_FILE_SELECTOR
     selectors += QT_EXTRA_FILE_SELECTOR;
@@ -124,9 +125,9 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
     engine.rootContext()->setContextObject(new KLocalizedContext(&engine));
     engine.rootContext()->setContextProperty(QStringLiteral("aboutData"), QVariant::fromValue(KAboutData::applicationData()));
     engine.rootContext()->setContextProperty("_markersModel", &markersModel);
-//    engine.rootContext()->setContextProperty("_cppProxyModel", &proxyModel);ó
+//    engine.rootContext()->setContextProperty("_cppProxyModel", &proxyModel);
 
-    //engine.addImportPath(QStringLiteral("../3rdparty/kirigami/"));
+//    engine.addImportPath(QStringLiteral("../3rdparty/kirigami/"));
     engine.load(QUrl(QStringLiteral("qrc:///main.qml")));
 
     if (engine.rootObjects().isEmpty()) {
