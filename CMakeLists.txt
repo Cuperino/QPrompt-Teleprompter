@@ -47,8 +47,8 @@ set(KF_MIN_VERSION "5.68.0")
 # Directories where Qt Creator can find QML files of Kirigami etc. on your system.
 #   (This setting is cached in variable QML_IMPORT_DIR, see below. Delete
 #   ${BUIL_DIR}/CMakeCache.txt to make make changes here effective.)
-#list(APPEND QML_DIRS "/usr/lib/x86_64-linux-gnu/qt5/qml")
-#list(APPEND KIRIGAMI_DIRS "/usr/lib/x86_64-linux-gnu/qt5/qml/org/kde/kirigami.2")
+list(APPEND QML_DIRS "/usr/lib/x86_64-linux-gnu/qt5/qml")
+list(APPEND KIRIGAMI_DIRS "/usr/lib/x86_64-linux-gnu/qt5/qml/org/kde/kirigami.2")
 
 # Configuration Issues are Here
 #list(APPEND ECM_MODULE_PATH "3rdparty/extra-cmake-modules/build")
@@ -61,11 +61,11 @@ set(KF_MIN_VERSION "5.68.0")
 
 # Tell Qt Creator where to find QML files.
 #   (The build process will work without this, but no code completion etc..)
-#set(
-#    QML_IMPORT_PATH "${QML_DIRS}"
-#    QML_IMPORT_PATH "${KIRIGAMI_DIRS}"
-#    CACHE STRING "Qt Creator 4.1 extra qml import paths"
-#)
+set(
+    QML_IMPORT_PATH "${QML_DIRS}"
+    QML_IMPORT_PATH "${KIRIGAMI_DIRS}"
+    CACHE STRING "Qt Creator 4.1 extra qml import paths"
+)
 
 # Send compiled program and library binaries to "build/bin"
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
