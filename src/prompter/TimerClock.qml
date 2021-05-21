@@ -24,6 +24,7 @@ import QtQuick 2.15
 import QtQuick.Controls 2.15
 import QtQuick.Shapes 1.15
 import QtQuick.Layouts 1.15
+import Qt.labs.platform 1.1
 
 import com.cuperino.qprompt.promptertimer 1.0
 
@@ -35,6 +36,7 @@ Item {
     property bool stopwatch: false
     property bool eta: false
     property real size: 0.5
+    property color textColor: timerColorDialog.currentColor
     enabled: stopwatch || eta
     visible: enabled
     clip: true
@@ -83,6 +85,7 @@ Item {
                 //anchors.top: parent.top
                 font.family: monoSpacedFont.name
                 font.pixelSize: stopwatch.fontSize
+                color: clock.textColor
                 leftPadding: stopwatch.marginX
                 rightPadding: stopwatch.marginX
                 topPadding: stopwatch.marginY
@@ -96,6 +99,7 @@ Item {
                 //anchors.bottom: parent.bottom
                 font.family: monoSpacedFont.name
                 font.pixelSize: stopwatch.fontSize
+                color: clock.textColor
                 leftPadding: stopwatch.marginX
                 rightPadding: stopwatch.marginX
                 topPadding: stopwatch.marginY
@@ -164,5 +168,15 @@ Item {
     function reset() {
         timer.elapsedSeconds = 0;
         clock.updateStopwatchText();
+    }
+    function setColor() {
+        timerColorDialog.open()
+    }
+    ColorDialog {
+        id: timerColorDialog
+        color: '#FFF'
+        onRejected: {
+            currentColor = color
+        }
     }
 }
