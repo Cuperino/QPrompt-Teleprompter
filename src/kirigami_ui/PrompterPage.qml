@@ -364,6 +364,13 @@ Kirigami.Page {
                     viewport.timer.eta = !viewport.timer.eta
                 }
             }
+            Kirigami.Action {
+                id: timerColorButton
+                text: i18n("Timer Color")
+                onTriggered: {
+                    viewport.timer.setColor()
+                }
+            }
         },
         //Kirigami.Action {
            //id: projectionConfigButton
