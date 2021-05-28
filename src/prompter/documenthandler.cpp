@@ -508,6 +508,7 @@ void DocumentHandler::parse() {
         QStringList names;
         QString text;
     };
+    // typedef QTextFragment MARKER;
 
     size_t size = 1024;
     std::vector<LINE> lines;
@@ -539,6 +540,7 @@ void DocumentHandler::parse() {
                     marker.names = currentFragment.charFormat().anchorNames();
                     marker.text = currentFragment.text();
                     anchors.push_back(marker);
+                    // anchors.push_back(currentFragment);
                 }
             }
         }
@@ -553,5 +555,6 @@ void DocumentHandler::parse() {
     qDebug() << "- Markers -";
     for (unsigned long i=0; i<anchors.size(); i++)
         qDebug() << anchors.at(i).position << anchors.at(i).text << anchors.at(i).names;
+        // qDebug() << anchors.at(i).position() << anchors.at(i).text() << anchors.at(i).charFormat().anchorNames();
     #endif
 }
