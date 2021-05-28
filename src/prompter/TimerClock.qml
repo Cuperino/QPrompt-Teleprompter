@@ -64,7 +64,7 @@ Item {
         readonly property int marginY: 2 * clock.size * prompter.__vw
         readonly property real fontSize: clock.size * prompter.__vw << 3
         x: clock.centreX - centreX
-        y: clock.height - height - centreY / 2
+        y: overlay.__readRegionPlacement < 0.5 ? clock.height - height - centreY / 2 : centreY / 2
         width: clockGrid.implicitWidth
         height: clockGrid.implicitHeight
         Rectangle {
