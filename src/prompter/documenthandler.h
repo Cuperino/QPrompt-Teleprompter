@@ -162,7 +162,7 @@ public:
     
     bool marker() const;
     void setMarker(bool marker);
-    Q_INVOKABLE void getMarkers();
+    Q_INVOKABLE void parse();
     
 public Q_SLOTS:
     void load(const QUrl &fileUrl);

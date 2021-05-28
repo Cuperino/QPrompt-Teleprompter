@@ -148,7 +148,7 @@ ToolBar {
                 font.family: iconFont.name
                 font.pointSize: 13
                 focusPolicy: Qt.TabFocus
-                onClicked: prompter.document.getMarkers()
+                onClicked: prompter.document.parse()
             }
             ToolSeparator {
                 contentItem.visible: anchorsRow.y === undoRedoRow.y
