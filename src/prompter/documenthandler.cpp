@@ -72,6 +72,8 @@
 
 #include "documenthandler.h"
 
+#include <vector>
+
 #include <QFile>
 #include <QFileInfo>
 #include <QFileSelector>
@@ -494,18 +496,62 @@ void DocumentHandler::setModified(bool m)
 
 // Markers (Anchors)
 
-void DocumentHandler::getMarkers() {
+void DocumentHandler::parse() {
+
+    struct LINE {
+        QRectF rect;
+        QString text;
+    };
+
+    struct MARKER {
+        int position;
+        QStringList names;
+        QString text;
+    };
+
+    size_t size = 1024;
+    std::vector<LINE> lines;
+    std::vector<MARKER> anchors;
+    lines.reserve(size);
+    anchors.reserve(size>>4);
+
+    // Go through the document once
     for (QTextBlock it = this->textDocument()->begin(); it != this->textDocument()->end(); it = it.next()) {
         QTextBlock::iterator jt;
+
+        // Navigate the document's physical layout and extract line dimensions and text. Dimensions would be used for telemetry, text would be used as a reference of what to expect during speech recognition.
+        for (int i=0; i<it.layout()->lineCount(); i++) {
+            LINE line;
+            line.rect = it.layout()->lineAt(i).naturalTextRect();
+            line.text = it.text().mid(it.layout()->lineAt(i).textStart(), it.layout()->lineAt(i).textLength());
+            lines.push_back(line);
+        }
+
+        // Navigate the document's formatting and extract markers information.
         for (jt = it.begin(); !(jt.atEnd()); ++jt) {
             QTextFragment currentFragment = jt.fragment();
-            if (currentFragment.isValid())
-                // processFragment(currentFragment);
+            if (currentFragment.isValid()) {
+                // Additional fragment processing would be done here...
+                // Extract marker information:
                 if (currentFragment.charFormat().isAnchor()) {
-                    int anchorLocation = currentFragment.position();
-                    QStringList anchorNames = currentFragment.charFormat().anchorNames();
-                    qDebug() << anchorLocation << anchorNames;
+                    MARKER marker;
+                    marker.position = currentFragment.position();
+                    marker.names = currentFragment.charFormat().anchorNames();
+                    marker.text = currentFragment.text();
+                    anchors.push_back(marker);
                 }
+            }
         }
     }
+
+    #ifdef QT_DEBUG
+    // Output results to terminal, only in debug compilation.
+    qDebug() << "- Lines -";
+    for (unsigned long i=0; i<lines.size(); i++)
+        qDebug() << lines.at(i).rect << lines.at(i).text;
+
+    qDebug() << "- Markers -";
+    for (unsigned long i=0; i<anchors.size(); i++)
+        qDebug() << anchors.at(i).position << anchors.at(i).text << anchors.at(i).names;
+    #endif
 }
