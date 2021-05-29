@@ -26,22 +26,35 @@ import QtQuick.Window 2.15
 // External Windows
 Window {
     id: projectionWindow
+    //property alias copySource: copySource
     title: i18n("Projection Window")
     //transientParent: parent.parent
     //transientParent: null
     visible: true
     color: "transparent"
 
-    width: viewport.width; height: viewport.height
-    
-    ShaderEffectSource {
-        width: parent.width; height: parent.height
-        sourceItem: viewport
-        //sourceItem: layerOfLayer
-        hideSource: false
+    // width: viewport.width; height: viewport.height
 
-        mipmap: true
-        samples: 4
-        smooth: true
+    Image {
+        id: copyImage
+        anchors.fill: parent
     }
+/*
+    MouseArea {
+        anchors.fill: parent
+        onClicked: copySource.scheduleUpdate()
+        ShaderEffectSource {
+            id: copySource
+            anchors.fill: parent
+            // width: parent.width; height: parent.height
+            sourceItem: viewport
+            //live: false
+            hideSource: true
+
+            //mipmap: true
+            //samples: 4
+            //smooth: true
+        }
+    }
+*/
 }

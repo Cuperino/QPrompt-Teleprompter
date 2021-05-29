@@ -150,6 +150,15 @@ ToolBar {
                 focusPolicy: Qt.TabFocus
                 onClicked: prompter.document.parse()
             }
+            ToolButton {
+                id: debugButton
+                text: "\uE846"
+                contentItem: Loader { sourceComponent: textComponent }
+                font.family: iconFont.name
+                font.pointSize: 13
+                focusPolicy: Qt.TabFocus
+                onClicked: viewport.project()
+            }
             ToolSeparator {
                 contentItem.visible: anchorsRow.y === undoRedoRow.y
             }
