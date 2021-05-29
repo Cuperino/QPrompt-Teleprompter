@@ -395,14 +395,14 @@ Kirigami.Page {
         }
         ]
     }
-    
+
     PrompterView {
         id: viewport
         // Workaround to make regular Page let its contents be covered by action buttons.
         anchors.bottomMargin: Kirigami.Settings.isMobile ? -68 : 0
         property alias toolbar: editorToolbar
     }
-    
+
     progress: viewport.prompter.state==="prompting" ? viewport.prompter.progress : undefined
 
     FontDialog {
@@ -429,7 +429,7 @@ Kirigami.Page {
 //     ProjectionWindow {
 //         id: projectionWindow
 //     }
-    
+
     // Editor Toolbar
     footer: EditorToolbar {
         id: editorToolbar

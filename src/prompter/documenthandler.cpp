@@ -528,7 +528,7 @@ void DocumentHandler::parse() {
             lines.push_back(line);
         }
 
-        // Navigate the document's formatting and extract markers information.
+        // Navigate the document's formatting and extract markers' information.
         for (jt = it.begin(); !(jt.atEnd()); ++jt) {
             QTextFragment currentFragment = jt.fragment();
             if (currentFragment.isValid()) {

@@ -21,6 +21,8 @@
  ****************************************************************************/
 
 import QtQuick 2.15
+import QtQuick.Window 2.15
+import QtQml.Models 2.15
 //import QtGraphicalEffects 1.15
 
 Item {
@@ -33,6 +35,7 @@ Item {
     property alias overlay: overlay
     property alias prompterBackground: prompterBackground
     property alias timer: timer
+    //property bool project: true
 
     anchors.fill: parent
     //layer.enabled: true
@@ -77,9 +80,96 @@ Item {
     //radius: 32
     //radius: 0
     //}
-    
+
     PrompterBackground {
         id: prompterBackground
         z: 0
     }
+
+    ListModel {
+        id: projectionModel
+//         ListElement {
+//            x: 100
+//            y: 100
+//            width: 1820
+//            height: 1000
+//         }
+    }
+
+    Component {
+        id: projectionDelegte
+        ProjectionWindow {
+            id: projectionWindow
+            transientParent: root
+            x: model.x
+            y: model.y
+            width: model.width
+            height: model.height
+            flags: Qt.FramelessWindowHint
+            //color: "transparent"
+            color: "#000"
+            //property alias img: img
+            Image {
+                //id: img
+                source: model.p
+                anchors.fill: parent
+                fillMode: Image.PreserveAspectFit
+                asynchronous: true
+                cache: false
+                // mirror: true
+            }
+            onClosing: {
+                projectionModel.clear()
+            }
+        }
+    }
+
+    Instantiator {
+        id: projections
+        model: projectionModel
+        asynchronous: true
+        delegate: projectionDelegte
+    }
+/*
+    Timer {
+        repeat: true
+        running: projectionModel.count
+        triggeredOnStart: true
+        interval: 17;
+        onTriggered: {
+            //copySource.scheduleUpdate()
+            viewport.grabToImage(function(result) {
+                for (var i=0; i<projectionModel.count; ++i)
+                    projectionModel.setProperty(i, "p", String(result.url));
+                //projectionModel.set(i, {"p": String(result.url)});
+                // Most expensive, nothing beats Shader+live. Unfortunately that doesn't work across video cards.
+                //copyImage.source = result.url;
+            });
+        }
+    }
+*/
+
+     {
+        viewport.grabToImage(function(result) {
+            for (var i=0; i<projectionModel.count; ++i)
+                projectionModel.setProperty(i, "p", String(result.url));
+        });
+    }
+
+    function project() {
+        console.log("Creating projections")
+        projectionModel.clear();
+        for (var i=0; i<Qt.application.screens.length; i++) {
+            //if (Qt.application.screens[i].name!==screen.name) {
+                projectionModel.append ({
+                    "x": Qt.application.screens[i].virtualX,
+                    "y": Qt.application.screens[i].virtualY,
+                    "width": Qt.application.screens[i].desktopAvailableWidth,
+                    "height": Qt.application.screens[i].desktopAvailableHeight,
+                    "p": ""
+                });
+            //}
+        }
+    }
+
 }
