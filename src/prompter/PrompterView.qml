@@ -24,6 +24,7 @@ import QtQuick 2.15
 import QtQuick.Window 2.15
 import QtQml.Models 2.15
 //import QtGraphicalEffects 1.15
+import org.kde.kirigami 2.9 as Kirigami
 
 Item {
     id: viewport
@@ -88,12 +89,6 @@ Item {
 
     ListModel {
         id: projectionModel
-//         ListElement {
-//            x: 100
-//            y: 100
-//            width: 1820
-//            height: 1000
-//         }
     }
 
     Component {
@@ -106,13 +101,31 @@ Item {
             width: model.width
             height: model.height
             flags: Qt.FramelessWindowHint
-            //color: "transparent"
-            color: "#000"
-            //property alias img: img
+            visibility: Kirigami.ApplicationWindow.FullScreen
+            color: "transparent"
+            Rectangle {
+                color: prompterBackground.color
+                opacity: prompterBackground.opacity
+                anchors.top: parent.top
+                anchors.right: parent.right
+                anchors.left: parent.left
+                anchors.bottom: img.top
+            }
+            Rectangle {
+                color: prompterBackground.color
+                opacity: prompterBackground.opacity
+                anchors.top: img.bottom
+                anchors.right: parent.right
+                anchors.left: parent.left
+                anchors.bottom: parent.bottom
+            }
             Image {
-                //id: img
+                id: img
                 source: model.p
-                anchors.fill: parent
+                anchors.verticalCenter: parent.verticalCenter
+                anchors.left: parent.left
+                anchors.right: parent.right
+                height: (width/sourceSize.width) * sourceSize.height
                 fillMode: Image.PreserveAspectFit
                 asynchronous: true
                 cache: false
@@ -130,7 +143,7 @@ Item {
         asynchronous: true
         delegate: projectionDelegte
     }
-/*
+
     Timer {
         repeat: true
         running: projectionModel.count
@@ -146,14 +159,6 @@ Item {
                 //copyImage.source = result.url;
             });
         }
-    }
-*/
-
-     {
-        viewport.grabToImage(function(result) {
-            for (var i=0; i<projectionModel.count; ++i)
-                projectionModel.setProperty(i, "p", String(result.url));
-        });
     }
 
     function project() {
