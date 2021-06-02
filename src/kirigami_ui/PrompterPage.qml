@@ -35,6 +35,7 @@ Kirigami.Page {
 
     property alias fontDialog: fontDialog
     property alias colorDialog: colorDialog
+    property alias viewport: viewport
     property alias prompter: viewport.prompter
     property alias editor: viewport.editor
     property alias overlay: viewport.overlay
