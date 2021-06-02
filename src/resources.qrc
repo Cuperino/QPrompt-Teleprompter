@@ -5,7 +5,6 @@
         <file alias="AboutPage.qml">kirigami_ui/AboutPage.qml</file>
         <file alias="PrompterPage.qml">kirigami_ui/PrompterPage.qml</file>
         <file alias="EditorToolbar.qml">kirigami_ui/EditorToolbar.qml</file>
-        <file alias="ProjectionWindow.qml">kirigami_ui/ProjectionWindow.qml</file>
         <!-- Prompter QML -->
         <file alias="PrompterView.qml">prompter/PrompterView.qml</file>
         <file alias="Prompter.qml">prompter/Prompter.qml</file>
@@ -15,6 +14,7 @@
         <file alias="ReadRegionOverlay.qml">prompter/ReadRegionOverlay.qml</file>
         <file alias="PrompterBackground.qml">prompter/PrompterBackground.qml</file>
         <file alias="Flip.qml">prompter/Flip.qml</file>
+        <file alias="ProjectionsManager.qml">prompter/ProjectionsManager.qml</file>
         <!-- Theme Configuration -->
         <file>qtquickcontrols2.conf</file>
         <!-- Icons -->

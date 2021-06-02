@@ -926,7 +926,22 @@ Kirigami.ApplicationWindow {
         property: "italic"
         value: root.italic
     }*/
-    
+
+    onFrameSwapped: {
+        const n = projectionManger.model.count;
+        if (n)
+            prompterPage.viewport.grabToImage(function(p) {
+                for (var i=0; i<n; ++i)
+                    projectionManger.model.setProperty(i, "p", String(p.url));
+            });
+    }
+
+    ProjectionsManager {
+        id: projectionManger
+        backgroundColor: prompterPage.prompterBackground.color
+        backgroundOpacity: prompterPage.prompterBackground.opacity
+    }
+
     // Prompter Page Contents
     //pageStack.initialPage:
 
