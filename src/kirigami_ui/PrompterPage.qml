@@ -75,6 +75,7 @@ Kirigami.Page {
         Kirigami.Action {
             id: wysiwygButton
             text: i18n("WYSIWYG")
+            enabled: prompter.state==="editing"
             checkable: true
             checked: viewport.prompter.__wysiwyg
             tooltip: viewport.prompter.__wysiwyg ? i18n("\"What you see is what you get\" mode is On") : i18n("\"What you see is what you get\" mode is Off")
@@ -373,12 +374,45 @@ Kirigami.Page {
                 }
             }
         },
-        //Kirigami.Action {
-           //id: projectionConfigButton
-           //text: i18n("Clone")
-           //tooltip: i18n("Duplicate teleprompter contents into separate screens")
-           //onTriggered: projectionWindow.visible = !projectionWindow.visible
-        //}
+        Kirigami.Action {
+            id: projectionConfigButton
+            text: i18n("Clone")
+            tooltip: i18n("Project prompter contents onto extended displays")
+            Repeater {
+                property bool hasOwnProperty: fals
+                model: Qt.application.screens.length
+                Kirigami.Action {
+                    //parent: projectionConfigButton
+                    text: i18n("asdasd")
+                    //text: i18n("%1. %2", model.id, model.name)
+                    Kirigami.Action {
+                        text: i18n("Off")
+                        onTriggered: {}
+                        enabled: false // screen.name!==model.name
+                    }
+                    Kirigami.Action {
+                        text: i18n("No Flip")
+                        onTriggered: {}
+                        //enabled: screen.name!==model.name
+                    }
+                    Kirigami.Action {
+                        text: i18n("Horizontal Flip")
+                        onTriggered: {}
+                        //enabled: screen.name!==model.name
+                    }
+                    Kirigami.Action {
+                        text: i18n("Vertical Flip")
+                        onTriggered: {}
+                        //enabled: screen.name!==model.name
+                    }
+                    Kirigami.Action {
+                        text: i18n("180° rotation")
+                        onTriggered: {}
+                        //enabled: screen.name!==model.name
+                    }
+                }
+            }
+        },
         //Kirigami.Action {
            //id: debug
            //text: i18n("Debug")
@@ -396,7 +430,6 @@ Kirigami.Page {
         }
         ]
     }
-
     PrompterView {
         id: viewport
         // Workaround to make regular Page let its contents be covered by action buttons.
@@ -449,7 +482,7 @@ Kirigami.Page {
         }
         width: 240
 //        width: popupContent.implicitWidth
-        edge: Qt.RightEdge
+        edge: Qt.BottomEdge
         padding: 0
         leftPadding: 0
         rightPadding: 0
