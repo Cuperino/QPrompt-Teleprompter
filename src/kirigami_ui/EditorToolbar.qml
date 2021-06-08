@@ -84,7 +84,7 @@ ToolBar {
     readonly property alias opacitySlider: opacitySlider
     
     // Hide toolbar when read region is set to bottom and prompter is not in editing state.
-    enabled: !(prompter.state!=="editing" && overlay.atBottom)
+    enabled: !(prompter.state!=="editing" && (overlay.atBottom || Kirigami.Settings.isMobile))
     height: enabled ? implicitHeight : 0
     //Behavior on height {
     //    id: height
@@ -157,7 +157,7 @@ ToolBar {
                 font.family: iconFont.name
                 font.pointSize: 13
                 focusPolicy: Qt.TabFocus
-                onClicked: projectionManger.project()
+                onClicked: projectionManager.project()
             }
             ToolSeparator {
                 contentItem.visible: anchorsRow.y === undoRedoRow.y

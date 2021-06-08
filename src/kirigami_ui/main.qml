@@ -60,7 +60,7 @@ Kirigami.ApplicationWindow {
     //height: screen.desktopAvailableHeight
     minimumWidth: 480
     minimumHeight: 380
-    
+
     //// Theme management
     //Material.theme: themeSwitch.checked ? Material.Dark : Material.Light  // This is correct, but it isn't work working, likely because of Kirigami
     
@@ -901,7 +901,8 @@ Kirigami.ApplicationWindow {
     pageStack.initialPage: prompterPageComponent
     // Auto hide global toolbar on fullscreen
     //pageStack.globalToolBar.style: visibility===Kirigami.ApplicationWindow.FullScreen ? Kirigami.ApplicationHeaderStyle.None :  Kirigami.ApplicationHeaderStyle.Auto
-    pageStack.globalToolBar.style: visibility===Kirigami.ApplicationWindow.FullScreen && prompterPage.prompter.state!=="editing" ? Kirigami.ApplicationHeaderStyle.None : Kirigami.ApplicationHeaderStyle.ToolBar
+    pageStack.globalToolBar.style: Kirigami.Settings.isMobile ? (prompterPage.prompter.state==="editing" ? Kirigami.ApplicationHeaderStyle.Breadcrumb : Kirigami.ApplicationHeaderStyle.None) : (prompterPage.prompter.state!=="editing" && (visibility===Kirigami.ApplicationWindow.FullScreen || prompterPage.overlay.atTop) ? Kirigami.ApplicationHeaderStyle.None : Kirigami.ApplicationHeaderStyle.ToolBar)
+    
     // The following is not possible in the current version of Kirigami, but it should be:
     //pageStack.globalToolBar.background: Rectangle {
         //color: appTheme.__backgroundColor
@@ -928,18 +929,19 @@ Kirigami.ApplicationWindow {
     }*/
 
     onFrameSwapped: {
-        const n = projectionManger.model.count;
+        const n = projectionManager.model.count;
         if (n)
             prompterPage.viewport.grabToImage(function(p) {
                 for (var i=0; i<n; ++i)
-                    projectionManger.model.setProperty(i, "p", String(p.url));
+                    projectionManager.model.setProperty(i, "p", String(p.url));
             });
     }
 
     ProjectionsManager {
-        id: projectionManger
+        id: projectionManager
         backgroundColor: prompterPage.prompterBackground.color
         backgroundOpacity: prompterPage.prompterBackground.opacity
+        displaySettings: prompterPage.displaySettings.display
     }
 
     // Prompter Page Contents
