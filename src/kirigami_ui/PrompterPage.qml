@@ -21,7 +21,7 @@
  ****************************************************************************/
 
 import QtQuick 2.15
-import org.kde.kirigami 2.9 as Kirigami
+import org.kde.kirigami 2.15 as Kirigami
 import QtQuick.Window 2.15
 import QtQuick.Controls 2.15
 import QtQuick.Layouts 1.15
@@ -43,7 +43,7 @@ Kirigami.Page {
     property alias prompterBackground: viewport.prompterBackground
     property alias key_configuration_overlay: key_configuration_overlay
     property alias telemetry_overlay: telemetry_overlay
-    
+    property alias displaySettings: displaySettings
     property int hideDecorations: 0
 
     title: "QPrompt"
@@ -375,40 +375,68 @@ Kirigami.Page {
             }
         },
         Kirigami.Action {
-            id: projectionConfigButton
-            text: i18n("Clone")
-            tooltip: i18n("Project prompter contents onto extended displays")
-            Repeater {
-                property bool hasOwnProperty: fals
-                model: Qt.application.screens.length
-                Kirigami.Action {
-                    //parent: projectionConfigButton
-                    text: i18n("asdasd")
-                    //text: i18n("%1. %2", model.id, model.name)
-                    Kirigami.Action {
-                        text: i18n("Off")
-                        onTriggered: {}
-                        enabled: false // screen.name!==model.name
-                    }
-                    Kirigami.Action {
-                        text: i18n("No Flip")
-                        onTriggered: {}
-                        //enabled: screen.name!==model.name
-                    }
-                    Kirigami.Action {
-                        text: i18n("Horizontal Flip")
-                        onTriggered: {}
-                        //enabled: screen.name!==model.name
-                    }
-                    Kirigami.Action {
-                        text: i18n("Vertical Flip")
-                        onTriggered: {}
-                        //enabled: screen.name!==model.name
-                    }
-                    Kirigami.Action {
-                        text: i18n("180° rotation")
-                        onTriggered: {}
-                        //enabled: screen.name!==model.name
+            id: displaySettings
+            property alias display: bridge.displayComponent
+            visible: !Kirigami.Settings.isMobile
+            text: i18n("Duplicates")
+            tooltip: i18n("Project prompter duplicates onto extended displays")
+
+            Kirigami.Action {
+                id: bridge
+                displayComponent: ListView {
+                    height: contentHeight>580 ? 580 : contentHeight
+                    flickableDirection: Flickable.VerticalFlick
+                    model: Qt.application.screens
+                    delegate: Kirigami.BasicListItem {
+                        label: model.name
+                        enabled: screen.name!==label
+                        readonly property int projectionSetting: enabled ? projectionSetting : 0
+                        property int flipSetting: 0
+                        activeTextColor: "#FFFFFF"
+                        activeBackgroundColor: "#797979"
+                        //contentItem: Label {
+                        //    anchors.verticalCenter: parent.verticalCenter
+                        //    text: model.name
+                        //}
+                        onClicked: displayMenu.open()
+                        Menu {
+                            id: displayMenu
+                            MenuItem {
+                                text: i18n("Off")
+                                enabled: flipSetting!==0
+                                onTriggered: {
+                                    flipSetting = 0
+                                }
+                            }
+                            MenuItem {
+                                text: i18n("No Flip")
+                                enabled: flipSetting!==1
+                                onTriggered: {
+                                    flipSetting = 1
+                                }
+                            }
+                            MenuItem {
+                                text: i18n("Horizontal Flip")
+                                enabled: flipSetting!==2
+                                onTriggered: {
+                                    flipSetting = 2
+                                }
+                            }
+                            MenuItem {
+                                text: i18n("Vertical Flip")
+                                enabled: flipSetting!==3
+                                onTriggered: {
+                                    flipSetting = 3
+                                }
+                            }
+                            MenuItem {
+                                text: i18n("180° rotation")
+                                enabled: flipSetting!==4
+                                onTriggered: {
+                                    flipSetting = 4
+                                }
+                            }
+                        }
                     }
                 }
             }
