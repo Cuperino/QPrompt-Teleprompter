@@ -30,6 +30,7 @@ Item {
 
     property real backgroundOpacity: 1
     property color backgroundColor: "#000"
+    property bool reScale: true
 
     Component {
         id: projectionDelegte
@@ -43,6 +44,7 @@ Item {
             height: model.height
             flags: Qt.FramelessWindowHint
             visibility: Kirigami.ApplicationWindow.FullScreen
+            visible: true
             color: "transparent"
             MouseArea {
                 anchors.fill:parent
@@ -70,9 +72,9 @@ Item {
                     anchors.left: parent.left
                     anchors.right: parent.right
                     height: (width/sourceSize.width) * sourceSize.height
-                    fillMode: Image.PreserveAspectFit
+                    fillMode: reScale ? Image.PreserveAspectFit : Image.Pad
                     asynchronous: true
-                    cache: false
+                    cache: !reScale
                     // mirror: true
                 }
             }
