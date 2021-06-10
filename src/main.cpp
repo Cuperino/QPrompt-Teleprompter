@@ -58,7 +58,7 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
     QCoreApplication::setApplicationName("QPrompt");
 
     KAboutData aboutData("qprompt", "QPrompt", i18n("1.0 (development build 2)"),
-                         i18n("Free Software teleprompter for professionals across industries."),
+                         i18n("Personal teleprompter software for professional content creators."),
                          KAboutLicense::GPL_V3,
                          //KAboutLicense::Custom,
                          i18n("Copyright 2021, Javier O. Cordero Pérez"), QString(),
@@ -83,9 +83,9 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
     aboutData.addLicense(
         KAboutLicense::LGPL_V3
     );
-    // set the application metadata
+    // Set the application metadata
     KAboutData::setApplicationData(aboutData);
-    
+
     QFontDatabase fontDatabase;
     if (fontDatabase.addApplicationFont(":/fonts/fontello.ttf") == -1)
         qWarning() << i18n("Failed to load icons from fontello.ttf");
