@@ -376,7 +376,6 @@ Kirigami.Page {
         },
         Kirigami.Action {
             id: displaySettings
-            property alias display: bridge.displayComponent
             visible: !Kirigami.Settings.isMobile
             text: i18n("Duplicates")
             tooltip: i18n("Project prompter duplicates onto extended displays")
@@ -388,10 +387,11 @@ Kirigami.Page {
                     flickableDirection: Flickable.VerticalFlick
                     model: Qt.application.screens
                     delegate: Kirigami.BasicListItem {
+                        id: displayItem
                         label: model.name
                         enabled: screen.name!==label
                         readonly property int projectionSetting: enabled ? projectionSetting : 0
-                        property int flipSetting: 0
+                        property int flipSetting: projectionManager.getDisplayFlip(displayItem.label)
                         activeTextColor: "#FFFFFF"
                         activeBackgroundColor: "#797979"
                         //contentItem: Label {
@@ -406,6 +406,7 @@ Kirigami.Page {
                                 enabled: flipSetting!==0
                                 onTriggered: {
                                     flipSetting = 0
+                                    onTriggered: projectionManager.putDisplayFlip(displayItem.label, 0)
                                 }
                             }
                             MenuItem {
@@ -413,6 +414,7 @@ Kirigami.Page {
                                 enabled: flipSetting!==1
                                 onTriggered: {
                                     flipSetting = 1
+                                    onTriggered: projectionManager.putDisplayFlip(displayItem.label, 1)
                                 }
                             }
                             MenuItem {
@@ -420,6 +422,7 @@ Kirigami.Page {
                                 enabled: flipSetting!==2
                                 onTriggered: {
                                     flipSetting = 2
+                                    onTriggered: projectionManager.putDisplayFlip(displayItem.label, 2)
                                 }
                             }
                             MenuItem {
@@ -427,6 +430,7 @@ Kirigami.Page {
                                 enabled: flipSetting!==3
                                 onTriggered: {
                                     flipSetting = 3
+                                    onTriggered: projectionManager.putDisplayFlip(displayItem.label, 3)
                                 }
                             }
                             MenuItem {
@@ -434,6 +438,7 @@ Kirigami.Page {
                                 enabled: flipSetting!==4
                                 onTriggered: {
                                     flipSetting = 4
+                                    onTriggered: projectionManager.putDisplayFlip(displayItem.label, 4)
                                 }
                             }
                         }

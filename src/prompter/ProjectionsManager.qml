@@ -75,7 +75,7 @@ Item {
                     fillMode: reScale ? Image.PreserveAspectFit : Image.Pad
                     asynchronous: true
                     cache: !reScale
-                    // mirror: true
+                    mirror: model.flip===2 || model.flip===4
                 }
             }
             onClosing: {
@@ -88,6 +88,10 @@ Item {
         id: projectionModel
     }
 
+    ListModel {
+        id: displayModel
+    }
+
     Instantiator {
         id: projections
         model: projectionModel
@@ -95,19 +99,55 @@ Item {
         delegate: projectionDelegte
     }
 
+    function getDisplayFlip(screenName, flipSetting) {
+        const totalDisplays = displayModel.count;
+        for (var j=0; j<totalDisplays; j++)
+            if (displayModel.get(j).name===screenName)
+                return displayModel.get(j).flipSetting
+        return 0
+    }
+
+    function putDisplayFlip(screenName, flipSetting) {
+        // If configuration exists for element, update it.
+        const totalDisplays = displayModel.count;
+        for (var j=0; j<totalDisplays; j++)
+            if (displayModel.get(j).name===screenName) {
+                displayModel.get(j).flipSetting = flipSetting;
+                console.log(displayModel)
+                return;
+            }
+        // If configuration does not exists, add it.
+        displayModel.append({
+            "name": screenName,
+            "flipSetting": flipSetting
+        });
+        console.log(displayModel)
+    }
+
     function project() {
         console.log("Creating projections")
         projectionModel.clear();
+        var flip = 0;
+        const totalDisplays = displayModel.count;
         for (var i=0; i<Qt.application.screens.length; i++) {
-            //if (Qt.application.screens[i].name!==screen.name) {
+            for (var j=0; j<totalDisplays; j++)
+                if (Qt.application.screens[i].name===displayModel.get(j).name) {
+                    flip = displayModel.get(j).flipSetting;
+                    break;
+                }
+                else 
+                    flip = 0;
+            //if (Qt.application.screens[i].name!==screen.name)
             projectionModel.append ({
+                "id": i,
+                "name": Qt.application.screens[i].name, // + ' ' + Qt.application.screens[i].model + ' ' + Qt.application.screens[i].manufacturer,
                 "x": Qt.application.screens[i].virtualX,
                 "y": Qt.application.screens[i].virtualY,
                 "width": Qt.application.screens[i].desktopAvailableWidth,
                 "height": Qt.application.screens[i].desktopAvailableHeight,
+                "flip": flip,//.projectionSetting,
                 "p": ""
             });
-            //}
         }
     }
 
