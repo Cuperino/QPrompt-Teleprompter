@@ -941,7 +941,8 @@ Kirigami.ApplicationWindow {
         id: projectionManager
         backgroundColor: prompterPage.prompterBackground.color
         backgroundOpacity: prompterPage.prompterBackground.opacity
-        displaySettings: prompterPage.displaySettings.display
+        // Forward to prompter and not editor to prevent editing from projection windows
+        forwardTo: prompterPage.prompter
     }
 
     // Prompter Page Contents
@@ -958,7 +959,7 @@ Kirigami.ApplicationWindow {
         id: aboutPageComponent
         AboutPage {}
     }
-    
+
     // Dialogues
     Labs.MessageDialog {
         id : quitDialog

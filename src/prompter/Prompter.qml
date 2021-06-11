@@ -87,6 +87,7 @@ Flickable {
     property alias editor: editor
     property alias document: document
     property alias textColor: document.textColor
+    property alias mouse: mouse
     // Create position alias to make code more readable
     property alias position: prompter.contentY
     // Scrolling settings
@@ -232,15 +233,19 @@ Flickable {
             nextIndex = ( states.indexOf(state) + 2 ) % states.length
         state = states[nextIndex]
 
-        /*switch (state) {
+        switch (state) {
             case "editing":
-                showPassiveNotification(i18n("Editing"), 850*countdown.__iterations)
+                //showPassiveNotification(i18n("Editing"), 850*countdown.__iterations)
+                projectionManager.close();
                 break;
+            case "standby":
             case "countdown":
             case "prompting":
-                showPassiveNotification(i18n("Prompt started"), 850*countdown.__iterations)
+                if (projectionManager.model.count===0)
+                    projectionManager.project();
+                //showPassiveNotification(i18n("Prompt started"), 850*countdown.__iterations)
                 break;
-        }*/
+        }
     }
 
     function increaseVelocity(event) {
@@ -294,6 +299,7 @@ Flickable {
     }
     
     MouseArea {
+        id: mouse
         //propagateComposedEvents: false
         acceptedButtons: Qt.LeftButton
         hoverEnabled: false
