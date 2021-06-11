@@ -377,9 +377,9 @@ Kirigami.Page {
         Kirigami.Action {
             id: displaySettings
             visible: !Kirigami.Settings.isMobile
-            text: i18n("Duplicates")
-            tooltip: i18n("Project prompter duplicates onto extended displays")
+            text: i18n("Screens")
 
+            // This part of the code is nothing but a hack. But hey! It works!
             Kirigami.Action {
                 id: bridge
                 displayComponent: ListView {
@@ -388,9 +388,10 @@ Kirigami.Page {
                     model: Qt.application.screens
                     delegate: Kirigami.BasicListItem {
                         id: displayItem
+                        enabled: prompter.state==="editing"
                         label: model.name
-                        enabled: screen.name!==label
-                        readonly property int projectionSetting: enabled ? projectionSetting : 0
+                        // enabled: screen.name!==label
+                        // readonly property int projectionSetting: enabled ? projectionSetting : 0
                         property int flipSetting: projectionManager.getDisplayFlip(displayItem.label)
                         activeTextColor: "#FFFFFF"
                         activeBackgroundColor: "#797979"
@@ -443,6 +444,21 @@ Kirigami.Page {
                             }
                         }
                     }
+                }
+            }
+            Kirigami.Action {
+                text: i18n("Scale Projections")
+                checkable: true
+                checked: projectionManager.reScale
+                onTriggered: {
+                    projectionManager.reScale = !projectionManager.reScale
+                }
+            }
+            Kirigami.Action {
+                text: i18n("Preview Projections")
+                tooltip: i18n("Project prompter duplicates onto extended displays")
+                onTriggered: {
+                    projectionManager.preview()
                 }
             }
         },
