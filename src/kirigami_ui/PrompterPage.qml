@@ -526,23 +526,20 @@ Kirigami.Page {
     Kirigami.OverlayDrawer {
         id: sideDrawer
         background: Rectangle {
-            color: appTheme.__backgroundColor
+            color: "#282828" // appTheme.__backgroundColor
+            opacity: 0.88
         }
-        width: 240
-//        width: popupContent.implicitWidth
-        edge: Qt.BottomEdge
+        //width: 240
+        width: popupContent.implicitWidth
+        modal: false
+        edge: Qt.LeftToRight ? Qt.RightEdge : Qt.LeftEdge
         padding: 0
         leftPadding: 0
         rightPadding: 0
         bottomPadding: 0
         topPadding: 0
 
-        parent: prompterPage.overlay // applicationWindow().overlay
-
-//        header: Kirigami.Heading {
-//            text: i18n("Marker List")
-//            level: 1
-//        }
+        parent: prompterPage.overlay
 
         // ListModel {
         //     id: nameModel
