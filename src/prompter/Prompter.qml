@@ -425,9 +425,6 @@ Flickable {
                 font.preferShaping: true
                 renderType: Text.NativeRendering
                 //renderType: Text.QtRendering
-                
-                // Make links responsive
-                onLinkActivated: Qt.openUrlExternally(link)
 
                 //Different styles have different padding and background
                 //decorations, but since this editor must resemble the
