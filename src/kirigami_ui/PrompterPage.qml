@@ -85,60 +85,6 @@ Kirigami.Page {
             }
         },
         Kirigami.Action {
-            id: flipButton
-            text: i18n("Flip")
-            
-            function updateButton(context) {
-                text = context.shortName
-                //iconName = context.iconName
-            }
-            
-            Kirigami.Action {
-                text: i18n("No Flip")
-                //iconName: "refresh"
-                readonly property string shortName: i18n("No Flip")
-                onTriggered: {
-                    parent.updateButton(this)
-                    viewport.prompter.__flipX = false
-                    viewport.prompter.__flipY = false
-                }
-                enabled: viewport.prompter.__flipX || viewport.prompter.__flipY
-            }
-            Kirigami.Action {
-                text: i18n("Horizontal Flip")
-                //iconName: "refresh"
-                readonly property string shortName: i18n("H Flip")
-                onTriggered: {
-                    parent.updateButton(this)
-                    viewport.prompter.__flipX = true
-                    viewport.prompter.__flipY = false
-                }
-                enabled: (!viewport.prompter.__flipX) || viewport.prompter.__flipY
-            }
-            Kirigami.Action {
-                text: i18n("Vertical Flip")
-                //iconName: "refresh"
-                readonly property string shortName: i18n("V Flip")
-                onTriggered: {
-                    parent.updateButton(this)
-                    viewport.prompter.__flipX = false
-                    viewport.prompter.__flipY = true
-                }
-                enabled: viewport.prompter.__flipX || !viewport.prompter.__flipY
-            }
-            Kirigami.Action {
-                text: i18n("180° rotation")
-                //iconName: "refresh"
-                readonly property string shortName: i18n("HV Flip")
-                onTriggered: {
-                    parent.updateButton(this)
-                    viewport.prompter.__flipX = true
-                    viewport.prompter.__flipY = true
-                }
-                enabled: !(viewport.prompter.__flipX && viewport.prompter.__flipY)
-            }
-        },
-        Kirigami.Action {
             id: readRegionButton
             text: i18n("Reading region")
             //onTriggered: viewport.overlay.toggle()
@@ -278,24 +224,32 @@ Kirigami.Page {
             }
         },
         Kirigami.Action {
-            id: loadBackgroundButton
-            text: i18n("Background")
-            
+            id: timerButton
+            text: i18n("Timer")
             Kirigami.Action {
-                id: changeBackgroundImageButton
-                text: i18n("Set Image")
-                onTriggered: prompterBackground.loadBackgroundImage()
+                id: enableStopwatchButton
+                checkable: true
+                checked: viewport.timer.stopwatch
+                text: i18n("Stopwatch")
+                onTriggered: {
+                    viewport.timer.stopwatch = !viewport.timer.stopwatch
+                }
             }
             Kirigami.Action {
-                id: changeBackgroundColorButton
-                text: i18n("Set Color")
-                onTriggered: prompterBackground.backgroundColorDialog.open()
+                id: enableETAButton
+                checkable: true
+                checked: viewport.timer.eta
+                text: i18n("ETA")
+                onTriggered: {
+                    viewport.timer.eta = !viewport.timer.eta
+                }
             }
             Kirigami.Action {
-                id: clearBackgroundButton
-                text: i18n("Clear Background")
-                enabled: prompterBackground.hasBackground
-                onTriggered: prompterBackground.clearBackground()
+                id: timerColorButton
+                text: i18n("Timer Color")
+                onTriggered: {
+                    viewport.timer.setColor()
+                }
             }
         },
         Kirigami.Action {
@@ -346,32 +300,57 @@ Kirigami.Page {
             }
         },
         Kirigami.Action {
-            id: timerButton
-            text: i18n("Timer")
+            id: flipButton
+            text: i18n("Flip")
+
+            function updateButton(context) {
+                text = context.shortName
+                //iconName = context.iconName
+            }
+
             Kirigami.Action {
-                id: enableStopwatchButton
-                checkable: true
-                checked: viewport.timer.stopwatch
-                text: i18n("Stopwatch")
+                text: i18n("No Flip")
+                //iconName: "refresh"
+                readonly property string shortName: i18n("No Flip")
                 onTriggered: {
-                    viewport.timer.stopwatch = !viewport.timer.stopwatch
+                    parent.updateButton(this)
+                    viewport.prompter.__flipX = false
+                    viewport.prompter.__flipY = false
                 }
+                enabled: viewport.prompter.__flipX || viewport.prompter.__flipY
             }
             Kirigami.Action {
-                id: enableETAButton
-                checkable: true
-                checked: viewport.timer.eta
-                text: i18n("ETA")
+                text: i18n("Horizontal Flip")
+                //iconName: "refresh"
+                readonly property string shortName: i18n("H Flip")
                 onTriggered: {
-                    viewport.timer.eta = !viewport.timer.eta
+                    parent.updateButton(this)
+                    viewport.prompter.__flipX = true
+                    viewport.prompter.__flipY = false
                 }
+                enabled: (!viewport.prompter.__flipX) || viewport.prompter.__flipY
             }
             Kirigami.Action {
-                id: timerColorButton
-                text: i18n("Timer Color")
+                text: i18n("Vertical Flip")
+                //iconName: "refresh"
+                readonly property string shortName: i18n("V Flip")
                 onTriggered: {
-                    viewport.timer.setColor()
+                    parent.updateButton(this)
+                    viewport.prompter.__flipX = false
+                    viewport.prompter.__flipY = true
                 }
+                enabled: viewport.prompter.__flipX || !viewport.prompter.__flipY
+            }
+            Kirigami.Action {
+                text: i18n("180° rotation")
+                //iconName: "refresh"
+                readonly property string shortName: i18n("HV Flip")
+                onTriggered: {
+                    parent.updateButton(this)
+                    viewport.prompter.__flipX = true
+                    viewport.prompter.__flipY = true
+                }
+                enabled: !(viewport.prompter.__flipX && viewport.prompter.__flipY)
             }
         },
         Kirigami.Action {
@@ -460,6 +439,26 @@ Kirigami.Page {
                 onTriggered: {
                     projectionManager.preview()
                 }
+            }
+        },
+        Kirigami.Action {
+            id: loadBackgroundButton
+            text: i18n("Background")
+            Kirigami.Action {
+                id: changeBackgroundImageButton
+                text: i18n("Set Image")
+                onTriggered: prompterBackground.loadBackgroundImage()
+            }
+            Kirigami.Action {
+                id: changeBackgroundColorButton
+                text: i18n("Set Color")
+                onTriggered: prompterBackground.backgroundColorDialog.open()
+            }
+            Kirigami.Action {
+                id: clearBackgroundButton
+                text: i18n("Clear Background")
+                enabled: prompterBackground.hasBackground
+                onTriggered: prompterBackground.clearBackground()
             }
         },
         //Kirigami.Action {
