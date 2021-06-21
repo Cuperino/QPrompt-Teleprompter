@@ -32,8 +32,8 @@ include(FeatureSummary)
 # Directories where Qt Creator can find QML files of Kirigami etc. on your system.
 #   (This setting is cached in variable QML_IMPORT_DIR, see below. Delete
 #   ${BUIL_DIR}/CMakeCache.txt to make make changes here effective.)
-list(APPEND QML_DIRS "/usr/lib/x86_64-linux-gnu/qt5/qml")
-list(APPEND KIRIGAMI_DIRS "/usr/lib/x86_64-linux-gnu/qt5/qml/org/kde/kirigami.2")
+# list(APPEND QML_DIRS "/usr/lib/x86_64-linux-gnu/qt5/qml")
+# list(APPEND KIRIGAMI_DIRS "/usr/lib/x86_64-linux-gnu/qt5/qml/org/kde/kirigami.2")
 
 # Configuration Issues are Here
 #list(APPEND ECM_MODULE_PATH "3rdparty/extra-cmake-modules/build")
@@ -45,11 +45,11 @@ list(APPEND KIRIGAMI_DIRS "/usr/lib/x86_64-linux-gnu/qt5/qml/org/kde/kirigami.2"
 # ------------------------- END: lists to maintain ma/usr/lib/x86_64-linux-gnu/qt5/nually -------------------------
 # Tell Qt Creator where to find QML files.
 #   (The build process will work without this, but no code completion etc..)
-set(
-    QML_IMPORT_PATH "${QML_DIRS}"
-    # CACHE STRING "Qt Creator 4.1 extra qml import paths"
-    QML_IMPORT_PATH "${KIRIGAMI_DIRS}"
-)
+# set(
+#     QML_IMPORT_PATH "${QML_DIRS}"
+#     # CACHE STRING "Qt Creator 4.1 extra qml import paths"
+#     QML_IMPORT_PATH "${KIRIGAMI_DIRS}"
+# )
 
 # QT 5.12 for Ubuntu 20.04
 set(QT5_MIN_VERSION 5.12)
