@@ -21,11 +21,26 @@
 #**************************************************************************
 
 
-cmake_minimum_required(VERSION 3.0)
+cmake_minimum_required(VERSION 3.16)
 
-project(qprompt)
-
+project(QPrompt)
 include(FeatureSummary)
+
+# Find includes in corresponding build directories
+set(CMAKE_INCLUDE_CURRENT_DIR ON)
+# Instruct CMake to run moc automatically when needed.
+set(CMAKE_AUTOMOC ON)
+# Instruct CMake to create code from Qt designer ui files
+set(CMAKE_AUTOUIC ON)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_CXX_STANDARD 17)
+
+# QT 5.15 to be able to use new Connect methods syntax and get rid of warning.
+#set(QT5_MIN_VERSION 5.15.2)
+# QT 5.12 for Ubuntu 20.04
+set(QT_MIN_VERSION "5.12.0")
+# KF5 5.68 for Ubuntu 20.04
+set(KF_MIN_VERSION "5.68.0")
 
 # ------------------------- BEGIN: lists to maintain manually -------------------------
 
@@ -43,46 +58,61 @@ include(FeatureSummary)
 #list(APPEND KF5I18n_PATH "/usr/lib/x86_64-linux-gnu/cmake/KF5I18n")
 
 # ------------------------- END: lists to maintain ma/usr/lib/x86_64-linux-gnu/qt5/nually -------------------------
+
 # Tell Qt Creator where to find QML files.
 #   (The build process will work without this, but no code completion etc..)
-# set(
-#     QML_IMPORT_PATH "${QML_DIRS}"
-#     # CACHE STRING "Qt Creator 4.1 extra qml import paths"
-#     QML_IMPORT_PATH "${KIRIGAMI_DIRS}"
-# )
+set(
+    QML_IMPORT_PATH "${QML_DIRS}"
+    QML_IMPORT_PATH "${KIRIGAMI_DIRS}"
+    CACHE STRING "Qt Creator 4.1 extra qml import paths"
+)
 
-# QT 5.12 for Ubuntu 20.04
-set(QT5_MIN_VERSION 5.12)
-# QT 5.15 to be able to use new Connect methods syntax and get rid of warning.
-#set(QT5_MIN_VERSION 5.15)
+# Send compiled program and library binaries to "build/bin"
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 
-# KF5 5.68 for Ubuntu 20.04
-set(KF5_MIN_VERSION 5.65)
-
-set(ECM_DIR ${ECM_MODULE_PATH})
+#set(ECM_DIR ${ECM_MODULE_PATH})
 #set(KF5Kirigami2_DIR ${KF5Kirigami2_PATH})
 #set(KF5I18n_DIR ${KF5I18n_PATH})
 
-find_package(ECM ${KF5_MIN_VERSION} REQUIRED NO_MODULE)
+find_package(ECM ${KF_MIN_VERSION} REQUIRED NO_MODULE)
 set(CMAKE_MODULE_PATH ${ECM_MODULE_PATH})
 
 include(KDEInstallDirs)
 include(KDECMakeSettings)
-#include(KDECompilerSettings)
 include(KDECompilerSettings NO_POLICY_SCOPE)
-include(ECMSetupVersion)
-include(ECMGenerateHeaders)
-include(ECMPoQmTools)
+include(ECMInstallIcons)
+include(ECMQtDeclareLoggingCategory)
+include(FeatureSummary)
 
-find_package(Qt5 ${QT5_MIN_VERSION} REQUIRED COMPONENTS Core Gui Qml QuickControls2 Svg Widgets)
-find_package(KF5 ${KF5_MIN_VERSION} REQUIRED COMPONENTS Kirigami2 I18n CoreAddons IconThemes #[[WidgetsAddons]])
+find_package(Qt5 ${QT5_MIN_VERSION} REQUIRED COMPONENTS
+    Core
+    # Test
+    Qml
+    Gui
+    Quick
+    QuickControls2
+    Widgets
+)
+find_package(KF5 ${KF_MIN_VERSION} REQUIRED COMPONENTS
+    Kirigami2
+    I18n
+    CoreAddons
+    IconThemes
+)
+#find_package(KF5CoreAddons)
+#find_package(KF5I18n NO_MODULE)
+#find_package(KF5Kirigami2)
 
-add_subdirectory(src)
+#add_subdirectory("3rdparty/extra-cmake-modules" build/ecm)
+#add_subdirectory("3rdparty/kirigami" build/kirigami)
+#add_subdirectory("3rdparty/ki18n" build/ki18n)
+#add_subdirectory("3rdparty/breeze-icons" build/icons)
+#add_subdirectory("3rdparty/calligra/filters/libmsooxml" build/libmsooxml)
 
-find_package(KF5I18n NO_MODULE)
+add_subdirectory(src build)
 ki18n_install(po)
 
-install(PROGRAMS com.cuperino.qprompt.desktop DESTINATION ${KDE_INSTALL_APPDIR})
-install(FILES com.cuperino.qprompt.appdata.xml DESTINATION ${KDE_INSTALL_METAINFODIR})
+#install(PROGRAMS com.cuperino.qprompt.desktop DESTINATION ${KDE_INSTALL_APPDIR})
+#install(FILES com.cuperino.qprompt.appdata.xml DESTINATION ${KDE_INSTALL_METAINFODIR})
 
 feature_summary(WHAT ALL INCLUDE_QUIET_PACKAGES FATAL_ON_MISSING_REQUIRED_PACKAGES)

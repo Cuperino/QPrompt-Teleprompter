@@ -41,12 +41,7 @@ Item {
     property string positionState: "middle"
     property string styleState: Qt.application.layoutDirection===Qt.LeftToRight ? "barsLeft" : "barsRight"
     readonly property alias readRegionHeight: readRegion.height
-    readonly property Scale __flips: Scale {
-        origin.x: width/2
-        origin.y: height/2
-        xScale: prompter.state!=="editing" && prompter.__flipX ? -1 : 1
-        yScale: prompter.state!=="editing" && prompter.__flipY ? -1 : 1
-    }
+    readonly property Scale __flips: Flip{}
     transform: __flips
     //anchors.fill: parent
     anchors {
@@ -67,7 +62,7 @@ Item {
         id: overlayMouseArea
         enabled: false
         anchors.fill: parent
-        //cursorShape: Qt.DefaultCursor
+        cursorShape: Qt.CrossCursor
         propagateComposedEvents: true
     }
     states: [
@@ -137,15 +132,12 @@ Item {
                 }
                 PropertyChanges {
                     target: pointers
-                    __opacity: 0.4
+                    // Workaround to ensure pointer color does not remain in its free state setting when changing to other prompter states
+                    __strokeColor: prompter.state==="editing" ? "#2a71ad" : "#4d94cf"
                 }
                 PropertyChanges {
                     target: readRegion
                     enabled: true
-                }
-                PropertyChanges {
-                    target: pointers
-                    __fillColor: "#180000"
                 }
             },
             State {
@@ -181,7 +173,7 @@ Item {
             drag.smoothed: false
             drag.minimumY: 0
             drag.maximumY: overlay.height - this.height
-            cursorShape: Qt.PointingHandCursor
+            cursorShape: (pressed||drag.active) ? Qt.ClosedHandCursor : Qt.OpenHandCursor
             onReleased: {
                 readRegion.__customPlacement = readRegion.y / (overlay.height - readRegion.height)
             }
@@ -198,7 +190,7 @@ Item {
             //layer.enabled: true
             Shape {
                 id: leftPointer
-                x: prompter.editorXOffset*overlay.width - (2.8*pointers.__stretchX+pointers.__offsetX)*pointers.__pointerUnit
+                x: prompter.editorXWidth*overlay.width + prompter.editorXOffset*overlay.width - (2.8*pointers.__stretchX+pointers.__offsetX)*pointers.__pointerUnit
                 ShapePath {
                     strokeWidth: pointers.__pointerUnit/3
                     strokeColor: pointers.__strokeColor
@@ -215,7 +207,7 @@ Item {
             }
             Shape {
                 id: rightPointer
-                x: parent.parent.width - prompter.editorXOffset*overlay.width + (2.7*pointers.__stretchX+pointers.__offsetX)*pointers.__pointerUnit
+                x: parent.parent.width - prompter.editorXWidth*overlay.width + prompter.editorXOffset*overlay.width + (2.7*pointers.__stretchX+pointers.__offsetX)*pointers.__pointerUnit
                 ShapePath {
                     strokeWidth: pointers.__pointerUnit/3
                     strokeColor: pointers.__strokeColor

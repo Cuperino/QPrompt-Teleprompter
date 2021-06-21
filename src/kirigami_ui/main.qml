@@ -42,22 +42,25 @@ Kirigami.ApplicationWindow {
     property bool __scrollAsDial: false
     property bool __invertArrowKeys: false
     property bool __invertScrollDirection: false
+    property bool __noScroll: false
+    property bool __telemetry: true
     property bool italic
     
     //property int prompterVisibility: Kirigami.ApplicationWindow.Maximized
     property double __opacity: 1
+    property int __iDefault: 3
     property real __baseSpeed: baseSpeedSlider.value
     property real __curvature: baseAccelerationSlider.value
     
     title: prompterPage.document.fileName + (prompterPage.document.modified?"*":"") + " - " + aboutData.displayName
-    width: 1064  // Keep at or bellow 1024 and at or above 960, for best usability with common 4:3 resolutions
+    width: 1200  // Set to 1200 to fit both 1280 4:3 and 1200 height monitors. Keep at or bellow 1024 and at or above 960, for best usability with common 4:3 resolutions
     height: 728  // Keep and test at 728 so that it works well with 1366x768 screens.
     // Making width and height start maximized
     //width: screen.desktopAvailableWidth
     //height: screen.desktopAvailableHeight
     minimumWidth: 480
     minimumHeight: 380
-    
+
     //// Theme management
     //Material.theme: themeSwitch.checked ? Material.Dark : Material.Light  // This is correct, but it isn't work working, likely because of Kirigami
     
@@ -66,12 +69,12 @@ Kirigami.ApplicationWindow {
     color: "transparent"
     // More ways to enforce transparency across systems
     //visible: true
-    //flags: Qt.FramelessWindowHint
-    
+    flags: prompterPage.hideDecorations===2 || prompterPage.hideDecorations===1 && prompterPage.overlay.atTop && prompterPage.prompter.state!=="editing" ? Qt.FramelessWindowHint : Qt.Window
+
     background: Rectangle {
         id: appTheme
         color: __backgroundColor
-        opacity: !root.__translucidBackground || prompterPage.prompterBackground.opacity===1
+        opacity: root.pageStack.layers.depth > 1 || (!root.__translucidBackground || prompterPage.prompterBackground.opacity===1)
         //readonly property color __fontColor: parent.Material.theme===Material.Light ? "#212121" : "#fff"
         //readonly property color __iconColor: parent.Material.theme===Material.Light ? "#232629" : "#c3c7d1"
         //readonly property color __backgroundColor: __translucidBackground ? (parent.Material.theme===Material.Dark ? "#303030" : "#fafafa") : Kirigami.Theme.backgroundColor
@@ -116,25 +119,25 @@ Kirigami.ApplicationWindow {
         actions: [
             Kirigami.Action {
                 text: i18n("&New")
-                iconName: "folder"
+                iconName: "document-new"
                 shortcut: i18n("Ctrl+N")
                 onTriggered: prompterPage.document.newDocument()
             },
             Kirigami.Action {
                 text: i18n("&Open")
-                iconName: "folder"
+                iconName: "document-open"
                 shortcut: i18n("Ctrl+O")
                 onTriggered: prompterPage.document.open()
             },
             Kirigami.Action {
                 text: i18n("&Save")
-                iconName: "folder"
+                iconName: "document-save"
                 shortcut: i18n("Ctrl+S")
                 onTriggered: prompterPage.document.saveDialog()
             },
             Kirigami.Action {
                 text: i18n("Save &As")
-                iconName: "folder"
+                iconName: "document-save-as"
                 shortcut: i18n("Ctrl+Shift+S")
                 onTriggered: prompterPage.document.saveAsDialog()
             },
@@ -148,13 +151,63 @@ Kirigami.ApplicationWindow {
                 //}
             },
             Kirigami.Action {
+                visible: ["android", "ios", "tvos", "ipados", "qnx"].indexOf(Qt.platform.os)===-1
+                text: i18n("Keyboard Inputs")
+                iconName: "keyboard"
+                onTriggered: {
+                    prompterPage.key_configuration_overlay.open()
+                }
+            },
+            Kirigami.Action {
+                text: i18n("&Controls Settings")
+                iconName: "hand"
+                Kirigami.Action {
+                    text: i18n("Disable scrolling while prompting")
+                    checkable: true
+                    checked: root.__noScroll
+                    onTriggered: root.__noScroll = !root.__noScroll
+                }
+                Kirigami.Action {
+                    text: i18n("Use scroll as velocity &dial")
+                    enabled: !root.__noScroll
+                    // ToolTip.text: i18n("Use mouse and touchpad scroll as speed dial while prompting")
+                    checkable: true
+                    checked: root.__scrollAsDial
+                    onTriggered: root.__scrollAsDial = !root.__scrollAsDial
+                }
+                Kirigami.Action {
+                    text: i18n("Invert &arrow keys")
+                    enabled: !root.__noScroll
+                    checkable: true
+                    checked: root.__invertArrowKeys
+                    onTriggered: root.__invertArrowKeys = !root.__invertArrowKeys
+                }
+                Kirigami.Action {
+                    text: i18n("Invert &scroll direction")
+                    enabled: !root.__noScroll
+                    checkable: true
+                    checked: root.__invertScrollDirection
+                    onTriggered: root.__invertScrollDirection = !root.__invertScrollDirection
+                }
+            },
+            Kirigami.Action {
+                text: i18n("Other &Settings")
+                iconName: "configure"
+                Kirigami.Action {
+                    text: i18n("Telemetry")
+                    onTriggered: {
+                        prompterPage.telemetry_overlay.open()
+                    }
+                }
+            },
+            Kirigami.Action {
                 text: i18n("Abou&t") + " " + aboutData.displayName
                 iconName: "help-about"
                 onTriggered: loadAboutPage()
             },
             Kirigami.Action {
                 text: i18n("&Quit")
-                iconName: "close"
+                iconName: "exit"
                 shortcut: i18n("Ctrl+Q")
                 onTriggered: close()
             }
@@ -166,6 +219,15 @@ Kirigami.ApplicationWindow {
                 onClicked: {
                     prompterPage.document.loadInstructions()
                     globalMenu.close()
+                }
+            }
+            Button {
+                text: i18n("&Full Screen")
+                flat: true
+                checkable: true
+                checked: root.__fullScreen
+                onClicked: {
+                    root.__fullScreen = !root.__fullScreen
                 }
             }
             Button {
@@ -203,9 +265,9 @@ Kirigami.ApplicationWindow {
             Slider {
                 id: baseSpeedSlider
                 from: 0.1
-                value: 2
-                to: 10
-                stepSize: 0.1
+                value: 1.5
+                to: 5
+                stepSize: 0.05
                 Layout.fillWidth: true
                 Layout.leftMargin: 16
                 Layout.rightMargin: 16
@@ -218,8 +280,8 @@ Kirigami.ApplicationWindow {
             Slider {
                 id: baseAccelerationSlider
                 from: 0.5
-                value: 1.2
-                to: 3
+                value: 1.15
+                to: 2
                 stepSize: 0.05
                 Layout.fillWidth: true
                 Layout.leftMargin: 16
@@ -467,7 +529,14 @@ Kirigami.ApplicationWindow {
             title: i18n("&Controls")
             
             MenuItem {
+                text: i18n("Disable scrolling while prompting")
+                checkable: true
+                checked: root.__noScroll
+                onTriggered: root.__noScroll = !root.__noScroll
+            }
+            MenuItem {
                 text: i18n("Use scroll as velocity &dial")
+                enabled: !root.__noScroll
                 ToolTip.text: i18n("Use mouse and touchpad scroll as speed dial while prompting")
                 checkable: true
                 checked: root.__scrollAsDial
@@ -476,12 +545,14 @@ Kirigami.ApplicationWindow {
             MenuSeparator { }
             MenuItem {
                 text: i18n("Invert &arrow keys")
+                enabled: !root.__noScroll
                 checkable: true
                 checked: root.__invertArrowKeys
                 onTriggered: root.__invertArrowKeys = !root.__invertArrowKeys
             }
             MenuItem {
                 text: i18n("Invert &scroll direction")
+                enabled: !root.__noScroll
                 checkable: true
                 checked: root.__invertScrollDirection
                 onTriggered: root.__invertScrollDirection = !root.__invertScrollDirection
@@ -749,9 +820,16 @@ Kirigami.ApplicationWindow {
         }
         Labs.Menu {
             title: i18n("Controls")
-            
+
+            Labs.MenuItem {
+                text: i18n("Disable scrolling while prompting")
+                checkable: true
+                checked: root.__noScroll
+                onTriggered: root.__noScroll = !root.__noScroll
+            }
             Labs.MenuItem {
                 text: i18n("Use scroll as velocity &dial")
+                enabled: !root.__noScroll
                 checkable: true
                 checked: root.__scrollAsDial
                 onTriggered: root.__scrollAsDial = !root.__scrollAsDial
@@ -759,12 +837,14 @@ Kirigami.ApplicationWindow {
             Labs.MenuSeparator { }
             Labs.MenuItem {
                 text: i18n("Invert &arrow keys")
+                enabled: !root.__noScroll
                 checkable: true
                 checked: root.__invertArrowKeys
                 onTriggered: root.__invertArrowKeys = !root.__invertArrowKeys
             }
             Labs.MenuItem {
                 text: i18n("Invert &scroll direction")
+                enabled: !root.__noScroll
                 checkable: true
                 checked: root.__invertScrollDirection
                 onTriggered: root.__invertScrollDirection = !root.__invertScrollDirection
@@ -821,7 +901,8 @@ Kirigami.ApplicationWindow {
     pageStack.initialPage: prompterPageComponent
     // Auto hide global toolbar on fullscreen
     //pageStack.globalToolBar.style: visibility===Kirigami.ApplicationWindow.FullScreen ? Kirigami.ApplicationHeaderStyle.None :  Kirigami.ApplicationHeaderStyle.Auto
-    pageStack.globalToolBar.style: visibility===Kirigami.ApplicationWindow.FullScreen && prompterPage.prompter.state!=="editing" ? Kirigami.ApplicationHeaderStyle.None : Kirigami.ApplicationHeaderStyle.ToolBar
+    pageStack.globalToolBar.style: Kirigami.Settings.isMobile ? (prompterPage.prompter.state==="editing" ? Kirigami.ApplicationHeaderStyle.Breadcrumb : Kirigami.ApplicationHeaderStyle.None) : (prompterPage.prompter.state!=="editing" && (visibility===Kirigami.ApplicationWindow.FullScreen || prompterPage.overlay.atTop) ? Kirigami.ApplicationHeaderStyle.None : Kirigami.ApplicationHeaderStyle.ToolBar)
+    
     // The following is not possible in the current version of Kirigami, but it should be:
     //pageStack.globalToolBar.background: Rectangle {
         //color: appTheme.__backgroundColor
@@ -846,7 +927,24 @@ Kirigami.ApplicationWindow {
         property: "italic"
         value: root.italic
     }*/
-    
+
+    onFrameSwapped: {
+        const n = projectionManager.model.count;
+        if (n)
+            prompterPage.viewport.grabToImage(function(p) {
+                for (var i=0; i<n; ++i)
+                    projectionManager.model.setProperty(i, "p", String(p.url));
+            });
+    }
+
+    ProjectionsManager {
+        id: projectionManager
+        backgroundColor: prompterPage.prompterBackground.color
+        backgroundOpacity: prompterPage.prompterBackground.opacity
+        // Forward to prompter and not editor to prevent editing from projection windows
+        forwardTo: prompterPage.prompter
+    }
+
     // Prompter Page Contents
     //pageStack.initialPage:
 
@@ -861,7 +959,7 @@ Kirigami.ApplicationWindow {
         id: aboutPageComponent
         AboutPage {}
     }
-    
+
     // Dialogues
     Labs.MessageDialog {
         id : quitDialog

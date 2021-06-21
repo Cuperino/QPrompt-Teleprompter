@@ -38,8 +38,8 @@
  ** information use the contact form at https://www.qt.io/contact-us.
  **
  ** BSD License Usage
- ** Alternatively, you may use this file under the terms of the BSD license
- ** as follows:
+ ** Alternatively, you may use the original examples code in this file under
+ ** the terms of the BSD license as follows:
  **
  ** "Redistribution and use in source and binary forms, with or without
  ** modification, are permitted provided that the following conditions are
@@ -87,17 +87,20 @@ Flickable {
     property alias editor: editor
     property alias document: document
     property alias textColor: document.textColor
+    property alias mouse: mouse
     // Create position alias to make code more readable
     property alias position: prompter.contentY
     // Scrolling settings
     property bool __scrollAsDial: root.__scrollAsDial
     property bool __invertArrowKeys: root.__invertArrowKeys
     property bool __invertScrollDirection: root.__invertScrollDirection
+    property bool __noScroll: root.__noScroll
     property bool __wysiwyg: true
     property alias fontSize: editor.font.pixelSize
-    property int __i: 2
+    property int __i: __iDefault
     property int __iBackup: 0
     property bool __play: true
+    property int __iDefault:  root.__iDefault
     property real __baseSpeed: root.__baseSpeed
     property real __curvature: root.__curvature
     //property alias __baseSpeed: parent.__baseSpeed
@@ -105,7 +108,8 @@ Flickable {
     //property int __lastRecordedPosition: 0
     //property real customContentsPlacement: 0.1
     property real contentsPlacement//: 1-rightWidthAdjustmentBar.x
-    readonly property real editorXOffset: Math.abs(editor.x)/prompter.width
+    readonly property real editorXWidth: Math.abs(editor.x)/prompter.width
+    readonly property real editorXOffset: positionHandler.x/prompter.width
     readonly property real centreX: width / 2;
     readonly property real centreY: height / 2;
     readonly property int __jitterMargin: __i%2
@@ -113,7 +117,8 @@ Flickable {
     readonly property real __vw: width / 100
     readonly property real __speed: __baseSpeed * Math.pow(Math.abs(__i), __curvature)
     readonly property real __velocity: (__possitiveDirection ? 1 : -1) * __speed
-    readonly property real __timeToArival: __i ? (((__possitiveDirection ? editor.height+fontSize-position-topMargin+__jitterMargin : position+topMargin-__jitterMargin)) / (__speed * __vw)) * 1000 /*<< 7*/ : 0
+    readonly property real __timeToEnd: (editor.height+fontSize-position-topMargin+__jitterMargin) / (__speed * __vw)
+    readonly property real __timeToArival: __i ? ((__possitiveDirection ? __timeToEnd : (position+topMargin-__jitterMargin) / (__speed * __vw))) * 1000 /*<< 7*/ : 0
     property real timeToArival: __timeToArival
     readonly property int __destination: __i  ? (__possitiveDirection ? editor.height+fontSize-__jitterMargin : __jitterMargin)-topMargin : position
 
@@ -153,12 +158,7 @@ Flickable {
     property bool __flipX: false
     property bool __flipY: false
     readonly property int __speedLimit: __vw * 10000 // 2*width
-    readonly property Scale __flips: Scale {
-        origin.x: prompter.width/2
-        origin.y: height/2
-        xScale: prompter.state!=="editing" && prompter.__flipX ? -1 : 1
-        yScale: prompter.state!=="editing" && prompter.__flipY ? -1 : 1
-    }
+    readonly property Scale __flips: Flip{}
     // Clipping improves performance on large files and font sizes.
     // It also provides a workaround to the lack of background in the global toolbar when using transparent backgrounds in Material theme.
     clip: true
@@ -166,20 +166,6 @@ Flickable {
     // Progress indicator
     readonly property real progress: (position+__jitterMargin)/editor.height
     //layer.enabled: true
-    Behavior on __flips.xScale {
-        enabled: true
-        animation: NumberAnimation {
-            duration: Kirigami.Units.longDuration
-            easing.type: Easing.OutQuad
-        }
-    }
-    Behavior on __flips.yScale {
-        enabled: true
-        animation: NumberAnimation {
-            duration: Kirigami.Units.longDuration
-            easing.type: Easing.OutQuad
-        }
-    }
 
     // Flick while prompting
     onDragStarted: {
@@ -238,24 +224,28 @@ Flickable {
         var nextIndex = ( states.indexOf(state) + 1 ) % states.length
         // Skip countdown if countdown.__iterations is 0
         if (states[nextIndex]===states[1]) {
-            if (!countdown.enabled)
+            if (!countdown.frame)
                 nextIndex = ( states.indexOf(state) + 3 ) % states.length
             else if (countdown.autoStart)
                 nextIndex = ( states.indexOf(state) + 2 ) % states.length
         }
-        if (states[nextIndex]===states[2] && countdown.__iterations===0)
+        if (states[nextIndex]===states[2] && (countdown.__iterations===0 || !countdown.enabled))
             nextIndex = ( states.indexOf(state) + 2 ) % states.length
         state = states[nextIndex]
 
-        /*switch (state) {
+        switch (state) {
             case "editing":
-                showPassiveNotification(i18n("Editing"), 850*countdown.__iterations)
+                //showPassiveNotification(i18n("Editing"), 850*countdown.__iterations)
+                projectionManager.close();
                 break;
+            case "standby":
             case "countdown":
             case "prompting":
-                showPassiveNotification(i18n("Prompt started"), 850*countdown.__iterations)
+                if (projectionManager.model.count===0)
+                    projectionManager.project();
+                //showPassiveNotification(i18n("Prompt started"), 850*countdown.__iterations)
                 break;
-        }*/
+        }
     }
 
     function increaseVelocity(event) {
@@ -309,8 +299,9 @@ Flickable {
     }
     
     MouseArea {
+        id: mouse
         //propagateComposedEvents: false
-        acceptedButtons: Qt.NoButton
+        acceptedButtons: Qt.LeftButton
         hoverEnabled: false
         scrollGestureEnabled: false
         // The following placement allows covering beyond the boundaries of the editor and into the prompter's margins.
@@ -318,20 +309,28 @@ Flickable {
         anchors.right: parent.right
         y: -prompter.height
         height: parent.height+2*prompter.height
+        cursorShape: (pressed || dragging) ? Qt.ClosedHandCursor : Qt.OpenHandCursor
         // Mouse wheel controls
+        property int throttledIteration: 0
+        property int throttleIterations: 8
         onWheel: {
-            if (prompter.state==="prompting" && (prompter.__scrollAsDial && !(wheel.modifiers & Qt.ControlModifier) || !prompter.__scrollAsDial && wheel.modifiers & Qt.ControlModifier)) {
-                if (wheel.angleDelta.y > 0) {
-                    if (prompter.__invertScrollDirection)
-                        increaseVelocity(wheel);
+            if (prompter.__noScroll && prompter.state==="prompting")
+                return;
+            else if (prompter.state==="prompting" && (prompter.__scrollAsDial && !(wheel.modifiers & Qt.ControlModifier) || !prompter.__scrollAsDial && wheel.modifiers & Qt.ControlModifier)) {
+                if (!throttledIteration) {
+                    if (wheel.angleDelta.y > 0) {
+                        if (prompter.__invertScrollDirection)
+                            increaseVelocity(wheel);
+                        else/* if (prompter.__i>1)*/
+                            decreaseVelocity(wheel);
+                    }
                     else
-                        decreaseVelocity(wheel);
+                        if (prompter.__invertScrollDirection/* && prompter.__i>1*/)
+                            decreaseVelocity(wheel);
+                        else
+                            increaseVelocity(wheel);
                 }
-                else
-                    if (prompter.__invertScrollDirection)
-                        decreaseVelocity(wheel);
-                    else
-                        increaseVelocity(wheel);
+                throttledIteration = (throttledIteration+1)%throttleIterations
             }
             else {
                 // Regular scroll
@@ -343,179 +342,211 @@ Flickable {
                 // If scroll were to go out of bounds, cap it
                 else if (prompter.position-delta > -prompter.topMargin)
                     prompter.position = editor.implicitHeight-(overlay.height-prompter.bottomMargin)
-                    else
-                        prompter.position = -prompter.topMargin
-                        __i=i;
-                    // Resume prompting
-                    if (prompter.state==="prompting" && prompter.__play)
-                        prompter.position = prompter.__destination
+                else
+                    prompter.position = -prompter.topMargin
+                __i=i;
+                // Resume prompting
+                if (prompter.state==="prompting" && prompter.__play)
+                    prompter.position = prompter.__destination
             }
         }
     }
     
     Item {
-        id: flickableContent
-        anchors.left: parent.left
-        anchors.right: parent.right
-        anchors.top: parent.top
+        id: positionHandler
+
+        // Force positionHandler's position to reset to center on resize.
+        x: (editor.x - (width - editor.width)/2) / 2
+
+        // Keep dimensions at their right size, but adjustable
+        width: parent.width
         height: editor.implicitHeight
-        TextArea {
-            id: editor
-            onCursorRectangleChanged: prompter.ensureVisible(cursorRectangle)
-            textFormat: Qt.RichText
-            wrapMode: TextArea.Wrap
-            readOnly: false
-            text: i18n("Error loading file...")
-            
-            selectByMouse: true
-            persistentSelection: true
-            
-            leftPadding: 14
-            rightPadding: 14
-            topPadding: 0
-            bottomPadding: 0
-            
-            background: Item {}
-            
-            // Start with the editor in focus
-            focus: true
-            
-            // Make base font size relative to editor's width
-            FontLoader {
-                id: editorFont
-                source: i18n("fonts/libertinus-sans.otf")
-                //source: i18n("fonts/sourcehansans.ttc")
-                //source: i18n("fonts/scheherazadenew-regular.ttf")
-                //source: i18n("fonts/kalpurush.ttf")
-                //source: i18n("fonts/palanquin.ttf")
-            }
-            font.family: editorFont.name
-            font.pixelSize: 14
-            font.hintingPreference: Font.PreferFullHinting
-            font.kerning: true
-            font.preferShaping: true
-            renderType: Text.NativeRendering
-            //renderType: Text.QtRendering
-            
-            // Make links responsive
-            onLinkActivated: Qt.openUrlExternally(link)
 
-            //Different styles have different padding and background
-            //decorations, but since this editor must resemble the
-            //teleprompter output, we don't need them.
-            x: fontSize/2 + contentsPlacement*(prompter.width-fontSize)
+        Item {
+            id: flickableContent
+            anchors.fill: parent
 
-            // Width drag controls
-            width: prompter.width-2*Math.abs(x)
+            TextArea {
+                id: editor
 
-            Rectangle {
-                id: rect
-                anchors.left: parent.left
-                anchors.right: parent.right
-                anchors.top: editor.bottom
-                height: prompter.bottomMargin
-                color: "#000"
-                opacity: 0.2
-            }
+                onCursorRectangleChanged: prompter.ensureVisible(cursorRectangle)
+                textFormat: Qt.RichText
+                wrapMode: TextArea.Wrap
+                readOnly: false
+                text: i18n("Error loading file...")
+                
+                selectByMouse: true
+                persistentSelection: true
+                
+                leftPadding: 14
+                rightPadding: 14
+                topPadding: 0
+                bottomPadding: 0
+                
+                background: Item {}
+                
+                // Start with the editor in focus
+                focus: true
+                
+                // Make base font size relative to editor's width
+                // Western Fonts
+                FontLoader {
+                    id: westernSeriousSansfFont
+                    source: i18n("fonts/dejavu-sans.otf")
+                }
+                FontLoader {
+                    id: westernHumaneSansFont
+                    source: i18n("fonts/libertinus-sans.otf")
+                }
+                FontLoader {
+                    id: westernDyslexicFont
+                    source: i18n("fonts/opendyslexic-bold.otf")
+                }
+                FontLoader {
+                    id: asianSeriousSansFont
+                    source: i18n("fonts/sourcehansans.ttc")
+                }
+                FontLoader {
+                    id: arabicHumaneSansFont
+                    source: i18n("fonts/scheherazadenew-regular.ttf")
+                }
+                FontLoader {
+                    id: devanagariSeriousSansFont
+                    source: i18n("fonts/palanquin.ttf")
+                }
+                FontLoader {
+                    id: bangalaHumaneSerifFont
+                    source: i18n("fonts/kalpurush.ttf")
+                }
+                font.family: westernSeriousSansfFont.name
+                font.pixelSize: 14
+                font.hintingPreference: Font.PreferFullHinting
+                font.kerning: true
+                font.preferShaping: true
+                renderType: Text.NativeRendering
+                //renderType: Text.QtRendering
 
-            // Draggable width adjustment borders
-            Component {
-                id: editorSidesBorder
+                //Different styles have different padding and background
+                //decorations, but since this editor must resemble the
+                //teleprompter output, we don't need them.
+                x: fontSize/2 + contentsPlacement*(prompter.width-fontSize)
+
+                // Width drag controls
+                width: prompter.width-2*Math.abs(x)
+
+                // Draggable width adjustment borders
+                Component {
+                    id: editorSidesBorder
+                    Rectangle {
+                        width: 2
+                        gradient: Gradient {
+                            GradientStop { position: 0.0; color: "#AA9" }
+                            GradientStop { position: 1.0; color: "#776" }
+                        }
+                    }
+                }
+                
                 Rectangle {
-                    width: 2
-                    gradient: Gradient {
-                        GradientStop { position: 0.0; color: "#AA9" }
-                        GradientStop { position: 1.0; color: "#776" }
+                    id: rect
+                    anchors.left: parent.left
+                    anchors.right: parent.right
+                    anchors.top: editor.bottom
+                    height: prompter.bottomMargin
+                    color: "#000"
+                    opacity: 0.2
+                }
+
+                MouseArea {
+                    acceptedButtons: Qt.RightButton
+                    anchors.fill: parent
+                    onClicked: contextMenu.open()
+                    cursorShape: Qt.IBeamCursor
+                }
+                
+                MouseArea {
+                    id: leftWidthAdjustmentBar
+                    opacity: 0.9
+                    anchors.top: parent.top
+                    anchors.bottom: parent.bottom
+                    width: 25
+                    acceptedButtons: Qt.LeftButton
+                    scrollGestureEnabled: false
+                    propagateComposedEvents: true
+                    hoverEnabled: false
+                    anchors.left: Qt.application.layoutDirection===Qt.LeftToRight ? editor.left : undefined
+                    anchors.right: Qt.application.layoutDirection===Qt.RightToLeft ? editor.right : undefined
+                    drag.target: editor
+                    drag.axis: Drag.XAxis
+                    drag.smoothed: false
+                    drag.minimumX: fontSize/2 //: -prompter.width*6/20 + width
+                    drag.maximumX: prompter.width*6/20 //: -fontSize/2 + width
+                    cursorShape: prompter.dragging ? Qt.ClosedHandCursor : ((pressed || drag.active) ? Qt.SplitHCursor : (flicking ? Qt.OpenHandCursor : Qt.SizeHorCursor))
+                    Loader {
+                        sourceComponent: editorSidesBorder
+                        anchors {top: parent.top; bottom: parent.bottom; horizontalCenter: parent.horizontalCenter}
                     }
+                    onReleased: prompter.setContentWidth()
+                    //onClicked: {
+                    //    mouse.accepted = false
+                    //}
                 }
-            }
-            
-            MouseArea {
-                acceptedButtons: Qt.RightButton
-                anchors.fill: parent
-                onClicked: contextMenu.open()
-            }
-            
-            MouseArea {
-                id: leftWidthAdjustmentBar
-                acceptedButtons: Qt.LeftButton
-                opacity: 0.9
-                scrollGestureEnabled: false
-                propagateComposedEvents: true
-                hoverEnabled: false
-                anchors.left: Qt.application.layoutDirection===Qt.LeftToRight ? editor.left : undefined
-                anchors.right: Qt.application.layoutDirection===Qt.RightToLeft ? editor.right : undefined
-                anchors.top: parent.top
-                anchors.bottom: parent.bottom
-                width: 25
-                drag.target: editor
-                drag.axis: Drag.XAxis
-                drag.smoothed: false
-                drag.minimumX: fontSize/2 //: -prompter.width*6/20 + width
-                drag.maximumX: prompter.width*6/20 //: -fontSize/2 + width
-                cursorShape: Qt.SizeHorCursor
-                Loader {
-                    sourceComponent: editorSidesBorder
-                    anchors {top: parent.top; bottom: parent.bottom; horizontalCenter: parent.horizontalCenter}
+                MouseArea {
+                //Item {
+                    id: rightWidthAdjustmentBar
+                    opacity: 0.5
+                    x: parent.width-width
+                    anchors.top: parent.top
+                    anchors.bottom: parent.bottom
+                    width: 25
+                    scrollGestureEnabled: false
+                    acceptedButtons: Qt.LeftButton
+                    propagateComposedEvents: true
+                    hoverEnabled: false
+                    drag.target: positionHandler
+                    drag.axis: Drag.XAxis
+                    drag.smoothed: false
+                    drag.minimumX: -editor.x + fontSize/2 //prompter.width - editor.x - editor.width - leftWidthAdjustmentBar.drag.maximumX
+                    drag.maximumX: prompter.width - editor.x - parent.width - leftWidthAdjustmentBar.drag.minimumX
+                    cursorShape: (pressed||drag.active||prompter.dragging) ? Qt.ClosedHandCursor : flicking ? Qt.OpenHandCursor : (contentsPlacement ? Qt.PointingHandCursor : Qt.OpenHandCursor)
+                    Loader {
+                        sourceComponent: editorSidesBorder
+                        anchors {top: parent.top; bottom: parent.bottom; horizontalCenter: parent.horizontalCenter}
+                    }
+                    //onPressed: editor.invertDrag = true
+                    //onReleased: {
+                    //editor.invertDrag   = false
+                    //prompter.setContentWidth()
+                    //}
+                    //}
                 }
-                onReleased: prompter.setContentWidth()
-                //onClicked: {
-                //    mouse.accepted = false
-                //}
-            }
-            Item {
-                id: rightWidthAdjustmentBar
-                enabled: false
-                opacity: 0.5
-                x: parent.width-width
-                anchors.top: parent.top
-                anchors.bottom: parent.bottom
-                width: 25
-                //MouseArea {
-                //scrollGestureEnabled: false
-                //propagateComposedEvents: true
-                //hoverEnabled: false
-                //anchors.fill: parent
-                //drag.target: parent
-                //drag.axis: Drag.XAxis
-                //drag.smoothed: false
-                //drag.minimumX: prompter.width - editor.x - parent.width - leftWidthAdjustmentBar.drag.maximumX
-                //drag.maximumX: prompter.width - editor.x - parent.width - leftWidthAdjustmentBar.drag.minimumX
-                //cursorShape: Qt.SizeHorCursor
-                Loader {
-                    sourceComponent: editorSidesBorder
-                    anchors {top: parent.top; bottom: parent.bottom; horizontalCenter: parent.horizontalCenter}
-                }
-                //onPressed: editor.invertDrag = true
-                //onReleased: {
-                //editor.invertDrag   = false
-                //prompter.setContentWidth()
-                //}
-                //}
-            }
-            
-            Keys.onPressed: {
-                if (prompter.state === "prompting")
+                
+                Keys.onPressed: {
+                    if (prompter.state === "prompting")
+                        // Prevent programmable keys from typing on editor while prompting
+                        switch (event.key) {
+                            case keys.increaseVelocity:
+                            case keys.decreaseVelocity:
+                            case keys.pause:
+                            case keys.skipBackwards:
+                            case keys.skipForward:
+                            case keys.previousMarker:
+                            case keys.nextMarker:
+                            case keys.toggle:
+                                event.accepted = true
+                                prompter.Keys.onPressed(event)
+                                return
+                        }
                     switch (event.key) {
-                        case Qt.Key_Space:
-                        if (editor.focus)
-                            return
-                        case Qt.Key_Down:
-                        case Qt.Key_Up:
-                            event.accepted = true
-                            prompter.Keys.onPressed(event)
+                        case Qt.Key_Tab:
+                            //event.preventDefault = true
+                            //event.accepted = false
                             return
                     }
-                switch (event.key) {
-                    case Qt.Key_Tab:
-                        //event.preventDefault = true
-                        //event.accepted = false
-                        return
                 }
             }
         }
     }
-    
+
     DocumentHandler {
         id: document
         property bool isNewFile: false
@@ -550,7 +581,7 @@ Flickable {
         }
 
         function newDocument() {
-            load("qrc:/untitled.html")
+            document.load("qrc:/untitled.html")
             isNewFile = true
             resetDocumentPosition()
             if (!root.__translucidBackground)
@@ -650,25 +681,38 @@ Flickable {
         }
     }
 
+    // Configurable keys commands
+    property var keys: {
+        "increaseVelocity": Qt.Key_Down,
+        "decreaseVelocity": Qt.Key_Up,
+        "pause": Qt.Key_Space,
+        "skipBackwards": Qt.Key_PageUp,
+        "skipForward": Qt.Key_PageDown,
+        "previousMarker": Qt.Key_Home,
+        "nextMarker": Qt.Key_End,
+        "toggle": Qt.Key_F9
+    };
+    
     // Key bindings
     Keys.onPressed: {
         if (prompter.state === "prompting")
             switch (event.key) {
-                case Qt.Key_Down:
+                case keys.increaseVelocity:
                 case Qt.Key_VolumeDowm:
                     if (prompter.__invertArrowKeys)
                         prompter.decreaseVelocity(event)                        
                     else
                         prompter.increaseVelocity(event)
                     return
-                case Qt.Key_Up:
+                case keys.decreaseVelocity:
                 case Qt.Key_VolumeUp:
                     if (prompter.__invertArrowKeys)
                         prompter.increaseVelocity(event)                        
                     else
                         prompter.decreaseVelocity(event)
                     return
-                case Qt.Key_Space:
+                case keys.pause:
+                case Qt.Key_SysReq:
                 case Qt.Key_Play:
                 case Qt.Key_Pause:
                     //if (!root.__translucidBackground)
@@ -705,10 +749,10 @@ Flickable {
         
         // Keys presses that apply the same to all states
         switch (event.key) {
-            case Qt.Key_F9:
+            case keys.toggle:
                 prompter.toggle();
                 return
-            case Qt.Key_PageUp:
+            case keys.skipBackwards:
                 if (!this.__atStart) {
                     var i=__i;
                     __i=0;
@@ -719,7 +763,7 @@ Flickable {
                     prompter.position = __destination
                 }
                 return
-            case Qt.Key_PageDown:
+            case keys.skipForward:
                 if (!this.__atEnd) {
                     var i=__i;
                     __i=0;
@@ -731,11 +775,14 @@ Flickable {
                 }
                 return
             case Qt.Key_Escape:
-                prompter.state = "editing";
-                return
-            //case Qt.Key_Home:
+            case Qt.Key_Back:
+                if (prompter.state !== "editing") {
+                    prompter.state = "editing";
+                    return
+                }
+            //case keys.previousMarker:
             //    showPassiveNotification(i18n("Home Pressed")); break;
-            //case Qt.Key_End:
+            //case keys.nextMarker:
             //    showPassiveNotification(i18n("End Pressed")); break;
         }
     }
@@ -772,7 +819,7 @@ Flickable {
             }
             PropertyChanges {
                 target: prompter
-                z: 3
+                z: 2
                 __i: 0
                 __play: false
                 position: position
@@ -790,9 +837,13 @@ Flickable {
                 state: "ready"
             }
             PropertyChanges {
-                target: root
-                //prompterVisibility: Kirigami.ApplicationWindow.FullScreen
+                target: timer
+                elapsedSeconds: 0
             }
+            //PropertyChanges {
+            //    target: root
+            //    //prompterVisibility: Kirigami.ApplicationWindow.FullScreen
+            //}
             PropertyChanges {
                 target: prompterBackground
                 opacity: root.__translucidBackground ? root.__opacity : 1
@@ -836,6 +887,10 @@ Flickable {
                 state: "running"
             }
             PropertyChanges {
+                target: timer
+                elapsedSeconds: 0
+            }
+            PropertyChanges {
                 target: root
                 //prompterVisibility: Kirigami.ApplicationWindow.FullScreen
             }
@@ -877,6 +932,11 @@ Flickable {
                 state: "prompting"
             }
             PropertyChanges {
+                target: timer
+                running: prompter.__play && prompter.__velocity>0
+                elapsedSeconds: 0
+            }
+            PropertyChanges {
                 target: root
                 //prompterVisibility: Kirigami.ApplicationWindow.FullScreen
             }
@@ -892,7 +952,7 @@ Flickable {
             PropertyChanges {
                 target: prompter
                 z: 1
-                __i: 2
+                __i: __iDefault
                 __iBackup: 0
                 position: prompter.__destination
                 focus: true
@@ -930,6 +990,7 @@ Flickable {
         setCursorAtCurrentPosition()
         var pos = prompter.position
         position = pos
+        timer.updateStopwatchText()
     }
     function setCursorAtCurrentPosition() {
         // Update cursor
@@ -938,16 +999,16 @@ Flickable {
         editor.cursorPosition = cursorPosition
     }
     transitions: [
-    Transition {
-        to: "standby"
-        ScriptAction  {
-            // Jump into position
-            script: {
-                // Auto frame to current line
-                position = editor.cursorRectangle.y - (overlay.__readRegionPlacement*(overlay.height-overlay.readRegionHeight)+overlay.readRegionHeight/2) + 1
+        Transition {
+            to: "standby"
+            ScriptAction  {
+                // Jump into position
+                script: {
+                    // Auto frame to current line
+                    position = editor.cursorRectangle.y - (overlay.__readRegionPlacement*(overlay.height-overlay.readRegionHeight)+overlay.readRegionHeight/2) + 1
+                }
             }
         }
-    }
     ]
         
     // Progress indicator

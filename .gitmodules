@@ -13,3 +13,9 @@
 [submodule "src/fonts/editor/Palanquin"]
 	path = src/fonts/editor/Palanquin
 	url = git@github.com:VanillaandCream/Palanquin.git
+[submodule "src/fonts/editor/opendyslexic"]
+	path = src/fonts/editor/opendyslexic
+	url = git@github.com:antijingoist/opendyslexic.git
+[submodule "3rdparty/calligra"]
+	path = 3rdparty/calligra
+	url = git@invent.kde.org:office/calligra.git

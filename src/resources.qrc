@@ -5,7 +5,6 @@
         <file alias="AboutPage.qml">kirigami_ui/AboutPage.qml</file>
         <file alias="PrompterPage.qml">kirigami_ui/PrompterPage.qml</file>
         <file alias="EditorToolbar.qml">kirigami_ui/EditorToolbar.qml</file>
-        <file alias="ProjectionWindow.qml">kirigami_ui/ProjectionWindow.qml</file>
         <!-- Prompter QML -->
         <file alias="PrompterView.qml">prompter/PrompterView.qml</file>
         <file alias="Prompter.qml">prompter/Prompter.qml</file>
@@ -14,18 +13,22 @@
         <file alias="TimerClock.qml">prompter/TimerClock.qml</file>
         <file alias="ReadRegionOverlay.qml">prompter/ReadRegionOverlay.qml</file>
         <file alias="PrompterBackground.qml">prompter/PrompterBackground.qml</file>
+        <file alias="Flip.qml">prompter/Flip.qml</file>
+        <file alias="ProjectionsManager.qml">prompter/ProjectionsManager.qml</file>
         <!-- Theme Configuration -->
         <file>qtquickcontrols2.conf</file>
         <!-- Icons -->
         <file>images/logo.png</file>
         <file alias="fonts/fontello.ttf">fonts/icons/fontello.ttf</file>
         <!-- Built-in Editor Fonts -->
-        <file alias="fonts/libertinus-sans.otf">fonts/editor/Libertinus/static/OTF/LibertinusSans-Regular.otf</file>
-        <!-- <file alias="fonts/libertinus-serif.otf">fonts/editor/Libertinus/static/OTF/LibertinusSerif-Regular.otf</file> -->
-        <!-- <file alias="fonts/sourcehansans.ttc">fonts/editor/SourceHanSans/SourceHanSans-Regular.ttc</file> -->
-        <!-- <file alias="fonts/scheherazadenew-regular.ttf">fonts/editor/ScheherazadeNew/ScheherazadeNew-Regular.ttf</file> -->
-        <!-- <file alias="fonts/kalpurush.ttf">fonts/editor/Kalpurush/Kalpurush.ttf</file> -->
-        <!-- <file alias="fonts/palanquin.ttf">fonts/editor/Palanquin/Palanquin/Palanquin/Palanquin-Regular.ttf</file> -->
+        <file alias="fonts/dejavu-sans.otf">fonts/editor/dejavu-sans/DejaVuSans.ttf</file>
+<!--         <file alias="fonts/libertinus-sans.otf">fonts/editor/Libertinus/static/OTF/LibertinusSans-Regular.otf</file> -->
+<!--         <file alias="fonts/opendyslexic-bold.otf">fonts/editor/opendyslexic/compiled/OpenDyslexic-Bold.otf</file> -->
+<!--         <file alias="fonts/sourcehansans.ttc">fonts/editor/SourceHanSans/SourceHanSans-Regular.ttc</file> -->
+<!--         <file alias="fonts/scheherazadenew-regular.ttf">fonts/editor/ScheherazadeNew/ScheherazadeNew-Regular.ttf</file> -->
+<!--         <file alias="fonts/kalpurush.ttf">fonts/editor/Kalpurush/Kalpurush.ttf</file> -->
+<!--         <file alias="fonts/palanquin.ttf">fonts/editor/Palanquin/Palanquin/Palanquin/Palanquin-Regular.ttf</file> -->
+<!--         <file alias="fonts/libertinus-serif.otf">fonts/editor/Libertinus/static/OTF/LibertinusSerif-Regular.otf</file> -->
         <!-- User Guide -->
         <file alias="guide_en.html">documents/guide_en.html</file>
         <!-- Empty Untitled Document -->

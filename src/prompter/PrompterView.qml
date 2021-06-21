@@ -21,7 +21,10 @@
  ****************************************************************************/
 
 import QtQuick 2.15
+import QtQuick.Window 2.15
+import QtQml.Models 2.15
 //import QtGraphicalEffects 1.15
+import org.kde.kirigami 2.9 as Kirigami
 
 Item {
     id: viewport
@@ -32,8 +35,9 @@ Item {
     property alias countdown: countdown
     property alias overlay: overlay
     property alias prompterBackground: prompterBackground
-    //property alias timer: timer
-    
+    property alias timer: timer
+    //property bool project: true
+
     anchors.fill: parent
     //layer.enabled: true
     // Undersample
@@ -46,7 +50,7 @@ Item {
     
     Countdown {
         id: countdown
-        z: 3
+        z: 4
         anchors.fill: parent
     }
     
@@ -56,11 +60,11 @@ Item {
         anchors.fill: parent
     }
     
-    //TimerClock {
-    //    id: timer
-    //    z: 4
-    //    anchors.fill: parent
-    //}
+    TimerClock {
+       id: timer
+       z: 3
+       anchors.fill: parent
+    }
     
     Prompter {
         id: prompter
@@ -77,7 +81,7 @@ Item {
     //radius: 32
     //radius: 0
     //}
-    
+
     PrompterBackground {
         id: prompterBackground
         z: 0

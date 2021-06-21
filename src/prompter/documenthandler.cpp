@@ -37,8 +37,8 @@
  ** information use the contact form at https://www.qt.io/contact-us.
  **
  ** BSD License Usage
- ** Alternatively, you may use this file under the terms of the BSD license
- ** as follows:
+ ** Alternatively, you may use the original examples code in this file under
+ ** the terms of the BSD license as follows:
  **
  ** "Redistribution and use in source and binary forms, with or without
  ** modification, are permitted provided that the following conditions are
@@ -72,6 +72,8 @@
 
 #include "documenthandler.h"
 
+#include <vector>
+
 #include <QFile>
 #include <QFileInfo>
 #include <QFileSelector>
@@ -82,6 +84,7 @@
 #include <QTextCharFormat>
 #include <QTextCodec>
 #include <QTextDocument>
+#include <QTextBlock>
 #include <QDebug>
 
 DocumentHandler::DocumentHandler(QObject *parent)
@@ -175,7 +178,7 @@ QColor DocumentHandler::textColor() const
 {
     QTextCursor cursor = textCursor();
     if (cursor.isNull())
-        return QColor(Qt::black);
+        return QColor(Qt::white);
     QTextCharFormat format = cursor.charFormat();
     return format.foreground().color();
 }
@@ -390,7 +393,7 @@ void DocumentHandler::load(const QUrl &fileUrl)
                 if (mime.inherits("text/markdown")) {
                     emit loaded(QString::fromUtf8(data), Qt::MarkdownText);
                 } else {
-                    QTextCodec *codec = QTextCodec::codecForHtml(data);
+                    QTextCodec *codec = QTextCodec::codecForName("UTF-8");
                     emit loaded(codec->toUnicode(data), Qt::AutoText);
                 }
                 doc->setModified(false);
@@ -489,4 +492,69 @@ void DocumentHandler::setModified(bool m)
 {
     if (m_document)
         m_document->textDocument()->setModified(m);
+}
+
+// Markers (Anchors)
+
+void DocumentHandler::parse() {
+
+    struct LINE {
+        QRectF rect;
+        QString text;
+    };
+
+    struct MARKER {
+        int position;
+        QStringList names;
+        QString text;
+    };
+    // typedef QTextFragment MARKER;
+
+    size_t size = 1024;
+    std::vector<LINE> lines;
+    std::vector<MARKER> anchors;
+    lines.reserve(size);
+    anchors.reserve(size>>4);
+
+    // Go through the document once
+    for (QTextBlock it = this->textDocument()->begin(); it != this->textDocument()->end(); it = it.next()) {
+        QTextBlock::iterator jt;
+
+        // Navigate the document's physical layout and extract line dimensions and text. Dimensions would be used for telemetry, text would be used as a reference of what to expect during speech recognition.
+        for (int i=0; i<it.layout()->lineCount(); i++) {
+            LINE line;
+            line.rect = it.layout()->lineAt(i).naturalTextRect();
+            line.text = it.text().mid(it.layout()->lineAt(i).textStart(), it.layout()->lineAt(i).textLength());
+            lines.push_back(line);
+        }
+
+        // Navigate the document's formatting and extract markers' information.
+        for (jt = it.begin(); !(jt.atEnd()); ++jt) {
+            QTextFragment currentFragment = jt.fragment();
+            if (currentFragment.isValid()) {
+                // Additional fragment processing would be done here...
+                // Extract marker information:
+                if (currentFragment.charFormat().isAnchor()) {
+                    MARKER marker;
+                    marker.position = currentFragment.position();
+                    marker.names = currentFragment.charFormat().anchorNames();
+                    marker.text = currentFragment.text();
+                    anchors.push_back(marker);
+                    // anchors.push_back(currentFragment);
+                }
+            }
+        }
+    }
+
+    #ifdef QT_DEBUG
+    // Output results to terminal, only in debug compilation.
+    qDebug() << "- Lines -";
+    for (unsigned long i=0; i<lines.size(); i++)
+        qDebug() << lines.at(i).rect << lines.at(i).text;
+
+    qDebug() << "- Markers -";
+    for (unsigned long i=0; i<anchors.size(); i++)
+        qDebug() << anchors.at(i).position << anchors.at(i).text << anchors.at(i).names;
+        // qDebug() << anchors.at(i).position() << anchors.at(i).text() << anchors.at(i).charFormat().anchorNames();
+    #endif
 }
