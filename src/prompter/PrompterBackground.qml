@@ -32,7 +32,7 @@ Rectangle {
     property var backgroundImage: null
     readonly property real __deepeningFactor: themeSwitch.checked ? 0.89 : 1
     //color: Qt.rgba(appTheme.__backgroundColor.r*__deepeningFactor, appTheme.__backgroundColor.g*__deepeningFactor, appTheme.__backgroundColor.b*__deepeningFactor, appTheme.__backgroundColor.a)
-    color: "#181818"
+    color: "#303030" // "#181818"
     opacity: /*backgroundOpacitySlider.pressed ||*/ parent.toolbar.opacitySlider.pressed ? parent.toolbar.opacitySlider.value/100 : 1
     
     function loadBackgroundImage() {

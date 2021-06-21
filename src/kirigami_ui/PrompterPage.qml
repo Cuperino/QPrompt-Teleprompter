@@ -21,8 +21,10 @@
  ****************************************************************************/
 
 import QtQuick 2.15
-import org.kde.kirigami 2.9 as Kirigami
+import org.kde.kirigami 2.15 as Kirigami
 import QtQuick.Window 2.15
+import QtQuick.Controls 2.15
+import QtQuick.Layouts 1.15
 import Qt.labs.platform 1.1
 
 Kirigami.Page {
@@ -33,11 +35,16 @@ Kirigami.Page {
 
     property alias fontDialog: fontDialog
     property alias colorDialog: colorDialog
+    property alias viewport: viewport
     property alias prompter: viewport.prompter
     property alias editor: viewport.editor
     property alias overlay: viewport.overlay
     property alias document: viewport.document
     property alias prompterBackground: viewport.prompterBackground
+    property alias key_configuration_overlay: key_configuration_overlay
+    property alias telemetry_overlay: telemetry_overlay
+    property alias displaySettings: displaySettings
+    property int hideDecorations: 0
 
     title: "QPrompt"
     globalToolBarStyle: Kirigami.Settings.isMobile ? Kirigami.ApplicationHeaderStyle.None : Kirigami.ApplicationHeaderStyle.ToolBar
@@ -68,66 +75,13 @@ Kirigami.Page {
         Kirigami.Action {
             id: wysiwygButton
             text: i18n("WYSIWYG")
+            enabled: prompter.state==="editing"
             checkable: true
             checked: viewport.prompter.__wysiwyg
             tooltip: viewport.prompter.__wysiwyg ? i18n("\"What you see is what you get\" mode is On") : i18n("\"What you see is what you get\" mode is Off")
             onTriggered: {
                 viewport.prompter.__wysiwyg = !viewport.prompter.__wysiwyg
                 editor.focus = true
-            }
-        },
-        Kirigami.Action {
-            id: flipButton
-            text: i18n("Flip")
-            
-            function updateButton(context) {
-                text = context.shortName
-                //iconName = context.iconName
-            }
-            
-            Kirigami.Action {
-                text: i18n("No Flip")
-                //iconName: "refresh"
-                readonly property string shortName: i18n("No Flip")
-                onTriggered: {
-                    parent.updateButton(this)
-                    viewport.prompter.__flipX = false
-                    viewport.prompter.__flipY = false
-                }
-                enabled: viewport.prompter.__flipX || viewport.prompter.__flipY
-            }
-            Kirigami.Action {
-                text: i18n("Horizontal Flip")
-                //iconName: "refresh"
-                readonly property string shortName: i18n("H Flip")
-                onTriggered: {
-                    parent.updateButton(this)
-                    viewport.prompter.__flipX = true
-                    viewport.prompter.__flipY = false
-                }
-                enabled: (!viewport.prompter.__flipX) || viewport.prompter.__flipY
-            }
-            Kirigami.Action {
-                text: i18n("Vertical Flip")
-                //iconName: "refresh"
-                readonly property string shortName: i18n("V Flip")
-                onTriggered: {
-                    parent.updateButton(this)
-                    viewport.prompter.__flipX = false
-                    viewport.prompter.__flipY = true
-                }
-                enabled: viewport.prompter.__flipX || !viewport.prompter.__flipY
-            }
-            Kirigami.Action {
-                text: i18n("180° rotation")
-                //iconName: "refresh"
-                readonly property string shortName: i18n("HV Flip")
-                onTriggered: {
-                    parent.updateButton(this)
-                    viewport.prompter.__flipX = true
-                    viewport.prompter.__flipY = true
-                }
-                enabled: !(viewport.prompter.__flipX && viewport.prompter.__flipY)
             }
         },
         Kirigami.Action {
@@ -175,6 +129,36 @@ Kirigami.Page {
                 onTriggered: viewport.overlay.positionState = "fixed"
                 enabled: viewport.overlay.positionState!=="fixed"
                 tooltip: i18n("Fix reading region to the position set using free placement mode")
+            }
+            Kirigami.Action {
+                id: hideDecorationsButton
+                text: hideDecorations===0 ? i18n("Frame Settings") : (hideDecorations===1 ? i18n("Auto hide frame") : i18n("Always hide frame"))
+                visible: ['android', 'ios', 'wasm', 'tvos', 'qnx', 'ipados'].indexOf(Qt.platform.os)===-1
+                tooltip: i18n("Auto hide window decorations when not editing and read region is set to top")
+                Kirigami.Action {
+                    text: i18n("Normal frame")
+                    tooltip: i18n("Shows windows frame when in windowed mode")
+                    onTriggered: {
+                        hideDecorations = 0
+                        parent.text = text
+                    }
+                }
+                Kirigami.Action {
+                    text: i18n("Auto hide frame")
+                    tooltip: i18n("Auto hide window decorations when not editing and read region is set to top")
+                    onTriggered: {
+                        hideDecorations = 1
+                        parent.text = text
+                    }
+                }
+                Kirigami.Action {
+                    text: i18n("Always hide frame")
+                    tooltip: i18n("Always hide window decorations")
+                    onTriggered: {
+                        hideDecorations = 2
+                        parent.text = text
+                    }
+                }
             }
         },
         Kirigami.Action {
@@ -240,9 +224,226 @@ Kirigami.Page {
             }
         },
         Kirigami.Action {
+            id: timerButton
+            text: i18n("Timer")
+            Kirigami.Action {
+                id: enableStopwatchButton
+                checkable: true
+                checked: viewport.timer.stopwatch
+                text: i18n("Stopwatch")
+                onTriggered: {
+                    viewport.timer.stopwatch = !viewport.timer.stopwatch
+                }
+            }
+            Kirigami.Action {
+                id: enableETAButton
+                checkable: true
+                checked: viewport.timer.eta
+                text: i18n("ETA")
+                onTriggered: {
+                    viewport.timer.eta = !viewport.timer.eta
+                }
+            }
+            Kirigami.Action {
+                id: timerColorButton
+                text: i18n("Timer Color")
+                onTriggered: {
+                    viewport.timer.setColor()
+                }
+            }
+        },
+        Kirigami.Action {
+            id: countdownConfigButton
+            text: i18n("Countdown")
+            Kirigami.Action {
+                id: enableFramingButton
+                enabled: !autoStartCountdownButton.checked
+                checkable: true
+                checked: viewport.countdown.frame && !autoStartCountdownButton.checked
+                text: i18n("Auto Frame")
+                onTriggered: {
+                    viewport.countdown.frame = !viewport.countdown.frame
+                    //// Future: Implement way to way to prevent Kirigami.Action from closing parent Action menu.
+                    //if (viewport.countdown.enabled)
+                    //    // Use of implemented feature might go here.
+                }
+            }
+            Kirigami.Action {
+                id: enableCountdownButton
+                enabled: viewport.countdown.frame
+                checkable: true
+                checked: viewport.countdown.enabled
+                text: i18n("Countdown")
+                onTriggered: {
+                    viewport.countdown.enabled = !viewport.countdown.enabled
+                    //// Future: Implement way to way to prevent Kirigami.Action from closing parent Action menu.
+                    //if (viewport.countdown.enabled)
+                    //    // Use of implemented feature might go here.
+                }
+            }
+            Kirigami.Action {
+                id: autoStartCountdownButton
+                enabled: enableCountdownButton.enabled && viewport.countdown.enabled
+                checkable: true
+                checked: viewport.countdown.autoStart
+                text: i18n("Auto Countdown")
+                tooltip: i18n("Start countdown automatically")
+                onTriggered: viewport.countdown.autoStart = !viewport.countdown.autoStart
+            }
+            Kirigami.Action {
+                id: setCountdownButton
+                enabled: enableCountdownButton.enabled && viewport.countdown.enabled
+                text: i18n("Set Duration")
+                onTriggered: {
+                    viewport.countdown.configuration.open()
+                }
+            }
+        },
+        Kirigami.Action {
+            id: flipButton
+            text: i18n("Flip")
+
+            function updateButton(context) {
+                text = context.shortName
+                //iconName = context.iconName
+            }
+
+            Kirigami.Action {
+                text: i18n("No Flip")
+                //iconName: "refresh"
+                readonly property string shortName: i18n("No Flip")
+                onTriggered: {
+                    parent.updateButton(this)
+                    viewport.prompter.__flipX = false
+                    viewport.prompter.__flipY = false
+                }
+                enabled: viewport.prompter.__flipX || viewport.prompter.__flipY
+            }
+            Kirigami.Action {
+                text: i18n("Horizontal Flip")
+                //iconName: "refresh"
+                readonly property string shortName: i18n("H Flip")
+                onTriggered: {
+                    parent.updateButton(this)
+                    viewport.prompter.__flipX = true
+                    viewport.prompter.__flipY = false
+                }
+                enabled: (!viewport.prompter.__flipX) || viewport.prompter.__flipY
+            }
+            Kirigami.Action {
+                text: i18n("Vertical Flip")
+                //iconName: "refresh"
+                readonly property string shortName: i18n("V Flip")
+                onTriggered: {
+                    parent.updateButton(this)
+                    viewport.prompter.__flipX = false
+                    viewport.prompter.__flipY = true
+                }
+                enabled: viewport.prompter.__flipX || !viewport.prompter.__flipY
+            }
+            Kirigami.Action {
+                text: i18n("180° rotation")
+                //iconName: "refresh"
+                readonly property string shortName: i18n("HV Flip")
+                onTriggered: {
+                    parent.updateButton(this)
+                    viewport.prompter.__flipX = true
+                    viewport.prompter.__flipY = true
+                }
+                enabled: !(viewport.prompter.__flipX && viewport.prompter.__flipY)
+            }
+        },
+        Kirigami.Action {
+            id: displaySettings
+            visible: !Kirigami.Settings.isMobile
+            text: i18n("Screens")
+
+            // This part of the code is nothing but a hack. But hey! It works!
+            Kirigami.Action {
+                id: bridge
+                displayComponent: ListView {
+                    height: contentHeight>580 ? 580 : contentHeight
+                    flickableDirection: Flickable.VerticalFlick
+                    model: Qt.application.screens
+                    delegate: Kirigami.BasicListItem {
+                        id: displayItem
+                        enabled: prompter.state==="editing"
+                        label: model.name
+                        // enabled: screen.name!==label
+                        // readonly property int projectionSetting: enabled ? projectionSetting : 0
+                        property int flipSetting: projectionManager.getDisplayFlip(displayItem.label)
+                        activeTextColor: "#FFFFFF"
+                        activeBackgroundColor: "#797979"
+                        //contentItem: Label {
+                        //    anchors.verticalCenter: parent.verticalCenter
+                        //    text: model.name
+                        //}
+                        onClicked: displayMenu.open()
+                        Menu {
+                            id: displayMenu
+                            MenuItem {
+                                text: i18n("Off")
+                                enabled: flipSetting!==0
+                                onTriggered: {
+                                    flipSetting = 0
+                                    onTriggered: projectionManager.putDisplayFlip(displayItem.label, 0)
+                                }
+                            }
+                            MenuItem {
+                                text: i18n("No Flip")
+                                enabled: flipSetting!==1
+                                onTriggered: {
+                                    flipSetting = 1
+                                    onTriggered: projectionManager.putDisplayFlip(displayItem.label, 1)
+                                }
+                            }
+                            MenuItem {
+                                text: i18n("Horizontal Flip")
+                                enabled: flipSetting!==2
+                                onTriggered: {
+                                    flipSetting = 2
+                                    onTriggered: projectionManager.putDisplayFlip(displayItem.label, 2)
+                                }
+                            }
+                            MenuItem {
+                                text: i18n("Vertical Flip")
+                                enabled: flipSetting!==3
+                                onTriggered: {
+                                    flipSetting = 3
+                                    onTriggered: projectionManager.putDisplayFlip(displayItem.label, 3)
+                                }
+                            }
+                            MenuItem {
+                                text: i18n("180° rotation")
+                                enabled: flipSetting!==4
+                                onTriggered: {
+                                    flipSetting = 4
+                                    onTriggered: projectionManager.putDisplayFlip(displayItem.label, 4)
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Kirigami.Action {
+                text: i18n("Scale Projections")
+                checkable: true
+                checked: projectionManager.reScale
+                onTriggered: {
+                    projectionManager.reScale = !projectionManager.reScale
+                }
+            }
+            Kirigami.Action {
+                text: i18n("Preview Projections")
+                tooltip: i18n("Project prompter duplicates onto extended displays")
+                onTriggered: {
+                    projectionManager.preview()
+                }
+            }
+        },
+        Kirigami.Action {
             id: loadBackgroundButton
             text: i18n("Background")
-            
             Kirigami.Action {
                 id: changeBackgroundImageButton
                 text: i18n("Set Image")
@@ -260,45 +461,6 @@ Kirigami.Page {
                 onTriggered: prompterBackground.clearBackground()
             }
         },
-        Kirigami.Action {
-            id: countdownConfigButton
-            text: i18n("Countdown")
-            Kirigami.Action {
-                id: enableCountdownButton
-                checkable: true
-                checked: viewport.countdown.enabled
-                text: i18n("Countdown")
-                onTriggered: {
-                    viewport.countdown.enabled = !viewport.countdown.enabled
-                    //// Future: Implement way to way to prevent Kirigami.Action from closing parent Action menu.
-                    //if (viewport.countdown.enabled)
-                    //    // Use of implemented feature might go here.
-                }
-            }
-            Kirigami.Action {
-                id: autoStartCountdownButton
-                enabled: viewport.countdown.enabled
-                checkable: true
-                checked: viewport.countdown.autoStart
-                text: i18n("Auto Countdown")
-                tooltip: i18n("Start countdown automatically")
-                onTriggered: viewport.countdown.autoStart = !viewport.countdown.autoStart
-            }
-            Kirigami.Action {
-                id: setCountdownButton
-                enabled: viewport.countdown.enabled
-                text: i18n("Set Duration")
-                onTriggered: {
-                    viewport.countdown.configuration.open()
-                }
-            }
-        },
-        //Kirigami.Action {
-           //id: projectionConfigButton
-           //text: i18n("Clone")
-           //tooltip: i18n("Duplicate teleprompter contents into separate screens")
-           //onTriggered: projectionWindow.visible = !projectionWindow.visible
-        //}
         //Kirigami.Action {
            //id: debug
            //text: i18n("Debug")
@@ -316,14 +478,13 @@ Kirigami.Page {
         }
         ]
     }
-    
     PrompterView {
         id: viewport
         // Workaround to make regular Page let its contents be covered by action buttons.
         anchors.bottomMargin: Kirigami.Settings.isMobile ? -68 : 0
         property alias toolbar: editorToolbar
     }
-    
+
     progress: viewport.prompter.state==="prompting" ? viewport.prompter.progress : undefined
 
     FontDialog {
@@ -350,7 +511,7 @@ Kirigami.Page {
 //     ProjectionWindow {
 //         id: projectionWindow
 //     }
-    
+
     // Editor Toolbar
     footer: EditorToolbar {
         id: editorToolbar
@@ -361,4 +522,531 @@ Kirigami.Page {
         //id: projectionWindow
         //ProjectionWindow {}
     //}
+
+    Kirigami.OverlayDrawer {
+        id: sideDrawer
+        background: Rectangle {
+            color: "#282828" // appTheme.__backgroundColor
+            opacity: 0.88
+        }
+        //width: 240
+        width: popupContent.implicitWidth
+        modal: false
+        edge: Qt.LeftToRight ? Qt.RightEdge : Qt.LeftEdge
+        padding: 0
+        leftPadding: 0
+        rightPadding: 0
+        bottomPadding: 0
+        topPadding: 0
+
+        parent: prompterPage.overlay
+
+        // ListModel {
+        //     id: nameModel
+        //     ListElement { lineNo: 2; linePos: 128; lineName: "Alice" }
+        //     ListElement { lineNo: 6; linePos: 386; lineName: "Bob" }
+        //     ListElement { lineNo: 8; linePos: 912; lineName: "Marley" }
+        //     ListElement { lineNo: 9; linePos: 1000; lineName: "Joe" }
+        // }
+
+        Component {
+            id: markerDelegateComponent
+            Rectangle {
+                width: ListView.view.width
+                height: 40
+                color: appTheme.__backgroundColor
+                Text {
+                    anchors {
+                        fill: parent
+                        margins: 5
+                    }
+                    text: model.lineNo + ", " + model.linePos + " (" + model.lineName + ")"
+                    color: "#FFF"
+                }
+            }
+        }
+
+        ColumnLayout {
+            id: popupContent
+            width: parent.width
+            height: parent.height
+            spacing: 0
+            ListView {
+                Layout.fillHeight: true
+                Layout.fillWidth: true
+                spacing: 2
+                model: _markersModel // nameModel
+                delegate: markerDelegateComponent
+                clip: true
+                ScrollBar.vertical: ScrollBar { }
+            }
+            Kirigami.BasicListItem {
+                Layout.alignment: Qt.AlignBottom
+                text: i18n("Close Marker List")
+                onClicked: {
+                    sideDrawer.close();
+                }
+            }
+        }
+    }
+
+    Kirigami.OverlaySheet {
+        id: key_configuration_overlay
+        onSheetOpenChanged: prompterPage.actions.main.checked = sheetOpen
+        
+        background: Rectangle {
+            color: appTheme.__backgroundColor
+            anchors.fill: parent
+        }
+        header: Kirigami.Heading {
+            text: i18n("Key Bindings")
+            level: 1
+        }
+
+        GridLayout {
+            width: parent.width
+            columns: 2
+
+            // Toggle all buttons off
+            function toggleButonsOff() {
+                for (let i=1; i<children.length; i+=2)
+                    children[i].checked = false;
+            }
+            // Validate input
+            function isValidInput(input) {
+                let flag = false;
+                Object.values(prompter.keys).every(assignedKey => {
+                    flag = assignedKey===input;
+                    return !flag;
+                });
+                return !flag && [Qt.Key_Escape, Qt.Key_Super_L, Qt.Key_Super_R, Qt.Key_Meta].indexOf(input)===-1
+            }
+            // Get key text
+            function getKeyText(event) {
+                let text = "";
+                switch (event.key) {
+                    case Qt.Key_Escape: text = i18n("ESC"); break;
+                    case Qt.Key_Space: text = i18n("Spacebar"); break;
+                    case Qt.Key_Up: text = i18n("Up Arrow"); break;
+                    case Qt.Key_Down: text = i18n("Down Arrow"); break;
+                    case Qt.Key_Left: text = i18n("Left Arrow"); break;
+                    case Qt.Key_Right: text = i18n("Right Arrow"); break;
+                    case Qt.Key_Tab: text = i18n("Tab"); break;
+                    case Qt.Key_Backtab: text = i18n("Backtab"); break;
+                    case Qt.Key_PageUp: text = i18n("Page Up"); break;
+                    case Qt.Key_PageDown: text = i18n("Page Down"); break;
+                    case Qt.Key_Home: text = i18n("Home"); break;
+                    case Qt.Key_End: text = i18n("End"); break;
+                    case Qt.Key_Backspace: text = i18n("Backspace"); break;
+                    case Qt.Key_Delete: text = i18n("Delete"); break;
+                    case Qt.Key_Insert: text = i18n("Insert"); break;
+                    case Qt.Key_Enter: text = i18n("Enter"); break;
+                    case Qt.Key_Return: text = i18n("Enter"); break;
+                    case Qt.Key_Control: text = Qt.platform.os==="osx" || Qt.platform.os==="ios" || Qt.platform.os==="tvos" || Qt.platform.os==="ipados" ? i18n("Command") : i18n("Control"); break;
+                    case Qt.Key_Super_L: text = Qt.platform.os==="osx" || Qt.platform.os==="ios" || Qt.platform.os==="tvos" || Qt.platform.os==="ipados" ? i18n("Left Control") : (Qt.platform.os==="windows" || Qt.platform.os==="winrt" ? i18n("Left Windows") : (Qt.platform.os==="linux" || Qt.platform.os==="unix" ? i18n("Left Super") : i18n("Left Meta"))); break;
+                    case Qt.Key_Super_R: text = Qt.platform.os==="osx" || Qt.platform.os==="ios" || Qt.platform.os==="tvos" || Qt.platform.os==="ipados" ? i18n("Right Control") : (Qt.platform.os==="windows" || Qt.platform.os==="winrt" ? i18n("Right Windows") : (Qt.platform.os==="linux" || Qt.platform.os==="unix" ? i18n("Right Super") : i18n("Right Meta"))); break;
+                    case Qt.Key_Meta: text = Qt.platform.os==="osx" || Qt.platform.os==="ios" || Qt.platform.os==="tvos" || Qt.platform.os==="ipados" ? i18n("Control") : (Qt.platform.os==="windows" || Qt.platform.os==="winrt" ? i18n("Windows") : (Qt.platform.os==="linux" || Qt.platform.os==="unix" ? i18n("Super") : i18n("Meta"))); break;
+                    case Qt.Key_Alt: text = i18n("Alt"); break;
+                    case Qt.Key_AltGr: text = i18n("AltGr"); break;
+                    case Qt.Key_Shift: text = i18n("Shift"); break;
+                    case Qt.Key_NumLock: text = i18n("Number Lock"); break;
+                    case Qt.Key_CapsLock: text = i18n("Caps Lock"); break;
+                    case Qt.Key_ScrollLock: text = i18n("Scroll Lock"); break;
+                    case Qt.Key_F1: text = i18n("F1"); break;
+                    case Qt.Key_F2: text = i18n("F2"); break;
+                    case Qt.Key_F3: text = i18n("F3"); break;
+                    case Qt.Key_F4: text = i18n("F4"); break;
+                    case Qt.Key_F5: text = i18n("F5"); break;
+                    case Qt.Key_F6: text = i18n("F6"); break;
+                    case Qt.Key_F7: text = i18n("F7"); break;
+                    case Qt.Key_F8: text = i18n("F8"); break;
+                    case Qt.Key_F9: text = i18n("F9"); break;
+                    case Qt.Key_F10: text = i18n("F10"); break;
+                    case Qt.Key_F11: text = i18n("F11"); break;
+                    case Qt.Key_F12: text = i18n("F12"); break;
+                    case Qt.Key_F13: text = i18n("F13"); break;
+                    case Qt.Key_F14: text = i18n("F14"); break;
+                    case Qt.Key_F15: text = i18n("F15"); break;
+                    case Qt.Key_F16: text = i18n("F16"); break;
+                    case Qt.Key_F17: text = i18n("F17"); break;
+                    case Qt.Key_F18: text = i18n("F18"); break;
+                    case Qt.Key_F19: text = i18n("F19"); break;
+                    case Qt.Key_F20: text = i18n("F20"); break;
+                    case Qt.Key_F21: text = i18n("F21"); break;
+                    case Qt.Key_F22: text = i18n("F22"); break;
+                    case Qt.Key_F23: text = i18n("F23"); break;
+                    case Qt.Key_F24: text = i18n("F24"); break;
+                    case Qt.Key_F25: text = i18n("F25"); break;
+                    case Qt.Key_F26: text = i18n("F26"); break;
+                    case Qt.Key_F27: text = i18n("F27"); break;
+                    case Qt.Key_F28: text = i18n("F28"); break;
+                    case Qt.Key_F29: text = i18n("F29"); break;
+                    case Qt.Key_F30: text = i18n("F30"); break;
+                    case Qt.Key_F31: text = i18n("F31"); break;
+                    case Qt.Key_F32: text = i18n("F32"); break;
+                    case Qt.Key_F33: text = i18n("F33"); break;
+                    case Qt.Key_F34: text = i18n("F34"); break;
+                    case Qt.Key_F35: text = i18n("F35"); break;
+                    case Qt.Key_HomePage: text = i18n("Home Page"); break;
+                    case Qt.Key_LaunchMail: text = i18n("E-mail"); break;
+                    case Qt.Key_Refresh: text = i18n("Refresh"); break;
+                    case Qt.Key_Search: text = i18n("Search"); break;
+                    case Qt.Key_Zoom: text = i18n("Zoom"); break;
+                    case Qt.Key_Print: text = i18n("Print"); break;
+                    default:
+                        text = event.text==="" ? event.key : event.text;
+                }
+                return text
+            }
+            
+            Label {
+                text: i18n("Toggle Prompter State")
+            }
+            Button {
+                text: i18n("F9")
+                checkable: true
+                flat: true
+                Layout.fillWidth: true
+                onClicked: {
+                    if (checked) {
+                        parent.toggleButonsOff()
+                        checked = true
+                    }
+                }
+                Keys.onPressed: {
+                    if (checked) {
+                        if (parent.isValidInput(event.key)) {
+                            prompter.keys.toggle = event.key
+                            text = parent.getKeyText(event)
+                        }
+                        event.accepted = true
+                    }
+                    parent.toggleButonsOff()
+                }
+            }
+            Label {
+                text: i18n("Decrease Velocity")
+            }
+            Button {
+                text: i18n("Up Arrow")
+                checkable: true
+                flat: true
+                Layout.fillWidth: true
+                onClicked: {
+                    if (checked) {
+                        parent.toggleButonsOff()
+                        checked = true
+                    }
+                }
+                Keys.onPressed: {
+                    if (checked) {
+                        if (parent.isValidInput(event.key)) {
+                            prompter.keys.decreaseVelocity = event.key
+                            text = parent.getKeyText(event)
+                        }
+                        event.accepted = true
+                    }
+                    parent.toggleButonsOff()
+                }
+            }
+            Label {
+                text: i18n("Increase Velocity")
+            }
+            Button {
+                text: i18n("Down Arrow")
+                checkable: true
+                flat: true
+                Layout.fillWidth: true
+                onClicked: {
+                    if (checked) {
+                        parent.toggleButonsOff()
+                        checked = true
+                    }
+                }
+                Keys.onPressed: {
+                    if (checked) {
+                        if (parent.isValidInput(event.key)) {
+                            prompter.keys.increaseVelocity = event.key
+                            text = parent.getKeyText(event)
+                        }
+                        event.accepted = true
+                    }
+                    parent.toggleButonsOff()
+                }
+            }
+            Label {
+                text: i18n("Play/Pause")
+            }
+            Button {
+                text: i18n("Spacebar")
+                checkable: true
+                flat: true
+                Layout.fillWidth: true
+                onClicked: {
+                    if (checked) {
+                        parent.toggleButonsOff()
+                        checked = true
+                    }
+                }
+                Keys.onPressed: {
+                    if (checked) {
+                        if (parent.isValidInput(event.key)) {
+                            prompter.keys.pause = event.key
+                            text = parent.getKeyText(event)
+                        }
+                        event.accepted = true
+                    }
+                    parent.toggleButonsOff()
+                }
+            }
+            Label {
+                text: i18n("Scroll Backwards")
+            }
+            Button {
+                text: i18n("Page Up")
+                checkable: true
+                flat: true
+                Layout.fillWidth: true
+                onClicked: {
+                    if (checked) {
+                        parent.toggleButonsOff()
+                        checked = true
+                    }
+                }
+                Keys.onPressed: {
+                    if (checked) {
+                        if (parent.isValidInput(event.key)) {
+                            prompter.keys.skipBackwards = event.key
+                            text = parent.getKeyText(event)
+                        }
+                        event.accepted = true
+                    }
+                    parent.toggleButonsOff()
+                }
+            }
+            Label {
+                text: i18n("Scroll Forward")
+            }
+            Button {
+                text: i18n("Page Down")
+                checkable: true
+                flat: true
+                Layout.fillWidth: true
+                onClicked: {
+                    if (checked) {
+                        parent.toggleButonsOff()
+                        checked = true
+                    }
+                }
+                Keys.onPressed: {
+                    if (checked) {
+                        if (parent.isValidInput(event.key)) {
+                            prompter.keys.skipForward = event.key
+                            text = parent.getKeyText(event)
+                        }
+                        event.accepted = true
+                    }
+                    parent.toggleButonsOff()
+                }
+            }
+            /*
+            Label {
+                text: i18n("Go to Previous Marker")
+            }
+            Button {
+                text: i18n("Home")
+                checkable: true
+                flat: true
+                Layout.fillWidth: true
+                onClicked: {
+                    if (checked) {
+                        parent.toggleButonsOff()
+                        checked = true
+                    }
+                }
+                Keys.onPressed: {
+                    if (checked) {
+                        if (parent.isValidInput(event.key)) {
+                            prompter.keys.previousMarker = event.key
+                            text = parent.getKeyText(event)
+                        }
+                        event.accepted = true
+                    }
+                    parent.toggleButonsOff()
+                }
+            }
+            Label {
+                text: i18n("Go to Next Marker")
+            }
+            Button {
+                text: i18n("End")
+                checkable: true
+                flat: true
+                Layout.fillWidth: true
+                onClicked: {
+                    if (checked) {
+                        parent.toggleButonsOff()
+                        checked = true
+                    }
+                }
+                Keys.onPressed: {
+                    if (checked) {
+                        if (parent.isValidInput(event.key)) {
+                            prompter.keys.nextMarker = event.key
+                            text = parent.getKeyText(event)
+                        }
+                        event.accepted = true
+                    }
+                    parent.toggleButonsOff()
+                }
+            }
+            */
+        }
+    }
+    Kirigami.OverlaySheet {
+        id: telemetry_overlay
+        onSheetOpenChanged: prompterPage.actions.main.checked = sheetOpen
+        
+        background: Rectangle {
+            color: appTheme.__backgroundColor
+            anchors.fill: parent
+        }
+        header: Kirigami.Heading {
+            text: i18n("Telemetry Settings")
+            level: 1
+        }
+        
+        GridLayout {
+            id: telemetry_settings
+            width: parent.implicitWidth
+            columns: 2
+            Label {
+                text: i18n("Telemetry")
+            }
+            Button {
+                text: root.__telemetry ? i18n("Enabled") : i18n("Disabled")
+                checkable: true
+                checked: root.__telemetry
+                flat: true
+                Layout.fillWidth: true
+                onClicked: root.__telemetry = !root.__telemetry
+            }
+            Label {
+                text: ""
+            }
+            TextArea {
+                implicitWidth: parent.width-80
+                //height: 300
+                background: Item{}
+                readOnly: true
+                wrapMode: TextEdit.Wrap
+                text: i18n("You can help improve QPrompt by contributing information on how you use it. Contributing this information is optional and entirely anonymous. We never collect your personal data, files you use, contents you work with, or information that could identify you.")
+            }
+            Button {
+                text: checked ? i18n("On") : i18n("Off")
+                enabled: root.__telemetry
+                checkable: true
+                checked: root.__telemetry
+                flat: true
+                Layout.fillWidth: true
+                //onClicked: root.__telemetry = !root.__telemetry
+            }
+                //text: i18n("Information collected once per session")
+            TextArea {
+                //id: platformTelemetryToggle
+                implicitWidth: parent.width-80
+                background: Item{}
+                readOnly: true
+                wrapMode: TextEdit.Wrap
+                text: i18n("Basic program and system information")+"\n"+
+                " + " + i18n("Application version")+"\n"+
+                " + " + i18n("Platform information")+"\n"+
+                " + " + i18n("Qt version information")+"\n"+
+                " + " + i18n("Locale information (timezone and keyboard layout)")
+            }
+            Button {
+                text: checked ? i18n("On") : i18n("Off")
+                enabled: root.__telemetry
+                checkable: true
+                checked: root.__telemetry
+                flat: true
+                Layout.fillWidth: true
+                //onClicked: root.__telemetry = !root.__telemetry
+            }
+            TextArea {
+                //id: runsTelemetryToggle
+                implicitWidth: parent.width-80
+                background: Item{}
+                readOnly: true
+                wrapMode: TextEdit.Wrap
+                text: i18n("Program run statistics: Help us study user retention")+"\n"+
+                " + " + i18n("Randomly generated install ID")+"\n"+
+                " + " + i18n("Launch times")+"\n"+
+                " + " + i18n("Usage time")+"\n"+
+                " + " + i18n("Locale information (timezone and keyboard layout)")
+            }
+                //text: i18n("Information collected once per prompt")
+            Button {
+                text: checked ? i18n("On") : i18n("Off")
+                enabled: root.__telemetry
+                checkable: true
+                checked: root.__telemetry
+                flat: true
+                Layout.fillWidth: true
+                //onClicked: root.__telemetry = !root.__telemetry
+            }
+            TextArea {
+                //id: featureTelemetryToggle
+                implicitWidth: parent.width-80
+                background: Item{}
+                readOnly: true
+                wrapMode: TextEdit.Wrap
+                text: i18n("Feature use frequency: Help us know what features are most important")+"\n"+
+                " + " + i18n("Flip settings")+"\n"+
+                " + " + i18n("Reading region settings")+"\n"+
+                " + " + i18n("Pointer settings")+"\n"+
+                " + " + i18n("Countdown settings")+"\n"+
+                " + " + i18n("Keyboard shortcut settings")+"\n"+
+                " + " + i18n("Input control settings")+"\n"+
+                " + " + i18n("Base speed and acceleration curvature settings")+"\n"+
+                " + " + i18n("Background color and opacity settings")+"\n"+
+                " + " + i18n("Presence of a background image")
+            }
+            Button {
+                //id: operationsTelemetryToggle
+                text: checked ? i18n("On") : i18n("Off")
+                enabled: root.__telemetry
+                checkable: true
+                checked: root.__telemetry
+                flat: true
+                Layout.fillWidth: true
+                //onClicked: root.__telemetry = !root.__telemetry
+            }
+            TextArea {
+                implicitWidth: parent.width-80
+                background: Item{}
+                readOnly: true
+                wrapMode: TextEdit.Wrap
+                text: i18n("Help us understand how users operate QPrompt")+"*\n"+
+                " + " + i18n("Random session ID")+"\n"+
+                " + " + i18n("Session number")+"\n"+
+                " + " + i18n("Session prompt number")+"\n"+
+                " + " + i18n("Window dimensions")+"\n"+
+                " + " + i18n("Prompt area dimensions")+"\n"+
+                " + " + i18n("Dimensions of lines of text being prompted")+"\n"+
+                " + " + i18n("Font settings per block of lines of text being prompted")+"\n"+
+                " + " + i18n("Languages likely present in the text being prompted")+"\n"+
+                " + " + i18n("Prompt starting line number and position")+"\n"+
+                " + " + i18n("Manual scroll start and end timestamps")+"\n"+
+                " + " + i18n("Scroll starting line number and position")+"\n"+
+                " + " + i18n("Scroll end line number and position")+"\n"+
+                " + " + i18n("Scroll duration")+"\n"+
+                " + " + i18n("Prompt duration")+"\n"+
+                " + " + i18n("Velocity changes with timestamp")+"\n"+
+                " + " + i18n("Source of changes to velocity")+"\n"+
+                " + " + i18n("Source of manual changes to scroll position")+"\n\n"+
+                "* " + i18n("This information is very important to me, Javier, the project author, and it would help make QPrompt's development sustainable. I've gone the extra mile not to collect any of the actual text or visual contents that you work with, so I ask you: please leave telemetry enabled.")
+            }
+        }
+    }
 }

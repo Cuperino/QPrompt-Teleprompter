@@ -38,8 +38,8 @@
  ** information use the contact form at https://www.qt.io/contact-us.
  **
  ** BSD License Usage
- ** Alternatively, you may use this file under the terms of the BSD license
- ** as follows:
+ ** Alternatively, you may use the original examples code in this file under
+ ** the terms of the BSD license as follows:
  **
  ** "Redistribution and use in source and binary forms, with or without
  ** modification, are permitted provided that the following conditions are
@@ -84,7 +84,7 @@ ToolBar {
     readonly property alias opacitySlider: opacitySlider
     
     // Hide toolbar when read region is set to bottom and prompter is not in editing state.
-    enabled: !(prompter.state!=="editing" && overlay.atBottom)
+    enabled: !(prompter.state!=="editing" && (overlay.atBottom || Kirigami.Settings.isMobile))
     height: enabled ? implicitHeight : 0
     //Behavior on height {
     //    id: height
@@ -140,6 +140,24 @@ ToolBar {
                 checked: prompter.document.marker
                 checkable: true
                 onClicked: prompter.document.marker = !prompter.document.marker
+            }
+            ToolButton {
+                id: bookmarkListButton
+                text: "\uE845"
+                contentItem: Loader { sourceComponent: textComponent }
+                font.family: iconFont.name
+                font.pointSize: 13
+                focusPolicy: Qt.TabFocus
+                onClicked: prompter.document.parse()
+            }
+            ToolButton {
+                id: debugButton
+                text: "\uE846"
+                contentItem: Loader { sourceComponent: textComponent }
+                font.family: iconFont.name
+                font.pointSize: 13
+                focusPolicy: Qt.TabFocus
+                onClicked: sideDrawer.open()
             }
             ToolSeparator {
                 contentItem.visible: anchorsRow.y === undoRedoRow.y
