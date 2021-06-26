@@ -27,6 +27,8 @@ import QtQuick.Controls 2.15
 import QtQuick.Layouts 1.15
 import Qt.labs.platform 1.1
 
+//import com.cuperino.qprompt.markers 1.0 as MarkersModel
+
 Kirigami.Page {
     id: prompterPage
     
@@ -541,29 +543,50 @@ Kirigami.Page {
 
         parent: prompterPage.overlay
 
-        // ListModel {
-        //     id: nameModel
-        //     ListElement { lineNo: 2; linePos: 128; lineName: "Alice" }
-        //     ListElement { lineNo: 6; linePos: 386; lineName: "Bob" }
-        //     ListElement { lineNo: 8; linePos: 912; lineName: "Marley" }
-        //     ListElement { lineNo: 9; linePos: 1000; lineName: "Joe" }
         // }
 
+        ListModel {
+           id: nameModel
+           ListElement { text: "asmd"; position: 128; }
+           ListElement { text: "zgxc"; position: 386; }
+           ListElement { text: "qwge"; position: 912; }
+           ListElement { text: "inop"; position: 1000; }
+        }
         Component {
             id: markerDelegateComponent
-            Rectangle {
-                width: ListView.view.width
-                height: 40
-                color: appTheme.__backgroundColor
-                Text {
-                    anchors {
-                        fill: parent
-                        margins: 5
-                    }
-                    text: model.lineNo + ", " + model.linePos + " (" + model.lineName + ")"
-                    color: "#FFF"
+            Kirigami.SwipeListItem {
+                //required property real: position
+                //required property string: text
+//                 required property any: names
+                Label {
+                    text: model.position + ", " + model.text  // + " (" + model.names+ ")"
                 }
+                actions: [
+                Action {
+                    icon.source: "qrc:/images/logo.png"
+                    //icon.name: "document"
+                    //text: "\uE846"
+                    //font.family: "fonts/fontello.ttf"
+                    onTriggered: print("Action 1 clicked")
+                }//,
+                //Action {
+                    //icon.name: "css-keyboard"
+                    //onTriggered: print("Action 1 clicked")
+                //}
+                ]
             }
+            //Rectangle {
+                //width: ListView.view.width
+                //height: 40
+                //color: appTheme.__backgroundColor
+                //Text {
+                    //anchors {
+                    //fill: parent
+                    //margins: 5
+                    //}
+                    //color: "#FFF"
+                //}
+            //}
         }
 
         ColumnLayout {
@@ -575,7 +598,7 @@ Kirigami.Page {
                 Layout.fillHeight: true
                 Layout.fillWidth: true
                 spacing: 2
-                model: _markersModel // nameModel
+                model: prompterPage.document.markers() // nameModel
                 delegate: markerDelegateComponent
                 clip: true
                 ScrollBar.vertical: ScrollBar { }
@@ -585,6 +608,7 @@ Kirigami.Page {
                 text: i18n("Close Marker List")
                 onClicked: {
                     sideDrawer.close();
+                    console.log(prompterPage.document.markers())
                 }
             }
         }
@@ -593,7 +617,7 @@ Kirigami.Page {
     Kirigami.OverlaySheet {
         id: key_configuration_overlay
         onSheetOpenChanged: prompterPage.actions.main.checked = sheetOpen
-        
+
         background: Rectangle {
             color: appTheme.__backgroundColor
             anchors.fill: parent
@@ -698,7 +722,7 @@ Kirigami.Page {
                 }
                 return text
             }
-            
+
             Label {
                 text: i18n("Toggle Prompter State")
             }
@@ -906,7 +930,7 @@ Kirigami.Page {
     Kirigami.OverlaySheet {
         id: telemetry_overlay
         onSheetOpenChanged: prompterPage.actions.main.checked = sheetOpen
-        
+
         background: Rectangle {
             color: appTheme.__backgroundColor
             anchors.fill: parent
@@ -915,7 +939,7 @@ Kirigami.Page {
             text: i18n("Telemetry Settings")
             level: 1
         }
-        
+
         GridLayout {
             id: telemetry_settings
             width: parent.implicitWidth

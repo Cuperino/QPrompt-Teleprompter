@@ -78,6 +78,8 @@
 #include <QTextCursor>
 #include <QUrl>
 
+#include "prompter/markersmodel.h"
+
 QT_BEGIN_NAMESPACE
 class QTextDocument;
 class QQuickTextDocument;
@@ -162,6 +164,8 @@ public:
     
     bool marker() const;
     void setMarker(bool marker);
+    Q_INVOKABLE MarkersModel *markers() const;
+    
     Q_INVOKABLE void parse();
     
 public Q_SLOTS:
@@ -207,6 +211,8 @@ private:
     int m_cursorPosition;
     int m_selectionStart;
     int m_selectionEnd;
+    
+    MarkersModel *_markersModel;
     
     QFont m_font;
     QUrl m_fileUrl;

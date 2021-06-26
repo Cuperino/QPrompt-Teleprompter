@@ -1,15 +1,37 @@
-#ifndef MARKERSMODEL_H
-#define MARKERSMODEL_H
+/****************************************************************************
+ **
+ ** QPrompt
+ ** Copyright (C) 2021 Javier O. Cordero Pérez
+ **
+ ** This file is part of QPrompt.
+ **
+ ** This program is free software: you can redistribute it and/or modify
+ ** it under the terms of the GNU General Public License as published by
+ ** the Free Software Foundation, either version 3 of the License, or
+ ** (at your option) any later version.
+ **
+ ** This program is distributed in the hope that it will be useful,
+ ** but WITHOUT ANY WARRANTY; without even the implied warranty of
+ ** MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ ** GNU General Public License for more details
+ **
+ ** You should have received a copy of the GNU General Public License
+ ** along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ **
+ ****************************************************************************/
+
+#ifndef MarkerSMODEL_H
+#define MarkerSMODEL_H
 
 #include <QAbstractListModel>
 
-struct Data {
-    Data() {}
-    Data( const int lineNo, const double linePos, const QString& lineName)
-        : lineNo(lineNo), linePos(linePos), lineName(lineName) {}
-    int lineNo;
-    double linePos;
-    QString lineName;
+struct Marker {
+    Marker() {}
+    Marker( const QStringList& names, const double position, const QString& text)
+        : names(names), position(position), text(text) {}
+    QStringList names;
+    double position;
+    QString text;
 };
 
 class MarkersModel : public QAbstractListModel
@@ -18,15 +40,15 @@ class MarkersModel : public QAbstractListModel
 
 public:
     enum Roles {
-        LineNoRole = Qt::UserRole,
-        LinePosRole,
-        LineNameRole
+        NamesRole = Qt::UserRole,
+        PositionRole,
+        TextRole
     };
 
     explicit MarkersModel(QObject *parent = nullptr);
 
     // Header:
-    // QVariant headerData(int section, Qt::Orientation orientation, int role = Qt::DisplayRole) const override;
+    // QVariant headerMarker(int section, Qt::Orientation orientation, int role = Qt::DisplayRole) const override;
 
     // Basic functionality:
     //QModelIndex index(int row, int column,
@@ -41,11 +63,13 @@ public:
     QHash<int, QByteArray> roleNames() const override;
 
 public slots:
-    void removeData(int row);
-//     void updateData(int row);
+//     void insertRow(int row, const QModelIndex &parent);
+    void appendMarker(Marker &marker);
+    void removeMarker(int row);
+//     void updateMarker(int row);
 
 private:
-    QVector <Data> m_data;
+    QList <Marker> m_data;
 };
 
-#endif // MARKERSMODEL_H
+#endif // MarkerSMODEL_H
