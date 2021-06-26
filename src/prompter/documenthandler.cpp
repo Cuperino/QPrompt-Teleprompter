@@ -93,6 +93,8 @@ DocumentHandler::DocumentHandler(QObject *parent)
 , m_cursorPosition(-1)
 , m_selectionStart(0)
 , m_selectionEnd(0)
+, _markersModel(nullptr)
+
 {
 }
 
@@ -100,6 +102,13 @@ QQuickTextDocument *DocumentHandler::document() const
 {
     return m_document;
 }
+
+MarkersModel *DocumentHandler::markers() const
+{
+    return _markersModel;
+}
+// engine.rootContext()->setContextProperty( "_markersModel", &document->_markersModel );
+
 
 void DocumentHandler::setDocument(QQuickTextDocument *document)
 {
@@ -503,18 +512,22 @@ void DocumentHandler::parse() {
         QString text;
     };
 
-    struct MARKER {
-        int position;
-        QStringList names;
-        QString text;
-    };
-    // typedef QTextFragment MARKER;
+//     struct Marker {
+//         int position;
+//         QStringList names;
+//         QString text;
+//     };
+    // typedef QTextFragment Marker;
 
     size_t size = 1024;
     std::vector<LINE> lines;
-    std::vector<MARKER> anchors;
+//     std::vector<Marker> anchors;
     lines.reserve(size);
-    anchors.reserve(size>>4);
+//     anchors.reserve(size>>4);
+
+    delete this->_markersModel;
+    this->_markersModel = nullptr;
+    this->_markersModel = new MarkersModel();
 
     // Go through the document once
     for (QTextBlock it = this->textDocument()->begin(); it != this->textDocument()->end(); it = it.next()) {
@@ -535,11 +548,12 @@ void DocumentHandler::parse() {
                 // Additional fragment processing would be done here...
                 // Extract marker information:
                 if (currentFragment.charFormat().isAnchor()) {
-                    MARKER marker;
+                    Marker marker;
                     marker.position = currentFragment.position();
                     marker.names = currentFragment.charFormat().anchorNames();
                     marker.text = currentFragment.text();
-                    anchors.push_back(marker);
+                    this->_markersModel->appendMarker(marker);
+                    // anchors.push_back(marker);
                     // anchors.push_back(currentFragment);
                 }
             }
@@ -548,13 +562,16 @@ void DocumentHandler::parse() {
 
     #ifdef QT_DEBUG
     // Output results to terminal, only in debug compilation.
-    qDebug() << "- Lines -";
-    for (unsigned long i=0; i<lines.size(); i++)
-        qDebug() << lines.at(i).rect << lines.at(i).text;
+//     qDebug() << "- Lines (" << lines.size() << ") -";
+//     for (unsigned long i=0; i<lines.size(); i++)
+//         qDebug() << lines.at(i).rect << lines.at(i).text;
 
-    qDebug() << "- Markers -";
-    for (unsigned long i=0; i<anchors.size(); i++)
-        qDebug() << anchors.at(i).position << anchors.at(i).text << anchors.at(i).names;
+    qDebug() << "- Markers (" << this->_markersModel->rowCount() << ") -";
+    for (int i=0; i<this->_markersModel->rowCount(); i++) {
+//         qDebug() << this->_markersModel.data(i, 0);
+        // qDebug() << this->_markersModel.get(i).position << this->_markersModel.get(i).text << this->_markersModel.get(i).names;
         // qDebug() << anchors.at(i).position() << anchors.at(i).text() << anchors.at(i).charFormat().anchorNames();
+        qDebug() << i;
+    }
     #endif
 }

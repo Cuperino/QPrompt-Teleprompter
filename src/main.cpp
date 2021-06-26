@@ -47,7 +47,7 @@
 
 #include "prompter/documenthandler.h"
 #include "prompter/timer/promptertimer.h"
-#include "prompter/markersmodel.h"
+// #include "prompter/markersmodel.h"
 
 
 Q_DECL_EXPORT int main(int argc, char *argv[])
@@ -96,6 +96,7 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
     qmlRegisterType<PrompterTimer>("com.cuperino.qprompt.promptertimer", 1, 0, "PrompterTimer");
     qmlRegisterType<DocumentHandler>("com.cuperino.qprompt.document", 1, 0, "DocumentHandler");
 //    qmlRegisterType<DocumentHandler>("org.kde.kirigami", 2, 9, "KirigamiPlugin");
+    qmlRegisterType<MarkersModel>("com.cuperino.qprompt.markers", 1, 0, "MarkersModel");
 
     QStringList selectors;
 #ifdef QT_EXTRA_FILE_SELECTOR
@@ -121,10 +122,10 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
     //app.setLayoutDirection(Qt::RightToLeft);
     app.setWindowIcon(QIcon(":/images/logo.png"));
     
-    MarkersModel markersModel;
+//     MarkersModel markersModel;
     engine.rootContext()->setContextObject(new KLocalizedContext(&engine));
     engine.rootContext()->setContextProperty(QStringLiteral("aboutData"), QVariant::fromValue(KAboutData::applicationData()));
-    engine.rootContext()->setContextProperty("_markersModel", &markersModel);
+//     engine.rootContext()->setContextProperty("_markersModel", &documents._markersModel);
 //    engine.rootContext()->setContextProperty("_cppProxyModel", &proxyModel);
 
 //    engine.addImportPath(QStringLiteral("../3rdparty/kirigami/"));

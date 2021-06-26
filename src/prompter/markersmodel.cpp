@@ -22,18 +22,20 @@
 
 #include "markersmodel.h"
 
+#include <QDebug>
+
 MarkersModel::MarkersModel(QObject *parent)
     : QAbstractListModel(parent)
 {
+//  Test data: names, position, text
     m_data
-       // id, line, position, name
-       << Data { 2, 2*64, "Depeche Mode" }
-       << Data { 6, 6*64, "Apocalyptica" }
-       << Data { 8, 8*64, "The Wachowskis" }
-       << Data { 9, 9*64, "Sacha Goedegebure" };
+       << Marker { QStringList("1"), 2*64, "Depeche Mode" }
+       << Marker { QStringList("2"), 6*64, "Apocalyptica" }
+       << Marker { QStringList("4"), 8*64, "The Wachowskis" }
+       << Marker { QStringList("a"), 9*64, "Sacha Goedegebure" };
 }
 
-// QVariant MarkersModel::headerData(int section, Qt::Orientation orientation, int role) const
+// QVariant MarkersModel::headerMarker(int section, Qt::Orientation orientation, int role) const
 // {
 //     //FIXME: Implement me!
 // }
@@ -50,9 +52,8 @@ MarkersModel::MarkersModel(QObject *parent)
 
 int MarkersModel::rowCount(const QModelIndex &parent) const
 {
-    if (!parent.isValid())
-        return 0;
-
+//     if (!parent.isValid())
+//         return 0;
     return m_data.count();
 }
 
@@ -61,28 +62,29 @@ QVariant MarkersModel::data(const QModelIndex &index, int role) const
     if ( !index.isValid() )
         return QVariant();
 
-    const Data &data = m_data.at(index.row());
-    if ( role == LineNoRole )
-        return data.lineNo;
-    else if ( role == LinePosRole )
-        return data.linePos;
-    else if ( role == LineNameRole )
-        return data.lineName;
+    const Marker &data = m_data.at(index.row());
+    if ( role == NamesRole )
+        return data.names;
+    else if ( role == PositionRole )
+        return data.position;
+    else if ( role == TextRole )
+        return data.text;
     else
         return QVariant();
 }
 
+// Map QML property names to Model Roles
 QHash<int, QByteArray> MarkersModel::roleNames() const
 {
     static QHash<int, QByteArray> mapping {
-        {LineNoRole, "lineNo"},
-        {LinePosRole, "linePos"},
-        {LineNameRole, "lineName"}
+        {NamesRole, "names"},
+        {PositionRole, "position"},
+        {TextRole, "text"}
     };
     return mapping;
 }
 
-void MarkersModel::removeData(int row)
+void MarkersModel::removeMarker(int row)
 {
     if (row < 0 || row>=m_data.count())
         return;
@@ -90,4 +92,15 @@ void MarkersModel::removeData(int row)
     beginRemoveRows(QModelIndex(), row, row);
     m_data.removeAt(row);
     endRemoveRows();
+}
+
+// void MarkersModel::insertRow(int row, const QModelIndex &parent)
+// {}
+
+void MarkersModel::appendMarker(Marker &marker)
+{
+    const int listPosition = m_data.count();
+    beginInsertRows(QModelIndex(), listPosition, listPosition+1);
+    m_data.append(marker);
+    endInsertRows();
 }
