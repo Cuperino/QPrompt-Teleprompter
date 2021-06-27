@@ -96,6 +96,7 @@ DocumentHandler::DocumentHandler(QObject *parent)
 , _markersModel(nullptr)
 
 {
+    _markersModel = new MarkersModel();
 }
 
 QQuickTextDocument *DocumentHandler::document() const
@@ -103,12 +104,13 @@ QQuickTextDocument *DocumentHandler::document() const
     return m_document;
 }
 
+// QAbstractListModel *DocumentHandler::markers() const
 MarkersModel *DocumentHandler::markers() const
 {
+//     QAbstractListModel *model = _markersModel;
+//     return model ;
     return _markersModel;
 }
-// engine.rootContext()->setContextProperty( "_markersModel", &document->_markersModel );
-
 
 void DocumentHandler::setDocument(QQuickTextDocument *document)
 {
@@ -512,22 +514,9 @@ void DocumentHandler::parse() {
         QString text;
     };
 
-//     struct Marker {
-//         int position;
-//         QStringList names;
-//         QString text;
-//     };
-    // typedef QTextFragment Marker;
-
     size_t size = 1024;
     std::vector<LINE> lines;
-//     std::vector<Marker> anchors;
     lines.reserve(size);
-//     anchors.reserve(size>>4);
-
-    delete this->_markersModel;
-    this->_markersModel = nullptr;
-    this->_markersModel = new MarkersModel();
 
     // Go through the document once
     for (QTextBlock it = this->textDocument()->begin(); it != this->textDocument()->end(); it = it.next()) {
@@ -553,8 +542,6 @@ void DocumentHandler::parse() {
                     marker.names = currentFragment.charFormat().anchorNames();
                     marker.text = currentFragment.text();
                     this->_markersModel->appendMarker(marker);
-                    // anchors.push_back(marker);
-                    // anchors.push_back(currentFragment);
                 }
             }
         }

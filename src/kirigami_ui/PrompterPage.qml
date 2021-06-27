@@ -25,9 +25,10 @@ import org.kde.kirigami 2.15 as Kirigami
 import QtQuick.Window 2.15
 import QtQuick.Controls 2.15
 import QtQuick.Layouts 1.15
+import QtQuick.Templates 2.0 as Templates
 import Qt.labs.platform 1.1
 
-//import com.cuperino.qprompt.markers 1.0 as MarkersModel
+import com.cuperino.qprompt.markers 1.0
 
 Kirigami.Page {
     id: prompterPage
@@ -531,26 +532,36 @@ Kirigami.Page {
             color: "#282828" // appTheme.__backgroundColor
             opacity: 0.88
         }
-        //width: 240
-        width: popupContent.implicitWidth
-        modal: false
+        width: 260
+        //width: popupContent.implicitWidth
+        modal: true
+        handleVisible: false
+        closePolicy: Templates.Popup.CloseOnEscape // | Templates.Popup.CloseOnReleaseOutside
         edge: Qt.LeftToRight ? Qt.RightEdge : Qt.LeftEdge
-        padding: 0
         leftPadding: 0
         rightPadding: 0
         bottomPadding: 0
         topPadding: 0
+        parent: prompterPage.viewport
 
-        parent: prompterPage.overlay
-
-        // }
+        function toggle() {
+            if (drawerOpen)
+                close()
+            else {
+                prompter.document.parse()
+                open()
+            }
+        }
 
         ListModel {
            id: nameModel
-           ListElement { text: "asmd"; position: 128; }
-           ListElement { text: "zgxc"; position: 386; }
-           ListElement { text: "qwge"; position: 912; }
-           ListElement { text: "inop"; position: 1000; }
+           ListElement {}
+           ListElement {}
+           ListElement {}
+           //ListElement { text: "asmd"; position: 128; }
+           //ListElement { text: "zgxc"; position: 386; }
+           //ListElement { text: "qwge"; position: 912; }
+           //ListElement { text: "inop"; position: 1000; }
         }
         Component {
             id: markerDelegateComponent
@@ -598,7 +609,9 @@ Kirigami.Page {
                 Layout.fillHeight: true
                 Layout.fillWidth: true
                 spacing: 2
-                model: prompterPage.document.markers() // nameModel
+                //model: nameModel
+                model: prompterPage.document.markers()
+                //model: prompterPage.document.markers
                 delegate: markerDelegateComponent
                 clip: true
                 ScrollBar.vertical: ScrollBar { }
@@ -609,6 +622,7 @@ Kirigami.Page {
                 onClicked: {
                     sideDrawer.close();
                     console.log(prompterPage.document.markers())
+                    //console.log(prompterPage.document.markers)
                 }
             }
         }

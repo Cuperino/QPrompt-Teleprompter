@@ -28,11 +28,11 @@ MarkersModel::MarkersModel(QObject *parent)
     : QAbstractListModel(parent)
 {
 //  Test data: names, position, text
-    m_data
-       << Marker { QStringList("1"), 2*64, "Depeche Mode" }
-       << Marker { QStringList("2"), 6*64, "Apocalyptica" }
-       << Marker { QStringList("4"), 8*64, "The Wachowskis" }
-       << Marker { QStringList("a"), 9*64, "Sacha Goedegebure" };
+//     m_data
+//        << Marker { QStringList("1"), 2*64, "Depeche Mode" }
+//        << Marker { QStringList("2"), 6*64, "Apocalyptica" }
+//        << Marker { QStringList("4"), 8*64, "The Wachowskis" }
+//        << Marker { QStringList("a"), 9*64, "Sacha Goedegebure" };
 }
 
 // QVariant MarkersModel::headerMarker(int section, Qt::Orientation orientation, int role) const
@@ -54,7 +54,8 @@ int MarkersModel::rowCount(const QModelIndex &parent) const
 {
 //     if (!parent.isValid())
 //         return 0;
-    return m_data.count();
+
+    return m_data.size();
 }
 
 QVariant MarkersModel::data(const QModelIndex &index, int role) const
@@ -99,8 +100,8 @@ void MarkersModel::removeMarker(int row)
 
 void MarkersModel::appendMarker(Marker &marker)
 {
-    const int listPosition = m_data.count();
-    beginInsertRows(QModelIndex(), listPosition, listPosition+1);
+    const int listPosition = m_data.size();
+    beginInsertRows(QModelIndex(), listPosition, listPosition);
     m_data.append(marker);
     endInsertRows();
 }

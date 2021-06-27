@@ -113,6 +113,8 @@ class DocumentHandler : public QObject
     
     Q_PROPERTY(bool modified READ modified WRITE setModified NOTIFY modifiedChanged)
     
+//     Q_PROPERTY(MarkersModel* markers READ markers CONSTANT STORED false)
+    
 public:
     explicit DocumentHandler(QObject *parent = nullptr);
     
@@ -164,6 +166,8 @@ public:
     
     bool marker() const;
     void setMarker(bool marker);
+
+//     MarkersModel *markers() const;
     Q_INVOKABLE MarkersModel *markers() const;
     
     Q_INVOKABLE void parse();
