@@ -30,5 +30,5 @@ ScrollBar {
     rightPadding: 0
     leftInset: 0
     rightInset: 0
-    stepSize: prompter.height/(2*(editor.height + prompter.topMargin + prompter.bottomMargin))
+    stepSize: prompter.height/(4*(editor.height + prompter.topMargin + prompter.bottomMargin))
 }
