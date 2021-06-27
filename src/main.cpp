@@ -95,8 +95,8 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
 
     qmlRegisterType<PrompterTimer>("com.cuperino.qprompt.promptertimer", 1, 0, "PrompterTimer");
     qmlRegisterType<DocumentHandler>("com.cuperino.qprompt.document", 1, 0, "DocumentHandler");
-//    qmlRegisterType<DocumentHandler>("org.kde.kirigami", 2, 9, "KirigamiPlugin");
     qmlRegisterType<MarkersModel>("com.cuperino.qprompt.markers", 1, 0, "MarkersModel");
+//    qmlRegisterType<DocumentHandler>("org.kde.kirigami", 2, 9, "KirigamiPlugin");
 
     QStringList selectors;
 #ifdef QT_EXTRA_FILE_SELECTOR
