@@ -776,24 +776,30 @@ Flickable {
                 return
             case keys.skipBackwards:
                 if (!this.__atStart) {
-                    var i=__i;
+                    if (prompter.__play && __i!==0)
+                        __iBackup = __i
                     __i=0;
-                    //prompter.position -= prompter.height/4
                     prompter.position = prompter.position
                     scrollBar.decrease()
-                    __i=i
-                    prompter.position = __destination
+                    __i=__iBackup
+                    if (prompter.__play)
+                        prompter.position = __destination
+                    else
+                        prompter.position = prompter.position
                 }
                 return
             case keys.skipForward:
                 if (!this.__atEnd) {
-                    var i=__i;
+                    if (prompter.__play && __i!==0)
+                        __iBackup = __i
                     __i=0;
-                    //prompter.position += prompter.height/4
                     prompter.position = prompter.position
                     scrollBar.increase()
-                    __i=i
-                    prompter.position = __destination
+                    __i=__iBackup
+                    if (prompter.__play)
+                        prompter.position = __destination
+                    else
+                        prompter.position = prompter.position
                 }
                 return
             case Qt.Key_Escape:
