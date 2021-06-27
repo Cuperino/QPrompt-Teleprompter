@@ -215,6 +215,18 @@ Flickable {
         }
     }
 
+    NumberAnimation on position {
+        id: reset
+        to: __jitterMargin-topMargin+1
+        duration: Kirigami.Units.veryLongDuration
+        easing.type: Easing.InOutQuart
+        function toStart() {
+            __i = 0
+            position = position
+            start()
+        }
+    }
+
     // Toggle prompter state
     function toggle() {
         
@@ -454,6 +466,16 @@ Flickable {
                     height: prompter.bottomMargin
                     color: "#000"
                     opacity: 0.2
+                    MouseArea {
+                        anchors.fill: parent
+                        cursorShape: Qt.PointingHandCursor
+                        onClicked: showPassiveNotification(i18n("Double tap to go back to the starting position"))
+                        onDoubleClicked: {
+                            // Run hidePassiveNotification second to avoid Kirigami bug from 5.83.0 that prevents the method from completing execution.
+                            reset.toStart()
+                            hidePassiveNotification()
+                        }
+                    }
                 }
 
                 MouseArea {
