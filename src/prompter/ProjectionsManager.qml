@@ -23,8 +23,8 @@
 import QtQuick 2.15
 import org.kde.kirigami 2.9 as Kirigami
 import QtQuick.Window 2.15
-import QtQuick.Dialogs 1.3
-//import Qt.labs.platform 1.1
+//import QtQuick.Dialogs 1.3
+import Qt.labs.platform 1.1
 
 Item {
     id: projectionManager
@@ -148,7 +148,7 @@ Item {
         function requestDisplays() {
             alertDialog.text = i18n("In order to use screen projections, you must have at least one display connected and configured as an extended display on your OS.")
             alertDialog.detailedText = ""
-            alertDialog.icon = StandardIcon.Information
+//            alertDialog.icon = StandardIcon.Information
             alertDialog.visible = true
         }
 
@@ -156,7 +156,7 @@ Item {
             alertDialog.text = i18n("You've enabled a screen projection on display \""+screenName+"\". Please note this projection will not show unless you place the editor on a different screen.")
             //alertDialog.text = i18n("QPrompt will not project to the screen where the editor is at.")
             //alertDialog.detailedText = i18n("You've enabled a screen projection on display \""+screenName+"\". Please note this projection will not show unless you place the editor on a different screen.")
-            alertDialog.icon = StandardIcon.Warning
+//            alertDialog.icon = StandardIcon.Warning
             alertDialog.visible = true
         }
     }
