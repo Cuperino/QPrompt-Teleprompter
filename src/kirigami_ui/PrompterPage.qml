@@ -485,6 +485,7 @@ Kirigami.Page {
         id: viewport
         // Workaround to make regular Page let its contents be covered by action buttons.
         anchors.bottomMargin: Kirigami.Settings.isMobile ? -68 : 0
+        prompter.performFileOperations: true
         property alias toolbar: editorToolbar
     }
 

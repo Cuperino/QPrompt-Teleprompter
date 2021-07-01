@@ -91,6 +91,7 @@ Flickable {
     // Create position alias to make code more readable
     property alias position: prompter.contentY
     // Scrolling settings
+    property bool performFileOperations: false
     property bool __scrollAsDial: root.__scrollAsDial
     property bool __invertArrowKeys: root.__invertArrowKeys
     property bool __invertScrollDirection: root.__invertScrollDirection
@@ -579,13 +580,15 @@ Flickable {
         selectionEnd: editor.selectionEnd
         textColor: "#FFF"
         Component.onCompleted: {
-            if (Qt.application.arguments.length === 2) {
-                document.load("file:" + Qt.application.arguments[1]);
-                isNewFile = false
-                resetDocumentPosition()
+            if (prompter.performFileOperations) {
+                if (Qt.application.arguments.length === 2) {
+                    document.load("file:" + Qt.application.arguments[1]);
+                    isNewFile = false
+                    resetDocumentPosition()
+                }
+                else
+                    loadInstructions();
             }
-            else
-                loadInstructions();
         }
         
         function resetDocumentPosition() {
