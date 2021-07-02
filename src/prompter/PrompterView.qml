@@ -36,6 +36,7 @@ Item {
     property alias overlay: overlay
     property alias prompterBackground: prompterBackground
     property alias timer: timer
+    property alias find: find
     //property bool project: true
 
     anchors.fill: parent
@@ -47,6 +48,12 @@ Item {
     //layer.smooth: true
     // Make texture the size of the largest destinations.
     //layer.textureSize: Qt.size(projectionWindow.width, projectionWindow.height)
+    
+    Find {
+        id: find
+        document: prompter.document
+        z: 5
+    }
     
     Countdown {
         id: countdown

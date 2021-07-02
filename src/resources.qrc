@@ -15,6 +15,7 @@
         <file alias="PrompterBackground.qml">prompter/PrompterBackground.qml</file>
         <file alias="Flip.qml">prompter/Flip.qml</file>
         <file alias="ProjectionsManager.qml">prompter/ProjectionsManager.qml</file>
+        <file alias="Find.qml">prompter/Find.qml</file>
         <!-- Theme Configuration -->
         <file>qtquickcontrols2.conf</file>
         <!-- Icons -->

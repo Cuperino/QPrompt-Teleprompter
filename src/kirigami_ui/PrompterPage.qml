@@ -44,6 +44,7 @@ Kirigami.Page {
     property alias overlay: viewport.overlay
     property alias document: viewport.document
     property alias prompterBackground: viewport.prompterBackground
+    property alias find: viewport.find
     property alias key_configuration_overlay: key_configuration_overlay
     property alias telemetry_overlay: telemetry_overlay
     property alias displaySettings: displaySettings

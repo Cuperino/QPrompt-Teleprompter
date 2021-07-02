@@ -151,6 +151,16 @@ ToolBar {
                 onClicked: prompter.document.parse()
             }
             ToolButton {
+                id: searchButton
+                text: Qt.application.layoutDirection===Qt.LeftToRight ? "\u1F50E" : "\u1F50D"
+                contentItem: Loader { sourceComponent: textComponent }
+                font.family: iconFont.name
+                font.pointSize: 13
+                focusPolicy: Qt.TabFocus
+                onClicked: find.toggle()
+                checked: find.isOpen
+            }
+            ToolButton {
                 id: debugButton
                 text: "\uE846"
                 contentItem: Loader { sourceComponent: textComponent }
