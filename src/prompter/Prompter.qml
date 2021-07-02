@@ -811,6 +811,9 @@ Flickable {
                     prompter.state = "editing";
                     return
                 }
+            case Qt.Key_F:
+                if (event.modifiers & Qt.ControlModifier)
+                    find.open();
             //case keys.previousMarker:
             //    showPassiveNotification(i18n("Home Pressed")); break;
             //case keys.nextMarker:

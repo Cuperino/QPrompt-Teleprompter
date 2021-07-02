@@ -25,15 +25,36 @@ import QtQuick.Controls 2.15
 import QtQuick.Layouts 1.15
 import org.kde.kirigami 2.9 as Kirigami
 
-Rectangle {
+Item {
     property var document
     property bool isOpen: false
-    width: find.implicitWidth
     height: isOpen ? find.implicitHeight : 0
-    anchors.leftMargin: 87
+    visible: height>0
+    readonly property int searchBarWidth: 700
+    readonly property int searchBarMargin: 26
+    anchors.leftMargin: viewport.width<608 ? 4 : searchBarMargin
+    anchors.rightMargin: viewport.width<608 ? 4 : (viewport.width < searchBarWidth ? searchBarMargin : viewport.width - searchBarWidth + searchBarMargin)
     anchors.left: parent.left
+    anchors.right: parent.right
     anchors.bottom: parent.bottom
-    color: "#222"
+    Rectangle {
+        id: background
+        anchors.top: find.top
+        anchors.left: find.left
+        anchors.right: find.right
+        anchors.leftMargin: -8
+        anchors.rightMargin: -12
+        height: find.height+this.radius
+        radius: 12
+        opacity: 0.96
+        color: "#262626"
+        border.width: 2
+        border.color: "#222"
+        MouseArea {
+            anchors.fill: parent
+            onClicked: {}
+        }
+    }
     Behavior on height {
         enabled: true
         animation: NumberAnimation {
@@ -43,6 +64,8 @@ Rectangle {
     }
     RowLayout {
         id: find
+        anchors.fill: parent
+        spacing: 6
         Button {
             text: "\u24CD"
             flat: true
@@ -50,16 +73,14 @@ Rectangle {
         }
         TextField {
             id: searchField
-            width: 320
-            placeholderText: i18n("Search text")
-            onTextEdited: {
-                find.search(text)
-            }
+            placeholderText: i18n("Search")
+            onTextEdited: find.search(text)
             onAccepted: {
                 if (Keys.modifiers & Qt.ShiftModifier)
                     return find.previous()
                 return find.next()
             }
+            Layout.fillWidth: true
             Keys.onEscapePressed: close()
         }
         Button {
@@ -83,6 +104,8 @@ Rectangle {
     function focusSearch() {
         if (isOpen)
             searchField.focus = true
+        else
+            editor.focus = true
     }
     function toggle() {
         isOpen = !isOpen
@@ -94,5 +117,6 @@ Rectangle {
     }
     function close() {
         isOpen = false
+        focusSearch()
     }
 }
