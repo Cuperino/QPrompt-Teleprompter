@@ -505,6 +505,34 @@ void DocumentHandler::setModified(bool m)
         m_document->textDocument()->setModified(m);
 }
 
+// Search
+QPoint DocumentHandler::search(const QString &subString, const bool next, const bool reverse) {
+    // qDebug() << "pre" << this->cursorPosition() << this->selectionStart() << this->selectionEnd();
+    QTextCursor cursor;
+    if (reverse)
+        cursor = this->textDocument()->find(subString, this->selectionStart(), QTextDocument::FindBackward);
+    else if (next)
+        cursor = this->textDocument()->find(subString, this->selectionEnd());
+    else
+        cursor = this->textDocument()->find(subString, this->selectionStart());
+    // If no more results, go to the corresponding start position and do the search once more
+    if (cursor.selectionStart()==-1 && cursor.selectionStart()==-1 && cursor.selectionEnd()==-1) {
+        if (reverse)
+            cursor = this->textDocument()->find(subString, textDocument()->characterCount(), QTextDocument::FindBackward);
+        else
+            cursor = this->textDocument()->find(subString, 0);
+    }
+    // Update cursor
+    if (cursor.selectionStart()!=-1) {
+        this->setCursorPosition(cursor.selectionStart());
+        this->setSelectionStart(cursor.selectionStart());
+    }
+    this->setSelectionEnd(cursor.selectionEnd());
+    // qDebug() << "post" << this->cursorPosition() << this->selectionStart() << this->selectionEnd() << Qt::endl;
+    // Return selection range so that it can be passed to the editor
+    return QPoint(this->selectionStart(), this->selectionEnd());
+}
+
 // Markers (Anchors)
 
 void DocumentHandler::parse() {
