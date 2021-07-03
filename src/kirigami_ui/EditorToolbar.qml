@@ -131,6 +131,29 @@ ToolBar {
             id: anchorsRow
             //visible: prompter.state==="editing"
             ToolButton {
+                id: bookmarkListButton
+                text: "\uE804"
+                contentItem: Loader { sourceComponent: textComponent }
+                font.family: iconFont.name
+                font.pointSize: 13
+                focusPolicy: Qt.TabFocus
+                checked: sideDrawer.drawerOpen
+                onClicked: {
+                    find.close()
+                    sideDrawer.toggle()
+                }
+            }
+            ToolButton {
+                id: searchButton
+                text: Qt.application.layoutDirection===Qt.LeftToRight ? "\uE847" : "\uE848"
+                contentItem: Loader { sourceComponent: textComponent }
+                font.family: iconFont.name
+                font.pointSize: 13
+                focusPolicy: Qt.TabFocus
+                onClicked: find.toggle()
+                checked: find.visible
+            }
+            ToolButton {
                 id: bookmarkToggleButton
                 text: "\uE844"
                 contentItem: Loader { sourceComponent: textComponent }
@@ -141,34 +164,25 @@ ToolBar {
                 checkable: true
                 onClicked: prompter.document.marker = !prompter.document.marker
             }
-            ToolButton {
-                id: bookmarkListButton
-                text: "\uE845"
-                contentItem: Loader { sourceComponent: textComponent }
-                font.family: iconFont.name
-                font.pointSize: 13
-                focusPolicy: Qt.TabFocus
-                onClicked: prompter.document.parse()
-            }
-            ToolButton {
-                id: searchButton
-                text: Qt.application.layoutDirection===Qt.LeftToRight ? "\u1F50E" : "\u1F50D"
-                contentItem: Loader { sourceComponent: textComponent }
-                font.family: iconFont.name
-                font.pointSize: 13
-                focusPolicy: Qt.TabFocus
-                onClicked: find.toggle()
-                checked: find.isOpen
-            }
-            ToolButton {
-                id: debugButton
-                text: "\uE846"
-                contentItem: Loader { sourceComponent: textComponent }
-                font.family: iconFont.name
-                font.pointSize: 13
-                focusPolicy: Qt.TabFocus
-                onClicked: sideDrawer.toggle()
-            }
+            //ToolButton {
+            //    id: namedBookmarkButton
+            //    text: "\uE845"
+            //    contentItem: Loader { sourceComponent: textComponent }
+            //    font.family: iconFont.name
+            //    font.pointSize: 13
+            //    focusPolicy: Qt.TabFocus
+            //    onClicked: {}
+            //}
+            //ToolButton {
+            //    id: searchButton
+            //    text: "\uE846"
+            //    contentItem: Loader { sourceComponent: textComponent }
+            //    font.family: iconFont.name
+            //    font.pointSize: 13
+            //    focusPolicy: Qt.TabFocus
+            //    onClicked: {}
+            //    checked: false
+            //}
             ToolSeparator {
                 contentItem.visible: anchorsRow.y === undoRedoRow.y
             }

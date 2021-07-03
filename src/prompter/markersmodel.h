@@ -64,9 +64,15 @@ public:
 
 public slots:
 //     void insertRow(int row, const QModelIndex &parent);
+    void clearMarkers();
     void appendMarker(Marker &marker);
     void removeMarker(int row);
 //     void updateMarker(int row);
+
+
+private slots:
+    void resetInternalData();
+
 
 private:
     QList <Marker> m_data;

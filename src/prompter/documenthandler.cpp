@@ -546,6 +546,8 @@ void DocumentHandler::parse() {
     std::vector<LINE> lines;
     lines.reserve(size);
 
+    this->_markersModel->clearMarkers();
+
     // Go through the document once
     for (QTextBlock it = this->textDocument()->begin(); it != this->textDocument()->end(); it = it.next()) {
         QTextBlock::iterator jt;

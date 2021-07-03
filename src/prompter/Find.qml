@@ -31,8 +31,8 @@ Item {
     height: isOpen && prompter.state!=="prompting" && prompter.state!=="countdown" ? find.implicitHeight : 0
     visible: height>0
     enabled: visible
-    readonly property int searchBarWidth: 700
-    readonly property int searchBarMargin: 26
+    readonly property int searchBarWidth: 660
+    readonly property int searchBarMargin: 6
     enum Mode {
         Match,
         Previous,
@@ -136,7 +136,7 @@ Item {
         }
     }
     function toggle() {
-        isOpen = !isOpen
+        isOpen = !visible
         focusSearch()
     }
     function open() {

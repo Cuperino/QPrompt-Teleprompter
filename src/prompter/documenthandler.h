@@ -167,7 +167,7 @@ public:
     bool marker() const;
     void setMarker(bool marker);
 
-//     MarkersModel *markers() const;
+    // MarkersModel *markers() const;
     Q_INVOKABLE MarkersModel *markers() const;
     
     Q_INVOKABLE void parse();

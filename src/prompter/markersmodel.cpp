@@ -85,6 +85,11 @@ QHash<int, QByteArray> MarkersModel::roleNames() const
     return mapping;
 }
 
+void MarkersModel::resetInternalData()
+{
+    this->m_data.clear();
+}
+
 void MarkersModel::removeMarker(int row)
 {
     if (row < 0 || row>=m_data.count())
@@ -97,6 +102,13 @@ void MarkersModel::removeMarker(int row)
 
 // void MarkersModel::insertRow(int row, const QModelIndex &parent)
 // {}
+
+void MarkersModel::clearMarkers()
+{
+    beginRemoveRows(QModelIndex(), 0, rowCount());
+    this->resetInternalData();
+    endRemoveRows();
+}
 
 void MarkersModel::appendMarker(Marker &marker)
 {
