@@ -28,10 +28,16 @@ import org.kde.kirigami 2.9 as Kirigami
 Item {
     property var document
     property bool isOpen: false
-    height: isOpen ? find.implicitHeight : 0
+    height: isOpen && prompter.state!=="prompting" && prompter.state!=="countdown" ? find.implicitHeight : 0
     visible: height>0
+    enabled: visible
     readonly property int searchBarWidth: 700
     readonly property int searchBarMargin: 26
+    enum Mode {
+        Match,
+        Previous,
+        Next
+    }
     anchors.leftMargin: viewport.width<608 ? 4 : searchBarMargin
     anchors.rightMargin: viewport.width<608 ? 4 : (viewport.width < searchBarWidth ? searchBarMargin : viewport.width - searchBarWidth + searchBarMargin)
     anchors.left: parent.left
@@ -70,17 +76,20 @@ Item {
             text: "\u24CD"
             flat: true
             onClicked: close()
+            Layout.fillHeight: true
         }
         TextField {
             id: searchField
             placeholderText: i18n("Search")
-            onTextEdited: find.search(text)
-            onAccepted: {
-                if (Keys.modifiers & Qt.ShiftModifier)
+            wrapMode: TextInput.WordWrap
+            onTextEdited: find.search(text, Find.Mode.Match)
+            selectByMouse: true
+            Layout.fillWidth: true
+            Keys.onReturnPressed: {
+                if (event.modifiers & Qt.ShiftModifier)
                     return find.previous()
                 return find.next()
             }
-            Layout.fillWidth: true
             Keys.onEscapePressed: close()
         }
         Button {
@@ -92,20 +101,39 @@ Item {
             onClicked: find.next()
         }
         function next() {
-            console.log("Search next")
+            find.search(searchField.text, Find.Mode.Next)
         }
         function previous() {
-            console.log("Search previous")
+            find.search(searchField.text, Find.Mode.Previous)
         }
-        function search(text) {
-            console.log(text)
+        function search(text, mode) {
+            var range
+            switch (mode) {
+                case Find.Mode.Match:
+                    range = document.search(text); break;
+                case Find.Mode.Previous:
+                    range = document.search(text, false, true); break;
+                case Find.Mode.Next:
+                    range = document.search(text, true); break;
+            }
+            if (range.y > range.x)
+                editor.select(range.x, range.y)
+            else
+                editor.cursorPosition = range.x
+            if (text.length>0)
+                prompter.position = editor.cursorRectangle.y - (overlay.__readRegionPlacement*(overlay.height-overlay.readRegionHeight)+overlay.readRegionHeight/2) + 1
         }
     }
     function focusSearch() {
-        if (isOpen)
+        if (isOpen) {
+            searchField.text = editor.selectedText
             searchField.focus = true
-        else
+        }
+        else {
+            // Clear search
+            editor.cursorPosition = document.selectionStart
             editor.focus = true
+        }
     }
     function toggle() {
         isOpen = !isOpen

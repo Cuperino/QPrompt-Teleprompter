@@ -172,6 +172,9 @@ public:
     
     Q_INVOKABLE void parse();
     
+    // Search
+    Q_INVOKABLE QPoint search(const QString &subString, const bool next=false, const bool reverse=false);
+    
 public Q_SLOTS:
     void load(const QUrl &fileUrl);
     void saveAs(const QUrl &fileUrl);
