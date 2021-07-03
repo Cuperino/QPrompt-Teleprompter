@@ -25,7 +25,6 @@ import org.kde.kirigami 2.15 as Kirigami
 import QtQuick.Window 2.15
 import QtQuick.Controls 2.15
 import QtQuick.Layouts 1.15
-import QtQuick.Templates 2.0 as Templates
 import Qt.labs.platform 1.1
 
 import com.cuperino.qprompt.markers 1.0
@@ -538,7 +537,6 @@ Kirigami.Page {
         //width: popupContent.implicitWidth
         modal: true
         handleVisible: false
-        closePolicy: Templates.Popup.CloseOnEscape // | Templates.Popup.CloseOnReleaseOutside
         edge: Qt.LeftToRight ? Qt.RightEdge : Qt.LeftEdge
         leftPadding: 0
         rightPadding: 0
@@ -555,51 +553,31 @@ Kirigami.Page {
             }
         }
 
-        ListModel {
-           id: nameModel
-           ListElement {}
-           ListElement {}
-           ListElement {}
-           //ListElement { text: "asmd"; position: 128; }
-           //ListElement { text: "zgxc"; position: 386; }
-           //ListElement { text: "qwge"; position: 912; }
-           //ListElement { text: "inop"; position: 1000; }
-        }
         Component {
             id: markerDelegateComponent
             Kirigami.SwipeListItem {
-                //required property real: position
-                //required property string: text
-//                 required property any: names
-                Label {
-                    text: model.position + ", " + model.text  // + " (" + model.names+ ")"
+                supportsMouseEvents: true
+                onPressed: {
+                    editor.cursorPosition = model.position
+                    prompter.position = editor.cursorRectangle.y - (overlay.__readRegionPlacement*(overlay.height-overlay.readRegionHeight)+overlay.readRegionHeight/2) + 1
                 }
-                actions: [
-                Action {
-                    icon.source: "qrc:/images/logo.png"
-                    //icon.name: "document"
-                    //text: "\uE846"
-                    //font.family: "fonts/fontello.ttf"
-                    onTriggered: print("Action 1 clicked")
-                }//,
+                Label {
+                    text: model.text
+                }
+                //actions: [
                 //Action {
-                    //icon.name: "css-keyboard"
-                    //onTriggered: print("Action 1 clicked")
-                //}
-                ]
+                //    icon.source: "qrc:/images/logo.png"
+                //    //icon.name: "document"
+                //    //text: "\uE846"
+                //    //font.family: "fonts/fontello.ttf"
+                //    onTriggered: print("Action 1 clicked")
+                //}//,
+                ////Action {
+                //    //icon.name: "css-keyboard"
+                //    //onTriggered: print("Action 1 clicked")
+                ////}
+                //]
             }
-            //Rectangle {
-                //width: ListView.view.width
-                //height: 40
-                //color: appTheme.__backgroundColor
-                //Text {
-                    //anchors {
-                    //fill: parent
-                    //margins: 5
-                    //}
-                    //color: "#FFF"
-                //}
-            //}
         }
 
         ColumnLayout {
@@ -611,9 +589,7 @@ Kirigami.Page {
                 Layout.fillHeight: true
                 Layout.fillWidth: true
                 spacing: 2
-                //model: nameModel
                 model: prompterPage.document.markers()
-                //model: prompterPage.document.markers
                 delegate: markerDelegateComponent
                 clip: true
                 ScrollBar.vertical: ScrollBar { }
