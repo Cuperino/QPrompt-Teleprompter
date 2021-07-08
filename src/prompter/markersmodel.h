@@ -73,6 +73,7 @@ public slots:
 private slots:
     void resetInternalData();
 
+    int keySearch(QString key, int currentPosition, bool reverse, bool wrap);
 
 private:
     QList <Marker> m_data;
