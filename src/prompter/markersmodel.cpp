@@ -117,3 +117,35 @@ void MarkersModel::appendMarker(Marker &marker)
     m_data.append(marker);
     endInsertRows();
 }
+// Key based circular search
+int MarkersModel::keySearch(QString key, int currentPosition=0, bool reverse=false, bool wrap=true) {
+    QModelIndexList markersThatMatchShortcut = this->match(QModelIndex(), MarkersModel::NamesRole, key, 1, Qt::MatchFlags(Qt::MatchStartsWith|Qt::MatchWrap));
+    const int size = markersThatMatchShortcut.size();
+    if (size) {
+        if (reverse) {
+            int previousPosition = size;
+            for (int i=previousPosition-1; i>-1; i--) {
+                const int nextPosition = data(markersThatMatchShortcut[i], MarkersModel::PositionRole).toInt();
+                if (currentPosition>nextPosition)
+                    return nextPosition;
+                previousPosition = nextPosition;
+            }
+            // if already reached first, go to last
+            if (wrap)
+                return data(markersThatMatchShortcut[size-1], MarkersModel::PositionRole).toInt();
+        }
+        else {
+            int previousPosition = 0;
+            for (int i=0; i<size; i++) {
+                const int nextPosition = data(markersThatMatchShortcut[i], MarkersModel::PositionRole).toInt();
+                if (currentPosition<nextPosition)
+                    return nextPosition;
+                previousPosition = nextPosition;
+            }
+            // if already reached last, go to first
+            if (wrap)
+                return data(markersThatMatchShortcut[0], MarkersModel::PositionRole).toInt();
+        }
+    }
+    return -1;
+}
