@@ -67,12 +67,15 @@ public slots:
     void clearMarkers();
     void appendMarker(Marker &marker);
     void removeMarker(int row);
+    int previousMarker(int position);
+    int nextMarker(int position);
+
 //     void updateMarker(int row);
 
 
 private slots:
     void resetInternalData();
-
+    int binarySearch(int lo, int hi, int x, bool reverse);
     int keySearch(QString key, int currentPosition, bool reverse, bool wrap);
 
 private:

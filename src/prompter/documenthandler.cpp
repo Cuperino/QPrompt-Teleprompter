@@ -592,3 +592,11 @@ void DocumentHandler::parse() {
     }
     #endif
 }
+
+int DocumentHandler::nextMarker(int position) {
+    return this->_markersModel->nextMarker(position);
+}
+
+int DocumentHandler::previousMarker(int position) {
+    return this->_markersModel->previousMarker(position);
+}
