@@ -268,7 +268,8 @@ Flickable {
         if (this.__atEnd)
             this.__i=0
         else if (this.__velocity < this.__speedLimit) {
-            this.__i++
+            if (this.__play)
+                this.__i++
             this.__play = true
             this.position = this.__destination
             //if (!root.__translucidBackground)
@@ -281,7 +282,8 @@ Flickable {
         if (this.__atStart)
             this.__i=0
         else if (this.__velocity > -this.__speedLimit) {
-            this.__i--
+            if (this.__play)
+                this.__i--
             this.__play = true
             this.position = this.__destination
             //if (!root.__translucidBackground)
