@@ -257,6 +257,8 @@ Flickable {
                 if (projectionManager.model.count===0)
                     projectionManager.project();
                 //showPassiveNotification(i18n("Prompt started"), 850*countdown.__iterations)
+                if (state!=="countdown")
+                    document.parse()
                 break;
         }
     }
@@ -285,6 +287,16 @@ Flickable {
             //if (!root.__translucidBackground)
             //    showPassiveNotification(i18n("Decrease Velocity"));
         }
+    }
+    
+    function goToNextMarker() {
+        setCursorAtCurrentPosition()
+        document.nextMarker(editor.cursorPosition);
+    }
+    
+    function goToPreviousMarker() {
+        setCursorAtCurrentPosition()
+        document.previousMarker(editor.cursorPosition);
     }
     
     function setContentWidth() {

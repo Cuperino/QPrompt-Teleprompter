@@ -169,6 +169,8 @@ public:
 
     // MarkersModel *markers() const;
     Q_INVOKABLE MarkersModel *markers() const;
+    Q_INVOKABLE int previousMarker(int position);
+    Q_INVOKABLE int nextMarker(int position);
     
     Q_INVOKABLE void parse();
     

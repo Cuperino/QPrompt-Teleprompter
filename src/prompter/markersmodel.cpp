@@ -22,7 +22,10 @@
 
 #include "markersmodel.h"
 
+#include <bits/stdc++.h>
 #include <QDebug>
+
+// using namespace std;
 
 MarkersModel::MarkersModel(QObject *parent)
     : QAbstractListModel(parent)
@@ -117,9 +120,11 @@ void MarkersModel::appendMarker(Marker &marker)
     m_data.append(marker);
     endInsertRows();
 }
+
 // Key based circular search
 int MarkersModel::keySearch(QString key, int currentPosition=0, bool reverse=false, bool wrap=true) {
-    QModelIndexList markersThatMatchShortcut = this->match(QModelIndex(), MarkersModel::NamesRole, key, 1, Qt::MatchFlags(Qt::MatchStartsWith|Qt::MatchWrap));
+    // Assuming QModelIndex is at start position.
+    QModelIndexList markersThatMatchShortcut = this->match(index(0), MarkersModel::NamesRole, key, 1, Qt::MatchFlags(Qt::MatchStartsWith|Qt::MatchWrap));
     const int size = markersThatMatchShortcut.size();
     if (size) {
         if (reverse) {
@@ -148,4 +153,71 @@ int MarkersModel::keySearch(QString key, int currentPosition=0, bool reverse=fal
         }
     }
     return -1;
+}
+
+int MarkersModel::binarySearch(int l, int r, int goalPosition, bool reverse=false) {
+    // If x is present in arr[0..n-1], then returns
+    // index of it, else returns -1.
+    qDebug() << "search in progress";
+    int mid;
+
+    // Since array is sorted, an element present
+    // in array must be in range defined by corner
+    if (r>=l) {
+        qDebug() << "l: " << l << ", r: " << r << ", gp: " << goalPosition;
+
+        // Binary search
+        mid = l + (r - l) / 2;
+        // Interpolation search
+        // Probing the position while keeping uniform distribution in mind
+        // is current start displacement times percentage displacement with a likelihood of approximation
+//         pos = lo
+//         + (((double)(hi - lo) / (highPosition - lowPosition))
+//         * (goalPosition - lowPosition));
+//         qDebug() << "pos: " << mid;
+
+        const int aimValue = m_data.at(mid).position;
+//         qDebug() << "aimPos: " << aimPosition;
+        // Condition of target found
+        if (aimValue == goalPosition) {
+            // Dev: Add if not reverse
+            qDebug() << "unts";
+            if (mid==rowCount()-1) {
+                qDebug() << "mid equals";
+                return m_data.at(mid).position;
+            }
+            else {
+                qDebug() << "mid not equals:" << mid << rowCount();
+                if (reverse) {
+                    if (mid-1>0)
+                        return m_data.at(mid-1).position;
+                    return m_data.at(mid).position;
+                }
+                else
+                    return m_data.at(mid+1).position;
+            }
+        }
+        // If x is smaller, x is in left sub array
+        if (aimValue > goalPosition)
+            return binarySearch(l, mid - 1, goalPosition, reverse);
+        // If x is larger, x is in right sub array
+        if (mid!=rowCount()-1)
+            return binarySearch(mid + 1, r, goalPosition, reverse);
+    }
+    qDebug() << "Final l: " << l << ", r: " << r << ", gp: " << goalPosition << ", rows: " << rowCount();
+    if (reverse) {
+        if (l-1>=0)
+            return m_data.at(l-1).position;
+        return m_data.at(l).position;
+    }
+    else
+        return m_data.at(l).position;
+}
+
+int MarkersModel::nextMarker(int position) {
+    return this->binarySearch(0, rowCount()-1, position, false);
+}
+
+int MarkersModel::previousMarker(int position) {
+    return this->binarySearch(0, rowCount()-1, position, true);
 }
