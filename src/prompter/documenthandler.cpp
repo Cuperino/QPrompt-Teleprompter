@@ -97,6 +97,7 @@ DocumentHandler::DocumentHandler(QObject *parent)
 
 {
     _markersModel = new MarkersModel();
+//     connect(m_document->textDocument(), &QTextDocument::contentsChanged, this, &DocumentHandler::setMarkersListDirty);
 }
 
 QQuickTextDocument *DocumentHandler::document() const
@@ -120,8 +121,10 @@ void DocumentHandler::setDocument(QQuickTextDocument *document)
     if (m_document)
         m_document->textDocument()->disconnect(this);
     m_document = document;
-    if (m_document)
+    if (m_document) {
         connect(m_document->textDocument(), &QTextDocument::modificationChanged, this, &DocumentHandler::modifiedChanged);
+        connect(m_document->textDocument(), &QTextDocument::contentsChanged, this, &DocumentHandler::setMarkersListDirty);
+    }
     emit documentChanged();
 }
 
@@ -329,6 +332,7 @@ void DocumentHandler::setMarker(bool marker)
         //format.setAnchorHref("");
     }
     mergeFormatOnWordOrSelection(format);
+    this->setMarkersListDirty();
     emit markerChanged();
 }
 
@@ -505,6 +509,21 @@ void DocumentHandler::setModified(bool m)
         m_document->textDocument()->setModified(m);
 }
 
+bool DocumentHandler::markersListDirty() const
+{
+    return _markersModel->dirty;
+}
+
+void DocumentHandler::setMarkersListClean()
+{
+    _markersModel->dirty = false;
+}
+
+void DocumentHandler::setMarkersListDirty()
+{
+    _markersModel->dirty = true;
+}
+
 // Search
 QPoint DocumentHandler::search(const QString &subString, const bool next, const bool reverse) {
     // qDebug() << "pre" << this->cursorPosition() << this->selectionStart() << this->selectionEnd();
@@ -536,6 +555,7 @@ QPoint DocumentHandler::search(const QString &subString, const bool next, const 
 // Markers (Anchors)
 
 void DocumentHandler::parse() {
+    // qDebug() << "parse";
 
     struct LINE {
         QRectF rect;
@@ -576,6 +596,8 @@ void DocumentHandler::parse() {
             }
         }
     }
+    // Set markers list as clean
+    this->setMarkersListClean();
 
     #ifdef QT_DEBUG
     // Output results to terminal, only in debug compilation.
@@ -583,20 +605,26 @@ void DocumentHandler::parse() {
 //     for (unsigned long i=0; i<lines.size(); i++)
 //         qDebug() << lines.at(i).rect << lines.at(i).text;
 
-    qDebug() << "- Markers (" << this->_markersModel->rowCount() << ") -";
+//     qDebug() << "- Markers (" << this->_markersModel->rowCount() << ") -";
     for (int i=0; i<this->_markersModel->rowCount(); i++) {
 //         qDebug() << this->_markersModel.data(i, 0);
         // qDebug() << this->_markersModel.get(i).position << this->_markersModel.get(i).text << this->_markersModel.get(i).names;
         // qDebug() << anchors.at(i).position() << anchors.at(i).text() << anchors.at(i).charFormat().anchorNames();
-        qDebug() << i;
+        //qDebug() << i;
     }
     #endif
 }
 
 int DocumentHandler::nextMarker(int position) {
+//     if (this->_markersModel->rowCount()==0)
+    if (markersListDirty())
+        parse();
     return this->_markersModel->nextMarker(position);
 }
 
 int DocumentHandler::previousMarker(int position) {
+//     if (this->_markersModel->rowCount()==0)
+    if (markersListDirty())
+        parse();
     return this->_markersModel->previousMarker(position);
 }

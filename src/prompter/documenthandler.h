@@ -166,8 +166,9 @@ public:
     
     bool marker() const;
     void setMarker(bool marker);
-
-    // MarkersModel *markers() const;
+    bool markersListDirty() const;
+    
+//     MarkersModel *markers() const;
     Q_INVOKABLE MarkersModel *markers() const;
     Q_INVOKABLE int previousMarker(int position);
     Q_INVOKABLE int nextMarker(int position);
@@ -181,6 +182,8 @@ public Q_SLOTS:
     void load(const QUrl &fileUrl);
     void saveAs(const QUrl &fileUrl);
     void save();
+    void setMarkersListClean();
+    void setMarkersListDirty();
     
 Q_SIGNALS:
     void documentChanged();

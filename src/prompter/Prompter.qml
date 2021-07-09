@@ -290,24 +290,51 @@ Flickable {
             //    showPassiveNotification(i18n("Decrease Velocity"));
         }
     }
-    
-    function goToNextMarker() {
-        setCursorAtCurrentPosition()
-        document.nextMarker(editor.cursorPosition);
+
+    function goTo(cursorPosition) {
+        const i = __i;
+        __i = __iBackup
+        if (prompter.state==="prompting")
+            __iBackup = 0
+        // Direct placement in editor
+        editor.cursorPosition = cursorPosition
+        prompter.position = editor.cursorRectangle.y - (overlay.__readRegionPlacement*(overlay.height-overlay.readRegionHeight)+overlay.readRegionHeight/2) + 1
+        __i = i;
+        if (prompter.__play && i!==0)
+            prompter.position = prompter.__destination
     }
-    
+
     function goToPreviousMarker() {
+        const i = __i;
+        __i = __iBackup
+        if (prompter.state==="prompting")
+            __iBackup = 0
         setCursorAtCurrentPosition()
-        document.previousMarker(editor.cursorPosition);
+        editor.cursorPosition = document.previousMarker(editor.cursorPosition)
+        prompter.position = editor.cursorRectangle.y - (overlay.__readRegionPlacement*(overlay.height-overlay.readRegionHeight)+overlay.readRegionHeight/2) + 1
+        __i = i
+        if (prompter.__play && i!==0)
+            prompter.position = prompter.__destination
     }
-    
+
+    function goToNextMarker() {
+        const i = __i;
+        __i = __iBackup
+        if (prompter.state==="prompting")
+            __iBackup = 0
+        setCursorAtCurrentPosition()
+        editor.cursorPosition = document.nextMarker(editor.cursorPosition)
+        prompter.position = editor.cursorRectangle.y - (overlay.__readRegionPlacement*(overlay.height-overlay.readRegionHeight)+overlay.readRegionHeight/2) + 1
+        __i = i
+        if (prompter.__play && i!==0)
+            prompter.position = prompter.__destination
+    }
+
     function setContentWidth() {
         //contentsPlacement = Math.abs(editor.x)/prompter.width
         contentsPlacement = (Math.abs(editor.x)-fontSize/2)/(prompter.width-fontSize)
-        //console.log(contentsPlacement)
-        //console.log(editor.x)
     }
-    
+
     contentHeight: flickableContent.height
     topMargin: overlay.__readRegionPlacement*(prompter.height-overlay.readRegionHeight)+fontSize
     bottomMargin: (1-overlay.__readRegionPlacement)*(prompter.height-overlay.readRegionHeight)+overlay.readRegionHeight
@@ -792,7 +819,9 @@ Flickable {
                 prompter.toggle();
                 return
             case keys.skipBackwards:
-                if (!this.__atStart) {
+                if (event.modifiers & Qt.ControlModifier)
+                    prompter.goToPreviousMarker();
+                else if (!this.__atStart) {
                     if (prompter.__play && __i!==0)
                         __iBackup = __i
                     __i=0;
@@ -806,7 +835,9 @@ Flickable {
                 }
                 return
             case keys.skipForward:
-                if (!this.__atEnd) {
+                if (event.modifiers & Qt.ControlModifier)
+                    prompter.goToNextMarker();
+                else if (!this.__atEnd) {
                     if (prompter.__play && __i!==0)
                         __iBackup = __i
                     __i=0;
@@ -819,6 +850,12 @@ Flickable {
                         prompter.position = prompter.position
                 }
                 return
+            //case keys.previousMarker:
+            //    prompter.goToPreviousMarker();
+            //    return
+            //case keys.nextMarker:
+            //    prompter.goToNextMarker();
+            //    return
             case Qt.Key_Escape:
             case Qt.Key_Back:
                 if (prompter.state !== "editing") {
@@ -828,10 +865,7 @@ Flickable {
             case Qt.Key_F:
                 if (event.modifiers & Qt.ControlModifier)
                     find.open();
-            //case keys.previousMarker:
-            //    showPassiveNotification(i18n("Home Pressed")); break;
-            //case keys.nextMarker:
-            //    showPassiveNotification(i18n("End Pressed")); break;
+                return
         }
     }
     states: [
@@ -1042,7 +1076,7 @@ Flickable {
     }
     function setCursorAtCurrentPosition() {
         // Update cursor
-        var verticalPosition = position + overlay.__readRegionPlacement*(overlay.height-overlay.readRegionHeight)+overlay.readRegionHeight/2
+        var verticalPosition = position + overlay.__readRegionPlacement*(overlay.height-overlay.readRegionHeight)+overlay.readRegionHeight/2 + 1
         var cursorPosition = editor.positionAt(0, verticalPosition)
         editor.cursorPosition = cursorPosition
     }
@@ -1058,7 +1092,7 @@ Flickable {
             }
         }
     ]
-        
+
     // Progress indicator
     ScrollBar.vertical: ProgressIndicator {
         id: scrollBar

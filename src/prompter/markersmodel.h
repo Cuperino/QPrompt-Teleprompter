@@ -62,6 +62,8 @@ public:
 
     QHash<int, QByteArray> roleNames() const override;
 
+    bool dirty;
+
 public slots:
 //     void insertRow(int row, const QModelIndex &parent);
     void clearMarkers();

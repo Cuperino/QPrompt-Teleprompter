@@ -557,10 +557,7 @@ Kirigami.Page {
             id: markerDelegateComponent
             Kirigami.SwipeListItem {
                 supportsMouseEvents: true
-                onPressed: {
-                    editor.cursorPosition = model.position
-                    prompter.position = editor.cursorRectangle.y - (overlay.__readRegionPlacement*(overlay.height-overlay.readRegionHeight)+overlay.readRegionHeight/2) + 1
-                }
+                onPressed: prompter.goTo(model.position)
                 Label {
                     text: model.text
                 }
@@ -816,7 +813,7 @@ Kirigami.Page {
                 }
             }
             Label {
-                text: i18n("Scroll Backwards")
+                text: i18n("Move Backwards")
             }
             Button {
                 text: i18n("Page Up")
@@ -841,7 +838,7 @@ Kirigami.Page {
                 }
             }
             Label {
-                text: i18n("Scroll Forward")
+                text: i18n("Move Forward")
             }
             Button {
                 text: i18n("Page Down")

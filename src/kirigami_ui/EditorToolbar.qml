@@ -173,32 +173,41 @@ ToolBar {
             //    focusPolicy: Qt.TabFocus
             //    onClicked: {}
             //}
+            //ToolButton {
+            //    id: debugButton
+            //    text: "\uE846"
+            //    contentItem: Loader { sourceComponent: textComponent }
+            //    font.family: iconFont.name
+            //    font.pointSize: 13
+            //    focusPolicy: Qt.TabFocus
+            //    onClicked: {}
+            //}
+            ToolSeparator {
+                contentItem.visible: anchorsRow.y === playbackRow.y
+            }
+        }
+        Row {
+            id: playbackRow
             ToolButton {
-                id: debug2Button
-                text: "\uE847"
+                id: previousMarkerButton
+                text: "\uE81A"
                 contentItem: Loader { sourceComponent: textComponent }
                 font.family: iconFont.name
                 font.pointSize: 13
                 focusPolicy: Qt.TabFocus
-                onClicked: {
-                    editor.cursorPosition = document.previousMarker(editor.cursorPosition)
-                    prompter.position = editor.cursorRectangle.y - (overlay.__readRegionPlacement*(overlay.height-overlay.readRegionHeight)+overlay.readRegionHeight/2) + 1
-                }
+                onClicked: prompter.goToPreviousMarker()
             }
             ToolButton {
-                id: debugButton
-                text: "\uE846"
+                id: nextMarkerButton
+                text: "\uE818"
                 contentItem: Loader { sourceComponent: textComponent }
                 font.family: iconFont.name
                 font.pointSize: 13
                 focusPolicy: Qt.TabFocus
-                onClicked: {
-                    editor.cursorPosition = document.nextMarker(editor.cursorPosition)
-                    prompter.position = editor.cursorRectangle.y - (overlay.__readRegionPlacement*(overlay.height-overlay.readRegionHeight)+overlay.readRegionHeight/2) + 1
-                }
+                onClicked: prompter.goToNextMarker()
             }
             ToolSeparator {
-                contentItem.visible: anchorsRow.y === undoRedoRow.y
+                contentItem.visible: playbackRow.y === undoRedoRow.y
             }
         }
         Row {
