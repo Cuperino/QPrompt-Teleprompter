@@ -22,10 +22,7 @@
 
 #include "markersmodel.h"
 
-#include <bits/stdc++.h>
-#include <QDebug>
-
-// using namespace std;
+// #include <QDebug>
 
 MarkersModel::MarkersModel(QObject *parent)
     : QAbstractListModel(parent)
@@ -155,43 +152,29 @@ int MarkersModel::keySearch(QString key, int currentPosition=0, bool reverse=fal
     return -1;
 }
 
+// Custom Recursive Binary Search: Returns most proximate element in a given direction when searched element is not found.
 int MarkersModel::binarySearch(int l, int r, int goalPosition, bool reverse=false) {
-    // If x is present in arr[0..n-1], then returns
-    // index of it, else returns -1.
-    qDebug() << "search in progress";
-    int mid;
-
-    // Since array is sorted, an element present
-    // in array must be in range defined by corner
+    // qDebug() << "search in progress";
     if (r>=l) {
-        qDebug() << "l: " << l << ", r: " << r << ", gp: " << goalPosition;
+        // qDebug() << "l: " << l << ", r: " << r << ", gp: " << goalPosition;
 
         // Binary search
-        mid = l + (r - l) / 2;
-        // Interpolation search
-        // Probing the position while keeping uniform distribution in mind
-        // is current start displacement times percentage displacement with a likelihood of approximation
-//         pos = lo
-//         + (((double)(hi - lo) / (highPosition - lowPosition))
-//         * (goalPosition - lowPosition));
-//         qDebug() << "pos: " << mid;
+        int mid = l + (r - l) / 2;
 
         const int aimValue = m_data.at(mid).position;
-//         qDebug() << "aimPos: " << aimPosition;
-        // Condition of target found
         if (aimValue == goalPosition) {
-            // Dev: Add if not reverse
-            qDebug() << "unts";
             if (mid==rowCount()-1) {
-                qDebug() << "mid equals";
+                // qDebug() << "mid equals";
+                if (reverse)
+                    return m_data.at(mid-1).position;
                 return m_data.at(mid).position;
             }
             else {
-                qDebug() << "mid not equals:" << mid << rowCount();
+                // qDebug() << "mid not equals:" << mid << rowCount();
                 if (reverse) {
                     if (mid-1>=0)
                         return m_data.at(mid-1).position;
-                    return m_data.at(mid).position;
+                    return 0; // m_data.at(mid).position;
                 }
                 else
                     return m_data.at(mid+1).position;
@@ -204,20 +187,32 @@ int MarkersModel::binarySearch(int l, int r, int goalPosition, bool reverse=fals
         if (mid!=rowCount()-1)
             return binarySearch(mid + 1, r, goalPosition, reverse);
     }
-    qDebug() << "Final l: " << l << ", r: " << r << ", gp: " << goalPosition << ", rows: " << rowCount();
+    // qDebug() << "Final l: " << l << ", r: " << r << ", gp: " << goalPosition << ", rows: " << rowCount();
     if (reverse) {
-        if (l-1>=0)
-            return m_data.at(l-1).position;
-        return m_data.at(l).position;
+        if (r<0)
+            return 0; // m_data.at(0).position;
+        return m_data.at(r).position;
     }
     else
         return m_data.at(l).position;
 }
 
 int MarkersModel::nextMarker(int position) {
-    return this->binarySearch(0, rowCount()-1, position, false);
+    // qDebug() << Qt::endl;
+    const int size = rowCount();
+    if (size)
+        // Find next marker
+        return this->binarySearch(0, size-1, position, false);
+    // Stay in place
+    return -1;
 }
 
 int MarkersModel::previousMarker(int position) {
-    return this->binarySearch(0, rowCount()-1, position, true);
+    // qDebug() << Qt::endl;
+    const int size = rowCount();
+    if (size)
+        // Find previous marker
+        return this->binarySearch(0, size-1, position, true);
+    // Move to start
+    return 0;
 }
