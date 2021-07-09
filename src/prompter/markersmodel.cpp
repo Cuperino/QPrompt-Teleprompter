@@ -189,7 +189,7 @@ int MarkersModel::binarySearch(int l, int r, int goalPosition, bool reverse=fals
             else {
                 qDebug() << "mid not equals:" << mid << rowCount();
                 if (reverse) {
-                    if (mid-1>0)
+                    if (mid-1>=0)
                         return m_data.at(mid-1).position;
                     return m_data.at(mid).position;
                 }
