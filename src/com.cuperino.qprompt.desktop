@@ -1,3 +1,4 @@
+#!/usr/bin/env xdg-open
 [Desktop Entry]
 Name=QPrompt
 GenericName=Teleprompter Software
@@ -5,9 +6,9 @@ Comment=Personal teleprompter software for professionals
 Version=1.0
 Exec=qprompt %u
 # Icon=applications-development
-Icon=images/logo.png
+Icon=src/images/logo.png
 Type=Application
 Terminal=false
 Categories=AudioVideo;Video;Qt;
-X-DocPath=qprompt/instructions.html
+X-DocPath=src/documents/guide_en.html
 MimeType=text/html;
