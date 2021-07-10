@@ -2,17 +2,12 @@
 <component type="desktop-application">
   <id>com.cuperino.qprompt.desktop</id>
   <name>QPrompt</name>
-  <summary>Free and open source teleprompter software for professionals</summary>
+  <summary>Open source personal teleprompter software for professional content creators</summary>
   <metadata_license>CC-BY-4.0</metadata_license>
   <project_license>GPL-3+</project_license>
   <developer_name>Javier O. Cordero Pérez</developer_name>
   <description>
-    <p>Multiple paragraphs of long description, describing this software component.</p>
-    <p>Included features:</p>
-    <ul>
-      <li>Feature 1</li>
-      <li>Feature 2</li>
-    </ul>
-    <p>Keep in mind to XML-escape characters, and that this is not HTML markup.</p>
+    <p>Open source personal teleprompter software for professionals. Built with ease of use, fast performance, control accuracy, and cross-platform support in mind. QPrompt's convergent user interface can be built to run on Linux, Windows, macOS, iOS, and Android.</p>
+    <p>QPrompt is written in QML and C++, using the Qt and Kirigami frameworks.</p>
   </description>
 </component>
