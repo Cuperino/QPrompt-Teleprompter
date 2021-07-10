@@ -81,6 +81,7 @@ include(KDEInstallDirs)
 include(KDECMakeSettings)
 include(KDECompilerSettings NO_POLICY_SCOPE)
 include(ECMInstallIcons)
+include(ECMAddAppIcon)
 include(ECMQtDeclareLoggingCategory)
 include(FeatureSummary)
 
@@ -114,10 +115,10 @@ ki18n_install(po)
 
 set(ICONS_FOLDER ${CMAKE_CURRENT_SOURCE_DIR}/icons)
 set(ICON_FILES
-  ${ICONS_FOLDER}/icon.svg
-  ${ICONS_FOLDER}/icon.png
+  ${ICONS_FOLDER}/logo.svg
+  ${ICONS_FOLDER}/logo.png
 )
-ecm_add_app_icon(ICONS_SOURCES ICONS ${ICON_FILES})
+ecm_add_app_icon(qprompt ICONS ${ICON_FILES})
 target_sources(qprompt PRIVATE ${ICONS_SOURCES})
 
 install(PROGRAMS src/com.cuperino.qprompt.desktop DESTINATION ${KDE_INSTALL_APPDIR})
