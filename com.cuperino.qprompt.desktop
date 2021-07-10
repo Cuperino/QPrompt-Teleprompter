@@ -1,3 +1,4 @@
+#!/usr/bin/env xdg-open
 [Desktop Entry]
 Name=QPrompt
 GenericName=Teleprompter Software
@@ -9,5 +10,5 @@ Icon=images/logo.png
 Type=Application
 Terminal=false
 Categories=AudioVideo;Video;Qt;
-X-DocPath=qprompt/instructions.html
+X-DocPath=documents/guide_en.html
 MimeType=text/html;
