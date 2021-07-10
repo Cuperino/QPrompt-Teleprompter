@@ -112,7 +112,11 @@ find_package(KF5 ${KF_MIN_VERSION} REQUIRED COMPONENTS
 add_subdirectory(src build)
 ki18n_install(po)
 
-install(PROGRAMS com.cuperino.qprompt.desktop DESTINATION ${KDE_INSTALL_APPDIR})
-#install(FILES com.cuperino.qprompt.appdata.xml DESTINATION ${KDE_INSTALL_METAINFODIR})
+set(ICONS_FOLDER ${CMAKE_CURRENT_SOURCE_DIR}/icons)
+ecm_add_app_icon(ICONS_SOURCES ICONS ${ICON_FILES})
+target_sources(qprompt PRIVATE ${ICONS_SOURCES})
+
+install(PROGRAMS src/com.cuperino.qprompt.desktop DESTINATION ${KDE_INSTALL_APPDIR})
+install(FILES src/com.cuperino.qprompt.appdata.xml DESTINATION ${KDE_INSTALL_METAINFODIR})
 
 feature_summary(WHAT ALL INCLUDE_QUIET_PACKAGES FATAL_ON_MISSING_REQUIRED_PACKAGES)
