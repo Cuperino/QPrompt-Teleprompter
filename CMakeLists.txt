@@ -113,6 +113,10 @@ add_subdirectory(src build)
 ki18n_install(po)
 
 set(ICONS_FOLDER ${CMAKE_CURRENT_SOURCE_DIR}/icons)
+set(ICON_FILES
+  ${ICONS_FOLDER}/icon.svg
+  ${ICONS_FOLDER}/icon.png
+)
 ecm_add_app_icon(ICONS_SOURCES ICONS ${ICON_FILES})
 target_sources(qprompt PRIVATE ${ICONS_SOURCES})
 
