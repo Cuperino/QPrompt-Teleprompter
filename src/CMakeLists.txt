@@ -7,6 +7,7 @@ set(qprompt_SRC
     prompter/documenthandler.cpp
     prompter/timer/promptertimer.cpp
     prompter/markersmodel.cpp
+    ICON_SOURCES.icns
     resources.qrc
 )
 add_executable(qprompt ${qprompt_SRC})
