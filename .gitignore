@@ -53,5 +53,6 @@ Makefile
 **/build_wasm/qtloader.js
 **/build_wasm/QPrompt.html
 
-# KDE Plasma directory folder
+# KDE Plasma and MacOS directory folders
 .directory
+.DS_Store
