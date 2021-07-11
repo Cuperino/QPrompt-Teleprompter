@@ -67,6 +67,10 @@ set(
     CACHE STRING "Qt Creator 4.1 extra qml import paths"
 )
 
+if(NOT CMAKE_BUILD_TYPE)
+  set(CMAKE_BUILD_TYPE MinSizeRel CACHE STRING FORCE)
+endif()
+
 # Send compiled program and library binaries to "build/bin"
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 
