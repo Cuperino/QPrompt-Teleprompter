@@ -117,6 +117,7 @@ set(ICONS_FOLDER ${CMAKE_CURRENT_SOURCE_DIR}/images)
 set(ICON_FILES
   ${ICONS_FOLDER}/qprompt.svg
   ${ICONS_FOLDER}/qprompt.png
+  ${ICONS_FOLDER}/qprompt.ico
 )
 ecm_add_app_icon(ICONS_SOURCES ICONS ${ICON_FILES})
 target_sources(qprompt PRIVATE ${ICONS_SOURCES})
