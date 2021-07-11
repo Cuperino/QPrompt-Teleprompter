@@ -68,7 +68,7 @@ set(
 )
 
 if(NOT CMAKE_BUILD_TYPE)
-  set(CMAKE_BUILD_TYPE MinSizeRel CACHE STRING FORCE)
+    set(CMAKE_BUILD_TYPE MinSizeRel CACHE STRING FORCE)
 endif()
 
 # Send compiled program and library binaries to "build/bin"
@@ -117,17 +117,19 @@ find_package(KF5 ${KF_MIN_VERSION} REQUIRED COMPONENTS
 add_subdirectory(src build)
 ki18n_install(po)
 
-set(ICONS_FOLDER ${CMAKE_CURRENT_SOURCE_DIR}/images)
+set(ICONS_FOLDER ${CMAKE_CURRENT_SOURCE_DIR}/icons/hicolor)
 set(ICON_FILES
-  ${ICONS_FOLDER}/qprompt.svg
-  ${ICONS_FOLDER}/qprompt.png
-  ${ICONS_FOLDER}/qprompt.ico
+  ${ICONS_FOLDER}/1024-apps-com.cuperino.qprompt.png
+  ${ICONS_FOLDER}/512-apps-com.cuperino.qprompt.png
+  ${ICONS_FOLDER}/256-apps-com.cuperino.qprompt.png
+  ${ICONS_FOLDER}/128-apps-com.cuperino.qprompt.png
+  ${ICONS_FOLDER}/32-apps-com.cuperino.qprompt.png
 )
 ecm_add_app_icon(ICONS_SOURCES ICONS ${ICON_FILES})
 target_sources(qprompt PRIVATE ${ICONS_SOURCES})
 
 install(PROGRAMS com.cuperino.qprompt.desktop DESTINATION ${KDE_INSTALL_APPDIR})
 install(FILES com.cuperino.qprompt.appdata.xml DESTINATION ${KDE_INSTALL_METAINFODIR})
-install(FILES images/qprompt.svg DESTINATION ${KDE_INSTALL_FULL_ICONDIR}/hicolor/scalable/apps)
+# install(FILES images/qprompt.svg DESTINATION ${KDE_INSTALL_FULL_ICONDIR}/hicolor/scalable/apps)
 
 feature_summary(WHAT ALL INCLUDE_QUIET_PACKAGES FATAL_ON_MISSING_REQUIRED_PACKAGES)
