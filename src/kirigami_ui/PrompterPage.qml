@@ -563,7 +563,7 @@ Kirigami.Page {
                 }
                 //actions: [
                 //Action {
-                //    icon.source: "qrc:/images/logo.png"
+                //    icon.source: "qrc:/images/qprompt.png"
                 //    //icon.name: "document"
                 //    //text: "\uE846"
                 //    //font.family: "fonts/fontello.ttf"
