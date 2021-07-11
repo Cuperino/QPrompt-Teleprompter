@@ -104,7 +104,7 @@ Kirigami.ApplicationWindow {
         property int bannerCounter: 0
         // isMenu: true
         title: aboutData.displayName
-        titleIcon: "qrc:/images/logo.png"
+        titleIcon: "qrc:/images/qprompt.png"
         bannerVisible: true
         background: Rectangle {
             color: appTheme.__backgroundColor
@@ -583,7 +583,7 @@ Kirigami.ApplicationWindow {
             MenuItem {
                 text: i18n("Abou&t QPrompt")
                 onTriggered: root.loadAboutPage()
-                icon.source: "qrc:/images/logo.png"
+                icon.source: "qrc:/images/qprompt.png"
             }
         }
     }
@@ -875,7 +875,7 @@ Kirigami.ApplicationWindow {
             Labs.MenuItem {
                 text: i18n("Abou&t QPrompt")
                 onTriggered: root.loadAboutPage()
-                icon.source: "qrc:/images/logo.png"
+                icon.source: "qrc:/images/qprompt.png"
             }
         }
     }
