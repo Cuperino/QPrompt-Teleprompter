@@ -118,7 +118,7 @@ set(ICON_FILES
   ${ICONS_FOLDER}/logo.svg
   ${ICONS_FOLDER}/logo.png
 )
-ecm_add_app_icon(qprompt ICONS ${ICON_FILES})
+ecm_add_app_icon(ICONS_SOURCES ICONS ${ICON_FILES})
 target_sources(qprompt PRIVATE ${ICONS_SOURCES})
 
 install(PROGRAMS com.cuperino.qprompt.desktop DESTINATION ${KDE_INSTALL_APPDIR})
