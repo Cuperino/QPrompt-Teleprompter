@@ -119,11 +119,11 @@ ki18n_install(po)
 
 set(ICONS_FOLDER ${CMAKE_CURRENT_SOURCE_DIR}/icons/hicolor)
 set(ICON_FILES
-  ${ICONS_FOLDER}/1024-apps-com.cuperino.qprompt.png
-  ${ICONS_FOLDER}/512-apps-com.cuperino.qprompt.png
-  ${ICONS_FOLDER}/256-apps-com.cuperino.qprompt.png
-  ${ICONS_FOLDER}/128-apps-com.cuperino.qprompt.png
-  ${ICONS_FOLDER}/32-apps-com.cuperino.qprompt.png
+  ${ICONS_FOLDER}/1024-com.cuperino.qprompt.png
+  ${ICONS_FOLDER}/512-com.cuperino.qprompt.png
+  ${ICONS_FOLDER}/256-com.cuperino.qprompt.png
+  ${ICONS_FOLDER}/128-com.cuperino.qprompt.png
+  ${ICONS_FOLDER}/32-com.cuperino.qprompt.png
 )
 ecm_add_app_icon(ICONS_SOURCES ICONS ${ICON_FILES})
 target_sources(qprompt PRIVATE ${ICONS_SOURCES})
