@@ -42,6 +42,8 @@ set(QT_MIN_VERSION "5.12.0")
 # KF5 5.68 for Ubuntu 20.04
 set(KF_MIN_VERSION "5.68.0")
 
+set(MACOSX_BUNDLE ON)
+
 # ------------------------- BEGIN: lists to maintain manually -------------------------
 
 # Directories where Qt Creator can find QML files of Kirigami etc. on your system.
