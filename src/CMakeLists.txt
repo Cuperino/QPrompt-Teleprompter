@@ -22,7 +22,7 @@ target_link_libraries(qprompt
     KF5::CoreAddons
 )
 install(FILES com.cuperino.qprompt.appdata.xml DESTINATION ${KDE_INSTALL_METAINFODIR})
-install(FILES images/qprompt.svg DESTINATION ${KDE_INSTALL_FULL_ICONDIR}/hicolor/scalable/apps)
-install(FILES images/qprompt.png DESTINATION ${KDE_INSTALL_FULL_ICONDIR}/hicolor/scalable/apps)
+# install(FILES images/qprompt.svg DESTINATION ${KDE_INSTALL_FULL_ICONDIR}/hicolor/scalable/apps)
+install(FILES images/qprompt.png DESTINATION ${KDE_INSTALL_FULL_ICONDIR}/hicolor/1024x1024/apps)
 install(TARGETS qprompt ${KDE_INSTALL_TARGETS_DEFAULT_ARGS})
 install(PROGRAMS com.cuperino.qprompt.desktop DESTINATION ${KDE_INSTALL_APPDIR})
