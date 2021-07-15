@@ -34,7 +34,7 @@ Item {
     function requestPaint() {
         canvas.requestPaint()
     }
-    enabled: true
+    enabled: false
     property bool frame: true
     property bool autoStart: false
     property bool running: false

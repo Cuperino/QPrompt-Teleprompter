@@ -75,8 +75,10 @@ Kirigami.Page {
             onTriggered: viewport.prompter.increaseVelocity(false)
         }
         contextualActions: [
+        // This may have not been a right design choice. It needs user beta testers' validation. Disabling for initial release.
         Kirigami.Action {
             id: wysiwygButton
+            visible: false
             text: i18n("WYSIWYG")
             enabled: prompter.state==="editing"
             checkable: true
