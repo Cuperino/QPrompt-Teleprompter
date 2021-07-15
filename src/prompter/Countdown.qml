@@ -63,27 +63,29 @@ Item {
 //             easing.type: Easing.OutQuad
 //         }
 //     }
-    
+
     Rectangle {
         anchors.fill: parent
         opacity: canvas.enabled ? 0.48 : 0.24
         //opacity: 0.3
         color: "#333"
     }
-    
+
     Canvas {
         id: canvas
         anchors.fill: parent
-        
+
         property int __iteration: countdown.__iterations - 1
         property real rotations: 0
         // __countdownRadius is of the size from the center to any corner, which is also the hypotenuse formed by taking half of the width and height as hicks (catetos).
         readonly property real __hypotenuse: 1.4333*Math.sqrt(Math.pow(parent.height/2, 2)+Math.pow(parent.width/2, 2))
-        
+
+        renderStrategy: Canvas.Cooperative
+
         onRotationsChanged: requestPaint()
         onWidthChanged: requestPaint()
         onHeightChanged: requestPaint()
-        
+
         onPaint: {
             const centreX = prompter.editorXOffset*prompter.width+prompter.centreX;
             const centreY = prompter.centreY;
@@ -100,13 +102,16 @@ Item {
             ctx.fill();
             // Vertical Line
             ctx.lineCap = 'butt';
-            ctx.strokeStyle = "#282828";
+            ctx.strokeStyle = "#474747";
+            //ctx.setLineDash([1]);
             ctx.beginPath();
             ctx.moveTo(centreX, 0);
             ctx.lineTo(centreX, height);
             ctx.stroke();
             // Horizontal Line
+            //ctx.setLineDash([]);  // Has no effect. Likely a bug in Qt 5's canvas implementation.
             ctx.beginPath();
+            ctx.strokeStyle = "#282828";
             ctx.moveTo(0, overlay.__readRegionPlacement*(height-overlay.readRegionHeight)+overlay.readRegionHeight/2);
             ctx.lineTo(width, overlay.__readRegionPlacement*(height-overlay.readRegionHeight)+overlay.readRegionHeight/2);
             ctx.stroke();
@@ -130,7 +135,7 @@ Item {
                 ctx.stroke();
             }
         }
-        
+
         NumberAnimation {
             id: countdownAnimation
             running: countdown.running
@@ -167,7 +172,7 @@ Item {
                 }
             }
         }
-        
+
         NumberAnimation {
             id: dissolveIn
             running: false
@@ -191,7 +196,7 @@ Item {
             easing.type: Easing.InQuint
         }
     }
-    
+
     Label {
         visible: countdown.enabled
 //         anchors.fill: parent
@@ -215,7 +220,7 @@ Item {
             source: i18n("fonts/libertinus-sans.otf")
         }
     }
-    
+
     states: [
     State {
         name: "standby"
