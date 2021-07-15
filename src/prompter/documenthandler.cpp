@@ -85,6 +85,9 @@
 #include <QTextCodec>
 #include <QTextDocument>
 #include <QTextBlock>
+#include <QApplication>
+#include <QClipboard>
+#include <QMimeData>
 #include <QDebug>
 
 DocumentHandler::DocumentHandler(QObject *parent)
@@ -97,7 +100,6 @@ DocumentHandler::DocumentHandler(QObject *parent)
 
 {
     _markersModel = new MarkersModel();
-//     connect(m_document->textDocument(), &QTextDocument::contentsChanged, this, &DocumentHandler::setMarkersListDirty);
 }
 
 QQuickTextDocument *DocumentHandler::document() const
@@ -507,6 +509,29 @@ void DocumentHandler::setModified(bool m)
 {
     if (m_document)
         m_document->textDocument()->setModified(m);
+}
+
+QString DocumentHandler::filterHtml(QString html) {
+    return html.replace(QRegExp("(font-size: *[\\d]+(.[\\d]+)*((px)|(pt)|(em)|(ex));\\s*)"), "");
+}
+
+void DocumentHandler::paste()
+{
+    qDebug() << "Managed Paste";
+
+    const QClipboard *clipboard = QApplication::clipboard();
+    const QMimeData *mimeData = clipboard->mimeData();
+
+    if (mimeData->hasImage()) {
+        // Dev: Add image support
+        // setPixmap(qvariant_cast<QPixmap>(mimeData->imageData()));
+    } else if (mimeData->hasHtml()) {
+        QString filteredHtml = this->filterHtml(mimeData->html());
+        this->textCursor().insertHtml(filteredHtml);
+    }
+    else
+    if (mimeData->hasText())
+        this->textCursor().insertText(mimeData->text());
 }
 
 bool DocumentHandler::markersListDirty() const
