@@ -141,24 +141,30 @@ Kirigami.Page {
                 visible: ['android', 'ios', 'wasm', 'tvos', 'qnx', 'ipados'].indexOf(Qt.platform.os)===-1
                 tooltip: i18n("Auto hide window decorations when not editing and read region is set to top")
                 Kirigami.Action {
-                    text: i18n("Normal frame")
+                    text: i18n("Normal Frame")
                     tooltip: i18n("Shows windows frame when in windowed mode")
+                    checkable: true
+                    checked: hideDecorations==0
                     onTriggered: {
                         hideDecorations = 0
                         parent.text = text
                     }
                 }
                 Kirigami.Action {
-                    text: i18n("Auto hide frame")
+                    text: i18n("Auto Hide")
                     tooltip: i18n("Auto hide window decorations when not editing and read region is set to top")
+                    checkable: true
+                    checked: hideDecorations==1
                     onTriggered: {
                         hideDecorations = 1
                         parent.text = text
                     }
                 }
                 Kirigami.Action {
-                    text: i18n("Always hide frame")
+                    text: i18n("Always Hidden")
                     tooltip: i18n("Always hide window decorations")
+                    checkable: true
+                    checked: hideDecorations==2
                     onTriggered: {
                         hideDecorations = 2
                         parent.text = text
