@@ -960,7 +960,7 @@ Flickable {
             }
             PropertyChanges {
                 target: promptingButton
-                text: i18n("Begin countdown")
+                text: viewport.countdown.enabled ? i18n("Begin countdown") : i18n("Start prompting")
             }
             PropertyChanges {
                 target: prompter
