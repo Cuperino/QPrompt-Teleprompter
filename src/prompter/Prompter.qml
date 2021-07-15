@@ -419,7 +419,6 @@ Flickable {
         Item {
             id: flickableContent
             anchors.fill: parent
-
             TextArea {
                 id: editor
 
@@ -519,14 +518,35 @@ Flickable {
                         }
                     }
                 }
-
-                MouseArea {
-                    acceptedButtons: Qt.RightButton
+                DropArea {
+                    id: dragTarget
+                    property alias dropProxy: dragTarget
+                    property bool droppable: false
                     anchors.fill: parent
-                    onClicked: contextMenu.open()
-                    cursorShape: Qt.IBeamCursor
+                    onPositionChanged: {
+                        if (drag.hasHtml || drag.hasText)
+                            dragTarget.droppable = true
+                        else
+                            dragTarget.droppable = false
+                    }
+                    onDropped: {
+                        const position = editor.positionAt(drop.x, drop.y)
+                        if (drop.hasHtml) {
+                            const filteredHtml = document.filterHtml(drop.html)
+                            editor.insert(position, filteredHtml)
+                        }
+                        else if (drop.hasText)
+                            editor.insert(position, drop.text)
+                    }
+                    MouseArea {
+                        acceptedButtons: Qt.RightButton
+                        anchors.fill: parent
+                        onClicked: contextMenu.open()
+                        cursorShape: dragTarget.containsDrag ? (dragTarget.droppable ? Qt.DragCopyCursor : Qt.ForbiddenCursor) : Qt.IBeamCursor
+                        drag.target: editor
+                    }
                 }
-                
+
                 MouseArea {
                     id: leftWidthAdjustmentBar
                     opacity: 0.9
@@ -599,8 +619,12 @@ Flickable {
                                 event.accepted = true
                                 prompter.Keys.onPressed(event)
                                 return
-                        }
+                        } 
                     switch (event.key) {
+                        case Qt.Key_V:
+                            event.accepted = true
+                            prompter.Keys.onPressed(event)
+                            return
                         case Qt.Key_Tab:
                             //event.preventDefault = true
                             //event.accepted = false
@@ -731,7 +755,7 @@ Flickable {
         MenuItem {
             text: i18n("&Paste")
             enabled: editor.canPaste
-            onTriggered: editor.paste()
+            onTriggered: document.paste()
         }
 
         MenuSeparator {}
@@ -865,6 +889,10 @@ Flickable {
             case Qt.Key_F:
                 if (event.modifiers & Qt.ControlModifier)
                     find.open();
+                return
+            case Qt.Key_V:
+                if (event.modifiers & Qt.ControlModifier)
+                    document.paste();
                 return
         }
     }
