@@ -127,7 +127,7 @@ set(ICON_FILES
   ${ICONS_FOLDER}/256-apps-com.cuperino.qprompt.png
   ${ICONS_FOLDER}/128-apps-com.cuperino.qprompt.png
   ${ICONS_FOLDER}/32-apps-com.cuperino.qprompt.png
-  ${ICONS_FOLDER}/scalable-apps-com.cuperino.qprompt.svg
+#   ${ICONS_FOLDER}/scalable-apps-com.cuperino.qprompt.svg
 #   ${ICONS_FOLDER}/scalable-apps-com.cuperino.qprompt.icns
 #   ${ICONS_FOLDER}/qprompt.png
 )
