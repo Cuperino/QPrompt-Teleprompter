@@ -515,10 +515,24 @@ void DocumentHandler::setModified(bool m)
 QString DocumentHandler::filterHtml(QString html, bool ignoreBlackTextColor=true)
 // ignoreBlackTextColor=true is the default because websites tend to force black text color
 {
+    // Default for native office software, such as LibreOffice, MS Office and WPS Office
+    if (html.contains(QRegularExpression("(<meta\\s?\\s*name=\"?[gG]enerator\"?\\s?\\s*content=\"(?:(?:(?:(?:Libre)|(?:Open))Office)|(?:Microsoft)))", QRegularExpression::CaseInsensitiveOption)))
+        ignoreBlackTextColor = false;
+    // Default for Google Docs
+    else if (html.contains("id=\"docs-internal-guid-"))
+        ignoreBlackTextColor = true;
+    // No special setting for the online version of MS Office because it contains no identifying headers
+    // Calligra is not here either because it currently copies straight to text, preserving no formatting
+
+    // Proceed to Filter
     // Remove all font-size attributes
     html = html.replace(QRegularExpression("(font-size:\\s*[\\d]+(?:.[\\d]+)*(?:(?:px)|(?:pt)|(?:em)|(?:ex));\\s*)"), "");
     // Remove background color attributes from all elements except span, which is commonly used for highlights
     html = html.replace(QRegularExpression("(?:<[^sS][^pP][^aA][^nN](?:\\s*[^>]*(\\s*background(?:-color)?:\\s*(?:(?:rgba?\\(\\d\\d?\\d?,\\s*\\d\\d?\\d?,\\s*\\d\\d?\\d?(?:,\\s*[01]?(?:[.]\\d\\d*)?)?\\))|(?:#[0-9a-fA-F]{3}(?:[0-9a-fA-F]{3})?));?)\\s*[^>]*)*>)"), "");
+    // Removal of black colored text attribute, subject to source editor.  Applies to Google Docs, OnlyOffice, Microsoft 365 Office Online and random websites.  Not used in LibreOffice, OpenOffice, WPS Office nor regular MS Office
+    if (ignoreBlackTextColor)
+        // Values 8-bit color values bellow 100 are ignored when rgb format is used. Has no effect on LibreOffice because of XML differences; nevertheless, there's no need to ignore dark text colors on LibreOffice because LibreOffice has a correct implementation of default colors.
+        html = html.replace(QRegularExpression("(\\s*(?:mso-style-textfill-fill-)?color:\\s*(?:(?:rgba?\\(\\d{1,2},\\s*\\d{1,2},\\s*\\d{1,2}(?:,\\s*[10]?(?:[.]00*)?)?\\))|(?:black)|(?:windowtext)|(?:#0{3}(?:0{3})?));?)"), "");
 
     // Filtering complete
     // qDebug() << html;
