@@ -603,7 +603,7 @@ Flickable {
                     //}
                     //}
                 }
-                
+
                 Keys.onPressed: {
                     if (prompter.state === "prompting")
                         // Prevent programmable keys from typing on editor while prompting
@@ -622,7 +622,6 @@ Flickable {
                         } 
                     switch (event.key) {
                         case Qt.Key_V:
-                            event.accepted = true
                             prompter.Keys.onPressed(event)
                             return
                         case Qt.Key_Tab:
@@ -891,8 +890,14 @@ Flickable {
                     find.open();
                 return
             case Qt.Key_V:
-                if (event.modifiers & Qt.ControlModifier)
+                if (event.modifiers & Qt.ControlModifier && event.modifiers & Qt.ShiftModifier) {
+                    event.accepted = true
+                    document.paste(true);
+                }
+                else if (event.modifiers & Qt.ControlModifier) {
+                    event.accepted = true
                     document.paste();
+                }
                 return
         }
     }
