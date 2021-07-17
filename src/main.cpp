@@ -120,7 +120,7 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
 
     // Un-comment to force RightToLeft Layout for debugging purposes
     //app.setLayoutDirection(Qt::RightToLeft);
-    app.setWindowIcon(QIcon(":/images/logo.png"));
+    app.setWindowIcon(QIcon(":/images/qprompt.png"));
     
 //     MarkersModel markersModel;
     engine.rootContext()->setContextObject(new KLocalizedContext(&engine));
