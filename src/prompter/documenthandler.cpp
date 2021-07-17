@@ -88,6 +88,7 @@
 #include <QApplication>
 #include <QClipboard>
 #include <QMimeData>
+#include <QRegularExpression>
 #include <QDebug>
 
 DocumentHandler::DocumentHandler(QObject *parent)
@@ -511,13 +512,20 @@ void DocumentHandler::setModified(bool m)
         m_document->textDocument()->setModified(m);
 }
 
-QString DocumentHandler::filterHtml(QString html) {
-    return html.replace(QRegExp("(font-size: *[\\d]+(.[\\d]+)*((px)|(pt)|(em)|(ex));\\s*)"), "");
+QString DocumentHandler::filterHtml(QString html, bool ignoreBlackTextColor=true)
+// ignoreBlackTextColor=true is the default because websites tend to force black text color
+{
+    // Remove all font-size attributes
+    html = html.replace(QRegularExpression("(font-size:\\s*[\\d]+(?:.[\\d]+)*(?:(?:px)|(?:pt)|(?:em)|(?:ex));\\s*)"), "");
+
+    // Filtering complete
+    // qDebug() << html;
+    return html;
 }
 
 void DocumentHandler::paste()
 {
-    qDebug() << "Managed Paste";
+    // qDebug() << "Managed Paste";
 
     const QClipboard *clipboard = QApplication::clipboard();
     const QMimeData *mimeData = clipboard->mimeData();

@@ -175,7 +175,7 @@ public:
     
     Q_INVOKABLE void paste();
     Q_INVOKABLE void parse();
-    Q_INVOKABLE QString filterHtml(QString html);
+    Q_INVOKABLE QString filterHtml(QString html, bool ignoreBlackTextColor);
     
     // Search
     Q_INVOKABLE QPoint search(const QString &subString, const bool next=false, const bool reverse=false);
