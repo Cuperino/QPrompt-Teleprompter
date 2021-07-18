@@ -43,7 +43,8 @@ set(QT_DISABLE_DEPRECATED_BEFORE "0x051520")
 # KF5 5.68 for Ubuntu 20.04
 set(KF_MIN_VERSION "5.68.0")
 
-set(MACOSX_BUNDLE ON)
+#set(MACOSX_BUNDLE ON)
+set(WIN32 ON)
 
 # ------------------------- BEGIN: lists to maintain manually -------------------------
 
@@ -52,22 +53,37 @@ set(MACOSX_BUNDLE ON)
 #   ${BUIL_DIR}/CMakeCache.txt to make make changes here effective.)
 # list(APPEND QML_DIRS "/usr/lib/x86_64-linux-gnu/qt5/qml")
 # list(APPEND KIRIGAMI_DIRS "/usr/lib/x86_64-linux-gnu/qt5/qml/org/kde/kirigami.2")
+#list(APPEND QML_DIRS "C:/CraftRoot/qml")
+list(APPEND QML_IMPORT_PATH "C:/CraftRoot/qml")
+list(APPEND KIRIGAMI_DIRS "C:/CraftRoot/qml/org/kde/kirigami.2")
 
 # Configuration Issues are Here
 #list(APPEND ECM_MODULE_PATH "3rdparty/extra-cmake-modules/build")
 
 #list(APPEND ECM_MODULE_PATH "/usr/share/ECM/cmake")
 #list(APPEND KF5Kirigami2_PATH "/usr/lib/x86_64-linux-gnu/cmake/KF5Kirigami2")
+#list(APPEND KF5Kirigami2_PATH "C:/CraftRoot/qml/org/kde/kirigami.2")
 #list(APPEND KF5I18n_PATH "/usr/lib/x86_64-linux-gnu/cmake/KF5I18n")
+
+# Prevent adding duplicate values at each run of CMake.
+list(REMOVE_DUPLICATES QML_IMPORT_PATH)
 
 # ------------------------- END: lists to maintain ma/usr/lib/x86_64-linux-gnu/qt5/nually -------------------------
 
 # Tell Qt Creator where to find QML files.
 #   (The build process will work without this, but no code completion etc..)
+#set(
+#    QML_IMPORT_PATH "${QML_DIRS}"
+#    QML_IMPORT_PATH "${KIRIGAMI_DIRS}"
+#    CACHE STRING "Qt Creator 4.1 extra qml import paths"
+#)
+# The variable is cached in ${BUILD_DIR}/CMakeCache.txt. We need FORCE to
+# change it there immediately. Also, add a comment to the cache file.
 set(
-    QML_IMPORT_PATH "${QML_DIRS}"
-    QML_IMPORT_PATH "${KIRIGAMI_DIRS}"
+    QML_IMPORT_PATH ${KIRIGAMI_DIRS}
+    QML_IMPORT_PATH ${QML_IMPORT_PATH}
     CACHE STRING "Qt Creator 4.1 extra qml import paths"
+    FORCE
 )
 
 if(NOT CMAKE_BUILD_TYPE)
@@ -90,22 +106,21 @@ include(KDECompilerSettings NO_POLICY_SCOPE)
 include(ECMInstallIcons)
 include(ECMAddAppIcon)
 include(ECMQtDeclareLoggingCategory)
-include(FeatureSummary)
-
 find_package(Qt5 ${QT5_MIN_VERSION} REQUIRED COMPONENTS
     Core
-    # Test
-    Qml
-    Gui
     Quick
+    Test
+    Gui
     QuickControls2
     Widgets
+    QmlImportScanner  # Used to get static QML. Gets ignored if not a static build
 )
+find_package(Qt5QuickCompiler)
 find_package(KF5 ${KF_MIN_VERSION} REQUIRED COMPONENTS
     Kirigami2
     I18n
     CoreAddons
-    IconThemes
+#    IconThemes
 )
 #find_package(KF5CoreAddons)
 #find_package(KF5I18n NO_MODULE)
@@ -132,12 +147,14 @@ set(ICON_FILES
 #   ${ICONS_FOLDER}/qprompt.png
 )
 ecm_add_app_icon(ICONS_SOURCES ICONS ${ICON_FILES})
+#ecm_install_icons(ICONS 22-actions-menu_new.png
+#                  DESTINATION share/icons)
 target_sources(qprompt PRIVATE ${ICONS_SOURCES})
 install(FILES com.cuperino.qprompt.appdata.xml DESTINATION ${KDE_INSTALL_METAINFODIR})
 # install(FILES icons/qprompt.ico DESTINATION ${KDE_INSTALL_FULL_ICONDIR})
-# install(FILES icons/qprompt.icns DESTINATION ${KDE_INSTALL_FULL_ICONDIR})
-# install(FILES icons/qprompt.svg DESTINATION ${KDE_INSTALL_FULL_ICONDIR}/hicolor/scalable/apps)
 # install(FILES icons/qprompt.png DESTINATION ${KDE_INSTALL_FULL_ICONDIR})
+# install(FILES icons/qprompt.icns DESTINATION ${KDE_INSTALL_FULL_ICONDIR})
+install(FILES icons/qprompt.svg DESTINATION ${KDE_INSTALL_FULL_ICONDIR}/hicolor/scalable/apps)
 install(PROGRAMS com.cuperino.qprompt.desktop DESTINATION ${KDE_INSTALL_APPDIR})
 
 feature_summary(WHAT ALL INCLUDE_QUIET_PACKAGES FATAL_ON_MISSING_REQUIRED_PACKAGES)
