@@ -43,8 +43,8 @@ set(QT_DISABLE_DEPRECATED_BEFORE "0x051520")
 # KF5 5.68 for Ubuntu 20.04
 set(KF_MIN_VERSION "5.68.0")
 
-#set(MACOSX_BUNDLE ON)
-set(WIN32 ON)
+#set(CMAKE_MACOSX_BUNDLE ON)
+set(CMAKE_WIN32_EXECUTABLE ON)
 
 # ------------------------- BEGIN: lists to maintain manually -------------------------
 
