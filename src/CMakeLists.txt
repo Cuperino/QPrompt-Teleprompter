@@ -11,7 +11,7 @@ set(qprompt_SRC
 )
 #add_executable(qprompt ${qprompt_SRC})
 qtquick_compiler_add_resources(RESOURCES resources.qrc) # Used to get static QML.
-add_executable(qprompt WIN32 ${qprompt_SRC} ${RESOURCES}) # Used to get static QML.
+add_executable(qprompt WIN32 MACOSX_BUNDLE ${qprompt_SRC} ${RESOURCES}) # Used to get static QML.
 #add_executable(qprompt ${qprompt_SRC} ${RESOURCES}) # Used to get static QML.
 #add_executable(qprompt MACOSX_BUNDLE ${qprompt_SRC} ${RESOURCES}) # Used to get static QML.
 target_link_libraries(qprompt
