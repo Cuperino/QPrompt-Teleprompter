@@ -140,13 +140,11 @@ set(ICON_FILES
   ${ICONS_FOLDER}/256-apps-com.cuperino.qprompt.png
   ${ICONS_FOLDER}/128-apps-com.cuperino.qprompt.png
   ${ICONS_FOLDER}/32-apps-com.cuperino.qprompt.png
-#   ${ICONS_FOLDER}/scalable-apps-com.cuperino.qprompt.svg
+  ${ICONS_FOLDER}/sc-apps-com.cuperino.qprompt.svg
 #   ${ICONS_FOLDER}/scalable-apps-com.cuperino.qprompt.icns
 #   ${ICONS_FOLDER}/qprompt.png
 )
 ecm_add_app_icon(ICONS_SOURCES ICONS ${ICON_FILES})
-#ecm_install_icons(ICONS 22-actions-menu_new.png
-#                  DESTINATION share/icons)
 
 add_subdirectory(src build)
 target_sources(qprompt PRIVATE ${ICONS_SOURCES})
@@ -155,7 +153,7 @@ install(FILES com.cuperino.qprompt.appdata.xml DESTINATION ${KDE_INSTALL_METAINF
 # install(FILES icons/qprompt.ico DESTINATION ${KDE_INSTALL_FULL_ICONDIR})
 # install(FILES icons/qprompt.png DESTINATION ${KDE_INSTALL_FULL_ICONDIR})
 # install(FILES icons/qprompt.icns DESTINATION ${KDE_INSTALL_FULL_ICONDIR})
-install(FILES icons/qprompt.svg DESTINATION ${KDE_INSTALL_FULL_ICONDIR}/hicolor/scalable/apps)
+# install(FILES icons/qprompt.svg DESTINATION ${KDE_INSTALL_FULL_ICONDIR}/hicolor/scalable/apps)
 install(PROGRAMS com.cuperino.qprompt.desktop DESTINATION ${KDE_INSTALL_APPDIR})
 
 feature_summary(WHAT ALL INCLUDE_QUIET_PACKAGES FATAL_ON_MISSING_REQUIRED_PACKAGES)
