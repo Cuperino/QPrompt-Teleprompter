@@ -43,8 +43,8 @@ set(QT_DISABLE_DEPRECATED_BEFORE "0x051520")
 # KF5 5.68 for Ubuntu 20.04
 set(KF_MIN_VERSION "5.68.0")
 
-set(CMAKE_WIN32_EXECUTABLE ON)
-#set(CMAKE_MACOSX_BUNDLE ON)
+# set(CMAKE_WIN32_EXECUTABLE ON)
+# set(CMAKE_MACOSX_BUNDLE ON)
 
 # ------------------------- BEGIN: lists to maintain manually -------------------------
 
@@ -53,9 +53,8 @@ set(CMAKE_WIN32_EXECUTABLE ON)
 #   ${BUIL_DIR}/CMakeCache.txt to make make changes here effective.)
 # list(APPEND QML_DIRS "/usr/lib/x86_64-linux-gnu/qt5/qml")
 # list(APPEND KIRIGAMI_DIRS "/usr/lib/x86_64-linux-gnu/qt5/qml/org/kde/kirigami.2")
-#list(APPEND QML_DIRS "C:/CraftRoot/qml")
-list(APPEND QML_IMPORT_PATH "C:/CraftRoot/qml")
-list(APPEND KIRIGAMI_DIRS "C:/CraftRoot/qml/org/kde/kirigami.2")
+# list(APPEND QML_DIRS "C:/CraftRoot/qml")
+# list(APPEND KIRIGAMI_DIRS "C:/CraftRoot/qml/org/kde/kirigami.2")
 
 # Configuration Issues are Here
 #list(APPEND ECM_MODULE_PATH "3rdparty/extra-cmake-modules/build")
@@ -66,7 +65,7 @@ list(APPEND KIRIGAMI_DIRS "C:/CraftRoot/qml/org/kde/kirigami.2")
 #list(APPEND KF5I18n_PATH "/usr/lib/x86_64-linux-gnu/cmake/KF5I18n")
 
 # Prevent adding duplicate values at each run of CMake.
-list(REMOVE_DUPLICATES QML_IMPORT_PATH)
+list(REMOVE_DUPLICATES QML_DIRS)
 
 # ------------------------- END: lists to maintain ma/usr/lib/x86_64-linux-gnu/qt5/nually -------------------------
 
@@ -81,7 +80,7 @@ list(REMOVE_DUPLICATES QML_IMPORT_PATH)
 # change it there immediately. Also, add a comment to the cache file.
 set(
     QML_IMPORT_PATH ${KIRIGAMI_DIRS}
-    QML_IMPORT_PATH ${QML_IMPORT_PATH}
+    QML_IMPORT_PATH ${QML_DIRS}
     CACHE STRING "Qt Creator 4.1 extra qml import paths"
     FORCE
 )
