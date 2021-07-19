@@ -12,7 +12,7 @@ set(qprompt_SRC
 qtquick_compiler_add_resources(RESOURCES resources.qrc) # Used to get static QML.
 
 if (WIN32)
-    set(app_icon_resource_windows "${CMAKE_CURRENT_SOURCE_DIR}/images/qprompt.png")
+    set(app_icon_resource_windows "${CMAKE_CURRENT_SOURCE_DIR}/icons/qprompt.png")
     add_executable(qprompt WIN32 ${qprompt_SRC} ${RESOURCES} ${app_icon_resource_windows})
 
 elseif (APPLE)
@@ -21,7 +21,7 @@ elseif (APPLE)
     # without the path.
     set(MACOSX_BUNDLE_ICON_FILE qprompt.icns)
     # And the following tells CMake where to find and install the file itself.
-    set(app_icon_macos "${CMAKE_CURRENT_SOURCE_DIR}/images/qprompt.icns")
+    set(app_icon_macos "${CMAKE_CURRENT_SOURCE_DIR}/icons/qprompt.icns")
     set_source_files_properties(${app_icon_macos} PROPERTIES MACOSX_PACKAGE_LOCATION "Resources")
     # 
     add_executable(qprompt MACOSX_BUNDLE ${qprompt_SRC} ${RESOURCES} ${app_icon_macos})
