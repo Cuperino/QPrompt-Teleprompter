@@ -12,8 +12,8 @@ set(qprompt_SRC
 qtquick_compiler_add_resources(RESOURCES resources.qrc) # Used to get static QML.
 
 # if (WIN32)
-set(app_icon_resource_windows "${CMAKE_CURRENT_SOURCE_DIR}/images/qprompt.png")
-add_executable(qprompt WIN32 ${qprompt_SRC} ${RESOURCES} ${app_icon_resource_windows})
+#     set(app_icon_resource_windows "${CMAKE_CURRENT_SOURCE_DIR}/images/qprompt.png")
+#     add_executable(qprompt WIN32 ${qprompt_SRC} ${RESOURCES} ${app_icon_resource_windows})
 
 # elseif (APPLE)
 #     # The MACOSX_BUNDLE_ICON_FILE variable is added to the Info.plist
@@ -27,7 +27,7 @@ add_executable(qprompt WIN32 ${qprompt_SRC} ${RESOURCES} ${app_icon_resource_win
 #     add_executable(qprompt MACOSX_BUNDLE ${qprompt_SRC} ${RESOURCES} ${app_icon_macos})
 
 # else()
-#     add_executable(qprompt ${qprompt_SRC} ${RESOURCES}) # Used to get static QML.
+add_executable(qprompt ${qprompt_SRC} ${RESOURCES}) # Used to get static QML.
 # endif()
 
 #add_executable(qprompt ${qprompt_SRC})
