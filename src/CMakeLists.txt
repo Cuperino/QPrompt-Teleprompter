@@ -24,7 +24,7 @@ elseif (APPLE)
     set(app_icon_macos "${CMAKE_CURRENT_SOURCE_DIR}/images/qprompt.icns")
     set_source_files_properties(${app_icon_macos} PROPERTIES MACOSX_PACKAGE_LOCATION "Resources")
     # 
-    add_executable(qprompt MACOSX_BUNDLE main.cpp ${app_icon_macos})
+    add_executable(qprompt MACOSX_BUNDLE ${qprompt_SRC} ${RESOURCES} ${app_icon_macos})
 
 else()
     add_executable(qprompt ${qprompt_SRC} ${RESOURCES}) # Used to get static QML.
