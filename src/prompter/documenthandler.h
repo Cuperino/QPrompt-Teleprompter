@@ -222,7 +222,7 @@ private:
     QTextDocument *textDocument() const;
     void mergeFormatOnWordOrSelection(const QTextCharFormat &format);
 
-    enum ImportFormat {NONE, PDF, ODF, DOCX, DOC, RTF};
+    enum ImportFormat {NONE, PDF, ODT, DOCX, DOC, RTF, ABW, EPUB, MOBI, AZW, PAGES, PAGESX};
     QString import(QString fileName, ImportFormat);
 
     QQuickTextDocument *m_document;

@@ -419,9 +419,27 @@ void DocumentHandler::load(const QUrl &fileUrl)
                     ImportFormat type = NONE;
                     if (mime.inherits("application/pdf"))
                         type = PDF;
+                    else if (mime.inherits("application/vnd.oasis.opendocument.text"))
+                        type = ODT;
                     else if (mime.inherits("application/vnd.openxmlformats-officedocument.wordprocessingml.document"))
                         type = DOCX;
-                    // Dev: If type is not none and system isn't iOS, iPadOS, tvOS, watchOS, VxWorks, or the Universal Windows Platform
+                    else if (mime.inherits("application/msword"))
+                        type = DOC;
+                    else if (mime.inherits("application/rtf"))
+                        type = RTF;
+                    else if (mime.inherits("application/x-abiword"))
+                        type = ABW;
+                    else if (mime.inherits("application/epub+zip"))
+                        type = EPUB;
+                    else if (mime.inherits("application/x-mobipocket-ebook"))
+                        type = MOBI;
+                    else if (mime.inherits("application/vnd.amazon.ebook"))
+                        type = AZW;
+                    else if (mime.inherits("application/x-iwork-pages-sffpages"))
+                        type = PAGESX;
+                    else if (mime.inherits("application/vnd.apple.pages"))
+                        type = PAGES;
+                    // Dev: If type is incompatible and system isn't iOS, iPadOS, tvOS, watchOS, VxWorks, or the Universal Windows Platform
                     if (type != NONE) {
                         QString html = import(fileName, type);
                         // Process as HTML, even if it is plain text such that it gets rid of unnecessary whitespace.
@@ -442,6 +460,41 @@ void DocumentHandler::load(const QUrl &fileUrl)
 
     m_fileUrl = fileUrl;
     emit fileUrlChanged();
+}
+
+QString DocumentHandler::import(QString fileName, ImportFormat type)
+{
+    QString program = "";
+    QStringList arguments;
+
+    // Preferring TextExtraction over alternatives for its better support for RTL languages.
+    if (type==PDF) {
+        program = "TextExtraction";
+        arguments << fileName;
+    }
+    // Using LibreOffice for most formats because of its ability to preserve formatting while converting to HTML.
+    else if (type==ODT || type==DOCX || type==DOC || type==RTF || type==ABW || type==PAGESX || type==PAGES) {
+        program = "soffice";
+        arguments << "--headless" << "--cat" << "--convert-to" << "htm:HTML" << fileName;
+    }
+    else if (type==EPUB || type==MOBI || type==AZW) {
+        // Dev: not implemented
+    }
+
+    if (program=="")
+        return "Unsuported file format";
+
+    // Begin execution of external filter
+    QProcess convert(this);
+    convert.start(program, arguments);
+
+    if (!convert.waitForFinished())
+        return QString("An error occurred while attempting to import. Make sure %1 is installed on your system and linked to.").arg(program);
+
+    QByteArray html = convert.readAll();
+    // if (type==DOCX || type==DOC || type==RTF || type==ABW || type==EPUB || type==MOBI || type==AZW)
+    //     return filterHtml(html, true);
+    return filterHtml(html, false);
 }
 
 void DocumentHandler::saveAs(const QUrl &fileUrl)
@@ -544,7 +597,7 @@ QString DocumentHandler::filterHtml(QString html, bool ignoreBlackTextColor=true
     // Calligra is not here either because it currently copies straight to text, preserving no formatting
 
     // Proceed to Filter
-    // Remove all font-size attributes
+    // Remove font-size attributes
     html = html.replace(QRegularExpression("(font-size:\\s*[\\d]+(?:.[\\d]+)*(?:(?:px)|(?:pt)|(?:em)|(?:ex));\\s*)"), "");
     // Remove background color attributes from all elements except span, which is commonly used for highlights
     html = html.replace(QRegularExpression("(?:<[^sS][^pP][^aA][^nN](?:\\s*[^>]*(\\s*background(?:-color)?:\\s*(?:(?:rgba?\\(\\d\\d?\\d?,\\s*\\d\\d?\\d?,\\s*\\d\\d?\\d?(?:,\\s*[01]?(?:[.]\\d\\d*)?)?\\))|(?:#[0-9a-fA-F]{3}(?:[0-9a-fA-F]{3})?));?)\\s*[^>]*)*>)"), "");
@@ -556,32 +609,6 @@ QString DocumentHandler::filterHtml(QString html, bool ignoreBlackTextColor=true
     // Filtering complete
     // qDebug() << html;
     return html;
-}
-
-QString DocumentHandler::import(QString fileName, ImportFormat type)
-{
-    QString program = "";
-    QStringList arguments;
-    arguments << fileName;
-
-    if (type==PDF)
-        program = "TextExtraction";
-    else if (type==DOCX) {
-        program = "docx2txt";
-        arguments << "-";
-    }
-
-    if (program=="")
-        return "Unsuported file format";
-
-    QProcess convert(this);
-    convert.start(program, arguments);
-
-    if (!convert.waitForFinished())
-        return QString("An error occurred while loading converter. Make sure %1 is installed on your system.").arg(program);
-
-    QByteArray html = convert.readAll();
-    return filterHtml(html, false);
 }
 
 void DocumentHandler::paste(bool withoutFormating=false)
