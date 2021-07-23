@@ -409,28 +409,37 @@ void DocumentHandler::load(const QUrl &fileUrl)
             QByteArray data = file.readAll();
             if (QTextDocument *doc = textDocument()) {
                 doc->setBaseUrl(path.adjusted(QUrl::RemoveFilename));
-                if (mime.inherits("text/markdown"))
+                // File formats managed by Qt
+                if (mime.inherits("text/html"))
                     emit loaded(QString::fromUtf8(data), Qt::MarkdownText);
-                // else if (mime.inherits("application/vnd.openxmlformats-officedocument.wordprocessingml.document") || mime.inherits("application/msword")) { }
-                else if (mime.inherits("application/pdf")) {
-                    qDebug() << fileName;
-                    QString html = import(fileName);
-                    doc->setModified(false);
-                    emit loaded(html, Qt::MarkdownText);
-                }
+                else if (mime.inherits("text/markdown"))
+                    emit loaded(QString::fromUtf8(data), Qt::RichText);
+                // File formats imported using external software
                 else {
-                    QTextCodec *codec = QTextCodec::codecForName("UTF-8");
-                    emit loaded(codec->toUnicode(data), Qt::AutoText);
+                    ImportFormat type = NONE;
+                    if (mime.inherits("application/pdf"))
+                        type = PDF;
+                    else if (mime.inherits("application/vnd.openxmlformats-officedocument.wordprocessingml.document"))
+                        type = DOCX;
+                    // Dev: If type is not none and system isn't iOS, iPadOS, tvOS, watchOS, VxWorks, or the Universal Windows Platform
+                    if (type != NONE) {
+                        QString html = import(fileName, type);
+                        // Process as HTML, even if it is plain text such that it gets rid of unnecessary whitespace.
+                        emit loaded(html, Qt::RichText);
+                    }
+                    // Read as raw or text file
+                    else {
+                        // Interpret RAW data using Qt's auto detection
+                        QTextCodec *codec = QTextCodec::codecForName("UTF-8");
+                        emit loaded(codec->toUnicode(data), Qt::AutoText);
+                    }
+                    doc->setModified(false);
                 }
-                doc->setModified(false);
             }
-            else {
-            }
-            
             reset();
         }
     }
-    
+
     m_fileUrl = fileUrl;
     emit fileUrlChanged();
 }
@@ -549,17 +558,27 @@ QString DocumentHandler::filterHtml(QString html, bool ignoreBlackTextColor=true
     return html;
 }
 
-QString DocumentHandler::import(QString fileName)
+QString DocumentHandler::import(QString fileName, ImportFormat type)
 {
-    QString program = "TextExtraction";
+    QString program = "";
     QStringList arguments;
     arguments << fileName;
+
+    if (type==PDF)
+        program = "TextExtraction";
+    else if (type==DOCX) {
+        program = "docx2txt";
+        arguments << "-";
+    }
+
+    if (program=="")
+        return "Unsuported file format";
 
     QProcess convert(this);
     convert.start(program, arguments);
 
     if (!convert.waitForFinished())
-        return "";
+        return QString("An error occurred while loading converter. Make sure %1 is installed on your system.").arg(program);
 
     QByteArray html = convert.readAll();
     return filterHtml(html, false);
