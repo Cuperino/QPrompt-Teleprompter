@@ -221,6 +221,7 @@ private:
     QTextCursor textCursor() const;
     QTextDocument *textDocument() const;
     void mergeFormatOnWordOrSelection(const QTextCharFormat &format);
+    QString import(QString fileName);
     
     QQuickTextDocument *m_document;
     

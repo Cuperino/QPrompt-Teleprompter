@@ -89,6 +89,7 @@
 #include <QClipboard>
 #include <QMimeData>
 #include <QRegularExpression>
+#include <QProcess>
 #include <QDebug>
 
 DocumentHandler::DocumentHandler(QObject *parent)
@@ -408,13 +409,22 @@ void DocumentHandler::load(const QUrl &fileUrl)
             QByteArray data = file.readAll();
             if (QTextDocument *doc = textDocument()) {
                 doc->setBaseUrl(path.adjusted(QUrl::RemoveFilename));
-                if (mime.inherits("text/markdown")) {
+                if (mime.inherits("text/markdown"))
                     emit loaded(QString::fromUtf8(data), Qt::MarkdownText);
-                } else {
+                // else if (mime.inherits("application/vnd.openxmlformats-officedocument.wordprocessingml.document") || mime.inherits("application/msword")) { }
+                else if (mime.inherits("application/pdf")) {
+                    qDebug() << fileName;
+                    QString html = import(fileName);
+                    doc->setModified(false);
+                    emit loaded(html, Qt::MarkdownText);
+                }
+                else {
                     QTextCodec *codec = QTextCodec::codecForName("UTF-8");
                     emit loaded(codec->toUnicode(data), Qt::AutoText);
                 }
                 doc->setModified(false);
+            }
+            else {
             }
             
             reset();
@@ -537,6 +547,22 @@ QString DocumentHandler::filterHtml(QString html, bool ignoreBlackTextColor=true
     // Filtering complete
     // qDebug() << html;
     return html;
+}
+
+QString DocumentHandler::import(QString fileName)
+{
+    QString program = "TextExtraction";
+    QStringList arguments;
+    arguments << fileName;
+
+    QProcess convert(this);
+    convert.start(program, arguments);
+
+    if (!convert.waitForFinished())
+        return "";
+
+    QByteArray html = convert.readAll();
+    return filterHtml(html, false);
 }
 
 void DocumentHandler::paste(bool withoutFormating=false)
