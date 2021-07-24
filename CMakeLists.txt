@@ -144,10 +144,10 @@ set(ICON_FILES
 #   ${ICONS_FOLDER}/scalable-apps-com.cuperino.qprompt.icns
 #   ${ICONS_FOLDER}/qprompt.png
 )
-ecm_add_app_icon(ICONS_SOURCES(qprompt) ICONS ${ICON_FILES})
+ecm_add_app_icon(ICONS_SOURCES ICONS ${ICON_FILES})
 
 add_subdirectory(src build)
-target_sources(qprompt PRIVATE ${ICONS_SOURCES})
+target_sources(qprompt PUBLIC ${ICONS_SOURCES})
 
 install(FILES com.cuperino.qprompt.appdata.xml DESTINATION ${KDE_INSTALL_METAINFODIR})
 # install(FILES icons/qprompt.ico DESTINATION ${KDE_INSTALL_FULL_ICONDIR})
