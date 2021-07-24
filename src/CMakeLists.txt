@@ -43,7 +43,7 @@ if (WIN32)
     # set(app_icon_resource_windows "${CMAKE_CURRENT_SOURCE_DIR}/images/qprompt.png")
     # add_executable(qprompt WIN32 ${qprompt_SRCS} ${app_icon_resource_windows})
     set(qprompt_SRCS "${CMAKE_CURRENT_SOURCE_DIR}/images/qprompt.png")
-    add_executable(qprompt ${qprompt_SRCS} ${ICON_RESOURCES})
+    add_executable(qprompt WIN32 ${qprompt_SRCS} ${ICON_RESOURCES})
 
 elseif (APPLE)
     # These are substituted by CMake into plist.in.
@@ -75,7 +75,6 @@ endif()
 #add_executable(qprompt ${qprompt_SRC})
 #add_executable(qprompt ${qprompt_SRC} ${RESOURCES}) # Used to get static QML.
 
-target_sources(qprompt PUBLIC ${RASTER_ICONS})
 target_link_libraries(qprompt
     Qt5::Core
     Qt5::Gui
@@ -88,6 +87,7 @@ target_link_libraries(qprompt
     KF5::CoreAddons
 )
 qt5_import_qml_plugins(qprompt) # Used to get static QML. Gets ignored if not a static build
+# target_sources(qprompt PUBLIC ${RASTER_ICONS})
 install(FILES com.cuperino.qprompt.appdata.xml DESTINATION ${KDE_INSTALL_METAINFODIR})
 # install(FILES images/qprompt.svg DESTINATION ${KDE_INSTALL_FULL_ICONDIR}/hicolor/scalable/apps)
 install(FILES images/qprompt.png DESTINATION ${KDE_INSTALL_FULL_ICONDIR}/hicolor/1024x1024/apps)
