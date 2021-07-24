@@ -43,7 +43,7 @@ if (WIN32)
     # set(app_icon_resource_windows "${CMAKE_CURRENT_SOURCE_DIR}/images/qprompt.png")
     # add_executable(qprompt WIN32 ${qprompt_SRCS} ${app_icon_resource_windows})
     set(qprompt_SRCS "${CMAKE_CURRENT_SOURCE_DIR}/images/qprompt.png")
-    add_executable(qprompt WIN32 ${qprompt_SRCS} ${ICON_RESOURCES})
+    add_executable(qprompt ${qprompt_SRCS} ${ICON_RESOURCES})
 
 elseif (APPLE)
     # These are substituted by CMake into plist.in.
