@@ -2,16 +2,6 @@ set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
 set(CMAKE_INCLUDE_CURRENT_DIRS ON)
 
-set(qprompt_SRCS
-    main.cpp
-    prompter/documenthandler.cpp
-    prompter/timer/promptertimer.cpp
-    prompter/markersmodel.cpp
-#    resources.qrc
-)
-qt5_add_resources(qprompt_SRCS resources.qrc)
-# qtquick_compiler_add_resources(qprompt_SRCS resources.qrc) # Used to get static QML.
-
 set(ICONS_FOLDER ${CMAKE_CURRENT_SOURCE_DIR}/icons/hicolor)
 set(RASTER_ICONS
   ${ICONS_FOLDER}/16-apps-qprompt.png
@@ -36,6 +26,16 @@ ecm_install_icons(
 ecm_add_app_icon(qprompt_SRCS
     ICONS ${RASTER_ICONS}
 )
+set(qprompt_SRCS
+    main.cpp
+    prompter/documenthandler.cpp
+    prompter/timer/promptertimer.cpp
+    prompter/markersmodel.cpp
+#    resources.qrc
+)
+
+# qt5_add_resources(qprompt_SRCS resources.qrc)
+qtquick_compiler_add_resources(qprompt_SRCS resources.qrc) # Used to get static QML.
 
 if (WIN32)
     add_definitions(-D_AFXDLL)
