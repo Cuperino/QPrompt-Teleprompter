@@ -22,9 +22,7 @@
 
 
 cmake_minimum_required(VERSION 3.16)
-
-project(QPrompt)
-include(FeatureSummary)
+project(QPrompt VERSION 1.0.0)
 
 # Find includes in corresponding build directories
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
@@ -41,10 +39,9 @@ set(CMAKE_CXX_STANDARD 17)
 set(QT_MIN_VERSION "5.12.0")
 set(QT_DISABLE_DEPRECATED_BEFORE "0x051520")
 # KF5 5.68 for Ubuntu 20.04
-set(KF_MIN_VERSION "5.68.0")
-
-# set(CMAKE_WIN32_EXECUTABLE ON)
-# set(CMAKE_MACOSX_BUNDLE ON)
+# Using 5.83 to have current ecm_add_app_icon syntax
+set(ECM_MIN_VERSION "5.83.0")
+set(KF_MIN_VERSION "5.81.0")
 
 # ------------------------- BEGIN: lists to maintain manually -------------------------
 
@@ -96,7 +93,7 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 #set(KF5Kirigami2_DIR ${KF5Kirigami2_PATH})
 #set(KF5I18n_DIR ${KF5I18n_PATH})
 
-find_package(ECM ${KF_MIN_VERSION} REQUIRED NO_MODULE)
+find_package(ECM ${ECM_MIN_VERSION} REQUIRED NO_MODULE)
 set(CMAKE_MODULE_PATH ${ECM_MODULE_PATH})
 
 include(KDEInstallDirs)
@@ -105,6 +102,7 @@ include(KDECompilerSettings NO_POLICY_SCOPE)
 include(ECMInstallIcons)
 include(ECMAddAppIcon)
 include(ECMQtDeclareLoggingCategory)
+include(FeatureSummary)
 find_package(Qt5 ${QT5_MIN_VERSION} REQUIRED COMPONENTS
     Core
     Quick
@@ -131,20 +129,13 @@ find_package(KF5 ${KF_MIN_VERSION} REQUIRED COMPONENTS
 #add_subdirectory("3rdparty/breeze-icons" build/icons)
 #add_subdirectory("3rdparty/calligra/filters/libmsooxml" build/libmsooxml)
 
-ki18n_install(po)
-
-set(ICONS_FOLDER ${CMAKE_CURRENT_SOURCE_DIR}/icons/hicolor)
-set(ICON_FILES
-  ${ICONS_FOLDER}/1024-apps-com.cuperino.qprompt.png
-  ${ICONS_FOLDER}/512-apps-com.cuperino.qprompt.png
-  ${ICONS_FOLDER}/256-apps-com.cuperino.qprompt.png
-  ${ICONS_FOLDER}/128-apps-com.cuperino.qprompt.png
-  ${ICONS_FOLDER}/32-apps-com.cuperino.qprompt.png
-  ${ICONS_FOLDER}/sc-apps-com.cuperino.qprompt.svg
-#   ${ICONS_FOLDER}/scalable-apps-com.cuperino.qprompt.icns
-#   ${ICONS_FOLDER}/qprompt.png
+ecm_setup_version(${KDevelop_VERSION_MAJOR}.${KDevelop_VERSION_MINOR}.${KDevelop_VERSION_PATCH}
+                  VARIABLE_PREFIX QPROMPT
+#                   VERSION_HEADER "${CMAKE_CURRENT_BINARY_DIR}/qprompt_version.h"
+#                   PACKAGE_VERSION_FILE "${CMAKE_CURRENT_BINARY_DIR}/QPromptConfigVersion.cmake"
 )
-ecm_add_app_icon(ICONS_SOURCES ICONS ${ICON_FILES})
+
+ki18n_install(po)
 
 add_subdirectory(src build)
 target_sources(qprompt PUBLIC ${ICONS_SOURCES})
