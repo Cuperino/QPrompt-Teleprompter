@@ -146,6 +146,6 @@ install(FILES com.cuperino.qprompt.appdata.xml DESTINATION ${KDE_INSTALL_METAINF
 # install(FILES icons/qprompt.png DESTINATION ${KDE_INSTALL_FULL_ICONDIR})
 # install(FILES icons/qprompt.icns DESTINATION ${KDE_INSTALL_FULL_ICONDIR})
 # install(FILES icons/qprompt.svg DESTINATION ${KDE_INSTALL_FULL_ICONDIR}/hicolor/scalable/apps)
-install(PROGRAMS com.cuperino.qprompt.desktop DESTINATION ${KDE_INSTALL_APPDIR})
+# install(PROGRAMS com.cuperino.qprompt.desktop DESTINATION ${KDE_INSTALL_APPDIR})
 
 feature_summary(WHAT ALL INCLUDE_QUIET_PACKAGES FATAL_ON_MISSING_REQUIRED_PACKAGES)
