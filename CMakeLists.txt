@@ -129,11 +129,11 @@ find_package(KF5 ${KF_MIN_VERSION} REQUIRED COMPONENTS
 #add_subdirectory("3rdparty/breeze-icons" build/icons)
 #add_subdirectory("3rdparty/calligra/filters/libmsooxml" build/libmsooxml)
 
-ecm_setup_version(${KDevelop_VERSION_MAJOR}.${KDevelop_VERSION_MINOR}.${KDevelop_VERSION_PATCH}
-                  VARIABLE_PREFIX QPROMPT
+# ecm_setup_version(${KDevelop_VERSION_MAJOR}.${KDevelop_VERSION_MINOR}.${KDevelop_VERSION_PATCH}
+#                   VARIABLE_PREFIX QPROMPT
 #                   VERSION_HEADER "${CMAKE_CURRENT_BINARY_DIR}/qprompt_version.h"
 #                   PACKAGE_VERSION_FILE "${CMAKE_CURRENT_BINARY_DIR}/QPromptConfigVersion.cmake"
-)
+# )
 
 ki18n_install(po)
 
