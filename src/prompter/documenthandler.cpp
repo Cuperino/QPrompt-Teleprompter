@@ -89,6 +89,7 @@
 #include <QClipboard>
 #include <QMimeData>
 #include <QRegularExpression>
+#include <QProcess>
 #include <QDebug>
 
 DocumentHandler::DocumentHandler(QObject *parent)
@@ -408,21 +409,92 @@ void DocumentHandler::load(const QUrl &fileUrl)
             QByteArray data = file.readAll();
             if (QTextDocument *doc = textDocument()) {
                 doc->setBaseUrl(path.adjusted(QUrl::RemoveFilename));
-                if (mime.inherits("text/markdown")) {
+                // File formats managed by Qt
+                if (mime.inherits("text/html"))
                     emit loaded(QString::fromUtf8(data), Qt::MarkdownText);
-                } else {
-                    QTextCodec *codec = QTextCodec::codecForName("UTF-8");
-                    emit loaded(codec->toUnicode(data), Qt::AutoText);
+                else if (mime.inherits("text/markdown"))
+                    emit loaded(QString::fromUtf8(data), Qt::RichText);
+                // File formats imported using external software
+                else {
+                    ImportFormat type = NONE;
+                    if (mime.inherits("application/pdf"))
+                        type = PDF;
+                    else if (mime.inherits("application/vnd.oasis.opendocument.text"))
+                        type = ODT;
+                    else if (mime.inherits("application/vnd.openxmlformats-officedocument.wordprocessingml.document"))
+                        type = DOCX;
+                    else if (mime.inherits("application/msword"))
+                        type = DOC;
+                    else if (mime.inherits("application/rtf"))
+                        type = RTF;
+                    else if (mime.inherits("application/x-abiword"))
+                        type = ABW;
+                    else if (mime.inherits("application/epub+zip"))
+                        type = EPUB;
+                    else if (mime.inherits("application/x-mobipocket-ebook"))
+                        type = MOBI;
+                    else if (mime.inherits("application/vnd.amazon.ebook"))
+                        type = AZW;
+                    else if (mime.inherits("application/x-iwork-pages-sffpages"))
+                        type = PAGESX;
+                    else if (mime.inherits("application/vnd.apple.pages"))
+                        type = PAGES;
+                    // Dev: If type is incompatible and system isn't iOS, iPadOS, tvOS, watchOS, VxWorks, or the Universal Windows Platform
+                    if (type != NONE) {
+                        QString html = import(fileName, type);
+                        // Process as HTML, even if it is plain text such that it gets rid of unnecessary whitespace.
+                        emit loaded(html, Qt::RichText);
+                    }
+                    // Read as raw or text file
+                    else {
+                        // Interpret RAW data using Qt's auto detection
+                        QTextCodec *codec = QTextCodec::codecForName("UTF-8");
+                        emit loaded(codec->toUnicode(data), Qt::AutoText);
+                    }
+                    doc->setModified(false);
                 }
-                doc->setModified(false);
             }
-            
             reset();
         }
     }
-    
+
     m_fileUrl = fileUrl;
     emit fileUrlChanged();
+}
+
+QString DocumentHandler::import(QString fileName, ImportFormat type)
+{
+    QString program = "";
+    QStringList arguments;
+
+    // Preferring TextExtraction over alternatives for its better support for RTL languages.
+    if (type==PDF) {
+        program = "TextExtraction";
+        arguments << fileName;
+    }
+    // Using LibreOffice for most formats because of its ability to preserve formatting while converting to HTML.
+    else if (type==ODT || type==DOCX || type==DOC || type==RTF || type==ABW || type==PAGESX || type==PAGES) {
+        program = "soffice";
+        arguments << "--headless" << "--cat" << "--convert-to" << "htm:HTML" << fileName;
+    }
+    else if (type==EPUB || type==MOBI || type==AZW) {
+        // Dev: not implemented
+    }
+
+    if (program=="")
+        return "Unsuported file format";
+
+    // Begin execution of external filter
+    QProcess convert(this);
+    convert.start(program, arguments);
+
+    if (!convert.waitForFinished())
+        return QString("An error occurred while attempting to import. Make sure %1 is installed on your system and linked to.").arg(program);
+
+    QByteArray html = convert.readAll();
+    // if (type==DOCX || type==DOC || type==RTF || type==ABW || type==EPUB || type==MOBI || type==AZW)
+    //     return filterHtml(html, true);
+    return filterHtml(html, false);
 }
 
 void DocumentHandler::saveAs(const QUrl &fileUrl)
@@ -515,23 +587,40 @@ void DocumentHandler::setModified(bool m)
 QString DocumentHandler::filterHtml(QString html, bool ignoreBlackTextColor=true)
 // ignoreBlackTextColor=true is the default because websites tend to force black text color
 {
-    // Default for native office software, such as LibreOffice, MS Office and WPS Office
-    if (html.contains(QRegularExpression("(<meta\\s?\\s*name=\"?[gG]enerator\"?\\s?\\s*content=\"(?:(?:(?:(?:Libre)|(?:Open))Office)|(?:Microsoft)))", QRegularExpression::CaseInsensitiveOption)))
+    // Auto-detect content origin
+    bool comesFromRecognizedNativeSource = false;
+    // Check for native sources, such as LibreOffice, MS Office, WPS Office, and AbiWord
+    if (html.contains(QRegularExpression("(<meta\\s?\\s*name=\"?[gG]enerator\"?\\s?\\s*content=\"(?:(?:(?:(?:Libre)|(?:Open))Office)|(?:Microsoft)))", QRegularExpression::CaseInsensitiveOption)) || html.contains(QRegularExpression("<!DOCTYPE html PUBLIC \"-//ABISOURCE//DTD XHTML plus AWML"))) {
+        comesFromRecognizedNativeSource = true;
         ignoreBlackTextColor = false;
-    // Default for Google Docs
+    }
+    // Check for Google Docs
     else if (html.contains("id=\"docs-internal-guid-"))
         ignoreBlackTextColor = true;
-    // No special setting for the online version of MS Office because it contains no identifying headers
-    // Calligra is not here either because it currently copies straight to text, preserving no formatting
+    // No detection available for the online version of MS Office, because it contents bring no identifying signature.
+    // Calligra isn't here either because it currently copies straight to text, preserving no formatting.
 
     // Proceed to Filter
-    // Remove all font-size attributes
-    html = html.replace(QRegularExpression("(font-size:\\s*[\\d]+(?:.[\\d]+)*(?:(?:px)|(?:pt)|(?:em)|(?:ex));\\s*)"), "");
-    // Remove background color attributes from all elements except span, which is commonly used for highlights
-    html = html.replace(QRegularExpression("(?:<[^sS][^pP][^aA][^nN](?:\\s*[^>]*(\\s*background(?:-color)?:\\s*(?:(?:rgba?\\(\\d\\d?\\d?,\\s*\\d\\d?\\d?,\\s*\\d\\d?\\d?(?:,\\s*[01]?(?:[.]\\d\\d*)?)?\\))|(?:#[0-9a-fA-F]{3}(?:[0-9a-fA-F]{3})?));?)\\s*[^>]*)*>)"), "");
-    // Removal of black colored text attribute, subject to source editor.  Applies to Google Docs, OnlyOffice, Microsoft 365 Office Online and random websites.  Not used in LibreOffice, OpenOffice, WPS Office nor regular MS Office
-    if (ignoreBlackTextColor)
-        // Values 8-bit color values bellow 100 are ignored when rgb format is used. Has no effect on LibreOffice because of XML differences; nevertheless, there's no need to ignore dark text colors on LibreOffice because LibreOffice has a correct implementation of default colors.
+
+    // Filters that run always:
+    // 1. Remove HTML's non-scaling font-size attributes
+    html = html.replace(QRegularExpression("(font-size:\\s*[\\d]+(?:.[\\d]+)*(?:(?:px)|(?:pt)|(?:em)|(?:ex));?\\s*)"), "");
+
+    // Filters that apply only to native sources:
+    if (comesFromRecognizedNativeSource)
+        // 2. Remove text color attributes from body and CSS portion.  Running it 3 times ensures text, link, and vlink attributes are removed, irregardless of their order, while keeping regex maintainable
+        html = html.replace(QRegularExpression("(?:(?:p\\s*{.*(\\scolor:\\s*#[0123456789abcdefABCDEF]{3}(?:[0123456789abcdefABCDEF]{3})?;))|(?:(?:<[bB][oO][dD][yY]\\s).*(\\s(?:(?:text)|(?:v?link))=\"#[0123456789abcdefABCDEF]{3}(?:[0123456789abcdefABCDEF]{3})?\").*(\\s(?:(?:text)|(?:v?link))=\"#[0123456789abcdefABCDEF]{3}(?:[0123456789abcdefABCDEF]{3})?\").*(\\s(?:(?:text)|(?:v?link))=\"#[0123456789abcdefABCDEF]{3}(?:[0123456789abcdefABCDEF]{3})?\")))"), "");
+    // for (int i=0; i<3; ++i)
+    //     html = html.replace(QRegularExpression("(?:(?:<[bB][oO][dD][yY]\\s).*(\\s(?:(?:text)|(?:v?link))=\"#[0123456789abcdefABCDEF]{3}(?:[0123456789abcdefABCDEF]{3})?\"))"), "");
+
+    // Filters that apply only to non-native sources:
+    else // if (!comesFromRecognizedNativeSource)
+        // 3. Preserve highlights: Remove background color attributes from all elements except span, which is commonly used for highlights
+        html = html.replace(QRegularExpression("(?:<[^sS][^pP][^aA][^nN](?:\\s*[^>]*(\\s*background(?:-color)?:\\s*(?:(?:rgba?\\(\\d\\d?\\d?,\\s*\\d\\d?\\d?,\\s*\\d\\d?\\d?(?:,\\s*[01]?(?:[.]\\d\\d*)?)?\\))|(?:#[0-9a-fA-F]{3}(?:[0-9a-fA-F]{3})?));?)\\s*[^>]*)*>)"), "");
+
+    // Manual toggle filters
+    if (ignoreBlackTextColor || !comesFromRecognizedNativeSource)
+        // 4. Removal of black colored text attribute, subject to source editor.  Applies to Google Docs, OnlyOffice, Microsoft 365 Office Online and random websites.  Not used in LibreOffice, OpenOffice, WPS Office nor regular MS Office. 8-bit color values bellow 100 are ignored when rgb format is used. Has no effect on LibreOffice because of XML differences; nevertheless, there's no need to ignore dark text colors on LibreOffice because LibreOffice has a correct implementation of default colors.
         html = html.replace(QRegularExpression("(\\s*(?:mso-style-textfill-fill-)?color:\\s*(?:(?:rgba?\\(\\d{1,2},\\s*\\d{1,2},\\s*\\d{1,2}(?:,\\s*[10]?(?:[.]00*)?)?\\))|(?:black)|(?:windowtext)|(?:#0{3}(?:0{3})?));?)"), "");
 
     // Filtering complete
@@ -546,10 +635,7 @@ void DocumentHandler::paste(bool withoutFormating=false)
     const QClipboard *clipboard = QApplication::clipboard();
     const QMimeData *mimeData = clipboard->mimeData();
 
-    if (mimeData->hasImage()) {
-        // Dev: Add image support
-        // setPixmap(qvariant_cast<QPixmap>(mimeData->imageData()));
-    } else if (mimeData->hasHtml()) {
+    if (mimeData->hasHtml()) {
         if (withoutFormating)
             this->textCursor().insertText(mimeData->text());
         else {
@@ -559,6 +645,11 @@ void DocumentHandler::paste(bool withoutFormating=false)
     }
     else if (mimeData->hasText())
         this->textCursor().insertText(mimeData->text());
+    // Moved image test to last because having it first breaks pasting from AbiWord
+    else if (mimeData->hasImage()) {
+        // Dev: Add image support
+        // setPixmap(qvariant_cast<QPixmap>(mimeData->imageData()));
+    }
 }
 
 void DocumentHandler::paste()

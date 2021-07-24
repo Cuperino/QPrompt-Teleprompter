@@ -221,15 +221,18 @@ private:
     QTextCursor textCursor() const;
     QTextDocument *textDocument() const;
     void mergeFormatOnWordOrSelection(const QTextCharFormat &format);
-    
+
+    enum ImportFormat {NONE, PDF, ODT, DOCX, DOC, RTF, ABW, EPUB, MOBI, AZW, PAGES, PAGESX};
+    QString import(QString fileName, ImportFormat);
+
     QQuickTextDocument *m_document;
-    
+
     int m_cursorPosition;
     int m_selectionStart;
     int m_selectionEnd;
-    
+
     MarkersModel *_markersModel;
-    
+
     QFont m_font;
     QUrl m_fileUrl;
 };
