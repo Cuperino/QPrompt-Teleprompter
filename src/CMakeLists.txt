@@ -9,8 +9,8 @@ set(qprompt_SRCS
     prompter/markersmodel.cpp
 #    resources.qrc
 )
-# qt5_add_resources(qprompt_SRCS resources.qrc)
-qtquick_compiler_add_resources(qprompt_SRCS resources.qrc) # Used to get static QML.
+qt5_add_resources(qprompt_SRCS resources.qrc)
+# qtquick_compiler_add_resources(qprompt_SRCS resources.qrc) # Used to get static QML.
 
 set(ICONS_FOLDER ${CMAKE_CURRENT_SOURCE_DIR}/icons/hicolor)
 set(RASTER_ICONS
