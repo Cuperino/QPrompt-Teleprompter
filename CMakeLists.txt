@@ -144,7 +144,7 @@ set(ICON_FILES
 #   ${ICONS_FOLDER}/scalable-apps-com.cuperino.qprompt.icns
 #   ${ICONS_FOLDER}/qprompt.png
 )
-ecm_add_app_icon(ICONS_SOURCES ICONS ${ICON_FILES})
+ecm_add_app_icon(qprompt ICONS_SOURCES ICONS ${ICON_FILES})
 
 add_subdirectory(src build)
 target_sources(qprompt PRIVATE ${ICONS_SOURCES})
