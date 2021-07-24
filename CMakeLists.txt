@@ -138,7 +138,6 @@ find_package(KF5 ${KF_MIN_VERSION} REQUIRED COMPONENTS
 ki18n_install(po)
 
 add_subdirectory(src build)
-target_sources(qprompt PUBLIC ${ICONS_SOURCES})
 
 install(FILES com.cuperino.qprompt.appdata.xml DESTINATION ${KDE_INSTALL_METAINFODIR})
 # install(FILES icons/qprompt.ico DESTINATION ${KDE_INSTALL_FULL_ICONDIR})

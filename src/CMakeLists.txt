@@ -31,17 +31,18 @@ ecm_install_icons(
         ${RASTER_ICONS}
         ${VECTOR_ICON}
     DESTINATION ${KDE_INSTALL_ICONDIR}
+    THEME hicolor
 )
 ecm_add_app_icon(qprompt_SRCS
     ICONS ${RASTER_ICONS}
 )
 
 if (WIN32)
-#     add_definitions(-D_AFXDLL)
-#     set(CMAKE_MFC_FLAG 2)
-#     set(app_icon_resource_windows "${CMAKE_CURRENT_SOURCE_DIR}/images/qprompt.png")
-#     add_executable(qprompt WIN32 ${qprompt_SRCS} ${app_icon_resource_windows})
-    # set(qprompt_SRCS "${CMAKE_CURRENT_SOURCE_DIR}/images/qprompt.png")
+    add_definitions(-D_AFXDLL)
+    set(CMAKE_MFC_FLAG 2)
+    # set(app_icon_resource_windows "${CMAKE_CURRENT_SOURCE_DIR}/images/qprompt.png")
+    # add_executable(qprompt WIN32 ${qprompt_SRCS} ${app_icon_resource_windows})
+    set(qprompt_SRCS "${CMAKE_CURRENT_SOURCE_DIR}/images/qprompt.png")
     add_executable(qprompt WIN32 ${qprompt_SRCS})
 
 elseif (APPLE)
@@ -74,6 +75,7 @@ endif()
 #add_executable(qprompt ${qprompt_SRC})
 #add_executable(qprompt ${qprompt_SRC} ${RESOURCES}) # Used to get static QML.
 
+target_sources(qprompt PUBLIC ${RASTER_ICONS})
 target_link_libraries(qprompt
     Qt5::Core
     Qt5::Gui
@@ -90,9 +92,4 @@ install(FILES com.cuperino.qprompt.appdata.xml DESTINATION ${KDE_INSTALL_METAINF
 # install(FILES images/qprompt.svg DESTINATION ${KDE_INSTALL_FULL_ICONDIR}/hicolor/scalable/apps)
 install(FILES images/qprompt.png DESTINATION ${KDE_INSTALL_FULL_ICONDIR}/hicolor/1024x1024/apps)
 install(TARGETS qprompt ${KDE_INSTALL_TARGETS_DEFAULT_ARGS})
-ecm_install_icons(
-    ICONS ${ICON_FILES}
-    DESTINATION ${ICON_INSTALL_DIR}
-    THEME hicolor
-)
 install(PROGRAMS com.cuperino.qprompt.desktop DESTINATION ${KDE_INSTALL_APPDIR})
