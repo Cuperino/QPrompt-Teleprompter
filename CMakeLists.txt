@@ -40,7 +40,7 @@ set(QT_MIN_VERSION "5.12.0")
 set(QT_DISABLE_DEPRECATED_BEFORE "0x051520")
 # KF5 5.68 for Ubuntu 20.04
 # Using 5.83 to have current ecm_add_app_icon syntax
-set(ECM_MIN_VERSION "5.83.0")
+set(ECM_MIN_VERSION "5.82.0")
 set(KF_MIN_VERSION "5.81.0")
 
 # ------------------------- BEGIN: lists to maintain manually -------------------------
