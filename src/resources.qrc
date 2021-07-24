@@ -20,7 +20,7 @@
         <file>qtquickcontrols2.conf</file>
         <!-- Icons -->
         <file>images/qprompt.png</file>
-        <file>images/qprompt.icns</file>
+        <!-- <file>images/qprompt.icns</file> -->
         <file alias="fonts/fontello.ttf">fonts/icons/fontello.ttf</file>
         <!-- Built-in Editor Fonts -->
         <file alias="fonts/dejavu-sans.otf">fonts/editor/dejavu-sans/DejaVuSans.ttf</file>
