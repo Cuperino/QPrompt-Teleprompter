@@ -23,7 +23,7 @@ ecm_install_icons(
     DESTINATION ${KDE_INSTALL_ICONDIR}
     THEME hicolor
 )
-ecm_add_app_icon(qprompt_SRCS
+ecm_add_app_icon(ICON_RESOURCES
     ICONS ${RASTER_ICONS}
 )
 set(qprompt_SRCS
@@ -43,7 +43,7 @@ if (WIN32)
     # set(app_icon_resource_windows "${CMAKE_CURRENT_SOURCE_DIR}/images/qprompt.png")
     # add_executable(qprompt WIN32 ${qprompt_SRCS} ${app_icon_resource_windows})
     set(qprompt_SRCS "${CMAKE_CURRENT_SOURCE_DIR}/images/qprompt.png")
-    add_executable(qprompt WIN32 ${qprompt_SRCS})
+    add_executable(qprompt WIN32 ${qprompt_SRCS} ${ICON_RESOURCES})
 
 elseif (APPLE)
     # These are substituted by CMake into plist.in.
