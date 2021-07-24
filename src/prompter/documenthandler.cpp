@@ -618,10 +618,7 @@ void DocumentHandler::paste(bool withoutFormating=false)
     const QClipboard *clipboard = QApplication::clipboard();
     const QMimeData *mimeData = clipboard->mimeData();
 
-    if (mimeData->hasImage()) {
-        // Dev: Add image support
-        // setPixmap(qvariant_cast<QPixmap>(mimeData->imageData()));
-    } else if (mimeData->hasHtml()) {
+    if (mimeData->hasHtml()) {
         if (withoutFormating)
             this->textCursor().insertText(mimeData->text());
         else {
@@ -631,6 +628,11 @@ void DocumentHandler::paste(bool withoutFormating=false)
     }
     else if (mimeData->hasText())
         this->textCursor().insertText(mimeData->text());
+    // Moved image test to last because having it first breaks pasting from AbiWord
+    else if (mimeData->hasImage()) {
+        // Dev: Add image support
+        // setPixmap(qvariant_cast<QPixmap>(mimeData->imageData()));
+    }
 }
 
 void DocumentHandler::paste()

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE abiword PUBLIC "-//ABISOURCE//DTD AWML 1.0 Strict//EN" "http://www.abisource.com/awml.dtd">
+<abiword template="false" xmlns:ct="http://www.abisource.com/changetracking.dtd" xmlns:fo="http://www.w3.org/1999/XSL/Format" xmlns:math="http://www.w3.org/1998/Math/MathML" xid-max="9" xmlns:dc="http://purl.org/dc/elements/1.1/" styles="unlocked" fileformat="1.0" xmlns:svg="http://www.w3.org/2000/svg" xmlns:awml="http://www.abisource.com/awml.dtd" xmlns="http://www.abisource.com/awml.dtd" xmlns:xlink="http://www.w3.org/1999/xlink" version="0.99.2" xml:space="preserve" props="dom-dir:ltr; document-footnote-restart-section:0; document-endnote-type:numeric; document-endnote-place-enddoc:1; document-endnote-initial:1; lang:en-US; document-endnote-restart-section:0; document-footnote-restart-page:0; document-footnote-type:numeric; document-footnote-initial:1; document-endnote-place-endsection:0">
+<!-- ======================================================================== -->
+<!-- This file is an AbiWord document.                                        -->
+<!-- AbiWord is a free, Open Source word processor.                           -->
+<!-- More information about AbiWord is available at http://www.abisource.com/ -->
+<!-- You should not edit this file by hand.                                   -->
+<!-- ======================================================================== -->
+
+<metadata>
+<m key="abiword.date_last_changed">Fri Jul 23 16:58:17 2021
+</m>
+<m key="abiword.generator">AbiWord</m>
+<m key="dc.creator">Javier O. Cordero Pérez</m>
+<m key="dc.date">Fri Jul 23 16:58:17 2021
+</m>
+<m key="dc.format">application/x-abiword</m>
+</metadata>
+<rdf>
+</rdf>
+<history version="1" edit-time="891" last-saved="1627073897" uid="a1334f20-ebf6-11eb-9293-d5a5aa7e0b41">
+<version id="1" started="1627073897" uid="b4162480-ebf8-11eb-9293-d5a5aa7e0b41" auto="0" top-xid="9"/>
+</history>
+<styles>
+<s type="P" name="Normal" followedby="Current Settings" props="font-family:Times New Roman; margin-top:0pt; color:000000; margin-left:0pt; text-position:normal; widows:2; font-style:normal; text-indent:0in; font-variant:normal; font-weight:normal; margin-right:0pt; font-size:12pt; text-decoration:none; margin-bottom:0pt; line-height:1.0; bgcolor:transparent; text-align:left; font-stretch:normal"/>
+<s type="P" name="Heading 1" basedon="Normal" followedby="Normal" props="keep-with-next:1; margin-top:22pt; font-weight:bold; margin-bottom:3pt; font-family:Arial; font-size:17pt"/>
+</styles>
+<pagesize pagetype="Letter" orientation="portrait" width="8.500000" height="11.000000" units="in" page-scale="1.000000"/>
+<section xid="3" props="page-margin-footer:0.5in; page-margin-header:0.5in">
+<p style="Normal" xid="4"><c>Default text</c></p>
+<p style="Normal" xid="1"><c props="color:000000">Black text</c></p>
+<p style="Normal" xid="2"><c props="bgcolor:ffff00">Highlighted text</c></p>
+<p style="Normal" xid="5"><c props="color:000000; bgcolor:ffff00">Black highlighted text</c></p>
+<p style="Normal" xid="6"><c props="font-size:36pt">36 pt text</c></p>
+<p style="Heading 1" xid="7"><c>Heading 1</c></p>
+<p style="Normal" xid="8"><c>Paragraph </c><c props="font-weight:bold">bold </c><c props="font-style:italic">italic </c><c props="text-decoration:underline">underline </c><c props="font-weight:bold">bold</c><c props="font-style:italic; font-weight:bold">italic</c><c props="font-weight:bold; text-decoration:underline; font-style:italic">underline</c></p>
+<p style="Normal" xid="9"><c>Default text again, created with Abiword</c></p>
+</section>
+</abiword>
