@@ -12,6 +12,8 @@ set(qprompt_SRC
 qtquick_compiler_add_resources(RESOURCES resources.qrc) # Used to get static QML.
 
 if (WIN32)
+    add_definitions(-D_AFXDLL)
+    set(CMAKE_MFC_FLAG 2)
     set(app_icon_resource_windows "${CMAKE_CURRENT_SOURCE_DIR}/icons/qprompt.png")
     add_executable(qprompt WIN32 ${qprompt_SRC} ${RESOURCES} ${app_icon_resource_windows})
 
