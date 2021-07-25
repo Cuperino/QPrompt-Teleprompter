@@ -6,7 +6,7 @@ import info
 class subinfo(info.infoclass):
     def setTargets(self):
         self.displayName = "QPrompt"
-        self.description = "Personal teleprompter software"
+        self.description = "Personal Teleprompter Software"
         self.webpage = "https://qprompt.app"
         self.svnTargets['main'] = 'git@github.com:Cuperino/QPrompt.git|main'
         self.defaultTarget = "main"
@@ -22,7 +22,6 @@ class subinfo(info.infoclass):
         self.runtimeDependencies["kde/frameworks/tier1/kcoreaddons"] = None
         self.runtimeDependencies["kde/frameworks/tier1/ki18n"] = None
         self.runtimeDependencies["kde/frameworks/tier1/kirigami"] = None
-        self.runtimeDependencies["kde/frameworks/tier1/breeze-icons"] = None
 
 from Package.CMakePackageBase import *
 
