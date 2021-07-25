@@ -1,6 +1,25 @@
-set(CMAKE_AUTOMOC ON)
-set(CMAKE_AUTORCC ON)
-set(CMAKE_INCLUDE_CURRENT_DIRS ON)
+#**************************************************************************
+#
+# QPrompt
+# Copyright (C) 2020-2021 Javier O. Cordero Pérez
+#
+# This file is part of QPrompt.
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
+#**************************************************************************
+
 
 set(qprompt_SRCS
     main.cpp
@@ -9,74 +28,98 @@ set(qprompt_SRCS
     prompter/markersmodel.cpp
 )
 
-qtquick_compiler_add_resources(qprompt_SRCS resources.qrc) # Used to get static QML.
+# set(qprompt_HDRS
+#     prompter/documenthandler.h
+#     prompter/timer/promptertimer.h
+#     prompter/markersmodel.h
+# )
 
-set(ICONS_FOLDER ${CMAKE_CURRENT_SOURCE_DIR}/icons/hicolor)
-set(RASTER_ICONS
-  ${ICONS_FOLDER}/16-apps-qprompt.png
-  ${ICONS_FOLDER}/32-apps-qprompt.png
-  ${ICONS_FOLDER}/48-apps-qprompt.png
-  ${ICONS_FOLDER}/64-apps-qprompt.png
-  ${ICONS_FOLDER}/128-apps-qprompt.png
-  ${ICONS_FOLDER}/256-apps-qprompt.png
-  ${ICONS_FOLDER}/512-apps-qprompt.png
-  ${ICONS_FOLDER}/1024-apps-qprompt.png
-)
-set(VECTOR_ICON
-  ${ICONS_FOLDER}/sc-apps-qprompt.svg
-)
-ecm_install_icons(
-    ICONS
-        ${RASTER_ICONS}
-        ${VECTOR_ICON}
-    DESTINATION ${KDE_INSTALL_ICONDIR}
-    THEME hicolor
-)
-ecm_add_app_icon(qprompt_SRCS
-    ICONS ${RASTER_ICONS}
+set(qprompt_ASSETS
+    assets.qrc
 )
 
-# qt5_add_resources(qprompt_SRCS resources.qrc)
+if (NOT APPLE AND NOT ANDROID)
+    set(ICONS_FOLDER ${CMAKE_CURRENT_SOURCE_DIR}/icons/hicolor)
+    set(RASTER_ICONS
+        ${ICONS_FOLDER}/16-apps-qprompt.png
+        ${ICONS_FOLDER}/32-apps-qprompt.png
+        ${ICONS_FOLDER}/48-apps-qprompt.png
+        ${ICONS_FOLDER}/64-apps-qprompt.png
+        ${ICONS_FOLDER}/128-apps-qprompt.png
+        ${ICONS_FOLDER}/256-apps-qprompt.png
+        ${ICONS_FOLDER}/512-apps-qprompt.png
+        ${ICONS_FOLDER}/1024-apps-qprompt.png
+    )
+    set(VECTOR_ICON
+        ${ICONS_FOLDER}/sc-apps-qprompt.svg
+    )
+    ecm_install_icons(
+        ICONS
+            ${RASTER_ICONS}
+            ${VECTOR_ICON}
+        DESTINATION ${KDE_INSTALL_ICONDIR}
+        THEME hicolor
+    )
+    ecm_add_app_icon(qprompt_ICONS
+        ICONS ${RASTER_ICONS}
+    )
+endif()
 
-if (WIN32)
-    # add_definitions(-D_AFXDLL)
-    # set(CMAKE_MFC_FLAG 2)
+# Qt5QuickCompiler is an optional dependency. Script must check that it is present before attempting to use
+if (Qt5QuickCompiler_FOUND)
+    qtquick_compiler_add_resources(qprompt_QML_SRCS qml.qrc)
+else ()
+    set(qprompt_QML_SRCS qml.qrc)
+endif()
+
+
+if(ANDROID)
+    add_library(${PROJECT_NAME} SHARED
+        ${qprompt_SRCS} ${qprompt_QML_SRCS} ${qprompt_ASSETS})
+
+elseif (WIN32)
+    if (MSVC)
+        add_definitions(-D_AFXDLL)
+        set(CMAKE_MFC_FLAG 2)
+    endif()
     # set(app_icon_resource_windows "${CMAKE_CURRENT_SOURCE_DIR}/images/qprompt.png")
     # add_executable(qprompt WIN32 ${qprompt_SRCS} ${app_icon_resource_windows})
-    # set(qprompt_SRCS "${CMAKE_CURRENT_SOURCE_DIR}/images/qprompt.png")
-    add_executable(qprompt WIN32 ${qprompt_SRCS})
+    # set(WIN_ICON "${CMAKE_CURRENT_SOURCE_DIR}/images/qprompt.png")
+    add_executable(${PROJECT_NAME} WIN32
+        ${qprompt_SRCS} ${qprompt_QML_SRCS} ${qprompt_ASSETS} ${qprompt_ICONS})
 
 elseif (APPLE)
     # These are substituted by CMake into plist.in.
     set(MACOSX_BUNDLE_DISPLAY_NAME "QPrompt")
-    set_target_properties(qprompt PROPERTIES MACOSX_BUNDLE_INFO_PLIST ${CMAKE_CURRENT_SOURCE_DIR}/Info.plist.in)
-    set_target_properties(qprompt PROPERTIES MACOSX_BUNDLE_GUI_IDENTIFIER "com.cuperino.qprompt")
-    set_target_properties(qprompt PROPERTIES MACOSX_BUNDLE_BUNDLE_NAME "QPrompt")
-    set_target_properties(qprompt PROPERTIES MACOSX_BUNDLE_DISPLAY_NAME "QPrompt")
-    set_target_properties(qprompt PROPERTIES MACOSX_BUNDLE_INFO_STRING "QPrompt - Personal Teleprompter Software for Pros")
-    set_target_properties(qprompt PROPERTIES MACOSX_BUNDLE_LONG_VERSION_STRING "QPrompt ${RELEASE_SERVICE_VERSION}")
-    set_target_properties(qprompt PROPERTIES MACOSX_BUNDLE_SHORT_VERSION_STRING "${RELEASE_SERVICE_VERSION_MAJOR}.${RELEASE_SERVICE_VERSION_MINOR}")
-    set_target_properties(qprompt PROPERTIES MACOSX_BUNDLE_BUNDLE_VERSION "${RELEASE_SERVICE_VERSION}")
-    set_target_properties(qprompt PROPERTIES MACOSX_BUNDLE_COPYRIGHT "2020-21 Javier O. Cordero Pérez")
+    set_target_properties(${PROJECT_NAME} PROPERTIES MACOSX_BUNDLE_INFO_PLIST ${CMAKE_CURRENT_SOURCE_DIR}/Info.plist.in)
+    set_target_properties(${PROJECT_NAME} PROPERTIES MACOSX_BUNDLE_GUI_IDENTIFIER "com.cuperino.qprompt")
+    set_target_properties(${PROJECT_NAME} PROPERTIES MACOSX_BUNDLE_BUNDLE_NAME "QPrompt")
+    set_target_properties(${PROJECT_NAME} PROPERTIES MACOSX_BUNDLE_DISPLAY_NAME "QPrompt")
+    set_target_properties(${PROJECT_NAME} PROPERTIES MACOSX_BUNDLE_INFO_STRING "QPrompt - Teleprompter Software for Content Creators")
+    set_target_properties(${PROJECT_NAME} PROPERTIES MACOSX_BUNDLE_LONG_VERSION_STRING "QPrompt ${RELEASE_SERVICE_VERSION}")
+    set_target_properties(${PROJECT_NAME} PROPERTIES MACOSX_BUNDLE_SHORT_VERSION_STRING "${RELEASE_SERVICE_VERSION_MAJOR}.${RELEASE_SERVICE_VERSION_MINOR}")
+    set_target_properties(${PROJECT_NAME} PROPERTIES MACOSX_BUNDLE_BUNDLE_VERSION "${RELEASE_SERVICE_VERSION}")
+    set_target_properties(${PROJECT_NAME} PROPERTIES MACOSX_BUNDLE_COPYRIGHT "2020-21 Javier O. Cordero Pérez")
     # The MACOSX_BUNDLE_ICON_FILE variable is added to the Info.plist
     # generated by CMake. This variable contains the .icns file name,
     # without the path.
-    set_target_properties(kdevelop PROPERTIES MACOSX_BUNDLE_ICON_FILE "qprompt.icns")
-    #set_target_properties(kdevelop PROPERTIES MACOSX_BUNDLE_ICON_FILE "qprompt_SRCS.icns")
+    set_target_properties(${PROJECT_NAME} PROPERTIES MACOSX_BUNDLE_ICON_FILE "qprompt.icns")
+    #set_target_properties(${PROJECT_NAME} PROPERTIES MACOSX_BUNDLE_ICON_FILE "qprompt_SRCS.icns")
     #set(MACOSX_BUNDLE_ICON_FILE qprompt.icns)
     # And the following tells CMake where to find and install the file itself.
     set(app_icon_macos "${CMAKE_CURRENT_SOURCE_DIR}/icons/qprompt.icns")
     set_source_files_properties(${app_icon_macos} PROPERTIES MACOSX_PACKAGE_LOCATION "Resources")
     # 
-    add_executable(qprompt MACOSX_BUNDLE ${qprompt_SRC} ${app_icon_macos})
+    add_executable(${PROJECT_NAME} MACOSX_BUNDLE
+        ${qprompt_SRCS} ${qprompt_QML_SRCS} ${qprompt_ASSETS} ${app_icon_macos})
 
-else()
-    add_executable(qprompt ${qprompt_SRC}) # Used to get static QML.
+else() # UNIX
+    add_executable(${PROJECT_NAME}
+        ${qprompt_SRCS} ${qprompt_QML_SRCS} ${qprompt_ASSETS} ${qprompt_ICONS})
 endif()
-#add_executable(qprompt ${qprompt_SRC})
-#add_executable(qprompt ${qprompt_SRC} ${RESOURCES}) # Used to get static QML.
 
-target_link_libraries(qprompt
+# Libraries
+target_link_libraries(${PROJECT_NAME} PUBLIC
     Qt5::Core
     Qt5::Gui
     Qt5::Qml
@@ -87,10 +130,14 @@ target_link_libraries(qprompt
     KF5::Kirigami2
     KF5::CoreAddons
 )
-qt5_import_qml_plugins(qprompt) # Used to get static QML. Gets ignored if not a static build
-# target_sources(qprompt PUBLIC ${RASTER_ICONS})
-install(FILES com.cuperino.qprompt.appdata.xml DESTINATION ${KDE_INSTALL_METAINFODIR})
-# install(FILES images/qprompt.svg DESTINATION ${KDE_INSTALL_FULL_ICONDIR}/hicolor/scalable/apps)
-install(FILES images/qprompt.png DESTINATION ${KDE_INSTALL_FULL_ICONDIR}/hicolor/1024x1024/apps)
-install(TARGETS qprompt ${KDE_INSTALL_TARGETS_DEFAULT_ARGS})
-install(PROGRAMS com.cuperino.qprompt.desktop DESTINATION ${KDE_INSTALL_APPDIR})
+
+# Get static QML. Gets ignored if not a static build
+qt5_import_qml_plugins(${PROJECT_NAME})
+
+if (WIN32 OR UNIX AND NOT APPLE AND NOT ANDROID)
+    # install(FILES images/qprompt.svg DESTINATION ${KDE_INSTALL_FULL_ICONDIR}/hicolor/scalable/apps)
+    # install(FILES images/qprompt.png DESTINATION ${KDE_INSTALL_FULL_ICONDIR}/hicolor/1024x1024/apps)
+    install(FILES com.cuperino.qprompt.appdata.xml DESTINATION ${KDE_INSTALL_METAINFODIR})
+    install(TARGETS ${PROJECT_NAME} ${KDE_INSTALL_TARGETS_DEFAULT_ARGS})
+    install(PROGRAMS com.cuperino.qprompt.desktop DESTINATION ${KDE_INSTALL_APPDIR})
+endif()
