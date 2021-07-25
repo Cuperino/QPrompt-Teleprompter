@@ -103,7 +103,7 @@ find_package(KF5 ${KF_MIN_VERSION} REQUIRED COMPONENTS
 #    IconThemes
 )
 
-if (WIN32 OR UNIX AND NOT APPLE AND NOT ANDROID)
+if (WIN32 OR UNIX AND NOT ANDROID)
     include(KDEInstallDirs)
     include(KDECMakeSettings)
 endif()
@@ -156,7 +156,7 @@ add_subdirectory(src build)
 # target_sources(qprompt PUBLIC ${ICONS_SOURCES})
 # target_sources(qprompt PUBLIC)
 
-if (WIN32 OR UNIX AND NOT APPLE AND NOT ANDROID)
+if (WIN32 OR UNIX AND NOT ANDROID)
     install(FILES com.cuperino.qprompt.appdata.xml DESTINATION ${KDE_INSTALL_METAINFODIR})
     # install(FILES com.cuperino.qprompt.desktop DESTINATION ${XDG_APPS_INSTALL_DIR})
     install(PROGRAMS com.cuperino.qprompt.desktop DESTINATION ${KDE_INSTALL_APPDIR})

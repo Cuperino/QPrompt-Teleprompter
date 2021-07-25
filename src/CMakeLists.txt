@@ -132,7 +132,7 @@ target_link_libraries(${PROJECT_NAME} PUBLIC
 # Get static QML. Gets ignored if not a static build
 qt5_import_qml_plugins(${PROJECT_NAME})
 
-if (WIN32 OR UNIX AND NOT APPLE AND NOT ANDROID)
+if (WIN32 OR UNIX AND NOT ANDROID)
     # install(FILES images/qprompt.svg DESTINATION ${KDE_INSTALL_FULL_ICONDIR}/hicolor/scalable/apps)
     # install(FILES images/qprompt.png DESTINATION ${KDE_INSTALL_FULL_ICONDIR}/hicolor/1024x1024/apps)
     install(FILES com.cuperino.qprompt.appdata.xml DESTINATION ${KDE_INSTALL_METAINFODIR})
