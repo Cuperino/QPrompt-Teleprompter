@@ -102,6 +102,8 @@ DocumentHandler::DocumentHandler(QObject *parent)
 
 {
     _markersModel = new MarkersModel();
+    pdf_importer = QString("TextExtraction");
+    office_importer = QString("soffice");
 }
 
 QQuickTextDocument *DocumentHandler::document() const
@@ -469,12 +471,12 @@ QString DocumentHandler::import(QString fileName, ImportFormat type)
 
     // Preferring TextExtraction over alternatives for its better support for RTL languages.
     if (type==PDF) {
-        program = "TextExtraction";
+        program = pdf_importer;
         arguments << fileName;
     }
     // Using LibreOffice for most formats because of its ability to preserve formatting while converting to HTML.
     else if (type==ODT || type==DOCX || type==DOC || type==RTF || type==ABW || type==PAGESX || type==PAGES) {
-        program = "soffice";
+        program = office_importer;
         arguments << "--headless" << "--cat" << "--convert-to" << "htm:HTML" << fileName;
     }
     else if (type==EPUB || type==MOBI || type==AZW) {

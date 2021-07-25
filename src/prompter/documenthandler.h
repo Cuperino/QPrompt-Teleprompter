@@ -235,6 +235,8 @@ private:
 
     QFont m_font;
     QUrl m_fileUrl;
+    QString pdf_importer;
+    QString office_importer;
 };
 
 #endif // DOCUMENTHANDLER_H
