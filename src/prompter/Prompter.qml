@@ -706,8 +706,18 @@ Flickable {
     FileDialog {
         id: openDialog
         fileMode: FileDialog.OpenFile
-        selectedNameFilter.index: 1
-        nameFilters: [i18n("Text files") + " (*.txt)", i18n("HTML files") + " (*.html *.htm)"]
+        selectedNameFilter.index: 0
+        nameFilters: [i18n("Hypertext Markup Language (HTML)") + "(*.html *.htm *.xhtml *.HTML *.HTM *.XHTML)",
+            i18n("Markdown (MD)") + "(*.md *.MD)",
+            i18n("Plain Text (TXT)") + "(*.txt *.text *.TXT *.TEXT)",
+            i18n("OpenDocument Format Text Document (ODT)") + "(*.odt *.ODT)",
+            i18n("AbiWord Document (ABW)") + "(*.abw *.ABW *.zabw *.ZABW)",
+            i18n("Microsoft Word document (DOCX, DOC)") + "(*.docx *.doc *.DOCX *.DOC)",
+            i18n("Apple Pages Document (PAGES)") + "(*.pages *.PAGES)",
+            i18n("Rich Text Format (RTF)") + "(*.rtf *.RTF)",
+            i18n("Portable Document Format (PDF)") + "(*.pdf *.PDF)",
+            i18n("All Formats") + "(*.*)"
+        ]
         folder: StandardPaths.writableLocation(StandardPaths.DocumentsLocation)
         onAccepted: {
             document.load(file)
