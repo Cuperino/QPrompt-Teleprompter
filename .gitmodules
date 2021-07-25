@@ -1,21 +1,6 @@
-[submodule "3rdparty/ki18n"]
-	path = 3rdparty/ki18n
-	url = https://invent.kde.org/frameworks/ki18n.git
-[submodule "3rdparty/kirigami"]
-	path = 3rdparty/kirigami
-	url = https://invent.kde.org/frameworks/kirigami.git
-[submodule "3rdparty/breeze-icons"]
-	path = 3rdparty/breeze-icons
-	url = https://invent.kde.org/frameworks/breeze-icons.git
-[submodule "3rdparty/extra-cmake-modules"]
-	path = 3rdparty/extra-cmake-modules
-	url = https://invent.kde.org/frameworks/extra-cmake-modules.git
 [submodule "src/fonts/editor/Palanquin"]
 	path = src/fonts/editor/Palanquin
 	url = https://github.com/VanillaandCream/Palanquin.git
 [submodule "src/fonts/editor/opendyslexic"]
 	path = src/fonts/editor/opendyslexic
 	url = https://github.com/antijingoist/opendyslexic.git
-[submodule "3rdparty/calligra"]
-	path = 3rdparty/calligra
-	url = https://invent.kde.org/office/calligra.git
