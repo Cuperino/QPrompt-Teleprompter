@@ -36,7 +36,7 @@ ecm_add_app_icon(qprompt_SRCS
     ICONS ${RASTER_ICONS}
 )
 
-qt5_add_resources(qprompt_SRCS resources.qrc)
+# qt5_add_resources(qprompt_SRCS resources.qrc)
 
 if (WIN32)
     # add_definitions(-D_AFXDLL)
