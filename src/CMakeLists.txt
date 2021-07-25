@@ -28,12 +28,6 @@ set(qprompt_SRCS
     prompter/markersmodel.cpp
 )
 
-# set(qprompt_HDRS
-#     prompter/documenthandler.h
-#     prompter/timer/promptertimer.h
-#     prompter/markersmodel.h
-# )
-
 set(qprompt_ASSETS
     assets.qrc
 )
@@ -82,9 +76,6 @@ elseif (WIN32)
         add_definitions(-D_AFXDLL)
         set(CMAKE_MFC_FLAG 2)
     endif()
-    # set(app_icon_resource_windows "${CMAKE_CURRENT_SOURCE_DIR}/images/qprompt.png")
-    # add_executable(qprompt WIN32 ${qprompt_SRCS} ${app_icon_resource_windows})
-    # set(WIN_ICON "${CMAKE_CURRENT_SOURCE_DIR}/images/qprompt.png")
     add_executable(${PROJECT_NAME} WIN32
         ${qprompt_SRCS} ${qprompt_QML_SRCS} ${qprompt_ASSETS} ${qprompt_ICONS})
 
@@ -130,7 +121,10 @@ target_link_libraries(${PROJECT_NAME} PUBLIC
 )
 
 # Get static QML. Gets ignored if not a static build
-qt5_import_qml_plugins(${PROJECT_NAME})
+if (Qt5QmlImportScanner_FOUND)
+    qt5_import_qml_plugins(${PROJECT_NAME})
+endif()
+
 
 if (WIN32 OR UNIX AND NOT ANDROID)
     # install(FILES images/qprompt.svg DESTINATION ${KDE_INSTALL_FULL_ICONDIR}/hicolor/scalable/apps)

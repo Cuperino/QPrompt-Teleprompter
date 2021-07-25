@@ -27,11 +27,7 @@ set(RELEASE_SERVICE_VERSION_MAJOR "1")
 set(RELEASE_SERVICE_VERSION_MINOR "0")
 set(RELEASE_SERVICE_VERSION_MICRO "0")
 set(RELEASE_SERVICE_VERSION "${RELEASE_SERVICE_VERSION_MAJOR}.${RELEASE_SERVICE_VERSION_MINOR}.${RELEASE_SERVICE_VERSION_MICRO}")
-if (APPLE)
-    project(QPrompt VERSION ${RELEASE_SERVICE_VERSION})
-else()
-    project(qprompt VERSION ${RELEASE_SERVICE_VERSION})
-endif()
+project(qprompt VERSION ${RELEASE_SERVICE_VERSION})
 
 # Find includes in corresponding build directories
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
@@ -47,12 +43,12 @@ set(CMAKE_AUTORCC ON)
 #set(QT5_MIN_VERSION 5.15.2)
 # QT 5.12 for Ubuntu 20.04
 set(QT_MIN_VERSION 5.12.0)
-set(QT_DISABLE_DEPRECATED_BEFORE "0x051520")
+set(QT_DISABLE_DEPRECATED_BEFORE 5.15.2)
 # KF5 5.68 for Ubuntu 20.04
-# Using 5.83 to have current ecm_add_app_icon syntax
-set(ECM_MIN_VERSION 5.82.0)
-# set(KF_MIN_VERSION 5.81.0)
-set(REQUIRED_KF5_VERSION 5.81.0)
+# Use 5.83 to have current ecm_add_app_icon syntax
+set(ECM_MIN_VERSION 5.68.0)
+set(KF_MIN_VERSION 5.68.0)
+#set(REQUIRED_KF5_VERSION 5.68.0)
 
 # ------------------------- BEGIN: lists to maintain manually -------------------------
 
@@ -157,12 +153,8 @@ ecm_setup_version(${RELEASE_SERVICE_VERSION}
 
 add_subdirectory(src build)
 
-# target_sources(qprompt PUBLIC ${ICONS_SOURCES})
-# target_sources(qprompt PUBLIC)
-
 if (WIN32 OR UNIX AND NOT ANDROID)
     install(FILES com.cuperino.qprompt.appdata.xml DESTINATION ${KDE_INSTALL_METAINFODIR})
-    # install(FILES com.cuperino.qprompt.desktop DESTINATION ${XDG_APPS_INSTALL_DIR})
     install(PROGRAMS com.cuperino.qprompt.desktop DESTINATION ${KDE_INSTALL_APPDIR})
 endif()
 
