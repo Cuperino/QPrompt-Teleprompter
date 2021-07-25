@@ -38,8 +38,6 @@ ecm_add_app_icon(qprompt_SRCS
 
 qt5_add_resources(qprompt_SRCS resources.qrc)
 
-install(TARGETS qprompt ${KDE_INSTALL_TARGETS_DEFAULT_ARGS})
-
 if (WIN32)
     # add_definitions(-D_AFXDLL)
     # set(CMAKE_MFC_FLAG 2)
@@ -94,4 +92,5 @@ qt5_import_qml_plugins(qprompt) # Used to get static QML. Gets ignored if not a 
 install(FILES com.cuperino.qprompt.appdata.xml DESTINATION ${KDE_INSTALL_METAINFODIR})
 # install(FILES images/qprompt.svg DESTINATION ${KDE_INSTALL_FULL_ICONDIR}/hicolor/scalable/apps)
 install(FILES images/qprompt.png DESTINATION ${KDE_INSTALL_FULL_ICONDIR}/hicolor/1024x1024/apps)
+install(TARGETS qprompt ${KDE_INSTALL_TARGETS_DEFAULT_ARGS})
 install(PROGRAMS com.cuperino.qprompt.desktop DESTINATION ${KDE_INSTALL_APPDIR})
