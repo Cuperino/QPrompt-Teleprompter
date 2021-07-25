@@ -55,19 +55,13 @@ set(REQUIRED_KF5_VERSION 5.81.0)
 # Directories where Qt Creator can find QML files of Kirigami etc. on your system.
 #   (This setting is cached in variable QML_IMPORT_DIR, see below. Delete
 #   ${BUIL_DIR}/CMakeCache.txt to make make changes here effective.)
-# list(APPEND QML_DIRS "/usr/lib/x86_64-linux-gnu/qt5/qml")
-# list(APPEND KIRIGAMI_DIRS "/usr/lib/x86_64-linux-gnu/qt5/qml/org/kde/kirigami.2")
-# list(APPEND QML_DIRS "C:/CraftRoot/qml")
-# list(APPEND KIRIGAMI_DIRS "C:/CraftRoot/qml/org/kde/kirigami.2")
-
-# Configuration Issues are Here
-#list(APPEND ECM_MODULE_PATH "3rdparty/extra-cmake-modules/build")
-
-#list(APPEND ECM_MODULE_PATH "/usr/share/ECM/cmake")
-#list(APPEND KF5Kirigami2_PATH "/usr/lib/x86_64-linux-gnu/cmake/KF5Kirigami2")
-#list(APPEND KF5Kirigami2_PATH "C:/CraftRoot/qml/org/kde/kirigami.2")
-#list(APPEND KF5I18n_PATH "/usr/lib/x86_64-linux-gnu/cmake/KF5I18n")
-
+if (UNIX AND NOT APPLE AND NOT ANDROID)
+    list(APPEND QML_DIRS "/usr/lib/x86_64-linux-gnu/qt5/qml")
+    list(APPEND KIRIGAMI_DIRS "/usr/lib/x86_64-linux-gnu/qt5/qml/org/kde/kirigami.2")
+elseif (WIN32)
+    list(APPEND QML_DIRS "C:/CraftRoot/qml")
+    list(APPEND KIRIGAMI_DIRS "C:/CraftRoot/qml/org/kde/kirigami.2")
+endif()
 # ------------------------- END: lists to maintain ma/usr/lib/x86_64-linux-gnu/qt5/nually -------------------------
 
 # Prevent adding duplicate values at each run of CMake.
@@ -90,10 +84,6 @@ set(
 # Send compiled program and library binaries to "build/bin"
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 
-#set(ECM_DIR ${ECM_MODULE_PATH})
-#set(KF5Kirigami2_DIR ${KF5Kirigami2_PATH})
-#set(KF5I18n_DIR ${KF5I18n_PATH})
-
 find_package(ECM ${ECM_MIN_VERSION} REQUIRED NO_MODULE)
 set(CMAKE_MODULE_PATH ${ECM_MODULE_PATH})
 find_package(Qt5 ${QT5_MIN_VERSION} REQUIRED COMPONENTS
@@ -108,13 +98,10 @@ find_package(Qt5 ${QT5_MIN_VERSION} REQUIRED COMPONENTS
 )
 find_package(KF5 ${KF_MIN_VERSION} REQUIRED COMPONENTS
     Kirigami2
-    I18n
+    I18n  # NO_MODULE
     CoreAddons
 #    IconThemes
 )
-#find_package(KF5CoreAddons)
-#find_package(KF5I18n NO_MODULE)
-#find_package(KF5Kirigami2)
 
 if (WIN32 OR UNIX AND NOT APPLE AND NOT ANDROID)
     include(KDEInstallDirs)
