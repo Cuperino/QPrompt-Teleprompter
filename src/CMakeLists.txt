@@ -2,6 +2,15 @@ set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
 set(CMAKE_INCLUDE_CURRENT_DIRS ON)
 
+set(qprompt_SRCS
+    main.cpp
+    prompter/documenthandler.cpp
+    prompter/timer/promptertimer.cpp
+    prompter/markersmodel.cpp
+)
+
+qtquick_compiler_add_resources(qprompt_SRCS resources.qrc) # Used to get static QML.
+
 set(ICONS_FOLDER ${CMAKE_CURRENT_SOURCE_DIR}/icons/hicolor)
 set(RASTER_ICONS
   ${ICONS_FOLDER}/16-apps-qprompt.png
@@ -23,27 +32,21 @@ ecm_install_icons(
     DESTINATION ${KDE_INSTALL_ICONDIR}
     THEME hicolor
 )
-ecm_add_app_icon(ICON_RESOURCES
+ecm_add_app_icon(qprompt_SRCS
     ICONS ${RASTER_ICONS}
 )
-set(qprompt_SRCS
-    main.cpp
-    prompter/documenthandler.cpp
-    prompter/timer/promptertimer.cpp
-    prompter/markersmodel.cpp
-#    resources.qrc
-)
 
-# qt5_add_resources(qprompt_SRCS resources.qrc)
-qtquick_compiler_add_resources(qprompt_SRCS resources.qrc) # Used to get static QML.
+qt5_add_resources(qprompt_SRCS resources.qrc)
+
+install(TARGETS qprompt ${KDE_INSTALL_TARGETS_DEFAULT_ARGS})
 
 if (WIN32)
-    add_definitions(-D_AFXDLL)
-    set(CMAKE_MFC_FLAG 2)
+    # add_definitions(-D_AFXDLL)
+    # set(CMAKE_MFC_FLAG 2)
     # set(app_icon_resource_windows "${CMAKE_CURRENT_SOURCE_DIR}/images/qprompt.png")
     # add_executable(qprompt WIN32 ${qprompt_SRCS} ${app_icon_resource_windows})
-    set(qprompt_SRCS "${CMAKE_CURRENT_SOURCE_DIR}/images/qprompt.png")
-    add_executable(qprompt WIN32 ${qprompt_SRCS} ${ICON_RESOURCES})
+    # set(qprompt_SRCS "${CMAKE_CURRENT_SOURCE_DIR}/images/qprompt.png")
+    add_executable(qprompt WIN32 ${qprompt_SRCS})
 
 elseif (APPLE)
     # These are substituted by CMake into plist.in.
@@ -91,5 +94,4 @@ qt5_import_qml_plugins(qprompt) # Used to get static QML. Gets ignored if not a 
 install(FILES com.cuperino.qprompt.appdata.xml DESTINATION ${KDE_INSTALL_METAINFODIR})
 # install(FILES images/qprompt.svg DESTINATION ${KDE_INSTALL_FULL_ICONDIR}/hicolor/scalable/apps)
 install(FILES images/qprompt.png DESTINATION ${KDE_INSTALL_FULL_ICONDIR}/hicolor/1024x1024/apps)
-install(TARGETS qprompt ${KDE_INSTALL_TARGETS_DEFAULT_ARGS})
 install(PROGRAMS com.cuperino.qprompt.desktop DESTINATION ${KDE_INSTALL_APPDIR})
