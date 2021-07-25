@@ -670,7 +670,7 @@ Flickable {
         }
 
         function newDocument() {
-            document.load("qrc:/untitled.html")
+            document.load("qrc:/documents/untitled.html")
             isNewFile = true
             resetDocumentPosition()
             if (!root.__translucidBackground)
@@ -678,7 +678,7 @@ Flickable {
         }
         
         function loadInstructions() {
-            document.load("qrc:/"+i18n("guide_en.html"))
+            document.load("qrc:/documents/"+i18n("guide_en.html"))
             isNewFile = true
             // Set document position to 0, so we can get to read the instructions faster.
             prompter.position = 0
