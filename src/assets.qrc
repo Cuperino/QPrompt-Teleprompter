@@ -1,9 +1,5 @@
 <RCC>
     <qresource prefix="/">
-        <!-- User Guide -->
-        <file>documents/guide_en.html</file>
-        <!-- Empty Untitled Document -->
-        <file>documents/untitled.html</file>
         <!-- Icons -->
         <file>images/qprompt.png</file>
         <!-- Fonts -->
