@@ -453,8 +453,8 @@ void DocumentHandler::load(const QUrl &fileUrl)
                         QTextCodec *codec = QTextCodec::codecForName("UTF-8");
                         emit loaded(codec->toUnicode(data), Qt::AutoText);
                     }
-                    doc->setModified(false);
                 }
+                doc->setModified(false);
             }
             reset();
         }
