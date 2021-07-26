@@ -1,0 +1,65 @@
+name: qprompt # you probably want to 'snapcraft register <name>'
+base: core20 # the base snap is the execution environment for this snap
+version: '1.0.0+git' # just for humans, typically '1.2+git' or '1.3.2'
+summary: Personal Teleprompter Software # 79 char long summary
+description: |
+  Open source personal teleprompter software for creators. Built with
+  ease of use, fast performance, control accuracy, and cross-platform
+  support in mind. QPrompt's convergent UI allows for tallent and
+  operator productivity on all teleprompter form factors
+license: GPL-3.0+
+
+type: app
+grade: stable # must be 'stable' to release into candidate/stable channels
+confinement: strict # use 'strict' once you have the right plugs and slots
+# grade: devel # must be 'stable' to release into candidate/stable channels
+# confinement: devmode # use 'strict' once you have the right plugs and slots
+icon: snap/gui/icon.png
+
+parts:
+  qprompt:
+    parse-info:
+    - usr/share/metainfo/com.cuperino.qprompt.appdata.xml
+    plugin: cmake
+    source: https://github.com/Cuperino/QPrompt.git
+    source-type: git
+    cmake-parameters:
+    - "-DKDE_INSTALL_USE_QT_SYS_PATHS=ON"
+    - "-DCMAKE_INSTALL_PREFIX=/usr"
+    - "-DCMAKE_BUILD_TYPE=Release"
+    - "-DENABLE_TESTING=OFF"
+    - "-DBUILD_TESTING=OFF"
+    - "-DKDE_SKIP_TEST_SETTINGS=ON"
+    - "-DCMAKE_FIND_ROOT_PATH=/usr\\;/root/stage\\;/snap/kde-frameworks-5-qt-5-15-core20-sdk/current"
+    - "-DKDE_INSTALL_PLUGINDIR=/usr/lib/x86_64-linux-gnu/qt5/plugins/"
+    filesets:
+      exclusion:
+      - "-usr/lib/*/cmake/*"
+      - "-usr/include/*"
+      - "-usr/share/ECM/*"
+      - "-usr/share/doc/*"
+      - "-usr/share/man/*"
+      - "-usr/share/icons/breeze-dark*"
+      - "-usr/bin/X11"
+      - "-usr/lib/gcc/x86_64-linux-gnu/6.0.0"
+    build-snaps:
+    - kde-frameworks-5-qt-5-15-core20-sdk
+    - kde-frameworks-5-qt-5-15-core20
+    prime:
+    - "$exclusion"
+
+apps:
+  qprompt:
+    extensions:
+      - kde-neon
+    common-id: com.cuperino.qprompt.desktop
+    command: usr/bin/qprompt
+    plugs:
+      - desktop
+      - desktop-legacy
+      - opengl
+      - wayland
+      - home
+      - removable-media
+      # - network
+      # - audio-record
