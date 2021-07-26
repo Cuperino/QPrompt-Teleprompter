@@ -16,11 +16,5 @@
         <file alias="Flip.qml">prompter/Flip.qml</file>
         <file alias="ProjectionsManager.qml">prompter/ProjectionsManager.qml</file>
         <file alias="Find.qml">prompter/Find.qml</file>
-        <!-- Theme Configuration -->
-        <file>qtquickcontrols2.conf</file>
-        <!-- User Guide -->
-        <file alias="guide_en.html">documents/guide_en.html</file>
-        <!-- Empty Untitled Document -->
-        <file alias="untitled.html">documents/untitled.html</file>
     </qresource>
 </RCC>

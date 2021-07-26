@@ -1,5 +1,11 @@
 <RCC>
     <qresource prefix="/">
+        <!-- Theme Configuration -->
+        <file>qtquickcontrols2.conf</file>
+        <!-- User Guide -->
+        <file alias="guide_en.html">documents/guide_en.html</file>
+        <!-- Empty Untitled Document -->
+        <file alias="untitled.html">documents/untitled.html</file>
         <!-- Icons -->
         <file>images/qprompt.png</file>
         <!-- Fonts -->
