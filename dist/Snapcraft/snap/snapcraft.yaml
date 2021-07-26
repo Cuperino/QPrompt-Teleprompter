@@ -45,6 +45,8 @@ parts:
     build-snaps:
     - kde-frameworks-5-qt-5-15-core20-sdk
     - kde-frameworks-5-qt-5-15-core20
+    build-packages:
+    - kirigami2-dev
     prime:
     - "$exclusion"
 
