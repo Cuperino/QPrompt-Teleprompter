@@ -43,7 +43,7 @@ set(CMAKE_AUTORCC ON)
 #set(QT5_MIN_VERSION 5.15.2)
 # QT 5.12 for Ubuntu 20.04
 set(QT_MIN_VERSION 5.12.0)
-set(QT_DISABLE_DEPRECATED_BEFORE 5.15.2)
+# set(QT_DISABLE_DEPRECATED_BEFORE 5.15.2)
 # KF5 5.68 for Ubuntu 20.04
 # Use 5.83 to have current ecm_add_app_icon syntax
 set(ECM_MIN_VERSION 5.68.0)
