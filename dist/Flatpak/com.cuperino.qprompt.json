@@ -1,0 +1,26 @@
+{
+   "command": "qprompt",
+   "finish-args": [
+      "--share=ipc",
+      "--socket=x11",
+      "--socket=wayland"
+   ],
+   "id": "com.cuperino.qprompt",
+   "modules": [
+      {
+         "buildsystem": "cmake-ninja",
+         "name": "qprompt",
+         "sources": [
+            {
+               "type": "git",
+               "url": "https://github.com/Cuperino/QPrompt.git",
+               "branch": "main"
+            }
+         ]
+      }
+   ],
+   "runtime": "org.kde.Platform",
+   "runtime-version": "5.15",
+   "sdk": "org.kde.Sdk"
+}
+
