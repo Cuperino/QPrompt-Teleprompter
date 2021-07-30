@@ -42,7 +42,8 @@ if (NOT APPLE AND NOT ANDROID)
         ${ICONS_FOLDER}/128-apps-com.cuperino.qprompt.png
         ${ICONS_FOLDER}/256-apps-com.cuperino.qprompt.png
         ${ICONS_FOLDER}/512-apps-com.cuperino.qprompt.png
-        ${ICONS_FOLDER}/1024-apps-com.cuperino.qprompt.png
+        # Commenting 1024 sized icon out because although ECM does support it, Flatpak does not...
+        # ${ICONS_FOLDER}/1024-apps-com.cuperino.qprompt.png
     )
     set(VECTOR_ICON
         ${ICONS_FOLDER}/sc-apps-com.cuperino.qprompt.svg
