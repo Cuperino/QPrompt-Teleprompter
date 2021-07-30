@@ -35,17 +35,17 @@ set(qprompt_ASSETS
 if (NOT APPLE AND NOT ANDROID)
     set(ICONS_FOLDER ${CMAKE_CURRENT_SOURCE_DIR}/icons/hicolor)
     set(RASTER_ICONS
-        ${ICONS_FOLDER}/16-apps-qprompt.png
-        ${ICONS_FOLDER}/32-apps-qprompt.png
-        ${ICONS_FOLDER}/48-apps-qprompt.png
-        ${ICONS_FOLDER}/64-apps-qprompt.png
-        ${ICONS_FOLDER}/128-apps-qprompt.png
-        ${ICONS_FOLDER}/256-apps-qprompt.png
-        ${ICONS_FOLDER}/512-apps-qprompt.png
-        ${ICONS_FOLDER}/1024-apps-qprompt.png
+        ${ICONS_FOLDER}/16-apps-com.cuperino.qprompt.png
+        ${ICONS_FOLDER}/32-apps-com.cuperino.qprompt.png
+        ${ICONS_FOLDER}/48-apps-com.cuperino.qprompt.png
+        ${ICONS_FOLDER}/64-apps-com.cuperino.qprompt.png
+        ${ICONS_FOLDER}/128-apps-com.cuperino.qprompt.png
+        ${ICONS_FOLDER}/256-apps-com.cuperino.qprompt.png
+        ${ICONS_FOLDER}/512-apps-com.cuperino.qprompt.png
+        ${ICONS_FOLDER}/1024-apps-com.cuperino.qprompt.png
     )
     set(VECTOR_ICON
-        ${ICONS_FOLDER}/sc-apps-qprompt.svg
+        ${ICONS_FOLDER}/sc-apps-com.cuperino.qprompt.svg
     )
     ecm_install_icons(
         ICONS
