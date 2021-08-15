@@ -102,10 +102,8 @@ Flickable {
     property int __iBackup: 0
     property bool __play: true
     property int __iDefault:  root.__iDefault
-    property real __baseSpeed: root.__baseSpeed
-    property real __curvature: root.__curvature
-    //property alias __baseSpeed: parent.__baseSpeed
-    //property alias __curvature: parent.__curvature
+    property real __baseSpeed: viewport.__baseSpeed
+    property real __curvature: viewport.__curvature
     //property int __lastRecordedPosition: 0
     //property real customContentsPlacement: 0.1
     property real contentsPlacement//: 1-rightWidthAdjustmentBar.x
@@ -113,7 +111,7 @@ Flickable {
     readonly property real editorXOffset: positionHandler.x/prompter.width
     readonly property real centreX: width / 2;
     readonly property real centreY: height / 2;
-    readonly property int __jitterMargin: __i%2
+    readonly property int __jitterMargin: (__i+__baseSpeed*100+__curvature*100)%2
     readonly property bool __possitiveDirection: __i>=0
     readonly property real __vw: width / 100
     readonly property real __speed: __baseSpeed * Math.pow(Math.abs(__i), __curvature)

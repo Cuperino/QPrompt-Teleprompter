@@ -49,8 +49,6 @@ Kirigami.ApplicationWindow {
     //property int prompterVisibility: Kirigami.ApplicationWindow.Maximized
     property double __opacity: 1
     property int __iDefault: 3
-    property real __baseSpeed: baseSpeedSlider.value
-    property real __curvature: baseAccelerationSlider.value
     
     title: prompterPage.document.fileName + (prompterPage.document.modified?"*":"") + " - " + aboutData.displayName
     width: 1200  // Set to 1200 to fit both 1280 4:3 and 1200 height monitors. Keep at or bellow 1024 and at or above 960, for best usability with common 4:3 resolutions
@@ -254,40 +252,7 @@ Kirigami.ApplicationWindow {
                 //onTriggered: showPassiveNotification(i18n("View Action 2 clicked"))
             //}
         //}
-        
-        // Slider settings
-        content: [
-            Label {
-                text: i18n("Base speed:") + " " + baseSpeedSlider.value.toFixed(2)
-                Layout.leftMargin: 8
-                Layout.rightMargin: 8
-            },
-            Slider {
-                id: baseSpeedSlider
-                from: 0.1
-                value: 1.5
-                to: 5
-                stepSize: 0.05
-                Layout.fillWidth: true
-                Layout.leftMargin: 16
-                Layout.rightMargin: 16
-            },
-            Label {
-                text: i18n("Acceleration curvature:") + " " + baseAccelerationSlider.value.toFixed(2)
-                Layout.leftMargin: 8
-                Layout.rightMargin: 8
-            },
-            Slider {
-                id: baseAccelerationSlider
-                from: 0.5
-                value: 1.15
-                to: 2
-                stepSize: 0.05
-                Layout.fillWidth: true
-                Layout.leftMargin: 16
-                Layout.rightMargin: 16
-            }
-        ]
+        content: []
     }
     
     // QML Window Menu Bar
