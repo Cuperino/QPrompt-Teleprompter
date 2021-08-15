@@ -482,9 +482,8 @@ Kirigami.Page {
            //}
         //}
         Kirigami.Action {
-            id: leaveFullscreenButton
-            text: i18n("Leave Fullscreen")
-            visible: root.__fullScreen
+            id: fullscreenButton
+            text: root.__fullScreen ? i18n("Leave Fullscreen") : i18n("Fullscreen")
             onTriggered: root.__fullScreen = !root.__fullScreen
         }
         ]
