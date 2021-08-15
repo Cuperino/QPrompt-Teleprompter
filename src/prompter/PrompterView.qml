@@ -39,8 +39,8 @@ Item {
     property alias find: find
     //property bool project: true
 
-    property real __baseSpeed: baseSpeedSlider.value
-    property real __curvature: baseAccelerationSlider.value
+    property real __baseSpeed: editorToolbar.baseSpeedSlider.value
+    property real __curvature: editorToolbar.baseAccelerationSlider.value
 
     anchors.fill: parent
     //layer.enabled: true

@@ -84,7 +84,9 @@ ToolBar {
     readonly property alias fontSizeSlider: fontSizeSlider
     readonly property alias fontWYSIWYGSizeSlider: fontWYSIWYGSizeSlider
     readonly property alias opacitySlider: opacitySlider
-    
+    readonly property alias baseSpeedSlider: baseSpeedSlider
+    readonly property alias baseAccelerationSlider: baseAccelerationSlider
+
     // Hide toolbar when read region is set to bottom and prompter is not in editing state.
     enabled: !(prompter.state!=="editing" && (overlay.atBottom || Kirigami.Settings.isMobile))
     height: enabled ? implicitHeight : 0
