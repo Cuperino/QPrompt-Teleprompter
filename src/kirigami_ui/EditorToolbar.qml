@@ -78,7 +78,9 @@ import QtQuick.Layouts 1.15
 
 ToolBar {
     id: toolbar
-    
+
+    property bool showAdvancedOptions: false
+
     readonly property alias fontSizeSlider: fontSizeSlider
     readonly property alias fontWYSIWYGSizeSlider: fontWYSIWYGSizeSlider
     readonly property alias opacitySlider: opacitySlider
@@ -436,6 +438,26 @@ ToolBar {
                 checked: prompter.document.alignment === Qt.AlignJustify
                 onClicked: prompter.document.alignment = Qt.AlignJustify
             }
+            ToolSeparator {
+                contentItem.visible: alignmentRow.y === advancedButtonsRow.y
+            }
+        }
+        Row {
+            id: advancedButtonsRow
+            //visible: prompter.state==="editing"
+            ToolButton {
+                id: advancedButton
+                text: "\uE846" /*uF141*/
+                contentItem: Loader { sourceComponent: textComponent }
+                font.family: iconFont.name
+                font.pointSize: 13
+                focusPolicy: Qt.TabFocus
+                checkable: true
+                checked: showAdvancedOptions
+                onClicked: {
+                   showAdvancedOptions = !showAdvancedOptions
+                }
+            }
         }
         RowLayout {
             visible: !wysiwygButton.checked && prompter.state==="editing"
@@ -521,6 +543,68 @@ ToolBar {
                 focusPolicy: Qt.TabFocus
                 onMoved: {
                     root.__opacity = value/100
+                }
+            }
+        }
+        RowLayout {
+            visible: height>0
+            height: showAdvancedOptions ? implicitHeight : 0
+            clip: true
+            Behavior on height{
+                enabled: true
+                animation: NumberAnimation {
+                    duration: Kirigami.Units.shortDuration
+                    easing.type: Easing.OutQuad
+                }
+            }
+            Label {
+                text: i18n("Base speed:") + " " + baseSpeedSlider.value.toFixed(2)
+                Layout.topMargin: 4
+                Layout.bottomMargin: 4
+                Layout.leftMargin: 8
+                Layout.rightMargin: 8
+            }
+            Slider {
+                id: baseSpeedSlider
+                from: 0.1
+                value: 1.5
+                to: 5
+                stepSize: 0.01
+                onMoved: {
+                    viewport.__baseSpeed = value;
+                    prompter.focus = true;
+                    prompter.position = prompter.__destination
+                }
+            }
+        }
+        RowLayout {
+            visible: height>0
+            height: showAdvancedOptions ? implicitHeight : 0
+            clip: true
+            Behavior on height{
+                enabled: true
+                animation: NumberAnimation {
+                    duration: Kirigami.Units.shortDuration
+                    easing.type: Easing.OutQuad
+                }
+            }
+            Label {
+                text: i18n("Acceleration curvature:") + " " + baseAccelerationSlider.value.toFixed(2)
+                Layout.topMargin: 4
+                Layout.bottomMargin: 4
+                Layout.leftMargin: 8
+                Layout.rightMargin: 8
+            }
+            Slider {
+                id: baseAccelerationSlider
+                from: 0.5
+                value: 1.15
+                to: 2
+                stepSize: 0.01
+                onMoved: {
+                    viewport.__curvature=value;
+                    prompter.focus = true;
+                    prompter.position = prompter.__destination
                 }
             }
         }
