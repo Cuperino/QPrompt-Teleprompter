@@ -49,7 +49,8 @@ Kirigami.ApplicationWindow {
     //property int prompterVisibility: Kirigami.ApplicationWindow.Maximized
     property double __opacity: 1
     property int __iDefault: 3
-    
+    property var textRenderer: [/*"windows", "winrt", */"qnx", "wasm"].indexOf(Qt.platform.os)!==-1 ? Text.QtRendering : Text.NativeRendering
+
     title: prompterPage.document.fileName + (prompterPage.document.modified?"*":"") + " - " + aboutData.displayName
     width: 1200  // Set to 1200 to fit both 1280 4:3 and 1200 height monitors. Keep at or bellow 1024 and at or above 960, for best usability with common 4:3 resolutions
     height: 728  // Keep and test at 728 so that it works well with 1366x768 screens.
@@ -197,6 +198,17 @@ Kirigami.ApplicationWindow {
                         prompterPage.telemetry_overlay.open()
                     }
                 }
+                // The following setting is commented because textRenderer changes only take effect on restart and at the time of writing changes to QPrompt's settings aren't yet persistent.
+                // Kirigami.Action {
+                //     text: i18n("Text Renderer: ") + (textRenderer==Text.NativeRendering ? i18n("Native") : i18n("Qt"))
+                //     onTriggered: {
+                //         prompterPage.telemetry_overlay.open()
+                //         if (textRenderer==Text.NativeRendering)
+                //             textRenderer = Text.QtRendering
+                //         else
+                //             textRenderer = Text.NativeRendering
+                //     }
+                // }
             },
             Kirigami.Action {
                 text: i18n("Abou&t") + " " + aboutData.displayName
