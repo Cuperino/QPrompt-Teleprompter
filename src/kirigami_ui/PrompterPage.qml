@@ -138,7 +138,7 @@ Kirigami.Page {
             Kirigami.Action {
                 id: hideDecorationsButton
                 text: hideDecorations===0 ? i18n("Frame Settings") : (hideDecorations===1 ? i18n("Auto hide frame") : i18n("Always hide frame"))
-                visible: ['android', 'ios', 'wasm', 'tvos', 'qnx', 'ipados'].indexOf(Qt.platform.os)===-1
+                visible: !fullScreenPlatform
                 tooltip: i18n("Auto hide window decorations when not editing and read region is set to top")
                 Kirigami.Action {
                     text: i18n("Normal Frame")
@@ -483,6 +483,7 @@ Kirigami.Page {
         //}
         Kirigami.Action {
             id: fullscreenButton
+            visible: !fullScreenPlatform
             text: root.__fullScreen ? i18n("Leave Fullscreen") : i18n("Fullscreen")
             onTriggered: root.__fullScreen = !root.__fullScreen
         }
