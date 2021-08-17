@@ -34,6 +34,7 @@ Kirigami.ApplicationWindow {
     id: root
     property bool __fullScreen: false
     property bool __autoFullScreen: false
+    property bool fullScreenPlatform: Kirigami.Settings.isMobile || ['android', 'ios', 'wasm', 'tvos', 'qnx', 'ipados'].indexOf(Qt.platform.os)!==-1
     //readonly property bool __translucidBackground: !Material.background.a // === 0
     readonly property bool __translucidBackground: !Kirigami.Theme.backgroundColor.a
     readonly property bool themeIsMaterial: Kirigami.Settings.style==="Material" // || Kirigami.Settings.isMobile
@@ -233,6 +234,7 @@ Kirigami.ApplicationWindow {
             }
             Button {
                 text: i18n("&Full Screen")
+                visible: mobileOS
                 flat: true
                 checkable: true
                 checked: root.__fullScreen
@@ -337,6 +339,7 @@ Kirigami.ApplicationWindow {
             
             MenuItem {
                 text: i18n("Full &screen")
+                visible: !fullScreenPlatform
                 checkable: true
                 checked: root.__fullScreen
                 onTriggered: root.__fullScreen = !root.__fullScreen
@@ -630,6 +633,7 @@ Kirigami.ApplicationWindow {
             
             Labs.MenuItem {
                 text: i18n("Full &screen")
+                visible: !fullScreenPlatform
                 checkable: true
                 checked: root.__fullScreen
                 onTriggered: root.__fullScreen = !root.__fullScreen
