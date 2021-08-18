@@ -69,7 +69,7 @@ Kirigami.ApplicationWindow {
     color: "transparent"
     // More ways to enforce transparency across systems
     //visible: true
-    flags: prompterPage.hideDecorations===2 || prompterPage.hideDecorations===1 && prompterPage.overlay.atTop && prompterPage.prompter.state!=="editing" ? Qt.FramelessWindowHint : Qt.Window
+    flags: prompterPage.hideDecorations===2 || prompterPage.hideDecorations===1 && prompterPage.overlay.atTop && prompterPage.prompter.state!=="editing" || Qt.platform.os==="osx" && __opacity!==1 ? Qt.FramelessWindowHint : Qt.Window
 
     background: Rectangle {
         id: appTheme
