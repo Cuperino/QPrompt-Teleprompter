@@ -127,7 +127,7 @@ if (Qt5QmlImportScanner_FOUND)
 endif()
 
 
-if (WIN32 OR UNIX AND NOT ANDROID)
+if (WIN32 OR UNIX)
     # install(FILES images/qprompt.svg DESTINATION ${KDE_INSTALL_FULL_ICONDIR}/hicolor/scalable/apps)
     # install(FILES images/qprompt.png DESTINATION ${KDE_INSTALL_FULL_ICONDIR}/hicolor/1024x1024/apps)
     install(FILES com.cuperino.qprompt.appdata.xml DESTINATION ${KDE_INSTALL_METAINFODIR})
