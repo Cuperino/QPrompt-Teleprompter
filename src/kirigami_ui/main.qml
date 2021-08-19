@@ -233,16 +233,6 @@ Kirigami.ApplicationWindow {
                 }
             }
             Button {
-                text: i18n("&Full Screen")
-                visible: mobileOS
-                flat: true
-                checkable: true
-                checked: root.__fullScreen
-                onClicked: {
-                    root.__fullScreen = !root.__fullScreen
-                }
-            }
-            Button {
                 id: themeSwitch
                 text: i18n("Dark &Mode")
                 visible: false
