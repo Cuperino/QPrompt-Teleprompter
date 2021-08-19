@@ -859,8 +859,11 @@ Kirigami.ApplicationWindow {
         }
     }
 
+    // Top bar background hack
     Rectangle {
-        visible: !Kirigami.Settings.isMobile && pageStack.globalToolBar.actualStyle !== Kirigami.ApplicationHeaderStyle.None
+        // Uncomment when using a version of kirigami that allows one to use the mobile layout on the desktop, which is needed to be able to hide the top menu bar.
+        //visible: !Kirigami.Settings.isMobile && pageStack.globalToolBar.actualStyle !== Kirigami.ApplicationHeaderStyle.None
+        visible: !Kirigami.Settings.isMobile
         color: appTheme.__backgroundColor
         anchors{ top:parent.top; left:parent.left; right: parent.right }
         height: 40
