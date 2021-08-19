@@ -32,9 +32,9 @@
 #include <QQuickStyle>
 #include <QIcon>
 
-#ifdef Q_OS_ANDROID
-#include "../3rdparty/kirigami/src/kirigamiplugin.h"
-#endif
+// #ifdef Q_OS_ANDROID
+// #include "../3rdparty/kirigami/src/kirigamiplugin.h"
+// #endif
 #ifdef Q_OS_IOS
 #include "../3rdparty/kirigami/src/kirigamiplugin.h"
 #endif
