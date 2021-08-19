@@ -2,9 +2,11 @@
 
 # Use this script, preferrably, in kdeorg/android-sdk Docker container. Here's how to launch:
 # docker run -ti --rm -v $HOME/apks:/output -v /path/to/host/source:/home/user/src kdeorg/android-sdk bash
-#docker run -ti --rm -v $HOME/apks:/output kdeorg/android-sdk bash
-#docker run -ti --rm -v $HOME/apks:/output -v $HOME/Development/Teleprompters/qprompt/QPrompt:/home/user/src kdeorg/android-sdk bash
-#docker run -ti --rm -v $HOME/apks:/output -v $HOME/home/javier/Development/Teleprompters/qprompt/QPrompt/src:/home/user/src kdeorg/android-sdk /opt/helpers/build-cmake
+#cp ./dist/CraftRoot/[..] $HOME/Craft[..]
+#docker run -ti --rm -v $HOME/apks:/output -v $HOME/.ssh:/home/user/.ssh -v $HOME/CraftRootAndroidARM64:/home/user/CraftRoot -v $HOME/Development/Teleprompters/qprompt/QPrompt:/home/user/src kdeorg/android-sdk bash
+#docker run -ti --rm -v $HOME/apks:/output -v $HOME/.ssh:/home/user/.ssh -v $HOME/CraftRootAndroidARM:/home/user/CraftRoot -v $HOME/Development/Teleprompters/qprompt/QPrompt:/home/user/src kdeorg/android-sdk bash
+#craft --set ignored=True icu
+#craft qprompt
 
 # Match Author's Ubuntu 20.04
 #export ADIR=/opt/android  # Matches Android installation made by Qt Creator
