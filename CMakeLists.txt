@@ -153,7 +153,7 @@ ecm_setup_version(${RELEASE_SERVICE_VERSION}
 
 add_subdirectory(src build)
 
-if (WIN32 OR UNIX AND NOT ANDROID)
+if (WIN32 OR UNIX)
     install(FILES com.cuperino.qprompt.appdata.xml DESTINATION ${KDE_INSTALL_METAINFODIR})
     install(PROGRAMS com.cuperino.qprompt.desktop DESTINATION ${KDE_INSTALL_APPDIR})
 endif()
