@@ -105,10 +105,12 @@ Item {
                     cache: !reScale
                     mirror: model.flip===2 || model.flip===4
                 }
-                cursorShape: Qt.ForbiddenCursor
+                cursorShape: projectionManager.isPreview ? Qt.ForbiddenCursor : Qt.PointingHandCursor
                 onClicked: {
                     if (projectionManager.isPreview)
                         projectionWindow.close();
+                    else
+                        projectionManager.forwardTo.toggle()
                 }
 
                 onWheel: (wheel)=> {
