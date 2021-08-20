@@ -146,7 +146,7 @@ Item {
         id: alertDialog
 
         function requestDisplays() {
-            alertDialog.text = i18n("In order to use screen projections, you must have at least one display connected and configured as an extended display on your OS.")
+            alertDialog.text = i18n("For projection previews to display, you need at least one screen set to a projection setting other than Off")
             alertDialog.detailedText = ""
 //            alertDialog.icon = StandardIcon.Information
             alertDialog.visible = true
@@ -170,13 +170,13 @@ Item {
     }
 
     function putDisplayFlip(screenName, flipSetting) {
-        if (flipSetting) {
-            if (Qt.application.screens.length===1)
-                alertDialog.requestDisplays()
-            else
-            if (screenName===screen.name)
-                alertDialog.warnSameDisplay(screenName)
-        }
+//         if (flipSetting) {
+//             if (Qt.application.screens.length===1)
+//                 alertDialog.requestDisplays()
+//             else
+//             if (screenName===screen.name)
+//                 alertDialog.warnSameDisplay(screenName)
+//         }
         // If configuration exists for element, update it.
         const configuredDisplays = displayModel.count;
         for (var j=0; j<configuredDisplays; j++)
@@ -203,18 +203,18 @@ Item {
                     break;
                 }
             // Comment the following line to debug with a single screen.
-            if (flip!==0 && Qt.application.screens[i].name!==screen.name)
-            projectionModel.append ({
-                "id": i,
-                "screen": Qt.application.screens[i],
-                "name": Qt.application.screens[i].name, // + ' ' + Qt.application.screens[i].model + ' ' + Qt.application.screens[i].manufacturer,
-                //"x": Qt.application.screens[i].virtualX,
-                //"y": Qt.application.screens[i].virtualY,
-                //"width": Qt.application.screens[i].desktopAvailableWidth,
-                //"height": Qt.application.screens[i].desktopAvailableHeight,
-                "flip": flip,//.projectionSetting,
-                "p": ""
-            });
+            if (flip!==0 /*&& Qt.application.screens[i].name!==screen.name*/)
+                projectionModel.append ({
+                    "id": i,
+                    "screen": Qt.application.screens[i],
+                    "name": Qt.application.screens[i].name, // + ' ' + Qt.application.screens[i].model + ' ' + Qt.application.screens[i].manufacturer,
+                    //"x": Qt.application.screens[i].virtualX,
+                    //"y": Qt.application.screens[i].virtualY,
+                    //"width": Qt.application.screens[i].desktopAvailableWidth,
+                    //"height": Qt.application.screens[i].desktopAvailableHeight,
+                    "flip": flip,//.projectionSetting,
+                    "p": ""
+                });
         }
         if (projectionModel.count===0 && this.isPreview) {
             alertDialog.requestDisplays();
