@@ -97,6 +97,9 @@ Item {
         enabled: false
         property double __customPlacement: 0.5
         property double __placement: __customPlacement
+        // Compute screen middle in relation to overlay's proportions
+        // It's not perfect yet but this is a decent approximation for use in full screen tablets.
+        readonly property double screenMiddle: (screen.height / overlay.height) * (((screen.height / 2) - 40 - root.y) / screen.height)
         height: 2.1 * prompter.fontSize
         y: readRegion.__placement * (overlay.height - readRegion.height)
         anchors.left: parent.left
@@ -113,7 +116,7 @@ Item {
                 name: "middle"
                 PropertyChanges {
                     target: readRegion
-                    __placement: 0.5
+                    __placement: ['android', 'ios', 'tvos', 'qnx', 'ipados'].indexOf(Qt.platform.os)===-1? 0.5 : screenMiddle
                 }
             },
             State {
