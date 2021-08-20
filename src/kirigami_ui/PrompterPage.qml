@@ -365,6 +365,26 @@ Kirigami.Page {
             }
         },
         Kirigami.Action {
+            id: loadBackgroundButton
+            text: i18n("Background")
+            Kirigami.Action {
+                id: changeBackgroundImageButton
+                text: i18n("Set Image")
+                onTriggered: prompterBackground.loadBackgroundImage()
+            }
+            Kirigami.Action {
+                id: changeBackgroundColorButton
+                text: i18n("Set Color")
+                onTriggered: prompterBackground.backgroundColorDialog.open()
+            }
+            Kirigami.Action {
+                id: clearBackgroundButton
+                text: i18n("Clear Background")
+                enabled: prompterBackground.hasBackground
+                onTriggered: prompterBackground.clearBackground()
+            }
+        },
+        Kirigami.Action {
             id: displaySettings
             visible: !Kirigami.Settings.isMobile
             text: i18n("Screens")
@@ -450,26 +470,6 @@ Kirigami.Page {
                 onTriggered: {
                     projectionManager.preview()
                 }
-            }
-        },
-        Kirigami.Action {
-            id: loadBackgroundButton
-            text: i18n("Background")
-            Kirigami.Action {
-                id: changeBackgroundImageButton
-                text: i18n("Set Image")
-                onTriggered: prompterBackground.loadBackgroundImage()
-            }
-            Kirigami.Action {
-                id: changeBackgroundColorButton
-                text: i18n("Set Color")
-                onTriggered: prompterBackground.backgroundColorDialog.open()
-            }
-            Kirigami.Action {
-                id: clearBackgroundButton
-                text: i18n("Clear Background")
-                enabled: prompterBackground.hasBackground
-                onTriggered: prompterBackground.clearBackground()
             }
         },
         //Kirigami.Action {
