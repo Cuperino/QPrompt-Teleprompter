@@ -30,7 +30,7 @@ Item {
     id: projectionManager
     readonly property alias model: projectionModel
 
-    property int defaultDisplayMode: 1
+    property int defaultDisplayMode: 0
     property real backgroundOpacity: 1
     readonly property real internalBackgroundOpacity: backgroundOpacity // /2+0.5
     property color backgroundColor: "#000"
@@ -65,15 +65,6 @@ Item {
                     anchors.right: parent.right
                     anchors.left: parent.left
                     anchors.bottom: img.top
-                    Keys.onEscapePressed: {
-                        console.log("1escapeItem is handling escape");
-                        // event.accepted is set to true by default for the specific key handlers
-                    }
-                }
-                Rectangle {
-                    anchors.fill: topFill
-                    color: "black"
-                    opacity: 0.6
                 }
                 Rectangle {
                     id: bottomFill
@@ -83,27 +74,68 @@ Item {
                     anchors.right: parent.right
                     anchors.left: parent.left
                     anchors.bottom: parent.bottom
-                    Keys.onEscapePressed: {
-                        console.log("3escapeItem is handling escape");
-                        // event.accepted is set to true by default for the specific key handlers
-                    }
+                }
+                Rectangle {
+                    id: rightFill
+                    color: backgroundColor
+                    opacity: internalBackgroundOpacity
+                    anchors.top: topFill.bottom
+                    anchors.right: parent.right
+                    anchors.bottom: bottomFill.top
+                    anchors.left: img.left
+                }
+                Rectangle {
+                    id: leftFill
+                    color: backgroundColor
+                    opacity: internalBackgroundOpacity
+                    anchors.top: topFill.bottom
+                    anchors.right: img.right
+                    anchors.bottom: bottomFill.top
+                    anchors.left: parent.left
+                }
+                // Additional opaque rectangles over but not inside of the surrounding rectangles prevents borders from becoming fully transparent when opacity is set to 0.
+                Rectangle {
+                    anchors.fill: topFill
+                    color: "black"
+                    opacity: 0.6
                 }
                 Rectangle {
                     anchors.fill: bottomFill
                     color: "black"
                     opacity: 0.6
                 }
+                Rectangle {
+                    anchors.fill: rightFill
+                    color: "black"
+                    opacity: 0.6
+                }
+                Rectangle {
+                    anchors.fill: leftFill
+                    color: "black"
+                    opacity: 0.6
+                }
+                // The actual projection
                 Image {
                     id: img
                     source: model.p
-                    anchors.verticalCenter: parent.verticalCenter
-                    anchors.left: parent.left
-                    anchors.right: parent.right
-                    height: (width/sourceSize.width) * sourceSize.height
-                    fillMode: reScale ? Image.PreserveAspectFit : Image.Pad
+                    // Keep loading asynchronous. Improve responsiveness of main thread.
                     asynchronous: true
+                    // Cache image if it's not being re-scaled so it could be used on n projection without much additional cost.
                     cache: !reScale
+                    // Mirror Horizontally: Save time by mirroring image on copy instead of flipping the result
                     mirror: model.flip===2 || model.flip===4
+                    // Mirror Vertically: do a transformation for the vertical flip. There's no trick to get a performance gain here.
+                    transform: Scale {
+                        origin.y: img.paintedHeight/2
+                        yScale: model.flip===3 || model.flip===4 ? -1 : 1
+                    }
+                    // Keep image vertically centered relative to the window's MouseArea, which fills the window.
+                    anchors.horizontalCenter: parent.horizontalCenter
+                    anchors.verticalCenter: parent.verticalCenter
+                    // Set width and height to source size depending on whether or not the image will be re-scaled.
+                    fillMode: reScale ? Image.PreserveAspectFit : Image.Pad
+                    width: !reScale ? sourceSize.width : parent.width
+                    height: !reScale ? sourceSize.height : (parent.width/sourceSize.width) * sourceSize.height
                 }
                 cursorShape: projectionManager.isPreview ? Qt.ForbiddenCursor : Qt.PointingHandCursor
                 onClicked: {
