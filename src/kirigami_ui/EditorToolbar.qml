@@ -348,7 +348,7 @@ ToolBar {
             }
             ToolButton {
                 id: textColorButton
-                text: "\uF1FC"
+                text: "\uE83F"
                 contentItem: Text {
                     text: parent.text
                     font: parent.font
@@ -376,6 +376,39 @@ ToolBar {
                         id: aFontMetrics
                         font: textColorButton.font
                         text: textColorButton.text
+                    }
+                }
+            }
+            ToolButton {
+                id: textBackgroundButton
+                text: "\uF1FC"
+                contentItem: Text {
+                    text: parent.text
+                    font: parent.font
+                    Kirigami.Theme.colorSet: Kirigami.Theme.Button
+                    color: parent.down ? Kirigami.Theme.positiveTextColor : (parent.checked ? Kirigami.Theme.focusColor : Kirigami.Theme.textColor)
+                    horizontalAlignment: Text.AlignHCenter
+                    verticalAlignment: Text.AlignVCenter
+                    elide: Text.ElideRight
+                }
+                font.family: iconFont.name
+                font.pointSize: 13
+                focusPolicy: Qt.TabFocus
+                onClicked: highlightDialog.open()
+
+                Rectangle {
+                    width: bFontMetrics.width + 3
+                    height: 2
+                    color: prompter.document.textBackground
+                    parent: textBackgroundButton.contentItem
+                    anchors.horizontalCenter: parent.horizontalCenter
+                    anchors.baseline: parent.baseline
+                    anchors.baselineOffset: 6
+
+                    TextMetrics {
+                        id: bFontMetrics
+                        font: textBackgroundButton.font
+                        text: textBackgroundButton.text
                     }
                 }
             }

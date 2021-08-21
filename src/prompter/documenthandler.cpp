@@ -211,6 +211,23 @@ void DocumentHandler::setTextColor(const QColor &color)
     emit textColorChanged();
 }
 
+QColor DocumentHandler::textBackground() const
+{
+    QTextCursor cursor = textCursor();
+    if (cursor.isNull())
+        return QColor(Qt::transparent);
+    QTextCharFormat format = cursor.charFormat();
+    return format.background().color();
+}
+
+void DocumentHandler::setTextBackground(const QColor &color)
+{
+    QTextCharFormat format;
+    format.setBackground(QBrush(color));
+    mergeFormatOnWordOrSelection(format);
+    emit textBackgroundChanged();
+}
+
 Qt::Alignment DocumentHandler::alignment() const
 {
     QTextCursor cursor = textCursor();
@@ -541,6 +558,7 @@ void DocumentHandler::reset()
     emit markerChanged();
     emit fontSizeChanged();
     emit textColorChanged();
+    emit textBackgroundChanged();
 }
 
 QTextCursor DocumentHandler::textCursor() const

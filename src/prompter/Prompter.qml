@@ -87,6 +87,7 @@ Flickable {
     property alias editor: editor
     property alias document: document
     property alias textColor: document.textColor
+    property alias textBackground: document.textBackground
     property alias mouse: mouse
     // Create position alias to make code more readable
     property alias position: prompter.contentY
@@ -640,6 +641,7 @@ Flickable {
         selectionStart: editor.selectionStart
         selectionEnd: editor.selectionEnd
         textColor: "#FFF"
+        textBackground: "#000"
         Component.onCompleted: {
             if (prompter.performFileOperations) {
                 if (Qt.application.arguments.length === 2) {
@@ -774,6 +776,11 @@ Flickable {
         MenuItem {
             text: i18n("Co&lor...")
             onTriggered: colorDialog.open()
+        }
+
+        MenuItem {
+            text: i18n("Hi&ghlight...")
+            onTriggered: highlightDialog.open()
         }
     }
 

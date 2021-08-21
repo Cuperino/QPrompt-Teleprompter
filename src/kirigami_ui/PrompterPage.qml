@@ -37,6 +37,7 @@ Kirigami.Page {
 
     property alias fontDialog: fontDialog
     property alias colorDialog: colorDialog
+    property alias highlightDialog: highlightDialog
     property alias viewport: viewport
     property alias prompter: viewport.prompter
     property alias editor: viewport.editor
@@ -513,6 +514,11 @@ Kirigami.Page {
         currentColor: Kirigami.Theme.textColor
     }
     
+    ColorDialog {
+        id: highlightDialog
+        currentColor: Kirigami.Theme.backgroundColor
+    }
+
 //     ShaderEffectSource {
 //         id: layerOfLayer
 //         width: parent.width; height: parent.height

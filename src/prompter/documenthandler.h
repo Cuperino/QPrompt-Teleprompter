@@ -95,6 +95,7 @@ class DocumentHandler : public QObject
     Q_PROPERTY(int selectionEnd READ selectionEnd WRITE setSelectionEnd NOTIFY selectionEndChanged)
     
     Q_PROPERTY(QColor textColor READ textColor WRITE setTextColor NOTIFY textColorChanged)
+    Q_PROPERTY(QColor textBackground READ textBackground WRITE setTextBackground NOTIFY textBackgroundChanged)
     Q_PROPERTY(QString fontFamily READ fontFamily WRITE setFontFamily NOTIFY fontFamilyChanged)
     Q_PROPERTY(Qt::Alignment alignment READ alignment WRITE setAlignment NOTIFY alignmentChanged)
     
@@ -135,7 +136,10 @@ public:
     
     QColor textColor() const;
     void setTextColor(const QColor &color);
-    
+
+    QColor textBackground() const;
+    void setTextBackground(const QColor &color);
+
     Qt::Alignment alignment() const;
     void setAlignment(Qt::Alignment alignment);
     
@@ -197,6 +201,7 @@ Q_SIGNALS:
     
     void fontFamilyChanged();
     void textColorChanged();
+    void textBackgroundChanged();
     void alignmentChanged();
     
     void boldChanged();
