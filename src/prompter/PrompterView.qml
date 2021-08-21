@@ -82,6 +82,7 @@ Item {
         anchors.fill: parent
         z: 1
         textColor: colorDialog.color
+        textBackground: highlightDialog.color
         fontSize:  (prompter.state==="editing" && !prompter.__wysiwyg) ? (Math.pow(editorToolbar.fontSizeSlider.value/185,4)*185) : (Math.pow(editorToolbar.fontWYSIWYGSizeSlider.value/185,4)*185)*prompter.__vw/10
         //Math.pow((fontSizeSlider.value*prompter.__vw),3)
     }
