@@ -594,6 +594,7 @@ ToolBar {
             }
             Label {
                 text: i18n("Base speed:") + " " + baseSpeedSlider.value.toFixed(2)
+                color: Kirigami.Theme.textColor
                 Layout.topMargin: 4
                 Layout.bottomMargin: 4
                 Layout.leftMargin: 8
@@ -605,6 +606,7 @@ ToolBar {
                 value: 1.5
                 to: 5
                 stepSize: 0.01
+                focusPolicy: Qt.TabFocus
                 onMoved: {
                     viewport.__baseSpeed = value;
                     prompter.focus = true;
@@ -625,6 +627,7 @@ ToolBar {
             }
             Label {
                 text: i18n("Acceleration curvature:") + " " + baseAccelerationSlider.value.toFixed(2)
+                color: Kirigami.Theme.textColor
                 Layout.topMargin: 4
                 Layout.bottomMargin: 4
                 Layout.leftMargin: 8
@@ -636,6 +639,7 @@ ToolBar {
                 value: 1.15
                 to: 2
                 stepSize: 0.01
+                focusPolicy: Qt.TabFocus
                 onMoved: {
                     viewport.__curvature=value;
                     prompter.focus = true;
