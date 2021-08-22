@@ -475,7 +475,7 @@ Flickable {
                 font.hintingPreference: Font.PreferFullHinting
                 font.kerning: true
                 font.preferShaping: true
-                renderType: textRenderer
+                //renderType: textRenderer
 
                 //Different styles have different padding and background
                 //decorations, but since this editor must resemble the
