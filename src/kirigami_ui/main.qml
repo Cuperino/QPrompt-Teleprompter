@@ -51,7 +51,7 @@ Kirigami.ApplicationWindow {
     //property int prompterVisibility: Kirigami.ApplicationWindow.Maximized
     property double __opacity: 1
     property int __iDefault: 3
-    property var textRenderer: [/*"windows", "winrt", */"qnx", "wasm"].indexOf(Qt.platform.os)!==-1 ? Text.QtRendering : Text.NativeRendering
+    property var textRenderer: ["windows", "winrt", "qnx", "wasm"].indexOf(Qt.platform.os)===-1 ? Text.NativeRendering : Text.QtRendering
 
     title: prompterPage.document.fileName + (prompterPage.document.modified?"*":"") + " - " + aboutData.displayName
     width: 1200  // Set to 1200 to fit both 1280 4:3 and 1200 height monitors. Keep at or bellow 1024 and at or above 960, for best usability with common 4:3 resolutions
