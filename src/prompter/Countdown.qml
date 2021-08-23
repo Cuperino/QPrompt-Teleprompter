@@ -93,7 +93,7 @@ Item {
             const ctx = getContext("2d");
             ctx.reset();
             ctx.fillStyle = "rgba(127, 127, 127, 0.3)";
-            ctx.lineWidth = 6;
+            ctx.lineWidth = 7 * (prompter.fontSize / 81);
             // Background Animation
             ctx.beginPath();
             ctx.moveTo(centreX, centreY);
