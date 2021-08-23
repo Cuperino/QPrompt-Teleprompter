@@ -249,10 +249,12 @@ Flickable {
             case "editing":
                 //showPassiveNotification(i18n("Editing"), 850*countdown.__iterations)
                 projectionManager.close();
+                editor.focus = true
                 break;
             case "standby":
             case "countdown":
             case "prompting":
+                prompter.focus = true
                 if (projectionManager.model.count===0)
                     projectionManager.project();
                 //showPassiveNotification(i18n("Prompt started"), 850*countdown.__iterations)
@@ -849,7 +851,17 @@ Flickable {
             //    document.undo();
             //else if (event.matches(StandardKey.Redo))
             //    document.redo();
-        
+        // If state is not prompting nor editing
+        else if (prompter.state !== "editing")
+            switch (event.key) {
+                case keys.pause:
+                case Qt.Key_SysReq:
+                case Qt.Key_Play:
+                case Qt.Key_Pause:
+                    prompter.toggle();
+                    return;
+            }
+
         // Keys presses that apply the same to all states
         switch (event.key) {
             case keys.toggle:
