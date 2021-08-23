@@ -592,6 +592,17 @@ ToolBar {
                     easing.type: Easing.OutQuad
                 }
             }
+            ToolButton {
+                id: __iDefaultButton
+                text: "\uE858"
+                contentItem: Loader { sourceComponent: textComponent }
+                font.family: iconFont.name
+                font.pointSize: 13
+                focusPolicy: Qt.TabFocus
+                checkable: true
+                checked: stepsConfiguration.open
+                onClicked: stepsConfiguration.open()
+            }
             Label {
                 text: i18n("Base speed:") + " " + baseSpeedSlider.value.toFixed(2)
                 color: Kirigami.Theme.textColor
@@ -644,6 +655,42 @@ ToolBar {
                     viewport.__curvature=value;
                     prompter.focus = true;
                     prompter.position = prompter.__destination
+                }
+            }
+        }
+    }
+    Kirigami.OverlaySheet {
+        id: stepsConfiguration
+        onSheetOpenChanged: prompterPage.actions.main.checked = sheetOpen
+
+        background: Rectangle {
+            //color: Kirigami.Theme.activeBackgroundColor
+            color: appTheme.__backgroundColor
+            anchors.fill: parent
+        }
+        header: Kirigami.Heading {
+            text: i18n("Steps to use when starting to prompt")
+            level: 1
+        }
+
+        RowLayout {
+            width: parent.width
+
+            ColumnLayout {
+                Label {
+                    text: i18n("Steps")
+                }
+                SpinBox {
+                    Layout.fillWidth: true
+                    Layout.leftMargin: Kirigami.Units.smallSpacing
+                    Layout.rightMargin: Kirigami.Units.smallSpacing
+                    value: __iDefault
+                    from: 1
+                    to: velocityControlSlider.to
+                    onValueModified: {
+                        focus: true
+                        __iDefault = value
+                    }
                 }
             }
         }
