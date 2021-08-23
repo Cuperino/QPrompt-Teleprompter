@@ -536,7 +536,7 @@ ToolBar {
         RowLayout {
             enabled: prompter.state==="prompting"
             Label {
-                text: i18n("Velocity:") + (prompter.__i<0 ? '  -' + (prompter.__i/100).toFixed(2).slice(3) : ' +' + (prompter.__i/100).toFixed(2).slice(2))
+                text: i18n("Steps:") + (prompter.__i<0 ? '  -' + (prompter.__i/100).toFixed(2).slice(3) : ' +' + (prompter.__i/100).toFixed(2).slice(2))
                 color: Kirigami.Theme.textColor
                 Layout.topMargin: 4
                 Layout.bottomMargin: 4
