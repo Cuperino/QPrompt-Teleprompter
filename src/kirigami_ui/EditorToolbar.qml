@@ -616,9 +616,9 @@ ToolBar {
             Slider {
                 id: baseSpeedSlider
                 from: 0.1
-                value: 1.5
+                value: 1
                 to: 5
-                stepSize: 0.01
+                stepSize: 0.05
                 focusPolicy: Qt.TabFocus
                 onMoved: {
                     viewport.__baseSpeed = value;
@@ -651,7 +651,7 @@ ToolBar {
                 from: 0.5
                 value: 1.15
                 to: 2
-                stepSize: 0.01
+                stepSize: 0.05
                 focusPolicy: Qt.TabFocus
                 onMoved: {
                     viewport.__curvature=value;
