@@ -432,7 +432,10 @@ Flickable {
                 
                 selectByMouse: true
                 persistentSelection: true
-                
+                selectionColor: "#333d9ef3"
+                selectedTextColor: selectionColor
+                //selectionColor: document.textBackground
+                //selectedTextColor: document.textColor
                 leftPadding: 14
                 rightPadding: 14
                 topPadding: 0
