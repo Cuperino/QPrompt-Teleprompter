@@ -82,6 +82,7 @@ ToolBar {
     property bool showAdvancedOptions: false
 
     readonly property alias fontSizeSlider: fontSizeSlider
+    readonly property alias letterSpacingSlider: letterSpacingSlider
     readonly property alias fontWYSIWYGSizeSlider: fontWYSIWYGSizeSlider
     readonly property alias opacitySlider: opacitySlider
     readonly property alias baseSpeedSlider: baseSpeedSlider
@@ -656,6 +657,34 @@ ToolBar {
                     prompter.focus = true;
                     prompter.position = prompter.__destination
                 }
+            }
+        }
+        RowLayout {
+            visible: height>0
+            height: showAdvancedOptions ? implicitHeight : 0
+            clip: true
+            Behavior on height{
+                enabled: true
+                animation: NumberAnimation {
+                    duration: Kirigami.Units.shortDuration
+                    easing.type: Easing.OutQuad
+                }
+            }
+            Label {
+                text: i18n("Letter spacing:") + " " + (letterSpacingSlider.value<0 ? '  -' + (letterSpacingSlider.value/100).toFixed(2).slice(3) : ' +' + (letterSpacingSlider.value/100).toFixed(2).slice(2))
+                color: Kirigami.Theme.textColor
+                Layout.topMargin: 4
+                Layout.bottomMargin: 4
+                Layout.leftMargin: 8
+                Layout.rightMargin: 8
+            }
+            Slider {
+                id: letterSpacingSlider
+                from: -12
+                value: 0
+                to: 12
+                stepSize: 1
+                focusPolicy: Qt.TabFocus
             }
         }
     }

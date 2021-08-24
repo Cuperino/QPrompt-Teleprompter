@@ -99,6 +99,7 @@ Flickable {
     property bool __noScroll: root.__noScroll
     property bool __wysiwyg: true
     property alias fontSize: editor.font.pixelSize
+    property alias letterSpacing: editor.font.letterSpacing
     property int __i: __iDefault
     property int __iBackup: 0
     property bool __play: true
