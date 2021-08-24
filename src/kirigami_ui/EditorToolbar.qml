@@ -515,7 +515,7 @@ ToolBar {
         }
         RowLayout {
             visible: wysiwygButton.checked || prompter.state!=="editing"
-            enabled: !(prompter.state==="countdown" || prompter.state==="prompting")
+            // enabled: !(prompter.state==="countdown" || prompter.state==="prompting")
             Label {
                 text: i18n("Font size:") /*+ i18n("Font size for prompter:")*/ + " " + (prompter.fontSize/1000).toFixed(3).slice(2) + " (" + (fontWYSIWYGSizeSlider.value/1000).toFixed(3).slice(2) + "%)"
                 color: Kirigami.Theme.textColor
