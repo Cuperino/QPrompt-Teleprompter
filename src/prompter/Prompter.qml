@@ -100,6 +100,7 @@ Flickable {
     property bool __wysiwyg: true
     property alias fontSize: editor.font.pixelSize
     property alias letterSpacing: editor.font.letterSpacing
+    property alias wordSpacing: editor.font.wordSpacing
     property int __i: __iDefault
     property int __iBackup: 0
     property bool __play: true
@@ -159,7 +160,7 @@ Flickable {
     // Flips
     property bool __flipX: false
     property bool __flipY: false
-    readonly property int __speedLimit: __vw * 10000 // 2*width
+    readonly property int __speedLimit: __evw * 10000 // 2*width
     readonly property Scale __flips: Flip{}
     // Clipping improves performance on large files and font sizes.
     // It also provides a workaround to the lack of background in the global toolbar when using transparent backgrounds in Material theme.

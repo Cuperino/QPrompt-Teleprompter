@@ -83,6 +83,7 @@ ToolBar {
 
     readonly property alias fontSizeSlider: fontSizeSlider
     readonly property alias letterSpacingSlider: letterSpacingSlider
+    readonly property alias wordSpacingSlider: wordSpacingSlider
     readonly property alias fontWYSIWYGSizeSlider: fontWYSIWYGSizeSlider
     readonly property alias opacitySlider: opacitySlider
     readonly property alias baseSpeedSlider: baseSpeedSlider
@@ -683,6 +684,34 @@ ToolBar {
                 from: -12
                 value: 0
                 to: 12
+                stepSize: 1
+                focusPolicy: Qt.TabFocus
+            }
+        }
+        RowLayout {
+            visible: height>0
+            height: showAdvancedOptions ? implicitHeight : 0
+            clip: true
+            Behavior on height{
+                enabled: true
+                animation: NumberAnimation {
+                    duration: Kirigami.Units.shortDuration
+                    easing.type: Easing.OutQuad
+                }
+            }
+            Label {
+                text: i18n("Word spacing:") + " " + (wordSpacingSlider.value<0 ? '  -' + (wordSpacingSlider.value/100).toFixed(2).slice(3) : ' +' + (wordSpacingSlider.value/100).toFixed(2).slice(2))
+                color: Kirigami.Theme.textColor
+                Layout.topMargin: 4
+                Layout.bottomMargin: 4
+                Layout.leftMargin: 8
+                Layout.rightMargin: 8
+            }
+            Slider {
+                id: wordSpacingSlider
+                from: -12
+                value: 0
+                to: 24
                 stepSize: 1
                 focusPolicy: Qt.TabFocus
             }
