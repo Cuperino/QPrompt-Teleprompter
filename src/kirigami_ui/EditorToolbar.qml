@@ -600,7 +600,7 @@ ToolBar {
                 font.pointSize: 13
                 focusPolicy: Qt.TabFocus
                 checkable: true
-                checked: stepsConfiguration.open
+                checked: stepsConfiguration.sheetOpen
                 onClicked: stepsConfiguration.open()
             }
             Label {
