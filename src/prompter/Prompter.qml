@@ -115,10 +115,11 @@ Flickable {
     readonly property int __jitterMargin: (__i+__baseSpeed*100+__curvature*100)%2
     readonly property bool __possitiveDirection: __i>=0
     readonly property real __vw: width / 100
+    readonly property real __evw: editor.width / 100
     readonly property real __speed: __baseSpeed * Math.pow(Math.abs(__i), __curvature)
     readonly property real __velocity: (__possitiveDirection ? 1 : -1) * __speed
-    readonly property real __timeToEnd: (editor.height+fontSize-position-topMargin+__jitterMargin) / (__speed * __vw)
-    readonly property real __timeToArival: __i ? ((__possitiveDirection ? __timeToEnd : (position+topMargin-__jitterMargin) / (__speed * __vw))) * 1000 /*<< 7*/ : 0
+    readonly property real __timeToEnd: (editor.height+fontSize-position-topMargin+__jitterMargin) / (__speed * fontSize/2 * ((__vw-__evw/2) / __vw))
+    readonly property real __timeToArival: __i ? ((__possitiveDirection ? __timeToEnd : (position+topMargin-__jitterMargin) / (__speed * fontSize/2 * ((__vw-__evw/2) / __vw)))) * 2000 /*<< 7*/ : 0
     property real timeToArival: __timeToArival
     readonly property int __destination: __i  ? (__possitiveDirection ? editor.height+fontSize-__jitterMargin : __jitterMargin)-topMargin : position
 

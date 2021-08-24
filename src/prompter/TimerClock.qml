@@ -159,7 +159,7 @@ Item {
     function updateETAText() {
         let timeToEnd = prompter.__timeToEnd;
         if (!isFinite(timeToEnd) || prompter.__i<0) {
-            timeToEnd = (Math.floor(editor.height+prompter.fontSize-prompter.topMargin-1)-prompter.position) / (prompter.__baseSpeed * Math.pow(Math.abs(prompter.__iDefault), prompter.__curvature) * prompter.__vw);
+            timeToEnd = (Math.floor(editor.height+prompter.fontSize-prompter.topMargin-1)-prompter.position) / (prompter.__baseSpeed * Math.pow(Math.abs(prompter.__iDefault), prompter.__curvature) * prompter.fontSize/2 * ((__vw-__evw/2) / __vw));
             if (prompter.__atEnd)
                 timeToEnd = 0
         }
