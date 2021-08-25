@@ -128,6 +128,7 @@ void DocumentHandler::setDocument(QQuickTextDocument *document)
         m_document->textDocument()->disconnect(this);
     m_document = document;
     if (m_document) {
+        m_document->textDocument()->setDefaultStyleSheet("body{margin:0;padding:0;}p,html,body,div,span,blockquote,address,cite,code,pre,h1,h2,h3,h4,h5,h6,li,ol,ul,table,tbody,td,th,thead,tr,dl,dt,big,small,tt,font{white-space:pre-wrap;font-size:medium;text-align:center;line-height:100%;margin:0;padding:0;border-width:2px;border-collapse:collapse;border-style:solid;border-color:\"#404040\";font-weight:normal;}table,tbody,thead{width:100%;}table,tbody,thead,td,th,tr{border:1pt;align:center;valign:top;}img{margin:5pt;width:50vw;}h1,h2,h3,h4,h5,h6,big{font-size:medium;font-weight:normal;}");
         connect(m_document->textDocument(), &QTextDocument::modificationChanged, this, &DocumentHandler::modifiedChanged);
         connect(m_document->textDocument(), &QTextDocument::contentsChanged, this, &DocumentHandler::setMarkersListDirty);
     }
