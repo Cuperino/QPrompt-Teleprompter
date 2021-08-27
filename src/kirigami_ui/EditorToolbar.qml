@@ -464,17 +464,18 @@ ToolBar {
                             prompter.document.alignment = Qt.AlignLeft
                 }
             }
-            ToolButton {
-                id: alignJustifyButton
-                text: "\uE80B"
-                contentItem: Loader { sourceComponent: textComponent }
-                font.family: iconFont.name
-                font.pointSize: 13
-                focusPolicy: Qt.TabFocus
-                checkable: true
-                checked: prompter.document.alignment === Qt.AlignJustify
-                onClicked: prompter.document.alignment = Qt.AlignJustify
-            }
+            // Justify is proven to make text harder to read for some readers. So I'm commenting out all text justification options from the program. I'm not removing them, only commenting out in case someone needs to re-enable. This article links to various sources that validate my decision: https://kaiweber.wordpress.com/2010/05/31/ragged-right-or-justified-alignment/ - Javier
+            //ToolButton {
+            //    id: alignJustifyButton
+            //    text: "\uE80B"
+            //    contentItem: Loader { sourceComponent: textComponent }
+            //    font.family: iconFont.name
+            //    font.pointSize: 13
+            //    focusPolicy: Qt.TabFocus
+            //    checkable: true
+            //    checked: prompter.document.alignment === Qt.AlignJustify
+            //    onClicked: prompter.document.alignment = Qt.AlignJustify
+            //}
             ToolSeparator {
                 contentItem.visible: alignmentRow.y === advancedButtonsRow.y
             }
