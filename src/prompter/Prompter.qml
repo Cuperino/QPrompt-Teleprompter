@@ -627,15 +627,44 @@ Flickable {
                                 prompter.Keys.onPressed(event)
                                 return
                         } 
-                    switch (event.key) {
-                        case Qt.Key_V:
-                            prompter.Keys.onPressed(event)
-                            return
-                        case Qt.Key_Tab:
-                            //event.preventDefault = true
-                            //event.accepted = false
-                            return
-                    }
+                    if (event.modifiers & Qt.ControlModifier)
+                        switch (event.key) {
+                            case Qt.Key_B:
+                                document.bold = !document.bold
+                                return
+                            case Qt.Key_U:
+                                document.underline = !document.underline
+                                return
+                            case Qt.Key_I:
+                                document.italic = !document.italic
+                                return
+                            case Qt.Key_T:
+                                document.strike = !document.strike
+                                return
+                            case Qt.Key_L:
+                                document.alignment = Qt.AlignLeft
+                                return
+                            case Qt.Key_R:
+                                document.alignment = Qt.AlignRight
+                                return
+                            case Qt.Key_E:
+                                document.alignment = Qt.AlignCenter
+                                return
+                            // Justify is proven to make text harder to read for some readers. So I'm commenting out all text justification options from the program. I'm not removing them, only commenting out in case someone needs to re-enable. This article links to various sources that validate my decision: https://kaiweber.wordpress.com/2010/05/31/ragged-right-or-justified-alignment/ - Javier
+                            //case Qt.Key_J:
+                            //    document.alignment = Qt.AlignJustify
+                            //    return
+                        }
+                    else
+                        switch (event.key) {
+                            case Qt.Key_V:
+                                prompter.Keys.onPressed(event)
+                                return
+                            case Qt.Key_Tab:
+                                //event.preventDefault = true
+                                //event.accepted = false
+                                return
+                        }
                 }
             }
         }
