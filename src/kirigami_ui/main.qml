@@ -47,7 +47,7 @@ Kirigami.ApplicationWindow {
     property bool __noScroll: false
     property bool __telemetry: true
     property bool italic
-    
+
     //property int prompterVisibility: Kirigami.ApplicationWindow.Maximized
     property double __opacity: 1
     property int __iDefault: 3
@@ -480,12 +480,13 @@ Kirigami.ApplicationWindow {
                         prompterPage.document.alignment = Qt.AlignLeft
                 }
             }
-            MenuItem {
-                text: i18n("&Justify")
-                checkable: true
-                checked: prompterPage.document.alignment === Qt.AlignJustify
-                onTriggered: prompterPage.document.alignment = Qt.AlignJustify
-            }
+            // Justify is proven to make text harder to read for some readers. So I'm commenting out all text justification options from the program. I'm not removing them, only commenting out in case someone needs to re-enable. This article links to various sources that validate my decision: https://kaiweber.wordpress.com/2010/05/31/ragged-right-or-justified-alignment/ - Javier
+            //MenuItem {
+            //    text: i18n("&Justify")
+            //    checkable: true
+            //    checked: prompterPage.document.alignment === Qt.AlignJustify
+            //    onTriggered: prompterPage.document.alignment = Qt.AlignJustify
+            //}
             MenuSeparator { }
             MenuItem {
                 text: i18n("C&haracter")
@@ -774,12 +775,13 @@ Kirigami.ApplicationWindow {
                         prompterPage.document.alignment = Qt.AlignLeft
                 }
             }
-            Labs.MenuItem {
-                text: i18n("&Justify")
-                checkable: true
-                checked: prompterPage.document.alignment === Qt.AlignJustify
-                onTriggered: prompterPage.document.alignment = Qt.AlignJustify
-            }
+            // Justify is proven to make text harder to read for some readers. So I'm commenting out all text justification options from the program. I'm not removing them, only commenting out in case someone needs to re-enable. This article links to various sources that validate my decision: https://kaiweber.wordpress.com/2010/05/31/ragged-right-or-justified-alignment/ - Javier
+            //Labs.MenuItem {
+            //    text: i18n("&Justify")
+            //    checkable: true
+            //    checked: prompterPage.document.alignment === Qt.AlignJustify
+            //    onTriggered: prompterPage.document.alignment = Qt.AlignJustify
+            //}
             Labs.MenuSeparator { }
             Labs.MenuItem {
                 text: i18n("C&haracter")
