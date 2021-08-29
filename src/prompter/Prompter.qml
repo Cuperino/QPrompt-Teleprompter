@@ -442,7 +442,7 @@ Flickable {
                 rightPadding: 14
                 topPadding: 0
                 bottomPadding: 0
-                
+
                 background: Item {}
                 
                 // Start with the editor in focus
@@ -517,11 +517,26 @@ Flickable {
                     MouseArea {
                         anchors.fill: parent
                         cursorShape: Qt.PointingHandCursor
-                        onClicked: showPassiveNotification(i18n("Double tap to go back to the starting position"))
+                        property int c: 0
+                        onClicked: {
+                            if (!root.__translucidBackground)
+                                showPassiveNotification("Double tap to go back to the start");
+                        }
                         onDoubleClicked: {
-                            // Run hidePassiveNotification second to avoid Kirigami bug from 5.83.0 that prevents the method from completing execution.
                             reset.toStart()
-                            hidePassiveNotification()
+                            if (!root.__translucidBackground) {
+                                // Run hidePassiveNotification second to avoid Kirigami bug from 5.83.0 that prevents the method from completing execution.
+                                //hidePassiveNotification()
+                                // Scientist EE
+                                let goToStartNotification = "";
+                                switch (c++%3) {
+                                    case 0: goToStartNotification = "Oh, let's go"; break;
+                                    case 1: goToStartNotification = "Oh, take me"; break;
+                                    case 2: goToStartNotification = "I'm going"; c=0; break;
+                                }
+                                goToStartNotification += " " + i18n("back to the start");
+                                showPassiveNotification(goToStartNotification);
+                            }
                         }
                     }
                 }
