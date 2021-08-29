@@ -168,15 +168,17 @@ public:
     bool modified() const;
     void setModified(bool m);
     
+
     bool marker() const;
     void setMarker(bool marker);
     bool markersListDirty() const;
-    
+
 //     MarkersModel *markers() const;
     Q_INVOKABLE MarkersModel *markers() const;
     Q_INVOKABLE int previousMarker(int position);
     Q_INVOKABLE int nextMarker(int position);
-    
+    Q_INVOKABLE void setLineHeight(int lineHeight);
+
     Q_INVOKABLE void paste(bool withoutFormating);
     Q_INVOKABLE void paste();
     

@@ -721,10 +721,21 @@ QPoint DocumentHandler::search(const QString &subString, const bool next, const 
     return QPoint(this->selectionStart(), this->selectionEnd());
 }
 
+// Line Height
+void DocumentHandler::setLineHeight(int lineHeight)
+{
+    QTextCursor cursor = textCursor();
+    if (cursor.isNull())
+        return;
+    cursor.select(QTextCursor::Document);
+    QTextBlockFormat modifier = QTextBlockFormat();
+    modifier.setLineHeight(lineHeight, QTextBlockFormat::ProportionalHeight);
+    cursor.mergeBlockFormat(modifier);
+}
+
 // Markers (Anchors)
 
 void DocumentHandler::parse() {
-    // qDebug() << "parse";
 
     struct LINE {
         QRectF rect;

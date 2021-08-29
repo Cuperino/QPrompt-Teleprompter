@@ -433,8 +433,8 @@ ToolBar {
                 onClicked: {
                     if (Qt.application.layoutDirection===Qt.LeftToRight)
                         prompter.document.alignment = Qt.AlignLeft
-                        else
-                            prompter.document.alignment = Qt.AlignRight
+                    else
+                        prompter.document.alignment = Qt.AlignRight
                 }
             }
             ToolButton {
@@ -659,6 +659,35 @@ ToolBar {
                     prompter.focus = true;
                     prompter.position = prompter.__destination
                 }
+            }
+        }
+        RowLayout {
+            visible: height>0
+            height: showAdvancedOptions ? implicitHeight : 0
+            clip: true
+            Behavior on height{
+                enabled: true
+                animation: NumberAnimation {
+                    duration: Kirigami.Units.shortDuration
+                    easing.type: Easing.OutQuad
+                }
+            }
+            Label {
+                text: i18n("Line height:") + " " + (lineHeightSlider.value/1000).toFixed(3).slice(2) + "%"
+                color: Kirigami.Theme.textColor
+                Layout.topMargin: 4
+                Layout.bottomMargin: 4
+                Layout.leftMargin: 8
+                Layout.rightMargin: 8
+            }
+            Slider {
+                id: lineHeightSlider
+                from: 85
+                value: 100
+                to: 180
+                stepSize: 1
+                focusPolicy: Qt.TabFocus
+                onMoved: prompter.document.setLineHeight(value)
             }
         }
         RowLayout {
