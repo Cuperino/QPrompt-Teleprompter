@@ -92,12 +92,16 @@ Kirigami.ApplicationWindow {
             close.accepted = false
         }
     }
-    
+
     function loadAboutPage() {
-        if (root.pageStack.layers.depth < 2)
-            root.pageStack.layers.push(aboutPageComponent, {aboutData: aboutData})
+        root.pageStack.layers.clear()
+        root.pageStack.layers.push(aboutPageComponent, {aboutData: aboutData})
     }
-    
+    function loadTelemetryPage() {
+        root.pageStack.layers.clear()
+        root.pageStack.layers.push(telemetryPageComponent)
+    }
+
     // Left Global Drawer
     globalDrawer: Kirigami.GlobalDrawer {
         id: globalMenu
@@ -197,7 +201,7 @@ Kirigami.ApplicationWindow {
                 Kirigami.Action {
                     text: i18n("Telemetry")
                     onTriggered: {
-                        prompterPage.telemetry_overlay.open()
+                        root.loadTelemetryPage()
                     }
                 }
                 // The following setting is commented because textRenderer changes only take effect on restart and at the time of writing changes to QPrompt's settings aren't yet persistent.
@@ -931,10 +935,14 @@ Kirigami.ApplicationWindow {
         PrompterPage {}
     }
 
-    // About Page Component
+    // Page Components
     Component {
         id: aboutPageComponent
         AboutPage {}
+    }
+    Component {
+        id: telemetryPageComponent
+        TelemetryPage {}
     }
 
     // Dialogues
