@@ -4,7 +4,10 @@
         <file alias="main.qml">kirigami_ui/main.qml</file>
         <file alias="AboutPage.qml">kirigami_ui/AboutPage.qml</file>
         <file alias="PrompterPage.qml">kirigami_ui/PrompterPage.qml</file>
+        <file alias="TelemetryPage.qml">kirigami_ui/TelemetryPage.qml</file>
         <file alias="EditorToolbar.qml">kirigami_ui/EditorToolbar.qml</file>
+        <file alias="MarkersDrawer.qml">kirigami_ui/MarkersDrawer.qml</file>
+        <file alias="InputsOverlay.qml">kirigami_ui/InputsOverlay.qml</file>
         <!-- Prompter QML -->
         <file alias="PrompterView.qml">prompter/PrompterView.qml</file>
         <file alias="Prompter.qml">prompter/Prompter.qml</file>
