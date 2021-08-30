@@ -727,10 +727,12 @@ void DocumentHandler::setLineHeight(int lineHeight)
     QTextCursor cursor = textCursor();
     if (cursor.isNull())
         return;
+    cursor.joinPreviousEditBlock();
     cursor.select(QTextCursor::Document);
     QTextBlockFormat modifier = QTextBlockFormat();
     modifier.setLineHeight(lineHeight, QTextBlockFormat::ProportionalHeight);
     cursor.mergeBlockFormat(modifier);
+    cursor.endEditBlock();
 }
 
 // Markers (Anchors)
