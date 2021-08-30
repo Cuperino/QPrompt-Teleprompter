@@ -68,8 +68,9 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
     aboutData.setDesktopFileName("com.cuperino.com");
     aboutData.addAuthor (
         QString("Javier O. Cordero Pérez"),
-        i18n("Lead Developer & Project Manager"),
-        QString("cuperino@protonmail.com"),
+        i18n("Author"),
+        //QString("cuperino@protonmail.com"),
+        QString("javiercorderoperez@gmail.com"),
         QString("https://javiercordero.info"),
         QString("cuperino")
     );

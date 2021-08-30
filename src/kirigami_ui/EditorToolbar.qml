@@ -79,7 +79,8 @@ import QtQuick.Layouts 1.15
 ToolBar {
     id: toolbar
 
-    property bool showAdvancedOptions: false
+    property bool showAnimationConfigOptions: false
+    property bool showFontSpacingOptions: false
 
     readonly property alias fontSizeSlider: fontSizeSlider
     readonly property alias letterSpacingSlider: letterSpacingSlider
@@ -161,7 +162,7 @@ ToolBar {
             }
             ToolButton {
                 id: bookmarkToggleButton
-                text: "\uE844"
+                text: "\uE843"
                 contentItem: Loader { sourceComponent: textComponent }
                 font.family: iconFont.name
                 font.pointSize: 13
@@ -350,7 +351,7 @@ ToolBar {
             }
             ToolButton {
                 id: textColorButton
-                text: "\uE83F"
+                text: "\uE83F" /*uF1FC*/
                 contentItem: Text {
                     text: parent.text
                     font: parent.font
@@ -383,7 +384,7 @@ ToolBar {
             }
             ToolButton {
                 id: textBackgroundButton
-                text: "\uF1FC"
+                text: "\uF1FC" /*u1F3A8*/
                 contentItem: Text {
                     text: parent.text
                     font: parent.font
@@ -484,62 +485,41 @@ ToolBar {
             id: advancedButtonsRow
             //visible: prompter.state==="editing"
             ToolButton {
-                id: advancedButton
+                text: "\uE806"
+                contentItem: Loader { sourceComponent: textComponent }
+                font.family: iconFont.name
+                font.pointSize: 13
+                focusPolicy: Qt.TabFocus
+                checkable: true
+                checked: showFontSpacingOptions
+                onClicked: {
+                   showFontSpacingOptions = !showFontSpacingOptions
+                }
+            }
+            ToolButton {
                 text: "\uE846" /*uF141*/
                 contentItem: Loader { sourceComponent: textComponent }
                 font.family: iconFont.name
                 font.pointSize: 13
                 focusPolicy: Qt.TabFocus
                 checkable: true
-                checked: showAdvancedOptions
+                checked: showAnimationConfigOptions
                 onClicked: {
-                   showAdvancedOptions = !showAdvancedOptions
+                   showAnimationConfigOptions = !showAnimationConfigOptions
                 }
             }
         }
         RowLayout {
-            visible: !wysiwygButton.checked && prompter.state==="editing"
-            Label {
-                text: i18n("Font size while editing:") + " " + prompter.fontSize + " (" + (fontSizeSlider.value/1000).toFixed(3).slice(2) + "%)"
-                color: Kirigami.Theme.textColor
-                Layout.topMargin: 4
-                Layout.bottomMargin: 4
-                Layout.leftMargin: 8
-                Layout.rightMargin: 8
-            }
-            Slider {
-                id: fontSizeSlider
-                focusPolicy: Qt.TabFocus
-                from: 90
-                value: 100
-                to: 158
-                stepSize: 1
-            }
-        }
-        RowLayout {
-            visible: wysiwygButton.checked || prompter.state!=="editing"
-            // enabled: !(prompter.state==="countdown" || prompter.state==="prompting")
-            Label {
-                text: i18n("Font size:") /*+ i18n("Font size for prompter:")*/ + " " + (prompter.fontSize/1000).toFixed(3).slice(2) + " (" + (fontWYSIWYGSizeSlider.value/1000).toFixed(3).slice(2) + "%)"
-                color: Kirigami.Theme.textColor
-                Layout.topMargin: 4
-                Layout.bottomMargin: 4
-                Layout.leftMargin: 8
-                Layout.rightMargin: 8
-            }
-            Slider {
-                id: fontWYSIWYGSizeSlider
-                from: 90
-                value: 144
-                to: 180 // 200
-                stepSize: 0.5
-                focusPolicy: Qt.TabFocus
-            }
-        }
-        RowLayout {
             enabled: prompter.state==="prompting"
+            //ToolButton {
+            //    text: "\uE814"
+            //    enabled: false
+            //    contentItem: Loader { sourceComponent: textComponent }
+            //    font.family: iconFont.name
+            //    font.pointSize: 13
+            //}
             Label {
-                text: i18n("Steps:") + (prompter.__i<0 ? '  -' + (prompter.__i/100).toFixed(2).slice(3) : ' +' + (prompter.__i/100).toFixed(2).slice(2))
+                text: i18n("Velocity:") + (prompter.__i<0 ? '  -' + (prompter.__i/100).toFixed(2).slice(3) : ' +' + (prompter.__i/100).toFixed(2).slice(2))
                 color: Kirigami.Theme.textColor
                 Layout.topMargin: 4
                 Layout.bottomMargin: 4
@@ -549,7 +529,7 @@ ToolBar {
             Slider {
                 id: velocityControlSlider
                 value: prompter.__i
-                to: 40
+                to: 20
                 from: -velocityControlSlider.to
                 stepSize: 1
                 focusPolicy: Qt.TabFocus
@@ -564,6 +544,13 @@ ToolBar {
         }
         RowLayout {
             visible: root.__translucidBackground
+            ToolButton {
+                text: "\uE810"
+                enabled: false
+                contentItem: Loader { sourceComponent: textComponent }
+                font.family: iconFont.name
+                font.pointSize: 13
+            }
             Label {
                 text: i18n("Opacity:") + " " + (root.__opacity/10).toFixed(3).slice(2)
                 color: Kirigami.Theme.textColor
@@ -585,8 +572,61 @@ ToolBar {
             }
         }
         RowLayout {
+            visible: !wysiwygButton.checked && prompter.state==="editing"
+            ToolButton {
+                text: "\uF088"
+                enabled: false
+                contentItem: Loader { sourceComponent: textComponent }
+                font.family: iconFont.name
+                font.pointSize: 13
+            }
+            Label {
+                text: i18n("Font size while editing:") + " " + (fontSizeSlider.value/1000).toFixed(3).slice(2) + "% (" + prompter.fontSize + ")"
+                color: Kirigami.Theme.textColor
+                Layout.topMargin: 4
+                Layout.bottomMargin: 4
+                Layout.leftMargin: 8
+                Layout.rightMargin: 8
+            }
+            Slider {
+                id: fontSizeSlider
+                focusPolicy: Qt.TabFocus
+                from: 90
+                value: 100
+                to: 158
+                stepSize: 1
+            }
+        }
+        RowLayout {
+            visible: wysiwygButton.checked || prompter.state!=="editing"
+            // enabled: !(prompter.state==="countdown" || prompter.state==="prompting")
+            ToolButton {
+                text: "\uF088"
+                enabled: false
+                contentItem: Loader { sourceComponent: textComponent }
+                font.family: iconFont.name
+                font.pointSize: 13
+            }
+            Label {
+                text: i18n("Font size:") /*+ i18n("Font size for prompter:")*/ + " " + (fontWYSIWYGSizeSlider.value/1000).toFixed(3).slice(2) + "% (" + (prompter.fontSize/1000).toFixed(3).slice(2) + ")"
+                color: Kirigami.Theme.textColor
+                Layout.topMargin: 4
+                Layout.bottomMargin: 4
+                Layout.leftMargin: 8
+                Layout.rightMargin: 8
+            }
+            Slider {
+                id: fontWYSIWYGSizeSlider
+                from: 90
+                value: 144
+                to: 180 // 200
+                stepSize: 0.5
+                focusPolicy: Qt.TabFocus
+            }
+        }
+        RowLayout {
             visible: height>0
-            height: showAdvancedOptions ? implicitHeight : 0
+            height: showFontSpacingOptions ? implicitHeight : 0
             clip: true
             Behavior on height{
                 enabled: true
@@ -596,15 +636,115 @@ ToolBar {
                 }
             }
             ToolButton {
-                id: __iDefaultButton
-                text: "\uE858"
+                text: "\uE806"
+                enabled: false
                 contentItem: Loader { sourceComponent: textComponent }
                 font.family: iconFont.name
                 font.pointSize: 13
+            }
+            Label {
+                text: i18n("Line height:") + " " + (lineHeightSlider.value/1000).toFixed(3).slice(2) + "%"
+                color: Kirigami.Theme.textColor
+                Layout.topMargin: 4
+                Layout.bottomMargin: 4
+                Layout.rightMargin: 4
+            }
+            Slider {
+                id: lineHeightSlider
+                from: 85
+                value: 100
+                to: 180
+                stepSize: 1
                 focusPolicy: Qt.TabFocus
-                checkable: true
-                checked: stepsConfiguration.sheetOpen
-                onClicked: stepsConfiguration.open()
+                onMoved: prompter.document.setLineHeight(value)
+            }
+        }
+        RowLayout {
+            visible: height>0
+            height: showFontSpacingOptions ? implicitHeight : 0
+            clip: true
+            Behavior on height{
+                enabled: true
+                animation: NumberAnimation {
+                    duration: Kirigami.Units.shortDuration
+                    easing.type: Easing.OutQuad
+                }
+            }
+            ToolButton {
+                text: "\uE807" // W
+                enabled: false
+                flat: true
+                contentItem: Loader { sourceComponent: textComponent }
+                font.family: iconFont.name
+                font.pointSize: 13
+            }
+            Label {
+                text: i18n("Word spacing:") + " " + (wordSpacingSlider.value<0 ? '  -' + (wordSpacingSlider.value/100).toFixed(2).slice(3) : ' +' + (wordSpacingSlider.value/100).toFixed(2).slice(2))
+                color: Kirigami.Theme.textColor
+                Layout.topMargin: 4
+                Layout.bottomMargin: 4
+                Layout.rightMargin: 4
+            }
+            Slider {
+                id: wordSpacingSlider
+                from: 0 // -4
+                value: 0
+                to: 24
+                stepSize: 1
+                focusPolicy: Qt.TabFocus
+            }
+        }
+        RowLayout {
+            visible: height>0
+            height: showFontSpacingOptions ? implicitHeight : 0
+            clip: true
+            Behavior on height{
+                enabled: true
+                animation: NumberAnimation {
+                    duration: Kirigami.Units.shortDuration
+                    easing.type: Easing.OutQuad
+                }
+            }
+            ToolButton {
+                text: "\uE807"
+                enabled: false
+                contentItem: Loader { sourceComponent: textComponent }
+                font.family: iconFont.name
+                font.pointSize: 13
+            }
+            Label {
+                text: i18n("Letter spacing:") + " " + (letterSpacingSlider.value<0 ? '  -' + (letterSpacingSlider.value/100).toFixed(2).slice(3) : ' +' + (letterSpacingSlider.value/100).toFixed(2).slice(2))
+                color: Kirigami.Theme.textColor
+                Layout.topMargin: 4
+                Layout.bottomMargin: 4
+                Layout.rightMargin: 4
+            }
+            Slider {
+                id: letterSpacingSlider
+                from: -12
+                value: 0
+                to: 12
+                stepSize: 1
+                focusPolicy: Qt.TabFocus
+            }
+        }
+        RowLayout {
+            visible: height>0
+            height: showAnimationConfigOptions ? implicitHeight : 0
+            clip: true
+            Behavior on height{
+                enabled: true
+                animation: NumberAnimation {
+                    duration: Kirigami.Units.shortDuration
+                    easing.type: Easing.OutQuad
+                }
+            }
+            ToolButton {
+                text: "\uE846"
+                enabled: false
+                contentItem: Loader { sourceComponent: textComponent }
+                font.family: iconFont.name
+                font.pointSize: 13
             }
             Label {
                 text: i18n("Base speed:") + " " + baseSpeedSlider.value.toFixed(2)
@@ -630,7 +770,7 @@ ToolBar {
         }
         RowLayout {
             visible: height>0
-            height: showAdvancedOptions ? implicitHeight : 0
+            height: showAnimationConfigOptions ? implicitHeight : 0
             clip: true
             Behavior on height{
                 enabled: true
@@ -639,8 +779,15 @@ ToolBar {
                     easing.type: Easing.OutQuad
                 }
             }
+            ToolButton {
+                text: "\uE846"
+                enabled: false
+                contentItem: Loader { sourceComponent: textComponent }
+                font.family: iconFont.name
+                font.pointSize: 13
+            }
             Label {
-                text: i18n("Acceleration curvature:") + " " + baseAccelerationSlider.value.toFixed(2)
+                text: i18n("Acceleration curve:") + " " + baseAccelerationSlider.value.toFixed(2)
                 color: Kirigami.Theme.textColor
                 Layout.topMargin: 4
                 Layout.bottomMargin: 4
@@ -660,90 +807,16 @@ ToolBar {
                     prompter.position = prompter.__destination
                 }
             }
-        }
-        RowLayout {
-            visible: height>0
-            height: showAdvancedOptions ? implicitHeight : 0
-            clip: true
-            Behavior on height{
-                enabled: true
-                animation: NumberAnimation {
-                    duration: Kirigami.Units.shortDuration
-                    easing.type: Easing.OutQuad
-                }
-            }
-            Label {
-                text: i18n("Line height:") + " " + (lineHeightSlider.value/1000).toFixed(3).slice(2) + "%"
-                color: Kirigami.Theme.textColor
-                Layout.topMargin: 4
-                Layout.bottomMargin: 4
-                Layout.leftMargin: 8
-                Layout.rightMargin: 8
-            }
-            Slider {
-                id: lineHeightSlider
-                from: 85
-                value: 100
-                to: 180
-                stepSize: 1
+            ToolButton {
+                id: __iDefaultButton
+                text: "\uE858"
+                contentItem: Loader { sourceComponent: textComponent }
+                font.family: iconFont.name
+                font.pointSize: 13
                 focusPolicy: Qt.TabFocus
-                onMoved: prompter.document.setLineHeight(value)
-            }
-        }
-        RowLayout {
-            visible: height>0
-            height: showAdvancedOptions ? implicitHeight : 0
-            clip: true
-            Behavior on height{
-                enabled: true
-                animation: NumberAnimation {
-                    duration: Kirigami.Units.shortDuration
-                    easing.type: Easing.OutQuad
-                }
-            }
-            Label {
-                text: i18n("Letter spacing:") + " " + (letterSpacingSlider.value<0 ? '  -' + (letterSpacingSlider.value/100).toFixed(2).slice(3) : ' +' + (letterSpacingSlider.value/100).toFixed(2).slice(2))
-                color: Kirigami.Theme.textColor
-                Layout.topMargin: 4
-                Layout.bottomMargin: 4
-                Layout.leftMargin: 8
-                Layout.rightMargin: 8
-            }
-            Slider {
-                id: letterSpacingSlider
-                from: -12
-                value: 0
-                to: 12
-                stepSize: 1
-                focusPolicy: Qt.TabFocus
-            }
-        }
-        RowLayout {
-            visible: height>0
-            height: showAdvancedOptions ? implicitHeight : 0
-            clip: true
-            Behavior on height{
-                enabled: true
-                animation: NumberAnimation {
-                    duration: Kirigami.Units.shortDuration
-                    easing.type: Easing.OutQuad
-                }
-            }
-            Label {
-                text: i18n("Word spacing:") + " " + (wordSpacingSlider.value<0 ? '  -' + (wordSpacingSlider.value/100).toFixed(2).slice(3) : ' +' + (wordSpacingSlider.value/100).toFixed(2).slice(2))
-                color: Kirigami.Theme.textColor
-                Layout.topMargin: 4
-                Layout.bottomMargin: 4
-                Layout.leftMargin: 8
-                Layout.rightMargin: 8
-            }
-            Slider {
-                id: wordSpacingSlider
-                from: -12
-                value: 0
-                to: 24
-                stepSize: 1
-                focusPolicy: Qt.TabFocus
+                checkable: true
+                checked: stepsConfiguration.sheetOpen
+                onClicked: stepsConfiguration.open()
             }
         }
     }
@@ -757,7 +830,7 @@ ToolBar {
             anchors.fill: parent
         }
         header: Kirigami.Heading {
-            text: i18n("Steps to use when starting to prompt")
+            text: i18n("Starting Velocity")
             level: 1
         }
 
@@ -766,7 +839,7 @@ ToolBar {
 
             ColumnLayout {
                 Label {
-                    text: i18n("Steps")
+                    text: i18n("Velocity to have when starting to prompt")
                 }
                 SpinBox {
                     Layout.fillWidth: true
