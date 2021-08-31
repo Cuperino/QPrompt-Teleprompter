@@ -8,6 +8,7 @@
         <file alias="EditorToolbar.qml">kirigami_ui/EditorToolbar.qml</file>
         <file alias="MarkersDrawer.qml">kirigami_ui/MarkersDrawer.qml</file>
         <file alias="InputsOverlay.qml">kirigami_ui/InputsOverlay.qml</file>
+        <file alias="KeyInputButton.qml">kirigami_ui/KeyInputButton.qml</file>
         <!-- Prompter QML -->
         <file alias="PrompterView.qml">prompter/PrompterView.qml</file>
         <file alias="Prompter.qml">prompter/Prompter.qml</file>
