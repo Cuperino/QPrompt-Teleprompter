@@ -632,11 +632,11 @@ Flickable {
                         switch (event.key) {
                             case keys.increaseVelocity:
                             case keys.decreaseVelocity:
-                                if (event.key === Qt.Key_Up || event.key === Qt.Key_Down || event.key === Qt.Key_Left || event.key === Qt.Key_Right) {
+                            case keys.pause:
+                                if (event.key === Qt.Key_Up || event.key === Qt.Key_Down || event.key === Qt.Key_Left || event.key === Qt.Key_Right || event.key === Qt.Key_Space) {
                                     event.accepted = false;
                                     return;
                                 }
-                            case keys.pause:
                             case keys.skipBackwards:
                             case keys.skipForward:
                             case keys.previousMarker:
