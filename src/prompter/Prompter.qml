@@ -632,6 +632,10 @@ Flickable {
                         switch (event.key) {
                             case keys.increaseVelocity:
                             case keys.decreaseVelocity:
+                                if (event.key === Qt.Key_Up || event.key === Qt.Key_Down || event.key === Qt.Key_Left || event.key === Qt.Key_Right) {
+                                    event.accepted = false;
+                                    return;
+                                }
                             case keys.pause:
                             case keys.skipBackwards:
                             case keys.skipForward:
@@ -641,7 +645,12 @@ Flickable {
                                 event.accepted = true
                                 prompter.Keys.onPressed(event)
                                 return
+                            case Qt.Key_Escape:
+                                event.accepted = true
+                                prompter.focus = true
+                                return
                         }
+                    // else if
                     if (event.modifiers & Qt.ControlModifier)
                         switch (event.key) {
                             case Qt.Key_B:
@@ -670,6 +679,7 @@ Flickable {
                             //    document.alignment = Qt.AlignJustify
                             //    return
                         }
+                    // If not prompting and no modifiers are pressed
                     else
                         switch (event.key) {
                             case Qt.Key_V:
