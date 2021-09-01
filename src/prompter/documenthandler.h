@@ -104,7 +104,8 @@ class DocumentHandler : public QObject
     Q_PROPERTY(bool underline READ underline WRITE setUnderline NOTIFY underlineChanged)
     Q_PROPERTY(bool strike READ strike WRITE setStrike NOTIFY strikeChanged)
     
-    Q_PROPERTY(bool marker READ marker WRITE setMarker NOTIFY markerChanged)
+    Q_PROPERTY(bool regularMarker READ regularMarker WRITE setMarker NOTIFY markerChanged)
+    Q_PROPERTY(bool namedMarker READ namedMarker NOTIFY markerChanged)
 
     Q_PROPERTY(int fontSize READ fontSize WRITE setFontSize NOTIFY fontSizeChanged)
     
@@ -169,7 +170,8 @@ public:
     void setModified(bool m);
     
 
-    bool marker() const;
+    bool regularMarker() const;
+    bool namedMarker() const;
     bool markersListDirty() const;
     void setMarker(bool marker);
     Q_INVOKABLE void setKeyMarker(QString keyCode);

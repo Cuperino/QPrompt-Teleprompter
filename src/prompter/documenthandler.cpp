@@ -327,12 +327,20 @@ void DocumentHandler::setStrike(bool strike)
     emit strikeChanged();
 }
 
-bool DocumentHandler::marker() const
+bool DocumentHandler::regularMarker() const
 {
     QTextCursor cursor = textCursor();
     if (cursor.isNull())
         return false;
-    return textCursor().charFormat().isAnchor();
+    return textCursor().charFormat().isAnchor() && textCursor().charFormat().anchorNames().size()==0;
+}
+
+bool DocumentHandler::namedMarker() const
+{
+    QTextCursor cursor = textCursor();
+    if (cursor.isNull())
+        return false;
+    return textCursor().charFormat().isAnchor() && textCursor().charFormat().anchorNames().size()>0;
 }
 
 void DocumentHandler::setKeyMarker(QString keyCodeString="")
