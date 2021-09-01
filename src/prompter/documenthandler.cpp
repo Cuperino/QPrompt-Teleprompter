@@ -91,6 +91,7 @@
 #include <QRegularExpression>
 #include <QProcess>
 #include <QDebug>
+#include <QKeySequence>
 
 DocumentHandler::DocumentHandler(QObject *parent)
 : QObject(parent)
@@ -334,6 +335,42 @@ bool DocumentHandler::marker() const
     return textCursor().charFormat().isAnchor();
 }
 
+void DocumentHandler::setKeyMarker(QString keyCodeString="")
+{
+    if (!keyCodeString.length())
+        return;
+    QTextCharFormat format;
+    //qDebug() << keyCodeString;
+    // Dev: in future versions, append, don't replace prior non-key values.
+    format.setAnchorNames( {"key_" + keyCodeString} );
+    format.setAnchor("#");
+    format.setFontUnderline(true);
+    format.setFontOverline(true);
+    mergeFormatOnWordOrSelection(format);
+    this->setMarkersListDirty();
+    emit markerChanged();
+}
+
+QString DocumentHandler::getMarkerKey()
+{
+    QString key = "";
+    QTextCursor cursor = textCursor();
+    if (cursor.isNull())
+        return key;
+    // Get anchor keyCode
+    QStringList names = cursor.charFormat().anchorNames();
+    // Convert keyCode to user readable key
+    if (!names.isEmpty()) {
+        QString keyCodeString = names.first().mid(4);
+        QKeySequence seq = QKeySequence(keyCodeString.toInt());
+        key = seq.toString();
+    }
+    else
+        qDebug() << "Empty";
+    // Return key string
+    return key;
+}
+
 void DocumentHandler::setMarker(bool marker)
 {
     QTextCharFormat format;
@@ -344,7 +381,7 @@ void DocumentHandler::setMarker(bool marker)
     format.setFontOverline(marker);
     if (marker) {
         // Named markers could have two names attached to them...
-        format.setAnchorNames(QStringList("marker"));
+        format.setAnchorNames(QStringList());
         //format.setForeground(QColor("lightblue"));
         // There's no need to set href, this would only conflict with actual links in the document.
         //format.setAnchorHref("#");
@@ -721,6 +758,10 @@ QPoint DocumentHandler::search(const QString &subString, const bool next, const 
     return QPoint(this->selectionStart(), this->selectionEnd());
 }
 
+int DocumentHandler::keySearch(int key) {
+    return this->_markersModel->keySearch(key, cursorPosition(), false, true);
+}
+
 // Line Height
 void DocumentHandler::setLineHeight(int lineHeight)
 {
@@ -770,9 +811,23 @@ void DocumentHandler::parse() {
                 // Extract marker information:
                 if (currentFragment.charFormat().isAnchor()) {
                     Marker marker;
-                    marker.position = currentFragment.position();
-                    marker.names = currentFragment.charFormat().anchorNames();
                     marker.text = currentFragment.text();
+                    marker.position = currentFragment.position();
+                    marker.url = currentFragment.charFormat().anchorHref();
+                    // Go through anchor names for metadata to extract using const_iterator for best performance.
+                    QStringList anchorNames = currentFragment.charFormat().anchorNames();
+                    QStringList::const_iterator constIterator;
+                    for (constIterator = anchorNames.constBegin(); constIterator != anchorNames.constEnd(); ++constIterator) {
+                        QString anchorName = (*constIterator).toLocal8Bit().constData();
+                        // Assign input key
+                        if (anchorName.startsWith("key_"))
+                            marker.key = anchorName.mid(4).toInt();
+                        // Assign request type
+                        else if (anchorName.startsWith("req_"))
+                            // If invalid, default to 0 (GET)
+                            marker.requestType = anchorName.mid(4).toInt(); // GET request by default  // Dev: Cast to enumerator to improve readability
+//                         qDebug() << anchorName;
+                    }
                     this->_markersModel->appendMarker(marker);
                 }
             }

@@ -171,15 +171,17 @@ ToolBar {
                 checkable: true
                 onClicked: prompter.document.marker = !prompter.document.marker
             }
-            //ToolButton {
-            //    id: namedBookmarkButton
-            //    text: "\uE845"
-            //    contentItem: Loader { sourceComponent: textComponent }
-            //    font.family: iconFont.name
-            //    font.pointSize: 13
-            //    focusPolicy: Qt.TabFocus
-            //    onClicked: {}
-            //}
+            ToolButton {
+                id: namedBookmarkButton
+                text: "\uE844"
+                contentItem: Loader { sourceComponent: textComponent }
+                font.family: iconFont.name
+                font.pointSize: 13
+                focusPolicy: Qt.TabFocus
+                checked: prompter.document.marker
+                checkable: true
+                onClicked: namedMarkerConfiguration.open()
+            }
             //ToolButton {
             //    id: debugButton
             //    text: "\uE846"
@@ -852,6 +854,67 @@ ToolBar {
                         focus: true
                         __iDefault = value
                     }
+                }
+            }
+        }
+    }
+    Kirigami.OverlaySheet {
+        id: namedMarkerConfiguration
+        onSheetOpenChanged: {
+            prompterPage.actions.main.checked = sheetOpen;
+            // When opening overlay, reset key input button's text.
+            // Dev: When opening overlay, reset key input button's text to current anchor's key value.
+            if (sheetOpen)
+                //row.setMarkerKeyButton.item.text = "";
+                row.setMarkerKeyButton.item.text = prompter.document.getMarkerKey();
+        }
+
+        background: Rectangle {
+            //color: Kirigami.Theme.activeBackgroundColor
+            color: appTheme.__backgroundColor
+            anchors.fill: parent
+        }
+        header: Kirigami.Heading {
+            text: i18n("Set key to perform jumps to this marker")
+            // text: i18n("Action marker")
+            level: 1
+        }
+
+        RowLayout {
+            id: row
+            property alias setMarkerKeyButton: grid.setMarkerKeyButton
+            width: parent.width
+
+            GridLayout {
+                id: grid
+                property alias setMarkerKeyButton: setMarkerKeyButton
+                columns: 2
+                Label {
+                    text: i18n("Jump Key")
+                }
+                Loader {
+                    id: setMarkerKeyButton
+                    asynchronous: true
+                    Layout.fillWidth: true
+                }
+                Component.onCompleted: {
+                    setMarkerKeyButton.setSource("KeyInputButton.qml", { "text": "" });
+                }
+                Connections {
+                    target: setMarkerKeyButton.item
+                    function onToggleButtonsOff() { target.checked = false; }
+                    function onSetKey(keyCode) {
+                        //console.log(keyCode);
+                        prompter.document.setKeyMarker(keyCode);
+                        timer.start()
+                    }
+                }
+                Timer {
+                    id: timer
+                    running: false
+                    repeat: false
+                    interval: Kirigami.Units.longDuration
+                    onTriggered: namedMarkerConfiguration.close()
                 }
             }
         }

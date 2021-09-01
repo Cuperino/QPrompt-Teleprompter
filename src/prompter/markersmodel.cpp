@@ -27,28 +27,7 @@
 MarkersModel::MarkersModel(QObject *parent)
     : QAbstractListModel(parent)
 {
-//  Test data: names, position, text
-//     m_data
-//        << Marker { QStringList("1"), 2*64, "Depeche Mode" }
-//        << Marker { QStringList("2"), 6*64, "Apocalyptica" }
-//        << Marker { QStringList("4"), 8*64, "The Wachowskis" }
-//        << Marker { QStringList("a"), 9*64, "Sacha Goedegebure" };
 }
-
-// QVariant MarkersModel::headerMarker(int section, Qt::Orientation orientation, int role) const
-// {
-//     //FIXME: Implement me!
-// }
-// 
-// QModelIndex MarkersModel::index(int row, int column, const QModelIndex &parent) const
-// {
-//     //FIXME: Implement me!
-// }
-// 
-// QModelIndex MarkersModel::parent(const QModelIndex &index) const
-// {
-//     //FIXME: Implement me!
-// }
 
 int MarkersModel::rowCount(const QModelIndex &parent) const
 {
@@ -64,12 +43,16 @@ QVariant MarkersModel::data(const QModelIndex &index, int role) const
         return QVariant();
 
     const Marker &data = m_data.at(index.row());
-    if ( role == NamesRole )
-        return data.names;
+    if ( role == TextRole )
+        return data.text;
     else if ( role == PositionRole )
         return data.position;
-    else if ( role == TextRole )
-        return data.text;
+    else if ( role == KeyRole )
+        return data.key;
+    else if ( role == UrlRole )
+        return data.url;
+    else if ( role == RequestTypeRole )
+        return data.requestType;
     else
         return QVariant();
 }
@@ -78,9 +61,11 @@ QVariant MarkersModel::data(const QModelIndex &index, int role) const
 QHash<int, QByteArray> MarkersModel::roleNames() const
 {
     static QHash<int, QByteArray> mapping {
-        {NamesRole, "names"},
+        {TextRole, "text"},
         {PositionRole, "position"},
-        {TextRole, "text"}
+        {KeyRole, "key"},
+        {UrlRole, "url"},
+        {RequestTypeRole, "requestType"}
     };
     return mapping;
 }
@@ -119,9 +104,9 @@ void MarkersModel::appendMarker(Marker &marker)
 }
 
 // Key based circular search
-int MarkersModel::keySearch(QString key, int currentPosition=0, bool reverse=false, bool wrap=true) {
+int MarkersModel::keySearch(int key, int currentPosition=0, bool reverse=false, bool wrap=true) {
     // Assuming QModelIndex is at start position.
-    QModelIndexList markersThatMatchShortcut = this->match(index(0), MarkersModel::NamesRole, key, 1, Qt::MatchFlags(Qt::MatchStartsWith|Qt::MatchWrap));
+    QModelIndexList markersThatMatchShortcut = this->match(index(0), MarkersModel::KeyRole, key, 1, Qt::MatchFlags(Qt::MatchStartsWith|Qt::MatchWrap));
     const int size = markersThatMatchShortcut.size();
     if (size) {
         if (reverse) {
