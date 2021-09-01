@@ -170,8 +170,10 @@ public:
     
 
     bool marker() const;
-    void setMarker(bool marker);
     bool markersListDirty() const;
+    void setMarker(bool marker);
+    Q_INVOKABLE void setKeyMarker(QString keyCode);
+    Q_INVOKABLE QString getMarkerKey();
 
 //     MarkersModel *markers() const;
     Q_INVOKABLE MarkersModel *markers() const;
@@ -187,7 +189,8 @@ public:
     
     // Search
     Q_INVOKABLE QPoint search(const QString &subString, const bool next=false, const bool reverse=false);
-    
+    Q_INVOKABLE int keySearch(int key);
+
 public Q_SLOTS:
     void load(const QUrl &fileUrl);
     void saveAs(const QUrl &fileUrl);

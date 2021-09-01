@@ -641,7 +641,7 @@ Flickable {
                                 event.accepted = true
                                 prompter.Keys.onPressed(event)
                                 return
-                        } 
+                        }
                     if (event.modifiers & Qt.ControlModifier)
                         switch (event.key) {
                             case Qt.Key_B:
@@ -851,7 +851,7 @@ Flickable {
     
     // Key bindings
     Keys.onPressed: {
-        if (prompter.state === "prompting")
+        if (prompter.state === "prompting") {
             switch (event.key) {
                 case keys.increaseVelocity:
                 case Qt.Key_VolumeDowm:
@@ -897,11 +897,14 @@ Flickable {
                 //    // Show key code
                 //    showPassiveNotification(event.key)
             }
+            // Perform keyCode marker search.
+            prompter.goTo(document.keySearch(event.key, document.cursorPosition, false, true));
             //// Undo and redo key bindings
             //if (event.matches(StandardKey.Undo))
             //    document.undo();
             //else if (event.matches(StandardKey.Redo))
             //    document.redo();
+        }
         // If state is not prompting nor editing
         else if (prompter.state !== "editing")
             switch (event.key) {

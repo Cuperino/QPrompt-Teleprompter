@@ -27,11 +27,13 @@
 
 struct Marker {
     Marker() {}
-    Marker( const QStringList& names, const double position, const QString& text)
-        : names(names), position(position), text(text) {}
-    QStringList names;
-    double position;
+    Marker(const QString& text, const double position, const int key, const QString& url, const int requestType)
+        : text(text), position(position), key(key), url(url), requestType(requestType) {}
     QString text;
+    double position;
+    int key;
+    QString url;
+    int requestType;
 };
 
 class MarkersModel : public QAbstractListModel
@@ -40,9 +42,11 @@ class MarkersModel : public QAbstractListModel
 
 public:
     enum Roles {
-        NamesRole = Qt::UserRole,
+        TextRole = Qt::UserRole,
         PositionRole,
-        TextRole
+        KeyRole,
+        UrlRole,
+        RequestTypeRole
     };
 
     explicit MarkersModel(QObject *parent = nullptr);
@@ -71,6 +75,7 @@ public slots:
     void removeMarker(int row);
     int previousMarker(int position);
     int nextMarker(int position);
+    int keySearch(int key, int currentPosition, bool reverse, bool wrap);
 
 //     void updateMarker(int row);
 
@@ -78,7 +83,6 @@ public slots:
 private slots:
     void resetInternalData();
     int binarySearch(int lo, int hi, int x, bool reverse);
-    int keySearch(QString key, int currentPosition, bool reverse, bool wrap);
 
 private:
     QList <Marker> m_data;
