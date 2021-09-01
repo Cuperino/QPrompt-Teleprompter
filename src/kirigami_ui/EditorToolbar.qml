@@ -139,7 +139,7 @@ ToolBar {
             //visible: prompter.state==="editing"
             ToolButton {
                 id: bookmarkListButton
-                text: "\uE804"
+                text: "\uF0DB" /*uE804*/
                 contentItem: Loader { sourceComponent: textComponent }
                 font.family: iconFont.name
                 font.pointSize: 13
@@ -344,7 +344,7 @@ ToolBar {
                 font.italic: prompter.document.italic
                 font.underline: prompter.document.underline
                 font.strikeout: prompter.document.strike
-                font.overline: prompter.document.marker
+                font.overline: prompter.document.regularMarker || prompter.document.namedMarker
                 onClicked: {
                     fontDialog.currentFont.family = prompter.document.fontFamily;
                     fontDialog.currentFont.pointSize = prompter.document.fontSize;
@@ -832,90 +832,78 @@ ToolBar {
             anchors.fill: parent
         }
         header: Kirigami.Heading {
-            text: i18n("Starting Velocity")
+            text: i18n("Start Velocity")
             level: 1
         }
 
-        RowLayout {
+        ColumnLayout {
             width: parent.width
-
-            ColumnLayout {
-                Label {
-                    text: i18n("Velocity to have when starting to prompt")
-                }
-                SpinBox {
-                    Layout.fillWidth: true
-                    Layout.leftMargin: Kirigami.Units.smallSpacing
-                    Layout.rightMargin: Kirigami.Units.smallSpacing
-                    value: __iDefault
-                    from: 1
-                    to: velocityControlSlider.to
-                    onValueModified: {
-                        focus: true
-                        __iDefault = value
-                    }
+            Label {
+                text: i18n("Velocity to have when starting to prompt")
+            }
+            SpinBox {
+                Layout.fillWidth: true
+                Layout.leftMargin: Kirigami.Units.smallSpacing
+                Layout.rightMargin: Kirigami.Units.smallSpacing
+                value: __iDefault
+                from: 1
+                to: velocityControlSlider.to
+                onValueModified: {
+                    focus: true
+                    __iDefault = value
                 }
             }
         }
     }
     Kirigami.OverlaySheet {
         id: namedMarkerConfiguration
-        onSheetOpenChanged: {
-            prompterPage.actions.main.checked = sheetOpen;
-            // When opening overlay, reset key input button's text.
-            // Dev: When opening overlay, reset key input button's text to current anchor's key value.
-            if (sheetOpen)
-                //row.setMarkerKeyButton.item.text = "";
-                row.setMarkerKeyButton.item.text = prompter.document.getMarkerKey();
-        }
-
         background: Rectangle {
             //color: Kirigami.Theme.activeBackgroundColor
             color: appTheme.__backgroundColor
             anchors.fill: parent
         }
         header: Kirigami.Heading {
-            text: i18n("Set key to perform jumps to this marker")
-            // text: i18n("Action marker")
+            text: i18n("Skip Key")
             level: 1
         }
-
-        RowLayout {
-            id: row
-            property alias setMarkerKeyButton: grid.setMarkerKeyButton
+        onSheetOpenChanged: {
+            prompterPage.actions.main.checked = sheetOpen;
+            // When opening overlay, reset key input button's text.
+            // Dev: When opening overlay, reset key input button's text to current anchor's key value.
+            if (sheetOpen)
+                //row.setMarkerKeyButton.item.text = "";
+                column.setMarkerKeyButton.item.text = prompter.document.getMarkerKey();
+        }
+        ColumnLayout {
+            id: column
             width: parent.width
-
-            GridLayout {
-                id: grid
-                property alias setMarkerKeyButton: setMarkerKeyButton
-                columns: 2
-                Label {
-                    text: i18n("Jump Key")
+            property alias setMarkerKeyButton: setMarkerKeyButton
+            Label {
+                text: i18n("Key to perform skip to this marker")
+            }
+            Loader {
+                id: setMarkerKeyButton
+                asynchronous: true
+                Layout.fillWidth: true
+            }
+            Component.onCompleted: {
+                setMarkerKeyButton.setSource("KeyInputButton.qml", { "text": "" });
+            }
+            Connections {
+                target: setMarkerKeyButton.item
+                function onToggleButtonsOff() { target.checked = false; }
+                function onSetKey(keyCode) {
+                    //console.log(keyCode);
+                    prompter.document.setKeyMarker(keyCode);
+                    timer.start();
                 }
-                Loader {
-                    id: setMarkerKeyButton
-                    asynchronous: true
-                    Layout.fillWidth: true
-                }
-                Component.onCompleted: {
-                    setMarkerKeyButton.setSource("KeyInputButton.qml", { "text": "" });
-                }
-                Connections {
-                    target: setMarkerKeyButton.item
-                    function onToggleButtonsOff() { target.checked = false; }
-                    function onSetKey(keyCode) {
-                        //console.log(keyCode);
-                        prompter.document.setKeyMarker(keyCode);
-                        timer.start()
-                    }
-                }
-                Timer {
-                    id: timer
-                    running: false
-                    repeat: false
-                    interval: Kirigami.Units.longDuration
-                    onTriggered: namedMarkerConfiguration.close()
-                }
+            }
+            Timer {
+                id: timer
+                running: false
+                repeat: false
+                interval: Kirigami.Units.longDuration
+                onTriggered: namedMarkerConfiguration.close()
             }
         }
     }
