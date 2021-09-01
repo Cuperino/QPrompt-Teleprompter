@@ -898,7 +898,9 @@ Flickable {
                 //    showPassiveNotification(event.key)
             }
             // Perform keyCode marker search.
-            prompter.goTo(document.keySearch(event.key, document.cursorPosition, false, true));
+            let namedAnchorPosition = document.keySearch(event.key, document.cursorPosition, false, true);
+            if (namedAnchorPosition!==-1)
+                prompter.goTo(namedAnchorPosition);
             //// Undo and redo key bindings
             //if (event.matches(StandardKey.Undo))
             //    document.undo();
