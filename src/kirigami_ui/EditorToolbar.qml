@@ -109,7 +109,7 @@ ToolBar {
 
     background: Rectangle {
         Rectangle {
-            color: Kirigami.Theme.activeBackgroundColor
+            color: prompter.state==="prompting" && editor.focus ? "#00AA00" : Kirigami.Theme.activeBackgroundColor
             opacity: prompter.state!=="editing" ? 0.4 : 1
             height: 3
             anchors.top: parent.top
@@ -167,9 +167,9 @@ ToolBar {
                 font.family: iconFont.name
                 font.pointSize: 13
                 focusPolicy: Qt.TabFocus
-                checked: prompter.document.marker
+                checked: prompter.document.regularMarker
                 checkable: true
-                onClicked: prompter.document.marker = !prompter.document.marker
+                onClicked: prompter.document.regularMarker = !prompter.document.regularMarker
             }
             ToolButton {
                 id: namedBookmarkButton
@@ -178,7 +178,7 @@ ToolBar {
                 font.family: iconFont.name
                 font.pointSize: 13
                 focusPolicy: Qt.TabFocus
-                checked: prompter.document.marker
+                checked: prompter.document.namedMarker
                 checkable: true
                 onClicked: namedMarkerConfiguration.open()
             }
