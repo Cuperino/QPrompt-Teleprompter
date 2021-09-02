@@ -36,7 +36,7 @@ Item {
     property color backgroundColor: "#000"
     property bool reScale: true
     property bool isPreview: false
-    property var forwardTo
+    property var forwardTo // prompter
 
     Component {
         id: projectionDelegte
@@ -211,6 +211,9 @@ Item {
 //             if (screenName===screen.name)
 //                 alertDialog.warnSameDisplay(screenName)
 //         }
+        // Auto maximize main window on display flip selection.
+        if (flipSetting && visibility!==Kirigami.ApplicationWindow.FullScreen)
+            root.showMaximized()
         // If configuration exists for element, update it.
         const configuredDisplays = displayModel.count;
         for (var j=0; j<configuredDisplays; j++)
