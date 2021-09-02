@@ -431,7 +431,7 @@ Flickable {
                 wrapMode: TextArea.Wrap
                 readOnly: false
                 text: i18n("Error loading file...")
-                
+
                 selectByMouse: true
                 persistentSelection: true
                 selectionColor: "#333d9ef3"
@@ -485,6 +485,13 @@ Flickable {
                 font.preferShaping: true
                 renderType: textRenderer
                 //renderType: textRenderer
+
+                function toggleEditorFocus() {
+                    if (!editor.focus)
+                        editor.focus = true;
+                    else
+                        prompter.focus = true;
+                }
 
                 //Different styles have different padding and background
                 //decorations, but since this editor must resemble the
@@ -567,6 +574,14 @@ Flickable {
                         cursorShape: dragTarget.containsDrag ? (dragTarget.droppable ? Qt.DragCopyCursor : Qt.ForbiddenCursor) : Qt.IBeamCursor
                         drag.target: editor
                     }
+                    MouseArea {
+                        id: limitedMouse
+                        enabled: false
+                        acceptedButtons: Qt.LeftButton
+                        anchors.fill: parent
+                        onDoubleClicked: editor.toggleEditorFocus();
+                        onClicked: if (editor.focus) editor.cursorPosition = editor.positionAt(mouseX, mouseY);
+                    }
                 }
 
                 MouseArea {
@@ -627,57 +642,72 @@ Flickable {
                 }
 
                 Keys.onPressed: {
-                    if (prompter.state === "prompting")
+                    // Prompter related keys are processed first for faster response times.
+                    // Assumption: Editor is focused.
+                    if (prompter.state === "prompting") {
+                        // Assumption: We're in edit while prompting mode.
+                        // If moving cursor would place it out of bounds that are practical for editing, prevent motion and prevent event from floating up to prompter, which would trigger a change in velocity.
+                        if (event.key === Qt.Key_Right && editor.cursorPosition > editor.positionAt(editor.width, prompter.position+overlay.height) - 1
+                            || event.key === Qt.Key_Left && editor.cursorPosition < editor.positionAt(0, prompter.position) + 1
+                            || event.key === Qt.Key_Down && editor.cursorPosition > editor.positionAt(editor.width, prompter.position+overlay.height-editor.cursorRectangle.height*3/4)
+                            || event.key === Qt.Key_Up && editor.cursorPosition < editor.positionAt(0, prompter.position+1.5*editor.cursorRectangle.height)) {
+                            event.accepted = true;
+                            return;
+                        }
                         // Prevent programmable keys from typing on editor while prompting
                         switch (event.key) {
                             case keys.increaseVelocity:
                             case keys.decreaseVelocity:
                             case keys.pause:
-                                if (event.key === Qt.Key_Up || event.key === Qt.Key_Down || event.key === Qt.Key_Left || event.key === Qt.Key_Right || event.key === Qt.Key_Space) {
-                                    event.accepted = false;
-                                    return;
-                                }
                             case keys.skipBackwards:
                             case keys.skipForward:
                             case keys.previousMarker:
                             case keys.nextMarker:
                             case keys.toggle:
-                                event.accepted = true
-                                prompter.Keys.onPressed(event)
-                                return
+                                // If in edit while prompting mode, ensure arrow keys and space bar don't float up to prompter so editor can make proper use of them.
+                                if (event.key === Qt.Key_Up || event.key === Qt.Key_Down || event.key === Qt.Key_Left || event.key === Qt.Key_Right || event.key === Qt.Key_Space) {
+                                    event.accepted = false;
+                                    return;
+                                }
+                                // All other actions should float to prompter, preventing the editor from making use of these keys.
+                                event.accepted = true;
+                                prompter.Keys.onPressed(event);
+                                return;
+                            // If Escape is pressed while prompting, return focus to prompter, thus leaving edit while prompting mode.
                             case Qt.Key_Escape:
-                                event.accepted = true
-                                prompter.focus = true
-                                return
+                                event.accepted = true;
+                                prompter.focus = true;
+                                return;
                         }
-                    // else if
+                    }
+                    // In all modes, editor should...
                     if (event.modifiers & Qt.ControlModifier)
                         switch (event.key) {
                             case Qt.Key_B:
-                                document.bold = !document.bold
-                                return
+                                document.bold = !document.bold;
+                                return;
                             case Qt.Key_U:
-                                document.underline = !document.underline
-                                return
+                                document.underline = !document.underline;
+                                return;
                             case Qt.Key_I:
-                                document.italic = !document.italic
-                                return
+                                document.italic = !document.italic;
+                                return;
                             case Qt.Key_T:
-                                document.strike = !document.strike
-                                return
+                                document.strike = !document.strike;
+                                return;
                             case Qt.Key_L:
-                                document.alignment = Qt.AlignLeft
-                                return
+                                document.alignment = Qt.AlignLeft;
+                                return;
                             case Qt.Key_R:
-                                document.alignment = Qt.AlignRight
-                                return
+                                document.alignment = Qt.AlignRight;
+                                return;
                             case Qt.Key_E:
-                                document.alignment = Qt.AlignCenter
-                                return
+                                document.alignment = Qt.AlignCenter;
+                                return;
                             // Justify is proven to make text harder to read for some readers. So I'm commenting out all text justification options from the program. I'm not removing them, only commenting out in case someone needs to re-enable. This article links to various sources that validate my decision: https://kaiweber.wordpress.com/2010/05/31/ragged-right-or-justified-alignment/ - Javier
                             //case Qt.Key_J:
-                            //    document.alignment = Qt.AlignJustify
-                            //    return
+                            //    document.alignment = Qt.AlignJustify;
+                            //    return;
                         }
                     // If no modifiers are pressed...
                     else
@@ -1019,7 +1049,7 @@ Flickable {
                 target: editor
                 focus: true
                 selectByMouse: true
-                readOnly: false
+                activeFocusOnPress: true
                 //cursorPosition: editor.positionAt(0, editor.position + 1*overlay.height/2)
             }
             PropertyChanges {
@@ -1072,7 +1102,7 @@ Flickable {
             PropertyChanges {
                 target: editor
                 selectByMouse: false
-                //readOnly: true
+                activeFocusOnPress: true
             }
             PropertyChanges {
                 target: leftWidthAdjustmentBar
@@ -1121,7 +1151,7 @@ Flickable {
             PropertyChanges {
                 target: editor
                 selectByMouse: false
-                //readOnly: true
+                activeFocusOnPress: true
             }
             PropertyChanges {
                 target: leftWidthAdjustmentBar
@@ -1172,7 +1202,7 @@ Flickable {
                 target: editor
                 selectByMouse: false
                 focus: false
-                //readOnly: true
+                activeFocusOnPress: false
             }
             PropertyChanges {
                 target: decreaseVelocityButton
@@ -1191,6 +1221,10 @@ Flickable {
                 target: rightWidthAdjustmentBar
                 opacity: 0
                 enabled: false
+            }
+            PropertyChanges {
+                target: limitedMouse
+                enabled: true
             }
         }
     ]
