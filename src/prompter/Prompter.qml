@@ -679,16 +679,18 @@ Flickable {
                             //    document.alignment = Qt.AlignJustify
                             //    return
                         }
-                    // If not prompting and no modifiers are pressed
+                    // If no modifiers are pressed...
                     else
                         switch (event.key) {
+                            // Forward these other keys to prompter.
                             case Qt.Key_V:
-                                prompter.Keys.onPressed(event)
-                                return
+                                prompter.Keys.onPressed(event);
+                                return;
+                            // Change item in focus when Tab is pressed. This is an accessibility feature.
                             case Qt.Key_Tab:
-                                //event.preventDefault = true
-                                //event.accepted = false
-                                return
+                                event.accepted = true;
+                                editor.nextItemInFocusChain().forceActiveFocus();
+                                return;
                         }
                 }
             }
