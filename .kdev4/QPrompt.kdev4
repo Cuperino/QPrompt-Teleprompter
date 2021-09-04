@@ -8,106 +8,30 @@ Current Build Directory Index-Host System=0
 [CMake][CMake Build Directory 0]
 Build Directory Path=/home/javier/Development/Teleprompters/qprompt/QPrompt/build
 Build Type=Debug
-CMake Binary=/usr/bin/cmake
-CMake Executable=/usr/bin/cmake
+CMake Binary=/usr/local/bin/cmake
+CMake Executable=/usr/local/bin/cmake
 Environment Profile=
 Extra Arguments=
 Install Directory=/usr
 Runtime=Host System
 
-[CustomDefinesAndIncludes][ProjectPath0]
-Path=.
-parseAmbiguousAsCPP=true
-parserArguments=-ferror-limit=100 -fspell-checking -Wdocumentation -Wunused-parameter -Wunreachable-code -Wall -std=c++17
-parserArgumentsC=-ferror-limit=100 -fspell-checking -Wdocumentation -Wunused-parameter -Wunreachable-code -Wall -std=c11
-parserArgumentsCuda=-ferror-limit=100 -fspell-checking -Wdocumentation -Wunused-parameter -Wunreachable-code -Wall -std=c++14
-parserArgumentsOpenCL=-ferror-limit=100 -fspell-checking -Wdocumentation -Wunused-parameter -Wunreachable-code -Wall -cl-std=CL2.0
-
-[CustomDefinesAndIncludes][ProjectPath0][Compiler]
-Name=Clang
-
 [Launch]
-Launch Configurations=Launch Configuration 0,Launch Configuration 1,Launch Configuration 2,Launch Configuration 3
+Launch Configurations=Launch Configuration 0
 
 [Launch][Launch Configuration 0]
 Configured Launch Modes=execute
 Configured Launchers=nativeAppLauncher
-Name=QPrompt Mobile
+Name=qprompt
 Type=Native Application
 
 [Launch][Launch Configuration 0][Data]
 Arguments=
 Dependencies=@Variant(\x00\x00\x00\t\x00\x00\x00\x00\x01\x00\x00\x00\x0b\x00\x00\x00\x00\x03\x00\x00\x00\x0e\x00Q\x00P\x00r\x00o\x00m\x00p\x00t\x00\x00\x00\x06\x00s\x00r\x00c\x00\x00\x00\x0e\x00q\x00p\x00r\x00o\x00m\x00p\x00t)
 Dependency Action=Build
-EnvironmentGroup=Mobile
+EnvironmentGroup=
 Executable=file:///home/javier/Development/Teleprompters/qprompt/QPrompt
 External Terminal=konsole --noclose --workdir %workdir -e %exe
-Kill Before Executing Again=16384
-Project Target=QPrompt,src,qprompt
-Use External Terminal=false
-Working Directory=
-isExecutable=false
-
-[Launch][Launch Configuration 1]
-Configured Launch Modes=execute
-Configured Launchers=nativeAppLauncher
-Name=QPrompt Desktop
-Type=Native Application
-
-[Launch][Launch Configuration 1][Data]
-Arguments=
-Debugger Shell=
-Dependencies=@Variant(\x00\x00\x00\t\x00\x00\x00\x00\x01\x00\x00\x00\x0b\x00\x00\x00\x00\x03\x00\x00\x00\x0e\x00Q\x00P\x00r\x00o\x00m\x00p\x00t\x00\x00\x00\x06\x00s\x00r\x00c\x00\x00\x00\x0e\x00q\x00p\x00r\x00o\x00m\x00p\x00t)
-Dependency Action=Build
-Display Demangle Names=true
-Display Static Members=false
-EnvironmentGroup=Desktop
-Executable=file:///home/javier/Development/Teleprompters/qprompt/QPrompt
-External Terminal=konsole --noclose --workdir %workdir -e %exe
-GDB Path=
-Kill Before Executing Again=16384
-Project Target=QPrompt,src,qprompt
-Remote GDB Config Script=
-Remote GDB Run Script=
-Remote GDB Shell Script=
-Start With=ApplicationOutput
-Use External Terminal=false
-Working Directory=
-isExecutable=false
-
-[Launch][Launch Configuration 2]
-Configured Launch Modes=execute
-Configured Launchers=nativeAppLauncher
-Name=Debug
-Type=Native Application
-
-[Launch][Launch Configuration 2][Data]
-Arguments=
-Dependencies=@Variant(\x00\x00\x00\t\x00\x00\x00\x00\x01\x00\x00\x00\x0b\x00\x00\x00\x00\x03\x00\x00\x00\x0e\x00Q\x00P\x00r\x00o\x00m\x00p\x00t\x00\x00\x00\x06\x00s\x00r\x00c\x00\x00\x00\x0e\x00q\x00p\x00r\x00o\x00m\x00p\x00t)
-Dependency Action=Build
-EnvironmentGroup=Overview
-Executable=file:///home/javier/Development/Teleprompters/qprompt/QPrompt
-External Terminal=konsole --noclose --workdir %workdir -e %exe
-Kill Before Executing Again=16384
-Project Target=QPrompt,src,qprompt
-Use External Terminal=false
-Working Directory=
-isExecutable=false
-
-[Launch][Launch Configuration 3]
-Configured Launch Modes=execute
-Configured Launchers=nativeAppLauncher
-Name=KPrompt
-Type=Native Application
-
-[Launch][Launch Configuration 3][Data]
-Arguments=
-Dependencies=@Variant(\x00\x00\x00\t\x00\x00\x00\x00\x01\x00\x00\x00\x0b\x00\x00\x00\x00\x03\x00\x00\x00\x0e\x00Q\x00P\x00r\x00o\x00m\x00p\x00t\x00\x00\x00\x06\x00s\x00r\x00c\x00\x00\x00\x0e\x00q\x00p\x00r\x00o\x00m\x00p\x00t)
-Dependency Action=Build
-EnvironmentGroup=KDE
-Executable=file:///home/javier/Development/Teleprompters/qprompt/QPrompt
-External Terminal=konsole --noclose --workdir %workdir -e %exe
-Kill Before Executing Again=16384
+Kill Before Executing Again=4194304
 Project Target=QPrompt,src,qprompt
 Use External Terminal=false
 Working Directory=
@@ -115,6 +39,3 @@ isExecutable=false
 
 [Project]
 VersionControlSupport=kdevgit
-
-[SourceFileTemplates]
-LastUsedTemplate=/home/javier/.local/share/kdevfiletemplates/template_descriptions/cpp_basic.desktop
