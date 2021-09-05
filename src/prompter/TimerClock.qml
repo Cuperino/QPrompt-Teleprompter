@@ -147,7 +147,7 @@ Item {
         }
         function getTimeString(timeInSeconds) {
             const digitalSeconds = Math.ceil(timeInSeconds) % 60 / 100;
-            const minutes = timeInSeconds / 60
+            const minutes = (timeInSeconds+1) / 60
             const digitalMinutes = Math.floor(minutes % 60) / 100;
             const digitalHours = Math.floor((minutes / 60) % 100) / 100;
             return (digitalHours).toFixed(2).toString().slice(2)+":"+(digitalMinutes).toFixed(2).toString().slice(2)+":"+(digitalSeconds).toFixed(2).toString().slice(2);
@@ -159,7 +159,7 @@ Item {
     function updateETAText() {
         let timeToEnd = prompter.__timeToEnd;
         if (!isFinite(timeToEnd) || prompter.__i<0) {
-            timeToEnd = (Math.floor(editor.height+prompter.fontSize-prompter.topMargin-1)-prompter.position) / (prompter.__baseSpeed * Math.pow(Math.abs(prompter.__iDefault), prompter.__curvature) * prompter.fontSize/2 * ((__vw-__evw/2) / __vw));
+            timeToEnd = 2 * (Math.floor(editor.height+prompter.fontSize-prompter.topMargin-1)-prompter.position) / (prompter.__baseSpeed * Math.pow(Math.abs(prompter.__iDefault), prompter.__curvature) * prompter.fontSize/2 * ((prompter.__vw-prompter.__evw/2) / prompter.__vw));
             if (prompter.__atEnd)
                 timeToEnd = 0
         }
