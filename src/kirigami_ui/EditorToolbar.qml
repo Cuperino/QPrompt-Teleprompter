@@ -841,8 +841,11 @@ ToolBar {
     }
     Kirigami.OverlaySheet {
         id: stepsConfiguration
-        onSheetOpenChanged: prompterPage.actions.main.checked = sheetOpen
-
+        onSheetOpenChanged: {
+            prompterPage.actions.main.checked = sheetOpen;
+            if (!sheetOpen)
+                prompter.focus = true
+        }
         background: Rectangle {
             //color: Kirigami.Theme.activeBackgroundColor
             color: appTheme.__backgroundColor
@@ -858,16 +861,27 @@ ToolBar {
             Label {
                 text: i18n("Velocity to have when starting to prompt")
             }
-            SpinBox {
-                Layout.fillWidth: true
-                Layout.leftMargin: Kirigami.Units.smallSpacing
-                Layout.rightMargin: Kirigami.Units.smallSpacing
-                value: __iDefault
-                from: 1
-                to: velocityControlSlider.to
-                onValueModified: {
-                    focus: true
-                    __iDefault = value
+            RowLayout {
+                SpinBox {
+                    id: defaultSteps
+                    Layout.fillWidth: true
+                    Layout.leftMargin: Kirigami.Units.smallSpacing
+                    Layout.rightMargin: Kirigami.Units.smallSpacing
+                    value: __iDefault
+                    from: 1
+                    to: velocityControlSlider.to
+                    onValueModified: {
+                        __iDefault = value
+                    }
+                }
+                Button {
+                    visible: prompter.state==="prompting"
+                    flat: true
+                    text: "Make current velocity default"
+                    onClicked: {
+                        defaultSteps.value = prompter.__i;
+                        __iDefault = prompter.__i;
+                    }
                 }
             }
         }
@@ -890,6 +904,8 @@ ToolBar {
             if (sheetOpen)
                 //row.setMarkerKeyButton.item.text = "";
                 column.setMarkerKeyButton.item.text = prompter.document.getMarkerKey();
+            else
+                prompter.focus = true
         }
         ColumnLayout {
             id: column
