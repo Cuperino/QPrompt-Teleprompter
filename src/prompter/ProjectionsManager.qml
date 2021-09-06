@@ -25,6 +25,7 @@ import org.kde.kirigami 2.9 as Kirigami
 import QtQuick.Window 2.15
 //import QtQuick.Dialogs 1.3
 import Qt.labs.platform 1.1
+import Qt.labs.settings 1.0
 
 Item {
     id: projectionManager
@@ -37,6 +38,12 @@ Item {
     property bool reScale: true
     property bool isPreview: false
     property var forwardTo // prompter
+
+    Settings {
+        category: "projections"
+        property alias scale: projectionManager.reScale
+        property alias projections: projectionModel
+    }
 
     Component {
         id: projectionDelegte

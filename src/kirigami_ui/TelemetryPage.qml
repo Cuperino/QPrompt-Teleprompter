@@ -24,6 +24,7 @@ import QtQuick 2.15
 import org.kde.kirigami 2.15 as Kirigami
 import QtQuick.Controls 2.15
 import QtQuick.Layouts 1.15
+import Qt.labs.settings 1.0
 
 Kirigami.ScrollablePage {
     background: Rectangle {
@@ -32,6 +33,14 @@ Kirigami.ScrollablePage {
 
     title: "Telemetry Settings"
     //globalToolBarStyle: Kirigami.ApplicationHeaderStyle.ToolBar
+
+    Settings {
+        category: "telemetry"
+        property alias platformTelemetry: platformTelemetryToggle.checked
+        property alias runsTelemetry: runsTelemetryToggle.checked
+        property alias featureTelemetry: featureTelemetryToggle.checked
+        property alias operationsTelemetry: operationsTelemetryToggle.checked
+    }
 
     GridLayout {
         id: telemetry_settings
@@ -66,6 +75,7 @@ Kirigami.ScrollablePage {
             onClicked: root.__telemetry = !root.__telemetry
         }
         Button {
+            id: platformTelemetryToggle
             text: checked ? i18n("On") : i18n("Off")
             enabled: root.__telemetry
             checkable: true
@@ -76,7 +86,6 @@ Kirigami.ScrollablePage {
         }
             //text: i18n("Information collected once per session")
         TextArea {
-            //id: platformTelemetryToggle
             implicitWidth: parent.width-80
             background: Item{}
             readOnly: true
@@ -88,6 +97,7 @@ Kirigami.ScrollablePage {
             " + " + i18n("Locale information (timezone and keyboard layout)")
         }
         Button {
+            id: runsTelemetryToggle
             text: checked ? i18n("On") : i18n("Off")
             enabled: root.__telemetry
             checkable: true
@@ -97,7 +107,6 @@ Kirigami.ScrollablePage {
             //onClicked: root.__telemetry = !root.__telemetry
         }
         TextArea {
-            //id: runsTelemetryToggle
             implicitWidth: parent.width-80
             background: Item{}
             readOnly: true
@@ -110,6 +119,7 @@ Kirigami.ScrollablePage {
         }
             //text: i18n("Information collected once per prompt")
         Button {
+            id: featureTelemetryToggle
             text: checked ? i18n("On") : i18n("Off")
             enabled: root.__telemetry
             checkable: true
@@ -119,7 +129,6 @@ Kirigami.ScrollablePage {
             //onClicked: root.__telemetry = !root.__telemetry
         }
         TextArea {
-            //id: featureTelemetryToggle
             implicitWidth: parent.width-80
             background: Item{}
             readOnly: true
@@ -136,7 +145,7 @@ Kirigami.ScrollablePage {
             " + " + i18n("Presence of a background image")
         }
         Button {
-            //id: operationsTelemetryToggle
+            id: operationsTelemetryToggle
             text: checked ? i18n("On") : i18n("Off")
             enabled: root.__telemetry
             checkable: true

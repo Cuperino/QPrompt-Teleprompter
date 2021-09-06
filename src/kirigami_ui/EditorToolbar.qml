@@ -75,12 +75,13 @@ import QtQuick 2.15
 import org.kde.kirigami 2.9 as Kirigami
 import QtQuick.Controls 2.15
 import QtQuick.Layouts 1.15
+import Qt.labs.settings 1.0
 
 ToolBar {
     id: toolbar
 
-    property bool showAnimationConfigOptions: false
     property bool showFontSpacingOptions: false
+    property bool showAnimationConfigOptions: false
 
     readonly property alias fontSizeSlider: fontSizeSlider
     readonly property alias letterSpacingSlider: letterSpacingSlider
@@ -89,6 +90,22 @@ ToolBar {
     readonly property alias opacitySlider: opacitySlider
     readonly property alias baseSpeedSlider: baseSpeedSlider
     readonly property alias baseAccelerationSlider: baseAccelerationSlider
+
+    Settings {
+        category: "kirigamiUI"
+        property alias showFontSpacingOptions: toolbar.showFontSpacingOptions
+        property alias showAnimationConfigOptions: toolbar.showAnimationConfigOptions
+    }
+    Settings {
+        category: "prompter"
+        property alias baseSpeed: baseSpeedSlider.value
+        property alias baseAcceleration: baseAccelerationSlider.value
+        property alias fontSize: fontSizeSlider.value
+        property alias letterSpacing: letterSpacingSlider.value
+        property alias wordSpacing: wordSpacingSlider.value
+        //property alias lineHeight: lineHeightSlider.value
+        //property alias fontWYSIWYGSizeSlider: fontWYSIWYGSizeSlider.value
+    }
 
     // Hide toolbar when read region is set to bottom and prompter is not in editing state.
     enabled: !(prompter.state!=="editing" && (overlay.atBottom || Kirigami.Settings.isMobile))

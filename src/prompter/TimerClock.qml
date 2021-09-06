@@ -25,6 +25,7 @@ import QtQuick.Controls 2.15
 import QtQuick.Shapes 1.15
 import QtQuick.Layouts 1.15
 import Qt.labs.platform 1.1
+import Qt.labs.settings 1.0
 
 import com.cuperino.qprompt.promptertimer 1.0
 
@@ -36,7 +37,7 @@ Item {
     property bool stopwatch: false
     property bool eta: false
     property real size: 0.5
-    property color textColor: timerColorDialog.currentColor
+    property alias textColor: timerSettings.color
     enabled: stopwatch || eta
     visible: enabled
     clip: true
@@ -51,7 +52,15 @@ Item {
     
     readonly property Scale __flips: Flip{}
     transform: __flips
-    
+
+    Settings {
+        id: timerSettings
+        category: "timer"
+        property alias stopwatch: clock.stopwatch
+        property alias eta: clock.eta
+        property color color: timerColorDialog.currentColor
+    }
+
     FontLoader {
         id: monoSpacedFont
         name: "Monospace"

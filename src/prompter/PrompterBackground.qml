@@ -22,6 +22,8 @@
 
 import QtQuick 2.15
 import Qt.labs.platform 1.1
+import Qt.labs.settings 1.0
+
 import org.kde.kirigami 2.9 as Kirigami
 
 Rectangle {
@@ -32,16 +34,24 @@ Rectangle {
     property var backgroundImage: null
     readonly property real __deepeningFactor: themeSwitch.checked ? 0.89 : 1
     //color: Qt.rgba(appTheme.__backgroundColor.r*__deepeningFactor, appTheme.__backgroundColor.g*__deepeningFactor, appTheme.__backgroundColor.b*__deepeningFactor, appTheme.__backgroundColor.a)
-    color: "#303030" // "#181818"
+    property alias backgroundColor: backgroundSettings.color
+    color: backgroundColor
     opacity: /*backgroundOpacitySlider.pressed ||*/ parent.toolbar.opacitySlider.pressed ? parent.toolbar.opacitySlider.value/100 : 1
-    
+
+    Settings {
+        id: backgroundSettings
+        category: "background"
+        property color color: "#303030" // "#181818"
+        property alias image: backgroundImage.source
+    }
+
     function loadBackgroundImage() {
         openBackgroundDialog.open()
     }
     
     function clearBackground() {
         backgroundImage.opacity = 0
-        color = appTheme.__backgroundColor
+        backgroundColor = appTheme.__backgroundColor
     }
     
     function setBackgroundImage(file) {
@@ -84,7 +94,7 @@ Rectangle {
             currentColor: appTheme.__backgroundColor
             onAccepted: {
                 console.log(color)
-                prompterBackground.color = color
+                prompterBackground.backgroundColor = color
             }
         }
         
