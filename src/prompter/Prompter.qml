@@ -382,11 +382,13 @@ Flickable {
                         else/* if (prompter.__i>1)*/
                             decreaseVelocity(wheel);
                     }
-                    else
+                    else if (wheel.angleDelta.y < 0) {
                         if (prompter.__invertScrollDirection/* && prompter.__i>1*/)
                             decreaseVelocity(wheel);
                         else
                             increaseVelocity(wheel);
+                    }
+                    // Do nothing if wheel.angleDelta.y === 0
                 }
                 throttledIteration = (throttledIteration+1)%throttleIterations
             }
