@@ -78,6 +78,7 @@ import QtQuick.Controls.Material 2.15
 import QtQuick.Layouts 1.15
 import QtQuick.Window 2.15
 import Qt.labs.platform 1.1
+import Qt.labs.settings 1.0
 
 import com.cuperino.qprompt.document 1.0
 
@@ -892,7 +893,13 @@ Flickable {
         "nextMarker": Qt.Key_End,
         "toggle": Qt.Key_F9
     };
-    
+
+    Settings {
+        category: "flip"
+        property alias x: prompter.__flipX
+        property alias y: prompter.__flipY
+    }
+
     // Key bindings
     Keys.onPressed: {
         if (prompter.state === "prompting") {

@@ -26,6 +26,7 @@ import QtQuick.Controls 2.15
 import QtQuick.Shapes 1.15
 import QtQuick.Controls 2.15
 import QtQuick.Layouts 1.15
+import Qt.labs.settings 1.0
 
 Item {
     id: countdown
@@ -55,7 +56,16 @@ Item {
         //bottom: parent.bottom
     }
     height: prompter.height
-    
+
+    Settings {
+        category: "countdown"
+        property alias enabled: countdown.enabled
+        property alias frame: countdown.frame
+        property alias autoStart: countdown.autoStart
+        property alias iterations: countdown.__iterations
+        property alias disappearWithin: countdown.__disappearWithin
+    }
+
 //     Behavior on opacity {
 //         enabled: true
 //         animation: NumberAnimation {

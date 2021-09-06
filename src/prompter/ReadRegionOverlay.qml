@@ -26,6 +26,8 @@ import QtQuick.Controls 2.15
 import QtQuick.Window 2.0
 import QtQuick.Layouts 1.15
 import QtQuick.Controls.Material 2.15
+import Qt.labs.settings 1.0
+
 import org.kde.kirigami 2.9 as Kirigami
 
 Item {
@@ -58,6 +60,15 @@ Item {
     //    var nextIndex = ( states.indexOf(readRegion.state) + 1 ) % states.length
     //    readRegion.state = states[nextIndex]
     //}
+
+    Settings {
+        category: "readRegion"
+        property alias state: overlay.positionState
+        property alias styleState: overlay.styleState
+        property alias placement: readRegion.__customPlacement
+        property alias enabled: readRegion.enabled
+    }
+
     MouseArea {
         id: overlayMouseArea
         enabled: false

@@ -27,6 +27,7 @@ import QtQuick.Window 2.15
 import QtQuick.Layouts 1.15
 import QtQuick.Controls.Material 2.15
 import Qt.labs.platform 1.1 as Labs
+import Qt.labs.settings 1.0
 
 import com.cuperino.qprompt.document 1.0
 
@@ -46,7 +47,6 @@ Kirigami.ApplicationWindow {
     property bool __invertScrollDirection: false
     property bool __noScroll: false
     property bool __telemetry: true
-    property bool italic
 
     //property int prompterVisibility: Kirigami.ApplicationWindow.Maximized
     property double __opacity: 1
@@ -62,9 +62,40 @@ Kirigami.ApplicationWindow {
     minimumWidth: 480
     minimumHeight: 380
 
+    Settings {
+        category: "mainWindow"
+        property alias x: root.x
+        property alias y: root.y
+        property alias width: root.width
+        property alias height: root.height
+    }
+    Settings {
+        category: "scroll"
+        property alias noScroll: root.__noScroll
+        property alias scrollAsDial: root.__scrollAsDial
+        property alias invertScrollDirection: root.__invertScrollDirection
+        property alias invertArrowKeys: root.__invertArrowKeys
+    }
+    Settings {
+        category: "editor"
+        property alias textRenderer: root.textRenderer
+    }
+    Settings {
+        category: "prompter"
+        property alias stepsDefault: root.__iDefault
+    }
+    Settings {
+        category: "background"
+        property alias opacity: root.__opacity
+    }
+    Settings {
+        category: "telemetry"
+        property alias enable: root.__telemetry
+    }
+
     //// Theme management
     //Material.theme: themeSwitch.checked ? Material.Dark : Material.Light  // This is correct, but it isn't work working, likely because of Kirigami
-    
+
     // Make backgrounds transparent
     //Material.background: "transparent"
     color: "transparent"
