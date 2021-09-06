@@ -181,6 +181,9 @@ Item {
     function setColor() {
         timerColorDialog.open()
     }
+    function clearColor() {
+        timerSettings.color = "#AAA"
+    }
     ColorDialog {
         id: timerColorDialog
         color: '#AAA'

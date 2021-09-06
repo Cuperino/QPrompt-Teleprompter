@@ -262,6 +262,14 @@ Kirigami.Page {
                     viewport.timer.setColor()
                 }
             }
+            Kirigami.Action {
+                id: clearTimerColorButton
+                text: i18n("Clear Timer Color")
+                enabled: !Qt.colorEqual(viewport.timer.textColor, '#AAA')
+                onTriggered: {
+                    viewport.timer.clearColor()
+                }
+            }
         },
         Kirigami.Action {
             id: countdownConfigButton
