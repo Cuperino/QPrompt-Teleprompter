@@ -235,17 +235,31 @@ Kirigami.ApplicationWindow {
                         root.loadTelemetryPage()
                     }
                 }
-                // The following setting is commented because textRenderer changes only take effect on restart and at the time of writing changes to QPrompt's settings aren't yet persistent.
-                // Kirigami.Action {
-                //     text: i18n("Text Renderer: ") + (textRenderer==Text.NativeRendering ? i18n("Native") : i18n("Qt"))
-                //     onTriggered: {
-                //         prompterPage.telemetry_overlay.open()
-                //         if (textRenderer==Text.NativeRendering)
-                //             textRenderer = Text.QtRendering
-                //         else
-                //             textRenderer = Text.NativeRendering
-                //     }
-                // }
+                Kirigami.Action {
+                    visible: !fullScreenPlatform
+                    text: i18n("Text Renderer: ") + (root.textRenderer==Text.NativeRendering ? i18n("Native") : i18n("Qt"))
+                    onTriggered: {
+                        // Switch text renderer
+                        if (root.textRenderer==Text.NativeRendering)
+                            root.textRenderer = Text.QtRendering
+                        else
+                            root.textRenderer = Text.NativeRendering
+                        // Hacks to force immediate text renderer update...
+                        if (root.visibility===Kirigami.ApplicationWindow.FullScreen)
+                            // Leave fullscreen in every platform but macOS
+                            __fullScreen = false;
+                        // Un-maximize window
+                        else if (root.visibility===Kirigami.ApplicationWindow.Maximized)
+                            root.visibility = Kirigami.ApplicationWindow.AutomaticVisibility
+                        // Change change window width to change textarea width, forcing font resize, causing new renderer to repaint.
+                        else {
+                            if (root.width%2)
+                                root.width++
+                            else
+                                root.width--
+                        }
+                    }
+                }
             },
             Kirigami.Action {
                 text: i18n("Abou&t") + " " + aboutData.displayName
