@@ -260,6 +260,12 @@ Kirigami.ApplicationWindow {
                         }
                     }
                 }
+                Kirigami.Action {
+                    text: i18n("Restore Factory Settings")
+                    onTriggered: {
+                        showPassiveNotification(i18n("Feature not yet implemented"))
+                    }
+                }
             },
             Kirigami.Action {
                 text: i18n("Abou&t") + " " + aboutData.displayName
@@ -292,7 +298,7 @@ Kirigami.ApplicationWindow {
                 checkable: true
                 flat: true
                 onClicked: {
-                    showPassiveNotification(i18n("Theme mode switching has not been implemented yet"))
+                    showPassiveNotification(i18n("Feature not yet implemented"))
                 }
             }
         }
