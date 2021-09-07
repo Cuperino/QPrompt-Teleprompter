@@ -487,7 +487,6 @@ Flickable {
                 font.kerning: true
                 font.preferShaping: true
                 renderType: textRenderer
-                //renderType: textRenderer
 
                 function toggleEditorFocus() {
                     if (!editor.focus)
