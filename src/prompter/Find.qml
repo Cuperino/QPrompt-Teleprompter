@@ -42,15 +42,15 @@ Item {
     anchors.rightMargin: viewport.width<608 ? 4 : (viewport.width < searchBarWidth ? searchBarMargin : viewport.width - searchBarWidth + searchBarMargin)
     anchors.left: parent.left
     anchors.right: parent.right
-    anchors.bottom: parent.bottom
+    // I am aware that manipulating Y is slower to process, but dynamically switching between top and bottom anchoring is not an option because it overrides height.
+    y: overlay.__readRegionPlacement > 0.5 ? 0-find.implicitHeight+height : parent.height-height
     Rectangle {
         id: background
-        anchors.top: find.top
         anchors.left: find.left
         anchors.right: find.right
         anchors.leftMargin: -8
         anchors.rightMargin: -12
-        height: find.height+this.radius
+        height: overlay.__readRegionPlacement > 0.5 ? find.height : find.height+this.radius
         radius: 12
         opacity: 0.96
         color: "#262626"
