@@ -488,9 +488,11 @@ Flickable {
                 font.preferShaping: true
                 renderType: textRenderer
 
-                function toggleEditorFocus() {
-                    if (!editor.focus)
+                function toggleEditorFocus(mouse) {
+                    if (!editor.focus) {
                         editor.focus = true;
+                        editor.cursorPosition = editor.positionAt(mouse.x, mouse.y)
+                    }
                     else
                         prompter.focus = true;
                 }
@@ -581,7 +583,7 @@ Flickable {
                         enabled: false
                         acceptedButtons: Qt.LeftButton
                         anchors.fill: parent
-                        onDoubleClicked: editor.toggleEditorFocus();
+                        onDoubleClicked: editor.toggleEditorFocus(mouse);
                         onClicked: if (editor.focus) editor.cursorPosition = editor.positionAt(mouseX, mouseY);
                     }
                 }
