@@ -1246,10 +1246,7 @@ Flickable {
         timer.updateStopwatchText()
     }
     function setCursorAtCurrentPosition() {
-        // Update cursor
-        var verticalPosition = position + overlay.__readRegionPlacement*(overlay.height-overlay.readRegionHeight)+overlay.readRegionHeight/2 + 1
-        var cursorPosition = editor.positionAt(0, verticalPosition)
-        editor.cursorPosition = cursorPosition
+        editor.cursorPosition = editor.positionAt(0, position + overlay.__readRegionPlacement*(overlay.height-overlay.readRegionHeight)+overlay.readRegionHeight/2 + 1)
     }
     transitions: [
         Transition {
