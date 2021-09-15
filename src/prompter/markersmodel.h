@@ -26,15 +26,23 @@
 #include <QAbstractListModel>
 
 struct Marker {
-    Marker() {}
-    Marker(const QString& text, const double position, const int key, const QString& url, const int requestType)
-        : text(text), position(position), key(key), url(url), requestType(requestType) {}
-    QString text;
-    double position;
-    int key;
-    QString url;
-    int requestType;
+    Q_GADGET
+    Q_PROPERTY(double position MEMBER position)
+    Q_PROPERTY(QString url MEMBER url)
+    public:
+        // Constructors
+        Marker() {}
+        Marker(std::nullptr_t) {}
+        Marker(const QString& text, const double position, const int key, const QString& url, const int requestType)
+            : text(text), position(position), key(key), url(url), requestType(requestType) {}
+        // Contents
+        QString text;
+        double position = 0;
+        int key;
+        QString url;
+        int requestType;
 };
+Q_DECLARE_METATYPE(Marker)
 
 class MarkersModel : public QAbstractListModel
 {
@@ -73,8 +81,8 @@ public slots:
     void clearMarkers();
     void appendMarker(Marker &marker);
     void removeMarker(int row);
-    int previousMarker(int position);
-    int nextMarker(int position);
+    Marker previousMarker(int position);
+    Marker nextMarker(int position);
     int keySearch(int key, int currentPosition, bool reverse, bool wrap);
 
 //     void updateMarker(int row);
@@ -82,7 +90,7 @@ public slots:
 
 private slots:
     void resetInternalData();
-    int binarySearch(int lo, int hi, int x, bool reverse);
+    Marker binarySearch(int lo, int hi, int x, bool reverse);
 
 private:
     QList <Marker> m_data;
