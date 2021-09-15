@@ -179,8 +179,8 @@ public:
 
 //     MarkersModel *markers() const;
     Q_INVOKABLE MarkersModel *markers() const;
-    Q_INVOKABLE int previousMarker(int position);
-    Q_INVOKABLE int nextMarker(int position);
+    Q_INVOKABLE Marker previousMarker(int position);
+    Q_INVOKABLE Marker nextMarker(int position);
     Q_INVOKABLE void setLineHeight(int lineHeight);
 
     Q_INVOKABLE void paste(bool withoutFormating);

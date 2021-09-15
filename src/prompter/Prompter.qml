@@ -315,7 +315,7 @@ Flickable {
         if (prompter.state==="prompting")
             __iBackup = 0
         setCursorAtCurrentPosition()
-        editor.cursorPosition = document.previousMarker(editor.cursorPosition)
+        editor.cursorPosition = document.previousMarker(editor.cursorPosition).position
         prompter.position = editor.cursorRectangle.y - (overlay.__readRegionPlacement*(overlay.height-overlay.readRegionHeight)+overlay.readRegionHeight/2) + 1
         __i = i
         if (prompter.__play && i!==0)
@@ -328,7 +328,7 @@ Flickable {
         if (prompter.state==="prompting")
             __iBackup = 0
         setCursorAtCurrentPosition()
-        editor.cursorPosition = document.nextMarker(editor.cursorPosition)
+        editor.cursorPosition = document.nextMarker(editor.cursorPosition).position
         prompter.position = editor.cursorRectangle.y - (overlay.__readRegionPlacement*(overlay.height-overlay.readRegionHeight)+overlay.readRegionHeight/2) + 1
         __i = i
         if (prompter.__play && i!==0)
@@ -445,6 +445,7 @@ Flickable {
                 rightPadding: 14
                 topPadding: 0
                 bottomPadding: 0
+                onLinkActivated: console.log(link)
 
                 background: Item {}
                 

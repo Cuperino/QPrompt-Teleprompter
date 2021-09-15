@@ -138,7 +138,7 @@ int MarkersModel::keySearch(int key, int currentPosition=0, bool reverse=false, 
 }
 
 // Custom Recursive Binary Search: Returns most proximate element in a given direction when searched element is not found.
-int MarkersModel::binarySearch(int l, int r, int goalPosition, bool reverse=false) {
+Marker MarkersModel::binarySearch(int l, int r, int goalPosition, bool reverse=false) {
     // qDebug() << "search in progress";
     if (r>=l) {
         // qDebug() << "l: " << l << ", r: " << r << ", gp: " << goalPosition;
@@ -147,22 +147,30 @@ int MarkersModel::binarySearch(int l, int r, int goalPosition, bool reverse=fals
         int mid = l + (r - l) / 2;
 
         const int aimValue = m_data.at(mid).position;
+        // Base case
         if (aimValue == goalPosition) {
+            // If last element
             if (mid==rowCount()-1) {
                 // qDebug() << "mid equals";
                 if (reverse)
-                    return m_data.at(mid-1).position;
-                return m_data.at(mid).position;
+                    return m_data.at(mid-1);
+                // Return last marker
+                //return m_data.at(mid);
+                // Return a virtual marker that goes after the last marker. This workaround ensures we can detect when the prompter moves past the last marker.
+                Marker virtualMarker = Marker();
+                virtualMarker.position = m_data.at(mid).position+30;
+                return virtualMarker;
             }
+            // If not last element
             else {
                 // qDebug() << "mid not equals:" << mid << rowCount();
                 if (reverse) {
                     if (mid-1>=0)
-                        return m_data.at(mid-1).position;
-                    return 0; // m_data.at(mid).position;
+                        return m_data.at(mid-1);
+                    return nullptr; // 0 // m_data.at(mid);
                 }
                 else
-                    return m_data.at(mid+1).position;
+                    return m_data.at(mid+1);
             }
         }
         // If x is smaller, x is in left sub array
@@ -172,32 +180,35 @@ int MarkersModel::binarySearch(int l, int r, int goalPosition, bool reverse=fals
         if (mid!=rowCount()-1)
             return binarySearch(mid + 1, r, goalPosition, reverse);
     }
+    // Base case continuation, when exact match is not found
     // qDebug() << "Final l: " << l << ", r: " << r << ", gp: " << goalPosition << ", rows: " << rowCount();
     if (reverse) {
         if (r<0)
-            return 0; // m_data.at(0).position;
-        return m_data.at(r).position;
+            return nullptr; // 0 // m_data.at(0).position;
+        return m_data.at(r);
     }
     else
-        return m_data.at(l).position;
+        return m_data.at(l);
 }
 
-int MarkersModel::nextMarker(int position) {
+Marker MarkersModel::nextMarker(int position) {
     // qDebug() << Qt::endl;
     const int size = rowCount();
     if (size)
         // Find next marker
         return this->binarySearch(0, size-1, position, false);
     // Stay in place
-    return -1;
+    Marker invalidPositionMarker = Marker();
+    invalidPositionMarker.position = -1;
+    return invalidPositionMarker; // -1
 }
 
-int MarkersModel::previousMarker(int position) {
+Marker MarkersModel::previousMarker(int position) {
     // qDebug() << Qt::endl;
     const int size = rowCount();
     if (size)
         // Find previous marker
         return this->binarySearch(0, size-1, position, true);
     // Move to start
-    return 0;
+    return Marker(nullptr); // 0
 }

@@ -860,14 +860,14 @@ void DocumentHandler::parse() {
     #endif
 }
 
-int DocumentHandler::nextMarker(int position) {
+Marker DocumentHandler::nextMarker(int position) {
 //     if (this->_markersModel->rowCount()==0)
     if (markersListDirty())
         parse();
     return this->_markersModel->nextMarker(position);
 }
 
-int DocumentHandler::previousMarker(int position) {
+Marker DocumentHandler::previousMarker(int position) {
 //     if (this->_markersModel->rowCount()==0)
     if (markersListDirty())
         parse();

@@ -968,12 +968,15 @@ Kirigami.ApplicationWindow {
             // Detect when moving past a marker.
             // I'm doing this here because there's no event that occurs on each bit of scroll, and this takes much less CPU than a timer, is more precise and scales better.
             prompterPage.prompter.setCursorAtCurrentPosition()
-            prompterPage.editor.cursorPosition = prompterPage.document.nextMarker(prompterPage.editor.cursorPosition)
+            prompterPage.editor.cursorPosition = prompterPage.document.nextMarker(prompterPage.editor.cursorPosition).position
+            // Here, p is for position
             const p = prompterPage.editor.cursorRectangle.y
             if (q !== p) {
-                if (q < p && q !== 0)
-                    console.log("marker");
-                q = p
+                if (q < p && q !== 0) {
+                    const url = prompterPage.document.previousMarker(prompterPage.editor.cursorPosition).url;
+                    console.log(url);
+                }
+                q = p;
             }
         }
         // Update Projections
