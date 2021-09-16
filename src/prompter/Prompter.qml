@@ -84,6 +84,13 @@ import com.cuperino.qprompt.document 1.0
 
 Flickable {
     id: prompter
+    // Enums
+    enum States {
+        Editing,
+        Standby,
+        Countdown,
+        Prompting
+    }
     // Patch through aliases
     property alias editor: editor
     property alias document: document
@@ -193,7 +200,7 @@ Flickable {
         //console.log("Movement ended")
         //console.log(__iBackup, __i, position)
         __i = __iBackup
-        if (prompter.state==="prompting") {
+        if (parseInt(prompter.state)===Prompter.States.Prompting) {
             __iBackup = 0
             position = __destination
         }
@@ -235,39 +242,38 @@ Flickable {
 
     // Toggle prompter state
     function toggle() {
-        
-        var states = ["editing", "standby", "countdown", "prompting"]
 
-        // If arrived at state, do...
-        var nextIndex = ( states.indexOf(state) + 1 ) % states.length
-        // Skip countdown if countdown.__iterations is 0
-        if (states[nextIndex]===states[1]) {
+        // Switch to next corresponding prompter state, relative to current configuration
+        let nextIndex = (parseInt(state) + 1) % (Prompter.States.Prompting + 1)
+        if (nextIndex===Prompter.States.Standby) {
             if (!countdown.frame)
-                nextIndex = ( states.indexOf(state) + 3 ) % states.length
+                nextIndex = Prompter.States.Prompting
             else if (countdown.autoStart)
-                nextIndex = ( states.indexOf(state) + 2 ) % states.length
+                nextIndex = Prompter.States.Countdown
         }
-        if (states[nextIndex]===states[2] && (countdown.__iterations===0 || !countdown.enabled))
-            nextIndex = ( states.indexOf(state) + 2 ) % states.length
-        state = states[nextIndex]
+        // Skip countdown if countdown is disabled or iterations are zero
+        if (nextIndex===Prompter.States.Countdown && (!countdown.enabled || countdown.__iterations===0))
+            nextIndex = Prompter.States.Prompting
+        state = nextIndex
 
         switch (state) {
-            case "editing":
+            case Prompter.States.Editing:
                 //showPassiveNotification(i18n("Editing"), 850*countdown.__iterations)
                 projectionManager.close();
                 editor.focus = true
                 break;
-            case "standby":
-            case "countdown":
-            case "prompting":
+            case Prompter.States.Standby:
+            case Prompter.States.Countdown:
+            case Prompter.States.Prompting:
                 prompter.focus = true
                 if (projectionManager.model.count===0)
                     projectionManager.project();
                 //showPassiveNotification(i18n("Prompt started"), 850*countdown.__iterations)
-                if (state!=="countdown")
+                if (state!==Prompter.States.Countdown)
                     document.parse()
                 break;
         }
+        console.log("toggle state:", state)
     }
 
     function increaseVelocity(event) {
@@ -301,7 +307,7 @@ Flickable {
     function goTo(cursorPosition) {
         const i = __i;
         __i = __iBackup
-        if (prompter.state==="prompting")
+        if (parseInt(prompter.state)===Prompter.States.Prompting)
             __iBackup = 0
         // Direct placement in editor
         editor.cursorPosition = cursorPosition
@@ -314,7 +320,7 @@ Flickable {
     function goToPreviousMarker() {
         const i = __i;
         __i = __iBackup
-        if (prompter.state==="prompting")
+        if (parseInt(prompter.state)===Prompter.States.Prompting)
             __iBackup = 0
         setCursorAtCurrentPosition()
         editor.cursorPosition = document.previousMarker(editor.cursorPosition).position
@@ -327,7 +333,7 @@ Flickable {
     function goToNextMarker() {
         const i = __i;
         __i = __iBackup
-        if (prompter.state==="prompting")
+        if (parseInt(prompter.state)===Prompter.States.Prompting)
             __iBackup = 0
         setCursorAtCurrentPosition()
         editor.cursorPosition = document.nextMarker(editor.cursorPosition).position
@@ -347,7 +353,7 @@ Flickable {
     bottomMargin: (1-overlay.__readRegionPlacement)*(prompter.height-overlay.readRegionHeight)+overlay.readRegionHeight
     function ensureVisible(r)
     {
-        if (prompter.state !== "prompting") {
+        if (parseInt(prompter.state) !== Prompter.States.Prompting) {
             if (contentX >= r.x)
                 contentX = r.x;
             else if (contentX+width <= r.x+r.width)
@@ -375,9 +381,9 @@ Flickable {
         property int throttledIteration: 0
         property int throttleIterations: 8
         onWheel: {
-            if (prompter.__noScroll && prompter.state==="prompting")
+            if (prompter.__noScroll && parseInt(prompter.state)===Prompter.States.Prompting)
                 return;
-            else if (prompter.state==="prompting" && (prompter.__scrollAsDial && !(wheel.modifiers & Qt.ControlModifier) || !prompter.__scrollAsDial && wheel.modifiers & Qt.ControlModifier)) {
+            else if (parseInt(prompter.state)===Prompter.States.Prompting && (prompter.__scrollAsDial && !(wheel.modifiers & Qt.ControlModifier) || !prompter.__scrollAsDial && wheel.modifiers & Qt.ControlModifier)) {
                 if (!throttledIteration) {
                     if (wheel.angleDelta.y > 0) {
                         if (prompter.__invertScrollDirection)
@@ -409,7 +415,7 @@ Flickable {
                     prompter.position = -prompter.topMargin
                 __i=i;
                 // Resume prompting
-                if (prompter.state==="prompting" && prompter.__play)
+                if (parseInt(prompter.state)===Prompter.States.Prompting && prompter.__play)
                     prompter.position = prompter.__destination
             }
         }
@@ -651,7 +657,7 @@ Flickable {
                 Keys.onPressed: {
                     // Prompter related keys are processed first for faster response times.
                     // Assumption: Editor is focused.
-                    if (prompter.state === "prompting") {
+                    if (parseInt(prompter.state) === Prompter.States.Prompting) {
                         // Assumption: We're in edit while prompting mode.
                         // If moving cursor would place it out of bounds that are practical for editing, prevent motion and prevent event from floating up to prompter, which would trigger a change in velocity.
                         if (event.key === Qt.Key_Right && editor.cursorPosition > editor.positionAt(editor.width, prompter.position+overlay.height) - 1
@@ -906,7 +912,7 @@ Flickable {
 
     // Key bindings
     Keys.onPressed: {
-        if (prompter.state === "prompting") {
+        if (parseInt(prompter.state) === Prompter.States.Prompting) {
             switch (event.key) {
                 case keys.increaseVelocity:
                 case Qt.Key_VolumeDowm:
@@ -928,25 +934,14 @@ Flickable {
                 case Qt.Key_Pause:
                     //if (!root.__translucidBackground)
                     //    showPassiveNotification((i18n("Toggle Playback"));
-                    //console.log(motion.paused)
-                    //motion.paused = !motion.paused
-                    if (prompter.__play/*prompter.state=="play"*/) {
+                    if (prompter.__play) {
                         prompter.__play = false
                         prompter.position = prompter.position
-                        //prompter.state = "pause"
-                        //prompter.animationState = "pause"
-                        //    motion.resume()
                     }
                     else {
                         prompter.__play = true
                         prompter.position = prompter.__destination
-                        //prompter.state = "play"
-                        //prompter.animationState = "play"
-                        //    motion.pause()
                     }
-                    //var states = ["play", "pause"]
-                    //var nextIndex = ( states.indexOf(prompter.animationState) + 1 ) % states.length
-                    //prompter.animationState = states[nextIndex]
                     return
                 //default:
                 //    // Show key code
@@ -963,7 +958,7 @@ Flickable {
             //    document.redo();
         }
         // If state is not prompting nor editing
-        else if (prompter.state !== "editing")
+        else if (parseInt(prompter.state) !== Prompter.States.Editing)
             switch (event.key) {
                 case keys.pause:
                 case Qt.Key_SysReq:
@@ -1018,8 +1013,8 @@ Flickable {
             //    return
             case Qt.Key_Escape:
             case Qt.Key_Back:
-                if (prompter.state !== "editing") {
-                    prompter.state = "editing";
+                if (parseInt(prompter.state) !== Prompter.States.Editing) {
+                    prompter.state = Prompter.States.Editing;
                     return
                 }
             case Qt.Key_F:
@@ -1040,7 +1035,7 @@ Flickable {
     }
     states: [
         State {
-            name: "editing"
+            name: Prompter.States.Editing
             //PropertyChanges {
             //target: readRegion
             //__placement: readRegion.__placement
@@ -1079,7 +1074,7 @@ Flickable {
             }
         },
         State {
-            name: "standby"
+            name: Prompter.States.Standby
             PropertyChanges {
                 target: overlay
                 state: "prompting"
@@ -1129,7 +1124,7 @@ Flickable {
             }
         },
         State {
-            name: "countdown"
+            name: Prompter.States.Countdown
             PropertyChanges {
                 target: overlay
                 state: "prompting"
@@ -1178,7 +1173,7 @@ Flickable {
             }
         },
         State {
-            name: "prompting"
+            name: Prompter.States.Prompting
             PropertyChanges {
                 target: overlay
                 state: "prompting"
@@ -1241,7 +1236,7 @@ Flickable {
             }
         }
     ]
-    state: "editing"
+    state: Prompter.States.Editing
     onStateChanged: {
         setCursorAtCurrentPosition()
         var pos = prompter.position
@@ -1253,7 +1248,7 @@ Flickable {
     }
     transitions: [
         Transition {
-            to: "standby"
+            to: Prompter.States.Standby
             ScriptAction  {
                 // Jump into position
                 script: {

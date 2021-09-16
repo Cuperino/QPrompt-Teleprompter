@@ -176,9 +176,9 @@ Item {
                 } else {
                     state: "ready"
                     canvas.__iteration = countdown.__iterations;
-                    prompter.state = "prompting"
-                    //untdown.visible = false
-                    //owPassiveNotification(i18n("Prompting Started"));
+                    prompter.state++; // = Prompter.States.Prompting;
+                    //countdown.visible = false
+                    //showPassiveNotification(i18n("Prompting Started"));
                 }
             }
         }
