@@ -766,7 +766,7 @@ ToolBar {
                 font.pointSize: 13
             }
             Label {
-                text: i18n("Base speed:") + " " + baseSpeedSlider.value.toFixed(2)
+                text: i18n("Base speed:") + " " + (baseSpeedSlider.value/100).toFixed(2)
                 color: Kirigami.Theme.textColor
                 Layout.topMargin: 4
                 Layout.bottomMargin: 4
@@ -775,10 +775,10 @@ ToolBar {
             }
             Slider {
                 id: baseSpeedSlider
-                from: 0.1
-                value: 1
-                to: 5
-                stepSize: 0.05
+                from: 10
+                value: 100
+                to: 500
+                stepSize: 5
                 focusPolicy: Qt.TabFocus
                 onMoved: {
                     viewport.__baseSpeed = value;
@@ -806,7 +806,7 @@ ToolBar {
                 font.pointSize: 13
             }
             Label {
-                text: i18n("Acceleration curve:") + " " + baseAccelerationSlider.value.toFixed(2)
+                text: i18n("Acceleration curve:") + " " + (baseAccelerationSlider.value/100).toFixed(2)
                 color: Kirigami.Theme.textColor
                 Layout.topMargin: 4
                 Layout.bottomMargin: 4
@@ -815,10 +815,10 @@ ToolBar {
             }
             Slider {
                 id: baseAccelerationSlider
-                from: 0.5
-                value: 1.15
-                to: 2
-                stepSize: 0.05
+                from: 50
+                value: 115
+                to: 200
+                stepSize: 5
                 focusPolicy: Qt.TabFocus
                 onMoved: {
                     viewport.__curvature=value;
