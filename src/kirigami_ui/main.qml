@@ -962,9 +962,9 @@ Kirigami.ApplicationWindow {
 
     property int q: 0
     onFrameSwapped: {
-        // Faster way to check that state is not prompting and editor isn't active.
-        // In this implementation we can't detect moving past marker while the editor is active because this feature shares its cursor as a means to detection.
-        if (!(prompterPage.editor.selectByMouse || prompterPage.editor.focus)) {
+        // Check that state is not prompting and editor isn't active.
+        // In this implementation we can't detect moving past marker while the editor is active because this feature shares its cursor as a means of detection.
+        if (prompterPage.prompter.state==="prompting" && !prompterPage.editor.focus) {
             // Detect when moving past a marker.
             // I'm doing this here because there's no event that occurs on each bit of scroll, and this takes much less CPU than a timer, is more precise and scales better.
             prompterPage.prompter.setCursorAtCurrentPosition()

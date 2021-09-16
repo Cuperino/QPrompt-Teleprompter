@@ -106,8 +106,9 @@ Flickable {
     property int __iBackup: 0
     property bool __play: true
     property int __iDefault:  root.__iDefault
-    property real __baseSpeed: viewport.__baseSpeed
-    property real __curvature: viewport.__curvature
+    // Compute slider to decimal separately for performance improvements
+    property real __baseSpeed: viewport.__baseSpeed / 100
+    property real __curvature: viewport.__curvature / 100
     //property int __lastRecordedPosition: 0
     //property real customContentsPlacement: 0.1
     property real contentsPlacement//: 1-rightWidthAdjustmentBar.x
@@ -115,17 +116,18 @@ Flickable {
     readonly property real editorXOffset: positionHandler.x/prompter.width
     readonly property real centreX: width / 2;
     readonly property real centreY: height / 2;
-    readonly property int __jitterMargin: (__i+__baseSpeed*100+__curvature*100)%2
+    readonly property int __jitterMargin: (__i+viewport.__baseSpeed+viewport.__curvature)%2
     readonly property bool __possitiveDirection: __i>=0
-    readonly property real __vw: width / 100
-    readonly property real __evw: editor.width / 100
+    readonly property real __vw: width / 100 // prompter viewport width hundredth
+    readonly property real __evw: editor.width / 100 // editor viewport width hundredth
     readonly property real __speed: __baseSpeed * Math.pow(Math.abs(__i), __curvature)
     readonly property real __velocity: (__possitiveDirection ? 1 : -1) * __speed
-    readonly property real __timeToEnd: (editor.height+fontSize-position-topMargin+__jitterMargin) / (__speed * fontSize/2 * ((__vw-__evw/2) / __vw)) * 2
-    readonly property real __timeToArival: __i ? ((__possitiveDirection ? __timeToEnd : (position+topMargin-__jitterMargin) / (__speed * fontSize/2 * ((__vw-__evw/2) / __vw)))) * 1000 /*<< 7*/ : 0
+    readonly property real __relativeSpeed: (__speed * fontSize/2 * ((__vw-__evw/2) / __vw)) // Adjust relative to viewport widths and font size.
+    readonly property real __travelDistance: position + topMargin - __jitterMargin
+    readonly property real __timeToEnd: 2 * (editor.height + fontSize - __travelDistance) / __relativeSpeed // In seconds, used for Timer.
+    readonly property real __timeToArival: __i ? ((__possitiveDirection ? __timeToEnd : 2 * __travelDistance / __relativeSpeed)) * 1000 : 0 // In milliseconds, used for animation.
     property real timeToArival: __timeToArival
     readonly property int __destination: __i  ? (__possitiveDirection ? editor.height+fontSize-__jitterMargin : __jitterMargin)-topMargin : position
-
     // At start and at end rules
     readonly property bool __atStart: position<=__jitterMargin-topMargin+1
     readonly property bool __atEnd: position>=editor.height-topMargin+fontSize+__jitterMargin-1
@@ -161,7 +163,7 @@ Flickable {
     // Flips
     property bool __flipX: false
     property bool __flipY: false
-    readonly property int __speedLimit: __evw * 10000 // 2*width
+    readonly property int __speedLimit: __vw * 100
     readonly property Scale __flips: Flip{}
     // Clipping improves performance on large files and font sizes.
     // It also provides a workaround to the lack of background in the global toolbar when using transparent backgrounds in Material theme.
