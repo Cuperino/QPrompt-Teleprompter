@@ -875,7 +875,7 @@ ToolBar {
                     }
                 }
                 Button {
-                    visible: parseInt(prompter.state)===Prompter.States.Prompting
+                    visible: parseInt(prompter.state)===Prompter.States.Prompting && prompter.__velocity>0
                     flat: true
                     text: "Make current velocity default"
                     onClicked: {
