@@ -108,7 +108,7 @@ ToolBar {
     }
 
     // Hide toolbar when read region is set to bottom and prompter is not in editing state.
-    enabled: !(prompter.state!=="editing" && (overlay.atBottom || Kirigami.Settings.isMobile))
+    enabled: !(parseInt(prompter.state)!==Prompter.States.Editing && (overlay.atBottom || Kirigami.Settings.isMobile))
     height: enabled ? implicitHeight : 0
     //Behavior on height {
     //    id: height
@@ -126,8 +126,8 @@ ToolBar {
 
     background: Rectangle {
         Rectangle {
-            color: prompter.state==="prompting" && editor.focus ? "#00AA00" : Kirigami.Theme.activeBackgroundColor
-            opacity: prompter.state!=="editing" ? 0.4 : 1
+            color: parseInt(prompter.state)===Prompter.States.Prompting && editor.focus ? "#00AA00" : Kirigami.Theme.activeBackgroundColor
+            opacity: parseInt(prompter.state)!==Prompter.States.Editing ? 0.4 : 1
             height: 3
             anchors.top: parent.top
             anchors.left: parent.left
@@ -153,7 +153,7 @@ ToolBar {
         anchors.fill: parent
         Row {
             id: anchorsRow
-            //visible: prompter.state==="editing"
+            //visible: parseInt(prompter.state)===Prompter.States.Editing
             ToolButton {
                 id: bookmarkListButton
                 text: "\uF0DB" /*uE804*/
@@ -238,7 +238,7 @@ ToolBar {
         }
         Row {
             id: undoRedoRow
-            //visible: prompter.state==="editing"
+            //visible: parseInt(prompter.state)===Prompter.States.Editing
             ToolButton {
                 text: Qt.application.layoutDirection===Qt.LeftToRight?"\uE800":"\uE801"
                 contentItem: Loader { sourceComponent: textComponent }
@@ -262,7 +262,7 @@ ToolBar {
         }
         Row {
             id: editRow
-            //visible: prompter.state==="editing"
+            //visible: parseInt(prompter.state)===Prompter.States.Editing
             ToolButton {
                 id: copyButton
                 text: "\uF0C5"
@@ -299,7 +299,7 @@ ToolBar {
         }
         Row {
             id: formatRow
-            //visible: prompter.state==="editing"
+            //visible: parseInt(prompter.state)===Prompter.States.Editing
             ToolButton {
                 id: boldButton
                 text: "\uE802"
@@ -350,7 +350,7 @@ ToolBar {
         }
         Row {
             id: fontRow
-            //visible: prompter.state==="editing"
+            //visible: parseInt(prompter.state)===Prompter.States.Editing
             ToolButton {
                 id: fontFamilyToolButton
                 text: i18n("\uE805")
@@ -440,7 +440,7 @@ ToolBar {
         }
         Row {
             id: alignmentRow
-            //visible: prompter.state==="editing"
+            //visible: parseInt(prompter.state)===Prompter.States.Editing
             ToolButton {
                 id: alignLeftButton
                 text: Qt.application.layoutDirection===Qt.LeftToRight ? "\uE808" : "\uE80A"
@@ -502,7 +502,7 @@ ToolBar {
         }
         Row {
             id: advancedButtonsRow
-            //visible: prompter.state==="editing"
+            //visible: parseInt(prompter.state)===Prompter.States.Editing
             ToolButton {
                 text: "\uE806"
                 contentItem: Loader { sourceComponent: textComponent }
@@ -529,7 +529,7 @@ ToolBar {
             }
         }
         RowLayout {
-            enabled: prompter.state==="prompting"
+            enabled: parseInt(prompter.state)===Prompter.States.Prompting
             //ToolButton {
             //    text: "\uE814"
             //    enabled: false
@@ -591,7 +591,7 @@ ToolBar {
             }
         }
         RowLayout {
-            visible: !wysiwygButton.checked && prompter.state==="editing"
+            visible: !wysiwygButton.checked && parseInt(prompter.state)===Prompter.States.Editing
             ToolButton {
                 text: "\uF088"
                 enabled: false
@@ -617,8 +617,8 @@ ToolBar {
             }
         }
         RowLayout {
-            visible: wysiwygButton.checked || prompter.state!=="editing"
-            // enabled: !(prompter.state==="countdown" || prompter.state==="prompting")
+            visible: wysiwygButton.checked || parseInt(prompter.state)!==Prompter.States.Editing
+            // enabled: !(parseInt(prompter.state)===Prompter.States.Countdown || parseInt(prompter.state)===Prompter.States.Prompting)
             ToolButton {
                 text: "\uF088"
                 enabled: false
@@ -875,7 +875,7 @@ ToolBar {
                     }
                 }
                 Button {
-                    visible: prompter.state==="prompting"
+                    visible: parseInt(prompter.state)===Prompter.States.Prompting
                     flat: true
                     text: "Make current velocity default"
                     onClicked: {

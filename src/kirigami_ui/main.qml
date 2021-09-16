@@ -101,7 +101,7 @@ Kirigami.ApplicationWindow {
     color: "transparent"
     // More ways to enforce transparency across systems
     //visible: true
-    flags: prompterPage.hideDecorations===2 || prompterPage.hideDecorations===1 && prompterPage.overlay.atTop && prompterPage.prompter.state!=="editing" || Qt.platform.os==="osx" && __opacity!==1 ? Qt.FramelessWindowHint : Qt.Window
+    flags: prompterPage.hideDecorations===2 || prompterPage.hideDecorations===1 && prompterPage.overlay.atTop && parseInt(prompterPage.prompter.state)!==Prompter.States.Editing || Qt.platform.os==="osx" && __opacity!==1 ? Qt.FramelessWindowHint : Qt.Window
 
     background: Rectangle {
         id: appTheme
@@ -114,7 +114,7 @@ Kirigami.ApplicationWindow {
     }
     
     // Full screen
-    visibility: __fullScreen ? Kirigami.ApplicationWindow.FullScreen : (!__autoFullScreen ? Kirigami.ApplicationWindow.AutomaticVisibility : (prompterPage.prompter.state==="editing" ? Kirigami.ApplicationWindow.Maximized : Kirigami.ApplicationWindow.FullScreen))
+    visibility: __fullScreen ? Kirigami.ApplicationWindow.FullScreen : (!__autoFullScreen ? Kirigami.ApplicationWindow.AutomaticVisibility : (parseInt(prompterPage.prompter.state)===Prompter.States.Editing ? Kirigami.ApplicationWindow.Maximized : Kirigami.ApplicationWindow.FullScreen))
 
     // Open save dialog on closing
     onClosing: {
@@ -321,9 +321,9 @@ Kirigami.ApplicationWindow {
         
         // Hide menuBar on mobile, on themes with translucid background, on full screen, and when the reading region is on top while not in edit mode.
         // Algebraically optimized logic
-        visible: !(Kirigami.Settings.isMobile || root.__translucidBackground || root.visibility===Kirigami.ApplicationWindow.FullScreen || (prompterPage.overlay.atTop && prompterPage.prompter.state!=="editing"))
+        visible: !(Kirigami.Settings.isMobile || root.__translucidBackground || root.visibility===Kirigami.ApplicationWindow.FullScreen || (prompterPage.overlay.atTop && parseInt(prompterPage.prompter.state)!==Prompter.States.Editing))
         // Same thing, readable logic
-        //visible: !Kirigami.Settings.isMobile && !root.__translucidBackground && root.visibility!==Kirigami.ApplicationWindow.FullScreen && (!prompterPage.overlay.atTop && prompterPage.prompter.state!=="editing")
+        //visible: !Kirigami.Settings.isMobile && !root.__translucidBackground && root.visibility!==Kirigami.ApplicationWindow.FullScreen && (!prompterPage.overlay.atTop && parseInt(prompterPage.prompter.state)!==Prompter.States.Editing)
         
         Menu {
             title: i18n("&File")
@@ -933,7 +933,7 @@ Kirigami.ApplicationWindow {
     pageStack.initialPage: prompterPageComponent
     // Auto hide global toolbar on fullscreen
     //pageStack.globalToolBar.style: visibility===Kirigami.ApplicationWindow.FullScreen ? Kirigami.ApplicationHeaderStyle.None :  Kirigami.ApplicationHeaderStyle.Auto
-    pageStack.globalToolBar.style: Kirigami.Settings.isMobile ? (prompterPage.prompter.state==="editing" ? Kirigami.ApplicationHeaderStyle.Breadcrumb : Kirigami.ApplicationHeaderStyle.None) : (prompterPage.prompter.state!=="editing" && (visibility===Kirigami.ApplicationWindow.FullScreen || prompterPage.overlay.atTop) ? Kirigami.ApplicationHeaderStyle.None : Kirigami.ApplicationHeaderStyle.ToolBar)
+    pageStack.globalToolBar.style: Kirigami.Settings.isMobile ? (parseInt(prompterPage.prompter.state)===Prompter.States.Editing ? Kirigami.ApplicationHeaderStyle.Breadcrumb : Kirigami.ApplicationHeaderStyle.None) : (parseInt(prompterPage.prompter.state)!==Prompter.States.Editing && (visibility===Kirigami.ApplicationWindow.FullScreen || prompterPage.overlay.atTop) ? Kirigami.ApplicationHeaderStyle.None : Kirigami.ApplicationHeaderStyle.ToolBar)
     
     // The following is not possible in the current version of Kirigami, but it should be:
     //pageStack.globalToolBar.background: Rectangle {
@@ -964,7 +964,7 @@ Kirigami.ApplicationWindow {
     onFrameSwapped: {
         // Check that state is not prompting and editor isn't active.
         // In this implementation we can't detect moving past marker while the editor is active because this feature shares its cursor as a means of detection.
-        if (prompterPage.prompter.state==="prompting" && !prompterPage.editor.focus) {
+        if (parseInt(prompterPage.prompter.state)===Prompter.States.Prompting && !prompterPage.editor.focus) {
             // Detect when moving past a marker.
             // I'm doing this here because there's no event that occurs on each bit of scroll, and this takes much less CPU than a timer, is more precise and scales better.
             prompterPage.prompter.setCursorAtCurrentPosition()

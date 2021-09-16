@@ -26,8 +26,8 @@ import org.kde.kirigami 2.9 as Kirigami
 Scale {
     origin.x: width/2
     origin.y: height/2
-    xScale: prompter.state!=="editing" && prompter.__flipX ? -1 : 1
-    yScale: prompter.state!=="editing" && prompter.__flipY ? -1 : 1
+    xScale: prompter.state!==prompter.State.Editing && prompter.__flipX ? -1 : 1
+    yScale: prompter.state!==prompter.State.Editing && prompter.__flipY ? -1 : 1
     Behavior on xScale {
         enabled: true
         animation: NumberAnimation {
