@@ -147,7 +147,7 @@ Item {
                 PropertyChanges {
                     target: pointers
                     // Workaround to ensure pointer color does not remain in its free state setting when changing to other prompter states
-                    __strokeColor: prompter.state==="editing" ? "#2a71ad" : "#4d94cf"
+                    __strokeColor: parseInt(prompter.state)===Prompter.States.Editing ? "#2a71ad" : "#4d94cf"
                 }
                 PropertyChanges {
                     target: readRegion

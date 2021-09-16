@@ -28,7 +28,7 @@ import org.kde.kirigami 2.9 as Kirigami
 Item {
     property var document
     property bool isOpen: false
-    height: isOpen && prompter.state!=="prompting" && prompter.state!=="countdown" ? find.implicitHeight : 0
+    height: isOpen && parseInt(prompter.state)!==Prompter.States.Prompting && parseInt(prompter.state)!==Prompter.States.Countdown ? find.implicitHeight : 0
     visible: height>0
     enabled: visible
     readonly property int searchBarWidth: 660

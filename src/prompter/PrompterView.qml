@@ -83,7 +83,7 @@ Item {
         z: 1
         textColor: colorDialog.color
         textBackground: highlightDialog.color
-        fontSize:  (prompter.state==="editing" && !prompter.__wysiwyg) ? (Math.pow(editorToolbar.fontSizeSlider.value/185,4)*185) : (Math.pow(editorToolbar.fontWYSIWYGSizeSlider.value/185,4)*185)*prompter.__vw/10
+        fontSize:  (parseInt(prompter.state)===Prompter.States.Editing && !prompter.__wysiwyg) ? (Math.pow(editorToolbar.fontSizeSlider.value/185,4)*185) : (Math.pow(editorToolbar.fontWYSIWYGSizeSlider.value/185,4)*185)*prompter.__vw/10
         letterSpacing: fontSize * editorToolbar.letterSpacingSlider.value / 81
         wordSpacing: fontSize * editorToolbar.wordSpacingSlider.value / 81
         //Math.pow((fontSizeSlider.value*prompter.__vw),3)

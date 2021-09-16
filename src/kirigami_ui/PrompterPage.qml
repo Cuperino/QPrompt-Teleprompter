@@ -80,7 +80,7 @@ Kirigami.Page {
             id: wysiwygButton
             visible: false
             text: i18n("WYSIWYG")
-            enabled: prompter.state==="editing"
+            enabled: parseInt(prompter.state)===Prompter.States.Editing
             checkable: true
             checked: viewport.prompter.__wysiwyg
             tooltip: viewport.prompter.__wysiwyg ? i18n("\"What you see is what you get\" mode is On") : i18n("\"What you see is what you get\" mode is Off")
@@ -406,7 +406,7 @@ Kirigami.Page {
                     model: Qt.application.screens
                     delegate: Kirigami.BasicListItem {
                         id: displayItem
-                        enabled: prompter.state==="editing"
+                        enabled: parseInt(prompter.state)===Prompter.States.Editing
                         label: model.name
                         // enabled: screen.name!==label
                         // readonly property int projectionSetting: enabled ? projectionSetting : 0
@@ -505,7 +505,7 @@ Kirigami.Page {
         property alias toolbar: editorToolbar
     }
 
-    progress: viewport.prompter.state==="prompting" ? viewport.prompter.progress : undefined
+    progress: parseInt(viewport.prompter.state)===Prompter.States.Prompting ? viewport.prompter.progress : undefined
 
     FontDialog {
         id: fontDialog

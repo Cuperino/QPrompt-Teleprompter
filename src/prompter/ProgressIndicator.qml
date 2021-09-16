@@ -25,7 +25,7 @@ import QtQuick.Controls 2.15
 ScrollBar {
     id: scroller
     policy: ScrollBar.AlwaysOn
-    interactive: prompter.state==="prompting" || prompter.state==="countdown" ? false : true
+    interactive: parseInt(prompter.state)===Prompter.States.Prompting || parseInt(prompter.state)===Prompter.States.Countdown ? false : true
     leftPadding: 0
     rightPadding: 0
     leftInset: 0
