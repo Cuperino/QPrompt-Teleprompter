@@ -256,7 +256,7 @@ Flickable {
             nextIndex = Prompter.States.Prompting
         state = nextIndex
 
-        switch (state) {
+        switch (parseInt(state)) {
             case Prompter.States.Editing:
                 //showPassiveNotification(i18n("Editing"), 850*countdown.__iterations)
                 projectionManager.close();

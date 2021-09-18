@@ -57,7 +57,7 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
     QCoreApplication::setOrganizationDomain("cuperino.com");
     QCoreApplication::setApplicationName("QPrompt");
 
-    KAboutData aboutData("qprompt", "QPrompt", i18n("1.0 (development build 2)"),
+    KAboutData aboutData("qprompt", "QPrompt", i18n("1.0 (development build 3)"),
                          i18n("Personal teleprompter software for professional content creators."),
                          KAboutLicense::GPL_V3,
                          //KAboutLicense::Custom,
