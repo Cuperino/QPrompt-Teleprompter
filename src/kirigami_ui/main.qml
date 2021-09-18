@@ -402,52 +402,52 @@ Kirigami.ApplicationWindow {
                 MenuItem {
                     text: i18n("&Left Pointer")
                     checkable: true
-                    checked: prompterPage.overlay.styleState === "leftPointer"
-                    onTriggered: prompterPage.overlay.styleState = "leftPointer"
+                    checked: parseInt(prompterPage.overlay.styleState) === ReadRegionOverlay.PointerStates.LeftPointer
+                    onTriggered: prompterPage.overlay.styleState = ReadRegionOverlay.PointerStates.LeftPointer
                 }
                 MenuItem {
                     text: i18n("&Right Pointer")
                     checkable: true
-                    checked: prompterPage.overlay.styleState === "rightPointer"
-                    onTriggered: prompterPage.overlay.styleState = "rightPointer"
+                    checked: parseInt(prompterPage.overlay.styleState) === ReadRegionOverlay.PointerStates.RightPointer
+                    onTriggered: prompterPage.overlay.styleState = ReadRegionOverlay.PointerStates.RightPointer
                 }
                 MenuItem {
                     text: i18n("B&oth Pointers")
                     checkable: true
-                    checked: prompterPage.overlay.styleState === "pointers"
-                    onTriggered: prompterPage.overlay.styleState = "pointers"
+                    checked: parseInt(prompterPage.overlay.styleState) === ReadRegionOverlay.PointerStates.Pointers
+                    onTriggered: prompterPage.overlay.styleState = ReadRegionOverlay.PointerStates.Pointers
                 }
                 MenuSeparator { }
                 MenuItem {
                     text: i18n("&Bars")
                     checkable: true
-                    checked: prompterPage.overlay.styleState === "bars"
-                    onTriggered: prompterPage.overlay.styleState = "bars"
+                    checked: parseInt(prompterPage.overlay.styleState) === ReadRegionOverlay.PointerStates.Bars
+                    onTriggered: prompterPage.overlay.styleState = ReadRegionOverlay.PointerStates.Bars
                 }
                 MenuItem {
                     text: i18n("Bars Lef&t")
                     checkable: true
-                    checked: prompterPage.overlay.styleState === "barsLeft"
-                    onTriggered: prompterPage.overlay.styleState = "barsLeft"
+                    checked: parseInt(prompterPage.overlay.styleState) === ReadRegionOverlay.PointerStates.BarsLeft
+                    onTriggered: prompterPage.overlay.styleState = ReadRegionOverlay.PointerStates.BarsLeft
                 }
                 MenuItem {
                     text: i18n("Bars Ri&ght")
                     checkable: true
-                    checked: prompterPage.overlay.styleState === "barsRight"
-                    onTriggered: prompterPage.overlay.styleState = "barsRight"
+                    checked: parseInt(prompterPage.overlay.styleState) === ReadRegionOverlay.PointerStates.BarsRight
+                    onTriggered: prompterPage.overlay.styleState = ReadRegionOverlay.PointerStates.BarsRight
                 }
                 MenuSeparator { }
                 MenuItem {
                     text: i18n("&All")
                     checkable: true
-                    checked: prompterPage.overlay.styleState === "all"
-                    onTriggered: prompterPage.overlay.styleState = "all"
+                    checked: parseInt(prompterPage.overlay.styleState) === ReadRegionOverlay.PointerStates.All
+                    onTriggered: prompterPage.overlay.styleState = ReadRegionOverlay.PointerStates.All
                 }
                 MenuItem {
                     text: i18n("&None")
                     checkable: true
-                    checked: prompterPage.overlay.styleState === "none"
-                    onTriggered: prompterPage.overlay.styleState = "none"
+                    checked: parseInt(prompterPage.overlay.styleState) === ReadRegionOverlay.PointerStates.None
+                    onTriggered: prompterPage.overlay.styleState = ReadRegionOverlay.PointerStates.None
                 }
             }
             Menu {
@@ -455,33 +455,33 @@ Kirigami.ApplicationWindow {
                 MenuItem {
                     text: i18n("&Top")
                     checkable: true
-                    checked: prompterPage.overlay.positionState === "top"
-                    onTriggered: prompterPage.overlay.positionState = "top"
+                    checked: parseInt(prompterPage.overlay.positionState) === ReadRegionOverlay.PositionStates.Top
+                    onTriggered: prompterPage.overlay.positionState = ReadRegionOverlay.PositionStates.Top
                 }
                 MenuItem {
                     text: i18n("&Middle")
                     checkable: true
-                    checked: prompterPage.overlay.positionState === "middle"
-                    onTriggered: prompterPage.overlay.positionState = "middle"
+                    checked: parseInt(prompterPage.overlay.positionState) === ReadRegionOverlay.PositionStates.Middle
+                    onTriggered: prompterPage.overlay.positionState = ReadRegionOverlay.PositionStates.Middle
                 }
                 MenuItem {
                     text: i18n("&Bottom")
                     checkable: true
-                    checked: prompterPage.overlay.positionState === "bottom"
-                    onTriggered: prompterPage.overlay.positionState = "bottom"
+                    checked: parseInt(prompterPage.overlay.positionState) === ReadRegionOverlay.PositionStates.Bottom
+                    onTriggered: prompterPage.overlay.positionState = ReadRegionOverlay.PositionStates.Bottom
                 }
                 MenuSeparator { }
                 MenuItem {
                     text: i18n("F&ree placement")
                     checkable: true
-                    checked: prompterPage.overlay.positionState === "free"
-                    onTriggered: prompterPage.overlay.positionState = "free"
+                    checked: parseInt(prompterPage.overlay.positionState) === ReadRegionOverlay.PositionStates.Free
+                    onTriggered: prompterPage.overlay.positionState = ReadRegionOverlay.PositionStates.Free
                 }
                 MenuItem {
                     text: i18n("C&ustom (Fixed placement)")
                     checkable: true
-                    checked: prompterPage.overlay.positionState === "fixed"
-                    onTriggered: prompterPage.overlay.positionState = "fixed"
+                    checked: parseInt(prompterPage.overlay.positionState) === ReadRegionOverlay.PositionStates.Fixed
+                    onTriggered: prompterPage.overlay.positionState = ReadRegionOverlay.PositionStates.Fixed
                 }
             }
         }
@@ -697,52 +697,52 @@ Kirigami.ApplicationWindow {
                 Labs.MenuItem {
                     text: i18n("&Left Pointer")
                     checkable: true
-                    checked: prompterPage.overlay.styleState === "leftPointer"
-                    onTriggered: prompterPage.overlay.styleState = "leftPointer"
+                    checked: parseInt(prompterPage.overlay.styleState) === ReadRegionOverlay.PointerStates.LeftPointer
+                    onTriggered: prompterPage.overlay.styleState = ReadRegionOverlay.PointerStates.LeftPointer
                 }
                 Labs.MenuItem {
                     text: i18n("&Right Pointer")
                     checkable: true
-                    checked: prompterPage.overlay.styleState === "rightPointer"
-                    onTriggered: prompterPage.overlay.styleState = "rightPointer"
+                    checked: parseInt(prompterPage.overlay.styleState) === ReadRegionOverlay.PointerStates.RightPointer
+                    onTriggered: prompterPage.overlay.styleState = ReadRegionOverlay.PointerStates.RightPointer
                 }
                 Labs.MenuItem {
                     text: i18n("B&oth Pointers")
                     checkable: true
-                    checked: prompterPage.overlay.styleState === "pointers"
-                    onTriggered: prompterPage.overlay.styleState = "pointers"
+                    checked: parseInt(prompterPage.overlay.styleState) === ReadRegionOverlay.PointerStates.Pointers
+                    onTriggered: prompterPage.overlay.styleState = ReadRegionOverlay.PointerStates.Pointers
                 }
                 Labs.MenuSeparator { }
                 Labs.MenuItem {
                     text: i18n("&Bars")
                     checkable: true
-                    checked: prompterPage.overlay.styleState === "bars"
-                    onTriggered: prompterPage.overlay.styleState = "bars"
+                    checked: parseInt(prompterPage.overlay.styleState) === ReadRegionOverlay.PointerStates.Bars
+                    onTriggered: prompterPage.overlay.styleState = ReadRegionOverlay.PointerStates.Bars
                 }
                 Labs.MenuItem {
                     text: i18n("Bars Lef&t")
                     checkable: true
-                    checked: prompterPage.overlay.styleState === "barsLeft"
-                    onTriggered: prompterPage.overlay.styleState = "barsLeft"
+                    checked: parseInt(prompterPage.overlay.styleState) === ReadRegionOverlay.PointerStates.BarsLeft
+                    onTriggered: prompterPage.overlay.styleState = ReadRegionOverlay.PointerStates.BarsLeft
                 }
                 Labs.MenuItem {
                     text: i18n("Bars Ri&ght")
                     checkable: true
-                    checked: prompterPage.overlay.styleState === "barsRight"
-                    onTriggered: prompterPage.overlay.styleState = "barsRight"
+                    checked: parseInt(prompterPage.overlay.styleState) === ReadRegionOverlay.PointerStates.BarsRight
+                    onTriggered: prompterPage.overlay.styleState = ReadRegionOverlay.PointerStates.BarsRight
                 }
                 Labs.MenuSeparator { }
                 Labs.MenuItem {
                     text: i18n("&All")
                     checkable: true
-                    checked: prompterPage.overlay.styleState === "all"
-                    onTriggered: prompterPage.overlay.styleState = "all"
+                    checked: parseInt(prompterPage.overlay.styleState) === ReadRegionOverlay.PointerStates.All
+                    onTriggered: prompterPage.overlay.styleState = ReadRegionOverlay.PointerStates.All
                 }
                 Labs.MenuItem {
                     text: i18n("&None")
                     checkable: true
-                    checked: prompterPage.overlay.styleState === "none"
-                    onTriggered: prompterPage.overlay.styleState = "none"
+                    checked: parseInt(prompterPage.overlay.styleState) === ReadRegionOverlay.PointerStates.None
+                    onTriggered: prompterPage.overlay.styleState = ReadRegionOverlay.PointerStates.None
                 }
             }
             Labs.Menu {
@@ -750,33 +750,33 @@ Kirigami.ApplicationWindow {
                 Labs.MenuItem {
                     text: i18n("&Top")
                     checkable: true
-                    checked: prompterPage.overlay.positionState === "top"
-                    onTriggered: prompterPage.overlay.positionState = "top"
+                    checked: parseInt(prompterPage.overlay.positionState) === ReadRegionOverlay.PositionStates.Top
+                    onTriggered: prompterPage.overlay.positionState = ReadRegionOverlay.PositionStates.Top
                 }
                 Labs.MenuItem {
                     text: i18n("&Middle")
                     checkable: true
-                    checked: prompterPage.overlay.positionState === "middle"
-                    onTriggered: prompterPage.overlay.positionState = "middle"
+                    checked: parseInt(prompterPage.overlay.positionState) === ReadRegionOverlay.PositionStates.Middle
+                    onTriggered: prompterPage.overlay.positionState = ReadRegionOverlay.PositionStates.Middle
                 }
                 Labs.MenuItem {
                     text: i18n("&Bottom")
                     checkable: true
-                    checked: prompterPage.overlay.positionState === "bottom"
-                    onTriggered: prompterPage.overlay.positionState = "bottom"
+                    checked: parseInt(prompterPage.overlay.positionState) === ReadRegionOverlay.PositionStates.Bottom
+                    onTriggered: prompterPage.overlay.positionState = ReadRegionOverlay.PositionStates.Bottom
                 }
                 Labs.MenuSeparator { }
                 Labs.MenuItem {
                     text: i18n("F&ree placement")
                     checkable: true
-                    checked: prompterPage.overlay.positionState === "free"
-                    onTriggered: prompterPage.overlay.positionState = "free"
+                    checked: parseInt(prompterPage.overlay.positionState) === ReadRegionOverlay.PositionStates.Free
+                    onTriggered: prompterPage.overlay.positionState = ReadRegionOverlay.PositionStates.Free
                 }
                 Labs.MenuItem {
                     text: i18n("C&ustom (Fixed placement)")
                     checkable: true
-                    checked: prompterPage.overlay.positionState === "fixed"
-                    onTriggered: prompterPage.overlay.positionState = "fixed"
+                    checked: parseInt(prompterPage.overlay.positionState) === ReadRegionOverlay.PositionStates.Fixed
+                    onTriggered: prompterPage.overlay.positionState = ReadRegionOverlay.PositionStates.Fixed
                 }
             }
         }
