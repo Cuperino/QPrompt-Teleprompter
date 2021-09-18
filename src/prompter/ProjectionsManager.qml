@@ -57,7 +57,7 @@ Item {
             //y: model.y
             //width: model.width
             //height: model.height
-            visibility: Kirigami.ApplicationWindow.FullScreen
+            visibility: Qt.platform.os==="osx" ? Kirigami.ApplicationWindow.Maximized : Kirigami.ApplicationWindow.FullScreen
             visible: true
             color: "transparent"
 
