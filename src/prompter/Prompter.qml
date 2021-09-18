@@ -1047,11 +1047,11 @@ Flickable {
             //}
             PropertyChanges {
                 target: overlay
-                state: "editing"
+                state: ReadRegionOverlay.States.NotPrompting
             }
             PropertyChanges {
                 target: countdown
-                state: "standby"
+                state: Countdown.States.Standby
             }
             PropertyChanges {
                 target: editor
@@ -1077,11 +1077,11 @@ Flickable {
             name: Prompter.States.Standby
             PropertyChanges {
                 target: overlay
-                state: "prompting"
+                state: ReadRegionOverlay.States.Prompting
             }
             PropertyChanges {
                 target: countdown
-                state: "ready"
+                state: Countdown.States.Ready
             }
             PropertyChanges {
                 target: timer
@@ -1127,11 +1127,11 @@ Flickable {
             name: Prompter.States.Countdown
             PropertyChanges {
                 target: overlay
-                state: "prompting"
+                state: ReadRegionOverlay.States.Prompting
             }
             PropertyChanges {
                 target: countdown
-                state: "running"
+                state: Countdown.States.Running
             }
             PropertyChanges {
                 target: timer
@@ -1176,7 +1176,7 @@ Flickable {
             name: Prompter.States.Prompting
             PropertyChanges {
                 target: overlay
-                state: "prompting"
+                state: ReadRegionOverlay.States.Prompting
             }
             PropertyChanges {
                 target: timer

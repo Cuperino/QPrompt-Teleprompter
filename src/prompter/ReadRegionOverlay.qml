@@ -32,6 +32,27 @@ import org.kde.kirigami 2.9 as Kirigami
 
 Item {
     id: overlay
+    enum States {
+        NotPrompting,
+        Prompting
+    }
+    enum PositionStates {
+        Top,
+        Middle,
+        Bottom,
+        Free,
+        Fixed
+    }
+    enum PointerStates {
+        None,
+        Pointers,
+        LeftPointer,
+        RightPointer,
+        Bars,
+        BarsLeft,
+        BarsRight,
+        All
+    }
     property double __opacity: 0.06
     property color __color: 'black'
     readonly property double __vw: width/100
@@ -40,7 +61,7 @@ Item {
     readonly property bool atTop: !prompter.__flipY && !__readRegionPlacement || prompter.__flipY && __readRegionPlacement===1
     readonly property bool atBottom: !prompter.__flipY && __readRegionPlacement===1 || prompter.__flipY && !__readRegionPlacement
     property alias enabled: readRegion.enabled
-    property string positionState: "middle"
+    property string positionState: ReadRegionOverlay.PositionStates.Middle
     property string styleState: Qt.application.layoutDirection===Qt.LeftToRight ? "barsLeft" : "barsRight"
     readonly property alias readRegionHeight: readRegion.height
     readonly property Scale __flips: Flip{}
@@ -78,7 +99,7 @@ Item {
     }
     states: [
         State {
-            name: "prompting"
+            name: ReadRegionOverlay.States.Prompting
             PropertyChanges {
                 target: overlay
                 __opacity: 0.4
@@ -91,7 +112,7 @@ Item {
             //}
         }
     ]
-    state: "editing"
+    state: ReadRegionOverlay.States.NotPrompting
     transitions: [
         Transition {
             enabled: !root.__autoFullScreen
@@ -117,28 +138,28 @@ Item {
         anchors.right: parent.right
         states: [
             State {
-                name: "top"
+                name: ReadRegionOverlay.PositionStates.Top
                 PropertyChanges {
                     target: readRegion
                     __placement: 0
                 }
             },
             State {
-                name: "middle"
+                name: ReadRegionOverlay.PositionStates.Middle
                 PropertyChanges {
                     target: readRegion
                     __placement: ['android', 'ios', 'tvos', 'qnx', 'ipados'].indexOf(Qt.platform.os)===-1? 0.5 : screenMiddle
                 }
             },
             State {
-                name: "bottom"
+                name: ReadRegionOverlay.PositionStates.Bottom
                 PropertyChanges {
                     target: readRegion
                     __placement: 1
                 }
             },
             State {
-                name: "free"
+                name: ReadRegionOverlay.PositionStates.Free
                 PropertyChanges {
                     target: overlay
                     __opacity: 0.4
@@ -155,7 +176,7 @@ Item {
                 }
             },
             State {
-                name: "fixed"
+                name: ReadRegionOverlay.PositionStates.Fixed
                 PropertyChanges {
                     target: readRegion
                     __placement: readRegion.__customPlacement
@@ -238,7 +259,7 @@ Item {
             }
             states: [
                 State {
-                    name: "none"
+                    name: ReadRegionOverlay.PointerStates.None
                     PropertyChanges {
                         target: pointers
                         opacity: 0
@@ -253,7 +274,7 @@ Item {
                     }
                 },
                 State {
-                    name: "pointers"
+                    name: ReadRegionOverlay.PointerStates.Pointers
                     PropertyChanges {
                         target: pointers
                         opacity: __opacity
@@ -268,7 +289,7 @@ Item {
                     }
                 },
                 State {
-                    name: "leftPointer"
+                    name: ReadRegionOverlay.PointerStates.LeftPointer
                     PropertyChanges {
                         target: pointers
                         opacity: __opacity
@@ -287,7 +308,7 @@ Item {
                     }
                 },
                 State {
-                    name: "rightPointer"
+                    name: ReadRegionOverlay.PointerStates.RightPointer
                     PropertyChanges {
                         target: pointers
                         opacity: __opacity
@@ -306,7 +327,7 @@ Item {
                     }
                 },
                 State {
-                    name: "bars"
+                    name: ReadRegionOverlay.PointerStates.Bars
                     PropertyChanges {
                         target: pointers
                         opacity: 0
@@ -321,7 +342,7 @@ Item {
                     }
                 },
                 State {
-                    name: "barsLeft"
+                    name: ReadRegionOverlay.PointerStates.BarsLeft
                     PropertyChanges {
                         target: pointers
                         opacity: __opacity
@@ -340,7 +361,7 @@ Item {
                     }
                 },
                 State {
-                    name: "barsRight"
+                    name: ReadRegionOverlay.PointerStates.BarsRight
                     PropertyChanges {
                         target: pointers
                         opacity: __opacity
@@ -359,7 +380,7 @@ Item {
                     }
                 },
                 State {
-                    name: "all"
+                    name: ReadRegionOverlay.PointerStates.All
                     PropertyChanges {
                         target: pointers
                         opacity: __opacity

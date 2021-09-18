@@ -30,7 +30,12 @@ import Qt.labs.settings 1.0
 
 Item {
     id: countdown
-    
+    // Enums
+    enum States {
+        Standby,
+        Ready,
+        Running
+    }
     readonly property alias configuration: configuration
     function requestPaint() {
         canvas.requestPaint()
@@ -233,7 +238,7 @@ Item {
 
     states: [
     State {
-        name: "standby"
+        name: Countdown.States.Standby
         PropertyChanges {
             target: countdown
             running: false
@@ -251,7 +256,7 @@ Item {
         }
     },
     State {
-        name: "ready"
+        name: Countdown.States.Ready
         PropertyChanges {
             target: countdown
             running: false
@@ -279,7 +284,7 @@ Item {
         }
     },
     State {
-        name: "running"
+        name: Countdown.States.Running
         PropertyChanges {
             target: dissolveIn
             running: true
@@ -304,11 +309,11 @@ Item {
         }
     }
     ]
-    state: "standby"
+    state: Countdown.States.Standby
     transitions: [
     Transition {
-        from: "standby"
-        to: "ready"
+        from: Countdown.States.Standby
+        to: Countdown.States.Ready
         SequentialAnimation {
             ScriptAction { scriptName: "paintReady" }
         }

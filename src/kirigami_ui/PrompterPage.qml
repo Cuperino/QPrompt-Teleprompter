@@ -99,40 +99,40 @@ Kirigami.Page {
                 id: readRegionTopButton
                 iconName: "go-up"
                 text: i18n("Top")
-                onTriggered: viewport.overlay.positionState = "top"
-                enabled: viewport.overlay.positionState!=="top"
+                onTriggered: viewport.overlay.positionState = ReadRegionOverlay.PositionStates.Top
+                enabled: parseInt(viewport.overlay.positionState)!==ReadRegionOverlay.PositionStates.Top
                 tooltip: i18n("Move reading region to the top, convenient for use with webcams")
             }
             Kirigami.Action {
                 id: readRegionMiddleButton
                 iconName: "remove"
                 text: i18n("Middle")
-                onTriggered: viewport.overlay.positionState = "middle"
-                enabled: viewport.overlay.positionState!=="middle"
+                onTriggered: viewport.overlay.positionState = ReadRegionOverlay.PositionStates.Middle
+                enabled: parseInt(viewport.overlay.positionState)!==ReadRegionOverlay.PositionStates.Middle
                 tooltip: i18n("Move reading region to the vertical center")
             }
             Kirigami.Action {
                 id: readRegionBottomButton
                 iconName: "go-down"
                 text: i18n("Bottom")
-                onTriggered: viewport.overlay.positionState = "bottom"
-                enabled: viewport.overlay.positionState!=="bottom"
+                onTriggered: viewport.overlay.positionState = ReadRegionOverlay.PositionStates.Bottom
+                enabled: parseInt(viewport.overlay.positionState)!==ReadRegionOverlay.PositionStates.Bottom
                 tooltip: i18n("Move reading region to the bottom")
             }
             Kirigami.Action {
                 id: readRegionFreeButton
                 iconName: "gtk-edit"
                 text: i18n("Free")
-                onTriggered: viewport.overlay.positionState = "free"
-                enabled: viewport.overlay.positionState!=="free"
+                onTriggered: viewport.overlay.positionState = ReadRegionOverlay.PositionStates.Free
+                enabled: parseInt(viewport.overlay.positionState)!==ReadRegionOverlay.PositionStates.Free
                 tooltip: i18n("Move reading region freely by dragging and dropping")
             }
             Kirigami.Action {
                 id: readRegionCustomButton
                 iconName: "gtk-apply"
                 text: i18n("Custom")
-                onTriggered: viewport.overlay.positionState = "fixed"
-                enabled: viewport.overlay.positionState!=="fixed"
+                onTriggered: viewport.overlay.positionState = ReadRegionOverlay.PositionStates.Fixed
+                enabled: parseInt(viewport.overlay.positionState)!==ReadRegionOverlay.PositionStates.Fixed
                 tooltip: i18n("Fix reading region to the position set using free placement mode")
             }
             Kirigami.Action {
@@ -180,58 +180,58 @@ Kirigami.Page {
             Kirigami.Action {
                 id: readRegionLeftPointerButton
                 text: i18n("Left Pointer")
-                onTriggered: overlay.styleState = "leftPointer"
+                onTriggered: overlay.styleState = ReadRegionOverlay.PointerStates.LeftPointer
                 tooltip: i18n("Left pointer indicates reading region")
-                enabled: overlay.styleState!=="leftPointer"
+                enabled: parseInt(overlay.styleState)!==ReadRegionOverlay.PointerStates.LeftPointer
             }
             Kirigami.Action {
                 id: readRegionRightPointerButton
                 text: i18n("Right Pointer")
-                onTriggered: overlay.styleState = "rightPointer"
+                onTriggered: overlay.styleState = ReadRegionOverlay.PointerStates.RightPointer
                 tooltip: i18n("Right pointer indicates reading region")
-                enabled: overlay.styleState!=="rightPointer"
+                enabled: parseInt(overlay.styleState)!==ReadRegionOverlay.PointerStates.RightPointer
             }
             Kirigami.Action {
                 id: readRegionPointersButton
                 text: i18n("Both Pointers")
-                onTriggered: overlay.styleState = "pointers"
+                onTriggered: overlay.styleState = ReadRegionOverlay.PointerStates.Pointers
                 tooltip: i18n("Left and right pointers indicate reading region")
-                enabled: overlay.styleState!=="pointers"
+                enabled: parseInt(overlay.styleState)!==ReadRegionOverlay.PointerStates.Pointers
             }
             Kirigami.Action {
                 id: readRegionBarsButton
                 text: i18n("Bars")
-                onTriggered: overlay.styleState = "bars"
+                onTriggered: overlay.styleState = ReadRegionOverlay.PointerStates.Bars
                 tooltip: i18n("Translucent bars indicate reading region")
-                enabled: overlay.styleState!=="bars"
+                enabled: parseInt(overlay.styleState)!==ReadRegionOverlay.PointerStates.Bars
             }
             Kirigami.Action {
                 id: readRegionBarsLeftButton
                 text: i18n("Bars and Left Pointer")
-                onTriggered: overlay.styleState = "barsLeft"
+                onTriggered: overlay.styleState = ReadRegionOverlay.PointerStates.BarsLeft
                 tooltip: i18n("Translucent bars and left pointer indicate reading region")
-                enabled: overlay.styleState!=="barsLeft"
+                enabled: parseInt(overlay.styleState)!==ReadRegionOverlay.PointerStates.BarsLeft
             }
             Kirigami.Action {
                 id: readRegionBarsRightButton
                 text: i18n("Bars and Right Pointer")
-                onTriggered: overlay.styleState = "barsRight"
+                onTriggered: overlay.styleState = ReadRegionOverlay.PointerStates.BarsRight
                 tooltip: i18n("Translucent bars and right pointer indicate reading region")
-                enabled: overlay.styleState!=="barsRight"
+                enabled: parseInt(overlay.styleState)!==ReadRegionOverlay.PointerStates.BarsRight
             }
             Kirigami.Action {
                 id: readRegionAllButton
                 text: i18n("All")
-                onTriggered: overlay.styleState = "all"
+                onTriggered: overlay.styleState = ReadRegionOverlay.PointerStates.All
                 tooltip: i18n("Use all reading region indicators")
-                enabled: overlay.styleState!=="all"
+                enabled: parseInt(overlay.styleState)!==ReadRegionOverlay.PointerStates.All
             }
             Kirigami.Action {
                 id: readRegionNoneButton
                 text: i18n("None")
-                onTriggered: overlay.styleState = "none"
+                onTriggered: overlay.styleState = ReadRegionOverlay.PointerStates.None
                 tooltip: i18n("Disable reading region indicators")
-                enabled: overlay.styleState!=="none"
+                enabled: parseInt(overlay.styleState)!==ReadRegionOverlay.PointerStates.None
             }
         },
         Kirigami.Action {
