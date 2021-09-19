@@ -20,7 +20,7 @@ assignees: Cuperino
 
 ...
 
-**Detailed description of diplay configuration** (if applicable)
+**Detailed description of display configuration** (if applicable)
 
 ...
 
