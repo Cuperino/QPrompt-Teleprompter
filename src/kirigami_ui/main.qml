@@ -47,11 +47,11 @@ Kirigami.ApplicationWindow {
     property bool __invertScrollDirection: false
     property bool __noScroll: false
     property bool __telemetry: true
+    property bool forceQtTextRenderer: false
 
     //property int prompterVisibility: Kirigami.ApplicationWindow.Maximized
     property double __opacity: 1
     property int __iDefault: 3
-    property var textRenderer: ["windows", "winrt", "qnx", "wasm"].indexOf(Qt.platform.os)===-1 ? Text.NativeRendering : Text.QtRendering
 
     title: prompterPage.document.fileName + (prompterPage.document.modified?"*":"") + " - " + aboutData.displayName
     width: 1200  // Set to 1200 to fit both 1280 4:3 and 1200 height monitors. Keep at or bellow 1024 and at or above 960, for best usability with common 4:3 resolutions
@@ -78,7 +78,7 @@ Kirigami.ApplicationWindow {
     }
     Settings {
         category: "editor"
-        property alias textRenderer: root.textRenderer
+        property alias forceQtTextRenderer: root.forceQtTextRenderer
     }
     Settings {
         category: "prompter"
@@ -236,29 +236,10 @@ Kirigami.ApplicationWindow {
                     }
                 }
                 Kirigami.Action {
-                    visible: !fullScreenPlatform
-                    text: i18n("Text Renderer: ") + (root.textRenderer==Text.NativeRendering ? i18n("Native") : i18n("Qt"))
-                    onTriggered: {
-                        // Switch text renderer
-                        if (root.textRenderer==Text.NativeRendering)
-                            root.textRenderer = Text.QtRendering
-                        else
-                            root.textRenderer = Text.NativeRendering
-                        // Hacks to force immediate text renderer update...
-                        if (root.visibility===Kirigami.ApplicationWindow.FullScreen)
-                            // Leave fullscreen in every platform but macOS
-                            __fullScreen = false;
-                        // Un-maximize window
-                        else if (root.visibility===Kirigami.ApplicationWindow.Maximized)
-                            root.visibility = Kirigami.ApplicationWindow.AutomaticVisibility
-                        // Change change window width to change textarea width, forcing font resize, causing new renderer to repaint.
-                        else {
-                            if (root.width%2)
-                                root.width++
-                            else
-                                root.width--
-                        }
-                    }
+                text: i18n("Force sub-pixel text renderer past 120px")
+                    checkable: true
+                    checked: root.forceQtTextRenderer
+                    onTriggered: root.forceQtTextRenderer = !root.forceQtTextRenderer
                 }
                 Kirigami.Action {
                     text: i18n("Restore Factory Settings")

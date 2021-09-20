@@ -123,7 +123,7 @@ Flickable {
     readonly property real editorXOffset: positionHandler.x/prompter.width
     readonly property real centreX: width / 2;
     readonly property real centreY: height / 2;
-    readonly property int __jitterMargin: (__i+viewport.__baseSpeed+viewport.__curvature)%2
+    readonly property int __jitterMargin: (__i+viewport.__baseSpeed+viewport.__curvature+fontSize)%2
     readonly property bool __possitiveDirection: __i>=0
     readonly property real __vw: width / 100 // prompter viewport width hundredth
     readonly property real __evw: editor.width / 100 // editor viewport width hundredth
@@ -495,7 +495,7 @@ Flickable {
                 font.hintingPreference: Font.PreferFullHinting
                 font.kerning: true
                 font.preferShaping: true
-                renderType: textRenderer
+                renderType: font.pixelSize < 121 || root.forceQtTextRenderer ? Text.QtRendering : Text.NativeRendering
 
                 function toggleEditorFocus(mouse) {
                     if (!editor.focus) {
