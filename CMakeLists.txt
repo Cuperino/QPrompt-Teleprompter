@@ -34,15 +34,15 @@ set(CMAKE_INCLUDE_CURRENT_DIR ON)
 # Instruct CMake to create code from Qt designer ui files
 set(CMAKE_AUTOUIC ON)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
-set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD 20)
 # Instruct CMake to run moc automatically when needed.
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
 
 # QT 5.15 to be able to use new Connect methods syntax and get rid of warning.
-#set(QT5_MIN_VERSION 5.15.2)
+set(QT5_MIN_VERSION 5.15.2)
 # QT 5.12 for Ubuntu 20.04
-set(QT_MIN_VERSION 5.12.0)
+#set(QT_MIN_VERSION 5.12.0)
 # set(QT_DISABLE_DEPRECATED_BEFORE 5.15.2)
 # KF5 5.68 for Ubuntu 20.04
 # Use 5.83 to have current ecm_add_app_icon syntax
@@ -79,7 +79,7 @@ set(
 
 if(ANDROID)
     set(ANDROID_PACKAGE_SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/android)
-    set(ANDROID_ABIS "armeabi-v7a")
+    set(ANDROID_ABIS "arm64-v8a") # armeabi-v7a
 endif()
 
 # if(NOT CMAKE_BUILD_TYPE)
@@ -173,7 +173,7 @@ ecm_setup_version(${RELEASE_SERVICE_VERSION}
 
 add_subdirectory(src build)
 
-if (WIN32 OR UNIX AND NOT APPLE) # AND NOT ANDROID
+if (WIN32 OR UNIX AND NOT APPLE AND NOT ANDROID)
     install(FILES com.cuperino.qprompt.appdata.xml DESTINATION ${KDE_INSTALL_METAINFODIR})
     install(PROGRAMS com.cuperino.qprompt.desktop DESTINATION ${KDE_INSTALL_APPDIR})
 endif()
