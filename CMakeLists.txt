@@ -98,7 +98,7 @@ if(ANDROID)
         Gui
         AndroidExtras
         QuickControls2
-        #Widgets
+        Widgets
         QmlImportScanner  # Used to get static QML. Gets ignored if not a static build
         QuickCompiler
     )

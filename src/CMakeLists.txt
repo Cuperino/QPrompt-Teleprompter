@@ -122,7 +122,7 @@ if (ANDROID)
         Qt5::Gui
         Qt5::Qml
         Qt5::QuickControls2
-        #Qt5::Widgets
+        Qt5::Widgets
         Qt5::AndroidExtras
         KF5::I18n
         KF5::Kirigami2
