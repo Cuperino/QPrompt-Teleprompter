@@ -123,10 +123,11 @@ if (ANDROID)
         Qt5::Qml
         Qt5::QuickControls2
         #Qt5::Widgets
+        Qt5::AndroidExtras
         KF5::I18n
         KF5::Kirigami2
         KF5::CoreAddons
-        Qt5::AndroidExtras
+        KF5::IconThemes
     )
 else()
     target_link_libraries(${PROJECT_NAME} PUBLIC
@@ -139,6 +140,7 @@ else()
         KF5::I18n
         KF5::Kirigami2
         KF5::CoreAddons
+        KF5::IconThemes
     )
 endif()
 
