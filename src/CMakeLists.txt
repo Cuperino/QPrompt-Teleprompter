@@ -24,8 +24,14 @@
 set(qprompt_SRCS
     main.cpp
     prompter/documenthandler.cpp
-    prompter/timer/promptertimer.cpp
     prompter/markersmodel.cpp
+    prompter/timer/promptertimer.cpp
+)
+
+set(qprompt_HDRS
+    prompter/documenthandler.h
+    prompter/markersmodel.h
+    prompter/timer/promptertimer.h
 )
 
 set(qprompt_ASSETS
@@ -70,7 +76,7 @@ endif()
 
 if(ANDROID)
     add_library(${PROJECT_NAME} SHARED
-        ${qprompt_SRCS} ${qprompt_QML_SRCS} ${qprompt_ASSETS})
+        ${qprompt_SRCS} ${qprompt_HDRS} ${qprompt_QML_SRCS} ${qprompt_ASSETS})
 
 elseif (WIN32)
     if (MSVC)
@@ -78,7 +84,7 @@ elseif (WIN32)
         set(CMAKE_MFC_FLAG 2)
     endif()
     add_executable(${PROJECT_NAME} WIN32
-        ${qprompt_SRCS} ${qprompt_QML_SRCS} ${qprompt_ASSETS} ${qprompt_ICONS})
+        ${qprompt_SRCS} ${qprompt_HDRS} ${qprompt_QML_SRCS} ${qprompt_ASSETS} ${qprompt_ICONS})
 
 elseif (APPLE)
     # These are substituted by CMake into plist.in.
@@ -99,27 +105,42 @@ elseif (APPLE)
     # And the following tells CMake where to find and install the file itself.
     set(app_icon_macos "${CMAKE_CURRENT_SOURCE_DIR}/icons/qprompt.icns")
     set_source_files_properties(${app_icon_macos} PROPERTIES MACOSX_PACKAGE_LOCATION "Resources")
-    # 
+    #
     add_executable(${PROJECT_NAME} MACOSX_BUNDLE
-        ${qprompt_SRCS} ${qprompt_QML_SRCS} ${qprompt_ASSETS} ${app_icon_macos})
+        ${qprompt_SRCS} ${qprompt_HDRS} ${qprompt_QML_SRCS} ${qprompt_ASSETS} ${app_icon_macos})
 
 else() # UNIX
     add_executable(${PROJECT_NAME}
-        ${qprompt_SRCS} ${qprompt_QML_SRCS} ${qprompt_ASSETS} ${qprompt_ICONS})
+        ${qprompt_SRCS} ${qprompt_HDRS} ${qprompt_QML_SRCS} ${qprompt_ASSETS} ${qprompt_ICONS})
 endif()
 
 # Libraries
-target_link_libraries(${PROJECT_NAME} PUBLIC
-    Qt5::Core
-    Qt5::Gui
-    Qt5::Qml
-    Qt5::Quick
-    Qt5::QuickControls2
-    Qt5::Widgets
-    KF5::I18n
-    KF5::Kirigami2
-    KF5::CoreAddons
-)
+if (ANDROID)
+    target_link_libraries(${PROJECT_NAME}
+        Qt5::Core
+        Qt5::Quick
+        Qt5::Gui
+        Qt5::Qml
+        Qt5::QuickControls2
+        #Qt5::Widgets
+        KF5::I18n
+        KF5::Kirigami2
+        KF5::CoreAddons
+        Qt5::AndroidExtras
+    )
+else()
+    target_link_libraries(${PROJECT_NAME} PUBLIC
+        Qt5::Core
+        Qt5::Quick
+        Qt5::Gui
+        Qt5::Qml
+        Qt5::QuickControls2
+        Qt5::Widgets
+        KF5::I18n
+        KF5::Kirigami2
+        KF5::CoreAddons
+    )
+endif()
 
 # Get static QML. Gets ignored if not a static build
 if (Qt5QmlImportScanner_FOUND)
@@ -127,7 +148,7 @@ if (Qt5QmlImportScanner_FOUND)
 endif()
 
 
-if (WIN32 OR UNIX)
+if (WIN32 OR UNIX AND NOT APPLE AND NOT ANDROID)
     # install(FILES images/qprompt.svg DESTINATION ${KDE_INSTALL_FULL_ICONDIR}/hicolor/scalable/apps)
     # install(FILES images/qprompt.png DESTINATION ${KDE_INSTALL_FULL_ICONDIR}/hicolor/1024x1024/apps)
     install(FILES com.cuperino.qprompt.appdata.xml DESTINATION ${KDE_INSTALL_METAINFODIR})

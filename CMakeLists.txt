@@ -77,6 +77,11 @@ set(
     FORCE
 )
 
+if(ANDROID)
+    set(ANDROID_PACKAGE_SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/android)
+    set(ANDROID_ABIS "armeabi-v7a")
+endif()
+
 # if(NOT CMAKE_BUILD_TYPE)
 #     set(CMAKE_BUILD_TYPE MinSizeRel CACHE STRING FORCE)
 # endif()
@@ -86,30 +91,45 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 
 find_package(ECM ${ECM_MIN_VERSION} REQUIRED NO_MODULE)
 set(CMAKE_MODULE_PATH ${ECM_MODULE_PATH})
-find_package(Qt5 ${QT5_MIN_VERSION} REQUIRED COMPONENTS
-    Core
-    Quick
-    Test
-    Gui
-    QuickControls2
-    Widgets
-    QmlImportScanner  # Used to get static QML. Gets ignored if not a static build
-    QuickCompiler
-)
+if(ANDROID)
+    find_package(Qt5 ${QT5_MIN_VERSION} REQUIRED NO_MODULE COMPONENTS
+        Core
+        Quick
+        Gui
+        AndroidExtras
+        QuickControls2
+        #Widgets
+        QmlImportScanner  # Used to get static QML. Gets ignored if not a static build
+        QuickCompiler
+    )
+else()
+    find_package(Qt5 ${QT5_MIN_VERSION} REQUIRED NO_MODULE COMPONENTS
+        Core
+        Quick
+        #Test
+        Gui
+        QuickControls2
+        Widgets
+        QmlImportScanner  # Used to get static QML. Gets ignored if not a static build
+        QuickCompiler
+    )
+endif()
+
 find_package(KF5 ${KF_MIN_VERSION} REQUIRED COMPONENTS
     Kirigami2
     I18n  # NO_MODULE
     CoreAddons
-#    IconThemes
+    IconThemes
 )
 
-if (WIN32 OR UNIX AND NOT ANDROID)
+if (WIN32 OR UNIX AND NOT APPLE AND NOT ANDROID)
     include(KDEInstallDirs)
     include(KDECMakeSettings)
+    include(ECMInstallIcons)
+    include(ECMAddAppIcon)
 endif()
 include(KDECompilerSettings NO_POLICY_SCOPE)
-include(ECMInstallIcons)
-include(ECMAddAppIcon)
+#include(KDEClangFormat)
 include(ECMQtDeclareLoggingCategory)
 include(ECMSetupVersion)
 include(ECMSourceVersionControl)
@@ -142,7 +162,7 @@ if (${ECM_SOURCE_UNDER_VERSION_CONTROL})
 
 else()
     add_definitions(-DGIT_COMMIT_HASH="${RELEASE_SERVICE_VERSION}")
-    add_definitions(-DGIT_BRANCH="Development")
+    add_definitions(-DGIT_BRANCH="Stable")
 endif()
 
 # ecm_setup_version(PROJECT
@@ -153,10 +173,13 @@ ecm_setup_version(${RELEASE_SERVICE_VERSION}
 
 add_subdirectory(src build)
 
-if (WIN32 OR UNIX)
+if (WIN32 OR UNIX AND NOT APPLE AND NOT ANDROID)
     install(FILES com.cuperino.qprompt.appdata.xml DESTINATION ${KDE_INSTALL_METAINFODIR})
     install(PROGRAMS com.cuperino.qprompt.desktop DESTINATION ${KDE_INSTALL_APPDIR})
 endif()
 
 ki18n_install(po)
-feature_summary(WHAT ALL INCLUDE_QUIET_PACKAGES FATAL_ON_MISSING_REQUIRED_PACKAGES)
+feature_summary(WHAT ALL FATAL_ON_MISSING_REQUIRED_PACKAGES) # INCLUDE_QUIET_PACKAGES
+
+#file(GLOB_RECURSE ALL_CLANG_FORMAT_SOURCE_FILES *.cpp *.h)
+#kde_clang_format(${ALL_CLANG_FORMAT_SOURCE_FILES})
