@@ -127,7 +127,7 @@ if (ANDROID)
         KF5::I18n
         KF5::Kirigami2
         KF5::CoreAddons
-        KF5::IconThemes
+        #KF5::IconThemes
     )
 else()
     target_link_libraries(${PROJECT_NAME} PUBLIC
@@ -140,7 +140,7 @@ else()
         KF5::I18n
         KF5::Kirigami2
         KF5::CoreAddons
-        KF5::IconThemes
+        #KF5::IconThemes
     )
 endif()
 
