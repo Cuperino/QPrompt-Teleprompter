@@ -79,7 +79,7 @@ set(
 
 if(ANDROID)
     set(ANDROID_PACKAGE_SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/android)
-    set(ANDROID_ABIS "arm64-v8a") # armeabi-v7a
+    set(ANDROID_ABIS "armeabi-v7a") # arm64-v8a
 endif()
 
 # if(NOT CMAKE_BUILD_TYPE)
