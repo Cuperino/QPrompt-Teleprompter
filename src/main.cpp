@@ -20,8 +20,8 @@
  **
  ****************************************************************************/
 
-#include <QApplication>
-// #include <QGuiApplication>
+// #include <QApplication>
+#include <QGuiApplication>
 #include <QQmlApplicationEngine>
 #include <QtQml>
 #include <QtQml/qqml.h>
@@ -45,27 +45,34 @@
 #include <KI18n/KLocalizedString>
 #include <KCoreAddons/KAboutData>
 
+// #include "qprompt.h"
+#include "../qprompt_version.h"
 #include "prompter/documenthandler.h"
-#include "prompter/timer/promptertimer.h"
+// #include "prompter/timer/promptertimer.h"
 // #include "prompter/markersmodel.h"
 
+#define QPROMPT_URI "com.cuperino.qprompt"
 
 Q_DECL_EXPORT int main(int argc, char *argv[])
 {
-    QApplication app(argc, argv);
+    QGuiApplication app(argc, argv);
     QCoreApplication::setOrganizationName("Cuperino");
-    QCoreApplication::setOrganizationDomain("cuperino.com");
+    QCoreApplication::setOrganizationDomain("com.cuperino");
     QCoreApplication::setApplicationName("QPrompt");
 
-    KAboutData aboutData("qprompt", "QPrompt", i18n("1.0 (development build 3)"),
+    KAboutData aboutData("qprompt", "QPrompt",
+                         QPROMPT_VERSION_STRING " (" + QString(GIT_BRANCH) + "/" + QString(GIT_COMMIT_HASH) + ")",
                          i18n("Personal teleprompter software for professional content creators."),
                          KAboutLicense::GPL_V3,
-                         //KAboutLicense::Custom,
-                         i18n("Copyright 2021, Javier O. Cordero Pérez"), QString(),
-                         "https://javiercordero.info");
+                         i18n("© %1 Javier O. Cordero Pérez", QString::number(QDate::currentDate().year())));
+//     QString(GIT_BRANCH) + "/" + QString(GIT_COMMIT_HASH)
+
     // Overwrite default-generated values of organizationDomain & desktopFileName
-    aboutData.setOrganizationDomain("cuperino.com");
-    aboutData.setDesktopFileName("com.cuperino.com");
+    aboutData.setHomepage("https://qprompt.app");
+    aboutData.setProductName("cuperino/qprompt");
+    aboutData.setBugAddress("https://github.com/Cuperino/QPrompt/issues");
+    aboutData.setOrganizationDomain(QPROMPT_URI);
+    aboutData.setDesktopFileName(QPROMPT_URI);
     aboutData.addAuthor (
         QString("Javier O. Cordero Pérez"),
         i18n("Author"),
@@ -84,6 +91,7 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
     aboutData.addLicense(
         KAboutLicense::LGPL_V3
     );
+    aboutData.setProgramLogo(app.windowIcon());
     // Set the application metadata
     KAboutData::setApplicationData(aboutData);
 
@@ -94,9 +102,9 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
 //    PlayListModel model;
 //    AllUpperCaseProxyModel proxyModel;
 
-    qmlRegisterType<PrompterTimer>("com.cuperino.qprompt.promptertimer", 1, 0, "PrompterTimer");
-    qmlRegisterType<DocumentHandler>("com.cuperino.qprompt.document", 1, 0, "DocumentHandler");
-    qmlRegisterType<MarkersModel>("com.cuperino.qprompt.markers", 1, 0, "MarkersModel");
+    //qmlRegisterType<PrompterTimer>(QPROMPT_URI + ".promptertimer", 1, 0, "PrompterTimer");
+    qmlRegisterType<DocumentHandler>(QPROMPT_URI".document", 1, 0, "DocumentHandler");
+    qmlRegisterType<MarkersModel>(QPROMPT_URI".markers", 1, 0, "MarkersModel");
     qRegisterMetaType<Marker>();
 //    qmlRegisterType<DocumentHandler>("org.kde.kirigami", 2, 9, "KirigamiPlugin");
 

@@ -27,6 +27,7 @@ import QtQuick.Window 2.15
 import QtQuick.Layouts 1.15
 import QtQuick.Controls.Material 2.15
 import Qt.labs.platform 1.1 as Labs
+import QtQuick.Dialogs 1.3 as Dialog
 import Qt.labs.settings 1.0
 
 import com.cuperino.qprompt.document 1.0
@@ -997,12 +998,16 @@ Kirigami.ApplicationWindow {
     }
 
     // Dialogues
-    Labs.MessageDialog {
+    Dialog.MessageDialog {
         id : quitDialog
         title: i18n("Save Document")
         text: i18n("Save changes to document before closing?")
-        buttons: (Labs.MessageDialog.Save | Labs.MessageDialog.Discard | Labs.MessageDialog.Cancel)
-        onDiscardClicked: Qt.quit()
-        onSaveClicked: prompterPage.document.saveDialog(true)
+        icon: Dialog.StandardIcon.Question
+        standardButtons: Dialog.StandardButton.Save | Dialog.StandardButton.Discard | Dialog.StandardButton.Cancel
+        onDiscard: Qt.quit()
+        onAccepted: prompterPage.document.saveDialog(true)
+        //buttons: (Dialog.MessageDialog.Save | Dialog.MessageDialog.Discard | Dialog.MessageDialog.Cancel)
+        //onDiscardClicked: Qt.quit()
+        //onSaveClicked: prompterPage.document.saveDialog(true)
     }
 }

@@ -85,7 +85,8 @@
 #include <QTextCodec>
 #include <QTextDocument>
 #include <QTextBlock>
-#include <QApplication>
+// #include <QApplication>
+#include <QGuiApplication>
 #include <QClipboard>
 #include <QMimeData>
 #include <QRegularExpression>
@@ -698,7 +699,7 @@ void DocumentHandler::paste(bool withoutFormating=false)
 {
     // qDebug() << "Managed Paste";
 
-    const QClipboard *clipboard = QApplication::clipboard();
+    const QClipboard *clipboard = QGuiApplication::clipboard();
     const QMimeData *mimeData = clipboard->mimeData();
 
     if (mimeData->hasHtml()) {
