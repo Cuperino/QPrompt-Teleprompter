@@ -23,7 +23,7 @@
 import QtQuick 2.15
 import org.kde.kirigami 2.9 as Kirigami
 import QtQuick.Window 2.15
-import QtQuick.Dialogs 1.3
+import QtQuick.Dialogs 1.2
 import Qt.labs.settings 1.0
 
 Item {
