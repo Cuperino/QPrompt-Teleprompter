@@ -120,7 +120,7 @@ find_package(KF5 ${KF_MIN_VERSION} REQUIRED COMPONENTS
     #IconThemes
 )
 
-if (WIN32 OR UNIX AND NOT APPLE AND NOT ANDROID)
+if (WIN32 OR UNIX) # AND NOT ANDROID
     include(KDEInstallDirs)
     include(KDECMakeSettings)
     include(ECMInstallIcons)
