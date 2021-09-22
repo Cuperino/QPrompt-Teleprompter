@@ -52,8 +52,16 @@ Rectangle {
     function clearBackground() {
         backgroundImage.opacity = 0
         backgroundColor = appTheme.__backgroundColor
+        // Reset background image value such that setting is saved
+        resetBackground.start()
     }
-    
+    // Using timer workaround because behavior animations don't execute signals and high performance is not a requirement for this action.
+    Timer {
+        id: resetBackground
+        interval: 2800
+        onTriggered: backgroundImage.source = ""
+    }
+
     function setBackgroundImage(file) {
         if (file) {
             backgroundImage.source = file
@@ -62,7 +70,7 @@ Rectangle {
     Behavior on color {
         enabled: true
         animation: ColorAnimation {
-            duration: 2800
+            duration: resetBackground.interval
             easing.type: Easing.OutExpo
         }
     }
