@@ -62,7 +62,7 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
 
     KAboutData aboutData("qprompt", "QPrompt",
                          QPROMPT_VERSION_STRING " (" + QString(GIT_BRANCH) + "/" + QString(GIT_COMMIT_HASH) + ")",
-                         i18n("Personal teleprompter software for professional content creators."),
+                         i18n("Personal teleprompter software for content creators."),
                          KAboutLicense::GPL_V3,
                          i18n("© %1 Javier O. Cordero Pérez", QString::number(QDate::currentDate().year())));
 //     QString(GIT_BRANCH) + "/" + QString(GIT_COMMIT_HASH)
@@ -86,11 +86,8 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
         i18n("name@protonmail.com")
     );
     //aboutData.addLicense(
-    //    KAboutLicense::GPL_V3
+    //    KAboutLicense::LGPL_V3
     //);
-    aboutData.addLicense(
-        KAboutLicense::LGPL_V3
-    );
     aboutData.setProgramLogo(app.windowIcon());
     // Set the application metadata
     KAboutData::setApplicationData(aboutData);
@@ -98,9 +95,6 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
     QFontDatabase fontDatabase;
     if (fontDatabase.addApplicationFont(":/fonts/fontello.ttf") == -1)
         qWarning() << i18n("Failed to load icons from fontello.ttf");
-
-//    PlayListModel model;
-//    AllUpperCaseProxyModel proxyModel;
 
     //qmlRegisterType<PrompterTimer>(QPROMPT_URI + ".promptertimer", 1, 0, "PrompterTimer");
     qmlRegisterType<DocumentHandler>(QPROMPT_URI".document", 1, 0, "DocumentHandler");
@@ -121,12 +115,12 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
 //     #ifdef Q_OS_ANDROID
 //     KirigamiPlugin::getInstance().registerTypes();
 //     #endif
-    #ifdef Q_OS_WASM
-    KirigamiPlugin::getInstance().registerTypes();
-    #endif
-    #ifdef Q_OS_WASM
-    KirigamiPlugin::getInstance().registerTypes();
-    #endif
+//     #ifdef Q_OS_IOS
+//     KirigamiPlugin::getInstance().registerTypes();
+//     #endif
+//     #ifdef Q_OS_WASM
+//     KirigamiPlugin::getInstance().registerTypes();
+//     #endif
 
     // Un-comment to force RightToLeft Layout for debugging purposes
     //app.setLayoutDirection(Qt::RightToLeft);
