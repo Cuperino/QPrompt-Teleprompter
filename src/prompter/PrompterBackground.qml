@@ -21,9 +21,9 @@
  ****************************************************************************/
 
 import QtQuick 2.15
-import Qt.labs.platform 1.1
-import Qt.labs.settings 1.0
 
+import Qt.labs.settings 1.0
+import QtQuick.Dialogs 1.3
 import org.kde.kirigami 2.9 as Kirigami
 
 Rectangle {
@@ -96,7 +96,7 @@ Rectangle {
                 easing.type: Easing.OutExpo
             }
         }
-        
+
         ColorDialog {
             id: backgroundColorDialog
             currentColor: appTheme.__backgroundColor
@@ -105,17 +105,17 @@ Rectangle {
                 prompterBackground.backgroundColor = color
             }
         }
-        
+
         FileDialog {
             id: openBackgroundDialog
-            fileMode: FileDialog.OpenFile
-            selectedNameFilter.index: 0
+            selectExisting: true
+            selectedNameFilter: nameFilters[0]
             nameFilters: ["JPEG image (*.jpg *.jpeg *.JPG *.JPEG)", "PNG image (*.png *.PNG)", "GIF animation (*.gif *.GIF)"]
-            folder: StandardPaths.writableLocation(StandardPaths.DocumentsLocation)
-            onAccepted: prompterBackground.setBackgroundImage(file)
+            folder: shortcuts.pictures
+            onAccepted: prompterBackground.setBackgroundImage(openBackgroundDialog.fileUrl)
         }
     }
-    
+
     Behavior on opacity {
         enabled: true
         animation: NumberAnimation {

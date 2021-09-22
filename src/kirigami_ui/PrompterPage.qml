@@ -25,7 +25,8 @@ import org.kde.kirigami 2.15 as Kirigami
 import QtQuick.Window 2.15
 import QtQuick.Controls 2.15
 import QtQuick.Layouts 1.15
-import Qt.labs.platform 1.1
+import QtQuick.Dialogs 1.3
+import Qt.labs.platform 1.1 as Labs
 
 import com.cuperino.qprompt.markers 1.0
 
@@ -418,9 +419,17 @@ Kirigami.Page {
                         //    text: model.name
                         //}
                         onClicked: displayMenu.open()
-                        Menu {
+                        //onClicked: displayMenu.popup(this)
+                        Labs.Menu {
                             id: displayMenu
-                            MenuItem {
+                            //overlap: 1
+                            //background: Rectangle {
+                                //color: "#DD000000"
+                                //implicitWidth: 180
+                                ////implicitHeight: 30
+                            //}
+                            //z: parent.z+1
+                            Labs.MenuItem {
                                 text: i18n("Off")
                                 enabled: flipSetting!==0
                                 onTriggered: {
@@ -428,7 +437,7 @@ Kirigami.Page {
                                     onTriggered: projectionManager.putDisplayFlip(displayItem.label, 0)
                                 }
                             }
-                            MenuItem {
+                            Labs.MenuItem {
                                 text: i18n("No Flip")
                                 enabled: flipSetting!==1
                                 onTriggered: {
@@ -436,7 +445,7 @@ Kirigami.Page {
                                     onTriggered: projectionManager.putDisplayFlip(displayItem.label, 1)
                                 }
                             }
-                            MenuItem {
+                            Labs.MenuItem {
                                 text: i18n("Horizontal Flip")
                                 enabled: flipSetting!==2
                                 onTriggered: {
@@ -444,7 +453,7 @@ Kirigami.Page {
                                     onTriggered: projectionManager.putDisplayFlip(displayItem.label, 2)
                                 }
                             }
-                            MenuItem {
+                            Labs.MenuItem {
                                 text: i18n("Vertical Flip")
                                 enabled: flipSetting!==3
                                 onTriggered: {
@@ -452,7 +461,7 @@ Kirigami.Page {
                                     onTriggered: projectionManager.putDisplayFlip(displayItem.label, 3)
                                 }
                             }
-                            MenuItem {
+                            Labs.MenuItem {
                                 text: i18n("180° rotation")
                                 enabled: flipSetting!==4
                                 onTriggered: {
@@ -509,7 +518,9 @@ Kirigami.Page {
 
     FontDialog {
         id: fontDialog
-        options: FontDialog.ScalableFonts|FontDialog.MonospacedFonts|FontDialog.ProportionalFonts
+        monospacedFonts: true
+        nonScalableFonts: true
+        proportionalFonts: true
         onAccepted: {
             viewport.prompter.document.fontFamily = font.family;
             //viewport.prompter.document.fontSize = font.pointSize*viewport.prompter.editor.font.pixelSize/6;
