@@ -31,9 +31,9 @@ MarkersModel::MarkersModel(QObject *parent)
 
 int MarkersModel::rowCount(const QModelIndex &parent) const
 {
-//     if (!parent.isValid())
-//         return 0;
-
+    if (!parent.isValid())
+        return m_data.size();
+        //return 0;
     return m_data.size();
 }
 
@@ -110,24 +110,24 @@ int MarkersModel::keySearch(int key, int currentPosition=0, bool reverse=false, 
     const int size = markersThatMatchShortcut.size();
     if (size) {
         if (reverse) {
-            int previousPosition = size;
+            const int previousPosition = size;
             for (int i=previousPosition-1; i>-1; i--) {
                 const int nextPosition = data(markersThatMatchShortcut[i], MarkersModel::PositionRole).toInt();
                 if (currentPosition>nextPosition)
                     return nextPosition;
-                previousPosition = nextPosition;
+                //previousPosition = nextPosition;
             }
             // if already reached first, go to last
             if (wrap)
                 return data(markersThatMatchShortcut[size-1], MarkersModel::PositionRole).toInt();
         }
         else {
-            int previousPosition = 0;
+            //int previousPosition = 0;
             for (int i=0; i<size; i++) {
                 const int nextPosition = data(markersThatMatchShortcut[i], MarkersModel::PositionRole).toInt();
                 if (currentPosition<nextPosition)
                     return nextPosition;
-                previousPosition = nextPosition;
+                //previousPosition = nextPosition;
             }
             // if already reached last, go to first
             if (wrap)
