@@ -77,8 +77,8 @@ import QtQuick.Controls 2.15
 import QtQuick.Controls.Material 2.15
 import QtQuick.Layouts 1.15
 import QtQuick.Window 2.15
-import QtQuick.Dialogs 1.3 as Dialogs
-import Qt.labs.platform 1.1
+import QtQuick.Dialogs 1.3
+import Qt.labs.platform 1.1 as Labs
 import Qt.labs.settings 1.0
 
 import com.cuperino.qprompt.document 1.0
@@ -274,7 +274,7 @@ Flickable {
                     document.parse()
                 break;
         }
-        console.log("toggle state:", state)
+        //console.log("toggle state:", state)
     }
 
     function increaseVelocity(event) {
@@ -584,7 +584,12 @@ Flickable {
                     MouseArea {
                         acceptedButtons: Qt.RightButton
                         anchors.fill: parent
-                        onClicked: contextMenu.open()
+                        onClicked: {
+                            if (Kirigami.Settings.isMobile)
+                                contextMenu.popup(this)
+                            else
+                                nativeContextMenu.open()
+                        }
                         cursorShape: dragTarget.containsDrag ? (dragTarget.droppable ? Qt.DragCopyCursor : Qt.ForbiddenCursor) : Qt.IBeamCursor
                         drag.target: editor
                     }
@@ -813,8 +818,8 @@ Flickable {
     }
     FileDialog {
         id: openDialog
-        fileMode: FileDialog.OpenFile
-        selectedNameFilter.index: 0
+        selectExisting: true
+        selectedNameFilter: nameFilters[0]
         nameFilters: [i18n("Hypertext Markup Language (HTML)") + "(*.html *.htm *.xhtml *.HTML *.HTM *.XHTML)",
             i18n("Markdown (MD)") + "(*.md *.MD)",
             i18n("Plain Text (TXT)") + "(*.txt *.text *.TXT *.TEXT)",
@@ -826,39 +831,74 @@ Flickable {
             //i18n("Portable Document Format (PDF)") + "(*.pdf *.PDF)",
             i18n("All Formats") + "(*.*)"
         ]
-        folder: StandardPaths.writableLocation(StandardPaths.DocumentsLocation)
+        folder: shortcuts.documents
         onAccepted: {
-            document.load(file)
+            document.load(openDialog.fileUrl)
             document.isNewFile = false
         }
     }
     
     FileDialog {
         id: saveDialog
-        fileMode: FileDialog.SaveFile
+        selectExisting: false
         defaultSuffix: document.fileType
         nameFilters: openDialog.nameFilters
         // Always in the same format as original file
         //selectedNameFilter.index: document.fileType === "txt" ? 0 : 1
         // Always save as HTML
-        selectedNameFilter.index: 0
-        folder: StandardPaths.writableLocation(StandardPaths.DocumentsLocation)
+        selectedNameFilter: nameFilters[document.fileType === "txt" ? 0 : 1]
+        folder: shortcuts.documents
         onAccepted: {
-            document.saveAs(file)
+            document.saveAs(saveDialog.fileUrl)
             document.isNewFile = false
             if (document.quitOnSave)
                 Qt.quit()
         }
     }
     
-    Dialogs.MessageDialog {
+    MessageDialog {
         id: errorDialog
     }
 
     // Context Menu
+    Labs.Menu {
+        id: nativeContextMenu
+        Labs.MenuItem {
+            text: i18n("&Copy")
+            enabled: editor.selectedText
+            onTriggered: editor.copy()
+        }
+        Labs.MenuItem {
+            text: i18n("Cu&t")
+            enabled: editor.selectedText
+            onTriggered: editor.cut()
+        }
+        Labs.MenuItem {
+            text: i18n("&Paste")
+            enabled: editor.canPaste
+            onTriggered: document.paste()
+        }
+        Labs.MenuSeparator {}
+        Labs.MenuItem {
+            text: i18n("Fo&nt...")
+            onTriggered: fontDialog.open()
+        }
+        Labs.MenuItem {
+            text: i18n("Co&lor...")
+            onTriggered: colorDialog.open()
+        }
+        Labs.MenuItem {
+            text: i18n("Hi&ghlight...")
+            onTriggered: highlightDialog.open()
+        }
+    }
     Menu {
         id: contextMenu
-
+        background: Rectangle {
+            color: "#DD000000"
+            implicitWidth: 120
+            //implicitHeight: 30
+        }
         MenuItem {
             text: i18n("&Copy")
             enabled: editor.selectedText
@@ -874,19 +914,15 @@ Flickable {
             enabled: editor.canPaste
             onTriggered: document.paste()
         }
-
         MenuSeparator {}
-
         MenuItem {
             text: i18n("Fo&nt...")
             onTriggered: fontDialog.open()
         }
-
         MenuItem {
             text: i18n("Co&lor...")
             onTriggered: colorDialog.open()
         }
-
         MenuItem {
             text: i18n("Hi&ghlight...")
             onTriggered: highlightDialog.open()

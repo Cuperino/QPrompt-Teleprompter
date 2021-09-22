@@ -57,7 +57,7 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
 {
     QGuiApplication app(argc, argv);
     QCoreApplication::setOrganizationName("Cuperino");
-    QCoreApplication::setOrganizationDomain("com.cuperino");
+    QCoreApplication::setOrganizationDomain(QPROMPT_URI);
     QCoreApplication::setApplicationName("QPrompt");
 
     KAboutData aboutData("qprompt", "QPrompt",
@@ -88,7 +88,7 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
     //aboutData.addLicense(
     //    KAboutLicense::LGPL_V3
     //);
-    aboutData.setProgramLogo(app.windowIcon());
+    //aboutData.setProgramLogo(app.windowIcon());
     // Set the application metadata
     KAboutData::setApplicationData(aboutData);
 
