@@ -187,6 +187,9 @@ Item {
     ColorDialog {
         id: timerColorDialog
         color: '#AAA'
+        onAccepted: {
+            timerSettings.color = currentColor
+        }
         onRejected: {
             currentColor = color
         }
