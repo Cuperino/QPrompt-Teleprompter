@@ -98,7 +98,6 @@ if(ANDROID)
         Gui
         AndroidExtras
         QuickControls2
-        Widgets
         QmlImportScanner  # Used to get static QML. Gets ignored if not a static build
         QuickCompiler
     )
@@ -109,7 +108,6 @@ else()
         #Test
         Gui
         QuickControls2
-        Widgets
         QmlImportScanner  # Used to get static QML. Gets ignored if not a static build
         QuickCompiler
     )

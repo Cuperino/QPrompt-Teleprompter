@@ -25,13 +25,13 @@ set(qprompt_SRCS
     main.cpp
     prompter/documenthandler.cpp
     prompter/markersmodel.cpp
-    prompter/timer/promptertimer.cpp
+    #prompter/timer/promptertimer.cpp
 )
 
 set(qprompt_HDRS
     prompter/documenthandler.h
     prompter/markersmodel.h
-    prompter/timer/promptertimer.h
+    #prompter/timer/promptertimer.h
 )
 
 set(qprompt_ASSETS
@@ -122,7 +122,6 @@ if (ANDROID)
         Qt5::Gui
         Qt5::Qml
         Qt5::QuickControls2
-        Qt5::Widgets
         Qt5::AndroidExtras
         KF5::I18n
         KF5::Kirigami2
@@ -136,7 +135,6 @@ else()
         Qt5::Gui
         Qt5::Qml
         Qt5::QuickControls2
-        Qt5::Widgets
         KF5::I18n
         KF5::Kirigami2
         KF5::CoreAddons
