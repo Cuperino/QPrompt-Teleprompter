@@ -75,7 +75,7 @@ endif()
 
 
 if(ANDROID)
-    add_library(${PROJECT_NAME} SHARED
+    add_library(${PROJECT_NAME}
         ${qprompt_SRCS} ${qprompt_HDRS} ${qprompt_QML_SRCS} ${qprompt_ASSETS})
 
 elseif (WIN32)
@@ -135,6 +135,7 @@ else()
         Qt5::Gui
         Qt5::Qml
         Qt5::QuickControls2
+        #Qt5::Widgets
         KF5::I18n
         KF5::Kirigami2
         KF5::CoreAddons
