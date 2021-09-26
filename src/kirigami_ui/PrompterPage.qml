@@ -398,76 +398,42 @@ Kirigami.Page {
             visible: !Kirigami.Settings.isMobile
             text: i18n("Screens")
 
-            // This part of the code is nothing but a hack. But hey! It works!
             Kirigami.Action {
-                id: bridge
                 displayComponent: ListView {
                     height: contentHeight>580 ? 580 : contentHeight
-                    flickableDirection: Flickable.VerticalFlick
                     model: Qt.application.screens
-                    delegate: Kirigami.BasicListItem {
-                        id: displayItem
+                    delegate: Kirigami.SwipeListItem {
+                        id: display
+                        property string name: model.name
+                        property int flipSetting: projectionManager.getDisplayFlip(display.name)
                         enabled: parseInt(prompter.state)===Prompter.States.Editing
-                        label: model.name
-                        // enabled: screen.name!==label
-                        // readonly property int projectionSetting: enabled ? projectionSetting : 0
-                        property int flipSetting: projectionManager.getDisplayFlip(displayItem.label)
                         activeTextColor: "#FFFFFF"
                         activeBackgroundColor: "#797979"
-                        //contentItem: Label {
-                        //    anchors.verticalCenter: parent.verticalCenter
-                        //    text: model.name
-                        //}
-                        onClicked: displayMenu.open()
-                        //onClicked: displayMenu.popup(this)
-                        Labs.Menu {
-                            id: displayMenu
-                            //overlap: 1
-                            //background: Rectangle {
-                                //color: "#DD000000"
-                                //implicitWidth: 180
-                                ////implicitHeight: 30
-                            //}
-                            //z: parent.z+1
-                            Labs.MenuItem {
-                                text: i18n("Off")
-                                enabled: flipSetting!==0
-                                onTriggered: {
-                                    flipSetting = 0
-                                    onTriggered: projectionManager.putDisplayFlip(displayItem.label, 0)
+                        actions: [
+                            Kirigami.Action {
+                                iconName: switch (flipSetting) {
+                                    case 0 : return "window";
+                                    case 1 : return "window-duplicate";
+                                    case 2 : return "object-flip-horizontal";
+                                    case 3 : return "object-flip-vertical";
+                                    case 4 : return (Qt.LeftToRight ? "object-rotate-left" : "object-rotate-right");
                                 }
+                                onTriggered: toggleDisplayFlip()
                             }
-                            Labs.MenuItem {
-                                text: i18n("No Flip")
-                                enabled: flipSetting!==1
-                                onTriggered: {
-                                    flipSetting = 1
-                                    onTriggered: projectionManager.putDisplayFlip(displayItem.label, 1)
-                                }
-                            }
-                            Labs.MenuItem {
-                                text: i18n("Horizontal Flip")
-                                enabled: flipSetting!==2
-                                onTriggered: {
-                                    flipSetting = 2
-                                    onTriggered: projectionManager.putDisplayFlip(displayItem.label, 2)
-                                }
-                            }
-                            Labs.MenuItem {
-                                text: i18n("Vertical Flip")
-                                enabled: flipSetting!==3
-                                onTriggered: {
-                                    flipSetting = 3
-                                    onTriggered: projectionManager.putDisplayFlip(displayItem.label, 3)
-                                }
-                            }
-                            Labs.MenuItem {
-                                text: i18n("180° rotation")
-                                enabled: flipSetting!==4
-                                onTriggered: {
-                                    flipSetting = 4
-                                    onTriggered: projectionManager.putDisplayFlip(displayItem.label, 4)
-                                }
+                        ]
+                        onClicked: toggleDisplayFlip()
+                        function toggleDisplayFlip() {
+                            flipSetting = (flipSetting+1)%5
+                            projectionManager.putDisplayFlip(display.name, flipSetting)
+                        }
+                        Label {
+                            id: label
+                            text: switch (flipSetting) {
+                                case 0 : return display.name + " : " + i18n("Off");
+                                case 1 : return display.name + " : " + i18n("No flip");
+                                case 2 : return display.name + " : " + i18n("H flip");
+                                case 3 : return display.name + " : " + i18n("V flip");
+                                case 4 : return display.name + " : " + i18n("HV flip");
                             }
                         }
                     }
@@ -484,6 +450,7 @@ Kirigami.Page {
             Kirigami.Action {
                 text: i18n("Preview Projections")
                 tooltip: i18n("Project prompter duplicates onto extended displays")
+                enabled: parseInt(prompter.state)===Prompter.States.Editing
                 onTriggered: {
                     projectionManager.preview()
                 }
