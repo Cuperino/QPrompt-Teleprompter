@@ -106,7 +106,7 @@ Kirigami.Page {
             }
             Kirigami.Action {
                 id: readRegionMiddleButton
-                iconName: "remove"
+                iconName: "list-remove"
                 text: i18n("Middle")
                 onTriggered: viewport.overlay.positionState = ReadRegionOverlay.PositionStates.Middle
                 enabled: parseInt(viewport.overlay.positionState)!==ReadRegionOverlay.PositionStates.Middle
@@ -122,7 +122,7 @@ Kirigami.Page {
             }
             Kirigami.Action {
                 id: readRegionFreeButton
-                iconName: "gtk-edit"
+                iconName: "handle-sort"
                 text: i18n("Free")
                 onTriggered: viewport.overlay.positionState = ReadRegionOverlay.PositionStates.Free
                 enabled: parseInt(viewport.overlay.positionState)!==ReadRegionOverlay.PositionStates.Free
@@ -130,7 +130,7 @@ Kirigami.Page {
             }
             Kirigami.Action {
                 id: readRegionCustomButton
-                iconName: "gtk-apply"
+                iconName: "dialog-ok-apply"
                 text: i18n("Custom")
                 onTriggered: viewport.overlay.positionState = ReadRegionOverlay.PositionStates.Fixed
                 enabled: parseInt(viewport.overlay.positionState)!==ReadRegionOverlay.PositionStates.Fixed
@@ -138,34 +138,38 @@ Kirigami.Page {
             }
             Kirigami.Action {
                 id: hideDecorationsButton
-                text: hideDecorations===0 ? i18n("Frame Settings") : (hideDecorations===1 ? i18n("Auto hide frame") : i18n("Always hide frame"))
+                text: i18n("Window Frame")
                 visible: !fullScreenPlatform
                 tooltip: i18n("Auto hide window decorations when not editing and read region is set to top")
+                iconName: hideDecorations===0 ? "window" : (hideDecorations===1 ? "draw-rectangle" : "gnumeric-object-rectangle")
                 Kirigami.Action {
-                    text: i18n("Normal Frame")
+                    text: i18n("Normal frame")
                     tooltip: i18n("Shows windows frame when in windowed mode")
-                    checkable: true
-                    checked: hideDecorations==0
+                    iconName: "window"
+//                     checkable: true
+                    enabled: hideDecorations!==0
                     onTriggered: {
                         hideDecorations = 0
                         parent.text = text
                     }
                 }
                 Kirigami.Action {
-                    text: i18n("Auto Hide")
+                    text: i18n("Auto hide")
                     tooltip: i18n("Auto hide window decorations when not editing and read region is set to top")
-                    checkable: true
-                    checked: hideDecorations==1
+                    iconName: "draw-rectangle"
+//                     checkable: true
+                    enabled: hideDecorations!==1
                     onTriggered: {
                         hideDecorations = 1
                         parent.text = text
                     }
                 }
                 Kirigami.Action {
-                    text: i18n("Always Hidden")
+                    text: i18n("Always hidden")
                     tooltip: i18n("Always hide window decorations")
-                    checkable: true
-                    checked: hideDecorations==2
+                    iconName: "gnumeric-object-rectangle"
+//                     checkable: true
+                    enabled: hideDecorations!==2
                     onTriggered: {
                         hideDecorations = 2
                         parent.text = text
@@ -180,42 +184,48 @@ Kirigami.Page {
             
             Kirigami.Action {
                 id: readRegionLeftPointerButton
-                text: i18n("Left Pointer")
+                text: i18n("Left pointer")
+                iconName: "go-next"
                 onTriggered: overlay.styleState = ReadRegionOverlay.PointerStates.LeftPointer
                 tooltip: i18n("Left pointer indicates reading region")
                 enabled: parseInt(overlay.styleState)!==ReadRegionOverlay.PointerStates.LeftPointer
             }
             Kirigami.Action {
                 id: readRegionRightPointerButton
-                text: i18n("Right Pointer")
+                text: i18n("Right pointer")
+                iconName: "go-previous"
                 onTriggered: overlay.styleState = ReadRegionOverlay.PointerStates.RightPointer
                 tooltip: i18n("Right pointer indicates reading region")
                 enabled: parseInt(overlay.styleState)!==ReadRegionOverlay.PointerStates.RightPointer
             }
             Kirigami.Action {
                 id: readRegionPointersButton
-                text: i18n("Both Pointers")
+                text: i18n("Both pointers")
+                iconName: "transform-move-horizontal"
                 onTriggered: overlay.styleState = ReadRegionOverlay.PointerStates.Pointers
                 tooltip: i18n("Left and right pointers indicate reading region")
                 enabled: parseInt(overlay.styleState)!==ReadRegionOverlay.PointerStates.Pointers
             }
             Kirigami.Action {
                 id: readRegionBarsButton
-                text: i18n("Bars")
+                text: i18n("Bar")
+                iconName: "list-remove"
                 onTriggered: overlay.styleState = ReadRegionOverlay.PointerStates.Bars
                 tooltip: i18n("Translucent bars indicate reading region")
                 enabled: parseInt(overlay.styleState)!==ReadRegionOverlay.PointerStates.Bars
             }
             Kirigami.Action {
                 id: readRegionBarsLeftButton
-                text: i18n("Bars and Left Pointer")
+                text: i18n("Bar && left")
+                iconName: "sidebar-collapse-right"
                 onTriggered: overlay.styleState = ReadRegionOverlay.PointerStates.BarsLeft
                 tooltip: i18n("Translucent bars and left pointer indicate reading region")
                 enabled: parseInt(overlay.styleState)!==ReadRegionOverlay.PointerStates.BarsLeft
             }
             Kirigami.Action {
                 id: readRegionBarsRightButton
-                text: i18n("Bars and Right Pointer")
+                text: i18n("Bar && right")
+                iconName: "sidebar-collapse-left"
                 onTriggered: overlay.styleState = ReadRegionOverlay.PointerStates.BarsRight
                 tooltip: i18n("Translucent bars and right pointer indicate reading region")
                 enabled: parseInt(overlay.styleState)!==ReadRegionOverlay.PointerStates.BarsRight
@@ -223,6 +233,7 @@ Kirigami.Page {
             Kirigami.Action {
                 id: readRegionAllButton
                 text: i18n("All")
+                iconName: "auto-transition"
                 onTriggered: overlay.styleState = ReadRegionOverlay.PointerStates.All
                 tooltip: i18n("Use all reading region indicators")
                 enabled: parseInt(overlay.styleState)!==ReadRegionOverlay.PointerStates.All
@@ -230,6 +241,7 @@ Kirigami.Page {
             Kirigami.Action {
                 id: readRegionNoneButton
                 text: i18n("None")
+                iconName: "format-justify-center"
                 onTriggered: overlay.styleState = ReadRegionOverlay.PointerStates.None
                 tooltip: i18n("Disable reading region indicators")
                 enabled: parseInt(overlay.styleState)!==ReadRegionOverlay.PointerStates.None
@@ -242,6 +254,7 @@ Kirigami.Page {
                 id: enableStopwatchButton
                 checkable: true
                 checked: viewport.timer.stopwatch
+                iconName: "keyframe"
                 text: i18n("Stopwatch")
                 onTriggered: {
                     viewport.timer.stopwatch = !viewport.timer.stopwatch
@@ -251,6 +264,7 @@ Kirigami.Page {
                 id: enableETAButton
                 checkable: true
                 checked: viewport.timer.eta
+                iconName: "player-time"
                 text: i18n("ETA")
                 onTriggered: {
                     viewport.timer.eta = !viewport.timer.eta
@@ -258,14 +272,16 @@ Kirigami.Page {
             }
             Kirigami.Action {
                 id: timerColorButton
-                text: i18n("Timer Color")
+                text: i18n("Timer color")
+                iconName: "format-text-color"
                 onTriggered: {
                     viewport.timer.setColor()
                 }
             }
             Kirigami.Action {
                 id: clearTimerColorButton
-                text: i18n("Clear Timer Color")
+                text: i18n("Clear color")
+                iconName: "tool_color_eraser"
                 enabled: !Qt.colorEqual(viewport.timer.textColor, '#AAA')
                 onTriggered: {
                     viewport.timer.clearColor()
@@ -280,7 +296,8 @@ Kirigami.Page {
                 enabled: !autoStartCountdownButton.checked
                 checkable: true
                 checked: viewport.countdown.frame && !autoStartCountdownButton.checked
-                text: i18n("Auto Frame")
+                text: i18n("Auto frame")
+                iconName: "transform-move-vertical"
                 onTriggered: {
                     viewport.countdown.frame = !viewport.countdown.frame
                     //// Future: Implement way to way to prevent Kirigami.Action from closing parent Action menu.
@@ -294,6 +311,7 @@ Kirigami.Page {
                 checkable: true
                 checked: viewport.countdown.enabled
                 text: i18n("Countdown")
+                iconName: "chronometer-pause"
                 onTriggered: {
                     viewport.countdown.enabled = !viewport.countdown.enabled
                     //// Future: Implement way to way to prevent Kirigami.Action from closing parent Action menu.
@@ -305,15 +323,17 @@ Kirigami.Page {
                 id: autoStartCountdownButton
                 enabled: enableCountdownButton.enabled && viewport.countdown.enabled
                 checkable: true
-                checked: viewport.countdown.autoStart
-                text: i18n("Auto Countdown")
+                checked: viewport.countdown.autoStart && enableCountdownButton.checked
+                text: i18n("Auto start")
+                iconName: "chronometer"
                 tooltip: i18n("Start countdown automatically")
                 onTriggered: viewport.countdown.autoStart = !viewport.countdown.autoStart
             }
             Kirigami.Action {
                 id: setCountdownButton
                 enabled: enableCountdownButton.enabled && viewport.countdown.enabled
-                text: i18n("Set Duration")
+                text: i18n("Set duration")
+                iconName: "keyframe-add"
                 onTriggered: {
                     viewport.countdown.configuration.open()
                 }
@@ -329,8 +349,8 @@ Kirigami.Page {
             }
 
             Kirigami.Action {
-                text: i18n("No Flip")
-                //iconName: "refresh"
+                text: i18n("No flip")
+                iconName: "window"
                 readonly property string shortName: i18n("No Flip")
                 onTriggered: {
                     parent.updateButton(this)
@@ -340,8 +360,8 @@ Kirigami.Page {
                 enabled: viewport.prompter.__flipX || viewport.prompter.__flipY
             }
             Kirigami.Action {
-                text: i18n("Horizontal Flip")
-                //iconName: "refresh"
+                text: i18n("Horizontal flip")
+                iconName: "object-flip-horizontal"
                 readonly property string shortName: i18n("H Flip")
                 onTriggered: {
                     parent.updateButton(this)
@@ -351,8 +371,8 @@ Kirigami.Page {
                 enabled: (!viewport.prompter.__flipX) || viewport.prompter.__flipY
             }
             Kirigami.Action {
-                text: i18n("Vertical Flip")
-                //iconName: "refresh"
+                text: i18n("Vertical flip")
+                iconName: "object-flip-vertical"
                 readonly property string shortName: i18n("V Flip")
                 onTriggered: {
                     parent.updateButton(this)
@@ -363,7 +383,7 @@ Kirigami.Page {
             }
             Kirigami.Action {
                 text: i18n("180° rotation")
-                //iconName: "refresh"
+                iconName: Qt.LeftToRight ? "object-rotate-left" : "object-rotate-right"
                 readonly property string shortName: i18n("HV Flip")
                 onTriggered: {
                     parent.updateButton(this)
@@ -378,18 +398,21 @@ Kirigami.Page {
             text: i18n("Background")
             Kirigami.Action {
                 id: changeBackgroundImageButton
-                text: i18n("Set Image")
+                text: i18n("Set image")
+                iconName: "insert-image"
                 onTriggered: prompterBackground.loadBackgroundImage()
             }
             Kirigami.Action {
                 id: changeBackgroundColorButton
-                text: i18n("Set Color")
+                text: i18n("Set color")
+                iconName: "format-fill-color"
                 onTriggered: prompterBackground.backgroundColorDialog.open()
             }
             Kirigami.Action {
                 id: clearBackgroundButton
-                text: i18n("Clear Background")
+                text: i18n("Clear")
                 enabled: prompterBackground.hasBackground
+                iconName: "tool_color_eraser"
                 onTriggered: prompterBackground.clearBackground()
             }
         },
@@ -440,7 +463,7 @@ Kirigami.Page {
                 }
             }
             Kirigami.Action {
-                text: i18n("Scale Projections")
+                text: i18n("Scale projections")
                 checkable: true
                 checked: projectionManager.reScale
                 onTriggered: {
@@ -448,7 +471,7 @@ Kirigami.Page {
                 }
             }
             Kirigami.Action {
-                text: i18n("Preview Projections")
+                text: i18n("Preview projections")
                 tooltip: i18n("Project prompter duplicates onto extended displays")
                 enabled: parseInt(prompter.state)===Prompter.States.Editing
                 onTriggered: {
@@ -457,14 +480,14 @@ Kirigami.Page {
             }
         },
         //Kirigami.Action {
-           //id: debug
-           //text: i18n("Debug")
-           //tooltip: i18n("Debug Action")
-           //onTriggered: {
-                //console.log("Debug Action")
-                //prompterPage.test( true )
-           //}
-        //}
+        //    id: debug
+        //    text: i18n("Debug")
+        //    tooltip: i18n("Debug Action")
+        //    onTriggered: {
+        //        console.log("Debug Action")
+        //        prompterPage.test( true )
+        //    }
+        //},
         Kirigami.Action {
             id: fullscreenButton
             visible: !fullScreenPlatform

@@ -1080,7 +1080,7 @@ Flickable {
             //PropertyChanges {
             //target: readRegionButton
             //text: i18n("Custom")
-            //iconName: "gtk-apply"
+            //iconName: "dialog-ok-apply"
             //}
             PropertyChanges {
                 target: overlay

@@ -181,40 +181,27 @@ Kirigami.ApplicationWindow {
             Kirigami.Action {
                 visible: false
                 text: i18n("&Recent Files")
-                //iconName: "view-list-icons"
+                iconName: "document-open-recent"
                 //Kirigami.Action {
                     //text: i18n("View Action 1")
                     //onTriggered: showPassiveNotification(i18n("View Action 1 clicked"))
                 //}
             },
             Kirigami.Action {
-                visible: ["android", "ios", "tvos", "ipados", "qnx"].indexOf(Qt.platform.os)===-1
-                text: i18n("Keyboard Inputs")
-                iconName: "keyboard"
-                onTriggered: {
-                    prompterPage.key_configuration_overlay.open()
-                }
-            },
-            Kirigami.Action {
                 text: i18n("&Controls Settings")
-                iconName: "hand"
+                iconName: "transform-browse" // "hand"
                 Kirigami.Action {
-                    text: i18n("Disable scrolling while prompting")
-                    checkable: true
-                    checked: root.__noScroll
-                    onTriggered: root.__noScroll = !root.__noScroll
-                }
-                Kirigami.Action {
-                    text: i18n("Use scroll as velocity &dial")
-                    enabled: !root.__noScroll
-                    // ToolTip.text: i18n("Use mouse and touchpad scroll as speed dial while prompting")
-                    checkable: true
-                    checked: root.__scrollAsDial
-                    onTriggered: root.__scrollAsDial = !root.__scrollAsDial
+                    visible: ["android", "ios", "tvos", "ipados", "qnx"].indexOf(Qt.platform.os)===-1
+                    text: i18n("Keyboard Inputs")
+                    iconName: "key-enter" // "keyboard"
+                    onTriggered: {
+                        prompterPage.key_configuration_overlay.open()
+                    }
                 }
                 Kirigami.Action {
                     text: i18n("Invert &arrow keys")
                     enabled: !root.__noScroll
+                    iconName: "circular-arrow-shape"
                     checkable: true
                     checked: root.__invertArrowKeys
                     onTriggered: root.__invertArrowKeys = !root.__invertArrowKeys
@@ -222,9 +209,26 @@ Kirigami.ApplicationWindow {
                 Kirigami.Action {
                     text: i18n("Invert &scroll direction")
                     enabled: !root.__noScroll
+                    iconName: "gnumeric-object-scrollbar"
                     checkable: true
                     checked: root.__invertScrollDirection
                     onTriggered: root.__invertScrollDirection = !root.__invertScrollDirection
+                }
+                Kirigami.Action {
+                    text: i18n("Use scroll as velocity &dial")
+                    enabled: !root.__noScroll
+                    iconName: "filename-bpm-amarok"
+                    // ToolTip.text: i18n("Use mouse and touchpad scroll as speed dial while prompting")
+                    checkable: true
+                    checked: root.__scrollAsDial
+                    onTriggered: root.__scrollAsDial = !root.__scrollAsDial
+                }
+                Kirigami.Action {
+                    text: i18n("Disable scrolling while prompting")
+                    iconName: "paint-none"
+                    checkable: true
+                    checked: root.__noScroll
+                    onTriggered: root.__noScroll = !root.__noScroll
                 }
             },
             Kirigami.Action {
@@ -232,6 +236,7 @@ Kirigami.ApplicationWindow {
                 iconName: "configure"
                 Kirigami.Action {
                     text: i18n("Telemetry")
+                    iconName: "document-send"
                     onTriggered: {
                         root.loadTelemetryPage()
                     }
@@ -239,11 +244,13 @@ Kirigami.ApplicationWindow {
                 Kirigami.Action {
                 text: i18n("Force sub-pixel text renderer past 120px")
                     checkable: true
+                    iconName: "format-font-size-more"
                     checked: root.forceQtTextRenderer
                     onTriggered: root.forceQtTextRenderer = !root.forceQtTextRenderer
                 }
                 Kirigami.Action {
-                    text: i18n("Restore Factory Settings")
+                    text: i18n("Restore factory defaults")
+                    iconName: "edit-clear-history"
                     onTriggered: {
                         showPassiveNotification(i18n("Feature not yet implemented"))
                     }
@@ -256,7 +263,7 @@ Kirigami.ApplicationWindow {
             },
             Kirigami.Action {
                 text: i18n("&Quit")
-                iconName: "exit"
+                iconName: "application-exit"
                 shortcut: i18n("Ctrl+Q")
                 onTriggered: close()
             }
