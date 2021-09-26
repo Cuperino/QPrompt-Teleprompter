@@ -92,6 +92,7 @@ Kirigami.OverlayDrawer {
         }
         Kirigami.BasicListItem {
             Layout.alignment: Qt.AlignBottom
+            icon: Qt.application.layoutDirection===Qt.LeftToRight ? "view-left-close" : "view-right-close"
             text: i18n("Close Marker List")
             onClicked: {
                 sideDrawer.close();
