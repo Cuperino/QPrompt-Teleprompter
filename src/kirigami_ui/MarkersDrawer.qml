@@ -36,7 +36,7 @@ Kirigami.OverlayDrawer {
     //width: popupContent.implicitWidth
     modal: true
     handleVisible: false
-    edge: Qt.LeftToRight ? Qt.RightEdge : Qt.LeftEdge
+    edge: Qt.application.layoutDirection===Qt.LeftToRight ? Qt.LeftEdge : Qt.RightEdge
     leftPadding: 0
     rightPadding: 0
     bottomPadding: 0
