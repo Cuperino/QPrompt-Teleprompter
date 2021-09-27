@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:width="128dp" android:height="128dp" android:gravity="center">
+    <item android:width="256dp" android:height="256dp" android:gravity="center">
         <bitmap
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
