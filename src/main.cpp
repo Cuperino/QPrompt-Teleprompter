@@ -20,8 +20,12 @@
  **
  ****************************************************************************/
 
-// #include <QApplication>
+
+#if defined(Q_OS_ANDROID) || defined(Q_OS_IOS) || defined(Q_OS_WASM) || defined(Q_OS_WATCHOS) || defined(Q_OS_QNX)
 #include <QGuiApplication>
+#else
+#include <QApplication>
+#endif
 #include <QQmlApplicationEngine>
 #include <QtQml>
 #include <QtQml/qqml.h>
@@ -32,15 +36,9 @@
 #include <QQuickStyle>
 #include <QIcon>
 
-// #ifdef Q_OS_ANDROID
+// #ifdef Q_OS_IOS
 // #include "../3rdparty/kirigami/src/kirigamiplugin.h"
 // #endif
-#ifdef Q_OS_IOS
-#include "../3rdparty/kirigami/src/kirigamiplugin.h"
-#endif
-#ifdef Q_OS_WASM
-#include "../3rdparty/kirigami/src/kirigamiplugin.h"
-#endif
 #include <KLocalizedContext>
 #include <KI18n/KLocalizedString>
 #include <KCoreAddons/KAboutData>
@@ -55,7 +53,11 @@
 
 Q_DECL_EXPORT int main(int argc, char *argv[])
 {
+#if defined(Q_OS_ANDROID) || defined(Q_OS_IOS) || defined(Q_OS_WASM) || defined(Q_OS_WATCHOS) || defined(Q_OS_QNX)
     QGuiApplication app(argc, argv);
+#else
+    QApplication app(argc, argv);
+#endif
     QCoreApplication::setOrganizationName("Cuperino");
     QCoreApplication::setOrganizationDomain(QPROMPT_URI);
     QCoreApplication::setApplicationName("QPrompt");

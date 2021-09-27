@@ -79,7 +79,7 @@ set(
 
 if(ANDROID)
     set(ANDROID_PACKAGE_SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/android)
-    set(ANDROID_ABIS "armeabi-v7a") # arm64-v8a
+    set(ANDROID_ABIS "arm64-v8a") # armeabi-v7a
 endif()
 
 # if(NOT CMAKE_BUILD_TYPE)
@@ -91,7 +91,7 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 
 find_package(ECM ${ECM_MIN_VERSION} REQUIRED NO_MODULE)
 set(CMAKE_MODULE_PATH ${ECM_MODULE_PATH})
-if(ANDROID)
+if(ANDROID OR IOS)
     find_package(Qt5 ${QT5_MIN_VERSION} REQUIRED NO_MODULE COMPONENTS
         Core
         Quick
@@ -110,6 +110,7 @@ else()
         Svg
         Gui
         QuickControls2
+        Widgets
         QmlImportScanner  # Used to get static QML. Gets ignored if not a static build
         QuickCompiler
     )

@@ -74,6 +74,11 @@
 
 #include <vector>
 
+#if defined(Q_OS_ANDROID) || defined(Q_OS_IOS) || defined(Q_OS_WASM) || defined(Q_OS_WATCHOS) || defined(Q_OS_QNX)
+#include <QGuiApplication>
+#else
+#include <QApplication>
+#endif
 #include <QFile>
 #include <QFileInfo>
 #include <QFileSelector>
@@ -85,8 +90,6 @@
 #include <QTextCodec>
 #include <QTextDocument>
 #include <QTextBlock>
-// #include <QApplication>
-#include <QGuiApplication>
 #include <QClipboard>
 #include <QMimeData>
 #include <QRegularExpression>
@@ -705,8 +708,11 @@ QString DocumentHandler::filterHtml(QString html, bool ignoreBlackTextColor=true
 void DocumentHandler::paste(bool withoutFormating=false)
 {
     // qDebug() << "Managed Paste";
-
+#if defined(Q_OS_ANDROID) || defined(Q_OS_IOS) || defined(Q_OS_WASM) || defined(Q_OS_WATCHOS) || defined(Q_OS_QNX)
     const QClipboard *clipboard = QGuiApplication::clipboard();
+#else
+    const QClipboard *clipboard = QApplication::clipboard();
+#endif
     const QMimeData *mimeData = clipboard->mimeData();
 
     if (mimeData->hasHtml()) {
