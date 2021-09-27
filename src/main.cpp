@@ -60,11 +60,12 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
     QCoreApplication::setOrganizationDomain(QPROMPT_URI);
     QCoreApplication::setApplicationName("QPrompt");
 
+    const int currentYear = QDate::currentDate().year();
     KAboutData aboutData("qprompt", "QPrompt",
                          QPROMPT_VERSION_STRING " (" + QString(GIT_BRANCH) + "/" + QString(GIT_COMMIT_HASH) + ")",
                          i18n("Personal teleprompter software for content creators."),
                          KAboutLicense::GPL_V3,
-                         i18n("© %1 Javier O. Cordero Pérez", QString::number(QDate::currentDate().year())));
+                         i18n("© %1%2 Javier O. Cordero Pérez", currentYear>2021?"2021-":"", QString::number(currentYear)));
 //     QString(GIT_BRANCH) + "/" + QString(GIT_COMMIT_HASH)
 
     // Overwrite default-generated values of organizationDomain & desktopFileName
