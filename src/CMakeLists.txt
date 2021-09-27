@@ -137,7 +137,7 @@ else()
         Qt5::Svg
         Qt5::Qml
         Qt5::QuickControls2
-        #Qt5::Widgets
+        Qt5::Widgets
         KF5::I18n
         KF5::Kirigami2
         KF5::CoreAddons
