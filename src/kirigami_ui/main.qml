@@ -39,7 +39,7 @@ Kirigami.ApplicationWindow {
     // The following line includes macOS among the list of platforms where full screen buttons are hidden. This is done intentionally because macOS provides its own full screen buttons on the window frame and global menu. We shall not mess with what users of each platform expect.
     property bool fullScreenPlatform: Kirigami.Settings.isMobile || ['android', 'ios', 'wasm', 'tvos', 'qnx', 'ipados', 'osx'].indexOf(Qt.platform.os)!==-1
     //readonly property bool __translucidBackground: !Material.background.a // === 0
-    readonly property bool __translucidBackground: !Kirigami.Theme.backgroundColor.a
+    readonly property bool __translucidBackground: !Kirigami.Theme.backgroundColor.a && ['ios', 'wasm', 'tvos', 'qnx', 'ipados'].indexOf(Qt.platform.os)===-1
     readonly property bool themeIsMaterial: Kirigami.Settings.style==="Material" // || Kirigami.Settings.isMobile
     //readonly property bool __translucidBackground: false
     // Scrolling settings
