@@ -305,7 +305,7 @@ Kirigami.ApplicationWindow {
     }
     
     // QML Window Menu Bar
-    menuBar: MenuBar {
+    /*menuBar: MenuBar {
         height: 26  // Value for my current Plasma theme. IDK if this will work elsewhere.
         
         // Hide menuBar on mobile, on themes with translucid background, on full screen, and when the reading region is on top while not in edit mode.
@@ -602,7 +602,7 @@ Kirigami.ApplicationWindow {
                 icon.source: "qrc:/images/qprompt.png"
             }
         }
-    }
+    }*/
 
     Labs.MenuBar {
         id: nativeMenus
