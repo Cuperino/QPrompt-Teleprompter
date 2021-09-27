@@ -83,6 +83,9 @@ Rectangle {
         autoTransform: true
         asynchronous: true
         mipmap: false
+
+        readonly property Scale __flips: Flip{}
+        transform: __flips
         
         onStatusChanged: {
             if (backgroundImage.status === Image.Ready && !backgroundImage.opacity)
