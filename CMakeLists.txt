@@ -95,6 +95,7 @@ if(ANDROID)
     find_package(Qt5 ${QT5_MIN_VERSION} REQUIRED NO_MODULE COMPONENTS
         Core
         Quick
+        Svg
         Gui
         AndroidExtras
         QuickControls2
@@ -106,6 +107,7 @@ else()
         Core
         Quick
         #Test
+        Svg
         Gui
         QuickControls2
         QmlImportScanner  # Used to get static QML. Gets ignored if not a static build
