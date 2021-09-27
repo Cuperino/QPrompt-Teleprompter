@@ -124,7 +124,7 @@ if (ANDROID)
         Qt5::Qml
         Qt5::QuickControls2
         Qt5::AndroidExtras
-        Qt5::VirtualKeyboard
+        #Qt5::VirtualKeyboard
         KF5::I18n
         KF5::Kirigami2
         KF5::CoreAddons
