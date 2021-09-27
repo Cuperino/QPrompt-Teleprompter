@@ -98,6 +98,7 @@ if(ANDROID OR IOS)
         Svg
         Gui
         AndroidExtras
+        VirtualKeyboard
         QuickControls2
         QmlImportScanner  # Used to get static QML. Gets ignored if not a static build
         QuickCompiler
