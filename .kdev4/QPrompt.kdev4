@@ -16,19 +16,76 @@ Install Directory=/usr
 Runtime=Host System
 
 [Launch]
-Launch Configurations=Launch Configuration 0
+Launch Configurations=Launch Configuration 0,Launch Configuration 1,Launch Configuration 2,Launch Configuration 3
 
 [Launch][Launch Configuration 0]
 Configured Launch Modes=execute
 Configured Launchers=nativeAppLauncher
-Name=qprompt
+Name=QPrompt Desktop
 Type=Native Application
 
 [Launch][Launch Configuration 0][Data]
 Arguments=
 Dependencies=@Variant(\x00\x00\x00\t\x00\x00\x00\x00\x01\x00\x00\x00\x0b\x00\x00\x00\x00\x03\x00\x00\x00\x0e\x00Q\x00P\x00r\x00o\x00m\x00p\x00t\x00\x00\x00\x06\x00s\x00r\x00c\x00\x00\x00\x0e\x00q\x00p\x00r\x00o\x00m\x00p\x00t)
 Dependency Action=Build
-EnvironmentGroup=
+EnvironmentGroup=default
+Executable=file:///home/javier/Development/Teleprompters/qprompt/QPrompt
+External Terminal=konsole --noclose --workdir %workdir -e %exe
+Kill Before Executing Again=4194304
+Project Target=QPrompt,src,qprompt
+Use External Terminal=false
+Working Directory=
+isExecutable=false
+
+[Launch][Launch Configuration 1]
+Configured Launch Modes=execute
+Configured Launchers=nativeAppLauncher
+Name=QPrompt Mobile
+Type=Native Application
+
+[Launch][Launch Configuration 1][Data]
+Arguments=
+Dependencies=@Variant(\x00\x00\x00\t\x00\x00\x00\x00\x01\x00\x00\x00\x0b\x00\x00\x00\x00\x03\x00\x00\x00\x0e\x00Q\x00P\x00r\x00o\x00m\x00p\x00t\x00\x00\x00\x06\x00s\x00r\x00c\x00\x00\x00\x0e\x00q\x00p\x00r\x00o\x00m\x00p\x00t)
+Dependency Action=Build
+EnvironmentGroup=mobile
+Executable=file:///home/javier/Development/Teleprompters/qprompt/QPrompt
+External Terminal=konsole --noclose --workdir %workdir -e %exe
+Kill Before Executing Again=4194304
+Project Target=QPrompt,src,qprompt
+Use External Terminal=false
+Working Directory=
+isExecutable=false
+
+[Launch][Launch Configuration 2]
+Configured Launch Modes=execute
+Configured Launchers=nativeAppLauncher
+Name=QPrompt Native
+Type=Native Application
+
+[Launch][Launch Configuration 2][Data]
+Arguments=
+Dependencies=@Variant(\x00\x00\x00\t\x00\x00\x00\x00\x01\x00\x00\x00\x0b\x00\x00\x00\x00\x03\x00\x00\x00\x0e\x00Q\x00P\x00r\x00o\x00m\x00p\x00t\x00\x00\x00\x06\x00s\x00r\x00c\x00\x00\x00\x0e\x00q\x00p\x00r\x00o\x00m\x00p\x00t)
+Dependency Action=Build
+EnvironmentGroup=native
+Executable=file:///home/javier/Development/Teleprompters/qprompt/QPrompt
+External Terminal=konsole --noclose --workdir %workdir -e %exe
+Kill Before Executing Again=4194304
+Project Target=QPrompt,src,qprompt
+Use External Terminal=false
+Working Directory=
+isExecutable=false
+
+[Launch][Launch Configuration 3]
+Configured Launch Modes=execute
+Configured Launchers=nativeAppLauncher
+Name=QPrompt Debug
+Type=Native Application
+
+[Launch][Launch Configuration 3][Data]
+Arguments=
+Dependencies=@Variant(\x00\x00\x00\t\x00\x00\x00\x00\x01\x00\x00\x00\x0b\x00\x00\x00\x00\x03\x00\x00\x00\x0e\x00Q\x00P\x00r\x00o\x00m\x00p\x00t\x00\x00\x00\x06\x00s\x00r\x00c\x00\x00\x00\x0e\x00q\x00p\x00r\x00o\x00m\x00p\x00t)
+Dependency Action=Build
+EnvironmentGroup=overdraw
 Executable=file:///home/javier/Development/Teleprompters/qprompt/QPrompt
 External Terminal=konsole --noclose --workdir %workdir -e %exe
 Kill Before Executing Again=4194304
