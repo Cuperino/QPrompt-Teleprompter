@@ -496,7 +496,7 @@ Flickable {
                 font.hintingPreference: Font.PreferFullHinting
                 font.kerning: true
                 font.preferShaping: true
-                renderType: font.pixelSize < 121 || root.forceQtTextRenderer ? Text.QtRendering : Text.NativeRendering
+                renderType: font.pixelSize < 121 || Screen.devicePixelRatio !== 1.0 || root.forceQtTextRenderer ? Text.QtRendering : Text.NativeRendering
 
                 function toggleEditorFocus(mouse) {
                     if (!editor.focus) {
