@@ -244,7 +244,7 @@ Kirigami.ApplicationWindow {
                 Kirigami.Action {
                     text: i18n("Force sub-pixel text renderer past 120px")
                     // Hiding option because only Qt text renderer is used on devices of greater pixel density, due to bug in rendering native fonts while scaling is enabled.
-                    visible: Screen.devicePixelRatio === 1.0
+                    visible: screen.devicePixelRatio === 1.0
                     checkable: true
                     iconName: "format-font-size-more"
                     checked: root.forceQtTextRenderer
@@ -605,7 +605,7 @@ Kirigami.ApplicationWindow {
             }
         }
     }*/
-
+/*
     Labs.MenuBar {
         id: nativeMenus
         window: root
@@ -899,7 +899,7 @@ Kirigami.ApplicationWindow {
             }
         }
     }
-
+*/
     // Right Context Drawer
     contextDrawer: Kirigami.ContextDrawer {
         id: contextDrawer

@@ -900,6 +900,17 @@ Flickable {
             //implicitHeight: 30
         }
         MenuItem {
+            text: i18n("&Undo")
+            enabled: prompter.editor.canUndo
+            onTriggered: prompter.editor.undo()
+        }
+        MenuItem {
+            text: i18n("Redo")
+            enabled: prompter.editor.canRedo
+            onTriggered: prompter.editor.redo()
+        }
+        MenuSeparator {}
+        MenuItem {
             text: i18n("&Copy")
             enabled: editor.selectedText
             onTriggered: editor.copy()
@@ -927,6 +938,7 @@ Flickable {
             text: i18n("Hi&ghlight...")
             onTriggered: highlightDialog.open()
         }
+        MenuSeparator {}
     }
 
     // Configurable keys commands
@@ -1142,6 +1154,7 @@ Flickable {
                 __iBackup: 0
                 position: position
                 timeToArival: 0
+                focus: true
                 //timeToArival: Kirigami.Units.shortDuration
             }
             PropertyChanges {
@@ -1192,6 +1205,7 @@ Flickable {
                 __iBackup: 0
                 position: position
                 timeToArival: 0
+                focus: true
             }
             PropertyChanges {
                 target: editor

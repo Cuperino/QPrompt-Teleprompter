@@ -10,7 +10,7 @@
 
     <supports-screens android:largeScreens="true" android:normalScreens="true" android:anyDensity="true" android:smallScreens="true"/>
     <application android:hardwareAccelerated="true" android:name="org.qtproject.qt5.android.bindings.QtApplication" android:label="QPrompt" android:extractNativeLibs="true" android:icon="@mipmap/ic_launcher"> <!-- android:icon="@drawable/icon" -->
-        <activity android:configChanges="orientation|uiMode|screenLayout|screenSize|smallestScreenSize|layoutDirection|locale|fontScale|keyboard|keyboardHidden|navigation|mcc|mnc|density" android:name="org.qtproject.qt5.android.bindings.QtActivity" android:label="QPrompt" android:screenOrientation="unspecified" android:windowSoftInputMode="adjustPan" android:launchMode="singleTop" android:keepScreenOn="true" android:theme="@style/QPrompt.Main.Transparent"><!-- android:background="#303030" -->
+        <activity android:configChanges="orientation|uiMode|screenLayout|screenSize|smallestScreenSize|layoutDirection|locale|fontScale|keyboard|keyboardHidden|navigation|mcc|mnc|density" android:name="org.qtproject.qt5.android.bindings.QtActivity" android:label="QPrompt" android:screenOrientation="unspecified" android:windowSoftInputMode="adjustPan" android:launchMode="singleTop" android:keepScreenOn="true" android:theme="@style/QPrompt.Main.Transparent" android:background="#303030"><!-- adjustPan -->
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
@@ -59,7 +59,7 @@
                 * minimal - useful for Quick Controls 2 apps, it is much faster than "full"
                 * none - useful for apps that don't use any of the above Qt modules
             -->
-            <meta-data android:name="android.app.extract_android_style" android:value="none"/><!-- minimal -->
+            <meta-data android:name="android.app.extract_android_style" android:value="minimal"/><!-- none -->
         </activity>
         <!-- For adding service(s) please check: https://wiki.qt.io/AndroidServices -->
         <!-- <provider android:name="android.support.v4.content.FileProvider" android:authorities="com.cuperino.qprompt.fileprovider" android:grantUriPermissions="true" android:exported="false">

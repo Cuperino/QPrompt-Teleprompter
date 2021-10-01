@@ -108,7 +108,7 @@ ToolBar {
     }
 
     // Hide toolbar when read region is set to bottom and prompter is not in editing state.
-    enabled: !(parseInt(prompter.state)!==Prompter.States.Editing && (overlay.atBottom || Kirigami.Settings.isMobile))
+    enabled: !(parseInt(prompter.state)!==Prompter.States.Editing && (overlay.atBottom/* || Kirigami.Settings.isMobile*/))
     height: enabled ? implicitHeight : 0
     //Behavior on height {
     //    id: height
@@ -153,7 +153,6 @@ ToolBar {
         anchors.fill: parent
         Row {
             id: anchorsRow
-            //visible: parseInt(prompter.state)===Prompter.States.Editing
             ToolButton {
                 id: bookmarkListButton
                 text: "\uF0DB" /*uE804*/
@@ -169,6 +168,7 @@ ToolBar {
             }
             ToolButton {
                 id: searchButton
+                // visible: !Kirigami.Settings.isMobile || parseInt(prompter.state)===Prompter.States.Editing
                 text: Qt.application.layoutDirection===Qt.LeftToRight ? "\uE847" : "\uE848"
                 contentItem: Loader { sourceComponent: textComponent }
                 font.family: iconFont.name
@@ -190,6 +190,7 @@ ToolBar {
             }
             ToolButton {
                 id: namedBookmarkButton
+                visible: !Kirigami.Settings.isMobile || parseInt(prompter.state)===Prompter.States.Editing
                 text: "\uE844"
                 contentItem: Loader { sourceComponent: textComponent }
                 font.family: iconFont.name
@@ -214,6 +215,7 @@ ToolBar {
         }
         Row {
             id: playbackRow
+            visible: !Kirigami.Settings.isMobile || parseInt(prompter.state)!==Prompter.States.Editing
             ToolButton {
                 id: previousMarkerButton
                 text: "\uE81A"
@@ -238,7 +240,7 @@ ToolBar {
         }
         Row {
             id: undoRedoRow
-            //visible: parseInt(prompter.state)===Prompter.States.Editing
+            visible: !Kirigami.Settings.isMobile
             ToolButton {
                 text: Qt.application.layoutDirection===Qt.LeftToRight?"\uE800":"\uE801"
                 contentItem: Loader { sourceComponent: textComponent }
@@ -262,7 +264,7 @@ ToolBar {
         }
         Row {
             id: editRow
-            //visible: parseInt(prompter.state)===Prompter.States.Editing
+            visible: !Kirigami.Settings.isMobile
             ToolButton {
                 id: copyButton
                 text: "\uF0C5"
@@ -299,7 +301,7 @@ ToolBar {
         }
         Row {
             id: formatRow
-            //visible: parseInt(prompter.state)===Prompter.States.Editing
+            visible: !Kirigami.Settings.isMobile || parseInt(prompter.state)===Prompter.States.Editing
             ToolButton {
                 id: boldButton
                 text: "\uE802"
@@ -350,7 +352,7 @@ ToolBar {
         }
         Row {
             id: fontRow
-            //visible: parseInt(prompter.state)===Prompter.States.Editing
+            visible: !Kirigami.Settings.isMobile
             ToolButton {
                 id: fontFamilyToolButton
                 text: i18n("\uE805")
@@ -435,12 +437,12 @@ ToolBar {
                 }
             }
             ToolSeparator {
-                contentItem.visible: fontRow.y === alignmentRow.y
+                contentItem.visible: fontRow.y === alignmentRowMobile.y || fontRow.y === alignmentRowDesktop.y
             }
         }
         Row {
-            id: alignmentRow
-            //visible: parseInt(prompter.state)===Prompter.States.Editing
+            id: alignmentRowDesktop
+            visible: !Kirigami.Settings.isMobile
             ToolButton {
                 id: alignLeftButton
                 text: Qt.application.layoutDirection===Qt.LeftToRight ? "\uE808" : "\uE80A"
@@ -497,7 +499,90 @@ ToolBar {
             //    onClicked: prompter.document.alignment = Qt.AlignJustify
             //}
             ToolSeparator {
-                contentItem.visible: alignmentRow.y === advancedButtonsRow.y
+                contentItem.visible: alignmentRowDesktop.y === advancedButtonsRow.y
+            }
+        }
+        Row {
+            id: alignmentRowMobile
+            visible: Kirigami.Settings.isMobile && parseInt(prompter.state)===Prompter.States.Editing
+            Menu {
+                id: textAlignmentMenu
+                background: Rectangle {
+                    color: "#DD000000"
+                    implicitWidth: 120
+                }
+                MenuItem {
+                    text: Qt.application.layoutDirection===Qt.LeftToRight ? i18n("&Left") : i18n("&Right")
+                    enabled: Qt.application.layoutDirection===Qt.LeftToRight ? prompter.document.alignment !== Qt.AlignLeft : prompter.document.alignment !== Qt.AlignRight
+                    onTriggered: prompter.document.alignment = Qt.AlignLeft
+                }
+                MenuItem {
+                    text: i18n("C&enter")
+                    enabled: !(prompter.document.alignment === Qt.AlignHCenter || (prompter.document.alignment !== Qt.AlignLeft && prompter.document.alignment !== Qt.AlignRight/*&& prompter.document.alignment !== Qt.AlignJustify*/))
+                    onTriggered: prompter.document.alignment = Qt.AlignHCenter
+                }
+                MenuItem {
+                    text: Qt.application.layoutDirection===Qt.LeftToRight ? i18n("&Right") : i18n("&Left")
+                    enabled: Qt.application.layoutDirection===Qt.LeftToRight ? prompter.document.alignment !== Qt.AlignRight : prompter.document.alignment !== Qt.AlignLeft
+                    onTriggered: prompter.document.alignment = Qt.AlignRight
+                }
+                //MenuItem {
+                //    text: i18n("&Justify")
+                //    enabled: prompter.document.alignment !== Qt.AlignHustify
+                //    onTriggered: prompter.document.alignment = Qt.AlignJustify
+                //}
+            }
+            ToolButton {
+                id: mobileAlignLeftButton
+                visible: checked
+                text: Qt.application.layoutDirection===Qt.LeftToRight ? "\uE808" : "\uE80A"
+                contentItem: Loader { sourceComponent: textComponent }
+                font.family: iconFont.name
+                font.pointSize: 13
+                focusPolicy: Qt.TabFocus
+                checkable: true
+                checked: Qt.application.layoutDirection===Qt.LeftToRight ? prompter.document.alignment === Qt.AlignLeft : prompter.document.alignment === Qt.AlignRight
+                onClicked: textAlignmentMenu.popup(this)
+            }
+            ToolButton {
+                id: mobileAlignCenterButton
+                visible: checked || !(alignLeftButton.checked||alignRightButton.checked/*||alignJustifyButton.checked*/)
+                text: "\uE809"
+                font.family: iconFont.name
+                font.pointSize: 13
+                contentItem: Loader { sourceComponent: textComponent }
+                focusPolicy: Qt.TabFocus
+                checkable: true
+                checked: prompter.document.alignment === Qt.AlignHCenter
+                onClicked: textAlignmentMenu.popup(this)
+            }
+            ToolButton {
+                id: mobileAlignRightButton
+                visible: checked
+                text: Qt.application.layoutDirection===Qt.LeftToRight ? "\uE80A" : "\uE808"
+                contentItem: Loader { sourceComponent: textComponent }
+                font.family: iconFont.name
+                font.pointSize: 13
+                focusPolicy: Qt.TabFocus
+                checkable: true
+                checked: Qt.application.layoutDirection===Qt.LeftToRight ? prompter.document.alignment === Qt.AlignRight : prompter.document.alignment === Qt.AlignLeft
+                onClicked: textAlignmentMenu.popup(this)
+            }
+            // Justify is proven to make text harder to read for some readers. So I'm commenting out all text justification options from the program. I'm not removing them, only commenting out in case someone needs to re-enable. This article links to various sources that validate my decision: https://kaiweber.wordpress.com/2010/05/31/ragged-right-or-justified-alignment/ - Javier
+            //ToolButton {
+            //    id: mobileAlignJustifyButton
+            //    visible: checked
+            //    text: "\uE80B"
+            //    contentItem: Loader { sourceComponent: textComponent }
+            //    font.family: iconFont.name
+            //    font.pointSize: 13
+            //    focusPolicy: Qt.TabFocus
+            //    checkable: true
+            //    checked: prompter.document.alignment === Qt.AlignJustify
+            //    onClicked: textAlignmentMenu.popup(this)
+            //}
+            ToolSeparator {
+                contentItem.visible: alignmentRowMobile.y === advancedButtonsRow.y
             }
         }
         Row {
@@ -527,9 +612,22 @@ ToolBar {
                    showAnimationConfigOptions = !showAnimationConfigOptions
                 }
             }
+            ToolButton {
+                id: __iDefaultButton
+                visible: showAnimationConfigOptions
+                text: "\uE858"
+                contentItem: Loader { sourceComponent: textComponent }
+                font.family: iconFont.name
+                font.pointSize: 13
+                focusPolicy: Qt.TabFocus
+                checkable: true
+                checked: stepsConfiguration.sheetOpen
+                onClicked: stepsConfiguration.open()
+            }
         }
         RowLayout {
             enabled: parseInt(prompter.state)===Prompter.States.Prompting
+            visible: !Kirigami.Settings.isMobile || enabled // parseInt(prompter.state)!==Prompter.States.Editing
             //ToolButton {
             //    text: "\uE814"
             //    enabled: false
@@ -562,8 +660,9 @@ ToolBar {
             }
         }
         RowLayout {
-            visible: root.__translucidBackground
+            visible: root.__translucidBackground && (!Kirigami.Settings.isMobile || (parseInt(prompter.state)!==Prompter.States.Editing && parseInt(prompter.state)!==Prompter.States.Prompting)) // This check isn't optimized in case more prompter states get added in the future, even tho I think that is unlikely.
             ToolButton {
+                visible: !Kirigami.Settings.isMobile
                 text: "\uE810"
                 enabled: false
                 contentItem: Loader { sourceComponent: textComponent }
@@ -825,17 +924,6 @@ ToolBar {
                     prompter.focus = true;
                     prompter.position = prompter.__destination
                 }
-            }
-            ToolButton {
-                id: __iDefaultButton
-                text: "\uE858"
-                contentItem: Loader { sourceComponent: textComponent }
-                font.family: iconFont.name
-                font.pointSize: 13
-                focusPolicy: Qt.TabFocus
-                checkable: true
-                checked: stepsConfiguration.sheetOpen
-                onClicked: stepsConfiguration.open()
             }
         }
     }
