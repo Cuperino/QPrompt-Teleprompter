@@ -139,7 +139,8 @@ Kirigami.Page {
             Kirigami.Action {
                 id: hideDecorationsButton
                 text: i18n("Window Frame")
-                visible: !fullScreenPlatform
+                enabled: !fullScreenPlatform
+                visible: enabled
                 tooltip: i18n("Auto hide window decorations when not editing and read region is set to top")
                 iconName: hideDecorations===0 ? "window" : (hideDecorations===1 ? "draw-rectangle" : "gnumeric-object-rectangle")
                 Kirigami.Action {
