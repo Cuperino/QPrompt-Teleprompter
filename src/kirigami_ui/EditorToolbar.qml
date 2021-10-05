@@ -240,7 +240,7 @@ ToolBar {
         }
         Row {
             id: undoRedoRow
-            visible: !Kirigami.Settings.isMobile
+            visible: !Kirigami.Settings.isMobile || parseInt(prompter.state)===Prompter.States.Editing
             ToolButton {
                 text: Qt.application.layoutDirection===Qt.LeftToRight?"\uE800":"\uE801"
                 contentItem: Loader { sourceComponent: textComponent }
@@ -347,7 +347,7 @@ ToolBar {
                 onClicked: prompter.document.strike = !prompter.document.strike
             }
             ToolSeparator {
-                contentItem.visible: formatRow.y === fontRow.y
+                contentItem.visible: formatRow.y === fontRow.y || formatRow.y === alignmentRowMobile.y
             }
         }
         Row {
