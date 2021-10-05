@@ -56,5 +56,3 @@ Makefile
 # KDE Plasma and MacOS directory folders
 .directory
 .DS_Store
-
-/3rdparty
