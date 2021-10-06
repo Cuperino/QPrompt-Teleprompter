@@ -78,6 +78,26 @@ if(ANDROID)
     add_library(${PROJECT_NAME}
         ${qprompt_SRCS} ${qprompt_HDRS} ${qprompt_QML_SRCS} ${qprompt_ASSETS})
 
+elseif (WASM)
+    #cmake -DCMAKE_TOOLCHAIN_FILE=$HOME/emsdk/emscripten/1.38.27/cmake/Modules/Platform/Emscripten.cmake -DCMAKE_BUILD_TYPE=Debug -G "Unix Makefiles" ~/path/to/CMakeLists.txt
+    set(DFEATURE_developer_build ON)
+    set(DFEATURE_headersclean OFF)
+    set(DWARNINGS_ARE_ERRORS OFF)
+    set(DFEATURE_precompile_header OFF)
+    set(DBUILD_EXAMPLES OFF)
+    set(DBUILD_TESTING OFF)
+    set(DCMAKE_GENERATOR Ninja)
+    #set(DQT_HOST_PATH ~/Qt/6.2.0/wasm_32/)
+    #set(Qt5_DIR "~/Qt/6.2.0/wasm_32/lib/cmake/Qt5")
+    #set(Qt5Widgets_DIR "~/Qt/6.2.0/wasm_32/lib/cmake/Qt5Widgets")
+    #set(Qt5Gui_DIR "~/Qt/6.2.0/wasm_32/lib/cmake/Qt5Gui")
+    #set(Qt5Core_DIR "~/Qt/6.2.0/wasm_32/lib/cmake/Qt5Core")
+    #set(DCMAKE_TOOLCHAIN_FILE /path/to/emsdk/upstream/emscripten/cmake/Modules/Platform/Emscripten.cmake)
+    set(DFEATURE_threads ON)
+    set(DFEATURE_debug ON)
+    set(DFEATURE_opengles3 ON)
+    set(DQT_QMAKE_DEVICE_OPTIONS EMSCRIPTEN_ASYNCIFY=1)
+
 elseif (WIN32)
     if (MSVC)
         add_definitions(-D_AFXDLL)
@@ -122,10 +142,21 @@ if (ANDROID)
         Qt5::Svg
         Qt5::Gui
         Qt5::Qml
-        Qt5::QuickControls  # Used for Qt Dialogs used in mobile devices. Remove for Qt6
         Qt5::QuickControls2
         Qt5::AndroidExtras
         Qt5::VirtualKeyboard
+        KF5::I18n
+        KF5::Kirigami2
+        KF5::CoreAddons
+    )
+elseif (WASM OR IOS)
+    target_link_libraries(${PROJECT_NAME}
+        Qt5::Core
+        Qt5::Quick
+        Qt5::Svg
+        Qt5::Gui
+        Qt5::Qml
+        Qt5::QuickControls2
         KF5::I18n
         KF5::Kirigami2
         KF5::CoreAddons
@@ -137,7 +168,6 @@ else()
         Qt5::Gui
         Qt5::Svg
         Qt5::Qml
-        Qt5::QuickControls  # Used for Qt Dialogs used in mobile devices. Remove for Qt6
         Qt5::QuickControls2
         Qt5::Widgets
         KF5::I18n
