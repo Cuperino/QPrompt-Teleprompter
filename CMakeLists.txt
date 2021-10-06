@@ -99,7 +99,16 @@ if(ANDROID)
         Gui
         AndroidExtras
         VirtualKeyboard
-        QuickControls  # Used for Qt Dialogs used in mobile devices. Remove for Qt6
+        QuickControls2
+        QmlImportScanner  # Used to get static QML. Gets ignored if not a static build
+        QuickCompiler
+    )
+elseif(WASM OR IOS)
+    find_package(Qt5 ${QT5_MIN_VERSION} REQUIRED NO_MODULE COMPONENTS
+        Core
+        Quick
+        Svg
+        Gui
         QuickControls2
         QmlImportScanner  # Used to get static QML. Gets ignored if not a static build
         QuickCompiler
@@ -111,7 +120,6 @@ else()
         #Test
         Svg
         Gui
-        QuickControls  # Used for Qt Dialogs used in mobile devices. Remove for Qt6
         QuickControls2
         Widgets
         QmlImportScanner  # Used to get static QML. Gets ignored if not a static build
