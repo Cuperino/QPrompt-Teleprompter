@@ -28,7 +28,6 @@ ui_*.h
 *.jsc
 Makefile*
 *build-*
-*.flatpak-builder*
 
 # Qt unit tests
 target_wrapper.*
@@ -46,6 +45,8 @@ Makefile
 
 # Build folders
 **/build
+*.flatpak-builder*
+/dist/Snapcraft/*.snap
 
 # Web Assembly Build
 **/build_wasm/QPrompt.wasm
