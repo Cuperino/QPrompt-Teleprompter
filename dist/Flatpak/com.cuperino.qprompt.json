@@ -3,7 +3,10 @@
    "finish-args": [
       "--share=ipc",
       "--socket=x11",
-      "--socket=wayland"
+      "--socket=wayland",
+      "--filesystem=host",
+      "--share=network",
+      "--device=all"
    ],
    "id": "com.cuperino.qprompt",
    "modules": [
