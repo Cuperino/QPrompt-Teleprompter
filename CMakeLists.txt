@@ -62,7 +62,7 @@ elseif (WIN32)
     list(APPEND QML_DIRS "C:/CraftRoot/qml")
     list(APPEND KIRIGAMI_DIRS "C:/CraftRoot/qml/org/kde/kirigami.2")
 endif()
-# ------------------------- END: lists to maintain ma/usr/lib/x86_64-linux-gnu/qt5/nually -------------------------
+# ------------------------- END: lists to maintain manually -------------------------
 
 # Prevent adding duplicate values at each run of CMake.
 list(REMOVE_DUPLICATES QML_DIRS)
@@ -91,7 +91,7 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 
 find_package(ECM ${ECM_MIN_VERSION} REQUIRED NO_MODULE)
 set(CMAKE_MODULE_PATH ${ECM_MODULE_PATH})
-if(ANDROID OR IOS)
+if(ANDROID)
     find_package(Qt5 ${QT5_MIN_VERSION} REQUIRED NO_MODULE COMPONENTS
         Core
         Quick
@@ -99,6 +99,7 @@ if(ANDROID OR IOS)
         Gui
         AndroidExtras
         VirtualKeyboard
+        QuickControls  # Used for Qt Dialogs used in mobile devices. Remove for Qt6
         QuickControls2
         QmlImportScanner  # Used to get static QML. Gets ignored if not a static build
         QuickCompiler
@@ -110,6 +111,7 @@ else()
         #Test
         Svg
         Gui
+        QuickControls  # Used for Qt Dialogs used in mobile devices. Remove for Qt6
         QuickControls2
         Widgets
         QmlImportScanner  # Used to get static QML. Gets ignored if not a static build
@@ -121,7 +123,6 @@ find_package(KF5 ${KF_MIN_VERSION} REQUIRED COMPONENTS
     Kirigami2
     I18n  # NO_MODULE
     CoreAddons
-    #IconThemes
 )
 
 if (WIN32 OR UNIX) # AND NOT ANDROID
