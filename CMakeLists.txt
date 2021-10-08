@@ -48,6 +48,7 @@ if (WIN32)
     set(ECM_MIN_VERSION 5.83.0)
 else()
     set(ECM_MIN_VERSION 5.68.0)
+endif()
 set(KF_MIN_VERSION 5.68.0)
 
 # ------------------------- BEGIN: lists to maintain manually -------------------------
