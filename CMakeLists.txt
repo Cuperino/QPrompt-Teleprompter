@@ -34,21 +34,18 @@ set(CMAKE_INCLUDE_CURRENT_DIR ON)
 # Instruct CMake to create code from Qt designer ui files
 set(CMAKE_AUTOUIC ON)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
-set(CMAKE_CXX_STANDARD 20)
+set(CMAKE_CXX_STANDARD 17)
 # Instruct CMake to run moc automatically when needed.
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
 
-# QT 5.15 to be able to use new Connect methods syntax and get rid of warning.
-set(QT5_MIN_VERSION 5.15.2)
 # QT 5.12 for Ubuntu 20.04
-#set(QT_MIN_VERSION 5.12.0)
-# set(QT_DISABLE_DEPRECATED_BEFORE 5.15.2)
+set(QT_MIN_VERSION 5.12.0)
+set(QT_DISABLE_DEPRECATED_BEFORE 5.15.2)
 # KF5 5.68 for Ubuntu 20.04
 # Use 5.83 to have current ecm_add_app_icon syntax
 set(ECM_MIN_VERSION 5.68.0)
 set(KF_MIN_VERSION 5.68.0)
-#set(REQUIRED_KF5_VERSION 5.68.0)
 
 # ------------------------- BEGIN: lists to maintain manually -------------------------
 
@@ -61,6 +58,7 @@ if (UNIX AND NOT APPLE AND NOT ANDROID)
 elseif (WIN32)
     list(APPEND QML_DIRS "C:/CraftRoot/qml")
     list(APPEND KIRIGAMI_DIRS "C:/CraftRoot/qml/org/kde/kirigami.2")
+    set(CPACK_NSIS_BRANDING_TEXT "QPrompt Teleprompter App")
 endif()
 # ------------------------- END: lists to maintain manually -------------------------
 
@@ -82,9 +80,9 @@ if(ANDROID)
     set(ANDROID_ABIS "armeabi-v7a") # arm64-v8a
 endif()
 
-# if(NOT CMAKE_BUILD_TYPE)
-#     set(CMAKE_BUILD_TYPE MinSizeRel CACHE STRING FORCE)
-# endif()
+if(NOT CMAKE_BUILD_TYPE)
+    set(CMAKE_BUILD_TYPE MinSizeRel CACHE STRING FORCE)
+endif()
 
 # Send compiled program and library binaries to "build/bin"
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
@@ -110,18 +108,19 @@ elseif(WASM OR IOS)
         Svg
         Gui
         QuickControls2
-        QmlImportScanner  # Used to get static QML. Gets ignored if not a static build
-        QuickCompiler
+        #QmlImportScanner  # Used to get static QML. Gets ignored if not a static build
+        #QuickCompiler
     )
 else()
     find_package(Qt5 ${QT5_MIN_VERSION} REQUIRED NO_MODULE COMPONENTS
         Core
         Quick
-        #Test
         Svg
         Gui
         QuickControls2
         Widgets
+    )
+    find_package(Qt5 ${QT5_MIN_VERSION} NO_MODULE COMPONENTS
         QmlImportScanner  # Used to get static QML. Gets ignored if not a static build
         QuickCompiler
     )
@@ -140,7 +139,7 @@ if (WIN32 OR UNIX) # AND NOT ANDROID
     include(ECMAddAppIcon)
 endif()
 include(KDECompilerSettings NO_POLICY_SCOPE)
-#include(KDEClangFormat)
+include(KDEClangFormat)
 include(ECMQtDeclareLoggingCategory)
 include(ECMSetupVersion)
 include(ECMSourceVersionControl)
@@ -176,7 +175,6 @@ else()
     add_definitions(-DGIT_BRANCH="Stable")
 endif()
 
-# ecm_setup_version(PROJECT
 ecm_setup_version(${RELEASE_SERVICE_VERSION}
     VARIABLE_PREFIX QPROMPT
     VERSION_HEADER "${CMAKE_CURRENT_BINARY_DIR}/qprompt_version.h"
@@ -192,5 +190,5 @@ endif()
 ki18n_install(po)
 feature_summary(WHAT ALL FATAL_ON_MISSING_REQUIRED_PACKAGES) # INCLUDE_QUIET_PACKAGES
 
-#file(GLOB_RECURSE ALL_CLANG_FORMAT_SOURCE_FILES *.cpp *.h)
-#kde_clang_format(${ALL_CLANG_FORMAT_SOURCE_FILES})
+file(GLOB_RECURSE ALL_CLANG_FORMAT_SOURCE_FILES *.cpp *.h)
+kde_clang_format(${ALL_CLANG_FORMAT_SOURCE_FILES})

@@ -20,10 +20,10 @@
  **
  ****************************************************************************/
 
-import QtQuick 2.15
-import org.kde.kirigami 2.15 as Kirigami
-import QtQuick.Controls 2.15
-import QtQuick.Layouts 1.15
+import QtQuick 2.12
+import org.kde.kirigami 2.11 as Kirigami
+import QtQuick.Controls 2.12
+import QtQuick.Layouts 1.12
 import Qt.labs.settings 1.0
 
 Kirigami.ScrollablePage {
