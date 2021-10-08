@@ -20,12 +20,12 @@
  **
  ****************************************************************************/
 
-import QtQuick 2.15
-import org.kde.kirigami 2.9 as Kirigami
-import QtQuick.Controls 2.15
-import QtQuick.Window 2.15
-import QtQuick.Layouts 1.15
-import QtQuick.Controls.Material 2.15
+import QtQuick 2.12
+import org.kde.kirigami 2.11 as Kirigami
+import QtQuick.Controls 2.12
+import QtQuick.Window 2.12
+import QtQuick.Layouts 1.12
+import QtQuick.Controls.Material 2.12
 import Qt.labs.platform 1.1 as Labs
 import QtQuick.Dialogs 1.3
 import Qt.labs.settings 1.0
@@ -54,7 +54,7 @@ Kirigami.ApplicationWindow {
     property double __opacity: 1
     property int __iDefault: 3
 
-    title: prompterPage.document.fileName + (prompterPage.document.modified?"*":"") + " - " + aboutData.displayName
+    title: root.pageStack.currentItem.document.fileName + (root.pageStack.currentItem.document.modified?"*":"") + " - " + aboutData.displayName
     width: 1200  // Set to 1200 to fit both 1280 4:3 and 1200 height monitors. Keep at or bellow 1024 and at or above 960, for best usability with common 4:3 resolutions
     height: 728  // Keep and test at 728 so that it works well with 1366x768 screens.
     // Making width and height start maximized
@@ -102,12 +102,12 @@ Kirigami.ApplicationWindow {
     color: "transparent"
     // More ways to enforce transparency across systems
     //visible: true
-    flags: prompterPage.hideDecorations===2 || prompterPage.hideDecorations===1 && prompterPage.overlay.atTop && parseInt(prompterPage.prompter.state)!==Prompter.States.Editing || Qt.platform.os==="osx" && __opacity!==1 ? Qt.FramelessWindowHint : Qt.Window
+    flags: root.pageStack.currentItem.hideDecorations===2 || root.pageStack.currentItem.hideDecorations===1 && root.pageStack.currentItem.overlay.atTop && parseInt(root.pageStack.currentItem.prompter.state)!==Prompter.States.Editing || Qt.platform.os==="osx" && __opacity!==1 ? Qt.FramelessWindowHint : Qt.Window
 
     background: Rectangle {
         id: appTheme
         color: __backgroundColor
-        opacity: root.pageStack.layers.depth > 1 || (!root.__translucidBackground || prompterPage.prompterBackground.opacity===1)
+        opacity: root.pageStack.layers.depth > 1 || (!root.__translucidBackground || root.pageStack.currentItem.prompterBackground.opacity===1)
         //readonly property color __fontColor: parent.Material.theme===Material.Light ? "#212121" : "#fff"
         //readonly property color __iconColor: parent.Material.theme===Material.Light ? "#232629" : "#c3c7d1"
         //readonly property color __backgroundColor: __translucidBackground ? (parent.Material.theme===Material.Dark ? "#303030" : "#fafafa") : Kirigami.Theme.backgroundColor
@@ -115,11 +115,11 @@ Kirigami.ApplicationWindow {
     }
     
     // Full screen
-    visibility: __fullScreen ? Kirigami.ApplicationWindow.FullScreen : (!__autoFullScreen ? Kirigami.ApplicationWindow.AutomaticVisibility : (parseInt(prompterPage.prompter.state)===Prompter.States.Editing ? Kirigami.ApplicationWindow.Maximized : Kirigami.ApplicationWindow.FullScreen))
+    visibility: __fullScreen ? Kirigami.ApplicationWindow.FullScreen : (!__autoFullScreen ? Kirigami.ApplicationWindow.AutomaticVisibility : (parseInt(root.pageStack.currentItem.prompter.state)===Prompter.States.Editing ? Kirigami.ApplicationWindow.Maximized : Kirigami.ApplicationWindow.FullScreen))
 
     // Open save dialog on closing
     onClosing: {
-        if (prompterPage.document.modified) {
+        if (root.pageStack.currentItem.document.modified) {
             quitDialog.open()
             close.accepted = false
         }
@@ -158,25 +158,25 @@ Kirigami.ApplicationWindow {
                 text: i18n("&New")
                 iconName: "document-new"
                 shortcut: i18n("Ctrl+N")
-                onTriggered: prompterPage.document.newDocument()
+                onTriggered: root.pageStack.currentItem.document.newDocument()
             },
             Kirigami.Action {
                 text: i18n("&Open")
                 iconName: "document-open"
                 shortcut: i18n("Ctrl+O")
-                onTriggered: prompterPage.document.open()
+                onTriggered: root.pageStack.currentItem.document.open()
             },
             Kirigami.Action {
                 text: i18n("&Save")
                 iconName: "document-save"
                 shortcut: i18n("Ctrl+S")
-                onTriggered: prompterPage.document.saveDialog()
+                onTriggered: root.pageStack.currentItem.document.saveDialog()
             },
             Kirigami.Action {
                 text: i18n("Save &As")
                 iconName: "document-save-as"
                 shortcut: i18n("Ctrl+Shift+S")
-                onTriggered: prompterPage.document.saveAsDialog()
+                onTriggered: root.pageStack.currentItem.document.saveAsDialog()
             },
             Kirigami.Action {
                 visible: false
@@ -195,7 +195,7 @@ Kirigami.ApplicationWindow {
                     text: i18n("Keyboard Inputs")
                     iconName: "key-enter" // "keyboard"
                     onTriggered: {
-                        prompterPage.key_configuration_overlay.open()
+                        root.pageStack.currentItem.key_configuration_overlay.open()
                     }
                 }
                 Kirigami.Action {
@@ -275,7 +275,7 @@ Kirigami.ApplicationWindow {
                 text: i18n("Load &Guide")
                 flat: true
                 onClicked: {
-                    prompterPage.document.loadInstructions()
+                    root.pageStack.currentItem.document.loadInstructions()
                     globalMenu.close()
                 }
             }
@@ -312,27 +312,27 @@ Kirigami.ApplicationWindow {
         
         // Hide menuBar on mobile, on themes with translucid background, on full screen, and when the reading region is on top while not in edit mode.
         // Algebraically optimized logic
-        visible: !(Kirigami.Settings.isMobile || root.__translucidBackground || root.visibility===Kirigami.ApplicationWindow.FullScreen || (prompterPage.overlay.atTop && parseInt(prompterPage.prompter.state)!==Prompter.States.Editing))
+        visible: !(Kirigami.Settings.isMobile || root.__translucidBackground || root.visibility===Kirigami.ApplicationWindow.FullScreen || (root.pageStack.currentItem.overlay.atTop && parseInt(root.pageStack.currentItem.prompter.state)!==Prompter.States.Editing))
         // Same thing, readable logic
-        //visible: !Kirigami.Settings.isMobile && !root.__translucidBackground && root.visibility!==Kirigami.ApplicationWindow.FullScreen && (!prompterPage.overlay.atTop && parseInt(prompterPage.prompter.state)!==Prompter.States.Editing)
+        //visible: !Kirigami.Settings.isMobile && !root.__translucidBackground && root.visibility!==Kirigami.ApplicationWindow.FullScreen && (!root.pageStack.currentItem.overlay.atTop && parseInt(root.pageStack.currentItem.prompter.state)!==Prompter.States.Editing)
         
         Menu {
             title: i18n("&File")
             MenuItem {
                 text: i18n("&New")
-                onTriggered: prompterPage.document.newDocument()
+                onTriggered: root.pageStack.currentItem.document.newDocument()
             }
             MenuItem {
                 text: i18n("&Open")
-                onTriggered: prompterPage.document.open()
+                onTriggered: root.pageStack.currentItem.document.open()
             }
             MenuItem {
                 text: i18n("&Save")
-                onTriggered: prompterPage.document.saveDialog()
+                onTriggered: root.pageStack.currentItem.document.saveDialog()
             }
             MenuItem {
                 text: i18n("Save &As")
-                onTriggered: prompterPage.document.saveAsDialog()
+                onTriggered: root.pageStack.currentItem.document.saveAsDialog()
             }
             MenuSeparator { }
             MenuItem {
@@ -345,29 +345,29 @@ Kirigami.ApplicationWindow {
             
             MenuItem {
                 text: i18n("&Undo")
-                enabled: prompterPage.editor.canUndo
-                onTriggered: prompterPage.editor.undo()
+                enabled: root.pageStack.currentItem.editor.canUndo
+                onTriggered: root.pageStack.currentItem.editor.undo()
             }
             MenuItem {
                 text: i18n("&Redo")
-                enabled: prompterPage.editor.canRedo
-                onTriggered: prompterPage.editor.redo()
+                enabled: root.pageStack.currentItem.editor.canRedo
+                onTriggered: root.pageStack.currentItem.editor.redo()
             }
             MenuSeparator { }
             MenuItem {
                 text: i18n("&Copy")
-                enabled: prompterPage.editor.selectedText
-                onTriggered: prompterPage.editor.copy()
+                enabled: root.pageStack.currentItem.editor.selectedText
+                onTriggered: root.pageStack.currentItem.editor.copy()
             }
             MenuItem {
                 text: i18n("Cu&t")
-                enabled: prompterPage.editor.selectedText
-                onTriggered: prompterPage.editor.cut()
+                enabled: root.pageStack.currentItem.editor.selectedText
+                onTriggered: root.pageStack.currentItem.editor.cut()
             }
             MenuItem {
                 text: i18n("&Paste")
-                enabled: prompterPage.editor.canPaste
-                onTriggered: prompterPage.editor.paste()
+                enabled: root.pageStack.currentItem.editor.canPaste
+                onTriggered: root.pageStack.currentItem.editor.paste()
             }
         }
         
@@ -393,52 +393,52 @@ Kirigami.ApplicationWindow {
                 MenuItem {
                     text: i18n("&Left Pointer")
                     checkable: true
-                    checked: parseInt(prompterPage.overlay.styleState) === ReadRegionOverlay.PointerStates.LeftPointer
-                    onTriggered: prompterPage.overlay.styleState = ReadRegionOverlay.PointerStates.LeftPointer
+                    checked: parseInt(root.pageStack.currentItem.overlay.styleState) === ReadRegionOverlay.PointerStates.LeftPointer
+                    onTriggered: root.pageStack.currentItem.overlay.styleState = ReadRegionOverlay.PointerStates.LeftPointer
                 }
                 MenuItem {
                     text: i18n("&Right Pointer")
                     checkable: true
-                    checked: parseInt(prompterPage.overlay.styleState) === ReadRegionOverlay.PointerStates.RightPointer
-                    onTriggered: prompterPage.overlay.styleState = ReadRegionOverlay.PointerStates.RightPointer
+                    checked: parseInt(root.pageStack.currentItem.overlay.styleState) === ReadRegionOverlay.PointerStates.RightPointer
+                    onTriggered: root.pageStack.currentItem.overlay.styleState = ReadRegionOverlay.PointerStates.RightPointer
                 }
                 MenuItem {
                     text: i18n("B&oth Pointers")
                     checkable: true
-                    checked: parseInt(prompterPage.overlay.styleState) === ReadRegionOverlay.PointerStates.Pointers
-                    onTriggered: prompterPage.overlay.styleState = ReadRegionOverlay.PointerStates.Pointers
+                    checked: parseInt(root.pageStack.currentItem.overlay.styleState) === ReadRegionOverlay.PointerStates.Pointers
+                    onTriggered: root.pageStack.currentItem.overlay.styleState = ReadRegionOverlay.PointerStates.Pointers
                 }
                 MenuSeparator { }
                 MenuItem {
                     text: i18n("&Bars")
                     checkable: true
-                    checked: parseInt(prompterPage.overlay.styleState) === ReadRegionOverlay.PointerStates.Bars
-                    onTriggered: prompterPage.overlay.styleState = ReadRegionOverlay.PointerStates.Bars
+                    checked: parseInt(root.pageStack.currentItem.overlay.styleState) === ReadRegionOverlay.PointerStates.Bars
+                    onTriggered: root.pageStack.currentItem.overlay.styleState = ReadRegionOverlay.PointerStates.Bars
                 }
                 MenuItem {
                     text: i18n("Bars Lef&t")
                     checkable: true
-                    checked: parseInt(prompterPage.overlay.styleState) === ReadRegionOverlay.PointerStates.BarsLeft
-                    onTriggered: prompterPage.overlay.styleState = ReadRegionOverlay.PointerStates.BarsLeft
+                    checked: parseInt(root.pageStack.currentItem.overlay.styleState) === ReadRegionOverlay.PointerStates.BarsLeft
+                    onTriggered: root.pageStack.currentItem.overlay.styleState = ReadRegionOverlay.PointerStates.BarsLeft
                 }
                 MenuItem {
                     text: i18n("Bars Ri&ght")
                     checkable: true
-                    checked: parseInt(prompterPage.overlay.styleState) === ReadRegionOverlay.PointerStates.BarsRight
-                    onTriggered: prompterPage.overlay.styleState = ReadRegionOverlay.PointerStates.BarsRight
+                    checked: parseInt(root.pageStack.currentItem.overlay.styleState) === ReadRegionOverlay.PointerStates.BarsRight
+                    onTriggered: root.pageStack.currentItem.overlay.styleState = ReadRegionOverlay.PointerStates.BarsRight
                 }
                 MenuSeparator { }
                 MenuItem {
                     text: i18n("&All")
                     checkable: true
-                    checked: parseInt(prompterPage.overlay.styleState) === ReadRegionOverlay.PointerStates.All
-                    onTriggered: prompterPage.overlay.styleState = ReadRegionOverlay.PointerStates.All
+                    checked: parseInt(root.pageStack.currentItem.overlay.styleState) === ReadRegionOverlay.PointerStates.All
+                    onTriggered: root.pageStack.currentItem.overlay.styleState = ReadRegionOverlay.PointerStates.All
                 }
                 MenuItem {
                     text: i18n("&None")
                     checkable: true
-                    checked: parseInt(prompterPage.overlay.styleState) === ReadRegionOverlay.PointerStates.None
-                    onTriggered: prompterPage.overlay.styleState = ReadRegionOverlay.PointerStates.None
+                    checked: parseInt(root.pageStack.currentItem.overlay.styleState) === ReadRegionOverlay.PointerStates.None
+                    onTriggered: root.pageStack.currentItem.overlay.styleState = ReadRegionOverlay.PointerStates.None
                 }
             }
             Menu {
@@ -446,33 +446,33 @@ Kirigami.ApplicationWindow {
                 MenuItem {
                     text: i18n("&Top")
                     checkable: true
-                    checked: parseInt(prompterPage.overlay.positionState) === ReadRegionOverlay.PositionStates.Top
-                    onTriggered: prompterPage.overlay.positionState = ReadRegionOverlay.PositionStates.Top
+                    checked: parseInt(root.pageStack.currentItem.overlay.positionState) === ReadRegionOverlay.PositionStates.Top
+                    onTriggered: root.pageStack.currentItem.overlay.positionState = ReadRegionOverlay.PositionStates.Top
                 }
                 MenuItem {
                     text: i18n("&Middle")
                     checkable: true
-                    checked: parseInt(prompterPage.overlay.positionState) === ReadRegionOverlay.PositionStates.Middle
-                    onTriggered: prompterPage.overlay.positionState = ReadRegionOverlay.PositionStates.Middle
+                    checked: parseInt(root.pageStack.currentItem.overlay.positionState) === ReadRegionOverlay.PositionStates.Middle
+                    onTriggered: root.pageStack.currentItem.overlay.positionState = ReadRegionOverlay.PositionStates.Middle
                 }
                 MenuItem {
                     text: i18n("&Bottom")
                     checkable: true
-                    checked: parseInt(prompterPage.overlay.positionState) === ReadRegionOverlay.PositionStates.Bottom
-                    onTriggered: prompterPage.overlay.positionState = ReadRegionOverlay.PositionStates.Bottom
+                    checked: parseInt(root.pageStack.currentItem.overlay.positionState) === ReadRegionOverlay.PositionStates.Bottom
+                    onTriggered: root.pageStack.currentItem.overlay.positionState = ReadRegionOverlay.PositionStates.Bottom
                 }
                 MenuSeparator { }
                 MenuItem {
                     text: i18n("F&ree placement")
                     checkable: true
-                    checked: parseInt(prompterPage.overlay.positionState) === ReadRegionOverlay.PositionStates.Free
-                    onTriggered: prompterPage.overlay.positionState = ReadRegionOverlay.PositionStates.Free
+                    checked: parseInt(root.pageStack.currentItem.overlay.positionState) === ReadRegionOverlay.PositionStates.Free
+                    onTriggered: root.pageStack.currentItem.overlay.positionState = ReadRegionOverlay.PositionStates.Free
                 }
                 MenuItem {
                     text: i18n("C&ustom (Fixed placement)")
                     checkable: true
-                    checked: parseInt(prompterPage.overlay.positionState) === ReadRegionOverlay.PositionStates.Fixed
-                    onTriggered: prompterPage.overlay.positionState = ReadRegionOverlay.PositionStates.Fixed
+                    checked: parseInt(root.pageStack.currentItem.overlay.positionState) === ReadRegionOverlay.PositionStates.Fixed
+                    onTriggered: root.pageStack.currentItem.overlay.positionState = ReadRegionOverlay.PositionStates.Fixed
                 }
             }
         }
@@ -482,65 +482,65 @@ Kirigami.ApplicationWindow {
             MenuItem {
                 text: i18n("&Bold")
                 checkable: true
-                checked: prompterPage.document.bold
-                onTriggered: prompterPage.document.bold = !prompterPage.document.bold
+                checked: root.pageStack.currentItem.document.bold
+                onTriggered: root.pageStack.currentItem.document.bold = !root.pageStack.currentItem.document.bold
             }
             MenuItem {
                 text: i18n("&Italic")
                 checkable: true
-                checked: prompterPage.document.italic
-                onTriggered: prompterPage.document.italic = !prompterPage.document.italic
+                checked: root.pageStack.currentItem.document.italic
+                onTriggered: root.pageStack.currentItem.document.italic = !root.pageStack.currentItem.document.italic
             }
             MenuItem {
                 text: i18n("&Underline")
                 checkable: true
-                checked: prompterPage.document.underline
-                onTriggered: prompterPage.document.underline = !prompterPage.document.underline
+                checked: root.pageStack.currentItem.document.underline
+                onTriggered: root.pageStack.currentItem.document.underline = !root.pageStack.currentItem.document.underline
             }
             MenuSeparator { }
             MenuItem {
                 text: Qt.application.layoutDirection===Qt.LeftToRight ? i18n("&Left") : i18n("&Right")
                 checkable: true
-                checked: Qt.application.layoutDirection===Qt.LeftToRight ? prompterPage.document.alignment === Qt.AlignLeft : prompterPage.document.alignment === Qt.AlignRight
+                checked: Qt.application.layoutDirection===Qt.LeftToRight ? root.pageStack.currentItem.document.alignment === Qt.AlignLeft : root.pageStack.currentItem.document.alignment === Qt.AlignRight
                 onTriggered: {
                     if (Qt.application.layoutDirection===Qt.LeftToRight)
-                        prompterPage.document.alignment = Qt.AlignLeft
+                        root.pageStack.currentItem.document.alignment = Qt.AlignLeft
                     else
-                        prompterPage.document.alignment = Qt.AlignRight
+                        root.pageStack.currentItem.document.alignment = Qt.AlignRight
                 }
             }
             MenuItem {
                 text: i18n("Cen&ter")
                 checkable: true
-                checked: prompterPage.document.alignment === Qt.AlignHCenter
-                onTriggered: prompterPage.document.alignment = Qt.AlignHCenter
+                checked: root.pageStack.currentItem.document.alignment === Qt.AlignHCenter
+                onTriggered: root.pageStack.currentItem.document.alignment = Qt.AlignHCenter
             }
             MenuItem {
                 text: Qt.application.layoutDirection===Qt.LeftToRight ? i18n("&Right") : i18n("&Left")
                 checkable: true
-                checked: Qt.application.layoutDirection===Qt.LeftToRight ? prompterPage.document.alignment === Qt.AlignRight : prompterPage.document.alignment === Qt.AlignLeft
+                checked: Qt.application.layoutDirection===Qt.LeftToRight ? root.pageStack.currentItem.document.alignment === Qt.AlignRight : root.pageStack.currentItem.document.alignment === Qt.AlignLeft
                 onTriggered: {
                     if (Qt.application.layoutDirection===Qt.LeftToRight)
-                        prompterPage.document.alignment = Qt.AlignRight
+                        root.pageStack.currentItem.document.alignment = Qt.AlignRight
                     else
-                        prompterPage.document.alignment = Qt.AlignLeft
+                        root.pageStack.currentItem.document.alignment = Qt.AlignLeft
                 }
             }
             // Justify is proven to make text harder to read for some readers. So I'm commenting out all text justification options from the program. I'm not removing them, only commenting out in case someone needs to re-enable. This article links to various sources that validate my decision: https://kaiweber.wordpress.com/2010/05/31/ragged-right-or-justified-alignment/ - Javier
             //MenuItem {
             //    text: i18n("&Justify")
             //    checkable: true
-            //    checked: prompterPage.document.alignment === Qt.AlignJustify
-            //    onTriggered: prompterPage.document.alignment = Qt.AlignJustify
+            //    checked: root.pageStack.currentItem.document.alignment === Qt.AlignJustify
+            //    onTriggered: root.pageStack.currentItem.document.alignment = Qt.AlignJustify
             //}
             MenuSeparator { }
             MenuItem {
                 text: i18n("C&haracter")
-                onTriggered: prompterPage.fontDialog.open();
+                onTriggered: root.pageStack.currentItem.fontDialog.open();
             }
             MenuItem {
                 text: i18n("Fo&nt Color")
-                onTriggered: prompterPage.colorDialog.open()
+                onTriggered: root.pageStack.currentItem.colorDialog.open()
             }
         }
         Menu {
@@ -595,7 +595,7 @@ Kirigami.ApplicationWindow {
             MenuItem {
                 text: i18n("Load User &Guide")
                 icon.name: "help-info"
-                onTriggered: prompterPage.document.loadInstructions()
+                onTriggered: root.pageStack.currentItem.document.loadInstructions()
             }
             MenuSeparator { }
             MenuItem {
@@ -614,19 +614,19 @@ Kirigami.ApplicationWindow {
             
             Labs.MenuItem {
                 text: i18n("&New")
-                onTriggered: prompterPage.document.newDocument()
+                onTriggered: root.pageStack.currentItem.document.newDocument()
             }
             Labs.MenuItem {
                 text: i18n("&Open")
-                onTriggered: prompterPage.document.open()
+                onTriggered: root.pageStack.currentItem.document.open()
             }
             Labs.MenuItem {
                 text: i18n("&Save")
-                onTriggered: prompterPage.document.saveDialog()
+                onTriggered: root.pageStack.currentItem.document.saveDialog()
             }
             Labs.MenuItem {
                 text: i18n("Save &As...")
-                onTriggered: prompterPage.document.saveAsDialog()
+                onTriggered: root.pageStack.currentItem.document.saveAsDialog()
             }
             Labs.MenuSeparator { }
             Labs.MenuItem {
@@ -640,29 +640,29 @@ Kirigami.ApplicationWindow {
             
             Labs.MenuItem {
                 text: i18n("&Undo")
-                enabled: prompterPage.editor.canUndo
-                onTriggered: prompterPage.editor.undo()
+                enabled: root.pageStack.currentItem.editor.canUndo
+                onTriggered: root.pageStack.currentItem.editor.undo()
             }
             Labs.MenuItem {
                 text: i18n("&Redo")
-                enabled: prompterPage.editor.canRedo
-                onTriggered: prompterPage.editor.redo()
+                enabled: root.pageStack.currentItem.editor.canRedo
+                onTriggered: root.pageStack.currentItem.editor.redo()
             }
             Labs.MenuSeparator { }
             Labs.MenuItem {
                 text: i18n("&Copy")
-                enabled: prompterPage.editor.selectedText
-                onTriggered: prompterPage.editor.copy()
+                enabled: root.pageStack.currentItem.editor.selectedText
+                onTriggered: root.pageStack.currentItem.editor.copy()
             }
             Labs.MenuItem {
                 text: i18n("Cu&t")
-                enabled: prompterPage.editor.selectedText
-                onTriggered: prompterPage.editor.cut()
+                enabled: root.pageStack.currentItem.editor.selectedText
+                onTriggered: root.pageStack.currentItem.editor.cut()
             }
             Labs.MenuItem {
                 text: i18n("&Paste")
-                enabled: prompterPage.editor.canPaste
-                onTriggered: prompterPage.editor.paste()
+                enabled: root.pageStack.currentItem.editor.canPaste
+                onTriggered: root.pageStack.currentItem.editor.paste()
             }
         }
         
@@ -688,52 +688,52 @@ Kirigami.ApplicationWindow {
                 Labs.MenuItem {
                     text: i18n("&Left Pointer")
                     checkable: true
-                    checked: parseInt(prompterPage.overlay.styleState) === ReadRegionOverlay.PointerStates.LeftPointer
-                    onTriggered: prompterPage.overlay.styleState = ReadRegionOverlay.PointerStates.LeftPointer
+                    checked: parseInt(root.pageStack.currentItem.overlay.styleState) === ReadRegionOverlay.PointerStates.LeftPointer
+                    onTriggered: root.pageStack.currentItem.overlay.styleState = ReadRegionOverlay.PointerStates.LeftPointer
                 }
                 Labs.MenuItem {
                     text: i18n("&Right Pointer")
                     checkable: true
-                    checked: parseInt(prompterPage.overlay.styleState) === ReadRegionOverlay.PointerStates.RightPointer
-                    onTriggered: prompterPage.overlay.styleState = ReadRegionOverlay.PointerStates.RightPointer
+                    checked: parseInt(root.pageStack.currentItem.overlay.styleState) === ReadRegionOverlay.PointerStates.RightPointer
+                    onTriggered: root.pageStack.currentItem.overlay.styleState = ReadRegionOverlay.PointerStates.RightPointer
                 }
                 Labs.MenuItem {
                     text: i18n("B&oth Pointers")
                     checkable: true
-                    checked: parseInt(prompterPage.overlay.styleState) === ReadRegionOverlay.PointerStates.Pointers
-                    onTriggered: prompterPage.overlay.styleState = ReadRegionOverlay.PointerStates.Pointers
+                    checked: parseInt(root.pageStack.currentItem.overlay.styleState) === ReadRegionOverlay.PointerStates.Pointers
+                    onTriggered: root.pageStack.currentItem.overlay.styleState = ReadRegionOverlay.PointerStates.Pointers
                 }
                 Labs.MenuSeparator { }
                 Labs.MenuItem {
                     text: i18n("&Bars")
                     checkable: true
-                    checked: parseInt(prompterPage.overlay.styleState) === ReadRegionOverlay.PointerStates.Bars
-                    onTriggered: prompterPage.overlay.styleState = ReadRegionOverlay.PointerStates.Bars
+                    checked: parseInt(root.pageStack.currentItem.overlay.styleState) === ReadRegionOverlay.PointerStates.Bars
+                    onTriggered: root.pageStack.currentItem.overlay.styleState = ReadRegionOverlay.PointerStates.Bars
                 }
                 Labs.MenuItem {
                     text: i18n("Bars Lef&t")
                     checkable: true
-                    checked: parseInt(prompterPage.overlay.styleState) === ReadRegionOverlay.PointerStates.BarsLeft
-                    onTriggered: prompterPage.overlay.styleState = ReadRegionOverlay.PointerStates.BarsLeft
+                    checked: parseInt(root.pageStack.currentItem.overlay.styleState) === ReadRegionOverlay.PointerStates.BarsLeft
+                    onTriggered: root.pageStack.currentItem.overlay.styleState = ReadRegionOverlay.PointerStates.BarsLeft
                 }
                 Labs.MenuItem {
                     text: i18n("Bars Ri&ght")
                     checkable: true
-                    checked: parseInt(prompterPage.overlay.styleState) === ReadRegionOverlay.PointerStates.BarsRight
-                    onTriggered: prompterPage.overlay.styleState = ReadRegionOverlay.PointerStates.BarsRight
+                    checked: parseInt(root.pageStack.currentItem.overlay.styleState) === ReadRegionOverlay.PointerStates.BarsRight
+                    onTriggered: root.pageStack.currentItem.overlay.styleState = ReadRegionOverlay.PointerStates.BarsRight
                 }
                 Labs.MenuSeparator { }
                 Labs.MenuItem {
                     text: i18n("&All")
                     checkable: true
-                    checked: parseInt(prompterPage.overlay.styleState) === ReadRegionOverlay.PointerStates.All
-                    onTriggered: prompterPage.overlay.styleState = ReadRegionOverlay.PointerStates.All
+                    checked: parseInt(root.pageStack.currentItem.overlay.styleState) === ReadRegionOverlay.PointerStates.All
+                    onTriggered: root.pageStack.currentItem.overlay.styleState = ReadRegionOverlay.PointerStates.All
                 }
                 Labs.MenuItem {
                     text: i18n("&None")
                     checkable: true
-                    checked: parseInt(prompterPage.overlay.styleState) === ReadRegionOverlay.PointerStates.None
-                    onTriggered: prompterPage.overlay.styleState = ReadRegionOverlay.PointerStates.None
+                    checked: parseInt(root.pageStack.currentItem.overlay.styleState) === ReadRegionOverlay.PointerStates.None
+                    onTriggered: root.pageStack.currentItem.overlay.styleState = ReadRegionOverlay.PointerStates.None
                 }
             }
             Labs.Menu {
@@ -741,33 +741,33 @@ Kirigami.ApplicationWindow {
                 Labs.MenuItem {
                     text: i18n("&Top")
                     checkable: true
-                    checked: parseInt(prompterPage.overlay.positionState) === ReadRegionOverlay.PositionStates.Top
-                    onTriggered: prompterPage.overlay.positionState = ReadRegionOverlay.PositionStates.Top
+                    checked: parseInt(root.pageStack.currentItem.overlay.positionState) === ReadRegionOverlay.PositionStates.Top
+                    onTriggered: root.pageStack.currentItem.overlay.positionState = ReadRegionOverlay.PositionStates.Top
                 }
                 Labs.MenuItem {
                     text: i18n("&Middle")
                     checkable: true
-                    checked: parseInt(prompterPage.overlay.positionState) === ReadRegionOverlay.PositionStates.Middle
-                    onTriggered: prompterPage.overlay.positionState = ReadRegionOverlay.PositionStates.Middle
+                    checked: parseInt(root.pageStack.currentItem.overlay.positionState) === ReadRegionOverlay.PositionStates.Middle
+                    onTriggered: root.pageStack.currentItem.overlay.positionState = ReadRegionOverlay.PositionStates.Middle
                 }
                 Labs.MenuItem {
                     text: i18n("&Bottom")
                     checkable: true
-                    checked: parseInt(prompterPage.overlay.positionState) === ReadRegionOverlay.PositionStates.Bottom
-                    onTriggered: prompterPage.overlay.positionState = ReadRegionOverlay.PositionStates.Bottom
+                    checked: parseInt(root.pageStack.currentItem.overlay.positionState) === ReadRegionOverlay.PositionStates.Bottom
+                    onTriggered: root.pageStack.currentItem.overlay.positionState = ReadRegionOverlay.PositionStates.Bottom
                 }
                 Labs.MenuSeparator { }
                 Labs.MenuItem {
                     text: i18n("F&ree placement")
                     checkable: true
-                    checked: parseInt(prompterPage.overlay.positionState) === ReadRegionOverlay.PositionStates.Free
-                    onTriggered: prompterPage.overlay.positionState = ReadRegionOverlay.PositionStates.Free
+                    checked: parseInt(root.pageStack.currentItem.overlay.positionState) === ReadRegionOverlay.PositionStates.Free
+                    onTriggered: root.pageStack.currentItem.overlay.positionState = ReadRegionOverlay.PositionStates.Free
                 }
                 Labs.MenuItem {
                     text: i18n("C&ustom (Fixed placement)")
                     checkable: true
-                    checked: parseInt(prompterPage.overlay.positionState) === ReadRegionOverlay.PositionStates.Fixed
-                    onTriggered: prompterPage.overlay.positionState = ReadRegionOverlay.PositionStates.Fixed
+                    checked: parseInt(root.pageStack.currentItem.overlay.positionState) === ReadRegionOverlay.PositionStates.Fixed
+                    onTriggered: root.pageStack.currentItem.overlay.positionState = ReadRegionOverlay.PositionStates.Fixed
                 }
             }
         }
@@ -777,65 +777,65 @@ Kirigami.ApplicationWindow {
             Labs.MenuItem {
                 text: i18n("&Bold")
                 checkable: true
-                checked: prompterPage.document.bold
-                onTriggered: prompterPage.document.bold = !prompterPage.document.bold
+                checked: root.pageStack.currentItem.document.bold
+                onTriggered: root.pageStack.currentItem.document.bold = !root.pageStack.currentItem.document.bold
             }
             Labs.MenuItem {
                 text: i18n("&Italic")
                 checkable: true
-                checked: prompterPage.document.italic
-                onTriggered: prompterPage.document.italic = !prompterPage.document.italic
+                checked: root.pageStack.currentItem.document.italic
+                onTriggered: root.pageStack.currentItem.document.italic = !root.pageStack.currentItem.document.italic
             }
             Labs.MenuItem {
                 text: i18n("&Underline")
                 checkable: true
-                checked: prompterPage.document.underline
-                onTriggered: prompterPage.document.underline = !prompterPage.document.underline
+                checked: root.pageStack.currentItem.document.underline
+                onTriggered: root.pageStack.currentItem.document.underline = !root.pageStack.currentItem.document.underline
             }
             Labs.MenuSeparator { }
             Labs.MenuItem {
                 text: Qt.application.layoutDirection===Qt.LeftToRight ? i18n("&Left") : i18n("&Right")
                 checkable: true
-                checked: Qt.application.layoutDirection===Qt.LeftToRight ? prompterPage.document.alignment === Qt.AlignLeft : prompterPage.document.alignment === Qt.AlignRight
+                checked: Qt.application.layoutDirection===Qt.LeftToRight ? root.pageStack.currentItem.document.alignment === Qt.AlignLeft : root.pageStack.currentItem.document.alignment === Qt.AlignRight
                 onTriggered: {
                     if (Qt.application.layoutDirection===Qt.LeftToRight)
-                        prompterPage.document.alignment = Qt.AlignLeft
+                        root.pageStack.currentItem.document.alignment = Qt.AlignLeft
                     else
-                        prompterPage.document.alignment = Qt.AlignRight
+                        root.pageStack.currentItem.document.alignment = Qt.AlignRight
                 }
             }
             Labs.MenuItem {
                 text: i18n("Cen&ter")
                 checkable: true
-                checked: prompterPage.document.alignment === Qt.AlignHCenter
-                onTriggered: prompterPage.document.alignment = Qt.AlignHCenter
+                checked: root.pageStack.currentItem.document.alignment === Qt.AlignHCenter
+                onTriggered: root.pageStack.currentItem.document.alignment = Qt.AlignHCenter
             }
             Labs.MenuItem {
                 text: Qt.application.layoutDirection===Qt.LeftToRight ? i18n("&Right") : i18n("&Left")
                 checkable: true
-                checked: Qt.application.layoutDirection===Qt.LeftToRight ? prompterPage.document.alignment === Qt.AlignRight : prompterPage.document.alignment === Qt.AlignLeft
+                checked: Qt.application.layoutDirection===Qt.LeftToRight ? root.pageStack.currentItem.document.alignment === Qt.AlignRight : root.pageStack.currentItem.document.alignment === Qt.AlignLeft
                 onTriggered: {
                     if (Qt.application.layoutDirection===Qt.LeftToRight)
-                        prompterPage.document.alignment = Qt.AlignRight
+                        root.pageStack.currentItem.document.alignment = Qt.AlignRight
                     else
-                        prompterPage.document.alignment = Qt.AlignLeft
+                        root.pageStack.currentItem.document.alignment = Qt.AlignLeft
                 }
             }
             // Justify is proven to make text harder to read for some readers. So I'm commenting out all text justification options from the program. I'm not removing them, only commenting out in case someone needs to re-enable. This article links to various sources that validate my decision: https://kaiweber.wordpress.com/2010/05/31/ragged-right-or-justified-alignment/ - Javier
             //Labs.MenuItem {
             //    text: i18n("&Justify")
             //    checkable: true
-            //    checked: prompterPage.document.alignment === Qt.AlignJustify
-            //    onTriggered: prompterPage.document.alignment = Qt.AlignJustify
+            //    checked: root.pageStack.currentItem.document.alignment === Qt.AlignJustify
+            //    onTriggered: root.pageStack.currentItem.document.alignment = Qt.AlignJustify
             //}
             Labs.MenuSeparator { }
             Labs.MenuItem {
                 text: i18n("C&haracter")
-                onTriggered: prompterPage.fontDialog.open();
+                onTriggered: root.pageStack.currentItem.fontDialog.open();
             }
             Labs.MenuItem {
                 text: i18n("Fo&nt Color")
-                onTriggered: prompterPage.colorDialog.open()
+                onTriggered: root.pageStack.currentItem.colorDialog.open()
             }
         }
         Labs.Menu {
@@ -924,13 +924,14 @@ Kirigami.ApplicationWindow {
     pageStack.initialPage: prompterPageComponent
     // Auto hide global toolbar on fullscreen
     //pageStack.globalToolBar.style: visibility===Kirigami.ApplicationWindow.FullScreen ? Kirigami.ApplicationHeaderStyle.None :  Kirigami.ApplicationHeaderStyle.Auto
-    pageStack.globalToolBar.style: Kirigami.Settings.isMobile ? (parseInt(prompterPage.prompter.state)===Prompter.States.Editing ? Kirigami.ApplicationHeaderStyle.Breadcrumb : Kirigami.ApplicationHeaderStyle.None) : (parseInt(prompterPage.prompter.state)!==Prompter.States.Editing && (visibility===Kirigami.ApplicationWindow.FullScreen || prompterPage.overlay.atTop) ? Kirigami.ApplicationHeaderStyle.None : Kirigami.ApplicationHeaderStyle.ToolBar)
+    pageStack.globalToolBar.style: Kirigami.Settings.isMobile ? (parseInt(root.pageStack.currentItem.prompter.state)===Prompter.States.Editing ? Kirigami.ApplicationHeaderStyle.Breadcrumb : Kirigami.ApplicationHeaderStyle.None) : (parseInt(root.pageStack.currentItem.prompter.state)!==Prompter.States.Editing && (visibility===Kirigami.ApplicationWindow.FullScreen || root.pageStack.currentItem.overlay.atTop) ? Kirigami.ApplicationHeaderStyle.None : Kirigami.ApplicationHeaderStyle.ToolBar)
     
     // The following is not possible in the current version of Kirigami, but it should be:
     //pageStack.globalToolBar.background: Rectangle {
         //color: appTheme.__backgroundColor
     //}
-    property alias prompterPage: root.pageStack.currentItem
+    //property alias prompterPage: root.pageStack.currentItem
+    //property alias prompterPage: root.pageStack.layers.currentItem
     // End of Kirigami PageStack configuration
     
     // Patch current page's events to outside its scope.
@@ -955,16 +956,16 @@ Kirigami.ApplicationWindow {
     onFrameSwapped: {
         // Check that state is not prompting and editor isn't active.
         // In this implementation we can't detect moving past marker while the editor is active because this feature shares its cursor as a means of detection.
-        if (parseInt(prompterPage.prompter.state)===Prompter.States.Prompting && !prompterPage.editor.focus) {
+        if (parseInt(root.pageStack.currentItem.prompter.state)===Prompter.States.Prompting && !root.pageStack.currentItem.editor.focus) {
             // Detect when moving past a marker.
             // I'm doing this here because there's no event that occurs on each bit of scroll, and this takes much less CPU than a timer, is more precise and scales better.
-            prompterPage.prompter.setCursorAtCurrentPosition()
-            prompterPage.editor.cursorPosition = prompterPage.document.nextMarker(prompterPage.editor.cursorPosition).position
+            root.pageStack.currentItem.prompter.setCursorAtCurrentPosition()
+            root.pageStack.currentItem.editor.cursorPosition = root.pageStack.currentItem.document.nextMarker(root.pageStack.currentItem.editor.cursorPosition).position
             // Here, p is for position
-            const p = prompterPage.editor.cursorRectangle.y
+            const p = root.pageStack.currentItem.editor.cursorRectangle.y
             if (q !== p) {
                 if (q < p && q !== 0) {
-                    const url = prompterPage.document.previousMarker(prompterPage.editor.cursorPosition).url;
+                    const url = root.pageStack.currentItem.document.previousMarker(root.pageStack.currentItem.editor.cursorPosition).url;
                     console.log(url);
                 }
                 q = p;
@@ -973,7 +974,7 @@ Kirigami.ApplicationWindow {
         // Update Projections
         const n = projectionManager.model.count;
         if (n)
-            prompterPage.viewport.grabToImage(function(p) {
+            root.pageStack.currentItem.viewport.grabToImage(function(p) {
                 for (var i=0; i<n; ++i)
                     projectionManager.model.setProperty(i, "p", String(p.url));
             });
@@ -981,10 +982,10 @@ Kirigami.ApplicationWindow {
 
     ProjectionsManager {
         id: projectionManager
-        backgroundColor: prompterPage.prompterBackground.color
-        backgroundOpacity: prompterPage.prompterBackground.opacity
+        backgroundColor: root.pageStack.currentItem.prompterBackground.color
+        backgroundOpacity: root.pageStack.currentItem.prompterBackground.opacity
         // Forward to prompter and not editor to prevent editing from projection windows
-        forwardTo: prompterPage.prompter
+        forwardTo: root.pageStack.currentItem.prompter
     }
 
     // Prompter Page Contents
@@ -1014,9 +1015,9 @@ Kirigami.ApplicationWindow {
         icon: StandardIcon.Question
         standardButtons: StandardButton.Save | StandardButton.Discard | StandardButton.Cancel
         onDiscard: Qt.quit()
-        onAccepted: prompterPage.document.saveDialog(true)
+        onAccepted: root.pageStack.currentItem.document.saveDialog(true)
         //buttons: (Labs.MessageDialog.Save | Labs.MessageDialog.Discard | Labs.MessageDialog.Cancel)
         //onDiscardClicked: Qt.quit()
-        //onSaveClicked: prompterPage.document.saveDialog(true)
+        //onSaveClicked: root.pageStack.currentItem.document.saveDialog(true)
     }
 }

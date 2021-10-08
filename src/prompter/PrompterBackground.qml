@@ -20,11 +20,11 @@
  **
  ****************************************************************************/
 
-import QtQuick 2.15
+import QtQuick 2.12
 
 import Qt.labs.settings 1.0
-import QtQuick.Dialogs 1.3
-import org.kde.kirigami 2.9 as Kirigami
+import QtQuick.Dialogs 1.2
+import org.kde.kirigami 2.11 as Kirigami
 
 Rectangle {
     id: prompterBackground

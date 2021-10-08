@@ -20,11 +20,11 @@
  **
  ****************************************************************************/
 
-import QtQuick 2.15
-import QtQuick.Window 2.15
-import QtQml.Models 2.15
+import QtQuick 2.12
+import QtQuick.Window 2.12
+import QtQml.Models 2.12
 //import QtGraphicalEffects 1.15
-import org.kde.kirigami 2.9 as Kirigami
+import org.kde.kirigami 2.11 as Kirigami
 
 Item {
     id: viewport

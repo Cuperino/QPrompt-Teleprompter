@@ -20,11 +20,11 @@
  **
  ****************************************************************************/
 
-import QtQuick 2.15
-import QtQuick.Controls 2.15
-import QtQuick.Shapes 1.15
-import QtQuick.Layouts 1.15
-import QtQuick.Dialogs 1.3
+import QtQuick 2.12
+import QtQuick.Controls 2.12
+import QtQuick.Shapes 1.12
+import QtQuick.Layouts 1.12
+import QtQuick.Dialogs 1.2
 import Qt.labs.settings 1.0
 
 //import com.cuperino.qprompt.promptertimer 1.0

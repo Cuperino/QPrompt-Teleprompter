@@ -20,7 +20,7 @@
  **
  ****************************************************************************/
 
-import QtQuick 2.15
+import QtQuick 2.12
 import org.kde.kirigami 2.9 as Kirigami
 
 Kirigami.AboutPage {
