@@ -205,8 +205,8 @@ endif()
         gnumeric-object-rectangle
         gnumeric-object-scrollbar
         go-down
-        go-next
-        go-previous
+        #go-next
+        #go-previous
         go-up
         handle-sort
         help-about
