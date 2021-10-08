@@ -177,7 +177,7 @@ else()
 endif()
 
 # Copy icons that are not font based
-#if(ANDROID OR APPLE OR WASM OR NOT UNIX)
+if(NOT WINDOWS)
     # Breeze icons names can be found at https://cdn.kde.org/breeze-icons/icons.html
     kirigami_package_breeze_icons(ICONS
         application-exit
@@ -205,8 +205,8 @@ endif()
         gnumeric-object-rectangle
         gnumeric-object-scrollbar
         go-down
-        #go-next
-        #go-previous
+        go-next
+        go-previous
         go-up
         handle-sort
         help-about
@@ -233,7 +233,7 @@ endif()
         window
         window-duplicate
     )
-#endif()
+endif()
 
 # Get static QML. Gets ignored if not a static build
 if (Qt5QmlImportScanner_FOUND)
