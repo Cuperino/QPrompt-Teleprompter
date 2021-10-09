@@ -34,14 +34,16 @@ set(CMAKE_INCLUDE_CURRENT_DIR ON)
 # Instruct CMake to create code from Qt designer ui files
 set(CMAKE_AUTOUIC ON)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
-set(CMAKE_CXX_STANDARD 17)
+#set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD 20)
 # Instruct CMake to run moc automatically when needed.
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
 
 # QT 5.12 for Ubuntu 20.04
-set(QT_MIN_VERSION 5.12.0)
-set(QT_DISABLE_DEPRECATED_BEFORE 5.15.2)
+#set(QT_MIN_VERSION 5.12.0)
+set(QT_MIN_VERSION 5.15.2)
+#set(QT_DISABLE_DEPRECATED_BEFORE 5.15.2)
 # KF5 5.68 for Ubuntu 20.04
 # Use 5.83 to have current ecm_add_app_icon syntax
 set(ECM_MIN_VERSION 5.68.0)
@@ -95,9 +97,10 @@ if(ANDROID)
         Quick
         Svg
         Gui
+        QuickControls2
+        Network
         AndroidExtras
         VirtualKeyboard
-        QuickControls2
         QmlImportScanner  # Used to get static QML. Gets ignored if not a static build
         QuickCompiler
     )
@@ -118,6 +121,7 @@ else()
         Svg
         Gui
         QuickControls2
+        Network
         Widgets
     )
     find_package(Qt5 ${QT5_MIN_VERSION} NO_MODULE COMPONENTS
@@ -180,14 +184,55 @@ ecm_setup_version(${RELEASE_SERVICE_VERSION}
     VERSION_HEADER "${CMAKE_CURRENT_BINARY_DIR}/qprompt_version.h"
 )
 
+# LICENSING
+set(LICENSE_FILE "COPYING")
+set(README_FILE "README.md")
+set(DESCRIPTION_FILE "DESCRIPTION.txt")
+list(APPEND DOCS ${LICENSE_FILE} ${README_FILE} ${DESCRIPTION_FILE} "COPYING.LESSER")
+
+set(DOC_INSTALL_DIR "doc/qprompt")
+
 add_subdirectory(src build)
 
 if (WIN32 OR UNIX) # AND NOT ANDROID
     install(FILES com.cuperino.qprompt.appdata.xml DESTINATION ${KDE_INSTALL_METAINFODIR})
     install(PROGRAMS com.cuperino.qprompt.desktop DESTINATION ${KDE_INSTALL_APPDIR})
+    install(FILES ${DOCS} DESTINATION ${DOC_INSTALL_DIR})
 endif()
 
 ki18n_install(po)
+
+# CPACK: General Settings
+set(CPACK_GENERATOR "TBZ2")
+set(CPACK_PACKAGE_NAME "qprompt")
+set(CPACK_PACKAGE_DESCRIPTION_SUMMARY "Personal Teleprompter App")
+
+set(CPACK_PACKAGE_DESCRIPTION_FILE "${CMAKE_SOURCE_DIR}/${DESCRIPTION_FILE}")
+set(CPACK_PACKAGE_VENDOR "Cuperino LLC")
+set(CPACK_PACKAGE_CONTACT "javiercorderoperez@gmail.com")
+set(CPACK_PACKAGE_VERSION_MAJOR "${RELEASE_SERVICE_VERSION_MAJOR}")
+set(CPACK_PACKAGE_VERSION_MINOR "${RELEASE_SERVICE_VERSION_MINOR}")
+set(CPACK_PACKAGE_VERSION_PATCH "${RELEASE_SERVICE_VERSION_MICRO}")
+set(CPACK_PACKAGE_VERSION "${RELEASE_SERVICE_VERSION}")
+set(CPACK_RESOURCE_FILE_README "${CMAKE_SOURCE_DIR}/${README_FILE}")
+
+set(ICONS_DIR "${CMAKE_SOURCE_DIR}/icons")
+set(IMAGES_DIR "${CMAKE_SOURCE_DIR}/images")
+set(PROJECT_URL "https://qprompt.app")
+set(COMPRESION_TYPE "xz")
+
+if(UNIX AND NOT ANDROID)
+    # CPACK: DEB Specific Settings
+    set(CPACK_DEBIAN_PACKAGE_SECTION "Multimedia")
+    set(CPACK_DEBIAN_PACKAGE_HOMEPAGE ${PROJECT_URL})
+    set(CPACK_DEBIAN_COMPRESSION_TYPE ${COMPRESION_TYPE})
+    # Set to dependencies as Ubuntu 21.04. Chose Ubuntu 21.04 as base because Desktop version has ARM support and provided Qt version requires no backporting.
+    set(CPACK_DEBIAN_PACKAGE_DEPENDS "libqt5svg5 (>= 5.15.2), qml-module-qt-labs-platform (>=5.15.2), qml-module-qtqml (>=5.15.2), qml-module-qtqml-models2 (>=5.15.2), qml-module-qtqml-statemachine (>=5.15.2), qml-module-qtquick-controls (>=5.15.2), qml-module-qtquick-controls2 (>=5.15.2), qml-module-qtquick-dialogs (>=5.15.2), qml-module-qtquick-shapes (>=5.15.2), qml-module-org-kde-kirigami2 (>=5.80.0), libkf5i18n5 (>= 5.80.0), libkf5coreaddons5 (>= 5.80.0)")
+
+endif()
+
+include(CPack)
+
 feature_summary(WHAT ALL FATAL_ON_MISSING_REQUIRED_PACKAGES) # INCLUDE_QUIET_PACKAGES
 
 file(GLOB_RECURSE ALL_CLANG_FORMAT_SOURCE_FILES *.cpp *.h)

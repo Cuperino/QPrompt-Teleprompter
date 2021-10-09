@@ -6,7 +6,7 @@ from sys import platform
 
 class subinfo(info.infoclass):
     def setTargets(self):
-        self.versionInfo.setDefaultValues()
+        #self.versionInfo.setDefaultValues()
         self.displayName = "QPrompt"
         self.description = "Personal Teleprompter Software"
         self.webpage = "https://qprompt.app"

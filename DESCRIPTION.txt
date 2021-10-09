@@ -1,0 +1,11 @@
+Open source personal teleprompter software for video makers. Built with ease of use, productivity, and smooth performance in mind. QPrompt's Qt base and Kirigami based UI allows to run the program on any device, and ensures recording productivity.
+
+QPrompt runs on Linux, Windows, macOS, and Android. This enables you to turn the hardware at your disposition into a teleprompter to record videos with. We aim to bring support to iPad, iOS, and web browsers (through Web Assembly) in the near future.
+
+Help us translate QPrompt to your local language by visiting https://l10n.qprompt.app. QPrompt includes fonts to support over 180 languages, including Asian languages with complex writing systems, and Eastern European languages. In addition to this, users can make use of fonts present in their computer's operating system, to enable even more languages and writing systems.
+
+QPrompt aims to be the ideal teleprompter solution for video makers worldwide. In addition to a variety of languages, QPrompt's interface adjusts its layout when the computer is set to use a Right-to-Left language. QPrompt also includes fonts that help dyslexic video makers read fluently, and the adjustable, semi transparent black bars at the top and bottom help everyone continue to look at the camera while reading.
+
+Join our community at https://qprompt.app and help other users make the most out of their teleprompters.
+
+QPrompt is Free Software, as defined by the Free Software Foundation, and is licensed under the General Public License version 3.0.
