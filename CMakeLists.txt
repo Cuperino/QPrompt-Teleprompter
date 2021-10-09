@@ -237,6 +237,16 @@ if(UNIX AND NOT ANDROID)
     set(CPACK_RPM_PACKAGE_REQUIRES "qt5-qtbase >= 5.15.2, qt5-qtbase-gui >= 5.15.2, qt5-qtdeclarative >= 5.15.2, qt5-qtsvg >= 5.15.2, qt5-qtquickcontrols >= 5.15.2, qt5-qtquickcontrols2 >= 5.15.2, kf5-ki18n >= 5.73.0, kf5-kirigami2 >= 5.73.0, kf5-kcoreaddons >= 5.73.0")
 
     set(CPACK_SYSTEM_NAME "${CMAKE_SYSTEM_NAME}-${CMAKE_SYSTEM_PROCESSOR}")
+
+elseif(APPLE AND NOT IOS)
+    set(CPACK_GENERATOR "DragNDrop")
+    set(CPACK_DMG_FORMAT "UDBZ")
+    set(CPACK_DMG_VOLUME_NAME "QPrompt")
+    set(CPACK_SYSTEM_NAME "OSX")
+    set(CPACK_PACKAGE_FILE_NAME "QPrompt-${RELEASE_SERVICE_VERSION}")
+    set(CPACK_PACKAGE_ICON "${ICONS_DIR}/qprompt.icns")
+    #set(CPACK_DMG_DS_STORE "${IMAGES_DIR}/DSStore")
+    set(CPACK_DMG_BACKGROUND_IMAGE "${IMAGES_DIR}/DMGBackground.png")
 endif()
 
 include(CPack)
