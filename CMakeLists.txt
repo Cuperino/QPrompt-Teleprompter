@@ -60,7 +60,6 @@ if (UNIX AND NOT APPLE AND NOT ANDROID)
 elseif (WIN32)
     list(APPEND QML_DIRS "C:/CraftRoot/qml")
     list(APPEND KIRIGAMI_DIRS "C:/CraftRoot/qml/org/kde/kirigami.2")
-    set(CPACK_NSIS_BRANDING_TEXT "QPrompt Teleprompter App")
 endif()
 # ------------------------- END: lists to maintain manually -------------------------
 
@@ -237,6 +236,28 @@ if(UNIX AND NOT ANDROID)
     set(CPACK_RPM_PACKAGE_REQUIRES "qt5-qtbase >= 5.15.2, qt5-qtbase-gui >= 5.15.2, qt5-qtdeclarative >= 5.15.2, qt5-qtsvg >= 5.15.2, qt5-qtquickcontrols >= 5.15.2, qt5-qtquickcontrols2 >= 5.15.2, kf5-ki18n >= 5.73.0, kf5-kirigami2 >= 5.73.0, kf5-kcoreaddons >= 5.73.0")
 
     set(CPACK_SYSTEM_NAME "${CMAKE_SYSTEM_NAME}-${CMAKE_SYSTEM_PROCESSOR}")
+
+elseif(WIN32)
+    set(CPACK_GENERATOR "NSIS")
+    set(CPACK_PACKAGE_EXECUTABLES "QPrompt" "QPrompt")
+    set(CPACK_NSIS_BRANDING_TEXT "QPrompt Teleprompter App")
+    set(CPACK_PACKAGE_FILE_NAME "QPrompt ${RELEASE_SERVICE_VERSION}")
+    set(CPACK_RESOURCE_FILE_LICENSE "${CMAKE_SOURCE_DIR}/${LICENSE_FILE}")
+    set(CPACK_NSIS_EXECUTABLES_DIRECTORY "${BIN_INSTALL_DIR}")
+    set(CPACK_NSIS_MUI_ICON "${ICONS_DIR}/qprompt.ico")
+    set(CPACK_PACKAGE_ICON "${IMAGES_DIR}/installer.bmp")
+    set(CPACK_NSIS_MUI_WELCOMEFINISHPAGE_BITMAP "${IMAGES_DIR}/welcome.bmp")
+    set(CPACK_NSIS_MUI_UNWELCOMEFINISHPAGE_BITMAP "${IMAGES_DIR}/welcome.bmp")
+    set(CPACK_NSIS_MUI_HEADERIMAGE "${IMAGES_DIR}/header.bmp")
+    set(CPACK_NSIS_CONTACT ${CPACK_PACKAGE_CONTACT})
+
+    set(CPACK_NSIS_URL_INFO_ABOUT ${PROJECT_URL})
+    set(CPACK_NSIS_INSTALLED_ICON_NAME "QPrompt${CMAKE_EXECUTABLE_SUFFIX}")
+    set(CPACK_NSIS_MENU_LINKS
+        "${LICENSE_FILE}" "License"
+        "${README_FILE}" "Readme"
+    )
+    set(CPACK_NSIS_MUI_FINISHPAGE_RUN "${CPACK_NSIS_INSTALLED_ICON_NAME}")
 
 elseif(APPLE AND NOT IOS)
     set(CPACK_GENERATOR "DragNDrop")
