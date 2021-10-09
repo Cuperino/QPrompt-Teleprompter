@@ -12,7 +12,7 @@ Language: Cpp
 BasedOnStyle: WebKit
 
 # enforce C++11 (e.g. for std::vector<std::vector<lala>>
-Standard: Cpp20
+Standard: Cpp11
 
 # 4 spaces indent
 TabWidth: 4

@@ -143,6 +143,7 @@ if (ANDROID)
         Qt5::Gui
         Qt5::Qml
         Qt5::QuickControls2
+        Qt5::Network
         Qt5::AndroidExtras
         Qt5::VirtualKeyboard
         KF5::I18n
@@ -157,6 +158,7 @@ elseif (WASM OR IOS)
         Qt5::Gui
         Qt5::Qml
         Qt5::QuickControls2
+        Qt5::Network
         KF5::I18n
         KF5::Kirigami2
         KF5::CoreAddons
@@ -169,6 +171,7 @@ else()
         Qt5::Svg
         Qt5::Qml
         Qt5::QuickControls2
+        Qt5::Network
         Qt5::Widgets
         KF5::I18n
         KF5::Kirigami2
@@ -177,7 +180,7 @@ else()
 endif()
 
 # Copy icons that are not font based
-#if(ANDROID OR APPLE OR WASM OR NOT UNIX)
+if(ANDROID OR APPLE OR WASM)
     # Breeze icons names can be found at https://cdn.kde.org/breeze-icons/icons.html
     kirigami_package_breeze_icons(ICONS
         application-exit
@@ -233,7 +236,7 @@ endif()
         window
         window-duplicate
     )
-#endif()
+endif()
 
 # Get static QML. Gets ignored if not a static build
 if (Qt5QmlImportScanner_FOUND)
