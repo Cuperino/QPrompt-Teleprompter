@@ -139,7 +139,7 @@ find_package(KF5 ${KF_MIN_VERSION} REQUIRED COMPONENTS
     Kirigami2
     I18n  # NO_MODULE
     CoreAddons
-    IconThemes
+    #IconThemes
 )
 
 if (WIN32 OR UNIX) # AND NOT ANDROID

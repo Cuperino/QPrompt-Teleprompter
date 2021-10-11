@@ -389,12 +389,16 @@ Flickable {
                     if (wheel.angleDelta.y > 0) {
                         if (prompter.__invertScrollDirection)
                             increaseVelocity(wheel);
-                        else/* if (prompter.__i>1)*/
-                            decreaseVelocity(wheel);
+                        else/* if (prompter.__i>1)*/ {
+                            if (!toolbar.onlyPositiveVelocity || prompter.__i>0)
+                                decreaseVelocity(wheel);
+                        }
                     }
                     else if (wheel.angleDelta.y < 0) {
-                        if (prompter.__invertScrollDirection/* && prompter.__i>1*/)
-                            decreaseVelocity(wheel);
+                        if (prompter.__invertScrollDirection/* && prompter.__i>1*/) {
+                            if (!toolbar.onlyPositiveVelocity || prompter.__i>0)
+                                decreaseVelocity(wheel);
+                        }
                         else
                             increaseVelocity(wheel);
                     }

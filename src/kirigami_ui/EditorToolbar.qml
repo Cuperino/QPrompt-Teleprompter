@@ -90,11 +90,13 @@ ToolBar {
     readonly property alias opacitySlider: opacitySlider
     readonly property alias baseSpeedSlider: baseSpeedSlider
     readonly property alias baseAccelerationSlider: baseAccelerationSlider
+    readonly property alias onlyPositiveVelocity: positiveVelocity.checked
 
     Settings {
         category: "kirigamiUI"
         property alias showFontSpacingOptions: toolbar.showFontSpacingOptions
         property alias showAnimationConfigOptions: toolbar.showAnimationConfigOptions
+        property alias onlyPositiveVelocity: positiveVelocity.checked
     }
     Settings {
         category: "prompter"
@@ -626,15 +628,20 @@ ToolBar {
             }
         }
         RowLayout {
+            id: velocityRow
             enabled: parseInt(prompter.state)===Prompter.States.Prompting
             visible: !Kirigami.Settings.isMobile || enabled // parseInt(prompter.state)!==Prompter.States.Editing
-            //ToolButton {
-            //    text: "\uE814"
-            //    enabled: false
-            //    contentItem: Loader { sourceComponent: textComponent }
-            //    font.family: iconFont.name
-            //    font.pointSize: 13
-            //}
+            ToolButton {
+                id: positiveVelocity
+                text: "\u002B"
+                enabled: velocityControlSlider.enabled
+                contentItem: Loader { sourceComponent: textComponent }
+                font.family: iconFont.name
+                font.pointSize: 13
+                focusPolicy: Qt.TabFocus
+                checkable: true
+                checked: true
+            }
             Label {
                 text: i18n("Velocity:") + (prompter.__i<0 ? '  -' + (prompter.__i/100).toFixed(2).slice(3) : ' +' + (prompter.__i/100).toFixed(2).slice(2))
                 color: Kirigami.Theme.textColor
@@ -647,7 +654,7 @@ ToolBar {
                 id: velocityControlSlider
                 value: prompter.__i
                 to: 20
-                from: -velocityControlSlider.to
+                from: positiveVelocity.checked ? 0 : -velocityControlSlider.to
                 stepSize: 1
                 focusPolicy: Qt.TabFocus
                 onMoved: {
