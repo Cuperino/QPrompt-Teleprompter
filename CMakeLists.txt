@@ -82,11 +82,13 @@ set(
 
 if(ANDROID)
     set(ANDROID_PACKAGE_SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/android)
-    set(ANDROID_ABIS "armeabi-v7a") # arm64-v8a
+	if(NOT ANDROID_ABIS)
+		set(ANDROID_ABIS "armeabi-v7a") # arm64-v8a
+	endif()
 endif()
 
 if(NOT CMAKE_BUILD_TYPE)
-    set(CMAKE_BUILD_TYPE MinSizeRel CACHE STRING FORCE)
+    set(CMAKE_BUILD_TYPE "MinSizeRel")
 endif()
 
 # Send compiled program and library binaries to "build/bin"
@@ -137,6 +139,9 @@ find_package(KF5 ${KF_MIN_VERSION} REQUIRED COMPONENTS
     Kirigami2
     I18n  # NO_MODULE
     CoreAddons
+)
+find_package(KF5 ${KF_MIN_VERSION} COMPONENTS
+    IconThemes
 )
 
 if (WIN32 OR UNIX) # AND NOT ANDROID
@@ -256,7 +261,7 @@ elseif(WIN32)
     set(CPACK_NSIS_CONTACT ${CPACK_PACKAGE_CONTACT})
 
     set(CPACK_NSIS_URL_INFO_ABOUT ${PROJECT_URL})
-    set(CPACK_NSIS_INSTALLED_ICON_NAME "QPrompt${CMAKE_EXECUTABLE_SUFFIX}")
+    set(CPACK_NSIS_INSTALLED_ICON_NAME "qprompt${CMAKE_EXECUTABLE_SUFFIX}")
     set(CPACK_NSIS_MENU_LINKS
         "${LICENSE_FILE}" "License"
         "${README_FILE}" "Readme"

@@ -59,7 +59,7 @@ if (NOT APPLE AND NOT ANDROID)
             ${RASTER_ICONS}
             ${VECTOR_ICON}
         DESTINATION ${KDE_INSTALL_ICONDIR}
-        THEME hicolor
+        # THEME hicolor
     )
     ecm_add_app_icon(qprompt_ICONS
         ICONS ${RASTER_ICONS}
@@ -102,6 +102,7 @@ elseif (WIN32)
     if (MSVC)
         add_definitions(-D_AFXDLL)
         set(CMAKE_MFC_FLAG 2)
+        #set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} /SUBSYSTEM:WINDOWS /ENTRY:mainCRTStartup")
     endif()
     add_executable(${PROJECT_NAME} WIN32
         ${qprompt_SRCS} ${qprompt_HDRS} ${qprompt_QML_SRCS} ${qprompt_ASSETS} ${qprompt_ICONS})
@@ -250,4 +251,9 @@ if (WIN32 OR UNIX) # AND NOT ANDROID)
     install(FILES com.cuperino.qprompt.appdata.xml DESTINATION ${KDE_INSTALL_METAINFODIR})
     install(PROGRAMS com.cuperino.qprompt.desktop DESTINATION ${KDE_INSTALL_APPDIR})
     install(TARGETS ${PROJECT_NAME} ${KDE_INSTALL_TARGETS_DEFAULT_ARGS})
+endif()
+
+if (WIN32)
+    include(Windeployqt)
+    windeployqt(nitroshare-cli ${INSTALL_BIN_PATH})
 endif()
