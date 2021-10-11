@@ -139,8 +139,6 @@ find_package(KF5 ${KF_MIN_VERSION} REQUIRED COMPONENTS
     Kirigami2
     I18n  # NO_MODULE
     CoreAddons
-)
-find_package(KF5 ${KF_MIN_VERSION} COMPONENTS
     IconThemes
 )
 
