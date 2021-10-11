@@ -25,12 +25,13 @@ class subinfo(info.infoclass):
         self.runtimeDependencies["libs/qt5/qtdeclarative"] = None
         if CraftCore.compiler.isAndroid:
             self.runtimeDependencies["libs/qt5/qtandroidextras"] = None
+        else:
+            self.runtimeDependencies["kde/frameworks/tier3/kiconthemes"] = None
         self.runtimeDependencies["libs/qt5/qtquickcontrols"] = None
         self.runtimeDependencies["libs/qt5/qtquickcontrols2"] = None
         self.runtimeDependencies["kde/frameworks/tier1/kcoreaddons"] = None
         self.runtimeDependencies["kde/frameworks/tier1/ki18n"] = None
         self.runtimeDependencies["kde/frameworks/tier1/kirigami"] = None
-        self.runtimeDependencies["kde/frameworks/tier1/breeze-icons"] = None
 
 from Package.CMakePackageBase import *
 
