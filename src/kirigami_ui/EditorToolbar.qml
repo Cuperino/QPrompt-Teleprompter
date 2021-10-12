@@ -170,7 +170,7 @@ ToolBar {
             }
             ToolButton {
                 id: searchButton
-                // visible: !Kirigami.Settings.isMobile || parseInt(prompter.state)===Prompter.States.Editing
+                visible: !Kirigami.Settings.isMobile || parseInt(prompter.state)!==Prompter.States.Prompting
                 text: Qt.application.layoutDirection===Qt.LeftToRight ? "\uE847" : "\uE848"
                 contentItem: Loader { sourceComponent: textComponent }
                 font.family: iconFont.name
@@ -192,7 +192,7 @@ ToolBar {
             }
             ToolButton {
                 id: namedBookmarkButton
-                visible: !Kirigami.Settings.isMobile || parseInt(prompter.state)===Prompter.States.Editing
+                visible: !Kirigami.Settings.isMobile // || parseInt(prompter.state)===Prompter.States.Editing
                 text: "\uE844"
                 contentItem: Loader { sourceComponent: textComponent }
                 font.family: iconFont.name
@@ -763,7 +763,9 @@ ToolBar {
             }
         }
         RowLayout {
-            visible: !wysiwygButton.checked && parseInt(prompter.state)===Prompter.States.Editing
+            visible: height>0
+            height: showFontSpacingOptions && !wysiwygButton.checked && parseInt(prompter.state)===Prompter.States.Editing ? implicitHeight : 0
+            clip: true
             ToolButton {
                 text: "\uF088"
                 enabled: false
@@ -789,7 +791,10 @@ ToolBar {
             }
         }
         RowLayout {
-            visible: wysiwygButton.checked || parseInt(prompter.state)!==Prompter.States.Editing
+            visible: height>0
+            height: !Kirigami.Settings.isMobile || (showFontSpacingOptions && wysiwygButton.checked && parseInt(prompter.state)===Prompter.States.Editing) ? implicitHeight : 0
+            clip: true
+
             // enabled: !(parseInt(prompter.state)===Prompter.States.Countdown || parseInt(prompter.state)===Prompter.States.Prompting)
             ToolButton {
                 text: "\uF088"

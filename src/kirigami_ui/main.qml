@@ -264,6 +264,7 @@ Kirigami.ApplicationWindow {
                 onTriggered: loadAboutPage()
             },
             Kirigami.Action {
+                visible: !Kirigami.Settings.isMobile
                 text: i18n("&Quit")
                 iconName: "application-exit"
                 shortcut: i18n("Ctrl+Q")

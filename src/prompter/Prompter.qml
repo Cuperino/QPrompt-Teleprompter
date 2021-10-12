@@ -261,7 +261,7 @@ Flickable {
             case Prompter.States.Editing:
                 //showPassiveNotification(i18n("Editing"), 850*countdown.__iterations)
                 projectionManager.close();
-                editor.focus = true
+                editor.focus = !Kirigami.Settings.isMobile
                 break;
             case Prompter.States.Standby:
             case Prompter.States.Countdown:
@@ -448,7 +448,7 @@ Flickable {
                 readOnly: false
                 text: i18n("Error loading file...")
 
-                selectByMouse: true
+                selectByMouse: !Kirigami.Settings.isMobile
                 persistentSelection: true
                 selectionColor: "#333d9ef3"
                 selectedTextColor: selectionColor
@@ -463,10 +463,8 @@ Flickable {
                 background: Item {}
                 
                 // Start with the editor in focus
-                focus: true
-                
-                // Make base font size relative to editor's width
-                // Western Fonts
+                focus: !Kirigami.Settings.isMobile
+
                 FontLoader {
                     id: westernSeriousSansfFont
                     source: i18n("fonts/dejavu-sans.otf")
@@ -1084,8 +1082,8 @@ Flickable {
             }
             PropertyChanges {
                 target: editor
-                focus: true
-                selectByMouse: true
+                focus: !Kirigami.Settings.isMobile
+                selectByMouse: !Kirigami.Settings.isMobile
                 activeFocusOnPress: true
                 //cursorPosition: editor.positionAt(0, editor.position + 1*overlay.height/2)
             }
@@ -1103,7 +1101,7 @@ Flickable {
             }
         },
         State {
-            name: Prompter.States.Standby
+            //name: Prompter.States.Standby
             PropertyChanges {
                 target: overlay
                 state: ReadRegionOverlay.States.Prompting

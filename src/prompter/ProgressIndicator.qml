@@ -25,7 +25,7 @@ import QtQuick.Controls 2.12
 ScrollBar {
     id: scroller
     policy: ScrollBar.AlwaysOn
-    interactive: parseInt(prompter.state)===Prompter.States.Prompting || parseInt(prompter.state)===Prompter.States.Countdown ? false : true
+    interactive: parseInt(prompter.state)===Prompter.States.Prompting || parseInt(prompter.state)===Prompter.States.Countdown || Kirigami.Settings.isMobile ? false : true
     leftPadding: 0
     rightPadding: 0
     leftInset: 0
