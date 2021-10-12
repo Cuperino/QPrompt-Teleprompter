@@ -112,9 +112,9 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
 
     QQmlApplicationEngine engine;
     QQmlFileSelector::get(&engine)->setExtraSelectors(selectors);
-    #ifdef Q_OS_ANDROID
-    KirigamiPlugin::getInstance().registerTypes();
-    #endif
+    // #ifdef Q_OS_ANDROID
+    // KirigamiPlugin::getInstance().registerTypes();
+    // #endif
 
     // Un-comment to force RightToLeft Layout for debugging purposes
     //app.setLayoutDirection(Qt::RightToLeft);
