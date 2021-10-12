@@ -354,7 +354,75 @@ ToolBar {
         }
         Row {
             id: fontRow
-            visible: !Kirigami.Settings.isMobile
+            // visible: !Kirigami.Settings.isMobile
+            visible: !Kirigami.Settings.isMobile || parseInt(prompter.state)===Prompter.States.Editing
+            FontLoader {
+                id: westernSeriousSansfFont
+                source: i18n("fonts/dejavu-sans.otf")
+            }
+            FontLoader {
+                id: westernDyslexicFont
+                source: i18n("fonts/opendyslexic-bold.otf")
+            }
+            FontLoader {
+                id: asianSeriousSansFont
+                source: i18n("fonts/sourcehansans.ttc")
+            }
+            FontLoader {
+                id: arabicHumaneSansFont
+                source: i18n("fonts/scheherazadenew-regular.ttf")
+            }
+            FontLoader {
+                id: devanagariSeriousSansFont
+                source: i18n("fonts/palanquin.ttf")
+            }
+            FontLoader {
+                id: bengaliHumaneSerifFont
+                source: i18n("fonts/kalpurush.ttf")
+            }
+            Menu {
+                id: fontSelectionMenu
+                background: Rectangle {
+                    color: "#DD000000"
+                    implicitWidth: 280
+                }
+                MenuItem {
+                    text: i18n("Choose System Font")
+                    enabled: ['ios', 'wasm', 'tvos', 'qnx', 'ipados'].indexOf(Qt.platform.os)===-1
+                    visible: enabled
+                    onTriggered: {
+                        fontDialog.currentFont.family = prompter.document.fontFamily;
+                        fontDialog.currentFont.pointSize = prompter.document.fontSize;
+                        fontDialog.open();
+                    }
+                }
+                MenuSeparator {}
+                MenuItem {
+                    text: i18n("Roman, Cyrillic")
+                    onTriggered: viewport.prompter.document.fontFamily = westernSeriousSansfFont.name
+                }
+                MenuItem {
+                    text: i18n("Roman (Dyslexic)")
+                    onTriggered: viewport.prompter.document.fontFamily = westernDyslexicFont.name
+                }
+                MenuItem {
+                    text: i18n("Chinese, Japanese, Korean")
+                    onTriggered: viewport.prompter.document.fontFamily = asianSeriousSansFont.name
+                }
+                MenuItem {
+                    text: i18n("Arabic")
+                    onTriggered: viewport.prompter.document.fontFamily = arabicHumaneSansFont.name
+                }
+                MenuItem {
+                    text: i18n("Devangari")
+                    onTriggered: viewport.prompter.document.fontFamily = devanagariSeriousSansFont.name
+                }
+                MenuItem {
+                    text: i18n("Bengali")
+                    onTriggered: viewport.prompter.document.fontFamily = bengaliHumaneSerifFont.name
+                }
+                MenuSeparator {}
+            }
             ToolButton {
                 id: fontFamilyToolButton
                 text: i18n("\uE805")
@@ -367,9 +435,7 @@ ToolBar {
                 font.strikeout: prompter.document.strike
                 font.overline: prompter.document.regularMarker || prompter.document.namedMarker
                 onClicked: {
-                    fontDialog.currentFont.family = prompter.document.fontFamily;
-                    fontDialog.currentFont.pointSize = prompter.document.fontSize;
-                    fontDialog.open();
+                    fontSelectionMenu.popup(this)
                 }
             }
             ToolButton {

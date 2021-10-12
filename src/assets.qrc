@@ -15,10 +15,10 @@
         <file alias="fonts/dejavu-sans.otf">fonts/editor/dejavu-sans/DejaVuSans.ttf</file>
         <file alias="fonts/libertinus-sans.otf">fonts/editor/Libertinus/static/OTF/LibertinusSans-Regular.otf</file>
         <file alias="fonts/opendyslexic-bold.otf">fonts/editor/OpenDyslexic-Bold.otf</file>
-<!--         <file alias="fonts/sourcehansans.ttc">fonts/editor/SourceHanSans/SourceHanSans-Regular.ttc</file> -->
-<!--         <file alias="fonts/scheherazadenew-regular.ttf">fonts/editor/ScheherazadeNew/ScheherazadeNew-Regular.ttf</file> -->
-<!--         <file alias="fonts/kalpurush.ttf">fonts/editor/Kalpurush/Kalpurush.ttf</file> -->
-<!--         <file alias="fonts/palanquin.ttf">fonts/editor/Palanquin-Regular.ttf</file> -->
+        <file alias="fonts/sourcehansans.ttc">fonts/editor/SourceHanSans/SourceHanSans-Regular.ttc</file>
+        <file alias="fonts/scheherazadenew-regular.ttf">fonts/editor/ScheherazadeNew/ScheherazadeNew-Regular.ttf</file>
+        <file alias="fonts/kalpurush.ttf">fonts/editor/Kalpurush/Kalpurush.ttf</file>
+        <file alias="fonts/palanquin.ttf">fonts/editor/Palanquin-Regular.ttf</file>
         <!-- <file alias="fonts/libertinus-serif.otf">fonts/editor/Libertinus/static/OTF/LibertinusSerif-Regular.otf</file> -->
     </qresource>
 </RCC>

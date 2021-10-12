@@ -471,30 +471,6 @@ Flickable {
                     id: westernSeriousSansfFont
                     source: i18n("fonts/dejavu-sans.otf")
                 }
-                FontLoader {
-                    id: westernHumaneSansFont
-                    source: i18n("fonts/libertinus-sans.otf")
-                }
-                FontLoader {
-                    id: westernDyslexicFont
-                    source: i18n("fonts/opendyslexic-bold.otf")
-                }
-                FontLoader {
-                    id: asianSeriousSansFont
-                    source: i18n("fonts/sourcehansans.ttc")
-                }
-                FontLoader {
-                    id: arabicHumaneSansFont
-                    source: i18n("fonts/scheherazadenew-regular.ttf")
-                }
-                FontLoader {
-                    id: devanagariSeriousSansFont
-                    source: i18n("fonts/palanquin.ttf")
-                }
-                FontLoader {
-                    id: bangalaHumaneSerifFont
-                    source: i18n("fonts/kalpurush.ttf")
-                }
                 font.family: westernSeriousSansfFont.name
                 font.pixelSize: 14
                 font.hintingPreference: Font.PreferFullHinting
