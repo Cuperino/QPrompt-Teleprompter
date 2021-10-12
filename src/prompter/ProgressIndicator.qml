@@ -21,6 +21,7 @@
  ****************************************************************************/
 
 import QtQuick.Controls 2.12
+import org.kde.kirigami 2.11 as Kirigami
 
 ScrollBar {
     id: scroller
