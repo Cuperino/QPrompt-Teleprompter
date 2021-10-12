@@ -217,7 +217,7 @@ ToolBar {
         }
         Row {
             id: playbackRow
-            visible: !Kirigami.Settings.isMobile || parseInt(prompter.state)!==Prompter.States.Editing
+            visible: !Kirigami.Settings.isMobile || parseInt(prompter.state)===Prompter.States.Prompting
             ToolButton {
                 id: previousMarkerButton
                 text: "\uE81A"

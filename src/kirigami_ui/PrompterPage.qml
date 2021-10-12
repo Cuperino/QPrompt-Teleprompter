@@ -63,17 +63,17 @@ Kirigami.Page {
         }
         left: Kirigami.Action {
             id: decreaseVelocityButton
-            enabled: false
+            enabled: Kirigami.Settings.isMobile
             text: pageStack.globalToolBar.actualStyle === Kirigami.ApplicationHeaderStyle.None ? i18n("Decrease velocity") : ""
             iconName: Qt.application.layoutDirection === Qt.RightToLeft ? "go-next" : "go-previous"
-            onTriggered: viewport.prompter.decreaseVelocity(false)
+            onTriggered: parseInt(prompter.state) === Prompter.States.Prompting ? viewport.prompter.decreaseVelocity(false) : prompter.goToPreviousMarker()
         }
         right: Kirigami.Action {
             id: increaseVelocityButton
-            enabled: false
+            enabled: Kirigami.Settings.isMobile
             text: pageStack.globalToolBar.actualStyle === Kirigami.ApplicationHeaderStyle.None ? i18n("Increase velocity") : ""
             iconName: Qt.application.layoutDirection === Qt.RightToLeft ? "go-previous" : "go-next"
-            onTriggered: viewport.prompter.increaseVelocity(false)
+            onTriggered: parseInt(prompter.state) === Prompter.States.Prompting ? viewport.prompter.increaseVelocity(false) : prompter.goToNextMarker()
         }
         contextualActions: [
         // This may have not been a right design choice. It needs user beta testers' validation. Disabling for initial release.
