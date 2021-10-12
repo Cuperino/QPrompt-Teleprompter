@@ -1101,7 +1101,7 @@ Flickable {
             }
         },
         State {
-            //name: Prompter.States.Standby
+            name: Prompter.States.Standby
             PropertyChanges {
                 target: overlay
                 state: ReadRegionOverlay.States.Prompting
