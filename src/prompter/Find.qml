@@ -127,12 +127,14 @@ Item {
     function focusSearch() {
         if (isOpen) {
             searchField.text = editor.selectedText
-            searchField.focus = true
+            if (Kirigami.Settings.isMobile)
+                searchField.focus = true
         }
         else {
             // Clear search
             editor.cursorPosition = document.selectionStart
-            editor.focus = true
+            if (Kirigami.Settings.isMobile)
+                editor.focus = true
         }
     }
     function toggle() {
