@@ -242,7 +242,7 @@ ToolBar {
         }
         Row {
             id: undoRedoRow
-            visible: !Kirigami.Settings.isMobile || parseInt(prompter.state)===Prompter.States.Editing
+            visible: !Kirigami.Settings.isMobile || parseInt(prompter.state)===Prompter.States.Editing && 'ios'!==Qt.platform.os
             ToolButton {
                 text: Qt.application.layoutDirection===Qt.LeftToRight?"\uE800":"\uE801"
                 contentItem: Loader { sourceComponent: textComponent }
