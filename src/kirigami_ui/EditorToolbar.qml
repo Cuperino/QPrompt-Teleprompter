@@ -302,6 +302,89 @@ ToolBar {
             }
         }
         Row {
+            id: alignmentRowMobile
+            visible: Kirigami.Settings.isMobile && parseInt(prompter.state)===Prompter.States.Editing
+            Menu {
+                id: textAlignmentMenu
+                background: Rectangle {
+                    color: "#DD000000"
+                    implicitWidth: 120
+                }
+                MenuItem {
+                    text: Qt.application.layoutDirection===Qt.LeftToRight ? i18n("&Left") : i18n("&Right")
+                    enabled: Qt.application.layoutDirection===Qt.LeftToRight ? prompter.document.alignment !== Qt.AlignLeft : prompter.document.alignment !== Qt.AlignRight
+                    onTriggered: prompter.document.alignment = Qt.AlignLeft
+                }
+                MenuItem {
+                    text: i18n("C&enter")
+                    enabled: !(prompter.document.alignment === Qt.AlignHCenter || (prompter.document.alignment !== Qt.AlignLeft && prompter.document.alignment !== Qt.AlignRight/*&& prompter.document.alignment !== Qt.AlignJustify*/))
+                    onTriggered: prompter.document.alignment = Qt.AlignHCenter
+                }
+                MenuItem {
+                    text: Qt.application.layoutDirection===Qt.LeftToRight ? i18n("&Right") : i18n("&Left")
+                    enabled: Qt.application.layoutDirection===Qt.LeftToRight ? prompter.document.alignment !== Qt.AlignRight : prompter.document.alignment !== Qt.AlignLeft
+                    onTriggered: prompter.document.alignment = Qt.AlignRight
+                }
+                //MenuItem {
+                //    text: i18n("&Justify")
+                //    enabled: prompter.document.alignment !== Qt.AlignHustify
+                //    onTriggered: prompter.document.alignment = Qt.AlignJustify
+                //}
+            }
+            ToolButton {
+                id: mobileAlignLeftButton
+                visible: checked
+                text: Qt.application.layoutDirection===Qt.LeftToRight ? "\uE808" : "\uE80A"
+                contentItem: Loader { sourceComponent: textComponent }
+                font.family: iconFont.name
+                font.pointSize: 13
+                focusPolicy: Qt.TabFocus
+                checkable: true
+                checked: Qt.application.layoutDirection===Qt.LeftToRight ? prompter.document.alignment === Qt.AlignLeft : prompter.document.alignment === Qt.AlignRight
+                onClicked: textAlignmentMenu.popup(this)
+            }
+            ToolButton {
+                id: mobileAlignCenterButton
+                visible: checked || !(alignLeftButton.checked||alignRightButton.checked/*||alignJustifyButton.checked*/)
+                text: "\uE809"
+                font.family: iconFont.name
+                font.pointSize: 13
+                contentItem: Loader { sourceComponent: textComponent }
+                focusPolicy: Qt.TabFocus
+                checkable: true
+                checked: prompter.document.alignment === Qt.AlignHCenter
+                onClicked: textAlignmentMenu.popup(this)
+            }
+            ToolButton {
+                id: mobileAlignRightButton
+                visible: checked
+                text: Qt.application.layoutDirection===Qt.LeftToRight ? "\uE80A" : "\uE808"
+                contentItem: Loader { sourceComponent: textComponent }
+                font.family: iconFont.name
+                font.pointSize: 13
+                focusPolicy: Qt.TabFocus
+                checkable: true
+                checked: Qt.application.layoutDirection===Qt.LeftToRight ? prompter.document.alignment === Qt.AlignRight : prompter.document.alignment === Qt.AlignLeft
+                onClicked: textAlignmentMenu.popup(this)
+            }
+            // Justify is proven to make text harder to read for some readers. So I'm commenting out all text justification options from the program. I'm not removing them, only commenting out in case someone needs to re-enable. This article links to various sources that validate my decision: https://kaiweber.wordpress.com/2010/05/31/ragged-right-or-justified-alignment/ - Javier
+            //ToolButton {
+            //    id: mobileAlignJustifyButton
+            //    visible: checked
+            //    text: "\uE80B"
+            //    contentItem: Loader { sourceComponent: textComponent }
+            //    font.family: iconFont.name
+            //    font.pointSize: 13
+            //    focusPolicy: Qt.TabFocus
+            //    checkable: true
+            //    checked: prompter.document.alignment === Qt.AlignJustify
+            //    onClicked: textAlignmentMenu.popup(this)
+            //}
+            ToolSeparator {
+                contentItem.visible: alignmentRowMobile.y === formatRow.y
+            }
+        }
+        Row {
             id: formatRow
             visible: !Kirigami.Settings.isMobile || parseInt(prompter.state)===Prompter.States.Editing
             ToolButton {
@@ -387,8 +470,10 @@ ToolBar {
                     implicitWidth: 280
                 }
                 MenuItem {
+                    id: systemFontButton
                     text: i18n("Choose System Font")
-                    enabled: ['ios', 'wasm', 'tvos', 'qnx', 'ipados'].indexOf(Qt.platform.os)===-1
+                    // Not using isMobile here, because Linux phones, unlike all others, would provide access to system fonts.
+                    enabled: ['android', 'ios', 'wasm', 'tvos', 'qnx', 'ipados'].indexOf(Qt.platform.os)===-1
                     visible: enabled
                     onTriggered: {
                         fontDialog.currentFont.family = prompter.document.fontFamily;
@@ -396,7 +481,9 @@ ToolBar {
                         fontDialog.open();
                     }
                 }
-                MenuSeparator {}
+                MenuSeparator {
+                    visible: systemFontButton.enabled
+                }
                 MenuItem {
                     text: i18n("Roman, Cyrillic")
                     onTriggered: viewport.prompter.document.fontFamily = westernSeriousSansfFont.name
@@ -454,7 +541,7 @@ ToolBar {
                 font.pointSize: 13
                 focusPolicy: Qt.TabFocus
                 onClicked: colorDialog.open()
-                
+
                 Rectangle {
                     width: aFontMetrics.width + 3
                     height: 2
@@ -463,7 +550,7 @@ ToolBar {
                     anchors.horizontalCenter: parent.horizontalCenter
                     anchors.baseline: parent.baseline
                     anchors.baselineOffset: 6
-                    
+
                     TextMetrics {
                         id: aFontMetrics
                         font: textColorButton.font
@@ -568,89 +655,6 @@ ToolBar {
             //}
             ToolSeparator {
                 contentItem.visible: alignmentRowDesktop.y === advancedButtonsRow.y
-            }
-        }
-        Row {
-            id: alignmentRowMobile
-            visible: Kirigami.Settings.isMobile && parseInt(prompter.state)===Prompter.States.Editing
-            Menu {
-                id: textAlignmentMenu
-                background: Rectangle {
-                    color: "#DD000000"
-                    implicitWidth: 120
-                }
-                MenuItem {
-                    text: Qt.application.layoutDirection===Qt.LeftToRight ? i18n("&Left") : i18n("&Right")
-                    enabled: Qt.application.layoutDirection===Qt.LeftToRight ? prompter.document.alignment !== Qt.AlignLeft : prompter.document.alignment !== Qt.AlignRight
-                    onTriggered: prompter.document.alignment = Qt.AlignLeft
-                }
-                MenuItem {
-                    text: i18n("C&enter")
-                    enabled: !(prompter.document.alignment === Qt.AlignHCenter || (prompter.document.alignment !== Qt.AlignLeft && prompter.document.alignment !== Qt.AlignRight/*&& prompter.document.alignment !== Qt.AlignJustify*/))
-                    onTriggered: prompter.document.alignment = Qt.AlignHCenter
-                }
-                MenuItem {
-                    text: Qt.application.layoutDirection===Qt.LeftToRight ? i18n("&Right") : i18n("&Left")
-                    enabled: Qt.application.layoutDirection===Qt.LeftToRight ? prompter.document.alignment !== Qt.AlignRight : prompter.document.alignment !== Qt.AlignLeft
-                    onTriggered: prompter.document.alignment = Qt.AlignRight
-                }
-                //MenuItem {
-                //    text: i18n("&Justify")
-                //    enabled: prompter.document.alignment !== Qt.AlignHustify
-                //    onTriggered: prompter.document.alignment = Qt.AlignJustify
-                //}
-            }
-            ToolButton {
-                id: mobileAlignLeftButton
-                visible: checked
-                text: Qt.application.layoutDirection===Qt.LeftToRight ? "\uE808" : "\uE80A"
-                contentItem: Loader { sourceComponent: textComponent }
-                font.family: iconFont.name
-                font.pointSize: 13
-                focusPolicy: Qt.TabFocus
-                checkable: true
-                checked: Qt.application.layoutDirection===Qt.LeftToRight ? prompter.document.alignment === Qt.AlignLeft : prompter.document.alignment === Qt.AlignRight
-                onClicked: textAlignmentMenu.popup(this)
-            }
-            ToolButton {
-                id: mobileAlignCenterButton
-                visible: checked || !(alignLeftButton.checked||alignRightButton.checked/*||alignJustifyButton.checked*/)
-                text: "\uE809"
-                font.family: iconFont.name
-                font.pointSize: 13
-                contentItem: Loader { sourceComponent: textComponent }
-                focusPolicy: Qt.TabFocus
-                checkable: true
-                checked: prompter.document.alignment === Qt.AlignHCenter
-                onClicked: textAlignmentMenu.popup(this)
-            }
-            ToolButton {
-                id: mobileAlignRightButton
-                visible: checked
-                text: Qt.application.layoutDirection===Qt.LeftToRight ? "\uE80A" : "\uE808"
-                contentItem: Loader { sourceComponent: textComponent }
-                font.family: iconFont.name
-                font.pointSize: 13
-                focusPolicy: Qt.TabFocus
-                checkable: true
-                checked: Qt.application.layoutDirection===Qt.LeftToRight ? prompter.document.alignment === Qt.AlignRight : prompter.document.alignment === Qt.AlignLeft
-                onClicked: textAlignmentMenu.popup(this)
-            }
-            // Justify is proven to make text harder to read for some readers. So I'm commenting out all text justification options from the program. I'm not removing them, only commenting out in case someone needs to re-enable. This article links to various sources that validate my decision: https://kaiweber.wordpress.com/2010/05/31/ragged-right-or-justified-alignment/ - Javier
-            //ToolButton {
-            //    id: mobileAlignJustifyButton
-            //    visible: checked
-            //    text: "\uE80B"
-            //    contentItem: Loader { sourceComponent: textComponent }
-            //    font.family: iconFont.name
-            //    font.pointSize: 13
-            //    focusPolicy: Qt.TabFocus
-            //    checkable: true
-            //    checked: prompter.document.alignment === Qt.AlignJustify
-            //    onClicked: textAlignmentMenu.popup(this)
-            //}
-            ToolSeparator {
-                contentItem.visible: alignmentRowMobile.y === advancedButtonsRow.y
             }
         }
         Row {

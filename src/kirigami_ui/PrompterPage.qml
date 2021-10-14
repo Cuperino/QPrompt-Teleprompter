@@ -593,7 +593,7 @@ Kirigami.Page {
     
     ColorDialog {
         id: highlightDialog
-        currentColor: Kirigami.Theme.backgroundColor
+        currentColor: Kirigami.Sttings.isMobile ? "#FFFF00" : Kirigami.Theme.backgroundColor
     }
 
 //     ShaderEffectSource {
