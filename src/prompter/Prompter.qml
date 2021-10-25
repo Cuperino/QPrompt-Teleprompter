@@ -597,7 +597,7 @@ Flickable {
                     drag.axis: Drag.XAxis
                     drag.smoothed: false
                     drag.minimumX: fontSize/2 //: -prompter.width*6/20 + width
-                    drag.maximumX: prompter.width*6/20 //: -fontSize/2 + width
+                    drag.maximumX: prompter.width*9/20 //: -fontSize/2 + width
                     cursorShape: prompter.dragging ? Qt.ClosedHandCursor : ((pressed || drag.active) ? Qt.SplitHCursor : (flicking ? Qt.OpenHandCursor : Qt.SizeHorCursor))
                     Loader {
                         sourceComponent: editorSidesBorder
