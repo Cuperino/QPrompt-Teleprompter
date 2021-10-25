@@ -170,7 +170,7 @@ ToolBar {
             }
             ToolButton {
                 id: searchButton
-                visible: !Kirigami.Settings.isMobile || parseInt(prompter.state)!==Prompter.States.Prompting
+                visible: !mobileOrSmallScreen || parseInt(prompter.state)!==Prompter.States.Prompting
                 text: Qt.application.layoutDirection===Qt.LeftToRight ? "\uE847" : "\uE848"
                 contentItem: Loader { sourceComponent: textComponent }
                 font.family: iconFont.name
@@ -298,12 +298,12 @@ ToolBar {
                 onClicked: prompter.editor.paste()
             }
             ToolSeparator {
-                contentItem.visible: editRow.y === formatRow.y
+                contentItem.visible: mobileOrSmallScreen ? editRow.y === alignmentRowMobile.y : editRow.y === formatRow.y
             }
         }
         Row {
             id: alignmentRowMobile
-            visible: Kirigami.Settings.isMobile && parseInt(prompter.state)===Prompter.States.Editing
+            visible: mobileOrSmallScreen && parseInt(prompter.state)===Prompter.States.Editing
             Menu {
                 id: textAlignmentMenu
                 background: Rectangle {
@@ -386,7 +386,7 @@ ToolBar {
         }
         Row {
             id: formatRow
-            visible: !Kirigami.Settings.isMobile || parseInt(prompter.state)===Prompter.States.Editing
+            visible: !mobileOrSmallScreen || parseInt(prompter.state)===Prompter.States.Editing
             ToolButton {
                 id: boldButton
                 text: "\uE802"
@@ -432,13 +432,12 @@ ToolBar {
                 onClicked: prompter.document.strike = !prompter.document.strike
             }
             ToolSeparator {
-                contentItem.visible: formatRow.y === fontRow.y || formatRow.y === alignmentRowMobile.y
+                contentItem.visible: formatRow.y === fontRow.y
             }
         }
         Row {
             id: fontRow
-            // visible: !Kirigami.Settings.isMobile
-            visible: !Kirigami.Settings.isMobile || parseInt(prompter.state)===Prompter.States.Editing
+            visible: !mobileOrSmallScreen || parseInt(prompter.state)===Prompter.States.Editing
             FontLoader {
                 id: westernSeriousSansfFont
                 source: i18n("fonts/dejavu-sans.otf")
@@ -592,12 +591,12 @@ ToolBar {
                 }
             }
             ToolSeparator {
-                contentItem.visible: fontRow.y === alignmentRowMobile.y || fontRow.y === alignmentRowDesktop.y
+                contentItem.visible: fontRow.y === advancedButtonsRow.y
             }
         }
         Row {
             id: alignmentRowDesktop
-            visible: !Kirigami.Settings.isMobile
+            visible: !mobileOrSmallScreen
             ToolButton {
                 id: alignLeftButton
                 text: Qt.application.layoutDirection===Qt.LeftToRight ? "\uE808" : "\uE80A"
@@ -700,7 +699,7 @@ ToolBar {
         RowLayout {
             id: velocityRow
             enabled: parseInt(prompter.state)===Prompter.States.Prompting
-            visible: !Kirigami.Settings.isMobile || enabled // parseInt(prompter.state)!==Prompter.States.Editing
+            visible: !mobileOrSmallScreen || enabled // parseInt(prompter.state)!==Prompter.States.Editing
             ToolButton {
                 id: positiveVelocity
                 text: "\u002B"
@@ -737,9 +736,9 @@ ToolBar {
             }
         }
         RowLayout {
-            visible: root.__translucidBackground && (!Kirigami.Settings.isMobile || (parseInt(prompter.state)!==Prompter.States.Editing && parseInt(prompter.state)!==Prompter.States.Prompting)) // This check isn't optimized in case more prompter states get added in the future, even tho I think that is unlikely.
+            visible: root.__translucidBackground && (!mobileOrSmallScreen || (parseInt(prompter.state)!==Prompter.States.Editing && parseInt(prompter.state)!==Prompter.States.Prompting)) // This check isn't optimized in case more prompter states get added in the future, even tho I think that is unlikely.
             ToolButton {
-                visible: !Kirigami.Settings.isMobile
+                visible: !mobileOrSmallScreen
                 text: "\uE810"
                 enabled: false
                 contentItem: Loader { sourceComponent: textComponent }
