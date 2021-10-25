@@ -41,6 +41,8 @@ Kirigami.ApplicationWindow {
     //readonly property bool __translucidBackground: !Material.background.a // === 0
     readonly property bool __translucidBackground: !Kirigami.Theme.backgroundColor.a && ['ios', 'wasm', 'tvos', 'qnx', 'ipados'].indexOf(Qt.platform.os)===-1
     readonly property bool themeIsMaterial: Kirigami.Settings.style==="Material" // || Kirigami.Settings.isMobile
+    // mobileOrSmallScreen helps determine when to follow mobile behaviors from desktop non-mobile devices
+    readonly property bool mobileOrSmallScreen: Kirigami.Settings.isMobile || root.width < 1220
     //readonly property bool __translucidBackground: false
     // Scrolling settings
     property bool __scrollAsDial: false
@@ -285,7 +287,6 @@ Kirigami.ApplicationWindow {
                 text: i18n("Dark &Mode")
                 visible: false
                 //visible: !Kirigami.Settings.isMobile && root.__translucidBackground
-                //checked: true
                 checked: true
                 checkable: true
                 flat: true
