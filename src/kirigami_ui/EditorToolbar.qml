@@ -136,6 +136,7 @@ ToolBar {
             anchors.right: parent.right
         }
         color: Kirigami.Theme.alternateBackgroundColor.a===0 ? appTheme.__backgroundColor : Kirigami.Theme.alternateBackgroundColor
+        opacity: root.__opacity * 0.4 + 0.6
     }
     Component {
         id: textComponent

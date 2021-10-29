@@ -917,6 +917,10 @@ Kirigami.ApplicationWindow {
         visible: !Kirigami.Settings.isMobile
         color: appTheme.__backgroundColor
         anchors{ top:parent.top; left:parent.left; right: parent.right }
+        opacity: root.__opacity * 0.4 + 0.6
+       height: 40
+       z: -1
+    }
         height: 40
         z: -1
     }
