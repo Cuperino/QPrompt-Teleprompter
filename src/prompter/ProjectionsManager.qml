@@ -89,14 +89,14 @@ Item {
                     anchors.top: topFill.bottom
                     anchors.right: parent.right
                     anchors.bottom: bottomFill.top
-                    anchors.left: img.left
+                    anchors.left: img.right
                 }
                 Rectangle {
                     id: leftFill
                     color: backgroundColor
                     opacity: internalBackgroundOpacity
                     anchors.top: topFill.bottom
-                    anchors.right: img.right
+                    anchors.right: img.left
                     anchors.bottom: bottomFill.top
                     anchors.left: parent.left
                 }
