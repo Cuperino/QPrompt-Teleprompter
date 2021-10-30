@@ -921,8 +921,39 @@ Kirigami.ApplicationWindow {
        height: 40
        z: -1
     }
+
+    // Top bar foreground hack for window dragging
+    Item {
+        anchors {
+            top: parent.top;
+            left: parent.left;
+        }
         height: 40
-        z: -1
+        width: 180
+        MouseArea {
+            enabled: !Kirigami.Settings.isMobile && pageStack.globalToolBar.actualStyle !== Kirigami.ApplicationHeaderStyle.None
+            anchors.fill: parent
+            property int prevX: 0
+            property int prevY: 0
+            cursorShape: pressed ? Qt.ClosedHandCursor : Qt.OpenHandCursor
+            onPressed: {
+                prevX=mouse.x
+                prevY=mouse.y
+            }
+            onPositionChanged: {
+                var deltaX = mouse.x - prevX;
+
+                root.x += deltaX;
+                prevX = mouse.x - deltaX;
+
+                var deltaY = mouse.y - prevY
+                root.y += deltaY;
+                prevY = mouse.y - deltaY;
+            }
+            onClicked: {
+                root.pageStack.layers.clear();
+            }
+        }
     }
     
     // Kirigami PageStack and PageRow
