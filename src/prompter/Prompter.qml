@@ -222,7 +222,7 @@ Flickable {
                 if (!animationX.running && prompter.__i) {
                     __i = 0
                     root.alert(0)
-                    if (!root.__translucidBackground)
+                    if (root.passiveNotifications)
                         showPassiveNotification(i18n("Animation Completed"));
                 }
             }
@@ -286,7 +286,7 @@ Flickable {
                 this.__i++
             this.__play = true
             this.position = this.__destination
-            //if (!root.__translucidBackground)
+            //if (root.passiveNotifications)
             //    showPassiveNotification(i18n("Increase Velocity"));
         }
     }
@@ -300,7 +300,7 @@ Flickable {
                 this.__i--
             this.__play = true
             this.position = this.__destination
-            //if (!root.__translucidBackground)
+            //if (root.passiveNotifications)
             //    showPassiveNotification(i18n("Decrease Velocity"));
         }
     }
@@ -518,14 +518,14 @@ Flickable {
                         cursorShape: Qt.PointingHandCursor
                         property int c: 0
                         onClicked: {
-                            if (!root.__translucidBackground)
+                            if (root.passiveNotifications)
                                 showPassiveNotification("Double tap to go back to the start");
                         }
                         onDoubleClicked: {
                             reset.toStart()
-                            if (!root.__translucidBackground) {
+                            if (root.passiveNotifications) {
                                 // Run hidePassiveNotification second to avoid Kirigami bug from 5.83.0 that prevents the method from completing execution.
-                                //hidePassiveNotification()
+                                hidePassiveNotification()
                                 // Scientist EE
                                 let goToStartNotification = "";
                                 switch (c++%3) {
@@ -764,7 +764,7 @@ Flickable {
             document.load("qrc:/untitled.html")
             isNewFile = true
             resetDocumentPosition()
-            if (!root.__translucidBackground)
+            if (root.passiveNotifications)
                 showPassiveNotification(i18n("New document"))
         }
         
@@ -773,7 +773,7 @@ Flickable {
             isNewFile = true
             // Set document position to 0, so we can get to read the instructions faster.
             prompter.position = 0
-            if (!root.__translucidBackground)
+            if (root.passiveNotifications)
                 showPassiveNotification(i18n("User guide loaded"))
         }
         
@@ -959,7 +959,7 @@ Flickable {
                 case Qt.Key_SysReq:
                 case Qt.Key_Play:
                 case Qt.Key_Pause:
-                    //if (!root.__translucidBackground)
+                    //if (root.passiveNotifications)
                     //    showPassiveNotification((i18n("Toggle Playback"));
                     if (prompter.__play) {
                         prompter.__play = false
