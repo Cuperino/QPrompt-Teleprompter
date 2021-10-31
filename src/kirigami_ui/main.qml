@@ -52,6 +52,7 @@ Kirigami.ApplicationWindow {
     property bool __noScroll: false
     property bool __telemetry: true
     property bool forceQtTextRenderer: false
+    property bool passiveNotifications: true
 
     //property int prompterVisibility: Kirigami.ApplicationWindow.Maximized
     property double __opacity: 1
