@@ -32,16 +32,25 @@ Rectangle {
     readonly property alias backgroundColorDialog: backgroundColorDialog
     property bool hasBackground: color!==appTheme.__backgroundColor || backgroundImage.opacity>0//backgroundImage.visible
     property var backgroundImage: null
-    readonly property real __deepeningFactor: themeSwitch.checked ? 0.89 : 1
+    readonly property real __deepeningFactor: 0.89
+    //readonly property real __deepeningFactor: themeSwitch.checked ? 0.89 : 1
     //color: Qt.rgba(appTheme.__backgroundColor.r*__deepeningFactor, appTheme.__backgroundColor.g*__deepeningFactor, appTheme.__backgroundColor.b*__deepeningFactor, appTheme.__backgroundColor.a)
-    property alias backgroundColor: backgroundSettings.color
+    //property alias backgroundColor: backgroundSettings.color
+    //property color backgroundColor: appTheme.__backgroundColor
+    //property color backgroundColor: appTheme.selection ? appTheme.__backgroundColor : "#FFFFFF" //: "#FFFFFF"
+    property color backgroundColor: switch(appTheme.selection) {
+        case 0: return appTheme.__backgroundColor;
+        case 1: return "#303030";
+        case 2: return "#FAFAFA";
+    }
     color: backgroundColor
     opacity: /*backgroundOpacitySlider.pressed ||*/ parent.toolbar.opacitySlider.pressed ? parent.toolbar.opacitySlider.value/100 : 1
 
     Settings {
         id: backgroundSettings
         category: "background"
-        property color color: "#303030" // "#181818"
+        // property color color: "#303030" // "#181818"
+        //property color color: Qt.rgba(Kirigami.Theme.backgroundColor.r, Kirigami.Theme.backgroundColor.g, Kirigami.Theme.backgroundColor.b, 1)
         property alias image: backgroundImage.source
     }
 

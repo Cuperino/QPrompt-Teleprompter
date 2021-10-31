@@ -54,6 +54,13 @@ Kirigami.Page {
     globalToolBarStyle: Kirigami.Settings.isMobile ? Kirigami.ApplicationHeaderStyle.None : Kirigami.ApplicationHeaderStyle.ToolBar
     padding: 0
 
+    Kirigami.Theme.inherit: false
+    Kirigami.Theme.colorSet: Kirigami.Theme.Window
+    Kirigami.Theme.backgroundColor: Qt.rgba(Kirigami.Theme.backgroundColor.r, Kirigami.Theme.backgroundColor.g, Kirigami.Theme.backgroundColor.b, 0)
+//     Kirigami.Theme.backgroundColor: themeSwitch.checked ? "#00b9d795" : "#00000000"
+//     Kirigami.Theme.textColor: themeSwitch.checked ? "#465c2b" : "#ffffff"
+//     Kirigami.Theme.highlightColor: themeSwitch.checked ? "#89e51c" : "#ffffff"
+
     actions {
         main: Kirigami.Action {
             id: promptingButton

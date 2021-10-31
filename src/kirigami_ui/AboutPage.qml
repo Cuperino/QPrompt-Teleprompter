@@ -24,9 +24,6 @@ import QtQuick 2.12
 import org.kde.kirigami 2.9 as Kirigami
 
 Kirigami.AboutPage {
-    background: Rectangle {
-        color: Kirigami.Theme.alternateBackgroundColor
-    }
 /*
     // property var licenses: []
     aboutData: {
