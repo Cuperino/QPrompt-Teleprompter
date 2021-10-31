@@ -39,7 +39,8 @@ Kirigami.ApplicationWindow {
     // The following line includes macOS among the list of platforms where full screen buttons are hidden. This is done intentionally because macOS provides its own full screen buttons on the window frame and global menu. We shall not mess with what users of each platform expect.
     property bool fullScreenPlatform: Kirigami.Settings.isMobile || ['android', 'ios', 'wasm', 'tvos', 'qnx', 'ipados', 'osx'].indexOf(Qt.platform.os)!==-1
     //readonly property bool __translucidBackground: !Material.background.a // === 0
-    readonly property bool __translucidBackground: !Kirigami.Theme.backgroundColor.a && ['ios', 'wasm', 'tvos', 'qnx', 'ipados'].indexOf(Qt.platform.os)===-1
+    //readonly property bool __translucidBackground: !Kirigami.Theme.backgroundColor.a && ['ios', 'wasm', 'tvos', 'qnx', 'ipados'].indexOf(Qt.platform.os)===-1
+    readonly property bool __translucidBackground: true
     readonly property bool themeIsMaterial: Kirigami.Settings.style==="Material" // || Kirigami.Settings.isMobile
     // mobileOrSmallScreen helps determine when to follow mobile behaviors from desktop non-mobile devices
     readonly property bool mobileOrSmallScreen: Kirigami.Settings.isMobile || root.width < 1220
@@ -113,7 +114,14 @@ Kirigami.ApplicationWindow {
         //readonly property color __fontColor: parent.Material.theme===Material.Light ? "#212121" : "#fff"
         //readonly property color __iconColor: parent.Material.theme===Material.Light ? "#232629" : "#c3c7d1"
         //readonly property color __backgroundColor: __translucidBackground ? (parent.Material.theme===Material.Dark ? "#303030" : "#fafafa") : Kirigami.Theme.backgroundColor
-        readonly property color __backgroundColor: __translucidBackground ? (themeSwitch.checked ? "#303030" : "#fafafa") : Kirigami.Theme.backgroundColor
+        //readonly property color __backgroundColor: __translucidBackground ? (themeSwitch.checked ? "#303030" : "#fafafa") : Kirigami.Theme.backgroundColor
+        property int selection: 0
+        //readonly property color __backgroundColor: Qt.rgba(Kirigami.Theme.backgroundColor.r, Kirigami.Theme.backgroundColor.g, Kirigami.Theme.backgroundColor.b, 1)
+        property color __backgroundColor: switch(appTheme.selection) {
+            case 0: return Qt.rgba(Kirigami.Theme.backgroundColor.r, Kirigami.Theme.backgroundColor.g, Kirigami.Theme.backgroundColor.b, 1);
+            case 1: return "#303030";
+            case 2: return "#FAFAFA";
+        }
     }
     
     // Full screen
@@ -282,18 +290,20 @@ Kirigami.ApplicationWindow {
                     globalMenu.close()
                 }
             }
-            Button {
-                id: themeSwitch
-                text: i18n("Dark &Mode")
-                visible: false
-                //visible: !Kirigami.Settings.isMobile && root.__translucidBackground
-                checked: true
-                checkable: true
-                flat: true
-                onClicked: {
-                    showPassiveNotification(i18n("Feature not yet implemented"))
-                }
-            }
+            // Button {
+            //     id: themeSwitch
+            //     text: i18n("Dark &Mode")
+            //     flat: true
+            //     onClicked: {
+            //         appTheme.selection = (appTheme.selection + 1) % 3;
+            //         const bg = Qt.rgba(Kirigami.Theme.backgroundColor.r, Kirigami.Theme.backgroundColor.g, Kirigami.Theme.backgroundColor.b, 1);
+            //         console.log(bg);
+            //         // If the system theme is active, and its background is either black or the exact same as that of either the material light o dark theme's, skip the system theme.
+            //         if (appTheme.selection===0 && (Qt.colorEqual(bg, "#000000") || Qt.colorEqual(bg, "#FAFAFA") || Qt.colorEqual(bg, "#303030")))
+            //             appTheme.selection = (appTheme.selection + 1) % 3
+            //         showPassiveNotification(i18n("Feature not fully implemented"))
+            //     }
+            // }
         }
         //Kirigami.ActionToolBar {
             //Kirigami.Action {
