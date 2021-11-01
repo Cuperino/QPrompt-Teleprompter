@@ -5,6 +5,7 @@
         <file alias="AboutPage.qml">kirigami_ui/AboutPage.qml</file>
         <file alias="PrompterPage.qml">kirigami_ui/PrompterPage.qml</file>
         <file alias="TelemetryPage.qml">kirigami_ui/TelemetryPage.qml</file>
+        <file alias="RemotePage.qml">kirigami_ui/RemotePage.qml</file>
         <file alias="EditorToolbar.qml">kirigami_ui/EditorToolbar.qml</file>
         <file alias="MarkersDrawer.qml">kirigami_ui/MarkersDrawer.qml</file>
         <file alias="InputsOverlay.qml">kirigami_ui/InputsOverlay.qml</file>
@@ -17,6 +18,7 @@
         <file alias="TimerClock.qml">prompter/TimerClock.qml</file>
         <file alias="ReadRegionOverlay.qml">prompter/ReadRegionOverlay.qml</file>
         <file alias="PrompterBackground.qml">prompter/PrompterBackground.qml</file>
+        <file alias="Remote.qml">prompter/Remote.qml</file>
         <file alias="Flip.qml">prompter/Flip.qml</file>
         <file alias="ProjectionsManager.qml">prompter/ProjectionsManager.qml</file>
         <file alias="Find.qml">prompter/Find.qml</file>
