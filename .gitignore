@@ -15,6 +15,7 @@ object_script.*.Debug
 *_plugin_import.cpp
 /.qmake.cache
 /.qmake.stash
+/3rdparty/*
 *.pro.user
 *.pro.user.*
 *.qbs.user
