@@ -737,9 +737,9 @@ ToolBar {
             }
         }
         RowLayout {
-            visible: root.__translucidBackground && (!mobileOrSmallScreen || (parseInt(prompter.state)!==Prompter.States.Editing && parseInt(prompter.state)!==Prompter.States.Prompting)) // This check isn't optimized in case more prompter states get added in the future, even tho I think that is unlikely.
+            visible: root.__translucidBackground && (!Kirigami.Settings.isMobile || (parseInt(prompter.state)!==Prompter.States.Editing && parseInt(prompter.state)!==Prompter.States.Prompting)) // This check isn't optimized in case more prompter states get added in the future, even tho I think that is unlikely.
             ToolButton {
-                visible: !mobileOrSmallScreen
+                visible: !Kirigami.Settings.isMobile
                 text: "\uE810"
                 enabled: false
                 contentItem: Loader { sourceComponent: textComponent }
