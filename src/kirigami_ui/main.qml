@@ -140,6 +140,10 @@ Kirigami.ApplicationWindow {
         root.pageStack.layers.clear()
         root.pageStack.layers.push(aboutPageComponent, {aboutData: aboutData})
     }
+    function loadRemoteControlPage() {
+        root.pageStack.layers.clear()
+        root.pageStack.layers.push(remoteControlPageComponent, {})
+    }
     function loadTelemetryPage() {
         root.pageStack.layers.clear()
         root.pageStack.layers.push(telemetryPageComponent)
@@ -291,6 +295,14 @@ Kirigami.ApplicationWindow {
                     globalMenu.close()
                 }
             }
+            // Button {
+            //     text: i18n("Remote")
+            //     flat: true
+            //     onClicked: {
+            //         root.pageStack.layers.push(remoteControlPageComponent, {})
+            //         globalMenu.close()
+            //     }
+            // }
             // Button {
             //     id: themeSwitch
             //     text: i18n("Dark &Mode")
@@ -1049,6 +1061,10 @@ Kirigami.ApplicationWindow {
     Component {
         id: aboutPageComponent
         AboutPage {}
+    }
+    Component {
+        id: remoteControlPageComponent
+        RemotePage {}
     }
     Component {
         id: telemetryPageComponent
