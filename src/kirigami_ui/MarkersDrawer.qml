@@ -60,19 +60,24 @@ Kirigami.OverlayDrawer {
             Label {
                 text: model.text
             }
-            //actions: [
-            //Action {
-            //    icon.source: "qrc:/images/qprompt.png"
-            //    //icon.name: "document"
-            //    //text: "\uE846"
-            //    //font.family: "fonts/fontello.ttf"
-            //    onTriggered: print("Action 1 clicked")
-            //}//,
-            ////Action {
-            //    //icon.name: "css-keyboard"
-            //    //onTriggered: print("Action 1 clicked")
-            ////}
-            //]
+            /*actions: [
+            Kirigami.Action {
+                icon.name: "document-properties"
+                onTriggered: {
+                    print("Edit clicked")
+                    // Select marker in document
+                    // Open marker edit dialog
+                }
+            },
+            Kirigami.Action {
+                enabled: model.link !== ""
+                icon.name: "insert-link"
+                onTriggered: {
+                    print("Test link")
+                    // Send test HTTP request
+                }
+            }
+            ]*/
         }
     }
 
