@@ -16,3 +16,6 @@
 [submodule "3rdparty/ki18n"]
 	path = 3rdparty/ki18n
 	url = https://invent.kde.org/frameworks/ki18n
+[submodule "3rdparty/KDMacTouchBar"]
+	path = 3rdparty/KDMacTouchBar
+	url = https://github.com/KDAB/KDMacTouchBar.git
