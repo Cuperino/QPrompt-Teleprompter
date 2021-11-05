@@ -338,6 +338,7 @@ Kirigami.ApplicationWindow {
         // Hide menuBar on mobile, on themes with translucid background, on full screen, and when the reading region is on top while not in edit mode.
         // Algebraically optimized logic
         visible: !(Kirigami.Settings.isMobile || root.__translucidBackground || root.visibility===Kirigami.ApplicationWindow.FullScreen || (root.pageStack.currentItem.overlay.atTop && parseInt(root.pageStack.currentItem.prompter.state)!==Prompter.States.Editing))
+        enabled: visible
         // Same thing, readable logic
         //visible: !Kirigami.Settings.isMobile && !root.__translucidBackground && root.visibility!==Kirigami.ApplicationWindow.FullScreen && (!root.pageStack.currentItem.overlay.atTop && parseInt(root.pageStack.currentItem.prompter.state)!==Prompter.States.Editing)
         
@@ -630,10 +631,11 @@ Kirigami.ApplicationWindow {
             }
         }
     }*/
-/*
+
     Labs.MenuBar {
         id: nativeMenus
         window: root
+        menus: [
         Labs.Menu {
             title: i18n("&File")
             
@@ -658,7 +660,7 @@ Kirigami.ApplicationWindow {
                 text: i18n("&Quit")
                 onTriggered: close()
             }
-        }
+        },
         
         Labs.Menu {
             title: i18n("&Edit")
@@ -689,7 +691,7 @@ Kirigami.ApplicationWindow {
                 enabled: root.pageStack.currentItem.editor.canPaste
                 onTriggered: root.pageStack.currentItem.editor.paste()
             }
-        }
+        },
         
         Labs.Menu {
             title: i18n("&View")
@@ -795,7 +797,8 @@ Kirigami.ApplicationWindow {
                     onTriggered: root.pageStack.currentItem.overlay.positionState = ReadRegionOverlay.PositionStates.Fixed
                 }
             }
-        }
+        },
+
         Labs.Menu {
             title: i18n("For&mat")
             
@@ -862,7 +865,8 @@ Kirigami.ApplicationWindow {
                 text: i18n("Fo&nt Color")
                 onTriggered: root.pageStack.currentItem.colorDialog.open()
             }
-        }
+        },
+
         Labs.Menu {
             title: i18n("Controls")
 
@@ -894,7 +898,8 @@ Kirigami.ApplicationWindow {
                 checked: root.__invertScrollDirection
                 onTriggered: root.__invertScrollDirection = !root.__invertScrollDirection
             }
-        }
+        },
+
         Labs.Menu {
             title: i18n("&Help")
             
@@ -923,8 +928,9 @@ Kirigami.ApplicationWindow {
                 icon.source: "qrc:/images/qprompt.png"
             }
         }
+        ]
     }
-*/
+
     // Right Context Drawer
     contextDrawer: Kirigami.ContextDrawer {
         id: contextDrawer
