@@ -611,13 +611,13 @@ Kirigami.ApplicationWindow {
                 icon.name: "tools-report-bug"
             }
             MenuSeparator { }
-            MenuItem {
-                visible: false
-                text: i18n("Get &Studio Edition")
-                onTriggered: Qt.openUrlExternally("https://cuperino.com/qprompt")
-                icon.name: "software-center"
-            }
-            //MenuSeparator { }
+            // MenuItem {
+            //     visible: false
+            //     text: i18n("Get &Studio Edition")
+            //     onTriggered: Qt.openUrlExternally("https://studio.qprompt.app/")
+            //     icon.name: "software-center"
+            // }
+            // MenuSeparator { }
             MenuItem {
                 text: i18n("Load User &Guide")
                 icon.name: "help-info"
@@ -909,12 +909,12 @@ Kirigami.ApplicationWindow {
                 icon.name: "tools-report-bug"
             }
             Labs.MenuSeparator { }
-            Labs.MenuItem {
-                visible: false
-                text: i18n("Get &Studio Edition")
-                onTriggered: Qt.openUrlExternally("https://cuperino.com/qprompt")
-                icon.name: "software-center"
-            }
+            //Labs.MenuItem {
+            //     visible: false
+            //     text: i18n("Get &Studio Edition")
+            //     onTriggered: Qt.openUrlExternally("https://studio.qprompt.app/")
+            //     icon.name: "software-center"
+            //}
             //Labs.MenuSeparator { }
             Labs.MenuItem {
                 text: i18n("Load User &Guide")
