@@ -85,6 +85,8 @@ if(ANDROID)
 	if(NOT ANDROID_ABIS)
 		set(ANDROID_ABIS "armeabi-v7a") # arm64-v8a
 	endif()
+else()
+set(DBINARY_ICONS_RESOURCE ON)
 endif()
 
 if(NOT CMAKE_BUILD_TYPE)
@@ -139,7 +141,7 @@ find_package(KF5 ${KF_MIN_VERSION} REQUIRED COMPONENTS
     Kirigami2
     I18n  # NO_MODULE
     CoreAddons
-    #IconThemes
+    IconThemes
 )
 
 if (WIN32 OR UNIX) # AND NOT ANDROID
