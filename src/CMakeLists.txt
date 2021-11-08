@@ -238,7 +238,7 @@ if(ANDROID OR APPLE OR WASM)
         window
         window-duplicate
     )
-elseif(WIN32)
+/*elseif(WIN32)
     kirigami_package_breeze_icons(ICONS
         application-exit
         auto-transition
@@ -289,7 +289,7 @@ elseif(WIN32)
         view-right-close
         window
         window-duplicate
-    )
+    )*/
 endif()
 
 # Get static QML. Gets ignored if not a static build
