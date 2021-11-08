@@ -182,7 +182,7 @@ else()
 endif()
 
 # Copy icons that are not font based
-if(ANDROID OR APPLE OR WASM)
+if(ANDROID OR APPLE OR WIN32 OR WASM)
     # Breeze icons names can be found at https://cdn.kde.org/breeze-icons/icons.html
     kirigami_package_breeze_icons(ICONS
         application-exit
@@ -253,8 +253,3 @@ if (WIN32 OR UNIX) # AND NOT ANDROID)
     install(PROGRAMS com.cuperino.qprompt.desktop DESTINATION ${KDE_INSTALL_APPDIR})
     install(TARGETS ${PROJECT_NAME} ${KDE_INSTALL_TARGETS_DEFAULT_ARGS})
 endif()
-
-# if (WIN32)
-#     include(Windeployqt)
-#     windeployqt(nitroshare-cli ${INSTALL_BIN_PATH})
-# endif()
