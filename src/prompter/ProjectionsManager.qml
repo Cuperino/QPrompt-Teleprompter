@@ -22,7 +22,7 @@
 
 import QtQuick 2.12
 import org.kde.kirigami 2.11 as Kirigami
-import QtQuick.Window 2.12
+import QtQuick.Window 2.15
 import QtQuick.Dialogs 1.2
 import Qt.labs.settings 1.0
 
@@ -49,7 +49,7 @@ Item {
         Window {
             id: projectionWindow
             title: i18n("Projection Window")
-            //transientParent: root
+            transientParent: root
             screen: model.screen
             modality: Qt.NonModal
             //x: model.x
