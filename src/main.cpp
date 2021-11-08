@@ -93,6 +93,26 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
     // Set the application metadata
     KAboutData::setApplicationData(aboutData);
 
+    #if defined(Q_OS_WIN) || defined (Q_OS_MACOS)
+    const QStringList themes {"/icons/breeze/breeze-icons.rcc", "/icons/breeze-dark/breeze-icons-dark.rcc"};
+    for(const QString theme : themes ) {
+        const QString themePath = QStandardPaths::locate(QStandardPaths::AppDataLocation, theme);
+        if (!themePath.isEmpty()) {
+            const QString iconSubdir = theme.left(theme.lastIndexOf('/'));
+            if (QResource::registerResource(themePath, iconSubdir)) {
+                if (QFileInfo::exists(QLatin1Char(':') + iconSubdir + QStringLiteral("/index.theme"))) {
+                    qDebug() << "Loaded icon theme:" << theme;
+                } else {
+                    qWarning() << "No index.theme found in" << theme;
+                    QResource::unregisterResource(themePath, iconSubdir);
+                }
+            } else {
+                qWarning() << "Invalid rcc file" << theme;
+            }
+        }
+    }
+    #endif
+
     QFontDatabase fontDatabase;
     if (fontDatabase.addApplicationFont(":/fonts/fontello.ttf") == -1)
         qWarning() << i18n("Failed to load icons from fontello.ttf");
