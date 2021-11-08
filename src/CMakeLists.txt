@@ -182,7 +182,7 @@ else()
 endif()
 
 # Copy icons that are not font based
-if(ANDROID OR APPLE OR WIN32 OR WASM)
+if(ANDROID OR APPLE OR WASM)
     # Breeze icons names can be found at https://cdn.kde.org/breeze-icons/icons.html
     kirigami_package_breeze_icons(ICONS
         application-exit
@@ -212,6 +212,58 @@ if(ANDROID OR APPLE OR WIN32 OR WASM)
         go-down
         go-next
         go-previous
+        go-up
+        handle-sort
+        help-about
+        insert-image
+        key-enter
+        keyframe
+        keyframe-add
+        list-remove
+        object-flip-horizontal
+        object-flip-vertical
+        object-rotate-left
+        object-rotate-right
+        paint-none
+        player-time
+        sidebar-collapse-left
+        sidebar-collapse-right
+        tool_color_eraser
+        tools-report-bug
+        transform-browse
+        transform-move-horizontal
+        transform-move-vertical
+        view-left-close
+        view-right-close
+        window
+        window-duplicate
+    )
+elseif(WIN32)
+    kirigami_package_breeze_icons(ICONS
+        application-exit
+        auto-transition
+        chronometer
+        chronometer-pause
+        circular-arrow-shape
+        configure
+        dialog-ok-apply
+        document-new
+        document-open
+        document-open-recent
+        document-save
+        document-save-as
+        document-send
+        draw-rectangle
+        edit-clear-history
+        edit-redo
+        edit-undo
+        filename-bpm-amarok
+        format-font-size-more
+        format-justify-center
+        format-text-color
+        gnumeric-object-rectangle
+        gnumeric-object-scrollbar
+        go-down
         go-up
         handle-sort
         help-about
