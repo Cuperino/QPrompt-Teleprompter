@@ -111,6 +111,11 @@ if(ANDROID)
         QmlImportScanner  # Used to get static QML. Gets ignored if not a static build
         QuickCompiler
     )
+    find_package(KF5 ${KF_MIN_VERSION} REQUIRED COMPONENTS
+        Kirigami2
+        I18n  # NO_MODULE
+        CoreAddons
+    )
 elseif(WASM OR IOS)
     find_package(Qt5 ${QT5_MIN_VERSION} REQUIRED NO_MODULE COMPONENTS
         Core
@@ -120,6 +125,11 @@ elseif(WASM OR IOS)
         QuickControls2
         #QmlImportScanner  # Used to get static QML. Gets ignored if not a static build
         #QuickCompiler
+    )
+    find_package(KF5 ${KF_MIN_VERSION} REQUIRED COMPONENTS
+        Kirigami2
+        I18n  # NO_MODULE
+        CoreAddons
     )
 else()
     find_package(Qt5 ${QT5_MIN_VERSION} REQUIRED NO_MODULE COMPONENTS
@@ -135,14 +145,14 @@ else()
         QmlImportScanner  # Used to get static QML. Gets ignored if not a static build
         QuickCompiler
     )
+    find_package(KF5 ${KF_MIN_VERSION} REQUIRED COMPONENTS
+        Kirigami2
+        I18n  # NO_MODULE
+        CoreAddons
+        IconThemes
+    )
 endif()
 
-find_package(KF5 ${KF_MIN_VERSION} REQUIRED COMPONENTS
-    Kirigami2
-    I18n  # NO_MODULE
-    CoreAddons
-    IconThemes
-)
 
 if (WIN32 OR UNIX) # AND NOT ANDROID
     include(KDEInstallDirs)

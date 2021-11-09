@@ -53,12 +53,21 @@
 
 Q_DECL_EXPORT int main(int argc, char *argv[])
 {
-    qDebug() << QIcon::themeSearchPaths();
-    //QIcon::setThemeSearchPath("");
-    QIcon::setThemeName("breeze");
-    QIcon::setFallbackThemeName("breeze-icons");
-//     QIcon::setThemeName("candy-icons");
-//     #if defined(Q_OS_WIN) || defined (Q_OS_MACOS)
+//     // Do not call before QGuiApplication/QApplication or it will clear default paths
+//     qDebug() << QIcon::themeSearchPaths();
+//     QIcon::setThemeSearchPath("");
+
+    // These should work on non Linux systems. I'm not sure why they don't...
+//     QIcon::setThemeName("breeze");
+    QIcon::setThemeName("breeze-dark");
+//     // These icon themes worked under KDE Plasma
+//     QIcon::setThemeName("Yaru");
+//     QIcon::setThemeName("Tela");
+
+//     // FallbackThemeName has no effect under Linux
+//     QIcon::setFallbackThemeName("Tela");
+
+    //     #if defined(Q_OS_WIN) || defined (Q_OS_MACOS)
 //     const QStringList themes {"/icons/breeze/breeze-icons.rcc", "/icons/breeze-dark/breeze-icons-dark.rcc"};
 //     for(const QString theme : themes ) {
 //         const QString themePath = QStandardPaths::locate(QStandardPaths::AppDataLocation, theme);
