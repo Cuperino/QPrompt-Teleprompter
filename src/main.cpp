@@ -95,7 +95,7 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
 
     qDebug() << QIcon::themeSearchPaths();
     //QIcon::setThemeSearchPath("");
-    QIcon::setThemeName("breeze");
+    QIcon::setThemeName("breeze-icons");
 //     QIcon::setThemeName("candy-icons");
 //     #if defined(Q_OS_WIN) || defined (Q_OS_MACOS)
 //     const QStringList themes {"/icons/breeze/breeze-icons.rcc", "/icons/breeze-dark/breeze-icons-dark.rcc"};
