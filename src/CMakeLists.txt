@@ -177,12 +177,12 @@ else()
         KF5::I18n
         KF5::Kirigami2
         KF5::CoreAddons
-        KF5::IconThemes
+        #KF5::IconThemes
     )
 endif()
 
 # Copy icons that are not font based
-if(ANDROID OR IOS OR WASM)
+if(ANDROID OR APPLE OR WIN32 OR IOS OR WASM)
     # Breeze icons names can be found at https://cdn.kde.org/breeze-icons/icons.html
     kirigami_package_breeze_icons(ICONS
         application-exit
