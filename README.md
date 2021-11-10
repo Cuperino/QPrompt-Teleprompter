@@ -1,5 +1,4 @@
 [![GitHub license](https://img.shields.io/badge/license-GPL3-blue.svg)](https://raw.githubusercontent.com/Cuperino/QPrompt/master/LICENSE)
-[![GitHub release](https://img.shields.io/github/release/Cuperino/QPrompt.svg)](https://github.com/Cuperino/QPrompt/releases)
 [![Issues still open](http://isitmaintained.com/badge/open/Cuperino/QPrompt.svg)](http://isitmaintained.com/project/Cuperino/QPrompt "Issues still open")
 [![GitHub contributors](https://img.shields.io/github/contributors/Cuperino/QPrompt.svg)](https://github.com/Cuperino/QPrompt/graphs/contributors)
 ![GitHub commit activity](https://img.shields.io/github/commit-activity/m/Cuperino/QPrompt)
