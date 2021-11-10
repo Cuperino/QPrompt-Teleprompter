@@ -1,4 +1,4 @@
-Open source personal teleprompter software for video makers. Built with ease of use, productivity, and smooth performance in mind. QPrompt's Qt base and Kirigami based UI allows to run the program on any device, and ensures recording productivity.
+Open source personal teleprompter software for all video makers. Built with ease of use, productivity, and smooth performance in mind. QPrompt's Qt base and Kirigami based UI allows to run the program on any device, and ensures recording productivity.
 
 QPrompt runs on Linux, Windows, macOS, and Android. This enables you to turn the hardware at your disposition into a teleprompter to record videos with. We aim to bring support to iPad, iOS, and web browsers (through Web Assembly) in the near future.
 

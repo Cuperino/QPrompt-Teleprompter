@@ -1,9 +1,16 @@
+[![GitHub license](https://img.shields.io/badge/license-GPL3-blue.svg)](https://raw.githubusercontent.com/Cuperino/QPrompt/master/LICENSE)
+[![GitHub release](https://img.shields.io/github/release/Cuperino/QPrompt.svg)](https://github.com/Cuperino/QPrompt/releases)
+[![Issues still open](http://isitmaintained.com/badge/open/Cuperino/QPrompt.svg)](http://isitmaintained.com/project/Cuperino/QPrompt "Issues still open")
+[![GitHub contributors](https://img.shields.io/github/contributors/Cuperino/QPrompt.svg)](https://github.com/Cuperino/QPrompt/graphs/contributors)
+![GitHub commit activity](https://img.shields.io/github/commit-activity/m/Cuperino/QPrompt)
+[![SourceForge](https://img.shields.io/sourceforge/dm/qprompt.svg)](https://sourceforge.net/projects/qprompt/)
+
 QPrompt
 =========
 
-Open source personal teleprompter software for professionals. Built with ease of use, fast performance, control accuracy, and cross-platform support in mind. QPrompt's convergent user interface can be built to run on Linux, Windows, macOS, iOS, and Android.
+Personal teleprompter software for all video makers. Built with ease of use, productivity, and smooth performance in mind. QPrompt's runs on Linux, Windows, macOS, and Android.
 
-QPrompt is written in QML and C++, using the Qt and Kirigami frameworks.
+QPrompt is written in C++ and QML, using the Qt and Kirigami frameworks to provide a fast and flexible interface that works with both PC and tablet based teleprompter hardware.
 
 # Copyright
 Copyright (C) 2021 Javier O. Cordero Pérez
@@ -23,4 +30,4 @@ You should have received a copy of the GNU General Public License
 along with QPrompt.  If not, see <https://www.gnu.org/licenses/>.
 
 # Pun Facts
-QPrompt is short for Cue Prompter, something TV directors say to cue teleprompter operators. Teleprompters are sometimes referred to as "autocue". Also, QPrompt is built using the Qt framework. The Q is meant to reference all of these things and also the word "quick", because teleprompter operators must be quick to respond to what happens on set.
+QPrompt is short for Cue Prompter, something said to cue teleprompter operators. Teleprompters are sometimes referred to as "autocue". Also, QPrompt is built using the Qt framework. The Q is meant to reference all of these things and also the word "quick", because teleprompter operators must be quick to respond to what happens on set.
