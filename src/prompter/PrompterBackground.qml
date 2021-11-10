@@ -44,7 +44,7 @@ Rectangle {
         case 2: return "#FAFAFA";
     }
     color: backgroundColor
-    opacity: /*backgroundOpacitySlider.pressed ||*/ parent.toolbar.opacitySlider.pressed ? parent.toolbar.opacitySlider.value/100 : 1
+    opacity: /*backgroundOpacitySlider.pressed ||*/ parent.toolbar.opacitySlider.pressed || projectionManager.isPreview ? parent.toolbar.opacitySlider.value/100 : 1
 
     Settings {
         id: backgroundSettings
