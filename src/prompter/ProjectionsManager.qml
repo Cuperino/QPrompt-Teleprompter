@@ -246,6 +246,8 @@ Item {
                     flip = displayModel.get(j).flipSetting;
                     break;
                 }
+                else
+                    flip = this.defaultDisplayMode;
             // Comment the following line to debug with a single screen.
             if (flip!==0 /*&& Qt.application.screens[i].name!==screen.name*/)
                 projectionModel.append ({
