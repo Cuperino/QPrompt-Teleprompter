@@ -52,10 +52,10 @@ Item {
             transientParent: root
             screen: model.screen
             modality: Qt.NonModal
-            //x: model.x
-            //y: model.y
-            //width: model.width
-            //height: model.height
+            x: model.x
+            y: model.y
+            width: model.width
+            height: model.height
             visibility: Qt.platform.os==="osx" ? Kirigami.ApplicationWindow.Maximized : Kirigami.ApplicationWindow.FullScreen
             flags: root.flags
             visible: true
@@ -252,10 +252,10 @@ Item {
                     "id": i,
                     "screen": Qt.application.screens[i],
                     "name": Qt.application.screens[i].name, // + ' ' + Qt.application.screens[i].model + ' ' + Qt.application.screens[i].manufacturer,
-                    //"x": Qt.application.screens[i].virtualX,
-                    //"y": Qt.application.screens[i].virtualY,
-                    //"width": Qt.application.screens[i].desktopAvailableWidth,
-                    //"height": Qt.application.screens[i].desktopAvailableHeight,
+                    "x": Qt.application.screens[i].virtualX,
+                    "y": Qt.application.screens[i].virtualY,
+                    "width": Qt.application.screens[i].desktopAvailableWidth,
+                    "height": Qt.application.screens[i].desktopAvailableHeight,
                     "flip": flip,//.projectionSetting,
                     "p": ""
                 });

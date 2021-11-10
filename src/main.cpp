@@ -60,7 +60,7 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
     // These should work on non Linux systems. I'm not sure why they don't...
 //     QIcon::setThemeName("breeze");
 //     QIcon::setThemeName("breeze-dark");
-    QIcon::setThemeName("/icons/breeze-dark/breeze-icons-dark.rcc");
+//     QIcon::setThemeName("/icons/breeze-dark/breeze-icons-dark.rcc");
 //     // These icon themes worked under KDE Plasma
 //     QIcon::setThemeName("Yaru");
 //     QIcon::setThemeName("Tela");
