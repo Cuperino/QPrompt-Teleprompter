@@ -9,7 +9,7 @@ QPrompt
 
 Personal teleprompter software for all video makers. Built with ease of use, productivity, and smooth performance in mind. QPrompt's runs on Linux, Windows, macOS, and Android.
 
-QPrompt is written in C++ and QML, using the Qt and Kirigami frameworks to provide a fast and flexible interface that works for both tablet and PC based teleprompter hardware.
+QPrompt is written in C++ and QML, using the Qt and Kirigami frameworks to provide a fast and flexible interface that works for tablet and PC based teleprompters alike.
 
 # Copyright
 Copyright (C) 2021 Javier O. Cordero Pérez
