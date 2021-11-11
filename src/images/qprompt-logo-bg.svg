@@ -1,25 +1,79 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <svg
-   width="33.778206mm"
-   height="33.778206mm"
-   viewBox="0 0 33.778206 33.778206"
+   width="256"
+   height="256"
+   viewBox="0 0 67.733336 67.733335"
    version="1.1"
    id="svg8"
+   sodipodi:docname="qprompt-logo-bg.svg"
+   inkscape:version="1.1.1 (eb90963e84, 2021-10-02)"
+   inkscape:export-filename="/home/javier/Development/Teleprompters/qprompt/QPrompt/src/images/qprompt-logo-bg.png"
+   inkscape:export-xdpi="768.00006"
+   inkscape:export-ydpi="768.00006"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns="http://www.w3.org/2000/svg"
    xmlns:svg="http://www.w3.org/2000/svg"
    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
    xmlns:cc="http://creativecommons.org/ns#"
    xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <sodipodi:namedview
+     id="namedview908"
+     pagecolor="#ffffff"
+     bordercolor="#eeeeee"
+     borderopacity="1"
+     inkscape:pageshadow="0"
+     inkscape:pageopacity="0"
+     inkscape:pagecheckerboard="0"
+     inkscape:document-units="mm"
+     showgrid="false"
+     inkscape:zoom="2.1978843"
+     inkscape:cx="124.43785"
+     inkscape:cy="157.19663"
+     inkscape:window-width="1920"
+     inkscape:window-height="1168"
+     inkscape:window-x="0"
+     inkscape:window-y="32"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg8"
+     units="px"
+     showguides="true"
+     inkscape:guide-bbox="true">
+    <sodipodi:guide
+       position="0.0022392202,25.80906"
+       orientation="1,0"
+       id="guide1005" />
+    <sodipodi:guide
+       position="67.732561,35.973593"
+       orientation="1,0"
+       id="guide1007" />
+    <sodipodi:guide
+       position="33.746996,32.357857"
+       orientation="1,0"
+       id="guide1009" />
+    <sodipodi:guide
+       position="-3.3208791,67.733335"
+       orientation="0,-1"
+       id="guide1091" />
+    <sodipodi:guide
+       position="5.6616697,-0.0070305447"
+       orientation="0,-1"
+       id="guide1093" />
+    <sodipodi:guide
+       position="10.738242,33.862766"
+       orientation="0,-1"
+       id="guide1095" />
+  </sodipodi:namedview>
   <title
      id="title1050">QPrompt Logo</title>
   <defs
      id="defs2">
     <filter
-       style="color-interpolation-filters:sRGB;"
+       style="color-interpolation-filters:sRGB"
        id="filter136"
-       x="-0.040458662"
-       y="-0.03694299"
-       width="1.1146329"
+       x="-0.040458661"
+       y="-0.036942989"
+       width="1.1146328"
        height="1.073886">
       <feFlood
          flood-opacity="0.498039"
@@ -50,7 +104,7 @@
          id="feComposite134" />
     </filter>
     <filter
-       style="color-interpolation-filters:sRGB;"
+       style="color-interpolation-filters:sRGB"
        id="filter250"
        x="-0.011196076"
        y="-0.022793233"
@@ -85,7 +139,7 @@
          id="feComposite248" />
     </filter>
     <filter
-       style="color-interpolation-filters:sRGB;"
+       style="color-interpolation-filters:sRGB"
        id="filter1259"
        x="-0.026586015"
        y="-0.047172192"
@@ -157,9 +211,16 @@
       </cc:Work>
     </rdf:RDF>
   </metadata>
+  <rect
+     style="fill:#ffffff;stroke-width:0.639;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers"
+     id="rect1119"
+     width="67.730324"
+     height="67.740364"
+     x="0.0022392203"
+     y="4.9999971e-07" />
   <g
      id="layer1"
-     transform="translate(-14.2886,-30.733825)">
+     transform="translate(2.9847152,-13.707301)">
     <path
        style="fill:#232629;fill-opacity:1;stroke:none;stroke-width:0.236776"
        id="path2783"
