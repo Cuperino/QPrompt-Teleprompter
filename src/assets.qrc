@@ -8,6 +8,7 @@
         <file alias="untitled.html">documents/untitled.html</file>
         <!-- Icons -->
         <file>images/qprompt.png</file>
+        <file>images/qprompt-logo-wireframe.png</file>
         <!-- Fonts -->
         <!-- Icon Fonts -->
         <file alias="fonts/fontello.ttf">fonts/icons/fontello.ttf</file>

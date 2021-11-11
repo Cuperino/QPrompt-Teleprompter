@@ -144,8 +144,11 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
 
     // Un-comment to force RightToLeft Layout for debugging purposes
     //app.setLayoutDirection(Qt::RightToLeft);
+#ifdef Q_OS_ANDROID
+    app.setWindowIcon(QIcon(":/images/qprompt-logo-wireframe.png"));
+#else
     app.setWindowIcon(QIcon(":/images/qprompt.png"));
-    
+#endif
     engine.rootContext()->setContextObject(new KLocalizedContext(&engine));
     engine.rootContext()->setContextProperty(QStringLiteral("aboutData"), QVariant::fromValue(KAboutData::applicationData()));
 

@@ -5,7 +5,7 @@
    viewBox="0 0 33.778206 33.778206"
    version="1.1"
    id="svg8"
-   sodipodi:docname="qprompt.svg"
+   sodipodi:docname="qprompt-logo-wireframe.svg"
    inkscape:export-filename="/home/javier/Imaginary/Tech/teleprompter/logos/QthePromtper_logo_b15.png"
    inkscape:export-xdpi="770.01129"
    inkscape:export-ydpi="770.01129"
@@ -132,10 +132,10 @@
   </defs>
   <sodipodi:namedview
      id="base"
-     pagecolor="#ffffff"
+     pagecolor="#000000"
      bordercolor="#666666"
      borderopacity="1.0"
-     inkscape:pageopacity="0.0"
+     inkscape:pageopacity="0"
      inkscape:pageshadow="2"
      inkscape:zoom="4.5756601"
      inkscape:cx="84.905782"
@@ -197,8 +197,16 @@
      id="layer1"
      transform="translate(-14.2886,-30.733825)">
     <path
+       style="mix-blend-mode:normal;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.263131px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;filter:url(#filter250)"
+       d="M 34.740873,38.543004 38.661334,49.072445 17.225252,38.569837 c 0,0 14.801938,-0.02683 17.515621,-0.02683 z"
+       id="path833"
+       sodipodi:nodetypes="cccc"
+       inkscape:export-filename="/home/javier/Imaginary/Tech/teleprompter/logos/QthePromtper_logo_B13.png"
+       inkscape:export-xdpi="718.47687"
+       inkscape:export-ydpi="718.47687" />
+    <path
        sodipodi:type="star"
-       style="fill:#232629;fill-opacity:1;stroke:none;stroke-width:0.236776"
+       style="fill:none;fill-opacity:1;stroke:#d9d9d9;stroke-width:0.631883;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
        id="path2783"
        sodipodi:sides="8"
        sodipodi:cx="31.177704"
@@ -212,16 +220,8 @@
        inkscape:randomized="0"
        d="m 47.859475,53.456902 c -0.06698,0.191515 -8.828438,9.999 -9.011219,10.087062 -0.182782,0.08806 -13.31301,0.827713 -13.504525,0.760736 -0.191515,-0.06698 -9.999001,-8.828438 -10.087063,-9.01122 -0.08806,-0.182781 -0.827713,-13.313009 -0.760736,-13.504524 0.06698,-0.191515 8.828439,-9.999001 9.01122,-10.087063 0.182782,-0.08806 13.31301,-0.827713 13.504525,-0.760736 0.191515,0.06698 9.999001,8.828438 10.087062,9.01122 0.08806,0.182781 0.827713,13.313009 0.760736,13.504525 z"
        transform="matrix(1.0108531,0,0,1.0116741,-0.34946144,-0.55528551)" />
-    <path
-       style="fill:#3daee9;fill-opacity:1;stroke:none;stroke-width:0.263131px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;filter:url(#filter250)"
-       d="M 34.740873,38.543004 38.661334,49.072445 17.225252,38.569837 c 0,0 14.801938,-0.02683 17.515621,-0.02683 z"
-       id="path833"
-       sodipodi:nodetypes="cccc"
-       inkscape:export-filename="/home/javier/Imaginary/Tech/teleprompter/logos/QthePromtper_logo_B13.png"
-       inkscape:export-xdpi="718.47687"
-       inkscape:export-ydpi="718.47687" />
     <rect
-       style="fill:#1cdc9a;fill-opacity:1;stroke:none;stroke-width:0.253661;filter:url(#filter1259)"
+       style="mix-blend-mode:normal;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.253661;filter:url(#filter1259)"
        id="rect852"
        width="9.0273027"
        height="5.0877433"
@@ -231,7 +231,7 @@
        transform="matrix(1,0,0.3588849,0.93338183,0,0)" />
     <text
        xml:space="preserve"
-       style="font-style:normal;font-weight:normal;font-size:9.13432px;line-height:1.25;font-family:sans-serif;fill:#fcfcf9;fill-opacity:1;stroke:none;stroke-width:0.192584;filter:url(#filter136)"
+       style="font-style:normal;font-weight:normal;font-size:9.13432px;line-height:1.25;font-family:sans-serif;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.192535;stroke-miterlimit:4;stroke-dasharray:none;filter:url(#filter136)"
        x="21.153721"
        y="50.090759"
        id="text2773"
@@ -239,18 +239,18 @@
          sodipodi:role="line"
          x="21.153721"
          y="50.090759"
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:9.13432px;font-family:Dyuthi;-inkscape-font-specification:Dyuthi;fill:#fcfcf9;fill-opacity:1;stroke-width:0.192584"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:9.13432px;font-family:Dyuthi;-inkscape-font-specification:Dyuthi;fill:#ffffff;fill-opacity:1;stroke-width:0.192535;stroke-miterlimit:4;stroke-dasharray:none"
          id="tspan2779">Q</tspan></text>
     <text
        xml:space="preserve"
-       style="font-style:normal;font-weight:normal;font-size:8.11258px;line-height:1.25;font-family:sans-serif;text-align:center;text-anchor:middle;fill:#fcfcf9;fill-opacity:1;stroke:none;stroke-width:0.171042;filter:url(#filter136)"
+       style="font-style:normal;font-weight:normal;font-size:8.11258px;line-height:1.25;font-family:sans-serif;text-align:center;text-anchor:middle;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.171042;filter:url(#filter136)"
        x="30.778154"
        y="57.610119"
        id="text2773-8"><tspan
          sodipodi:role="line"
          x="30.778154"
          y="57.610119"
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:8.11258px;font-family:Dyuthi;-inkscape-font-specification:Dyuthi;text-align:center;text-anchor:middle;fill:#fcfcf9;fill-opacity:1;stroke-width:0.171042"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:8.11258px;font-family:Dyuthi;-inkscape-font-specification:Dyuthi;text-align:center;text-anchor:middle;fill:#ffffff;fill-opacity:1;stroke-width:0.171042"
          id="tspan2779-3">Prompt</tspan></text>
     <text
        xml:space="preserve"
