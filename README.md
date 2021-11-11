@@ -1,5 +1,4 @@
 [![GitHub license](https://img.shields.io/badge/license-GPL3-blue.svg)](https://raw.githubusercontent.com/Cuperino/QPrompt/master/LICENSE)
-[![GitHub release](https://img.shields.io/github/release/Cuperino/QPrompt.svg)](https://github.com/Cuperino/QPrompt/releases)
 [![Issues still open](http://isitmaintained.com/badge/open/Cuperino/QPrompt.svg)](http://isitmaintained.com/project/Cuperino/QPrompt "Issues still open")
 [![GitHub contributors](https://img.shields.io/github/contributors/Cuperino/QPrompt.svg)](https://github.com/Cuperino/QPrompt/graphs/contributors)
 ![GitHub commit activity](https://img.shields.io/github/commit-activity/m/Cuperino/QPrompt)
@@ -10,7 +9,7 @@ QPrompt
 
 Personal teleprompter software for all video makers. Built with ease of use, productivity, and smooth performance in mind. QPrompt's runs on Linux, Windows, macOS, and Android.
 
-QPrompt is written in C++ and QML, using the Qt and Kirigami frameworks to provide a fast and flexible interface that works with both PC and tablet based teleprompter hardware.
+QPrompt is written in C++ and QML, using the Qt and Kirigami frameworks to provide a fast and flexible interface that works for tablet and PC based teleprompters alike.
 
 # Copyright
 Copyright (C) 2021 Javier O. Cordero Pérez
