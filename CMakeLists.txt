@@ -149,7 +149,7 @@ else()
         Kirigami2
         I18n  # NO_MODULE
         CoreAddons
-        #IconThemes
+        IconThemes
     )
 endif()
 
