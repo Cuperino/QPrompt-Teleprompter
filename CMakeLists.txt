@@ -245,7 +245,7 @@ if(UNIX AND NOT ANDROID)
     set(CPACK_DEBIAN_PACKAGE_HOMEPAGE ${PROJECT_URL})
     set(CPACK_DEBIAN_COMPRESSION_TYPE ${COMPRESION_TYPE})
     # Set to dependencies as Ubuntu 21.04. Chose Ubuntu 21.04 as base because Desktop version has ARM support and provided Qt version requires no backporting.
-    set(CPACK_DEBIAN_PACKAGE_DEPENDS "libqt5svg5 (>= 5.15.2), qml-module-qt-labs-platform (>=5.15.2), qml-module-qtqml (>=5.15.2), qml-module-qtqml-models2 (>=5.15.2), qml-module-qtqml-statemachine (>=5.15.2), qml-module-qtquick-controls (>=5.15.2), qml-module-qtquick-controls2 (>=5.15.2), qml-module-qtquick-dialogs (>=5.15.2), qml-module-qtquick-shapes (>=5.15.2), qml-module-org-kde-kirigami2 (>=5.80.0), libkf5i18n5 (>= 5.80.0), libkf5coreaddons5 (>= 5.80.0)")
+    set(CPACK_DEBIAN_PACKAGE_DEPENDS "libqt5svg5 (>= 5.15.2), qml-module-qt-labs-platform (>=5.15.2), qml-module-qtqml (>=5.15.2), qml-module-qtqml-models2 (>=5.15.2), qml-module-qtqml-statemachine (>=5.15.2), qml-module-qtquick-controls (>=5.15.2), qml-module-qtquick-controls2 (>=5.15.2), qml-module-qtquick-dialogs (>=5.15.2), qml-module-qtquick-shapes (>=5.15.2), qml-module-org-kde-kirigami2 (>=5.78.0), libkf5i18n5 (>= 5.78.0), libkf5coreaddons5 (>= 5.78.0)")
 
     # CPACK: RPM Specific Settings
     set(CPACK_RPM_PACKAGE_LICENSE "GPLv3+")
