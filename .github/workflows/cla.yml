@@ -22,4 +22,4 @@ jobs:
           path-to-signatures: 'cla-v1.json'
           path-to-document: 'https://github.com/Cuperino/Signatures/blob/master/CLA.md'
           branch: 'main'
-          allowlist: Cuperino,bot*
+          allowlist: bot*
