@@ -238,13 +238,13 @@ Kirigami.ApplicationWindow {
             Kirigami.Action {
                 text: i18n("Other &Settings")
                 iconName: "configure"
-                Kirigami.Action {
-                    text: i18n("Telemetry")
-                    iconName: "document-send"
-                    onTriggered: {
-                        root.loadTelemetryPage()
-                    }
-                }
+//                 Kirigami.Action {
+//                     text: i18n("Telemetry")
+//                     iconName: "document-send"
+//                     onTriggered: {
+//                         root.loadTelemetryPage()
+//                     }
+//                 }
                 Kirigami.Action {
                     text: i18n("Force sub-pixel text renderer past 120px")
                     // Hiding option because only Qt text renderer is used on devices of greater pixel density, due to bug in rendering native fonts while scaling is enabled.
