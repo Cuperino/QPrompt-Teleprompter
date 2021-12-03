@@ -11,6 +11,8 @@ Personal teleprompter software for all video makers. Built with ease of use, pro
 
 QPrompt is written in C++ and QML, using the Qt and Kirigami frameworks to provide a fast and flexible interface that works for tablet and PC based teleprompters alike.
 
+[![Download QPrompt](https://a.fsdn.com/con/app/sf-download-button)](https://sourceforge.net/projects/qprompt/files/latest/download)
+
 # Copyright
 Copyright (C) 2021 Javier O. Cordero Pérez
 
