@@ -468,6 +468,7 @@ ToolBar {
                     color: "#DD000000"
                     implicitWidth: 280
                 }
+                MenuSeparator {}
                 MenuItem {
                     id: systemFontButton
                     text: i18n("Choose System Font")
@@ -475,8 +476,8 @@ ToolBar {
                     enabled: ['android', 'ios', 'wasm', 'tvos', 'qnx', 'ipados'].indexOf(Qt.platform.os)===-1
                     visible: enabled
                     onTriggered: {
-                        fontDialog.currentFont.family = prompter.document.fontFamily;
-                        fontDialog.currentFont.pointSize = prompter.document.fontSize;
+                        //fontDialog.currentFont.family = prompter.document.fontFamily;
+                        //fontDialog.currentFont.pointSize = prompter.document.fontSize;
                         fontDialog.open();
                     }
                 }
@@ -484,27 +485,27 @@ ToolBar {
                     visible: systemFontButton.enabled
                 }
                 MenuItem {
-                    text: i18n("Roman, Cyrillic")
+                    text: "DejaVu " + i18n("(default, Roman, Cyrillic)")
                     onTriggered: viewport.prompter.document.fontFamily = westernSeriousSansfFont.name
                 }
                 MenuItem {
-                    text: i18n("Roman (Dyslexic)")
+                    text: "OpenDyslexic " + i18n("(Roman)")
                     onTriggered: viewport.prompter.document.fontFamily = westernDyslexicFont.name
                 }
                 MenuItem {
-                    text: i18n("Chinese, Japanese, Korean")
+                    text: "Source Han Sans " + i18n("(CH, JP, KO)")
                     onTriggered: viewport.prompter.document.fontFamily = asianSeriousSansFont.name
                 }
                 MenuItem {
-                    text: i18n("Arabic")
+                    text: "Scheherazade New " + i18n("(Arabic)")
                     onTriggered: viewport.prompter.document.fontFamily = arabicHumaneSansFont.name
                 }
                 MenuItem {
-                    text: i18n("Devangari")
+                    text: "Palanquin " + i18n("(Devangari)")
                     onTriggered: viewport.prompter.document.fontFamily = devanagariSeriousSansFont.name
                 }
                 MenuItem {
-                    text: i18n("Bengali")
+                    text: "Kalpurush " + i18n("(Bengali)")
                     onTriggered: viewport.prompter.document.fontFamily = bengaliHumaneSerifFont.name
                 }
                 MenuSeparator {}
