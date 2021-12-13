@@ -812,16 +812,21 @@ Flickable {
         folder: shortcuts.documents
         onAccepted: {
             document.load(openDialog.fileUrl)
-            document.isNewFile = false
+            if (["html", "htm", "xhtml", "HTML", "HTM", "XHTML", "txt", "text", "TXT", "TEXT"].indexOf(Qt.platform.os)===-1)
+                document.isNewFile = true;
+            else
+                document.isNewFile = false;
         }
     }
     
     FileDialog {
         id: saveDialog
         selectExisting: false
-        defaultSuffix: document.fileType
-        nameFilters: openDialog.nameFilters
-        // Always in the same format as original file
+        defaultSuffix: nameFilters[0]
+        nameFilters: [i18n("Hypertext Markup Language (HTML)") + "(*.html *.htm *.xhtml *.HTML *.HTM *.XHTML)",
+            i18n("Plain Text (TXT)") + "(*.txt *.text *.TXT *.TEXT)"
+            //i18n("All Formats") + "(*.*)"
+        ]        // Always in the same format as original file
         //selectedNameFilter.index: document.fileType === "txt" ? 0 : 1
         // Always save as HTML
         selectedNameFilter: nameFilters[document.fileType === "txt" ? 0 : 1]
