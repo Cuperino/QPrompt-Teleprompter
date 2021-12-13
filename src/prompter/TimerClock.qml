@@ -30,8 +30,10 @@ import Qt.labs.settings 1.0
 
 Item {
     id: clock
-    property alias running: timer.running
-    property alias elapsedSeconds: timer.elapsedSeconds
+//     property alias running: timer.running
+    property bool running: false
+    property double elapsedMilliseconds: 0
+    property double startTime: 0
 //     property alias timeToArival: prompter.__timeToArival
     property bool stopwatch: false
     property bool eta: false
@@ -135,36 +137,47 @@ Item {
     // This timer implementation is incorrect but it will suffice for now. Results aren't wrong, but they can become so after long periods of time if CPU performance is low, as this does not measure elapsed time but time deltas.
     Timer {
         repeat: true
-        running: clock.eta
+        running: clock.eta || clock.running
         triggeredOnStart: true
         interval: 120;
         onTriggered: {
-            updateETAText();
+            updateText();
         }
     }
-    Timer {
-        id: timer
-        property int elapsedSeconds: 0 // 3599*100
-        repeat: true
-        running: false
-        triggeredOnStart: false
-        interval: 1000;
-        onTriggered: {
-            ++elapsedSeconds;
-            parent.updateStopwatchText();
-        }
-        function getTimeString(timeInSeconds) {
-            const digitalSeconds = Math.ceil(timeInSeconds) % 60 / 100;
-            const minutes = (timeInSeconds+1) / 60
-            const digitalMinutes = Math.floor(minutes % 60) / 100;
-            const digitalHours = Math.floor((minutes / 60) % 100) / 100;
-            return (digitalHours).toFixed(2).toString().slice(2)+":"+(digitalMinutes).toFixed(2).toString().slice(2)+":"+(digitalSeconds).toFixed(2).toString().slice(2);
-        }
+    //Timer {
+        //id: timer
+        //property int elapsedSeconds: 0 // 3599*100
+        //repeat: true
+        //running: false
+        //triggeredOnStart: false
+        //interval: 1000;
+        //onTriggered: {
+            //++elapsedSeconds;
+            //parent.updateStopwatchText();
+        //}
+    //}
+    function getTimeString(timeInSeconds) {
+        const digitalSeconds = Math.ceil(timeInSeconds) % 60 / 100;
+        const minutes = (timeInSeconds+1) / 60
+        const digitalMinutes = Math.floor(minutes % 60) / 100;
+        const digitalHours = Math.floor((minutes / 60) % 100) / 100;
+        return (digitalHours).toFixed(2).toString().slice(2)+":"+(digitalMinutes).toFixed(2).toString().slice(2)+":"+(digitalSeconds).toFixed(2).toString().slice(2);
     }
-    function updateStopwatchText() {
-        promptTime.text = /*i18n("SW") + " " +*/ timer.getTimeString(elapsedSeconds);
+    function startTimer() {
+        console.log("Start timer")
+        running = true
+        startTime = new Date().getTime() - elapsedMilliseconds
     }
-    function updateETAText() {
+    function stopTimer() {
+        console.log("Stop timer")
+        const currentTime = new Date().getTime()
+        elapsedMilliseconds = currentTime - startTime
+        running = false
+    }
+    //function updateStopwatchText() {
+    //    promptTime.text = /*i18n("SW") + " " +*/ timer.getTimeString(elapsedMilliseconds/1000);
+    //}
+    function updateText() {
         let timeToEnd = prompter.__timeToEnd;
         if (!isFinite(timeToEnd) || prompter.__i<0) {
             timeToEnd = 2 * (Math.floor(editor.height+prompter.fontSize-prompter.topMargin-1)-prompter.position) / (prompter.__baseSpeed * Math.pow(Math.abs(prompter.__iDefault), prompter.__curvature) * prompter.fontSize/2 * ((prompter.__vw-prompter.__evw/2) / prompter.__vw));
@@ -172,10 +185,15 @@ Item {
                 timeToEnd = 0
         }
         etaTimer.text = /*i18n("SW") + " " +*/ timer.getTimeString(timeToEnd);
+        if (clock.stopwatch && running) {
+            const currentTime = new Date().getTime()
+            elapsedMilliseconds = currentTime - startTime
+        }
+        promptTime.text = /*i18n("SW") + " " +*/ timer.getTimeString(elapsedMilliseconds/1000);
     }
     function reset() {
-        timer.elapsedSeconds = 0;
-        clock.updateStopwatchText();
+        timer.elapsedMilliseconds = 0;
+        //clock.updateText();
     }
     function setColor() {
         timerColorDialog.open()
