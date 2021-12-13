@@ -236,6 +236,7 @@ Flickable {
         function toStart() {
             __i = 0
             position = position
+            timer.reset()
             start()
         }
     }
@@ -1111,7 +1112,7 @@ Flickable {
             }
             PropertyChanges {
                 target: timer
-                elapsedSeconds: 0
+                elapsedMilliseconds: 0
             }
             //PropertyChanges {
             //    target: root
@@ -1209,7 +1210,7 @@ Flickable {
             PropertyChanges {
                 target: timer
                 running: prompter.__play && prompter.__velocity>0
-                elapsedSeconds: 0
+                elapsedMilliseconds: 0
             }
             PropertyChanges {
                 target: root
@@ -1269,7 +1270,7 @@ Flickable {
         setCursorAtCurrentPosition()
         var pos = prompter.position
         position = pos
-        timer.updateStopwatchText()
+        timer.updateText()
     }
     function setCursorAtCurrentPosition() {
         editor.cursorPosition = editor.positionAt(0, position + overlay.__readRegionPlacement*(overlay.height-overlay.readRegionHeight)+overlay.readRegionHeight/2 + 1)
@@ -1282,6 +1283,24 @@ Flickable {
                 script: {
                     // Auto frame to current line
                     position = editor.cursorRectangle.y - (overlay.__readRegionPlacement*(overlay.height-overlay.readRegionHeight)+overlay.readRegionHeight/2) + 1
+                    //timer.stopTimer()
+                }
+            }
+        },
+        Transition {
+            to: Prompter.States.Prompting
+            ScriptAction  {
+                // Jump into position
+                script: {
+                    timer.startTimer()
+                }
+            }
+        },
+        Transition {
+            to: Prompter.States.Editing
+            ScriptAction  {
+                script: {
+                    timer.stopTimer()
                 }
             }
         }
