@@ -74,8 +74,10 @@ Item {
         readonly property int marginX: 4 * clock.size * prompter.__vw
         readonly property int marginY: 2 * clock.size * prompter.__vw
         readonly property real fontSize: clock.size * prompter.__vw << (Kirigami.Settings.isMobile ? 4 : 3)
-        x: clock.centreX - centreX
-        y: overlay.__readRegionPlacement < 0.5 ? clock.height - height - centreY / 2 - (Kirigami.Settings.isMobile ? 46 : 0) : centreY / 2
+        property real customRelativeXpos: 0.5
+        property real relativeXpos: customRelativeXpos
+        x: relativeXpos * (clock.width - stopwatch.width + 2 * stopwatch.marginX)
+        y: overlay.__readRegionPlacement < 0.5 ? clock.height - height - centreY * 2 / 5 - (Kirigami.Settings.isMobile ? 54 : 0) : centreY * 2 / 5
         width: clockGrid.implicitWidth
         height: clockGrid.implicitHeight
         Rectangle {
@@ -133,6 +135,9 @@ Item {
             drag.maximumY: parent.parent.height-this.height+this.marginY
             cursorShape: (pressed||drag.active||prompter.dragging) ? Qt.ClosedHandCursor : Qt.PointingHandCursor
             onDoubleClicked: clock.reset()
+            onReleased: {
+                stopwatch.customRelativeXpos = stopwatch.x / (clock.width - stopwatch.width + 2 * stopwatch.marginX)
+            }
         }
     }
     // This timer implementation is incorrect but it will suffice for now. Results aren't wrong, but they can become so after long periods of time if CPU performance is low, as this does not measure elapsed time but time deltas.
