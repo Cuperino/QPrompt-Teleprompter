@@ -25,6 +25,7 @@ import QtQuick.Shapes 1.12
 import QtQuick.Layouts 1.12
 import QtQuick.Dialogs 1.2
 import Qt.labs.settings 1.0
+import org.kde.kirigami 2.11 as Kirigami
 
 //import com.cuperino.qprompt.promptertimer 1.0
 
@@ -72,9 +73,9 @@ Item {
         readonly property real centreY: height / 2;
         readonly property int marginX: 4 * clock.size * prompter.__vw
         readonly property int marginY: 2 * clock.size * prompter.__vw
-        readonly property real fontSize: clock.size * prompter.__vw << 3
+        readonly property real fontSize: clock.size * prompter.__vw << (Kirigami.Settings.isMobile ? 4 : 3)
         x: clock.centreX - centreX
-        y: overlay.__readRegionPlacement < 0.5 ? clock.height - height - centreY / 2 : centreY / 2
+        y: overlay.__readRegionPlacement < 0.5 ? clock.height - height - centreY / 2 - (Kirigami.Settings.isMobile ? 46 : 0) : centreY / 2
         width: clockGrid.implicitWidth
         height: clockGrid.implicitHeight
         Rectangle {
