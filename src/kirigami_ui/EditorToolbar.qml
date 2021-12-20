@@ -947,7 +947,7 @@ ToolBar {
                 font.pointSize: 13
             }
             Label {
-                text: i18n("Base speed:") + " " + (baseSpeedSlider.value/100).toFixed(2)
+                text: i18n("Step speed:") + " " + (baseSpeedSlider.value/100).toFixed(2)
                 color: Kirigami.Theme.textColor
                 Layout.topMargin: 4
                 Layout.bottomMargin: 4
@@ -987,7 +987,7 @@ ToolBar {
                 font.pointSize: 13
             }
             Label {
-                text: i18n("Acceleration curve:") + " " + (baseAccelerationSlider.value/100).toFixed(2)
+                text: i18n("Step acceleration:") + " " + (baseAccelerationSlider.value/100).toFixed(2)
                 color: Kirigami.Theme.textColor
                 Layout.topMargin: 4
                 Layout.bottomMargin: 4
