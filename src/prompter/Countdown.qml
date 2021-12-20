@@ -178,9 +178,9 @@ Item {
                     console.log(canvas.__iteration);
                     running = true;
                 } else {
-                    state: "ready"
                     canvas.__iteration = countdown.__iterations;
-                    prompter.state++; // = Prompter.States.Prompting;
+                    if (parseInt(prompter.state)===Prompter.States.Countdown)
+                        prompter.state++; // = Prompter.States.Prompting;
                     //countdown.visible = false
                     //showPassiveNotification(i18n("Prompting Started"));
                 }
