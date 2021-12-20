@@ -32,9 +32,12 @@ import org.kde.kirigami 2.11 as Kirigami
 Item {
     id: clock
 //     property alias running: timer.running
-    property bool running: false
+    property bool running: prompter.__play && parseInt(prompter.state)===Prompter.States.Prompting
+    //property bool running: false
     property double elapsedMilliseconds: 0
-    property double startTime: 0
+    property double startTime: new Date().getTime() - elapsedMilliseconds + 1000
+    property double lastTime: 0
+    property double newLastTime: 0
 //     property alias timeToArival: prompter.__timeToArival
     property bool stopwatch: false
     property bool eta: false
@@ -171,14 +174,15 @@ Item {
     }
     function startTimer() {
         console.log("Start timer")
-        running = true
+//         running = true
         startTime = new Date().getTime() - elapsedMilliseconds
     }
     function stopTimer() {
         console.log("Stop timer")
         const currentTime = new Date().getTime()
         elapsedMilliseconds = currentTime - startTime
-        running = false
+//         startTime = new Date().getTime() - elapsedMilliseconds
+        //running = false
     }
     //function updateStopwatchText() {
     //    promptTime.text = /*i18n("SW") + " " +*/ timer.getTimeString(elapsedMilliseconds/1000);
@@ -191,14 +195,20 @@ Item {
                 timeToEnd = 0
         }
         etaTimer.text = /*i18n("SW") + " " +*/ timer.getTimeString(timeToEnd);
-        if (clock.stopwatch && running) {
-            const currentTime = new Date().getTime()
-            elapsedMilliseconds = currentTime - startTime
-        }
+
+        newLastTime = new Date().getTime()
+        if (clock.stopwatch && !running)
+            startTime = startTime + newLastTime - lastTime
+        lastTime = newLastTime
+        elapsedMilliseconds = lastTime - startTime
         promptTime.text = /*i18n("SW") + " " +*/ timer.getTimeString(elapsedMilliseconds/1000);
     }
     function reset() {
         timer.elapsedMilliseconds = 0;
+        startTime = new Date().getTime() - elapsedMilliseconds
+        lastTime = startTime
+//         newLastTime = startTime
+//         lastTime = newLastTime
         //clock.updateText();
     }
     function setColor() {

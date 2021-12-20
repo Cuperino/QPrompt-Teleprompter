@@ -223,6 +223,8 @@ Flickable {
                     root.alert(0)
                     if (root.passiveNotifications)
                         showPassiveNotification(i18n("Animation Completed"));
+                    if (parseInt(prompter.state) === Prompter.States.Prompting)
+                        prompter.toggle();
                 }
             }
         }
@@ -266,7 +268,8 @@ Flickable {
             case Prompter.States.Standby:
             case Prompter.States.Countdown:
             case Prompter.States.Prompting:
-                prompter.focus = true
+                timer.reset();
+                prompter.focus = true;
                 if (projectionManager.model.count===0)
                     projectionManager.project();
                 //showPassiveNotification(i18n("Prompt started"), 850*countdown.__iterations)
@@ -525,7 +528,7 @@ Flickable {
                             reset.toStart()
                             if (root.passiveNotifications) {
                                 // Run hidePassiveNotification second to avoid Kirigami bug from 5.83.0 that prevents the method from completing execution.
-                                hidePassiveNotification()
+                                //hidePassiveNotification()
                                 // Scientist EE
                                 let goToStartNotification = "";
                                 switch (c++%3) {
