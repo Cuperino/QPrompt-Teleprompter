@@ -808,7 +808,7 @@ ToolBar {
                 font.pointSize: 13
             }
             Label {
-                text: i18n("Font size:") /*+ i18n("Font size for prompter:")*/ + " " + (fontWYSIWYGSizeSlider.value/1000).toFixed(3).slice(2) + "% (" + (prompter.fontSize/1000).toFixed(3).slice(2) + ")"
+                text: i18n("Font size:") /*+ i18n("Font size for prompter:")*/ + " " + (fontWYSIWYGSizeSlider.value/1440).toFixed(3).slice(2) + "% (" + (prompter.fontSize/1000).toFixed(3).slice(2) + ")"
                 color: Kirigami.Theme.textColor
                 Layout.topMargin: 4
                 Layout.bottomMargin: 4
