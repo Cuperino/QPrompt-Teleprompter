@@ -76,7 +76,7 @@ Item {
         readonly property real centreY: height / 2;
         readonly property int marginX: 4 * clock.size * prompter.__vw
         readonly property int marginY: 2 * clock.size * prompter.__vw
-        readonly property real fontSize: clock.size * (['android'].indexOf(Qt.platform.os)!==-1 ? screen.devicePixelRatio : 1.0) * prompter.__vw << 3
+        readonly property real fontSize: clock.size * (['android', 'ios'].indexOf(Qt.platform.os)!==-1 ? (screen.devicePixelRatio / (root.width/root.height>1 ? 2 : 1)) : 1.0) * prompter.__vw << 3
         property real customRelativeXpos: 0.5
         property real relativeXpos: customRelativeXpos
         x: relativeXpos * (clock.width - stopwatch.width + 2 * stopwatch.marginX)
