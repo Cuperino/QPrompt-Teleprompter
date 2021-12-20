@@ -35,7 +35,7 @@ Item {
     property bool running: prompter.__play && parseInt(prompter.state)===Prompter.States.Prompting
     //property bool running: false
     property double elapsedMilliseconds: 0
-    property double startTime: new Date().getTime() - elapsedMilliseconds + 1000
+    property double startTime: new Date().getTime() - elapsedMilliseconds + 500
     property double lastTime: 0
     property double newLastTime: 0
 //     property alias timeToArival: prompter.__timeToArival
