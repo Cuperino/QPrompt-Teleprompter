@@ -88,8 +88,10 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
 //     #endif
 
 #if defined(Q_OS_ANDROID) || defined(Q_OS_IOS) || defined(Q_OS_WASM) || defined(Q_OS_WATCHOS) || defined(Q_OS_QNX)
+    QGuiApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
     QGuiApplication app(argc, argv);
 #else
+    QApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
     QApplication app(argc, argv);
 #endif
     QCoreApplication::setOrganizationName("Cuperino");
