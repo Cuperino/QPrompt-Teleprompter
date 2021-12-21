@@ -109,7 +109,7 @@ ToolBar {
     }
 
     // Hide toolbar when read region is set to bottom and prompter is not in editing state.
-    enabled: !(parseInt(prompter.state)!==Prompter.States.Editing && (overlay.atBottom/* || Kirigami.Settings.isMobile*/))
+    enabled: !(parseInt(prompter.state)!==Prompter.States.Editing && (overlay.atBottom || root.__fullScreen && !editor.focus))
     height: enabled ? implicitHeight : 0
     //Behavior on height {
     //    id: height

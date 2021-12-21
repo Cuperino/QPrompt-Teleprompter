@@ -47,10 +47,9 @@ Kirigami.Page {
     property alias find: viewport.find
     property alias key_configuration_overlay: key_configuration_overlay
     property alias displaySettings: displaySettings
-    property int hideDecorations: 0
+    property int hideDecorations: 1
 
     title: "QPrompt"
-    globalToolBarStyle: Kirigami.Settings.isMobile ? Kirigami.ApplicationHeaderStyle.None : Kirigami.ApplicationHeaderStyle.ToolBar
     padding: 0
 
     Kirigami.Theme.inherit: false
@@ -577,7 +576,7 @@ Kirigami.Page {
     PrompterView {
         id: viewport
         // Workaround to make regular Page let its contents be covered by action buttons.
-        anchors.bottomMargin: Kirigami.Settings.isMobile ? -68 : 0
+        anchors.bottomMargin: pageStack.globalToolBar.actualStyle === Kirigami.ApplicationHeaderStyle.None ? -68 : 0
         prompter.performFileOperations: true
         property alias toolbar: editorToolbar
     }
