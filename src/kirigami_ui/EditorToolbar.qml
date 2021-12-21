@@ -470,21 +470,6 @@ ToolBar {
                 }
                 MenuSeparator {}
                 MenuItem {
-                    id: systemFontButton
-                    text: i18n("Choose System Font")
-                    // Not using isMobile here, because Linux phones, unlike all others, would provide access to system fonts.
-                    enabled: ['android', 'ios', 'wasm', 'tvos', 'qnx', 'ipados'].indexOf(Qt.platform.os)===-1
-                    visible: enabled
-                    onTriggered: {
-                        //fontDialog.currentFont.family = prompter.document.fontFamily;
-                        //fontDialog.currentFont.pointSize = prompter.document.fontSize;
-                        fontDialog.open();
-                    }
-                }
-                MenuSeparator {
-                    visible: systemFontButton.enabled
-                }
-                MenuItem {
                     text: "DejaVu " + i18n("(default, Roman, Cyrillic)")
                     onTriggered: viewport.prompter.document.fontFamily = westernSeriousSansfFont.name
                 }
@@ -509,6 +494,21 @@ ToolBar {
                     onTriggered: viewport.prompter.document.fontFamily = bengaliHumaneSerifFont.name
                 }
                 MenuSeparator {}
+                MenuItem {
+                    id: systemFontButton
+                    text: i18n("Choose System Font")
+                    // Not using isMobile here, because Linux phones, unlike all others, would provide access to system fonts.
+                    enabled: ['android', 'ios', 'wasm', 'tvos', 'qnx', 'ipados'].indexOf(Qt.platform.os)===-1
+                    visible: enabled
+                    onTriggered: {
+                        //fontDialog.currentFont.family = prompter.document.fontFamily;
+                        //fontDialog.currentFont.pointSize = prompter.document.fontSize;
+                        fontDialog.open();
+                    }
+                }
+                MenuSeparator {
+                    visible: systemFontButton.enabled
+                }
             }
             ToolButton {
                 id: fontFamilyToolButton

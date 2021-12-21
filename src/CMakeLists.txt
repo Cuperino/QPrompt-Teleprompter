@@ -198,6 +198,7 @@ if(ANDROID OR APPLE OR WIN32 OR IOS OR WASM)
         document-save-as
         document-send
         draw-rectangle
+        draw-star
         edit-clear-history
         edit-redo
         edit-undo
@@ -219,6 +220,7 @@ if(ANDROID OR APPLE OR WIN32 OR IOS OR WASM)
         keyframe
         keyframe-add
         list-remove
+        mail-mark-unread
         object-flip-horizontal
         object-flip-vertical
         object-rotate-left

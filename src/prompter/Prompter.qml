@@ -579,7 +579,10 @@ Flickable {
                         enabled: false
                         acceptedButtons: Qt.LeftButton
                         anchors.fill: parent
-                        onDoubleClicked: editor.toggleEditorFocus(mouse);
+                        onDoubleClicked: {
+                            if (!Kirigami.Settings.isMobile)
+                                editor.toggleEditorFocus(mouse);
+                        }
                         onClicked: if (editor.focus) editor.cursorPosition = editor.positionAt(mouseX, mouseY);
                     }
                 }

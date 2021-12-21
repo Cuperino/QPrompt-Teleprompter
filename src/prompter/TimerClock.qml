@@ -31,14 +31,11 @@ import org.kde.kirigami 2.11 as Kirigami
 
 Item {
     id: clock
-//     property alias running: timer.running
     property bool running: prompter.__play && parseInt(prompter.state)===Prompter.States.Prompting
-    //property bool running: false
     property double elapsedMilliseconds: 0
     property double startTime: new Date().getTime() - elapsedMilliseconds + 500
     property double lastTime: 0
     property double newLastTime: 0
-//     property alias timeToArival: prompter.__timeToArival
     property bool stopwatch: false
     property bool eta: false
     property real size: 0.5
@@ -79,7 +76,7 @@ Item {
         readonly property real fontSize: clock.size * (['android', 'ios'].indexOf(Qt.platform.os)!==-1 ? (screen.devicePixelRatio / (root.width/root.height>1 ? 2 : 1)) : 1.0) * prompter.__vw << 3
         property real customRelativeXpos: 0.5
         property real relativeXpos: customRelativeXpos
-        x: relativeXpos * (clock.width - stopwatch.width + 2 * stopwatch.marginX)
+        x: relativeXpos * (clock.width - stopwatch.width)
         y: overlay.__readRegionPlacement < 0.5 ? clock.height - height - centreY * 2 / 5 - (Kirigami.Settings.isMobile ? 54 : 0) : centreY * 2 / 5
         width: clockGrid.implicitWidth
         height: clockGrid.implicitHeight
@@ -98,7 +95,6 @@ Item {
                 id: promptTime
                 visible: clock.stopwatch
                 text: /*i18n("SW") + " " +*/ "00:00:00"
-                //anchors.top: parent.top
                 font.family: monoSpacedFont.name
                 font.pixelSize: stopwatch.fontSize
                 color: clock.textColor
@@ -111,8 +107,6 @@ Item {
                 id: etaTimer
                 visible: clock.eta
                 text: /*i18n("ET") + " " +*/ "00:00:00"
-                // anchors.top: promptTime.visible ? promptTime.bottom : parent.top
-                //anchors.bottom: parent.bottom
                 font.family: monoSpacedFont.name
                 font.pixelSize: stopwatch.fontSize
                 color: clock.textColor
@@ -153,18 +147,6 @@ Item {
             updateText();
         }
     }
-    //Timer {
-        //id: timer
-        //property int elapsedSeconds: 0 // 3599*100
-        //repeat: true
-        //running: false
-        //triggeredOnStart: false
-        //interval: 1000;
-        //onTriggered: {
-            //++elapsedSeconds;
-            //parent.updateStopwatchText();
-        //}
-    //}
     function getTimeString(timeInSeconds) {
         const digitalSeconds = Math.ceil(timeInSeconds) % 60 / 100;
         const minutes = (timeInSeconds+1) / 60
@@ -174,19 +156,13 @@ Item {
     }
     function startTimer() {
         console.log("Start timer")
-//         running = true
         startTime = new Date().getTime() - elapsedMilliseconds
     }
     function stopTimer() {
         console.log("Stop timer")
         const currentTime = new Date().getTime()
         elapsedMilliseconds = currentTime - startTime
-//         startTime = new Date().getTime() - elapsedMilliseconds
-        //running = false
     }
-    //function updateStopwatchText() {
-    //    promptTime.text = /*i18n("SW") + " " +*/ timer.getTimeString(elapsedMilliseconds/1000);
-    //}
     function updateText() {
         let timeToEnd = prompter.__timeToEnd;
         if (!isFinite(timeToEnd) || prompter.__i<0) {
@@ -207,9 +183,6 @@ Item {
         timer.elapsedMilliseconds = 0;
         startTime = new Date().getTime() - elapsedMilliseconds
         lastTime = startTime
-//         newLastTime = startTime
-//         lastTime = newLastTime
-        //clock.updateText();
     }
     function setColor() {
         timerColorDialog.open()

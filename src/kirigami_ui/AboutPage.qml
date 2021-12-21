@@ -19,8 +19,19 @@
  **
  ****************************************************************************/
 
-import QtQuick 2.12
 import org.kde.kirigami 2.9 as Kirigami
 
 Kirigami.AboutPage {
+    getInvolvedUrl: "https://l10n.qprompt.app/"
+    mainAction: Kirigami.Action {
+        icon.name: ['android', 'ios', 'tvos'].indexOf(Qt.platform.os)===-1 ? "mail-mark-unread" : "draw-star"
+        onTriggered: {
+            if (Qt.platform.os === 'android')
+                Qt.openUrlExternally("https://play.google.com/store/apps/details?id=com.cuperino.qprompt")
+            else if (Qt.platform.os === 'ios' || Qt.platform.os === 'tvos')
+                Qt.openUrlExternally("https://apps.apple.com/us/app/qprompt/id##########")
+            else
+                Qt.openUrlExternally("https://qprompt.app/feedback")
+        }
+    }
 }
