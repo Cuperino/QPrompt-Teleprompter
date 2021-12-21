@@ -77,7 +77,7 @@ Item {
         property real customRelativeXpos: 0.5
         property real relativeXpos: customRelativeXpos
         x: relativeXpos * (clock.width - stopwatch.width)
-        y: overlay.__readRegionPlacement < 0.5 ? clock.height - height - centreY * 2 / 5 - (pageStack.globalToolBar.actualStyle === Kirigami.ApplicationHeaderStyle.None ? 54 : 0) : centreY * 2 / 5
+        y: overlay.__readRegionPlacement >= 0.5 ? centreY * 2 / 5 : clock.height - height - centreY * 2 / 5 - (pageStack.globalToolBar.actualStyle === Kirigami.ApplicationHeaderStyle.None ? 54 : 0)
         width: clockGrid.implicitWidth
         height: clockGrid.implicitHeight
         Rectangle {
@@ -132,9 +132,7 @@ Item {
             drag.maximumY: parent.parent.height-this.height+this.marginY
             cursorShape: (pressed||drag.active||prompter.dragging) ? Qt.ClosedHandCursor : Qt.PointingHandCursor
             onDoubleClicked: clock.reset()
-            onReleased: {
-                stopwatch.customRelativeXpos = stopwatch.x / (clock.width - stopwatch.width + 2 * stopwatch.marginX)
-            }
+            onReleased: stopwatch.customRelativeXpos = stopwatch.x / (clock.width - stopwatch.width)
         }
     }
     // This timer implementation is incorrect but it will suffice for now. Results aren't wrong, but they can become so after long periods of time if CPU performance is low, as this does not measure elapsed time but time deltas.
@@ -143,9 +141,7 @@ Item {
         running: clock.eta || clock.running
         triggeredOnStart: true
         interval: 120;
-        onTriggered: {
-            updateText();
-        }
+        onTriggered: updateText();
     }
     function getTimeString(timeInSeconds) {
         const digitalSeconds = Math.ceil(timeInSeconds) % 60 / 100;
