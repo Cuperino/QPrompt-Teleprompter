@@ -19,7 +19,6 @@
  **
  ****************************************************************************/
 
-
 #if defined(Q_OS_ANDROID) || defined(Q_OS_IOS) || defined(Q_OS_WASM) || defined(Q_OS_WATCHOS) || defined(Q_OS_QNX)
 #include <QGuiApplication>
 #else
@@ -104,7 +103,6 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
                          i18n("Personal teleprompter software for all video makers."),
                          KAboutLicense::GPL_V3,
                          i18n("© %1%2 Javier O. Cordero Pérez", currentYear>2021?"2021-":"", QString::number(currentYear)));
-//     QString(GIT_BRANCH) + "/" + QString(GIT_COMMIT_HASH)
 
     // Overwrite default-generated values of organizationDomain & desktopFileName
     aboutData.setHomepage("https://qprompt.app");
@@ -145,7 +143,7 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
 
     // Un-comment to force RightToLeft Layout for debugging purposes
     //app.setLayoutDirection(Qt::RightToLeft);
-#ifdef Q_OS_ANDROID
+#if defined(Q_OS_ANDROID) || defined(Q_OS_IOS) || defined(Q_OS_QNX)
     app.setWindowIcon(QIcon(":/images/qprompt-logo-wireframe.png"));
 #else
     app.setWindowIcon(QIcon(":/images/qprompt.png"));

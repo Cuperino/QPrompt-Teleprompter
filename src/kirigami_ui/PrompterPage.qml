@@ -60,6 +60,8 @@ Kirigami.Page {
 //     Kirigami.Theme.textColor: themeSwitch.checked ? "#465c2b" : "#ffffff"
 //     Kirigami.Theme.highlightColor: themeSwitch.checked ? "#89e51c" : "#ffffff"
 
+    onBackRequested: close()
+
     actions {
         main: Kirigami.Action {
             id: promptingButton
@@ -158,47 +160,48 @@ Kirigami.Page {
                 enabled: parseInt(viewport.overlay.positionState)!==ReadRegionOverlay.PositionStates.Fixed
                 tooltip: i18n("Fix reading region to the position set using free placement mode")
             }
-            Kirigami.Action {
-                id: hideDecorationsButton
-                text: ["osx"].indexOf(Qt.platform.os)!==-1 || enabled ? i18n("Window frame") : i18n("Prompter mode")
-                enabled: !fullScreenPlatform
-                visible: enabled
-                tooltip: i18n("Auto hide window decorations when not editing and read region is set to top")
-                iconName: enabled ? (hideDecorations===0 ? "window" : (hideDecorations===1 ? "draw-rectangle" : "gnumeric-object-rectangle")) : ""
-                Kirigami.Action {
-                    text: i18n("Normal frame")
-                    tooltip: i18n("Shows windows frame when in windowed mode")
-                    iconName: "window"
-                    enabled: parent.enabled && hideDecorations!==0
-                    visible: parent.enabled
-                    onTriggered: {
-                        hideDecorations = 0
-                        parent.text = text
-                    }
-                }
-                Kirigami.Action {
-                    text: i18n("Auto hide")
-                    tooltip: i18n("Auto hide window decorations when not editing and read region is set to top")
-                    iconName: "draw-rectangle"
-                    enabled: parent.enabled && hideDecorations!==1
-                    visible: parent.enabled
-                    onTriggered: {
-                        hideDecorations = 1
-                        parent.text = text
-                    }
-                }
-                Kirigami.Action {
-                    text: i18n("Always hidden")
-                    tooltip: i18n("Always hide window decorations")
-                    iconName: "gnumeric-object-rectangle"
-                    enabled: parent.enabled && hideDecorations!==2
-                    visible: parent.enabled
-                    onTriggered: {
-                        hideDecorations = 2
-                        parent.text = text
-                    }
-                }
-            }
+            // Commenting out because there's no way to hide an empty sub-menu in mobile interface and distinction between Normal and Auto is confusing.
+            // Kirigami.Action {
+            //     id: hideDecorationsButton
+            //     text: ["osx"].indexOf(Qt.platform.os)!==-1 || enabled ? i18n("Window frame") : i18n("Prompter mode")
+            //     enabled: !fullScreenPlatform
+            //     visible: enabled
+            //     tooltip: i18n("Auto hide window decorations when not editing and read region is set to top")
+            //     iconName: enabled ? (hideDecorations===0 ? "window" : (hideDecorations===1 ? "draw-rectangle" : "gnumeric-object-rectangle")) : ""
+            //     Kirigami.Action {
+            //         text: i18n("Normal frame")
+            //         tooltip: i18n("Shows windows frame when in windowed mode")
+            //         iconName: "window"
+            //         enabled: parent.enabled && hideDecorations!==0
+            //         visible: parent.enabled
+            //         onTriggered: {
+            //             hideDecorations = 0
+            //             parent.text = text
+            //         }
+            //     }
+            //     Kirigami.Action {
+            //         text: i18n("Auto hide")
+            //         tooltip: i18n("Auto hide window decorations when not editing and read region is set to top")
+            //         iconName: "draw-rectangle"
+            //         enabled: parent.enabled && hideDecorations!==1
+            //         visible: parent.enabled
+            //         onTriggered: {
+            //             hideDecorations = 1
+            //             parent.text = text
+            //         }
+            //     }
+            //     Kirigami.Action {
+            //         text: i18n("Always hidden")
+            //         tooltip: i18n("Always hide window decorations")
+            //         iconName: "gnumeric-object-rectangle"
+            //         enabled: parent.enabled && hideDecorations!==2
+            //         visible: parent.enabled
+            //         onTriggered: {
+            //             hideDecorations = 2
+            //             parent.text = text
+            //         }
+            //     }
+            // }
         },
         Kirigami.Action {
             id: readRegionStyleButton
