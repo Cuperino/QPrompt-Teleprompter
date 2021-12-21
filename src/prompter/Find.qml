@@ -79,7 +79,7 @@ Item {
         }
         TextField {
             id: searchField
-            placeholderText: i18n("Search")
+            placeholderText: ""
             wrapMode: TextInput.WordWrap
             onTextEdited: find.search(text, Find.Mode.Match)
             selectByMouse: true
@@ -93,10 +93,12 @@ Item {
         }
         Button {
             text: "\u25B2"
+            flat: true
             onClicked: find.previous()
         }
         Button {
             text: "\u25BC"
+            flat: true
             onClicked: find.next()
         }
         function next() {
