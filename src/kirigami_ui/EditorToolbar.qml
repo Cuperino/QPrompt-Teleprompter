@@ -686,7 +686,7 @@ ToolBar {
             }
             ToolButton {
                 id: __iDefaultButton
-                // visible: showAnimationConfigOptions
+                visible: Kirigami.Settings.isMobile ? showAnimationConfigOptions : true
                 text: "\uE858"
                 contentItem: Loader { sourceComponent: textComponent }
                 font.family: iconFont.name
