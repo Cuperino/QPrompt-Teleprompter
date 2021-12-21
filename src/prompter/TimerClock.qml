@@ -77,7 +77,7 @@ Item {
         property real customRelativeXpos: 0.5
         property real relativeXpos: customRelativeXpos
         x: relativeXpos * (clock.width - stopwatch.width)
-        y: overlay.__readRegionPlacement < 0.5 ? clock.height - height - centreY * 2 / 5 - (Kirigami.Settings.isMobile ? 54 : 0) : centreY * 2 / 5
+        y: overlay.__readRegionPlacement < 0.5 ? clock.height - height - centreY * 2 / 5 - (pageStack.globalToolBar.actualStyle === Kirigami.ApplicationHeaderStyle.None ? 54 : 0) : centreY * 2 / 5
         width: clockGrid.implicitWidth
         height: clockGrid.implicitHeight
         Rectangle {

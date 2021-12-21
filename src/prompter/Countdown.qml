@@ -235,6 +235,12 @@ Item {
         }
     }
 
+    MouseArea {
+        anchors.fill: parent
+        enabled: parseInt(prompter.state) === Prompter.States.Countdown || parseInt(prompter.state) === Prompter.States.Standby
+        onClicked: prompter.toggle()
+    }
+
     states: [
     State {
         name: Countdown.States.Standby
