@@ -686,7 +686,7 @@ ToolBar {
             }
             ToolButton {
                 id: __iDefaultButton
-                visible: showAnimationConfigOptions
+                // visible: showAnimationConfigOptions
                 text: "\uE858"
                 contentItem: Loader { sourceComponent: textComponent }
                 font.family: iconFont.name
