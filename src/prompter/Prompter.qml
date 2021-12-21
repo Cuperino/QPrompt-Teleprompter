@@ -532,11 +532,10 @@ Flickable {
                                 // Scientist EE
                                 let goToStartNotification = "";
                                 switch (c++%3) {
-                                    case 0: goToStartNotification = "Oh, let's go"; break;
-                                    case 1: goToStartNotification = "Oh, take me"; break;
-                                    case 2: goToStartNotification = "I'm going"; c=0; break;
+                                    case 0: goToStartNotification = i18n("Let's go back to the start"); break;
+                                    case 1: goToStartNotification = i18n("Take me back to the start"); break;
+                                    case 2: goToStartNotification = i18n("I'm going back to the start"); c=0; break;
                                 }
-                                goToStartNotification += " " + i18n("back to the start");
                                 showPassiveNotification(goToStartNotification);
                             }
                         }
