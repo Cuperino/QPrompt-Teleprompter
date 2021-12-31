@@ -41,50 +41,13 @@
 #include <KI18n/KLocalizedString>
 #include <KCoreAddons/KAboutData>
 
-// #include "qprompt.h"
 #include "../qprompt_version.h"
 #include "prompter/documenthandler.h"
-// #include "prompter/timer/promptertimer.h"
-// #include "prompter/markersmodel.h"
 
 #define QPROMPT_URI "com.cuperino.qprompt"
 
 Q_DECL_EXPORT int main(int argc, char *argv[])
 {
-//     // Do not call before QGuiApplication/QApplication or it will clear default paths
-//     qDebug() << QIcon::themeSearchPaths();
-//     QIcon::setThemeSearchPath("");
-
-    // These should work on non Linux systems. I'm not sure why they don't...
-//     QIcon::setThemeName("breeze");
-//     QIcon::setThemeName("breeze-dark");
-//     QIcon::setThemeName("/icons/breeze-dark/breeze-icons-dark.rcc");
-//     // These icon themes worked under KDE Plasma
-//     QIcon::setThemeName("Yaru");
-//     QIcon::setThemeName("Tela");
-
-//     // FallbackThemeName has no effect under Linux
-//     QIcon::setFallbackThemeName("Tela");
-
-    //     #if defined(Q_OS_WIN) || defined (Q_OS_MACOS)
-//     const QStringList themes {"/icons/breeze/breeze-icons.rcc", "/icons/breeze-dark/breeze-icons-dark.rcc"};
-//     for(const QString theme : themes ) {
-//         const QString themePath = QStandardPaths::locate(QStandardPaths::AppDataLocation, theme);
-//         if (!themePath.isEmpty()) {
-//             const QString iconSubdir = theme.left(theme.lastIndexOf('/'));
-//             if (QResource::registerResource(themePath, iconSubdir)) {
-//                 if (QFileInfo::exists(QLatin1Char(':') + iconSubdir + QStringLiteral("/index.theme"))) {
-//                     qDebug() << "Loaded icon theme:" << theme;
-//                 } else {
-//                     qWarning() << "No index.theme found in" << theme;
-//                     QResource::unregisterResource(themePath, iconSubdir);
-//                 }
-//             } else {
-//                 qWarning() << "Invalid rcc file" << theme;
-//             }
-//         }
-//     }
-//     #endif
 
 #if defined(Q_OS_ANDROID) || defined(Q_OS_IOS) || defined(Q_OS_WASM) || defined(Q_OS_WATCHOS) || defined(Q_OS_QNX)
     QGuiApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
