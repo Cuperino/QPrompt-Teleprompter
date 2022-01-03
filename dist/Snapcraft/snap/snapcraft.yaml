@@ -8,8 +8,6 @@ description: |
   cross-platform support in mind. QPrompt's convergent interface
   allows it to work with tablet teleprompters, studio teleprompters,
   webcams and cellphones.
-
-  QPrompt is free software under the GNU GPL license.
 license: GPL-3.0
 
 type: app
