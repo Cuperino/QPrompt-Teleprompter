@@ -9,6 +9,17 @@
       "--device=all"
    ],
    "id": "com.cuperino.qprompt",
+   "cleanup" : [
+      "/include",
+      "/lib/pkgconfig",
+      "/man",
+      "/share/doc",
+      "/share/gtk-doc",
+      "/share/man",
+      "/share/pkgconfig",
+      "*.la",
+      "*.a"
+   ],
    "modules": [
       {
          "buildsystem": "cmake-ninja",
@@ -17,7 +28,8 @@
             {
                "type": "git",
                "url": "https://github.com/Cuperino/QPrompt.git",
-               "branch": "main"
+               "tag": "v1.0.0",
+               "commit": "2c9752c6d931302bc0b03050bd6fa0df594a7641"
             }
          ]
       }
@@ -26,4 +38,3 @@
    "runtime-version": "5.15",
    "sdk": "org.kde.Sdk"
 }
-

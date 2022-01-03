@@ -1,13 +1,82 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright 2021-2022 Javier O. Cordero Pérez -->
 <component type="desktop-application">
-  <id>com.cuperino.qprompt.desktop</id>
+  <id>com.cuperino.qprompt</id>
+  <launchable type="desktop-id">com.cuperino.qprompt.desktop</launchable>
   <name>QPrompt</name>
-  <summary>Open source personal teleprompter software for professional content creators</summary>
+  <summary>Personal teleprompter software for all video creators</summary>
+  <url type="homepage">https://qprompt.app</url>
+  <url type="translate">https://l10n.qprompt.app</url>
+  <url type="contact">https://feedback.qprompt.app</url>
+  <url type="bugtracker">https://github.com/Cuperino/QPrompt/issues</url>
   <metadata_license>CC-BY-4.0</metadata_license>
-  <project_license>GPL-3.0-or-later</project_license>
+  <project_license>GPL-3.0</project_license>
   <developer_name>Javier O. Cordero Pérez</developer_name>
+  <update_contact>javiercorderoperez@gmail.com</update_contact>
   <description>
-    <p>Open source personal teleprompter software for professionals. Built with ease of use, fast performance, control accuracy, and cross-platform support in mind. QPrompt's convergent user interface can be built to run on Linux, Windows, macOS, iOS, and Android.</p>
-    <p>QPrompt is written in QML and C++, using the Qt and Kirigami frameworks.</p>
+    <p>Open source personal teleprompter software for all video creators. Built with ease of use, fast performance, control accuracy, and cross-platform support in mind. QPrompt's convergent user interface can run on Linux, Windows, macOS, and Android.</p>
   </description>
+  <screenshots>
+    <screenshot type="default">
+      <image>https://qprompt.app/assets/img/slider-1.png</image>
+      <caption>Initial screen for the application</caption>
+    </screenshot>
+    <screenshot>
+      <image>https://qprompt.app/assets/img/countdown.png</image>
+      <caption>Countdown on stand-by</caption>
+    </screenshot>
+    <screenshot>
+      <image>https://a.fsdn.com/con/app/proj/qprompt/screenshots/Screenshot_20211101_041017.png/max/max/1</image>
+      <caption>Opaque background with video in the background, timers, and mirrored contents</caption>
+    </screenshot>
+  </screenshots>
+  <provides>
+    <binary>qprompt</binary>
+    <mediatype>text/plain</mediatype>
+    <mediatype>text/markdown</mediatype>
+    <mediatype>text/html</mediatype>
+  </provides>
+  <requires>
+    <display_length compare="gte">292</display_length>
+  </requires>
+  <recommends>
+    <display_length compare="gte">xsmall</display_length>
+    <display_length compare="lte">xlarge</display_length>
+  </recommends>
+  <supports>
+    <control>pointing</control>
+    <control>keyboard</control>
+    <control>touch</control>
+  </supports>
+  <content_rating type="oars-1.1" />
+  <kudos>
+    <kudo>HiDpiIcon</kudo>
+    <kudo>HighContrast</kudo>
+    <kudo>ModernToolkit</kudo>
+  </kudos>
+  <releases>
+    <release version="1.0" type="stable" date="2021-12-31">
+      <artifacts>
+        <artifact type="binary" platform="aarch64-linux-gnu">
+          <location>https://github.com/Cuperino/QPrompt/releases/download/v1.0.0/qprompt-1.0.0-Linux-aarch64.deb</location>
+        </artifact>
+        <artifact type="binary" platform="x86_64-linux-gnu">
+          <location>https://github.com/Cuperino/QPrompt/releases/download/v1.0.0/qprompt-v1.0-2c9752c-v1.0-linux-64-gcc.AppImage</location>
+          <checksum type="sha256">179386217654318efb62f391e50eabb090aedeef2f111a9b6b35edc2c6c2c4cf</checksum>
+        </artifact>
+        <artifact type="binary" platform="x86_64-windows-msvc">
+          <location>https://github.com/Cuperino/QPrompt/releases/download/v1.0.0/qprompt-v1.0-2c9752c-v1.0-windows-msvc2019_64-cl.exe</location>
+        </artifact>
+        <artifact type="binary" platform="x86_64-maacos-clang">
+          <location>https://github.com/Cuperino/QPrompt/releases/download/v1.0.0/qprompt-v1.0-2c9752c-v1.0-macos-64-clang.dmg</location>
+        </artifact>
+        <artifact type="binary" platform="arm64-v8a-android">
+          <location>https://github.com/Cuperino/QPrompt/releases/download/v1.0.0/qprompt-1.0.0-Linux-aarch64.deb</location>
+        </artifact>
+        <artifact type="source">
+          <location>https://github.com/Cuperino/QPrompt/archive/refs/tags/v1.0.0.tar.gz</location>
+        </artifact>
+      </artifacts>
+    </release>
+  </releases>
 </component>
