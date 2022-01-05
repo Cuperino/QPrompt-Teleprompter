@@ -18,6 +18,9 @@ confinement: strict # use 'strict' once you have the right plugs and slots
 compression: lzo
 icon: snap/gui/icon.png
 
+architectures:
+- build-on: amd64
+
 parts:
   qprompt:
     parse-info:
@@ -25,7 +28,7 @@ parts:
     plugin: cmake
     source: https://github.com/Cuperino/QPrompt.git
     source-type: git
-    source-branch: v1.0
+    source-branch: main
     cmake-parameters:
     - "-DKDE_INSTALL_USE_QT_SYS_PATHS=ON"
     - "-DCMAKE_INSTALL_PREFIX=/usr"
