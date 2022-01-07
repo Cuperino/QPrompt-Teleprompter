@@ -1,7 +1,7 @@
 /****************************************************************************
  **
  ** QPrompt
- ** Copyright (C) 2020-2021 Javier O. Cordero Pérez
+ ** Copyright (C) 2020-2022 Javier O. Cordero Pérez
  **
  ** This file is part of QPrompt.
  **
@@ -24,11 +24,11 @@ import org.kde.kirigami 2.11 as Kirigami
 
 ScrollBar {
     id: scroller
-    policy: ScrollBar.AlwaysOn
-    interactive: parseInt(prompter.state)===Prompter.States.Prompting || parseInt(prompter.state)===Prompter.States.Countdown || Kirigami.Settings.isMobile ? false : true
     leftPadding: 0
     rightPadding: 0
     leftInset: 0
     rightInset: 0
+    interactive: parseInt(prompter.state)===Prompter.States.Prompting || parseInt(prompter.state)===Prompter.States.Countdown || Kirigami.Settings.isMobile ? false : true
     stepSize: prompter.height/(4*(editor.height + prompter.topMargin + prompter.bottomMargin))
+    policy: ScrollBar.AlwaysOn
 }

@@ -1,7 +1,7 @@
 /****************************************************************************
  **
  ** QPrompt
- ** Copyright (C) 2020-2021 Javier O. Cordero Pérez
+ ** Copyright (C) 2020-2022 Javier O. Cordero Pérez
  **
  ** This file is part of QPrompt.
  **
@@ -31,6 +31,7 @@ import org.kde.kirigami 2.11 as Kirigami
 
 Item {
     id: clock
+
     property bool running: prompter.__play && parseInt(prompter.state)===Prompter.States.Prompting
     property double elapsedMilliseconds: 0
     property double startTime: new Date().getTime() - elapsedMilliseconds + 500
@@ -40,20 +41,66 @@ Item {
     property bool eta: false
     property real size: 0.5
     property alias textColor: timerSettings.color
+    readonly property real centreX: prompter.centreX;
+    readonly property real centreY: prompter.centreY;
+
+    function getTimeString(timeInSeconds) {
+        const digitalSeconds = Math.ceil(timeInSeconds) % 60 / 100;
+        const minutes = (timeInSeconds+1) / 60
+        const digitalMinutes = Math.floor(minutes % 60) / 100;
+        const digitalHours = Math.floor((minutes / 60) % 100) / 100;
+        return (digitalHours).toFixed(2).toString().slice(2)+":"+(digitalMinutes).toFixed(2).toString().slice(2)+":"+(digitalSeconds).toFixed(2).toString().slice(2);
+    }
+    function startTimer() {
+        console.log("Start timer")
+        startTime = new Date().getTime() - elapsedMilliseconds
+    }
+    function stopTimer() {
+        console.log("Stop timer")
+        const currentTime = new Date().getTime()
+        elapsedMilliseconds = currentTime - startTime
+    }
+    function updateText() {
+        let timeToEnd = prompter.__timeToEnd;
+        if (!isFinite(timeToEnd) || prompter.__i<0) {
+            timeToEnd = 2 * (Math.floor(editor.height+prompter.fontSize-prompter.topMargin-1)-prompter.position) / (prompter.__baseSpeed * Math.pow(Math.abs(prompter.__iDefault), prompter.__curvature) * prompter.fontSize/2 * ((prompter.__vw-prompter.__evw/2) / prompter.__vw));
+            if (prompter.__atEnd)
+                timeToEnd = 0
+        }
+        etaTimer.text = /*i18n("SW") + " " +*/ timer.getTimeString(timeToEnd);
+
+        newLastTime = new Date().getTime()
+        if (clock.stopwatch && !running)
+            startTime = startTime + newLastTime - lastTime
+        lastTime = newLastTime
+        elapsedMilliseconds = lastTime - startTime
+        promptTime.text = /*i18n("SW") + " " +*/ timer.getTimeString(elapsedMilliseconds/1000);
+    }
+    function reset() {
+        timer.elapsedMilliseconds = 0;
+        startTime = new Date().getTime() - elapsedMilliseconds
+        lastTime = startTime
+    }
+    function setColor() {
+        timerColorDialog.open()
+    }
+    function clearColor() {
+        timerSettings.color = "#AAA"
+    }
+
+    // Flip
+    readonly property Scale __flips: Flip{}
+    transform: __flips
+
     enabled: stopwatch || eta
     visible: enabled
     clip: true
-    readonly property real centreX: prompter.centreX;
-    readonly property real centreY: prompter.centreY;
+    height: prompter.height
     anchors {
         left: parent.left
         right: parent.right
         top: parent.top
     }
-    height: prompter.height
-    
-    readonly property Scale __flips: Flip{}
-    transform: __flips
 
     Settings {
         id: timerSettings
@@ -67,6 +114,7 @@ Item {
         id: monoSpacedFont
         name: "Monospace"
     }
+
     Item {
         id: stopwatch
         readonly property real centreX: width / 2;
@@ -135,7 +183,7 @@ Item {
             onReleased: stopwatch.customRelativeXpos = stopwatch.x / (clock.width - stopwatch.width)
         }
     }
-    // This timer implementation is incorrect but it will suffice for now. Results aren't wrong, but they can become so after long periods of time if CPU performance is low, as this does not measure elapsed time but time deltas.
+
     Timer {
         repeat: true
         running: clock.eta || clock.running
@@ -143,49 +191,7 @@ Item {
         interval: 120;
         onTriggered: updateText();
     }
-    function getTimeString(timeInSeconds) {
-        const digitalSeconds = Math.ceil(timeInSeconds) % 60 / 100;
-        const minutes = (timeInSeconds+1) / 60
-        const digitalMinutes = Math.floor(minutes % 60) / 100;
-        const digitalHours = Math.floor((minutes / 60) % 100) / 100;
-        return (digitalHours).toFixed(2).toString().slice(2)+":"+(digitalMinutes).toFixed(2).toString().slice(2)+":"+(digitalSeconds).toFixed(2).toString().slice(2);
-    }
-    function startTimer() {
-        console.log("Start timer")
-        startTime = new Date().getTime() - elapsedMilliseconds
-    }
-    function stopTimer() {
-        console.log("Stop timer")
-        const currentTime = new Date().getTime()
-        elapsedMilliseconds = currentTime - startTime
-    }
-    function updateText() {
-        let timeToEnd = prompter.__timeToEnd;
-        if (!isFinite(timeToEnd) || prompter.__i<0) {
-            timeToEnd = 2 * (Math.floor(editor.height+prompter.fontSize-prompter.topMargin-1)-prompter.position) / (prompter.__baseSpeed * Math.pow(Math.abs(prompter.__iDefault), prompter.__curvature) * prompter.fontSize/2 * ((prompter.__vw-prompter.__evw/2) / prompter.__vw));
-            if (prompter.__atEnd)
-                timeToEnd = 0
-        }
-        etaTimer.text = /*i18n("SW") + " " +*/ timer.getTimeString(timeToEnd);
 
-        newLastTime = new Date().getTime()
-        if (clock.stopwatch && !running)
-            startTime = startTime + newLastTime - lastTime
-        lastTime = newLastTime
-        elapsedMilliseconds = lastTime - startTime
-        promptTime.text = /*i18n("SW") + " " +*/ timer.getTimeString(elapsedMilliseconds/1000);
-    }
-    function reset() {
-        timer.elapsedMilliseconds = 0;
-        startTime = new Date().getTime() - elapsedMilliseconds
-        lastTime = startTime
-    }
-    function setColor() {
-        timerColorDialog.open()
-    }
-    function clearColor() {
-        timerSettings.color = "#AAA"
-    }
     ColorDialog {
         id: timerColorDialog
         color: '#AAA'

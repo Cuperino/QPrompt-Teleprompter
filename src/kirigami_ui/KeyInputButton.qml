@@ -1,7 +1,7 @@
 /****************************************************************************
 **
 ** QPrompt
-** Copyright (C) 2021 Javier O. Cordero Pérez
+** Copyright (C) 2021-2022 Javier O. Cordero Pérez
 **
 ** This file is part of QPrompt.
 **
@@ -29,25 +29,6 @@ Button {
     signal toggleButtonsOff()
     signal setKey(var key)
 
-    checkable: true
-    flat: true
-    Layout.fillWidth: true
-    onClicked: {
-        if (checked) {
-            keyInputButton.toggleButtonsOff()
-            checked = true
-        }
-    }
-    Keys.onPressed: {
-        if (checked) {
-            if (isValidInput(event.key)) {
-                keyInputButton.setKey(event.key);
-                text = getKeyText(event);
-            }
-            event.accepted = true;
-        }
-        keyInputButton.toggleButtonsOff();
-    }
     // Validate input
     function isValidInput(input) {
         let flag = false;
@@ -133,5 +114,27 @@ Button {
                 text = event.text==="" ? event.key : event.text;
         }
         return text
+    }
+
+    checkable: true
+    flat: true
+
+    onClicked: {
+        if (checked) {
+            keyInputButton.toggleButtonsOff()
+            checked = true
+        }
+    }
+
+    Layout.fillWidth: true
+    Keys.onPressed: {
+        if (checked) {
+            if (isValidInput(event.key)) {
+                keyInputButton.setKey(event.key);
+                text = getKeyText(event);
+            }
+            event.accepted = true;
+        }
+        keyInputButton.toggleButtonsOff();
     }
 }

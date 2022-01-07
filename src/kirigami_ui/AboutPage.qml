@@ -1,7 +1,7 @@
 /****************************************************************************
  **
  ** QPrompt
- ** Copyright (C) 2020-2021 Javier O. Cordero Pérez
+ ** Copyright (C) 2020-2022 Javier O. Cordero Pérez
  **
  ** This file is part of QPrompt.
  **
@@ -24,6 +24,7 @@ import org.kde.kirigami 2.9 as Kirigami
 Kirigami.AboutPage {
     globalToolBarStyle: Kirigami.ApplicationHeaderStyle.Titles
     getInvolvedUrl: "https://l10n.qprompt.app/"
+
     mainAction: Kirigami.Action {
         icon.name: !Kirigami.Settings.isMobile && pageStack.globalToolBar.actualStyle === Kirigami.ApplicationHeaderStyle.None ? 'go-previous' : (['android', 'ios', 'tvos'].indexOf(Qt.platform.os)===-1 ? "mail-mark-unread" : "draw-star")
         onTriggered: {

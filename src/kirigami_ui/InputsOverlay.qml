@@ -1,7 +1,7 @@
 /****************************************************************************
  **
  ** QPrompt
- ** Copyright (C) 2021 Javier O. Cordero Pérez
+ ** Copyright (C) 2021-2022 Javier O. Cordero Pérez
  **
  ** This file is part of QPrompt.
  **
@@ -26,7 +26,6 @@ import QtQuick.Layouts 1.12
 
 Kirigami.OverlaySheet {
     id: key_configuration_overlay
-    onSheetOpenChanged: prompterPage.actions.main.checked = sheetOpen
 
     background: Rectangle {
         color: appTheme.__backgroundColor
@@ -37,8 +36,11 @@ Kirigami.OverlaySheet {
         level: 1
     }
 
+    onSheetOpenChanged: prompterPage.actions.main.checked = sheetOpen
+
     GridLayout {
         id: buttonGrid
+
         width: parent.width
         columns: 2
 
@@ -47,6 +49,7 @@ Kirigami.OverlaySheet {
             for (let i=1; i<children.length; i+=2)
                 children[i].item.checked = false;
         }
+
         Component.onCompleted: {
             keyInputTogglePrompter.setSource("KeyInputButton.qml", { "text": "F9" });
             keyInputDecreaseVelocity.setSource("KeyInputButton.qml", { "text": "Up Arrow" });

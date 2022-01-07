@@ -1,7 +1,7 @@
 /****************************************************************************
  **
  ** QPrompt
- ** Copyright (C) 2020-2021 Javier O. Cordero Pérez
+ ** Copyright (C) 2020-2022 Javier O. Cordero Pérez
  **
  ** This file is part of QPrompt.
  **
@@ -32,9 +32,6 @@ import com.cuperino.qprompt.markers 1.0
 Kirigami.Page {
     id: prompterPage
     
-    // Unused signal. Leaving for reference.
-    //signal test( bool data )
-
     property alias fontDialog: fontDialog
     property alias colorDialog: colorDialog
     property alias highlightDialog: highlightDialog
@@ -49,17 +46,20 @@ Kirigami.Page {
     property alias displaySettings: displaySettings
     property int hideDecorations: 1
 
+    // Unused signal. Leaving for reference.
+    //signal test( bool data )
+
     title: "QPrompt"
     padding: 0
+
+    onBackRequested: close()
 
     Kirigami.Theme.inherit: false
     Kirigami.Theme.colorSet: Kirigami.Theme.Window
     Kirigami.Theme.backgroundColor: Qt.rgba(Kirigami.Theme.backgroundColor.r, Kirigami.Theme.backgroundColor.g, Kirigami.Theme.backgroundColor.b, 0)
-//     Kirigami.Theme.backgroundColor: themeSwitch.checked ? "#00b9d795" : "#00000000"
-//     Kirigami.Theme.textColor: themeSwitch.checked ? "#465c2b" : "#ffffff"
-//     Kirigami.Theme.highlightColor: themeSwitch.checked ? "#89e51c" : "#ffffff"
-
-    onBackRequested: close()
+    // Kirigami.Theme.backgroundColor: themeSwitch.checked ? "#00b9d795" : "#00000000"
+    // Kirigami.Theme.textColor: themeSwitch.checked ? "#465c2b" : "#ffffff"
+    // Kirigami.Theme.highlightColor: themeSwitch.checked ? "#89e51c" : "#ffffff"
 
     actions {
         main: Kirigami.Action {
@@ -108,56 +108,56 @@ Kirigami.Page {
                 id: readRegionTopButton
                 iconName: "go-up"
                 text: i18n("Top")
+                enabled: parseInt(viewport.overlay.positionState)!==ReadRegionOverlay.PositionStates.Top
+                tooltip: i18n("Move reading region to the top, convenient for use with webcams")
                 onTriggered: {
                     viewport.overlay.positionState = ReadRegionOverlay.PositionStates.Top
                     contextDrawer.close()
                 }
-                enabled: parseInt(viewport.overlay.positionState)!==ReadRegionOverlay.PositionStates.Top
-                tooltip: i18n("Move reading region to the top, convenient for use with webcams")
             }
             Kirigami.Action {
                 id: readRegionMiddleButton
                 iconName: "list-remove"
                 text: i18n("Middle")
+                enabled: parseInt(viewport.overlay.positionState)!==ReadRegionOverlay.PositionStates.Middle
+                tooltip: i18n("Move reading region to the vertical center")
                 onTriggered: {
                     viewport.overlay.positionState = ReadRegionOverlay.PositionStates.Middle
                     contextDrawer.close()
                 }
-                enabled: parseInt(viewport.overlay.positionState)!==ReadRegionOverlay.PositionStates.Middle
-                tooltip: i18n("Move reading region to the vertical center")
             }
             Kirigami.Action {
                 id: readRegionBottomButton
                 iconName: "go-down"
                 text: i18n("Bottom")
+                enabled: parseInt(viewport.overlay.positionState)!==ReadRegionOverlay.PositionStates.Bottom
+                tooltip: i18n("Move reading region to the bottom")
                 onTriggered: {
                     viewport.overlay.positionState = ReadRegionOverlay.PositionStates.Bottom
                     contextDrawer.close()
                 }
-                enabled: parseInt(viewport.overlay.positionState)!==ReadRegionOverlay.PositionStates.Bottom
-                tooltip: i18n("Move reading region to the bottom")
             }
             Kirigami.Action {
                 id: readRegionFreeButton
                 iconName: "handle-sort"
                 text: i18n("Free")
+                enabled: parseInt(viewport.overlay.positionState)!==ReadRegionOverlay.PositionStates.Free
+                tooltip: i18n("Move reading region freely by dragging and dropping")
                 onTriggered: {
                     viewport.overlay.positionState = ReadRegionOverlay.PositionStates.Free
                     contextDrawer.close()
                 }
-                enabled: parseInt(viewport.overlay.positionState)!==ReadRegionOverlay.PositionStates.Free
-                tooltip: i18n("Move reading region freely by dragging and dropping")
             }
             Kirigami.Action {
                 id: readRegionCustomButton
                 iconName: "dialog-ok-apply"
                 text: i18n("Custom")
+                enabled: parseInt(viewport.overlay.positionState)!==ReadRegionOverlay.PositionStates.Fixed
+                tooltip: i18n("Fix reading region to the position set using free placement mode")
                 onTriggered: {
                     viewport.overlay.positionState = ReadRegionOverlay.PositionStates.Fixed
                     contextDrawer.close()
                 }
-                enabled: parseInt(viewport.overlay.positionState)!==ReadRegionOverlay.PositionStates.Fixed
-                tooltip: i18n("Fix reading region to the position set using free placement mode")
             }
             // Commenting out because there's no way to hide an empty sub-menu in mobile interface and distinction between Normal and Auto is confusing.
             // Kirigami.Action {
@@ -204,6 +204,7 @@ Kirigami.Page {
         },
         Kirigami.Action {
             id: readRegionStyleButton
+
             text: i18n("Pointers")
             tooltip: i18n("Change pointers that indicate reading region")
             
@@ -211,89 +212,89 @@ Kirigami.Page {
                 id: readRegionLeftPointerButton
                 text: i18n("Left pointer")
                 iconName: "go-next"
+                tooltip: i18n("Left pointer indicates reading region")
+                enabled: parseInt(overlay.styleState)!==ReadRegionOverlay.PointerStates.LeftPointer
                 onTriggered: {
                     overlay.styleState = ReadRegionOverlay.PointerStates.LeftPointer
                     contextDrawer.close()
                 }
-                tooltip: i18n("Left pointer indicates reading region")
-                enabled: parseInt(overlay.styleState)!==ReadRegionOverlay.PointerStates.LeftPointer
             }
             Kirigami.Action {
                 id: readRegionRightPointerButton
                 text: i18n("Right pointer")
                 iconName: "go-previous"
+                tooltip: i18n("Right pointer indicates reading region")
+                enabled: parseInt(overlay.styleState)!==ReadRegionOverlay.PointerStates.RightPointer
                 onTriggered: {
                     overlay.styleState = ReadRegionOverlay.PointerStates.RightPointer
                     contextDrawer.close()
                 }
-                tooltip: i18n("Right pointer indicates reading region")
-                enabled: parseInt(overlay.styleState)!==ReadRegionOverlay.PointerStates.RightPointer
             }
             Kirigami.Action {
                 id: readRegionPointersButton
                 text: i18n("Both pointers")
                 iconName: "transform-move-horizontal"
+                tooltip: i18n("Left and right pointers indicate reading region")
+                enabled: parseInt(overlay.styleState)!==ReadRegionOverlay.PointerStates.Pointers
                 onTriggered: {
                     overlay.styleState = ReadRegionOverlay.PointerStates.Pointers
                     contextDrawer.close()
                 }
-                tooltip: i18n("Left and right pointers indicate reading region")
-                enabled: parseInt(overlay.styleState)!==ReadRegionOverlay.PointerStates.Pointers
             }
             Kirigami.Action {
                 id: readRegionBarsButton
                 text: i18n("Bar")
                 iconName: "list-remove"
+                tooltip: i18n("Translucent bars indicate reading region")
+                enabled: parseInt(overlay.styleState)!==ReadRegionOverlay.PointerStates.Bars
                 onTriggered: {
                     overlay.styleState = ReadRegionOverlay.PointerStates.Bars
                     contextDrawer.close()
                 }
-                tooltip: i18n("Translucent bars indicate reading region")
-                enabled: parseInt(overlay.styleState)!==ReadRegionOverlay.PointerStates.Bars
             }
             Kirigami.Action {
                 id: readRegionBarsLeftButton
                 text: i18n("Bar && left")
                 iconName: "sidebar-collapse-right"
+                tooltip: i18n("Translucent bars and left pointer indicate reading region")
+                enabled: parseInt(overlay.styleState)!==ReadRegionOverlay.PointerStates.BarsLeft
                 onTriggered: {
                     overlay.styleState = ReadRegionOverlay.PointerStates.BarsLeft
                     contextDrawer.close()
                 }
-                tooltip: i18n("Translucent bars and left pointer indicate reading region")
-                enabled: parseInt(overlay.styleState)!==ReadRegionOverlay.PointerStates.BarsLeft
             }
             Kirigami.Action {
                 id: readRegionBarsRightButton
                 text: i18n("Bar && right")
                 iconName: "sidebar-collapse-left"
+                tooltip: i18n("Translucent bars and right pointer indicate reading region")
+                enabled: parseInt(overlay.styleState)!==ReadRegionOverlay.PointerStates.BarsRight
                 onTriggered: {
                     overlay.styleState = ReadRegionOverlay.PointerStates.BarsRight
                     contextDrawer.close()
                 }
-                tooltip: i18n("Translucent bars and right pointer indicate reading region")
-                enabled: parseInt(overlay.styleState)!==ReadRegionOverlay.PointerStates.BarsRight
             }
             Kirigami.Action {
                 id: readRegionAllButton
                 text: i18n("All")
                 iconName: "auto-transition"
+                tooltip: i18n("Use all reading region indicators")
+                enabled: parseInt(overlay.styleState)!==ReadRegionOverlay.PointerStates.All
                 onTriggered: {
                     overlay.styleState = ReadRegionOverlay.PointerStates.All
                     contextDrawer.close()
                 }
-                tooltip: i18n("Use all reading region indicators")
-                enabled: parseInt(overlay.styleState)!==ReadRegionOverlay.PointerStates.All
             }
             Kirigami.Action {
                 id: readRegionNoneButton
                 text: i18n("None")
                 iconName: "format-justify-center"
+                tooltip: i18n("Disable reading region indicators")
+                enabled: parseInt(overlay.styleState)!==ReadRegionOverlay.PointerStates.None
                 onTriggered: {
                     overlay.styleState = ReadRegionOverlay.PointerStates.None
                     contextDrawer.close()
                 }
-                tooltip: i18n("Disable reading region indicators")
-                enabled: parseInt(overlay.styleState)!==ReadRegionOverlay.PointerStates.None
             }
         },
         Kirigami.Action {
@@ -400,60 +401,61 @@ Kirigami.Page {
         },
         Kirigami.Action {
             id: flipButton
-            text: i18n("Flip")
 
             function updateButton(context) {
                 text = context.shortName
                 //iconName = context.iconName
             }
 
+            text: i18n("Flip")
+
             Kirigami.Action {
+                readonly property string shortName: i18n("No Flip")
                 text: i18n("No flip")
                 iconName: "window"
-                readonly property string shortName: i18n("No Flip")
+                enabled: viewport.prompter.__flipX || viewport.prompter.__flipY
                 onTriggered: {
                     parent.updateButton(this)
                     viewport.prompter.__flipX = false
                     viewport.prompter.__flipY = false
                     contextDrawer.close()
                 }
-                enabled: viewport.prompter.__flipX || viewport.prompter.__flipY
             }
             Kirigami.Action {
+                readonly property string shortName: i18n("H Flip")
                 text: i18n("Horizontal flip")
                 iconName: "object-flip-horizontal"
-                readonly property string shortName: i18n("H Flip")
+                enabled: (!viewport.prompter.__flipX) || viewport.prompter.__flipY
                 onTriggered: {
                     parent.updateButton(this)
                     viewport.prompter.__flipX = true
                     viewport.prompter.__flipY = false
                     contextDrawer.close()
                 }
-                enabled: (!viewport.prompter.__flipX) || viewport.prompter.__flipY
             }
             Kirigami.Action {
+                readonly property string shortName: i18n("V Flip")
                 text: i18n("Vertical flip")
                 iconName: "object-flip-vertical"
-                readonly property string shortName: i18n("V Flip")
+                enabled: viewport.prompter.__flipX || !viewport.prompter.__flipY
                 onTriggered: {
                     parent.updateButton(this)
                     viewport.prompter.__flipX = false
                     viewport.prompter.__flipY = true
                     contextDrawer.close()
                 }
-                enabled: viewport.prompter.__flipX || !viewport.prompter.__flipY
             }
             Kirigami.Action {
+                readonly property string shortName: i18n("HV Flip")
                 text: i18n("180° rotation")
                 iconName: Qt.LeftToRight ? "object-rotate-left" : "object-rotate-right"
-                readonly property string shortName: i18n("HV Flip")
+                enabled: !(viewport.prompter.__flipX && viewport.prompter.__flipY)
                 onTriggered: {
                     parent.updateButton(this)
                     viewport.prompter.__flipX = true
                     viewport.prompter.__flipY = true
                     contextDrawer.close()
                 }
-                enabled: !(viewport.prompter.__flipX && viewport.prompter.__flipY)
             }
         },
         Kirigami.Action {
@@ -501,6 +503,10 @@ Kirigami.Page {
                         id: display
                         property string name: model.name
                         property int flipSetting: projectionManager.getDisplayFlip(display.name)
+                        function toggleDisplayFlip() {
+                            flipSetting = (flipSetting+1)%5
+                            projectionManager.putDisplayFlip(display.name, flipSetting)
+                        }
                         enabled: parseInt(prompter.state)===Prompter.States.Editing
                         activeTextColor: "#FFFFFF"
                         activeBackgroundColor: "#797979"
@@ -517,10 +523,6 @@ Kirigami.Page {
                             }
                         ]
                         onClicked: toggleDisplayFlip()
-                        function toggleDisplayFlip() {
-                            flipSetting = (flipSetting+1)%5
-                            projectionManager.putDisplayFlip(display.name, flipSetting)
-                        }
                         Label {
                             id: label
                             text: switch (flipSetting) {
@@ -573,6 +575,12 @@ Kirigami.Page {
         }
         ]
     }
+
+    // Editor Toolbar
+    footer: EditorToolbar {
+        id: editorToolbar
+    }
+
     PrompterView {
         id: viewport
         // Workaround to make regular Page let its contents be covered by action buttons.
@@ -650,11 +658,6 @@ Kirigami.Page {
 //     ProjectionWindow {
 //         id: projectionWindow
 //     }
-
-    // Editor Toolbar
-    footer: EditorToolbar {
-        id: editorToolbar
-    }
 
     // Prompter Page Component {
     //Component {

@@ -1,7 +1,7 @@
 /****************************************************************************
  **
  ** QPrompt
- ** Copyright (C) 2021 Javier O. Cordero Pérez
+ ** Copyright (C) 2021-2022 Javier O. Cordero Pérez
  **
  ** This file is part of QPrompt.
  **
@@ -28,21 +28,92 @@ import Qt.labs.settings 1.0
 Item {
     id: projectionManager
     readonly property alias model: projectionModel
-
+    readonly property real internalBackgroundOpacity: backgroundOpacity // /2+0.5
     property int defaultDisplayMode: 0
     property real backgroundOpacity: 1
-    readonly property real internalBackgroundOpacity: backgroundOpacity // /2+0.5
     property color backgroundColor: "#000"
     property bool reScale: true
     property bool isPreview: false
     property var forwardTo // prompter
 
-    Settings {
-        category: "projections"
-        property alias scale: projectionManager.reScale
-        property alias projections: projectionModel
+    function getDisplayFlip(screenName, flipSetting) {
+        const totalDisplays = displayModel.count;
+        for (var j=0; j<totalDisplays; j++)
+            if (displayModel.get(j).name===screenName)
+                return displayModel.get(j).flipSetting
+        return this.defaultDisplayMode
+    }
+    function putDisplayFlip(screenName, flipSetting) {
+//         if (flipSetting) {
+//             if (Qt.application.screens.length===1)
+//                 alertDialog.requestDisplays()
+//             else
+//             if (screenName===screen.name)
+//                 alertDialog.warnSameDisplay(screenName)
+//         }
+        // Auto maximize main window on display flip selection.
+        if (flipSetting && visibility!==Kirigami.ApplicationWindow.FullScreen)
+            root.showMaximized()
+        // If configuration exists for element, update it.
+        const configuredDisplays = displayModel.count;
+        for (var j=0; j<configuredDisplays; j++)
+            if (displayModel.get(j).name===screenName) {
+                displayModel.get(j).flipSetting = flipSetting;
+                // console.log(displayModel)
+                return;
+            }
+        // If configuration does not exists, add it.
+        displayModel.append({
+            "name": screenName,
+            "flipSetting": flipSetting
+        });
+    }
+    function project() {
+        projectionModel.clear();
+        var flip = this.defaultDisplayMode;
+        const totalDisplays = displayModel.count;
+        for (var i=0; i<Qt.application.screens.length; i++) {
+            for (var j=0; j<totalDisplays; j++)
+                if (Qt.application.screens[i].name===displayModel.get(j).name) {
+                    flip = displayModel.get(j).flipSetting;
+                    break;
+                }
+                else
+                    flip = this.defaultDisplayMode;
+            // Comment the following line to debug with a single screen.
+            if (flip!==0 /*&& Qt.application.screens[i].name!==screen.name*/)
+                projectionModel.append ({
+                    "id": i,
+                    "screen": Qt.application.screens[i],
+                    "name": Qt.application.screens[i].name, // + ' ' + Qt.application.screens[i].model + ' ' + Qt.application.screens[i].manufacturer,
+                    "x": Qt.application.screens[i].virtualX,
+                    "y": Qt.application.screens[i].virtualY,
+                    "width": Qt.application.screens[i].desktopAvailableWidth,
+                    "height": Qt.application.screens[i].desktopAvailableHeight,
+                    "flip": flip,//.projectionSetting,
+                    "p": ""
+                });
+        }
+        if (projectionModel.count===0 && this.isPreview) {
+            alertDialog.requestDisplays();
+            this.isPreview = false;
+        }
+    }
+    function close() {
+        return projectionModel.clear()
+    }
+    function preview() {
+        if (this.isPreview)
+            this.close()
+        this.isPreview = true;
+        this.project();
     }
 
+    Settings {
+        property alias scale: projectionManager.reScale
+        property alias projections: projectionModel
+        category: "projections"
+    }
     Component {
         id: projectionDelegte
         Window {
@@ -59,10 +130,28 @@ Item {
             flags: Qt.FramelessWindowHint
             visible: true
             color: "transparent"
-
+            onClosing: {
+                projectionManager.isPreview = false;
+                projectionModel.clear()
+            }
             MouseArea {
                 enabled: true
                 anchors.fill:parent
+                cursorShape: projectionManager.isPreview ? Qt.ForbiddenCursor : Qt.PointingHandCursor
+                // Keyboard inputs
+                focus: true
+                onClicked: {
+                    if (projectionManager.isPreview)
+                        projectionWindow.close();
+                    else
+                        projectionManager.forwardTo.toggle()
+                }
+                onWheel: (wheel)=> {
+                    projectionManager.forwardTo.mouse.wheel(wheel)
+                }
+                Keys.onShortcutOverride: event.accepted = (event.key === Qt.Key_Escape)
+                Keys.onEscapePressed: projectionWindow.close()
+                Keys.forwardTo: projectionManager.forwardTo
                 Rectangle {
                     id: topFill
                     color: backgroundColor
@@ -130,11 +219,6 @@ Item {
                     cache: !reScale
                     // Mirror Horizontally: Save time by mirroring image on copy instead of flipping the result
                     mirror: model.flip===2 || model.flip===4
-                    // Mirror Vertically: do a transformation for the vertical flip. There's no trick to get a performance gain here.
-                    transform: Scale {
-                        origin.y: img.paintedHeight/2
-                        yScale: model.flip===3 || model.flip===4 ? -1 : 1
-                    }
                     // Keep image vertically centered relative to the window's MouseArea, which fills the window.
                     anchors.horizontalCenter: parent.horizontalCenter
                     anchors.verticalCenter: parent.verticalCenter
@@ -142,46 +226,27 @@ Item {
                     fillMode: reScale ? Image.PreserveAspectFit : Image.Pad
                     width: !reScale ? sourceSize.width : parent.width
                     height: !reScale ? sourceSize.height : (parent.width/sourceSize.width) * sourceSize.height
+                    // Mirror Vertically: do a transformation for the vertical flip. There's no trick to get a performance gain here.
+                    transform: Scale {
+                        origin.y: img.paintedHeight/2
+                        yScale: model.flip===3 || model.flip===4 ? -1 : 1
+                    }
                 }
-                cursorShape: projectionManager.isPreview ? Qt.ForbiddenCursor : Qt.PointingHandCursor
-                onClicked: {
-                    if (projectionManager.isPreview)
-                        projectionWindow.close();
-                    else
-                        projectionManager.forwardTo.toggle()
-                }
-
-                onWheel: (wheel)=> {
-                    projectionManager.forwardTo.mouse.wheel(wheel)
-                }
-                // Keyboard inputs
-                focus: true
-                Keys.onShortcutOverride: event.accepted = (event.key === Qt.Key_Escape)
-                Keys.onEscapePressed: projectionWindow.close()
-                Keys.forwardTo: projectionManager.forwardTo
-            }
-            onClosing: {
-                projectionManager.isPreview = false;
-                projectionModel.clear()
             }
         }
     }
-
     ListModel {
         id: projectionModel
     }
-
     ListModel {
         id: displayModel
     }
-
     Instantiator {
         id: projections
         model: projectionModel
         asynchronous: true
         delegate: projectionDelegte
     }
-
     MessageDialog {
         id: alertDialog
 
@@ -191,7 +256,6 @@ Item {
             alertDialog.icon = StandardIcon.Information
             alertDialog.visible = true
         }
-
         function warnSameDisplay(screenName) {
             alertDialog.text = i18n("You've enabled a screen projection on display \""+screenName+"\". Please note this projection will not show unless you place the editor on a different screen.")
             //alertDialog.text = i18n("QPrompt will not project to the screen where the editor is at.")
@@ -199,82 +263,5 @@ Item {
             alertDialog.icon = StandardIcon.Warning
             alertDialog.visible = true
         }
-    }
-
-    function getDisplayFlip(screenName, flipSetting) {
-        const totalDisplays = displayModel.count;
-        for (var j=0; j<totalDisplays; j++)
-            if (displayModel.get(j).name===screenName)
-                return displayModel.get(j).flipSetting
-        return this.defaultDisplayMode
-    }
-
-    function putDisplayFlip(screenName, flipSetting) {
-//         if (flipSetting) {
-//             if (Qt.application.screens.length===1)
-//                 alertDialog.requestDisplays()
-//             else
-//             if (screenName===screen.name)
-//                 alertDialog.warnSameDisplay(screenName)
-//         }
-        // Auto maximize main window on display flip selection.
-        if (flipSetting && visibility!==Kirigami.ApplicationWindow.FullScreen)
-            root.showMaximized()
-        // If configuration exists for element, update it.
-        const configuredDisplays = displayModel.count;
-        for (var j=0; j<configuredDisplays; j++)
-            if (displayModel.get(j).name===screenName) {
-                displayModel.get(j).flipSetting = flipSetting;
-                // console.log(displayModel)
-                return;
-            }
-        // If configuration does not exists, add it.
-        displayModel.append({
-            "name": screenName,
-            "flipSetting": flipSetting
-        });
-    }
-
-    function project() {
-        projectionModel.clear();
-        var flip = this.defaultDisplayMode;
-        const totalDisplays = displayModel.count;
-        for (var i=0; i<Qt.application.screens.length; i++) {
-            for (var j=0; j<totalDisplays; j++)
-                if (Qt.application.screens[i].name===displayModel.get(j).name) {
-                    flip = displayModel.get(j).flipSetting;
-                    break;
-                }
-                else
-                    flip = this.defaultDisplayMode;
-            // Comment the following line to debug with a single screen.
-            if (flip!==0 /*&& Qt.application.screens[i].name!==screen.name*/)
-                projectionModel.append ({
-                    "id": i,
-                    "screen": Qt.application.screens[i],
-                    "name": Qt.application.screens[i].name, // + ' ' + Qt.application.screens[i].model + ' ' + Qt.application.screens[i].manufacturer,
-                    "x": Qt.application.screens[i].virtualX,
-                    "y": Qt.application.screens[i].virtualY,
-                    "width": Qt.application.screens[i].desktopAvailableWidth,
-                    "height": Qt.application.screens[i].desktopAvailableHeight,
-                    "flip": flip,//.projectionSetting,
-                    "p": ""
-                });
-        }
-        if (projectionModel.count===0 && this.isPreview) {
-            alertDialog.requestDisplays();
-            this.isPreview = false;
-        }
-    }
-
-    function close() {
-        return projectionModel.clear()
-    }
-
-    function preview() {
-        if (this.isPreview)
-            this.close()
-        this.isPreview = true;
-        this.project();
     }
 }

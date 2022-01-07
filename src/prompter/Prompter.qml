@@ -1,7 +1,7 @@
 /****************************************************************************
  **
  ** QPrompt
- ** Copyright (C) 2020-2021 Javier O. Cordero Pérez
+ ** Copyright (C) 2020-2022 Javier O. Cordero Pérez
  **
  ** This file is part of QPrompt.
  **
@@ -91,34 +91,6 @@ Flickable {
         Countdown,
         Prompting
     }
-    // Patch through aliases
-    property alias editor: editor
-    property alias document: document
-    property alias textColor: document.textColor
-    property alias textBackground: document.textBackground
-    property alias mouse: mouse
-    // Create position alias to make code more readable
-    property alias position: prompter.contentY
-    // Scrolling settings
-    property bool performFileOperations: false
-    property bool __scrollAsDial: root.__scrollAsDial
-    property bool __invertArrowKeys: root.__invertArrowKeys
-    property bool __invertScrollDirection: root.__invertScrollDirection
-    property bool __noScroll: root.__noScroll
-    property bool __wysiwyg: true
-    property alias fontSize: editor.font.pixelSize
-    property alias letterSpacing: editor.font.letterSpacing
-    property alias wordSpacing: editor.font.wordSpacing
-    property int __i: __iDefault
-    property int __iBackup: 0
-    property bool __play: true
-    property int __iDefault:  root.__iDefault
-    // Compute slider to decimal separately for performance improvements
-    property real __baseSpeed: viewport.__baseSpeed / 100
-    property real __curvature: viewport.__curvature / 100
-    //property int __lastRecordedPosition: 0
-    //property real customContentsPlacement: 0.1
-    property real contentsPlacement//: 1-rightWidthAdjustmentBar.x
     readonly property real editorXWidth: Math.abs(editor.x)/prompter.width
     readonly property real editorXOffset: positionHandler.x/prompter.width
     readonly property real centreX: width / 2;
@@ -138,110 +110,57 @@ Flickable {
     // At start and at end rules
     readonly property bool __atStart: position<=__jitterMargin-topMargin+1
     readonly property bool __atEnd: position>=editor.height-topMargin+fontSize+__jitterMargin-1
+    readonly property int __speedLimit: __vw * 100
+    readonly property Scale __flips: Flip{}
+    // Progress indicator
+    readonly property real progress: (position+__jitterMargin)/editor.height
     // Tools to debug __atStart and __atEnd
     //readonly property bool __atStart: false
     //readonly property bool __atEnd: false
-    //Rectangle {
-    //    id: startPositionDebug
-    //    // Set this value to the same as __atStart's evaluated equation
-    //    y: __jitterMargin-topMargin+1
-    //    anchors {
-    //        id: startPositionDebug
-    //        left: parent.left
-    //        right: parent.right
-    //    }
-    //    height: 2
-    //    color: "red"
-    //}
-    //Rectangle {
-    //    id: endPositionDebug
-    //    // Set this value to the same as __atStart's evaluated equation
-    //    y: editor.height-topMargin+fontSize+__jitterMargin-1
-    //    anchors {
-    //        left: parent.left
-    //        right: parent.right
-    //    }
-    //    height: 2
-    //    color: "red"
-    //}
-
-    // Background
-    property double __opacity: root.__opacity
+    // Patch through aliases
+    property alias editor: editor
+    property alias document: document
+    property alias textColor: document.textColor
+    property alias textBackground: document.textBackground
+    property alias mouse: mouse
+    property alias fontSize: editor.font.pixelSize
+    property alias letterSpacing: editor.font.letterSpacing
+    property alias wordSpacing: editor.font.wordSpacing
+    // Create position alias to make code more readable
+    property alias position: prompter.contentY
     // Flips
     property bool __flipX: false
     property bool __flipY: false
-    readonly property int __speedLimit: __vw * 100
-    readonly property Scale __flips: Flip{}
-    // Clipping improves performance on large files and font sizes.
-    // It also provides a workaround to the lack of background in the global toolbar when using transparent backgrounds in Material theme.
-    clip: true
-    transform: __flips
-    // Progress indicator
-    readonly property real progress: (position+__jitterMargin)/editor.height
-    //layer.enabled: true
-
-    // Flick while prompting
-    onDragStarted: {
-        //console.log("Drag started")
-        //console.log(__iBackup, __i, position)
-        if (__iBackup===0) {
-            __iBackup = __i
-            __i = 0
-            position = position
-        }
-    }
-    onDragEnded: {
-        //console.log("Drag ended")
-    }
-    onFlickStarted: {
-        //console.log("Flick started")
-    }
-    onMovementEnded: {
-        //console.log("Movement ended")
-        //console.log(__iBackup, __i, position)
-        __i = __iBackup
-        if (parseInt(prompter.state)===Prompter.States.Prompting) {
-            __iBackup = 0
-            position = __destination
-        }
-        else
-           position = position
-    }
-
-    flickableDirection: Flickable.VerticalFlick
-
-    Behavior on position {
-        id: motion
-        enabled: true
-        animation: NumberAnimation {
-            id: animationX
-            duration: timeToArival
-            easing.type: Easing.Linear
-            onRunningChanged: {
-                if (!animationX.running && prompter.__i) {
-                    __i = 0
-                    root.alert(0)
-                    if (root.passiveNotifications)
-                        showPassiveNotification(i18n("Animation Completed"));
-                    if (parseInt(prompter.state) === Prompter.States.Prompting)
-                        prompter.toggle();
-                }
-            }
-        }
-    }
-
-    NumberAnimation on position {
-        id: reset
-        to: __jitterMargin-topMargin+1
-        duration: Kirigami.Units.veryLongDuration
-        easing.type: Easing.InOutQuart
-        function toStart() {
-            __i = 0
-            position = position
-            timer.reset()
-            start()
-        }
-    }
+    // Scrolling settings
+    property bool performFileOperations: false
+    property bool __scrollAsDial: root.__scrollAsDial
+    property bool __invertArrowKeys: root.__invertArrowKeys
+    property bool __invertScrollDirection: root.__invertScrollDirection
+    property bool __noScroll: root.__noScroll
+    property bool __wysiwyg: true
+    property bool __play: true
+    property int __i: __iDefault
+    property int __iBackup: 0
+    property int __iDefault:  root.__iDefault
+    // Compute slider to decimal separately for performance improvements
+    property real __baseSpeed: viewport.__baseSpeed / 100
+    property real __curvature: viewport.__curvature / 100
+    //property int __lastRecordedPosition: 0
+    //property real customContentsPlacement: 0.1
+    property real contentsPlacement//: 1-rightWidthAdjustmentBar.x
+    // Background
+    property double __opacity: root.__opacity
+    // Configurable keys commands
+    property var keys: {
+        "increaseVelocity": Qt.Key_Down,
+        "decreaseVelocity": Qt.Key_Up,
+        "pause": Qt.Key_Space,
+        "skipBackwards": Qt.Key_PageUp,
+        "skipForward": Qt.Key_PageDown,
+        "previousMarker": Qt.Key_Home,
+        "nextMarker": Qt.Key_End,
+        "toggle": Qt.Key_F9
+    };
 
     // Toggle prompter state
     function toggle() {
@@ -352,9 +271,6 @@ Flickable {
         contentsPlacement = (Math.abs(editor.x)-fontSize/2)/(prompter.width-fontSize)
     }
 
-    contentHeight: flickableContent.height
-    topMargin: overlay.__readRegionPlacement*(prompter.height-overlay.readRegionHeight)+fontSize
-    bottomMargin: (1-overlay.__readRegionPlacement)*(prompter.height-overlay.readRegionHeight)+overlay.readRegionHeight
     function ensureVisible(r)
     {
         if (parseInt(prompter.state) !== Prompter.States.Prompting) {
@@ -368,9 +284,110 @@ Flickable {
                 contentY = r.y+r.height-height;
         }
     }
-    
+
+    function setCursorAtCurrentPosition() {
+        editor.cursorPosition = editor.positionAt(0, position + overlay.__readRegionPlacement*(overlay.height-overlay.readRegionHeight)+overlay.readRegionHeight/2 + 1)
+    }
+
+    contentHeight: flickableContent.height
+    topMargin: overlay.__readRegionPlacement*(prompter.height-overlay.readRegionHeight)+fontSize
+    bottomMargin: (1-overlay.__readRegionPlacement)*(prompter.height-overlay.readRegionHeight)+overlay.readRegionHeight
+
+    // Clipping improves performance on large files and font sizes.
+    // It also provides a workaround to the lack of background in the global toolbar when using transparent backgrounds in Material theme.
+    clip: true
+    transform: __flips
+    //layer.enabled: true
+
+    // Flick while prompting
+    onDragStarted: {
+        //console.log("Drag started")
+        //console.log(__iBackup, __i, position)
+        if (__iBackup===0) {
+            __iBackup = __i
+            __i = 0
+            position = position
+        }
+    }
+    onDragEnded: {
+        //console.log("Drag ended")
+    }
+    onFlickStarted: {
+        //console.log("Flick started")
+    }
+    onMovementEnded: {
+        //console.log("Movement ended")
+        //console.log(__iBackup, __i, position)
+        __i = __iBackup
+        if (parseInt(prompter.state)===Prompter.States.Prompting) {
+            __iBackup = 0
+            position = __destination
+        }
+        else
+           position = position
+    }
+
+    flickableDirection: Flickable.VerticalFlick
+
+    //Rectangle {
+    //    id: startPositionDebug
+    //    // Set this value to the same as __atStart's evaluated equation
+    //    y: __jitterMargin-topMargin+1
+    //    anchors {
+    //        id: startPositionDebug
+    //        left: parent.left
+    //        right: parent.right
+    //    }
+    //    height: 2
+    //    color: "red"
+    //}
+    //Rectangle {
+    //    id: endPositionDebug
+    //    // Set this value to the same as __atStart's evaluated equation
+    //    y: editor.height-topMargin+fontSize+__jitterMargin-1
+    //    anchors {
+    //        left: parent.left
+    //        right: parent.right
+    //    }
+    //    height: 2
+    //    color: "red"
+    //}
+    Behavior on position {
+        id: motion
+        enabled: true
+        animation: NumberAnimation {
+            id: animationX
+            duration: timeToArival
+            easing.type: Easing.Linear
+            onRunningChanged: {
+                if (!animationX.running && prompter.__i) {
+                    __i = 0
+                    root.alert(0)
+                    if (root.passiveNotifications)
+                        showPassiveNotification(i18n("Animation Completed"));
+                    if (parseInt(prompter.state) === Prompter.States.Prompting)
+                        prompter.toggle();
+                }
+            }
+        }
+    }
+    NumberAnimation on position {
+        id: reset
+        function toStart() {
+            __i = 0
+            position = position
+            timer.reset()
+            start()
+        }
+        to: __jitterMargin-topMargin+1
+        duration: Kirigami.Units.veryLongDuration
+        easing.type: Easing.InOutQuart
+    }
     MouseArea {
         id: mouse
+        // Mouse wheel controls
+        property int throttledIteration: 0
+        property int throttleIterations: 8
         //propagateComposedEvents: false
         acceptedButtons: Qt.LeftButton
         hoverEnabled: false
@@ -381,9 +398,6 @@ Flickable {
         y: -prompter.height
         height: parent.height+2*prompter.height
         cursorShape: (pressed || dragging) ? Qt.ClosedHandCursor : Qt.OpenHandCursor
-        // Mouse wheel controls
-        property int throttledIteration: 0
-        property int throttleIterations: 8
         onWheel: {
             if (prompter.__noScroll && parseInt(prompter.state)===Prompter.States.Prompting)
                 return;
@@ -428,7 +442,6 @@ Flickable {
             }
         }
     }
-    
     Item {
         id: positionHandler
 
@@ -442,42 +455,9 @@ Flickable {
         Item {
             id: flickableContent
             anchors.fill: parent
+
             TextArea {
                 id: editor
-
-                onCursorRectangleChanged: prompter.ensureVisible(cursorRectangle)
-                textFormat: Qt.RichText
-                wrapMode: TextArea.Wrap
-                readOnly: false
-                text: i18n("Error loading file...")
-
-                selectByMouse: !Kirigami.Settings.isMobile
-                persistentSelection: true
-                selectionColor: "#333d9ef3"
-                selectedTextColor: selectionColor
-                //selectionColor: document.textBackground
-                //selectedTextColor: document.textColor
-                leftPadding: 14
-                rightPadding: 14
-                topPadding: 0
-                bottomPadding: 0
-                onLinkActivated: console.log(link)
-
-                background: Item {}
-                
-                // Start with the editor in focus
-                focus: !Kirigami.Settings.isMobile
-
-                FontLoader {
-                    id: westernSeriousSansfFont
-                    source: i18n("fonts/dejavu-sans.otf")
-                }
-                font.family: westernSeriousSansfFont.name
-                font.pixelSize: 14
-                font.hintingPreference: Font.PreferFullHinting
-                font.kerning: true
-                font.preferShaping: true
-                renderType: font.pixelSize < 121 || Screen.devicePixelRatio !== 1.0 || root.forceQtTextRenderer ? Text.QtRendering : Text.NativeRendering
 
                 function toggleEditorFocus(mouse) {
                     if (!editor.focus) {
@@ -495,6 +475,41 @@ Flickable {
 
                 // Width drag controls
                 width: prompter.width-2*Math.abs(x)
+
+                // Start with the editor in focus
+                focus: !Kirigami.Settings.isMobile
+
+                textFormat: Qt.RichText
+                wrapMode: TextArea.Wrap
+                readOnly: false
+                text: i18n("Error loading file...")
+
+                selectByMouse: !Kirigami.Settings.isMobile
+                persistentSelection: true
+                selectionColor: "#333d9ef3"
+                selectedTextColor: selectionColor
+                //selectionColor: document.textBackground
+                //selectedTextColor: document.textColor
+                leftPadding: 14
+                rightPadding: 14
+                topPadding: 0
+                bottomPadding: 0
+
+                onCursorRectangleChanged: prompter.ensureVisible(cursorRectangle)
+                onLinkActivated: console.log(link)
+
+                background: Item {}
+
+                font.family: westernSeriousSansfFont.name
+                font.pixelSize: 14
+                font.hintingPreference: Font.PreferFullHinting
+                font.kerning: true
+                font.preferShaping: true
+                renderType: font.pixelSize < 121 || Screen.devicePixelRatio !== 1.0 || root.forceQtTextRenderer ? Text.QtRendering : Text.NativeRendering
+                FontLoader {
+                    id: westernSeriousSansfFont
+                    source: i18n("fonts/dejavu-sans.otf")
+                }
 
                 // Draggable width adjustment borders
                 Component {
@@ -517,9 +532,9 @@ Flickable {
                     color: "#000"
                     opacity: 0.2
                     MouseArea {
+                        property int c: 0
                         anchors.fill: parent
                         cursorShape: Qt.PointingHandCursor
-                        property int c: 0
                         onClicked: {
                             if (root.passiveNotifications)
                                 showPassiveNotification("Double tap to go back to the start");
@@ -564,38 +579,39 @@ Flickable {
                     MouseArea {
                         acceptedButtons: Qt.RightButton
                         anchors.fill: parent
+                        cursorShape: dragTarget.containsDrag ? (dragTarget.droppable ? Qt.DragCopyCursor : Qt.ForbiddenCursor) : Qt.IBeamCursor
+                        drag.target: editor
                         onClicked: {
                             if (Kirigami.Settings.isMobile)
                                 contextMenu.popup(this)
                             else
                                 nativeContextMenu.open()
                         }
-                        cursorShape: dragTarget.containsDrag ? (dragTarget.droppable ? Qt.DragCopyCursor : Qt.ForbiddenCursor) : Qt.IBeamCursor
-                        drag.target: editor
                     }
                     MouseArea {
                         id: limitedMouse
                         enabled: false
                         acceptedButtons: Qt.LeftButton
                         anchors.fill: parent
+                        onClicked: if (editor.focus) editor.cursorPosition = editor.positionAt(mouseX, mouseY);
                         onDoubleClicked: {
                             if (!Kirigami.Settings.isMobile)
                                 editor.toggleEditorFocus(mouse);
                         }
-                        onClicked: if (editor.focus) editor.cursorPosition = editor.positionAt(mouseX, mouseY);
                     }
                 }
 
                 MouseArea {
                     id: leftWidthAdjustmentBar
-                    opacity: 0.9
                     anchors.top: parent.top
                     anchors.bottom: parent.bottom
+                    opacity: 0.9
                     width: 25
                     acceptedButtons: Qt.LeftButton
                     scrollGestureEnabled: false
                     propagateComposedEvents: true
                     hoverEnabled: false
+                    cursorShape: prompter.dragging ? Qt.ClosedHandCursor : ((pressed || drag.active) ? Qt.SplitHCursor : (flicking ? Qt.OpenHandCursor : Qt.SizeHorCursor))
                     anchors.left: Qt.application.layoutDirection===Qt.LeftToRight ? editor.left : undefined
                     anchors.right: Qt.application.layoutDirection===Qt.RightToLeft ? editor.right : undefined
                     drag.target: editor
@@ -603,28 +619,26 @@ Flickable {
                     drag.smoothed: false
                     drag.minimumX: fontSize/2 //: -prompter.width*6/20 + width
                     drag.maximumX: prompter.width*9/20 //: -fontSize/2 + width
-                    cursorShape: prompter.dragging ? Qt.ClosedHandCursor : ((pressed || drag.active) ? Qt.SplitHCursor : (flicking ? Qt.OpenHandCursor : Qt.SizeHorCursor))
-                    Loader {
-                        sourceComponent: editorSidesBorder
-                        anchors {top: parent.top; bottom: parent.bottom; horizontalCenter: parent.horizontalCenter}
-                    }
                     onReleased: prompter.setContentWidth()
                     //onClicked: {
                     //    mouse.accepted = false
                     //}
+                    Loader {
+                        sourceComponent: editorSidesBorder
+                        anchors {top: parent.top; bottom: parent.bottom; horizontalCenter: parent.horizontalCenter}
+                    }
                 }
                 MouseArea {
-                //Item {
                     id: rightWidthAdjustmentBar
                     opacity: 0.5
-                    x: parent.width-width
-                    anchors.top: parent.top
-                    anchors.bottom: parent.bottom
-                    width: 25
                     scrollGestureEnabled: false
                     acceptedButtons: Qt.LeftButton
                     propagateComposedEvents: true
                     hoverEnabled: false
+                    x: parent.width-width
+                    width: 25
+                    anchors.top: parent.top
+                    anchors.bottom: parent.bottom
                     drag.target: positionHandler
                     drag.axis: Drag.XAxis
                     drag.smoothed: false
@@ -639,7 +653,6 @@ Flickable {
                     //onReleased: {
                     //editor.invertDrag   = false
                     //prompter.setContentWidth()
-                    //}
                     //}
                 }
 
@@ -731,40 +744,13 @@ Flickable {
 
     DocumentHandler {
         id: document
+
         property bool isNewFile: false
         property bool quitOnSave: false
-        document: editor.textDocument
-        cursorPosition: editor.cursorPosition
-        selectionStart: editor.selectionStart
-        selectionEnd: editor.selectionEnd
-        textColor: "#FFF"
-        textBackground: "#000"
-        Component.onCompleted: {
-            if (prompter.performFileOperations) {
-                if (Qt.application.arguments.length === 2) {
-                    document.load("file:" + Qt.application.arguments[1]);
-                    isNewFile = false
-                    resetDocumentPosition()
-                }
-                else
-                    loadInstructions();
-            }
-        }
-        
+
         function resetDocumentPosition() {
             prompter.position = -(overlay.__readRegionPlacement*(overlay.height-overlay.readRegionHeight)+overlay.readRegionHeight/2)
         }
-        
-        onLoaded: {
-            editor.textFormat = format
-            editor.text = text
-            resetDocumentPosition()
-        }
-        onError: {
-            errorDialog.text = message
-            errorDialog.visible = true
-        }
-
         function newDocument() {
             document.load("qrc:/untitled.html")
             isNewFile = true
@@ -772,7 +758,6 @@ Flickable {
             if (root.passiveNotifications)
                 showPassiveNotification(i18n("New document"))
         }
-        
         function loadInstructions() {
             document.load("qrc:/"+i18n("guide_en.html"))
             isNewFile = true
@@ -781,7 +766,6 @@ Flickable {
             if (root.passiveNotifications)
                 showPassiveNotification(i18n("User guide loaded"))
         }
-        
         function open() {
             openDialog.open()
         }
@@ -798,7 +782,42 @@ Flickable {
                     Qt.quit()
             }
         }
+
+        document: editor.textDocument
+        cursorPosition: editor.cursorPosition
+        selectionStart: editor.selectionStart
+        selectionEnd: editor.selectionEnd
+        textColor: "#FFF"
+        textBackground: "#000"
+
+        onLoaded: {
+            editor.textFormat = format
+            editor.text = text
+            resetDocumentPosition()
+        }
+        onError: {
+            errorDialog.text = message
+            errorDialog.visible = true
+        }
+
+        Component.onCompleted: {
+            if (prompter.performFileOperations) {
+                if (Qt.application.arguments.length === 2) {
+                    document.load("file:" + Qt.application.arguments[1]);
+                    isNewFile = false
+                    resetDocumentPosition()
+                }
+                else
+                    loadInstructions();
+            }
+        }
     }
+
+    // Progress indicator
+    ScrollBar.vertical: ProgressIndicator {
+        id: scrollBar
+    }
+
     FileDialog {
         id: openDialog
         selectExisting: true
@@ -929,18 +948,6 @@ Flickable {
         MenuSeparator {}
     }
 
-    // Configurable keys commands
-    property var keys: {
-        "increaseVelocity": Qt.Key_Down,
-        "decreaseVelocity": Qt.Key_Up,
-        "pause": Qt.Key_Space,
-        "skipBackwards": Qt.Key_PageUp,
-        "skipForward": Qt.Key_PageDown,
-        "previousMarker": Qt.Key_Home,
-        "nextMarker": Qt.Key_End,
-        "toggle": Qt.Key_F9
-    };
-
     Settings {
         category: "flip"
         property alias x: prompter.__flipX
@@ -1070,6 +1077,7 @@ Flickable {
                 return
         }
     }
+
     states: [
         State {
             name: Prompter.States.Editing
@@ -1282,9 +1290,7 @@ Flickable {
         position = pos
         timer.updateText()
     }
-    function setCursorAtCurrentPosition() {
-        editor.cursorPosition = editor.positionAt(0, position + overlay.__readRegionPlacement*(overlay.height-overlay.readRegionHeight)+overlay.readRegionHeight/2 + 1)
-    }
+
     transitions: [
         Transition {
             to: Prompter.States.Standby
@@ -1315,9 +1321,4 @@ Flickable {
             }
         }
     ]
-
-    // Progress indicator
-    ScrollBar.vertical: ProgressIndicator {
-        id: scrollBar
-    }
 }
