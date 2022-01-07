@@ -1,7 +1,7 @@
 /****************************************************************************
  **
  ** QPrompt
- ** Copyright (C) 2020-2021 Javier O. Cordero Pérez
+ ** Copyright (C) 2020-2022 Javier O. Cordero Pérez
  **
  ** This file is part of QPrompt.
  **
@@ -91,6 +91,31 @@ ToolBar {
     readonly property alias baseAccelerationSlider: baseAccelerationSlider
     readonly property alias onlyPositiveVelocity: positiveVelocity.checked
 
+    // Hide toolbar when read region is set to bottom and prompter is not in editing state.
+    enabled: !(parseInt(prompter.state)!==Prompter.States.Editing && (overlay.atBottom || root.visibility===Kirigami.ApplicationWindow.FullScreen && !editor.focus))
+    height: enabled ? implicitHeight : 0
+    //Behavior on height {
+    //    id: height
+    //    enabled: true
+    //    animation: NumberAnimation {
+    //        duration: Kirigami.Units.shortDuration>>1
+    //        easing.type: Easing.OutQuad
+    //    }
+    //}
+
+    background: Rectangle {
+        Rectangle {
+            color: parseInt(prompter.state)===Prompter.States.Prompting && editor.focus ? "#00AA00" : Kirigami.Theme.activeBackgroundColor
+            opacity: parseInt(prompter.state)!==Prompter.States.Editing ? 0.4 : 1
+            height: 3
+            anchors.top: parent.top
+            anchors.left: parent.left
+            anchors.right: parent.right
+        }
+        color: Kirigami.Theme.alternateBackgroundColor.a===0 ? appTheme.__backgroundColor : Kirigami.Theme.alternateBackgroundColor
+        opacity: root.__opacity * 0.4 + 0.6
+    }
+
     Settings {
         category: "kirigamiUI"
         property alias showFontSpacingOptions: toolbar.showFontSpacingOptions
@@ -107,35 +132,9 @@ ToolBar {
         //property alias lineHeight: lineHeightSlider.value
         //property alias fontWYSIWYGSizeSlider: fontWYSIWYGSizeSlider.value
     }
-
-    // Hide toolbar when read region is set to bottom and prompter is not in editing state.
-    enabled: !(parseInt(prompter.state)!==Prompter.States.Editing && (overlay.atBottom || root.visibility===Kirigami.ApplicationWindow.FullScreen && !editor.focus))
-    height: enabled ? implicitHeight : 0
-    //Behavior on height {
-    //    id: height
-    //    enabled: true
-    //    animation: NumberAnimation {
-    //        duration: Kirigami.Units.shortDuration>>1
-    //        easing.type: Easing.OutQuad
-    //    }
-    //}
-    
     FontLoader {
         id: iconFont
         source: "fonts/fontello.ttf"
-    }
-
-    background: Rectangle {
-        Rectangle {
-            color: parseInt(prompter.state)===Prompter.States.Prompting && editor.focus ? "#00AA00" : Kirigami.Theme.activeBackgroundColor
-            opacity: parseInt(prompter.state)!==Prompter.States.Editing ? 0.4 : 1
-            height: 3
-            anchors.top: parent.top
-            anchors.left: parent.left
-            anchors.right: parent.right
-        }
-        color: Kirigami.Theme.alternateBackgroundColor.a===0 ? appTheme.__backgroundColor : Kirigami.Theme.alternateBackgroundColor
-        opacity: root.__opacity * 0.4 + 0.6
     }
     Component {
         id: textComponent
@@ -1009,6 +1008,7 @@ ToolBar {
             }
         }
     }
+
     Kirigami.OverlaySheet {
         id: stepsConfiguration
         onSheetOpenChanged: {
@@ -1056,6 +1056,7 @@ ToolBar {
             }
         }
     }
+
     Kirigami.OverlaySheet {
         id: namedMarkerConfiguration
         background: Rectangle {
@@ -1079,8 +1080,8 @@ ToolBar {
         }
         ColumnLayout {
             id: column
-            width: parent.width
             property alias setMarkerKeyButton: setMarkerKeyButton
+            width: parent.width
             Label {
                 text: i18n("Key to perform skip to this marker")
             }

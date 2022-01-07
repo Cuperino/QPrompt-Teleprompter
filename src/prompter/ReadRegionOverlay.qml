@@ -1,7 +1,7 @@
 /****************************************************************************
  **
  ** QPrompt
- ** Copyright (C) 2020-2021 Javier O. Cordero Pérez
+ ** Copyright (C) 2020-2022 Javier O. Cordero Pérez
  **
  ** This file is part of QPrompt.
  **
@@ -52,18 +52,19 @@ Item {
         BarsRight,
         All
     }
-    property double __opacity: 0.06
-    property color __color: 'black'
     readonly property double __vw: width/100
-    property alias __readRegionPlacement: readRegion.__placement
-    on__ReadRegionPlacementChanged: countdown.requestPaint()
     readonly property bool atTop: !prompter.__flipY && !__readRegionPlacement || prompter.__flipY && __readRegionPlacement===1
     readonly property bool atBottom: !prompter.__flipY && __readRegionPlacement===1 || prompter.__flipY && !__readRegionPlacement
+    readonly property alias readRegionHeight: readRegion.height
+    readonly property Scale __flips: Flip{}
+    property double __opacity: 0.06
+    property color __color: 'black'
+    property alias __readRegionPlacement: readRegion.__placement
+    on__ReadRegionPlacementChanged: countdown.requestPaint()
     property alias enabled: readRegion.enabled
     property string positionState: ReadRegionOverlay.PositionStates.Middle
     property string styleState: Qt.application.layoutDirection===Qt.LeftToRight ? "barsLeft" : "barsRight"
-    readonly property alias readRegionHeight: readRegion.height
-    readonly property Scale __flips: Flip{}
+
     transform: __flips
     //anchors.fill: parent
     anchors {
@@ -88,7 +89,6 @@ Item {
         property alias placement: readRegion.__customPlacement
         property alias enabled: readRegion.enabled
     }
-
     MouseArea {
         id: overlayMouseArea
         enabled: false
@@ -96,110 +96,21 @@ Item {
         cursorShape: Qt.CrossCursor
         propagateComposedEvents: true
     }
-    states: [
-        State {
-            name: ReadRegionOverlay.States.Prompting
-            PropertyChanges {
-                target: overlay
-                __opacity: 0.4
-                enabled: false
-            }
-            //PropertyChanges {
-            //    target: overlayMouseArea
-            //    enabled: true
-            //    cursorShape: Qt.CrossCursor
-            //}
-        }
-    ]
-    state: ReadRegionOverlay.States.NotPrompting
-    transitions: [
-        Transition {
-            enabled: !root.__autoFullScreen
-            from: "*"; to: "*"
-            NumberAnimation {
-                targets: [overlay]
-                properties: "__opacity"
-                duration: Kirigami.Units.longDuration
-            }
-        }
-    ]
     Item {
         id: readRegion
-        enabled: false
-        property double __customPlacement: 0.5
-        property double __placement: __customPlacement
+
         // Compute screen middle in relation to overlay's proportions
         // It's not perfect yet but this is a decent approximation for use in full screen tablets.
         readonly property double screenMiddle: (screen.height / overlay.height) * (((screen.height / 2) - 40 - root.y) / screen.height)
+        property double __customPlacement: 0.5
+        property double __placement: __customPlacement
+
+        enabled: false
         height: 2.1 * prompter.fontSize
         y: readRegion.__placement * (overlay.height - readRegion.height)
         anchors.left: parent.left
         anchors.right: parent.right
-        states: [
-            State {
-                name: ReadRegionOverlay.PositionStates.Top
-                PropertyChanges {
-                    target: readRegion
-                    __placement: 0
-                }
-            },
-            State {
-                name: ReadRegionOverlay.PositionStates.Middle
-                PropertyChanges {
-                    target: readRegion
-                    __placement: ['android', 'ios', 'tvos', 'qnx', 'ipados'].indexOf(Qt.platform.os)===-1? 0.5 : screenMiddle
-                }
-            },
-            State {
-                name: ReadRegionOverlay.PositionStates.Bottom
-                PropertyChanges {
-                    target: readRegion
-                    __placement: 1
-                }
-            },
-            State {
-                name: ReadRegionOverlay.PositionStates.Free
-                PropertyChanges {
-                    target: overlay
-                    __opacity: 0.4
-                    z: 4
-                }
-                PropertyChanges {
-                    target: pointers
-                    // Workaround to ensure pointer color does not remain in its free state setting when changing to other prompter states
-                    __strokeColor: parseInt(prompter.state)===Prompter.States.Editing ? "#2a71ad" : "#4d94cf"
-                }
-                PropertyChanges {
-                    target: readRegion
-                    enabled: true
-                }
-            },
-            State {
-                name: ReadRegionOverlay.PositionStates.Fixed
-                PropertyChanges {
-                    target: readRegion
-                    __placement: readRegion.__customPlacement
-                }
-            }
-        ]
-        state: overlay.positionState
-        transitions: [
-            Transition {
-                from: "*"; to: "*"
-                NumberAnimation {
-                    targets: [readRegion, pointers, overlay]
-                    properties: "__placement,__opacity"
-                    duration: Kirigami.Units.shortDuration
-                    easing.type: Easing.OutQuad
-                }
-                ColorAnimation {
-                    targets: [pointers]
-                    properties: "__fillColor,__strokeColor"
-                    duration: Kirigami.Units.shortDuration
-                    easing.type: Easing.OutQuad
-                }
-            }
-        ]
+
         MouseArea {
             anchors.fill: parent
             drag.target: parent
@@ -214,14 +125,17 @@ Item {
         }
         Item {
             id: pointers
+
+            readonly property double __pointerUnit: parent.height / 6
             property double __opacity: 1
             property color __strokeColor: parent.Material.theme===Material.Light ? "#4d94cf" : "#2b72ad"
             property color __fillColor: "#00000000"
             property double __offsetX: 0
             //property double __offsetX: -0.1111
             property double __stretchX: 0.3333
-            readonly property double __pointerUnit: parent.height / 6
+
             //layer.enabled: true
+
             Shape {
                 id: leftPointer
                 x: prompter.editorXWidth*overlay.width + prompter.editorXOffset*overlay.width - (2.8*pointers.__stretchX+pointers.__offsetX)*pointers.__pointerUnit
@@ -229,7 +143,7 @@ Item {
                     strokeWidth: pointers.__pointerUnit/3
                     strokeColor: pointers.__strokeColor
                     fillColor: pointers.__fillColor
-                    // Top left starting point                                
+                    // Top left starting point
                     startX: pointers.__offsetX*pointers.__pointerUnit; startY: 2*pointers.__pointerUnit
                     // Center right
                     PathLine { x: (3*pointers.__stretchX+pointers.__offsetX)*pointers.__pointerUnit; y: 3*pointers.__pointerUnit }
@@ -246,7 +160,7 @@ Item {
                     strokeWidth: pointers.__pointerUnit/3
                     strokeColor: pointers.__strokeColor
                     fillColor: pointers.__fillColor
-                    // Top right starting point                                
+                    // Top right starting point
                     startX: -pointers.__offsetX*pointers.__pointerUnit; startY: 2*pointers.__pointerUnit
                     // Center left
                     PathLine { x: -(3*pointers.__stretchX+pointers.__offsetX)*pointers.__pointerUnit; y: 3*pointers.__pointerUnit }
@@ -256,6 +170,7 @@ Item {
                     //PathLine { x: -pointers.__offsetX*pointers.__pointerUnit; y: 2*pointers.__pointerUnit }
                 }
             }
+
             states: [
                 State {
                     name: ReadRegionOverlay.PointerStates.None
@@ -407,7 +322,74 @@ Item {
                 }
             ]
         }
+
+        states: [
+            State {
+                name: ReadRegionOverlay.PositionStates.Top
+                PropertyChanges {
+                    target: readRegion
+                    __placement: 0
+                }
+            },
+            State {
+                name: ReadRegionOverlay.PositionStates.Middle
+                PropertyChanges {
+                    target: readRegion
+                    __placement: ['android', 'ios', 'tvos', 'qnx', 'ipados'].indexOf(Qt.platform.os)===-1? 0.5 : screenMiddle
+                }
+            },
+            State {
+                name: ReadRegionOverlay.PositionStates.Bottom
+                PropertyChanges {
+                    target: readRegion
+                    __placement: 1
+                }
+            },
+            State {
+                name: ReadRegionOverlay.PositionStates.Free
+                PropertyChanges {
+                    target: overlay
+                    __opacity: 0.4
+                    z: 4
+                }
+                PropertyChanges {
+                    target: pointers
+                    // Workaround to ensure pointer color does not remain in its free state setting when changing to other prompter states
+                    __strokeColor: parseInt(prompter.state)===Prompter.States.Editing ? "#2a71ad" : "#4d94cf"
+                }
+                PropertyChanges {
+                    target: readRegion
+                    enabled: true
+                }
+            },
+            State {
+                name: ReadRegionOverlay.PositionStates.Fixed
+                PropertyChanges {
+                    target: readRegion
+                    __placement: readRegion.__customPlacement
+                }
+            }
+        ]
+        state: overlay.positionState
+        transitions: [
+            Transition {
+                from: "*"; to: "*"
+                NumberAnimation {
+                    targets: [readRegion, pointers, overlay]
+                    properties: "__placement,__opacity"
+                    duration: Kirigami.Units.shortDuration
+                    easing.type: Easing.OutQuad
+                }
+                ColorAnimation {
+                    targets: [pointers]
+                    properties: "__fillColor,__strokeColor"
+                    duration: Kirigami.Units.shortDuration
+                    easing.type: Easing.OutQuad
+                }
+            }
+        ]
     }
+
     Rectangle {
         id: topBar
         anchors.top: parent.top
@@ -417,6 +399,7 @@ Item {
         opacity: overlay.__opacity
         color: overlay.__color
     }
+
     Rectangle {
         id: bottomBar
         anchors.top: readRegion.bottom
@@ -426,4 +409,32 @@ Item {
         opacity: overlay.__opacity
         color: overlay.__color
     }
+
+    states: [
+        State {
+            name: ReadRegionOverlay.States.Prompting
+            PropertyChanges {
+                target: overlay
+                __opacity: 0.4
+                enabled: false
+            }
+            //PropertyChanges {
+            //    target: overlayMouseArea
+            //    enabled: true
+            //    cursorShape: Qt.CrossCursor
+            //}
+        }
+    ]
+    state: ReadRegionOverlay.States.NotPrompting
+    transitions: [
+        Transition {
+            enabled: !root.__autoFullScreen
+            from: "*"; to: "*"
+            NumberAnimation {
+                targets: [overlay]
+                properties: "__opacity"
+                duration: Kirigami.Units.longDuration
+            }
+        }
+    ]
 }

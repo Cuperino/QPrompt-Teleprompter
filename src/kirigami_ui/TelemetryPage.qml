@@ -1,7 +1,7 @@
 /****************************************************************************
  **
  ** QPrompt
- ** Copyright (C) 2021 Javier O. Cordero Pérez
+ ** Copyright (C) 2021-2022 Javier O. Cordero Pérez
  **
  ** This file is part of QPrompt.
  **
@@ -26,12 +26,13 @@ import QtQuick.Layouts 1.12
 import Qt.labs.settings 1.0
 
 Kirigami.ScrollablePage {
-    background: Rectangle {
-        color: Kirigami.Theme.alternateBackgroundColor
-    }
 
     title: "Telemetry Settings"
     //globalToolBarStyle: Kirigami.ApplicationHeaderStyle.ToolBar
+
+    background: Rectangle {
+        color: Kirigami.Theme.alternateBackgroundColor
+    }
 
     Settings {
         category: "telemetry"
@@ -70,8 +71,8 @@ Kirigami.ScrollablePage {
             checkable: true
             checked: root.__telemetry
             flat: true
-            Layout.fillWidth: true
             onClicked: root.__telemetry = !root.__telemetry
+            Layout.fillWidth: true
         }
         Button {
             id: platformTelemetryToggle
@@ -102,8 +103,8 @@ Kirigami.ScrollablePage {
             checkable: true
             checked: root.__telemetry
             flat: true
-            Layout.fillWidth: true
             //onClicked: root.__telemetry = !root.__telemetry
+            Layout.fillWidth: true
         }
         TextArea {
             implicitWidth: parent.width-80
@@ -116,7 +117,7 @@ Kirigami.ScrollablePage {
             " + " + i18n("Usage time")+"\n"+
             " + " + i18n("Locale information (timezone and keyboard layout)")
         }
-            //text: i18n("Information collected once per prompt")
+        //text: i18n("Information collected once per prompt")
         Button {
             id: featureTelemetryToggle
             text: checked ? i18n("On") : i18n("Off")
@@ -124,13 +125,13 @@ Kirigami.ScrollablePage {
             checkable: true
             checked: root.__telemetry
             flat: true
-            Layout.fillWidth: true
             //onClicked: root.__telemetry = !root.__telemetry
+            Layout.fillWidth: true
         }
         TextArea {
             implicitWidth: parent.width-80
-            background: Item{}
             readOnly: true
+            background: Item{}
             wrapMode: TextEdit.Wrap
             text: i18n("Feature use frequency: Help us know what features are most important")+"\n"+
             " + " + i18n("Flip settings")+"\n"+
@@ -150,13 +151,13 @@ Kirigami.ScrollablePage {
             checkable: true
             checked: root.__telemetry
             flat: true
-            Layout.fillWidth: true
             //onClicked: root.__telemetry = !root.__telemetry
+            Layout.fillWidth: true
         }
         TextArea {
             implicitWidth: parent.width-80
-            background: Item{}
             readOnly: true
+            background: Item{}
             wrapMode: TextEdit.Wrap
             text: i18n("Help us understand how users operate QPrompt")+"*\n"+
             " + " + i18n("Random session ID")+"\n"+
@@ -182,10 +183,10 @@ Kirigami.ScrollablePage {
         }
         TextArea {
             implicitWidth: parent.width-80
-            background: Item{}
             readOnly: true
             wrapMode: TextEdit.Wrap
             text: i18n("This information is very important to me, Javier, the project author, and it could help make QPrompt's development sustainable. I've gone the extra mile not to collect any of the actual text and images that you work with, so I ask you: please leave telemetry enabled.")
+            background: Item{}
         }
     }
 }

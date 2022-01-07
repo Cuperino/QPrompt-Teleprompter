@@ -1,7 +1,7 @@
 /****************************************************************************
  **
  ** QPrompt
- ** Copyright (C) 2021 Javier O. Cordero Pérez
+ ** Copyright (C) 2021-2022 Javier O. Cordero Pérez
  **
  ** This file is part of QPrompt.
  **
@@ -25,24 +25,49 @@ import QtQuick.Layouts 1.12
 import org.kde.kirigami 2.11 as Kirigami
 
 Item {
-    property var document
-    property bool isOpen: false
-    height: isOpen && parseInt(prompter.state)!==Prompter.States.Prompting && parseInt(prompter.state)!==Prompter.States.Countdown ? find.implicitHeight : 0
-    visible: height>0
-    enabled: visible
-    readonly property int searchBarWidth: 660
-    readonly property int searchBarMargin: 6
     enum Mode {
         Match,
         Previous,
         Next
+    }
+    property var document
+    property bool isOpen: false
+    readonly property int searchBarWidth: 660
+    readonly property int searchBarMargin: 6
+    function focusSearch() {
+        if (isOpen) {
+            searchField.text = editor.selectedText
+            // if (Kirigami.Settings.isMobile)
+            searchField.focus = true
+        }
+        else {
+            // Clear search
+            editor.cursorPosition = document.selectionStart
+            if (!Kirigami.Settings.isMobile)
+                editor.focus = true
+        }
+    }
+    function toggle() {
+        isOpen = !visible
+        focusSearch()
+    }
+    function open() {
+        isOpen = true
+        focusSearch()
+    }
+    function close() {
+        isOpen = false
+        focusSearch()
     }
     anchors.leftMargin: viewport.width<608 ? 4 : searchBarMargin
     anchors.rightMargin: viewport.width<608 ? 32 : (viewport.width < searchBarWidth ? searchBarMargin : viewport.width - searchBarWidth + searchBarMargin)
     anchors.left: parent.left
     anchors.right: parent.right
     // I am aware that manipulating Y is slower to process, but dynamically switching between top and bottom anchoring is not an option because it overrides height.
+    height: isOpen && parseInt(prompter.state)!==Prompter.States.Prompting && parseInt(prompter.state)!==Prompter.States.Countdown ? find.implicitHeight : 0
     y: Kirigami.Settings.isMobile || overlay.__readRegionPlacement > 0.5 ? 0-find.implicitHeight+height : parent.height-height
+    visible: height>0
+    enabled: visible
     Rectangle {
         id: background
         anchors.left: find.left
@@ -69,6 +94,29 @@ Item {
     }
     RowLayout {
         id: find
+        function next() {
+            find.search(searchField.text, Find.Mode.Next)
+        }
+        function previous() {
+            find.search(searchField.text, Find.Mode.Previous)
+        }
+        function search(text, mode) {
+            var range
+            switch (mode) {
+                case Find.Mode.Match:
+                    range = document.search(text); break;
+                case Find.Mode.Previous:
+                    range = document.search(text, false, true); break;
+                case Find.Mode.Next:
+                    range = document.search(text, true); break;
+            }
+            if (range.y > range.x)
+                editor.select(range.x, range.y)
+            else
+                editor.cursorPosition = range.x
+            if (text.length>0)
+                prompter.position = editor.cursorRectangle.y - (overlay.__readRegionPlacement*(overlay.height-overlay.readRegionHeight)+overlay.readRegionHeight/2) + 1
+        }
         anchors.fill: parent
         spacing: 6
         Button {
@@ -101,53 +149,5 @@ Item {
             flat: true
             onClicked: find.next()
         }
-        function next() {
-            find.search(searchField.text, Find.Mode.Next)
-        }
-        function previous() {
-            find.search(searchField.text, Find.Mode.Previous)
-        }
-        function search(text, mode) {
-            var range
-            switch (mode) {
-                case Find.Mode.Match:
-                    range = document.search(text); break;
-                case Find.Mode.Previous:
-                    range = document.search(text, false, true); break;
-                case Find.Mode.Next:
-                    range = document.search(text, true); break;
-            }
-            if (range.y > range.x)
-                editor.select(range.x, range.y)
-            else
-                editor.cursorPosition = range.x
-            if (text.length>0)
-                prompter.position = editor.cursorRectangle.y - (overlay.__readRegionPlacement*(overlay.height-overlay.readRegionHeight)+overlay.readRegionHeight/2) + 1
-        }
-    }
-    function focusSearch() {
-        if (isOpen) {
-            searchField.text = editor.selectedText
-            // if (Kirigami.Settings.isMobile)
-            searchField.focus = true
-        }
-        else {
-            // Clear search
-            editor.cursorPosition = document.selectionStart
-            if (!Kirigami.Settings.isMobile)
-                editor.focus = true
-        }
-    }
-    function toggle() {
-        isOpen = !visible
-        focusSearch()
-    }
-    function open() {
-        isOpen = true
-        focusSearch()
-    }
-    function close() {
-        isOpen = false
-        focusSearch()
     }
 }

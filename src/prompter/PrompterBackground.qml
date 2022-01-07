@@ -1,7 +1,7 @@
 /****************************************************************************
  * *
  ** QPrompt
- ** Copyright (C) 2020-2021 Javier O. Cordero Pérez
+ ** Copyright (C) 2020-2022 Javier O. Cordero Pérez
  **
  ** This file is part of QPrompt.
  **
@@ -27,12 +27,11 @@ import org.kde.kirigami 2.11 as Kirigami
 
 Rectangle {
     id: prompterBackground
-    anchors.fill: parent
     readonly property alias backgroundColorDialog: backgroundColorDialog
-    property bool hasBackground: color!==appTheme.__backgroundColor || backgroundImage.opacity>0//backgroundImage.visible
-    property var backgroundImage: null
     readonly property real __deepeningFactor: 0.89
     //readonly property real __deepeningFactor: themeSwitch.checked ? 0.89 : 1
+    property bool hasBackground: color!==appTheme.__backgroundColor || backgroundImage.opacity>0//backgroundImage.visible
+    property var backgroundImage: null
     //color: Qt.rgba(appTheme.__backgroundColor.r*__deepeningFactor, appTheme.__backgroundColor.g*__deepeningFactor, appTheme.__backgroundColor.b*__deepeningFactor, appTheme.__backgroundColor.a)
     //property alias backgroundColor: backgroundSettings.color
     //property color backgroundColor: appTheme.__backgroundColor
@@ -42,27 +41,34 @@ Rectangle {
         case 1: return "#303030";
         case 2: return "#FAFAFA";
     }
-    color: backgroundColor
-    opacity: /*backgroundOpacitySlider.pressed ||*/ parent.toolbar.opacitySlider.pressed || projectionManager.isPreview ? parent.toolbar.opacitySlider.value/100 : 1
-
-    Settings {
-        id: backgroundSettings
-        category: "background"
-        // property color color: "#303030" // "#181818"
-        //property color color: Qt.rgba(Kirigami.Theme.backgroundColor.r, Kirigami.Theme.backgroundColor.g, Kirigami.Theme.backgroundColor.b, 1)
-        property alias image: backgroundImage.source
-    }
 
     function loadBackgroundImage() {
         openBackgroundDialog.open()
     }
-    
     function clearBackground() {
         backgroundImage.opacity = 0
         backgroundColor = appTheme.__backgroundColor
         // Reset background image value such that setting is saved
         resetBackground.start()
     }
+    function setBackgroundImage(file) {
+        if (file) {
+            backgroundImage.source = file
+        }
+    }
+
+    anchors.fill: parent
+    color: backgroundColor
+    opacity: /*backgroundOpacitySlider.pressed ||*/ parent.toolbar.opacitySlider.pressed || projectionManager.isPreview ? parent.toolbar.opacitySlider.value/100 : 1
+
+    Settings {
+        id: backgroundSettings
+        // property color color: "#303030" // "#181818"
+        //property color color: Qt.rgba(Kirigami.Theme.backgroundColor.r, Kirigami.Theme.backgroundColor.g, Kirigami.Theme.backgroundColor.b, 1)
+        property alias image: backgroundImage.source
+        category: "background"
+    }
+
     // Using timer workaround because behavior animations don't execute signals and high performance is not a requirement for this action.
     Timer {
         id: resetBackground
@@ -70,18 +76,6 @@ Rectangle {
         onTriggered: backgroundImage.source = ""
     }
 
-    function setBackgroundImage(file) {
-        if (file) {
-            backgroundImage.source = file
-        }
-    }
-    Behavior on color {
-        enabled: true
-        animation: ColorAnimation {
-            duration: resetBackground.interval
-            easing.type: Easing.OutExpo
-        }
-    }
     Image {
         id: backgroundImage
         anchors.fill: parent
@@ -124,6 +118,14 @@ Rectangle {
             nameFilters: ["JPEG image (*.jpg *.jpeg *.JPG *.JPEG)", "PNG image (*.png *.PNG)", "GIF animation (*.gif *.GIF)"]
             folder: shortcuts.pictures
             onAccepted: prompterBackground.setBackgroundImage(openBackgroundDialog.fileUrl)
+        }
+    }
+
+    Behavior on color {
+        enabled: true
+        animation: ColorAnimation {
+            duration: resetBackground.interval
+            easing.type: Easing.OutExpo
         }
     }
 

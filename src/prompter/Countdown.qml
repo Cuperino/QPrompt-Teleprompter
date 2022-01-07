@@ -1,7 +1,7 @@
 /****************************************************************************
  **
  ** QPrompt
- ** Copyright (C) 2020-2021 Javier O. Cordero Pérez
+ ** Copyright (C) 2020-2022 Javier O. Cordero Pérez
  **
  ** This file is part of QPrompt.
  **
@@ -29,29 +29,28 @@ import Qt.labs.settings 1.0
 
 Item {
     id: countdown
-    // Enums
     enum States {
         Standby,
         Ready,
         Running
     }
     readonly property alias configuration: configuration
-    function requestPaint() {
-        canvas.requestPaint()
-    }
-    enabled: false
-    property bool frame: true
-    property bool autoStart: false
-    property bool running: false
-    visible: false
-    opacity: 0  // Initial opacity should be 0 to prevent animation jitters on first run.
-    property int __iterations: 1
-    property int __disappearWithin: 1
     readonly property real __vh: parent.height / 100
     readonly property real __vw: parent.width / 100
     readonly property real __minv: __vw<__vh ? __vw : __vh
     readonly property real __maxv: __vw>__vh ? __vw : __vh
     readonly property Scale __flips: Flip{}
+    property bool frame: true
+    property bool autoStart: false
+    property bool running: false
+    property int __iterations: 1
+    property int __disappearWithin: 1
+    function requestPaint() {
+        canvas.requestPaint()
+    }
+    enabled: false
+    visible: false
+    opacity: 0  // Initial opacity should be 0 to prevent animation jitters on first run.
     transform: __flips
     anchors {
         left: parent.left
@@ -60,7 +59,6 @@ Item {
         //bottom: parent.bottom
     }
     height: prompter.height
-
     Settings {
         category: "countdown"
         property alias enabled: countdown.enabled
@@ -69,7 +67,6 @@ Item {
         property alias iterations: countdown.__iterations
         property alias disappearWithin: countdown.__disappearWithin
     }
-
 //     Behavior on opacity {
 //         enabled: true
 //         animation: NumberAnimation {
@@ -77,14 +74,12 @@ Item {
 //             easing.type: Easing.OutQuad
 //         }
 //     }
-
     Rectangle {
         anchors.fill: parent
         opacity: canvas.enabled ? 0.48 : 0.24
         //opacity: 0.3
         color: "#333"
     }
-
     Canvas {
         id: canvas
         anchors.fill: parent
@@ -149,7 +144,6 @@ Item {
                 ctx.stroke();
             }
         }
-
         NumberAnimation {
             id: countdownAnimation
             running: countdown.running
@@ -186,7 +180,6 @@ Item {
                 }
             }
         }
-
         NumberAnimation {
             id: dissolveIn
             running: false
@@ -210,18 +203,17 @@ Item {
             easing.type: Easing.InQuint
         }
     }
-
     Label {
         visible: countdown.enabled
 //         anchors.fill: parent
         anchors.top: parent.top
         anchors.bottom: parent.bottom
-        text: String(canvas.__iteration+1)
-        x: editor.x + prompter.editorXOffset*prompter.width // +prompter.centreX // -font.pixelSize/4
-        width: editor.width
-        //leftMargin: prompter.editorXOffset*prompter.width+prompter.centreX
         //anchors.leftMargin: prompter.editorXOffset*prompter.width+prompter.centreX
         //anchors.rightMargin: prompter.editorXOffset*prompter.width+prompter.centreX
+        //leftMargin: prompter.editorXOffset*prompter.width+prompter.centreX
+        width: editor.width
+        x: editor.x + prompter.editorXOffset*prompter.width // +prompter.centreX // -font.pixelSize/4
+        text: String(canvas.__iteration+1)
         horizontalAlignment: Text.AlignHCenter
         verticalAlignment: Text.AlignVCenter
         color: "#FFF"
@@ -234,11 +226,67 @@ Item {
             source: i18n("fonts/libertinus-sans.otf")
         }
     }
-
     MouseArea {
         anchors.fill: parent
         enabled: parseInt(prompter.state) === Prompter.States.Countdown || parseInt(prompter.state) === Prompter.States.Standby
         onClicked: prompter.toggle()
+    }
+    Kirigami.OverlaySheet {
+        id: configuration
+        onSheetOpenChanged: prompterPage.actions.main.checked = sheetOpen
+
+        background: Rectangle {
+            color: appTheme.__backgroundColor
+            anchors.fill: parent
+        }
+        header: Kirigami.Heading {
+            text: i18n("Countdown Setup")
+            level: 1
+        }
+
+        RowLayout {
+            width: parent.width
+
+            ColumnLayout {
+                Label {
+                    text: i18n("Countdown iterations")
+                }
+                SpinBox {
+                    value: __iterations
+                    from: 1
+                    to: 300  // 5*60
+                    onValueModified: {
+                        focus: true
+                        __iterations = value
+                        if (__disappearWithin && __disappearWithin >= __iterations)
+                            __disappearWithin = __iterations
+                    }
+                    Layout.fillWidth: true
+                    Layout.leftMargin: Kirigami.Units.smallSpacing
+                    Layout.rightMargin: Kirigami.Units.smallSpacing
+                }
+            }
+            ColumnLayout {
+                Label {
+                    text: i18np("Disappear within 1 second to go",
+                                "Disappear within %1 seconds to go", __disappearWithin);
+                }
+                SpinBox {
+                    value: __disappearWithin
+                    from: 1
+                    to: 10
+                    onValueModified: {
+                        focus: true
+                        __disappearWithin = value
+                        if (__iterations <= __disappearWithin)
+                            __iterations = __disappearWithin
+                    }
+                    Layout.fillWidth: true
+                    Layout.leftMargin: Kirigami.Units.smallSpacing
+                    Layout.rightMargin: Kirigami.Units.smallSpacing
+                }
+            }
+        }
     }
 
     states: [
@@ -256,7 +304,6 @@ Item {
         }
         PropertyChanges {
             target: canvas
-            //__iteration: 0
             __iteration: countdown.__iterations - 1
         }
     },
@@ -278,7 +325,6 @@ Item {
         }
         PropertyChanges {
             target: canvas
-            //__iteration: 0
             __iteration: countdown.__iterations - 1
         }
         StateChangeScript {
@@ -324,63 +370,4 @@ Item {
         }
     }
     ]
-    
-    Kirigami.OverlaySheet {
-        id: configuration
-        onSheetOpenChanged: prompterPage.actions.main.checked = sheetOpen
-        
-        background: Rectangle {
-            //color: Kirigami.Theme.activeBackgroundColor
-            color: appTheme.__backgroundColor
-            anchors.fill: parent
-        }
-        header: Kirigami.Heading {
-            text: i18n("Countdown Setup")
-            level: 1
-        }
-        
-        RowLayout {
-            width: parent.width
-            
-            ColumnLayout {
-                Label {
-                    text: i18n("Countdown iterations")
-                }
-                SpinBox {
-                    Layout.fillWidth: true
-                    Layout.leftMargin: Kirigami.Units.smallSpacing
-                    Layout.rightMargin: Kirigami.Units.smallSpacing
-                    value: __iterations
-                    from: 1
-                    to: 300  // 5*60
-                    onValueModified: {
-                        focus: true
-                        __iterations = value
-                        if (__disappearWithin && __disappearWithin >= __iterations)
-                            __disappearWithin = __iterations
-                    }
-                }
-            }
-            ColumnLayout {
-                Label {
-                    text: i18np("Disappear within 1 second to go",
-                                "Disappear within %1 seconds to go", __disappearWithin);
-                }
-                SpinBox {
-                    Layout.fillWidth: true
-                    Layout.leftMargin: Kirigami.Units.smallSpacing
-                    Layout.rightMargin: Kirigami.Units.smallSpacing
-                    value: __disappearWithin
-                    from: 1
-                    to: 10
-                    onValueModified: {
-                        focus: true
-                        __disappearWithin = value
-                        if (__iterations <= __disappearWithin)
-                            __iterations = __disappearWithin
-                    }
-                }
-            }
-        }
-    }
 }

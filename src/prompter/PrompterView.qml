@@ -1,7 +1,7 @@
 /****************************************************************************
  **
  ** QPrompt
- ** Copyright (C) 2020-2021 Javier O. Cordero Pérez
+ ** Copyright (C) 2020-2022 Javier O. Cordero Pérez
  **
  ** This file is part of QPrompt.
  **
@@ -37,7 +37,6 @@ Item {
     property alias timer: timer
     property alias find: find
     //property bool project: true
-
     property real __baseSpeed: editorToolbar.baseSpeedSlider.value
     property real __curvature: editorToolbar.baseAccelerationSlider.value
 
@@ -87,6 +86,7 @@ Item {
         wordSpacing: fontSize * editorToolbar.wordSpacingSlider.value / 81
         //Math.pow((fontSizeSlider.value*prompter.__vw),3)
     }
+
     //FastBlur {
     //anchors.fill: prompter
     //source: prompter
