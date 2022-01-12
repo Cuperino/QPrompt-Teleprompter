@@ -31,3 +31,6 @@ along with QPrompt.  If not, see <https://www.gnu.org/licenses/>.
 
 # Pun Facts
 QPrompt is short for Cue Prompter, something said to cue teleprompter operators. Teleprompters are sometimes referred to as "autocue". Also, QPrompt is built using the Qt framework. The Q is meant to reference all of these things and also the word "quick", because teleprompter operators must be quick to respond to what happens on set.
+
+# Disclaimer
+QPrompt, this app, is not related in any way to Q-Prompt Inc. nor is it to be confused with Qprompt, the Python library, or CuePrompter, the teleprompter software.
