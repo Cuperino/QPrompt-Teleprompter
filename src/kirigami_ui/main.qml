@@ -401,7 +401,7 @@ Kirigami.ApplicationWindow {
             //}
             Labs.MenuSeparator { }
             Labs.Menu {
-                title: i18n("&Pointers")
+                title: i18n("&Indicators")
                 Labs.MenuItem {
                     text: i18n("&Left Pointer")
                     checkable: true
@@ -447,7 +447,7 @@ Kirigami.ApplicationWindow {
                     onTriggered: root.pageStack.currentItem.overlay.styleState = ReadRegionOverlay.PointerStates.All
                 }
                 Labs.MenuItem {
-                    text: i18n("&None")
+                    text: i18n("&Hidden")
                     checkable: true
                     checked: parseInt(root.pageStack.currentItem.overlay.styleState) === ReadRegionOverlay.PointerStates.None
                     onTriggered: root.pageStack.currentItem.overlay.styleState = ReadRegionOverlay.PointerStates.None
