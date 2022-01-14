@@ -205,8 +205,8 @@ Kirigami.Page {
         Kirigami.Action {
             id: readRegionStyleButton
 
-            text: i18n("Pointers")
-            tooltip: i18n("Change pointers that indicate reading region")
+            text: i18n("Indicators")
+            tooltip: i18n("Change reading region indicators")
             
             Kirigami.Action {
                 id: readRegionLeftPointerButton
@@ -287,7 +287,7 @@ Kirigami.Page {
             }
             Kirigami.Action {
                 id: readRegionNoneButton
-                text: i18n("None")
+                text: i18n("Hidden")
                 iconName: "format-justify-center"
                 tooltip: i18n("Disable reading region indicators")
                 enabled: parseInt(overlay.styleState)!==ReadRegionOverlay.PointerStates.None
