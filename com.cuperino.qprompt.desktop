@@ -3,14 +3,14 @@
 Name=QPrompt
 GenericName=Personal Teleprompter Software
 Comment=Personal teleprompter software for all video creators
-Version=1.0.0
+Version=1.0.1
 Exec=qprompt %u
 Icon=com.cuperino.qprompt
 Type=Application
 Terminal=false
 Categories=AudioVideo;Video;Qt;
-X-DocPath=documents/guide_en.html
-X-DocPath[en]=documents/guide_en.html
+X-DocPath=src/documents/guide_en.html
+X-DocPath[en]=src/documents/guide_en.html
 MimeType=text/html;
 Keywords=teleprompter;prompter;autocue;qprompt;imaginary;
 URL=https://qprompt.app
