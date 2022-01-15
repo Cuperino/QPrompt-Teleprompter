@@ -7,7 +7,6 @@
   <summary>Personal teleprompter software for all video creators</summary>
   <url type="homepage">https://qprompt.app</url>
   <url type="translate">https://l10n.qprompt.app</url>
-  <url type="contact">https://feedback.qprompt.app</url>
   <url type="bugtracker">https://github.com/Cuperino/QPrompt/issues</url>
   <metadata_license>CC-BY-4.0</metadata_license>
   <project_license>GPL-3.0</project_license>
@@ -71,7 +70,7 @@
           <location>https://github.com/Cuperino/QPrompt/releases/download/v1.0.0/qprompt-v1.0-2c9752c-v1.0-macos-64-clang.dmg</location>
         </artifact>
         <artifact type="binary" platform="arm64-v8a-android">
-          <location>https://github.com/Cuperino/QPrompt/releases/download/v1.0.0/qprompt-1.0.0-Linux-aarch64.deb</location>
+          <location>https://github.com/Cuperino/QPrompt/releases/download/v1.0.0/qprompt_build_apk-debug.apk</location>
         </artifact>
         <artifact type="source">
           <location>https://github.com/Cuperino/QPrompt/archive/refs/tags/v1.0.0.tar.gz</location>
