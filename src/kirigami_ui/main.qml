@@ -63,8 +63,19 @@ Kirigami.ApplicationWindow {
     // Making width and height start maximized
     //width: screen.desktopAvailableWidth
     //height: screen.desktopAvailableHeight
-    minimumWidth: Kirigami.Settings.isMobile ? 291 : 452
-    minimumHeight: 291
+    minimumWidth: Kirigami.Settings.isMobile ? 291 : 351
+    minimumHeight: minimumWidth
+
+    // Key bindings
+    Keys.onPressed: {
+        if (parseInt(prompter.state) === Prompter.States.Prompting)
+            switch (event.key) {
+                case Qt.Key_F11:
+                if (!root.fullScreenPlatform)
+                    root.__fullScreen = !root.__fullScreen
+                return
+            }
+    }
 
     Settings {
         category: "mainWindow"
