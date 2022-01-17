@@ -492,7 +492,7 @@ Kirigami.Page {
         },
         Kirigami.Action {
             id: displaySettings
-            visible: !Kirigami.Settings.isMobile
+            visible: !Kirigami.Settings.isMobile || 'linux'===Qt.platform.os
             text: i18n("Screens")
 
             Kirigami.Action {

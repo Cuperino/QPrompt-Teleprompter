@@ -90,6 +90,7 @@ ToolBar {
     readonly property alias baseSpeedSlider: baseSpeedSlider
     readonly property alias baseAccelerationSlider: baseAccelerationSlider
     readonly property alias onlyPositiveVelocity: positiveVelocity.checked
+    readonly property int showSliderIcons: root.width > 404
 
     // Hide toolbar when read region is set to bottom and prompter is not in editing state.
     enabled: !(parseInt(prompter.state)!==Prompter.States.Editing && (overlay.atBottom || root.visibility===Kirigami.ApplicationWindow.FullScreen && !editor.focus))
@@ -157,6 +158,7 @@ ToolBar {
             ToolButton {
                 id: bookmarkListButton
                 text: "\uF0DB" /*uE804*/
+                visible: Kirigami.Settings.isMobile ? root.width > 339 : true // root.width > 458
                 contentItem: Loader { sourceComponent: textComponent }
                 font.family: iconFont.name
                 font.pointSize: 13
@@ -236,12 +238,12 @@ ToolBar {
                 onClicked: prompter.goToNextMarker()
             }
             ToolSeparator {
-                contentItem.visible: playbackRow.y === undoRedoRow.y
+                contentItem.visible: !Kirigami.Settings.isMobile && root.width>458 ? playbackRow.y === undoRedoRow.y : playbackRow.y === alignmentRowMobile.y
             }
         }
         Row {
             id: undoRedoRow
-            visible: !Kirigami.Settings.isMobile || parseInt(prompter.state)===Prompter.States.Editing && 'ios'!==Qt.platform.os
+            visible: Kirigami.Settings.isMobile ? parseInt(prompter.state)===Prompter.States.Editing && 'ios'!==Qt.platform.os : root.width>458
             ToolButton {
                 text: Qt.application.layoutDirection===Qt.LeftToRight?"\uE800":"\uE801"
                 contentItem: Loader { sourceComponent: textComponent }
@@ -265,7 +267,7 @@ ToolBar {
         }
         Row {
             id: editRow
-            visible: !Kirigami.Settings.isMobile
+            visible: !Kirigami.Settings.isMobile && root.width>458
             ToolButton {
                 id: copyButton
                 text: "\uF0C5"
@@ -703,6 +705,7 @@ ToolBar {
             ToolButton {
                 id: positiveVelocity
                 text: "\u002B"
+                visible: showSliderIcons
                 enabled: velocityControlSlider.enabled
                 contentItem: Loader { sourceComponent: textComponent }
                 font.family: iconFont.name
@@ -716,8 +719,8 @@ ToolBar {
                 color: Kirigami.Theme.textColor
                 Layout.topMargin: 4
                 Layout.bottomMargin: 4
-                Layout.leftMargin: 8
-                Layout.rightMargin: 8
+                Layout.rightMargin: 3
+                Layout.leftMargin: 1
             }
             Slider {
                 id: velocityControlSlider
@@ -736,9 +739,9 @@ ToolBar {
             }
         }
         RowLayout {
-            visible: root.__translucidBackground && (!Kirigami.Settings.isMobile || (parseInt(prompter.state)!==Prompter.States.Editing && parseInt(prompter.state)!==Prompter.States.Prompting)) // This check isn't optimized in case more prompter states get added in the future, even tho I think that is unlikely.
+            visible: root.__translucidBackground && (!Kirigami.Settings.isMobile && root.width>742 || (parseInt(prompter.state)!==Prompter.States.Editing && parseInt(prompter.state)!==Prompter.States.Prompting)) // This check isn't optimized in case more prompter states get added in the future, even tho I think that is unlikely.
             ToolButton {
-                visible: !Kirigami.Settings.isMobile
+                visible: !Kirigami.Settings.isMobile && showSliderIcons
                 text: "\uE810"
                 enabled: false
                 contentItem: Loader { sourceComponent: textComponent }
@@ -750,8 +753,8 @@ ToolBar {
                 color: Kirigami.Theme.textColor
                 Layout.topMargin: 4
                 Layout.bottomMargin: 4
-                Layout.leftMargin: 8
-                Layout.rightMargin: 8
+                Layout.rightMargin: 3
+                Layout.leftMargin: 1
             }
             Slider {
                 id: opacitySlider
@@ -771,6 +774,7 @@ ToolBar {
             clip: true
             ToolButton {
                 text: "\uF088"
+                visible: showSliderIcons
                 enabled: false
                 contentItem: Loader { sourceComponent: textComponent }
                 font.family: iconFont.name
@@ -781,8 +785,8 @@ ToolBar {
                 color: Kirigami.Theme.textColor
                 Layout.topMargin: 4
                 Layout.bottomMargin: 4
-                Layout.leftMargin: 8
-                Layout.rightMargin: 8
+                Layout.rightMargin: 3
+                Layout.leftMargin: 1
             }
             Slider {
                 id: fontSizeSlider
@@ -801,6 +805,7 @@ ToolBar {
             // enabled: !(parseInt(prompter.state)===Prompter.States.Countdown || parseInt(prompter.state)===Prompter.States.Prompting)
             ToolButton {
                 text: "\uF088"
+                visible: showSliderIcons
                 enabled: false
                 contentItem: Loader { sourceComponent: textComponent }
                 font.family: iconFont.name
@@ -811,8 +816,8 @@ ToolBar {
                 color: Kirigami.Theme.textColor
                 Layout.topMargin: 4
                 Layout.bottomMargin: 4
-                Layout.leftMargin: 8
-                Layout.rightMargin: 8
+                Layout.rightMargin: 3
+                Layout.leftMargin: 1
             }
             Slider {
                 id: fontWYSIWYGSizeSlider
@@ -836,6 +841,7 @@ ToolBar {
             }
             ToolButton {
                 text: "\uE806"
+                visible: showSliderIcons
                 enabled: false
                 contentItem: Loader { sourceComponent: textComponent }
                 font.family: iconFont.name
@@ -846,7 +852,8 @@ ToolBar {
                 color: Kirigami.Theme.textColor
                 Layout.topMargin: 4
                 Layout.bottomMargin: 4
-                Layout.rightMargin: 4
+                Layout.rightMargin: 3
+                Layout.leftMargin: 1
             }
             Slider {
                 id: lineHeightSlider
@@ -871,6 +878,7 @@ ToolBar {
             }
             ToolButton {
                 text: "\uE807" // W
+                visible: showSliderIcons
                 enabled: false
                 flat: true
                 contentItem: Loader { sourceComponent: textComponent }
@@ -882,7 +890,8 @@ ToolBar {
                 color: Kirigami.Theme.textColor
                 Layout.topMargin: 4
                 Layout.bottomMargin: 4
-                Layout.rightMargin: 4
+                Layout.rightMargin: 3
+                Layout.leftMargin: 1
             }
             Slider {
                 id: wordSpacingSlider
@@ -906,6 +915,7 @@ ToolBar {
             }
             ToolButton {
                 text: "\uE807"
+                visible: showSliderIcons
                 enabled: false
                 contentItem: Loader { sourceComponent: textComponent }
                 font.family: iconFont.name
@@ -916,7 +926,8 @@ ToolBar {
                 color: Kirigami.Theme.textColor
                 Layout.topMargin: 4
                 Layout.bottomMargin: 4
-                Layout.rightMargin: 4
+                Layout.rightMargin: 3
+                Layout.leftMargin: 1
             }
             Slider {
                 id: letterSpacingSlider
@@ -940,6 +951,7 @@ ToolBar {
             }
             ToolButton {
                 text: "\uE846"
+                visible: showSliderIcons
                 enabled: false
                 contentItem: Loader { sourceComponent: textComponent }
                 font.family: iconFont.name
@@ -950,8 +962,8 @@ ToolBar {
                 color: Kirigami.Theme.textColor
                 Layout.topMargin: 4
                 Layout.bottomMargin: 4
-                Layout.leftMargin: 8
-                Layout.rightMargin: 8
+                Layout.rightMargin: 3
+                Layout.leftMargin: 1
             }
             Slider {
                 id: baseSpeedSlider
@@ -980,6 +992,7 @@ ToolBar {
             }
             ToolButton {
                 text: "\uE846"
+                visible: showSliderIcons
                 enabled: false
                 contentItem: Loader { sourceComponent: textComponent }
                 font.family: iconFont.name
@@ -990,8 +1003,8 @@ ToolBar {
                 color: Kirigami.Theme.textColor
                 Layout.topMargin: 4
                 Layout.bottomMargin: 4
-                Layout.leftMargin: 8
-                Layout.rightMargin: 8
+                Layout.rightMargin: 3
+                Layout.leftMargin: 1
             }
             Slider {
                 id: baseAccelerationSlider

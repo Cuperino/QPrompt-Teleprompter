@@ -77,8 +77,8 @@ Kirigami.ApplicationWindow {
     // Making width and height start maximized
     //width: screen.desktopAvailableWidth
     //height: screen.desktopAvailableHeight
-    minimumWidth: Kirigami.Settings.isMobile ? 291 : 452
-    minimumHeight: 291
+    minimumWidth: Kirigami.Settings.isMobile ? 291 : 351
+    minimumHeight: minimumWidth
 
     // Full screen
     visibility: __fullScreen ? Kirigami.ApplicationWindow.FullScreen : (!__autoFullScreen ? Kirigami.ApplicationWindow.AutomaticVisibility : (parseInt(root.pageStack.currentItem.prompter.state)===Prompter.States.Editing ? Kirigami.ApplicationWindow.Maximized : Kirigami.ApplicationWindow.FullScreen))
