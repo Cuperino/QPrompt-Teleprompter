@@ -28,7 +28,7 @@ import QtQuick.Layouts 1.12
 Kirigami.OverlayDrawer {
     id: sideDrawer
     background: Rectangle {
-        color: "#282828" // appTheme.__backgroundColor
+        color: appTheme.__backgroundColor
         opacity: 0.92
     }
     width: 260
