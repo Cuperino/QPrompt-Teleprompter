@@ -77,7 +77,7 @@ Item {
         height: Kirigami.Settings.isMobile || overlay.__readRegionPlacement > 0.5 ? find.height : find.height+this.radius
         radius: 12
         opacity: 0.96
-        color: "#262626"
+        color: appTheme.__backgroundColor
         border.width: 2
         border.color: "#222"
         MouseArea {
