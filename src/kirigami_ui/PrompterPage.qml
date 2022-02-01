@@ -640,12 +640,12 @@ Kirigami.Page {
 
     ColorDialog {
         id: colorDialog
-        currentColor: Kirigami.Theme.textColor
+        showAlphaChannel: false
     }
-    
+
     ColorDialog {
         id: highlightDialog
-        currentColor: Kirigami.Settings.isMobile ? "#FFFF00" : Kirigami.Theme.backgroundColor
+        showAlphaChannel: false
     }
 
 //     ShaderEffectSource {
