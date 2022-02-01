@@ -541,8 +541,10 @@ ToolBar {
                 font.family: iconFont.name
                 font.pointSize: 13
                 focusPolicy: Qt.TabFocus
-                onClicked: colorDialog.open()
-
+                onClicked: {
+                    colorDialog.color = prompter.textColor;
+                    colorDialog.open();
+                }
                 Rectangle {
                     width: aFontMetrics.width + 3
                     height: 2
@@ -574,8 +576,15 @@ ToolBar {
                 font.family: iconFont.name
                 font.pointSize: 13
                 focusPolicy: Qt.TabFocus
-                onClicked: highlightDialog.open()
-
+                onClicked: {
+                    console.log(highlightDialog.color);
+                    highlightDialog.color = Qt.rgba(0,0,0,0);
+                    // if (Qt.colorEqual(highlightDialog.color, "#000000"))
+                    //     highlightDialog.color = Qt.rgba(0,0,0,0);
+                    // else
+                    //     highlightDialog.color = prompter.textBackground;
+                    highlightDialog.open();
+                }
                 Rectangle {
                     width: bFontMetrics.width + 3
                     height: 2

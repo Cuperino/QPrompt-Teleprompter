@@ -104,6 +104,7 @@ Rectangle {
 
         ColorDialog {
             id: backgroundColorDialog
+            showAlphaChannel: false
             currentColor: appTheme.__backgroundColor
             onAccepted: {
                 console.log(color)

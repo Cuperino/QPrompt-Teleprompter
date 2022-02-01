@@ -194,6 +194,7 @@ Item {
 
     ColorDialog {
         id: timerColorDialog
+        showAlphaChannel: false
         color: '#AAA'
         onAccepted: {
             timerSettings.color = currentColor

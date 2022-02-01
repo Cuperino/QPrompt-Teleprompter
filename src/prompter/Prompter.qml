@@ -787,8 +787,8 @@ Flickable {
         cursorPosition: editor.cursorPosition
         selectionStart: editor.selectionStart
         selectionEnd: editor.selectionEnd
-        textColor: "#FFF"
-        textBackground: "#000"
+        //textColor: "#FFF"
+        //textBackground: "#000"
 
         onLoaded: {
             editor.textFormat = format
