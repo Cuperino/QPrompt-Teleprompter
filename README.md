@@ -1,5 +1,6 @@
 [![Awesome](https://cdn.rawgit.com/sindresorhus/awesome/d7305f38d29fed78fa85652e3a63e154dd8e8829/media/badge.svg)](https://github.com/ebu/awesome-broadcasting)
 [![GitHub license](https://img.shields.io/badge/license-GPL3-blue.svg)](https://raw.githubusercontent.com/Cuperino/QPrompt/master/COPYING)
+[![GitHub release](https://img.shields.io/github/release/Cuperino/QPrompt.svg)](https://github.com/Cuperino/QPrompt/releases)
 [![GitHub contributors](https://img.shields.io/github/contributors/Cuperino/QPrompt.svg)](https://github.com/Cuperino/QPrompt/graphs/contributors)
 ![GitHub commit activity](https://img.shields.io/github/commit-activity/m/Cuperino/QPrompt)
 [![SourceForge](https://img.shields.io/sourceforge/dm/qprompt.svg)](https://sourceforge.net/projects/qprompt/)
