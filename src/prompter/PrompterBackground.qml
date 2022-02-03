@@ -28,7 +28,7 @@ import org.kde.kirigami 2.11 as Kirigami
 Rectangle {
     id: prompterBackground
     readonly property alias backgroundColorDialog: backgroundColorDialog
-    readonly property real __deepeningFactor: 0.89
+    //readonly property real __deepeningFactor: 0.89
     //readonly property real __deepeningFactor: themeSwitch.checked ? 0.89 : 1
     property bool hasBackground: color!==appTheme.__backgroundColor || backgroundImage.opacity>0//backgroundImage.visible
     property var backgroundImage: null
@@ -65,6 +65,7 @@ Rectangle {
         id: backgroundSettings
         // property color color: "#303030" // "#181818"
         //property color color: Qt.rgba(Kirigami.Theme.backgroundColor.r, Kirigami.Theme.backgroundColor.g, Kirigami.Theme.backgroundColor.b, 1)
+        property alias color: prompterBackground.backgroundColor
         property alias image: backgroundImage.source
         category: "background"
     }
