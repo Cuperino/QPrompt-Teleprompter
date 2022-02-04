@@ -52,19 +52,33 @@ Item {
         BarsRight,
         All
     }
+    readonly property alias readRegionHeight: readRegion.height
     readonly property double __vw: width/100
     readonly property bool atTop: !prompter.__flipY && !__readRegionPlacement || prompter.__flipY && __readRegionPlacement===1
     readonly property bool atBottom: !prompter.__flipY && __readRegionPlacement===1 || prompter.__flipY && !__readRegionPlacement
-    readonly property alias readRegionHeight: readRegion.height
     readonly property Scale __flips: Flip{}
     property double __opacity: 0.06
+    property real linesInRegion: 2
     property color __color: 'black'
     property alias __readRegionPlacement: readRegion.__placement
     on__ReadRegionPlacementChanged: countdown.requestPaint()
     property alias enabled: readRegion.enabled
     property string positionState: ReadRegionOverlay.PositionStates.Middle
     property string styleState: Qt.application.layoutDirection===Qt.LeftToRight ? "barsLeft" : "barsRight"
-
+    function toggleLinesInRegion(reverse) {
+        const minSize = 2,
+              maxSize = 5;
+        if (reverse) {
+            linesInRegion -= 0.5
+            if (linesInRegion < minSize)
+                linesInRegion = maxSize
+        }
+        else {
+            linesInRegion += 0.5
+            if (linesInRegion > maxSize)
+                linesInRegion = minSize
+        }
+    }
     transform: __flips
     //anchors.fill: parent
     anchors {
@@ -88,6 +102,7 @@ Item {
         property alias styleState: overlay.styleState
         property alias placement: readRegion.__customPlacement
         property alias enabled: readRegion.enabled
+        property alias linesInRegion: overlay.linesInRegion
     }
     MouseArea {
         id: overlayMouseArea
@@ -106,7 +121,7 @@ Item {
         property double __placement: __customPlacement
 
         enabled: false
-        height: 2.1 * prompter.fontSize
+        height: (linesInRegion * editorToolbar.lineHeightSlider.value/100 * 1.18 + 0.05) * prompter.fontSize
         y: readRegion.__placement * (overlay.height - readRegion.height)
         anchors.left: parent.left
         anchors.right: parent.right
