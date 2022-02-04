@@ -83,6 +83,7 @@ ToolBar {
     property bool showAnimationConfigOptions: false
 
     readonly property alias fontSizeSlider: fontSizeSlider
+    readonly property alias lineHeightSlider: lineHeightSlider
     readonly property alias letterSpacingSlider: letterSpacingSlider
     readonly property alias wordSpacingSlider: wordSpacingSlider
     readonly property alias fontWYSIWYGSizeSlider: fontWYSIWYGSizeSlider

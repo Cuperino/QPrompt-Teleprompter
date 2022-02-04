@@ -103,7 +103,28 @@ Kirigami.Page {
             text: i18n("Reading region")
             //onTriggered: viewport.overlay.toggle()
             tooltip: i18n("Change reading region placement")
-            
+
+            Kirigami.Action {
+                displayComponent: Kirigami.SwipeListItem {
+                    activeTextColor: "#FFFFFF"
+                    activeBackgroundColor: "#797979"
+                    actions: [
+                        Kirigami.Action {
+                            iconName: (Qt.LeftToRight ? "go-next" : "go-previous");
+                            onTriggered: viewport.overlay.toggleLinesInRegion(true)
+                        },
+                        Kirigami.Action {
+                            iconName: (Qt.LeftToRight ? "go-previous" : "go-next");
+                            onTriggered: viewport.overlay.toggleLinesInRegion(false)
+                        }
+                    ]
+                    onClicked: viewport.overlay.toggleLinesInRegion(false)
+                    Label {
+                        id: label
+                        text: viewport.overlay.linesInRegion
+                    }
+                }
+            }
             Kirigami.Action {
                 id: readRegionTopButton
                 iconName: "go-up"
