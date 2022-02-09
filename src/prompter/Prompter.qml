@@ -365,7 +365,7 @@ Flickable {
                     root.alert(0)
                     if (root.passiveNotifications)
                         showPassiveNotification(i18n("Animation Completed"));
-                    if (parseInt(prompter.state) === Prompter.States.Prompting)
+                    if (parseInt(prompter.state) === Prompter.States.Prompting && this.__atEnd)
                         prompter.toggle();
                 }
             }
