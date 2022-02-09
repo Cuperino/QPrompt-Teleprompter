@@ -3,7 +3,7 @@
 Name=QPrompt
 GenericName=Personal Teleprompter Software
 Comment=Personal teleprompter software for all video creators
-Version=1.0.1
+Version=1.0
 Exec=qprompt %u
 Icon=com.cuperino.qprompt
 Type=Application
