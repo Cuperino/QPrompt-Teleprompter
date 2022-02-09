@@ -545,7 +545,7 @@ QString DocumentHandler::import(QString fileName, ImportFormat type)
     // Using LibreOffice for most formats because of its ability to preserve formatting while converting to HTML.
     else if (type==ODT || type==DOCX || type==DOC || type==RTF || type==ABW || type==PAGESX || type==PAGES) {
         program = office_importer;
-        arguments << "--headless" << "--cat" << "--convert-to" << "htm:HTML" << fileName;
+        arguments << "--headless" << "--cat" << "--convert-to" << "html:HTML" << fileName;
     }
     else if (type==EPUB || type==MOBI || type==AZW) {
         // Dev: not implemented
@@ -574,7 +574,7 @@ void DocumentHandler::saveAs(const QUrl &fileUrl)
         return;
     
     const QString filePath = fileUrl.toLocalFile();
-    const bool isHtml = QFileInfo(filePath).suffix().contains(QLatin1String("htm"));
+    const bool isHtml = QFileInfo(filePath).suffix().contains(QLatin1String("html"));
     QFile file(filePath);
     if (!file.open(QFile::WriteOnly | QFile::Truncate | (isHtml ? QFile::NotOpen : QFile::Text))) {
         emit error(tr("Cannot save: ") + file.errorString());
