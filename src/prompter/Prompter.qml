@@ -401,7 +401,7 @@ Flickable {
         onWheel: {
             if (prompter.__noScroll && parseInt(prompter.state)===Prompter.States.Prompting)
                 return;
-            else if (parseInt(prompter.state)===Prompter.States.Prompting && (prompter.__scrollAsDial && !(wheel.modifiers & Qt.ControlModifier) || !prompter.__scrollAsDial && wheel.modifiers & Qt.ControlModifier)) {
+            else if (parseInt(prompter.state)===Prompter.States.Prompting && (prompter.__scrollAsDial && !(wheel.modifiers & Qt.ControlModifier || wheel.modifiers & Qt.MetaModifier) || !prompter.__scrollAsDial && (wheel.modifiers & Qt.ControlModifier || wheel.modifiers & Qt.MetaModifier))) {
                 if (!throttledIteration) {
                     if (wheel.angleDelta.y > 0) {
                         if (prompter.__invertScrollDirection)
@@ -696,7 +696,7 @@ Flickable {
                         }
                     }
                     // In all modes, editor should...
-                    if (event.modifiers & Qt.ControlModifier)
+                    if (['osx', 'ios'].indexOf(Qt.platform.os)===-1 ? event.modifiers & Qt.ControlModifier : event.modifiers & Qt.MetaModifier)
                         switch (event.key) {
                             case Qt.Key_B:
                                 document.bold = !document.bold;
@@ -1018,7 +1018,7 @@ Flickable {
                 prompter.toggle();
                 return
             case keys.skipBackwards:
-                if (event.modifiers & Qt.ControlModifier)
+                if (['osx', 'ios'].indexOf(Qt.platform.os)===-1 ? event.modifiers & Qt.ControlModifier : event.modifiers & Qt.MetaModifier)
                     prompter.goToPreviousMarker();
                 else if (!this.__atStart) {
                     if (prompter.__play && __i!==0)
@@ -1034,7 +1034,7 @@ Flickable {
                 }
                 return
             case keys.skipForward:
-                if (event.modifiers & Qt.ControlModifier)
+                if (['osx', 'ios'].indexOf(Qt.platform.os)===-1 ? event.modifiers & Qt.ControlModifier : event.modifiers & Qt.MetaModifier)
                     prompter.goToNextMarker();
                 else if (!this.__atEnd) {
                     if (prompter.__play && __i!==0)
@@ -1062,17 +1062,16 @@ Flickable {
                     return
                 }
             case Qt.Key_F:
-                if (event.modifiers & Qt.ControlModifier)
+                if (['osx', 'ios'].indexOf(Qt.platform.os)===-1 ? event.modifiers & Qt.ControlModifier : event.modifiers & Qt.MetaModifier)
                     find.open();
                 return
             case Qt.Key_V:
-                if (event.modifiers & Qt.ControlModifier && event.modifiers & Qt.ShiftModifier) {
+                if (['osx', 'ios'].indexOf(Qt.platform.os)===-1 ? event.modifiers & Qt.ControlModifier : event.modifiers & Qt.MetaModifier) {
                     event.accepted = true
-                    document.paste(true);
-                }
-                else if (event.modifiers & Qt.ControlModifier) {
-                    event.accepted = true
-                    document.paste();
+                    if (event.modifiers & Qt.ShiftModifier)
+                        document.paste(true);
+                    else
+                        document.paste();
                 }
                 return
         }
