@@ -756,15 +756,16 @@ Flickable {
             isNewFile = true
             resetDocumentPosition()
             if (root.passiveNotifications)
-                showPassiveNotification(i18n("New document"))
+                document.load("qrc:/blank.html")
+                document.load("qrc:/untitled.html")
         }
         function loadInstructions() {
             document.load("qrc:/"+i18n("guide_en.html"))
             isNewFile = true
             // Set document position to 0, so we can get to read the instructions faster.
             prompter.position = 0
-            if (root.passiveNotifications)
-                showPassiveNotification(i18n("User guide loaded"))
+                document.load("qrc:/blank.html")
+                document.load("qrc:/"+i18n("guide_en.html"))
         }
         function open() {
             openDialog.open()
