@@ -56,6 +56,7 @@ Kirigami.ApplicationWindow {
     //property int prompterVisibility: Kirigami.ApplicationWindow.Maximized
     property double __opacity: 1
     property int __iDefault: 3
+    property int onDiscard: Prompter.CloseActions.Ignore
 
     title: root.pageStack.currentItem.document.fileName + (root.pageStack.currentItem.document.modified?"*":"") + " - " + aboutData.displayName
     width: 1220  // Set at 1220 to show all functionality at a glance. Set to 1200 to fit both 1280 4:3 and 1200 height monitors. Keep at or bellow 1024 and at or above 960, for best usability with common 4:3 resolutions
@@ -140,8 +141,9 @@ Kirigami.ApplicationWindow {
 
     // Open save dialog on closing
     onClosing: {
+        root.onDiscard = Prompter.CloseActions.Quit
         if (root.pageStack.currentItem.document.modified) {
-            quitDialog.open()
+            closeDialog.open()
             close.accepted = false
         }
     }
@@ -189,19 +191,28 @@ Kirigami.ApplicationWindow {
                 text: i18n("&Open")
                 iconName: "document-open"
                 shortcut: StandardKey.Open
-                onTriggered: root.pageStack.currentItem.document.open()
+                onTriggered: {
+                    root.onDiscard = Prompter.CloseActions.Open
+                    root.pageStack.currentItem.document.open()
+                }
             },
             Kirigami.Action {
                 text: i18n("&Save")
                 iconName: "document-save"
                 shortcut: StandardKey.Save
-                onTriggered: root.pageStack.currentItem.document.saveDialog()
+                onTriggered: {
+                    root.onDiscard = Prompter.CloseActions.Ignore
+                    root.pageStack.currentItem.document.saveDialog()
+                }
             },
             Kirigami.Action {
                 text: i18n("Save &As")
                 iconName: "document-save-as"
                 shortcut: StandardKey.SaveAs
-                onTriggered: root.pageStack.currentItem.document.saveAsDialog()
+                onTriggered: {
+                    root.onDiscard = Prompter.CloseActions.Ignore
+                    root.pageStack.currentItem.document.saveAsDialog()
+                }
             },
             Kirigami.Action {
                 visible: false
@@ -303,7 +314,7 @@ Kirigami.ApplicationWindow {
                 text: i18n("Load &Guide")
                 flat: true
                 onClicked: {
-                    root.pageStack.currentItem.document.loadInstructions()
+                    root.pageStack.currentItem.document.loadGuide()
                     globalMenu.close()
                 }
             }
@@ -620,7 +631,7 @@ Kirigami.ApplicationWindow {
             Labs.MenuItem {
                 text: i18n("Load User &Guide")
                 icon.name: "help-info"
-                onTriggered: prompterPage.document.loadInstructions()
+                onTriggered: root.pageStack.currentItem.document.loadGuide()
             }
             Labs.MenuSeparator { }
             Labs.MenuItem {
@@ -684,8 +695,8 @@ Kirigami.ApplicationWindow {
     //pageStack.globalToolBar.background: Rectangle {
         //color: appTheme.__backgroundColor
     //}
-    //property alias prompterPage: root.pageStack.currentItem
-    //property alias prompterPage: root.pageStack.layers.currentItem
+    //property alias root.pageStack.currentItem: root.pageStack.currentItem
+    //property alias root.pageStack.currentItem: root.pageStack.layers.currentItem
     // End of Kirigami PageStack configuration
     
     // Patch current page's events to outside its scope.
@@ -767,13 +778,40 @@ Kirigami.ApplicationWindow {
 
     // Dialogues
     MessageDialog {
-        id : quitDialog
+        id : closeDialog
         title: i18n("Save Document")
         text: i18n("Save changes to document before closing?")
         icon: StandardIcon.Question
         standardButtons: StandardButton.Save | StandardButton.Discard | StandardButton.Cancel
-        onDiscard: Qt.quit()
-        onAccepted: root.pageStack.currentItem.document.saveDialog(true)
+        onDiscard: {
+            //switch (parseInt(root.onDiscard)) {
+                //case Prompter.CloseActions.LoadGuide: root.pageStack.currentItem.document.loadGuide(); break;
+                //case Prompter.CloseActions.LoadNew: root.pageStack.currentItem.document.newDocument(); break;
+                //case Prompter.CloseActions.Quit: Qt.quit();
+                ////case Prompter.CloseActions.Quit:
+                ////default: Qt.quit();
+            //}
+
+            //document.saveAs(saveDialog.fileUrl)
+            //root.pageStack.currentItem.document.isNewFile = true
+            switch (parseInt(root.onDiscard)) {
+                case Prompter.CloseActions.LoadGuide:
+                    root.pageStack.currentItem.document.modified = false
+                    root.pageStack.currentItem.document.loadGuide();
+                    break;
+                case Prompter.CloseActions.LoadNew:
+                    root.pageStack.currentItem.document.modified = false
+                    root.pageStack.currentItem.document.newDocument();
+                break;
+                case Prompter.CloseActions.Open:
+                    root.pageStack.currentItem.openDialog.open();
+                    break;
+                case Prompter.CloseActions.Quit: Qt.quit();
+                case Prompter.CloseActions.Ignore:
+                default: break;
+            }
+        }
+        onAccepted: root.pageStack.currentItem.document.saveDialog(parseInt(root.onDiscard)==Prompter.CloseActions.Quit)
         //buttons: (Labs.MessageDialog.Save | Labs.MessageDialog.Discard | Labs.MessageDialog.Cancel)
         //onDiscardClicked: Qt.quit()
         //onSaveClicked: root.pageStack.currentItem.document.saveDialog(true)

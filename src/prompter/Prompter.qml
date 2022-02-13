@@ -91,6 +91,13 @@ Flickable {
         Countdown,
         Prompting
     }
+    enum CloseActions {
+        Quit,
+        LoadNew,
+        LoadGuide,
+        Open,
+        Ignore
+    }
     readonly property real editorXWidth: Math.abs(editor.x)/prompter.width
     readonly property real editorXOffset: positionHandler.x/prompter.width
     readonly property real centreX: width / 2;
@@ -120,6 +127,7 @@ Flickable {
     // Patch through aliases
     property alias editor: editor
     property alias document: document
+    property alias openDialog: openDialog
     property alias textColor: document.textColor
     property alias textBackground: document.textBackground
     property alias mouse: mouse
@@ -752,35 +760,61 @@ Flickable {
             prompter.position = -(overlay.__readRegionPlacement*(overlay.height-overlay.readRegionHeight)+overlay.readRegionHeight/2)
         }
         function newDocument() {
-            document.load("qrc:/untitled.html")
-            isNewFile = true
-            resetDocumentPosition()
-            if (root.passiveNotifications)
+            root.onDiscard = Prompter.CloseActions.LoadNew
+            if (document.modified)
+                closeDialog.open()
+            else {
                 document.load("qrc:/blank.html")
                 document.load("qrc:/untitled.html")
+                isNewFile = true
+                resetDocumentPosition()
+                if (root.passiveNotifications)
+                    showPassiveNotification(i18n("New document"))
+            }
         }
-        function loadInstructions() {
-            document.load("qrc:/"+i18n("guide_en.html"))
-            isNewFile = true
-            // Set document position to 0, so we can get to read the instructions faster.
-            prompter.position = 0
+        function loadGuide() {
+            root.onDiscard = Prompter.CloseActions.LoadGuide
+            if (document.modified)
+                closeDialog.open()
+            else {
                 document.load("qrc:/blank.html")
                 document.load("qrc:/"+i18n("guide_en.html"))
+                isNewFile = true
+                // Set document position to 0, so we can get to read the instructions faster.
+                prompter.position = 0
+                if (root.passiveNotifications)
+                    showPassiveNotification(i18n("User guide loaded"))
+            }
         }
         function open() {
-            openDialog.open()
+            root.onDiscard = Prompter.CloseActions.Open
+            if (document.modified)
+                closeDialog.open()
+            else
+                openDialog.open()
         }
         function saveAsDialog() {
-            saveDialog.open()
+            saveDialog.open(parseInt(root.onDiscard)==Prompter.CloseActions.Quit)
         }
         function saveDialog(quit=false) {
-            document.quitOnSave = quit
-            if (isNewFile)
-                saveAsDialog()
-            else {// if (modified)
-                document.saveAs(document.fileUrl)
-                if (quit)
-                    Qt.quit()
+            //document.quitOnSave = quit
+            if (document.modified) {
+                if (isNewFile)
+                    saveAsDialog()
+                else {
+                    document.modified = false
+                    showPassiveNotification(i18n("Saved %1", document.fileUrl))
+                    document.saveAs(document.fileUrl)
+                    //if (quit)
+                        //Qt.quit()
+                    //else
+                    switch (parseInt(root.onDiscard)) {
+                        case Prompter.CloseActions.LoadGuide: document.loadGuide(); break;
+                        case Prompter.CloseActions.LoadNew: document.newDocument(); break;
+                        case Prompter.CloseActions.Open: document.open(); break;
+                        case Prompter.CloseActions.Quit: Qt.quit()
+                    }
+                }
             }
         }
 
@@ -809,7 +843,7 @@ Flickable {
                     resetDocumentPosition()
                 }
                 else
-                    loadInstructions();
+                    loadGuide();
             }
         }
     }
@@ -861,11 +895,21 @@ Flickable {
         onAccepted: {
             document.saveAs(saveDialog.fileUrl)
             document.isNewFile = false
-            if (document.quitOnSave)
-                Qt.quit()
+            showPassiveNotification(i18n("Saved %1", document.fileUrl))
+            // if (document.quitOnSave)
+            //     Qt.quit()
+            // else
+            console.log("onDiscard:", root.onDiscard)
+            switch (parseInt(root.onDiscard)) {
+                case Prompter.CloseActions.LoadGuide: document.modified = false; document.loadGuide(); break;
+                case Prompter.CloseActions.LoadNew: document.modified = false; document.newDocument(); break;
+                case Prompter.CloseActions.Open: document.open(); /*openOpenDialog.start();*/ break;
+                case Prompter.CloseActions.Quit: Qt.quit()
+                //default: Qt.quit();
+            }
         }
     }
-    
+
     MessageDialog {
         id: errorDialog
     }
