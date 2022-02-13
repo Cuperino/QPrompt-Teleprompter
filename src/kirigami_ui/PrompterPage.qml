@@ -40,6 +40,7 @@ Kirigami.Page {
     property alias editor: viewport.editor
     property alias overlay: viewport.overlay
     property alias document: viewport.document
+    property alias openDialog: viewport.openDialog
     property alias prompterBackground: viewport.prompterBackground
     property alias find: viewport.find
     property alias key_configuration_overlay: key_configuration_overlay

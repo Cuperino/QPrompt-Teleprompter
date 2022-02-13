@@ -31,6 +31,7 @@ Item {
     property alias prompter: prompter
     property alias editor: prompter.editor
     property alias document: prompter.document
+    property alias openDialog: prompter.openDialog
     property alias countdown: countdown
     property alias overlay: overlay
     property alias prompterBackground: prompterBackground
