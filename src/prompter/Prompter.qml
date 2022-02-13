@@ -836,8 +836,9 @@ Flickable {
         ]
         folder: shortcuts.documents
         onAccepted: {
+            document.load("qrc:/blank.html")
             document.load(openDialog.fileUrl)
-            if (["html", "htm", "xhtml", "HTML", "HTM", "XHTML", "txt", "text", "TXT", "TEXT"].indexOf(Qt.platform.os)===-1)
+            if ([nameFilters[0], nameFilters[2]].indexOf(selectedNameFilter)===-1)
                 document.isNewFile = true;
             else
                 document.isNewFile = false;
@@ -854,7 +855,8 @@ Flickable {
         ]        // Always in the same format as original file
         //selectedNameFilter.index: document.fileType === "txt" ? 0 : 1
         // Always save as HTML
-        selectedNameFilter: nameFilters[document.fileType === "txt" ? 0 : 1]
+        selectedNameFilter: nameFilters[0]
+        //selectedNameFilter: nameFilters[document.fileType === "txt" ? 0 : 1]
         folder: shortcuts.documents
         onAccepted: {
             document.saveAs(saveDialog.fileUrl)
