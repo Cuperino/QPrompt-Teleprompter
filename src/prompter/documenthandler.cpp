@@ -552,7 +552,7 @@ QString DocumentHandler::import(QString fileName, ImportFormat type)
     }
 
     if (program=="")
-        return "Unsuported file format";
+        return "Unsupported file format";
 
     // Begin execution of external filter
     QProcess convert(this);
