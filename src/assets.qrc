@@ -5,7 +5,9 @@
         <!-- User Guide -->
         <file alias="guide_en.html">documents/guide_en.html</file>
         <!-- Empty Untitled Document -->
+        <!-- The same file is referenced twice. This is intentional and related to clearing a file from within a new file. -->
         <file alias="untitled.html">documents/untitled.html</file>
+        <file alias="blank.html">documents/untitled.html</file>
         <!-- Icons -->
         <file>images/qprompt.png</file>
         <file>images/qprompt-logo-wireframe.png</file>
