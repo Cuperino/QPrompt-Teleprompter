@@ -237,7 +237,7 @@ Qt::Alignment DocumentHandler::alignment() const
 {
     QTextCursor cursor = textCursor();
     if (cursor.isNull())
-        return Qt::AlignLeft;
+        return Qt::AlignCenter;
     return textCursor().blockFormat().alignment();
 }
 
