@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/Cuperino/QPrompt/issues/new/choose\n"
 "POT-Creation-Date: 2022-02-21 00:35-0400\n"
-"PO-Revision-Date: 2022-02-21 10:37+0000\n"
-"Last-Translator: Weblate Admin <javiercorderoperez@gmail.com>\n"
+"PO-Revision-Date: 2022-02-22 20:46+0000\n"
+"Last-Translator: Luis Blanco <rassiel86@gmail.com>\n"
 "Language-Team: Spanish <https://l10n.cuperino.com/projects/qprompt-app/"
 "qprompt/es/>\n"
 "Language: es\n"
@@ -35,51 +35,54 @@ msgid "&Open"
 msgstr "&Abrir"
 
 #: kirigami_ui/+android/main.qml:152 kirigami_ui/+windows/main.qml:210
+#, fuzzy
 msgid "Ctrl+O"
-msgstr ""
+msgstr "Ctrl+O"
 
 #: kirigami_ui/+android/main.qml:156 kirigami_ui/main.qml:200
 #: kirigami_ui/main.qml:363 kirigami_ui/+windows/main.qml:214
 msgid "&Save"
-msgstr ""
+msgstr "&Guardar"
 
 #: kirigami_ui/+android/main.qml:158 kirigami_ui/+windows/main.qml:216
+#, fuzzy
 msgid "Ctrl+S"
-msgstr ""
+msgstr "Ctrl+S"
 
 #: kirigami_ui/+android/main.qml:162 kirigami_ui/main.qml:209
 #: kirigami_ui/+windows/main.qml:220
 msgid "Save &As"
-msgstr ""
+msgstr "Guardar &cómo"
 
 #: kirigami_ui/+android/main.qml:164 kirigami_ui/+windows/main.qml:222
+#, fuzzy
 msgid "Ctrl+Shift+S"
-msgstr ""
+msgstr "Ctrl+Shift+S"
 
 #: kirigami_ui/+android/main.qml:169 kirigami_ui/main.qml:219
 #: kirigami_ui/+windows/main.qml:227
 msgid "&Recent Files"
-msgstr ""
+msgstr "Archivos &recientes"
 
 #: kirigami_ui/+android/main.qml:177 kirigami_ui/main.qml:227
 #: kirigami_ui/+windows/main.qml:235
 msgid "&Controls Settings"
-msgstr ""
+msgstr "&Ajustes de control"
 
 #: kirigami_ui/+android/main.qml:181 kirigami_ui/main.qml:231
 #: kirigami_ui/+windows/main.qml:239
 msgid "Keyboard Inputs"
-msgstr ""
+msgstr "Entradas de teclado"
 
 #: kirigami_ui/+android/main.qml:188 kirigami_ui/main.qml:238
 #: kirigami_ui/main.qml:600 kirigami_ui/+windows/main.qml:246
 msgid "Invert &arrow keys"
-msgstr ""
+msgstr "Invertir &teclas de flechas"
 
 #: kirigami_ui/+android/main.qml:196 kirigami_ui/main.qml:246
 #: kirigami_ui/main.qml:607 kirigami_ui/+windows/main.qml:254
 msgid "Invert &scroll direction"
-msgstr ""
+msgstr "Invertir &dirección de desplazamiento"
 
 #: kirigami_ui/+android/main.qml:204 kirigami_ui/main.qml:254
 #: kirigami_ui/main.qml:592 kirigami_ui/+windows/main.qml:262
@@ -94,7 +97,7 @@ msgstr ""
 #: kirigami_ui/+android/main.qml:221 kirigami_ui/main.qml:271
 #: kirigami_ui/+windows/main.qml:279
 msgid "Other &Settings"
-msgstr ""
+msgstr "&Otros Ajustes"
 
 #: kirigami_ui/+android/main.qml:233 kirigami_ui/main.qml:283
 #: kirigami_ui/+windows/main.qml:291
