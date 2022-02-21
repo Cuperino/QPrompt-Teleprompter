@@ -364,7 +364,7 @@ Kirigami.ApplicationWindow {
                 onTriggered: root.pageStack.currentItem.document.saveDialog()
             }
             Labs.MenuItem {
-                text: i18n("Save &As...")
+                text: i18n("Save &As…")
                 onTriggered: root.pageStack.currentItem.document.saveAsDialog()
             }
             Labs.MenuSeparator { }
@@ -616,7 +616,7 @@ Kirigami.ApplicationWindow {
             title: i18n("&Help")
             
             Labs.MenuItem {
-                text: i18n("Report &Bug...")
+                text: i18n("Report &Bug…")
                 onTriggered: Qt.openUrlExternally("https://github.com/Cuperino/QPrompt/issues")
                 icon.name: "tools-report-bug"
             }

@@ -490,7 +490,7 @@ Flickable {
                 textFormat: Qt.RichText
                 wrapMode: TextArea.Wrap
                 readOnly: false
-                text: i18n("Error loading file...")
+                text: i18n("Error loading file…")
 
                 selectByMouse: !Kirigami.Settings.isMobile
                 persistentSelection: true
@@ -934,15 +934,15 @@ Flickable {
         }
         Labs.MenuSeparator {}
         Labs.MenuItem {
-            text: i18n("Fo&nt...")
+            text: i18n("Fo&nt…")
             onTriggered: fontDialog.open()
         }
         Labs.MenuItem {
-            text: i18n("Co&lor...")
+            text: i18n("Co&lor…")
             onTriggered: colorDialog.open()
         }
         Labs.MenuItem {
-            text: i18n("Hi&ghlight...")
+            text: i18n("Hi&ghlight…")
             onTriggered: highlightDialog.open()
         }
     }
@@ -981,15 +981,15 @@ Flickable {
         }
         MenuSeparator {}
         MenuItem {
-            text: i18n("Fo&nt...")
+            text: i18n("Fo&nt…")
             onTriggered: fontDialog.open()
         }
         MenuItem {
-            text: i18n("Co&lor...")
+            text: i18n("Co&lor…")
             onTriggered: colorDialog.open()
         }
         MenuItem {
-            text: i18n("Hi&ghlight...")
+            text: i18n("Hi&ghlight…")
             onTriggered: highlightDialog.open()
         }
         MenuSeparator {}
