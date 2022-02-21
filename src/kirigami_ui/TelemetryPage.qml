@@ -27,7 +27,7 @@ import Qt.labs.settings 1.0
 
 Kirigami.ScrollablePage {
 
-    title: "Telemetry Settings"
+    title: i18n("Telemetry Settings")
     //globalToolBarStyle: Kirigami.ApplicationHeaderStyle.ToolBar
 
     background: Rectangle {
@@ -50,7 +50,7 @@ Kirigami.ScrollablePage {
             text: ""
         }
         Label {
-            text: "The following page is a placeholder. Telemetry has not yet been implemented."
+            text: i18n("The following page is a placeholder. Telemetry has not yet been implemented.")
         }
         Label {
             text: ""

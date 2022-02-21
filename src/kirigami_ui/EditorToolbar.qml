@@ -472,27 +472,27 @@ ToolBar {
                 }
                 MenuSeparator {}
                 MenuItem {
-                    text: "DejaVu " + i18n("(default, Roman, Cyrillic)")
+                    text: i18n("DejaVu (default, Roman, Cyrillic)")
                     onTriggered: viewport.prompter.document.fontFamily = westernSeriousSansfFont.name
                 }
                 MenuItem {
-                    text: "OpenDyslexic " + i18n("(Roman)")
+                    text: i18n("OpenDyslexic (Roman)")
                     onTriggered: viewport.prompter.document.fontFamily = westernDyslexicFont.name
                 }
                 MenuItem {
-                    text: "Source Han Sans " + i18n("(CH, JP, KO)")
+                    text: i18n("Source Han Sans (CH, JP, KO)")
                     onTriggered: viewport.prompter.document.fontFamily = asianSeriousSansFont.name
                 }
                 MenuItem {
-                    text: "Scheherazade New " + i18n("(Arabic)")
+                    text: i18n("Scheherazade New (Arabic)")
                     onTriggered: viewport.prompter.document.fontFamily = arabicHumaneSansFont.name
                 }
                 MenuItem {
-                    text: "Palanquin " + i18n("(Devangari)")
+                    text: i18n("Palanquin (Devangari)")
                     onTriggered: viewport.prompter.document.fontFamily = devanagariSeriousSansFont.name
                 }
                 MenuItem {
-                    text: "Kalpurush " + i18n("(Bengali)")
+                    text: i18n("Kalpurush (Bengali)")
                     onTriggered: viewport.prompter.document.fontFamily = bengaliHumaneSerifFont.name
                 }
                 MenuSeparator {}
