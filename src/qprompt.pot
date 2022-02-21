@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/Cuperino/QPrompt/issues/new/choose\n"
-"POT-Creation-Date: 2022-02-20 23:59-0400\n"
+"POT-Creation-Date: 2022-02-21 00:35-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -587,7 +587,7 @@ msgid "&File"
 msgstr ""
 
 #: kirigami_ui/main.qml:367
-msgid "Save &As..."
+msgid "Save &As…"
 msgstr ""
 
 #: kirigami_ui/main.qml:378
@@ -719,7 +719,7 @@ msgid "&Help"
 msgstr ""
 
 #: kirigami_ui/main.qml:619
-msgid "Report &Bug..."
+msgid "Report &Bug…"
 msgstr ""
 
 #: kirigami_ui/main.qml:632
@@ -1272,7 +1272,7 @@ msgid "Animation Completed"
 msgstr ""
 
 #: prompter/Prompter.qml:493
-msgid "Error loading file..."
+msgid "Error loading file…"
 msgstr ""
 
 #: prompter/Prompter.qml:558
@@ -1326,15 +1326,15 @@ msgid "All Formats"
 msgstr ""
 
 #: prompter/Prompter.qml:937 prompter/Prompter.qml:984
-msgid "Fo&nt..."
+msgid "Fo&nt…"
 msgstr ""
 
 #: prompter/Prompter.qml:941 prompter/Prompter.qml:988
-msgid "Co&lor..."
+msgid "Co&lor…"
 msgstr ""
 
 #: prompter/Prompter.qml:945 prompter/Prompter.qml:992
-msgid "Hi&ghlight..."
+msgid "Hi&ghlight…"
 msgstr ""
 
 #: prompter/Prompter.qml:962
