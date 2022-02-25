@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/Cuperino/QPrompt/issues/new/choose\n"
 "POT-Creation-Date: 2022-02-21 00:35-0400\n"
-"PO-Revision-Date: 2022-02-22 20:46+0000\n"
+"PO-Revision-Date: 2022-02-26 01:49+0000\n"
 "Last-Translator: Weblate Admin <javiercorderoperez@gmail.com>\n"
 "Language-Team: Spanish <https://l10n.cuperino.com/projects/qprompt-app/"
 "qprompt/es/>\n"
@@ -86,12 +86,12 @@ msgstr "Invertir &dirección de desplazamiento"
 #: kirigami_ui/+android/main.qml:204 kirigami_ui/main.qml:254
 #: kirigami_ui/main.qml:592 kirigami_ui/+windows/main.qml:262
 msgid "Use scroll as velocity &dial"
-msgstr ""
+msgstr "Tratar desplazamientos como ajustes de velocidad"
 
 #: kirigami_ui/+android/main.qml:213 kirigami_ui/main.qml:263
 #: kirigami_ui/main.qml:586 kirigami_ui/+windows/main.qml:271
 msgid "Disable scrolling while prompting"
-msgstr ""
+msgstr "Desactivar rueda de desplazamiento durante uso del prompter"
 
 #: kirigami_ui/+android/main.qml:221 kirigami_ui/main.qml:271
 #: kirigami_ui/+windows/main.qml:279
@@ -101,114 +101,115 @@ msgstr "&Otros Ajustes"
 #: kirigami_ui/+android/main.qml:233 kirigami_ui/main.qml:283
 #: kirigami_ui/+windows/main.qml:291
 msgid "Force sub-pixel text renderer past 120px"
-msgstr ""
+msgstr "Forzar renderizado de sub-pixeles en letras con más de 120px"
 
 #: kirigami_ui/+android/main.qml:250 kirigami_ui/main.qml:300
 #: kirigami_ui/+windows/main.qml:308
 msgid "Abou&t"
-msgstr ""
+msgstr "&Sobre"
 
 #: kirigami_ui/+android/main.qml:256 kirigami_ui/main.qml:306
 #: kirigami_ui/main.qml:372 kirigami_ui/+windows/main.qml:314
 msgid "&Quit"
-msgstr ""
+msgstr "Sali&r"
 
 #: kirigami_ui/+android/main.qml:258 kirigami_ui/+windows/main.qml:316
+#, fuzzy
 msgid "Ctrl+Q"
-msgstr ""
+msgstr "Ctrl+Q"
 
 #: kirigami_ui/+android/main.qml:264 kirigami_ui/main.qml:314
 #: kirigami_ui/+windows/main.qml:322
 msgid "Load &Guide"
-msgstr ""
+msgstr "Cargar &Guía"
 
 #: kirigami_ui/+android/main.qml:460 kirigami_ui/main.qml:782
 #: kirigami_ui/+windows/main.qml:472
 msgid "Save Document"
-msgstr ""
+msgstr "Guardar Documento"
 
 #: kirigami_ui/+android/main.qml:461 kirigami_ui/main.qml:783
 #: kirigami_ui/+windows/main.qml:473
 msgid "Save changes to document before closing?"
-msgstr ""
+msgstr "Guardar los cambios al documento antes de salir?"
 
 #: kirigami_ui/EditorToolbar.qml:316 kirigami_ui/EditorToolbar.qml:326
 #: kirigami_ui/main.qml:537 kirigami_ui/main.qml:554
 msgid "&Left"
-msgstr ""
+msgstr "&Izquierda"
 
 #: kirigami_ui/EditorToolbar.qml:316 kirigami_ui/EditorToolbar.qml:326
 #: kirigami_ui/main.qml:537 kirigami_ui/main.qml:554
 msgid "&Right"
-msgstr ""
+msgstr "&Derecha"
 
 #: kirigami_ui/EditorToolbar.qml:321
 msgid "C&enter"
-msgstr ""
+msgstr "C&entro"
 
 #: kirigami_ui/EditorToolbar.qml:445 prompter/Prompter.qml:519
 msgid "fonts/dejavu-sans.otf"
-msgstr ""
+msgstr "fonts/dejavu-sans.otf"
 
 #: kirigami_ui/EditorToolbar.qml:449
 msgid "fonts/opendyslexic-bold.otf"
-msgstr ""
+msgstr "fonts/opendyslexic-bold.otf"
 
 #: kirigami_ui/EditorToolbar.qml:453
 msgid "fonts/sourcehansans.ttc"
-msgstr ""
+msgstr "fonts/sourcehansans.ttc"
 
 #: kirigami_ui/EditorToolbar.qml:457
 msgid "fonts/scheherazadenew-regular.ttf"
-msgstr ""
+msgstr "fonts/scheherazadenew-regular.ttf"
 
 #: kirigami_ui/EditorToolbar.qml:461
 msgid "fonts/palanquin.ttf"
-msgstr ""
+msgstr "fonts/palanquin.ttf"
 
 #: kirigami_ui/EditorToolbar.qml:465
 msgid "fonts/kalpurush.ttf"
-msgstr ""
+msgstr "fonts/kalpurush.ttf"
 
 #: kirigami_ui/EditorToolbar.qml:475
 msgid "DejaVu (default, Roman, Cyrillic)"
-msgstr ""
+msgstr "DejaVu (predeterminado, romano, cirílico)"
 
 #: kirigami_ui/EditorToolbar.qml:479
 msgid "OpenDyslexic (Roman)"
-msgstr ""
+msgstr "OpenDyslexic (romano)"
 
 #: kirigami_ui/EditorToolbar.qml:483
 msgid "Source Han Sans (CH, JP, KO)"
-msgstr ""
+msgstr "Source Han Sans (CH, JP, KO)"
 
 #: kirigami_ui/EditorToolbar.qml:487
 msgid "Scheherazade New (Arabic)"
-msgstr ""
+msgstr "Scheherazade New (árabe)"
 
 #: kirigami_ui/EditorToolbar.qml:491
 msgid "Palanquin (Devangari)"
-msgstr ""
+msgstr "Palanquin (devanagari)"
 
 #: kirigami_ui/EditorToolbar.qml:495
 msgid "Kalpurush (Bengali)"
-msgstr ""
+msgstr "Kalpurush (bengalí)"
 
 #: kirigami_ui/EditorToolbar.qml:501
 msgid "Choose System Font"
-msgstr ""
+msgstr "Escoger letra proveniente del sistema"
 
 #: kirigami_ui/EditorToolbar.qml:517
 msgid ""
-msgstr ""
+msgstr ""
 
 #: kirigami_ui/EditorToolbar.qml:728
 msgid "Velocity:"
-msgstr ""
+msgstr "Velocidad:"
 
 #: kirigami_ui/EditorToolbar.qml:762
 msgid "Opacity:"
-msgstr ""
+msgstr "Opacidad:"
 
 #: kirigami_ui/EditorToolbar.qml:794
 msgid "Font size while editing:"
@@ -388,7 +389,7 @@ msgstr ""
 
 #: kirigami_ui/KeyInputButton.qml:65
 msgid "Windows"
-msgstr ""
+msgstr "Windows"
 
 #: kirigami_ui/KeyInputButton.qml:65
 msgid "Super"
@@ -424,51 +425,51 @@ msgstr ""
 
 #: kirigami_ui/KeyInputButton.qml:72
 msgid "F1"
-msgstr ""
+msgstr "F1"
 
 #: kirigami_ui/KeyInputButton.qml:73
 msgid "F2"
-msgstr ""
+msgstr "F2"
 
 #: kirigami_ui/KeyInputButton.qml:74
 msgid "F3"
-msgstr ""
+msgstr "F3"
 
 #: kirigami_ui/KeyInputButton.qml:75
 msgid "F4"
-msgstr ""
+msgstr "F4"
 
 #: kirigami_ui/KeyInputButton.qml:76
 msgid "F5"
-msgstr ""
+msgstr "F5"
 
 #: kirigami_ui/KeyInputButton.qml:77
 msgid "F6"
-msgstr ""
+msgstr "F6"
 
 #: kirigami_ui/KeyInputButton.qml:78
 msgid "F7"
-msgstr ""
+msgstr "F7"
 
 #: kirigami_ui/KeyInputButton.qml:79
 msgid "F8"
-msgstr ""
+msgstr "F8"
 
 #: kirigami_ui/KeyInputButton.qml:80
 msgid "F9"
-msgstr ""
+msgstr "F9"
 
 #: kirigami_ui/KeyInputButton.qml:81
 msgid "F10"
-msgstr ""
+msgstr "F10"
 
 #: kirigami_ui/KeyInputButton.qml:82
 msgid "F11"
-msgstr ""
+msgstr "F11"
 
 #: kirigami_ui/KeyInputButton.qml:83
 msgid "F12"
-msgstr ""
+msgstr "F12"
 
 #: kirigami_ui/KeyInputButton.qml:84
 msgid "F13"
@@ -1241,7 +1242,7 @@ msgstr ""
 
 #: prompter/Countdown.qml:226
 msgid "fonts/libertinus-sans.otf"
-msgstr ""
+msgstr "fonts/libertinus-sans.otf"
 
 #: prompter/Countdown.qml:243
 msgid "Countdown Setup"
@@ -1297,7 +1298,7 @@ msgstr ""
 
 #: prompter/Prompter.qml:781
 msgid "guide_en.html"
-msgstr ""
+msgstr "guide_es.html"
 
 #: prompter/Prompter.qml:786
 msgid "User guide loaded"
