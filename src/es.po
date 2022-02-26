@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/Cuperino/QPrompt/issues/new/choose\n"
 "POT-Creation-Date: 2022-02-21 00:35-0400\n"
-"PO-Revision-Date: 2022-02-26 01:49+0000\n"
+"PO-Revision-Date: 2022-02-26 16:43+0000\n"
 "Last-Translator: Weblate Admin <javiercorderoperez@gmail.com>\n"
 "Language-Team: Spanish <https://l10n.cuperino.com/projects/qprompt-app/"
 "qprompt/es/>\n"
@@ -213,67 +213,67 @@ msgstr "Opacidad:"
 
 #: kirigami_ui/EditorToolbar.qml:794
 msgid "Font size while editing:"
-msgstr ""
+msgstr "Tamaño de letra al editar:"
 
 #: kirigami_ui/EditorToolbar.qml:825
 msgid "Font size:"
-msgstr ""
+msgstr "Tamaño de letra:"
 
 #: kirigami_ui/EditorToolbar.qml:861
 msgid "Line height:"
-msgstr ""
+msgstr "Altura de línea:"
 
 #: kirigami_ui/EditorToolbar.qml:899
 msgid "Word spacing:"
-msgstr ""
+msgstr "Espacio entre palabras:"
 
 #: kirigami_ui/EditorToolbar.qml:935
 msgid "Letter spacing:"
-msgstr ""
+msgstr "Espacio entre letras:"
 
 #: kirigami_ui/EditorToolbar.qml:971
 msgid "Step speed:"
-msgstr ""
+msgstr "Rapidez del incremento:"
 
 #: kirigami_ui/EditorToolbar.qml:1012
 msgid "Step acceleration:"
-msgstr ""
+msgstr "Aceleración del incremento:"
 
 #: kirigami_ui/EditorToolbar.qml:1048
 msgid "Start Velocity"
-msgstr ""
+msgstr "Velocidad de Inicio"
 
 #: kirigami_ui/EditorToolbar.qml:1055
 msgid "Velocity to have when starting to prompt"
-msgstr ""
+msgstr "Velocidad a tener al comenzar a operar"
 
 #: kirigami_ui/EditorToolbar.qml:1091
 msgid "Skip Key"
-msgstr ""
+msgstr "Tecla de Salto"
 
 #: kirigami_ui/EditorToolbar.qml:1109
 msgid "Key to perform skip to this marker"
-msgstr ""
+msgstr "Tecla para saltar a este marcador"
 
 #: kirigami_ui/InputsOverlay.qml:35
 msgid "Key Bindings"
-msgstr ""
+msgstr "Configuración de Teclas"
 
 #: kirigami_ui/InputsOverlay.qml:93
 msgid "Toggle Prompter State"
-msgstr ""
+msgstr "Cambiar Estado del Prompter"
 
 #: kirigami_ui/InputsOverlay.qml:101
 msgid "Decrease Velocity"
-msgstr ""
+msgstr "Reducir Velocidad"
 
 #: kirigami_ui/InputsOverlay.qml:109
 msgid "Increase Velocity"
-msgstr ""
+msgstr "Aumentar Velocidad"
 
 #: kirigami_ui/InputsOverlay.qml:117
 msgid "Play/Pause"
-msgstr ""
+msgstr "Reproducir/Pausar"
 
 #: kirigami_ui/InputsOverlay.qml:125
 msgid "Move Backwards"
@@ -289,23 +289,23 @@ msgstr ""
 
 #: kirigami_ui/KeyInputButton.qml:46
 msgid "Spacebar"
-msgstr ""
+msgstr "Barra espaciadora"
 
 #: kirigami_ui/KeyInputButton.qml:47
 msgid "Up Arrow"
-msgstr ""
+msgstr "Arriba"
 
 #: kirigami_ui/KeyInputButton.qml:48
 msgid "Down Arrow"
-msgstr ""
+msgstr "Abajo"
 
 #: kirigami_ui/KeyInputButton.qml:49
 msgid "Left Arrow"
-msgstr ""
+msgstr "Izquierda"
 
 #: kirigami_ui/KeyInputButton.qml:50
 msgid "Right Arrow"
-msgstr ""
+msgstr "Derecha"
 
 #: kirigami_ui/KeyInputButton.qml:51
 msgid "Tab"
@@ -313,7 +313,7 @@ msgstr ""
 
 #: kirigami_ui/KeyInputButton.qml:52
 msgid "Backtab"
-msgstr ""
+msgstr "Tab invertido"
 
 #: kirigami_ui/KeyInputButton.qml:53
 msgid "Page Up"
@@ -577,7 +577,7 @@ msgstr ""
 
 #: kirigami_ui/KeyInputButton.qml:110
 msgid "Search"
-msgstr ""
+msgstr "Buscar"
 
 #: kirigami_ui/KeyInputButton.qml:111
 msgid "Zoom"
@@ -585,39 +585,40 @@ msgstr ""
 
 #: kirigami_ui/KeyInputButton.qml:112
 msgid "Print"
-msgstr ""
+msgstr "Imprimir"
 
 #: kirigami_ui/main.qml:352
 msgid "&File"
-msgstr ""
+msgstr "&Archivo"
 
 #: kirigami_ui/main.qml:367
+#, fuzzy
 msgid "Save &As…"
-msgstr ""
+msgstr "Guardar Como…"
 
 #: kirigami_ui/main.qml:378
 msgid "&Edit"
-msgstr ""
+msgstr "&Editar"
 
 #: kirigami_ui/main.qml:381 prompter/Prompter.qml:957
 msgid "&Undo"
-msgstr ""
+msgstr "&Deshacer"
 
 #: kirigami_ui/main.qml:386
 msgid "&Redo"
-msgstr ""
+msgstr "&Rehacer"
 
 #: kirigami_ui/main.qml:392 prompter/Prompter.qml:921 prompter/Prompter.qml:968
 msgid "&Copy"
-msgstr ""
+msgstr "&Copiar"
 
 #: kirigami_ui/main.qml:397 prompter/Prompter.qml:926 prompter/Prompter.qml:973
 msgid "Cu&t"
-msgstr ""
+msgstr "Cor&tar"
 
 #: kirigami_ui/main.qml:402 prompter/Prompter.qml:931 prompter/Prompter.qml:978
 msgid "&Paste"
-msgstr ""
+msgstr "&Pegar"
 
 #: kirigami_ui/main.qml:409
 msgid "&View"
@@ -625,59 +626,59 @@ msgstr ""
 
 #: kirigami_ui/main.qml:412
 msgid "Full &screen"
-msgstr ""
+msgstr "Panta&lla completa"
 
 #: kirigami_ui/main.qml:426
 msgid "&Indicators"
-msgstr ""
+msgstr "&Indicadores"
 
 #: kirigami_ui/main.qml:428
 msgid "&Left Pointer"
-msgstr ""
+msgstr "Apuntador &Izquierdo"
 
 #: kirigami_ui/main.qml:434
 msgid "&Right Pointer"
-msgstr ""
+msgstr "Apuntador &Derecho"
 
 #: kirigami_ui/main.qml:440
 msgid "B&oth Pointers"
-msgstr ""
+msgstr "&Ambos Apuntadores"
 
 #: kirigami_ui/main.qml:447
 msgid "&Bars"
-msgstr ""
+msgstr "&Barras"
 
 #: kirigami_ui/main.qml:453
 msgid "Bars Lef&t"
-msgstr ""
+msgstr "Barra e Izquier&do"
 
 #: kirigami_ui/main.qml:459
 msgid "Bars Ri&ght"
-msgstr ""
+msgstr "Barra y Dere&cho"
 
 #: kirigami_ui/main.qml:466
 msgid "&All"
-msgstr ""
+msgstr "&Todos"
 
 #: kirigami_ui/main.qml:472
 msgid "&Hidden"
-msgstr ""
+msgstr "&Oculto"
 
 #: kirigami_ui/main.qml:479
 msgid "Readin&g region"
-msgstr ""
+msgstr "Re&gión de lectura"
 
 #: kirigami_ui/main.qml:481
 msgid "&Top"
-msgstr ""
+msgstr "&Arriba"
 
 #: kirigami_ui/main.qml:487
 msgid "&Middle"
-msgstr ""
+msgstr "&Centro"
 
 #: kirigami_ui/main.qml:493
 msgid "&Bottom"
-msgstr ""
+msgstr "A&bajo"
 
 #: kirigami_ui/main.qml:500
 msgid "F&ree placement"
@@ -689,11 +690,11 @@ msgstr ""
 
 #: kirigami_ui/main.qml:515
 msgid "For&mat"
-msgstr ""
+msgstr "For&mato"
 
 #: kirigami_ui/main.qml:518
 msgid "&Bold"
-msgstr ""
+msgstr "&Negrita"
 
 #: kirigami_ui/main.qml:524
 msgid "&Italic"
@@ -709,183 +710,185 @@ msgstr ""
 
 #: kirigami_ui/main.qml:573
 msgid "C&haracter"
-msgstr ""
+msgstr "Letra"
 
 #: kirigami_ui/main.qml:577
 msgid "Fo&nt Color"
-msgstr ""
+msgstr "Color de let&ra"
 
 #: kirigami_ui/main.qml:583
 msgid "Controls"
-msgstr ""
+msgstr "Controles"
 
 #: kirigami_ui/main.qml:616
 msgid "&Help"
-msgstr ""
+msgstr "A&yuda"
 
 #: kirigami_ui/main.qml:619
 msgid "Report &Bug…"
-msgstr ""
+msgstr "Reportar &Problemas…"
 
 #: kirigami_ui/main.qml:632
 msgid "Load User &Guide"
-msgstr ""
+msgstr "Cargar &Guía de Usuario"
 
 #: kirigami_ui/main.qml:638
 msgid "Abou&t QPrompt"
-msgstr ""
+msgstr "Sobre QPro&mpt"
 
 #: kirigami_ui/MarkersDrawer.qml:100
 msgid "Close Marker List"
-msgstr ""
+msgstr "Ocultar Marcadores"
 
 #: kirigami_ui/PrompterPage.qml:53
 msgid "QPrompt"
-msgstr ""
+msgstr "QPrompt"
 
 #: kirigami_ui/PrompterPage.qml:68
 msgid "Start prompter"
-msgstr ""
+msgstr "Iniciar prompter"
 
 #: kirigami_ui/PrompterPage.qml:75
 msgid "Decrease velocity"
-msgstr ""
+msgstr "Reducir velocidad"
 
 #: kirigami_ui/PrompterPage.qml:82
 msgid "Increase velocity"
-msgstr ""
+msgstr "Aumentar velocidad"
 
 #: kirigami_ui/PrompterPage.qml:91
 msgid "WYSIWYG"
-msgstr ""
+msgstr "WYSIWYG"
 
 #: kirigami_ui/PrompterPage.qml:95
 msgid "\"What you see is what you get\" mode is On"
-msgstr ""
+msgstr "Modo \"What you see is what you get\" activado"
 
 #: kirigami_ui/PrompterPage.qml:95
 msgid "\"What you see is what you get\" mode is Off"
-msgstr ""
+msgstr "Modo \"What you see is what you get\" inactivo"
 
 #: kirigami_ui/PrompterPage.qml:104
 msgid "Reading region"
-msgstr ""
+msgstr "Región de lectura"
 
 #: kirigami_ui/PrompterPage.qml:106
 msgid "Change reading region placement"
-msgstr ""
+msgstr "Re-ubicar región de lectura"
 
 #: kirigami_ui/PrompterPage.qml:132
 msgid "Top"
-msgstr ""
+msgstr "Arriba"
 
 #: kirigami_ui/PrompterPage.qml:134
 msgid "Move reading region to the top, convenient for use with webcams"
-msgstr ""
+msgstr "Ubique la región de lectura arriba; útil para uso con cámaras web"
 
 #: kirigami_ui/PrompterPage.qml:143
 msgid "Middle"
-msgstr ""
+msgstr "Centro"
 
 #: kirigami_ui/PrompterPage.qml:145
 msgid "Move reading region to the vertical center"
-msgstr ""
+msgstr "Ubique la región de lectura en el centro vertical de la ventana"
 
 #: kirigami_ui/PrompterPage.qml:154
 msgid "Bottom"
-msgstr ""
+msgstr "Abajo"
 
 #: kirigami_ui/PrompterPage.qml:156
 msgid "Move reading region to the bottom"
-msgstr ""
+msgstr "Ubique la región de lectura al fondo de la ventana"
 
 #: kirigami_ui/PrompterPage.qml:165
 msgid "Free"
-msgstr ""
+msgstr "Libre"
 
 #: kirigami_ui/PrompterPage.qml:167
 msgid "Move reading region freely by dragging and dropping"
-msgstr ""
+msgstr "Arrastre la región de lectura para moverla libremente"
 
 #: kirigami_ui/PrompterPage.qml:176
 msgid "Custom"
-msgstr ""
+msgstr "Personalizado"
 
 #: kirigami_ui/PrompterPage.qml:178
 msgid "Fix reading region to the position set using free placement mode"
 msgstr ""
+"Fije la región de lectura a la posición configurada usando el modo de "
+"posicionamiento libre"
 
 #: kirigami_ui/PrompterPage.qml:230
 msgid "Indicators"
-msgstr ""
+msgstr "Indicadores"
 
 #: kirigami_ui/PrompterPage.qml:231
 msgid "Change reading region indicators"
-msgstr ""
+msgstr "Configure cómo demarcar la región de lectura"
 
 #: kirigami_ui/PrompterPage.qml:235
 msgid "Left pointer"
-msgstr ""
+msgstr "Apuntador izquierdo"
 
 #: kirigami_ui/PrompterPage.qml:237
 msgid "Left pointer indicates reading region"
-msgstr ""
+msgstr "Un apuntador a la izquierda indica la región de lectura"
 
 #: kirigami_ui/PrompterPage.qml:246
 msgid "Right pointer"
-msgstr ""
+msgstr "Apuntador derecho"
 
 #: kirigami_ui/PrompterPage.qml:248
 msgid "Right pointer indicates reading region"
-msgstr ""
+msgstr "Un apuntador a la derecha indica la región de lectura"
 
 #: kirigami_ui/PrompterPage.qml:257
 msgid "Both pointers"
-msgstr ""
+msgstr "Ambos apuntadores"
 
 #: kirigami_ui/PrompterPage.qml:259
 msgid "Left and right pointers indicate reading region"
-msgstr ""
+msgstr "Apuntadores a ambos lados indican la región de lectura"
 
 #: kirigami_ui/PrompterPage.qml:268
 msgid "Bar"
-msgstr ""
+msgstr "Barra"
 
 #: kirigami_ui/PrompterPage.qml:270
 msgid "Translucent bars indicate reading region"
-msgstr ""
+msgstr "Barras translúcidas indican la región de lectura"
 
 #: kirigami_ui/PrompterPage.qml:279
 msgid "Bar && left"
-msgstr ""
+msgstr "Barra e izquierdo"
 
 #: kirigami_ui/PrompterPage.qml:281
 msgid "Translucent bars and left pointer indicate reading region"
-msgstr ""
+msgstr "Barras translúcidas y apuntador izquierdo indican la región de lectura"
 
 #: kirigami_ui/PrompterPage.qml:290
 msgid "Bar && right"
-msgstr ""
+msgstr "Barra y derecho"
 
 #: kirigami_ui/PrompterPage.qml:292
 msgid "Translucent bars and right pointer indicate reading region"
-msgstr ""
+msgstr "Barras translúcidas y apuntador derecho indican la región de lectura"
 
 #: kirigami_ui/PrompterPage.qml:301
 msgid "All"
-msgstr ""
+msgstr "Todos"
 
 #: kirigami_ui/PrompterPage.qml:303
 msgid "Use all reading region indicators"
-msgstr ""
+msgstr "Combine todos los indicadores de región de lectura"
 
 #: kirigami_ui/PrompterPage.qml:312
 msgid "Hidden"
-msgstr ""
+msgstr "Oculto"
 
 #: kirigami_ui/PrompterPage.qml:314
 msgid "Disable reading region indicators"
-msgstr ""
+msgstr "Oculte todos los indicadores de región de lectura"
 
 #: kirigami_ui/PrompterPage.qml:324
 msgid "Timer"
@@ -893,11 +896,11 @@ msgstr ""
 
 #: kirigami_ui/PrompterPage.qml:330
 msgid "Stopwatch"
-msgstr ""
+msgstr "Cronómetro"
 
 #: kirigami_ui/PrompterPage.qml:341
 msgid "ETA"
-msgstr ""
+msgstr "Tiempo estimado"
 
 #: kirigami_ui/PrompterPage.qml:349
 msgid "Timer color"
@@ -909,85 +912,85 @@ msgstr ""
 
 #: kirigami_ui/PrompterPage.qml:369 kirigami_ui/PrompterPage.qml:390
 msgid "Countdown"
-msgstr ""
+msgstr "Conteo Regresivo"
 
 #: kirigami_ui/PrompterPage.qml:375
 msgid "Auto frame"
-msgstr ""
+msgstr "Auto encuadrar"
 
 #: kirigami_ui/PrompterPage.qml:405
 msgid "Auto start"
-msgstr ""
+msgstr "Inicio inmediato"
 
 #: kirigami_ui/PrompterPage.qml:407
 msgid "Start countdown automatically"
-msgstr ""
+msgstr "Iniciar conteo regresivo automáticamente"
 
 #: kirigami_ui/PrompterPage.qml:416
 msgid "Set duration"
-msgstr ""
+msgstr "Configurar duración"
 
 #: kirigami_ui/PrompterPage.qml:432
 msgid "Flip"
-msgstr ""
+msgstr "Invertir"
 
 #: kirigami_ui/PrompterPage.qml:435
 msgid "No Flip"
-msgstr ""
+msgstr "No Invertir"
 
 #: kirigami_ui/PrompterPage.qml:436 kirigami_ui/PrompterPage.qml:552
 msgid "No flip"
-msgstr ""
+msgstr "No invertir"
 
 #: kirigami_ui/PrompterPage.qml:447
 msgid "H Flip"
-msgstr ""
+msgstr "Invertido H"
 
 #: kirigami_ui/PrompterPage.qml:448
 msgid "Horizontal flip"
-msgstr ""
+msgstr "Invertido Horizontal"
 
 #: kirigami_ui/PrompterPage.qml:459
 msgid "V Flip"
-msgstr ""
+msgstr "Invertido V"
 
 #: kirigami_ui/PrompterPage.qml:460
 msgid "Vertical flip"
-msgstr ""
+msgstr "Invertido vertical"
 
 #: kirigami_ui/PrompterPage.qml:471
 msgid "HV Flip"
-msgstr ""
+msgstr "Invertido HV"
 
 #: kirigami_ui/PrompterPage.qml:472
 msgid "180° rotation"
-msgstr ""
+msgstr "Rotación de 180°"
 
 #: kirigami_ui/PrompterPage.qml:485
 msgid "Background"
-msgstr ""
+msgstr "Fondo"
 
 #: kirigami_ui/PrompterPage.qml:488
 msgid "Set image"
-msgstr ""
+msgstr "Configurar imagen"
 
 #: kirigami_ui/PrompterPage.qml:497
 msgid "Set color"
-msgstr ""
+msgstr "Configurar color"
 
 #: kirigami_ui/PrompterPage.qml:506
 msgid "Clear"
-msgstr ""
+msgstr "Limpiar"
 
 #: kirigami_ui/PrompterPage.qml:518
 msgid "Screens"
-msgstr ""
+msgstr "Pantallas"
 
 #: kirigami_ui/PrompterPage.qml:551 kirigami_ui/TelemetryPage.qml:79
 #: kirigami_ui/TelemetryPage.qml:101 kirigami_ui/TelemetryPage.qml:123
 #: kirigami_ui/TelemetryPage.qml:149
 msgid "Off"
-msgstr ""
+msgstr "Apagada"
 
 #: kirigami_ui/PrompterPage.qml:553
 msgid "H flip"
@@ -1003,31 +1006,31 @@ msgstr ""
 
 #: kirigami_ui/PrompterPage.qml:562
 msgid "Scale projections"
-msgstr ""
+msgstr "Escalar proyecciones"
 
 #: kirigami_ui/PrompterPage.qml:571
 msgid "Preview projections"
-msgstr ""
+msgstr "Vista previa"
 
 #: kirigami_ui/PrompterPage.qml:572
 msgid "Project prompter duplicates onto extended displays"
-msgstr ""
+msgstr "Proyecta duplicados a pantallas extendidas"
 
 #: kirigami_ui/PrompterPage.qml:592
 msgid "Leave Fullscreen"
-msgstr ""
+msgstr "Abandonar pantalla completa"
 
 #: kirigami_ui/PrompterPage.qml:592
 msgid "Fullscreen"
-msgstr ""
+msgstr "Pantalla completa"
 
 #: kirigami_ui/RemotePage.qml:28
 msgid "Remote Control"
-msgstr ""
+msgstr "Control Remoto"
 
 #: kirigami_ui/TelemetryPage.qml:30
 msgid "Telemetry Settings"
-msgstr ""
+msgstr "Configuración de Telemetría"
 
 #: kirigami_ui/TelemetryPage.qml:53
 msgid ""
@@ -1042,171 +1045,180 @@ msgid ""
 "you work with, or information that could help identify you.\n"
 "- Cuperino (QPrompt's Author)"
 msgstr ""
+"Por favor, ayúdeme a mejorar a QPrompt compartiendo datos sobre cómo lo "
+"utiliza. El contribuir esta información es opcional y completamente anónimo. "
+"Ni el proyecto ni yo colectaremos sus datos personales, archivos que abra, "
+"contenidos con los que trabaje, ni ninguna información que pudiera ayudar a "
+"identificarle.\n"
+"- Cuperino (Autor de QPrompt)"
 
 #: kirigami_ui/TelemetryPage.qml:67
 msgid "Telemetry"
-msgstr ""
+msgstr "Telemetría"
 
 #: kirigami_ui/TelemetryPage.qml:70
 msgid "Enabled"
-msgstr ""
+msgstr "Habilitado"
 
 #: kirigami_ui/TelemetryPage.qml:70
 msgid "Disabled"
-msgstr ""
+msgstr "Deshabilitado"
 
 #: kirigami_ui/TelemetryPage.qml:79 kirigami_ui/TelemetryPage.qml:101
 #: kirigami_ui/TelemetryPage.qml:123 kirigami_ui/TelemetryPage.qml:149
 msgid "On"
-msgstr ""
+msgstr "Encendido"
 
 #: kirigami_ui/TelemetryPage.qml:93
 msgid "Basic program and system information"
-msgstr ""
+msgstr "Información básica del programa y del sistema"
 
 #: kirigami_ui/TelemetryPage.qml:94
 msgid "Application version"
-msgstr ""
+msgstr "Versión de la aplicación"
 
 #: kirigami_ui/TelemetryPage.qml:95
 msgid "Platform information"
-msgstr ""
+msgstr "Información sobre la plataforma"
 
 #: kirigami_ui/TelemetryPage.qml:96
 msgid "Qt version information"
-msgstr ""
+msgstr "Información sobre la versión de Qt"
 
 #: kirigami_ui/TelemetryPage.qml:97 kirigami_ui/TelemetryPage.qml:118
 msgid "Locale information (timezone and keyboard layout)"
-msgstr ""
+msgstr "Configuración de localización (zona horaria y configuración de teclado)"
 
 #: kirigami_ui/TelemetryPage.qml:114
 msgid "Program run statistics: Help us study user retention"
 msgstr ""
+"Estadística sobre corridas: Ayúdanos a estudiar la retención de usuarios"
 
 #: kirigami_ui/TelemetryPage.qml:115
 msgid "Randomly generated install ID"
-msgstr ""
+msgstr "ID de instalación generado al azar"
 
 #: kirigami_ui/TelemetryPage.qml:116
 msgid "Launch times"
-msgstr ""
+msgstr "Veces que ha lanzado el programa"
 
 #: kirigami_ui/TelemetryPage.qml:117
 msgid "Usage time"
-msgstr ""
+msgstr "Tiempo de uso"
 
 #: kirigami_ui/TelemetryPage.qml:136
 msgid "Feature use frequency: Help us know what features are most important"
 msgstr ""
+"Frecuencia de uso de funcionalidades: Ayúdenos a saber qué funcionalidades "
+"son más importantes"
 
 #: kirigami_ui/TelemetryPage.qml:137
 msgid "Flip settings"
-msgstr ""
+msgstr "Configuración de invertido de pantalla"
 
 #: kirigami_ui/TelemetryPage.qml:138
 msgid "Reading region settings"
-msgstr ""
+msgstr "Configuración de la región de lectura"
 
 #: kirigami_ui/TelemetryPage.qml:139
 msgid "Pointer settings"
-msgstr ""
+msgstr "Configuración de los indicadores de lectura"
 
 #: kirigami_ui/TelemetryPage.qml:140
 msgid "Countdown settings"
-msgstr ""
+msgstr "Configuración del conteo regresivo"
 
 #: kirigami_ui/TelemetryPage.qml:141
 msgid "Keyboard shortcut settings"
-msgstr ""
+msgstr "Configuración de los atajos de teclado"
 
 #: kirigami_ui/TelemetryPage.qml:142
 msgid "Input control settings"
-msgstr ""
+msgstr "Configuración del teclado"
 
 #: kirigami_ui/TelemetryPage.qml:143
 msgid "Base speed and acceleration curvature settings"
-msgstr ""
+msgstr "Ajustes de rapidez y curvatura de aceleración"
 
 #: kirigami_ui/TelemetryPage.qml:144
 msgid "Background color and opacity settings"
-msgstr ""
+msgstr "Ajustes de color y opacidad de fondo"
 
 #: kirigami_ui/TelemetryPage.qml:145
 msgid "Presence of a background image"
-msgstr ""
+msgstr "Presencia de una imagen de fondo"
 
 #: kirigami_ui/TelemetryPage.qml:162
 msgid "Help us understand how users operate QPrompt"
-msgstr ""
+msgstr "Ayúdanos a comprender cómo los usuarios operan QPrompt"
 
 #: kirigami_ui/TelemetryPage.qml:163
 msgid "Random session ID"
-msgstr ""
+msgstr "ID de sesión aleatorio"
 
 #: kirigami_ui/TelemetryPage.qml:164
 msgid "Session number"
-msgstr ""
+msgstr "Número de sesión"
 
 #: kirigami_ui/TelemetryPage.qml:165
 msgid "Session prompt number"
-msgstr ""
+msgstr "Conteo de corridas"
 
 #: kirigami_ui/TelemetryPage.qml:166
 msgid "Window dimensions"
-msgstr ""
+msgstr "Dimensiones de ventanas"
 
 #: kirigami_ui/TelemetryPage.qml:167
 msgid "Prompt area dimensions"
-msgstr ""
+msgstr "Dimensiones del área de proyección"
 
 #: kirigami_ui/TelemetryPage.qml:168
 msgid "Dimensions of lines of text being prompted"
-msgstr ""
+msgstr "Dimensiones de las líneas de texto siendo presentadas"
 
 #: kirigami_ui/TelemetryPage.qml:169
 msgid "Font settings per block of lines of text being prompted"
-msgstr ""
+msgstr "Ajustes de las letras por bloque de líneas de texto siendo presentadas"
 
 #: kirigami_ui/TelemetryPage.qml:170
 msgid "Languages likely present in the text being prompted"
-msgstr ""
+msgstr "Lenguajes probablemente presentes en el texto siendo presentado"
 
 #: kirigami_ui/TelemetryPage.qml:171
 msgid "Prompt starting line number and position"
-msgstr ""
+msgstr "Línea y posición de inicio de la corrida"
 
 #: kirigami_ui/TelemetryPage.qml:172
 msgid "Manual scroll start and end timestamps"
-msgstr ""
+msgstr "Tiempos de inicio y finalización de desplazamientos manuales"
 
 #: kirigami_ui/TelemetryPage.qml:173
 msgid "Scroll starting line number and position"
-msgstr ""
+msgstr "Línea y posición de inicio de desplazamientos"
 
 #: kirigami_ui/TelemetryPage.qml:174
 msgid "Scroll end line number and position"
-msgstr ""
+msgstr "Línea y posición de finalización de desplazamientos"
 
 #: kirigami_ui/TelemetryPage.qml:175
 msgid "Scroll duration"
-msgstr ""
+msgstr "Duración de desplazamientos"
 
 #: kirigami_ui/TelemetryPage.qml:176
 msgid "Prompt duration"
-msgstr ""
+msgstr "Duración de corrida"
 
 #: kirigami_ui/TelemetryPage.qml:177
 msgid "Velocity changes with timestamp"
-msgstr ""
+msgstr "Tiempos de cambios de velocidad"
 
 #: kirigami_ui/TelemetryPage.qml:178
 msgid "Source of changes to velocity"
-msgstr ""
+msgstr "Origen de los cambios en velocidad"
 
 #: kirigami_ui/TelemetryPage.qml:179
 msgid "Source of manual changes to scroll position"
-msgstr ""
+msgstr "Origen de los cambios manuales al posicionamiento"
 
 #: kirigami_ui/TelemetryPage.qml:188
 msgid ""
@@ -1215,18 +1227,22 @@ msgid ""
 "not to collect any of the actual text and images that you work with, so I "
 "ask you: please leave telemetry enabled."
 msgstr ""
+"Esta información es muy importante para mi, Javier, autor del proyecto, y "
+"podría ayudar a hacer del desarrollo de QPrompt uno más sostenible. He "
+"corrido la milla extra para no colectar nada del texto y las imágenes con "
+"las que trabajas, así que te pido: por favor deja la telemetría activa."
 
 #: main.cpp:66
 msgid "Personal teleprompter software for all video makers."
-msgstr ""
+msgstr "Teleprompter personal para creadores de videos."
 
 #: main.cpp:68
 msgid "© %1%2 Javier O. Cordero Pérez"
-msgstr ""
+msgstr "© %1%2 Javier O. Cordero Pérez"
 
 #: main.cpp:78
 msgid "Author"
-msgstr ""
+msgstr "Autor"
 
 #: main.cpp:84
 msgid "Su nombre irá aquí"
@@ -1238,7 +1254,7 @@ msgstr ""
 
 #: main.cpp:95
 msgid "Failed to load icons from fontello.ttf"
-msgstr ""
+msgstr "No se pudieron cargar los iconos de fontello.ttf"
 
 #: prompter/Countdown.qml:226
 msgid "fonts/libertinus-sans.otf"
