@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/Cuperino/QPrompt/issues/new/choose\n"
-"POT-Creation-Date: 2022-02-25 21:34-0400\n"
+"POT-Creation-Date: 2022-02-25 22:14-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -23,17 +23,9 @@ msgstr ""
 msgid "&New"
 msgstr ""
 
-#: kirigami_ui/+android/main.qml:146 kirigami_ui/+windows/main.qml:204
-msgid "Ctrl+N"
-msgstr ""
-
 #: kirigami_ui/+android/main.qml:150 kirigami_ui/main.qml:191
 #: kirigami_ui/main.qml:359 kirigami_ui/+windows/main.qml:208
 msgid "&Open"
-msgstr ""
-
-#: kirigami_ui/+android/main.qml:152 kirigami_ui/+windows/main.qml:210
-msgid "Ctrl+O"
 msgstr ""
 
 #: kirigami_ui/+android/main.qml:156 kirigami_ui/main.qml:200
@@ -41,17 +33,9 @@ msgstr ""
 msgid "&Save"
 msgstr ""
 
-#: kirigami_ui/+android/main.qml:158 kirigami_ui/+windows/main.qml:216
-msgid "Ctrl+S"
-msgstr ""
-
 #: kirigami_ui/+android/main.qml:162 kirigami_ui/main.qml:209
 #: kirigami_ui/+windows/main.qml:220
 msgid "Save &As"
-msgstr ""
-
-#: kirigami_ui/+android/main.qml:164 kirigami_ui/+windows/main.qml:222
-msgid "Ctrl+Shift+S"
 msgstr ""
 
 #: kirigami_ui/+android/main.qml:169 kirigami_ui/main.qml:219
@@ -107,10 +91,6 @@ msgstr ""
 #: kirigami_ui/+android/main.qml:256 kirigami_ui/main.qml:306
 #: kirigami_ui/main.qml:372 kirigami_ui/+windows/main.qml:314
 msgid "&Quit"
-msgstr ""
-
-#: kirigami_ui/+android/main.qml:258 kirigami_ui/+windows/main.qml:316
-msgid "Ctrl+Q"
 msgstr ""
 
 #: kirigami_ui/+android/main.qml:264 kirigami_ui/main.qml:314
@@ -718,15 +698,15 @@ msgstr ""
 msgid "Flip"
 msgstr ""
 
-#: kirigami_ui/PrompterPage.qml:435
+#: kirigami_ui/PrompterPage.qml:435 kirigami_ui/PrompterPage.qml:552
 msgid "No Flip"
 msgstr ""
 
-#: kirigami_ui/PrompterPage.qml:436 kirigami_ui/PrompterPage.qml:552
+#: kirigami_ui/PrompterPage.qml:436
 msgid "No flip"
 msgstr ""
 
-#: kirigami_ui/PrompterPage.qml:447
+#: kirigami_ui/PrompterPage.qml:447 kirigami_ui/PrompterPage.qml:553
 msgid "H Flip"
 msgstr ""
 
@@ -734,7 +714,7 @@ msgstr ""
 msgid "Horizontal flip"
 msgstr ""
 
-#: kirigami_ui/PrompterPage.qml:459
+#: kirigami_ui/PrompterPage.qml:459 kirigami_ui/PrompterPage.qml:554
 msgid "V Flip"
 msgstr ""
 
@@ -742,7 +722,7 @@ msgstr ""
 msgid "Vertical flip"
 msgstr ""
 
-#: kirigami_ui/PrompterPage.qml:471
+#: kirigami_ui/PrompterPage.qml:471 kirigami_ui/PrompterPage.qml:555
 msgid "HV Flip"
 msgstr ""
 
@@ -774,18 +754,6 @@ msgstr ""
 #: kirigami_ui/TelemetryPage.qml:101 kirigami_ui/TelemetryPage.qml:123
 #: kirigami_ui/TelemetryPage.qml:149
 msgid "Off"
-msgstr ""
-
-#: kirigami_ui/PrompterPage.qml:553
-msgid "H flip"
-msgstr ""
-
-#: kirigami_ui/PrompterPage.qml:554
-msgid "V flip"
-msgstr ""
-
-#: kirigami_ui/PrompterPage.qml:555
-msgid "HV flip"
 msgstr ""
 
 #: kirigami_ui/PrompterPage.qml:562
