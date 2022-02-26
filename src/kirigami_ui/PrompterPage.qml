@@ -549,10 +549,10 @@ Kirigami.Page {
                             id: label
                             text: switch (flipSetting) {
                                 case 0 : return display.name + " : " + i18n("Off");
-                                case 1 : return display.name + " : " + i18n("No flip");
-                                case 2 : return display.name + " : " + i18n("H flip");
-                                case 3 : return display.name + " : " + i18n("V flip");
-                                case 4 : return display.name + " : " + i18n("HV flip");
+                                case 1 : return display.name + " : " + i18n("No Flip");
+                                case 2 : return display.name + " : " + i18n("H Flip");
+                                case 3 : return display.name + " : " + i18n("V Flip");
+                                case 4 : return display.name + " : " + i18n("HV Flip");
                             }
                         }
                     }

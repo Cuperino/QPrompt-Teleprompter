@@ -1,4 +1,4 @@
-/****************************************************************************
+// /****************************************************************************
  **
  ** QPrompt
  ** Copyright (C) 2020-2022 Javier O. Cordero Pérez
@@ -201,25 +201,25 @@ Kirigami.ApplicationWindow {
             Kirigami.Action {
                 text: i18n("&New")
                 iconName: "document-new"
-                shortcut: i18n("Ctrl+N")
+                shortcut: StandardKey.New
                 onTriggered: root.pageStack.currentItem.document.newDocument()
             },
             Kirigami.Action {
                 text: i18n("&Open")
                 iconName: "document-open"
-                shortcut: i18n("Ctrl+O")
+                shortcut: StandardKey.Open
                 onTriggered: root.pageStack.currentItem.document.open()
             },
             Kirigami.Action {
                 text: i18n("&Save")
                 iconName: "document-save"
-                shortcut: i18n("Ctrl+S")
+                shortcut: StandardKey.Save
                 onTriggered: root.pageStack.currentItem.document.saveDialog()
             },
             Kirigami.Action {
                 text: i18n("Save &As")
                 iconName: "document-save-as"
-                shortcut: i18n("Ctrl+Shift+S")
+                shortcut: StandardKey.SaveAs
                 onTriggered: root.pageStack.currentItem.document.saveAsDialog()
             },
             Kirigami.Action {
@@ -313,7 +313,7 @@ Kirigami.ApplicationWindow {
                 visible: !Kirigami.Settings.isMobile
                 text: i18n("&Quit")
                 iconName: "application-exit"
-                shortcut: i18n("Ctrl+Q")
+                shortcut: StandardKey.Quit
                 onTriggered: close()
             }
         ]
