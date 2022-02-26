@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/Cuperino/QPrompt/issues/new/choose\n"
-"POT-Creation-Date: 2022-02-21 00:35-0400\n"
+"POT-Creation-Date: 2022-02-25 21:34-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -278,10 +278,6 @@ msgstr ""
 msgid "Move Forward"
 msgstr ""
 
-#: kirigami_ui/KeyInputButton.qml:45
-msgid "ESC"
-msgstr ""
-
 #: kirigami_ui/KeyInputButton.qml:46
 msgid "Spacebar"
 msgstr ""
@@ -300,10 +296,6 @@ msgstr ""
 
 #: kirigami_ui/KeyInputButton.qml:50
 msgid "Right Arrow"
-msgstr ""
-
-#: kirigami_ui/KeyInputButton.qml:51
-msgid "Tab"
 msgstr ""
 
 #: kirigami_ui/KeyInputButton.qml:52
@@ -342,64 +334,12 @@ msgstr ""
 msgid "Enter"
 msgstr ""
 
-#: kirigami_ui/KeyInputButton.qml:62
-msgid "Command"
-msgstr ""
-
-#: kirigami_ui/KeyInputButton.qml:62 kirigami_ui/KeyInputButton.qml:65
-msgid "Control"
-msgstr ""
-
 #: kirigami_ui/KeyInputButton.qml:63
-msgid "Left Control"
-msgstr ""
-
-#: kirigami_ui/KeyInputButton.qml:63
-msgid "Left Windows"
-msgstr ""
-
-#: kirigami_ui/KeyInputButton.qml:63
-msgid "Left Super"
-msgstr ""
-
-#: kirigami_ui/KeyInputButton.qml:63
-msgid "Left Meta"
+msgid "Left %1"
 msgstr ""
 
 #: kirigami_ui/KeyInputButton.qml:64
-msgid "Right Control"
-msgstr ""
-
-#: kirigami_ui/KeyInputButton.qml:64
-msgid "Right Windows"
-msgstr ""
-
-#: kirigami_ui/KeyInputButton.qml:64
-msgid "Right Super"
-msgstr ""
-
-#: kirigami_ui/KeyInputButton.qml:64
-msgid "Right Meta"
-msgstr ""
-
-#: kirigami_ui/KeyInputButton.qml:65
-msgid "Windows"
-msgstr ""
-
-#: kirigami_ui/KeyInputButton.qml:65
-msgid "Super"
-msgstr ""
-
-#: kirigami_ui/KeyInputButton.qml:65
-msgid "Meta"
-msgstr ""
-
-#: kirigami_ui/KeyInputButton.qml:66
-msgid "Alt"
-msgstr ""
-
-#: kirigami_ui/KeyInputButton.qml:67
-msgid "AltGr"
+msgid "Right %1"
 msgstr ""
 
 #: kirigami_ui/KeyInputButton.qml:68
@@ -418,152 +358,8 @@ msgstr ""
 msgid "Scroll Lock"
 msgstr ""
 
-#: kirigami_ui/KeyInputButton.qml:72
-msgid "F1"
-msgstr ""
-
-#: kirigami_ui/KeyInputButton.qml:73
-msgid "F2"
-msgstr ""
-
-#: kirigami_ui/KeyInputButton.qml:74
-msgid "F3"
-msgstr ""
-
-#: kirigami_ui/KeyInputButton.qml:75
-msgid "F4"
-msgstr ""
-
-#: kirigami_ui/KeyInputButton.qml:76
-msgid "F5"
-msgstr ""
-
-#: kirigami_ui/KeyInputButton.qml:77
-msgid "F6"
-msgstr ""
-
-#: kirigami_ui/KeyInputButton.qml:78
-msgid "F7"
-msgstr ""
-
-#: kirigami_ui/KeyInputButton.qml:79
-msgid "F8"
-msgstr ""
-
-#: kirigami_ui/KeyInputButton.qml:80
-msgid "F9"
-msgstr ""
-
-#: kirigami_ui/KeyInputButton.qml:81
-msgid "F10"
-msgstr ""
-
-#: kirigami_ui/KeyInputButton.qml:82
-msgid "F11"
-msgstr ""
-
-#: kirigami_ui/KeyInputButton.qml:83
-msgid "F12"
-msgstr ""
-
-#: kirigami_ui/KeyInputButton.qml:84
-msgid "F13"
-msgstr ""
-
-#: kirigami_ui/KeyInputButton.qml:85
-msgid "F14"
-msgstr ""
-
-#: kirigami_ui/KeyInputButton.qml:86
-msgid "F15"
-msgstr ""
-
-#: kirigami_ui/KeyInputButton.qml:87
-msgid "F16"
-msgstr ""
-
-#: kirigami_ui/KeyInputButton.qml:88
-msgid "F17"
-msgstr ""
-
-#: kirigami_ui/KeyInputButton.qml:89
-msgid "F18"
-msgstr ""
-
-#: kirigami_ui/KeyInputButton.qml:90
-msgid "F19"
-msgstr ""
-
-#: kirigami_ui/KeyInputButton.qml:91
-msgid "F20"
-msgstr ""
-
-#: kirigami_ui/KeyInputButton.qml:92
-msgid "F21"
-msgstr ""
-
-#: kirigami_ui/KeyInputButton.qml:93
-msgid "F22"
-msgstr ""
-
-#: kirigami_ui/KeyInputButton.qml:94
-msgid "F23"
-msgstr ""
-
-#: kirigami_ui/KeyInputButton.qml:95
-msgid "F24"
-msgstr ""
-
-#: kirigami_ui/KeyInputButton.qml:96
-msgid "F25"
-msgstr ""
-
-#: kirigami_ui/KeyInputButton.qml:97
-msgid "F26"
-msgstr ""
-
-#: kirigami_ui/KeyInputButton.qml:98
-msgid "F27"
-msgstr ""
-
-#: kirigami_ui/KeyInputButton.qml:99
-msgid "F28"
-msgstr ""
-
-#: kirigami_ui/KeyInputButton.qml:100
-msgid "F29"
-msgstr ""
-
-#: kirigami_ui/KeyInputButton.qml:101
-msgid "F30"
-msgstr ""
-
-#: kirigami_ui/KeyInputButton.qml:102
-msgid "F31"
-msgstr ""
-
-#: kirigami_ui/KeyInputButton.qml:103
-msgid "F32"
-msgstr ""
-
-#: kirigami_ui/KeyInputButton.qml:104
-msgid "F33"
-msgstr ""
-
-#: kirigami_ui/KeyInputButton.qml:105
-msgid "F34"
-msgstr ""
-
-#: kirigami_ui/KeyInputButton.qml:106
-msgid "F35"
-msgstr ""
-
 #: kirigami_ui/KeyInputButton.qml:107
 msgid "Home Page"
-msgstr ""
-
-#: kirigami_ui/KeyInputButton.qml:108
-msgid "E-mail"
 msgstr ""
 
 #: kirigami_ui/KeyInputButton.qml:109
@@ -572,10 +368,6 @@ msgstr ""
 
 #: kirigami_ui/KeyInputButton.qml:110
 msgid "Search"
-msgstr ""
-
-#: kirigami_ui/KeyInputButton.qml:111
-msgid "Zoom"
 msgstr ""
 
 #: kirigami_ui/KeyInputButton.qml:112
