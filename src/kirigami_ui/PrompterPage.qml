@@ -50,7 +50,7 @@ Kirigami.Page {
     // Unused signal. Leaving for reference.
     //signal test( bool data )
 
-    title: i18n("QPrompt")
+    title: "QPrompt"
     padding: 0
 
     onBackRequested: close()

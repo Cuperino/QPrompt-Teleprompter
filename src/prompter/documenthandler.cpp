@@ -1,7 +1,7 @@
 /****************************************************************************
  **
  ** QPrompt
- ** Copyright (C) 2020-2021 Javier O. Cordero Pérez
+ ** Copyright (C) 2020-2022 Javier O. Cordero Pérez
  **
  ** This file is part of QPrompt.
  **
@@ -388,21 +388,11 @@ void DocumentHandler::setMarker(bool marker)
     qDebug() << marker;
     format.setAnchor(marker);
     format.setFontUnderline(marker);
-    // Avoid dealing with color changes by using FontOverline to distinguish Marker from other properties.
     format.setFontOverline(marker);
-    if (marker) {
-        // Named markers could have two names attached to them...
-        format.setAnchorNames(QStringList());
-        //format.setForeground(QColor("lightblue"));
-        // There's no need to set href, this would only conflict with actual links in the document.
-        //format.setAnchorHref("#");
-    }
-    else {
-        format.setAnchorNames(QStringList());
-        //format.clearForeground();
-        // There's no need to set href, this would only conflict with actual links in the document.
-        //format.setAnchorHref("");
-    }
+    if (marker)
+        format.setAnchorHref("#");
+    else
+        format.clearProperty(QTextFormat::AnchorHref);
     mergeFormatOnWordOrSelection(format);
     this->setMarkersListDirty();
     emit markerChanged();
