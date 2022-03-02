@@ -26,18 +26,21 @@
 
 struct Marker {
     Q_GADGET
-    Q_PROPERTY(double position MEMBER position)
+    Q_PROPERTY(int position MEMBER position)
+    Q_PROPERTY(int length MEMBER length)
     Q_PROPERTY(QString url MEMBER url)
     public:
         // Constructors
         Marker() {}
         Marker(std::nullptr_t) {}
-        Marker(const QString& text, const double position, const int key, const QString& url, const int requestType)
+        Marker(const QString& text, const int position, const int length, const int key, const QString& keyLetter, const QString& url, const int requestType)
             : text(text), position(position), key(key), url(url), requestType(requestType) {}
         // Contents
         QString text;
-        double position = 0;
+        int position = 0;
+        int length = 1;
         int key;
+        QString keyLetter;
         QString url;
         int requestType;
 };
@@ -51,7 +54,9 @@ public:
     enum Roles {
         TextRole = Qt::UserRole,
         PositionRole,
+        LengthRole,
         KeyRole,
+        KeyLetterRole,
         UrlRole,
         RequestTypeRole
     };

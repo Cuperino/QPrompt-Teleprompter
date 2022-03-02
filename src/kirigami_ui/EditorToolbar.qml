@@ -89,6 +89,7 @@ ToolBar {
     readonly property alias fontWYSIWYGSizeSlider: fontWYSIWYGSizeSlider
     readonly property alias opacitySlider: opacitySlider
     readonly property alias baseSpeedSlider: baseSpeedSlider
+    readonly property alias namedMarkerConfiguration: namedMarkerConfiguration
     readonly property alias baseAccelerationSlider: baseAccelerationSlider
     readonly property alias onlyPositiveVelocity: positiveVelocity.checked
     readonly property int showSliderIcons: root.width > 404
@@ -1098,8 +1099,13 @@ ToolBar {
             if (sheetOpen)
                 //row.setMarkerKeyButton.item.text = "";
                 column.setMarkerKeyButton.item.text = prompter.document.getMarkerKey();
-            else
+            else {
                 prompter.focus = true
+                if (sideDrawer.reOpen) {
+                    prompter.document.parse()
+                    sideDrawer.open()
+                }
+            }
         }
         ColumnLayout {
             id: column

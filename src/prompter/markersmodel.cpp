@@ -1,7 +1,7 @@
 /****************************************************************************
  **
  ** QPrompt
- ** Copyright (C) 2021 Javier O. Cordero Pérez
+ ** Copyright (C) 2021-2022 Javier O. Cordero Pérez
  **
  ** This file is part of QPrompt.
  **
@@ -46,8 +46,12 @@ QVariant MarkersModel::data(const QModelIndex &index, int role) const
         return data.text;
     else if ( role == PositionRole )
         return data.position;
+    else if ( role == LengthRole )
+        return data.position;
     else if ( role == KeyRole )
         return data.key;
+    else if ( role == KeyLetterRole )
+        return data.keyLetter;
     else if ( role == UrlRole )
         return data.url;
     else if ( role == RequestTypeRole )
@@ -62,7 +66,9 @@ QHash<int, QByteArray> MarkersModel::roleNames() const
     static QHash<int, QByteArray> mapping {
         {TextRole, "text"},
         {PositionRole, "position"},
+        {LengthRole, "length"},
         {KeyRole, "key"},
+        {KeyLetterRole, "keyLetter"},
         {UrlRole, "url"},
         {RequestTypeRole, "requestType"}
     };

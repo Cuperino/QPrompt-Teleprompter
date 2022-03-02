@@ -106,27 +106,6 @@ Kirigami.Page {
             tooltip: i18n("Change reading region placement")
 
             Kirigami.Action {
-                displayComponent: Kirigami.SwipeListItem {
-                    activeTextColor: "#FFFFFF"
-                    activeBackgroundColor: "#797979"
-                    actions: [
-                        Kirigami.Action {
-                            iconName: (Qt.LeftToRight ? "go-next" : "go-previous");
-                            onTriggered: viewport.overlay.toggleLinesInRegion(true)
-                        },
-                        Kirigami.Action {
-                            iconName: (Qt.LeftToRight ? "go-previous" : "go-next");
-                            onTriggered: viewport.overlay.toggleLinesInRegion(false)
-                        }
-                    ]
-                    onClicked: viewport.overlay.toggleLinesInRegion(false)
-                    Label {
-                        id: label
-                        text: viewport.overlay.linesInRegion
-                    }
-                }
-            }
-            Kirigami.Action {
                 id: readRegionTopButton
                 iconName: "go-up"
                 text: i18n("Top")
@@ -179,6 +158,27 @@ Kirigami.Page {
                 onTriggered: {
                     viewport.overlay.positionState = ReadRegionOverlay.PositionStates.Fixed
                     contextDrawer.close()
+                }
+            }
+            Kirigami.Action {
+                displayComponent: Kirigami.SwipeListItem {
+                    activeTextColor: "#FFFFFF"
+                    activeBackgroundColor: "#797979"
+                    actions: [
+                        Kirigami.Action {
+                            iconName: (Qt.LeftToRight ? "go-next" : "go-previous");
+                            onTriggered: viewport.overlay.toggleLinesInRegion(true)
+                        },
+                        Kirigami.Action {
+                            iconName: (Qt.LeftToRight ? "go-previous" : "go-next");
+                            onTriggered: viewport.overlay.toggleLinesInRegion(false)
+                        }
+                    ]
+                    onClicked: viewport.overlay.toggleLinesInRegion(false)
+                    Label {
+                        id: label
+                        text: i18n("Height: %1", viewport.overlay.linesInRegion)
+                    }
                 }
             }
             // Commenting out because there's no way to hide an empty sub-menu in mobile interface and distinction between Normal and Auto is confusing.
