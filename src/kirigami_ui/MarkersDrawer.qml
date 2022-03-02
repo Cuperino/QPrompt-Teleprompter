@@ -27,6 +27,7 @@ import QtQuick.Layouts 1.12
 
 Kirigami.OverlayDrawer {
     id: sideDrawer
+    property bool reOpen: false
     background: Rectangle {
         color: appTheme.__backgroundColor
         opacity: 0.92
@@ -43,6 +44,7 @@ Kirigami.OverlayDrawer {
     parent: prompterPage.viewport
 
     function toggle() {
+        reOpen = false
         if (drawerOpen)
             close()
         else {
@@ -57,26 +59,32 @@ Kirigami.OverlayDrawer {
             supportsMouseEvents: true
             onPressed: prompter.goTo(model.position)
             Label {
-                text: model.text
+                text: (model.keyLetter ? "(" + model.keyLetter + ") " : "") + model.text
             }
-            /*actions: [
-            Kirigami.Action {
-                icon.name: "document-properties"
+            actions: [
+            /*Kirigami.Action {
+                enabled: model.url !== "#"
+                //visible: enabled
+                visible: false
+                icon.name: "link"
                 onTriggered: {
-                    print("Edit clicked")
-                    // Select marker in document
-                    // Open marker edit dialog
+                    print("URL:", model.url)
+                    print("Key:", model.key)
+                    // Send test HTTP request
                 }
             },
             Kirigami.Action {
-                enabled: model.link !== ""
-                icon.name: "insert-link"
+                icon.name: "document-properties"
                 onTriggered: {
-                    print("Test link")
-                    // Send test HTTP request
+                    print("Edit clicked", model.position)
+                    // Select marker in document
+                    prompter.editMarker(model.position, model.length)
+                    reOpen = true;
+                    sideDrawer.close()
+                    // Open marker edit dialog
                 }
-            }
-            ]*/
+            }*/
+            ]
         }
     }
 
@@ -99,7 +107,7 @@ Kirigami.OverlayDrawer {
             icon: Qt.application.layoutDirection===Qt.LeftToRight ? "view-left-close" : "view-right-close"
             text: i18n("Close Marker List")
             onClicked: {
-                sideDrawer.close();
+                sideDrawer.toggle();
                 console.log(prompterPage.document.markers())
                 //console.log(prompterPage.document.markers)
             }

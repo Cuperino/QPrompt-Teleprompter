@@ -826,6 +826,7 @@ void DocumentHandler::parse() {
                     Marker marker;
                     marker.text = currentFragment.text();
                     marker.position = currentFragment.position();
+                    marker.length = currentFragment.length();
                     marker.url = currentFragment.charFormat().anchorHref();
                     // Go through anchor names for metadata to extract using const_iterator for best performance.
                     QStringList anchorNames = currentFragment.charFormat().anchorNames();
@@ -833,8 +834,11 @@ void DocumentHandler::parse() {
                     for (constIterator = anchorNames.constBegin(); constIterator != anchorNames.constEnd(); ++constIterator) {
                         QString anchorName = (*constIterator).toLocal8Bit().constData();
                         // Assign input key
-                        if (anchorName.startsWith("key_"))
+                        if (anchorName.startsWith("key_")) {
                             marker.key = anchorName.mid(4).toInt();
+                            QKeySequence seq = QKeySequence(marker.key);
+                            marker.keyLetter = seq.toString();
+                        }
                         // Assign request type
                         else if (anchorName.startsWith("req_"))
                             // If invalid, default to 0 (GET)

@@ -235,6 +235,11 @@ Flickable {
         }
     }
 
+    function editMarker(cursorPosition, fragmentLength) {
+        editor.select(cursorPosition, fragmentLength);
+        editorToolbar.namedMarkerConfiguration.open();
+    }
+
     function goTo(cursorPosition) {
         const i = __i;
         __i = __iBackup
