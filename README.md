@@ -1,6 +1,7 @@
 [![Awesome](https://cdn.rawgit.com/sindresorhus/awesome/d7305f38d29fed78fa85652e3a63e154dd8e8829/media/badge.svg)](https://github.com/ebu/awesome-broadcasting)
 [![GitHub license](https://img.shields.io/badge/license-GPL3-blue.svg)](https://raw.githubusercontent.com/Cuperino/QPrompt/master/COPYING)
 [![GitHub release](https://img.shields.io/github/release/Cuperino/QPrompt.svg)](https://github.com/Cuperino/QPrompt/releases)
+[![Translation status](https://l10n.cuperino.com/widgets/qprompt-app/-/qprompt/svg-badge.svg)](https://l10n.cuperino.com/engage/qprompt-app/)
 [![GitHub contributors](https://img.shields.io/github/contributors/Cuperino/QPrompt.svg)](https://github.com/Cuperino/QPrompt/graphs/contributors)
 ![GitHub commit activity](https://img.shields.io/github/commit-activity/m/Cuperino/QPrompt)
 [![SourceForge](https://img.shields.io/sourceforge/dm/qprompt.svg)](https://sourceforge.net/projects/qprompt/)
@@ -14,8 +15,13 @@ QPrompt is written in C++ and QML, using the Qt and Kirigami frameworks to provi
 
 [![Download QPrompt](https://a.fsdn.com/con/app/sf-download-button)](https://sourceforge.net/projects/qprompt/files/latest/download)
 
+# Community Translations
+Help more users access QPrompt by contributing translations to your native language. Visit [l10n.cuperino.com](https://l10n.cuperino.com/projects/qprompt-app/qprompt) to find your language and contribute translations. File an issue at [feedback.qprompt.com](https://github.com/Cuperino/QPrompt/issues/new/choose) if you can't find your language on the page and would like to contribute translations.
+
+[![Translated languages](https://l10n.cuperino.com/widgets/qprompt-app/-/qprompt/multi-auto.svg)](https://l10n.cuperino.com/engage/qprompt-app/)
+
 # Copyright
-Copyright (C) 2021 Javier O. Cordero Pérez
+Copyright © 2021-2022 [Javier O. Cordero Pérez](https://javiercordero.info)
 
 # License
 QPrompt is free software: you can redistribute it and/or modify
@@ -29,6 +35,8 @@ GNU General Public License for more details.
 
 You should have received a copy of the GNU General Public License
 along with QPrompt.  If not, see <https://www.gnu.org/licenses/>.
+
+QPrompt translations are licensed under the [Creative Commons Attribution 4.0 International (CC BY 4.0)](https://creativecommons.org/licenses/by/4.0/)
 
 # Pun Facts
 QPrompt is short for Cue Prompter, something said to cue teleprompter operators. Teleprompters are sometimes referred to as "autocue". Also, QPrompt is built using the Qt framework. The Q is meant to reference all of these things and also the word "quick", because teleprompter operators must be quick to respond to what happens on set.
