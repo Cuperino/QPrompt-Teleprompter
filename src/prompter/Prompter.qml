@@ -171,6 +171,9 @@ Flickable {
     };
 
     // Toggle prompter state
+    function cancel() {
+        state = Prompter.States.Editing
+    }
     function toggle() {
 
         // Switch to next corresponding prompter state, relative to current configuration

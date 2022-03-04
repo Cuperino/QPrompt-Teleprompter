@@ -127,6 +127,10 @@ Button {
     }
 
     Layout.fillWidth: true
+    Keys.onShortcutOverride: {
+        if (event.key === Qt.Key_Escape)
+            event.accepted = true
+    }
     Keys.onPressed: {
         if (checked) {
             if (isValidInput(event.key)) {
