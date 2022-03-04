@@ -307,6 +307,13 @@ Kirigami.ApplicationWindow {
                 iconName: "application-exit"
                 shortcut: StandardKey.Quit
                 onTriggered: close()
+            },
+            // Global shortcuts
+            // On ESC pressed, return to PrompterEdit mode.
+            Kirigami.Action {
+                visible: false
+                onTriggered: root.pageStack.currentItem.prompter.cancel()
+                shortcut: StandardKey.Cancel
             }
         ]
         topContent: RowLayout {
