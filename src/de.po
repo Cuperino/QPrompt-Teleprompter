@@ -8,118 +8,120 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/Cuperino/QPrompt/issues/new/choose\n"
 "POT-Creation-Date: 2022-02-25 22:14-0400\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Automatically generated\n"
-"Language-Team: none\n"
+"PO-Revision-Date: 2022-03-05 03:29+0000\n"
+"Last-Translator: Jonas Mapache <jonasmapache@gmail.com>\n"
+"Language-Team: German <https://l10n.cuperino.com/projects/qprompt-app/"
+"qprompt/de/>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.10.1\n"
 
 #: kirigami_ui/+android/main.qml:144 kirigami_ui/main.qml:185
 #: kirigami_ui/main.qml:355 kirigami_ui/+windows/main.qml:202
 msgid "&New"
-msgstr ""
+msgstr "Neu"
 
 #: kirigami_ui/+android/main.qml:150 kirigami_ui/main.qml:191
 #: kirigami_ui/main.qml:359 kirigami_ui/+windows/main.qml:208
 msgid "&Open"
-msgstr ""
+msgstr "Öffnen"
 
 #: kirigami_ui/+android/main.qml:156 kirigami_ui/main.qml:200
 #: kirigami_ui/main.qml:363 kirigami_ui/+windows/main.qml:214
 msgid "&Save"
-msgstr ""
+msgstr "Speichern"
 
 #: kirigami_ui/+android/main.qml:162 kirigami_ui/main.qml:209
 #: kirigami_ui/+windows/main.qml:220
 msgid "Save &As"
-msgstr ""
+msgstr "Speichern unter"
 
 #: kirigami_ui/+android/main.qml:169 kirigami_ui/main.qml:219
 #: kirigami_ui/+windows/main.qml:227
 msgid "&Recent Files"
-msgstr ""
+msgstr "Kürzlich verwendet"
 
 #: kirigami_ui/+android/main.qml:177 kirigami_ui/main.qml:227
 #: kirigami_ui/+windows/main.qml:235
 msgid "&Controls Settings"
-msgstr ""
+msgstr "Steuerung"
 
 #: kirigami_ui/+android/main.qml:181 kirigami_ui/main.qml:231
 #: kirigami_ui/+windows/main.qml:239
 msgid "Keyboard Inputs"
-msgstr ""
+msgstr "Tastatureingaben"
 
 #: kirigami_ui/+android/main.qml:188 kirigami_ui/main.qml:238
 #: kirigami_ui/main.qml:600 kirigami_ui/+windows/main.qml:246
 msgid "Invert &arrow keys"
-msgstr ""
+msgstr "Richtung der Pfeiltasten umkehren"
 
 #: kirigami_ui/+android/main.qml:196 kirigami_ui/main.qml:246
 #: kirigami_ui/main.qml:607 kirigami_ui/+windows/main.qml:254
 msgid "Invert &scroll direction"
-msgstr ""
+msgstr "Laufrichtung umkehren"
 
 #: kirigami_ui/+android/main.qml:204 kirigami_ui/main.qml:254
 #: kirigami_ui/main.qml:592 kirigami_ui/+windows/main.qml:262
 msgid "Use scroll as velocity &dial"
-msgstr ""
+msgstr "Scrollrad als Geschwindigkeitsrad nutzen"
 
 #: kirigami_ui/+android/main.qml:213 kirigami_ui/main.qml:263
 #: kirigami_ui/main.qml:586 kirigami_ui/+windows/main.qml:271
 msgid "Disable scrolling while prompting"
-msgstr ""
+msgstr "Scrollen während der Nutzung des Prompters deaktivieren"
 
 #: kirigami_ui/+android/main.qml:221 kirigami_ui/main.qml:271
 #: kirigami_ui/+windows/main.qml:279
 msgid "Other &Settings"
-msgstr ""
+msgstr "Andere Einstellungen"
 
 #: kirigami_ui/+android/main.qml:233 kirigami_ui/main.qml:283
 #: kirigami_ui/+windows/main.qml:291
 msgid "Force sub-pixel text renderer past 120px"
-msgstr ""
+msgstr "Subpixel-Textrenderer über 120px hinaus erzwingen"
 
 #: kirigami_ui/+android/main.qml:250 kirigami_ui/main.qml:300
 #: kirigami_ui/+windows/main.qml:308
 msgid "Abou&t"
-msgstr ""
+msgstr "Über"
 
 #: kirigami_ui/+android/main.qml:256 kirigami_ui/main.qml:306
 #: kirigami_ui/main.qml:372 kirigami_ui/+windows/main.qml:314
 msgid "&Quit"
-msgstr ""
+msgstr "Beenden"
 
 #: kirigami_ui/+android/main.qml:264 kirigami_ui/main.qml:314
 #: kirigami_ui/+windows/main.qml:322
 msgid "Load &Guide"
-msgstr ""
+msgstr "Anleitung laden"
 
 #: kirigami_ui/+android/main.qml:460 kirigami_ui/main.qml:782
 #: kirigami_ui/+windows/main.qml:472
 msgid "Save Document"
-msgstr ""
+msgstr "Dokument speichern"
 
 #: kirigami_ui/+android/main.qml:461 kirigami_ui/main.qml:783
 #: kirigami_ui/+windows/main.qml:473
 msgid "Save changes to document before closing?"
-msgstr ""
+msgstr "Änderungen vor dem Schließen speichern?"
 
 #: kirigami_ui/EditorToolbar.qml:316 kirigami_ui/EditorToolbar.qml:326
 #: kirigami_ui/main.qml:537 kirigami_ui/main.qml:554
 msgid "&Left"
-msgstr ""
+msgstr "Links"
 
 #: kirigami_ui/EditorToolbar.qml:316 kirigami_ui/EditorToolbar.qml:326
 #: kirigami_ui/main.qml:537 kirigami_ui/main.qml:554
 msgid "&Right"
-msgstr ""
+msgstr "Rechts"
 
 #: kirigami_ui/EditorToolbar.qml:321
 msgid "C&enter"
-msgstr ""
+msgstr "Zentriert"
 
 #: kirigami_ui/EditorToolbar.qml:445 prompter/Prompter.qml:519
 msgid "fonts/dejavu-sans.otf"
@@ -171,7 +173,7 @@ msgstr ""
 
 #: kirigami_ui/EditorToolbar.qml:501
 msgid "Choose System Font"
-msgstr ""
+msgstr "Systemschriftart auswählen"
 
 #: kirigami_ui/EditorToolbar.qml:517
 msgid ""
@@ -179,59 +181,59 @@ msgstr ""
 
 #: kirigami_ui/EditorToolbar.qml:728
 msgid "Velocity:"
-msgstr ""
+msgstr "Geschwindigkeit:"
 
 #: kirigami_ui/EditorToolbar.qml:762
 msgid "Opacity:"
-msgstr ""
+msgstr "Deckkraft:"
 
 #: kirigami_ui/EditorToolbar.qml:794
 msgid "Font size while editing:"
-msgstr ""
+msgstr "Schriftgröße während dem Bearbeiten:"
 
 #: kirigami_ui/EditorToolbar.qml:825
 msgid "Font size:"
-msgstr ""
+msgstr "Schriftgröße:"
 
 #: kirigami_ui/EditorToolbar.qml:861
 msgid "Line height:"
-msgstr ""
+msgstr "Zeilenhöhe:"
 
 #: kirigami_ui/EditorToolbar.qml:899
 msgid "Word spacing:"
-msgstr ""
+msgstr "Wortabstand:"
 
 #: kirigami_ui/EditorToolbar.qml:935
 msgid "Letter spacing:"
-msgstr ""
+msgstr "Buchstabenabstand:"
 
 #: kirigami_ui/EditorToolbar.qml:971
 msgid "Step speed:"
-msgstr ""
+msgstr "Geschwindigkeitsstufen:"
 
 #: kirigami_ui/EditorToolbar.qml:1012
 msgid "Step acceleration:"
-msgstr ""
+msgstr "Bescheleunigungsstufen:"
 
 #: kirigami_ui/EditorToolbar.qml:1048
 msgid "Start Velocity"
-msgstr ""
+msgstr "Startgeschwindigkeit"
 
 #: kirigami_ui/EditorToolbar.qml:1055
 msgid "Velocity to have when starting to prompt"
-msgstr ""
+msgstr "Geschwindigkeit beim Starten des Prompters"
 
 #: kirigami_ui/EditorToolbar.qml:1091
 msgid "Skip Key"
-msgstr ""
+msgstr "Überspringen Taste"
 
 #: kirigami_ui/EditorToolbar.qml:1109
 msgid "Key to perform skip to this marker"
-msgstr ""
+msgstr "Taste zum Springen zu dieser Markierung"
 
 #: kirigami_ui/InputsOverlay.qml:35
 msgid "Key Bindings"
-msgstr ""
+msgstr "Tastenkürzel"
 
 #: kirigami_ui/InputsOverlay.qml:93
 msgid "Toggle Prompter State"
@@ -247,35 +249,35 @@ msgstr ""
 
 #: kirigami_ui/InputsOverlay.qml:117
 msgid "Play/Pause"
-msgstr ""
+msgstr "Start/Pause"
 
 #: kirigami_ui/InputsOverlay.qml:125
 msgid "Move Backwards"
-msgstr ""
+msgstr "Rückwärts bewegen"
 
 #: kirigami_ui/InputsOverlay.qml:133
 msgid "Move Forward"
-msgstr ""
+msgstr "Vorwärts bewegen"
 
 #: kirigami_ui/KeyInputButton.qml:46
 msgid "Spacebar"
-msgstr ""
+msgstr "Leertaste"
 
 #: kirigami_ui/KeyInputButton.qml:47
 msgid "Up Arrow"
-msgstr ""
+msgstr "Pfeiltaste nach oben"
 
 #: kirigami_ui/KeyInputButton.qml:48
 msgid "Down Arrow"
-msgstr ""
+msgstr "Pfeiltaste nach unten"
 
 #: kirigami_ui/KeyInputButton.qml:49
 msgid "Left Arrow"
-msgstr ""
+msgstr "Pfeiltaste nach links"
 
 #: kirigami_ui/KeyInputButton.qml:50
 msgid "Right Arrow"
-msgstr ""
+msgstr "Pfeiltaste nach rechts"
 
 #: kirigami_ui/KeyInputButton.qml:52
 msgid "Backtab"
