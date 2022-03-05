@@ -443,27 +443,27 @@ ToolBar {
             visible: !mobileOrSmallScreen || parseInt(prompter.state)===Prompter.States.Editing
             FontLoader {
                 id: westernSeriousSansfFont
-                source: i18n("fonts/dejavu-sans.otf")
+                source: "fonts/dejavu-sans.otf"
             }
             FontLoader {
                 id: westernDyslexicFont
-                source: i18n("fonts/opendyslexic-bold.otf")
+                source: "fonts/opendyslexic-bold.otf"
             }
             FontLoader {
                 id: asianSeriousSansFont
-                source: i18n("fonts/sourcehansans.ttc")
+                source: "fonts/sourcehansans.ttc"
             }
             FontLoader {
                 id: arabicHumaneSansFont
-                source: i18n("fonts/scheherazadenew-regular.ttf")
+                source: "fonts/scheherazadenew-regular.ttf"
             }
             FontLoader {
                 id: devanagariSeriousSansFont
-                source: i18n("fonts/palanquin.ttf")
+                source: "fonts/palanquin.ttf"
             }
             FontLoader {
                 id: bengaliHumaneSerifFont
-                source: i18n("fonts/kalpurush.ttf")
+                source: "fonts/kalpurush.ttf"
             }
             Menu {
                 id: fontSelectionMenu

@@ -192,7 +192,8 @@ Flickable {
         switch (parseInt(state)) {
             case Prompter.States.Editing:
                 //showPassiveNotification(i18n("Editing"), 850*countdown.__iterations)
-                projectionManager.close();
+                // if (closeProjectionUponPromptEnd)
+                //     projectionManager.close();
                 editor.focus = !Kirigami.Settings.isMobile
                 break;
             case Prompter.States.Standby:
@@ -381,7 +382,7 @@ Flickable {
                     root.alert(0)
                     if (root.passiveNotifications)
                         showPassiveNotification(i18n("Animation Completed"));
-                    if (parseInt(prompter.state) === Prompter.States.Prompting && this.__atEnd)
+                    if (parseInt(prompter.state) === Prompter.States.Prompting/* && !prompter.__atStart*/)
                         prompter.toggle();
                 }
             }
@@ -524,7 +525,7 @@ Flickable {
                 renderType: font.pixelSize < 121 || Screen.devicePixelRatio !== 1.0 || root.forceQtTextRenderer ? Text.QtRendering : Text.NativeRendering
                 FontLoader {
                     id: westernSeriousSansfFont
-                    source: i18n("fonts/dejavu-sans.otf")
+                    source: "fonts/dejavu-sans.otf"
                 }
 
                 // Draggable width adjustment borders
