@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/Cuperino/QPrompt/issues/new/choose\n"
 "POT-Creation-Date: 2022-03-05 16:14-0400\n"
-"PO-Revision-Date: 2022-03-05 03:29+0000\n"
-"Last-Translator: Jonas Mapache <jonasmapache@gmail.com>\n"
+"PO-Revision-Date: 2022-03-07 05:34+0000\n"
+"Last-Translator: Weblate Admin <javiercorderoperez@gmail.com>\n"
 "Language-Team: German <https://l10n.cuperino.com/projects/qprompt-app/"
 "qprompt/de/>\n"
 "Language: de\n"
@@ -1089,9 +1089,10 @@ msgstr ""
 #: rc.cpp:1
 msgctxt "NAME OF TRANSLATORS"
 msgid "Your names"
-msgstr ""
+msgstr "Jonas Mapache"
 
 #: rc.cpp:2
+#, fuzzy
 msgctxt "EMAIL OF TRANSLATORS"
 msgid "Your emails"
-msgstr ""
+msgstr "jonasmapache@gmail.com"
