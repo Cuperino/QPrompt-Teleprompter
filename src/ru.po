@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/Cuperino/QPrompt/issues/new/choose\n"
-"POT-Creation-Date: 2022-03-05 15:56-0400\n"
+"POT-Creation-Date: 2022-03-05 16:14-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -148,10 +148,6 @@ msgstr ""
 
 #: kirigami_ui/EditorToolbar.qml:502
 msgid "Choose System Font"
-msgstr ""
-
-#: kirigami_ui/EditorToolbar.qml:518
-msgid ""
 msgstr ""
 
 #: kirigami_ui/EditorToolbar.qml:729
