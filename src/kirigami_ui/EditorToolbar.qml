@@ -515,7 +515,7 @@ ToolBar {
             }
             ToolButton {
                 id: fontFamilyToolButton
-                text: i18n("\uE805")
+                text: "\uE805"
                 contentItem: Loader { sourceComponent: textComponent }
                 font.family: iconFont.name
                 font.pointSize: 13
