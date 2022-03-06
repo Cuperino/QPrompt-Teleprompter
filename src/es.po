@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/Cuperino/QPrompt/issues/new/choose\n"
 "POT-Creation-Date: 2022-03-05 16:14-0400\n"
-"PO-Revision-Date: 2022-02-26 16:43+0000\n"
+"PO-Revision-Date: 2022-03-07 05:34+0000\n"
 "Last-Translator: Weblate Admin <javiercorderoperez@gmail.com>\n"
 "Language-Team: Spanish <https://l10n.cuperino.com/projects/qprompt-app/"
 "qprompt/es/>\n"
@@ -253,7 +253,7 @@ msgstr "Derecha"
 
 #: kirigami_ui/KeyInputButton.qml:52
 msgid "Backtab"
-msgstr "Tab invertido"
+msgstr "Tab Invertido"
 
 #: kirigami_ui/KeyInputButton.qml:53
 msgid "Page Up"
@@ -288,14 +288,12 @@ msgid "Enter"
 msgstr "Entrar"
 
 #: kirigami_ui/KeyInputButton.qml:63
-#, fuzzy
 msgid "Left %1"
-msgstr "&Izquierda"
+msgstr "%1 Izquierdo"
 
 #: kirigami_ui/KeyInputButton.qml:64
-#, fuzzy
 msgid "Right %1"
-msgstr "&Derecha"
+msgstr "%1 Derecho"
 
 #: kirigami_ui/KeyInputButton.qml:68
 msgid "Shift"
@@ -557,7 +555,7 @@ msgstr ""
 
 #: kirigami_ui/PrompterPage.qml:180
 msgid "Height: %1"
-msgstr ""
+msgstr "Altura: %1"
 
 #: kirigami_ui/PrompterPage.qml:230
 msgid "Indicators"
