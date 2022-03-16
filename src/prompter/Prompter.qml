@@ -377,7 +377,7 @@ Flickable {
             duration: timeToArival
             easing.type: Easing.Linear
             onRunningChanged: {
-                if (!animationX.running && prompter.__i) {
+                if (!animationX.running && prompter.__i && prompter.__play) {
                     __i = 0
                     root.alert(0)
                     if (root.passiveNotifications)
