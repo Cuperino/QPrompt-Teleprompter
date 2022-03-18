@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/Cuperino/QPrompt/issues/new/choose\n"
 "POT-Creation-Date: 2022-03-17 23:40-0400\n"
-"PO-Revision-Date: 2022-03-07 05:34+0000\n"
+"PO-Revision-Date: 2022-03-18 04:46+0000\n"
 "Last-Translator: Weblate Admin <javiercorderoperez@gmail.com>\n"
 "Language-Team: Spanish <https://l10n.cuperino.com/projects/qprompt-app/"
 "qprompt/es/>\n"
@@ -209,15 +209,15 @@ msgstr "Configuración de Teclas"
 
 #: kirigami_ui/InputsOverlay.qml:131
 msgid "Toggle Prompter State"
-msgstr "Cambiar Estado del Prompter"
+msgstr "Cambiar estado del prompter"
 
 #: kirigami_ui/InputsOverlay.qml:139
 msgid "Decrease Velocity"
-msgstr "Reducir Velocidad"
+msgstr "Reducir velocidad"
 
 #: kirigami_ui/InputsOverlay.qml:147
 msgid "Increase Velocity"
-msgstr "Aumentar Velocidad"
+msgstr "Aumentar velocidad"
 
 #: kirigami_ui/InputsOverlay.qml:155
 msgid "Play/Pause"
@@ -233,11 +233,11 @@ msgstr "Avanzar"
 
 #: kirigami_ui/InputsOverlay.qml:179
 msgid "Go to Previous Marker"
-msgstr ""
+msgstr "Ir al último marcador"
 
 #: kirigami_ui/InputsOverlay.qml:187
 msgid "Go to Next Marker"
-msgstr ""
+msgstr "Ir al siguiente marcador"
 
 #: kirigami_ui/main.qml:359
 msgid "&File"
@@ -1019,13 +1019,11 @@ msgid "Return to edit mode"
 msgstr "Regresar al modo de edición"
 
 #: rc.cpp:1
-#, fuzzy
 msgctxt "NAME OF TRANSLATORS"
 msgid "Your names"
-msgstr "Luis Blanco, Javier O. Cordero Pérez"
+msgstr "Luis Blanco (RaSSieL), Javier O. Cordero Pérez (Cuperino)"
 
 #: rc.cpp:2
-#, fuzzy
 msgctxt "EMAIL OF TRANSLATORS"
 msgid "Your emails"
 msgstr "rassiel86@gmail.com, javiercorderoperez@gmail.com"
