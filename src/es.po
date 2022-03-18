@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/Cuperino/QPrompt/issues/new/choose\n"
-"POT-Creation-Date: 2022-03-05 16:14-0400\n"
+"POT-Creation-Date: 2022-03-17 23:40-0400\n"
 "PO-Revision-Date: 2022-03-07 05:34+0000\n"
 "Last-Translator: Weblate Admin <javiercorderoperez@gmail.com>\n"
 "Language-Team: Spanish <https://l10n.cuperino.com/projects/qprompt-app/"
@@ -19,93 +19,93 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: Weblate 4.10.1\n"
 
-#: kirigami_ui/+android/main.qml:144 kirigami_ui/main.qml:185
+#: kirigami_ui/+android/main.qml:144 kirigami_ui/main.qml:174
 #: kirigami_ui/main.qml:362 kirigami_ui/+windows/main.qml:202
 msgid "&New"
 msgstr "&Nuevo"
 
-#: kirigami_ui/+android/main.qml:150 kirigami_ui/main.qml:191
+#: kirigami_ui/+android/main.qml:150 kirigami_ui/main.qml:180
 #: kirigami_ui/main.qml:366 kirigami_ui/+windows/main.qml:208
 msgid "&Open"
 msgstr "&Abrir"
 
-#: kirigami_ui/+android/main.qml:156 kirigami_ui/main.qml:200
+#: kirigami_ui/+android/main.qml:156 kirigami_ui/main.qml:189
 #: kirigami_ui/main.qml:370 kirigami_ui/+windows/main.qml:214
 msgid "&Save"
 msgstr "&Guardar"
 
-#: kirigami_ui/+android/main.qml:162 kirigami_ui/main.qml:209
+#: kirigami_ui/+android/main.qml:162 kirigami_ui/main.qml:198
 #: kirigami_ui/+windows/main.qml:220
 msgid "Save &As"
 msgstr "Guardar &como"
 
-#: kirigami_ui/+android/main.qml:169 kirigami_ui/main.qml:219
+#: kirigami_ui/+android/main.qml:169 kirigami_ui/main.qml:208
 #: kirigami_ui/+windows/main.qml:227
 msgid "&Recent Files"
 msgstr "Archivos &recientes"
 
-#: kirigami_ui/+android/main.qml:177 kirigami_ui/main.qml:227
+#: kirigami_ui/+android/main.qml:177 kirigami_ui/main.qml:216
 #: kirigami_ui/+windows/main.qml:235
 msgid "&Controls Settings"
 msgstr "&Ajustes de control"
 
-#: kirigami_ui/+android/main.qml:181 kirigami_ui/main.qml:231
+#: kirigami_ui/+android/main.qml:181 kirigami_ui/main.qml:220
 #: kirigami_ui/+windows/main.qml:239
 msgid "Keyboard Inputs"
 msgstr "Entradas de teclado"
 
-#: kirigami_ui/+android/main.qml:188 kirigami_ui/main.qml:238
+#: kirigami_ui/+android/main.qml:188 kirigami_ui/main.qml:227
 #: kirigami_ui/main.qml:607 kirigami_ui/+windows/main.qml:246
 msgid "Invert &arrow keys"
 msgstr "Invertir &teclas de flechas"
 
-#: kirigami_ui/+android/main.qml:196 kirigami_ui/main.qml:246
+#: kirigami_ui/+android/main.qml:196 kirigami_ui/main.qml:235
 #: kirigami_ui/main.qml:614 kirigami_ui/+windows/main.qml:254
 msgid "Invert &scroll direction"
 msgstr "Invertir &dirección de desplazamiento"
 
-#: kirigami_ui/+android/main.qml:204 kirigami_ui/main.qml:254
+#: kirigami_ui/+android/main.qml:204 kirigami_ui/main.qml:243
 #: kirigami_ui/main.qml:599 kirigami_ui/+windows/main.qml:262
 msgid "Use scroll as velocity &dial"
 msgstr "Tratar desplazamientos como ajustes de velocidad"
 
-#: kirigami_ui/+android/main.qml:213 kirigami_ui/main.qml:263
+#: kirigami_ui/+android/main.qml:213 kirigami_ui/main.qml:252
 #: kirigami_ui/main.qml:593 kirigami_ui/+windows/main.qml:271
 msgid "Disable scrolling while prompting"
 msgstr "Desactivar rueda de desplazamiento durante uso del prompter"
 
-#: kirigami_ui/+android/main.qml:221 kirigami_ui/main.qml:271
+#: kirigami_ui/+android/main.qml:221 kirigami_ui/main.qml:260
 #: kirigami_ui/+windows/main.qml:279
 msgid "Other &Settings"
 msgstr "&Otros Ajustes"
 
-#: kirigami_ui/+android/main.qml:233 kirigami_ui/main.qml:283
+#: kirigami_ui/+android/main.qml:233 kirigami_ui/main.qml:272
 #: kirigami_ui/+windows/main.qml:291
 msgid "Force sub-pixel text renderer past 120px"
 msgstr "Forzar renderizado de sub-pixeles en letras con más de 120px"
 
-#: kirigami_ui/+android/main.qml:250 kirigami_ui/main.qml:300
+#: kirigami_ui/+android/main.qml:250 kirigami_ui/main.qml:289
 #: kirigami_ui/+windows/main.qml:308
 msgid "Abou&t"
 msgstr "&Sobre"
 
-#: kirigami_ui/+android/main.qml:256 kirigami_ui/main.qml:306
+#: kirigami_ui/+android/main.qml:256 kirigami_ui/main.qml:295
 #: kirigami_ui/main.qml:379 kirigami_ui/+windows/main.qml:314
 msgid "&Quit"
 msgstr "Sali&r"
 
 #: kirigami_ui/+android/main.qml:271 kirigami_ui/main.qml:321
-#: kirigami_ui/+windows/main.qml:329
+#: kirigami_ui/+windows/main.qml:334
 msgid "Load &Guide"
 msgstr "Cargar &Guía"
 
 #: kirigami_ui/+android/main.qml:467 kirigami_ui/main.qml:789
-#: kirigami_ui/+windows/main.qml:479
+#: kirigami_ui/+windows/main.qml:484
 msgid "Save Document"
 msgstr "Guardar Documento"
 
 #: kirigami_ui/+android/main.qml:468 kirigami_ui/main.qml:790
-#: kirigami_ui/+windows/main.qml:480
+#: kirigami_ui/+windows/main.qml:485
 msgid "Save changes to document before closing?"
 msgstr "Guardar los cambios al documento antes de salir?"
 
@@ -203,129 +203,41 @@ msgstr "Tecla de Salto"
 msgid "Key to perform skip to this marker"
 msgstr "Tecla para saltar a este marcador"
 
-#: kirigami_ui/InputsOverlay.qml:35
+#: kirigami_ui/InputsOverlay.qml:37
 msgid "Key Bindings"
 msgstr "Configuración de Teclas"
 
-#: kirigami_ui/InputsOverlay.qml:93
+#: kirigami_ui/InputsOverlay.qml:131
 msgid "Toggle Prompter State"
 msgstr "Cambiar Estado del Prompter"
 
-#: kirigami_ui/InputsOverlay.qml:101
+#: kirigami_ui/InputsOverlay.qml:139
 msgid "Decrease Velocity"
 msgstr "Reducir Velocidad"
 
-#: kirigami_ui/InputsOverlay.qml:109
+#: kirigami_ui/InputsOverlay.qml:147
 msgid "Increase Velocity"
 msgstr "Aumentar Velocidad"
 
-#: kirigami_ui/InputsOverlay.qml:117
+#: kirigami_ui/InputsOverlay.qml:155
 msgid "Play/Pause"
 msgstr "Reproducir/Pausar"
 
-#: kirigami_ui/InputsOverlay.qml:125
+#: kirigami_ui/InputsOverlay.qml:163
 msgid "Move Backwards"
 msgstr "Retroceder"
 
-#: kirigami_ui/InputsOverlay.qml:133
+#: kirigami_ui/InputsOverlay.qml:171
 msgid "Move Forward"
 msgstr "Avanzar"
 
-#: kirigami_ui/KeyInputButton.qml:46
-msgid "Spacebar"
-msgstr "Barra espaciadora"
+#: kirigami_ui/InputsOverlay.qml:179
+msgid "Go to Previous Marker"
+msgstr ""
 
-#: kirigami_ui/KeyInputButton.qml:47
-msgid "Up Arrow"
-msgstr "Arriba"
-
-#: kirigami_ui/KeyInputButton.qml:48
-msgid "Down Arrow"
-msgstr "Abajo"
-
-#: kirigami_ui/KeyInputButton.qml:49
-msgid "Left Arrow"
-msgstr "Izquierda"
-
-#: kirigami_ui/KeyInputButton.qml:50
-msgid "Right Arrow"
-msgstr "Derecha"
-
-#: kirigami_ui/KeyInputButton.qml:52
-msgid "Backtab"
-msgstr "Tab Invertido"
-
-#: kirigami_ui/KeyInputButton.qml:53
-msgid "Page Up"
-msgstr "Retroceder Página"
-
-#: kirigami_ui/KeyInputButton.qml:54
-msgid "Page Down"
-msgstr "Avanzar Página"
-
-#: kirigami_ui/KeyInputButton.qml:55
-msgid "Home"
-msgstr "Inicio"
-
-#: kirigami_ui/KeyInputButton.qml:56
-msgid "End"
-msgstr "Fin"
-
-#: kirigami_ui/KeyInputButton.qml:57
-msgid "Backspace"
-msgstr "Retroceso"
-
-#: kirigami_ui/KeyInputButton.qml:58
-msgid "Delete"
-msgstr "Suprimir"
-
-#: kirigami_ui/KeyInputButton.qml:59
-msgid "Insert"
-msgstr "Insertar"
-
-#: kirigami_ui/KeyInputButton.qml:60 kirigami_ui/KeyInputButton.qml:61
-msgid "Enter"
-msgstr "Entrar"
-
-#: kirigami_ui/KeyInputButton.qml:63
-msgid "Left %1"
-msgstr "%1 Izquierdo"
-
-#: kirigami_ui/KeyInputButton.qml:64
-msgid "Right %1"
-msgstr "%1 Derecho"
-
-#: kirigami_ui/KeyInputButton.qml:68
-msgid "Shift"
-msgstr "Mayús."
-
-#: kirigami_ui/KeyInputButton.qml:69
-msgid "Number Lock"
-msgstr "Bloq. Num"
-
-#: kirigami_ui/KeyInputButton.qml:70
-msgid "Caps Lock"
-msgstr "Bloq. Mayús."
-
-#: kirigami_ui/KeyInputButton.qml:71
-msgid "Scroll Lock"
-msgstr "Bloq. Despl."
-
-#: kirigami_ui/KeyInputButton.qml:107
-msgid "Home Page"
-msgstr "Página de Inicio"
-
-#: kirigami_ui/KeyInputButton.qml:109
-msgid "Refresh"
-msgstr "Refrescar"
-
-#: kirigami_ui/KeyInputButton.qml:110
-msgid "Search"
-msgstr "Buscar"
-
-#: kirigami_ui/KeyInputButton.qml:112
-msgid "Print"
-msgstr "Imprimir"
+#: kirigami_ui/InputsOverlay.qml:187
+msgid "Go to Next Marker"
+msgstr ""
 
 #: kirigami_ui/main.qml:359
 msgid "&File"
@@ -339,7 +251,7 @@ msgstr "Gu&ardar Como…"
 msgid "&Edit"
 msgstr "&Editar"
 
-#: kirigami_ui/main.qml:388 prompter/Prompter.qml:966
+#: kirigami_ui/main.qml:388 prompter/Prompter.qml:981
 msgid "&Undo"
 msgstr "&Deshacer"
 
@@ -347,15 +259,16 @@ msgstr "&Deshacer"
 msgid "&Redo"
 msgstr "&Rehacer"
 
-#: kirigami_ui/main.qml:399 prompter/Prompter.qml:930 prompter/Prompter.qml:977
+#: kirigami_ui/main.qml:399 prompter/Prompter.qml:945 prompter/Prompter.qml:992
 msgid "&Copy"
 msgstr "&Copiar"
 
-#: kirigami_ui/main.qml:404 prompter/Prompter.qml:935 prompter/Prompter.qml:982
+#: kirigami_ui/main.qml:404 prompter/Prompter.qml:950 prompter/Prompter.qml:997
 msgid "Cu&t"
 msgstr "Cor&tar"
 
-#: kirigami_ui/main.qml:409 prompter/Prompter.qml:940 prompter/Prompter.qml:987
+#: kirigami_ui/main.qml:409 prompter/Prompter.qml:955
+#: prompter/Prompter.qml:1002
 msgid "&Paste"
 msgstr "&Pegar"
 
@@ -961,27 +874,27 @@ msgstr ""
 "corrido la milla extra para no colectar nada del texto y las imágenes con "
 "las que trabajas, así que te pido: por favor deja la telemetría activa."
 
-#: main.cpp:66
+#: main.cpp:67
 msgid "Personal teleprompter software for all video makers."
 msgstr "Teleprompter personal para creadores de videos."
 
-#: main.cpp:68
+#: main.cpp:69
 msgid "© %1%2 Javier O. Cordero Pérez"
 msgstr "© %1%2 Javier O. Cordero Pérez"
 
-#: main.cpp:78
+#: main.cpp:79
 msgid "Author"
 msgstr "Autor"
 
-#: main.cpp:84
+#: main.cpp:85
 msgid "Su nombre irá aquí"
 msgstr "Su nombre irá aquí"
 
-#: main.cpp:85
+#: main.cpp:86
 msgid "name@protonmail.com"
 msgstr "nombre@email.com"
 
-#: main.cpp:95
+#: main.cpp:96
 msgid "Failed to load icons from fontello.ttf"
 msgstr "No se pudieron cargar los iconos de fontello.ttf"
 
@@ -1015,51 +928,51 @@ msgstr ""
 msgid "You've enabled a screen projection on display \""
 msgstr "Habilitó una proyección en el monitor \""
 
-#: prompter/Prompter.qml:384
+#: prompter/Prompter.qml:404
 msgid "Animation Completed"
 msgstr "Animación Terminó"
 
-#: prompter/Prompter.qml:502
+#: prompter/Prompter.qml:522
 msgid "Error loading file…"
 msgstr "Error cargando archivo…"
 
-#: prompter/Prompter.qml:567
+#: prompter/Prompter.qml:587
 msgid "Let's go back to the start"
 msgstr "Vallamos al comienzo"
 
-#: prompter/Prompter.qml:568
+#: prompter/Prompter.qml:588
 msgid "Take me back to the start"
 msgstr "Llévame al comienzo"
 
-#: prompter/Prompter.qml:569
+#: prompter/Prompter.qml:589
 msgid "I'm going back to the start"
 msgstr "Me dirijo hacia el comienzo"
 
-#: prompter/Prompter.qml:781
+#: prompter/Prompter.qml:796
 msgid "New document"
 msgstr "Nuevo documento"
 
-#: prompter/Prompter.qml:790
+#: prompter/Prompter.qml:805
 msgid "guide_en.html"
 msgstr "guide_es.html"
 
-#: prompter/Prompter.qml:795
+#: prompter/Prompter.qml:810
 msgid "User guide loaded"
 msgstr "Guía de usuario cargada"
 
-#: prompter/Prompter.qml:815 prompter/Prompter.qml:907
+#: prompter/Prompter.qml:830 prompter/Prompter.qml:922
 msgid "Saved %1"
 msgstr "%1 guardado"
 
-#: prompter/Prompter.qml:869 prompter/Prompter.qml:895
+#: prompter/Prompter.qml:884 prompter/Prompter.qml:910
 msgid "Hypertext Markup Language (HTML)"
 msgstr "Lenguaje de marcado de hipertexto (HTML)"
 
-#: prompter/Prompter.qml:870
+#: prompter/Prompter.qml:885
 msgid "Markdown (MD)"
 msgstr "Markdown (MD)"
 
-#: prompter/Prompter.qml:871 prompter/Prompter.qml:896
+#: prompter/Prompter.qml:886 prompter/Prompter.qml:911
 msgid "Plain Text (TXT)"
 msgstr "Texto sin formato (TXT)"
 
@@ -1069,39 +982,39 @@ msgstr "Texto sin formato (TXT)"
 #. i18n("Apple Pages Document (PAGES)") + "(*.pages *.PAGES)",
 #. i18n("Rich Text Format (RTF)") + "(*.rtf *.RTF)",
 #. i18n("Portable Document Format (PDF)") + "(*.pdf *.PDF)",
-#: prompter/Prompter.qml:878
+#: prompter/Prompter.qml:893
 msgid "All Formats"
 msgstr "Todos los formatos"
 
-#: prompter/Prompter.qml:946 prompter/Prompter.qml:993
+#: prompter/Prompter.qml:961 prompter/Prompter.qml:1008
 msgid "Fo&nt…"
 msgstr "Let&ra…"
 
-#: prompter/Prompter.qml:950 prompter/Prompter.qml:997
+#: prompter/Prompter.qml:965 prompter/Prompter.qml:1012
 msgid "Co&lor…"
 msgstr "Co&lor…"
 
-#: prompter/Prompter.qml:954 prompter/Prompter.qml:1001
+#: prompter/Prompter.qml:969 prompter/Prompter.qml:1016
 msgid "Hi&ghlight…"
 msgstr "Re&saltar…"
 
-#: prompter/Prompter.qml:971
+#: prompter/Prompter.qml:986
 msgid "Redo"
 msgstr "Rehacer"
 
-#: prompter/Prompter.qml:1200
+#: prompter/Prompter.qml:1202
 msgid "Begin countdown"
 msgstr "Comenzar cuenta regresiva"
 
-#: prompter/Prompter.qml:1200
+#: prompter/Prompter.qml:1202
 msgid "Start prompting"
 msgstr "Comenzar prompter"
 
-#: prompter/Prompter.qml:1251
+#: prompter/Prompter.qml:1253
 msgid "Skip countdown"
 msgstr "Saltar cuenta regresiva"
 
-#: prompter/Prompter.qml:1298
+#: prompter/Prompter.qml:1300
 msgid "Return to edit mode"
 msgstr "Regresar al modo de edición"
 
@@ -1116,6 +1029,78 @@ msgstr "Luis Blanco, Javier O. Cordero Pérez"
 msgctxt "EMAIL OF TRANSLATORS"
 msgid "Your emails"
 msgstr "rassiel86@gmail.com, javiercorderoperez@gmail.com"
+
+#~ msgid "Spacebar"
+#~ msgstr "Barra espaciadora"
+
+#~ msgid "Up Arrow"
+#~ msgstr "Arriba"
+
+#~ msgid "Down Arrow"
+#~ msgstr "Abajo"
+
+#~ msgid "Left Arrow"
+#~ msgstr "Izquierda"
+
+#~ msgid "Right Arrow"
+#~ msgstr "Derecha"
+
+#~ msgid "Backtab"
+#~ msgstr "Tab Invertido"
+
+#~ msgid "Page Up"
+#~ msgstr "Retroceder Página"
+
+#~ msgid "Page Down"
+#~ msgstr "Avanzar Página"
+
+#~ msgid "Home"
+#~ msgstr "Inicio"
+
+#~ msgid "End"
+#~ msgstr "Fin"
+
+#~ msgid "Backspace"
+#~ msgstr "Retroceso"
+
+#~ msgid "Delete"
+#~ msgstr "Suprimir"
+
+#~ msgid "Insert"
+#~ msgstr "Insertar"
+
+#~ msgid "Enter"
+#~ msgstr "Entrar"
+
+#~ msgid "Left %1"
+#~ msgstr "%1 Izquierdo"
+
+#~ msgid "Right %1"
+#~ msgstr "%1 Derecho"
+
+#~ msgid "Shift"
+#~ msgstr "Mayús."
+
+#~ msgid "Number Lock"
+#~ msgstr "Bloq. Num"
+
+#~ msgid "Caps Lock"
+#~ msgstr "Bloq. Mayús."
+
+#~ msgid "Scroll Lock"
+#~ msgstr "Bloq. Despl."
+
+#~ msgid "Home Page"
+#~ msgstr "Página de Inicio"
+
+#~ msgid "Refresh"
+#~ msgstr "Refrescar"
+
+#~ msgid "Search"
+#~ msgstr "Buscar"
+
+#~ msgid "Print"
+#~ msgstr "Imprimir"
 
 #~ msgid ""
 #~ msgstr ""
