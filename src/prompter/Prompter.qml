@@ -136,6 +136,7 @@ Flickable {
     property alias wordSpacing: editor.font.wordSpacing
     // Create position alias to make code more readable
     property alias position: prompter.contentY
+    property alias keys: keys
     // Flips
     property bool __flipX: false
     property bool __flipY: false
@@ -159,17 +160,36 @@ Flickable {
     // Background
     property double __opacity: root.__opacity
     // Configurable keys commands
-    property var keys: {
-        "increaseVelocity": Qt.Key_Down,
-        "decreaseVelocity": Qt.Key_Up,
-        "pause": Qt.Key_Space,
-        "skipBackwards": Qt.Key_PageUp,
-        "skipForward": Qt.Key_PageDown,
-        "previousMarker": Qt.Key_Home,
-        "nextMarker": Qt.Key_End,
-        "toggle": Qt.Key_F9
-    };
-
+    //property var keys: {
+        //"increaseVelocity": Qt.Key_Down,
+        //"decreaseVelocity": Qt.Key_Up,
+        //"pause": Qt.Key_Space,
+        //"skipBackwards": Qt.Key_PageUp,
+        //"skipForward": Qt.Key_PageDown,
+        //"previousMarker": Qt.Key_Home,
+        //"nextMarker": Qt.Key_End,
+        //"toggle": Qt.Key_F9
+    //};
+    Settings {
+        id: keys
+        category: "keys"
+        property int increaseVelocity: Qt.Key_Down
+        property int increaseVelocityModifiers: Qt.NoModifier
+        property int decreaseVelocity: Qt.Key_Up
+        property int decreaseVelocityModifiers: Qt.NoModifier
+        property int pause: Qt.Key_Space
+        property int pauseModifiers: Qt.NoModifier
+        property int skipBackwards: Qt.Key_PageUp
+        property int skipBackwardsModifiers: Qt.NoModifier
+        property int skipForward: Qt.Key_PageDown
+        property int skipForwardModifiers: Qt.NoModifier
+        property int previousMarker: Qt.Key_PageUp
+        property int previousMarkerModifiers: Qt.ControlModifier
+        property int nextMarker: Qt.Key_PageDown
+        property int nextMarkerModifiers: Qt.ControlModifier
+        property int toggle: Qt.Key_F9
+        property int toggleModifiers: Qt.NoModifier
+    }
     // Toggle prompter state
     function cancel() {
         state = Prompter.States.Editing
@@ -705,11 +725,6 @@ Flickable {
                                 event.accepted = true;
                                 prompter.Keys.onPressed(event);
                                 return;
-                            // If Escape is pressed while prompting, return focus to prompter, thus leaving edit while prompting mode.
-                            case Qt.Key_Escape:
-                                event.accepted = true;
-                                prompter.focus = true;
-                                return;
                         }
                     }
                     // In all modes, editor should...
@@ -1012,41 +1027,42 @@ Flickable {
 
     // Key bindings
     Keys.onPressed: {
-        if (parseInt(prompter.state) === Prompter.States.Prompting) {
-            switch (event.key) {
-                case keys.increaseVelocity:
-                case Qt.Key_VolumeDowm:
-                    if (prompter.__invertArrowKeys)
-                        prompter.decreaseVelocity(event)                        
-                    else
-                        prompter.increaseVelocity(event)
-                    return
-                case keys.decreaseVelocity:
-                case Qt.Key_VolumeUp:
-                    if (prompter.__invertArrowKeys)
-                        prompter.increaseVelocity(event)                        
-                    else
-                        prompter.decreaseVelocity(event)
-                    return
-                case keys.pause:
-                case Qt.Key_SysReq:
-                case Qt.Key_Play:
-                case Qt.Key_Pause:
-                    //if (root.passiveNotifications)
-                    //    showPassiveNotification((i18n("Toggle Playback"));
-                    if (prompter.__play) {
-                        prompter.__play = false
-                        prompter.position = prompter.position
-                    }
-                    else {
-                        prompter.__play = true
-                        prompter.position = prompter.__destination
-                    }
-                    return
-                //default:
-                //    // Show key code
-                //    showPassiveNotification(event.key)
+        if (parseInt(prompter.state)===Prompter.States.Prompting) {
+            if (event.key===keys.increaseVelocity && event.modifiers===keys.increaseVelocityModifiers || event.key===Qt.Key_VolumeDowm) {
+                // Increase Velocity
+                if (prompter.__invertArrowKeys)
+                    prompter.decreaseVelocity(event)
+                else
+                    prompter.increaseVelocity(event)
+                return
             }
+            else if (event.key===keys.decreaseVelocity && event.modifiers===keys.decreaseVelocityModifiers || event.key===Qt.Key_VolumeUp) {
+                // Decrease Velocity
+                if (prompter.__invertArrowKeys)
+                    prompter.increaseVelocity(event)
+                else
+                    prompter.decreaseVelocity(event)
+                return
+            }
+            else if (event.key===keys.pause && event.modifiers===keys.pauseModifiers || event.key===Qt.Key_SysReq || event.key===Qt.Key_Play || event.key===Qt.Key_Pause) {
+                // Pause
+                //if (root.passiveNotifications)
+                //    showPassiveNotification((i18n("Toggle Playback"));
+                if (prompter.__play) {
+                    prompter.__play = false
+                    prompter.position = prompter.position
+                }
+                else {
+                    prompter.__play = true
+                    prompter.position = prompter.__destination
+                }
+                return
+            }
+            // else {
+            //     Show key code
+            //     showPassiveNotification(event.key)
+            // }
+
             // Perform keyCode marker search.
             let namedAnchorPosition = document.keySearch(event.key, document.cursorPosition, false, true);
             if (namedAnchorPosition!==-1)
@@ -1057,80 +1073,66 @@ Flickable {
             //else if (event.matches(StandardKey.Redo))
             //    document.redo();
         }
-        // If state is not prompting nor editing
-        else if (parseInt(prompter.state) !== Prompter.States.Editing)
-            switch (event.key) {
-                case keys.pause:
-                case Qt.Key_SysReq:
-                case Qt.Key_Play:
-                case Qt.Key_Pause:
-                    prompter.toggle();
-                    return;
-            }
 
-        // Keys presses that apply the same to all states
-        switch (event.key) {
-            case keys.toggle:
-                prompter.toggle();
-                return
-            case keys.skipBackwards:
-                if (['osx', 'ios'].indexOf(Qt.platform.os)===-1 ? event.modifiers & Qt.ControlModifier : event.modifiers & Qt.MetaModifier)
-                    prompter.goToPreviousMarker();
-                else if (!this.__atStart) {
-                    if (prompter.__play && __i!==0)
-                        __iBackup = __i
-                    __i=0;
+        // Key press that apply states other than Editing or Prompting.  Pause toggles prompter state.
+        else if (parseInt(prompter.state)!==Prompter.States.Editing && event.key===keys.pause && event.modifiers===keys.pauseModifiers || event.key===Qt.Key_SysReq || event.key===Qt.Key_Play || event.key===Qt.Key_Pause)
+            prompter.toggle();
+
+        // Keys presses that apply the same to all states, including previous
+        if (event.key===keys.toggle && event.modifiers===keys.toggleModifiers)
+            // Toggle state
+            prompter.toggle();
+        else if (event.key===keys.skipBackwards && event.modifiers===keys.skipBackwardsModifiers) {
+            // Move back
+            /* if (['osx', 'ios'].indexOf(Qt.platform.os)===-1 ? event.modifiers & Qt.ControlModifier : event.modifiers & Qt.MetaModifier)
+                prompter.goToPreviousMarker();
+            else */
+            if (!this.__atStart) {
+                if (prompter.__play && __i!==0)
+                    __iBackup = __i
+                __i=0;
+                prompter.position = prompter.position
+                scrollBar.decrease()
+                __i=__iBackup
+                if (prompter.__play)
+                    prompter.position = __destination
+                else
                     prompter.position = prompter.position
-                    scrollBar.decrease()
-                    __i=__iBackup
-                    if (prompter.__play)
-                        prompter.position = __destination
-                    else
-                        prompter.position = prompter.position
-                }
-                return
-            case keys.skipForward:
-                if (['osx', 'ios'].indexOf(Qt.platform.os)===-1 ? event.modifiers & Qt.ControlModifier : event.modifiers & Qt.MetaModifier)
-                    prompter.goToNextMarker();
-                else if (!this.__atEnd) {
-                    if (prompter.__play && __i!==0)
-                        __iBackup = __i
-                    __i=0;
-                    prompter.position = prompter.position
-                    scrollBar.increase()
-                    __i=__iBackup
-                    if (prompter.__play)
-                        prompter.position = __destination
-                    else
-                        prompter.position = prompter.position
-                }
-                return
-            //case keys.previousMarker:
-            //    prompter.goToPreviousMarker();
-            //    return
-            //case keys.nextMarker:
-            //    prompter.goToNextMarker();
-            //    return
-            case Qt.Key_Escape:
-            case Qt.Key_Back:
-                if (parseInt(prompter.state) !== Prompter.States.Editing) {
-                    prompter.state = Prompter.States.Editing;
-                    return
-                }
-            case Qt.Key_F:
-                if (['osx', 'ios'].indexOf(Qt.platform.os)===-1 ? event.modifiers & Qt.ControlModifier : event.modifiers & Qt.MetaModifier)
-                    find.open();
-                return
-            case Qt.Key_V:
-                if (['osx', 'ios'].indexOf(Qt.platform.os)===-1 ? event.modifiers & Qt.ControlModifier : event.modifiers & Qt.MetaModifier) {
-                    event.accepted = true
-                    if (event.modifiers & Qt.ShiftModifier)
-                        document.paste(true);
-                    else
-                        document.paste();
-                }
-                return
+            }
         }
+        else if (event.key===keys.skipForward && event.modifiers===keys.skipForwardModifiers) {
+            // Move Forward
+            /* if (['osx', 'ios'].indexOf(Qt.platform.os)===-1 ? event.modifiers & Qt.ControlModifier : event.modifiers & Qt.MetaModifier)
+                prompter.goToNextMarker();
+            else */
+            if (!this.__atEnd) {
+                if (prompter.__play && __i!==0)
+                    __iBackup = __i
+                __i=0;
+                prompter.position = prompter.position
+                scrollBar.increase()
+                __i=__iBackup
+                if (prompter.__play)
+                    prompter.position = __destination
+                else
+                    prompter.position = prompter.position
+            }
+        }
+        else if (event.key===keys.previousMarker && event.modifiers===keys.previousMarkerModifiers)
+            prompter.goToPreviousMarker();
+        // Go to next marker
+        else if (event.key===keys.nextMarker && event.modifiers===keys.nextMarkerModifiers)
+            prompter.goToNextMarker();
+        else if (event.key===Qt.Key_F && ['osx', 'ios'].indexOf(Qt.platform.os)===-1 ? event.modifiers & Qt.ControlModifier : event.modifiers & Qt.MetaModifier)
+            find.open();
+        else if (event.key===Qt.Key_V && ['osx', 'ios'].indexOf(Qt.platform.os)===-1 ? event.modifiers & Qt.ControlModifier : event.modifiers & Qt.MetaModifier) {
+            event.accepted = true
+            if (event.modifiers & Qt.ShiftModifier)
+                document.paste(true);
+            else
+                document.paste();
+        }
+        return
     }
 
     states: [

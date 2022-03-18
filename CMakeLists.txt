@@ -247,7 +247,7 @@ if(UNIX AND NOT ANDROID)
     set(CPACK_DEBIAN_PACKAGE_DEPENDS "libqt5svg5 (>= 5.15.2), qml-module-qt-labs-platform (>=5.15.2), qml-module-qtqml (>=5.15.2), qml-module-qtqml-models2 (>=5.15.2), qml-module-qtqml-statemachine (>=5.15.2), qml-module-qtquick-controls (>=5.15.2), qml-module-qtquick-controls2 (>=5.15.2), qml-module-qtquick-dialogs (>=5.15.2), qml-module-qtquick-shapes (>=5.15.2), qml-module-org-kde-kirigami2 (>=5.78.0), libkf5i18n5 (>= 5.78.0), libkf5coreaddons5 (>= 5.78.0)")
 
     # CPACK: RPM Specific Settings
-    set(CPACK_RPM_PACKAGE_LICENSE "GPLv3+")
+    set(CPACK_RPM_PACKAGE_LICENSE "GPLv3")
     set(CPACK_RPM_PACKAGE_GROUP "Multimedia/Video")
     set(CPACK_RPM_PACKAGE_URL ${PROJECT_URL})
     set(CPACK_RPM_COMPRESSION_TYPE ${COMPRESION_TYPE})
@@ -292,5 +292,5 @@ include(CPack)
 
 feature_summary(WHAT ALL FATAL_ON_MISSING_REQUIRED_PACKAGES) # INCLUDE_QUIET_PACKAGES
 
-file(GLOB_RECURSE ALL_CLANG_FORMAT_SOURCE_FILES *.cpp *.h)
+file(GLOB_RECURSE ALL_CLANG_FORMAT_SOURCE_FILES *.cpp *.h *.hpp)
 kde_clang_format(${ALL_CLANG_FORMAT_SOURCE_FILES})

@@ -134,3 +134,6 @@ isExecutable=false
 
 [Project]
 VersionControlSupport=kdevgit
+
+[SourceFileTemplates]
+LastUsedTemplate=/home/javier/.local/share/kdevfiletemplates/template_descriptions/qobject.desktop
