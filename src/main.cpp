@@ -43,6 +43,7 @@
 
 #include "../qprompt_version.h"
 #include "prompter/documenthandler.h"
+#include "qt/qmlutil.hpp"
 
 #define QPROMPT_URI "com.cuperino.qprompt"
 
@@ -97,6 +98,7 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
     //qmlRegisterType<PrompterTimer>(QPROMPT_URI + ".promptertimer", 1, 0, "PrompterTimer");
     qmlRegisterType<DocumentHandler>(QPROMPT_URI".document", 1, 0, "DocumentHandler");
     qmlRegisterType<MarkersModel>(QPROMPT_URI".markers", 1, 0, "MarkersModel");
+    qmlRegisterType<QmlUtil>(QPROMPT_URI".qmlutil", 1, 0, "QmlUtil");
     qRegisterMetaType<Marker>();
 
     QQmlApplicationEngine engine;

@@ -31,6 +31,7 @@ set(qprompt_HDRS
     prompter/documenthandler.h
     prompter/markersmodel.h
     #prompter/timer/promptertimer.h
+    qt/qmlutil.hpp
 )
 
 set(qprompt_ASSETS

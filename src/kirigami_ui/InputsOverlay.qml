@@ -24,6 +24,8 @@ import org.kde.kirigami 2.11 as Kirigami
 import QtQuick.Controls 2.12
 import QtQuick.Layouts 1.12
 
+import com.cuperino.qprompt.qmlutil 1.0
+
 Kirigami.OverlaySheet {
     id: key_configuration_overlay
 
@@ -51,42 +53,78 @@ Kirigami.OverlaySheet {
         }
 
         Component.onCompleted: {
-            keyInputTogglePrompter.setSource("KeyInputButton.qml", { "text": "F9" });
-            keyInputDecreaseVelocity.setSource("KeyInputButton.qml", { "text": "Up Arrow" });
-            keyInputIncreaseVelocity.setSource("KeyInputButton.qml", { "text": "Down Arrow" });
-            keyInputPlayPause.setSource("KeyInputButton.qml", { "text": "Spacebar" });
-            keyInputMoveBackwards.setSource("KeyInputButton.qml", { "text": "Page Up" });
-            keyInputMoveForward.setSource("KeyInputButton.qml", { "text": "Page Down" });
+            keyInputTogglePrompter.setSource("KeyInputButton.qml", { "text": qmlutil.keyToString(prompter.keys.toggle, prompter.keys.toggleModifiers) });
+            keyInputDecreaseVelocity.setSource("KeyInputButton.qml", { "text": qmlutil.keyToString(prompter.keys.increaseVelocity, prompter.keys.increaseVelocityModifiers) });
+            keyInputIncreaseVelocity.setSource("KeyInputButton.qml", { "text": qmlutil.keyToString(prompter.keys.decreaseVelocity, prompter.keys.decreaseVelocityModifiers) });
+            keyInputPlayPause.setSource("KeyInputButton.qml", { "text": qmlutil.keyToString(prompter.keys.pause, prompter.keys.pauseModifiers) });
+            keyInputMoveBackwards.setSource("KeyInputButton.qml", { "text": qmlutil.keyToString(prompter.keys.skipBackwards, prompter.keys.skipBackwardsModifiers) });
+            keyInputMoveForward.setSource("KeyInputButton.qml", { "text": qmlutil.keyToString(prompter.keys.skipForward, prompter.keys.skipForwardModifiers) });
+            keyInputPreviousMarker.setSource("KeyInputButton.qml", { "text": qmlutil.keyToString(prompter.keys.previousMarker, prompter.keys.previousMarkerModifiers) });
+            keyInputNextMarker.setSource("KeyInputButton.qml", { "text": qmlutil.keyToString(prompter.keys.nextMarker, prompter.keys.nextMarkerModifiers) });
         }
         Connections {
             target: keyInputTogglePrompter.item
             function onToggleButtonsOff() { buttonGrid.toggleButtonsOff(); }
-            function onSetKey(key) { prompter.keys.toggle=key; }
+            function onSetKey(key, modifiers) {
+                prompter.keys.toggle = key;
+                prompter.keys.toggleModifiers = modifiers;
+            }
         }
         Connections {
             target: keyInputDecreaseVelocity.item
             function onToggleButtonsOff() { buttonGrid.toggleButtonsOff(); }
-            function onSetKey(key) { prompter.keys.decreaseVelocity = key; }
+            function onSetKey(key, modifiers) {
+                prompter.keys.decreaseVelocity = key;
+                prompter.keys.decreaseVelocityModifiers = modifiers;
+            }
         }
         Connections {
             target: keyInputIncreaseVelocity.item
             function onToggleButtonsOff() { buttonGrid.toggleButtonsOff(); }
-            function onSetKey(key) { prompter.keys.increaseVelocity = key; }
+            function onSetKey(key, modifiers) {
+                prompter.keys.increaseVelocity = key;
+                prompter.keys.increaseVelocityModifiers = modifiers;
+            }
         }
         Connections {
             target: keyInputPlayPause.item
             function onToggleButtonsOff() { buttonGrid.toggleButtonsOff(); }
-            function onSetKey(key) { prompter.keys.pause = key; }
+            function onSetKey(key, modifiers) {
+                prompter.keys.pause = key;
+                prompter.keys.pauseModifiers = modifiers;
+            }
         }
         Connections {
             target: keyInputMoveBackwards.item
             function onToggleButtonsOff() { buttonGrid.toggleButtonsOff(); }
-            function onSetKey(key) { prompter.keys.skipBackwards = key; }
+            function onSetKey(key, modifiers) {
+                prompter.keys.skipBackwards = key;
+                prompter.keys.skipBackwardsModifiers = modifiers;
+            }
         }
         Connections {
             target: keyInputMoveForward.item
             function onToggleButtonsOff() { buttonGrid.toggleButtonsOff(); }
-            function onSetKey(key) { prompter.keys.skipForward = key; }
+            function onSetKey(key, modifiers) {
+                prompter.keys.skipForward = key;
+                prompter.keys.skipForwardModifiers = modifiers;
+            }
+        }
+        Connections {
+            target: keyInputPreviousMarker.item
+            function onToggleButtonsOff() { buttonGrid.toggleButtonsOff(); }
+            function onSetKey(key, modifiers) {
+                prompter.keys.previousMarker = key;
+                prompter.keys.previousMarkerModifiers = modifiers;
+            }
+        }
+        Connections {
+            target: keyInputNextMarker.item
+            function onToggleButtonsOff() { buttonGrid.toggleButtonsOff(); }
+            function onSetKey(key, modifiers) {
+                prompter.keys.nextMarker = key;
+                prompter.keys.nextMarkerModifiers = modifiers;
+            }
         }
 
         Label {
@@ -137,12 +175,11 @@ Kirigami.OverlaySheet {
             asynchronous: true
             Layout.fillWidth: true
         }
-        /*
         Label {
             text: i18n("Go to Previous Marker")
         }
         Loader {
-            id: keyInputHome
+            id: keyInputPreviousMarker
             asynchronous: true
             Layout.fillWidth: true
         }
@@ -150,10 +187,13 @@ Kirigami.OverlaySheet {
             text: i18n("Go to Next Marker")
         }
         Loader {
-            id: keyInputEnd
+            id: keyInputNextMarker
             asynchronous: true
             Layout.fillWidth: true
         }
-        */
+
+        QmlUtil {
+            id: qmlutil
+        }
     }
 }

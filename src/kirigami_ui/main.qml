@@ -67,17 +67,6 @@ Kirigami.ApplicationWindow {
     minimumWidth: Kirigami.Settings.isMobile ? 291 : 351
     minimumHeight: minimumWidth
 
-    // Key bindings
-    Keys.onPressed: {
-        if (parseInt(prompter.state) === Prompter.States.Prompting)
-            switch (event.key) {
-                case Qt.Key_F11:
-                if (!root.fullScreenPlatform)
-                    root.__fullScreen = !root.__fullScreen
-                return
-            }
-    }
-
     Settings {
         category: "mainWindow"
         property alias x: root.x
@@ -312,7 +301,13 @@ Kirigami.ApplicationWindow {
             // On ESC pressed, return to PrompterEdit mode.
             Kirigami.Action {
                 visible: false
-                onTriggered: root.pageStack.currentItem.prompter.cancel()
+                onTriggered: {
+                    // If Escape is pressed while prompting, return focus to prompter, thus leaving edit while prompting mode.
+                    if (parseInt(root.pageStack.currentItem.prompter.state)===Prompter.States.Prompting && root.pageStack.currentItem.editor.focus)
+                        root.pageStack.currentItem.prompter.focus = true;
+                    else
+                        root.pageStack.currentItem.prompter.cancel()
+                }
                 shortcut: StandardKey.Cancel
             }
         ]
