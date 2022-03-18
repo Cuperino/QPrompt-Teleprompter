@@ -309,6 +309,11 @@ Kirigami.ApplicationWindow {
                         root.pageStack.currentItem.prompter.cancel()
                 }
                 shortcut: StandardKey.Cancel
+            },
+            Kirigami.Action {
+                visible: false
+                onTriggered: root.__fullScreen = !root.__fullScreen
+                shortcut: StandardKey.FullScreen
             }
         ]
         topContent: RowLayout {
