@@ -115,8 +115,8 @@ Flickable {
     property real timeToArival: __timeToArival
     readonly property int __destination: __i  ? (__possitiveDirection ? editor.height+fontSize-__jitterMargin : __jitterMargin)-topMargin : position
     // At start and at end rules
-    readonly property bool __atStart: position<=__jitterMargin-topMargin+1
-    readonly property bool __atEnd: position>=editor.height-topMargin+fontSize+__jitterMargin-1
+    readonly property bool __atStart: position<=__jitterMargin-topMargin+2
+    readonly property bool __atEnd: position>=editor.height-topMargin+fontSize+__jitterMargin-2
     readonly property int __speedLimit: __vw * 100
     readonly property Scale __flips: Flip{}
     // Progress indicator
@@ -402,7 +402,7 @@ Flickable {
                     root.alert(0)
                     if (root.passiveNotifications)
                         showPassiveNotification(i18n("Animation Completed"));
-                    if (parseInt(prompter.state) === Prompter.States.Prompting/* && !prompter.__atStart*/)
+                    if (parseInt(prompter.state) === Prompter.States.Prompting && !prompter.__atStart)
                         prompter.toggle();
                 }
             }
