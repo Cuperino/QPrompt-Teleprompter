@@ -37,7 +37,7 @@ ScrollBar {
     contentItem: Rectangle {
         implicitWidth: interactive ? 14 : 6
         implicitHeight: 100
-        radius: scroller.pressed ? width / 2 : 0
+        radius: scroller.pressed && !(prompter.__atStart||prompter.__atEnd) ? width / 2 : 0
         color: opaqueScroller ? (scroller.pressed ? "#ffffff" : "#d7d9d7") : "#d7d9d7";
         Behavior on radius {
             enabled: true
