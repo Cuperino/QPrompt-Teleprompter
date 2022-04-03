@@ -21,10 +21,11 @@
 
 import QtQuick 2.12
 import org.kde.kirigami 2.11 as Kirigami
-import QtQuick.Window 2.15
+import QtQuick.Controls 2.15
 import QtQuick.Dialogs 1.2
+import QtQuick.Window 2.15
+import QtQuick.Layouts 1.12
 import Qt.labs.settings 1.0
-
 Item {
     id: projectionManager
     readonly property alias model: projectionModel
@@ -230,6 +231,19 @@ Item {
                     transform: Scale {
                         origin.y: img.paintedHeight/2
                         yScale: model.flip===3 || model.flip===4 ? -1 : 1
+                    }
+                }
+                GridLayout {
+                    anchors.left: parent.left
+                    anchors.right: parent.right
+                    anchors.bottom: parent.bottom
+                    anchors.leftMargin: 10
+                    anchors.bottomMargin: 5
+                    Button {
+                        id: closeButton
+                        text: i18n("Close")
+                        // flat: true
+                        onClicked: projectionWindow.close()
                     }
                 }
             }
