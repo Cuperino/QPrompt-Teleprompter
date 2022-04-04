@@ -127,5 +127,7 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
         return -1;
     }
 
+//     qDebug() << QProcess::systemEnvironment();
+
     return app.exec();
 }

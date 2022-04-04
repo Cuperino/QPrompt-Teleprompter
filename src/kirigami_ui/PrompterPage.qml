@@ -479,6 +479,36 @@ Kirigami.Page {
                     contextDrawer.close()
                 }
             }
+            Kirigami.Action {
+                text: i18n("Default orientation")
+                iconName: "object-rotate-right"
+                enabled: viewport.forcedOrientation!==0
+                onTriggered: {
+                    //if (viewport.forcedOrientation!==1)
+                    viewport.forcedOrientation = 0
+                    contextDrawer.close()
+                }
+            }
+            Kirigami.Action {
+                text: i18n("90° clockwise")
+                iconName: "object-rotate-right"
+                enabled: viewport.forcedOrientation!==1
+                onTriggered: {
+                    //if (viewport.forcedOrientation!==1)
+                    viewport.forcedOrientation = 1
+                    contextDrawer.close()
+                }
+            }
+            Kirigami.Action {
+                text: i18n("90° counterclockwise")
+                iconName: "object-rotate-left"
+                enabled: viewport.forcedOrientation!==2
+                onTriggered: {
+                    //if (viewport.forcedOrientation!==2)
+                    viewport.forcedOrientation = 2
+                    contextDrawer.close()
+                }
+            }
         },
         Kirigami.Action {
             id: loadBackgroundButton
@@ -605,8 +635,55 @@ Kirigami.Page {
 
     PrompterView {
         id: viewport
-        // Workaround to make regular Page let its contents be covered by action buttons.
-        anchors.bottomMargin: pageStack.globalToolBar.actualStyle === Kirigami.ApplicationHeaderStyle.None ? -68 : 0
+        height: forcedOrientation ? parent.width : parent.height
+        width: forcedOrientation ? parent.height : parent.width
+        x: forcedOrientation===1 ? parent.width : 0
+        y: forcedOrientation===2 ? parent.height : 0
+        transform: Rotation {
+            origin.x: 0; origin.y: 0;
+            angle: switch (viewport.forcedOrientation) {
+                case 1: return 90;
+                case 2: return -90;
+                default: return 0;
+            }
+            //Behavior on angle {
+                //enabled: true
+                //animation: NumberAnimation {
+                    //duration: Kirigami.Units.longDuration
+                    //easing.type: Easing.OutQuad
+                //}
+            //}
+        }
+        //Behavior on x {
+            //enabled: true
+            //animation: NumberAnimation {
+                //duration: Kirigami.Units.longDuration
+                //easing.type: Easing.OutQuad
+            //}
+        //}
+        //Behavior on y {
+            //enabled: true
+            //animation: NumberAnimation {
+                //duration: Kirigami.Units.longDuration
+                //easing.type: Easing.OutQuad
+            //}
+        //}
+        //Behavior on width {
+            //enabled: viewport.forcedOrientation
+            //animation: NumberAnimation {
+                //duration: Kirigami.Units.longDuration
+                //easing.type: Easing.OutQuad
+            //}
+        //}
+        //Behavior on height {
+            //enabled: viewport.forcedOrientation
+            //animation: NumberAnimation {
+                //duration: Kirigami.Units.longDuration
+                //easing.type: Easing.OutQuad
+            //}
+        //}
+        //// Workaround to make regular Page let its contents be covered by action buttons.
+        //anchors.bottomMargin: pageStack.globalToolBar.actualStyle === Kirigami.ApplicationHeaderStyle.None ? -68 : 0
         prompter.performFileOperations: true
         property alias toolbar: editorToolbar
     }
