@@ -209,6 +209,7 @@ list(APPEND DOCS ${LICENSE_FILE} ${README_FILE} ${DESCRIPTION_FILE} "COPYING.LES
 
 set(DOC_INSTALL_DIR "doc/qprompt")
 
+#add_subdirectory(locale)
 add_subdirectory(src build)
 
 if (WIN32 OR UNIX) # AND NOT ANDROID

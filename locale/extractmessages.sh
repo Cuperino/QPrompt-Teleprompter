@@ -1,5 +1,5 @@
 #!/bin/sh
-BASEDIR="./"	# root of translatable sources
+BASEDIR="../src"	# root of translatable sources
 PROJECT="qprompt"	# project name
 BUGADDR="https://github.com/Cuperino/QPrompt/issues/new/choose"	# MSGID-Bugs
 WDIR=`pwd`	# working dir
