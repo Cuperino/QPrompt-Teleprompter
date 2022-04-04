@@ -19,12 +19,17 @@
 #
 #**************************************************************************
 
+include(ECMPoQmTools)
+
+#ecm_create_qm_loader(qprompt_QM_LOADER mypotfilename_qt)
+ecm_create_qm_loader(qprompt_QM_LOADER ../locale/qprompt.pot)
 
 set(qprompt_SRCS
     main.cpp
     prompter/documenthandler.cpp
     prompter/markersmodel.cpp
     #prompter/timer/promptertimer.cpp
+    ${qprompt_QM_LOADER}
 )
 
 set(qprompt_HDRS
@@ -246,6 +251,43 @@ endif()
 if (Qt5QmlImportScanner_FOUND)
     qt5_import_qml_plugins(${PROJECT_NAME})
 endif()
+
+
+#FIND_PROGRAM(GETTEXT_MSGFMT_EXECUTABLE msgfmt)
+
+#IF(NOT GETTEXT_MSGFMT_EXECUTABLE)
+    #MESSAGE(
+#"------
+        #NOTE: msgfmt not found. Translations will *not* be installed
+#------")
+#ELSE(NOT GETTEXT_MSGFMT_EXECUTABLE)
+
+    #SET(catalogname qprompt)
+
+    #FILE(GLOB PO_FILES ../locale/*.po)
+    #SET(GMO_FILES)
+
+    #FOREACH(_poFile ${PO_FILES})
+        #GET_FILENAME_COMPONENT(_poFileName ${_poFile} NAME)
+        #STRING(REGEX REPLACE "^${catalogname}_?" "" _langCode ${_poFileName} )
+        #STRING(REGEX REPLACE "\\.po$" "" _langCode ${_langCode} )
+
+        #IF( _langCode )
+            #GET_FILENAME_COMPONENT(_lang ${_poFile} NAME_WE)
+            #SET(_gmoFile ${CMAKE_CURRENT_BINARY_DIR}/${_lang}.gmo)
+
+            #ADD_CUSTOM_COMMAND(TARGET ${_gmoFile}
+                #COMMAND ${GETTEXT_MSGFMT_EXECUTABLE} --check -o ${_gmoFile} ${_poFile}
+                    #DEPENDS ${_poFile})
+            #INSTALL(FILES ${_gmoFile} DESTINATION ${LOCALE_INSTALL_DIR}/${_langCode}/LC_MESSAGES/ RENAME ${catalogname}.mo)
+            #LIST(APPEND GMO_FILES ${_gmoFile})
+        #ENDIF( _langCode )
+
+    #ENDFOREACH(_poFile ${PO_FILES})
+
+    #ADD_CUSTOM_TARGET(translations ALL DEPENDS ${GMO_FILES})
+
+#ENDIF(NOT GETTEXT_MSGFMT_EXECUTABLE)
 
 
 if (WIN32 OR UNIX) # AND NOT ANDROID)
