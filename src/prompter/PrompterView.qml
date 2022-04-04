@@ -38,10 +38,12 @@ Item {
     property alias timer: timer
     property alias find: find
     //property bool project: true
+    property int forcedOrientation: 0
     property real __baseSpeed: editorToolbar.baseSpeedSlider.value
     property real __curvature: editorToolbar.baseAccelerationSlider.value
 
-    anchors.fill: parent
+    //anchors.fill: parent
+
     //layer.enabled: true
     // Undersample
     //layer.mipmap: true
@@ -86,6 +88,13 @@ Item {
         letterSpacing: fontSize * editorToolbar.letterSpacingSlider.value / 81
         wordSpacing: fontSize * editorToolbar.wordSpacingSlider.value / 81
         //Math.pow((fontSizeSlider.value*prompter.__vw),3)
+
+        //// FFA
+        //transform: Rotation {
+        //    origin.x: parent.width/2; origin.y: parent.height/2;
+        //    axis { x: 1; y: 0; z: 0 }
+        //    angle: 65
+        //}
     }
 
     //FastBlur {
