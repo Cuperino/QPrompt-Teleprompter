@@ -76,6 +76,7 @@
 #include <QObject>
 #include <QTextCursor>
 #include <QUrl>
+#include <QFileSystemWatcher>
 
 #include "prompter/markersmodel.h"
 
@@ -194,6 +195,7 @@ public:
 
 public Q_SLOTS:
     void load(const QUrl &fileUrl);
+    void reload(const QString &fileUrl);
     void saveAs(const QUrl &fileUrl);
     void save();
     void setMarkersListClean();
@@ -243,6 +245,7 @@ private:
     int m_selectionEnd;
 
     MarkersModel *_markersModel;
+    QFileSystemWatcher * _fileSystemWatcher;
 
     QFont m_font;
     QUrl m_fileUrl;
