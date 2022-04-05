@@ -496,6 +496,8 @@ Flickable {
             TextArea {
                 id: editor
 
+                property bool resetPosition: false;
+
                 function toggleEditorFocus(mouse) {
                     if (!editor.focus) {
                         editor.focus = true;
@@ -781,7 +783,10 @@ Flickable {
         property bool quitOnSave: false
 
         function resetDocumentPosition() {
-            prompter.position = -(overlay.__readRegionPlacement*(overlay.height-overlay.readRegionHeight)+overlay.readRegionHeight/2)
+            if (editor.resetPosition) {
+                prompter.position = -(overlay.__readRegionPlacement*(overlay.height-overlay.readRegionHeight)+overlay.readRegionHeight/2)
+                editor.resetPosition = false;
+            }
         }
         function newDocument() {
             root.onDiscard = Prompter.CloseActions.LoadNew
@@ -852,7 +857,6 @@ Flickable {
         onLoaded: {
             editor.textFormat = format
             editor.text = text
-            resetDocumentPosition()
         }
         onError: {
             errorDialog.text = message
@@ -864,7 +868,6 @@ Flickable {
                 if (Qt.application.arguments.length === 2) {
                     document.load("file:" + Qt.application.arguments[1]);
                     isNewFile = false
-                    resetDocumentPosition()
                 }
                 else
                     loadGuide();
@@ -896,6 +899,9 @@ Flickable {
         onAccepted: {
             document.load("qrc:/blank.html")
             document.load(openDialog.fileUrl)
+            editor.resetPosition = true;
+            if (parseInt(prompter.state)!==Prompter.States.Editing)
+                prompter.state = Prompter.States.Editing;
             if ([nameFilters[0], nameFilters[2]].indexOf(selectedNameFilter)===-1)
                 document.isNewFile = true;
             else

@@ -81,6 +81,7 @@
 #include <QFile>
 #include <QFileInfo>
 #include <QFileSelector>
+#include <QFileSystemWatcher>
 #include <QMimeDatabase>
 #include <QQmlFile>
 #include <QQmlFileSelector>
@@ -106,6 +107,7 @@ DocumentHandler::DocumentHandler(QObject *parent)
 
 {
     _markersModel = new MarkersModel();
+    _fileSystemWatcher = new QFileSystemWatcher();
     pdf_importer = QString("TextExtraction");
     office_importer = QString("soffice");
 }
@@ -433,7 +435,7 @@ QString DocumentHandler::fileName() const
     const QString filePath = QQmlFile::urlToLocalFileOrQrc(m_fileUrl);
     const QString fileName = QFileInfo(filePath).fileName();
     if (fileName.isEmpty())
-        return QStringLiteral("untitled.txt");
+        return QStringLiteral("untitled.html");
     return fileName;
 }
 
@@ -447,10 +449,15 @@ QUrl DocumentHandler::fileUrl() const
     return m_fileUrl;
 }
 
+void DocumentHandler::reload(const QString &fileUrl) {
+    qWarning() << "reloading";
+    load(QUrl("file://" + fileUrl));
+}
+
 void DocumentHandler::load(const QUrl &fileUrl)
 {
-    if (fileUrl == m_fileUrl)
-        return;
+//     if (fileUrl == m_fileUrl)
+//         return;
     
     QQmlEngine *engine = qmlEngine(this);
     if (!engine) {
@@ -460,6 +467,7 @@ void DocumentHandler::load(const QUrl &fileUrl)
 
     const QUrl path = QQmlFileSelector::get(engine)->selector()->select(fileUrl);
     const QString fileName = QQmlFile::urlToLocalFileOrQrc(path);
+
     if (QFile::exists(fileName)) {
         QMimeType mime = QMimeDatabase().mimeTypeForFile(fileName);
         QFile file(fileName);
@@ -515,6 +523,15 @@ void DocumentHandler::load(const QUrl &fileUrl)
                 doc->setModified(false);
             }
             reset();
+        }
+        bool newPath=false;
+        if (path!=this->fileUrl())
+            newPath=true;
+        if (path.isLocalFile() && (_fileSystemWatcher==nullptr || newPath)) {
+            if (newPath)
+                _fileSystemWatcher->removePath(QQmlFile::urlToLocalFileOrQrc(this->fileUrl()));
+            _fileSystemWatcher->addPath(fileName);
+            connect( _fileSystemWatcher, SIGNAL( fileChanged( QString ) ), this, SLOT( reload( QString ) ) );
         }
     }
 
