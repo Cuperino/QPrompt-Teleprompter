@@ -22,6 +22,7 @@
 import QtQuick 2.12
 import QtQuick.Window 2.12
 import QtQml.Models 2.12
+import Qt.labs.settings 1.0
 //import QtGraphicalEffects 1.15
 import org.kde.kirigami 2.11 as Kirigami
 
@@ -107,5 +108,10 @@ Item {
     PrompterBackground {
         id: prompterBackground
         z: 0
+    }
+
+    Settings {
+        category: "orientation"
+        property alias orientation: viewport.forcedOrientation
     }
 }
