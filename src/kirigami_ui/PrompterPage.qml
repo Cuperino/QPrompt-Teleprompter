@@ -431,57 +431,62 @@ Kirigami.Page {
 
             text: i18n("Flip")
 
+            //Kirigami.Action {
+                //readonly property string shortName: i18n("No Flip")
+                //text: i18n("No flip")
+                //iconName: "window"
+                //enabled: viewport.prompter.__flipX || viewport.prompter.__flipY
+                //onTriggered: {
+                    //parent.updateButton(this)
+                    //viewport.prompter.__flipX = false
+                    //viewport.prompter.__flipY = false
+                    //contextDrawer.close()
+                //}
+            //}
             Kirigami.Action {
-                readonly property string shortName: i18n("No Flip")
-                text: i18n("No flip")
-                iconName: "window"
-                enabled: viewport.prompter.__flipX || viewport.prompter.__flipY
-                onTriggered: {
-                    parent.updateButton(this)
-                    viewport.prompter.__flipX = false
-                    viewport.prompter.__flipY = false
-                    contextDrawer.close()
-                }
-            }
-            Kirigami.Action {
-                readonly property string shortName: i18n("H Flip")
+                //readonly property string shortName: i18n("H Flip")
                 text: i18n("Horizontal flip")
-                iconName: "object-flip-horizontal"
-                enabled: (!viewport.prompter.__flipX) || viewport.prompter.__flipY
+                //iconName: "object-flip-horizontal"
+                //enabled: !viewport.prompter.__flipX || viewport.prompter.__flipY
+                checkable: true
+                checked: viewport.prompter.__flipX
                 onTriggered: {
-                    parent.updateButton(this)
-                    viewport.prompter.__flipX = true
-                    viewport.prompter.__flipY = false
+                    //parent.updateButton(this)
+                    //viewport.prompter.__flipX = true
+                    //viewport.prompter.__flipY = false
+                    viewport.prompter.__flipX = !viewport.prompter.__flipX
                     contextDrawer.close()
                 }
             }
             Kirigami.Action {
-                readonly property string shortName: i18n("V Flip")
+                //readonly property string shortName: i18n("V Flip")
                 text: i18n("Vertical flip")
-                iconName: "object-flip-vertical"
-                enabled: viewport.prompter.__flipX || !viewport.prompter.__flipY
+                //iconName: "object-flip-vertical"
+                //enabled: viewport.prompter.__flipX || !viewport.prompter.__flipY
+                checkable: true
+                checked: viewport.prompter.__flipY
                 onTriggered: {
-                    parent.updateButton(this)
-                    viewport.prompter.__flipX = false
-                    viewport.prompter.__flipY = true
+                    //parent.updateButton(this)
+                    //viewport.prompter.__flipX = false
+                    //viewport.prompter.__flipY = true
+                    viewport.prompter.__flipY = !viewport.prompter.__flipY
                     contextDrawer.close()
                 }
             }
+            //Kirigami.Action {
+                //readonly property string shortName: i18n("HV Flip") text: i18n("180° rotation")
+                //iconName: Qt.LeftToRight ? "object-rotate-left" : "object-rotate-right"
+                //enabled: !(viewport.prompter.__flipX && viewport.prompter.__flipY)
+                //onTriggered: {
+                    //parent.updateButton(this)
+                    //viewport.prompter.__flipX = true
+                    //viewport.prompter.__flipY = true
+                    //contextDrawer.close()
+                //}
+            //}
             Kirigami.Action {
-                readonly property string shortName: i18n("HV Flip")
-                text: i18n("180° rotation")
-                iconName: Qt.LeftToRight ? "object-rotate-left" : "object-rotate-right"
-                enabled: !(viewport.prompter.__flipX && viewport.prompter.__flipY)
-                onTriggered: {
-                    parent.updateButton(this)
-                    viewport.prompter.__flipX = true
-                    viewport.prompter.__flipY = true
-                    contextDrawer.close()
-                }
-            }
-            Kirigami.Action {
-                text: i18n("Default orientation")
-                iconName: "object-rotate-right"
+                text: i18n("Normal")
+                iconName: "window"
                 enabled: viewport.forcedOrientation!==0
                 onTriggered: {
                     //if (viewport.forcedOrientation!==1)
@@ -500,7 +505,7 @@ Kirigami.Page {
                 }
             }
             Kirigami.Action {
-                text: i18n("90° counterclockwise")
+                text: i18n("90° counter")
                 iconName: "object-rotate-left"
                 enabled: viewport.forcedOrientation!==2
                 onTriggered: {
@@ -509,6 +514,16 @@ Kirigami.Page {
                     contextDrawer.close()
                 }
             }
+            //Kirigami.Action {
+                //text: i18n("Inverted")
+                //iconName: Qt.LeftToRight ? "object-rotate-left" : "object-rotate-right"
+                //enabled: viewport.forcedOrientation!==3
+                //onTriggered: {
+                    ////if (viewport.forcedOrientation!==3)
+                    //viewport.forcedOrientation = 3
+                    //contextDrawer.close()
+                //}
+            //}
         },
         Kirigami.Action {
             id: loadBackgroundButton
@@ -635,15 +650,16 @@ Kirigami.Page {
 
     PrompterView {
         id: viewport
-        height: forcedOrientation ? parent.width : parent.height
-        width: forcedOrientation ? parent.height : parent.width
-        x: forcedOrientation===1 ? parent.width : 0
-        y: forcedOrientation===2 ? parent.height : 0
+        height: forcedOrientation && forcedOrientation!==3 ? parent.width : parent.height
+        width: forcedOrientation && forcedOrientation!==3 ? parent.height : parent.width
+        x: forcedOrientation===1 || forcedOrientation===3 ? parent.width : 0
+        y: forcedOrientation===2 || forcedOrientation===3 ? parent.height : 0
         transform: Rotation {
             origin.x: 0; origin.y: 0;
             angle: switch (viewport.forcedOrientation) {
                 case 1: return 90;
                 case 2: return -90;
+                case 3: return 180;
                 default: return 0;
             }
             //Behavior on angle {
