@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/Cuperino/QPrompt/issues/new/choose\n"
 "POT-Creation-Date: 2022-03-17 23:40-0400\n"
-"PO-Revision-Date: 2022-03-07 05:34+0000\n"
-"Last-Translator: Weblate Admin <javiercorderoperez@gmail.com>\n"
+"PO-Revision-Date: 2022-04-12 10:47+0000\n"
+"Last-Translator: Maximilian Efinger <maximilian.efinger@gmx.de>\n"
 "Language-Team: German <https://l10n.cuperino.com/projects/qprompt-app/"
 "qprompt/de/>\n"
 "Language: de\n"
@@ -241,15 +241,15 @@ msgstr ""
 
 #: kirigami_ui/main.qml:359
 msgid "&File"
-msgstr ""
+msgstr "&Datei"
 
 #: kirigami_ui/main.qml:374
 msgid "Save &As…"
-msgstr ""
+msgstr "Speichern unter…"
 
 #: kirigami_ui/main.qml:385
 msgid "&Edit"
-msgstr ""
+msgstr "Bearbeiten"
 
 #: kirigami_ui/main.qml:388 prompter/Prompter.qml:981
 msgid "&Undo"
@@ -261,7 +261,7 @@ msgstr ""
 
 #: kirigami_ui/main.qml:399 prompter/Prompter.qml:945 prompter/Prompter.qml:992
 msgid "&Copy"
-msgstr ""
+msgstr "Kopieren"
 
 #: kirigami_ui/main.qml:404 prompter/Prompter.qml:950 prompter/Prompter.qml:997
 msgid "Cu&t"
@@ -270,15 +270,15 @@ msgstr ""
 #: kirigami_ui/main.qml:409 prompter/Prompter.qml:955
 #: prompter/Prompter.qml:1002
 msgid "&Paste"
-msgstr ""
+msgstr "Einfügen"
 
 #: kirigami_ui/main.qml:416
 msgid "&View"
-msgstr ""
+msgstr "Ansicht"
 
 #: kirigami_ui/main.qml:419
 msgid "Full &screen"
-msgstr ""
+msgstr "Vollbild"
 
 #: kirigami_ui/main.qml:433
 msgid "&Indicators"
@@ -931,7 +931,7 @@ msgstr ""
 
 #: prompter/Prompter.qml:796
 msgid "New document"
-msgstr ""
+msgstr "Neues Dokument"
 
 #: prompter/Prompter.qml:805
 msgid "guide_en.html"
@@ -985,7 +985,7 @@ msgstr ""
 
 #: prompter/Prompter.qml:1202
 msgid "Begin countdown"
-msgstr ""
+msgstr "Countdown starten"
 
 #: prompter/Prompter.qml:1202
 msgid "Start prompting"
@@ -993,7 +993,7 @@ msgstr ""
 
 #: prompter/Prompter.qml:1253
 msgid "Skip countdown"
-msgstr ""
+msgstr "Countdown überspringen"
 
 #: prompter/Prompter.qml:1300
 msgid "Return to edit mode"
