@@ -23,50 +23,6 @@
 #ecm_create_qm_loader(qprompt_QM_LOADER ../locale/qprompt.pot)
 
 
-
-FIND_PROGRAM(GETTEXT_MSGFMT_EXECUTABLE msgfmt)
-
-IF(NOT GETTEXT_MSGFMT_EXECUTABLE)
-    MESSAGE(
-"------
-                 NOTE: msgfmt not found. Translations will *not* be installed
-------")
-ELSE(NOT GETTEXT_MSGFMT_EXECUTABLE)
-
-    SET(catalogname qprompt)
-
-    FILE(GLOB PO_FILES *.po)
-    SET(GMO_FILES)
-
-    FOREACH(_poFile ${PO_FILES})
-        GET_FILENAME_COMPONENT(_poFileName ${_poFile} NAME)
-        STRING(REGEX REPLACE "^${catalogname}_?" "" _langCode ${_poFileName} )
-        STRING(REGEX REPLACE "\\.po$" "" _langCode ${_langCode} )
-
-        IF( _langCode )
-            GET_FILENAME_COMPONENT(_lang ${_poFile} NAME_WE)
-            SET(_gmoFileTarget ${_lang}.gmo)
-            SET(_gmoFile ${CMAKE_CURRENT_BINARY_DIR}/${_gmoFileTarget})
-            #SET(_gmoFile ${_gmoFileTarget})
-
-            add_custom_target(${_gmoFileTarget})
-            ADD_CUSTOM_COMMAND(TARGET ${_gmoFileTarget} # ${PROJECT_NAME} # ${_gmoFile}
-                COMMAND ${GETTEXT_MSGFMT_EXECUTABLE} --check -o ${_gmoFile} ${_poFile}
-                DEPENDS ${_poFile})
-            INSTALL(FILES ${_gmoFile} DESTINATION ${LOCALE_INSTALL_DIR}/${_langCode}/LC_MESSAGES/ RENAME ${catalogname}.mo)
-            LIST(APPEND GMO_FILES ${_gmoFile})
-        ENDIF( _langCode )
-
-    ENDFOREACH(_poFile ${PO_FILES})
-
-    ADD_CUSTOM_TARGET(translations ALL DEPENDS ${GMO_FILES})
-    #install(FILES translations DESTINATION ${LOCALE_INSTALL_DIR})
-
-ENDIF(NOT GETTEXT_MSGFMT_EXECUTABLE)
-
-#ki18n_install(translations)
-#ki18n_install(po)
-
 set(qprompt_SRCS
     main.cpp
     prompter/documenthandler.cpp
@@ -84,7 +40,6 @@ set(qprompt_HDRS
 
 set(qprompt_ASSETS
     assets.qrc
-    ../locale
 )
 
 if (NOT APPLE AND NOT ANDROID)
@@ -291,10 +246,50 @@ if(ANDROID OR APPLE OR WIN32 OR IOS OR WASM)
     )
 endif()
 
+
 # Get static QML. Gets ignored if not a static build
 if (Qt5QmlImportScanner_FOUND)
     qt5_import_qml_plugins(${PROJECT_NAME})
 endif()
+
+
+# Include KI18N translations
+FIND_PROGRAM(GETTEXT_MSGFMT_EXECUTABLE msgfmt)
+IF(NOT GETTEXT_MSGFMT_EXECUTABLE)
+    MESSAGE(
+"------
+                 NOTE: msgfmt not found. Translations will *not* be installed
+------")
+ELSE(NOT GETTEXT_MSGFMT_EXECUTABLE)
+
+    SET(catalogname qprompt)
+
+    FILE(GLOB PO_FILES ../po/*.po)
+    SET(GMO_FILES)
+
+    FOREACH(_poFile ${PO_FILES})
+        GET_FILENAME_COMPONENT(_poFileName ${_poFile} NAME)
+        STRING(REGEX REPLACE "^${catalogname}_?" "" _langCode ${_poFileName} )
+        STRING(REGEX REPLACE "\\.po$" "" _langCode ${_langCode} )
+
+        IF( _langCode )
+            GET_FILENAME_COMPONENT(_lang ${_poFile} NAME_WE)
+            SET(_gmoFileTarget ${_lang}.gmo)
+            SET(_gmoFile ${CMAKE_CURRENT_BINARY_DIR}/${_gmoFileTarget})
+
+            #add_custom_target(${_gmoFileTarget})
+            ADD_CUSTOM_COMMAND(TARGET ${PROJECT_NAME} # ${_gmoFileTarget} # ${_gmoFile}
+                COMMAND ${GETTEXT_MSGFMT_EXECUTABLE} --check -o ${_gmoFile} ${_poFile}
+                DEPENDS ${_poFile})
+            INSTALL(FILES ${_gmoFile} DESTINATION ${LOCALE_INSTALL_DIR}/${_langCode}/LC_MESSAGES/ RENAME ${catalogname}.mo)
+            LIST(APPEND GMO_FILES ${_gmoFile})
+        ENDIF( _langCode )
+
+    ENDFOREACH(_poFile ${PO_FILES})
+
+    ADD_CUSTOM_TARGET(translations ALL DEPENDS ${GMO_FILES})
+
+ENDIF(NOT GETTEXT_MSGFMT_EXECUTABLE)
 
 
 if (WIN32 OR UNIX) # AND NOT ANDROID)
