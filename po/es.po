@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: 1.1.0\n"
 "Report-Msgid-Bugs-To: https://github.com/Cuperino/QPrompt/issues/new/choose\n"
 "POT-Creation-Date: 2022-04-12 15:02-0400\n"
-"PO-Revision-Date: 2022-04-11 12:12+0000\n"
-"Last-Translator: Javier Cordero <javiercorderoperez@gmail.com>\n"
+"PO-Revision-Date: 2022-04-12 19:16+0000\n"
+"Last-Translator: Weblate Admin <javiercorderoperez@gmail.com>\n"
 "Language-Team: Spanish <https://l10n.cuperino.com/projects/qprompt-app/"
 "qprompt/es/>\n"
 "Language: es\n"
@@ -600,15 +600,15 @@ msgstr "Invertido vertical"
 
 #: kirigami_ui/PrompterPage.qml:488
 msgid "Normal"
-msgstr ""
+msgstr "Normal"
 
 #: kirigami_ui/PrompterPage.qml:498
 msgid "90° clockwise"
-msgstr ""
+msgstr "90° derecha"
 
 #: kirigami_ui/PrompterPage.qml:508
 msgid "90° counter"
-msgstr ""
+msgstr "90° izquierda"
 
 #: kirigami_ui/PrompterPage.qml:530
 msgid "Background"
@@ -887,9 +887,8 @@ msgid "Personal teleprompter software for all video makers."
 msgstr "Teleprompter personal para creadores de videos."
 
 #: main.cpp:71
-#, fuzzy
 msgid "© %1 Javier O. Cordero Pérez"
-msgstr "© %1%2 Javier O. Cordero Pérez"
+msgstr "© %1 Javier O. Cordero Pérez"
 
 #: main.cpp:81
 msgid "Author"
@@ -897,7 +896,7 @@ msgstr "Autor"
 
 #: main.cpp:88
 msgid "Wrote keycode to string QML abstraction"
-msgstr ""
+msgstr "Programó abstracción de QML para convertir códigos de teclado a texto"
 
 #: main.cpp:92
 msgctxt "NAME OF TRANSLATORS"
@@ -933,7 +932,7 @@ msgstr "Ventana de Proyección"
 
 #: prompter/ProjectionsManager.qml:244
 msgid "Close"
-msgstr ""
+msgstr "Cerrar"
 
 #: prompter/ProjectionsManager.qml:268
 msgid ""
