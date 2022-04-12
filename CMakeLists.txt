@@ -112,7 +112,7 @@ if(ANDROID)
     )
     find_package(KF5 ${KF_MIN_VERSION} REQUIRED COMPONENTS
         Kirigami2
-        I18n  # NO_MODULE
+        I18n
         CoreAddons
     )
 elseif(WASM OR IOS)
@@ -127,7 +127,7 @@ elseif(WASM OR IOS)
     )
     find_package(KF5 ${KF_MIN_VERSION} REQUIRED COMPONENTS
         Kirigami2
-        I18n  # NO_MODULE
+        I18n
         CoreAddons
     )
 else()
@@ -146,7 +146,7 @@ else()
     )
     find_package(KF5 ${KF_MIN_VERSION} REQUIRED COMPONENTS
         Kirigami2
-        I18n  # NO_MODULE
+        I18n
         CoreAddons
         IconThemes
     )
@@ -158,12 +158,14 @@ if (WIN32 OR UNIX) # AND NOT ANDROID
     include(KDECMakeSettings)
     include(ECMInstallIcons)
     include(ECMAddAppIcon)
+    include(ECMGenerateHeaders)
 endif()
 include(KDECompilerSettings NO_POLICY_SCOPE)
 include(KDEClangFormat)
 include(ECMQtDeclareLoggingCategory)
 include(ECMSetupVersion)
 include(ECMSourceVersionControl)
+include(ECMPoQmTools)
 include(FeatureSummary)
 
 #add_subdirectory("3rdparty/extra-cmake-modules" build/ecm)
@@ -209,7 +211,7 @@ list(APPEND DOCS ${LICENSE_FILE} ${README_FILE} ${DESCRIPTION_FILE} "COPYING.LES
 
 set(DOC_INSTALL_DIR "doc/qprompt")
 
-#add_subdirectory(locale)
+ki18n_install(po)
 add_subdirectory(src build)
 
 if (WIN32 OR UNIX) # AND NOT ANDROID
@@ -217,9 +219,6 @@ if (WIN32 OR UNIX) # AND NOT ANDROID
     install(PROGRAMS com.cuperino.qprompt.desktop DESTINATION ${KDE_INSTALL_APPDIR})
     install(FILES ${DOCS} DESTINATION ${DOC_INSTALL_DIR})
 endif()
-
-#add_subdirectory(locale)
-ki18n_install(po)
 
 # CPACK: General Settings
 set(CPACK_GENERATOR "TBZ2")

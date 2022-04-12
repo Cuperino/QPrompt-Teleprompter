@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.1.0\n"
 "Report-Msgid-Bugs-To: https://github.com/Cuperino/QPrompt/issues/new/choose\n"
-"POT-Creation-Date: 2022-03-17 23:40-0400\n"
+"POT-Creation-Date: 2022-04-12 14:54-0400\n"
 "PO-Revision-Date: 2022-04-11 12:12+0000\n"
 "Last-Translator: Javier Cordero <javiercorderoperez@gmail.com>\n"
 "Language-Team: Spanish <https://l10n.cuperino.com/projects/qprompt-app/"
@@ -252,7 +252,7 @@ msgstr "Gu&ardar Como…"
 msgid "&Edit"
 msgstr "&Editar"
 
-#: kirigami_ui/main.qml:388 prompter/Prompter.qml:981
+#: kirigami_ui/main.qml:388 prompter/Prompter.qml:987
 msgid "&Undo"
 msgstr "&Deshacer"
 
@@ -260,16 +260,17 @@ msgstr "&Deshacer"
 msgid "&Redo"
 msgstr "&Rehacer"
 
-#: kirigami_ui/main.qml:399 prompter/Prompter.qml:945 prompter/Prompter.qml:992
+#: kirigami_ui/main.qml:399 prompter/Prompter.qml:951 prompter/Prompter.qml:998
 msgid "&Copy"
 msgstr "&Copiar"
 
-#: kirigami_ui/main.qml:404 prompter/Prompter.qml:950 prompter/Prompter.qml:997
+#: kirigami_ui/main.qml:404 prompter/Prompter.qml:956
+#: prompter/Prompter.qml:1003
 msgid "Cu&t"
 msgstr "Cor&tar"
 
-#: kirigami_ui/main.qml:409 prompter/Prompter.qml:955
-#: prompter/Prompter.qml:1002
+#: kirigami_ui/main.qml:409 prompter/Prompter.qml:961
+#: prompter/Prompter.qml:1008
 msgid "&Paste"
 msgstr "&Pegar"
 
@@ -587,81 +588,87 @@ msgstr "Configurar duración"
 msgid "Flip"
 msgstr "Invertir"
 
-#: kirigami_ui/PrompterPage.qml:435 kirigami_ui/PrompterPage.qml:552
-msgid "No Flip"
-msgstr "No Invertir"
-
-#: kirigami_ui/PrompterPage.qml:436
-msgid "No flip"
-msgstr "No invertir"
-
-#: kirigami_ui/PrompterPage.qml:447 kirigami_ui/PrompterPage.qml:553
-msgid "H Flip"
-msgstr "Invertido H"
-
+#. i18n("H Flip")
 #: kirigami_ui/PrompterPage.qml:448
 msgid "Horizontal flip"
 msgstr "Invertido Horizontal"
 
-#: kirigami_ui/PrompterPage.qml:459 kirigami_ui/PrompterPage.qml:554
-msgid "V Flip"
-msgstr "Invertido V"
-
-#: kirigami_ui/PrompterPage.qml:460
+#. i18n("V Flip")
+#: kirigami_ui/PrompterPage.qml:463
 msgid "Vertical flip"
 msgstr "Invertido vertical"
 
-#: kirigami_ui/PrompterPage.qml:471 kirigami_ui/PrompterPage.qml:555
-msgid "HV Flip"
-msgstr "Invertido HV"
+#: kirigami_ui/PrompterPage.qml:488
+msgid "Normal"
+msgstr ""
 
-#: kirigami_ui/PrompterPage.qml:472
-msgid "180° rotation"
-msgstr "Rotación de 180°"
+#: kirigami_ui/PrompterPage.qml:498
+msgid "90° clockwise"
+msgstr ""
 
-#: kirigami_ui/PrompterPage.qml:485
+#: kirigami_ui/PrompterPage.qml:508
+msgid "90° counter"
+msgstr ""
+
+#: kirigami_ui/PrompterPage.qml:530
 msgid "Background"
 msgstr "Fondo"
 
-#: kirigami_ui/PrompterPage.qml:488
+#: kirigami_ui/PrompterPage.qml:533
 msgid "Set image"
 msgstr "Configurar imagen"
 
-#: kirigami_ui/PrompterPage.qml:497
+#: kirigami_ui/PrompterPage.qml:542
 msgid "Set color"
 msgstr "Configurar color"
 
-#: kirigami_ui/PrompterPage.qml:506
+#: kirigami_ui/PrompterPage.qml:551
 msgid "Clear"
 msgstr "Limpiar"
 
-#: kirigami_ui/PrompterPage.qml:518
+#: kirigami_ui/PrompterPage.qml:563
 msgid "Screens"
 msgstr "Pantallas"
 
-#: kirigami_ui/PrompterPage.qml:551 kirigami_ui/TelemetryPage.qml:79
+#: kirigami_ui/PrompterPage.qml:596 kirigami_ui/TelemetryPage.qml:79
 #: kirigami_ui/TelemetryPage.qml:101 kirigami_ui/TelemetryPage.qml:123
 #: kirigami_ui/TelemetryPage.qml:149
 msgid "Off"
 msgstr "Apagada"
 
-#: kirigami_ui/PrompterPage.qml:562
+#: kirigami_ui/PrompterPage.qml:597
+msgid "No Flip"
+msgstr "No Invertir"
+
+#: kirigami_ui/PrompterPage.qml:598
+msgid "H Flip"
+msgstr "Invertido H"
+
+#: kirigami_ui/PrompterPage.qml:599
+msgid "V Flip"
+msgstr "Invertido V"
+
+#: kirigami_ui/PrompterPage.qml:600
+msgid "HV Flip"
+msgstr "Invertido HV"
+
+#: kirigami_ui/PrompterPage.qml:607
 msgid "Scale projections"
 msgstr "Escalar proyecciones"
 
-#: kirigami_ui/PrompterPage.qml:571
+#: kirigami_ui/PrompterPage.qml:616
 msgid "Preview projections"
 msgstr "Vista previa"
 
-#: kirigami_ui/PrompterPage.qml:572
+#: kirigami_ui/PrompterPage.qml:617
 msgid "Project prompter duplicates onto extended displays"
 msgstr "Proyecta duplicados a pantallas extendidas"
 
-#: kirigami_ui/PrompterPage.qml:592
+#: kirigami_ui/PrompterPage.qml:637
 msgid "Leave Fullscreen"
 msgstr "Abandonar pantalla completa"
 
-#: kirigami_ui/PrompterPage.qml:592
+#: kirigami_ui/PrompterPage.qml:637
 msgid "Fullscreen"
 msgstr "Pantalla completa"
 
@@ -875,27 +882,34 @@ msgstr ""
 "corrido la milla extra para no colectar nada del texto y las imágenes con "
 "las que trabajas, así que te pido: por favor deja la telemetría activa."
 
-#: main.cpp:67
+#: main.cpp:69
 msgid "Personal teleprompter software for all video makers."
 msgstr "Teleprompter personal para creadores de videos."
 
-#: main.cpp:69
-msgid "© %1%2 Javier O. Cordero Pérez"
+#: main.cpp:71
+#, fuzzy
+msgid "© %1 Javier O. Cordero Pérez"
 msgstr "© %1%2 Javier O. Cordero Pérez"
 
-#: main.cpp:79
+#: main.cpp:81
 msgid "Author"
 msgstr "Autor"
 
-#: main.cpp:85
-msgid "Su nombre irá aquí"
-msgstr "Su nombre irá aquí"
+#: main.cpp:88
+msgid "Wrote keycode to string QML abstraction"
+msgstr ""
 
-#: main.cpp:86
-msgid "name@protonmail.com"
-msgstr "nombre@email.com"
+#: main.cpp:92
+msgctxt "NAME OF TRANSLATORS"
+msgid "Luis Blanco (RaSSieL), Javier O. Cordero Pérez (Cuperino)"
+msgstr ""
 
-#: main.cpp:96
+#: main.cpp:93
+msgctxt "EMAIL OF TRANSLATORS"
+msgid "rassiel86@gmail.com, javiercorderoperez@gmail.com"
+msgstr ""
+
+#: main.cpp:102
 msgid "Failed to load icons from fontello.ttf"
 msgstr "No se pudieron cargar los iconos de fontello.ttf"
 
@@ -913,11 +927,15 @@ msgid_plural "Disappear within %1 seconds to go"
 msgstr[0] "Ocultar cuando falte 1 segundo"
 msgstr[1] "Ocultar cuando falten %1 segundos"
 
-#: prompter/ProjectionsManager.qml:121
+#: prompter/ProjectionsManager.qml:122
 msgid "Projection Window"
 msgstr "Ventana de Proyección"
 
-#: prompter/ProjectionsManager.qml:254
+#: prompter/ProjectionsManager.qml:244
+msgid "Close"
+msgstr ""
+
+#: prompter/ProjectionsManager.qml:268
 msgid ""
 "For projection previews to display, you need at least one screen set to a "
 "projection setting other than \"Off\""
@@ -925,7 +943,7 @@ msgstr ""
 "Para que la previsualización de las proyecciones se muestre, necesitas que "
 "al menos un monitor esté configurado para proyectar"
 
-#: prompter/ProjectionsManager.qml:260
+#: prompter/ProjectionsManager.qml:274
 msgid "You've enabled a screen projection on display \""
 msgstr "Habilitó una proyección en el monitor \""
 
@@ -933,47 +951,47 @@ msgstr "Habilitó una proyección en el monitor \""
 msgid "Animation Completed"
 msgstr "Animación Terminó"
 
-#: prompter/Prompter.qml:522
+#: prompter/Prompter.qml:524
 msgid "Error loading file…"
 msgstr "Error cargando archivo…"
 
-#: prompter/Prompter.qml:587
+#: prompter/Prompter.qml:589
 msgid "Let's go back to the start"
 msgstr "Vallamos al comienzo"
 
-#: prompter/Prompter.qml:588
+#: prompter/Prompter.qml:590
 msgid "Take me back to the start"
 msgstr "Llévame al comienzo"
 
-#: prompter/Prompter.qml:589
+#: prompter/Prompter.qml:591
 msgid "I'm going back to the start"
 msgstr "Me dirijo hacia el comienzo"
 
-#: prompter/Prompter.qml:796
+#: prompter/Prompter.qml:801
 msgid "New document"
 msgstr "Nuevo documento"
 
-#: prompter/Prompter.qml:805
+#: prompter/Prompter.qml:810
 msgid "guide_en.html"
 msgstr "guide_es.html"
 
-#: prompter/Prompter.qml:810
+#: prompter/Prompter.qml:815
 msgid "User guide loaded"
 msgstr "Guía de usuario cargada"
 
-#: prompter/Prompter.qml:830 prompter/Prompter.qml:922
+#: prompter/Prompter.qml:835 prompter/Prompter.qml:928
 msgid "Saved %1"
 msgstr "%1 guardado"
 
-#: prompter/Prompter.qml:884 prompter/Prompter.qml:910
+#: prompter/Prompter.qml:887 prompter/Prompter.qml:916
 msgid "Hypertext Markup Language (HTML)"
 msgstr "Lenguaje de marcado de hipertexto (HTML)"
 
-#: prompter/Prompter.qml:885
+#: prompter/Prompter.qml:888
 msgid "Markdown (MD)"
 msgstr "Markdown (MD)"
 
-#: prompter/Prompter.qml:886 prompter/Prompter.qml:911
+#: prompter/Prompter.qml:889 prompter/Prompter.qml:917
 msgid "Plain Text (TXT)"
 msgstr "Texto sin formato (TXT)"
 
@@ -983,39 +1001,39 @@ msgstr "Texto sin formato (TXT)"
 #. i18n("Apple Pages Document (PAGES)") + "(*.pages *.PAGES)",
 #. i18n("Rich Text Format (RTF)") + "(*.rtf *.RTF)",
 #. i18n("Portable Document Format (PDF)") + "(*.pdf *.PDF)",
-#: prompter/Prompter.qml:893
+#: prompter/Prompter.qml:896
 msgid "All Formats"
 msgstr "Todos los formatos"
 
-#: prompter/Prompter.qml:961 prompter/Prompter.qml:1008
+#: prompter/Prompter.qml:967 prompter/Prompter.qml:1014
 msgid "Fo&nt…"
 msgstr "Let&ra…"
 
-#: prompter/Prompter.qml:965 prompter/Prompter.qml:1012
+#: prompter/Prompter.qml:971 prompter/Prompter.qml:1018
 msgid "Co&lor…"
 msgstr "Co&lor…"
 
-#: prompter/Prompter.qml:969 prompter/Prompter.qml:1016
+#: prompter/Prompter.qml:975 prompter/Prompter.qml:1022
 msgid "Hi&ghlight…"
 msgstr "Re&saltar…"
 
-#: prompter/Prompter.qml:986
+#: prompter/Prompter.qml:992
 msgid "Redo"
 msgstr "Rehacer"
 
-#: prompter/Prompter.qml:1202
+#: prompter/Prompter.qml:1208
 msgid "Begin countdown"
 msgstr "Comenzar cuenta regresiva"
 
-#: prompter/Prompter.qml:1202
+#: prompter/Prompter.qml:1208
 msgid "Start prompting"
 msgstr "Comenzar prompter"
 
-#: prompter/Prompter.qml:1253
+#: prompter/Prompter.qml:1259
 msgid "Skip countdown"
 msgstr "Saltar cuenta regresiva"
 
-#: prompter/Prompter.qml:1300
+#: prompter/Prompter.qml:1306
 msgid "Return to edit mode"
 msgstr "Regresar al modo de edición"
 
@@ -1028,6 +1046,18 @@ msgstr "Luis Blanco (RaSSieL), Javier O. Cordero Pérez (Cuperino)"
 msgctxt "EMAIL OF TRANSLATORS"
 msgid "Your emails"
 msgstr "rassiel86@gmail.com, javiercorderoperez@gmail.com"
+
+#~ msgid "No flip"
+#~ msgstr "No invertir"
+
+#~ msgid "180° rotation"
+#~ msgstr "Rotación de 180°"
+
+#~ msgid "Su nombre irá aquí"
+#~ msgstr "Su nombre irá aquí"
+
+#~ msgid "name@protonmail.com"
+#~ msgstr "nombre@email.com"
 
 #~ msgid "Spacebar"
 #~ msgstr "Barra espaciadora"

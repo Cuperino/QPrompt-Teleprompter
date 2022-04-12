@@ -57,16 +57,18 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
     QApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
     QApplication app(argc, argv);
 #endif
+    KLocalizedString::setApplicationDomain("qprompt");
     QCoreApplication::setOrganizationName("Cuperino");
     QCoreApplication::setOrganizationDomain(QPROMPT_URI);
     QCoreApplication::setApplicationName("QPrompt");
 
     const int currentYear = QDate::currentDate().year();
+    QString copyrightYears = (currentYear>2021 ? "2021-" : "") + QString::number(currentYear);
     KAboutData aboutData("qprompt", "QPrompt",
                          QPROMPT_VERSION_STRING " (" + QString(GIT_BRANCH) + "/" + QString(GIT_COMMIT_HASH) + ")",
                          i18n("Personal teleprompter software for all video makers."),
                          KAboutLicense::GPL_V3,
-                         i18n("© %1%2 Javier O. Cordero Pérez", currentYear>2021?"2021-":"", QString::number(currentYear)));
+                         i18n("© %1 Javier O. Cordero Pérez", copyrightYears));
 
     // Overwrite default-generated values of organizationDomain & desktopFileName
     aboutData.setHomepage("https://qprompt.app");
@@ -81,7 +83,7 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
         QString("https://javiercordero.info"),
         QString("cuperino")
     );
-    aboutData.addAuthor (
+    aboutData.addCredit (
         QString("Mark"),
         i18n("Wrote keycode to string QML abstraction"),
         QString(""),
