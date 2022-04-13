@@ -1370,6 +1370,15 @@ Flickable {
                     timer.stopTimer()
                 }
             }
+        },
+        Transition {
+            from: Prompter.States.Prompting
+            to: Prompter.States.Editing
+            ScriptAction  {
+                script: {
+                    __iDefault = prompter.__i;
+                }
+            }
         }
     ]
 }
