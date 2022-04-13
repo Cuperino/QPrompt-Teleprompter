@@ -211,8 +211,8 @@ list(APPEND DOCS ${LICENSE_FILE} ${README_FILE} ${DESCRIPTION_FILE} "COPYING.LES
 
 set(DOC_INSTALL_DIR "doc/qprompt")
 
-ki18n_install(po)
 add_subdirectory(src build)
+ki18n_install(po)
 
 if (WIN32 OR UNIX) # AND NOT ANDROID
     install(FILES com.cuperino.qprompt.appdata.xml DESTINATION ${KDE_INSTALL_METAINFODIR})
