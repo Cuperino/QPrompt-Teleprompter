@@ -274,11 +274,9 @@ ELSE(NOT GETTEXT_MSGFMT_EXECUTABLE)
 
        IF( _langCode )
            GET_FILENAME_COMPONENT(_lang ${_poFile} NAME_WE)
-           SET(_gmoFileTarget ${_lang}.gmo)
-           SET(_gmoFile ${CMAKE_CURRENT_BINARY_DIR}/${_gmoFileTarget})
+           SET(_gmoFile ${CMAKE_CURRENT_BINARY_DIR}/${_lang}.gmo)
 
-           add_custom_target(${_gmoFileTarget})
-           ADD_CUSTOM_COMMAND(TARGET ${PROJECT_NAME} # ${_gmoFileTarget} # ${_gmoFile}
+           ADD_CUSTOM_COMMAND(TARGET ${PROJECT_NAME} # ${_gmoFile}
                COMMAND ${GETTEXT_MSGFMT_EXECUTABLE} --check -o ${_gmoFile} ${_poFile}
                DEPENDS ${_poFile})
            INSTALL(FILES ${_gmoFile} DESTINATION ${LOCALE_INSTALL_DIR}/${_langCode}/LC_MESSAGES/ RENAME ${catalogname}.mo)
