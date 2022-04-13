@@ -59,7 +59,7 @@ Rectangle {
 
     anchors.fill: parent
     color: backgroundColor
-    opacity: /*backgroundOpacitySlider.pressed ||*/ parent.toolbar.opacitySlider.pressed || projectionManager.isPreview ? parent.toolbar.opacitySlider.value/100 : 1
+    opacity: /*parent.toolbar.opacitySlider.pressed || projectionManager.isPreview ? */parent.toolbar.opacitySlider.value/100 /*: 1 */
 
     Settings {
         id: backgroundSettings
