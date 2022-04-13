@@ -1200,10 +1200,6 @@ Flickable {
             //    //prompterVisibility: Kirigami.ApplicationWindow.FullScreen
             //}
             PropertyChanges {
-                target: prompterBackground
-                opacity: root.__translucidBackground ? root.__opacity : 1
-            }
-            PropertyChanges {
                 target: promptingButton
                 text: viewport.countdown.enabled ? i18n("Begin countdown") : i18n("Start prompting")
             }
@@ -1251,10 +1247,6 @@ Flickable {
                 //prompterVisibility: Kirigami.ApplicationWindow.FullScreen
             }
             PropertyChanges {
-                target: prompterBackground
-                opacity: root.__translucidBackground ? root.__opacity : 1
-            }
-            PropertyChanges {
                 target: promptingButton
                 text: i18n("Skip countdown")
             }
@@ -1296,10 +1288,6 @@ Flickable {
             PropertyChanges {
                 target: root
                 //prompterVisibility: Kirigami.ApplicationWindow.FullScreen
-            }
-            PropertyChanges {
-                target: prompterBackground
-                opacity: root.__translucidBackground ? root.__opacity : 1
             }
             PropertyChanges {
                 target: promptingButton
