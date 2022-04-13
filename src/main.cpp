@@ -89,8 +89,8 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
         QString(""),
         QString("https://stackoverflow.com/a/64862996/3833454")
     );
-    aboutData.setTranslator(i18nc("NAME OF TRANSLATORS", "Luis Blanco (RaSSieL), Javier O. Cordero Pérez (Cuperino)"),
-                            i18nc("EMAIL OF TRANSLATORS", "rassiel86@gmail.com, javiercorderoperez@gmail.com"));
+    aboutData.setTranslator(i18nc("NAME OF TRANSLATORS", "Luis Blanco (RaSSieL), Javier O. Cordero Pérez (Cuperino), Jonas Mapache, Maximilian Efinger"),
+                            i18nc("EMAIL OF TRANSLATORS", "rassiel86@gmail.com, javiercorderoperez@gmail.com, jonasmapache@gmail.com, maximilian.efinger@gmx.de"));
     //aboutData.addLicense(
     //    KAboutLicense::LGPL_V3
     //);

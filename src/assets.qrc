@@ -2,8 +2,9 @@
     <qresource prefix="/">
         <!-- Theme Configuration -->
         <file>qtquickcontrols2.conf</file>
-        <!-- User Guide -->
-        <file alias="guide_en.html">documents/guide_en.html</file>
+        <!-- User Welcome -->
+        <file alias="welcome_en.html">documents/welcome_en.html</file>
+        <file alias="welcome_es.html">documents/welcome_es.html</file>
         <!-- Empty Untitled Document -->
         <!-- The same file is referenced twice. This is intentional and related to clearing a file from within a new file. -->
         <file alias="untitled.html">documents/untitled.html</file>

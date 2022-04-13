@@ -807,12 +807,12 @@ Flickable {
                 closeDialog.open()
             else {
                 document.load("qrc:/blank.html")
-                document.load("qrc:/"+i18n("guide_en.html"))
+                document.load("qrc:/"+i18n("welcome_en.html"))
                 isNewFile = true
                 // Set document position to 0, so we can get to read the instructions faster.
                 prompter.position = 0
                 if (root.passiveNotifications)
-                    showPassiveNotification(i18n("User guide loaded"))
+                    showPassiveNotification(i18n("User welcome loaded"))
             }
         }
         function open() {
