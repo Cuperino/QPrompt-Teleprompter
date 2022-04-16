@@ -35,47 +35,4 @@
     <mediatype>text/markdown</mediatype>
     <mediatype>text/html</mediatype>
   </provides>
-  <requires>
-    <display_length compare="gte">292</display_length>
-  </requires>
-  <recommends>
-    <display_length compare="gte">xsmall</display_length>
-    <display_length compare="lte">xlarge</display_length>
-  </recommends>
-  <supports>
-    <control>pointing</control>
-    <control>keyboard</control>
-    <control>touch</control>
-  </supports>
-  <content_rating type="oars-1.1" />
-  <kudos>
-    <kudo>HiDpiIcon</kudo>
-    <kudo>HighContrast</kudo>
-    <kudo>ModernToolkit</kudo>
-  </kudos>
-  <releases>
-    <release version="1.0" type="stable" date="2021-12-31">
-      <artifacts>
-        <artifact type="binary" platform="aarch64-linux-gnu">
-          <location>https://github.com/Cuperino/QPrompt/releases/download/v1.0.0/qprompt-1.0.0-Linux-aarch64.deb</location>
-        </artifact>
-        <artifact type="binary" platform="x86_64-linux-gnu">
-          <location>https://github.com/Cuperino/QPrompt/releases/download/v1.0.0/qprompt-v1.0-2c9752c-v1.0-linux-64-gcc.AppImage</location>
-          <checksum type="sha256">179386217654318efb62f391e50eabb090aedeef2f111a9b6b35edc2c6c2c4cf</checksum>
-        </artifact>
-        <artifact type="binary" platform="x86_64-windows-msvc">
-          <location>https://github.com/Cuperino/QPrompt/releases/download/v1.0.0/qprompt-v1.0-2c9752c-v1.0-windows-msvc2019_64-cl.exe</location>
-        </artifact>
-        <artifact type="binary" platform="x86_64-maacos-clang">
-          <location>https://github.com/Cuperino/QPrompt/releases/download/v1.0.0/qprompt-v1.0-2c9752c-v1.0-macos-64-clang.dmg</location>
-        </artifact>
-        <artifact type="binary" platform="arm64-v8a-android">
-          <location>https://github.com/Cuperino/QPrompt/releases/download/v1.0.0/qprompt_build_apk-debug.apk</location>
-        </artifact>
-        <artifact type="source">
-          <location>https://github.com/Cuperino/QPrompt/archive/refs/tags/v1.0.0.tar.gz</location>
-        </artifact>
-      </artifacts>
-    </release>
-  </releases>
 </component>
