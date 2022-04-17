@@ -8,39 +8,41 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/Cuperino/QPrompt/issues/new/choose\n"
 "POT-Creation-Date: 2022-04-12 16:34-0400\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Automatically generated\n"
-"Language-Team: none\n"
+"PO-Revision-Date: 2022-04-17 07:26+0000\n"
+"Last-Translator: Quentin PAGÈS <quenty@zaclys.net>\n"
+"Language-Team: Occitan <http://l10n.cuperino.com/projects/qprompt/"
+"qprompt-app/oc/>\n"
 "Language: oc\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: Weblate 4.11.2\n"
 
 #: kirigami_ui/+android/main.qml:144 kirigami_ui/main.qml:174
 #: kirigami_ui/main.qml:362 kirigami_ui/+windows/main.qml:202
 msgid "&New"
-msgstr ""
+msgstr "&Novèl"
 
 #: kirigami_ui/+android/main.qml:150 kirigami_ui/main.qml:180
 #: kirigami_ui/main.qml:366 kirigami_ui/+windows/main.qml:208
 msgid "&Open"
-msgstr ""
+msgstr "&Dobrir"
 
 #: kirigami_ui/+android/main.qml:156 kirigami_ui/main.qml:189
 #: kirigami_ui/main.qml:370 kirigami_ui/+windows/main.qml:214
 msgid "&Save"
-msgstr ""
+msgstr "&Enregistrar"
 
 #: kirigami_ui/+android/main.qml:162 kirigami_ui/main.qml:198
 #: kirigami_ui/+windows/main.qml:220
 msgid "Save &As"
-msgstr ""
+msgstr "Enregistrar &jos"
 
 #: kirigami_ui/+android/main.qml:169 kirigami_ui/main.qml:208
 #: kirigami_ui/+windows/main.qml:227
 msgid "&Recent Files"
-msgstr ""
+msgstr "&Fichièrs recents"
 
 #: kirigami_ui/+android/main.qml:177 kirigami_ui/main.qml:216
 #: kirigami_ui/+windows/main.qml:235
