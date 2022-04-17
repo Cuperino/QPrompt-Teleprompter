@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/Cuperino/QPrompt/issues/new/choose\n"
 "POT-Creation-Date: 2022-04-12 16:34-0400\n"
-"PO-Revision-Date: 2022-04-17 07:26+0000\n"
+"PO-Revision-Date: 2022-04-18 04:40+0000\n"
 "Last-Translator: Quentin PAGÈS <quenty@zaclys.net>\n"
 "Language-Team: Occitan <http://l10n.cuperino.com/projects/qprompt/"
 "qprompt-app/oc/>\n"
@@ -87,12 +87,12 @@ msgstr ""
 #: kirigami_ui/+android/main.qml:250 kirigami_ui/main.qml:289
 #: kirigami_ui/+windows/main.qml:308
 msgid "Abou&t"
-msgstr ""
+msgstr "A &prepaus"
 
 #: kirigami_ui/+android/main.qml:256 kirigami_ui/main.qml:295
 #: kirigami_ui/main.qml:379 kirigami_ui/+windows/main.qml:314
 msgid "&Quit"
-msgstr ""
+msgstr "&Quitar"
 
 #: kirigami_ui/+android/main.qml:271 kirigami_ui/main.qml:321
 #: kirigami_ui/+windows/main.qml:334
@@ -102,7 +102,7 @@ msgstr ""
 #: kirigami_ui/+android/main.qml:467 kirigami_ui/main.qml:789
 #: kirigami_ui/+windows/main.qml:484
 msgid "Save Document"
-msgstr ""
+msgstr "Enregistrar lo document"
 
 #: kirigami_ui/+android/main.qml:468 kirigami_ui/main.qml:790
 #: kirigami_ui/+windows/main.qml:485
@@ -112,16 +112,16 @@ msgstr ""
 #: kirigami_ui/EditorToolbar.qml:317 kirigami_ui/EditorToolbar.qml:327
 #: kirigami_ui/main.qml:544 kirigami_ui/main.qml:561
 msgid "&Left"
-msgstr ""
+msgstr "&Esquèrra"
 
 #: kirigami_ui/EditorToolbar.qml:317 kirigami_ui/EditorToolbar.qml:327
 #: kirigami_ui/main.qml:544 kirigami_ui/main.qml:561
 msgid "&Right"
-msgstr ""
+msgstr "&Drecha"
 
 #: kirigami_ui/EditorToolbar.qml:322
 msgid "C&enter"
-msgstr ""
+msgstr "C&entrat"
 
 #: kirigami_ui/EditorToolbar.qml:476
 msgid "DejaVu (default, Roman, Cyrillic)"
@@ -153,11 +153,11 @@ msgstr ""
 
 #: kirigami_ui/EditorToolbar.qml:729
 msgid "Velocity:"
-msgstr ""
+msgstr "Velocitat"
 
 #: kirigami_ui/EditorToolbar.qml:763
 msgid "Opacity:"
-msgstr ""
+msgstr "Opacitat :"
 
 #: kirigami_ui/EditorToolbar.qml:795
 msgid "Font size while editing:"
@@ -165,23 +165,23 @@ msgstr ""
 
 #: kirigami_ui/EditorToolbar.qml:826
 msgid "Font size:"
-msgstr ""
+msgstr "Talha de la poliça :"
 
 #: kirigami_ui/EditorToolbar.qml:862
 msgid "Line height:"
-msgstr ""
+msgstr "Nautor de linha :"
 
 #: kirigami_ui/EditorToolbar.qml:900
 msgid "Word spacing:"
-msgstr ""
+msgstr "Espaciament :"
 
 #: kirigami_ui/EditorToolbar.qml:936
 msgid "Letter spacing:"
-msgstr ""
+msgstr "Interletratge :"
 
 #: kirigami_ui/EditorToolbar.qml:972
 msgid "Step speed:"
-msgstr ""
+msgstr "Velocitat etapa :"
 
 #: kirigami_ui/EditorToolbar.qml:1013
 msgid "Step acceleration:"
@@ -189,7 +189,7 @@ msgstr ""
 
 #: kirigami_ui/EditorToolbar.qml:1049
 msgid "Start Velocity"
-msgstr ""
+msgstr "Velocitat a la debuta"
 
 #: kirigami_ui/EditorToolbar.qml:1056
 msgid "Velocity to have when starting to prompt"
@@ -205,7 +205,7 @@ msgstr ""
 
 #: kirigami_ui/InputsOverlay.qml:37
 msgid "Key Bindings"
-msgstr ""
+msgstr "Acorchis de clavièr"
 
 #: kirigami_ui/InputsOverlay.qml:131
 msgid "Toggle Prompter State"
@@ -221,7 +221,7 @@ msgstr ""
 
 #: kirigami_ui/InputsOverlay.qml:155
 msgid "Play/Pause"
-msgstr ""
+msgstr "Lectura/Pausa"
 
 #: kirigami_ui/InputsOverlay.qml:163
 msgid "Move Backwards"
@@ -249,33 +249,33 @@ msgstr ""
 
 #: kirigami_ui/main.qml:385
 msgid "&Edit"
-msgstr ""
+msgstr "&Modificar"
 
 #: kirigami_ui/main.qml:388 prompter/Prompter.qml:987
 msgid "&Undo"
-msgstr ""
+msgstr "&Anullar"
 
 #: kirigami_ui/main.qml:393
 msgid "&Redo"
-msgstr ""
+msgstr "&Refar"
 
 #: kirigami_ui/main.qml:399 prompter/Prompter.qml:951 prompter/Prompter.qml:998
 msgid "&Copy"
-msgstr ""
+msgstr "&Copiar"
 
 #: kirigami_ui/main.qml:404 prompter/Prompter.qml:956
 #: prompter/Prompter.qml:1003
 msgid "Cu&t"
-msgstr ""
+msgstr "Co&par"
 
 #: kirigami_ui/main.qml:409 prompter/Prompter.qml:961
 #: prompter/Prompter.qml:1008
 msgid "&Paste"
-msgstr ""
+msgstr "&Pegar"
 
 #: kirigami_ui/main.qml:416
 msgid "&View"
-msgstr ""
+msgstr "Aficha&tge"
 
 #: kirigami_ui/main.qml:419
 msgid "Full &screen"
@@ -311,11 +311,11 @@ msgstr ""
 
 #: kirigami_ui/main.qml:473
 msgid "&All"
-msgstr ""
+msgstr "&Tot"
 
 #: kirigami_ui/main.qml:479
 msgid "&Hidden"
-msgstr ""
+msgstr "&Amagat"
 
 #: kirigami_ui/main.qml:486
 msgid "Readin&g region"
@@ -347,11 +347,11 @@ msgstr ""
 
 #: kirigami_ui/main.qml:525
 msgid "&Bold"
-msgstr ""
+msgstr "&Gras"
 
 #: kirigami_ui/main.qml:531
 msgid "&Italic"
-msgstr ""
+msgstr "&Italica"
 
 #: kirigami_ui/main.qml:537
 msgid "&Underline"
@@ -371,11 +371,11 @@ msgstr ""
 
 #: kirigami_ui/main.qml:590
 msgid "Controls"
-msgstr ""
+msgstr "Contraròtles"
 
 #: kirigami_ui/main.qml:623
 msgid "&Help"
-msgstr ""
+msgstr "&Ajuda"
 
 #: kirigami_ui/main.qml:626
 msgid "Report &Bug…"
@@ -427,7 +427,7 @@ msgstr ""
 
 #: kirigami_ui/PrompterPage.qml:111
 msgid "Top"
-msgstr ""
+msgstr "Naut"
 
 #: kirigami_ui/PrompterPage.qml:113
 msgid "Move reading region to the top, convenient for use with webcams"
@@ -435,7 +435,7 @@ msgstr ""
 
 #: kirigami_ui/PrompterPage.qml:122
 msgid "Middle"
-msgstr ""
+msgstr "Mitan"
 
 #: kirigami_ui/PrompterPage.qml:124
 msgid "Move reading region to the vertical center"
@@ -443,7 +443,7 @@ msgstr ""
 
 #: kirigami_ui/PrompterPage.qml:133
 msgid "Bottom"
-msgstr ""
+msgstr "Bas"
 
 #: kirigami_ui/PrompterPage.qml:135
 msgid "Move reading region to the bottom"
@@ -451,7 +451,7 @@ msgstr ""
 
 #: kirigami_ui/PrompterPage.qml:144
 msgid "Free"
-msgstr ""
+msgstr "Libre"
 
 #: kirigami_ui/PrompterPage.qml:146
 msgid "Move reading region freely by dragging and dropping"
@@ -459,7 +459,7 @@ msgstr ""
 
 #: kirigami_ui/PrompterPage.qml:155
 msgid "Custom"
-msgstr ""
+msgstr "Personalizats"
 
 #: kirigami_ui/PrompterPage.qml:157
 msgid "Fix reading region to the position set using free placement mode"
@@ -471,7 +471,7 @@ msgstr ""
 
 #: kirigami_ui/PrompterPage.qml:230
 msgid "Indicators"
-msgstr ""
+msgstr "Indicadors"
 
 #: kirigami_ui/PrompterPage.qml:231
 msgid "Change reading region indicators"
@@ -503,7 +503,7 @@ msgstr ""
 
 #: kirigami_ui/PrompterPage.qml:268
 msgid "Bar"
-msgstr ""
+msgstr "Barra"
 
 #: kirigami_ui/PrompterPage.qml:270
 msgid "Translucent bars indicate reading region"
@@ -527,7 +527,7 @@ msgstr ""
 
 #: kirigami_ui/PrompterPage.qml:301
 msgid "All"
-msgstr ""
+msgstr "Tot"
 
 #: kirigami_ui/PrompterPage.qml:303
 msgid "Use all reading region indicators"
@@ -535,7 +535,7 @@ msgstr ""
 
 #: kirigami_ui/PrompterPage.qml:312
 msgid "Hidden"
-msgstr ""
+msgstr "Elements amagats"
 
 #: kirigami_ui/PrompterPage.qml:314
 msgid "Disable reading region indicators"
@@ -543,15 +543,15 @@ msgstr ""
 
 #: kirigami_ui/PrompterPage.qml:324
 msgid "Timer"
-msgstr ""
+msgstr "Minutador"
 
 #: kirigami_ui/PrompterPage.qml:330
 msgid "Stopwatch"
-msgstr ""
+msgstr "Cronomètre"
 
 #: kirigami_ui/PrompterPage.qml:341
 msgid "ETA"
-msgstr ""
+msgstr "ETA"
 
 #: kirigami_ui/PrompterPage.qml:349
 msgid "Timer color"
@@ -559,11 +559,11 @@ msgstr ""
 
 #: kirigami_ui/PrompterPage.qml:358
 msgid "Clear color"
-msgstr ""
+msgstr "Escafar color"
 
 #: kirigami_ui/PrompterPage.qml:369 kirigami_ui/PrompterPage.qml:390
 msgid "Countdown"
-msgstr ""
+msgstr "Retardador"
 
 #: kirigami_ui/PrompterPage.qml:375
 msgid "Auto frame"
@@ -571,7 +571,7 @@ msgstr ""
 
 #: kirigami_ui/PrompterPage.qml:405
 msgid "Auto start"
-msgstr ""
+msgstr "Lectura automatica"
 
 #: kirigami_ui/PrompterPage.qml:407
 msgid "Start countdown automatically"
@@ -579,29 +579,29 @@ msgstr ""
 
 #: kirigami_ui/PrompterPage.qml:416
 msgid "Set duration"
-msgstr ""
+msgstr "Definir durada"
 
 #: kirigami_ui/PrompterPage.qml:432
 msgid "Flip"
-msgstr ""
+msgstr "Revirar"
 
 #. i18n("H Flip")
 #: kirigami_ui/PrompterPage.qml:448
 msgid "Horizontal flip"
-msgstr ""
+msgstr "Revirament orizontal"
 
 #. i18n("V Flip")
 #: kirigami_ui/PrompterPage.qml:463
 msgid "Vertical flip"
-msgstr ""
+msgstr "Revirament vertical"
 
 #: kirigami_ui/PrompterPage.qml:488
 msgid "Normal"
-msgstr ""
+msgstr "Normala"
 
 #: kirigami_ui/PrompterPage.qml:498
 msgid "90° clockwise"
-msgstr ""
+msgstr "Rotacion 90° sens orari"
 
 #: kirigami_ui/PrompterPage.qml:508
 msgid "90° counter"
@@ -609,29 +609,29 @@ msgstr ""
 
 #: kirigami_ui/PrompterPage.qml:530
 msgid "Background"
-msgstr ""
+msgstr "Fons de l’imatge"
 
 #: kirigami_ui/PrompterPage.qml:533
 msgid "Set image"
-msgstr ""
+msgstr "Definir l'imatge"
 
 #: kirigami_ui/PrompterPage.qml:542
 msgid "Set color"
-msgstr ""
+msgstr "Definir color"
 
 #: kirigami_ui/PrompterPage.qml:551
 msgid "Clear"
-msgstr ""
+msgstr "Escafar"
 
 #: kirigami_ui/PrompterPage.qml:563
 msgid "Screens"
-msgstr ""
+msgstr "Ecrans"
 
 #: kirigami_ui/PrompterPage.qml:596 kirigami_ui/TelemetryPage.qml:79
 #: kirigami_ui/TelemetryPage.qml:101 kirigami_ui/TelemetryPage.qml:123
 #: kirigami_ui/TelemetryPage.qml:149
 msgid "Off"
-msgstr ""
+msgstr "Desactivar"
 
 #: kirigami_ui/PrompterPage.qml:597
 msgid "No Flip"
@@ -663,15 +663,15 @@ msgstr ""
 
 #: kirigami_ui/PrompterPage.qml:637
 msgid "Leave Fullscreen"
-msgstr ""
+msgstr "Quitar lo mòde ecran complet"
 
 #: kirigami_ui/PrompterPage.qml:637
 msgid "Fullscreen"
-msgstr ""
+msgstr "Ecran complet"
 
 #: kirigami_ui/RemotePage.qml:28
 msgid "Remote Control"
-msgstr ""
+msgstr "Contraròtle a distància"
 
 #: kirigami_ui/TelemetryPage.qml:30
 msgid "Telemetry Settings"
@@ -693,20 +693,20 @@ msgstr ""
 
 #: kirigami_ui/TelemetryPage.qml:67
 msgid "Telemetry"
-msgstr ""
+msgstr "Telemetria"
 
 #: kirigami_ui/TelemetryPage.qml:70
 msgid "Enabled"
-msgstr ""
+msgstr "Activat"
 
 #: kirigami_ui/TelemetryPage.qml:70
 msgid "Disabled"
-msgstr ""
+msgstr "Desactivat"
 
 #: kirigami_ui/TelemetryPage.qml:79 kirigami_ui/TelemetryPage.qml:101
 #: kirigami_ui/TelemetryPage.qml:123 kirigami_ui/TelemetryPage.qml:149
 msgid "On"
-msgstr ""
+msgstr "Alucat"
 
 #: kirigami_ui/TelemetryPage.qml:93
 msgid "Basic program and system information"
@@ -714,7 +714,7 @@ msgstr ""
 
 #: kirigami_ui/TelemetryPage.qml:94
 msgid "Application version"
-msgstr ""
+msgstr "Version de l'aplicacion"
 
 #: kirigami_ui/TelemetryPage.qml:95
 msgid "Platform information"
@@ -874,7 +874,7 @@ msgstr ""
 
 #: main.cpp:81
 msgid "Author"
-msgstr ""
+msgstr "Autor"
 
 #: main.cpp:88
 msgid "Wrote keycode to string QML abstraction"
@@ -918,7 +918,7 @@ msgstr ""
 
 #: prompter/ProjectionsManager.qml:244
 msgid "Close"
-msgstr ""
+msgstr "Tampar"
 
 #: prompter/ProjectionsManager.qml:268
 msgid ""
@@ -952,7 +952,7 @@ msgstr ""
 
 #: prompter/Prompter.qml:801
 msgid "New document"
-msgstr ""
+msgstr "Document novèl"
 
 #: prompter/Prompter.qml:810
 msgid "welcome_en.html"
@@ -986,7 +986,7 @@ msgstr ""
 #. i18n("Portable Document Format (PDF)") + "(*.pdf *.PDF)",
 #: prompter/Prompter.qml:896
 msgid "All Formats"
-msgstr ""
+msgstr "Totes los formats"
 
 #: prompter/Prompter.qml:967 prompter/Prompter.qml:1014
 msgid "Fo&nt…"
@@ -1002,7 +1002,7 @@ msgstr ""
 
 #: prompter/Prompter.qml:992
 msgid "Redo"
-msgstr ""
+msgstr "Refar"
 
 #: prompter/Prompter.qml:1208
 msgid "Begin countdown"
@@ -1024,8 +1024,24 @@ msgstr ""
 msgctxt "NAME OF TRANSLATORS"
 msgid "Your names"
 msgstr ""
+",Launchpad Contributions:,Cédric VALMARY (Tot en òc), ,Launchpad "
+"Contributions:,Avogadro Team,Cédric VALMARY (Tot en òc), ,Launchpad "
+"Contributions:,Avogadro Team,Cédric VALMARY (Tot en òc), ,Launchpad "
+"Contributions:,Avogadro Team,Cédric VALMARY (Tot en òc), ,Launchpad "
+"Contributions:,Avogadro Team,Cédric VALMARY (Tot en òc), ,Launchpad "
+"Contributions:,Avogadro Team,Cédric VALMARY (Tot en òc), ,Launchpad "
+"Contributions:,Avogadro Team,Cédric VALMARY (Tot en òc), ,Launchpad "
+"Contributions:,Avogadro Team,Cédric VALMARY (Tot en òc), ,Launchpad "
+"Contributions:,Avogadro Team,Cédric VALMARY (Tot en òc)"
 
 #: rc.cpp:2
 msgctxt "EMAIL OF TRANSLATORS"
 msgid "Your emails"
 msgstr ""
+",,cvalmary@yahoo.fr,,,avogadro-devel@lists.sourceforge.net,cvalmary@yahoo.fr"
+",,,avogadro-devel@lists.sourceforge.net,cvalmary@yahoo.fr,,,avogadro-"
+"devel@lists.sourceforge.net,cvalmary@yahoo.fr,,,avogadro-devel@lists."
+"sourceforge.net,cvalmary@yahoo.fr,,,avogadro-devel@lists.sourceforge."
+"net,cvalmary@yahoo.fr,,,avogadro-devel@lists.sourceforge.net,cvalmary@yahoo."
+"fr,,,avogadro-devel@lists.sourceforge.net,cvalmary@yahoo.fr,,,avogadro-"
+"devel@lists.sourceforge.net,cvalmary@yahoo.fr"
