@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/Cuperino/QPrompt/issues/new/choose\n"
 "POT-Creation-Date: 2022-04-12 16:34-0400\n"
-"PO-Revision-Date: 2022-04-18 04:20+0000\n"
-"Last-Translator: Fanch <fanch.le.cleach@gmail.com>\n"
+"PO-Revision-Date: 2022-04-18 05:00+0000\n"
+"Last-Translator: Javier O. Cordero Pérez <javiercorderoperez@gmail.com>\n"
 "Language-Team: French <http://l10n.cuperino.com/projects/qprompt/qprompt-app/"
 "fr/>\n"
 "Language: fr\n"
@@ -125,11 +125,11 @@ msgstr "C&entrer"
 
 #: kirigami_ui/EditorToolbar.qml:476
 msgid "DejaVu (default, Roman, Cyrillic)"
-msgstr "DejaVu (défaut, Roman, Cyrillique)"
+msgstr "DejaVu (défaut, Romain, Cyrillique)"
 
 #: kirigami_ui/EditorToolbar.qml:480
 msgid "OpenDyslexic (Roman)"
-msgstr "OpenDyslexic (Roman)"
+msgstr "OpenDyslexic (Romain)"
 
 #: kirigami_ui/EditorToolbar.qml:484
 msgid "Source Han Sans (CH, JP, KO)"
@@ -137,7 +137,7 @@ msgstr "Source Han Sans (CH, JP, KO)"
 
 #: kirigami_ui/EditorToolbar.qml:488
 msgid "Scheherazade New (Arabic)"
-msgstr "Scheherazade New (Arabic)"
+msgstr "Scheherazade New (Arabe)"
 
 #: kirigami_ui/EditorToolbar.qml:492
 msgid "Palanquin (Devangari)"
@@ -153,7 +153,7 @@ msgstr "Choisir la police"
 
 #: kirigami_ui/EditorToolbar.qml:729
 msgid "Velocity:"
-msgstr "Vitesse:"
+msgstr "Vitesse :"
 
 #: kirigami_ui/EditorToolbar.qml:763
 msgid "Opacity:"
@@ -161,7 +161,7 @@ msgstr "Opacité :"
 
 #: kirigami_ui/EditorToolbar.qml:795
 msgid "Font size while editing:"
-msgstr "Taille de police  en édition :"
+msgstr "Taille de police en édition :"
 
 #: kirigami_ui/EditorToolbar.qml:826
 msgid "Font size:"
@@ -981,7 +981,7 @@ msgstr "Nouveau document"
 
 #: prompter/Prompter.qml:810
 msgid "welcome_en.html"
-msgstr "welcome_en.html"
+msgstr "welcome_fr.html"
 
 #: prompter/Prompter.qml:815
 msgid "User welcome loaded"
@@ -993,7 +993,7 @@ msgstr "%1 enregistré"
 
 #: prompter/Prompter.qml:887 prompter/Prompter.qml:916
 msgid "Hypertext Markup Language (HTML)"
-msgstr "Hypertext Markup Language (HTML)"
+msgstr "Langage Signalétique Hyper Text (HTML)"
 
 #: prompter/Prompter.qml:888
 msgid "Markdown (MD)"
@@ -1001,7 +1001,7 @@ msgstr "Markdown (MD)"
 
 #: prompter/Prompter.qml:889 prompter/Prompter.qml:917
 msgid "Plain Text (TXT)"
-msgstr "Plain Text (TXT)"
+msgstr "Texte Brut (TXT)"
 
 #. i18n("OpenDocument Format Text Document (ODT)") + "(*.odt *.ODT)",
 #. i18n("AbiWord Document (ABW)") + "(*.abw *.ABW *.zabw *.ZABW)",
@@ -1048,9 +1048,9 @@ msgstr "Revenir au mode édition"
 #: rc.cpp:1
 msgctxt "NAME OF TRANSLATORS"
 msgid "Your names"
-msgstr "Vos noms"
+msgstr "Fanch"
 
 #: rc.cpp:2
 msgctxt "EMAIL OF TRANSLATORS"
 msgid "Your emails"
-msgstr "Vos emails"
+msgstr "fanch.le.cleach@gmail.com"
