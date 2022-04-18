@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/Cuperino/QPrompt/issues/new/choose\n"
-"POT-Creation-Date: 2022-04-12 16:34-0400\n"
+"POT-Creation-Date: 2022-04-18 01:31-0400\n"
 "PO-Revision-Date: 2022-04-18 05:00+0000\n"
 "Last-Translator: Javier O. Cordero Pérez <javiercorderoperez@gmail.com>\n"
 "Language-Team: French <http://l10n.cuperino.com/projects/qprompt/qprompt-app/"
@@ -900,24 +900,14 @@ msgid "Wrote keycode to string QML abstraction"
 msgstr "Écrit le code clé à la chaîne d'abstraction QML"
 
 #: main.cpp:92
-msgctxt "NAME OF TRANSLATORS"
-msgid ""
-"Luis Blanco (RaSSieL), Javier O. Cordero Pérez (Cuperino), Jonas Mapache, "
-"Maximilian Efinger"
+msgid "NAME OF TRANSLATORS"
 msgstr ""
-"Luis Blanco (RaSSieL), Javier O. Cordero Pérez (Cuperino), Jonas Mapache, "
-"Maximilian Efinger"
 
-#: main.cpp:93
-msgctxt "EMAIL OF TRANSLATORS"
-msgid ""
-"rassiel86@gmail.com, javiercorderoperez@gmail.com, jonasmapache@gmail.com, "
-"maximilian.efinger@gmx.de"
+#: main.cpp:92
+msgid "EMAIL OF TRANSLATORS"
 msgstr ""
-"rassiel86@gmail.com, javiercorderoperez@gmail.com, jonasmapache@gmail.com, "
-"maximilian.efinger@gmx.de"
 
-#: main.cpp:102
+#: main.cpp:101
 msgid "Failed to load icons from fontello.ttf"
 msgstr "Échec du chargement des icônes de fontello.tff"
 
@@ -1029,19 +1019,19 @@ msgstr "Surbrillance…"
 msgid "Redo"
 msgstr "Refaire"
 
-#: prompter/Prompter.qml:1208
+#: prompter/Prompter.qml:1204
 msgid "Begin countdown"
 msgstr "Démarrer le compte à rebours"
 
-#: prompter/Prompter.qml:1208
+#: prompter/Prompter.qml:1204
 msgid "Start prompting"
 msgstr "Démarrer le prompteur"
 
-#: prompter/Prompter.qml:1259
+#: prompter/Prompter.qml:1251
 msgid "Skip countdown"
 msgstr "Passer le compte à rebours"
 
-#: prompter/Prompter.qml:1306
+#: prompter/Prompter.qml:1294
 msgid "Return to edit mode"
 msgstr "Revenir au mode édition"
 
@@ -1054,3 +1044,19 @@ msgstr "Fanch"
 msgctxt "EMAIL OF TRANSLATORS"
 msgid "Your emails"
 msgstr "fanch.le.cleach@gmail.com"
+
+#~ msgctxt "NAME OF TRANSLATORS"
+#~ msgid ""
+#~ "Luis Blanco (RaSSieL), Javier O. Cordero Pérez (Cuperino), Jonas Mapache, "
+#~ "Maximilian Efinger"
+#~ msgstr ""
+#~ "Luis Blanco (RaSSieL), Javier O. Cordero Pérez (Cuperino), Jonas Mapache, "
+#~ "Maximilian Efinger"
+
+#~ msgctxt "EMAIL OF TRANSLATORS"
+#~ msgid ""
+#~ "rassiel86@gmail.com, javiercorderoperez@gmail.com, jonasmapache@gmail."
+#~ "com, maximilian.efinger@gmx.de"
+#~ msgstr ""
+#~ "rassiel86@gmail.com, javiercorderoperez@gmail.com, jonasmapache@gmail."
+#~ "com, maximilian.efinger@gmx.de"
