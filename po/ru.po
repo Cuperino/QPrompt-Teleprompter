@@ -7,11 +7,11 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/Cuperino/QPrompt/issues/new/choose\n"
-"POT-Creation-Date: 2022-04-12 16:34-0400\n"
+"POT-Creation-Date: 2022-04-18 01:31-0400\n"
 "PO-Revision-Date: 2022-04-18 05:00+0000\n"
 "Last-Translator: Javier O. Cordero Pérez <javiercorderoperez@gmail.com>\n"
-"Language-Team: Russian <http://l10n.cuperino.com/projects/qprompt/"
-"qprompt-app/ru/>\n"
+"Language-Team: Russian <http://l10n.cuperino.com/projects/qprompt/qprompt-"
+"app/ru/>\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -882,20 +882,14 @@ msgid "Wrote keycode to string QML abstraction"
 msgstr ""
 
 #: main.cpp:92
-msgctxt "NAME OF TRANSLATORS"
-msgid ""
-"Luis Blanco (RaSSieL), Javier O. Cordero Pérez (Cuperino), Jonas Mapache, "
-"Maximilian Efinger"
+msgid "NAME OF TRANSLATORS"
 msgstr ""
 
-#: main.cpp:93
-msgctxt "EMAIL OF TRANSLATORS"
-msgid ""
-"rassiel86@gmail.com, javiercorderoperez@gmail.com, jonasmapache@gmail.com, "
-"maximilian.efinger@gmx.de"
+#: main.cpp:92
+msgid "EMAIL OF TRANSLATORS"
 msgstr ""
 
-#: main.cpp:102
+#: main.cpp:101
 msgid "Failed to load icons from fontello.ttf"
 msgstr ""
 
@@ -1006,19 +1000,19 @@ msgstr ""
 msgid "Redo"
 msgstr ""
 
-#: prompter/Prompter.qml:1208
+#: prompter/Prompter.qml:1204
 msgid "Begin countdown"
 msgstr ""
 
-#: prompter/Prompter.qml:1208
+#: prompter/Prompter.qml:1204
 msgid "Start prompting"
 msgstr ""
 
-#: prompter/Prompter.qml:1259
+#: prompter/Prompter.qml:1251
 msgid "Skip countdown"
 msgstr ""
 
-#: prompter/Prompter.qml:1306
+#: prompter/Prompter.qml:1294
 msgid "Return to edit mode"
 msgstr ""
 
