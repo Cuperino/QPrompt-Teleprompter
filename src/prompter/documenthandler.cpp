@@ -72,7 +72,9 @@
 #include "documenthandler.h"
 
 #include <vector>
-
+#if defined(Q_OS_ANDROID)
+#include <QtAndroid>
+#endif
 #if defined(Q_OS_ANDROID) || defined(Q_OS_IOS) || defined(Q_OS_WASM) || defined(Q_OS_WATCHOS) || defined(Q_OS_QNX)
 #include <QGuiApplication>
 #else
@@ -579,7 +581,12 @@ void DocumentHandler::saveAs(const QUrl &fileUrl)
     QTextDocument *doc = textDocument();
     if (!doc)
         return;
-    
+#if defined(Q_OS_ANDROID)
+    // https://developer.android.com/reference/android/Manifest.permission
+    const QStringList permissions = QStringList("android.permission.WRITE_EXTERNAL_STORAGE");
+    const int milisecondTimeoutWait = 120000;
+    QtAndroid::PermissionResultMap result = requestPermissionsSync(permissions, milisecondTimeoutWait);
+#endif
     const QString filePath = fileUrl.toLocalFile();
     const bool isHtml = QFileInfo(filePath).suffix().contains(QLatin1String("html"));
     QFile file(filePath);
