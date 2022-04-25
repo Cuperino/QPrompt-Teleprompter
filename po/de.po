@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/Cuperino/QPrompt/issues/new/choose\n"
 "POT-Creation-Date: 2022-04-24 23:57-0400\n"
-"PO-Revision-Date: 2022-04-18 12:18+0000\n"
+"PO-Revision-Date: 2022-04-25 05:23+0000\n"
 "Last-Translator: Javier O. Cordero Pérez <javiercorderoperez@gmail.com>\n"
 "Language-Team: German <http://l10n.cuperino.com/projects/qprompt/qprompt-app/"
 "de/>\n"
@@ -21,42 +21,36 @@ msgstr ""
 
 #: kirigami_ui/+android/main.qml:144 kirigami_ui/main.qml:174
 #: kirigami_ui/main.qml:362 kirigami_ui/+windows/main.qml:202
-#, fuzzy
 msgctxt "Main menu and global menu actions"
 msgid "&New"
 msgstr "&Neu"
 
 #: kirigami_ui/+android/main.qml:150 kirigami_ui/main.qml:180
 #: kirigami_ui/main.qml:366 kirigami_ui/+windows/main.qml:208
-#, fuzzy
 msgctxt "Main menu and global menu actions"
 msgid "&Open"
 msgstr "&Öffnen"
 
 #: kirigami_ui/+android/main.qml:156 kirigami_ui/main.qml:189
 #: kirigami_ui/main.qml:370 kirigami_ui/+windows/main.qml:214
-#, fuzzy
 msgctxt "Main menu and global menu actions"
 msgid "&Save"
 msgstr "&Speichern"
 
 #: kirigami_ui/+android/main.qml:162 kirigami_ui/main.qml:198
 #: kirigami_ui/+windows/main.qml:220
-#, fuzzy
 msgctxt "Main menu and global menu actions"
 msgid "Save &As"
 msgstr "Speichern &unter"
 
 #: kirigami_ui/+android/main.qml:169 kirigami_ui/main.qml:208
 #: kirigami_ui/+windows/main.qml:227
-#, fuzzy
 msgctxt "Main menu actions"
 msgid "&Recent Files"
 msgstr "Kürzlich verwendet"
 
 #: kirigami_ui/+android/main.qml:177 kirigami_ui/main.qml:216
 #: kirigami_ui/+windows/main.qml:235
-#, fuzzy
 msgctxt "Main menu actions. Menu regarding input settings."
 msgid "&Controls Settings"
 msgstr "Steuerung"
@@ -67,7 +61,6 @@ msgstr "Tastatureingaben"
 
 #: kirigami_ui/+android/main.qml:188 kirigami_ui/main.qml:227
 #: kirigami_ui/main.qml:607 kirigami_ui/+windows/main.qml:246
-#, fuzzy
 msgctxt ""
 "Main menu and global menu actions. Have up arrow behave like down arrow and "
 "vice versa while prompting."
@@ -76,7 +69,6 @@ msgstr "Richtung der Pfeiltasten umkehren"
 
 #: kirigami_ui/+android/main.qml:196 kirigami_ui/main.qml:235
 #: kirigami_ui/main.qml:614 kirigami_ui/+windows/main.qml:254
-#, fuzzy
 msgctxt ""
 "Main menu and global menu actions. Invert scroll direction while prompting."
 msgid "Invert &scroll direction"
@@ -84,7 +76,6 @@ msgstr "Laufrichtung umkehren"
 
 #: kirigami_ui/+android/main.qml:204 kirigami_ui/main.qml:243
 #: kirigami_ui/main.qml:599 kirigami_ui/+windows/main.qml:262
-#, fuzzy
 msgctxt ""
 "Main menu and global menu actions. Have touchpad and mouse wheel scrolling "
 "adjust velocity instead of scrolling like most other apps."
@@ -93,7 +84,6 @@ msgstr "Scrollrad als Geschwindigkeitsrad nutzen"
 
 #: kirigami_ui/+android/main.qml:213 kirigami_ui/main.qml:252
 #: kirigami_ui/main.qml:593 kirigami_ui/+windows/main.qml:271
-#, fuzzy
 msgctxt ""
 "Main menu and global menu actions. Touchpad scrolling and mouse wheel use "
 "have no effect while prompting."
@@ -102,14 +92,12 @@ msgstr "Scrollen während der Nutzung des Prompters deaktivieren"
 
 #: kirigami_ui/+android/main.qml:221 kirigami_ui/main.qml:260
 #: kirigami_ui/+windows/main.qml:279
-#, fuzzy
 msgctxt "Main menu actions"
 msgid "Other &Settings"
 msgstr "Andere Einstellungen"
 
 #: kirigami_ui/+android/main.qml:233 kirigami_ui/main.qml:272
 #: kirigami_ui/+windows/main.qml:291
-#, fuzzy
 msgctxt ""
 "Main menu actions. QPrompt switches between two text rendering techniques "
 "when the base font size exceeds 120px. Enabling this option forces QPrompt "
@@ -120,14 +108,12 @@ msgstr "Subpixel-Textrenderer über 120px hinaus erzwingen"
 
 #: kirigami_ui/+android/main.qml:250 kirigami_ui/main.qml:289
 #: kirigami_ui/+windows/main.qml:308
-#, fuzzy
 msgctxt "Main menu actions. Load about page."
 msgid "Abou&t %1"
-msgstr "Über"
+msgstr "Über %1"
 
 #: kirigami_ui/+android/main.qml:256 kirigami_ui/main.qml:295
 #: kirigami_ui/main.qml:379 kirigami_ui/+windows/main.qml:314
-#, fuzzy
 msgctxt "Main menu and global menu actions"
 msgid "&Quit"
 msgstr "Beenden"
@@ -140,7 +126,6 @@ msgstr ""
 
 #: kirigami_ui/+android/main.qml:467 kirigami_ui/main.qml:789
 #: kirigami_ui/+windows/main.qml:490
-#, fuzzy
 msgctxt "Title for save before closing dialog"
 msgid "Save Document"
 msgstr "Dokument speichern"
@@ -152,23 +137,20 @@ msgstr "Änderungen vor dem Schließen speichern?"
 
 #: kirigami_ui/EditorToolbar.qml:317 kirigami_ui/EditorToolbar.qml:327
 #: kirigami_ui/main.qml:544 kirigami_ui/main.qml:561
-#, fuzzy
 msgctxt "Global menu and editor actions. Text alignment."
 msgid "&Left"
-msgstr "Links"
+msgstr "&Links"
 
 #: kirigami_ui/EditorToolbar.qml:317 kirigami_ui/EditorToolbar.qml:327
 #: kirigami_ui/main.qml:544 kirigami_ui/main.qml:561
-#, fuzzy
 msgctxt "Global menu and editor actions. Text alignment."
 msgid "&Right"
-msgstr "Rechts"
+msgstr "&Rechts"
 
 #: kirigami_ui/EditorToolbar.qml:322
-#, fuzzy
 msgctxt "Editor actions. Text alignment."
 msgid "C&enter"
-msgstr "Zentriert"
+msgstr "Z&entriert"
 
 #: kirigami_ui/EditorToolbar.qml:476
 msgctxt "FontName (Translatable font details)"
@@ -201,67 +183,56 @@ msgid "Kalpurush (Bengali)"
 msgstr ""
 
 #: kirigami_ui/EditorToolbar.qml:502
-#, fuzzy
 msgctxt "Opens system font selection dialog"
 msgid "Choose System Font"
 msgstr "Systemschriftart auswählen"
 
 #: kirigami_ui/EditorToolbar.qml:729
-#, fuzzy
 msgctxt "Velocity: {VELOCITY_STEPS}"
 msgid "Velocity: %1"
-msgstr "Geschwindigkeit:"
+msgstr "Geschwindigkeit: %1"
 
 #: kirigami_ui/EditorToolbar.qml:763
-#, fuzzy
 msgctxt "Opacity: {TRANSPARENCY_PERCENTAGE}"
 msgid "Opacity: %1"
-msgstr "Deckkraft:"
+msgstr "Deckkraft: %1"
 
 #: kirigami_ui/EditorToolbar.qml:795
-#, fuzzy
 msgctxt "Font size while editing: 100% (083)"
 msgid "Font size while editing: %1% (%2)"
-msgstr "Schriftgröße während dem Bearbeiten:"
+msgstr "Schriftgröße während dem Bearbeiten: %1% (%2)"
 
 #: kirigami_ui/EditorToolbar.qml:826
-#, fuzzy
 msgctxt "Font size: 100% (083)"
 msgid "Font size: %1% (%2)"
-msgstr "Schriftgröße:"
+msgstr "Schriftgröße: %1% (%2)"
 
 #: kirigami_ui/EditorToolbar.qml:862
-#, fuzzy
 msgctxt "Line height: 100%"
 msgid "Line height: %1%"
-msgstr "Zeilenhöhe:"
+msgstr "Zeilenhöhe: %1%"
 
 #: kirigami_ui/EditorToolbar.qml:900
-#, fuzzy
 msgctxt "Word spacing: ±00"
 msgid "Word spacing: %1"
-msgstr "Wortabstand:"
+msgstr "Wortabstand: %1"
 
 #: kirigami_ui/EditorToolbar.qml:936
-#, fuzzy
 msgctxt "Letter spacing: ±00"
 msgid "Letter spacing: %1"
-msgstr "Buchstabenabstand:"
+msgstr "Buchstabenabstand: %1"
 
 #: kirigami_ui/EditorToolbar.qml:972
-#, fuzzy
 msgctxt "Step speed: 1.00"
 msgid "Step speed: %1"
-msgstr "Geschwindigkeitsstufen:"
+msgstr "Geschwindigkeitsstufen: %1"
 
 #: kirigami_ui/EditorToolbar.qml:1013
-#, fuzzy
 msgctxt "Step acceleration: 1.15"
 msgid "Step acceleration: %1"
-msgstr "Bescheleunigungsstufen:"
+msgstr "Bescheleunigungsstufen: %1"
 
 #: kirigami_ui/EditorToolbar.qml:1092
-#, fuzzy
 msgctxt ""
 "Refers to a key on the keyboard used to skip to a user defined marker while "
 "prompting"
@@ -269,7 +240,6 @@ msgid "Skip Key"
 msgstr "Überspringen Taste"
 
 #: kirigami_ui/EditorToolbar.qml:1115
-#, fuzzy
 msgctxt ""
 "Refers to a key on the keyboard used to skip to a user defined marker while "
 "prompting"
@@ -277,7 +247,6 @@ msgid "Key to perform skip to this marker"
 msgstr "Taste zum Springen zu dieser Markierung"
 
 #: kirigami_ui/InputsOverlay.qml:37
-#, fuzzy
 msgctxt "Title of dialog where users customize keyboard inputs"
 msgid "Key Bindings"
 msgstr "Tastenkürzel"
@@ -299,13 +268,11 @@ msgid "Play/Pause"
 msgstr "Start/Pause"
 
 #: kirigami_ui/InputsOverlay.qml:163
-#, fuzzy
 msgctxt "Skip to earlier text while prompting or editing"
 msgid "Move Backwards"
 msgstr "Rückwärts bewegen"
 
 #: kirigami_ui/InputsOverlay.qml:171
-#, fuzzy
 msgctxt "Skip to later text while prompting or editing"
 msgid "Move Forward"
 msgstr "Vorwärts bewegen"
@@ -321,26 +288,22 @@ msgid "Go to Next Marker"
 msgstr ""
 
 #: kirigami_ui/main.qml:220 kirigami_ui/+windows/main.qml:239
-#, fuzzy
 msgctxt ""
 "Main menu and global menu actions. Opens dialog to configure keyboard inputs."
 msgid "Keyboard Inputs"
 msgstr "Tastatureingaben"
 
 #: kirigami_ui/main.qml:359
-#, fuzzy
 msgctxt "Global menu actions"
 msgid "&File"
 msgstr "&Datei"
 
 #: kirigami_ui/main.qml:374
-#, fuzzy
 msgctxt "Main menu and global menu actions"
 msgid "Save &As…"
-msgstr "Speichern unter…"
+msgstr "Speichern &unter…"
 
 #: kirigami_ui/main.qml:385
-#, fuzzy
 msgctxt "Global menu actions"
 msgid "&Edit"
 msgstr "Bearbeiten"
@@ -357,10 +320,9 @@ msgstr ""
 
 #: kirigami_ui/main.qml:399 prompter/Prompter.qml:954
 #: prompter/Prompter.qml:1001
-#, fuzzy
 msgctxt "Global menu and editor context menu actions"
 msgid "&Copy"
-msgstr "Kopieren"
+msgstr "&Kopieren"
 
 #: kirigami_ui/main.qml:404 prompter/Prompter.qml:959
 #: prompter/Prompter.qml:1006
@@ -370,19 +332,16 @@ msgstr ""
 
 #: kirigami_ui/main.qml:409 prompter/Prompter.qml:964
 #: prompter/Prompter.qml:1011
-#, fuzzy
 msgctxt "Global menu and editor context menu actions"
 msgid "&Paste"
-msgstr "Einfügen"
+msgstr "&Einfügen"
 
 #: kirigami_ui/main.qml:416
-#, fuzzy
 msgctxt "Global menu actions"
 msgid "&View"
 msgstr "Ansicht"
 
 #: kirigami_ui/main.qml:419
-#, fuzzy
 msgctxt "Global menu actions"
 msgid "Full &screen"
 msgstr "Vollbild"
@@ -393,13 +352,11 @@ msgid "&Indicators"
 msgstr ""
 
 #: kirigami_ui/main.qml:435
-#, fuzzy
 msgctxt "Global menu actions"
 msgid "&Left Pointer"
 msgstr "Zentriert"
 
 #: kirigami_ui/main.qml:441
-#, fuzzy
 msgctxt "Global menu actions"
 msgid "&Right Pointer"
 msgstr "Rechts"
@@ -506,7 +463,6 @@ msgid "Fo&nt Color"
 msgstr ""
 
 #: kirigami_ui/main.qml:590
-#, fuzzy
 msgctxt "Global menu actions. Menu regarding input settings."
 msgid "Controls"
 msgstr "Steuerung"
@@ -522,10 +478,9 @@ msgid "Report &Bug…"
 msgstr ""
 
 #: kirigami_ui/main.qml:645
-#, fuzzy
 msgctxt "Global menu actions. Load about page. \"About AppName\""
 msgid "Abou&t %1"
-msgstr "Über"
+msgstr "Über %1"
 
 #: kirigami_ui/MarkersDrawer.qml:108
 msgctxt "Close sidebar listing user defined markers"
@@ -735,10 +690,9 @@ msgid "Start countdown automatically"
 msgstr ""
 
 #: kirigami_ui/PrompterPage.qml:416
-#, fuzzy
 msgctxt "Configure countdown duration"
 msgid "Set duration"
-msgstr "Bescheleunigungsstufen:"
+msgstr ""
 
 #: kirigami_ui/PrompterPage.qml:432
 msgctxt "Prompter orientation and mirroring"
@@ -1136,17 +1090,16 @@ msgstr "Neues Dokument"
 
 #: prompter/Prompter.qml:810
 msgid "welcome_en.html"
-msgstr ""
+msgstr "welcome_de.html"
 
 #: prompter/Prompter.qml:815
 msgid "User welcome loaded"
 msgstr ""
 
 #: prompter/Prompter.qml:835 prompter/Prompter.qml:931
-#, fuzzy
 msgctxt "Saved FILE_NAME"
 msgid "Saved %1"
-msgstr "Speichern &unter"
+msgstr "Gespeicherte %1"
 
 #: prompter/Prompter.qml:888 prompter/Prompter.qml:918
 msgctxt "Format name (FORMAT_EXTENSION)"
