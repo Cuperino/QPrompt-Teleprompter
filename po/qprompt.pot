@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/Cuperino/QPrompt/issues/new/choose\n"
-"POT-Creation-Date: 2022-04-24 23:57-0400\n"
+"POT-Creation-Date: 2022-04-25 02:04-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -135,14 +135,12 @@ msgid "Save changes to document before closing?"
 msgstr ""
 
 #: kirigami_ui/EditorToolbar.qml:317 kirigami_ui/EditorToolbar.qml:327
-#: kirigami_ui/main.qml:544 kirigami_ui/main.qml:561
-msgctxt "Global menu and editor actions. Text alignment."
+msgctxt "Editor actions. Text alignment."
 msgid "&Left"
 msgstr ""
 
 #: kirigami_ui/EditorToolbar.qml:317 kirigami_ui/EditorToolbar.qml:327
-#: kirigami_ui/main.qml:544 kirigami_ui/main.qml:561
-msgctxt "Global menu and editor actions. Text alignment."
+msgctxt "Editor actions. Text alignment."
 msgid "&Right"
 msgstr ""
 
@@ -346,47 +344,54 @@ msgid "Full &screen"
 msgstr ""
 
 #: kirigami_ui/main.qml:433
-msgctxt "Global menu actions"
+msgctxt "Global menu actions. Indicators highlight reading region."
 msgid "&Indicators"
 msgstr ""
 
 #: kirigami_ui/main.qml:435
-msgctxt "Global menu actions"
+msgctxt "Global menu actions. Shows pointer to the left of the reading region."
 msgid "&Left Pointer"
 msgstr ""
 
 #: kirigami_ui/main.qml:441
-msgctxt "Global menu actions"
+msgctxt ""
+"Global menu actions. Shows pointer to the right of the reading region."
 msgid "&Right Pointer"
 msgstr ""
 
 #: kirigami_ui/main.qml:447
-msgctxt "Global menu actions"
+msgctxt ""
+"Global menu actions. Shows pointers to the left and right of the reading "
+"region."
 msgid "B&oth Pointers"
 msgstr ""
 
 #: kirigami_ui/main.qml:454
-msgctxt "Global menu actions"
+msgctxt "Global menu actions. Translucent bars indicate reading region."
 msgid "&Bars"
 msgstr ""
 
 #: kirigami_ui/main.qml:460
-msgctxt "Global menu actions"
+msgctxt ""
+"Global menu actions. Translucent bars and left pointer indicate reading "
+"region."
 msgid "Bars Lef&t"
 msgstr ""
 
 #: kirigami_ui/main.qml:466
-msgctxt "Global menu actions"
+msgctxt ""
+"Global menu actions. Translucent bars and right pointer indicate reading "
+"region."
 msgid "Bars Ri&ght"
 msgstr ""
 
 #: kirigami_ui/main.qml:473
-msgctxt "Global menu actions"
+msgctxt "Global menu actions. Enable all reading region indicators."
 msgid "&All"
 msgstr ""
 
 #: kirigami_ui/main.qml:479
-msgctxt "Global menu actions"
+msgctxt "Global menu actions. Disable all reading region indicators."
 msgid "&Hidden"
 msgstr ""
 
@@ -446,9 +451,29 @@ msgctxt "Global menu actions"
 msgid "&Underline"
 msgstr ""
 
+#: kirigami_ui/main.qml:544
+msgctxt "Global menu and editor actions. Text alignment."
+msgid "Align &Left"
+msgstr ""
+
+#: kirigami_ui/main.qml:544
+msgctxt "Global menu and editor actions. Text alignment."
+msgid "Align &Right"
+msgstr ""
+
 #: kirigami_ui/main.qml:555
 msgctxt "Global menu actions. Text alignment."
-msgid "Cen&ter"
+msgid "Align Cen&ter"
+msgstr ""
+
+#: kirigami_ui/main.qml:561
+msgctxt "Global menu actions. Text alignment."
+msgid "Align &Right"
+msgstr ""
+
+#: kirigami_ui/main.qml:561
+msgctxt "Global menu actions. Text alignment."
+msgid "Align &Left"
 msgstr ""
 
 #: kirigami_ui/main.qml:580
