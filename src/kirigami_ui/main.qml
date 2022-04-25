@@ -430,53 +430,53 @@ Kirigami.ApplicationWindow {
             //}
             Labs.MenuSeparator { }
             Labs.Menu {
-                title: i18nc("Global menu actions", "&Indicators")
+                title: i18nc("Global menu actions. Indicators highlight reading region.", "&Indicators")
                 Labs.MenuItem {
-                    text: i18nc("Global menu actions", "&Left Pointer")
+                    text: i18nc("Global menu actions. Shows pointer to the left of the reading region.", "&Left Pointer")
                     checkable: true
                     checked: parseInt(root.pageStack.currentItem.overlay.styleState) === ReadRegionOverlay.PointerStates.LeftPointer
                     onTriggered: root.pageStack.currentItem.overlay.styleState = ReadRegionOverlay.PointerStates.LeftPointer
                 }
                 Labs.MenuItem {
-                    text: i18nc("Global menu actions", "&Right Pointer")
+                    text: i18nc("Global menu actions. Shows pointer to the right of the reading region.", "&Right Pointer")
                     checkable: true
                     checked: parseInt(root.pageStack.currentItem.overlay.styleState) === ReadRegionOverlay.PointerStates.RightPointer
                     onTriggered: root.pageStack.currentItem.overlay.styleState = ReadRegionOverlay.PointerStates.RightPointer
                 }
                 Labs.MenuItem {
-                    text: i18nc("Global menu actions", "B&oth Pointers")
+                    text: i18nc("Global menu actions. Shows pointers to the left and right of the reading region.", "B&oth Pointers")
                     checkable: true
                     checked: parseInt(root.pageStack.currentItem.overlay.styleState) === ReadRegionOverlay.PointerStates.Pointers
                     onTriggered: root.pageStack.currentItem.overlay.styleState = ReadRegionOverlay.PointerStates.Pointers
                 }
                 Labs.MenuSeparator { }
                 Labs.MenuItem {
-                    text: i18nc("Global menu actions", "&Bars")
+                    text: i18nc("Global menu actions. Translucent bars indicate reading region.", "&Bars")
                     checkable: true
                     checked: parseInt(root.pageStack.currentItem.overlay.styleState) === ReadRegionOverlay.PointerStates.Bars
                     onTriggered: root.pageStack.currentItem.overlay.styleState = ReadRegionOverlay.PointerStates.Bars
                 }
                 Labs.MenuItem {
-                    text: i18nc("Global menu actions", "Bars Lef&t")
+                    text: i18nc("Global menu actions. Translucent bars and left pointer indicate reading region.", "Bars Lef&t")
                     checkable: true
                     checked: parseInt(root.pageStack.currentItem.overlay.styleState) === ReadRegionOverlay.PointerStates.BarsLeft
                     onTriggered: root.pageStack.currentItem.overlay.styleState = ReadRegionOverlay.PointerStates.BarsLeft
                 }
                 Labs.MenuItem {
-                    text: i18nc("Global menu actions", "Bars Ri&ght")
+                    text: i18nc("Global menu actions. Translucent bars and right pointer indicate reading region.", "Bars Ri&ght")
                     checkable: true
                     checked: parseInt(root.pageStack.currentItem.overlay.styleState) === ReadRegionOverlay.PointerStates.BarsRight
                     onTriggered: root.pageStack.currentItem.overlay.styleState = ReadRegionOverlay.PointerStates.BarsRight
                 }
                 Labs.MenuSeparator { }
                 Labs.MenuItem {
-                    text: i18nc("Global menu actions", "&All")
+                    text: i18nc("Global menu actions. Enable all reading region indicators.", "&All")
                     checkable: true
                     checked: parseInt(root.pageStack.currentItem.overlay.styleState) === ReadRegionOverlay.PointerStates.All
                     onTriggered: root.pageStack.currentItem.overlay.styleState = ReadRegionOverlay.PointerStates.All
                 }
                 Labs.MenuItem {
-                    text: i18nc("Global menu actions", "&Hidden")
+                    text: i18nc("Global menu actions. Disable all reading region indicators.", "&Hidden")
                     checkable: true
                     checked: parseInt(root.pageStack.currentItem.overlay.styleState) === ReadRegionOverlay.PointerStates.None
                     onTriggered: root.pageStack.currentItem.overlay.styleState = ReadRegionOverlay.PointerStates.None
@@ -541,7 +541,7 @@ Kirigami.ApplicationWindow {
             }
             Labs.MenuSeparator { }
             Labs.MenuItem {
-                text: Qt.application.layoutDirection===Qt.LeftToRight ? i18nc("Global menu and editor actions. Text alignment.", "&Left") : i18nc("Global menu and editor actions. Text alignment.", "&Right")
+                text: Qt.application.layoutDirection===Qt.LeftToRight ? i18nc("Global menu and editor actions. Text alignment.", "Align &Left") : i18nc("Global menu and editor actions. Text alignment.", "Align &Right")
                 checkable: true
                 checked: Qt.application.layoutDirection===Qt.LeftToRight ? root.pageStack.currentItem.document.alignment === Qt.AlignLeft : root.pageStack.currentItem.document.alignment === Qt.AlignRight
                 onTriggered: {
@@ -552,13 +552,13 @@ Kirigami.ApplicationWindow {
                 }
             }
             Labs.MenuItem {
-                text: i18nc("Global menu actions. Text alignment.", "Cen&ter")
+                text: i18nc("Global menu actions. Text alignment.", "Align Cen&ter")
                 checkable: true
                 checked: root.pageStack.currentItem.document.alignment === Qt.AlignHCenter
                 onTriggered: root.pageStack.currentItem.document.alignment = Qt.AlignHCenter
             }
             Labs.MenuItem {
-                text: Qt.application.layoutDirection===Qt.LeftToRight ? i18nc("Global menu and editor actions. Text alignment.", "&Right") : i18nc("Global menu and editor actions. Text alignment.", "&Left")
+                text: Qt.application.layoutDirection===Qt.LeftToRight ? i18nc("Global menu actions. Text alignment.", "Align &Right") : i18nc("Global menu actions. Text alignment.", "Align &Left")
                 checkable: true
                 checked: Qt.application.layoutDirection===Qt.LeftToRight ? root.pageStack.currentItem.document.alignment === Qt.AlignRight : root.pageStack.currentItem.document.alignment === Qt.AlignLeft
                 onTriggered: {
@@ -570,7 +570,7 @@ Kirigami.ApplicationWindow {
             }
             // Justify is proven to make text harder to read for some readers. So I'm commenting out all text justification options from the program. I'm not removing them, only commenting out in case someone needs to re-enable. This article links to various sources that validate my decision: https://kaiweber.wordpress.com/2010/05/31/ragged-right-or-justified-alignment/ - Javier
             //Labs.MenuItem {
-            //    text: i18nc("Global menu and editor actions. Text alignment.", "&Justify")
+            //    text: i18nc("Global menu actions. Text alignment.", "Align &Justify")
             //    checkable: true
             //    checked: root.pageStack.currentItem.document.alignment === Qt.AlignJustify
             //    onTriggered: root.pageStack.currentItem.document.alignment = Qt.AlignJustify

@@ -314,7 +314,7 @@ ToolBar {
                     implicitWidth: 120
                 }
                 MenuItem {
-                    text: Qt.application.layoutDirection===Qt.LeftToRight ? i18nc("Global menu and editor actions. Text alignment.", "&Left") : i18nc("Global menu and editor actions. Text alignment.", "&Right")
+                    text: Qt.application.layoutDirection===Qt.LeftToRight ? i18nc("Editor actions. Text alignment.", "&Left") : i18nc("Editor actions. Text alignment.", "&Right")
                     enabled: Qt.application.layoutDirection===Qt.LeftToRight ? prompter.document.alignment !== Qt.AlignLeft : prompter.document.alignment !== Qt.AlignRight
                     onTriggered: prompter.document.alignment = Qt.AlignLeft
                 }
@@ -324,12 +324,12 @@ ToolBar {
                     onTriggered: prompter.document.alignment = Qt.AlignHCenter
                 }
                 MenuItem {
-                    text: Qt.application.layoutDirection===Qt.LeftToRight ? i18nc("Global menu and editor actions. Text alignment.", "&Right") : i18nc("Global menu and editor actions. Text alignment.", "&Left")
+                    text: Qt.application.layoutDirection===Qt.LeftToRight ? i18nc("Editor actions. Text alignment.", "&Right") : i18nc("Editor actions. Text alignment.", "&Left")
                     enabled: Qt.application.layoutDirection===Qt.LeftToRight ? prompter.document.alignment !== Qt.AlignRight : prompter.document.alignment !== Qt.AlignLeft
                     onTriggered: prompter.document.alignment = Qt.AlignRight
                 }
                 //MenuItem {
-                //    text: i18nc("Global menu and editor actions. Text alignment.", "&Justify")
+                //    text: i18nc("Editor actions. Text alignment.", "&Justify")
                 //    enabled: prompter.document.alignment !== Qt.AlignHustify
                 //    onTriggered: prompter.document.alignment = Qt.AlignJustify
                 //}
