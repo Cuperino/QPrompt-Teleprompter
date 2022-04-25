@@ -314,22 +314,22 @@ ToolBar {
                     implicitWidth: 120
                 }
                 MenuItem {
-                    text: Qt.application.layoutDirection===Qt.LeftToRight ? i18n("&Left") : i18n("&Right")
+                    text: Qt.application.layoutDirection===Qt.LeftToRight ? i18nc("Global menu and editor actions. Text alignment.", "&Left") : i18nc("Global menu and editor actions. Text alignment.", "&Right")
                     enabled: Qt.application.layoutDirection===Qt.LeftToRight ? prompter.document.alignment !== Qt.AlignLeft : prompter.document.alignment !== Qt.AlignRight
                     onTriggered: prompter.document.alignment = Qt.AlignLeft
                 }
                 MenuItem {
-                    text: i18n("C&enter")
+                    text: i18nc("Editor actions. Text alignment.", "C&enter")
                     enabled: !(prompter.document.alignment === Qt.AlignHCenter || (prompter.document.alignment !== Qt.AlignLeft && prompter.document.alignment !== Qt.AlignRight/*&& prompter.document.alignment !== Qt.AlignJustify*/))
                     onTriggered: prompter.document.alignment = Qt.AlignHCenter
                 }
                 MenuItem {
-                    text: Qt.application.layoutDirection===Qt.LeftToRight ? i18n("&Right") : i18n("&Left")
+                    text: Qt.application.layoutDirection===Qt.LeftToRight ? i18nc("Global menu and editor actions. Text alignment.", "&Right") : i18nc("Global menu and editor actions. Text alignment.", "&Left")
                     enabled: Qt.application.layoutDirection===Qt.LeftToRight ? prompter.document.alignment !== Qt.AlignRight : prompter.document.alignment !== Qt.AlignLeft
                     onTriggered: prompter.document.alignment = Qt.AlignRight
                 }
                 //MenuItem {
-                //    text: i18n("&Justify")
+                //    text: i18nc("Global menu and editor actions. Text alignment.", "&Justify")
                 //    enabled: prompter.document.alignment !== Qt.AlignHustify
                 //    onTriggered: prompter.document.alignment = Qt.AlignJustify
                 //}
@@ -473,33 +473,33 @@ ToolBar {
                 }
                 MenuSeparator {}
                 MenuItem {
-                    text: i18n("DejaVu (default, Roman, Cyrillic)")
+                    text: i18nc("FontName (Translatable font details)", "DejaVu (default, Roman, Cyrillic)")
                     onTriggered: viewport.prompter.document.fontFamily = westernSeriousSansfFont.name
                 }
                 MenuItem {
-                    text: i18n("OpenDyslexic (Roman)")
+                    text: i18nc("FontName (Translatable font details)", "OpenDyslexic (Roman)")
                     onTriggered: viewport.prompter.document.fontFamily = westernDyslexicFont.name
                 }
                 MenuItem {
-                    text: i18n("Source Han Sans (CH, JP, KO)")
+                    text: i18nc("FontName (Translatable font details)", "Source Han Sans (CH, JP, KO)")
                     onTriggered: viewport.prompter.document.fontFamily = asianSeriousSansFont.name
                 }
                 MenuItem {
-                    text: i18n("Scheherazade New (Arabic)")
+                    text: i18nc("FontName (Translatable font details)", "Scheherazade New (Arabic)")
                     onTriggered: viewport.prompter.document.fontFamily = arabicHumaneSansFont.name
                 }
                 MenuItem {
-                    text: i18n("Palanquin (Devangari)")
+                    text: i18nc("FontName (Translatable font details)", "Palanquin (Devangari)")
                     onTriggered: viewport.prompter.document.fontFamily = devanagariSeriousSansFont.name
                 }
                 MenuItem {
-                    text: i18n("Kalpurush (Bengali)")
+                    text: i18nc("FontName (Translatable font details)", "Kalpurush (Bengali)")
                     onTriggered: viewport.prompter.document.fontFamily = bengaliHumaneSerifFont.name
                 }
                 MenuSeparator {}
                 MenuItem {
                     id: systemFontButton
-                    text: i18n("Choose System Font")
+                    text: i18nc("Opens system font selection dialog", "Choose System Font")
                     // Not using isMobile here, because Linux phones, unlike all others, would provide access to system fonts.
                     enabled: ['android', 'ios', 'wasm', 'tvos', 'qnx', 'ipados'].indexOf(Qt.platform.os)===-1
                     visible: enabled
@@ -696,18 +696,18 @@ ToolBar {
                    showAnimationConfigOptions = !showAnimationConfigOptions
                 }
             }
-            ToolButton {
-                id: __iDefaultButton
-                visible: Kirigami.Settings.isMobile ? showAnimationConfigOptions : true
-                text: "\uE858"
-                contentItem: Loader { sourceComponent: textComponent }
-                font.family: iconFont.name
-                font.pointSize: 13
-                focusPolicy: Qt.TabFocus
-                checkable: true
-                checked: stepsConfiguration.sheetOpen
-                onClicked: stepsConfiguration.open()
-            }
+            //ToolButton {
+                //id: __iDefaultButton
+                //visible: Kirigami.Settings.isMobile ? showAnimationConfigOptions : true
+                //text: "\uE858"
+                //contentItem: Loader { sourceComponent: textComponent }
+                //font.family: iconFont.name
+                //font.pointSize: 13
+                //focusPolicy: Qt.TabFocus
+                //checkable: true
+                //checked: stepsConfiguration.sheetOpen
+                //onClicked: stepsConfiguration.open()
+            //}
         }
         RowLayout {
             id: velocityRow
@@ -726,7 +726,7 @@ ToolBar {
                 checked: true
             }
             Label {
-                text: i18n("Velocity:") + (prompter.__i<0 ? '  -' + (prompter.__i/100).toFixed(2).slice(3) : ' +' + (prompter.__i/100).toFixed(2).slice(2))
+                text: i18nc("Velocity: {VELOCITY_STEPS}", "Velocity: %1", prompter.__i<0 ? '  -' + (prompter.__i/100).toFixed(2).slice(3) : ' +' + (prompter.__i/100).toFixed(2).slice(2))
                 color: Kirigami.Theme.textColor
                 Layout.topMargin: 4
                 Layout.bottomMargin: 4
@@ -760,7 +760,7 @@ ToolBar {
                 font.pointSize: 13
             }
             Label {
-                text: i18n("Opacity:") + " " + (root.__opacity/10).toFixed(3).slice(2)
+                text: i18nc("Opacity: {TRANSPARENCY_PERCENTAGE}", "Opacity: %1", (root.__opacity/10).toFixed(3).slice(2))
                 color: Kirigami.Theme.textColor
                 Layout.topMargin: 4
                 Layout.bottomMargin: 4
@@ -792,7 +792,7 @@ ToolBar {
                 font.pointSize: 13
             }
             Label {
-                text: i18n("Font size while editing:") + " " + (fontSizeSlider.value/1000).toFixed(3).slice(2) + "% (" + prompter.fontSize + ")"
+                text: i18nc("Font size while editing: 100% (083)", "Font size while editing: %1% (%2)", (fontSizeSlider.value/1000).toFixed(3).slice(2), prompter.fontSize)
                 color: Kirigami.Theme.textColor
                 Layout.topMargin: 4
                 Layout.bottomMargin: 4
@@ -823,7 +823,7 @@ ToolBar {
                 font.pointSize: 13
             }
             Label {
-                text: i18n("Font size:") /*+ i18n("Font size for prompter:")*/ + " " + (fontWYSIWYGSizeSlider.value/1440).toFixed(3).slice(2) + "% (" + (prompter.fontSize/1000).toFixed(3).slice(2) + ")"
+                text: i18nc("Font size: 100% (083)", "Font size: %1% (%2)", (fontWYSIWYGSizeSlider.value/1440).toFixed(3).slice(2), (prompter.fontSize/1000).toFixed(3).slice(2))
                 color: Kirigami.Theme.textColor
                 Layout.topMargin: 4
                 Layout.bottomMargin: 4
@@ -859,7 +859,7 @@ ToolBar {
                 font.pointSize: 13
             }
             Label {
-                text: i18n("Line height:") + " " + (lineHeightSlider.value/1000).toFixed(3).slice(2) + "%"
+                text: i18nc("Line height: 100%", "Line height: %1%", (lineHeightSlider.value/1000).toFixed(3).slice(2))
                 color: Kirigami.Theme.textColor
                 Layout.topMargin: 4
                 Layout.bottomMargin: 4
@@ -897,7 +897,7 @@ ToolBar {
                 font.pointSize: 13
             }
             Label {
-                text: i18n("Word spacing:") + " " + (wordSpacingSlider.value<0 ? '  -' + (wordSpacingSlider.value/100).toFixed(2).slice(3) : ' +' + (wordSpacingSlider.value/100).toFixed(2).slice(2))
+                text: i18nc("Word spacing: ±00", "Word spacing: %1", (wordSpacingSlider.value<0 ? '  -' + (wordSpacingSlider.value/100).toFixed(2).slice(3) : ' +' + (wordSpacingSlider.value/100).toFixed(2).slice(2)))
                 color: Kirigami.Theme.textColor
                 Layout.topMargin: 4
                 Layout.bottomMargin: 4
@@ -933,7 +933,7 @@ ToolBar {
                 font.pointSize: 13
             }
             Label {
-                text: i18n("Letter spacing:") + " " + (letterSpacingSlider.value<0 ? '  -' + (letterSpacingSlider.value/100).toFixed(2).slice(3) : ' +' + (letterSpacingSlider.value/100).toFixed(2).slice(2))
+                text: i18nc("Letter spacing: ±00", "Letter spacing: %1", (letterSpacingSlider.value<0 ? '  -' + (letterSpacingSlider.value/100).toFixed(2).slice(3) : ' +' + (letterSpacingSlider.value/100).toFixed(2).slice(2)))
                 color: Kirigami.Theme.textColor
                 Layout.topMargin: 4
                 Layout.bottomMargin: 4
@@ -969,7 +969,7 @@ ToolBar {
                 font.pointSize: 13
             }
             Label {
-                text: i18n("Step speed:") + " " + (baseSpeedSlider.value/100).toFixed(2)
+                text: i18nc("Step speed: 1.00", "Step speed: %1", (baseSpeedSlider.value/100).toFixed(2))
                 color: Kirigami.Theme.textColor
                 Layout.topMargin: 4
                 Layout.bottomMargin: 4
@@ -1010,7 +1010,7 @@ ToolBar {
                 font.pointSize: 13
             }
             Label {
-                text: i18n("Step acceleration:") + " " + (baseAccelerationSlider.value/100).toFixed(2)
+                text: i18nc("Step acceleration: 1.15", "Step acceleration: %1", (baseAccelerationSlider.value/100).toFixed(2))
                 color: Kirigami.Theme.textColor
                 Layout.topMargin: 4
                 Layout.bottomMargin: 4
@@ -1033,53 +1033,53 @@ ToolBar {
         }
     }
 
-    Kirigami.OverlaySheet {
-        id: stepsConfiguration
-        onSheetOpenChanged: {
-            prompterPage.actions.main.checked = sheetOpen;
-            if (!sheetOpen)
-                prompter.focus = true
-        }
-        background: Rectangle {
-            //color: Kirigami.Theme.activeBackgroundColor
-            color: appTheme.__backgroundColor
-            anchors.fill: parent
-        }
-        header: Kirigami.Heading {
-            text: i18n("Start Velocity")
-            level: 1
-        }
+    //Kirigami.OverlaySheet {
+        //id: stepsConfiguration
+        //onSheetOpenChanged: {
+            //prompterPage.actions.main.checked = sheetOpen;
+            //if (!sheetOpen)
+                //prompter.focus = true
+        //}
+        //background: Rectangle {
+            ////color: Kirigami.Theme.activeBackgroundColor
+            //color: appTheme.__backgroundColor
+            //anchors.fill: parent
+        //}
+        //header: Kirigami.Heading {
+            //text: i18n("Start Velocity")
+            //level: 1
+        //}
 
-        ColumnLayout {
-            width: parent.width
-            Label {
-                text: i18n("Velocity to have when starting to prompt")
-            }
-            RowLayout {
-                SpinBox {
-                    id: defaultSteps
-                    Layout.fillWidth: true
-                    Layout.leftMargin: Kirigami.Units.smallSpacing
-                    Layout.rightMargin: Kirigami.Units.smallSpacing
-                    value: __iDefault
-                    from: 1
-                    to: velocityControlSlider.to
-                    onValueModified: {
-                        __iDefault = value
-                    }
-                }
-                Button {
-                    visible: parseInt(prompter.state)===Prompter.States.Prompting && prompter.__velocity>0
-                    flat: true
-                    text: "Make current velocity default"
-                    onClicked: {
-                        defaultSteps.value = prompter.__i;
-                        __iDefault = prompter.__i;
-                    }
-                }
-            }
-        }
-    }
+        //ColumnLayout {
+            //width: parent.width
+            //Label {
+                //text: i18n("Velocity to have when starting to prompt")
+            //}
+            //RowLayout {
+                //SpinBox {
+                    //id: defaultSteps
+                    //Layout.fillWidth: true
+                    //Layout.leftMargin: Kirigami.Units.smallSpacing
+                    //Layout.rightMargin: Kirigami.Units.smallSpacing
+                    //value: __iDefault
+                    //from: 1
+                    //to: velocityControlSlider.to
+                    //onValueModified: {
+                        //__iDefault = value
+                    //}
+                //}
+                //Button {
+                    //visible: parseInt(prompter.state)===Prompter.States.Prompting && prompter.__velocity>0
+                    //flat: true
+                    //text: "Make current velocity default"
+                    //onClicked: {
+                        //defaultSteps.value = prompter.__i;
+                        //__iDefault = prompter.__i;
+                    //}
+                //}
+            //}
+        //}
+    //}
 
     Kirigami.OverlaySheet {
         id: namedMarkerConfiguration
@@ -1089,7 +1089,7 @@ ToolBar {
             anchors.fill: parent
         }
         header: Kirigami.Heading {
-            text: i18n("Skip Key")
+            text: i18nc("Refers to a key on the keyboard used to skip to a user defined marker while prompting", "Skip Key")
             level: 1
         }
         onSheetOpenChanged: {
@@ -1112,7 +1112,7 @@ ToolBar {
             property alias setMarkerKeyButton: setMarkerKeyButton
             width: parent.width
             Label {
-                text: i18n("Key to perform skip to this marker")
+                text: i18nc("Refers to a key on the keyboard used to skip to a user defined marker while prompting", "Key to perform skip to this marker")
             }
             Loader {
                 id: setMarkerKeyButton

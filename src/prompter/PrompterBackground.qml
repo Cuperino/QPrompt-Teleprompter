@@ -117,7 +117,11 @@ Rectangle {
             id: openBackgroundDialog
             selectExisting: true
             selectedNameFilter: nameFilters[0]
-            nameFilters: ["JPEG image (*.jpg *.jpeg *.JPG *.JPEG)", "PNG image (*.png *.PNG)", "GIF animation (*.gif *.GIF)"]
+            nameFilters: [
+              i18n("JPEG image") + "(*.jpg *.jpeg *.JPG *.JPEG)",
+              i18n("PNG image") + "(*.png *.PNG)",
+              i18n("GIF animation") + "(*.gif *.GIF)"
+            ]
             folder: shortcuts.pictures
             onAccepted: prompterBackground.setBackgroundImage(openBackgroundDialog.fileUrl)
         }

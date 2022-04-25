@@ -270,12 +270,12 @@ Item {
             alertDialog.icon = StandardIcon.Information
             alertDialog.visible = true
         }
-        function warnSameDisplay(screenName) {
-            alertDialog.text = i18n("You've enabled a screen projection on display \""+screenName+"\". Please note this projection will not show unless you place the editor on a different screen.")
-            //alertDialog.text = i18n("QPrompt will not project to the screen where the editor is at.")
-            //alertDialog.detailedText = i18n("You've enabled a screen projection on display \""+screenName+"\". Please note this projection will not show unless you place the editor on a different screen.")
-            alertDialog.icon = StandardIcon.Warning
-            alertDialog.visible = true
-        }
+//         function warnSameDisplay(screenName) {
+//             alertDialog.text = i18n("You've enabled a screen projection on display \"%1\". Please note this projection will not show unless you place the editor on a different screen.", screenName)
+//             //alertDialog.text = i18n("QPrompt will not project to the screen where the editor is at.")
+//             //alertDialog.detailedText = i18n("You've enabled a screen projection on display \""+screenName+"\". Please note this projection will not show unless you place the editor on a different screen.")
+//             alertDialog.icon = StandardIcon.Warning
+//             alertDialog.visible = true
+//         }
     }
 }

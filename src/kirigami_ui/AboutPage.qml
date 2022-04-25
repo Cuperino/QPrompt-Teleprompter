@@ -35,7 +35,7 @@ Kirigami.AboutPage {
             else if (Qt.platform.os === 'ios' || Qt.platform.os === 'tvos')
                 Qt.openUrlExternally("https://apps.apple.com/us/app/qprompt/id##########")
             else
-                Qt.openUrlExternally("https://qprompt.app/feedback")
+                Qt.openUrlExternally("https://feedback.qprompt.app")
         }
     }
 }
