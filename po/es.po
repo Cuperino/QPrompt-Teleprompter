@@ -9,10 +9,10 @@ msgstr ""
 "Project-Id-Version: 1.1.0\n"
 "Report-Msgid-Bugs-To: https://github.com/Cuperino/QPrompt/issues/new/choose\n"
 "POT-Creation-Date: 2022-04-24 23:57-0400\n"
-"PO-Revision-Date: 2022-04-18 12:18+0000\n"
+"PO-Revision-Date: 2022-04-25 05:23+0000\n"
 "Last-Translator: Javier O. Cordero Pérez <javiercorderoperez@gmail.com>\n"
-"Language-Team: Spanish <http://l10n.cuperino.com/projects/qprompt/qprompt-"
-"app/es/>\n"
+"Language-Team: Spanish <http://l10n.cuperino.com/projects/qprompt/"
+"qprompt-app/es/>\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -22,45 +22,39 @@ msgstr ""
 
 #: kirigami_ui/+android/main.qml:144 kirigami_ui/main.qml:174
 #: kirigami_ui/main.qml:362 kirigami_ui/+windows/main.qml:202
-#, fuzzy
 msgctxt "Main menu and global menu actions"
 msgid "&New"
 msgstr "&Nuevo"
 
 #: kirigami_ui/+android/main.qml:150 kirigami_ui/main.qml:180
 #: kirigami_ui/main.qml:366 kirigami_ui/+windows/main.qml:208
-#, fuzzy
 msgctxt "Main menu and global menu actions"
 msgid "&Open"
 msgstr "&Abrir"
 
 #: kirigami_ui/+android/main.qml:156 kirigami_ui/main.qml:189
 #: kirigami_ui/main.qml:370 kirigami_ui/+windows/main.qml:214
-#, fuzzy
 msgctxt "Main menu and global menu actions"
 msgid "&Save"
 msgstr "&Guardar"
 
 #: kirigami_ui/+android/main.qml:162 kirigami_ui/main.qml:198
 #: kirigami_ui/+windows/main.qml:220
-#, fuzzy
 msgctxt "Main menu and global menu actions"
 msgid "Save &As"
 msgstr "Guardar &como"
 
 #: kirigami_ui/+android/main.qml:169 kirigami_ui/main.qml:208
 #: kirigami_ui/+windows/main.qml:227
-#, fuzzy
 msgctxt "Main menu actions"
 msgid "&Recent Files"
 msgstr "Archivos &recientes"
 
 #: kirigami_ui/+android/main.qml:177 kirigami_ui/main.qml:216
 #: kirigami_ui/+windows/main.qml:235
-#, fuzzy
 msgctxt "Main menu actions. Menu regarding input settings."
 msgid "&Controls Settings"
-msgstr "&Ajustes de control"
+msgstr "Ajustes de &control"
 
 #: kirigami_ui/+android/main.qml:181
 msgid "Keyboard Inputs"
@@ -68,7 +62,6 @@ msgstr "Entradas de teclado"
 
 #: kirigami_ui/+android/main.qml:188 kirigami_ui/main.qml:227
 #: kirigami_ui/main.qml:607 kirigami_ui/+windows/main.qml:246
-#, fuzzy
 msgctxt ""
 "Main menu and global menu actions. Have up arrow behave like down arrow and "
 "vice versa while prompting."
@@ -77,7 +70,6 @@ msgstr "Invertir &teclas de flechas"
 
 #: kirigami_ui/+android/main.qml:196 kirigami_ui/main.qml:235
 #: kirigami_ui/main.qml:614 kirigami_ui/+windows/main.qml:254
-#, fuzzy
 msgctxt ""
 "Main menu and global menu actions. Invert scroll direction while prompting."
 msgid "Invert &scroll direction"
@@ -85,7 +77,6 @@ msgstr "Invertir &dirección de desplazamiento"
 
 #: kirigami_ui/+android/main.qml:204 kirigami_ui/main.qml:243
 #: kirigami_ui/main.qml:599 kirigami_ui/+windows/main.qml:262
-#, fuzzy
 msgctxt ""
 "Main menu and global menu actions. Have touchpad and mouse wheel scrolling "
 "adjust velocity instead of scrolling like most other apps."
@@ -94,23 +85,20 @@ msgstr "Tratar desplazamientos como ajustes de velocidad"
 
 #: kirigami_ui/+android/main.qml:213 kirigami_ui/main.qml:252
 #: kirigami_ui/main.qml:593 kirigami_ui/+windows/main.qml:271
-#, fuzzy
 msgctxt ""
 "Main menu and global menu actions. Touchpad scrolling and mouse wheel use "
 "have no effect while prompting."
 msgid "Disable scrolling while prompting"
-msgstr "Desactivar rueda de desplazamiento durante uso del prompter"
+msgstr "Desactivar desplazamiento del ratón durante ejecución"
 
 #: kirigami_ui/+android/main.qml:221 kirigami_ui/main.qml:260
 #: kirigami_ui/+windows/main.qml:279
-#, fuzzy
 msgctxt "Main menu actions"
 msgid "Other &Settings"
 msgstr "&Otros Ajustes"
 
 #: kirigami_ui/+android/main.qml:233 kirigami_ui/main.qml:272
 #: kirigami_ui/+windows/main.qml:291
-#, fuzzy
 msgctxt ""
 "Main menu actions. QPrompt switches between two text rendering techniques "
 "when the base font size exceeds 120px. Enabling this option forces QPrompt "
@@ -121,28 +109,24 @@ msgstr "Forzar renderizado de sub-pixeles en letras con más de 120px"
 
 #: kirigami_ui/+android/main.qml:250 kirigami_ui/main.qml:289
 #: kirigami_ui/+windows/main.qml:308
-#, fuzzy
 msgctxt "Main menu actions. Load about page."
 msgid "Abou&t %1"
-msgstr "&Sobre"
+msgstr "&Sobre %1"
 
 #: kirigami_ui/+android/main.qml:256 kirigami_ui/main.qml:295
 #: kirigami_ui/main.qml:379 kirigami_ui/+windows/main.qml:314
-#, fuzzy
 msgctxt "Main menu and global menu actions"
 msgid "&Quit"
 msgstr "Sali&r"
 
 #: kirigami_ui/+android/main.qml:271 kirigami_ui/main.qml:321
 #: kirigami_ui/main.qml:639 kirigami_ui/+windows/main.qml:340
-#, fuzzy
 msgctxt "Main menu and global actions. Load document that welcomes users."
 msgid "Load User &Welcome"
-msgstr "Cargar &Guía de Usuario"
+msgstr "Cargar &Bienvenida de Usuario"
 
 #: kirigami_ui/+android/main.qml:467 kirigami_ui/main.qml:789
 #: kirigami_ui/+windows/main.qml:490
-#, fuzzy
 msgctxt "Title for save before closing dialog"
 msgid "Save Document"
 msgstr "Guardar Documento"
@@ -154,122 +138,102 @@ msgstr "Guardar los cambios al documento antes de salir?"
 
 #: kirigami_ui/EditorToolbar.qml:317 kirigami_ui/EditorToolbar.qml:327
 #: kirigami_ui/main.qml:544 kirigami_ui/main.qml:561
-#, fuzzy
 msgctxt "Global menu and editor actions. Text alignment."
 msgid "&Left"
 msgstr "&Izquierda"
 
 #: kirigami_ui/EditorToolbar.qml:317 kirigami_ui/EditorToolbar.qml:327
 #: kirigami_ui/main.qml:544 kirigami_ui/main.qml:561
-#, fuzzy
 msgctxt "Global menu and editor actions. Text alignment."
 msgid "&Right"
 msgstr "&Derecha"
 
 #: kirigami_ui/EditorToolbar.qml:322
-#, fuzzy
 msgctxt "Editor actions. Text alignment."
 msgid "C&enter"
 msgstr "C&entro"
 
 #: kirigami_ui/EditorToolbar.qml:476
-#, fuzzy
 msgctxt "FontName (Translatable font details)"
 msgid "DejaVu (default, Roman, Cyrillic)"
 msgstr "DejaVu (predeterminado, romano, cirílico)"
 
 #: kirigami_ui/EditorToolbar.qml:480
-#, fuzzy
 msgctxt "FontName (Translatable font details)"
 msgid "OpenDyslexic (Roman)"
 msgstr "OpenDyslexic (romano)"
 
 #: kirigami_ui/EditorToolbar.qml:484
-#, fuzzy
 msgctxt "FontName (Translatable font details)"
 msgid "Source Han Sans (CH, JP, KO)"
 msgstr "Source Han Sans (CH, JP, KO)"
 
 #: kirigami_ui/EditorToolbar.qml:488
-#, fuzzy
 msgctxt "FontName (Translatable font details)"
 msgid "Scheherazade New (Arabic)"
 msgstr "Scheherazade New (árabe)"
 
 #: kirigami_ui/EditorToolbar.qml:492
-#, fuzzy
 msgctxt "FontName (Translatable font details)"
 msgid "Palanquin (Devangari)"
 msgstr "Palanquin (devanagari)"
 
 #: kirigami_ui/EditorToolbar.qml:496
-#, fuzzy
 msgctxt "FontName (Translatable font details)"
 msgid "Kalpurush (Bengali)"
 msgstr "Kalpurush (bengalí)"
 
 #: kirigami_ui/EditorToolbar.qml:502
-#, fuzzy
 msgctxt "Opens system font selection dialog"
 msgid "Choose System Font"
 msgstr "Escoger letra proveniente del sistema"
 
 #: kirigami_ui/EditorToolbar.qml:729
-#, fuzzy
 msgctxt "Velocity: {VELOCITY_STEPS}"
 msgid "Velocity: %1"
-msgstr "Velocidad:"
+msgstr "Velocidad: %1"
 
 #: kirigami_ui/EditorToolbar.qml:763
-#, fuzzy
 msgctxt "Opacity: {TRANSPARENCY_PERCENTAGE}"
 msgid "Opacity: %1"
-msgstr "Opacidad:"
+msgstr "Opacidad: %1"
 
 #: kirigami_ui/EditorToolbar.qml:795
-#, fuzzy
 msgctxt "Font size while editing: 100% (083)"
 msgid "Font size while editing: %1% (%2)"
-msgstr "Tamaño de letra al editar:"
+msgstr "Tamaño de letra al editar: %1% (%2)"
 
 #: kirigami_ui/EditorToolbar.qml:826
-#, fuzzy
 msgctxt "Font size: 100% (083)"
 msgid "Font size: %1% (%2)"
-msgstr "Tamaño de letra:"
+msgstr "Tamaño de letra: %1% (%2)"
 
 #: kirigami_ui/EditorToolbar.qml:862
-#, fuzzy
 msgctxt "Line height: 100%"
 msgid "Line height: %1%"
-msgstr "Altura de línea:"
+msgstr "Altura de línea: %1%"
 
 #: kirigami_ui/EditorToolbar.qml:900
-#, fuzzy
 msgctxt "Word spacing: ±00"
 msgid "Word spacing: %1"
-msgstr "Espacio entre palabras:"
+msgstr "Espacio entre palabras: %1"
 
 #: kirigami_ui/EditorToolbar.qml:936
-#, fuzzy
 msgctxt "Letter spacing: ±00"
 msgid "Letter spacing: %1"
-msgstr "Espacio entre letras:"
+msgstr "Espacio entre letras: %1"
 
 #: kirigami_ui/EditorToolbar.qml:972
-#, fuzzy
 msgctxt "Step speed: 1.00"
 msgid "Step speed: %1"
-msgstr "Rapidez del incremento:"
+msgstr "Rapidez del incremento: %1"
 
 #: kirigami_ui/EditorToolbar.qml:1013
-#, fuzzy
 msgctxt "Step acceleration: 1.15"
 msgid "Step acceleration: %1"
-msgstr "Aceleración del incremento:"
+msgstr "Aceleración del incremento: %1"
 
 #: kirigami_ui/EditorToolbar.qml:1092
-#, fuzzy
 msgctxt ""
 "Refers to a key on the keyboard used to skip to a user defined marker while "
 "prompting"
@@ -277,7 +241,6 @@ msgid "Skip Key"
 msgstr "Tecla de Salto"
 
 #: kirigami_ui/EditorToolbar.qml:1115
-#, fuzzy
 msgctxt ""
 "Refers to a key on the keyboard used to skip to a user defined marker while "
 "prompting"
@@ -285,7 +248,6 @@ msgid "Key to perform skip to this marker"
 msgstr "Tecla para saltar a este marcador"
 
 #: kirigami_ui/InputsOverlay.qml:37
-#, fuzzy
 msgctxt "Title of dialog where users customize keyboard inputs"
 msgid "Key Bindings"
 msgstr "Configuración de Teclas"
@@ -307,155 +269,130 @@ msgid "Play/Pause"
 msgstr "Reproducir/Pausar"
 
 #: kirigami_ui/InputsOverlay.qml:163
-#, fuzzy
 msgctxt "Skip to earlier text while prompting or editing"
 msgid "Move Backwards"
 msgstr "Retroceder"
 
 #: kirigami_ui/InputsOverlay.qml:171
-#, fuzzy
 msgctxt "Skip to later text while prompting or editing"
 msgid "Move Forward"
 msgstr "Avanzar"
 
 #: kirigami_ui/InputsOverlay.qml:179
-#, fuzzy
 msgctxt "Skip to closest marker behind of current position"
 msgid "Go to Previous Marker"
 msgstr "Ir al último marcador"
 
 #: kirigami_ui/InputsOverlay.qml:187
-#, fuzzy
 msgctxt "Skip to closest marker ahead of current position"
 msgid "Go to Next Marker"
 msgstr "Ir al siguiente marcador"
 
 #: kirigami_ui/main.qml:220 kirigami_ui/+windows/main.qml:239
-#, fuzzy
 msgctxt ""
 "Main menu and global menu actions. Opens dialog to configure keyboard inputs."
 msgid "Keyboard Inputs"
 msgstr "Entradas de teclado"
 
 #: kirigami_ui/main.qml:359
-#, fuzzy
 msgctxt "Global menu actions"
 msgid "&File"
 msgstr "&Archivo"
 
 #: kirigami_ui/main.qml:374
-#, fuzzy
 msgctxt "Main menu and global menu actions"
 msgid "Save &As…"
-msgstr "Gu&ardar Como…"
+msgstr "&Guardar Como…"
 
 #: kirigami_ui/main.qml:385
-#, fuzzy
 msgctxt "Global menu actions"
 msgid "&Edit"
 msgstr "&Editar"
 
 #: kirigami_ui/main.qml:388
-#, fuzzy
 msgctxt "Global menu actions"
 msgid "&Undo"
 msgstr "&Deshacer"
 
 #: kirigami_ui/main.qml:393
-#, fuzzy
 msgctxt "Global menu actions"
 msgid "&Redo"
 msgstr "&Rehacer"
 
 #: kirigami_ui/main.qml:399 prompter/Prompter.qml:954
 #: prompter/Prompter.qml:1001
-#, fuzzy
 msgctxt "Global menu and editor context menu actions"
 msgid "&Copy"
 msgstr "&Copiar"
 
 #: kirigami_ui/main.qml:404 prompter/Prompter.qml:959
 #: prompter/Prompter.qml:1006
-#, fuzzy
 msgctxt "Global menu and editor context menu actions"
 msgid "Cu&t"
 msgstr "Cor&tar"
 
 #: kirigami_ui/main.qml:409 prompter/Prompter.qml:964
 #: prompter/Prompter.qml:1011
-#, fuzzy
 msgctxt "Global menu and editor context menu actions"
 msgid "&Paste"
 msgstr "&Pegar"
 
 #: kirigami_ui/main.qml:416
-#, fuzzy
 msgctxt "Global menu actions"
 msgid "&View"
 msgstr "&Ver"
 
 #: kirigami_ui/main.qml:419
-#, fuzzy
 msgctxt "Global menu actions"
 msgid "Full &screen"
 msgstr "Panta&lla completa"
 
 #: kirigami_ui/main.qml:433
-#, fuzzy
 msgctxt "Global menu actions"
 msgid "&Indicators"
 msgstr "&Indicadores"
 
 #: kirigami_ui/main.qml:435
-#, fuzzy
 msgctxt "Global menu actions"
 msgid "&Left Pointer"
-msgstr "Apuntador &Izquierdo"
+msgstr "Apuntador &izquierdo"
 
 #: kirigami_ui/main.qml:441
-#, fuzzy
 msgctxt "Global menu actions"
 msgid "&Right Pointer"
-msgstr "Apuntador &Derecho"
+msgstr "Apuntador &derecho"
 
 #: kirigami_ui/main.qml:447
-#, fuzzy
 msgctxt "Global menu actions"
 msgid "B&oth Pointers"
-msgstr "&Ambos Apuntadores"
+msgstr "&Ambos apuntadores"
 
 #: kirigami_ui/main.qml:454
-#, fuzzy
 msgctxt "Global menu actions"
 msgid "&Bars"
 msgstr "&Barras"
 
 #: kirigami_ui/main.qml:460
-#, fuzzy
 msgctxt "Global menu actions"
 msgid "Bars Lef&t"
-msgstr "Barra e Izquier&do"
+msgstr "Barra e izquier&do"
 
 #: kirigami_ui/main.qml:466
-#, fuzzy
 msgctxt "Global menu actions"
 msgid "Bars Ri&ght"
-msgstr "Barra y Dere&cho"
+msgstr "Barra y dere&cho"
 
 #: kirigami_ui/main.qml:473
-#, fuzzy
 msgctxt "Global menu actions"
 msgid "&All"
 msgstr "&Todos"
 
 #: kirigami_ui/main.qml:479
-#, fuzzy
 msgctxt "Global menu actions"
 msgid "&Hidden"
 msgstr "&Oculto"
 
 #: kirigami_ui/main.qml:486
-#, fuzzy
 msgctxt ""
 "Global menu actions. Reading region indicates where a talent should be "
 "reading from."
@@ -463,33 +400,28 @@ msgid "Readin&g region"
 msgstr "Re&gión de lectura"
 
 #: kirigami_ui/main.qml:488
-#, fuzzy
 msgctxt "Global menu actions. Align reading region to top of prompter."
 msgid "&Top"
 msgstr "&Arriba"
 
 #: kirigami_ui/main.qml:494
-#, fuzzy
 msgctxt ""
 "Global menu actions. Align reading region to vertical center of prompter."
 msgid "&Middle"
 msgstr "&Centro"
 
 #: kirigami_ui/main.qml:500
-#, fuzzy
 msgctxt "Global menu actions. Align reading region to bottom of prompter."
 msgid "&Bottom"
 msgstr "A&bajo"
 
 #: kirigami_ui/main.qml:507
-#, fuzzy
 msgctxt ""
 "Global menu actions. Enables drag and drop positioning of reading region."
 msgid "F&ree placement"
 msgstr "&Libre posicionamiento"
 
 #: kirigami_ui/main.qml:513
-#, fuzzy
 msgctxt ""
 "Global menu actions. Fix positioning of reading region to what was set in "
 "\"Free placement\" mode."
@@ -497,76 +429,64 @@ msgid "C&ustom (Fixed placement)"
 msgstr "Personalizado (Posicionamiento fijo)"
 
 #: kirigami_ui/main.qml:522
-#, fuzzy
 msgctxt "Global menu actions"
 msgid "For&mat"
 msgstr "For&mato"
 
 #: kirigami_ui/main.qml:525
-#, fuzzy
 msgctxt "Global menu actions"
 msgid "&Bold"
 msgstr "&Negrita"
 
 #: kirigami_ui/main.qml:531
-#, fuzzy
 msgctxt "Global menu actions"
 msgid "&Italic"
 msgstr "Bastard&illa"
 
 #: kirigami_ui/main.qml:537
-#, fuzzy
 msgctxt "Global menu actions"
 msgid "&Underline"
 msgstr "S&ubrayado"
 
 #: kirigami_ui/main.qml:555
-#, fuzzy
 msgctxt "Global menu actions. Text alignment."
 msgid "Cen&ter"
 msgstr "Cen&tro"
 
 #: kirigami_ui/main.qml:580
-#, fuzzy
 msgctxt "Global menu actions. Opens dialog to format currently selected text."
 msgid "C&haracter"
 msgstr "Letra"
 
 #: kirigami_ui/main.qml:584
-#, fuzzy
 msgctxt "Global menu actions. Opens dialog to color currently selected text."
 msgid "Fo&nt Color"
 msgstr "Color de let&ra"
 
 #: kirigami_ui/main.qml:590
-#, fuzzy
 msgctxt "Global menu actions. Menu regarding input settings."
 msgid "Controls"
 msgstr "Controles"
 
 #: kirigami_ui/main.qml:623
-#, fuzzy
 msgctxt "Global menu actions"
 msgid "&Help"
 msgstr "A&yuda"
 
 #: kirigami_ui/main.qml:626
-#, fuzzy
 msgctxt "Global menu actions"
 msgid "Report &Bug…"
 msgstr "Reportar &Problemas…"
 
 #: kirigami_ui/main.qml:645
-#, fuzzy
 msgctxt "Global menu actions. Load about page. \"About AppName\""
 msgid "Abou&t %1"
-msgstr "&Sobre"
+msgstr "&Sobre %1"
 
 #: kirigami_ui/MarkersDrawer.qml:108
-#, fuzzy
 msgctxt "Close sidebar listing user defined markers"
 msgid "Close Marker List"
-msgstr "Ocultar Marcadores"
+msgstr "Ocultar marcadores"
 
 #: kirigami_ui/PrompterPage.qml:68
 msgid "Start prompter"
@@ -581,19 +501,16 @@ msgid "Increase velocity"
 msgstr "Aumentar velocidad"
 
 #: kirigami_ui/PrompterPage.qml:104
-#, fuzzy
 msgctxt "Reading region indicates where a talent should be reading from"
 msgid "Reading region"
 msgstr "Región de lectura"
 
 #: kirigami_ui/PrompterPage.qml:106
-#, fuzzy
 msgctxt "Reading region indicates where a talent should be reading from"
 msgid "Change reading region placement"
 msgstr "Re-ubicar región de lectura"
 
 #: kirigami_ui/PrompterPage.qml:111
-#, fuzzy
 msgctxt "Align reading region to top of prompter"
 msgid "Top"
 msgstr "Arriba"
@@ -603,7 +520,6 @@ msgid "Move reading region to the top, convenient for use with webcams"
 msgstr "Ubique la región de lectura arriba; útil para uso con cámaras web"
 
 #: kirigami_ui/PrompterPage.qml:122
-#, fuzzy
 msgctxt "Align reading region to vertical center of prompter"
 msgid "Middle"
 msgstr "Centro"
@@ -613,7 +529,6 @@ msgid "Move reading region to the vertical center"
 msgstr "Ubique la región de lectura en el centro vertical de la ventana"
 
 #: kirigami_ui/PrompterPage.qml:133
-#, fuzzy
 msgctxt "Align reading region to bottom of prompter"
 msgid "Bottom"
 msgstr "Abajo"
@@ -623,7 +538,6 @@ msgid "Move reading region to the bottom"
 msgstr "Ubique la región de lectura al fondo de la ventana"
 
 #: kirigami_ui/PrompterPage.qml:144
-#, fuzzy
 msgctxt ""
 "Refers to free placement. Enables drag and drop positioning of reading "
 "region."
@@ -635,7 +549,6 @@ msgid "Move reading region freely by dragging and dropping"
 msgstr "Arrastre la región de lectura para moverla libremente"
 
 #: kirigami_ui/PrompterPage.qml:155
-#, fuzzy
 msgctxt ""
 "Fix positioning of reading region to what was set in \"Free placement\" mode"
 msgid "Custom"
@@ -648,26 +561,22 @@ msgstr ""
 "posicionamiento libre"
 
 #: kirigami_ui/PrompterPage.qml:180
-#, fuzzy
 msgctxt ""
 "Height of reading region relative to single line height. E.g. Height: 2.5"
 msgid "Height: %1"
 msgstr "Altura: %1"
 
 #: kirigami_ui/PrompterPage.qml:230
-#, fuzzy
 msgctxt "Indicators highlight reading region"
 msgid "Indicators"
 msgstr "Indicadores"
 
 #: kirigami_ui/PrompterPage.qml:231
-#, fuzzy
 msgctxt "Indicators highlight reading region"
 msgid "Change reading region indicators"
 msgstr "Configure cómo demarcar la región de lectura"
 
 #: kirigami_ui/PrompterPage.qml:235
-#, fuzzy
 msgctxt "Shows pointer to the left of the reading region"
 msgid "Left pointer"
 msgstr "Apuntador izquierdo"
@@ -677,7 +586,6 @@ msgid "Left pointer indicates reading region"
 msgstr "Un apuntador a la izquierda indica la región de lectura"
 
 #: kirigami_ui/PrompterPage.qml:246
-#, fuzzy
 msgctxt "Shows pointer to the right of the reading region"
 msgid "Right pointer"
 msgstr "Apuntador derecho"
@@ -687,7 +595,6 @@ msgid "Right pointer indicates reading region"
 msgstr "Un apuntador a la derecha indica la región de lectura"
 
 #: kirigami_ui/PrompterPage.qml:257
-#, fuzzy
 msgctxt "Shows pointers to the left and right of the reading region"
 msgid "Both pointers"
 msgstr "Ambos apuntadores"
@@ -697,7 +604,6 @@ msgid "Left and right pointers indicate reading region"
 msgstr "Apuntadores a ambos lados indican la región de lectura"
 
 #: kirigami_ui/PrompterPage.qml:268
-#, fuzzy
 msgctxt "Translucent bars indicate reading region"
 msgid "Bar"
 msgstr "Barra"
@@ -707,7 +613,6 @@ msgid "Translucent bars indicate reading region"
 msgstr "Barras translúcidas indican la región de lectura"
 
 #: kirigami_ui/PrompterPage.qml:279
-#, fuzzy
 msgctxt "Translucent bars and left pointer indicate reading region"
 msgid "Bar && left"
 msgstr "Barra e izquierdo"
@@ -717,7 +622,6 @@ msgid "Translucent bars and left pointer indicate reading region"
 msgstr "Barras translúcidas y apuntador izquierdo indican la región de lectura"
 
 #: kirigami_ui/PrompterPage.qml:290
-#, fuzzy
 msgctxt "Translucent bars and right pointer indicate reading region"
 msgid "Bar && right"
 msgstr "Barra y derecho"
@@ -727,25 +631,21 @@ msgid "Translucent bars and right pointer indicate reading region"
 msgstr "Barras translúcidas y apuntador derecho indican la región de lectura"
 
 #: kirigami_ui/PrompterPage.qml:301
-#, fuzzy
 msgctxt "Enable all reading region indicators"
 msgid "All"
 msgstr "Todos"
 
 #: kirigami_ui/PrompterPage.qml:303
-#, fuzzy
 msgctxt "Enable all reading region indicators"
 msgid "Use all reading region indicators"
 msgstr "Combine todos los indicadores de región de lectura"
 
 #: kirigami_ui/PrompterPage.qml:312
-#, fuzzy
 msgctxt "Disable all reading region indicators"
 msgid "Hidden"
 msgstr "Oculto"
 
 #: kirigami_ui/PrompterPage.qml:314
-#, fuzzy
 msgctxt "Disable all reading region indicators"
 msgid "Disable reading region indicators"
 msgstr "Oculte todos los indicadores de región de lectura"
@@ -759,36 +659,31 @@ msgid "Stopwatch"
 msgstr "Cronómetro"
 
 #: kirigami_ui/PrompterPage.qml:341
-#, fuzzy
 msgctxt "Estimated Time of Arrival"
 msgid "ETA"
 msgstr "Tiempo estimado"
 
 #: kirigami_ui/PrompterPage.qml:349
-#, fuzzy
 msgctxt "Color of timer text"
 msgid "Timer color"
 msgstr "Color del indicador"
 
 #: kirigami_ui/PrompterPage.qml:358
-#, fuzzy
 msgctxt "Reset color of timer text back to default"
 msgid "Clear color"
 msgstr "Re-establecer color"
 
 #: kirigami_ui/PrompterPage.qml:369 kirigami_ui/PrompterPage.qml:390
 msgid "Countdown"
-msgstr "Conteo Regresivo"
+msgstr "Conteo regresivo"
 
 #: kirigami_ui/PrompterPage.qml:375
-#, fuzzy
 msgctxt ""
 "Enables automatic alignment of prompter and text with the reading region"
 msgid "Auto frame"
 msgstr "Auto encuadrar"
 
 #: kirigami_ui/PrompterPage.qml:405
-#, fuzzy
 msgctxt "Auto start countdown upon prompter getting started"
 msgid "Auto start"
 msgstr "Inicio inmediato"
@@ -798,27 +693,23 @@ msgid "Start countdown automatically"
 msgstr "Iniciar conteo regresivo automáticamente"
 
 #: kirigami_ui/PrompterPage.qml:416
-#, fuzzy
 msgctxt "Configure countdown duration"
 msgid "Set duration"
 msgstr "Configurar duración"
 
 #: kirigami_ui/PrompterPage.qml:432
-#, fuzzy
 msgctxt "Prompter orientation and mirroring"
 msgid "Orientation"
-msgstr "Configurar duración"
+msgstr "Orientación"
 
 #. i18n("H Flip")
 #: kirigami_ui/PrompterPage.qml:448
-#, fuzzy
 msgctxt "Mirrors prompter horizontally"
 msgid "Horizontal mirror"
-msgstr "Invertido Horizontal"
+msgstr "Invertido horizontal"
 
 #. i18n("V Flip")
 #: kirigami_ui/PrompterPage.qml:463
-#, fuzzy
 msgctxt "Mirrors prompter vertically"
 msgid "Vertical mirror"
 msgstr "Invertido vertical"
@@ -826,52 +717,44 @@ msgstr "Invertido vertical"
 #: kirigami_ui/PrompterPage.qml:488
 msgctxt "Prompter rotation is disabled"
 msgid "Don't rotate"
-msgstr ""
+msgstr "No rotar"
 
 #: kirigami_ui/PrompterPage.qml:498
-#, fuzzy
 msgctxt "Rotate prompter 90 degrees to the right"
 msgid "90° clockwise"
 msgstr "90° derecha"
 
 #: kirigami_ui/PrompterPage.qml:508
-#, fuzzy
 msgctxt "Rotate prompter 90 degrees to the left"
 msgid "90° counter"
 msgstr "90° izquierda"
 
 #: kirigami_ui/PrompterPage.qml:530
-#, fuzzy
 msgctxt "Background refers to what appears behind the prompter"
 msgid "Background"
 msgstr "Fondo"
 
 #: kirigami_ui/PrompterPage.qml:533
-#, fuzzy
 msgctxt "Set background image"
 msgid "Set image"
 msgstr "Configurar imagen"
 
 #: kirigami_ui/PrompterPage.qml:542
-#, fuzzy
 msgctxt "Set background color tint"
 msgid "Set color"
 msgstr "Configurar color"
 
 #: kirigami_ui/PrompterPage.qml:551
-#, fuzzy
 msgctxt "Set background settings back to default"
 msgid "Clear"
 msgstr "Limpiar"
 
 #: kirigami_ui/PrompterPage.qml:563
-#, fuzzy
 msgctxt "Screens refers to computer displays"
 msgid "Screens"
 msgstr "Pantallas"
 
 #: kirigami_ui/PrompterPage.qml:596
-#, fuzzy
 msgctxt "Screen is disabled"
 msgid "Off"
 msgstr "Apagada"
@@ -879,37 +762,34 @@ msgstr "Apagada"
 #: kirigami_ui/PrompterPage.qml:597
 msgctxt "Screen is enabled but mirroring is disabled"
 msgid "No Mirror"
-msgstr ""
+msgstr "Sin espejar"
 
 #: kirigami_ui/PrompterPage.qml:598
 msgctxt "Horizontal mirroring"
 msgid "H Mirror"
-msgstr ""
+msgstr "Espejo H"
 
 #: kirigami_ui/PrompterPage.qml:599
 msgctxt "Vertical mirroring"
 msgid "V Mirror"
-msgstr ""
+msgstr "Espejo V"
 
 #: kirigami_ui/PrompterPage.qml:600
 msgctxt "Horizontal and vertical mirroring"
 msgid "HV Mirror"
-msgstr ""
+msgstr "Espejo HV"
 
 #: kirigami_ui/PrompterPage.qml:607
-#, fuzzy
 msgctxt "Enable scaling prompter copies being projected onto displays"
 msgid "Scale projections"
 msgstr "Escalar proyecciones"
 
 #: kirigami_ui/PrompterPage.qml:616
-#, fuzzy
 msgctxt "Preview projecting prompter copies onto displays"
 msgid "Preview projections"
 msgstr "Vista previa"
 
 #: kirigami_ui/PrompterPage.qml:617
-#, fuzzy
 msgid "Project prompter copies onto extended displays"
 msgstr "Proyecta duplicados a pantallas extendidas"
 
@@ -1137,14 +1017,12 @@ msgstr ""
 "las que trabajas, así que te pido: por favor deja la telemetría activa."
 
 #: main.cpp:67
-#, fuzzy
 msgid "© 2021 Javier O. Cordero Pérez"
-msgstr "© %1 Javier O. Cordero Pérez"
+msgstr "© 2021 Javier O. Cordero Pérez"
 
 #: main.cpp:68
-#, fuzzy
 msgid "© 2021-%1 Javier O. Cordero Pérez"
-msgstr "© %1 Javier O. Cordero Pérez"
+msgstr "© 2021-%1 Javier O. Cordero Pérez"
 
 #: main.cpp:71
 msgid "Personal teleprompter software for all video makers."
@@ -1203,31 +1081,28 @@ msgstr ""
 "al menos un monitor esté configurado para proyectar"
 
 #: prompter/PrompterBackground.qml:121
-#, fuzzy
 msgid "JPEG image"
-msgstr "Configurar imagen"
+msgstr "Imagen JPEG"
 
 #: prompter/PrompterBackground.qml:122
-#, fuzzy
 msgid "PNG image"
-msgstr "Configurar imagen"
+msgstr "Imagen PNG"
 
 #: prompter/PrompterBackground.qml:123
 msgid "GIF animation"
-msgstr ""
+msgstr "Animación GIF"
 
 #: prompter/Prompter.qml:404
 msgid "Animation Completed"
-msgstr "Animación Terminó"
+msgstr "Animación terminó"
 
 #: prompter/Prompter.qml:524
 msgid "Error loading file…"
 msgstr "Error cargando archivo…"
 
 #: prompter/Prompter.qml:579
-#, fuzzy
 msgid "Double tap to go back to the start"
-msgstr "Vallamos al comienzo"
+msgstr "Toque dos veces para ir al comienzo"
 
 #: prompter/Prompter.qml:801
 msgid "New document"
@@ -1242,28 +1117,24 @@ msgid "User welcome loaded"
 msgstr "Bienvenida de usuario cargada"
 
 #: prompter/Prompter.qml:835 prompter/Prompter.qml:931
-#, fuzzy
 msgctxt "Saved FILE_NAME"
 msgid "Saved %1"
 msgstr "%1 guardado"
 
 #: prompter/Prompter.qml:888 prompter/Prompter.qml:918
-#, fuzzy
 msgctxt "Format name (FORMAT_EXTENSION)"
 msgid "Hypertext Markup Language (%1)"
-msgstr "Lenguaje de marcado de hipertexto (HTML)"
+msgstr "Lenguaje de marcado de hipertexto (%1)"
 
 #: prompter/Prompter.qml:889
-#, fuzzy
 msgctxt "Format name (FORMAT_EXTENSION)"
 msgid "Markdown (%1)"
-msgstr "Markdown (MD)"
+msgstr "Markdown (%1)"
 
 #: prompter/Prompter.qml:890 prompter/Prompter.qml:919
-#, fuzzy
 msgctxt "Format name (FORMAT_EXTENSION)"
 msgid "Plain Text (%1)"
-msgstr "Texto sin formato (TXT)"
+msgstr "Texto sin formato (%1)"
 
 #. i18nc("Format name (FORMAT_EXTENSION)", "OpenDocument Format Text Document (%1)", "ODT") + "(*.odt *.ODT)",
 #. i18nc("Format name (FORMAT_EXTENSION)", "AbiWord Document (%1)", "ABW") + "(*.abw *.ABW *.zabw *.ZABW)",
@@ -1272,37 +1143,31 @@ msgstr "Texto sin formato (TXT)"
 #. i18nc("Format name (FORMAT_EXTENSION)", "Rich Text Format (%1)", "RTF") + "(*.rtf *.RTF)",
 #. i18nc("Format name (FORMAT_EXTENSION)", "Portable Document Format (%1)", "PDF") + "(*.pdf *.PDF)",
 #: prompter/Prompter.qml:897
-#, fuzzy
 msgctxt "All file formats"
 msgid "All Formats"
 msgstr "Todos los formatos"
 
 #: prompter/Prompter.qml:970 prompter/Prompter.qml:1017
-#, fuzzy
 msgctxt "Editor context menu actions"
 msgid "Fo&nt…"
 msgstr "Let&ra…"
 
 #: prompter/Prompter.qml:974 prompter/Prompter.qml:1021
-#, fuzzy
 msgctxt "Editor context menu actions"
 msgid "Co&lor…"
 msgstr "Co&lor…"
 
 #: prompter/Prompter.qml:978 prompter/Prompter.qml:1025
-#, fuzzy
 msgctxt "Editor context menu actions"
 msgid "Hi&ghlight…"
 msgstr "Re&saltar…"
 
 #: prompter/Prompter.qml:990
-#, fuzzy
 msgctxt "Editor context menu actions"
 msgid "&Undo"
 msgstr "&Deshacer"
 
 #: prompter/Prompter.qml:995
-#, fuzzy
 msgctxt "Editor context menu actions"
 msgid "Redo"
 msgstr "Rehacer"
