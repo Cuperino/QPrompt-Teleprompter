@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/Cuperino/QPrompt/issues/new/choose\n"
 "POT-Creation-Date: 2022-04-25 02:04-0400\n"
-"PO-Revision-Date: 2022-04-25 05:23+0000\n"
+"PO-Revision-Date: 2022-04-25 06:12+0000\n"
 "Last-Translator: Javier O. Cordero Pérez <javiercorderoperez@gmail.com>\n"
 "Language-Team: French <http://l10n.cuperino.com/projects/qprompt/qprompt-app/"
 "fr/>\n"
@@ -136,13 +136,11 @@ msgid "Save changes to document before closing?"
 msgstr "Enregistrer les changements du documents avant de fermer ?"
 
 #: kirigami_ui/EditorToolbar.qml:317 kirigami_ui/EditorToolbar.qml:327
-#, fuzzy
 msgctxt "Editor actions. Text alignment."
 msgid "&Left"
 msgstr "&Gauche"
 
 #: kirigami_ui/EditorToolbar.qml:317 kirigami_ui/EditorToolbar.qml:327
-#, fuzzy
 msgctxt "Editor actions. Text alignment."
 msgid "&Right"
 msgstr "&Droit"
@@ -347,26 +345,22 @@ msgid "Full &screen"
 msgstr "Plein Écran"
 
 #: kirigami_ui/main.qml:433
-#, fuzzy
 msgctxt "Global menu actions. Indicators highlight reading region."
 msgid "&Indicators"
 msgstr "Indicateurs"
 
 #: kirigami_ui/main.qml:435
-#, fuzzy
 msgctxt "Global menu actions. Shows pointer to the left of the reading region."
 msgid "&Left Pointer"
 msgstr "Pointeur Gauche"
 
 #: kirigami_ui/main.qml:441
-#, fuzzy
 msgctxt ""
 "Global menu actions. Shows pointer to the right of the reading region."
 msgid "&Right Pointer"
 msgstr "Pointeur Droit"
 
 #: kirigami_ui/main.qml:447
-#, fuzzy
 msgctxt ""
 "Global menu actions. Shows pointers to the left and right of the reading "
 "region."
@@ -374,13 +368,11 @@ msgid "B&oth Pointers"
 msgstr "Les deux pointeurs"
 
 #: kirigami_ui/main.qml:454
-#, fuzzy
 msgctxt "Global menu actions. Translucent bars indicate reading region."
 msgid "&Bars"
 msgstr "Barre"
 
 #: kirigami_ui/main.qml:460
-#, fuzzy
 msgctxt ""
 "Global menu actions. Translucent bars and left pointer indicate reading "
 "region."
@@ -388,7 +380,6 @@ msgid "Bars Lef&t"
 msgstr "Barre Gauche"
 
 #: kirigami_ui/main.qml:466
-#, fuzzy
 msgctxt ""
 "Global menu actions. Translucent bars and right pointer indicate reading "
 "region."
@@ -396,13 +387,11 @@ msgid "Bars Ri&ght"
 msgstr "Barre Droite"
 
 #: kirigami_ui/main.qml:473
-#, fuzzy
 msgctxt "Global menu actions. Enable all reading region indicators."
 msgid "&All"
 msgstr "&Tout"
 
 #: kirigami_ui/main.qml:479
-#, fuzzy
 msgctxt "Global menu actions. Disable all reading region indicators."
 msgid "&Hidden"
 msgstr "Caché"
@@ -745,14 +734,12 @@ msgstr "Orientation"
 
 #. i18n("H Flip")
 #: kirigami_ui/PrompterPage.qml:448
-#, fuzzy
 msgctxt "Mirrors prompter horizontally"
 msgid "Horizontal mirror"
 msgstr "Retourner horizontalement"
 
 #. i18n("V Flip")
 #: kirigami_ui/PrompterPage.qml:463
-#, fuzzy
 msgctxt "Mirrors prompter vertically"
 msgid "Vertical mirror"
 msgstr "Retourner verticalement"
