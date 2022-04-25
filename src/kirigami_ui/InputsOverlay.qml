@@ -34,7 +34,7 @@ Kirigami.OverlaySheet {
         anchors.fill: parent
     }
     header: Kirigami.Heading {
-        text: i18n("Key Bindings")
+        text: i18nc("Title of dialog where users customize keyboard inputs", "Key Bindings")
         level: 1
     }
 
@@ -160,7 +160,7 @@ Kirigami.OverlaySheet {
             Layout.fillWidth: true
         }
         Label {
-            text: i18n("Move Backwards")
+            text: i18nc("Skip to earlier text while prompting or editing", "Move Backwards")
         }
         Loader {
             id: keyInputMoveBackwards
@@ -168,7 +168,7 @@ Kirigami.OverlaySheet {
             Layout.fillWidth: true
         }
         Label {
-            text: i18n("Move Forward")
+            text: i18nc("Skip to later text while prompting or editing", "Move Forward")
         }
         Loader {
             id: keyInputMoveForward
@@ -176,7 +176,7 @@ Kirigami.OverlaySheet {
             Layout.fillWidth: true
         }
         Label {
-            text: i18n("Go to Previous Marker")
+            text: i18nc("Skip to closest marker behind of current position", "Go to Previous Marker")
         }
         Loader {
             id: keyInputPreviousMarker
@@ -184,7 +184,7 @@ Kirigami.OverlaySheet {
             Layout.fillWidth: true
         }
         Label {
-            text: i18n("Go to Next Marker")
+            text: i18nc("Skip to closest marker ahead of current position", "Go to Next Marker")
         }
         Loader {
             id: keyInputNextMarker

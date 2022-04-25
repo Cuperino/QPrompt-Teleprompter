@@ -63,13 +63,15 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
     QCoreApplication::setApplicationName("QPrompt");
 
     const int currentYear = QDate::currentDate().year();
-    QString copyrightYears = (currentYear>2021 ? "2021-" : "") + QString::number(currentYear);
+    QString copyrightYear = QString::number(currentYear);
+    QString copyrightStatement1 = i18n("© 2021 Javier O. Cordero Pérez");
+    QString copyrightStatement2 = i18n("© 2021-%1 Javier O. Cordero Pérez", copyrightYear);
     KAboutData aboutData("qprompt", "QPrompt",
                          QPROMPT_VERSION_STRING " (" + QString(GIT_BRANCH) + "/" + QString(GIT_COMMIT_HASH) + ")",
                          i18n("Personal teleprompter software for all video makers."),
                          KAboutLicense::GPL_V3,
-                         i18n("© %1 Javier O. Cordero Pérez", copyrightYears));
-
+                         // ki18ncp("© 2021-currentYear Author", "© 2021 Javier O. Cordero Pérez", "© 2021-<numid>%1</numid> Javier O. Cordero Pérez").subs(currentYear).toString());
+                         (currentYear <= 2021) ? copyrightStatement1 : copyrightStatement2);
     // Overwrite default-generated values of organizationDomain & desktopFileName
     aboutData.setHomepage("https://qprompt.app");
     aboutData.setProductName("cuperino/qprompt");

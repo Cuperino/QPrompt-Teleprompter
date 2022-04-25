@@ -576,22 +576,22 @@ Flickable {
                         cursorShape: Qt.PointingHandCursor
                         onClicked: {
                             if (root.passiveNotifications)
-                                showPassiveNotification("Double tap to go back to the start");
+                                showPassiveNotification(i18n("Double tap to go back to the start"));
                         }
                         onDoubleClicked: {
                             reset.toStart()
-                            if (root.passiveNotifications) {
-                                // Run hidePassiveNotification second to avoid Kirigami bug from 5.83.0 that prevents the method from completing execution.
-                                //hidePassiveNotification()
-                                // Scientist EE
-                                let goToStartNotification = "";
-                                switch (c++%3) {
-                                    case 0: goToStartNotification = i18n("Let's go back to the start"); break;
-                                    case 1: goToStartNotification = i18n("Take me back to the start"); break;
-                                    case 2: goToStartNotification = i18n("I'm going back to the start"); c=0; break;
-                                }
-                                showPassiveNotification(goToStartNotification);
-                            }
+                            //if (root.passiveNotifications) {
+                                //// Run hidePassiveNotification second to avoid Kirigami bug from 5.83.0 that prevents the method from completing execution.
+                                ////hidePassiveNotification()
+                                //// Scientist EE
+                                //let goToStartNotification = "";
+                                //switch (c++%3) {
+                                    //case 0: goToStartNotification = i18n("Let's go back to the start"); break;
+                                    //case 1: goToStartNotification = i18n("Take me back to the start"); break;
+                                    //case 2: goToStartNotification = i18n("I'm going back to the start"); c=0; break;
+                                //}
+                                //showPassiveNotification(goToStartNotification);
+                            //}
                         }
                     }
                 }
@@ -832,7 +832,7 @@ Flickable {
                     saveAsDialog()
                 else {
                     document.modified = false
-                    showPassiveNotification(i18n("Saved %1", document.fileUrl))
+                    showPassiveNotification(i18nc("Saved FILE_NAME", "Saved %1", document.fileUrl))
                     document.saveAs(document.fileUrl)
                     //if (quit)
                         //Qt.quit()
@@ -884,16 +884,17 @@ Flickable {
         id: openDialog
         selectExisting: true
         selectedNameFilter: nameFilters[0]
-        nameFilters: [i18n("Hypertext Markup Language (HTML)") + "(*.html *.htm *.xhtml *.HTML *.HTM *.XHTML)",
-            i18n("Markdown (MD)") + "(*.md *.MD)",
-            i18n("Plain Text (TXT)") + "(*.txt *.text *.TXT *.TEXT)",
-            //i18n("OpenDocument Format Text Document (ODT)") + "(*.odt *.ODT)",
-            //i18n("AbiWord Document (ABW)") + "(*.abw *.ABW *.zabw *.ZABW)",
-            //i18n("Microsoft Word document (DOCX, DOC)") + "(*.docx *.doc *.DOCX *.DOC)",
-            //i18n("Apple Pages Document (PAGES)") + "(*.pages *.PAGES)",
-            //i18n("Rich Text Format (RTF)") + "(*.rtf *.RTF)",
-            //i18n("Portable Document Format (PDF)") + "(*.pdf *.PDF)",
-            i18n("All Formats") + "(*.*)"
+        nameFilters: [
+            i18nc("Format name (FORMAT_EXTENSION)", "Hypertext Markup Language (%1)", "HTML") + "(*.html *.htm *.xhtml *.HTML *.HTM *.XHTML)",
+            i18nc("Format name (FORMAT_EXTENSION)", "Markdown (%1)", "MD") + "(*.md *.MD)",
+            i18nc("Format name (FORMAT_EXTENSION)", "Plain Text (%1)", "TXT") + "(*.txt *.text *.TXT *.TEXT)",
+            //i18nc("Format name (FORMAT_EXTENSION)", "OpenDocument Format Text Document (%1)", "ODT") + "(*.odt *.ODT)",
+            //i18nc("Format name (FORMAT_EXTENSION)", "AbiWord Document (%1)", "ABW") + "(*.abw *.ABW *.zabw *.ZABW)",
+            //i18nc("Format name (FORMAT_EXTENSION)", "Microsoft Word document (%1)", "DOCX, DOC") + "(*.docx *.doc *.DOCX *.DOC)",
+            //i18nc("Format name (FORMAT_EXTENSION)", "Apple Pages Document (%1)", "PAGES") + "(*.pages *.PAGES)",
+            //i18nc("Format name (FORMAT_EXTENSION)", "Rich Text Format (%1)", "RTF") + "(*.rtf *.RTF)",
+            //i18nc("Format name (FORMAT_EXTENSION)", "Portable Document Format (%1)", "PDF") + "(*.pdf *.PDF)",
+            i18nc("All file formats", "All Formats") + "(*.*)"
         ]
         folder: shortcuts.documents
         onAccepted: {
@@ -913,10 +914,12 @@ Flickable {
         id: saveDialog
         selectExisting: false
         defaultSuffix: nameFilters[0]
-        nameFilters: [i18n("Hypertext Markup Language (HTML)") + "(*.html *.htm *.xhtml *.HTML *.HTM *.XHTML)",
-            i18n("Plain Text (TXT)") + "(*.txt *.text *.TXT *.TEXT)"
-            //i18n("All Formats") + "(*.*)"
-        ]        // Always in the same format as original file
+        nameFilters: [
+            i18nc("Format name (FORMAT_EXTENSION)", "Hypertext Markup Language (%1)", "HTML") + "(*.html *.htm *.xhtml *.HTML *.HTM *.XHTML)",
+            i18nc("Format name (FORMAT_EXTENSION)", "Plain Text (%1)", "TXT") + "(*.txt *.text *.TXT *.TEXT)"
+            //i18nc("All file formats", "All Formats") + "(*.*)"
+        ]
+        //// Always in the same format as original file
         //selectedNameFilter.index: document.fileType === "txt" ? 0 : 1
         // Always save as HTML
         selectedNameFilter: nameFilters[0]
@@ -925,7 +928,7 @@ Flickable {
         onAccepted: {
             document.saveAs(saveDialog.fileUrl)
             document.isNewFile = false
-            showPassiveNotification(i18n("Saved %1", document.fileUrl))
+            showPassiveNotification(i18nc("Saved FILE_NAME", "Saved %1", document.fileUrl))
             // if (document.quitOnSave)
             //     Qt.quit()
             // else
@@ -948,31 +951,31 @@ Flickable {
     Labs.Menu {
         id: nativeContextMenu
         Labs.MenuItem {
-            text: i18n("&Copy")
+            text: i18nc("Global menu and editor context menu actions", "&Copy")
             enabled: editor.selectedText
             onTriggered: editor.copy()
         }
         Labs.MenuItem {
-            text: i18n("Cu&t")
+            text: i18nc("Global menu and editor context menu actions", "Cu&t")
             enabled: editor.selectedText
             onTriggered: editor.cut()
         }
         Labs.MenuItem {
-            text: i18n("&Paste")
+            text: i18nc("Global menu and editor context menu actions", "&Paste")
             enabled: editor.canPaste
             onTriggered: document.paste()
         }
         Labs.MenuSeparator {}
         Labs.MenuItem {
-            text: i18n("Fo&nt…")
+            text: i18nc("Editor context menu actions", "Fo&nt…")
             onTriggered: fontDialog.open()
         }
         Labs.MenuItem {
-            text: i18n("Co&lor…")
+            text: i18nc("Editor context menu actions", "Co&lor…")
             onTriggered: colorDialog.open()
         }
         Labs.MenuItem {
-            text: i18n("Hi&ghlight…")
+            text: i18nc("Editor context menu actions", "Hi&ghlight…")
             onTriggered: highlightDialog.open()
         }
     }
@@ -984,42 +987,42 @@ Flickable {
             //implicitHeight: 30
         }
         MenuItem {
-            text: i18n("&Undo")
+            text: i18nc("Editor context menu actions", "&Undo")
             enabled: prompter.editor.canUndo
             onTriggered: prompter.editor.undo()
         }
         MenuItem {
-            text: i18n("Redo")
+            text: i18nc("Editor context menu actions", "Redo")
             enabled: prompter.editor.canRedo
             onTriggered: prompter.editor.redo()
         }
         MenuSeparator {}
         MenuItem {
-            text: i18n("&Copy")
+            text: i18nc("Global menu and editor context menu actions", "&Copy")
             enabled: editor.selectedText
             onTriggered: editor.copy()
         }
         MenuItem {
-            text: i18n("Cu&t")
+            text: i18nc("Global menu and editor context menu actions", "Cu&t")
             enabled: editor.selectedText
             onTriggered: editor.cut()
         }
         MenuItem {
-            text: i18n("&Paste")
+            text: i18nc("Global menu and editor context menu actions", "&Paste")
             enabled: editor.canPaste
             onTriggered: document.paste()
         }
         MenuSeparator {}
         MenuItem {
-            text: i18n("Fo&nt…")
+            text: i18nc("Editor context menu actions", "Fo&nt…")
             onTriggered: fontDialog.open()
         }
         MenuItem {
-            text: i18n("Co&lor…")
+            text: i18nc("Editor context menu actions", "Co&lor…")
             onTriggered: colorDialog.open()
         }
         MenuItem {
-            text: i18n("Hi&ghlight…")
+            text: i18nc("Editor context menu actions", "Hi&ghlight…")
             onTriggered: highlightDialog.open()
         }
         MenuSeparator {}

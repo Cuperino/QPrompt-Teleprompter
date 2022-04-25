@@ -199,32 +199,32 @@ Kirigami.ApplicationWindow {
         }
         actions: [
             Kirigami.Action {
-                text: i18n("&New")
+                text: i18nc("Main menu and global menu actions", "&New")
                 iconName: "document-new"
                 shortcut: StandardKey.New
                 onTriggered: root.pageStack.currentItem.document.newDocument()
             },
             Kirigami.Action {
-                text: i18n("&Open")
+                text: i18nc("Main menu and global menu actions", "&Open")
                 iconName: "document-open"
                 shortcut: StandardKey.Open
                 onTriggered: root.pageStack.currentItem.document.open()
             },
             Kirigami.Action {
-                text: i18n("&Save")
+                text: i18nc("Main menu and global menu actions", "&Save")
                 iconName: "document-save"
                 shortcut: StandardKey.Save
                 onTriggered: root.pageStack.currentItem.document.saveDialog()
             },
             Kirigami.Action {
-                text: i18n("Save &As")
+                text: i18nc("Main menu and global menu actions", "Save &As")
                 iconName: "document-save-as"
                 shortcut: StandardKey.SaveAs
                 onTriggered: root.pageStack.currentItem.document.saveAsDialog()
             },
             Kirigami.Action {
                 visible: false
-                text: i18n("&Recent Files")
+                text: i18nc("Main menu actions", "&Recent Files")
                 iconName: "document-open-recent"
                 //Kirigami.Action {
                     //text: i18n("View Action 1")
@@ -232,18 +232,18 @@ Kirigami.ApplicationWindow {
                 //}
             },
             Kirigami.Action {
-                text: i18n("&Controls Settings")
+                text: i18nc("Main menu actions. Menu regarding input settings.", "&Controls Settings")
                 iconName: "transform-browse" // "hand"
                 Kirigami.Action {
                     visible: ["android", "ios", "tvos", "ipados", "qnx"].indexOf(Qt.platform.os)===-1
-                    text: i18n("Keyboard Inputs")
+                    text: i18nc("Main menu and global menu actions. Opens dialog to configure keyboard inputs.", "Keyboard Inputs")
                     iconName: "key-enter" // "keyboard"
                     onTriggered: {
                         root.pageStack.currentItem.key_configuration_overlay.open()
                     }
                 }
                 Kirigami.Action {
-                    text: i18n("Invert &arrow keys")
+                    text: i18nc("Main menu and global menu actions. Have up arrow behave like down arrow and vice versa while prompting.", "Invert &arrow keys")
                     enabled: !root.__noScroll
                     iconName: "circular-arrow-shape"
                     checkable: true
@@ -251,7 +251,7 @@ Kirigami.ApplicationWindow {
                     onTriggered: root.__invertArrowKeys = !root.__invertArrowKeys
                 }
                 Kirigami.Action {
-                    text: i18n("Invert &scroll direction")
+                    text: i18nc("Main menu and global menu actions. Invert scroll direction while prompting.", "Invert &scroll direction")
                     enabled: !root.__noScroll
                     iconName: "gnumeric-object-scrollbar"
                     checkable: true
@@ -259,7 +259,7 @@ Kirigami.ApplicationWindow {
                     onTriggered: root.__invertScrollDirection = !root.__invertScrollDirection
                 }
                 Kirigami.Action {
-                    text: i18n("Use scroll as velocity &dial")
+                    text: i18nc("Main menu and global menu actions. Have touchpad and mouse wheel scrolling adjust velocity instead of scrolling like most other apps.", "Use scroll as velocity &dial")
                     enabled: !root.__noScroll
                     iconName: "filename-bpm-amarok"
                     // ToolTip.text: i18n("Use mouse and touchpad scroll as speed dial while prompting")
@@ -268,7 +268,7 @@ Kirigami.ApplicationWindow {
                     onTriggered: root.__scrollAsDial = !root.__scrollAsDial
                 }
                 Kirigami.Action {
-                    text: i18n("Disable scrolling while prompting")
+                    text: i18nc("Main menu and global menu actions. Touchpad scrolling and mouse wheel use have no effect while prompting.", "Disable scrolling while prompting")
                     iconName: "paint-none"
                     checkable: true
                     checked: root.__noScroll
@@ -276,7 +276,7 @@ Kirigami.ApplicationWindow {
                 }
             },
             Kirigami.Action {
-                text: i18n("Other &Settings")
+                text: i18nc("Main menu actions", "Other &Settings")
                 visible: !Kirigami.Settings.isMobile && ! ['android', 'ios', 'wasm', 'tvos', 'qnx', 'ipados'].indexOf(Qt.platform.os)!==-1 && subpixelSetting.visible
                 iconName: "configure"
 //                 Kirigami.Action {
@@ -288,7 +288,7 @@ Kirigami.ApplicationWindow {
 //                 }
                 Kirigami.Action {
                     id: subpixelSetting
-                    text: i18n("Force sub-pixel text renderer past 120px")
+                    text: i18nc("Main menu actions. QPrompt switches between two text rendering techniques when the base font size exceeds 120px. Enabling this option forces QPrompt to always use the default renderer, which features smoother sub-pixel animations.", "Force sub-pixel text renderer past 120px")
                     // Hiding option because only Qt text renderer is used on devices of greater pixel density, due to bug in rendering native fonts while scaling is enabled.
                     visible: screen.devicePixelRatio === 1.0
                     checkable: true
@@ -305,13 +305,13 @@ Kirigami.ApplicationWindow {
 //                 }
             },
             Kirigami.Action {
-                text: i18n("Abou&t") + " " + aboutData.displayName
+                text: i18nc("Main menu actions. Load about page.", "Abou&t %1", aboutData.displayName)
                 iconName: "help-about"
                 onTriggered: loadAboutPage()
             },
             Kirigami.Action {
                 visible: !Kirigami.Settings.isMobile
-                text: i18n("&Quit")
+                text: i18nc("Main menu and global menu actions", "&Quit")
                 iconName: "application-exit"
                 shortcut: StandardKey.Quit
                 onTriggered: close()
@@ -320,7 +320,13 @@ Kirigami.ApplicationWindow {
             // On ESC pressed, return to PrompterEdit mode.
             Kirigami.Action {
                 visible: false
-                onTriggered: root.pageStack.currentItem.prompter.cancel()
+                onTriggered: {
+                    // If Escape is pressed while prompting, return focus to prompter, thus leaving edit while prompting mode.
+                    if (parseInt(root.pageStack.currentItem.prompter.state)===Prompter.States.Prompting && root.pageStack.currentItem.editor.focus)
+                        root.pageStack.currentItem.prompter.focus = true;
+                    else
+                        root.pageStack.currentItem.prompter.cancel()
+                }
                 shortcut: StandardKey.Cancel
             },
             Kirigami.Action {
@@ -331,7 +337,7 @@ Kirigami.ApplicationWindow {
         ]
         topContent: RowLayout {
             Button {
-                text: i18n("Load &Guide")
+                text: i18nc("Main menu and global actions. Load document that welcomes users.", "Load User &Welcome")
                 flat: true
                 onClicked: {
                     root.pageStack.currentItem.document.loadInstructions()
@@ -481,7 +487,7 @@ Kirigami.ApplicationWindow {
     // Dialogues
     MessageDialog {
         id : quitDialog
-        title: i18n("Save Document")
+        title: i18nc("Title for save before closing dialog", "Save Document")
         text: i18n("Save changes to document before closing?")
         icon: StandardIcon.Question
         standardButtons: StandardButton.Save | StandardButton.Discard | StandardButton.Cancel
