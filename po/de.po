@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/Cuperino/QPrompt/issues/new/choose\n"
 "POT-Creation-Date: 2022-04-25 02:04-0400\n"
-"PO-Revision-Date: 2022-04-25 05:23+0000\n"
+"PO-Revision-Date: 2022-04-25 06:12+0000\n"
 "Last-Translator: Javier O. Cordero Pérez <javiercorderoperez@gmail.com>\n"
 "Language-Team: German <http://l10n.cuperino.com/projects/qprompt/qprompt-app/"
 "de/>\n"
@@ -136,13 +136,11 @@ msgid "Save changes to document before closing?"
 msgstr "Änderungen vor dem Schließen speichern?"
 
 #: kirigami_ui/EditorToolbar.qml:317 kirigami_ui/EditorToolbar.qml:327
-#, fuzzy
 msgctxt "Editor actions. Text alignment."
 msgid "&Left"
 msgstr "&Links"
 
 #: kirigami_ui/EditorToolbar.qml:317 kirigami_ui/EditorToolbar.qml:327
-#, fuzzy
 msgctxt "Editor actions. Text alignment."
 msgid "&Right"
 msgstr "&Rechts"
@@ -352,20 +350,17 @@ msgid "&Indicators"
 msgstr ""
 
 #: kirigami_ui/main.qml:435
-#, fuzzy
 msgctxt "Global menu actions. Shows pointer to the left of the reading region."
 msgid "&Left Pointer"
 msgstr "Zentriert"
 
 #: kirigami_ui/main.qml:441
-#, fuzzy
 msgctxt ""
 "Global menu actions. Shows pointer to the right of the reading region."
 msgid "&Right Pointer"
 msgstr "Rechts"
 
 #: kirigami_ui/main.qml:447
-#, fuzzy
 msgctxt ""
 "Global menu actions. Shows pointers to the left and right of the reading "
 "region."
