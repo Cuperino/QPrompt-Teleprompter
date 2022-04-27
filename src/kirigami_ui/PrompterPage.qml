@@ -650,7 +650,8 @@ Kirigami.Page {
 
     PrompterView {
         id: viewport
-        height: forcedOrientation && forcedOrientation!==3 ? parent.width : parent.height
+        height: (forcedOrientation && forcedOrientation!==3 ? parent.width : parent.height) + (Kirigami.Settings.isMobile ? 68 : 0)
+        // anchors.bottomMargin: Kirigami.Settings.isMobile ? -68 : 0
         width: forcedOrientation && forcedOrientation!==3 ? parent.height : parent.width
         x: forcedOrientation===1 || forcedOrientation===3 ? parent.width : 0
         y: forcedOrientation===2 || forcedOrientation===3 ? parent.height : 0
