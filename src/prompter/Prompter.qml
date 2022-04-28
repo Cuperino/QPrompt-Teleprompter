@@ -1379,7 +1379,8 @@ Flickable {
             to: Prompter.States.Editing
             ScriptAction  {
                 script: {
-                    __iDefault = prompter.__i;
+                    if (prompter.__i>0)
+                        __iDefault = prompter.__i;
                 }
             }
         }
