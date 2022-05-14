@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/Cuperino/QPrompt/issues/new/choose\n"
 "POT-Creation-Date: 2022-04-25 02:04-0400\n"
-"PO-Revision-Date: 2022-05-09 07:52+0000\n"
+"PO-Revision-Date: 2022-05-15 13:52+0000\n"
 "Last-Translator: Marc Wegkamp <Magicalmarc@gmail.com>\n"
 "Language-Team: Dutch <http://l10n.cuperino.com/projects/qprompt/qprompt-app/"
 "nl/>\n"
@@ -514,310 +514,310 @@ msgstr ""
 
 #: kirigami_ui/PrompterPage.qml:68
 msgid "Start prompter"
-msgstr ""
+msgstr "Begin Prompter"
 
 #: kirigami_ui/PrompterPage.qml:75
 msgid "Decrease velocity"
-msgstr ""
+msgstr "Verminder Snelheid"
 
 #: kirigami_ui/PrompterPage.qml:82
 msgid "Increase velocity"
-msgstr ""
+msgstr "Verhoog Snelheid"
 
 #: kirigami_ui/PrompterPage.qml:104
 msgctxt "Reading region indicates where a talent should be reading from"
 msgid "Reading region"
-msgstr ""
+msgstr "Lees omgeving"
 
 #: kirigami_ui/PrompterPage.qml:106
 msgctxt "Reading region indicates where a talent should be reading from"
 msgid "Change reading region placement"
-msgstr ""
+msgstr "Verander Lees Omgeving Plaats"
 
 #: kirigami_ui/PrompterPage.qml:111
 msgctxt "Align reading region to top of prompter"
 msgid "Top"
-msgstr ""
+msgstr "Boven"
 
 #: kirigami_ui/PrompterPage.qml:113
 msgid "Move reading region to the top, convenient for use with webcams"
-msgstr ""
+msgstr "Lees Omgeving Boven (Goed voor Webcams)"
 
 #: kirigami_ui/PrompterPage.qml:122
 msgctxt "Align reading region to vertical center of prompter"
 msgid "Middle"
-msgstr ""
+msgstr "Middel"
 
 #: kirigami_ui/PrompterPage.qml:124
 msgid "Move reading region to the vertical center"
-msgstr ""
+msgstr "Lees gebied in Vertikale Midden"
 
 #: kirigami_ui/PrompterPage.qml:133
 msgctxt "Align reading region to bottom of prompter"
 msgid "Bottom"
-msgstr ""
+msgstr "Onder"
 
 #: kirigami_ui/PrompterPage.qml:135
 msgid "Move reading region to the bottom"
-msgstr ""
+msgstr "Lees gebied onder aan het Scherm"
 
 #: kirigami_ui/PrompterPage.qml:144
 msgctxt ""
 "Refers to free placement. Enables drag and drop positioning of reading "
 "region."
 msgid "Free"
-msgstr ""
+msgstr "Vrij bewegend"
 
 #: kirigami_ui/PrompterPage.qml:146
 msgid "Move reading region freely by dragging and dropping"
-msgstr ""
+msgstr "Beweeg lees gebied naar keuze"
 
 #: kirigami_ui/PrompterPage.qml:155
 msgctxt ""
 "Fix positioning of reading region to what was set in \"Free placement\" mode"
 msgid "Custom"
-msgstr ""
+msgstr "Eigen Maat"
 
 #: kirigami_ui/PrompterPage.qml:157
 msgid "Fix reading region to the position set using free placement mode"
-msgstr ""
+msgstr "Stel het lees gebied naar keuse"
 
 #: kirigami_ui/PrompterPage.qml:180
 msgctxt ""
 "Height of reading region relative to single line height. E.g. Height: 2.5"
 msgid "Height: %1"
-msgstr ""
+msgstr "Hoogte: %1"
 
 #: kirigami_ui/PrompterPage.qml:230
 msgctxt "Indicators highlight reading region"
 msgid "Indicators"
-msgstr ""
+msgstr "Aanwijzers"
 
 #: kirigami_ui/PrompterPage.qml:231
 msgctxt "Indicators highlight reading region"
 msgid "Change reading region indicators"
-msgstr ""
+msgstr "Verander lees aanwijzers"
 
 #: kirigami_ui/PrompterPage.qml:235
 msgctxt "Shows pointer to the left of the reading region"
 msgid "Left pointer"
-msgstr ""
+msgstr "Linkse Pijl"
 
 #: kirigami_ui/PrompterPage.qml:237
 msgid "Left pointer indicates reading region"
-msgstr ""
+msgstr "Pijl geeft lees gebied aan"
 
 #: kirigami_ui/PrompterPage.qml:246
 msgctxt "Shows pointer to the right of the reading region"
 msgid "Right pointer"
-msgstr ""
+msgstr "Rechtse Pijl"
 
 #: kirigami_ui/PrompterPage.qml:248
 msgid "Right pointer indicates reading region"
-msgstr ""
+msgstr "Pijl geeft lees gebied aan"
 
 #: kirigami_ui/PrompterPage.qml:257
 msgctxt "Shows pointers to the left and right of the reading region"
 msgid "Both pointers"
-msgstr ""
+msgstr "Beiden Pijlen"
 
 #: kirigami_ui/PrompterPage.qml:259
 msgid "Left and right pointers indicate reading region"
-msgstr ""
+msgstr "Beide Pijlen geven lees gebied aan"
 
 #: kirigami_ui/PrompterPage.qml:268
 msgctxt "Translucent bars indicate reading region"
 msgid "Bar"
-msgstr ""
+msgstr "Balk"
 
 #: kirigami_ui/PrompterPage.qml:270
 msgid "Translucent bars indicate reading region"
-msgstr ""
+msgstr "Doorzichtig"
 
 #: kirigami_ui/PrompterPage.qml:279
 msgctxt "Translucent bars and left pointer indicate reading region"
 msgid "Bar && left"
-msgstr ""
+msgstr "Balk Links"
 
 #: kirigami_ui/PrompterPage.qml:281
 msgid "Translucent bars and left pointer indicate reading region"
-msgstr ""
+msgstr "Balk en Linkse Pijl"
 
 #: kirigami_ui/PrompterPage.qml:290
 msgctxt "Translucent bars and right pointer indicate reading region"
 msgid "Bar && right"
-msgstr ""
+msgstr "Balk Rechts"
 
 #: kirigami_ui/PrompterPage.qml:292
 msgid "Translucent bars and right pointer indicate reading region"
-msgstr ""
+msgstr "Balk en Rechtse Pijl"
 
 #: kirigami_ui/PrompterPage.qml:301
 msgctxt "Enable all reading region indicators"
 msgid "All"
-msgstr ""
+msgstr "Alles"
 
 #: kirigami_ui/PrompterPage.qml:303
 msgctxt "Enable all reading region indicators"
 msgid "Use all reading region indicators"
-msgstr ""
+msgstr "Alle wijzers"
 
 #: kirigami_ui/PrompterPage.qml:312
 msgctxt "Disable all reading region indicators"
 msgid "Hidden"
-msgstr ""
+msgstr "Verborgen"
 
 #: kirigami_ui/PrompterPage.qml:314
 msgctxt "Disable all reading region indicators"
 msgid "Disable reading region indicators"
-msgstr ""
+msgstr "Verwijder alle wijzers"
 
 #: kirigami_ui/PrompterPage.qml:324
 msgid "Timer"
-msgstr ""
+msgstr "Timer"
 
 #: kirigami_ui/PrompterPage.qml:330
 msgid "Stopwatch"
-msgstr ""
+msgstr "Stop Horloge"
 
 #: kirigami_ui/PrompterPage.qml:341
 msgctxt "Estimated Time of Arrival"
 msgid "ETA"
-msgstr ""
+msgstr "Tot Einde"
 
 #: kirigami_ui/PrompterPage.qml:349
 msgctxt "Color of timer text"
 msgid "Timer color"
-msgstr ""
+msgstr "Timer Kleur"
 
 #: kirigami_ui/PrompterPage.qml:358
 msgctxt "Reset color of timer text back to default"
 msgid "Clear color"
-msgstr ""
+msgstr "Helder Kleur"
 
 #: kirigami_ui/PrompterPage.qml:369 kirigami_ui/PrompterPage.qml:390
 msgid "Countdown"
-msgstr ""
+msgstr "Aftellen"
 
 #: kirigami_ui/PrompterPage.qml:375
 msgctxt ""
 "Enables automatic alignment of prompter and text with the reading region"
 msgid "Auto frame"
-msgstr ""
+msgstr "Auto Frame"
 
 #: kirigami_ui/PrompterPage.qml:405
 msgctxt "Auto start countdown upon prompter getting started"
 msgid "Auto start"
-msgstr ""
+msgstr "Begin Automatisch"
 
 #: kirigami_ui/PrompterPage.qml:407
 msgid "Start countdown automatically"
-msgstr ""
+msgstr "Begin automatisch af te tellen"
 
 #: kirigami_ui/PrompterPage.qml:416
 msgctxt "Configure countdown duration"
 msgid "Set duration"
-msgstr ""
+msgstr "Zet tijd"
 
 #: kirigami_ui/PrompterPage.qml:432
 msgctxt "Prompter orientation and mirroring"
 msgid "Orientation"
-msgstr ""
+msgstr "oriëntatie"
 
 #. i18n("H Flip")
 #: kirigami_ui/PrompterPage.qml:448
 msgctxt "Mirrors prompter horizontally"
 msgid "Horizontal mirror"
-msgstr ""
+msgstr "Horizontaal Spiegelbeeld"
 
 #. i18n("V Flip")
 #: kirigami_ui/PrompterPage.qml:463
 msgctxt "Mirrors prompter vertically"
 msgid "Vertical mirror"
-msgstr ""
+msgstr "Vertikaal Spiegelbeeld"
 
 #: kirigami_ui/PrompterPage.qml:488
 msgctxt "Prompter rotation is disabled"
 msgid "Don't rotate"
-msgstr ""
+msgstr "Niet Draaien"
 
 #: kirigami_ui/PrompterPage.qml:498
 msgctxt "Rotate prompter 90 degrees to the right"
 msgid "90° clockwise"
-msgstr ""
+msgstr "90° Kloksgewijs"
 
 #: kirigami_ui/PrompterPage.qml:508
 msgctxt "Rotate prompter 90 degrees to the left"
 msgid "90° counter"
-msgstr ""
+msgstr "90° Anti Kloksgewijs"
 
 #: kirigami_ui/PrompterPage.qml:530
 msgctxt "Background refers to what appears behind the prompter"
 msgid "Background"
-msgstr ""
+msgstr "Achtergrond"
 
 #: kirigami_ui/PrompterPage.qml:533
 msgctxt "Set background image"
 msgid "Set image"
-msgstr ""
+msgstr "Stel beeld"
 
 #: kirigami_ui/PrompterPage.qml:542
 msgctxt "Set background color tint"
 msgid "Set color"
-msgstr ""
+msgstr "Stel Kleur"
 
 #: kirigami_ui/PrompterPage.qml:551
 msgctxt "Set background settings back to default"
 msgid "Clear"
-msgstr ""
+msgstr "Helder"
 
 #: kirigami_ui/PrompterPage.qml:563
 msgctxt "Screens refers to computer displays"
 msgid "Screens"
-msgstr ""
+msgstr "Schermen"
 
 #: kirigami_ui/PrompterPage.qml:596
 msgctxt "Screen is disabled"
 msgid "Off"
-msgstr ""
+msgstr "Af"
 
 #: kirigami_ui/PrompterPage.qml:597
 msgctxt "Screen is enabled but mirroring is disabled"
 msgid "No Mirror"
-msgstr ""
+msgstr "Geen Spiegelbeeld"
 
 #: kirigami_ui/PrompterPage.qml:598
 msgctxt "Horizontal mirroring"
 msgid "H Mirror"
-msgstr ""
+msgstr "H Spiegelbeeld"
 
 #: kirigami_ui/PrompterPage.qml:599
 msgctxt "Vertical mirroring"
 msgid "V Mirror"
-msgstr ""
+msgstr "V Spiegelbeeld"
 
 #: kirigami_ui/PrompterPage.qml:600
 msgctxt "Horizontal and vertical mirroring"
 msgid "HV Mirror"
-msgstr ""
+msgstr "HV Spiegelbeeld"
 
 #: kirigami_ui/PrompterPage.qml:607
 msgctxt "Enable scaling prompter copies being projected onto displays"
 msgid "Scale projections"
-msgstr ""
+msgstr "Projectie Schaal"
 
 #: kirigami_ui/PrompterPage.qml:616
 msgctxt "Preview projecting prompter copies onto displays"
 msgid "Preview projections"
-msgstr ""
+msgstr "Projectie Voorbeeld"
 
 #: kirigami_ui/PrompterPage.qml:617
 msgid "Project prompter copies onto extended displays"
-msgstr ""
+msgstr "Project zendt beeld naar externe schermen"
 
 #: kirigami_ui/PrompterPage.qml:637
 msgid "Leave Fullscreen"
-msgstr ""
+msgstr "Stop Fullscreen"
 
 #: kirigami_ui/PrompterPage.qml:637
 msgid "Fullscreen"
