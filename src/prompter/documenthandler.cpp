@@ -585,7 +585,7 @@ void DocumentHandler::saveAs(const QUrl &fileUrl)
     // https://developer.android.com/reference/android/Manifest.permission
     const QStringList permissions = QStringList("android.permission.WRITE_EXTERNAL_STORAGE");
     const int milisecondTimeoutWait = 120000;
-    QtAndroid::PermissionResultMap result = requestPermissionsSync(permissions, milisecondTimeoutWait);
+    QtAndroid::PermissionResultMap result = QtAndroid::requestPermissionsSync(permissions, milisecondTimeoutWait);
 #endif
     const QString filePath = fileUrl.toLocalFile();
     const bool isHtml = QFileInfo(filePath).suffix().contains(QLatin1String("html"));
