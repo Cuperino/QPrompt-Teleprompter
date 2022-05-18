@@ -35,7 +35,7 @@
     <mediatype>text/markdown</mediatype>
     <mediatype>text/html</mediatype>
   </provides>
-  <requires>
+<!--  <requires>
     <display_length compare="gte">292</display_length>
   </requires>
   <recommends>
@@ -47,12 +47,12 @@
     <control>keyboard</control>
     <control>touch</control>
   </supports>
-  <content_rating type="oars-1.1" />
   <kudos>
     <kudo>HiDpiIcon</kudo>
     <kudo>HighContrast</kudo>
     <kudo>ModernToolkit</kudo>
   </kudos>
+  <content_rating type="oars-1.1" />-->
   <releases>
     <release version="1.0" type="stable" date="2021-12-31">
       <artifacts>
