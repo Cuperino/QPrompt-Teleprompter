@@ -75,11 +75,11 @@ Item {
         anchors.leftMargin: -8
         anchors.rightMargin: -12
         height: Kirigami.Settings.isMobile || overlay.__readRegionPlacement > 0.5 ? find.height : find.height+this.radius
-        radius: 12
+        radius: 4
         opacity: 0.96
         color: Qt.rgba(Kirigami.Theme.backgroundColor.r, Kirigami.Theme.backgroundColor.g, Kirigami.Theme.backgroundColor.b, 1)
-        border.width: 2
-        border.color: "#222"
+        border.width: 1
+        border.color: "#606060"
         MouseArea {
             anchors.fill: parent
             onClicked: {}

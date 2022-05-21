@@ -29,10 +29,6 @@ import com.cuperino.qprompt.qmlutil 1.0
 Kirigami.OverlaySheet {
     id: key_configuration_overlay
 
-    background: Rectangle {
-        color: appTheme.__backgroundColor
-        anchors.fill: parent
-    }
     header: Kirigami.Heading {
         text: i18nc("Title of dialog where users customize keyboard inputs", "Key Bindings")
         level: 1
