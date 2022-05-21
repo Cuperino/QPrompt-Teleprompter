@@ -1083,11 +1083,6 @@ ToolBar {
 
     Kirigami.OverlaySheet {
         id: namedMarkerConfiguration
-        background: Rectangle {
-            //color: Kirigami.Theme.activeBackgroundColor
-            color: appTheme.__backgroundColor
-            anchors.fill: parent
-        }
         header: Kirigami.Heading {
             text: i18nc("Refers to a key on the keyboard used to skip to a user defined marker while prompting", "Skip Key")
             level: 1
