@@ -29,7 +29,8 @@ Kirigami.OverlayDrawer {
     id: sideDrawer
     property bool reOpen: false
     background: Rectangle {
-        color: appTheme.__backgroundColor
+        color: Qt.rgba(Kirigami.Theme.backgroundColor.r/2, Kirigami.Theme.backgroundColor.g/2, Kirigami.Theme.backgroundColor.b/2, 1)
+        // color: appTheme.__backgroundColor
         opacity: 0.92
     }
     width: 260

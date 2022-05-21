@@ -119,7 +119,7 @@ Kirigami.ApplicationWindow {
         property int selection: 0
         //readonly property color __backgroundColor: Qt.rgba(Kirigami.Theme.backgroundColor.r, Kirigami.Theme.backgroundColor.g, Kirigami.Theme.backgroundColor.b, 1)
         property color __backgroundColor: switch(appTheme.selection) {
-            case 0: return Qt.rgba(Kirigami.Theme.backgroundColor.r, Kirigami.Theme.backgroundColor.g, Kirigami.Theme.backgroundColor.b, 1);
+            case 0: return Qt.rgba(Kirigami.Theme.backgroundColor.r/4, Kirigami.Theme.backgroundColor.g/4, Kirigami.Theme.backgroundColor.b/4, 1);
             case 1: return "#303030";
             case 2: return "#FAFAFA";
         }
@@ -159,10 +159,10 @@ Kirigami.ApplicationWindow {
         title: aboutData.displayName
         titleIcon: ["android"].indexOf(Qt.platform.os)===-1 ? "qrc:/images/qprompt.png" : "qrc:/images/qprompt-logo-wireframe.png"
         bannerVisible: true
-        background: Rectangle {
-            color: appTheme.__backgroundColor
-            opacity: 1
-        }
+        //background: Rectangle {
+            //color: appTheme.__backgroundColor
+            //opacity: 1
+        //}
         onBannerClicked: {
             bannerCounter++;
             if (!(bannerCounter%10)) {
@@ -653,9 +653,6 @@ Kirigami.ApplicationWindow {
     // Right Context Drawer
     contextDrawer: Kirigami.ContextDrawer {
         id: contextDrawer
-        background: Rectangle {
-            color: appTheme.__backgroundColor
-        }
     }
 
     // Top bar foreground hack for window dragging
