@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/Cuperino/QPrompt/issues/new/choose\n"
-"POT-Creation-Date: 2022-04-25 02:04-0400\n"
+"POT-Creation-Date: 2022-05-21 04:04-0400\n"
 "PO-Revision-Date: 2022-04-18 05:00+0000\n"
 "Last-Translator: Javier O. Cordero Pérez <javiercorderoperez@gmail.com>\n"
 "Language-Team: Russian <http://l10n.cuperino.com/projects/qprompt/qprompt-"
@@ -20,119 +20,106 @@ msgstr ""
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 "X-Generator: Weblate 4.11.2\n"
 
-#: kirigami_ui/+android/main.qml:144 kirigami_ui/main.qml:174
-#: kirigami_ui/main.qml:362 kirigami_ui/+windows/main.qml:202
+#: kirigami_ui/+android/main.qml:166 kirigami_ui/main.qml:174
+#: kirigami_ui/main.qml:362 kirigami_ui/+windows/main.qml:173
 msgctxt "Main menu and global menu actions"
 msgid "&New"
 msgstr ""
 
-#: kirigami_ui/+android/main.qml:150 kirigami_ui/main.qml:180
-#: kirigami_ui/main.qml:366 kirigami_ui/+windows/main.qml:208
+#: kirigami_ui/+android/main.qml:172 kirigami_ui/main.qml:180
+#: kirigami_ui/main.qml:366 kirigami_ui/+windows/main.qml:179
 msgctxt "Main menu and global menu actions"
 msgid "&Open"
 msgstr ""
 
-#: kirigami_ui/+android/main.qml:156 kirigami_ui/main.qml:189
-#: kirigami_ui/main.qml:370 kirigami_ui/+windows/main.qml:214
+#: kirigami_ui/+android/main.qml:181 kirigami_ui/main.qml:189
+#: kirigami_ui/main.qml:370 kirigami_ui/+windows/main.qml:188
 msgctxt "Main menu and global menu actions"
 msgid "&Save"
 msgstr ""
 
-#: kirigami_ui/+android/main.qml:162 kirigami_ui/main.qml:198
-#: kirigami_ui/+windows/main.qml:220
+#: kirigami_ui/+android/main.qml:190 kirigami_ui/main.qml:198
+#: kirigami_ui/+windows/main.qml:197
 msgctxt "Main menu and global menu actions"
 msgid "Save &As"
 msgstr ""
 
-#: kirigami_ui/+android/main.qml:169 kirigami_ui/main.qml:208
-#: kirigami_ui/+windows/main.qml:227
+#: kirigami_ui/+android/main.qml:200 kirigami_ui/main.qml:208
+#: kirigami_ui/+windows/main.qml:207
 msgctxt "Main menu actions"
 msgid "&Recent Files"
 msgstr ""
 
-#: kirigami_ui/+android/main.qml:177 kirigami_ui/main.qml:216
-#: kirigami_ui/+windows/main.qml:235
+#: kirigami_ui/+android/main.qml:208 kirigami_ui/main.qml:216
+#: kirigami_ui/+windows/main.qml:215
 msgctxt "Main menu actions. Menu regarding input settings."
 msgid "&Controls Settings"
 msgstr ""
 
-#: kirigami_ui/+android/main.qml:181
+#: kirigami_ui/+android/main.qml:212 kirigami_ui/main.qml:220
+#: kirigami_ui/+windows/main.qml:219
+msgctxt ""
+"Main menu and global menu actions. Opens dialog to configure keyboard inputs."
 msgid "Keyboard Inputs"
 msgstr ""
 
-#: kirigami_ui/+android/main.qml:188 kirigami_ui/main.qml:227
-#: kirigami_ui/main.qml:607 kirigami_ui/+windows/main.qml:246
+#: kirigami_ui/+android/main.qml:219 kirigami_ui/main.qml:227
+#: kirigami_ui/main.qml:607 kirigami_ui/+windows/main.qml:226
 msgctxt ""
 "Main menu and global menu actions. Have up arrow behave like down arrow and "
 "vice versa while prompting."
 msgid "Invert &arrow keys"
 msgstr ""
 
-#: kirigami_ui/+android/main.qml:196 kirigami_ui/main.qml:235
-#: kirigami_ui/main.qml:614 kirigami_ui/+windows/main.qml:254
+#: kirigami_ui/+android/main.qml:227 kirigami_ui/main.qml:235
+#: kirigami_ui/main.qml:614 kirigami_ui/+windows/main.qml:234
 msgctxt ""
 "Main menu and global menu actions. Invert scroll direction while prompting."
 msgid "Invert &scroll direction"
 msgstr ""
 
-#: kirigami_ui/+android/main.qml:204 kirigami_ui/main.qml:243
-#: kirigami_ui/main.qml:599 kirigami_ui/+windows/main.qml:262
+#: kirigami_ui/+android/main.qml:235 kirigami_ui/main.qml:243
+#: kirigami_ui/main.qml:599 kirigami_ui/+windows/main.qml:242
 msgctxt ""
 "Main menu and global menu actions. Have touchpad and mouse wheel scrolling "
 "adjust velocity instead of scrolling like most other apps."
 msgid "Use scroll as velocity &dial"
 msgstr ""
 
-#: kirigami_ui/+android/main.qml:213 kirigami_ui/main.qml:252
-#: kirigami_ui/main.qml:593 kirigami_ui/+windows/main.qml:271
+#: kirigami_ui/+android/main.qml:244 kirigami_ui/main.qml:252
+#: kirigami_ui/main.qml:593 kirigami_ui/+windows/main.qml:251
 msgctxt ""
 "Main menu and global menu actions. Touchpad scrolling and mouse wheel use "
 "have no effect while prompting."
 msgid "Disable scrolling while prompting"
 msgstr ""
 
-#: kirigami_ui/+android/main.qml:221 kirigami_ui/main.qml:260
-#: kirigami_ui/+windows/main.qml:279
-msgctxt "Main menu actions"
-msgid "Other &Settings"
-msgstr ""
-
-#: kirigami_ui/+android/main.qml:233 kirigami_ui/main.qml:272
-#: kirigami_ui/+windows/main.qml:291
-msgctxt ""
-"Main menu actions. QPrompt switches between two text rendering techniques "
-"when the base font size exceeds 120px. Enabling this option forces QPrompt "
-"to always use the default renderer, which features smoother sub-pixel "
-"animations."
-msgid "Force sub-pixel text renderer past 120px"
-msgstr ""
-
-#: kirigami_ui/+android/main.qml:250 kirigami_ui/main.qml:289
-#: kirigami_ui/+windows/main.qml:308
+#: kirigami_ui/+android/main.qml:252 kirigami_ui/main.qml:289
+#: kirigami_ui/+windows/main.qml:288
 msgctxt "Main menu actions. Load about page."
 msgid "Abou&t %1"
 msgstr ""
 
-#: kirigami_ui/+android/main.qml:256 kirigami_ui/main.qml:295
-#: kirigami_ui/main.qml:379 kirigami_ui/+windows/main.qml:314
+#: kirigami_ui/+android/main.qml:258 kirigami_ui/main.qml:295
+#: kirigami_ui/main.qml:379 kirigami_ui/+windows/main.qml:294
 msgctxt "Main menu and global menu actions"
 msgid "&Quit"
 msgstr ""
 
-#: kirigami_ui/+android/main.qml:271 kirigami_ui/main.qml:321
-#: kirigami_ui/main.qml:639 kirigami_ui/+windows/main.qml:340
+#: kirigami_ui/+android/main.qml:279 kirigami_ui/main.qml:321
+#: kirigami_ui/main.qml:639 kirigami_ui/+windows/main.qml:320
 msgctxt "Main menu and global actions. Load document that welcomes users."
 msgid "Load User &Welcome"
 msgstr ""
 
-#: kirigami_ui/+android/main.qml:467 kirigami_ui/main.qml:789
-#: kirigami_ui/+windows/main.qml:490
+#: kirigami_ui/+android/main.qml:412 kirigami_ui/main.qml:789
+#: kirigami_ui/+windows/main.qml:489
 msgctxt "Title for save before closing dialog"
 msgid "Save Document"
 msgstr ""
 
-#: kirigami_ui/+android/main.qml:468 kirigami_ui/main.qml:790
-#: kirigami_ui/+windows/main.qml:491
+#: kirigami_ui/+android/main.qml:413 kirigami_ui/main.qml:790
+#: kirigami_ui/+windows/main.qml:490
 msgid "Save changes to document before closing?"
 msgstr ""
 
@@ -286,10 +273,18 @@ msgctxt "Skip to closest marker ahead of current position"
 msgid "Go to Next Marker"
 msgstr ""
 
-#: kirigami_ui/main.qml:220 kirigami_ui/+windows/main.qml:239
+#: kirigami_ui/main.qml:260 kirigami_ui/+windows/main.qml:259
+msgctxt "Main menu actions"
+msgid "Other &Settings"
+msgstr ""
+
+#: kirigami_ui/main.qml:272 kirigami_ui/+windows/main.qml:271
 msgctxt ""
-"Main menu and global menu actions. Opens dialog to configure keyboard inputs."
-msgid "Keyboard Inputs"
+"Main menu actions. QPrompt switches between two text rendering techniques "
+"when the base font size exceeds 120px. Enabling this option forces QPrompt "
+"to always use the default renderer, which features smoother sub-pixel "
+"animations."
+msgid "Force sub-pixel text renderer past 120px"
 msgstr ""
 
 #: kirigami_ui/main.qml:359

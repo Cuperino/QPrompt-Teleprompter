@@ -25,7 +25,6 @@ import QtQuick.Controls 2.12
 import QtQuick.Window 2.12
 import QtQuick.Layouts 1.12
 import QtQuick.Controls.Material 2.12
-import Qt.labs.platform 1.1 as Labs
 import QtQuick.Dialogs 1.3
 import Qt.labs.settings 1.0
 
@@ -33,9 +32,17 @@ import com.cuperino.qprompt.document 1.0
 
 Kirigami.ApplicationWindow {
     id: root
-
     property bool __fullScreen: false
     property bool __autoFullScreen: false
+    // The following line includes macOS among the list of platforms where full screen buttons are hidden. This is done intentionally because macOS provides its own full screen buttons on the window frame and global menu. We shall not mess with what users of each platform expect.
+    property bool fullScreenPlatform: Kirigami.Settings.isMobile || ['android', 'ios', 'wasm', 'tvos', 'qnx', 'ipados', 'osx'].indexOf(Qt.platform.os)!==-1
+    //readonly property bool __translucidBackground: !Material.background.a // === 0
+    //readonly property bool __translucidBackground: !Kirigami.Theme.backgroundColor.a && ['ios', 'wasm', 'tvos', 'qnx', 'ipados'].indexOf(Qt.platform.os)===-1
+    readonly property bool __translucidBackground: true
+    readonly property bool themeIsMaterial: Kirigami.Settings.style==="Material" // || Kirigami.Settings.isMobile
+    // mobileOrSmallScreen helps determine when to follow mobile behaviors from desktop non-mobile devices
+    readonly property bool mobileOrSmallScreen: Kirigami.Settings.isMobile || root.width < 1220
+    //readonly property bool __translucidBackground: false
     // Scrolling settings
     property bool __scrollAsDial: false
     property bool __invertArrowKeys: false
@@ -44,32 +51,11 @@ Kirigami.ApplicationWindow {
     property bool __telemetry: true
     property bool forceQtTextRenderer: false
     property bool passiveNotifications: true
+
     //property int prompterVisibility: Kirigami.ApplicationWindow.Maximized
     property double __opacity: 1
     property int __iDefault: 3
-
-    // The following line includes macOS among the list of platforms where full screen buttons are hidden. This is done intentionally because macOS provides its own full screen buttons on the window frame and global menu. We shall not mess with what users of each platform expect.
-    readonly property bool fullScreenPlatform: Kirigami.Settings.isMobile || ['android', 'ios', 'wasm', 'tvos', 'qnx', 'ipados', 'osx'].indexOf(Qt.platform.os)!==-1
-    //readonly property bool __translucidBackground: !Material.background.a // === 0
-    //readonly property bool __translucidBackground: !Kirigami.Theme.backgroundColor.a && ['ios', 'wasm', 'tvos', 'qnx', 'ipados'].indexOf(Qt.platform.os)===-1
-    readonly property bool __translucidBackground: true
-    readonly property bool themeIsMaterial: Kirigami.Settings.style==="Material" // || Kirigami.Settings.isMobile
-    // mobileOrSmallScreen helps determine when to follow mobile behaviors from desktop non-mobile devices
-    readonly property bool mobileOrSmallScreen: Kirigami.Settings.isMobile || root.width < 1220
-    //readonly property bool __translucidBackground: false
-
-    function loadAboutPage() {
-        root.pageStack.layers.clear()
-        root.pageStack.layers.push(aboutPageComponent, {aboutData: aboutData})
-    }
-    function loadRemoteControlPage() {
-        root.pageStack.layers.clear()
-        root.pageStack.layers.push(remoteControlPageComponent, {})
-    }
-    function loadTelemetryPage() {
-        root.pageStack.layers.clear()
-        root.pageStack.layers.push(telemetryPageComponent)
-    }
+    property int onDiscard: Prompter.CloseActions.Ignore
 
     title: root.pageStack.currentItem.document.fileName + (root.pageStack.currentItem.document.modified?"*":"") + " - " + aboutData.displayName
     width: 1220  // Set at 1220 to show all functionality at a glance. Set to 1200 to fit both 1280 4:3 and 1200 height monitors. Keep at or bellow 1024 and at or above 960, for best usability with common 4:3 resolutions
@@ -80,8 +66,36 @@ Kirigami.ApplicationWindow {
     minimumWidth: Kirigami.Settings.isMobile ? 291 : 351
     minimumHeight: minimumWidth
 
-    // Full screen
-    visibility: __fullScreen ? Kirigami.ApplicationWindow.FullScreen : (!__autoFullScreen ? Kirigami.ApplicationWindow.AutomaticVisibility : (parseInt(root.pageStack.currentItem.prompter.state)===Prompter.States.Editing ? Kirigami.ApplicationWindow.Maximized : Kirigami.ApplicationWindow.FullScreen))
+    Settings {
+        category: "mainWindow"
+        property alias x: root.x
+        property alias y: root.y
+        property alias width: root.width
+        property alias height: root.height
+    }
+    Settings {
+        category: "scroll"
+        property alias noScroll: root.__noScroll
+        property alias scrollAsDial: root.__scrollAsDial
+        property alias invertScrollDirection: root.__invertScrollDirection
+        property alias invertArrowKeys: root.__invertArrowKeys
+    }
+    Settings {
+        category: "editor"
+        property alias forceQtTextRenderer: root.forceQtTextRenderer
+    }
+    Settings {
+        category: "prompter"
+        property alias stepsDefault: root.__iDefault
+    }
+    Settings {
+        category: "background"
+        property alias opacity: root.__opacity
+    }
+    Settings {
+        category: "telemetry"
+        property alias enable: root.__telemetry
+    }
 
     //// Theme management
     //Material.theme: themeSwitch.checked ? Material.Dark : Material.Light  // This is correct, but it isn't work working, likely because of Kirigami
@@ -110,65 +124,8 @@ Kirigami.ApplicationWindow {
         }
     }
 
-    // Kirigami PageStack and PageRow
-    pageStack.globalToolBar.toolbarActionAlignment: Qt.AlignHCenter
-    pageStack.initialPage: prompterPageComponent
-    // Auto hide global toolbar on fullscreen
-    pageStack.globalToolBar.style: Kirigami.Settings.isMobile ? (root.pageStack.layers.depth > 1 ? Kirigami.ApplicationHeaderStyle.Titles : Kirigami.ApplicationHeaderStyle.None) : (parseInt(root.pageStack.currentItem.prompter.state)!==Prompter.States.Editing && (visibility===Kirigami.ApplicationWindow.FullScreen || root.pageStack.currentItem.overlay.atTop) ? Kirigami.ApplicationHeaderStyle.None : Kirigami.ApplicationHeaderStyle.ToolBar)
-
-    // The following is not possible in the current version of Kirigami, but it should be:
-    //pageStack.globalToolBar.background: Rectangle {
-        //color: appTheme.__backgroundColor
-    //}
-    //property alias prompterPage: root.pageStack.currentItem
-    //property alias prompterPage: root.pageStack.layers.currentItem
-    // End of Kirigami PageStack configuration
-
-    // Patch current page's events to outside its scope.
-    //Connections {
-        //target: pageStack.currentItem
-        ////onTest: {  // Old syntax, use to support 5.12 and lower.
-        //function onTest(data) {
-            //console.log("Connection successful, received:", data)
-        //}
-    //}
-
-    /*Binding {
-        //target: pageStack.layers.item
-        //target: pageStack.initialPage
-        //target: pageStack.layers.currentItem
-        //target: prompter
-        property: "italic"
-        value: root.italic
-    }*/
-
-    property int q: 0
-    onFrameSwapped: {
-        // Check that state is not prompting and editor isn't active.
-        // In this implementation we can't detect moving past marker while the editor is active because this feature shares its cursor as a means of detection.
-        if (parseInt(root.pageStack.currentItem.prompter.state)===Prompter.States.Prompting && !root.pageStack.currentItem.editor.focus) {
-            // Detect when moving past a marker.
-            // I'm doing this here because there's no event that occurs on each bit of scroll, and this takes much less CPU than a timer, is more precise and scales better.
-            root.pageStack.currentItem.prompter.setCursorAtCurrentPosition()
-            root.pageStack.currentItem.editor.cursorPosition = root.pageStack.currentItem.document.nextMarker(root.pageStack.currentItem.editor.cursorPosition).position
-            // Here, p is for position
-            const p = root.pageStack.currentItem.editor.cursorRectangle.y
-            if (q !== p) {
-                if (q < p && q !== 0) {
-                    const url = root.pageStack.currentItem.document.previousMarker(root.pageStack.currentItem.editor.cursorPosition).url;
-                    console.log(url);
-                }
-                q = p;
-            }
-        }
-        // Update Projections
-        const n = projectionManager.model.count;
-        if (n)
-            root.pageStack.currentItem.viewport.grabToImage(function(p) {
-                for (var i=0; i<n; ++i)
-                    projectionManager.model.setProperty(i, "p", String(p.url));
-            });
-    }
+    // Full screen
+    visibility: __fullScreen ? Kirigami.ApplicationWindow.FullScreen : (!__autoFullScreen ? Kirigami.ApplicationWindow.AutomaticVisibility : (parseInt(root.pageStack.currentItem.prompter.state)===Prompter.States.Editing ? Kirigami.ApplicationWindow.Maximized : Kirigami.ApplicationWindow.FullScreen))
 
     // Open save dialog on closing
     onClosing: {
@@ -179,10 +136,23 @@ Kirigami.ApplicationWindow {
         }
     }
 
+    function loadAboutPage() {
+        root.pageStack.layers.clear()
+        root.pageStack.layers.push(aboutPageComponent, {aboutData: aboutData})
+    }
+    function loadRemoteControlPage() {
+        root.pageStack.layers.clear()
+        root.pageStack.layers.push(remoteControlPageComponent, {})
+    }
+    function loadTelemetryPage() {
+        root.pageStack.layers.clear()
+        root.pageStack.layers.push(telemetryPageComponent)
+    }
+
     // Left Global Drawer
     globalDrawer: Kirigami.GlobalDrawer {
         id: globalMenu
-        
+
         property int bannerCounter: 0
         // isMenu: true
         title: aboutData.displayName
@@ -209,19 +179,28 @@ Kirigami.ApplicationWindow {
                 text: i18nc("Main menu and global menu actions", "&Open")
                 iconName: "document-open"
                 shortcut: StandardKey.Open
-                onTriggered: root.pageStack.currentItem.document.open()
+                onTriggered: {
+                    root.onDiscard = Prompter.CloseActions.Open
+                    root.pageStack.currentItem.document.open()
+                }
             },
             Kirigami.Action {
                 text: i18nc("Main menu and global menu actions", "&Save")
                 iconName: "document-save"
                 shortcut: StandardKey.Save
-                onTriggered: root.pageStack.currentItem.document.saveDialog()
+                onTriggered: {
+                    root.onDiscard = Prompter.CloseActions.Ignore
+                    root.pageStack.currentItem.document.saveDialog()
+                }
             },
             Kirigami.Action {
                 text: i18nc("Main menu and global menu actions", "Save &As")
                 iconName: "document-save-as"
                 shortcut: StandardKey.SaveAs
-                onTriggered: root.pageStack.currentItem.document.saveAsDialog()
+                onTriggered: {
+                    root.onDiscard = Prompter.CloseActions.Ignore
+                    root.pageStack.currentItem.document.saveAsDialog()
+                }
             },
             Kirigami.Action {
                 visible: false
@@ -298,7 +277,7 @@ Kirigami.ApplicationWindow {
                     onTriggered: root.forceQtTextRenderer = !root.forceQtTextRenderer
                 }
 //                 Kirigami.Action {
-//                     text: i18n("Restore factory defaults")
+//                     text: i18nc("Main menu actions", "Restore factory defaults")
 //                     iconName: "edit-clear-history"
 //                     onTriggered: {
 //                         showPassiveNotification(i18n("Feature not yet implemented"))
@@ -332,7 +311,7 @@ Kirigami.ApplicationWindow {
             },
             Kirigami.Action {
                 visible: false
-                onTriggered: __fullScreen = !__fullScreen
+                onTriggered: root.__fullScreen = !root.__fullScreen
                 shortcut: StandardKey.FullScreen
             }
         ]
@@ -341,12 +320,12 @@ Kirigami.ApplicationWindow {
                 text: i18nc("Main menu and global actions. Load document that welcomes users.", "Load User &Welcome")
                 flat: true
                 onClicked: {
-                    root.pageStack.currentItem.document.loadInstructions()
+                    root.pageStack.currentItem.document.loadGuide()
                     globalMenu.close()
                 }
             }
             // Button {
-            //     text: i18n("Remote")
+            //     text: i18nc("Main menu and global actions.", "Remote")
             //     flat: true
             //     onClicked: {
             //         root.pageStack.layers.push(remoteControlPageComponent, {})
@@ -355,7 +334,7 @@ Kirigami.ApplicationWindow {
             // }
             // Button {
             //     id: themeSwitch
-            //     text: i18n("Dark &Mode")
+            //     text: i18nc("Main menu and global actions.", "Dark &Mode")
             //     flat: true
             //     onClicked: {
             //         appTheme.selection = (appTheme.selection + 1) % 3;
@@ -368,16 +347,6 @@ Kirigami.ApplicationWindow {
             //     }
             // }
         }
-        //Kirigami.ActionToolBar {
-            //Kirigami.Action {
-                //text: i18n("View Action 1")
-                //onTriggered: showPassiveNotification(i18n("View Action 1 clicked"))
-            //},
-            //Kirigami.Action {
-                //text: i18n("View Action 2")
-                //onTriggered: showPassiveNotification(i18n("View Action 2 clicked"))
-            //}
-        //}
         content: []
     }
 
@@ -423,43 +392,72 @@ Kirigami.ApplicationWindow {
         }
     }
 
+    // Kirigami PageStack and PageRow
+    pageStack.globalToolBar.toolbarActionAlignment: Qt.AlignHCenter
+    pageStack.initialPage: prompterPageComponent
+    // Auto hide global toolbar on fullscreen
+    pageStack.globalToolBar.style: Kirigami.Settings.isMobile ? (root.pageStack.layers.depth > 1 ? Kirigami.ApplicationHeaderStyle.Titles : Kirigami.ApplicationHeaderStyle.None) : (parseInt(root.pageStack.currentItem.prompter.state)!==Prompter.States.Editing && (visibility===Kirigami.ApplicationWindow.FullScreen || root.pageStack.currentItem.overlay.atTop) ? Kirigami.ApplicationHeaderStyle.None : Kirigami.ApplicationHeaderStyle.ToolBar)
+
+    // The following is not possible in the current version of Kirigami, but it should be:
+    //pageStack.globalToolBar.background: Rectangle {
+        //color: appTheme.__backgroundColor
+    //}
+    //property alias root.pageStack.currentItem: root.pageStack.currentItem
+    //property alias root.pageStack.currentItem: root.pageStack.layers.currentItem
+    // End of Kirigami PageStack configuration
+
+    // Patch current page's events to outside its scope.
+    //Connections {
+        //target: pageStack.currentItem
+        ////onTest: {  // Old syntax, use to support 5.12 and lower.
+        //function onTest(data) {
+            //console.log("Connection successful, received:", data)
+        //}
+    //}
+
+    /*Binding {
+        //target: pageStack.layers.item
+        //target: pageStack.initialPage
+        //target: pageStack.layers.currentItem
+        //target: prompter
+        property: "italic"
+        value: root.italic
+    }*/
+
+    property int q: 0
+    onFrameSwapped: {
+        // Check that state is not prompting and editor isn't active.
+        // In this implementation we can't detect moving past marker while the editor is active because this feature shares its cursor as a means of detection.
+        if (parseInt(root.pageStack.currentItem.prompter.state)===Prompter.States.Prompting && !root.pageStack.currentItem.editor.focus) {
+            // Detect when moving past a marker.
+            // I'm doing this here because there's no event that occurs on each bit of scroll, and this takes much less CPU than a timer, is more precise and scales better.
+            root.pageStack.currentItem.prompter.setCursorAtCurrentPosition()
+            root.pageStack.currentItem.editor.cursorPosition = root.pageStack.currentItem.document.nextMarker(root.pageStack.currentItem.editor.cursorPosition).position
+            // Here, p is for position
+            const p = root.pageStack.currentItem.editor.cursorRectangle.y
+            if (q !== p) {
+                if (q < p && q !== 0) {
+                    const url = root.pageStack.currentItem.document.previousMarker(root.pageStack.currentItem.editor.cursorPosition).url;
+                    console.log(url);
+                }
+                q = p;
+            }
+        }
+        // Update Projections
+        const n = projectionManager.model.count;
+        if (n)
+            root.pageStack.currentItem.viewport.grabToImage(function(p) {
+                for (var i=0; i<n; ++i)
+                    projectionManager.model.setProperty(i, "p", String(p.url));
+            });
+    }
+
     ProjectionsManager {
         id: projectionManager
         backgroundColor: root.pageStack.currentItem.prompterBackground.color
         backgroundOpacity: root.pageStack.currentItem.prompterBackground.opacity
         // Forward to prompter and not editor to prevent editing from projection windows
         forwardTo: root.pageStack.currentItem.prompter
-    }
-
-    Settings {
-        category: "mainWindow"
-        property alias x: root.x
-        property alias y: root.y
-        property alias width: root.width
-        property alias height: root.height
-    }
-    Settings {
-        category: "scroll"
-        property alias noScroll: root.__noScroll
-        property alias scrollAsDial: root.__scrollAsDial
-        property alias invertScrollDirection: root.__invertScrollDirection
-        property alias invertArrowKeys: root.__invertArrowKeys
-    }
-    Settings {
-        category: "editor"
-        property alias forceQtTextRenderer: root.forceQtTextRenderer
-    }
-    Settings {
-        category: "prompter"
-        property alias stepsDefault: root.__iDefault
-    }
-    Settings {
-        category: "background"
-        property alias opacity: root.__opacity
-    }
-    Settings {
-        category: "telemetry"
-        property alias enable: root.__telemetry
     }
 
     // Prompter Page Contents
