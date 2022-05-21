@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/Cuperino/QPrompt/issues/new/choose\n"
 "POT-Creation-Date: 2022-05-21 06:54-0400\n"
-"PO-Revision-Date: 2022-05-18 19:45+0000\n"
+"PO-Revision-Date: 2022-05-21 11:06+0000\n"
 "Last-Translator: Javier O. Cordero Pérez <javiercorderoperez@gmail.com>\n"
 "Language-Team: Chinese (Simplified) <http://l10n.cuperino.com/projects/"
 "qprompt/qprompt-app/zh_CN/>\n"
@@ -249,9 +249,8 @@ msgid "Increase Velocity"
 msgstr "加速"
 
 #: kirigami_ui/InputsOverlay.qml:187
-#, fuzzy
 msgid "Stop"
-msgstr "秒表"
+msgstr "停止"
 
 #: kirigami_ui/InputsOverlay.qml:195
 msgid "Play/Pause"
@@ -259,16 +258,15 @@ msgstr "播放/暂停"
 
 #: kirigami_ui/InputsOverlay.qml:203
 msgid "Reverse"
-msgstr ""
+msgstr "倒转"
 
 #: kirigami_ui/InputsOverlay.qml:211
 msgid "Rewind"
-msgstr ""
+msgstr "倒带"
 
 #: kirigami_ui/InputsOverlay.qml:219
-#, fuzzy
 msgid "Fast Forward"
-msgstr "向前移动"
+msgstr "快进"
 
 #: kirigami_ui/InputsOverlay.qml:227
 msgctxt "Skip to earlier text while prompting or editing"
