@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/Cuperino/QPrompt/issues/new/choose\n"
-"POT-Creation-Date: 2022-05-21 04:04-0400\n"
+"POT-Creation-Date: 2022-05-21 06:54-0400\n"
 "PO-Revision-Date: 2022-04-18 05:00+0000\n"
 "Last-Translator: Javier O. Cordero Pérez <javiercorderoperez@gmail.com>\n"
 "Language-Team: Japanese <http://l10n.cuperino.com/projects/qprompt/qprompt-"
@@ -111,14 +111,14 @@ msgctxt "Main menu and global actions. Load document that welcomes users."
 msgid "Load User &Welcome"
 msgstr ""
 
-#: kirigami_ui/+android/main.qml:412 kirigami_ui/main.qml:789
-#: kirigami_ui/+windows/main.qml:489
+#: kirigami_ui/+android/main.qml:409 kirigami_ui/main.qml:786
+#: kirigami_ui/+windows/main.qml:486
 msgctxt "Title for save before closing dialog"
 msgid "Save Document"
 msgstr ""
 
-#: kirigami_ui/+android/main.qml:413 kirigami_ui/main.qml:790
-#: kirigami_ui/+windows/main.qml:490
+#: kirigami_ui/+android/main.qml:410 kirigami_ui/main.qml:787
+#: kirigami_ui/+windows/main.qml:487
 msgid "Save changes to document before closing?"
 msgstr ""
 
@@ -217,57 +217,73 @@ msgctxt "Step acceleration: 1.15"
 msgid "Step acceleration: %1"
 msgstr ""
 
-#: kirigami_ui/EditorToolbar.qml:1092
+#: kirigami_ui/EditorToolbar.qml:1087
 msgctxt ""
 "Refers to a key on the keyboard used to skip to a user defined marker while "
 "prompting"
 msgid "Skip Key"
 msgstr ""
 
-#: kirigami_ui/EditorToolbar.qml:1115
+#: kirigami_ui/EditorToolbar.qml:1110
 msgctxt ""
 "Refers to a key on the keyboard used to skip to a user defined marker while "
 "prompting"
 msgid "Key to perform skip to this marker"
 msgstr ""
 
-#: kirigami_ui/InputsOverlay.qml:37
+#: kirigami_ui/InputsOverlay.qml:33
 msgctxt "Title of dialog where users customize keyboard inputs"
 msgid "Key Bindings"
 msgstr ""
 
-#: kirigami_ui/InputsOverlay.qml:131
+#: kirigami_ui/InputsOverlay.qml:163
 msgid "Toggle Prompter State"
 msgstr ""
 
-#: kirigami_ui/InputsOverlay.qml:139
+#: kirigami_ui/InputsOverlay.qml:171
 msgid "Decrease Velocity"
 msgstr ""
 
-#: kirigami_ui/InputsOverlay.qml:147
+#: kirigami_ui/InputsOverlay.qml:179
 msgid "Increase Velocity"
 msgstr ""
 
-#: kirigami_ui/InputsOverlay.qml:155
+#: kirigami_ui/InputsOverlay.qml:187
+msgid "Stop"
+msgstr ""
+
+#: kirigami_ui/InputsOverlay.qml:195
 msgid "Play/Pause"
 msgstr ""
 
-#: kirigami_ui/InputsOverlay.qml:163
+#: kirigami_ui/InputsOverlay.qml:203
+msgid "Reverse"
+msgstr ""
+
+#: kirigami_ui/InputsOverlay.qml:211
+msgid "Rewind"
+msgstr ""
+
+#: kirigami_ui/InputsOverlay.qml:219
+msgid "Fast Forward"
+msgstr ""
+
+#: kirigami_ui/InputsOverlay.qml:227
 msgctxt "Skip to earlier text while prompting or editing"
 msgid "Move Backwards"
 msgstr ""
 
-#: kirigami_ui/InputsOverlay.qml:171
+#: kirigami_ui/InputsOverlay.qml:235
 msgctxt "Skip to later text while prompting or editing"
 msgid "Move Forward"
 msgstr ""
 
-#: kirigami_ui/InputsOverlay.qml:179
+#: kirigami_ui/InputsOverlay.qml:243
 msgctxt "Skip to closest marker behind of current position"
 msgid "Go to Previous Marker"
 msgstr ""
 
-#: kirigami_ui/InputsOverlay.qml:187
+#: kirigami_ui/InputsOverlay.qml:251
 msgctxt "Skip to closest marker ahead of current position"
 msgid "Go to Next Marker"
 msgstr ""
@@ -311,20 +327,20 @@ msgctxt "Global menu actions"
 msgid "&Redo"
 msgstr ""
 
-#: kirigami_ui/main.qml:399 prompter/Prompter.qml:954
-#: prompter/Prompter.qml:1001
+#: kirigami_ui/main.qml:399 prompter/Prompter.qml:971
+#: prompter/Prompter.qml:1018
 msgctxt "Global menu and editor context menu actions"
 msgid "&Copy"
 msgstr ""
 
-#: kirigami_ui/main.qml:404 prompter/Prompter.qml:959
-#: prompter/Prompter.qml:1006
+#: kirigami_ui/main.qml:404 prompter/Prompter.qml:976
+#: prompter/Prompter.qml:1023
 msgctxt "Global menu and editor context menu actions"
 msgid "Cu&t"
 msgstr ""
 
-#: kirigami_ui/main.qml:409 prompter/Prompter.qml:964
-#: prompter/Prompter.qml:1011
+#: kirigami_ui/main.qml:409 prompter/Prompter.qml:981
+#: prompter/Prompter.qml:1028
 msgctxt "Global menu and editor context menu actions"
 msgid "&Paste"
 msgstr ""
@@ -502,7 +518,7 @@ msgctxt "Global menu actions. Load about page. \"About AppName\""
 msgid "Abou&t %1"
 msgstr ""
 
-#: kirigami_ui/MarkersDrawer.qml:108
+#: kirigami_ui/MarkersDrawer.qml:109
 msgctxt "Close sidebar listing user defined markers"
 msgid "Close Marker List"
 msgstr ""
@@ -1091,46 +1107,46 @@ msgstr ""
 msgid "GIF animation"
 msgstr ""
 
-#: prompter/Prompter.qml:404
+#: prompter/Prompter.qml:417
 msgid "Animation Completed"
 msgstr ""
 
-#: prompter/Prompter.qml:524
+#: prompter/Prompter.qml:537
 msgid "Error loading file…"
 msgstr ""
 
-#: prompter/Prompter.qml:579
+#: prompter/Prompter.qml:592
 msgid "Double tap to go back to the start"
 msgstr ""
 
-#: prompter/Prompter.qml:801
+#: prompter/Prompter.qml:818
 msgid "New document"
 msgstr ""
 
-#: prompter/Prompter.qml:810
+#: prompter/Prompter.qml:827
 msgid "welcome_en.html"
 msgstr "welcome_jp.html"
 
-#: prompter/Prompter.qml:815
+#: prompter/Prompter.qml:832
 msgid "User welcome loaded"
 msgstr ""
 
-#: prompter/Prompter.qml:835 prompter/Prompter.qml:931
+#: prompter/Prompter.qml:852 prompter/Prompter.qml:948
 msgctxt "Saved FILE_NAME"
 msgid "Saved %1"
 msgstr ""
 
-#: prompter/Prompter.qml:888 prompter/Prompter.qml:918
+#: prompter/Prompter.qml:905 prompter/Prompter.qml:935
 msgctxt "Format name (FORMAT_EXTENSION)"
 msgid "Hypertext Markup Language (%1)"
 msgstr ""
 
-#: prompter/Prompter.qml:889
+#: prompter/Prompter.qml:906
 msgctxt "Format name (FORMAT_EXTENSION)"
 msgid "Markdown (%1)"
 msgstr ""
 
-#: prompter/Prompter.qml:890 prompter/Prompter.qml:919
+#: prompter/Prompter.qml:907 prompter/Prompter.qml:936
 msgctxt "Format name (FORMAT_EXTENSION)"
 msgid "Plain Text (%1)"
 msgstr ""
@@ -1141,48 +1157,48 @@ msgstr ""
 #. i18nc("Format name (FORMAT_EXTENSION)", "Apple Pages Document (%1)", "PAGES") + "(*.pages *.PAGES)",
 #. i18nc("Format name (FORMAT_EXTENSION)", "Rich Text Format (%1)", "RTF") + "(*.rtf *.RTF)",
 #. i18nc("Format name (FORMAT_EXTENSION)", "Portable Document Format (%1)", "PDF") + "(*.pdf *.PDF)",
-#: prompter/Prompter.qml:897
+#: prompter/Prompter.qml:914
 msgctxt "All file formats"
 msgid "All Formats"
 msgstr ""
 
-#: prompter/Prompter.qml:970 prompter/Prompter.qml:1017
+#: prompter/Prompter.qml:987 prompter/Prompter.qml:1034
 msgctxt "Editor context menu actions"
 msgid "Fo&nt…"
 msgstr ""
 
-#: prompter/Prompter.qml:974 prompter/Prompter.qml:1021
+#: prompter/Prompter.qml:991 prompter/Prompter.qml:1038
 msgctxt "Editor context menu actions"
 msgid "Co&lor…"
 msgstr ""
 
-#: prompter/Prompter.qml:978 prompter/Prompter.qml:1025
+#: prompter/Prompter.qml:995 prompter/Prompter.qml:1042
 msgctxt "Editor context menu actions"
 msgid "Hi&ghlight…"
 msgstr ""
 
-#: prompter/Prompter.qml:990
+#: prompter/Prompter.qml:1007
 msgctxt "Editor context menu actions"
 msgid "&Undo"
 msgstr ""
 
-#: prompter/Prompter.qml:995
+#: prompter/Prompter.qml:1012
 msgctxt "Editor context menu actions"
 msgid "Redo"
 msgstr ""
 
-#: prompter/Prompter.qml:1207
+#: prompter/Prompter.qml:1276
 msgid "Begin countdown"
 msgstr ""
 
-#: prompter/Prompter.qml:1207
+#: prompter/Prompter.qml:1276
 msgid "Start prompting"
 msgstr ""
 
-#: prompter/Prompter.qml:1254
+#: prompter/Prompter.qml:1323
 msgid "Skip countdown"
 msgstr ""
 
-#: prompter/Prompter.qml:1297
+#: prompter/Prompter.qml:1366
 msgid "Return to edit mode"
 msgstr ""
