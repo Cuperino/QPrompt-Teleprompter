@@ -56,6 +56,7 @@ Kirigami.OverlaySheet {
             keyInputTogglePrompter.setSource("KeyInputButton.qml", { "text": qmlutil.keyToString(prompter.keys.toggle, prompter.keys.toggleModifiers) });
             keyInputDecreaseVelocity.setSource("KeyInputButton.qml", { "text": qmlutil.keyToString(prompter.keys.increaseVelocity, prompter.keys.increaseVelocityModifiers) });
             keyInputIncreaseVelocity.setSource("KeyInputButton.qml", { "text": qmlutil.keyToString(prompter.keys.decreaseVelocity, prompter.keys.decreaseVelocityModifiers) });
+            keyInputStop.setSource("KeyInputButton.qml", { "text": qmlutil.keyToString(prompter.keys.stop, prompter.keys.stopModifiers) });
             keyInputPlayPause.setSource("KeyInputButton.qml", { "text": qmlutil.keyToString(prompter.keys.pause, prompter.keys.pauseModifiers) });
             keyInputMoveBackwards.setSource("KeyInputButton.qml", { "text": qmlutil.keyToString(prompter.keys.skipBackwards, prompter.keys.skipBackwardsModifiers) });
             keyInputMoveForward.setSource("KeyInputButton.qml", { "text": qmlutil.keyToString(prompter.keys.skipForward, prompter.keys.skipForwardModifiers) });
@@ -84,6 +85,14 @@ Kirigami.OverlaySheet {
             function onSetKey(key, modifiers) {
                 prompter.keys.increaseVelocity = key;
                 prompter.keys.increaseVelocityModifiers = modifiers;
+            }
+        }
+        Connections {
+            target: keyInputStop.item
+            function onToggleButtonsOff() { buttonGrid.toggleButtonsOff(); }
+            function onSetKey(key, modifiers) {
+                prompter.keys.stop = key;
+                prompter.keys.stopModifiers = modifiers;
             }
         }
         Connections {
@@ -148,6 +157,14 @@ Kirigami.OverlaySheet {
         }
         Loader {
             id: keyInputIncreaseVelocity
+            asynchronous: true
+            Layout.fillWidth: true
+        }
+        Label {
+            text: i18n("Stop")
+        }
+        Loader {
+            id: keyInputStop
             asynchronous: true
             Layout.fillWidth: true
         }

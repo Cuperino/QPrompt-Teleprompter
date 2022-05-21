@@ -36,6 +36,7 @@ Button {
         const actions = [
             [prompter.keys.increaseVelocity, prompter.keys.increaseVelocityModifiers],
             [prompter.keys.decreaseVelocity, prompter.keys.decreaseVelocityModifiers],
+            [prompter.keys.stop, prompter.keys.stopModifiers],
             [prompter.keys.pause, prompter.keys.pauseModifiers],
             [prompter.keys.skipBackwards, prompter.keys.skipBackwardsModifiers],
             [prompter.keys.skipForward, prompter.keys.skipForwardModifiers],
