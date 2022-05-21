@@ -163,7 +163,8 @@ Flickable {
     //property var keys: {
         //"increaseVelocity": Qt.Key_Down,
         //"decreaseVelocity": Qt.Key_Up,
-        //"pause": Qt.Key_Space,
+        //"stop": Qt.Key_Space,
+        //"pause": Qt.Key_Pause,
         //"skipBackwards": Qt.Key_PageUp,
         //"skipForward": Qt.Key_PageDown,
         //"previousMarker": Qt.Key_Home,
@@ -177,7 +178,9 @@ Flickable {
         property int increaseVelocityModifiers: Qt.NoModifier
         property int decreaseVelocity: Qt.Key_Up
         property int decreaseVelocityModifiers: Qt.NoModifier
-        property int pause: Qt.Key_Space
+        property int stop: Qt.Key_Space
+        property int stopModifiers: Qt.NoModifier
+        property int pause: Qt.Key_Pause
         property int pauseModifiers: Qt.NoModifier
         property int skipBackwards: Qt.Key_PageUp
         property int skipBackwardsModifiers: Qt.NoModifier
@@ -712,6 +715,7 @@ Flickable {
                         switch (event.key) {
                             case keys.increaseVelocity:
                             case keys.decreaseVelocity:
+                            case keys.stop:
                             case keys.pause:
                             case keys.skipBackwards:
                             case keys.skipForward:
@@ -1053,6 +1057,12 @@ Flickable {
                     prompter.decreaseVelocity(event)
                 return
             }
+            else if (event.key===keys.stop) {
+                // Stop
+                prompter.__i = 0;
+                prompter.position = prompter.position
+                return
+            }
             else if (event.key===keys.pause && event.modifiers===keys.pauseModifiers || event.key===Qt.Key_SysReq || event.key===Qt.Key_Play || event.key===Qt.Key_Pause) {
                 // Pause
                 //if (root.passiveNotifications)
@@ -1084,7 +1094,7 @@ Flickable {
         }
 
         // Key press that apply states other than Editing or Prompting.  Pause toggles prompter state.
-        else if (parseInt(prompter.state)!==Prompter.States.Editing && event.key===keys.pause && event.modifiers===keys.pauseModifiers || event.key===Qt.Key_SysReq || event.key===Qt.Key_Play || event.key===Qt.Key_Pause)
+        else if (parseInt(prompter.state)!==Prompter.States.Editing && event.key===keys.stop && event.modifiers===keys.stopModifiers || parseInt(prompter.state)!==Prompter.States.Editing && event.key===keys.pause && event.modifiers===keys.pauseModifiers || event.key===Qt.Key_SysReq || event.key===Qt.Key_Play || event.key===Qt.Key_Pause)
             prompter.toggle();
 
         // Keys presses that apply the same to all states, including previous
