@@ -18,7 +18,7 @@ QPrompt is written in C++ and QML, using the Qt and Kirigami frameworks to provi
 # Community Translations
 Help more users access QPrompt by contributing translations to your native language. Visit [l10n.cuperino.com](https://l10n.cuperino.com/projects/qprompt-app/qprompt) to find your language and contribute translations. File an issue at [feedback.qprompt.com](https://github.com/Cuperino/QPrompt/issues/new/choose) if you can't find your language on the page and would like to contribute translations.
 
-[![Translated languages](https://l10n.cuperino.com/widgets/qprompt/-/qprompt-app/multi-auto.svg)](https://l10n.cuperino.com/engage/qprompt/)
+[![Translated languages](https://l10n.cuperino.com/widgets/qprompt/-/multi-auto.svg)](https://l10n.cuperino.com/engage/qprompt/)
 
 # Copyright
 Copyright © 2021-2022 [Javier O. Cordero Pérez](https://javiercordero.info)
