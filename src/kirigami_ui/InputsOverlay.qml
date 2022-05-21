@@ -58,6 +58,9 @@ Kirigami.OverlaySheet {
             keyInputIncreaseVelocity.setSource("KeyInputButton.qml", { "text": qmlutil.keyToString(prompter.keys.decreaseVelocity, prompter.keys.decreaseVelocityModifiers) });
             keyInputStop.setSource("KeyInputButton.qml", { "text": qmlutil.keyToString(prompter.keys.stop, prompter.keys.stopModifiers) });
             keyInputPlayPause.setSource("KeyInputButton.qml", { "text": qmlutil.keyToString(prompter.keys.pause, prompter.keys.pauseModifiers) });
+            keyInputReverse.setSource("KeyInputButton.qml", { "text": qmlutil.keyToString(prompter.keys.reverse, prompter.keys.reverseModifiers) });
+            keyInputRewind.setSource("KeyInputButton.qml", { "text": qmlutil.keyToString(prompter.keys.rewind, prompter.keys.rewindModifiers) });
+            keyInputFastForward.setSource("KeyInputButton.qml", { "text": qmlutil.keyToString(prompter.keys.fastForward, prompter.keys.fastForwardModifiers) });
             keyInputMoveBackwards.setSource("KeyInputButton.qml", { "text": qmlutil.keyToString(prompter.keys.skipBackwards, prompter.keys.skipBackwardsModifiers) });
             keyInputMoveForward.setSource("KeyInputButton.qml", { "text": qmlutil.keyToString(prompter.keys.skipForward, prompter.keys.skipForwardModifiers) });
             keyInputPreviousMarker.setSource("KeyInputButton.qml", { "text": qmlutil.keyToString(prompter.keys.previousMarker, prompter.keys.previousMarkerModifiers) });
@@ -101,6 +104,30 @@ Kirigami.OverlaySheet {
             function onSetKey(key, modifiers) {
                 prompter.keys.pause = key;
                 prompter.keys.pauseModifiers = modifiers;
+            }
+        }
+        Connections {
+            target: keyInputReverse.item
+            function onToggleButtonsOff() { buttonGrid.toggleButtonsOff(); }
+            function onSetKey(key, modifiers) {
+                prompter.keys.reverse = key;
+                prompter.keys.reverseModifiers = modifiers;
+            }
+        }
+        Connections {
+            target: keyInputRewind.item
+            function onToggleButtonsOff() { buttonGrid.toggleButtonsOff(); }
+            function onSetKey(key, modifiers) {
+                prompter.keys.rewind = key;
+                prompter.keys.rewindModifiers = modifiers;
+            }
+        }
+        Connections {
+            target: keyInputFastForward.item
+            function onToggleButtonsOff() { buttonGrid.toggleButtonsOff(); }
+            function onSetKey(key, modifiers) {
+                prompter.keys.fastForward = key;
+                prompter.keys.fastForwardModifiers = modifiers;
             }
         }
         Connections {
@@ -173,6 +200,30 @@ Kirigami.OverlaySheet {
         }
         Loader {
             id: keyInputPlayPause
+            asynchronous: true
+            Layout.fillWidth: true
+        }
+        Label {
+            text: i18n("Reverse")
+        }
+        Loader {
+            id: keyInputReverse
+            asynchronous: true
+            Layout.fillWidth: true
+        }
+        Label {
+            text: i18n("Rewind")
+        }
+        Loader {
+            id: keyInputRewind
+            asynchronous: true
+            Layout.fillWidth: true
+        }
+        Label {
+            text: i18n("Fast Forward")
+        }
+        Loader {
+            id: keyInputFastForward
             asynchronous: true
             Layout.fillWidth: true
         }
