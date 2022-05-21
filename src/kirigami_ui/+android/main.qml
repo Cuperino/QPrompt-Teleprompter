@@ -115,8 +115,9 @@ Kirigami.ApplicationWindow {
 
     // Open save dialog on closing
     onClosing: {
+        root.onDiscard = Prompter.CloseActions.Quit
         if (root.pageStack.currentItem.document.modified) {
-            quitDialog.open()
+            closeDialog.open()
             close.accepted = false
         }
     }
