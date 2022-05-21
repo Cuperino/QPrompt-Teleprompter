@@ -486,13 +486,40 @@ Kirigami.ApplicationWindow {
 
     // Dialogues
     MessageDialog {
-        id : quitDialog
+        id : closeDialog
         title: i18nc("Title for save before closing dialog", "Save Document")
         text: i18n("Save changes to document before closing?")
         icon: StandardIcon.Question
         standardButtons: StandardButton.Save | StandardButton.Discard | StandardButton.Cancel
-        onDiscard: Qt.quit()
-        onAccepted: root.pageStack.currentItem.document.saveDialog(true)
+        onDiscard: {
+            //switch (parseInt(root.onDiscard)) {
+                //case Prompter.CloseActions.LoadGuide: root.pageStack.currentItem.document.loadGuide(); break;
+                //case Prompter.CloseActions.LoadNew: root.pageStack.currentItem.document.newDocument(); break;
+                //case Prompter.CloseActions.Quit: Qt.quit();
+                ////case Prompter.CloseActions.Quit:
+                ////default: Qt.quit();
+            //}
+
+            //document.saveAs(saveDialog.fileUrl)
+            //root.pageStack.currentItem.document.isNewFile = true
+            switch (parseInt(root.onDiscard)) {
+                case Prompter.CloseActions.LoadGuide:
+                    root.pageStack.currentItem.document.modified = false
+                    root.pageStack.currentItem.document.loadGuide();
+                    break;
+                case Prompter.CloseActions.LoadNew:
+                    root.pageStack.currentItem.document.modified = false
+                    root.pageStack.currentItem.document.newDocument();
+                break;
+                case Prompter.CloseActions.Open:
+                    root.pageStack.currentItem.openDialog.open();
+                    break;
+                case Prompter.CloseActions.Quit: Qt.quit();
+                case Prompter.CloseActions.Ignore:
+                default: break;
+            }
+        }
+        onAccepted: root.pageStack.currentItem.document.saveDialog(parseInt(root.onDiscard)==Prompter.CloseActions.Quit)
         //buttons: (Labs.MessageDialog.Save | Labs.MessageDialog.Discard | Labs.MessageDialog.Cancel)
         //onDiscardClicked: Qt.quit()
         //onSaveClicked: root.pageStack.currentItem.document.saveDialog(true)
