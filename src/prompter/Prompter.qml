@@ -102,6 +102,7 @@ Flickable {
     readonly property real editorXOffset: positionHandler.x/prompter.width
     readonly property real centreX: width / 2;
     readonly property real centreY: height / 2;
+    readonly property int fastSpeed: 35;
     readonly property int __jitterMargin: (__i+viewport.__baseSpeed+viewport.__curvature+fontSize)%2
     readonly property bool __possitiveDirection: __i>=0
     readonly property real __vw: width / 100 // prompter viewport width hundredth
@@ -142,6 +143,8 @@ Flickable {
     property bool __flipY: false
     // Scrolling settings
     property bool performFileOperations: false
+    property bool winding: false
+    property int keyBeingPressed: 0
     property bool __scrollAsDial: root.__scrollAsDial
     property bool __invertArrowKeys: root.__invertArrowKeys
     property bool __invertScrollDirection: root.__invertScrollDirection
@@ -165,6 +168,7 @@ Flickable {
         //"decreaseVelocity": Qt.Key_Up,
         //"stop": Qt.Key_Space,
         //"pause": Qt.Key_Pause,
+        //"reverse": Qt.Key_R,
         //"skipBackwards": Qt.Key_PageUp,
         //"skipForward": Qt.Key_PageDown,
         //"previousMarker": Qt.Key_Home,
@@ -182,6 +186,12 @@ Flickable {
         property int stopModifiers: Qt.NoModifier
         property int pause: Qt.Key_Pause
         property int pauseModifiers: Qt.NoModifier
+        property int reverse: Qt.Key_I
+        property int reverseModifiers: Qt.NoModifier
+        property int rewind: Qt.Key_R
+        property int rewindModifiers: Qt.NoModifier
+        property int fastForward: Qt.Key_F
+        property int fastForwardModifiers: Qt.NoModifier
         property int skipBackwards: Qt.Key_PageUp
         property int skipBackwardsModifiers: Qt.NoModifier
         property int skipForward: Qt.Key_PageDown
@@ -717,6 +727,9 @@ Flickable {
                             case keys.decreaseVelocity:
                             case keys.stop:
                             case keys.pause:
+                            case keys.reverse:
+                            case keys.rewind:
+                            case keys.fastForward:
                             case keys.skipBackwards:
                             case keys.skipForward:
                             case keys.previousMarker:
@@ -1060,6 +1073,7 @@ Flickable {
             else if (event.key===keys.stop) {
                 // Stop
                 prompter.__i = 0;
+                prompter.__iBackup = 0;
                 prompter.position = prompter.position
                 return
             }
@@ -1074,6 +1088,38 @@ Flickable {
                 else {
                     prompter.__play = true
                     prompter.position = prompter.__destination
+                }
+                return
+            }
+            else if (event.key===keys.reverse) {
+                // Reverse
+                __i = -__i;
+                position = __destination
+                return
+            }
+            else if (event.key===keys.rewind) {
+                // Rewind
+                if (!winding) {
+                    __iBackup = __i;
+                    winding = true;
+                    keyBeingPressed = event.key;
+                    __i = 0;
+                    position = __destination
+                    __i = -fastSpeed;
+                    position = __destination
+                }
+                return
+            }
+            else if (event.key===keys.fastForward) {
+                // Fast Forward
+                if (!winding) {
+                    __iBackup = __i;
+                    winding = true;
+                    keyBeingPressed = event.key;
+                    __i = 0;
+                    position = __destination
+                    __i = fastSpeed;
+                    position = __destination
                 }
                 return
             }
@@ -1152,6 +1198,19 @@ Flickable {
                 document.paste();
         }
         return
+    }
+    Keys.onReleased: {
+        if (parseInt(prompter.state)===Prompter.States.Prompting) {
+            if (winding && (event.key===keyBeingPressed && (event.key===keys.rewind || event.key===keys.fastForward))) {
+                // Let go
+                __i = 0;
+                position = __destination
+                __i = __iBackup;
+                position = __destination
+                winding = false;
+            }
+            return
+        }
     }
 
     states: [
