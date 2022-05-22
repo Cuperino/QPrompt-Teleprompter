@@ -76,6 +76,7 @@ Item {
 //     }
     Rectangle {
         anchors.fill: parent
+        visible: countdown.enabled
         opacity: canvas.enabled ? 0.48 : 0.24
         //opacity: 0.3
         color: "#333"
@@ -108,7 +109,8 @@ Item {
             ctx.moveTo(centreX, centreY);
             ctx.arc(centreX, centreY, __hypotenuse, -Math.PI/2, Math.PI*rotations-Math.PI/2, false);
             ctx.lineTo(centreX, centreY);
-            ctx.fill();
+            if (canvas.enabled)
+                ctx.fill();
             // Vertical Line
             ctx.lineCap = 'butt';
             ctx.strokeStyle = "#474747";
