@@ -705,6 +705,28 @@ Kirigami.Page {
         property alias toolbar: editorToolbar
     }
 
+    // The following rectangles add a background that is shown behind the mobile action buttons when the user is in desktop mode but the action buttons are showing. These also improve contrast with the editor toolbar when opacity is active.
+    // Action buttons are only supposed to be shown in desktop mode if the user is in fullscreen and not in the prompter's editing state, but there is a bug in Kirigami that causes it to appear under some circumstances or all of the time in desktop operating systems. Behavior varies from system to system.
+    Rectangle {
+        anchors.left: parent.left;
+        anchors.right: parent.right;
+        anchors.top: prompterCutOffLine.bottom;
+        // By extending over the editor we avoid seeing a cutoff in opaque mode and improve contrast
+        height: 68 + editor.height
+        color: Kirigami.Theme.alternateBackgroundColor.a===0 ? appTheme.__backgroundColor : Kirigami.Theme.alternateBackgroundColor
+        opacity: root.__opacity * 0.4 + 0.6
+    }
+    // The cut off line renders as a solid and doesn't cover the other rectangles to improve performance.
+    Rectangle {
+        id: prompterCutOffLine
+        color: Qt.rgba(Kirigami.Theme.activeBackgroundColor.r/8, Kirigami.Theme.activeBackgroundColor.g/8, Kirigami.Theme.activeBackgroundColor.b/8, 1)
+        height: 3
+        //height: Kirigami.Settings.isMobile ? 3 : 2
+        anchors.left: parent.left;
+        anchors.right: parent.right;
+        anchors.top: viewport.bottom;
+    }
+
     // progress: parseInt(viewport.prompter.state)===Prompter.States.Prompting ? viewport.prompter.progress : undefined
 
     Labs.FontDialog {
