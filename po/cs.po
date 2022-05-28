@@ -8,57 +8,59 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/Cuperino/QPrompt/issues/new/choose\n"
 "POT-Creation-Date: 2022-05-21 06:54-0400\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Automatically generated\n"
-"Language-Team: none\n"
+"PO-Revision-Date: 2022-05-29 15:52+0000\n"
+"Last-Translator: Jaroslav Svoboda <multi.flexi@seznam.cz>\n"
+"Language-Team: Czech <http://l10n.cuperino.com/projects/qprompt/qprompt-app/"
+"cs/>\n"
 "Language: cs\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
+"X-Generator: Weblate 4.11.2\n"
 
 #: kirigami_ui/+android/main.qml:166 kirigami_ui/main.qml:174
 #: kirigami_ui/main.qml:362 kirigami_ui/+windows/main.qml:173
 msgctxt "Main menu and global menu actions"
 msgid "&New"
-msgstr ""
+msgstr "&Nový"
 
 #: kirigami_ui/+android/main.qml:172 kirigami_ui/main.qml:180
 #: kirigami_ui/main.qml:366 kirigami_ui/+windows/main.qml:179
 msgctxt "Main menu and global menu actions"
 msgid "&Open"
-msgstr ""
+msgstr "&Otevřít"
 
 #: kirigami_ui/+android/main.qml:181 kirigami_ui/main.qml:189
 #: kirigami_ui/main.qml:370 kirigami_ui/+windows/main.qml:188
 msgctxt "Main menu and global menu actions"
 msgid "&Save"
-msgstr ""
+msgstr "Uložit"
 
 #: kirigami_ui/+android/main.qml:190 kirigami_ui/main.qml:198
 #: kirigami_ui/+windows/main.qml:197
 msgctxt "Main menu and global menu actions"
 msgid "Save &As"
-msgstr ""
+msgstr "Uložit jako"
 
 #: kirigami_ui/+android/main.qml:200 kirigami_ui/main.qml:208
 #: kirigami_ui/+windows/main.qml:207
 msgctxt "Main menu actions"
 msgid "&Recent Files"
-msgstr ""
+msgstr "Otevřít nedávné"
 
 #: kirigami_ui/+android/main.qml:208 kirigami_ui/main.qml:216
 #: kirigami_ui/+windows/main.qml:215
 msgctxt "Main menu actions. Menu regarding input settings."
 msgid "&Controls Settings"
-msgstr ""
+msgstr "Nastavení ovládání"
 
 #: kirigami_ui/+android/main.qml:212 kirigami_ui/main.qml:220
 #: kirigami_ui/+windows/main.qml:219
 msgctxt ""
 "Main menu and global menu actions. Opens dialog to configure keyboard inputs."
 msgid "Keyboard Inputs"
-msgstr ""
+msgstr "Klávesnice"
 
 #: kirigami_ui/+android/main.qml:219 kirigami_ui/main.qml:227
 #: kirigami_ui/main.qml:607 kirigami_ui/+windows/main.qml:226
@@ -66,14 +68,14 @@ msgctxt ""
 "Main menu and global menu actions. Have up arrow behave like down arrow and "
 "vice versa while prompting."
 msgid "Invert &arrow keys"
-msgstr ""
+msgstr "Prohodit kurzorové šipky"
 
 #: kirigami_ui/+android/main.qml:227 kirigami_ui/main.qml:235
 #: kirigami_ui/main.qml:614 kirigami_ui/+windows/main.qml:234
 msgctxt ""
 "Main menu and global menu actions. Invert scroll direction while prompting."
 msgid "Invert &scroll direction"
-msgstr ""
+msgstr "Přirozený posuv"
 
 #: kirigami_ui/+android/main.qml:235 kirigami_ui/main.qml:243
 #: kirigami_ui/main.qml:599 kirigami_ui/+windows/main.qml:242
@@ -81,7 +83,7 @@ msgctxt ""
 "Main menu and global menu actions. Have touchpad and mouse wheel scrolling "
 "adjust velocity instead of scrolling like most other apps."
 msgid "Use scroll as velocity &dial"
-msgstr ""
+msgstr "Použít kolečko myši jako akcelerátor"
 
 #: kirigami_ui/+android/main.qml:244 kirigami_ui/main.qml:252
 #: kirigami_ui/main.qml:593 kirigami_ui/+windows/main.qml:251
@@ -89,207 +91,207 @@ msgctxt ""
 "Main menu and global menu actions. Touchpad scrolling and mouse wheel use "
 "have no effect while prompting."
 msgid "Disable scrolling while prompting"
-msgstr ""
+msgstr "Vypnout posouvání během promítání textu"
 
 #: kirigami_ui/+android/main.qml:252 kirigami_ui/main.qml:289
 #: kirigami_ui/+windows/main.qml:288
 msgctxt "Main menu actions. Load about page."
 msgid "Abou&t %1"
-msgstr ""
+msgstr "O %1"
 
 #: kirigami_ui/+android/main.qml:258 kirigami_ui/main.qml:295
 #: kirigami_ui/main.qml:379 kirigami_ui/+windows/main.qml:294
 msgctxt "Main menu and global menu actions"
 msgid "&Quit"
-msgstr ""
+msgstr "Ukončit"
 
 #: kirigami_ui/+android/main.qml:279 kirigami_ui/main.qml:321
 #: kirigami_ui/main.qml:639 kirigami_ui/+windows/main.qml:320
 msgctxt "Main menu and global actions. Load document that welcomes users."
 msgid "Load User &Welcome"
-msgstr ""
+msgstr "Otevřít Uvítání uživatele"
 
 #: kirigami_ui/+android/main.qml:409 kirigami_ui/main.qml:786
 #: kirigami_ui/+windows/main.qml:486
 msgctxt "Title for save before closing dialog"
 msgid "Save Document"
-msgstr ""
+msgstr "Uložit dokument"
 
 #: kirigami_ui/+android/main.qml:410 kirigami_ui/main.qml:787
 #: kirigami_ui/+windows/main.qml:487
 msgid "Save changes to document before closing?"
-msgstr ""
+msgstr "Uložit změny v dokumentu před uzavřením?"
 
 #: kirigami_ui/EditorToolbar.qml:317 kirigami_ui/EditorToolbar.qml:327
 msgctxt "Editor actions. Text alignment."
 msgid "&Left"
-msgstr ""
+msgstr "Vlevo"
 
 #: kirigami_ui/EditorToolbar.qml:317 kirigami_ui/EditorToolbar.qml:327
 msgctxt "Editor actions. Text alignment."
 msgid "&Right"
-msgstr ""
+msgstr "Vpravo"
 
 #: kirigami_ui/EditorToolbar.qml:322
 msgctxt "Editor actions. Text alignment."
 msgid "C&enter"
-msgstr ""
+msgstr "Na střed"
 
 #: kirigami_ui/EditorToolbar.qml:476
 msgctxt "FontName (Translatable font details)"
 msgid "DejaVu (default, Roman, Cyrillic)"
-msgstr ""
+msgstr "DejaVu (standardní, patkové, cyrilice)"
 
 #: kirigami_ui/EditorToolbar.qml:480
 msgctxt "FontName (Translatable font details)"
 msgid "OpenDyslexic (Roman)"
-msgstr ""
+msgstr "OpenDyslexic (patkové)"
 
 #: kirigami_ui/EditorToolbar.qml:484
 msgctxt "FontName (Translatable font details)"
 msgid "Source Han Sans (CH, JP, KO)"
-msgstr ""
+msgstr "Source Han Sans (CH, JP, KO)"
 
 #: kirigami_ui/EditorToolbar.qml:488
 msgctxt "FontName (Translatable font details)"
 msgid "Scheherazade New (Arabic)"
-msgstr ""
+msgstr "Scheherazade New (Arabština)"
 
 #: kirigami_ui/EditorToolbar.qml:492
 msgctxt "FontName (Translatable font details)"
 msgid "Palanquin (Devangari)"
-msgstr ""
+msgstr "Palanquin (Dévanágarí)"
 
 #: kirigami_ui/EditorToolbar.qml:496
 msgctxt "FontName (Translatable font details)"
 msgid "Kalpurush (Bengali)"
-msgstr ""
+msgstr "Kalpurush (Bengálština)"
 
 #: kirigami_ui/EditorToolbar.qml:502
 msgctxt "Opens system font selection dialog"
 msgid "Choose System Font"
-msgstr ""
+msgstr "Vybrat písmo z OS"
 
 #: kirigami_ui/EditorToolbar.qml:729
 msgctxt "Velocity: {VELOCITY_STEPS}"
 msgid "Velocity: %1"
-msgstr ""
+msgstr "Rychlost: %1"
 
 #: kirigami_ui/EditorToolbar.qml:763
 msgctxt "Opacity: {TRANSPARENCY_PERCENTAGE}"
 msgid "Opacity: %1"
-msgstr ""
+msgstr "Průhlednost: %1"
 
 #: kirigami_ui/EditorToolbar.qml:795
 msgctxt "Font size while editing: 100% (083)"
 msgid "Font size while editing: %1% (%2)"
-msgstr ""
+msgstr "Velikost písma při úpravách: %1% (%2)"
 
 #: kirigami_ui/EditorToolbar.qml:826
 msgctxt "Font size: 100% (083)"
 msgid "Font size: %1% (%2)"
-msgstr ""
+msgstr "Velikost písma: %1% (%2)"
 
 #: kirigami_ui/EditorToolbar.qml:862
 msgctxt "Line height: 100%"
 msgid "Line height: %1%"
-msgstr ""
+msgstr "Řádkování: %1%"
 
 #: kirigami_ui/EditorToolbar.qml:900
 msgctxt "Word spacing: ±00"
 msgid "Word spacing: %1"
-msgstr ""
+msgstr "Rozestup slov: %1"
 
 #: kirigami_ui/EditorToolbar.qml:936
 msgctxt "Letter spacing: ±00"
 msgid "Letter spacing: %1"
-msgstr ""
+msgstr "Rozestup znaků: %1"
 
 #: kirigami_ui/EditorToolbar.qml:972
 msgctxt "Step speed: 1.00"
 msgid "Step speed: %1"
-msgstr ""
+msgstr "Rychlost krokování: %1"
 
 #: kirigami_ui/EditorToolbar.qml:1013
 msgctxt "Step acceleration: 1.15"
 msgid "Step acceleration: %1"
-msgstr ""
+msgstr "Zrychlení krokování: %1"
 
 #: kirigami_ui/EditorToolbar.qml:1087
 msgctxt ""
 "Refers to a key on the keyboard used to skip to a user defined marker while "
 "prompting"
 msgid "Skip Key"
-msgstr ""
+msgstr "Klávesa pro skok"
 
 #: kirigami_ui/EditorToolbar.qml:1110
 msgctxt ""
 "Refers to a key on the keyboard used to skip to a user defined marker while "
 "prompting"
 msgid "Key to perform skip to this marker"
-msgstr ""
+msgstr "Klávesa pro skok k této záložce"
 
 #: kirigami_ui/InputsOverlay.qml:33
 msgctxt "Title of dialog where users customize keyboard inputs"
 msgid "Key Bindings"
-msgstr ""
+msgstr "Nastavení kláves"
 
 #: kirigami_ui/InputsOverlay.qml:163
 msgid "Toggle Prompter State"
-msgstr ""
+msgstr "Přepnutí stavu čtecího zařízení"
 
 #: kirigami_ui/InputsOverlay.qml:171
 msgid "Decrease Velocity"
-msgstr ""
+msgstr "Snížení rychlosti"
 
 #: kirigami_ui/InputsOverlay.qml:179
 msgid "Increase Velocity"
-msgstr ""
+msgstr "Zvýšení rychlosti"
 
 #: kirigami_ui/InputsOverlay.qml:187
 msgid "Stop"
-msgstr ""
+msgstr "Zastavit"
 
 #: kirigami_ui/InputsOverlay.qml:195
 msgid "Play/Pause"
-msgstr ""
+msgstr "Spustit/Pozastavit"
 
 #: kirigami_ui/InputsOverlay.qml:203
 msgid "Reverse"
-msgstr ""
+msgstr "Zpětný chod"
 
 #: kirigami_ui/InputsOverlay.qml:211
 msgid "Rewind"
-msgstr ""
+msgstr "Přetočení vzad"
 
 #: kirigami_ui/InputsOverlay.qml:219
 msgid "Fast Forward"
-msgstr ""
+msgstr "Přetočení vpřed"
 
 #: kirigami_ui/InputsOverlay.qml:227
 msgctxt "Skip to earlier text while prompting or editing"
 msgid "Move Backwards"
-msgstr ""
+msgstr "Posun vzad"
 
 #: kirigami_ui/InputsOverlay.qml:235
 msgctxt "Skip to later text while prompting or editing"
 msgid "Move Forward"
-msgstr ""
+msgstr "Posun vpřed"
 
 #: kirigami_ui/InputsOverlay.qml:243
 msgctxt "Skip to closest marker behind of current position"
 msgid "Go to Previous Marker"
-msgstr ""
+msgstr "Skok na předchozí záložku"
 
 #: kirigami_ui/InputsOverlay.qml:251
 msgctxt "Skip to closest marker ahead of current position"
 msgid "Go to Next Marker"
-msgstr ""
+msgstr "Skok na následující záložku"
 
 #: kirigami_ui/main.qml:260 kirigami_ui/+windows/main.qml:259
 msgctxt "Main menu actions"
 msgid "Other &Settings"
-msgstr ""
+msgstr "Ostatní nastavení"
 
 #: kirigami_ui/main.qml:272 kirigami_ui/+windows/main.qml:271
 msgctxt ""
@@ -298,552 +300,553 @@ msgctxt ""
 "to always use the default renderer, which features smoother sub-pixel "
 "animations."
 msgid "Force sub-pixel text renderer past 120px"
-msgstr ""
+msgstr "Vynutit subpixelové vykreslování textu většího než 120px"
 
 #: kirigami_ui/main.qml:359
 msgctxt "Global menu actions"
 msgid "&File"
-msgstr ""
+msgstr "Soubor"
 
 #: kirigami_ui/main.qml:374
 msgctxt "Main menu and global menu actions"
 msgid "Save &As…"
-msgstr ""
+msgstr "Uložit jako…"
 
 #: kirigami_ui/main.qml:385
 msgctxt "Global menu actions"
 msgid "&Edit"
-msgstr ""
+msgstr "Upravit"
 
 #: kirigami_ui/main.qml:388
 msgctxt "Global menu actions"
 msgid "&Undo"
-msgstr ""
+msgstr "Zpět"
 
 #: kirigami_ui/main.qml:393
 msgctxt "Global menu actions"
 msgid "&Redo"
-msgstr ""
+msgstr "Znovu"
 
 #: kirigami_ui/main.qml:399 prompter/Prompter.qml:971
 #: prompter/Prompter.qml:1018
 msgctxt "Global menu and editor context menu actions"
 msgid "&Copy"
-msgstr ""
+msgstr "Kopírovat"
 
 #: kirigami_ui/main.qml:404 prompter/Prompter.qml:976
 #: prompter/Prompter.qml:1023
 msgctxt "Global menu and editor context menu actions"
 msgid "Cu&t"
-msgstr ""
+msgstr "Vyjmout"
 
 #: kirigami_ui/main.qml:409 prompter/Prompter.qml:981
 #: prompter/Prompter.qml:1028
 msgctxt "Global menu and editor context menu actions"
 msgid "&Paste"
-msgstr ""
+msgstr "Vložit"
 
 #: kirigami_ui/main.qml:416
 msgctxt "Global menu actions"
 msgid "&View"
-msgstr ""
+msgstr "Zobrazení"
 
 #: kirigami_ui/main.qml:419
 msgctxt "Global menu actions"
 msgid "Full &screen"
-msgstr ""
+msgstr "Celá obrazovka"
 
 #: kirigami_ui/main.qml:433
 msgctxt "Global menu actions. Indicators highlight reading region."
 msgid "&Indicators"
-msgstr ""
+msgstr "Ukazatelé"
 
 #: kirigami_ui/main.qml:435
 msgctxt "Global menu actions. Shows pointer to the left of the reading region."
 msgid "&Left Pointer"
-msgstr ""
+msgstr "Levý ukazatel"
 
 #: kirigami_ui/main.qml:441
 msgctxt ""
 "Global menu actions. Shows pointer to the right of the reading region."
 msgid "&Right Pointer"
-msgstr ""
+msgstr "Pravý ukazatel"
 
 #: kirigami_ui/main.qml:447
 msgctxt ""
 "Global menu actions. Shows pointers to the left and right of the reading "
 "region."
 msgid "B&oth Pointers"
-msgstr ""
+msgstr "Oba ukazatele"
 
 #: kirigami_ui/main.qml:454
 msgctxt "Global menu actions. Translucent bars indicate reading region."
 msgid "&Bars"
-msgstr ""
+msgstr "Pruh"
 
 #: kirigami_ui/main.qml:460
 msgctxt ""
 "Global menu actions. Translucent bars and left pointer indicate reading "
 "region."
 msgid "Bars Lef&t"
-msgstr ""
+msgstr "Pruh a ukazatel vlevo"
 
 #: kirigami_ui/main.qml:466
 msgctxt ""
 "Global menu actions. Translucent bars and right pointer indicate reading "
 "region."
 msgid "Bars Ri&ght"
-msgstr ""
+msgstr "Pruh a ukazatel vpravo"
 
 #: kirigami_ui/main.qml:473
 msgctxt "Global menu actions. Enable all reading region indicators."
 msgid "&All"
-msgstr ""
+msgstr "Vše"
 
 #: kirigami_ui/main.qml:479
 msgctxt "Global menu actions. Disable all reading region indicators."
 msgid "&Hidden"
-msgstr ""
+msgstr "Skrýt"
 
 #: kirigami_ui/main.qml:486
 msgctxt ""
 "Global menu actions. Reading region indicates where a talent should be "
 "reading from."
 msgid "Readin&g region"
-msgstr ""
+msgstr "Oblast pro čtení"
 
 #: kirigami_ui/main.qml:488
 msgctxt "Global menu actions. Align reading region to top of prompter."
 msgid "&Top"
-msgstr ""
+msgstr "Nahoře"
 
 #: kirigami_ui/main.qml:494
 msgctxt ""
 "Global menu actions. Align reading region to vertical center of prompter."
 msgid "&Middle"
-msgstr ""
+msgstr "Uprostřed"
 
 #: kirigami_ui/main.qml:500
 msgctxt "Global menu actions. Align reading region to bottom of prompter."
 msgid "&Bottom"
-msgstr ""
+msgstr "Vespod"
 
 #: kirigami_ui/main.qml:507
 msgctxt ""
 "Global menu actions. Enables drag and drop positioning of reading region."
 msgid "F&ree placement"
-msgstr ""
+msgstr "Volné umístnění"
 
 #: kirigami_ui/main.qml:513
 msgctxt ""
 "Global menu actions. Fix positioning of reading region to what was set in "
 "\"Free placement\" mode."
 msgid "C&ustom (Fixed placement)"
-msgstr ""
+msgstr "Vlastní (pevné umístění)"
 
 #: kirigami_ui/main.qml:522
 msgctxt "Global menu actions"
 msgid "For&mat"
-msgstr ""
+msgstr "Formát"
 
 #: kirigami_ui/main.qml:525
 msgctxt "Global menu actions"
 msgid "&Bold"
-msgstr ""
+msgstr "Tučné"
 
 #: kirigami_ui/main.qml:531
 msgctxt "Global menu actions"
 msgid "&Italic"
-msgstr ""
+msgstr "Kurzíva"
 
 #: kirigami_ui/main.qml:537
 msgctxt "Global menu actions"
 msgid "&Underline"
-msgstr ""
+msgstr "Podtržené"
 
 #: kirigami_ui/main.qml:544
 msgctxt "Global menu and editor actions. Text alignment."
 msgid "Align &Left"
-msgstr ""
+msgstr "Zarovnat vlevo"
 
 #: kirigami_ui/main.qml:544
 msgctxt "Global menu and editor actions. Text alignment."
 msgid "Align &Right"
-msgstr ""
+msgstr "Zarovnat vpravo"
 
 #: kirigami_ui/main.qml:555
 msgctxt "Global menu actions. Text alignment."
 msgid "Align Cen&ter"
-msgstr ""
+msgstr "Zarovnat na střed"
 
 #: kirigami_ui/main.qml:561
 msgctxt "Global menu actions. Text alignment."
 msgid "Align &Right"
-msgstr ""
+msgstr "Zarovnat vpravo"
 
 #: kirigami_ui/main.qml:561
 msgctxt "Global menu actions. Text alignment."
 msgid "Align &Left"
-msgstr ""
+msgstr "Zarovnat vlevo"
 
 #: kirigami_ui/main.qml:580
 msgctxt "Global menu actions. Opens dialog to format currently selected text."
 msgid "C&haracter"
-msgstr ""
+msgstr "Písmo"
 
 #: kirigami_ui/main.qml:584
 msgctxt "Global menu actions. Opens dialog to color currently selected text."
 msgid "Fo&nt Color"
-msgstr ""
+msgstr "Barva písma"
 
 #: kirigami_ui/main.qml:590
 msgctxt "Global menu actions. Menu regarding input settings."
 msgid "Controls"
-msgstr ""
+msgstr "Ovládání"
 
 #: kirigami_ui/main.qml:623
 msgctxt "Global menu actions"
 msgid "&Help"
-msgstr ""
+msgstr "Nápověda"
 
 #: kirigami_ui/main.qml:626
 msgctxt "Global menu actions"
 msgid "Report &Bug…"
-msgstr ""
+msgstr "Nahlásit chybu…"
 
 #: kirigami_ui/main.qml:645
 msgctxt "Global menu actions. Load about page. \"About AppName\""
 msgid "Abou&t %1"
-msgstr ""
+msgstr "O %1"
 
 #: kirigami_ui/MarkersDrawer.qml:109
 msgctxt "Close sidebar listing user defined markers"
 msgid "Close Marker List"
-msgstr ""
+msgstr "Zavřít seznam záložek"
 
 #: kirigami_ui/PrompterPage.qml:68
 msgid "Start prompter"
-msgstr ""
+msgstr "Začít promítání"
 
 #: kirigami_ui/PrompterPage.qml:75
 msgid "Decrease velocity"
-msgstr ""
+msgstr "Snížit rychlost"
 
 #: kirigami_ui/PrompterPage.qml:82
 msgid "Increase velocity"
-msgstr ""
+msgstr "Zvýšit rychlost"
 
 #: kirigami_ui/PrompterPage.qml:104
 msgctxt "Reading region indicates where a talent should be reading from"
 msgid "Reading region"
-msgstr ""
+msgstr "Oblast pro čtení"
 
 #: kirigami_ui/PrompterPage.qml:106
 msgctxt "Reading region indicates where a talent should be reading from"
 msgid "Change reading region placement"
-msgstr ""
+msgstr "Změnit umístění oblasti pro čtení"
 
 #: kirigami_ui/PrompterPage.qml:111
 msgctxt "Align reading region to top of prompter"
 msgid "Top"
-msgstr ""
+msgstr "Nahoře"
 
 #: kirigami_ui/PrompterPage.qml:113
 msgid "Move reading region to the top, convenient for use with webcams"
-msgstr ""
+msgstr "Přesune oblast pro čtení nahoru, vhodné pro použití s webkamerou"
 
 #: kirigami_ui/PrompterPage.qml:122
 msgctxt "Align reading region to vertical center of prompter"
 msgid "Middle"
-msgstr ""
+msgstr "Uprostřed"
 
 #: kirigami_ui/PrompterPage.qml:124
 msgid "Move reading region to the vertical center"
-msgstr ""
+msgstr "Přesune oblast pro čtení do vertikálního středu"
 
 #: kirigami_ui/PrompterPage.qml:133
 msgctxt "Align reading region to bottom of prompter"
 msgid "Bottom"
-msgstr ""
+msgstr "Vespod"
 
 #: kirigami_ui/PrompterPage.qml:135
 msgid "Move reading region to the bottom"
-msgstr ""
+msgstr "Přesune oblast pro čtení dospod"
 
 #: kirigami_ui/PrompterPage.qml:144
 msgctxt ""
 "Refers to free placement. Enables drag and drop positioning of reading "
 "region."
 msgid "Free"
-msgstr ""
+msgstr "Volná"
 
 #: kirigami_ui/PrompterPage.qml:146
 msgid "Move reading region freely by dragging and dropping"
-msgstr ""
+msgstr "Oblast pro čtení lze volně posouvat chycením a táhnutím"
 
 #: kirigami_ui/PrompterPage.qml:155
 msgctxt ""
 "Fix positioning of reading region to what was set in \"Free placement\" mode"
 msgid "Custom"
-msgstr ""
+msgstr "Vlastní"
 
 #: kirigami_ui/PrompterPage.qml:157
 msgid "Fix reading region to the position set using free placement mode"
-msgstr ""
+msgstr "Zafixuje oblast pro čtení v pozici nastavené pomocí volného módu"
 
 #: kirigami_ui/PrompterPage.qml:180
 msgctxt ""
 "Height of reading region relative to single line height. E.g. Height: 2.5"
 msgid "Height: %1"
-msgstr ""
+msgstr "Výška: %1"
 
 #: kirigami_ui/PrompterPage.qml:230
 msgctxt "Indicators highlight reading region"
 msgid "Indicators"
-msgstr ""
+msgstr "Ukazatele"
 
 #: kirigami_ui/PrompterPage.qml:231
 msgctxt "Indicators highlight reading region"
 msgid "Change reading region indicators"
-msgstr ""
+msgstr "Upravit ukazatele oblasti pro čtení"
 
 #: kirigami_ui/PrompterPage.qml:235
 msgctxt "Shows pointer to the left of the reading region"
 msgid "Left pointer"
-msgstr ""
+msgstr "Levý ukazatel"
 
 #: kirigami_ui/PrompterPage.qml:237
 msgid "Left pointer indicates reading region"
-msgstr ""
+msgstr "Levý ukazatal označuje oblast pro čtení"
 
 #: kirigami_ui/PrompterPage.qml:246
 msgctxt "Shows pointer to the right of the reading region"
 msgid "Right pointer"
-msgstr ""
+msgstr "Pravý ukazatel"
 
 #: kirigami_ui/PrompterPage.qml:248
 msgid "Right pointer indicates reading region"
-msgstr ""
+msgstr "Pravý ukazatal označuje oblast pro čtení"
 
 #: kirigami_ui/PrompterPage.qml:257
 msgctxt "Shows pointers to the left and right of the reading region"
 msgid "Both pointers"
-msgstr ""
+msgstr "Oba ukazatelé"
 
 #: kirigami_ui/PrompterPage.qml:259
 msgid "Left and right pointers indicate reading region"
-msgstr ""
+msgstr "Levý a pravý ukazatal označují oblast pro čtení"
 
 #: kirigami_ui/PrompterPage.qml:268
 msgctxt "Translucent bars indicate reading region"
 msgid "Bar"
-msgstr ""
+msgstr "Pruh"
 
 #: kirigami_ui/PrompterPage.qml:270
 msgid "Translucent bars indicate reading region"
-msgstr ""
+msgstr "Průsvitný pruh označující oblast pro čtení"
 
 #: kirigami_ui/PrompterPage.qml:279
 msgctxt "Translucent bars and left pointer indicate reading region"
 msgid "Bar && left"
-msgstr ""
+msgstr "Pruh a levý ukazatel"
 
 #: kirigami_ui/PrompterPage.qml:281
 msgid "Translucent bars and left pointer indicate reading region"
-msgstr ""
+msgstr "Průsvitný pruh a levý ukazatel označují oblast pro čtení"
 
 #: kirigami_ui/PrompterPage.qml:290
 msgctxt "Translucent bars and right pointer indicate reading region"
 msgid "Bar && right"
-msgstr ""
+msgstr "Pruh a pravý ukazatel"
 
 #: kirigami_ui/PrompterPage.qml:292
 msgid "Translucent bars and right pointer indicate reading region"
-msgstr ""
+msgstr "Průsvitný pruh a pravý ukazatel označující oblast pro čtení"
 
 #: kirigami_ui/PrompterPage.qml:301
 msgctxt "Enable all reading region indicators"
 msgid "All"
-msgstr ""
+msgstr "Vše"
 
 #: kirigami_ui/PrompterPage.qml:303
 msgctxt "Enable all reading region indicators"
 msgid "Use all reading region indicators"
-msgstr ""
+msgstr "Použít všechny ukazatele oblasti pro čtení"
 
 #: kirigami_ui/PrompterPage.qml:312
 msgctxt "Disable all reading region indicators"
 msgid "Hidden"
-msgstr ""
+msgstr "Skryté"
 
 #: kirigami_ui/PrompterPage.qml:314
 msgctxt "Disable all reading region indicators"
 msgid "Disable reading region indicators"
-msgstr ""
+msgstr "Vypnout ukazatele oblasti pro čtení"
 
 #: kirigami_ui/PrompterPage.qml:324
 msgid "Timer"
-msgstr ""
+msgstr "Časovač"
 
 #: kirigami_ui/PrompterPage.qml:330
 msgid "Stopwatch"
-msgstr ""
+msgstr "Stopky"
 
 #: kirigami_ui/PrompterPage.qml:341
 msgctxt "Estimated Time of Arrival"
 msgid "ETA"
-msgstr ""
+msgstr "Zbývající čas"
 
 #: kirigami_ui/PrompterPage.qml:349
 msgctxt "Color of timer text"
 msgid "Timer color"
-msgstr ""
+msgstr "Barva časovače"
 
 #: kirigami_ui/PrompterPage.qml:358
 msgctxt "Reset color of timer text back to default"
 msgid "Clear color"
-msgstr ""
+msgstr "Odstranit barvu"
 
 #: kirigami_ui/PrompterPage.qml:369 kirigami_ui/PrompterPage.qml:390
 msgid "Countdown"
-msgstr ""
+msgstr "Odpočet"
 
 #: kirigami_ui/PrompterPage.qml:375
 msgctxt ""
 "Enables automatic alignment of prompter and text with the reading region"
 msgid "Auto frame"
-msgstr ""
+msgstr "Automatické zarámování"
 
 #: kirigami_ui/PrompterPage.qml:405
 msgctxt "Auto start countdown upon prompter getting started"
 msgid "Auto start"
-msgstr ""
+msgstr "Automatické spuštění"
 
 #: kirigami_ui/PrompterPage.qml:407
 msgid "Start countdown automatically"
-msgstr ""
+msgstr "Spustí odpočet automaticky"
 
 #: kirigami_ui/PrompterPage.qml:416
 msgctxt "Configure countdown duration"
 msgid "Set duration"
-msgstr ""
+msgstr "Nastavit délku trvání"
 
 #: kirigami_ui/PrompterPage.qml:432
 msgctxt "Prompter orientation and mirroring"
 msgid "Orientation"
-msgstr ""
+msgstr "Orientace"
 
 #. i18n("H Flip")
 #: kirigami_ui/PrompterPage.qml:448
 msgctxt "Mirrors prompter horizontally"
 msgid "Horizontal mirror"
-msgstr ""
+msgstr "Horizontální převrácení"
 
 #. i18n("V Flip")
 #: kirigami_ui/PrompterPage.qml:463
 msgctxt "Mirrors prompter vertically"
 msgid "Vertical mirror"
-msgstr ""
+msgstr "Vertikální převrácení"
 
 #: kirigami_ui/PrompterPage.qml:488
 msgctxt "Prompter rotation is disabled"
 msgid "Don't rotate"
-msgstr ""
+msgstr "Bez převrácení"
 
 #: kirigami_ui/PrompterPage.qml:498
 msgctxt "Rotate prompter 90 degrees to the right"
 msgid "90° clockwise"
-msgstr ""
+msgstr "90° po směru hodinových ručiček"
 
 #: kirigami_ui/PrompterPage.qml:508
 msgctxt "Rotate prompter 90 degrees to the left"
 msgid "90° counter"
-msgstr ""
+msgstr "90° proti směru hodinových ručiček"
 
 #: kirigami_ui/PrompterPage.qml:530
 msgctxt "Background refers to what appears behind the prompter"
 msgid "Background"
-msgstr ""
+msgstr "Pozadí"
 
 #: kirigami_ui/PrompterPage.qml:533
 msgctxt "Set background image"
 msgid "Set image"
-msgstr ""
+msgstr "Nastavit obrázek"
 
 #: kirigami_ui/PrompterPage.qml:542
 msgctxt "Set background color tint"
 msgid "Set color"
-msgstr ""
+msgstr "Nastavit barvu"
 
 #: kirigami_ui/PrompterPage.qml:551
 msgctxt "Set background settings back to default"
 msgid "Clear"
-msgstr ""
+msgstr "Odstranit"
 
 #: kirigami_ui/PrompterPage.qml:563
 msgctxt "Screens refers to computer displays"
 msgid "Screens"
-msgstr ""
+msgstr "Obrazovky"
 
 #: kirigami_ui/PrompterPage.qml:596
 msgctxt "Screen is disabled"
 msgid "Off"
-msgstr ""
+msgstr "Vypnuto"
 
 #: kirigami_ui/PrompterPage.qml:597
 msgctxt "Screen is enabled but mirroring is disabled"
 msgid "No Mirror"
-msgstr ""
+msgstr "Bez převrácení"
 
 #: kirigami_ui/PrompterPage.qml:598
 msgctxt "Horizontal mirroring"
 msgid "H Mirror"
-msgstr ""
+msgstr "H převrácení"
 
 #: kirigami_ui/PrompterPage.qml:599
 msgctxt "Vertical mirroring"
 msgid "V Mirror"
-msgstr ""
+msgstr "V převrácení"
 
 #: kirigami_ui/PrompterPage.qml:600
 msgctxt "Horizontal and vertical mirroring"
 msgid "HV Mirror"
-msgstr ""
+msgstr "HV převrácení"
 
 #: kirigami_ui/PrompterPage.qml:607
 msgctxt "Enable scaling prompter copies being projected onto displays"
 msgid "Scale projections"
-msgstr ""
+msgstr "Škálovat promítání"
 
 #: kirigami_ui/PrompterPage.qml:616
 msgctxt "Preview projecting prompter copies onto displays"
 msgid "Preview projections"
-msgstr ""
+msgstr "Náhled promítání"
 
 #: kirigami_ui/PrompterPage.qml:617
 msgid "Project prompter copies onto extended displays"
-msgstr ""
+msgstr "Duplikace promítání na externí displeje"
 
 #: kirigami_ui/PrompterPage.qml:637
 msgid "Leave Fullscreen"
-msgstr ""
+msgstr "Ukončit celou obrazovku"
 
 #: kirigami_ui/PrompterPage.qml:637
 msgid "Fullscreen"
-msgstr ""
+msgstr "Celá obrazovka"
 
 #: kirigami_ui/RemotePage.qml:28
 msgid "Remote Control"
-msgstr ""
+msgstr "Dálkové ovládání"
 
 #: kirigami_ui/TelemetryPage.qml:30
 msgid "Telemetry Settings"
-msgstr ""
+msgstr "Nastavení telemetrie"
 
 #: kirigami_ui/TelemetryPage.qml:53
 msgid ""
 "The following page is a placeholder. Telemetry has not yet been implemented."
 msgstr ""
+"Následující stránka je zástupná. Telemetrie ještě nebyla implementována."
 
 #: kirigami_ui/TelemetryPage.qml:64
 msgid ""
@@ -856,173 +859,175 @@ msgstr ""
 
 #: kirigami_ui/TelemetryPage.qml:67
 msgid "Telemetry"
-msgstr ""
+msgstr "Telemetrie"
 
 #: kirigami_ui/TelemetryPage.qml:70
 msgid "Enabled"
-msgstr ""
+msgstr "Povoleno"
 
 #: kirigami_ui/TelemetryPage.qml:70
 msgid "Disabled"
-msgstr ""
+msgstr "Zakázáno"
 
 #: kirigami_ui/TelemetryPage.qml:79 kirigami_ui/TelemetryPage.qml:101
 #: kirigami_ui/TelemetryPage.qml:123 kirigami_ui/TelemetryPage.qml:149
 msgid "On"
-msgstr ""
+msgstr "Zapnuto"
 
 #: kirigami_ui/TelemetryPage.qml:79 kirigami_ui/TelemetryPage.qml:101
 #: kirigami_ui/TelemetryPage.qml:123 kirigami_ui/TelemetryPage.qml:149
 msgid "Off"
-msgstr ""
+msgstr "Vypnuto"
 
 #: kirigami_ui/TelemetryPage.qml:93
 msgid "Basic program and system information"
-msgstr ""
+msgstr "Základní informace o programu a systému"
 
 #: kirigami_ui/TelemetryPage.qml:94
 msgid "Application version"
-msgstr ""
+msgstr "Verze aplikace"
 
 #: kirigami_ui/TelemetryPage.qml:95
 msgid "Platform information"
-msgstr ""
+msgstr "Informace o platformě"
 
 #: kirigami_ui/TelemetryPage.qml:96
 msgid "Qt version information"
-msgstr ""
+msgstr "Informace o verzi Qt"
 
 #: kirigami_ui/TelemetryPage.qml:97 kirigami_ui/TelemetryPage.qml:118
 msgid "Locale information (timezone and keyboard layout)"
-msgstr ""
+msgstr "Informace o národním prostředí (časové pásmo a rozložení klávesnice)"
 
 #: kirigami_ui/TelemetryPage.qml:114
 msgid "Program run statistics: Help us study user retention"
-msgstr ""
+msgstr "Statistika běhu programu: Pomozte nám zkoumat udržení uživatele"
 
 #: kirigami_ui/TelemetryPage.qml:115
 msgid "Randomly generated install ID"
-msgstr ""
+msgstr "Náhodně generované instalační ID"
 
 #: kirigami_ui/TelemetryPage.qml:116
 msgid "Launch times"
-msgstr ""
+msgstr "Časy spuštění"
 
 #: kirigami_ui/TelemetryPage.qml:117
 msgid "Usage time"
-msgstr ""
+msgstr "Doba používání"
 
 #: kirigami_ui/TelemetryPage.qml:136
 msgid "Feature use frequency: Help us know what features are most important"
 msgstr ""
+"Četnost používání funkcí: Pomozte nám zjistit, které funkce jsou "
+"nejdůležitější"
 
 #: kirigami_ui/TelemetryPage.qml:137
 msgid "Flip settings"
-msgstr ""
+msgstr "Nastavení převrácení"
 
 #: kirigami_ui/TelemetryPage.qml:138
 msgid "Reading region settings"
-msgstr ""
+msgstr "Nastavení oblasti pro čtení"
 
 #: kirigami_ui/TelemetryPage.qml:139
 msgid "Pointer settings"
-msgstr ""
+msgstr "Nastavení ukazatele"
 
 #: kirigami_ui/TelemetryPage.qml:140
 msgid "Countdown settings"
-msgstr ""
+msgstr "Nastavení odpočtu"
 
 #: kirigami_ui/TelemetryPage.qml:141
 msgid "Keyboard shortcut settings"
-msgstr ""
+msgstr "Nastavení klávesových zkratek"
 
 #: kirigami_ui/TelemetryPage.qml:142
 msgid "Input control settings"
-msgstr ""
+msgstr "Nastavení ovládání vstupu"
 
 #: kirigami_ui/TelemetryPage.qml:143
 msgid "Base speed and acceleration curvature settings"
-msgstr ""
+msgstr "Nastavení základní rychlosti a křivky zrychlení"
 
 #: kirigami_ui/TelemetryPage.qml:144
 msgid "Background color and opacity settings"
-msgstr ""
+msgstr "Nastavení barvy a průhlednosti pozadí"
 
 #: kirigami_ui/TelemetryPage.qml:145
 msgid "Presence of a background image"
-msgstr ""
+msgstr "Přítomnost obrázku na pozadí"
 
 #: kirigami_ui/TelemetryPage.qml:162
 msgid "Help us understand how users operate QPrompt"
-msgstr ""
+msgstr "Pomozte nám pochopit, jak uživatelé obsluhují QPrompt"
 
 #: kirigami_ui/TelemetryPage.qml:163
 msgid "Random session ID"
-msgstr ""
+msgstr "Náhodné ID sezení"
 
 #: kirigami_ui/TelemetryPage.qml:164
 msgid "Session number"
-msgstr ""
+msgstr "Číslo sezení"
 
 #: kirigami_ui/TelemetryPage.qml:165
 msgid "Session prompt number"
-msgstr ""
+msgstr "Číslo sezení promítání"
 
 #: kirigami_ui/TelemetryPage.qml:166
 msgid "Window dimensions"
-msgstr ""
+msgstr "Rozměry okna"
 
 #: kirigami_ui/TelemetryPage.qml:167
 msgid "Prompt area dimensions"
-msgstr ""
+msgstr "Rozměry oblasti promítání"
 
 #: kirigami_ui/TelemetryPage.qml:168
 msgid "Dimensions of lines of text being prompted"
-msgstr ""
+msgstr "Rozměry promítaných řádků s textem"
 
 #: kirigami_ui/TelemetryPage.qml:169
 msgid "Font settings per block of lines of text being prompted"
-msgstr ""
+msgstr "Nastavení písma pro promítaný blok řádků s textem"
 
 #: kirigami_ui/TelemetryPage.qml:170
 msgid "Languages likely present in the text being prompted"
-msgstr ""
+msgstr "Pravděpodobné jazyky použité v promítaném textu"
 
 #: kirigami_ui/TelemetryPage.qml:171
 msgid "Prompt starting line number and position"
-msgstr ""
+msgstr "Číslo počátečního řádku a pozice při promítání"
 
 #: kirigami_ui/TelemetryPage.qml:172
 msgid "Manual scroll start and end timestamps"
-msgstr ""
+msgstr "Počáteční a konečná časová značka ručního posuvu"
 
 #: kirigami_ui/TelemetryPage.qml:173
 msgid "Scroll starting line number and position"
-msgstr ""
+msgstr "Číslo počátečního řádku a pozice při posuvu"
 
 #: kirigami_ui/TelemetryPage.qml:174
 msgid "Scroll end line number and position"
-msgstr ""
+msgstr "Číslo konečného řádku a pozice posuvu"
 
 #: kirigami_ui/TelemetryPage.qml:175
 msgid "Scroll duration"
-msgstr ""
+msgstr "Doba trvání posuvu"
 
 #: kirigami_ui/TelemetryPage.qml:176
 msgid "Prompt duration"
-msgstr ""
+msgstr "Doba trvání promítání"
 
 #: kirigami_ui/TelemetryPage.qml:177
 msgid "Velocity changes with timestamp"
-msgstr ""
+msgstr "Změny rychlosti s časovými značkami"
 
 #: kirigami_ui/TelemetryPage.qml:178
 msgid "Source of changes to velocity"
-msgstr ""
+msgstr "Zdroj změn rychlosti"
 
 #: kirigami_ui/TelemetryPage.qml:179
 msgid "Source of manual changes to scroll position"
-msgstr ""
+msgstr "Zdroj ručních změn pozice posuvu"
 
 #: kirigami_ui/TelemetryPage.qml:188
 msgid ""
@@ -1034,19 +1039,19 @@ msgstr ""
 
 #: main.cpp:67
 msgid "© 2021 Javier O. Cordero Pérez"
-msgstr ""
+msgstr "© 2021 Javier O. Cordero Pérez"
 
 #: main.cpp:68
 msgid "© 2021-%1 Javier O. Cordero Pérez"
-msgstr ""
+msgstr "© 2021-%1 Javier O. Cordero Pérez"
 
 #: main.cpp:71
 msgid "Personal teleprompter software for all video makers."
-msgstr ""
+msgstr "Software pro vlastní čtecí zařízení pro všechny video tvůrce."
 
 #: main.cpp:83
 msgid "Author"
-msgstr ""
+msgstr "Autor"
 
 #: main.cpp:90
 msgid "Wrote keycode to string QML abstraction"
@@ -1055,24 +1060,24 @@ msgstr ""
 #: main.cpp:94 rc.cpp:1
 msgctxt "NAME OF TRANSLATORS"
 msgid "Your names"
-msgstr ""
+msgstr "Jaroslav Svoboda"
 
 #: main.cpp:94 rc.cpp:2
 msgctxt "EMAIL OF TRANSLATORS"
 msgid "Your emails"
-msgstr ""
+msgstr "multi.flexi@seznam.cz"
 
 #: main.cpp:103
 msgid "Failed to load icons from fontello.ttf"
-msgstr ""
+msgstr "Načtení ikon z fontello.ttf se nezdařilo"
 
 #: prompter/Countdown.qml:243
 msgid "Countdown Setup"
-msgstr ""
+msgstr "Nastavení odpočtu"
 
 #: prompter/Countdown.qml:252
 msgid "Countdown iterations"
-msgstr ""
+msgstr "Opakování odpočtu"
 
 #: prompter/Countdown.qml:271
 msgid "Disappear within 1 second to go"
@@ -1096,23 +1101,23 @@ msgstr ""
 
 #: prompter/PrompterBackground.qml:121
 msgid "JPEG image"
-msgstr ""
+msgstr "JPEG obrázek"
 
 #: prompter/PrompterBackground.qml:122
 msgid "PNG image"
-msgstr ""
+msgstr "PNG obrázek"
 
 #: prompter/PrompterBackground.qml:123
 msgid "GIF animation"
-msgstr ""
+msgstr "GIF animace"
 
 #: prompter/Prompter.qml:417
 msgid "Animation Completed"
-msgstr ""
+msgstr "Animace dokončena"
 
 #: prompter/Prompter.qml:537
 msgid "Error loading file…"
-msgstr ""
+msgstr "Chyba při nahrávání souboru…"
 
 #: prompter/Prompter.qml:592
 msgid "Double tap to go back to the start"
@@ -1120,35 +1125,35 @@ msgstr ""
 
 #: prompter/Prompter.qml:818
 msgid "New document"
-msgstr ""
+msgstr "Nový dokument"
 
 #: prompter/Prompter.qml:827
 msgid "welcome_en.html"
-msgstr ""
+msgstr "welcome_cs.html"
 
 #: prompter/Prompter.qml:832
 msgid "User welcome loaded"
-msgstr ""
+msgstr "Uvítání uživatele načteno"
 
 #: prompter/Prompter.qml:852 prompter/Prompter.qml:948
 msgctxt "Saved FILE_NAME"
 msgid "Saved %1"
-msgstr ""
+msgstr "Uloženo %1"
 
 #: prompter/Prompter.qml:905 prompter/Prompter.qml:935
 msgctxt "Format name (FORMAT_EXTENSION)"
 msgid "Hypertext Markup Language (%1)"
-msgstr ""
+msgstr "Hypertext Markup Language (%1)"
 
 #: prompter/Prompter.qml:906
 msgctxt "Format name (FORMAT_EXTENSION)"
 msgid "Markdown (%1)"
-msgstr ""
+msgstr "Markdown (%1)"
 
 #: prompter/Prompter.qml:907 prompter/Prompter.qml:936
 msgctxt "Format name (FORMAT_EXTENSION)"
 msgid "Plain Text (%1)"
-msgstr ""
+msgstr "Prostý text (%1)"
 
 #. i18nc("Format name (FORMAT_EXTENSION)", "OpenDocument Format Text Document (%1)", "ODT") + "(*.odt *.ODT)",
 #. i18nc("Format name (FORMAT_EXTENSION)", "AbiWord Document (%1)", "ABW") + "(*.abw *.ABW *.zabw *.ZABW)",
@@ -1159,45 +1164,45 @@ msgstr ""
 #: prompter/Prompter.qml:914
 msgctxt "All file formats"
 msgid "All Formats"
-msgstr ""
+msgstr "Všechny formáty"
 
 #: prompter/Prompter.qml:987 prompter/Prompter.qml:1034
 msgctxt "Editor context menu actions"
 msgid "Fo&nt…"
-msgstr ""
+msgstr "Písmo…"
 
 #: prompter/Prompter.qml:991 prompter/Prompter.qml:1038
 msgctxt "Editor context menu actions"
 msgid "Co&lor…"
-msgstr ""
+msgstr "Barva…"
 
 #: prompter/Prompter.qml:995 prompter/Prompter.qml:1042
 msgctxt "Editor context menu actions"
 msgid "Hi&ghlight…"
-msgstr ""
+msgstr "Zvýraznění…"
 
 #: prompter/Prompter.qml:1007
 msgctxt "Editor context menu actions"
 msgid "&Undo"
-msgstr ""
+msgstr "Zpět"
 
 #: prompter/Prompter.qml:1012
 msgctxt "Editor context menu actions"
 msgid "Redo"
-msgstr ""
+msgstr "Znovu"
 
 #: prompter/Prompter.qml:1276
 msgid "Begin countdown"
-msgstr ""
+msgstr "Začít odpočet"
 
 #: prompter/Prompter.qml:1276
 msgid "Start prompting"
-msgstr ""
+msgstr "Promítat"
 
 #: prompter/Prompter.qml:1323
 msgid "Skip countdown"
-msgstr ""
+msgstr "Přeskočit odpočet"
 
 #: prompter/Prompter.qml:1366
 msgid "Return to edit mode"
-msgstr ""
+msgstr "Návrat do módu úprav"
