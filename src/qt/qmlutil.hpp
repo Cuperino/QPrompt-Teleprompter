@@ -35,7 +35,7 @@ public:
             QString modifierOnlyString = QKeySequence(Qt::Key_Underscore | modifiers).toString();
 
             // Change "Ctrl+_" to "Ctrl+..."
-            modifierOnlyString.replace("_", "...");
+            modifierOnlyString.replace(QString::fromStdString("_"), QString::fromStdString("..."));
             return modifierOnlyString;
         }
     }

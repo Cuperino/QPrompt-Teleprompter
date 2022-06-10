@@ -71,7 +71,7 @@ if (NOT APPLE AND NOT ANDROID)
 endif()
 
 # Qt5QuickCompiler is an optional dependency. Script must check that it is present before attempting to use
-if (Qt5QuickCompiler_FOUND)
+if (Qt${QT_VERSION_MAJOR}QuickCompiler_FOUND)
     qtquick_compiler_add_resources(qprompt_QML_SRCS qml.qrc)
 else ()
     set(qprompt_QML_SRCS qml.qrc)
@@ -142,46 +142,46 @@ endif()
 # Libraries
 if (ANDROID)
     target_link_libraries(${PROJECT_NAME}
-        Qt5::Core
-        Qt5::Quick
-        Qt5::Svg
-        Qt5::Gui
-        Qt5::Qml
-        Qt5::QuickControls2
-        Qt5::Network
-        Qt5::AndroidExtras
-        Qt5::VirtualKeyboard
+        Qt${QT_VERSION_MAJOR}::Core
+        Qt${QT_VERSION_MAJOR}::Quick
+        Qt${QT_VERSION_MAJOR}::Svg
+        Qt${QT_VERSION_MAJOR}::Gui
+        Qt${QT_VERSION_MAJOR}::Qml
+        Qt${QT_VERSION_MAJOR}::QuickControls2
+        Qt${QT_VERSION_MAJOR}::Network
+        Qt${QT_VERSION_MAJOR}::AndroidExtras
+        Qt${QT_VERSION_MAJOR}::VirtualKeyboard
         KF5::I18n
         KF5::Kirigami2
         KF5::CoreAddons
     )
 elseif (WASM OR IOS)
     target_link_libraries(${PROJECT_NAME}
-        Qt5::Core
-        Qt5::Quick
-        Qt5::Svg
-        Qt5::Gui
-        Qt5::Qml
-        Qt5::QuickControls2
-        Qt5::Network
+        Qt${QT_VERSION_MAJOR}::Core
+        Qt${QT_VERSION_MAJOR}::Quick
+        Qt${QT_VERSION_MAJOR}::Svg
+        Qt${QT_VERSION_MAJOR}::Gui
+        Qt${QT_VERSION_MAJOR}::Qml
+        Qt${QT_VERSION_MAJOR}::QuickControls2
+        Qt${QT_VERSION_MAJOR}::Network
         KF5::I18n
         KF5::Kirigami2
         KF5::CoreAddons
     )
 else()
     target_link_libraries(${PROJECT_NAME} PUBLIC
-        Qt5::Core
-        Qt5::Quick
-        Qt5::Gui
-        Qt5::Svg
-        Qt5::Qml
-        Qt5::QuickControls2
-        Qt5::Network
-        Qt5::Widgets
+        Qt${QT_VERSION_MAJOR}::Core
+        Qt${QT_VERSION_MAJOR}::Quick
+        Qt${QT_VERSION_MAJOR}::Gui
+        Qt${QT_VERSION_MAJOR}::Svg
+        Qt${QT_VERSION_MAJOR}::Qml
+        Qt${QT_VERSION_MAJOR}::QuickControls2
+        Qt${QT_VERSION_MAJOR}::Network
+        Qt${QT_VERSION_MAJOR}::Widgets
         KF5::I18n
         KF5::Kirigami2
         KF5::CoreAddons
-        KF5::IconThemes
+        #KF5::IconThemes
     )
 endif()
 
@@ -248,8 +248,8 @@ endif()
 
 
 # Get static QML. Gets ignored if not a static build
-if (Qt5QmlImportScanner_FOUND)
-    qt5_import_qml_plugins(${PROJECT_NAME})
+if (QtQmlImportScanner_FOUND)
+    qt_import_qml_plugins(${PROJECT_NAME})
 endif()
 
 
@@ -295,5 +295,9 @@ if (WIN32 OR UNIX) # AND NOT ANDROID)
     # install(FILES images/qprompt.png DESTINATION ${KDE_INSTALL_FULL_ICONDIR}/hicolor/1024x1024/apps)
     install(FILES com.cuperino.qprompt.appdata.xml DESTINATION ${KDE_INSTALL_METAINFODIR})
     install(PROGRAMS com.cuperino.qprompt.desktop DESTINATION ${KDE_INSTALL_APPDIR})
-    install(TARGETS ${PROJECT_NAME} ${KDE_INSTALL_TARGETS_DEFAULT_ARGS})
+    if (APPLE)
+        install(TARGETS ${PROJECT_NAME} ${KDE_INSTALL_TARGETS_DEFAULT_ARGS} BUNDLE DESTINATION .)
+    else()
+        install(TARGETS ${PROJECT_NAME} ${KDE_INSTALL_TARGETS_DEFAULT_ARGS})
+    endif()
 endif()

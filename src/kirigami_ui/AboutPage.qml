@@ -23,7 +23,7 @@ import org.kde.kirigami 2.9 as Kirigami
 
 Kirigami.AboutPage {
     globalToolBarStyle: Kirigami.ApplicationHeaderStyle.Titles
-    getInvolvedUrl: "https://l10n.qprompt.app/"
+//    getInvolvedUrl: "https://l10n.qprompt.app/"
 
     mainAction: Kirigami.Action {
         icon.name: !Kirigami.Settings.isMobile && pageStack.globalToolBar.actualStyle === Kirigami.ApplicationHeaderStyle.None ? 'go-previous' : (['android', 'ios', 'tvos'].indexOf(Qt.platform.os)===-1 ? "mail-mark-unread" : "draw-star")
