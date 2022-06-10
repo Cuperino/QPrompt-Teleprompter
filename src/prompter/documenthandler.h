@@ -72,18 +72,17 @@
 #ifndef DOCUMENTHANDLER_H
 #define DOCUMENTHANDLER_H
 
-#include <QFont>
 #include <QObject>
+#include <QFont>
 #include <QTextCursor>
 #include <QUrl>
 #include <QFileSystemWatcher>
+#include <QQuickTextDocument>
+#include <QTextDocument>
 
 #include "prompter/markersmodel.h"
 
 QT_BEGIN_NAMESPACE
-class QTextDocument;
-class QQuickTextDocument;
-QT_END_NAMESPACE
 
 class DocumentHandler : public QObject
 {
@@ -252,5 +251,6 @@ private:
     QString pdf_importer;
     QString office_importer;
 };
+QT_END_NAMESPACE
 
 #endif // DOCUMENTHANDLER_H

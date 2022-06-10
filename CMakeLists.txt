@@ -33,17 +33,16 @@ set(CMAKE_INCLUDE_CURRENT_DIR ON)
 # Instruct CMake to create code from Qt designer ui files
 set(CMAKE_AUTOUIC ON)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
+# Leave C++ standard at version 17 to build Ubuntu 18.04 compatible AppImage
 set(CMAKE_CXX_STANDARD 17)
 #set(CMAKE_CXX_STANDARD 20)
-# Instruct CMake to run moc automatically when needed.
+# Instruct CMake to run moc automatically when needed
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
 
-# QT 5.12 for Ubuntu 20.04
-#set(QT_MIN_VERSION 5.12.0)
+set(QT_DEFAULT_MAJOR_VERSION 6)
 set(QT_MIN_VERSION 5.15.2)
-#set(QT_DISABLE_DEPRECATED_BEFORE 5.15.2)
-# KF5 5.68 for Ubuntu 20.04
+# KF5 5.68 for native Ubuntu 20.04
 # Use 5.83 to have current ecm_add_app_icon syntax
 if (WIN32)
     set(ECM_MIN_VERSION 5.83.0)
@@ -51,7 +50,9 @@ else()
     set(ECM_MIN_VERSION 5.68.0)
 endif()
 set(KF_MIN_VERSION 5.68.0)
-
+if (APPLE)
+    set(APPLE_SUPPRESS_X11_WARNING ON)
+endif()
 # ------------------------- BEGIN: lists to maintain manually -------------------------
 
 # Directories where Qt Creator can find QML files of Kirigami etc. on your system.
@@ -60,6 +61,11 @@ set(KF_MIN_VERSION 5.68.0)
 if (UNIX AND NOT APPLE AND NOT ANDROID)
     list(APPEND QML_DIRS "/usr/lib/x86_64-linux-gnu/qt5/qml")
     list(APPEND KIRIGAMI_DIRS "/usr/lib/x86_64-linux-gnu/qt5/qml/org/kde/kirigami.2")
+elseif (UNIX AND APPLE)
+    list(APPEND QML_DIRS "/usr/local/lib/qml")
+    list(APPEND KIRIGAMI_DIRS "/usr/local/lib/qml/org/kde/kirigami.2")
+#    list(APPEND QML_DIRS "/opt/homebrew/lib/qml/org/kde/kirigami.2")
+#    list(APPEND KIRIGAMI_DIRS "/opt/homebrew/lib/qml/org/kde/kirigami.2")
 elseif (WIN32)
     list(APPEND QML_DIRS "C:/CraftRoot/qml")
     list(APPEND KIRIGAMI_DIRS "C:/CraftRoot/qml/org/kde/kirigami.2")
@@ -97,8 +103,9 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 
 find_package(ECM ${ECM_MIN_VERSION} REQUIRED NO_MODULE)
 set(CMAKE_MODULE_PATH ${ECM_MODULE_PATH})
+find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Core)
 if(ANDROID)
-    find_package(Qt5 ${QT5_MIN_VERSION} REQUIRED NO_MODULE COMPONENTS
+    find_package(Qt${QT_VERSION_MAJOR} ${QT5_MIN_VERSION} REQUIRED NO_MODULE COMPONENTS
         Core
         Quick
         Svg
@@ -110,13 +117,8 @@ if(ANDROID)
         QmlImportScanner  # Used to get static QML. Gets ignored if not a static build
         QuickCompiler
     )
-    find_package(KF5 ${KF_MIN_VERSION} REQUIRED COMPONENTS
-        Kirigami2
-        I18n
-        CoreAddons
-    )
 elseif(WASM OR IOS)
-    find_package(Qt5 ${QT5_MIN_VERSION} REQUIRED NO_MODULE COMPONENTS
+    find_package(Qt${QT_VERSION_MAJOR} ${QT5_MIN_VERSION} REQUIRED NO_MODULE COMPONENTS
         Core
         Quick
         Svg
@@ -125,13 +127,8 @@ elseif(WASM OR IOS)
         #QmlImportScanner  # Used to get static QML. Gets ignored if not a static build
         #QuickCompiler
     )
-    find_package(KF5 ${KF_MIN_VERSION} REQUIRED COMPONENTS
-        Kirigami2
-        I18n
-        CoreAddons
-    )
 else()
-    find_package(Qt5 ${QT5_MIN_VERSION} REQUIRED NO_MODULE COMPONENTS
+    find_package(Qt${QT_VERSION_MAJOR} ${QT5_MIN_VERSION} REQUIRED NO_MODULE COMPONENTS
         Core
         Quick
         Svg
@@ -140,18 +137,17 @@ else()
         Network
         Widgets
     )
-    find_package(Qt5 ${QT5_MIN_VERSION} NO_MODULE COMPONENTS
+    find_package(Qt${QT_VERSION_MAJOR} ${QT5_MIN_VERSION} NO_MODULE COMPONENTS
         QmlImportScanner  # Used to get static QML. Gets ignored if not a static build
-        QuickCompiler
-    )
-    find_package(KF5 ${KF_MIN_VERSION} REQUIRED COMPONENTS
-        Kirigami2
-        I18n
-        CoreAddons
-        IconThemes
+#        QuickCompiler
     )
 endif()
-
+find_package(KF5 ${KF_MIN_VERSION} REQUIRED COMPONENTS
+#find_package(KF${QT_VERSION_MAJOR} ${KF_MIN_VERSION} REQUIRED COMPONENTS
+    Kirigami2
+    I18n
+    CoreAddons
+)
 
 if (WIN32 OR UNIX) # AND NOT ANDROID
     include(KDEInstallDirs)

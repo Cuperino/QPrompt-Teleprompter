@@ -51,23 +51,28 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
 {
 
 #if defined(Q_OS_ANDROID) || defined(Q_OS_IOS) || defined(Q_OS_WASM) || defined(Q_OS_WATCHOS) || defined(Q_OS_QNX)
+#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
     QGuiApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
+#endif
     QGuiApplication app(argc, argv);
 #else
-    QApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
+
+#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
+    QGuiApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
+#endif
     QApplication app(argc, argv);
 #endif
-    KLocalizedString::setApplicationDomain("qprompt");
-    QCoreApplication::setOrganizationName("Cuperino");
-    QCoreApplication::setOrganizationDomain(QPROMPT_URI);
-    QCoreApplication::setApplicationName("QPrompt");
+    KLocalizedString::setApplicationDomain(QString::fromStdString("qprompt"));
+    QCoreApplication::setOrganizationName(QString::fromStdString("Cuperino"));
+    QCoreApplication::setOrganizationDomain(QString::fromStdString(QPROMPT_URI));
+    QCoreApplication::setApplicationName(QString::fromStdString("QPrompt"));
 
     const int currentYear = QDate::currentDate().year();
     QString copyrightYear = QString::number(currentYear);
     QString copyrightStatement1 = i18n("© 2021 Javier O. Cordero Pérez");
     QString copyrightStatement2 = i18n("© 2021-%1 Javier O. Cordero Pérez", copyrightYear);
     KAboutData aboutData("qprompt", "QPrompt",
-                         QPROMPT_VERSION_STRING " (" + QString(GIT_BRANCH) + "/" + QString(GIT_COMMIT_HASH) + ")",
+                         QPROMPT_VERSION_STRING " (" + QString::fromStdString(GIT_BRANCH) + "/" + QString::fromStdString(GIT_COMMIT_HASH) + ")",
                          i18n("Personal teleprompter software for all video makers."),
                          KAboutLicense::GPL_V3,
                          // ki18ncp("© 2021-currentYear Author", "© 2021 Javier O. Cordero Pérez", "© 2021-<numid>%1</numid> Javier O. Cordero Pérez").subs(currentYear).toString());
@@ -79,17 +84,17 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
     aboutData.setOrganizationDomain(QPROMPT_URI);
     aboutData.setDesktopFileName(QPROMPT_URI);
     aboutData.addAuthor (
-        QString("Javier O. Cordero Pérez"),
+        QString::fromStdString("Javier O. Cordero Pérez"),
         i18n("Author"),
-        QString("javiercorderoperez@gmail.com"),
-        QString("https://javiercordero.info"),
-        QString("cuperino")
+        QString::fromStdString("javiercorderoperez@gmail.com"),
+        QString::fromStdString("https://javiercordero.info"),
+        QString::fromStdString("cuperino")
     );
     aboutData.addCredit (
-        QString("Mark"),
+        QString::fromStdString("Mark"),
         i18n("Wrote keycode to string QML abstraction"),
-        QString(""),
-        QString("https://stackoverflow.com/a/64862996/3833454")
+        QString::fromStdString(""),
+        QString::fromStdString("https://stackoverflow.com/a/64862996/3833454")
     );
     aboutData.setTranslator(i18nc("NAME OF TRANSLATORS", "Your names"), i18nc("EMAIL OF TRANSLATORS", "Your emails"));
     //aboutData.addLicense(
@@ -98,8 +103,7 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
     // Set the application metadata
     KAboutData::setApplicationData(aboutData);
 
-    QFontDatabase fontDatabase;
-    if (fontDatabase.addApplicationFont(":/fonts/fontello.ttf") == -1)
+    if (QFontDatabase::addApplicationFont(QString::fromStdString(":/fonts/fontello.ttf")) == -1)
         qWarning() << i18n("Failed to load icons from fontello.ttf");
 
     //qmlRegisterType<PrompterTimer>(QPROMPT_URI + ".promptertimer", 1, 0, "PrompterTimer");
@@ -118,12 +122,14 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
 #if defined(Q_OS_ANDROID) || defined(Q_OS_IOS) || defined(Q_OS_QNX)
     app.setWindowIcon(QIcon(":/images/qprompt-logo-wireframe.png"));
 #else
-    app.setWindowIcon(QIcon(":/images/qprompt.png"));
+    app.setWindowIcon(QIcon(QString::fromStdString(":/images/qprompt.png")));
 #endif
     engine.rootContext()->setContextObject(new KLocalizedContext(&engine));
     engine.rootContext()->setContextProperty(QStringLiteral("aboutData"), QVariant::fromValue(KAboutData::applicationData()));
 
-//    engine.addImportPath(QStringLiteral("../3rdparty/kirigami/"));
+    //engine.addImportPath(QStringLiteral("../3rdparty/kirigami/"));
+    engine.addImportPath(QStringLiteral("/usr/local/lib/qml"));
+    //engine.addImportPath("/opt/local/lib/qml/org/kde/kirigami.2");
     engine.load(QUrl(QStringLiteral("qrc:///main.qml")));
 
     if (engine.rootObjects().isEmpty()) {

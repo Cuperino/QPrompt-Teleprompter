@@ -80,7 +80,7 @@ public:
 
     bool dirty;
 
-public slots:
+Q_SIGNALS:
 //     void insertRow(int row, const QModelIndex &parent);
     void clearMarkers();
     void appendMarker(Marker &marker);
@@ -92,12 +92,12 @@ public slots:
 //     void updateMarker(int row);
 
 
-private slots:
-    void resetInternalData();
-    Marker binarySearch(int lo, int hi, int x, bool reverse);
-
 private:
     QList <Marker> m_data;
+
+private Q_SLOTS:
+    void resetInternalData() override;
+    Marker binarySearch(int lo, int hi, int x, bool reverse);
 };
 
 #endif // MarkerSMODEL_H
