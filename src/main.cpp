@@ -62,7 +62,7 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
 #endif
     QApplication app(argc, argv);
 #endif
-    KLocalizedString::setApplicationDomain(QString::fromStdString("qprompt"));
+    KLocalizedString::setApplicationDomain("qprompt");
     QCoreApplication::setOrganizationName(QString::fromStdString("Cuperino"));
     QCoreApplication::setOrganizationDomain(QString::fromStdString(QPROMPT_URI));
     QCoreApplication::setApplicationName(QString::fromStdString("QPrompt"));
@@ -128,7 +128,8 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
     engine.rootContext()->setContextProperty(QStringLiteral("aboutData"), QVariant::fromValue(KAboutData::applicationData()));
 
     //engine.addImportPath(QStringLiteral("../3rdparty/kirigami/"));
-    engine.addImportPath(QStringLiteral("/usr/local/lib/qml"));
+    //engine.addImportPath(QStringLiteral("/usr/local/lib/qml"));
+    engine.addImportPath(QStringLiteral("/opt/homebrew/lib/qml"));
     //engine.addImportPath("/opt/local/lib/qml/org/kde/kirigami.2");
     engine.load(QUrl(QStringLiteral("qrc:///main.qml")));
 

@@ -1188,9 +1188,9 @@ Flickable {
         // Go to next marker
         else if (event.key===keys.nextMarker && event.modifiers===keys.nextMarkerModifiers)
             prompter.goToNextMarker();
-        else if (event.key===Qt.Key_F && ['osx', 'ios'].indexOf(Qt.platform.os)===-1 ? event.modifiers & Qt.ControlModifier : event.modifiers & Qt.MetaModifier)
+        else if (event.key===Qt.Key_F && (['osx', 'ios'].indexOf(Qt.platform.os)===-1 ? event.modifiers & Qt.ControlModifier : event.modifiers & Qt.MetaModifier))
             find.open();
-        else if (event.key===Qt.Key_V && ['osx', 'ios'].indexOf(Qt.platform.os)===-1 ? event.modifiers & Qt.ControlModifier : event.modifiers & Qt.MetaModifier) {
+        else if (event.key===Qt.Key_V && (['osx', 'ios'].indexOf(Qt.platform.os)===-1 ? event.modifiers & Qt.ControlModifier : event.modifiers & Qt.MetaModifier)) {
             event.accepted = true
             if (event.modifiers & Qt.ShiftModifier)
                 document.paste(true);
