@@ -80,7 +80,7 @@ public:
 
     bool dirty;
 
-Q_SIGNALS:
+//Q_SIGNALS:
 //     void insertRow(int row, const QModelIndex &parent);
     void clearMarkers();
     void appendMarker(Marker &marker);
@@ -96,7 +96,11 @@ private:
     QList <Marker> m_data;
 
 private Q_SLOTS:
+#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
     void resetInternalData() override;
+#else
+    void resetInternalData();
+#endif
     Marker binarySearch(int lo, int hi, int x, bool reverse);
 };
 

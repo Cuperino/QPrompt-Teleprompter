@@ -62,10 +62,10 @@ if (UNIX AND NOT APPLE AND NOT ANDROID)
     list(APPEND QML_DIRS "/usr/lib/x86_64-linux-gnu/qt5/qml")
     list(APPEND KIRIGAMI_DIRS "/usr/lib/x86_64-linux-gnu/qt5/qml/org/kde/kirigami.2")
 elseif (UNIX AND APPLE)
-    list(APPEND QML_DIRS "/usr/local/lib/qml")
-    list(APPEND KIRIGAMI_DIRS "/usr/local/lib/qml/org/kde/kirigami.2")
-#    list(APPEND QML_DIRS "/opt/homebrew/lib/qml/org/kde/kirigami.2")
-#    list(APPEND KIRIGAMI_DIRS "/opt/homebrew/lib/qml/org/kde/kirigami.2")
+#    list(APPEND QML_DIRS "/usr/local/lib/qml")
+#    list(APPEND KIRIGAMI_DIRS "/usr/local/lib/qml/org/kde/kirigami.2")
+    list(APPEND QML_DIRS "/opt/homebrew/lib/qml")
+    list(APPEND KIRIGAMI_DIRS "/opt/homebrew/lib/qml/org/kde/kirigami.2")
 elseif (WIN32)
     list(APPEND QML_DIRS "C:/CraftRoot/qml")
     list(APPEND KIRIGAMI_DIRS "C:/CraftRoot/qml/org/kde/kirigami.2")
@@ -124,8 +124,8 @@ elseif(WASM OR IOS)
         Svg
         Gui
         QuickControls2
-        #QmlImportScanner  # Used to get static QML. Gets ignored if not a static build
-        #QuickCompiler
+        QmlImportScanner  # Used to get static QML. Gets ignored if not a static build
+        QuickCompiler
     )
 else()
     find_package(Qt${QT_VERSION_MAJOR} ${QT5_MIN_VERSION} REQUIRED NO_MODULE COMPONENTS
@@ -139,7 +139,7 @@ else()
     )
     find_package(Qt${QT_VERSION_MAJOR} ${QT5_MIN_VERSION} NO_MODULE COMPONENTS
         QmlImportScanner  # Used to get static QML. Gets ignored if not a static build
-#        QuickCompiler
+        QuickCompiler
     )
 endif()
 find_package(KF5 ${KF_MIN_VERSION} REQUIRED COMPONENTS
@@ -147,6 +147,7 @@ find_package(KF5 ${KF_MIN_VERSION} REQUIRED COMPONENTS
     Kirigami2
     I18n
     CoreAddons
+#    IconThemes
 )
 
 if (WIN32 OR UNIX) # AND NOT ANDROID

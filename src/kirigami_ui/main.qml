@@ -26,7 +26,7 @@ import QtQuick.Window 2.12
 import QtQuick.Layouts 1.12
 import QtQuick.Controls.Material 2.12
 import Qt.labs.platform 1.1 as Labs
-import QtQuick.Dialogs 1.3
+//import QtQuick.Dialogs 1.3
 import Qt.labs.settings 1.0
 
 import com.cuperino.qprompt.document 1.0
@@ -781,13 +781,15 @@ Kirigami.ApplicationWindow {
     }
 
     // Dialogues
-    MessageDialog {
+    Labs.MessageDialog {
         id : closeDialog
         title: i18nc("Title for save before closing dialog", "Save Document")
         text: i18n("Save changes to document before closing?")
-        icon: StandardIcon.Question
-        standardButtons: StandardButton.Save | StandardButton.Discard | StandardButton.Cancel
-        onDiscard: {
+        //icon: StandardIcon.Question
+        buttons: (Labs.MessageDialog.Save | Labs.MessageDialog.Discard | Labs.MessageDialog.Cancel)
+        //standardButtons: StandardButton.Save | StandardButton.Discard | StandardButton.Cancel
+        onDiscardClicked: {
+        // onDiscard: {
             //switch (parseInt(root.onDiscard)) {
                 //case Prompter.CloseActions.LoadGuide: root.pageStack.currentItem.document.loadGuide(); break;
                 //case Prompter.CloseActions.LoadNew: root.pageStack.currentItem.document.newDocument(); break;
@@ -815,9 +817,10 @@ Kirigami.ApplicationWindow {
                 default: break;
             }
         }
-        onAccepted: root.pageStack.currentItem.document.saveDialog(parseInt(root.onDiscard)==Prompter.CloseActions.Quit)
-        //buttons: (Labs.MessageDialog.Save | Labs.MessageDialog.Discard | Labs.MessageDialog.Cancel)
-        //onDiscardClicked: Qt.quit()
         //onSaveClicked: root.pageStack.currentItem.document.saveDialog(true)
+        onAccepted:
+        {
+            root.pageStack.currentItem.document.saveDialog(parseInt(root.onDiscard)==Prompter.CloseActions.Quit)
+        }
     }
 }
