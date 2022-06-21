@@ -40,7 +40,7 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
 
-set(QT_DEFAULT_MAJOR_VERSION 6)
+set(QT_DEFAULT_MAJOR_VERSION 5)
 set(QT_MIN_VERSION 5.15.2)
 # KF5 5.68 for native Ubuntu 20.04
 # Use 5.83 to have current ecm_add_app_icon syntax
@@ -64,8 +64,8 @@ if (UNIX AND NOT APPLE AND NOT ANDROID)
 elseif (UNIX AND APPLE)
 #    list(APPEND QML_DIRS "/usr/local/lib/qml")
 #    list(APPEND KIRIGAMI_DIRS "/usr/local/lib/qml/org/kde/kirigami.2")
-    list(APPEND QML_DIRS "/opt/homebrew/lib/qml")
-    list(APPEND KIRIGAMI_DIRS "/opt/homebrew/lib/qml/org/kde/kirigami.2")
+#    list(APPEND QML_DIRS "/opt/homebrew/lib/qml")
+#    list(APPEND KIRIGAMI_DIRS "/opt/homebrew/lib/qml/org/kde/kirigami.2")
 elseif (WIN32)
     list(APPEND QML_DIRS "C:/CraftRoot/qml")
     list(APPEND KIRIGAMI_DIRS "C:/CraftRoot/qml/org/kde/kirigami.2")
@@ -143,7 +143,6 @@ else()
     )
 endif()
 find_package(KF5 ${KF_MIN_VERSION} REQUIRED COMPONENTS
-#find_package(KF${QT_VERSION_MAJOR} ${KF_MIN_VERSION} REQUIRED COMPONENTS
     Kirigami2
     I18n
     CoreAddons

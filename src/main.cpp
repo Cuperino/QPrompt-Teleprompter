@@ -41,6 +41,8 @@
 #include <KI18n/KLocalizedString>
 #include <KCoreAddons/KAboutData>
 
+#include <QHotkey>
+
 #include "../qprompt_version.h"
 #include "prompter/documenthandler.h"
 #include "qt/qmlutil.hpp"
@@ -129,8 +131,11 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
 
     //engine.addImportPath(QStringLiteral("../3rdparty/kirigami/"));
     //engine.addImportPath(QStringLiteral("/usr/local/lib/qml"));
-    engine.addImportPath(QStringLiteral("/opt/homebrew/lib/qml"));
     //engine.addImportPath("/opt/local/lib/qml/org/kde/kirigami.2");
+#if defined(Q_OS_MACOS)
+    //engine.addImportPath(QStringLiteral("/opt/homebrew/lib/qml"));
+    engine.addImportPath(QStringLiteral("/opt/homebrew/Cellar/kf5-kirigami2/5.94.0/lib/qt5/qml"));
+#endif
     engine.load(QUrl(QStringLiteral("qrc:///main.qml")));
 
     if (engine.rootObjects().isEmpty()) {

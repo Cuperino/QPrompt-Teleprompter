@@ -19,3 +19,6 @@
 [submodule "3rdparty/KDMacTouchBar"]
 	path = 3rdparty/KDMacTouchBar
 	url = https://github.com/KDAB/KDMacTouchBar.git
+[submodule "3rdparty/QHotkey"]
+	path = 3rdparty/QHotkey
+	url = https://github.com/Skycoder42/QHotkey.git
