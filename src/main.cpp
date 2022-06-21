@@ -41,7 +41,7 @@
 #include <KI18n/KLocalizedString>
 #include <KCoreAddons/KAboutData>
 
-#include <QHotkey>
+//#include <QHotkey>
 
 #include "../qprompt_version.h"
 #include "prompter/documenthandler.h"
