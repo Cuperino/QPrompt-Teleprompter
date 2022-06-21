@@ -46,7 +46,7 @@ set(qprompt_ASSETS
 include(FetchContent)
 FetchContent_Declare(
         qhotkey
-        GIT_REPOSITORY https://github.com/Skycoder42/QHotkey.git
+        GIT_REPOSITORY https://github.com/Cuperino/QHotkey
         GIT_TAG master
 )
 
