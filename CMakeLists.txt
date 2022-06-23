@@ -295,14 +295,14 @@ if(UNIX AND NOT ANDROID)
     set(CPACK_DEBIAN_PACKAGE_HOMEPAGE ${PROJECT_URL})
     set(CPACK_DEBIAN_COMPRESSION_TYPE ${COMPRESION_TYPE})
     # Set to dependencies as Ubuntu 21.04. Chose Ubuntu 21.04 as base because Desktop version has ARM support and provided Qt version requires no backporting.
-    set(CPACK_DEBIAN_PACKAGE_DEPENDS "libqt5svg5 (>= 5.15.2), qml-module-qt-labs-platform (>=5.15.2), qml-module-qtqml (>=5.15.2), qml-module-qtqml-models2 (>=5.15.2), qml-module-qtqml-statemachine (>=5.15.2), qml-module-qtquick-controls (>=5.15.2), qml-module-qtquick-controls2 (>=5.15.2), qml-module-qtquick-dialogs (>=5.15.2), qml-module-qtquick-shapes (>=5.15.2), qml-module-org-kde-kirigami2 (>=5.78.0), libkf5i18n5 (>= 5.78.0), libkf5coreaddons5 (>= 5.78.0)")
+    set(CPACK_DEBIAN_PACKAGE_DEPENDS "libqt5svg5 (>= 5.15.2), libqt5x11extras5 (>= 5.15.2), qml-module-qt-labs-platform (>=5.15.2), qml-module-qtqml (>=5.15.2), qml-module-qtqml-models2 (>=5.15.2), qml-module-qtqml-statemachine (>=5.15.2), qml-module-qtquick-controls (>=5.15.2), qml-module-qtquick-controls2 (>=5.15.2), qml-module-qtquick-dialogs (>=5.15.2), qml-module-qtquick-shapes (>=5.15.2), qml-module-org-kde-kirigami2 (>=5.78.0), libkf5i18n5 (>= 5.78.0), libkf5coreaddons5 (>= 5.78.0)")
 
     # CPACK: RPM Specific Settings
     set(CPACK_RPM_PACKAGE_LICENSE "GPLv3")
     set(CPACK_RPM_PACKAGE_GROUP "Multimedia/Video")
     set(CPACK_RPM_PACKAGE_URL ${PROJECT_URL})
     set(CPACK_RPM_COMPRESSION_TYPE ${COMPRESION_TYPE})
-    set(CPACK_RPM_PACKAGE_REQUIRES "qt5-qtbase >= 5.15.2, qt5-qtbase-gui >= 5.15.2, qt5-qtdeclarative >= 5.15.2, qt5-qtsvg >= 5.15.2, qt5-qtquickcontrols >= 5.15.2, qt5-qtquickcontrols2 >= 5.15.2, kf5-ki18n >= 5.73.0, kf5-kirigami2 >= 5.73.0, kf5-kcoreaddons >= 5.73.0")
+    set(CPACK_RPM_PACKAGE_REQUIRES "qt5-qtbase >= 5.15.2, qt5-qtx11extras >= 5.15.2, qt5-qtbase-gui >= 5.15.2, qt5-qtdeclarative >= 5.15.2, qt5-qtsvg >= 5.15.2, qt5-qtquickcontrols >= 5.15.2, qt5-qtquickcontrols2 >= 5.15.2, kf5-ki18n >= 5.73.0, kf5-kirigami2 >= 5.73.0, kf5-kcoreaddons >= 5.73.0")
 
     set(CPACK_SYSTEM_NAME "${CMAKE_SYSTEM_NAME}-${CMAKE_SYSTEM_PROCESSOR}")
 
