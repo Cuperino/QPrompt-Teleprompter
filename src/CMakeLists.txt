@@ -43,23 +43,23 @@ set(qprompt_ASSETS
 )
 
 
-include(FetchContent)
-FetchContent_Declare(
-        qhotkey
-        GIT_REPOSITORY https://github.com/Cuperino/QHotkey
-        GIT_TAG master
-)
+#include(FetchContent)
+#FetchContent_Declare(
+#        qhotkey
+#        GIT_REPOSITORY https://github.com/Cuperino/QHotkey
+#        GIT_TAG master
+#)
 
-set(QHOTKEY_EXAMPLES OFF CACHE INTERNAL "")
-set(QHOTKEY_INSTALL OFF CACHE INTERNAL "")
+#set(QHOTKEY_EXAMPLES OFF CACHE INTERNAL "")
+#set(QHOTKEY_INSTALL OFF CACHE INTERNAL "")
 
-FetchContent_GetProperties(QHotkey)
-if (NOT qhotkey_POPULATED)
-    FetchContent_Populate(QHotkey)
-    message(STATUS "QHotkey source dir: ${qhotkey_SOURCE_DIR}")
-    message(STATUS "QHotkey binary dir: ${qhotkey_BINARY_DIR}")
-    add_subdirectory(${qhotkey_SOURCE_DIR} ${qhotkey_BINARY_DIR})
-endif ()
+#FetchContent_GetProperties(QHotkey)
+#if (NOT qhotkey_POPULATED)
+#    FetchContent_Populate(QHotkey)
+#    message(STATUS "QHotkey source dir: ${qhotkey_SOURCE_DIR}")
+#    message(STATUS "QHotkey binary dir: ${qhotkey_BINARY_DIR}")
+#    add_subdirectory(${qhotkey_SOURCE_DIR} ${qhotkey_BINARY_DIR})
+#endif ()
 
 
 if (NOT APPLE AND NOT ANDROID)
@@ -188,6 +188,37 @@ elseif (WASM OR IOS)
         KF5::Kirigami2
         KF5::CoreAddons
     )
+elseif(HAIKU)
+    target_link_libraries(${PROJECT_NAME} PUBLIC
+        Qt${QT_VERSION_MAJOR}::Core
+        Qt${QT_VERSION_MAJOR}::Quick
+        Qt${QT_VERSION_MAJOR}::Gui
+        Qt${QT_VERSION_MAJOR}::Svg
+        Qt${QT_VERSION_MAJOR}::Qml
+        Qt${QT_VERSION_MAJOR}::QuickControls2
+        Qt${QT_VERSION_MAJOR}::Network
+        Qt${QT_VERSION_MAJOR}::Widgets
+        KF5::I18n
+        KF5::Kirigami2
+        KF5::CoreAddons
+        KF5::IconThemes
+    )
+elseif(WIN32 OR APPLE)
+    target_link_libraries(${PROJECT_NAME} PUBLIC
+        Qt${QT_VERSION_MAJOR}::Core
+        Qt${QT_VERSION_MAJOR}::Quick
+        Qt${QT_VERSION_MAJOR}::Gui
+        Qt${QT_VERSION_MAJOR}::Svg
+        Qt${QT_VERSION_MAJOR}::Qml
+        Qt${QT_VERSION_MAJOR}::QuickControls2
+        Qt${QT_VERSION_MAJOR}::Network
+        Qt${QT_VERSION_MAJOR}::Widgets
+        KF5::I18n
+        KF5::Kirigami2
+        KF5::CoreAddons
+        QHotkey::QHotkey
+    )
+    target_include_directories(${PROJECT_NAME} PUBLIC ${qhotkey_SOURCE_DIR}/QHotkey)
 else()
     target_link_libraries(${PROJECT_NAME} PUBLIC
         Qt${QT_VERSION_MAJOR}::Core
@@ -201,14 +232,13 @@ else()
         KF5::I18n
         KF5::Kirigami2
         KF5::CoreAddons
-        #KF5::IconThemes
+        KF5::IconThemes
         QHotkey::QHotkey
     )
 #    target_link_libraries(${PROJECT_NAME} PRIVATE
 #        QHotkey::QHotkey
 #    )
     target_include_directories(${PROJECT_NAME} PUBLIC ${qhotkey_SOURCE_DIR}/QHotkey)
-
 endif()
 
 # Copy icons that are not font based
@@ -234,7 +264,7 @@ if(ANDROID OR APPLE OR WIN32 OR IOS OR WASM)
         edit-redo
         edit-undo
         filename-bpm-amarok
-        format-fill-color
+        # format-fill-color
         format-font-size-more
         format-justify-center
         format-text-color
