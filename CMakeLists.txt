@@ -193,9 +193,7 @@ elseif(WIN32 OR APPLE)
         I18n
         CoreAddons
     )
-    find_package(QHotkey 1.5.0 REQUIRED COMPONENTS
-        QHotkey
-    )
+    add_subdirectory("3rdparty/QHotkey" build/qhotkey)
     if(APPLE AND NOT IOS)
         add_subdirectory("3rdparty/KDMacTouchBar" build/kdmactouchbar)
     endif()
@@ -218,9 +216,6 @@ else()
         I18n
         CoreAddons
         IconThemes
-    )
-    find_package(QHotkey 1.5.0 REQUIRED COMPONENTS
-        QHotkey
     )
 endif()
 
