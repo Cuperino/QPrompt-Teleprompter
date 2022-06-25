@@ -219,6 +219,11 @@ elseif(WIN32 OR APPLE)
         QHotkey::QHotkey
     )
     target_include_directories(${PROJECT_NAME} PUBLIC ${qhotkey_SOURCE_DIR}/QHotkey)
+    if(APPLE AND NOT IOS)
+        target_include_directories(mactouchbar PUBLIC ${kdmactouchbar_SOURCE_DIR}/KDMacTouchBar)
+        target_link_directories(mactouchbar PUBLIC ${kdmactouchbar_SOURCE_DIR}/KDMacTouchBar)
+        target_link_libraries(${PROJECT_NAME} PUBLIC KDMacTouchBar)
+    endif()
 else()
     target_link_libraries(${PROJECT_NAME} PUBLIC
         Qt${QT_VERSION_MAJOR}::Core
