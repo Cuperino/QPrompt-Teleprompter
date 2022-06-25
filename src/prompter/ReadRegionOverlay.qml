@@ -411,8 +411,13 @@ Item {
         anchors.bottom: readRegion.top
         anchors.left: parent.left
         anchors.right: parent.right
-        opacity: overlay.__opacity
+        opacity: overlay.__opacity*2/3
         color: overlay.__color
+        Rectangle {
+            anchors.fill: parent
+            opacity: overlay.__opacity
+            color: "#FFF"
+        }
     }
 
     Rectangle {
@@ -421,8 +426,13 @@ Item {
         anchors.bottom: parent.bottom
         anchors.left: parent.left
         anchors.right: parent.right
-        opacity: overlay.__opacity
+        opacity: overlay.__opacity*2/3
         color: overlay.__color
+        Rectangle {
+            anchors.fill: parent
+            opacity: overlay.__opacity
+            color: "#FFF"
+        }
     }
 
     states: [
