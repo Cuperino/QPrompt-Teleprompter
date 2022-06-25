@@ -581,30 +581,35 @@ Flickable {
                     anchors.right: parent.right
                     anchors.top: editor.bottom
                     height: prompter.bottomMargin
-                    color: "#000"
-                    opacity: 0.2
-                    MouseArea {
-                        property int c: 0
+                    color: "#FFF"
+                    opacity: 0.15
+                    Rectangle {
                         anchors.fill: parent
-                        cursorShape: Qt.PointingHandCursor
-                        onClicked: {
-                            if (root.passiveNotifications)
-                                showPassiveNotification(i18n("Double tap to go back to the start"));
-                        }
-                        onDoubleClicked: {
-                            reset.toStart()
-                            //if (root.passiveNotifications) {
-                                //// Run hidePassiveNotification second to avoid Kirigami bug from 5.83.0 that prevents the method from completing execution.
-                                ////hidePassiveNotification()
-                                //// Scientist EE
-                                //let goToStartNotification = "";
-                                //switch (c++%3) {
-                                    //case 0: goToStartNotification = i18n("Let's go back to the start"); break;
-                                    //case 1: goToStartNotification = i18n("Take me back to the start"); break;
-                                    //case 2: goToStartNotification = i18n("I'm going back to the start"); c=0; break;
+                        color: "#000"
+                        opacity: 0.3
+                        MouseArea {
+                            property int c: 0
+                            anchors.fill: parent
+                            cursorShape: Qt.PointingHandCursor
+                            onClicked: {
+                                if (root.passiveNotifications)
+                                    showPassiveNotification(i18n("Double tap to go back to the start"));
+                            }
+                            onDoubleClicked: {
+                                reset.toStart()
+                                //if (root.passiveNotifications) {
+                                    //// Run hidePassiveNotification second to avoid Kirigami bug from 5.83.0 that prevents the method from completing execution.
+                                    ////hidePassiveNotification()
+                                    //// Scientist EE
+                                    //let goToStartNotification = "";
+                                    //switch (c++%3) {
+                                        //case 0: goToStartNotification = i18n("Let's go back to the start"); break;
+                                        //case 1: goToStartNotification = i18n("Take me back to the start"); break;
+                                        //case 2: goToStartNotification = i18n("I'm going back to the start"); c=0; break;
+                                    //}
+                                    //showPassiveNotification(goToStartNotification);
                                 //}
-                                //showPassiveNotification(goToStartNotification);
-                            //}
+                            }
                         }
                     }
                 }
