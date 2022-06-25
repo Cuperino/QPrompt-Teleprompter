@@ -693,8 +693,22 @@ Kirigami.ApplicationWindow {
     pageStack.globalToolBar.toolbarActionAlignment: Qt.AlignHCenter
     pageStack.initialPage: prompterPageComponent
     // Auto hide global toolbar on fullscreen
-    pageStack.globalToolBar.style: Kirigami.Settings.isMobile ? (root.pageStack.layers.depth > 1 ? Kirigami.ApplicationHeaderStyle.Titles : Kirigami.ApplicationHeaderStyle.None) : (parseInt(root.pageStack.currentItem.prompter.state)!==Prompter.States.Editing && (visibility===Kirigami.ApplicationWindow.FullScreen || root.pageStack.currentItem.overlay.atTop) ? Kirigami.ApplicationHeaderStyle.None : Kirigami.ApplicationHeaderStyle.ToolBar)
-    
+    //pageStack.globalToolBar.style: Kirigami.Settings.isMobile ? (root.pageStack.layers.depth > 1 ? Kirigami.ApplicationHeaderStyle.Titles : Kirigami.ApplicationHeaderStyle.None) : (parseInt(root.pageStack.currentItem.prompter.state)!==Prompter.States.Editing && (visibility===Kirigami.ApplicationWindow.FullScreen || root.pageStack.currentItem.overlay.atTop) ? Kirigami.ApplicationHeaderStyle.None : Kirigami.ApplicationHeaderStyle.ToolBar)
+    pageStack.globalToolBar.style:
+        if (Kirigami.Settings.isMobile) {
+            if (root.pageStack.layers.depth > 1)
+                return Kirigami.ApplicationHeaderStyle.Titles
+            else
+                return Kirigami.ApplicationHeaderStyle.None
+        }
+        else {
+            if (parseInt(root.pageStack.currentItem.prompter.state)!==Prompter.States.Editing &&
+                    (visibility===Kirigami.ApplicationWindow.FullScreen || root.pageStack.currentItem.overlay.atTop))
+                return Kirigami.ApplicationHeaderStyle.None;
+            else
+                return Kirigami.ApplicationHeaderStyle.ToolBar;
+        }
+
     // The following is not possible in the current version of Kirigami, but it should be:
     //pageStack.globalToolBar.background: Rectangle {
         //color: appTheme.__backgroundColor
