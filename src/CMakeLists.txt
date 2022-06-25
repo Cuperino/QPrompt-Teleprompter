@@ -246,7 +246,7 @@ else()
 endif()
 
 # Copy icons that are not font based
-#if(ANDROID OR APPLE OR WIN32 OR IOS OR WASM)
+if(ANDROID OR APPLE OR IOS OR WASM) #  OR WIN32
     # Breeze icons names can be found at https://cdn.kde.org/breeze-icons/icons.html
     kirigami_package_breeze_icons(ICONS
         application-exit
@@ -304,7 +304,7 @@ endif()
         window
         window-duplicate
     )
-#endif()
+endif()
 
 
 # Get static QML. Gets ignored if not a static build
