@@ -19,10 +19,12 @@
  **
  ****************************************************************************/
 
+#include "qglobal.h"
 #if defined(Q_OS_ANDROID) || defined(Q_OS_IOS) || defined(Q_OS_WASM) || defined(Q_OS_WATCHOS) || defined(Q_OS_QNX)
 #include <QGuiApplication>
 #else
 #include <QApplication>
+#include <QtWidgets>
 #endif
 #include <QQmlApplicationEngine>
 #include <QtQml>
@@ -42,6 +44,9 @@
 #include <KCoreAddons/KAboutData>
 
 #include <QHotkey>
+#if defined(Q_OS_MACOS)
+#include <../3rdparty/KDMacTouchBar/src/kdmactouchbar.h>
+#endif
 
 #include "../qprompt_version.h"
 #include "prompter/documenthandler.h"
@@ -118,6 +123,35 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
     // #ifdef Q_OS_ANDROID
     // KirigamiPlugin::getInstance().registerTypes();
     // #endif
+
+#if defined(Q_OS_MACOS)
+    // Enable automatic display of dialog prompts on the touchbar.
+    KDMacTouchBar::setAutomaticallyCreateMessageBoxTouchBar(true);
+    // Create touchbar for use through all of QPrompt's execusion
+    KDMacTouchBar *touchBar = new KDMacTouchBar();
+    // Toggle teleprompter state
+    QIcon QPromptIcon(QStringLiteral("://images/qprompt.png"));
+    QAction *action = new QAction(QPromptIcon, "Toggle");
+    touchBar->addAction(action);
+    // connect(action, &QAction::triggered, this, &MainWindow::activated);
+    touchBar->addSeparator();
+    // Velocity and placement toachbar controls
+    // Up
+    QIcon upIcon(QStringLiteral("://go-up"));
+    QAction *reduceAction = new QAction(upIcon, "Reduce");
+    touchBar->addAction(reduceAction);
+    // connect(reduceAction, &QAction::triggered, this, &MainWindow::activated);
+    // Down
+    QIcon downIcon(QStringLiteral("://go-down"));
+    QAction *increaseAction = new QAction(downIcon, "Increase");
+    touchBar->addAction(increaseAction);
+    // connect(increaseAction, &QAction::triggered, this, &MainWindow::activated);
+    touchBar->addSeparator();
+//    // Stop prompter
+//    QAction *stopAction = new QAction(upIcon, "Stop");
+//    touchBar->addAction(stopAction);
+//    // connect(stopAction, &QAction::triggered, this, &MainWindow::activated);
+#endif
 
     // Un-comment to force RightToLeft Layout for debugging purposes
     //app.setLayoutDirection(Qt::RightToLeft);
