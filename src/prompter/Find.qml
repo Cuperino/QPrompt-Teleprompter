@@ -125,7 +125,7 @@ Item {
             onClicked: close()
             Layout.fillHeight: true
         }
-        TextField {
+        Kirigami.SearchField {
             id: searchField
             placeholderText: ""
             wrapMode: TextInput.WordWrap
