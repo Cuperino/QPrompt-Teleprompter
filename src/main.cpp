@@ -43,7 +43,7 @@
 #include <KI18n/KLocalizedString>
 #include <KCoreAddons/KAboutData>
 
-#include <QHotkey>
+//#include <QHotkey>
 #if defined(Q_OS_MACOS)
 #include <../3rdparty/KDMacTouchBar/src/kdmactouchbar.h>
 #endif
@@ -153,12 +153,12 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
 //    // connect(stopAction, &QAction::triggered, this, &MainWindow::activated);
 #endif
 
-    QHotkey hotkey(QKeySequence("Alt+Q"), true, &app);
-    qDebug() << "Is segistered:" << hotkey.isRegistered();
-    QObject::connect(&hotkey, &QHotkey::activated, qApp, [&]() {
-        qDebug() << "Hotkey Activated - the application will quit now";
-        qApp->quit();
-    });
+//    QHotkey hotkey(QKeySequence("Alt+Q"), true, &app);
+//    qDebug() << "Is segistered:" << hotkey.isRegistered();
+//    QObject::connect(&hotkey, &QHotkey::activated, qApp, [&]() {
+//        qDebug() << "Hotkey Activated - the application will quit now";
+//        qApp->quit();
+//    });
 
     // Un-comment to force RightToLeft Layout for debugging purposes
     //app.setLayoutDirection(Qt::RightToLeft);

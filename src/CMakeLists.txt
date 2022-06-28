@@ -204,8 +204,8 @@ elseif(HAIKU)
         KF5::IconThemes
     )
 elseif(WIN32 OR APPLE)
-    target_include_directories(${PROJECT_NAME} PUBLIC ${qhotkey_SOURCE_DIR}/QHotkey)
-    target_link_directories(${PROJECT_NAME} PUBLIC ${qhotkey_SOURCE_DIR}/QHotkey)
+#    target_include_directories(${PROJECT_NAME} PUBLIC ${qhotkey_SOURCE_DIR}/QHotkey)
+#    target_link_directories(${PROJECT_NAME} PUBLIC ${qhotkey_SOURCE_DIR}/QHotkey)
     target_link_libraries(${PROJECT_NAME} PUBLIC
         Qt${QT_VERSION_MAJOR}::Core
         Qt${QT_VERSION_MAJOR}::Quick
@@ -218,7 +218,7 @@ elseif(WIN32 OR APPLE)
         KF5::I18n
         KF5::Kirigami2
         KF5::CoreAddons
-        QHotkey::QHotkey
+#        QHotkey::QHotkey
     )
     if(APPLE AND NOT IOS)
         target_include_directories(mactouchbar PUBLIC ${kdmactouchbar_SOURCE_DIR}/KDMacTouchBar)
