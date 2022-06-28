@@ -33,7 +33,7 @@ ScrollBar {
     interactive: !opaqueScroller || Kirigami.Settings.isMobile ? false : true
     stepSize: prompter.height/(4*(editor.height + prompter.topMargin + prompter.bottomMargin))
     policy: ScrollBar.AlwaysOn
-    opacity: opaqueScroller ? 0.40 : 1
+    // opacity: opaqueScroller ? 0.40 : 1
     contentItem: Rectangle {
         implicitWidth: interactive ? 14 : 6
         implicitHeight: 100
