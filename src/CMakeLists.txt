@@ -268,7 +268,7 @@ if(ANDROID OR APPLE OR WIN32 OR IOS OR WASM)
         edit-redo
         edit-undo
         filename-bpm-amarok
-        format-fill-color
+        #format-fill-color
         format-font-size-more
         format-justify-center
         format-text-color
