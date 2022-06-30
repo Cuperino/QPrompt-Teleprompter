@@ -196,13 +196,13 @@ elseif(WIN32 OR APPLE)
         CoreAddons
     )
     # QHotkey
-#    set(QHOTKEY_EXAMPLES OFF CACHE INTERNAL "")
-#    set(QHOTKEY_INSTALL OFF CACHE INTERNAL "")
-#    add_subdirectory("3rdparty/QHotkey" build/qhotkey)
-#    # KDMacTouchBar (Mac only)
-#    if(APPLE AND NOT IOS)
-#        add_subdirectory("3rdparty/KDMacTouchBar" build/kdmactouchbar)
-#    endif()
+    set(QHOTKEY_EXAMPLES OFF CACHE INTERNAL "")
+    set(QHOTKEY_INSTALL OFF CACHE INTERNAL "")
+    add_subdirectory("3rdparty/QHotkey" build/qhotkey)
+    # KDMacTouchBar (Mac only)
+    if(APPLE AND NOT IOS)
+        add_subdirectory("3rdparty/KDMacTouchBar" build/kdmactouchbar)
+    endif()
 else()
     find_package(Qt${QT_VERSION_MAJOR} ${QT5_MIN_VERSION} REQUIRED NO_MODULE COMPONENTS
         Core

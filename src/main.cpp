@@ -43,10 +43,10 @@
 #include <KI18n/KLocalizedString>
 #include <KCoreAddons/KAboutData>
 
-//#include <QHotkey>
-//#if defined(Q_OS_MACOS)
-//#include <../3rdparty/KDMacTouchBar/src/kdmactouchbar.h>
-//#endif
+#include <QHotkey>
+#if defined(Q_OS_MACOS)
+#include <../3rdparty/KDMacTouchBar/src/kdmactouchbar.h>
+#endif
 
 #include "../qprompt_version.h"
 #include "prompter/documenthandler.h"
@@ -124,44 +124,45 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
     // KirigamiPlugin::getInstance().registerTypes();
     // #endif
 
-//#if defined(Q_OS_MACOS)
-//    // Enable automatic display of dialog prompts on the touchbar.
-//    KDMacTouchBar::setAutomaticallyCreateMessageBoxTouchBar(true);
-//    // Create touchbar for use through all of QPrompt's execusion
-//    KDMacTouchBar *touchBar = new KDMacTouchBar();
-//    // Toggle teleprompter state
-//    QIcon QPromptIcon(QStringLiteral("://images/qprompt.png"));
-//    QAction *action = new QAction(QPromptIcon, "Toggle");
-//    touchBar->addAction(action);
-//    // connect(action, &QAction::triggered, this, &MainWindow::activated);
-//    touchBar->addSeparator();
-//    // Velocity and placement toachbar controls
-//    // Up
-//    QIcon upIcon(QStringLiteral("://go-up"));
-//    QAction *reduceAction = new QAction(upIcon, "Reduce");
-//    touchBar->addAction(reduceAction);
-//    // connect(reduceAction, &QAction::triggered, this, &MainWindow::activated);
-//    // Down
-//    QIcon downIcon(QStringLiteral("://go-down"));
-//    QAction *increaseAction = new QAction(downIcon, "Increase");
-//    touchBar->addAction(increaseAction);
-//    // connect(increaseAction, &QAction::triggered, this, &MainWindow::activated);
-//    touchBar->addSeparator();
-////    // Stop prompter
-////    QAction *stopAction = new QAction(upIcon, "Stop");
-////    touchBar->addAction(stopAction);
-////    // connect(stopAction, &QAction::triggered, this, &MainWindow::activated);
-//#endif
+#if defined(Q_OS_MACOS)
+    // Enable automatic display of dialog prompts on the touchbar.
+    KDMacTouchBar::setAutomaticallyCreateMessageBoxTouchBar(true);
+    // Create touchbar for use through all of QPrompt's execusion
+    KDMacTouchBar *touchBar = new KDMacTouchBar();
+    // Toggle teleprompter state
+    QIcon QPromptIcon(QStringLiteral("://images/qprompt.png"));
+    QAction *action = new QAction(QPromptIcon, "Toggle");
+    touchBar->addAction(action);
+    // connect(action, &QAction::triggered, this, &MainWindow::activated);
+    touchBar->addSeparator();
+    // Velocity and placement toachbar controls
+    // Up
+    QIcon upIcon(QStringLiteral("://go-up"));
+    QAction *reduceAction = new QAction(upIcon, "Reduce");
+    touchBar->addAction(reduceAction);
+    // connect(reduceAction, &QAction::triggered, this, &MainWindow::activated);
+    // Down
+    QIcon downIcon(QStringLiteral("://go-down"));
+    QAction *increaseAction = new QAction(downIcon, "Increase");
+    touchBar->addAction(increaseAction);
+    // connect(increaseAction, &QAction::triggered, this, &MainWindow::activated);
+    touchBar->addSeparator();
+//    // Stop prompter
+//    QAction *stopAction = new QAction(upIcon, "Stop");
+//    touchBar->addAction(stopAction);
+//    // connect(stopAction, &QAction::triggered, this, &MainWindow::activated);
+#endif
 
-//    QHotkey hotkey(QKeySequence("Alt+Q"), true, &app);
-//    qDebug() << "Is segistered:" << hotkey.isRegistered();
-//    QObject::connect(&hotkey, &QHotkey::activated, qApp, [&]() {
-//        qDebug() << "Hotkey Activated - the application will quit now";
-//        qApp->quit();
-//    });
+    QHotkey hotkey(QKeySequence("Alt+Q"), true, &app);
+    qDebug() << "Is segistered:" << hotkey.isRegistered();
+    QObject::connect(&hotkey, &QHotkey::activated, qApp, [&]() {
+        qDebug() << "Hotkey Activated - the application will quit now";
+        qApp->quit();
+    });
 
     // Un-comment to force RightToLeft Layout for debugging purposes
     //app.setLayoutDirection(Qt::RightToLeft);
+
 #if defined(Q_OS_ANDROID) || defined(Q_OS_IOS) || defined(Q_OS_QNX)
     app.setWindowIcon(QIcon(":/images/qprompt-logo-wireframe.png"));
 #else
