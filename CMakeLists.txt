@@ -195,7 +195,7 @@ elseif(WIN32 OR APPLE)
         I18n
         CoreAddons
     )
-    find_package(QHotkey 1.5.0 REQUIRED NO_MODULE COMPONENTS
+    find_package(QHotkey 1.5.0 REQUIRED COMPONENTS
         QHotkey
     )
 #    # QHotkey
