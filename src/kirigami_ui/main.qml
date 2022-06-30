@@ -159,10 +159,6 @@ Kirigami.ApplicationWindow {
         title: aboutData.displayName
         titleIcon: ["android"].indexOf(Qt.platform.os)===-1 ? "qrc:/images/qprompt.png" : "qrc:/images/qprompt-logo-wireframe.png"
         bannerVisible: true
-        //background: Rectangle {
-            //color: appTheme.__backgroundColor
-            //opacity: 1
-        //}
         onBannerClicked: {
             bannerCounter++;
             if (!(bannerCounter%10)) {
