@@ -218,7 +218,7 @@ elseif(WIN32 OR APPLE)
         KF5::I18n
         KF5::Kirigami2
         KF5::CoreAddons
-        QHotkey::QHotkey
+        QHotkey
     )
     if(APPLE AND NOT IOS)
         target_include_directories(mactouchbar PUBLIC ${kdmactouchbar_SOURCE_DIR}/KDMacTouchBar)
@@ -241,7 +241,7 @@ else()
         KF5::Kirigami2
         KF5::CoreAddons
         KF5::IconThemes
-        QHotkey::QHotkey
+        QHotkey
     )
 endif()
 
