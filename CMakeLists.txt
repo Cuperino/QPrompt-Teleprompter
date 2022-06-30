@@ -189,12 +189,14 @@ elseif(WIN32 OR APPLE)
         Widgets
         QmlImportScanner  # Used to get static QML. Gets ignored if not a static build
         QuickCompiler
-        QHotkey
     )
     find_package(KF5 ${KF_MIN_VERSION} REQUIRED COMPONENTS
         Kirigami2
         I18n
         CoreAddons
+    )
+    find_package(QHotkey 1.5.0 REQUIRED NO_MODULE COMPONENTS
+        QHotkey
     )
 #    # QHotkey
 #    set(QHOTKEY_EXAMPLES OFF CACHE INTERNAL "")
@@ -213,7 +215,6 @@ else()
         QuickControls2
         Network
         Widgets
-        QHotkey
     )
     find_package(Qt${QT_VERSION_MAJOR} ${QT5_MIN_VERSION} NO_MODULE COMPONENTS
         QmlImportScanner  # Used to get static QML. Gets ignored if not a static build
@@ -224,6 +225,9 @@ else()
         I18n
         CoreAddons
         IconThemes
+    )
+    find_package(QHotkey 1.5.0 REQUIRED NO_MODULE COMPONENTS
+        QHotkey
     )
 #    # QHotkey
 #    set(QHOTKEY_EXAMPLES OFF CACHE INTERNAL "")
