@@ -226,7 +226,7 @@ else()
         CoreAddons
         IconThemes
     )
-    find_package(QHotkey 1.5.0 REQUIRED NO_MODULE COMPONENTS
+    find_package(QHotkey 1.5.0 REQUIRED COMPONENTS
         QHotkey
     )
 #    # QHotkey
