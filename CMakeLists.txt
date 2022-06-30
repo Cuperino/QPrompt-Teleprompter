@@ -189,16 +189,17 @@ elseif(WIN32 OR APPLE)
         Widgets
         QmlImportScanner  # Used to get static QML. Gets ignored if not a static build
         QuickCompiler
+        QHotkey
     )
     find_package(KF5 ${KF_MIN_VERSION} REQUIRED COMPONENTS
         Kirigami2
         I18n
         CoreAddons
     )
-    # QHotkey
-    set(QHOTKEY_EXAMPLES OFF CACHE INTERNAL "")
-    set(QHOTKEY_INSTALL OFF CACHE INTERNAL "")
-    add_subdirectory("3rdparty/QHotkey" build/qhotkey)
+#    # QHotkey
+#    set(QHOTKEY_EXAMPLES OFF CACHE INTERNAL "")
+#    set(QHOTKEY_INSTALL OFF CACHE INTERNAL "")
+#    add_subdirectory("3rdparty/QHotkey" build/qhotkey)
     # KDMacTouchBar (Mac only)
     if(APPLE AND NOT IOS)
         add_subdirectory("3rdparty/KDMacTouchBar" build/kdmactouchbar)
@@ -212,6 +213,7 @@ else()
         QuickControls2
         Network
         Widgets
+        QHotkey
     )
     find_package(Qt${QT_VERSION_MAJOR} ${QT5_MIN_VERSION} NO_MODULE COMPONENTS
         QmlImportScanner  # Used to get static QML. Gets ignored if not a static build
@@ -223,10 +225,10 @@ else()
         CoreAddons
         IconThemes
     )
-    # QHotkey
-    set(QHOTKEY_EXAMPLES OFF CACHE INTERNAL "")
-    set(QHOTKEY_INSTALL OFF CACHE INTERNAL "")
-    add_subdirectory("3rdparty/QHotkey" build/qhotkey)
+#    # QHotkey
+#    set(QHOTKEY_EXAMPLES OFF CACHE INTERNAL "")
+#    set(QHOTKEY_INSTALL OFF CACHE INTERNAL "")
+#    add_subdirectory("3rdparty/QHotkey" build/qhotkey)
 endif()
 
 if (WIN32 OR UNIX) # AND NOT ANDROID
