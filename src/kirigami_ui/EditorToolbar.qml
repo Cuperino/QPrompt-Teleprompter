@@ -133,7 +133,7 @@ ToolBar {
         property alias letterSpacing: letterSpacingSlider.value
         property alias wordSpacing: wordSpacingSlider.value
         //property alias lineHeight: lineHeightSlider.value
-        //property alias fontWYSIWYGSizeSlider: fontWYSIWYGSizeSlider.value
+        property alias fontWYSIWYGSizeSlider: fontWYSIWYGSizeSlider.value
     }
     FontLoader {
         id: iconFont

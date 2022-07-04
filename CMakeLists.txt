@@ -198,10 +198,6 @@ elseif(WIN32 OR APPLE)
     find_package(QHotkey 1.5.0 REQUIRED COMPONENTS
         QHotkey
     )
-#    # QHotkey
-#    set(QHOTKEY_EXAMPLES OFF CACHE INTERNAL "")
-#    set(QHOTKEY_INSTALL OFF CACHE INTERNAL "")
-#    add_subdirectory("3rdparty/QHotkey" build/qhotkey)
     # KDMacTouchBar (Mac only)
     if(APPLE AND NOT IOS)
         add_subdirectory("3rdparty/KDMacTouchBar" build/kdmactouchbar)
@@ -229,10 +225,6 @@ else()
     find_package(QHotkey 1.5.0 REQUIRED COMPONENTS
         QHotkey
     )
-#    # QHotkey
-#    set(QHOTKEY_EXAMPLES OFF CACHE INTERNAL "")
-#    set(QHOTKEY_INSTALL OFF CACHE INTERNAL "")
-#    add_subdirectory("3rdparty/QHotkey" build/qhotkey)
 endif()
 
 if (WIN32 OR UNIX) # AND NOT ANDROID
