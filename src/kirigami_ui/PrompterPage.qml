@@ -748,13 +748,14 @@ Kirigami.Page {
         anchors.top: prompterCutOffLine.bottom;
         // By extending over the editor we avoid seeing a cutoff in opaque mode and improve contrast
         height: 68 + editor.height
-        color: Kirigami.Theme.alternateBackgroundColor.a===0 ? appTheme.__backgroundColor : Kirigami.Theme.alternateBackgroundColor
+        color: Kirigami.Theme.alternateBackgroundColor.a===0 ? Qt.rgba(appTheme.__backgroundColor.r*2/3, appTheme.__backgroundColor.g*2/3, appTheme.__backgroundColor.b*2/3, 1)
+                    : Qt.rgba(Kirigami.Theme.alternateBackgroundColor.r*2/3, Kirigami.Theme.alternateBackgroundColor.g*2/3, Kirigami.Theme.alternateBackgroundColor.b*2/3, 1)
         opacity: root.__opacity * 0.4 + 0.6
     }
     // The cut off line renders as a solid and doesn't cover the other rectangles to improve performance.
     Rectangle {
         id: prompterCutOffLine
-        color: Qt.rgba(Kirigami.Theme.activeBackgroundColor.r/8, Kirigami.Theme.activeBackgroundColor.g/8, Kirigami.Theme.activeBackgroundColor.b/8, 1)
+        color: Qt.rgba(Kirigami.Theme.activeBackgroundColor.r/4, Kirigami.Theme.activeBackgroundColor.g/8, Kirigami.Theme.activeBackgroundColor.b/6, 1)
         height: 3
         //height: Kirigami.Settings.isMobile ? 3 : 2
         anchors.left: parent.left;
