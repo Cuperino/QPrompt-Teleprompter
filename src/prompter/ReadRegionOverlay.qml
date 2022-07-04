@@ -415,7 +415,7 @@ Item {
         color: overlay.__color
         Rectangle {
             anchors.fill: parent
-            opacity: overlay.__opacity
+            opacity: overlay.__opacity*2/3
             color: "#FFF"
         }
     }
@@ -430,7 +430,7 @@ Item {
         color: overlay.__color
         Rectangle {
             anchors.fill: parent
-            opacity: overlay.__opacity
+            opacity: overlay.__opacity*2/3
             color: "#FFF"
         }
     }

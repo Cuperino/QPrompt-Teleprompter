@@ -726,7 +726,7 @@ ToolBar {
                 checked: true
             }
             Label {
-                text: i18nc("Velocity: {VELOCITY_STEPS}", "Velocity: %1", prompter.__i<0 ? '  -' + (prompter.__i/100).toFixed(2).slice(3) : ' +' + (prompter.__i/100).toFixed(2).slice(2))
+                text: i18nc("Velocity {VELOCITY_STEPS}", "Velocity <pre>%1</pre>", prompter.__i<0 ? '-' + (prompter.__i/100).toFixed(2).slice(3) : '+' + (prompter.__i/100).toFixed(2).slice(2))
                 color: Kirigami.Theme.textColor
                 Layout.topMargin: 4
                 Layout.bottomMargin: 4
@@ -760,7 +760,7 @@ ToolBar {
                 font.pointSize: 13
             }
             Label {
-                text: i18nc("Opacity: {TRANSPARENCY_PERCENTAGE}", "Opacity: %1", (root.__opacity/10).toFixed(3).slice(2))
+                text: i18nc("Opacity {TRANSPARENCY_PERCENTAGE}", "Opacity <pre>%1</pre>", (root.__opacity/10).toFixed(3).slice(2))
                 color: Kirigami.Theme.textColor
                 Layout.topMargin: 4
                 Layout.bottomMargin: 4
@@ -781,7 +781,7 @@ ToolBar {
         }
         RowLayout {
             visible: height>0
-            height: showFontSpacingOptions && !wysiwygButton.checked && parseInt(prompter.state)===Prompter.States.Editing ? implicitHeight : 0
+            height: !wysiwygButton.checked && parseInt(prompter.state)===Prompter.States.Editing ? implicitHeight : 0
             clip: true
             ToolButton {
                 text: "\uF088"
@@ -792,7 +792,7 @@ ToolBar {
                 font.pointSize: 13
             }
             Label {
-                text: i18nc("Font size while editing: 100% (083)", "Font size while editing: %1% (%2)", (fontSizeSlider.value/1000).toFixed(3).slice(2), prompter.fontSize)
+                text: i18nc("Font size 100% (083)", "Font size <pre>%1% (%2)</pre>", (fontSizeSlider.value/1000).toFixed(3).slice(2), prompter.fontSize)
                 color: Kirigami.Theme.textColor
                 Layout.topMargin: 4
                 Layout.bottomMargin: 4
@@ -810,7 +810,8 @@ ToolBar {
         }
         RowLayout {
             visible: height>0
-            height: !Kirigami.Settings.isMobile || (showFontSpacingOptions && wysiwygButton.checked && parseInt(prompter.state)===Prompter.States.Editing) ? implicitHeight : 0
+            // !Kirigami.Settings.isMobile ||
+            height: (wysiwygButton.checked && parseInt(prompter.state)===Prompter.States.Editing) ? implicitHeight : 0
             clip: true
 
             // enabled: !(parseInt(prompter.state)===Prompter.States.Countdown || parseInt(prompter.state)===Prompter.States.Prompting)
@@ -823,7 +824,7 @@ ToolBar {
                 font.pointSize: 13
             }
             Label {
-                text: i18nc("Font size: 100% (083)", "Font size: %1% (%2)", (fontWYSIWYGSizeSlider.value/1440).toFixed(3).slice(2), (prompter.fontSize/1000).toFixed(3).slice(2))
+                text: i18nc("Font size 100% (083)", "Font size <pre>%1% (%2)</pre>", (fontWYSIWYGSizeSlider.value/1440).toFixed(3).slice(2), (prompter.fontSize/1000).toFixed(3).slice(2))
                 color: Kirigami.Theme.textColor
                 Layout.topMargin: 4
                 Layout.bottomMargin: 4
@@ -859,7 +860,7 @@ ToolBar {
                 font.pointSize: 13
             }
             Label {
-                text: i18nc("Line height: 100%", "Line height: %1%", (lineHeightSlider.value/1000).toFixed(3).slice(2))
+                text: i18nc("Line height 100%", "Line height <pre>%1%</pre>", (lineHeightSlider.value/1000).toFixed(3).slice(2))
                 color: Kirigami.Theme.textColor
                 Layout.topMargin: 4
                 Layout.bottomMargin: 4
@@ -897,7 +898,7 @@ ToolBar {
                 font.pointSize: 13
             }
             Label {
-                text: i18nc("Word spacing: ±00", "Word spacing: %1", (wordSpacingSlider.value<0 ? '  -' + (wordSpacingSlider.value/100).toFixed(2).slice(3) : ' +' + (wordSpacingSlider.value/100).toFixed(2).slice(2)))
+                text: i18nc("Word spacing <pre>±00<pre>", "Word spacing <pre>%1</pre>", (wordSpacingSlider.value<0 ? '-' + (wordSpacingSlider.value/100).toFixed(2).slice(3) : '+' + (wordSpacingSlider.value/100).toFixed(2).slice(2)))
                 color: Kirigami.Theme.textColor
                 Layout.topMargin: 4
                 Layout.bottomMargin: 4
@@ -933,7 +934,7 @@ ToolBar {
                 font.pointSize: 13
             }
             Label {
-                text: i18nc("Letter spacing: ±00", "Letter spacing: %1", (letterSpacingSlider.value<0 ? '  -' + (letterSpacingSlider.value/100).toFixed(2).slice(3) : ' +' + (letterSpacingSlider.value/100).toFixed(2).slice(2)))
+                text: i18nc("Letter spacing ±00", "Letter spacing <pre>%1</pre>", (letterSpacingSlider.value<0 ? '-' + (letterSpacingSlider.value/100).toFixed(2).slice(3) : '+' + (letterSpacingSlider.value/100).toFixed(2).slice(2)))
                 color: Kirigami.Theme.textColor
                 Layout.topMargin: 4
                 Layout.bottomMargin: 4
@@ -969,7 +970,7 @@ ToolBar {
                 font.pointSize: 13
             }
             Label {
-                text: i18nc("Step speed: 1.00", "Step speed: %1", (baseSpeedSlider.value/100).toFixed(2))
+                text: i18nc("Step speed 1.00", "Step speed <pre>%1</pre>", (baseSpeedSlider.value/100).toFixed(2))
                 color: Kirigami.Theme.textColor
                 Layout.topMargin: 4
                 Layout.bottomMargin: 4
@@ -1010,7 +1011,7 @@ ToolBar {
                 font.pointSize: 13
             }
             Label {
-                text: i18nc("Step acceleration: 1.15", "Step acceleration: %1", (baseAccelerationSlider.value/100).toFixed(2))
+                text: i18nc("Step acceleration 1.15", "Step acceleration <pre>%1</pre>", (baseAccelerationSlider.value/100).toFixed(2))
                 color: Kirigami.Theme.textColor
                 Layout.topMargin: 4
                 Layout.bottomMargin: 4
