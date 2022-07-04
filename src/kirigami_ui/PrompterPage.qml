@@ -85,20 +85,55 @@ Kirigami.Page {
         }
         contextualActions: [
         // This may have not been a right design choice. It needs user beta testers' validation. Disabling for initial release.
-        //Kirigami.Action {
-            //id: wysiwygButton
+        Kirigami.Action {
+            id: wysiwygButton
             //visible: false
-            //text: i18nc("English acronym for What You See is What You Get", "WYSIWYG")
+            text: i18nc("English acronym for What You See is What You Get", "WYSIWYG")
             //enabled: parseInt(prompter.state)===Prompter.States.Editing
-            //checkable: true
-            //checked: viewport.prompter.__wysiwyg
-            //tooltip: viewport.prompter.__wysiwyg ? i18n("\"What you see is what you get\" mode is On") : i18n("\"What you see is what you get\" mode is Off")
-            //onTriggered: {
-                //viewport.prompter.__wysiwyg = !viewport.prompter.__wysiwyg
-                //editor.focus = !Kirigami.Settings.isMobile
-                //contextDrawer.close()
-            //}
-        //},
+            checkable: true
+            checked: viewport.prompter.__wysiwyg
+            tooltip: viewport.prompter.__wysiwyg ? i18n("\"What you see is what you get\" mode is On") : i18n("\"What you see is what you get\" mode is Off")
+            onTriggered: {
+                // Copy position value
+                const lastPosition = editor.cursorPosition;
+                prompter.setCursorAtCurrentPosition();
+                const p0_lineStart = editor.cursorPosition;
+                //console.log("\n\nPos:", p0_lineStart, lastPosition, p0_lineStart<lastPosition, "\n");
+
+                // Resize text
+                viewport.prompter.__wysiwyg = !viewport.prompter.__wysiwyg;
+
+                if (p0_lineStart <= lastPosition) {
+                    //console.log(1, "test last");
+                    // Set cursor at start of current line
+                    prompter.setCursorAtCurrentPosition();
+                    const p1_lineStart = editor.cursorPosition;
+                    //console.log(p1_lineStart);
+                    prompter.goTo(p0_lineStart);
+                    prompter.setCursorAtCurrentPosition();
+                    // If we're still in the same line,
+                    //console.log("currPos", editor.cursorPosition, editor.cursorPosition>=p1_lineStart && editor.cursorPosition<p0_lineStart?"equal":"not equal");
+                    if (editor.cursorPosition>=p1_lineStart && editor.cursorPosition<p0_lineStart) {
+                        //console.log(2, "last");
+                        // restore cursor position within line.
+                        prompter.goTo(lastPosition);
+                        editor.cursorPosition = lastPosition
+                    }
+                    else
+                        prompter.goTo(p0_lineStart);
+                }
+                else
+                    prompter.goTo(p0_lineStart);
+
+                // Focus controls
+                if (parseInt(prompter.state) === Prompter.States.Prompting || Kirigami.Settings.isMobile)
+                    prompter.focus = true;
+                else
+                    editor.focus = true;
+                // Close drawer in mobile mode
+                contextDrawer.close();
+            }
+        },
         Kirigami.Action {
             id: readRegionButton
             text: i18nc("Reading region indicates where a talent should be reading from", "Reading region")
