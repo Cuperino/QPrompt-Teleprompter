@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/Cuperino/QPrompt/issues/new/choose\n"
 "POT-Creation-Date: 2022-05-21 06:54-0400\n"
-"PO-Revision-Date: 2022-06-24 16:38+0000\n"
+"PO-Revision-Date: 2022-07-06 16:19+0000\n"
 "Last-Translator: KyungLae <ray0412@naver.com>\n"
 "Language-Team: Korean <http://l10n.cuperino.com/projects/qprompt/qprompt-app/"
 "ko/>\n"
@@ -170,17 +170,17 @@ msgstr ""
 #: kirigami_ui/EditorToolbar.qml:502
 msgctxt "Opens system font selection dialog"
 msgid "Choose System Font"
-msgstr ""
+msgstr "시스템 글꼴 선택"
 
 #: kirigami_ui/EditorToolbar.qml:729
 msgctxt "Velocity: {VELOCITY_STEPS}"
 msgid "Velocity: %1"
-msgstr ""
+msgstr "속도: %1"
 
 #: kirigami_ui/EditorToolbar.qml:763
 msgctxt "Opacity: {TRANSPARENCY_PERCENTAGE}"
 msgid "Opacity: %1"
-msgstr ""
+msgstr "불투명도: %1"
 
 #: kirigami_ui/EditorToolbar.qml:795
 msgctxt "Font size while editing: 100% (083)"
@@ -190,39 +190,39 @@ msgstr ""
 #: kirigami_ui/EditorToolbar.qml:826
 msgctxt "Font size: 100% (083)"
 msgid "Font size: %1% (%2)"
-msgstr ""
+msgstr "글꼴 크기: %1% (%2)"
 
 #: kirigami_ui/EditorToolbar.qml:862
 msgctxt "Line height: 100%"
 msgid "Line height: %1%"
-msgstr ""
+msgstr "줄 높이: %1%"
 
 #: kirigami_ui/EditorToolbar.qml:900
 msgctxt "Word spacing: ±00"
 msgid "Word spacing: %1"
-msgstr ""
+msgstr "단어 간격: %1"
 
 #: kirigami_ui/EditorToolbar.qml:936
 msgctxt "Letter spacing: ±00"
 msgid "Letter spacing: %1"
-msgstr ""
+msgstr "글자 간격: %1"
 
 #: kirigami_ui/EditorToolbar.qml:972
 msgctxt "Step speed: 1.00"
 msgid "Step speed: %1"
-msgstr ""
+msgstr "스텝 속도: %1"
 
 #: kirigami_ui/EditorToolbar.qml:1013
 msgctxt "Step acceleration: 1.15"
 msgid "Step acceleration: %1"
-msgstr ""
+msgstr "스텝 가속도: %1"
 
 #: kirigami_ui/EditorToolbar.qml:1087
 msgctxt ""
 "Refers to a key on the keyboard used to skip to a user defined marker while "
 "prompting"
 msgid "Skip Key"
-msgstr ""
+msgstr "넘기기 키"
 
 #: kirigami_ui/EditorToolbar.qml:1110
 msgctxt ""
@@ -250,48 +250,48 @@ msgstr ""
 
 #: kirigami_ui/InputsOverlay.qml:187
 msgid "Stop"
-msgstr ""
+msgstr "중지"
 
 #: kirigami_ui/InputsOverlay.qml:195
 msgid "Play/Pause"
-msgstr ""
+msgstr "시작/일시정지"
 
 #: kirigami_ui/InputsOverlay.qml:203
 msgid "Reverse"
-msgstr ""
+msgstr "역방향"
 
 #: kirigami_ui/InputsOverlay.qml:211
 msgid "Rewind"
-msgstr ""
+msgstr "되감기"
 
 #: kirigami_ui/InputsOverlay.qml:219
 msgid "Fast Forward"
-msgstr ""
+msgstr "앞으로 감기"
 
 #: kirigami_ui/InputsOverlay.qml:227
 msgctxt "Skip to earlier text while prompting or editing"
 msgid "Move Backwards"
-msgstr ""
+msgstr "뒤로 가기"
 
 #: kirigami_ui/InputsOverlay.qml:235
 msgctxt "Skip to later text while prompting or editing"
 msgid "Move Forward"
-msgstr ""
+msgstr "앞으로 가기"
 
 #: kirigami_ui/InputsOverlay.qml:243
 msgctxt "Skip to closest marker behind of current position"
 msgid "Go to Previous Marker"
-msgstr ""
+msgstr "이전 마커로 이동"
 
 #: kirigami_ui/InputsOverlay.qml:251
 msgctxt "Skip to closest marker ahead of current position"
 msgid "Go to Next Marker"
-msgstr ""
+msgstr "다음 마커로 이동"
 
 #: kirigami_ui/main.qml:260 kirigami_ui/+windows/main.qml:259
 msgctxt "Main menu actions"
 msgid "Other &Settings"
-msgstr ""
+msgstr "다른 & 설정"
 
 #: kirigami_ui/main.qml:272 kirigami_ui/+windows/main.qml:271
 msgctxt ""
@@ -305,12 +305,12 @@ msgstr ""
 #: kirigami_ui/main.qml:359
 msgctxt "Global menu actions"
 msgid "&File"
-msgstr ""
+msgstr "&파일"
 
 #: kirigami_ui/main.qml:374
 msgctxt "Main menu and global menu actions"
 msgid "Save &As…"
-msgstr ""
+msgstr "다른 이름으로 저장…"
 
 #: kirigami_ui/main.qml:385
 msgctxt "Global menu actions"
@@ -320,173 +320,173 @@ msgstr ""
 #: kirigami_ui/main.qml:388
 msgctxt "Global menu actions"
 msgid "&Undo"
-msgstr ""
+msgstr "되돌리기"
 
 #: kirigami_ui/main.qml:393
 msgctxt "Global menu actions"
 msgid "&Redo"
-msgstr ""
+msgstr "다시실행"
 
 #: kirigami_ui/main.qml:399 prompter/Prompter.qml:971
 #: prompter/Prompter.qml:1018
 msgctxt "Global menu and editor context menu actions"
 msgid "&Copy"
-msgstr ""
+msgstr "복사"
 
 #: kirigami_ui/main.qml:404 prompter/Prompter.qml:976
 #: prompter/Prompter.qml:1023
 msgctxt "Global menu and editor context menu actions"
 msgid "Cu&t"
-msgstr ""
+msgstr "잘라내기"
 
 #: kirigami_ui/main.qml:409 prompter/Prompter.qml:981
 #: prompter/Prompter.qml:1028
 msgctxt "Global menu and editor context menu actions"
 msgid "&Paste"
-msgstr ""
+msgstr "붙여넣기"
 
 #: kirigami_ui/main.qml:416
 msgctxt "Global menu actions"
 msgid "&View"
-msgstr ""
+msgstr "보기"
 
 #: kirigami_ui/main.qml:419
 msgctxt "Global menu actions"
 msgid "Full &screen"
-msgstr ""
+msgstr "전체화면"
 
 #: kirigami_ui/main.qml:433
 msgctxt "Global menu actions. Indicators highlight reading region."
 msgid "&Indicators"
-msgstr ""
+msgstr "지표"
 
 #: kirigami_ui/main.qml:435
 msgctxt "Global menu actions. Shows pointer to the left of the reading region."
 msgid "&Left Pointer"
-msgstr ""
+msgstr "왼쪽 포인터"
 
 #: kirigami_ui/main.qml:441
 msgctxt ""
 "Global menu actions. Shows pointer to the right of the reading region."
 msgid "&Right Pointer"
-msgstr ""
+msgstr "오른쪽 포인터"
 
 #: kirigami_ui/main.qml:447
 msgctxt ""
 "Global menu actions. Shows pointers to the left and right of the reading "
 "region."
 msgid "B&oth Pointers"
-msgstr ""
+msgstr "양쪽 포인터"
 
 #: kirigami_ui/main.qml:454
 msgctxt "Global menu actions. Translucent bars indicate reading region."
 msgid "&Bars"
-msgstr ""
+msgstr "바"
 
 #: kirigami_ui/main.qml:460
 msgctxt ""
 "Global menu actions. Translucent bars and left pointer indicate reading "
 "region."
 msgid "Bars Lef&t"
-msgstr ""
+msgstr "왼쪽 바"
 
 #: kirigami_ui/main.qml:466
 msgctxt ""
 "Global menu actions. Translucent bars and right pointer indicate reading "
 "region."
 msgid "Bars Ri&ght"
-msgstr ""
+msgstr "오른쪽 바"
 
 #: kirigami_ui/main.qml:473
 msgctxt "Global menu actions. Enable all reading region indicators."
 msgid "&All"
-msgstr ""
+msgstr "모두"
 
 #: kirigami_ui/main.qml:479
 msgctxt "Global menu actions. Disable all reading region indicators."
 msgid "&Hidden"
-msgstr ""
+msgstr "숨김"
 
 #: kirigami_ui/main.qml:486
 msgctxt ""
 "Global menu actions. Reading region indicates where a talent should be "
 "reading from."
 msgid "Readin&g region"
-msgstr ""
+msgstr "읽기 영억"
 
 #: kirigami_ui/main.qml:488
 msgctxt "Global menu actions. Align reading region to top of prompter."
 msgid "&Top"
-msgstr ""
+msgstr "위"
 
 #: kirigami_ui/main.qml:494
 msgctxt ""
 "Global menu actions. Align reading region to vertical center of prompter."
 msgid "&Middle"
-msgstr ""
+msgstr "중간"
 
 #: kirigami_ui/main.qml:500
 msgctxt "Global menu actions. Align reading region to bottom of prompter."
 msgid "&Bottom"
-msgstr ""
+msgstr "아래"
 
 #: kirigami_ui/main.qml:507
 msgctxt ""
 "Global menu actions. Enables drag and drop positioning of reading region."
 msgid "F&ree placement"
-msgstr ""
+msgstr "자유 배치"
 
 #: kirigami_ui/main.qml:513
 msgctxt ""
 "Global menu actions. Fix positioning of reading region to what was set in "
 "\"Free placement\" mode."
 msgid "C&ustom (Fixed placement)"
-msgstr ""
+msgstr "사용자 지정(고정 배치)"
 
 #: kirigami_ui/main.qml:522
 msgctxt "Global menu actions"
 msgid "For&mat"
-msgstr ""
+msgstr "형식"
 
 #: kirigami_ui/main.qml:525
 msgctxt "Global menu actions"
 msgid "&Bold"
-msgstr ""
+msgstr "굵게"
 
 #: kirigami_ui/main.qml:531
 msgctxt "Global menu actions"
 msgid "&Italic"
-msgstr ""
+msgstr "기울임"
 
 #: kirigami_ui/main.qml:537
 msgctxt "Global menu actions"
 msgid "&Underline"
-msgstr ""
+msgstr "밑줄"
 
 #: kirigami_ui/main.qml:544
 msgctxt "Global menu and editor actions. Text alignment."
 msgid "Align &Left"
-msgstr ""
+msgstr "왼쪽 정렬"
 
 #: kirigami_ui/main.qml:544
 msgctxt "Global menu and editor actions. Text alignment."
 msgid "Align &Right"
-msgstr ""
+msgstr "오른쪽 정렬"
 
 #: kirigami_ui/main.qml:555
 msgctxt "Global menu actions. Text alignment."
 msgid "Align Cen&ter"
-msgstr ""
+msgstr "중앙 정렬"
 
 #: kirigami_ui/main.qml:561
 msgctxt "Global menu actions. Text alignment."
 msgid "Align &Right"
-msgstr ""
+msgstr "오른쪽 정렬"
 
 #: kirigami_ui/main.qml:561
 msgctxt "Global menu actions. Text alignment."
 msgid "Align &Left"
-msgstr ""
+msgstr "왼쪽 정렬"
 
 #: kirigami_ui/main.qml:580
 msgctxt "Global menu actions. Opens dialog to format currently selected text."
@@ -496,22 +496,22 @@ msgstr ""
 #: kirigami_ui/main.qml:584
 msgctxt "Global menu actions. Opens dialog to color currently selected text."
 msgid "Fo&nt Color"
-msgstr ""
+msgstr "글자 색상"
 
 #: kirigami_ui/main.qml:590
 msgctxt "Global menu actions. Menu regarding input settings."
 msgid "Controls"
-msgstr ""
+msgstr "제어"
 
 #: kirigami_ui/main.qml:623
 msgctxt "Global menu actions"
 msgid "&Help"
-msgstr ""
+msgstr "도움말"
 
 #: kirigami_ui/main.qml:626
 msgctxt "Global menu actions"
 msgid "Report &Bug…"
-msgstr ""
+msgstr "문제 보고…"
 
 #: kirigami_ui/main.qml:645
 msgctxt "Global menu actions. Load about page. \"About AppName\""
