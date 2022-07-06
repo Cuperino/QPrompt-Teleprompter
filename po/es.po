@@ -9,10 +9,10 @@ msgstr ""
 "Project-Id-Version: 1.1.0\n"
 "Report-Msgid-Bugs-To: https://github.com/Cuperino/QPrompt/issues/new/choose\n"
 "POT-Creation-Date: 2022-07-06 15:38-0400\n"
-"PO-Revision-Date: 2022-05-21 11:06+0000\n"
+"PO-Revision-Date: 2022-07-06 19:59+0000\n"
 "Last-Translator: Javier O. Cordero Pérez <javiercorderoperez@gmail.com>\n"
-"Language-Team: Spanish <http://l10n.cuperino.com/projects/qprompt/qprompt-"
-"app/es/>\n"
+"Language-Team: Spanish <http://l10n.cuperino.com/projects/qprompt/"
+"qprompt-app/es/>\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -188,52 +188,44 @@ msgid "Choose System Font"
 msgstr "Escoger letra proveniente del sistema"
 
 #: kirigami_ui/EditorToolbar.qml:729
-#, fuzzy
 msgctxt "Velocity {VELOCITY_STEPS}"
 msgid "Velocity <pre>%1</pre>"
-msgstr "Velocidad: %1"
+msgstr "Velocidad <pre>%1</pre>"
 
 #: kirigami_ui/EditorToolbar.qml:763
-#, fuzzy
 msgctxt "Opacity {TRANSPARENCY_PERCENTAGE}"
 msgid "Opacity <pre>%1</pre>"
-msgstr "Opacidad: %1"
+msgstr "Opacidad <pre>%1</pre>"
 
 #: kirigami_ui/EditorToolbar.qml:795 kirigami_ui/EditorToolbar.qml:827
-#, fuzzy
 msgctxt "Font size 100% (083)"
 msgid "Font size <pre>%1% (%2)</pre>"
-msgstr "Tamaño de letra: %1% (%2)"
+msgstr "Tamaño de letra <pre>%1% (%2)</pre>"
 
 #: kirigami_ui/EditorToolbar.qml:863
-#, fuzzy
 msgctxt "Line height 100%"
 msgid "Line height <pre>%1%</pre>"
-msgstr "Altura de línea: %1%"
+msgstr "Altura de línea <pre>%1%</pre>"
 
 #: kirigami_ui/EditorToolbar.qml:901
-#, fuzzy
 msgctxt "Word spacing <pre>±00<pre>"
 msgid "Word spacing <pre>%1</pre>"
-msgstr "Espacio entre palabras: %1"
+msgstr "Espacio entre palabras <pre>%1</pre>"
 
 #: kirigami_ui/EditorToolbar.qml:937
-#, fuzzy
 msgctxt "Letter spacing ±00"
 msgid "Letter spacing <pre>%1</pre>"
-msgstr "Espacio entre letras: %1"
+msgstr "Espacio entre letras <pre>%1</pre>"
 
 #: kirigami_ui/EditorToolbar.qml:973
-#, fuzzy
 msgctxt "Step speed 1.00"
 msgid "Step speed <pre>%1</pre>"
-msgstr "Rapidez del incremento: %1"
+msgstr "Rapidez del incremento <pre>%1</pre>"
 
 #: kirigami_ui/EditorToolbar.qml:1014
-#, fuzzy
 msgctxt "Step acceleration 1.15"
 msgid "Step acceleration <pre>%1</pre>"
-msgstr "Aceleración del incremento: %1"
+msgstr "Aceleración del incremento <pre>%1</pre>"
 
 #: kirigami_ui/EditorToolbar.qml:1088
 msgctxt ""
@@ -324,7 +316,6 @@ msgid "Increase velocity"
 msgstr "Aumentar velocidad"
 
 #: kirigami_ui/PrompterPage.qml:91
-#, fuzzy
 msgctxt "English acronym for What You See is What You Get"
 msgid "WYSIWYG"
 msgstr "WYSIWYG"
