@@ -58,7 +58,7 @@ Item {
     readonly property bool atBottom: !prompter.__flipY && __readRegionPlacement===1 || prompter.__flipY && !__readRegionPlacement
     readonly property Scale __flips: Flip{}
     property double __opacity: 0.06
-    property real linesInRegion: 2
+    property real linesInRegion: 3
     property color __color: 'black'
     property alias __readRegionPlacement: readRegion.__placement
     on__ReadRegionPlacementChanged: countdown.requestPaint()
