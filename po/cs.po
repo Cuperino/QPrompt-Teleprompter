@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/Cuperino/QPrompt/issues/new/choose\n"
 "POT-Creation-Date: 2022-07-06 15:38-0400\n"
-"PO-Revision-Date: 2022-05-29 15:52+0000\n"
-"Last-Translator: Jaroslav Svoboda <multi.flexi@seznam.cz>\n"
+"PO-Revision-Date: 2022-07-06 19:59+0000\n"
+"Last-Translator: Javier O. Cordero Pérez <javiercorderoperez@gmail.com>\n"
 "Language-Team: Czech <http://l10n.cuperino.com/projects/qprompt/qprompt-app/"
 "cs/>\n"
 "Language: cs\n"
@@ -187,52 +187,44 @@ msgid "Choose System Font"
 msgstr "Vybrat písmo z OS"
 
 #: kirigami_ui/EditorToolbar.qml:729
-#, fuzzy
 msgctxt "Velocity {VELOCITY_STEPS}"
 msgid "Velocity <pre>%1</pre>"
-msgstr "Rychlost: %1"
+msgstr "Rychlost <pre>%1</pre>"
 
 #: kirigami_ui/EditorToolbar.qml:763
-#, fuzzy
 msgctxt "Opacity {TRANSPARENCY_PERCENTAGE}"
 msgid "Opacity <pre>%1</pre>"
-msgstr "Průhlednost: %1"
+msgstr "Průhlednost <pre>%1</pre>"
 
 #: kirigami_ui/EditorToolbar.qml:795 kirigami_ui/EditorToolbar.qml:827
-#, fuzzy
 msgctxt "Font size 100% (083)"
 msgid "Font size <pre>%1% (%2)</pre>"
-msgstr "Velikost písma: %1% (%2)"
+msgstr "Velikost písma <pre>%1% (%2)</pre>"
 
 #: kirigami_ui/EditorToolbar.qml:863
-#, fuzzy
 msgctxt "Line height 100%"
 msgid "Line height <pre>%1%</pre>"
-msgstr "Řádkování: %1%"
+msgstr "Řádkování <pre>%1%</pre>"
 
 #: kirigami_ui/EditorToolbar.qml:901
-#, fuzzy
 msgctxt "Word spacing <pre>±00<pre>"
 msgid "Word spacing <pre>%1</pre>"
-msgstr "Rozestup slov: %1"
+msgstr "Rozestup slov <pre>%1</pre>"
 
 #: kirigami_ui/EditorToolbar.qml:937
-#, fuzzy
 msgctxt "Letter spacing ±00"
 msgid "Letter spacing <pre>%1</pre>"
-msgstr "Rozestup znaků: %1"
+msgstr "Rozestup znaků <pre>%1</pre>"
 
 #: kirigami_ui/EditorToolbar.qml:973
-#, fuzzy
 msgctxt "Step speed 1.00"
 msgid "Step speed <pre>%1</pre>"
-msgstr "Rychlost krokování: %1"
+msgstr "Rychlost krokování <pre>%1</pre>"
 
 #: kirigami_ui/EditorToolbar.qml:1014
-#, fuzzy
 msgctxt "Step acceleration 1.15"
 msgid "Step acceleration <pre>%1</pre>"
-msgstr "Zrychlení krokování: %1"
+msgstr "Zrychlení krokování <pre>%1</pre>"
 
 #: kirigami_ui/EditorToolbar.qml:1088
 msgctxt ""
@@ -323,9 +315,10 @@ msgid "Increase velocity"
 msgstr "Zvýšit rychlost"
 
 #: kirigami_ui/PrompterPage.qml:91
+#, fuzzy
 msgctxt "English acronym for What You See is What You Get"
 msgid "WYSIWYG"
-msgstr ""
+msgstr "WYSIWYG"
 
 #: kirigami_ui/PrompterPage.qml:95
 msgid "\"What you see is what you get\" mode is On"
@@ -1107,7 +1100,7 @@ msgstr ""
 
 #: prompter/ProjectionsManager.qml:244
 msgid "Close"
-msgstr ""
+msgstr "Zavřít"
 
 #: prompter/ProjectionsManager.qml:268
 msgid ""
