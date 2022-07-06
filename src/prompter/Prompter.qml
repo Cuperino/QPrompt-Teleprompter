@@ -155,8 +155,8 @@ Flickable {
     property int __iBackup: 0
     property int __iDefault:  root.__iDefault
     // Compute slider to decimal separately for performance improvements
-    property real __baseSpeed: viewport.__baseSpeed / 100
-    property real __curvature: viewport.__curvature / 100
+    readonly property real __baseSpeed: viewport.__baseSpeed / 100
+    readonly property real __curvature: viewport.__curvature / 100
     //property int __lastRecordedPosition: 0
     //property real customContentsPlacement: 0.1
     property real contentsPlacement//: 1-rightWidthAdjustmentBar.x
