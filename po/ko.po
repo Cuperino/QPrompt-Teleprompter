@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/Cuperino/QPrompt/issues/new/choose\n"
 "POT-Creation-Date: 2022-07-06 15:38-0400\n"
-"PO-Revision-Date: 2022-07-06 16:19+0000\n"
-"Last-Translator: KyungLae <ray0412@naver.com>\n"
+"PO-Revision-Date: 2022-07-08 00:24+0000\n"
+"Last-Translator: Javier O. Cordero Pérez <javiercorderoperez@gmail.com>\n"
 "Language-Team: Korean <http://l10n.cuperino.com/projects/qprompt/qprompt-app/"
 "ko/>\n"
 "Language: ko\n"
@@ -187,52 +187,44 @@ msgid "Choose System Font"
 msgstr "시스템 글꼴 선택"
 
 #: kirigami_ui/EditorToolbar.qml:729
-#, fuzzy
 msgctxt "Velocity {VELOCITY_STEPS}"
 msgid "Velocity <pre>%1</pre>"
-msgstr "속도: %1"
+msgstr "속도 <pre>%1</pre>"
 
 #: kirigami_ui/EditorToolbar.qml:763
-#, fuzzy
 msgctxt "Opacity {TRANSPARENCY_PERCENTAGE}"
 msgid "Opacity <pre>%1</pre>"
-msgstr "불투명도: %1"
+msgstr "불투명도 <pre>%1</pre>"
 
 #: kirigami_ui/EditorToolbar.qml:795 kirigami_ui/EditorToolbar.qml:827
-#, fuzzy
 msgctxt "Font size 100% (083)"
 msgid "Font size <pre>%1% (%2)</pre>"
-msgstr "글꼴 크기: %1% (%2)"
+msgstr "글꼴 크기 <pre>%1% (%2)</pre>"
 
 #: kirigami_ui/EditorToolbar.qml:863
-#, fuzzy
 msgctxt "Line height 100%"
 msgid "Line height <pre>%1%</pre>"
-msgstr "줄 높이: %1%"
+msgstr "줄 높이 <pre>%1%</pre>"
 
 #: kirigami_ui/EditorToolbar.qml:901
-#, fuzzy
 msgctxt "Word spacing <pre>±00<pre>"
 msgid "Word spacing <pre>%1</pre>"
-msgstr "단어 간격: %1"
+msgstr "단어 간격 <pre>%1</pre>"
 
 #: kirigami_ui/EditorToolbar.qml:937
-#, fuzzy
 msgctxt "Letter spacing ±00"
 msgid "Letter spacing <pre>%1</pre>"
-msgstr "글자 간격: %1"
+msgstr "글자 간격 <pre>%1</pre>"
 
 #: kirigami_ui/EditorToolbar.qml:973
-#, fuzzy
 msgctxt "Step speed 1.00"
 msgid "Step speed <pre>%1</pre>"
-msgstr "스텝 속도: %1"
+msgstr "스텝 속도 <pre>%1</pre>"
 
 #: kirigami_ui/EditorToolbar.qml:1014
-#, fuzzy
 msgctxt "Step acceleration 1.15"
 msgid "Step acceleration <pre>%1</pre>"
-msgstr "스텝 가속도: %1"
+msgstr "스텝 가속도 <pre>%1</pre>"
 
 #: kirigami_ui/EditorToolbar.qml:1088
 msgctxt ""
