@@ -441,11 +441,12 @@ Kirigami.ApplicationWindow {
                 case Prompter.CloseActions.LoadNew:
                     root.pageStack.currentItem.document.modified = false
                     root.pageStack.currentItem.document.newDocument();
-                break;
+                    break;
                 case Prompter.CloseActions.Open:
                     root.pageStack.currentItem.openDialog.open();
                     break;
                 case Prompter.CloseActions.Quit: Qt.quit();
+                    break;
                 case Prompter.CloseActions.Ignore:
                 default: break;
             }
@@ -453,7 +454,7 @@ Kirigami.ApplicationWindow {
         //onSaveClicked: root.pageStack.currentItem.document.saveDialog(true)
         onAccepted:
         {
-            root.pageStack.currentItem.document.saveDialog(parseInt(root.onDiscard)==Prompter.CloseActions.Quit)
+            root.pageStack.currentItem.document.saveDialog(parseInt(root.onDiscard)===Prompter.CloseActions.Quit)
         }
     }
 }
