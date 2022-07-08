@@ -314,7 +314,7 @@ Kirigami.ApplicationWindow {
         ]
         topContent: RowLayout {
             Button {
-                text: i18nc("Main menu and global actions. Load document that welcomes users.", "Load User &Welcome")
+                text: i18nc("Main menu and global actions. Load document that welcomes users.", "Load &Welcome")
                 flat: true
                 onClicked: {
                     root.pageStack.currentItem.document.loadGuide()
@@ -632,7 +632,7 @@ Kirigami.ApplicationWindow {
             //}
             //Labs.MenuSeparator { }
             Labs.MenuItem {
-                text: i18nc("Main menu and global actions. Load document that welcomes users.", "Load User &Welcome")
+                text: i18nc("Main menu and global actions. Load document that welcomes users.", "Load &Welcome")
                 icon.name: "help-info"
                 onTriggered: root.pageStack.currentItem.document.loadGuide()
             }
