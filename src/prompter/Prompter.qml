@@ -847,7 +847,7 @@ Flickable {
                 openDialog.open()
         }
         function saveAsDialog() {
-            saveDialog.open(parseInt(root.onDiscard)==Prompter.CloseActions.Quit)
+            saveDialog.open(parseInt(root.onDiscard)===Prompter.CloseActions.Quit)
         }
         function saveDialog(quit=false) {
             //document.quitOnSave = quit
