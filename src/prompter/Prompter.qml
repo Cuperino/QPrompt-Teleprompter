@@ -441,7 +441,7 @@ Flickable {
         //propagateComposedEvents: false
         acceptedButtons: Qt.LeftButton
         hoverEnabled: false
-        scrollGestureEnabled: false
+        scrollGestureEnabled: true
         // The following placement allows covering beyond the boundaries of the editor and into the prompter's margins.
         anchors.fill: parent
 //        anchors.left: parent.left
@@ -449,7 +449,7 @@ Flickable {
 //        y: -prompter.height
 //        height: parent.height+2*prompter.height
         cursorShape: (pressed || dragging) ? Qt.ClosedHandCursor : Qt.OpenHandCursor
-        onWheel: {
+        onWheel: (wheel)=> {
             if (prompter.__noScroll && parseInt(prompter.state)===Prompter.States.Prompting)
                 return;
             else if (parseInt(prompter.state)===Prompter.States.Prompting && (prompter.__scrollAsDial && !(wheel.modifiers & Qt.ControlModifier || wheel.modifiers & Qt.MetaModifier) || !prompter.__scrollAsDial && (wheel.modifiers & Qt.ControlModifier || wheel.modifiers & Qt.MetaModifier))) {
