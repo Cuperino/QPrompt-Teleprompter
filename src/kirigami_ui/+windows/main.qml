@@ -314,7 +314,7 @@ Kirigami.ApplicationWindow {
         ]
         topContent: RowLayout {
             Button {
-                text: i18nc("Main menu and global actions. Load document that welcomes users.", "Load User &Welcome")
+                text: i18nc("Main menu and global actions. Load document that welcomes users.", "Load &Welcome")
                 flat: true
                 onClicked: {
                     root.pageStack.currentItem.document.loadGuide()
