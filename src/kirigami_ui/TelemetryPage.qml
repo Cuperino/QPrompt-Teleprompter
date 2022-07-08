@@ -50,6 +50,8 @@ Kirigami.ScrollablePage {
             text: ""
         }
         Label {
+            Layout.fillWidth: true
+            wrapMode: Text.WordWrap
             text: i18n("The following page is a placeholder. Telemetry has not yet been implemented.")
         }
         Label {

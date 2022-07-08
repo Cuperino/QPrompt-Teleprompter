@@ -37,15 +37,6 @@ Font license info
    Homepage:  http://www.entypo.com
 
 
-## Fontelico
-
-   Copyright (C) 2012 by Fontello project
-
-   Author:    Crowdsourced, for Fontello project
-   License:   SIL (http://scripts.sil.org/OFL)
-   Homepage:  http://fontello.com
-
-
 ## Typicons
 
    (c) Stephen Hutchings 2012
@@ -55,15 +46,6 @@ Font license info
    Homepage:  http://typicons.com/
 
 
-## Linecons
-
-   Copyright (C) 2013 by Designmodo
-
-   Author:    Designmodo for Smashing Magazine
-   License:   CC BY ()
-   Homepage:  http://designmodo.com/linecons-free/
-
-
 ## Web Symbols
 
    Copyright (c) 2011 by Just Be Nice studio. All rights reserved.
@@ -71,15 +53,6 @@ Font license info
    Author:    Just Be Nice studio
    License:   SIL (http://scripts.sil.org/OFL)
    Homepage:  http://www.justbenicestudio.com/
-
-
-## Zocial
-
-   Copyright (C) 2012 by Sam Collins
-
-   Author:    Sam Collins
-   License:   MIT (http://opensource.org/licenses/mit-license.php)
-   Homepage:  http://zocial.smcllns.com/
 
 
 ## Modern Pictograms
