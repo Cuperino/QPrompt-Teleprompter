@@ -24,5 +24,16 @@
         <file alias="fonts/kalpurush.ttf">fonts/editor/Kalpurush/Kalpurush.ttf</file>
         <file alias="fonts/palanquin.ttf">fonts/editor/Palanquin-Regular.ttf</file>
         <!-- <file alias="fonts/libertinus-serif.otf">fonts/editor/Libertinus/static/OTF/LibertinusSerif-Regular.otf</file> -->
+        <file>documents/welcome_cs.html</file>
+        <file>documents/welcome_de.html</file>
+        <file>documents/welcome_fr.html</file>
+        <file>documents/welcome_it.html</file>
+        <file>documents/welcome_ja.html</file>
+        <file>documents/welcome_ko.html</file>
+        <file>documents/welcome_nl.html</file>
+        <file>documents/welcome_oc.html</file>
+        <file>documents/welcome_pl.html</file>
+        <file>documents/welcome_ru.html</file>
+        <file>documents/welcome_zh_CN.html</file>
     </qresource>
 </RCC>
