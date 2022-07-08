@@ -247,7 +247,7 @@ ToolBar {
             id: undoRedoRow
             visible: Kirigami.Settings.isMobile ? parseInt(prompter.state)===Prompter.States.Editing && 'ios'!==Qt.platform.os : root.width>458
             ToolButton {
-                text: Qt.application.layoutDirection===Qt.LeftToRight?"\uE800":"\uE801"
+                text: Qt.application.layoutDirection===Qt.LeftToRight?"\uE74F":"\uE801"
                 contentItem: Loader { sourceComponent: textComponent }
                 font.family: iconFont.name
                 font.pointSize: 13
@@ -256,7 +256,7 @@ ToolBar {
                 onClicked: prompter.editor.undo()
             }
             ToolButton {
-                text: Qt.application.layoutDirection===Qt.LeftToRight?"\uE801":"\uE800"
+                text: Qt.application.layoutDirection===Qt.LeftToRight?"\uE801":"\uE74F"
                 contentItem: Loader { sourceComponent: textComponent }
                 font.family: iconFont.name
                 font.pointSize: 13
@@ -672,6 +672,18 @@ ToolBar {
         Row {
             id: advancedButtonsRow
             //visible: parseInt(prompter.state)===Prompter.States.Editing
+            ToolButton {
+                id: wheelThrottleSettingsButton
+                visible: !Kirigami.Settings.isMobile // || parseInt(prompter.state)===Prompter.States.Editing
+                text: "\uE7FF"
+                contentItem: Loader { sourceComponent: textComponent }
+                font.family: iconFont.name
+                font.pointSize: 13
+                focusPolicy: Qt.TabFocus
+                checked: prompter.document.namedMarker
+                checkable: true
+                onClicked: wheelSettings.open()
+            }
             ToolButton {
                 text: "\uE806"
                 contentItem: Loader { sourceComponent: textComponent }

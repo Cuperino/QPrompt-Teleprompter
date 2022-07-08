@@ -52,7 +52,8 @@ Kirigami.ApplicationWindow {
     property bool __telemetry: true
     property bool forceQtTextRenderer: false
     property bool passiveNotifications: true
-
+    property bool __throttleWheel: true
+    property int __wheelThrottleFactor: 8
     //property int prompterVisibility: Kirigami.ApplicationWindow.Maximized
     property double __opacity: 1
     property int __iDefault: 3
@@ -73,6 +74,8 @@ Kirigami.ApplicationWindow {
         property alias scrollAsDial: root.__scrollAsDial
         property alias invertScrollDirection: root.__invertScrollDirection
         property alias invertArrowKeys: root.__invertArrowKeys
+        property alias throttleWheel: root.__throttleWheel
+        property alias wheelThrottleFactor: root.__wheelThrottleFactor
     }
     Settings {
         category: "editor"
@@ -213,6 +216,12 @@ Kirigami.ApplicationWindow {
                     }
                 }
                 Kirigami.Action {
+                    visible: ["android", "ios", "tvos", "ipados", "qnx"].indexOf(Qt.platform.os)===-1
+                    text: i18nc("Open 'scroll settings' from main menu and global menu actions", "Scroll throttle settings")
+                    iconName: "gnumeric-object-scrollbar" // "keyboard"
+                    onTriggered: wheelSettings.open()
+                }
+                Kirigami.Action {
                     text: i18nc("Main menu and global menu actions. Have up arrow behave like down arrow and vice versa while prompting.", "Invert &arrow keys")
                     enabled: !root.__noScroll
                     iconName: "circular-arrow-shape"
@@ -304,6 +313,10 @@ Kirigami.ApplicationWindow {
             // }
         }
         content: []
+
+        WheelSettingsOverlay{
+            id: wheelSettings
+        }
     }
 
     // Right Context Drawer

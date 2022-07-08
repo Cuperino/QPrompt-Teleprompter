@@ -154,6 +154,8 @@ Flickable {
     property int __i: __iDefault
     property int __iBackup: 0
     property int __iDefault:  root.__iDefault
+    property bool throttleWheel: root.__throttleWheel
+    property int wheelThrottleFactor: root.__wheelThrottleFactor
     // Compute slider to decimal separately for performance improvements
     readonly property real __baseSpeed: viewport.__baseSpeed / 100
     readonly property real __curvature: viewport.__curvature / 100
@@ -437,11 +439,10 @@ Flickable {
         id: mouse
         // Mouse wheel controls
         property int throttledIteration: 0
-        property int throttleIterations: 8
         //propagateComposedEvents: false
         acceptedButtons: Qt.LeftButton
         hoverEnabled: false
-        scrollGestureEnabled: true
+        scrollGestureEnabled: Qt.platform.os==="osx"
         // The following placement allows covering beyond the boundaries of the editor and into the prompter's margins.
         anchors.fill: parent
 //        anchors.left: parent.left
@@ -453,7 +454,7 @@ Flickable {
             if (prompter.__noScroll && parseInt(prompter.state)===Prompter.States.Prompting)
                 return;
             else if (parseInt(prompter.state)===Prompter.States.Prompting && (prompter.__scrollAsDial && !(wheel.modifiers & Qt.ControlModifier || wheel.modifiers & Qt.MetaModifier) || !prompter.__scrollAsDial && (wheel.modifiers & Qt.ControlModifier || wheel.modifiers & Qt.MetaModifier))) {
-                if (!throttledIteration) {
+                if (!(throttleWheel && throttledIteration)) {
                     if (wheel.angleDelta.y > 0) {
                         if (prompter.__invertScrollDirection)
                             increaseVelocity(wheel);
@@ -472,7 +473,7 @@ Flickable {
                     }
                     // Do nothing if wheel.angleDelta.y === 0
                 }
-                throttledIteration = (throttledIteration+1)%throttleIterations
+                throttledIteration = (throttledIteration+1)%prompter.wheelThrottleFactor
             }
             else {
                 // Regular scroll
