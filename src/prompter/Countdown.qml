@@ -237,10 +237,6 @@ Item {
         id: configuration
         onSheetOpenChanged: prompterPage.actions.main.checked = sheetOpen
 
-        background: Rectangle {
-            color: appTheme.__backgroundColor
-            anchors.fill: parent
-        }
         header: Kirigami.Heading {
             text: i18n("Countdown Setup")
             level: 1
