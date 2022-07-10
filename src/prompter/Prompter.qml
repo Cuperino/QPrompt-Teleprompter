@@ -98,6 +98,11 @@ Flickable {
         Open,
         Ignore
     }
+    enum AtEndActions {
+        Stop,
+        Exit,
+        Loop
+    }
     readonly property real editorXWidth: Math.abs(editor.x)/prompter.width
     readonly property real editorXOffset: positionHandler.x/prompter.width
     readonly property real centreX: width / 2;
@@ -144,6 +149,8 @@ Flickable {
     // Scrolling settings
     property bool performFileOperations: false
     property bool winding: false
+    property int atEndAction: Prompter.AtEndActions.Stop
+    property int atEndLoopDelay: 3
     property int keyBeingPressed: 0
     property bool __scrollAsDial: root.__scrollAsDial
     property bool __invertArrowKeys: root.__invertArrowKeys
@@ -205,12 +212,19 @@ Flickable {
         property int toggle: Qt.Key_F9
         property int toggleModifiers: Qt.NoModifier
     }
+    Settings {
+        category: "atEnd"
+        property alias atEndAction: prompter.atEndAction
+        property alias atEndLoopDelay: prompter.atEndLoopDelay
+    }
     // Toggle prompter state
     function cancel() {
         state = Prompter.States.Editing
     }
     function toggle() {
-
+        // Cancel auto loop if running
+        if (loop.running)
+            loop.stop()
         // Switch to next corresponding prompter state, relative to current configuration
         let nextIndex = (parseInt(state) + 1) % (Prompter.States.Prompting + 1)
         if (nextIndex===Prompter.States.Standby) {
@@ -417,10 +431,64 @@ Flickable {
                     root.alert(0)
                     if (root.passiveNotifications)
                         showPassiveNotification(i18n("Animation Completed"));
-                    if (parseInt(prompter.state) === Prompter.States.Prompting && !prompter.__atStart)
-                        prompter.toggle();
+                    if (parseInt(prompter.state) === Prompter.States.Prompting && !prompter.__atStart) {
+                        switch (prompter.atEndAction) {
+                            case Prompter.AtEndActions.Exit:
+                                return prompter.toggle();
+                            case Prompter.AtEndActions.Loop:
+                                loop.start()
+                        }
+                    }
                 }
             }
+        }
+    }
+    SequentialAnimation {
+        id: loop
+//        PropertyAction {
+//            target: prompter;
+//            property: "__i";
+//            value: 0;
+//        }
+//        PropertyAction {
+//            target: prompter;
+//            property: "position";
+//            value: position;
+//        }
+        onStopped: loopCountdown.resetCountdown()
+        NumberAnimation {
+            target: loopCountdown;
+            property: "height";
+            from: loopCountdown.height
+            to: 0
+            duration: 1000*prompter.atEndLoopDelay
+            easing.type: Easing.OutQuad
+        }
+        NumberAnimation {
+            target: prompter
+            property: "position"
+            to: __jitterMargin-topMargin+1
+            duration: Kirigami.Units.veryLongDuration
+            easing.type: Easing.InOutQuart
+        }
+//        ScriptAction {
+//            script: timer.reset();
+//        }
+//        PropertyAction {
+//            target: prompter;
+//            property: "state";
+//            value: Prompter.States.Standby;
+//        }
+        // Enter edit mode
+        ScriptAction {
+            script: loopCountdown.resetCountdown();
+        }
+        ScriptAction {
+            script: prompter.toggle();
+        }
+        // Enter whichever mode follows?
+        ScriptAction {
+            script: prompter.toggle();
         }
     }
     NumberAnimation on position {
@@ -589,14 +657,44 @@ Flickable {
                         anchors.fill: parent
                         color: "#000"
                         opacity: 0.3
-                        MouseArea {
-                            property int c: 0
-                            anchors.fill: parent
-                            cursorShape: Qt.PointingHandCursor
-                            onClicked: {
+                    }
+                }
+                RowLayout {
+                    anchors.horizontalCenter: parent.horizontalCenter
+                    anchors.verticalCenter: rect.verticalCenter
+                    anchors.top: editor.bottom
+                    //anchors.bottom: parent.bottom
+                    spacing: 20
+                    opacity: parseInt(prompter.state) === Prompter.States.Prompting ? 0.3 : 0.7
+                    Behavior on opacity {
+                        enabled: true
+                        animation: NumberAnimation {
+                            duration: Kirigami.Units.longDuration
+                            easing.type: Easing.OutQuad
+                        }
+                    }
+                    RowLayout {
+                        FontLoader {
+                            id: iconFont
+                            source: "fonts/fontello.ttf"
+                        }
+                        Button {
+                            id: rewindButton
+                            text: "\uE81A"
+                            font.pixelSize: 2*fontSize
+                            font.family: iconFont.name
+                            flat: !(pressed || prompter.__atStart)
+                            //cursorShape: Qt.PointingHandCursor
+                            onClicked:
                                 if (root.passiveNotifications)
                                     showPassiveNotification(i18n("Double tap to go back to the start"));
-                            }
+                            // Using onPressed to get an immediate response. We should to be forgiving of users who may take too long to press time based buttons
+                            onPressed:
+                                if (loop.running) {
+                                    loop.stop()
+                                    showPassiveNotification(i18n("Auto rewind cancelled"));
+                                    prompter.focus = true
+                                }
                             onDoubleClicked: {
                                 reset.toStart()
                                 //if (root.passiveNotifications) {
@@ -611,6 +709,145 @@ Flickable {
                                     //}
                                     //showPassiveNotification(goToStartNotification);
                                 //}
+                            }
+                            Rectangle {
+                                anchors.fill: parent
+                                anchors.topMargin: 6
+                                anchors.bottomMargin: anchors.topMargin
+                                color: "transparent"
+                                border.color: "#FFF"
+                                border.width: loopCountdown.borderWidth
+                                Rectangle {
+                                    id: loopCountdown
+                                    property int borderWidth: 2
+                                    function resetCountdown() {
+                                        height = rewindButton.height - 2 * (loopCountdown.borderWidth + parent.anchors.topMargin);
+                                    }
+                                    visible: loop.running
+                                    anchors.left: parent.left
+                                    anchors.right: parent.right
+                                    anchors.bottom: parent.bottom
+                                    anchors.leftMargin: borderWidth
+                                    anchors.rightMargin: borderWidth
+                                    anchors.bottomMargin: borderWidth
+                                    height: parent.height - 2*borderWidth
+                                    color: "#FFF"
+                                }
+                                MouseArea {
+                                    anchors.fill: parent
+                                    acceptedButtons: Qt.NoButton
+                                    cursorShape: Qt.PointingHandCursor
+                                }
+                            }
+                        }
+                    }
+                    ColumnLayout {
+                        RowLayout {
+                            // Toggle all buttons off
+                            function toggleButtonsOff() {
+                                for (let i=1; i<children.length; i++)
+                                    children[i].checked = false;
+                            }
+                            Label {
+                                //text: i18n("End reached")
+                                text: i18nc("Action to perform when end is reached", "At end:")
+                                font.pixelSize: fontSize
+                            }
+                            Button {
+                                text: "\uE815"
+                                font.pixelSize: fontSize
+                                font.family: iconFont.name
+                                flat: !(pressed||checked)
+                                checkable: true
+                                checked: atEndAction===Prompter.AtEndActions.Stop
+                                onClicked: {
+                                    if (checked) {
+                                        parent.toggleButtonsOff()
+                                        atEndAction=Prompter.AtEndActions.Stop
+                                    }
+                                    checked = true
+                                }
+                                onReleased: {
+                                    checked = true
+                                    prompter.focus = true
+                                }
+                                MouseArea {
+                                    anchors.fill: parent
+                                    acceptedButtons: Qt.NoButton
+                                    cursorShape: parent.checked ? Qt.CrossCursor : Qt.PointingHandCursor
+                                }
+                            }
+                            Button {
+                                text: "\u21B6"
+                                font.pixelSize: fontSize
+                                font.family: iconFont.name
+                                flat: !(pressed||checked)
+                                checkable: true
+                                checked: atEndAction===Prompter.AtEndActions.Exit
+                                onClicked: {
+                                    if (checked) {
+                                        parent.toggleButtonsOff()
+                                        atEndAction=Prompter.AtEndActions.Exit
+                                    }
+                                    checked = true
+                                }
+                                onReleased: {
+                                    checked = true
+                                    prompter.focus = true
+                                }
+                                MouseArea {
+                                    anchors.fill: parent
+                                    acceptedButtons: Qt.NoButton
+                                    cursorShape: parent.checked ? Qt.CrossCursor : Qt.PointingHandCursor
+                                }
+                            }
+                            Button {
+                                text: "🔁"
+                                font.pixelSize: fontSize
+                                font.family: iconFont.name
+                                flat: !(pressed||checked)
+                                checkable: true
+                                checked: atEndAction===Prompter.AtEndActions.Loop
+                                onClicked: {
+                                    if (checked) {
+                                        parent.toggleButtonsOff()
+                                        atEndAction=Prompter.AtEndActions.Loop
+                                    }
+                                    checked = true
+                                }
+                                onReleased: {
+                                    checked = true
+                                    prompter.focus = true
+                                }
+                                MouseArea {
+                                    anchors.fill: parent
+                                    acceptedButtons: Qt.NoButton
+                                    cursorShape: parent.checked ? Qt.CrossCursor : Qt.PointingHandCursor
+                                }
+                            }
+                        }
+                        RowLayout {
+                            enabled: atEndAction===Prompter.AtEndActions.Loop
+                            Button {
+                                text: "\uE858"
+                                font.pixelSize: fontSize
+                                font.family: iconFont.name
+                                flat: true
+                                MouseArea {
+                                    anchors.fill: parent
+                                    acceptedButtons: Qt.NoButton
+                                    cursorShape: Qt.CrossCursor
+                                }
+                            }
+                            SpinBox {
+                                value: prompter.atEndLoopDelay
+                                from: 1
+                                to: 60
+                                onValueModified: {
+                                    focus: true
+                                    prompter.atEndLoopDelay = value
+                                }
+                                Layout.fillWidth: true
                             }
                         }
                     }
