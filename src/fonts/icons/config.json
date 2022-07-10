@@ -55,12 +55,6 @@
       "src": "fontawesome"
     },
     {
-      "uid": "f6766a8b042c2453a4e153af03294383",
-      "css": "list-numbered",
-      "code": 61643,
-      "src": "fontawesome"
-    },
-    {
       "uid": "a2a74f5e7b7d9ba054897d8c795a326a",
       "css": "list-bullet",
       "code": 61642,
@@ -307,12 +301,6 @@
       "src": "fontawesome"
     },
     {
-      "uid": "acf41aa4018e58d49525665469e35665",
-      "css": "thumbs-up",
-      "code": 59424,
-      "src": "fontawesome"
-    },
-    {
       "uid": "c0a07aca383ff2a164a4d691fa46e35c",
       "css": "left-open-1",
       "code": 59425,
@@ -389,12 +377,6 @@
       "css": "mail-alt",
       "code": 61664,
       "src": "fontawesome"
-    },
-    {
-      "uid": "4568bba1dba45522fc539c733c9b35e5",
-      "css": "twitter",
-      "code": 59453,
-      "src": "typicons"
     },
     {
       "uid": "19c50c52858a81de58f9db488aba77bc",
@@ -766,6 +748,24 @@
       "uid": "18e30ad120ce4b15d7e5c797e4bf0ee8",
       "css": "hand-pointer-o",
       "code": 62042,
+      "src": "fontawesome"
+    },
+    {
+      "uid": "ce5e29aa5208417700e7f7012a236c00",
+      "css": "undo",
+      "code": 8630,
+      "src": "iconic"
+    },
+    {
+      "uid": "d17030afaecc1e1c22349b99f3c4992a",
+      "css": "star-empty",
+      "code": 9734,
+      "src": "fontawesome"
+    },
+    {
+      "uid": "f6766a8b042c2453a4e153af03294383",
+      "css": "list-numbered",
+      "code": 61643,
       "src": "fontawesome"
     }
   ]
