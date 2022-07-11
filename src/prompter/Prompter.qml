@@ -217,6 +217,11 @@ Flickable {
         property alias atEndAction: prompter.atEndAction
         property alias atEndLoopDelay: prompter.atEndLoopDelay
     }
+    Settings {
+        category: "prompterPlacement"
+        property alias width: prompter.contentsPlacement
+        property alias offset: positionHandler.placement
+    }
     // Toggle prompter state
     function cancel() {
         state = Prompter.States.Editing
@@ -335,6 +340,8 @@ Flickable {
     function setContentWidth() {
         //contentsPlacement = Math.abs(editor.x)/prompter.width
         contentsPlacement = (Math.abs(editor.x)-fontSize/2)/(prompter.width-fontSize)
+        const offset = 0
+        positionHandler.placement = (2 * (editor.x - 2 * offset) + editor.width - positionHandler.width) / positionHandler.width
     }
 
     function ensureVisible(r)
@@ -564,9 +571,10 @@ Flickable {
     }
     Item {
         id: positionHandler
-
         // Force positionHandler's position to reset to center on resize.
-        x: (editor.x - (width - editor.width)/2) / 2
+        //x: (editor.x - (width - editor.width)/2) / 2
+        property real placement: 0
+        x: (editor.x - (width - editor.width + placement * width)/2) / 2
 
         // Keep dimensions at their right size, but adjustable
         width: parent.width
@@ -946,10 +954,7 @@ Flickable {
                         anchors {top: parent.top; bottom: parent.bottom; horizontalCenter: parent.horizontalCenter}
                     }
                     //onPressed: editor.invertDrag = true
-                    //onReleased: {
-                    //editor.invertDrag   = false
-                    //prompter.setContentWidth()
-                    //}
+                    onReleased: positionHandler.placement = (2 * (editor.x - 2 * positionHandler.x) + editor.width - positionHandler.width) / positionHandler.width
                 }
 
                 Keys.onPressed: {
