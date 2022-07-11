@@ -168,7 +168,7 @@ Flickable {
     readonly property real __curvature: viewport.__curvature / 100
     //property int __lastRecordedPosition: 0
     //property real customContentsPlacement: 0.1
-    property real contentsPlacement//: 1-rightWidthAdjustmentBar.x
+    property real contentsPlacement: 0
     // Background
     property double __opacity: root.__opacity
     // Configurable keys commands
@@ -193,8 +193,8 @@ Flickable {
         property int decreaseVelocityModifiers: Qt.NoModifier
         property int stop: Qt.Key_Space
         property int stopModifiers: Qt.NoModifier
-        property int pause: Qt.Key_Pause
-        property int pauseModifiers: Qt.NoModifier
+        property int pause: Qt.Key_P
+        property int pauseModifiers: Qt.ControlModifier
         property int reverse: Qt.Key_I
         property int reverseModifiers: Qt.NoModifier
         property int rewind: Qt.Key_R
@@ -1556,7 +1556,7 @@ Flickable {
             }
             PropertyChanges {
                 target: timer
-                elapsedSeconds: 0
+                elapsedMilliseconds: 0
             }
             PropertyChanges {
                 target: root
