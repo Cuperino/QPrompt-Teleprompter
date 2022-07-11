@@ -56,17 +56,12 @@
 
 Q_DECL_EXPORT int main(int argc, char *argv[])
 {
-
-#if defined(Q_OS_ANDROID) || defined(Q_OS_IOS) || defined(Q_OS_WASM) || defined(Q_OS_WATCHOS) || defined(Q_OS_QNX)
 #if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
     QGuiApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
 #endif
+#if defined(Q_OS_ANDROID) || defined(Q_OS_IOS) || defined(Q_OS_WASM) || defined(Q_OS_WATCHOS) || defined(Q_OS_QNX)
     QGuiApplication app(argc, argv);
 #else
-
-#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
-    QGuiApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
-#endif
     QApplication app(argc, argv);
 #endif
     KLocalizedString::setApplicationDomain("qprompt");
@@ -153,11 +148,18 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
 //    // connect(stopAction, &QAction::triggered, this, &MainWindow::activated);
 #endif
 
-    QHotkey hotkey(QKeySequence("Alt+Q"), true, &app);
-    qDebug() << "Is segistered:" << hotkey.isRegistered();
+    // Toggle transparency of all windows
+    QHotkey hotkey(QKeySequence("Ctrl+Alt+F10"), true, &app);
     QObject::connect(&hotkey, &QHotkey::activated, qApp, [&]() {
-        qDebug() << "Hotkey Activated - the application will quit now";
-        qApp->quit();
+        QWindowList windows = app.allWindows();
+        QWindow *topWindow = windows.first();
+        const bool initiallyOpaque = topWindow->opacity()==1.0;
+        const int windowAmount = windows.length();
+        for (int i=0; i<windowAmount; i++)
+            if (initiallyOpaque)
+                windows[i]->setOpacity(0.2);
+            else
+                windows[i]->setOpacity(1.0);
     });
 
     // Un-comment to force RightToLeft Layout for debugging purposes
