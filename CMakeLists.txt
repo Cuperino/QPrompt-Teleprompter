@@ -119,9 +119,9 @@ if(GIT_FOUND AND EXISTS "${PROJECT_SOURCE_DIR}/.git")
         endif()
     endif()
 endif()
-if (NOT EXISTS "${PROJECT_SOURCE_DIR}/3rdparty/KDMacTouchBar/CMakeLists.txt" AND APPLE AND NOT IOS)
-    message(FATAL_ERROR "KDMacTouchBar was not downloaded. GIT_SUBMODULE was turned off or failed.")
-endif()
+#if (NOT EXISTS "${PROJECT_SOURCE_DIR}/3rdparty/KDMacTouchBar/CMakeLists.txt" AND APPLE AND NOT IOS)
+#    message(FATAL_ERROR "KDMacTouchBar was not downloaded. GIT_SUBMODULE was turned off or failed.")
+#endif()
 
 
 if(ANDROID)
@@ -198,10 +198,10 @@ elseif(WIN32 OR APPLE)
     find_package(QHotkey 1.5.0 REQUIRED COMPONENTS
         QHotkey
     )
-    # KDMacTouchBar (Mac only)
-    if(APPLE AND NOT IOS)
-        add_subdirectory("3rdparty/KDMacTouchBar" build/kdmactouchbar)
-    endif()
+#    # KDMacTouchBar (Mac only)
+#    if(APPLE AND NOT IOS)
+#        add_subdirectory("3rdparty/KDMacTouchBar" build/kdmactouchbar)
+#    endif()
 else()
     find_package(Qt${QT_VERSION_MAJOR} ${QT5_MIN_VERSION} REQUIRED NO_MODULE COMPONENTS
         Core
