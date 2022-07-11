@@ -8,10 +8,10 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/Cuperino/QPrompt/issues/new/choose\n"
 "POT-Creation-Date: 2022-07-06 15:38-0400\n"
-"PO-Revision-Date: 2022-04-18 05:00+0000\n"
-"Last-Translator: Javier O. Cordero Pérez <javiercorderoperez@gmail.com>\n"
-"Language-Team: Italian <http://l10n.cuperino.com/projects/qprompt/qprompt-"
-"app/it/>\n"
+"PO-Revision-Date: 2022-07-11 23:45+0000\n"
+"Last-Translator: Juan Pablo Lorier <jplorier@gmail.com>\n"
+"Language-Team: Italian <http://l10n.cuperino.com/projects/qprompt/"
+"qprompt-app/it/>\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -23,44 +23,44 @@ msgstr ""
 #: kirigami_ui/main.qml:170 kirigami_ui/main.qml:358
 msgctxt "Main menu and global menu actions"
 msgid "&New"
-msgstr ""
+msgstr "&Nuovo"
 
 #: kirigami_ui/+android/main.qml:169 kirigami_ui/+windows/main.qml:176
 #: kirigami_ui/main.qml:176 kirigami_ui/main.qml:362
 msgctxt "Main menu and global menu actions"
 msgid "&Open"
-msgstr ""
+msgstr "&Aprire"
 
 #: kirigami_ui/+android/main.qml:178 kirigami_ui/+windows/main.qml:185
 #: kirigami_ui/main.qml:185 kirigami_ui/main.qml:366
 msgctxt "Main menu and global menu actions"
 msgid "&Save"
-msgstr ""
+msgstr "&Salva"
 
 #: kirigami_ui/+android/main.qml:187 kirigami_ui/+windows/main.qml:194
 #: kirigami_ui/main.qml:194
 msgctxt "Main menu and global menu actions"
 msgid "Save &As"
-msgstr ""
+msgstr "Salva &Come"
 
 #: kirigami_ui/+android/main.qml:197 kirigami_ui/+windows/main.qml:204
 #: kirigami_ui/main.qml:204
 msgctxt "Main menu actions"
 msgid "&Recent Files"
-msgstr ""
+msgstr "&File Recenti"
 
 #: kirigami_ui/+android/main.qml:205 kirigami_ui/+windows/main.qml:212
 #: kirigami_ui/main.qml:212
 msgctxt "Main menu actions. Menu regarding input settings."
 msgid "&Controls Settings"
-msgstr ""
+msgstr "&Impostazioni"
 
 #: kirigami_ui/+android/main.qml:209 kirigami_ui/+windows/main.qml:216
 #: kirigami_ui/main.qml:216
 msgctxt ""
 "Main menu and global menu actions. Opens dialog to configure keyboard inputs."
 msgid "Keyboard Inputs"
-msgstr ""
+msgstr "Tastiera del computer"
 
 #: kirigami_ui/+android/main.qml:216 kirigami_ui/+windows/main.qml:223
 #: kirigami_ui/main.qml:223 kirigami_ui/main.qml:603
@@ -68,7 +68,7 @@ msgctxt ""
 "Main menu and global menu actions. Have up arrow behave like down arrow and "
 "vice versa while prompting."
 msgid "Invert &arrow keys"
-msgstr ""
+msgstr "Tasti &freccia inversa"
 
 #: kirigami_ui/+android/main.qml:224 kirigami_ui/+windows/main.qml:231
 #: kirigami_ui/main.qml:231 kirigami_ui/main.qml:610
@@ -149,7 +149,7 @@ msgstr ""
 #: kirigami_ui/EditorToolbar.qml:322
 msgctxt "Editor actions. Text alignment."
 msgid "C&enter"
-msgstr ""
+msgstr "C&entrato"
 
 #: kirigami_ui/EditorToolbar.qml:476
 msgctxt "FontName (Translatable font details)"
