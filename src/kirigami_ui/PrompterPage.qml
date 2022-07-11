@@ -73,14 +73,14 @@ Kirigami.Page {
             id: decreaseVelocityButton
             enabled: Kirigami.Settings.isMobile
             text: pageStack.globalToolBar.actualStyle === Kirigami.ApplicationHeaderStyle.None ? i18n("Decrease velocity") : ""
-            iconName: Qt.application.layoutDirection === Qt.RightToLeft ? "go-next" : "go-previous"
+            iconName: Qt.application.layoutDirection === Qt.RightToLeft ? "go-previous-rtl" : "go-previous"
             onTriggered: parseInt(prompter.state) === Prompter.States.Prompting ? viewport.prompter.decreaseVelocity(false) : prompter.goToPreviousMarker()
         }
         right: Kirigami.Action {
             id: increaseVelocityButton
             enabled: Kirigami.Settings.isMobile
             text: pageStack.globalToolBar.actualStyle === Kirigami.ApplicationHeaderStyle.None ? i18n("Increase velocity") : ""
-            iconName: Qt.application.layoutDirection === Qt.RightToLeft ? "go-previous" : "go-next"
+            iconName: Qt.application.layoutDirection === Qt.RightToLeft ? "go-next-rtl" : "go-next"
             onTriggered: parseInt(prompter.state) === Prompter.States.Prompting ? viewport.prompter.increaseVelocity(false) : prompter.goToNextMarker()
         }
         contextualActions: [
