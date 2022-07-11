@@ -1,0 +1,6 @@
+<RCC>
+    <qresource prefix="/icons">
+        <file alias="go-next.svg">16/go-next.svg</file>
+        <file alias="go-previous.svg">16/go-previous.svg</file>
+    </qresource>
+</RCC>

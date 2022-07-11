@@ -40,6 +40,7 @@ set(qprompt_HDRS
 
 set(qprompt_ASSETS
     assets.qrc
+    icons/icons.qrc
 )
 
 
