@@ -31,7 +31,7 @@ import com.cuperino.qprompt.markers 1.0
 
 Kirigami.Page {
     id: prompterPage
-    
+
     property alias fontDialog: fontDialog
     property alias colorDialog: colorDialog
     property alias highlightDialog: highlightDialog
@@ -66,7 +66,8 @@ Kirigami.Page {
         main: Kirigami.Action {
             id: promptingButton
             text: i18n("Start prompter")
-            iconName: Qt.application.layoutDirection === Qt.RightToLeft ? "go-previous" : "go-next"
+            iconName: Qt.application.layoutDirection === Qt.RightToLeft ? "go-next-rtl" : "go-next"
+            icon.source: Qt.application.layoutDirection === Qt.RightToLeft ? "icons/go-previous.svg" : "icons/go-next.svg"
             onTriggered: prompter.toggle()
         }
         left: Kirigami.Action {
@@ -74,6 +75,7 @@ Kirigami.Page {
             enabled: Kirigami.Settings.isMobile
             text: pageStack.globalToolBar.actualStyle === Kirigami.ApplicationHeaderStyle.None ? i18n("Decrease velocity") : ""
             iconName: Qt.application.layoutDirection === Qt.RightToLeft ? "go-previous-rtl" : "go-previous"
+            icon.source: Qt.application.layoutDirection === Qt.RightToLeft ? "icons/go-next.svg" : "icons/go-previous.svg"
             onTriggered: parseInt(prompter.state) === Prompter.States.Prompting ? viewport.prompter.decreaseVelocity(false) : prompter.goToPreviousMarker()
         }
         right: Kirigami.Action {
@@ -81,6 +83,7 @@ Kirigami.Page {
             enabled: Kirigami.Settings.isMobile
             text: pageStack.globalToolBar.actualStyle === Kirigami.ApplicationHeaderStyle.None ? i18n("Increase velocity") : ""
             iconName: Qt.application.layoutDirection === Qt.RightToLeft ? "go-next-rtl" : "go-next"
+            icon.source: Qt.application.layoutDirection === Qt.RightToLeft ? "icons/go-previous.svg" : "icons/go-next.svg"
             onTriggered: parseInt(prompter.state) === Prompter.States.Prompting ? viewport.prompter.increaseVelocity(false) : prompter.goToNextMarker()
         }
         contextualActions: [
@@ -264,7 +267,7 @@ Kirigami.Page {
 
             text: i18nc("Indicators highlight reading region", "Indicators")
             tooltip: i18nc("Indicators highlight reading region", "Change reading region indicators")
-            
+
             Kirigami.Action {
                 id: readRegionLeftPointerButton
                 text: i18nc("Shows pointer to the left of the reading region", "Left pointer")
