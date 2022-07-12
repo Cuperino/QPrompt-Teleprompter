@@ -44,9 +44,9 @@
 #include <KCoreAddons/KAboutData>
 
 #include <QHotkey>
-//#if defined(Q_OS_MACOS)
-//#include <../3rdparty/KDMacTouchBar/src/kdmactouchbar.h>
-//#endif
+#if defined(Q_OS_MACOS)
+#include <../3rdparty/KDMacTouchBar/src/kdmactouchbar.h>
+#endif
 
 #include "../qprompt_version.h"
 #include "prompter/documenthandler.h"
@@ -119,40 +119,41 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
     // KirigamiPlugin::getInstance().registerTypes();
     // #endif
 
-//#if defined(Q_OS_MACOS)
-//    QMainWindow *mainWindow = nullptr;
-//    foreach(QWidget *widget, app.topLevelWidgets())
-//        if(widget->inherits("QMainWindow")) {
-//            mainWindow = qobject_cast<QMainWindow *>(widget);
-//            break;
-//        };
-//    // Enable automatic display of dialog prompts on the touchbar.
-//    KDMacTouchBar::setAutomaticallyCreateMessageBoxTouchBar(true);
+#if defined(Q_OS_MACOS)
+    // Enable automatic display of dialog prompts on the touchbar.
+    KDMacTouchBar::setAutomaticallyCreateMessageBoxTouchBar(true);
 //    // Create touchbar for use through all of QPrompt's execusion
-//    KDMacTouchBar *touchBar = new KDMacTouchBar(mainWindow);
+//    KDMacTouchBar *touchBar = new KDMacTouchBar();
+//    //QMainWindow *mainWindow = nullptr;
+//    //foreach(QWidget *widget, app.topLevelWidgets())
+//    //    if(widget->inherits("QMainWindow")) {
+//    //        mainWindow = qobject_cast<QMainWindow *>(widget);
+//    //        break;
+//    //    };
+//    //KDMacTouchBar *touchBar = new KDMacTouchBar(mainWindow);
 //    // Toggle teleprompter state
-//    QIcon QPromptIcon(QStringLiteral("://images/qprompt.png"));
-//    QAction *action = new QAction(QPromptIcon, "Toggle");
+//    QIcon qpromptIcon(QStringLiteral("://images/qprompt"));
+//    QAction *action = new QAction(qpromptIcon, "Toggle");
 //    touchBar->addAction(action);
 //    // connect(action, &QAction::triggered, this, &MainWindow::activated);
 //    touchBar->addSeparator();
 //    // Velocity and placement toachbar controls
 //    // Up
-//    QIcon upIcon(QStringLiteral("://go-up"));
+//    QIcon upIcon(QStringLiteral("://icons/go-previous"));
 //    QAction *reduceAction = new QAction(upIcon, "Reduce");
 //    touchBar->addAction(reduceAction);
 //    // connect(reduceAction, &QAction::triggered, this, &MainWindow::activated);
 //    // Down
-//    QIcon downIcon(QStringLiteral("://go-down"));
+//    QIcon downIcon(QStringLiteral("://icons/go-next"));
 //    QAction *increaseAction = new QAction(downIcon, "Increase");
 //    touchBar->addAction(increaseAction);
 //    // connect(increaseAction, &QAction::triggered, this, &MainWindow::activated);
-//    touchBar->addSeparator();
+////    touchBar->addSeparator();
 ////    // Stop prompter
 ////    QAction *stopAction = new QAction(upIcon, "Stop");
 ////    touchBar->addAction(stopAction);
 ////    // connect(stopAction, &QAction::triggered, this, &MainWindow::activated);
-//#endif
+#endif
 
     // Toggle transparency of all windows
     QHotkey hotkey(QKeySequence("Ctrl+Alt+F10"), true, &app);
