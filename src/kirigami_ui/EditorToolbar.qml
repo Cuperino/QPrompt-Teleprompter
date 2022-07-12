@@ -604,7 +604,7 @@ ToolBar {
                 }
             }
             ToolSeparator {
-                contentItem.visible: fontRow.y === advancedButtonsRow.y
+                contentItem.visible: mobileOrSmallScreen ? fontRow.y === advancedButtonsRow.y : fontRow.y === alignmentRowDesktop.y
             }
         }
         Row {
