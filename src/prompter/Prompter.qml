@@ -436,9 +436,9 @@ Flickable {
                 if (!animationX.running && prompter.__i && prompter.__play) {
                     __i = 0
                     root.alert(0)
-                    if (root.passiveNotifications)
-                        showPassiveNotification(i18n("Animation Completed"));
                     if (parseInt(prompter.state) === Prompter.States.Prompting && !prompter.__atStart) {
+                        //if (root.passiveNotifications)
+                        //    showPassiveNotification(i18n("End reached"));
                         switch (prompter.atEndAction) {
                             case Prompter.AtEndActions.Exit:
                                 return prompter.toggle();
