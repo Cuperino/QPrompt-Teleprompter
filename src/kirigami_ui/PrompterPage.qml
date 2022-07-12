@@ -99,7 +99,15 @@ Kirigami.Page {
             onTriggered: {
                 // Copy position value
                 const lastPosition = editor.cursorPosition;
-                prompter.setCursorAtCurrentPosition();
+
+                // If leaving WYSIWYG mode or cursor is fully out of the viewport visible bounds,
+                if (viewport.prompter.__wysiwyg
+                    || lastPosition > editor.positionAt(editor.width, prompter.position+overlay.height-editor.cursorRectangle.height+editor.cursorRectangle.height)
+                    || lastPosition < editor.positionAt(0, prompter.position)) {
+                        // use reading region to place cursor.
+                        prompter.setCursorAtCurrentPosition();
+                    }
+                // Else, use previous cursor position. Either way we need to get its position assigned.
                 const p0_lineStart = editor.cursorPosition;
                 //console.log("\n\nPos:", p0_lineStart, lastPosition, p0_lineStart<lastPosition, "\n");
 
