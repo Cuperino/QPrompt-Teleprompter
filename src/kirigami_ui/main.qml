@@ -110,7 +110,7 @@ Kirigami.ApplicationWindow {
     // More ways to enforce transparency across systems
     //visible: true
     //flags: root.pageStack.currentItem.hideDecorations===2 || root.pageStack.currentItem.hideDecorations===1 && root.pageStack.currentItem.overlay.atTop && parseInt(root.pageStack.currentItem.prompter.state)!==Prompter.States.Editing || Qt.platform.os==="osx" && root.pageStack.currentItem.prompterBackground.opacity!==1 ? Qt.FramelessWindowHint : Qt.Window
-    flags: root.pageStack.currentItem.overlay.atTop && parseInt(root.pageStack.currentItem.prompter.state)!==Prompter.States.Editing || Qt.platform.os==="osx" && root.pageStack.currentItem.prompterBackground.opacity!==1 ? Qt.FramelessWindowHint : Qt.Window
+    flags: root.pageStack.currentItem.overlay.atTop && !root.pageStack.currentItem.viewport.forcedOrientation && parseInt(root.pageStack.currentItem.prompter.state)!==Prompter.States.Editing || Qt.platform.os==="osx" && root.pageStack.currentItem.prompterBackground.opacity!==1 ? Qt.FramelessWindowHint : Qt.Window
 
     background: Rectangle {
         id: appTheme
@@ -692,7 +692,7 @@ Kirigami.ApplicationWindow {
         }
         else {
             if (parseInt(root.pageStack.currentItem.prompter.state)!==Prompter.States.Editing &&
-                    (visibility===Kirigami.ApplicationWindow.FullScreen || root.pageStack.currentItem.overlay.atTop))
+                    (visibility===Kirigami.ApplicationWindow.FullScreen || root.pageStack.currentItem.overlay.atTop && !root.pageStack.currentItem.viewport.forcedOrientation))
                 return Kirigami.ApplicationHeaderStyle.None;
             else
                 return Kirigami.ApplicationHeaderStyle.ToolBar;
