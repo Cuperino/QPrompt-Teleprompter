@@ -182,7 +182,7 @@ ToolBar {
             }
             ToolButton {
                 id: searchButton
-                visible: !mobileOrSmallScreen || parseInt(prompter.state)!==Prompter.States.Prompting
+                visible: !mobileOrSmallScreen || parseInt(prompter.state)===Prompter.States.Editing
                 text: Qt.application.layoutDirection===Qt.LeftToRight ? "\uE847" : "\uE848"
                 contentItem: Loader { sourceComponent: textComponent }
                 font.family: iconFont.name
@@ -778,7 +778,7 @@ ToolBar {
             }
         }
         RowLayout {
-            visible: root.__translucidBackground && (!Kirigami.Settings.isMobile && root.width>(!showingFormattingTools? 1067 : 742) || (parseInt(prompter.state)!==Prompter.States.Editing && parseInt(prompter.state)!==Prompter.States.Prompting)) // This check isn't optimized in case more prompter states get added in the future, even tho I think that is unlikely.
+            visible: root.__translucidBackground && (!Kirigami.Settings.isMobile && root.width>(!showingFormattingTools? 1115 : 742) || (parseInt(prompter.state)!==Prompter.States.Editing && parseInt(prompter.state)!==Prompter.States.Prompting)) // This check isn't optimized in case more prompter states get added in the future, even tho I think that is unlikely.
             ToolButton {
                 visible: !Kirigami.Settings.isMobile && showSliderIcons
                 text: "\uE810"
@@ -808,64 +808,56 @@ ToolBar {
             }
         }
         RowLayout {
-            visible: height>0
-            height: !wysiwygButton.checked && parseInt(prompter.state)===Prompter.States.Editing ? implicitHeight : 0
-            clip: true
             ToolButton {
                 text: "\uF088"
-                visible: showSliderIcons
-                enabled: false
+                //visible: showSliderIcons
+                checkable: true
+                checked: !prompter.__wysiwyg
+                onClicked: prompter.toggleWysiwyg()
                 contentItem: Loader { sourceComponent: textComponent }
                 font.family: iconFont.name
                 font.pointSize: 13
             }
-            Label {
-                text: i18nc("Font size 100% (083)", "Font size <pre>%1% (%2)</pre>", (fontSizeSlider.value/1000).toFixed(3).slice(2), prompter.fontSize)
-                color: Kirigami.Theme.textColor
-                Layout.topMargin: 4
-                Layout.bottomMargin: 4
-                Layout.rightMargin: 3
-                Layout.leftMargin: 1
-            }
-            Slider {
-                id: fontSizeSlider
-                focusPolicy: Qt.TabFocus
-                from: 90
-                value: 100
-                to: 158
-                stepSize: 1
-            }
-        }
-        RowLayout {
-            visible: height>0
-            // !Kirigami.Settings.isMobile ||
-            height: (wysiwygButton.checked && parseInt(prompter.state)===Prompter.States.Editing) ? implicitHeight : 0
-            clip: true
-
-            // enabled: !(parseInt(prompter.state)===Prompter.States.Countdown || parseInt(prompter.state)===Prompter.States.Prompting)
-            ToolButton {
-                text: "\uF088"
-                visible: showSliderIcons
-                enabled: false
-                contentItem: Loader { sourceComponent: textComponent }
-                font.family: iconFont.name
-                font.pointSize: 13
-            }
-            Label {
-                text: i18nc("Font size 100% (083)", "Font size <pre>%1% (%2)</pre>", (fontWYSIWYGSizeSlider.value/1440).toFixed(3).slice(2), (prompter.fontSize/1000).toFixed(3).slice(2))
-                color: Kirigami.Theme.textColor
-                Layout.topMargin: 4
-                Layout.bottomMargin: 4
-                Layout.rightMargin: 3
-                Layout.leftMargin: 1
-            }
-            Slider {
-                id: fontWYSIWYGSizeSlider
-                from: 90
-                value: 144
-                to: 180 // 200
-                stepSize: 0.5
-                focusPolicy: Qt.TabFocus
+            RowLayout {
+                visible: height>0
+                height: (parseInt(prompter.state)===Prompter.States.Editing) ? implicitHeight : 0
+                clip: true
+                Label {
+                    visible: !prompter.__wysiwyg
+                    text: i18nc("Font size 100% (083)", "Font size <pre>%1% (%2)</pre>", (fontSizeSlider.value/1000).toFixed(3).slice(2), prompter.fontSize)
+                    color: Kirigami.Theme.textColor
+                    Layout.topMargin: 4
+                    Layout.bottomMargin: 4
+                    Layout.rightMargin: 3
+                    Layout.leftMargin: 1
+                }
+                Slider {
+                    id: fontSizeSlider
+                    visible: !prompter.__wysiwyg
+                    focusPolicy: Qt.TabFocus
+                    from: 90
+                    value: 100
+                    to: 158
+                    stepSize: 1
+                }
+                Label {
+                    visible: prompter.__wysiwyg
+                    text: i18nc("Font size 100% (083)", "Font size <pre>%1% (%2)</pre>", (fontWYSIWYGSizeSlider.value/1440).toFixed(3).slice(2), (prompter.fontSize/1000).toFixed(3).slice(2))
+                    color: Kirigami.Theme.textColor
+                    Layout.topMargin: 4
+                    Layout.bottomMargin: 4
+                    Layout.rightMargin: 3
+                    Layout.leftMargin: 1
+                }
+                Slider {
+                    id: fontWYSIWYGSizeSlider
+                    visible: prompter.__wysiwyg
+                    from: 90
+                    value: 144
+                    to: 180 // 200
+                    stepSize: 0.5
+                    focusPolicy: Qt.TabFocus
+                }
             }
         }
         RowLayout {
