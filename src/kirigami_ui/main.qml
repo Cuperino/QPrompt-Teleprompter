@@ -65,7 +65,7 @@ Kirigami.ApplicationWindow {
     // Making width and height start maximized
     //width: screen.desktopAvailableWidth
     //height: screen.desktopAvailableHeight
-    minimumWidth: Kirigami.Settings.isMobile ? 291 : 338 // 351
+    minimumWidth: Kirigami.Settings.isMobile ? 291 : 351 // 338
     minimumHeight: minimumWidth
 
     Settings {

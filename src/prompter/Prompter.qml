@@ -362,6 +362,55 @@ Flickable {
         editor.cursorPosition = editor.positionAt(0, position + overlay.__readRegionPlacement*(overlay.height-overlay.readRegionHeight)+overlay.readRegionHeight/2 + 1)
     }
 
+    function toggleWysiwyg() {
+        // Copy position value
+        const lastPosition = editor.cursorPosition;
+
+        // If leaving WYSIWYG mode or cursor is fully out of the viewport visible bounds,
+        if (viewport.prompter.__wysiwyg
+            || lastPosition > editor.positionAt(editor.width, prompter.position+overlay.height-editor.cursorRectangle.height+editor.cursorRectangle.height)
+            || lastPosition < editor.positionAt(0, prompter.position)) {
+                // use reading region to place cursor.
+                prompter.setCursorAtCurrentPosition();
+            }
+        // Else, use previous cursor position. Either way we need to get its position assigned.
+        const p0_lineStart = editor.cursorPosition;
+        //console.log("\n\nPos:", p0_lineStart, lastPosition, p0_lineStart<lastPosition, "\n");
+
+        // Resize text
+        viewport.prompter.__wysiwyg = !viewport.prompter.__wysiwyg;
+
+        if (p0_lineStart <= lastPosition) {
+            //console.log(1, "test last");
+            // Set cursor at start of current line
+            prompter.setCursorAtCurrentPosition();
+            const p1_lineStart = editor.cursorPosition;
+            //console.log(p1_lineStart);
+            prompter.goTo(p0_lineStart);
+            prompter.setCursorAtCurrentPosition();
+            // If we're still in the same line,
+            //console.log("currPos", editor.cursorPosition, editor.cursorPosition>=p1_lineStart && editor.cursorPosition<p0_lineStart?"equal":"not equal");
+            if (editor.cursorPosition>=p1_lineStart && editor.cursorPosition<p0_lineStart) {
+                //console.log(2, "last");
+                // restore cursor position within line.
+                prompter.goTo(lastPosition);
+                editor.cursorPosition = lastPosition
+            }
+            else
+                prompter.goTo(p0_lineStart);
+        }
+        else
+            prompter.goTo(p0_lineStart);
+
+        // Focus controls
+        if (parseInt(prompter.state) !== Prompter.States.Editing || Kirigami.Settings.isMobile)
+            prompter.focus = true;
+        else
+            editor.focus = true;
+        // Close drawer in mobile mode
+        contextDrawer.close();
+    }
+
     contentHeight: flickableContent.height
     topMargin: overlay.__readRegionPlacement*(prompter.height-overlay.readRegionHeight)+fontSize
     bottomMargin: (1-overlay.__readRegionPlacement)*(prompter.height-overlay.readRegionHeight)+overlay.readRegionHeight
@@ -517,7 +566,7 @@ Flickable {
         //propagateComposedEvents: false
         acceptedButtons: Qt.LeftButton
         hoverEnabled: false
-        scrollGestureEnabled: Qt.platform.os==="osx"
+        //scrollGestureEnabled: Qt.platform.os==="osx"
         // The following placement allows covering beyond the boundaries of the editor and into the prompter's margins.
         anchors.fill: parent
 //        anchors.left: parent.left
