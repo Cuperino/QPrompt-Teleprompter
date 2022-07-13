@@ -109,6 +109,8 @@ ToolBar {
     //}
 
     background: Rectangle {
+        color: Kirigami.Theme.alternateBackgroundColor.a===0 ? appTheme.__backgroundColor : Kirigami.Theme.alternateBackgroundColor
+        opacity: root.__opacity * 0.4 + 0.6
         Rectangle {
             color: parseInt(prompter.state)===Prompter.States.Prompting && editor.focus ? "#00AA00" : Kirigami.Theme.activeBackgroundColor
             opacity: parseInt(prompter.state)!==Prompter.States.Editing ? 0.4 : 1
@@ -117,8 +119,11 @@ ToolBar {
             anchors.left: parent.left
             anchors.right: parent.right
         }
-        color: Kirigami.Theme.alternateBackgroundColor.a===0 ? appTheme.__backgroundColor : Kirigami.Theme.alternateBackgroundColor
-        opacity: root.__opacity * 0.4 + 0.6
+        WindowDragger {
+            anchors.fill: parent
+            window: root
+            cursorShape: root.hideDecorators & Qt.FramelessWindowHint ? (pressed ? Qt.ClosedHandCursor : Qt.OpenHandCursor) : Qt.ArrowCursor
+        }
     }
 
     Settings {
