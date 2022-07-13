@@ -255,6 +255,41 @@ Kirigami.ApplicationWindow {
                 }
             },
             Kirigami.Action {
+                text: i18nc("Main menu actions", "Other &Settings")
+                iconName: "configure"
+//                 Kirigami.Action {
+//                     text: i18n("Telemetry")
+//                     iconName: "document-send"
+//                     onTriggered: {
+//                         root.loadTelemetryPage()
+//                     }
+//                 }
+                Kirigami.Action {
+                    id: hideFormattingToolsAlwaysSetting
+                    text: i18nc("Main menu actions", "Always hide formatting tools")
+                    iconName: "list-remove"
+                    checkable: true
+                    checked: root.pageStack.currentItem.footer.hideFormattingToolsAlways
+                    onTriggered: root.pageStack.currentItem.footer.hideFormattingToolsAlways = !root.pageStack.currentItem.footer.hideFormattingToolsAlways
+                }
+                Kirigami.Action {
+                    id: hideFormattingToolsWhilePromptingSetting
+                    enabled: !hideFormattingToolsAlwaysSetting.checked
+                    text: i18nc("Main menu actions. Hides formatting tools while not in edit mode.", "Auto hide formatting tools")
+                    iconName: "list-remove"
+                    checkable: true
+                    checked: root.pageStack.currentItem.footer.hideFormattingToolsWhilePrompting
+                    onTriggered: root.pageStack.currentItem.footer.hideFormattingToolsWhilePrompting = !root.pageStack.currentItem.footer.hideFormattingToolsWhilePrompting
+                }
+//                 Kirigami.Action {
+//                     text: i18nc("Main menu actions", "Restore factory defaults")
+//                     iconName: "edit-clear-history"
+//                     onTriggered: {
+//                         showPassiveNotification(i18n("Feature not yet implemented"))
+//                     }
+//                 }
+            },
+            Kirigami.Action {
                 text: i18nc("Main menu actions. Load about page.", "Abou&t %1", aboutData.displayName)
                 iconName: "help-about"
                 onTriggered: loadAboutPage()
