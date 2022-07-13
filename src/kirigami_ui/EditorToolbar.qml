@@ -81,6 +81,8 @@ ToolBar {
 
     property bool showFontSpacingOptions: false
     property bool showAnimationConfigOptions: false
+    property bool hideFormattingToolsWhilePrompting: true
+    property bool hideFormattingToolsAlways: false
 
     readonly property alias fontSizeSlider: fontSizeSlider
     readonly property alias lineHeightSlider: lineHeightSlider
@@ -93,9 +95,9 @@ ToolBar {
     readonly property alias baseAccelerationSlider: baseAccelerationSlider
     readonly property alias onlyPositiveVelocity: positiveVelocity.checked
     readonly property int showSliderIcons: root.width > 404
-
+    readonly property bool showingFormattingTools: parseInt(prompter.state)!==Prompter.States.Editing && (!toolbar.hideFormattingToolsWhilePrompting || editor.focus)
     // Hide toolbar when read region is set to bottom and prompter is not in editing state.
-    enabled: !(parseInt(prompter.state)!==Prompter.States.Editing && (overlay.atBottom || root.visibility===Kirigami.ApplicationWindow.FullScreen && !editor.focus))
+    enabled: !(parseInt(prompter.state)!==Prompter.States.Editing && (overlay.atBottom && !viewport.forcedOrientation || root.visibility===Kirigami.ApplicationWindow.FullScreen && !editor.focus))
     height: enabled ? implicitHeight : 0
     //Behavior on height {
     //    id: height
@@ -124,6 +126,8 @@ ToolBar {
         property alias showFontSpacingOptions: toolbar.showFontSpacingOptions
         property alias showAnimationConfigOptions: toolbar.showAnimationConfigOptions
         property alias onlyPositiveVelocity: positiveVelocity.checked
+        property alias hideFormattingToolsAlways: toolbar.hideFormattingToolsAlways
+        property alias hideFormattingToolsWhilePrompting: toolbar.hideFormattingToolsWhilePrompting
     }
     Settings {
         category: "prompter"
@@ -220,7 +224,14 @@ ToolBar {
         }
         Row {
             id: playbackRow
-            visible: !Kirigami.Settings.isMobile || parseInt(prompter.state)===Prompter.States.Prompting
+//            visible: !Kirigami.Settings.isMobile || parseInt(prompter.state)===Prompter.States.Prompting
+            visible:
+                if (toolbar.hideFormattingToolsAlways)
+                    return !toolbar.hideFormattingToolsAlways
+                else if (Kirigami.Settings.isMobile)
+                    return parseInt(prompter.state)===Prompter.States.Prompting
+                else
+                    return parseInt(prompter.state)===Prompter.States.Editing || showingFormattingTools || root.width>459
             ToolButton {
                 id: previousMarkerButton
                 text: "\uE81A"
@@ -245,7 +256,7 @@ ToolBar {
         }
         Row {
             id: undoRedoRow
-            visible: Kirigami.Settings.isMobile ? parseInt(prompter.state)===Prompter.States.Editing && 'ios'!==Qt.platform.os : root.width>458
+            visible: !toolbar.hideFormattingToolsAlways && (Kirigami.Settings.isMobile ? parseInt(prompter.state)===Prompter.States.Editing && Qt.platform.os!=='ios' :  showingFormattingTools || parseInt(prompter.state)===Prompter.States.Editing && root.width>458)
             ToolButton {
                 text: Qt.application.layoutDirection===Qt.LeftToRight?"\uE74F":"\uE801"
                 contentItem: Loader { sourceComponent: textComponent }
@@ -269,7 +280,7 @@ ToolBar {
         }
         Row {
             id: editRow
-            visible: !Kirigami.Settings.isMobile && root.width>458
+            visible: !toolbar.hideFormattingToolsAlways && !Kirigami.Settings.isMobile && root.width>458 && showingFormattingTools
             ToolButton {
                 id: copyButton
                 text: "\uF0C5"
@@ -306,7 +317,7 @@ ToolBar {
         }
         Row {
             id: alignmentRowMobile
-            visible: mobileOrSmallScreen && parseInt(prompter.state)===Prompter.States.Editing
+            visible: !toolbar.hideFormattingToolsAlways && mobileOrSmallScreen && parseInt(prompter.state)===Prompter.States.Editing
             Menu {
                 id: textAlignmentMenu
                 background: Rectangle {
@@ -389,7 +400,7 @@ ToolBar {
         }
         Row {
             id: formatRow
-            visible: !mobileOrSmallScreen || parseInt(prompter.state)===Prompter.States.Editing
+            visible: !toolbar.hideFormattingToolsAlways && (!mobileOrSmallScreen && showingFormattingTools || parseInt(prompter.state)===Prompter.States.Editing)
             ToolButton {
                 id: boldButton
                 text: "\uE802"
@@ -440,7 +451,7 @@ ToolBar {
         }
         Row {
             id: fontRow
-            visible: !mobileOrSmallScreen || parseInt(prompter.state)===Prompter.States.Editing
+            visible: !toolbar.hideFormattingToolsAlways && (!mobileOrSmallScreen && showingFormattingTools || parseInt(prompter.state)===Prompter.States.Editing)
             FontLoader {
                 id: westernSeriousSansfFont
                 source: "fonts/dejavu-sans.otf"
@@ -609,7 +620,7 @@ ToolBar {
         }
         Row {
             id: alignmentRowDesktop
-            visible: !mobileOrSmallScreen
+            visible: !toolbar.hideFormattingToolsAlways && !mobileOrSmallScreen && showingFormattingTools
             ToolButton {
                 id: alignLeftButton
                 text: Qt.application.layoutDirection===Qt.LeftToRight ? "\uE808" : "\uE80A"
@@ -762,7 +773,7 @@ ToolBar {
             }
         }
         RowLayout {
-            visible: root.__translucidBackground && (!Kirigami.Settings.isMobile && root.width>742 || (parseInt(prompter.state)!==Prompter.States.Editing && parseInt(prompter.state)!==Prompter.States.Prompting)) // This check isn't optimized in case more prompter states get added in the future, even tho I think that is unlikely.
+            visible: root.__translucidBackground && (!Kirigami.Settings.isMobile && root.width>(!showingFormattingTools? 1067 : 742) || (parseInt(prompter.state)!==Prompter.States.Editing && parseInt(prompter.state)!==Prompter.States.Prompting)) // This check isn't optimized in case more prompter states get added in the future, even tho I think that is unlikely.
             ToolButton {
                 visible: !Kirigami.Settings.isMobile && showSliderIcons
                 text: "\uE810"

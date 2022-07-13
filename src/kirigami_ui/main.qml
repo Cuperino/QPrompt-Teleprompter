@@ -110,7 +110,8 @@ Kirigami.ApplicationWindow {
     // More ways to enforce transparency across systems
     //visible: true
     //flags: root.pageStack.currentItem.hideDecorations===2 || root.pageStack.currentItem.hideDecorations===1 && root.pageStack.currentItem.overlay.atTop && parseInt(root.pageStack.currentItem.prompter.state)!==Prompter.States.Editing || Qt.platform.os==="osx" && root.pageStack.currentItem.prompterBackground.opacity!==1 ? Qt.FramelessWindowHint : Qt.Window
-    flags: root.pageStack.currentItem.overlay.atTop && !root.pageStack.currentItem.viewport.forcedOrientation && parseInt(root.pageStack.currentItem.prompter.state)!==Prompter.States.Editing || Qt.platform.os==="osx" && root.pageStack.currentItem.prompterBackground.opacity!==1 ? Qt.FramelessWindowHint : Qt.Window
+    readonly property int hideDecorators: root.pageStack.currentItem.overlay.atTop && !root.pageStack.currentItem.viewport.forcedOrientation && parseInt(root.pageStack.currentItem.prompter.state)!==Prompter.States.Editing || Qt.platform.os==="osx" && root.pageStack.currentItem.prompterBackground.opacity!==1 ? Qt.FramelessWindowHint : Qt.Window
+    flags: hideDecorators
 
     background: Rectangle {
         id: appTheme
@@ -262,7 +263,6 @@ Kirigami.ApplicationWindow {
             },
             Kirigami.Action {
                 text: i18nc("Main menu actions", "Other &Settings")
-                visible: !Kirigami.Settings.isMobile && ! ['android', 'ios', 'wasm', 'tvos', 'qnx', 'ipados'].indexOf(Qt.platform.os)!==-1 && subpixelSetting.visible
                 iconName: "configure"
 //                 Kirigami.Action {
 //                     text: i18n("Telemetry")
@@ -272,12 +272,29 @@ Kirigami.ApplicationWindow {
 //                     }
 //                 }
                 Kirigami.Action {
+                    id: hideFormattingToolsAlwaysSetting
+                    text: i18nc("Main menu actions", "Always hide formatting tools")
+                    iconName: "list-remove"
+                    checkable: true
+                    checked: root.pageStack.currentItem.footer.hideFormattingToolsAlways
+                    onTriggered: root.pageStack.currentItem.footer.hideFormattingToolsAlways = !root.pageStack.currentItem.footer.hideFormattingToolsAlways
+                }
+                Kirigami.Action {
+                    id: hideFormattingToolsWhilePromptingSetting
+                    enabled: !hideFormattingToolsAlwaysSetting.checked
+                    text: i18nc("Main menu actions. Hides formatting tools while not in edit mode.", "Auto hide formatting tools")
+                    iconName: "list-remove"
+                    checkable: true
+                    checked: root.pageStack.currentItem.footer.hideFormattingToolsWhilePrompting
+                    onTriggered: root.pageStack.currentItem.footer.hideFormattingToolsWhilePrompting = !root.pageStack.currentItem.footer.hideFormattingToolsWhilePrompting
+                }
+                Kirigami.Action {
                     id: subpixelSetting
                     text: i18nc("Main menu actions. QPrompt switches between two text rendering techniques when the base font size exceeds 120px. Enabling this option forces QPrompt to always use the default renderer, which features smoother sub-pixel animations.", "Force sub-pixel text renderer past 120px")
                     // Hiding option because only Qt text renderer is used on devices of greater pixel density, due to bug in rendering native fonts while scaling is enabled.
-                    visible: screen.devicePixelRatio === 1.0
-                    checkable: true
+                    visible: ['android', 'ios', 'wasm', 'tvos', 'qnx', 'ipados'].indexOf(Qt.platform.os)===-1 && screen.devicePixelRatio === 1.0
                     iconName: "format-font-size-more"
+                    checkable: true
                     checked: root.forceQtTextRenderer
                     onTriggered: root.forceQtTextRenderer = !root.forceQtTextRenderer
                 }
