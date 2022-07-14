@@ -757,7 +757,7 @@ ToolBar {
                 text: i18nc("Velocity {VELOCITY_STEPS}", "Velocity <pre>%1</pre>", prompter.__i<0 ? '-' + (prompter.__i/100).toFixed(2).slice(3) : '+' + (prompter.__i/100).toFixed(2).slice(2))
                 color: Kirigami.Theme.textColor
                 Layout.topMargin: 4
-                Layout.bottomMargin: 4
+                Layout.bottomMargin: -14
                 Layout.rightMargin: 3
                 Layout.leftMargin: 1
             }
@@ -791,7 +791,7 @@ ToolBar {
                 text: i18nc("Opacity {TRANSPARENCY_PERCENTAGE}", "Opacity <pre>%1</pre>", (root.__opacity/10).toFixed(3).slice(2))
                 color: Kirigami.Theme.textColor
                 Layout.topMargin: 4
-                Layout.bottomMargin: 4
+                Layout.bottomMargin: -14
                 Layout.rightMargin: 3
                 Layout.leftMargin: 1
             }
@@ -827,7 +827,7 @@ ToolBar {
                     text: i18nc("Font size 100% (083)", "Font size <pre>%1% (%2)</pre>", (fontSizeSlider.value/1000).toFixed(3).slice(2), prompter.fontSize)
                     color: Kirigami.Theme.textColor
                     Layout.topMargin: 4
-                    Layout.bottomMargin: 4
+                    Layout.bottomMargin: -14
                     Layout.rightMargin: 3
                     Layout.leftMargin: 1
                 }
@@ -845,7 +845,7 @@ ToolBar {
                     text: i18nc("Font size 100% (083)", "Font size <pre>%1% (%2)</pre>", (fontWYSIWYGSizeSlider.value/1440).toFixed(3).slice(2), (prompter.fontSize/1000).toFixed(3).slice(2))
                     color: Kirigami.Theme.textColor
                     Layout.topMargin: 4
-                    Layout.bottomMargin: 4
+                    Layout.bottomMargin: -14
                     Layout.rightMargin: 3
                     Layout.leftMargin: 1
                 }
@@ -883,7 +883,7 @@ ToolBar {
                 text: i18nc("Line height 100%", "Line height <pre>%1%</pre>", (lineHeightSlider.value/1000).toFixed(3).slice(2))
                 color: Kirigami.Theme.textColor
                 Layout.topMargin: 4
-                Layout.bottomMargin: 4
+                Layout.bottomMargin: -14
                 Layout.rightMargin: 3
                 Layout.leftMargin: 1
             }
@@ -921,7 +921,7 @@ ToolBar {
                 text: i18nc("Word spacing <pre>±00<pre>", "Word spacing <pre>%1</pre>", (wordSpacingSlider.value<0 ? '-' + (wordSpacingSlider.value/100).toFixed(2).slice(3) : '+' + (wordSpacingSlider.value/100).toFixed(2).slice(2)))
                 color: Kirigami.Theme.textColor
                 Layout.topMargin: 4
-                Layout.bottomMargin: 4
+                Layout.bottomMargin: -14
                 Layout.rightMargin: 3
                 Layout.leftMargin: 1
             }
@@ -957,7 +957,7 @@ ToolBar {
                 text: i18nc("Letter spacing ±00", "Letter spacing <pre>%1</pre>", (letterSpacingSlider.value<0 ? '-' + (letterSpacingSlider.value/100).toFixed(2).slice(3) : '+' + (letterSpacingSlider.value/100).toFixed(2).slice(2)))
                 color: Kirigami.Theme.textColor
                 Layout.topMargin: 4
-                Layout.bottomMargin: 4
+                Layout.bottomMargin: -14
                 Layout.rightMargin: 3
                 Layout.leftMargin: 1
             }
@@ -993,7 +993,7 @@ ToolBar {
                 text: i18nc("Step speed 1.00", "Step speed <pre>%1</pre>", (baseSpeedSlider.value/100).toFixed(2))
                 color: Kirigami.Theme.textColor
                 Layout.topMargin: 4
-                Layout.bottomMargin: 4
+                Layout.bottomMargin: -14
                 Layout.rightMargin: 3
                 Layout.leftMargin: 1
             }
@@ -1034,7 +1034,7 @@ ToolBar {
                 text: i18nc("Step acceleration 1.15", "Step acceleration <pre>%1</pre>", (baseAccelerationSlider.value/100).toFixed(2))
                 color: Kirigami.Theme.textColor
                 Layout.topMargin: 4
-                Layout.bottomMargin: 4
+                Layout.bottomMargin: -14
                 Layout.rightMargin: 3
                 Layout.leftMargin: 1
             }
