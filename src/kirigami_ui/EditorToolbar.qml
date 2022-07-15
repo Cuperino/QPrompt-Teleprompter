@@ -81,7 +81,7 @@ ToolBar {
 
     property bool showFontSpacingOptions: false
     property bool showAnimationConfigOptions: false
-    property bool hideFormattingToolsWhilePrompting: true
+    property bool hideFormattingToolsWhilePrompting: false
     property bool hideFormattingToolsAlways: false
 
     readonly property alias fontSizeSlider: fontSizeSlider
@@ -94,7 +94,7 @@ ToolBar {
     readonly property alias namedMarkerConfiguration: namedMarkerConfiguration
     readonly property alias baseAccelerationSlider: baseAccelerationSlider
     readonly property alias onlyPositiveVelocity: positiveVelocity.checked
-    readonly property int showSliderIcons: root.width > 404
+    readonly property bool showSliderIcons: root.width > 404
     readonly property bool showingFormattingTools: parseInt(prompter.state)!==Prompter.States.Editing && (!toolbar.hideFormattingToolsWhilePrompting || editor.focus)
     // Hide toolbar when read region is set to bottom and prompter is not in editing state.
     enabled: !(parseInt(prompter.state)!==Prompter.States.Editing && (overlay.atBottom && !viewport.forcedOrientation || root.visibility===Kirigami.ApplicationWindow.FullScreen && !editor.focus))
@@ -182,7 +182,7 @@ ToolBar {
             }
             ToolButton {
                 id: searchButton
-                visible: !mobileOrSmallScreen || parseInt(prompter.state)===Prompter.States.Editing
+                visible: !mobileOrSmallScreen || parseInt(prompter.state)===Prompter.States.Editing && root.width > 360
                 text: Qt.application.layoutDirection===Qt.LeftToRight ? "\uE847" : "\uE848"
                 contentItem: Loader { sourceComponent: textComponent }
                 font.family: iconFont.name
@@ -224,19 +224,24 @@ ToolBar {
             //    onClicked: {}
             //}
             ToolSeparator {
-                contentItem.visible: anchorsRow.y === playbackRow.y
+                contentItem.visible: root.width>458 ? anchorsRow.y === playbackRow.y : anchorsRow.y === playbackRow.y || anchorsRow.y === advancedButtonsRow.y
             }
         }
         Row {
             id: playbackRow
 //            visible: !Kirigami.Settings.isMobile || parseInt(prompter.state)===Prompter.States.Prompting
             visible:
-                if (toolbar.hideFormattingToolsAlways)
-                    return !toolbar.hideFormattingToolsAlways
-                else if (Kirigami.Settings.isMobile)
+                if (Kirigami.Settings.isMobile)
                     return parseInt(prompter.state)===Prompter.States.Prompting
                 else
-                    return parseInt(prompter.state)===Prompter.States.Editing || showingFormattingTools || root.width>459
+                    return !toolbar.hideFormattingToolsAlways && (showingFormattingTools || parseInt(prompter.state)===Prompter.States.Editing) || root.width>489;
+//                    if (parseInt(prompter.state)===Prompter.States.Editing)
+//                        return true
+//                    else if (root.width>459)
+//                        return !toolbar.hideFormattingToolsAlways && showingFormattingTools;
+//                    else
+//                        return true
+                //}
             ToolButton {
                 id: previousMarkerButton
                 text: "\uE81A"
@@ -256,12 +261,12 @@ ToolBar {
                 onClicked: prompter.goToNextMarker()
             }
             ToolSeparator {
-                contentItem.visible: !Kirigami.Settings.isMobile && root.width>458 ? playbackRow.y === undoRedoRow.y : playbackRow.y === alignmentRowMobile.y
+                contentItem.visible: !Kirigami.Settings.isMobile && root.width>458 ? playbackRow.y === undoRedoRow.y || playbackRow.y === advancedButtonsRow.y : playbackRow.y === alignmentRowMobile.y
             }
         }
         Row {
             id: undoRedoRow
-            visible: !toolbar.hideFormattingToolsAlways && (Kirigami.Settings.isMobile ? parseInt(prompter.state)===Prompter.States.Editing && Qt.platform.os!=='ios' :  showingFormattingTools || parseInt(prompter.state)===Prompter.States.Editing && root.width>458)
+            visible: !toolbar.hideFormattingToolsAlways && (Kirigami.Settings.isMobile ? parseInt(prompter.state)===Prompter.States.Editing && Qt.platform.os!=='ios' :  (showingFormattingTools || parseInt(prompter.state)===Prompter.States.Editing) && root.width>458)
             ToolButton {
                 text: Qt.application.layoutDirection===Qt.LeftToRight?"\uE74F":"\uE801"
                 contentItem: Loader { sourceComponent: textComponent }
@@ -285,7 +290,7 @@ ToolBar {
         }
         Row {
             id: editRow
-            visible: !toolbar.hideFormattingToolsAlways && !Kirigami.Settings.isMobile && root.width>458 && showingFormattingTools
+            visible: !toolbar.hideFormattingToolsAlways && !Kirigami.Settings.isMobile && root.width>458 && (showingFormattingTools || parseInt(prompter.state)===Prompter.States.Editing)
             ToolButton {
                 id: copyButton
                 text: "\uF0C5"
@@ -322,7 +327,7 @@ ToolBar {
         }
         Row {
             id: alignmentRowMobile
-            visible: !toolbar.hideFormattingToolsAlways && mobileOrSmallScreen && parseInt(prompter.state)===Prompter.States.Editing
+            visible: !toolbar.hideFormattingToolsAlways && (showingFormattingTools || parseInt(prompter.state)===Prompter.States.Editing) && mobileOrSmallScreen //&&
             Menu {
                 id: textAlignmentMenu
                 background: Rectangle {
@@ -405,7 +410,7 @@ ToolBar {
         }
         Row {
             id: formatRow
-            visible: !toolbar.hideFormattingToolsAlways && (!mobileOrSmallScreen && showingFormattingTools || parseInt(prompter.state)===Prompter.States.Editing)
+            visible: !toolbar.hideFormattingToolsAlways && (!Kirigami.Settings.isMobile && showingFormattingTools || parseInt(prompter.state)===Prompter.States.Editing)
             ToolButton {
                 id: boldButton
                 text: "\uE802"
@@ -456,7 +461,7 @@ ToolBar {
         }
         Row {
             id: fontRow
-            visible: !toolbar.hideFormattingToolsAlways && (!mobileOrSmallScreen && showingFormattingTools || parseInt(prompter.state)===Prompter.States.Editing)
+            visible: !toolbar.hideFormattingToolsAlways && (!Kirigami.Settings.isMobile && showingFormattingTools || parseInt(prompter.state)===Prompter.States.Editing)
             FontLoader {
                 id: westernSeriousSansfFont
                 source: "fonts/dejavu-sans.otf"
@@ -625,7 +630,7 @@ ToolBar {
         }
         Row {
             id: alignmentRowDesktop
-            visible: !toolbar.hideFormattingToolsAlways && !mobileOrSmallScreen && showingFormattingTools
+            visible: !toolbar.hideFormattingToolsAlways && !mobileOrSmallScreen && (showingFormattingTools || parseInt(prompter.state)===Prompter.States.Editing)
             ToolButton {
                 id: alignLeftButton
                 text: Qt.application.layoutDirection===Qt.LeftToRight ? "\uE808" : "\uE80A"
@@ -740,7 +745,7 @@ ToolBar {
         RowLayout {
             id: velocityRow
             enabled: parseInt(prompter.state)===Prompter.States.Prompting
-            visible: !mobileOrSmallScreen || enabled // parseInt(prompter.state)!==Prompter.States.Editing
+            visible: !Kirigami.Settings.isMobile && root.width>1481 /*&& (showingFormattingTools || ! toolbar.hideFormattingToolsAlways)*/ || enabled
             ToolButton {
                 id: positiveVelocity
                 text: "\u002B"
@@ -759,7 +764,7 @@ ToolBar {
                 Layout.topMargin: 4
                 Layout.bottomMargin: -14
                 Layout.rightMargin: 3
-                Layout.leftMargin: 1
+                Layout.leftMargin: showSliderIcons ? 1 : 8
             }
             Slider {
                 id: velocityControlSlider
@@ -778,7 +783,7 @@ ToolBar {
             }
         }
         RowLayout {
-            visible: root.__translucidBackground && (!Kirigami.Settings.isMobile && root.width>(!showingFormattingTools? 1115 : 742) || (parseInt(prompter.state)!==Prompter.States.Editing && parseInt(prompter.state)!==Prompter.States.Prompting)) // This check isn't optimized in case more prompter states get added in the future, even tho I think that is unlikely.
+            visible: root.__translucidBackground && (!Kirigami.Settings.isMobile && root.width>(!showingFormattingTools||hideFormattingToolsAlways ? 1195 : 994) || (parseInt(prompter.state)!==Prompter.States.Editing && parseInt(prompter.state)!==Prompter.States.Prompting)) // This check isn't optimized in case more prompter states get added in the future, even tho I think that is unlikely.
             ToolButton {
                 visible: !Kirigami.Settings.isMobile && showSliderIcons
                 text: "\uE810"
@@ -793,7 +798,7 @@ ToolBar {
                 Layout.topMargin: 4
                 Layout.bottomMargin: -14
                 Layout.rightMargin: 3
-                Layout.leftMargin: 1
+                Layout.leftMargin: showSliderIcons ? 1 : 8
             }
             Slider {
                 id: opacitySlider
@@ -885,7 +890,7 @@ ToolBar {
                 Layout.topMargin: 4
                 Layout.bottomMargin: -14
                 Layout.rightMargin: 3
-                Layout.leftMargin: 1
+                Layout.leftMargin: showSliderIcons ? 1 : 8
             }
             Slider {
                 id: lineHeightSlider
@@ -923,7 +928,7 @@ ToolBar {
                 Layout.topMargin: 4
                 Layout.bottomMargin: -14
                 Layout.rightMargin: 3
-                Layout.leftMargin: 1
+                Layout.leftMargin: showSliderIcons ? 1 : 8
             }
             Slider {
                 id: wordSpacingSlider
@@ -959,7 +964,7 @@ ToolBar {
                 Layout.topMargin: 4
                 Layout.bottomMargin: -14
                 Layout.rightMargin: 3
-                Layout.leftMargin: 1
+                Layout.leftMargin: showSliderIcons ? 1 : 8
             }
             Slider {
                 id: letterSpacingSlider
@@ -995,7 +1000,7 @@ ToolBar {
                 Layout.topMargin: 4
                 Layout.bottomMargin: -14
                 Layout.rightMargin: 3
-                Layout.leftMargin: 1
+                Layout.leftMargin: showSliderIcons ? 1 : 8
             }
             Slider {
                 id: baseSpeedSlider
@@ -1036,7 +1041,7 @@ ToolBar {
                 Layout.topMargin: 4
                 Layout.bottomMargin: -14
                 Layout.rightMargin: 3
-                Layout.leftMargin: 1
+                Layout.leftMargin: showSliderIcons ? 1 : 8
             }
             Slider {
                 id: baseAccelerationSlider
