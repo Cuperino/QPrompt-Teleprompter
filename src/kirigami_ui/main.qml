@@ -648,7 +648,7 @@ Kirigami.ApplicationWindow {
             
             Labs.MenuItem {
                 text: i18nc("Global menu actions", "Report &Bug…")
-                onTriggered: Qt.openUrlExternallyc("Global menu actions", "https://feedback.qprompt.app")
+                onTriggered: Qt.openUrlExternally("Global menu actions", "https://feedback.qprompt.app")
                 icon.name: "tools-report-bug"
             }
             Labs.MenuSeparator { }
