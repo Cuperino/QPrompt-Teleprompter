@@ -412,7 +412,7 @@ Flickable {
     }
 
     contentHeight: flickableContent.height
-    topMargin: overlay.__readRegionPlacement*(prompter.height-overlay.readRegionHeight)+fontSize
+    topMargin: overlay.__readRegionPlacement*(prompter.height-overlay.readRegionHeight)+overlay.readRegionHeight/2//+fontSize//+overlay.readRegionHeight/2//+fontSize
     bottomMargin: (1-overlay.__readRegionPlacement)*(prompter.height-overlay.readRegionHeight)+overlay.readRegionHeight
 
     // Clipping improves performance on large files and font sizes.
@@ -806,8 +806,7 @@ Flickable {
                                     children[i].checked = false;
                             }
                             Label {
-                                //text: i18n("End reached")
-                                text: i18nc("Action to perform when end is reached", "At end:")
+                                text: i18n("The End")
                                 font.pixelSize: fontSize
                             }
                             Button {
