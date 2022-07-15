@@ -219,6 +219,7 @@ elseif(WIN32 OR APPLE)
         KF5::I18n
         KF5::Kirigami2
         KF5::CoreAddons
+        KF5::Crash
         qhotkey
     )
     if(APPLE AND NOT IOS)
@@ -242,6 +243,7 @@ else()
         KF5::Kirigami2
         KF5::CoreAddons
         KF5::IconThemes
+        KF5::Crash
         qhotkey
     )
 endif()

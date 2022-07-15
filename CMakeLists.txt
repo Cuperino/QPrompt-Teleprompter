@@ -194,7 +194,12 @@ elseif(WIN32 OR APPLE)
         Kirigami2
         I18n
         CoreAddons
+        Crash
     )
+#    find_package(KF5Crash ${KF_MIN_VERSION} CONFIG QUIET)
+    set_package_properties(KF5Crash PROPERTIES
+        DESCRIPTION "Graceful handling of application crashes."
+        TYPE OPTIONAL)
     find_package(QHotkey 1.5.0 REQUIRED COMPONENTS
         QHotkey
     )
@@ -221,7 +226,12 @@ else()
         I18n
         CoreAddons
         IconThemes
+        Crash
     )
+#    find_package(KF5Crash ${KF_MIN_VERSION} CONFIG QUIET)
+    set_package_properties(KF5Crash PROPERTIES
+        DESCRIPTION "Graceful handling of application crashes."
+        TYPE OPTIONAL)
     find_package(QHotkey 1.5.0 REQUIRED COMPONENTS
         QHotkey
     )

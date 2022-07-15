@@ -43,6 +43,10 @@
 #include <KI18n/KLocalizedString>
 #include <KCoreAddons/KAboutData>
 
+//#if KF5Crash_FOUND
+#include <KCrash>
+//#endif
+
 #include <QHotkey>
 #if defined(Q_OS_MACOS)
 #include <../3rdparty/KDMacTouchBar/src/kdmactouchbar.h>
@@ -64,6 +68,16 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
 #else
     QApplication app(argc, argv);
 #endif
+
+    //#if KF5Crash_FOUND
+        //KCrash::setDrKonqiEnabled(true);
+        KCrash::initialize();
+        KCrash::setErrorMessage("QPrompt crashed. Please report now at https://feedback.qprompt.app");
+        //KCrash::setCrashHandler( KCrash::defaultCrashHandler );
+        //KCrash::setFlags(KCrash::AutoRestart); // |KCrash::SaferDialog
+        qDebug() << "DrKonqui" << KCrash::isDrKonqiEnabled();
+    //#endif
+
     KLocalizedString::setApplicationDomain("qprompt");
     QCoreApplication::setOrganizationName(QString::fromStdString("Cuperino"));
     QCoreApplication::setOrganizationDomain(QString::fromStdString(QPROMPT_URI));
@@ -138,10 +152,12 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
 //    // connect(action, &QAction::triggered, this, &MainWindow::activated);
 //    touchBar->addSeparator();
 //    // Velocity and placement toachbar controls
+//    touchBar->setTouchButtonStyle(KDMacTouchBar::IconOnly);
 //    // Up
 //    QIcon upIcon(QStringLiteral("://icons/go-previous"));
 //    QAction *reduceAction = new QAction(upIcon, "Reduce");
 //    touchBar->addAction(reduceAction);
+//    touchBar->setPrincipialAction(reduceAction);
 //    // connect(reduceAction, &QAction::triggered, this, &MainWindow::activated);
 //    // Down
 //    QIcon downIcon(QStringLiteral("://icons/go-next"));
