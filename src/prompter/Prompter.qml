@@ -933,12 +933,17 @@ Flickable {
                         anchors.fill: parent
                         cursorShape: dragTarget.containsDrag ? (dragTarget.droppable ? Qt.DragCopyCursor : Qt.ForbiddenCursor) : Qt.IBeamCursor
                         drag.target: editor
+                        drag.minimumX: leftWidthAdjustmentBar.drag.minimumX
+                        drag.maximumX: leftWidthAdjustmentBar.drag.maximumX
+                        drag.minimumY: 0
+                        drag.maximumY: 0
                         onClicked: {
                             if (Kirigami.Settings.isMobile)
                                 contextMenu.popup(this)
                             else
                                 nativeContextMenu.open()
                         }
+                        onReleased: leftWidthAdjustmentBar.onReleased(mouse)
                     }
                     MouseArea {
                         id: limitedMouse
