@@ -53,13 +53,13 @@ Item {
     //layer.smooth: true
     // Make texture the size of the largest destinations.
     //layer.textureSize: Qt.size(projectionWindow.width, projectionWindow.height)
-    
+
     Find {
         id: find
         document: prompter.document
-        z: 5
+        z: 6
     }
-    
+
     Countdown {
         id: countdown
         z: 4
@@ -77,7 +77,7 @@ Item {
        z: 3
        anchors.fill: parent
     }
-    
+
     Prompter {
         id: prompter
         property double delta: 16
@@ -97,6 +97,67 @@ Item {
         //    axis { x: 1; y: 0; z: 0 }
         //    angle: 65
         //}
+    }
+
+    MouseArea {
+        id: mouse
+        // Mouse wheel controls
+        property int throttledIteration: 0
+        //propagateComposedEvents: false
+        z: 0
+        acceptedButtons: Qt.NoButton
+        //hoverEnabled: true
+        //scrollGestureEnabled: true//Qt.platform.os==="osx"
+        // The following placement allows covering beyond the boundaries of the editor and into the prompter's margins.
+        anchors.fill: parent
+//        anchors.left: parent.left
+//        anchors.right: parent.right
+//        y: -prompter.height
+//        height: parent.height+2*prompter.height
+        cursorShape: Qt.CrossCursor
+        onWheel: (wheel)=> {
+            if (prompter.__noScroll && parseInt(prompter.state)===Prompter.States.Prompting)
+                return;
+            else if (parseInt(prompter.state)===Prompter.States.Prompting && (prompter.__scrollAsDial && !(wheel.modifiers & Qt.ControlModifier || wheel.modifiers & Qt.MetaModifier) || !prompter.__scrollAsDial && (wheel.modifiers & Qt.ControlModifier || wheel.modifiers & Qt.MetaModifier))) {
+                if (!(prompter.throttleWheel && throttledIteration)) {
+                    if (wheel.angleDelta.y > 0) {
+                        if (prompter.__invertScrollDirection)
+                            prompter.increaseVelocity(wheel);
+                        else/* if (prompter.__i>1)*/ {
+                            if (!toolbar.onlyPositiveVelocity || prompter.__i>0)
+                                prompter.decreaseVelocity(wheel);
+                        }
+                    }
+                    else if (wheel.angleDelta.y < 0) {
+                        if (prompter.__invertScrollDirection/* && prompter.__i>1*/) {
+                            if (!toolbar.onlyPositiveVelocity || prompter.__i>0)
+                                prompter.decreaseVelocity(wheel);
+                        }
+                        else
+                            prompter.increaseVelocity(wheel);
+                    }
+                    // Do nothing if wheel.angleDelta.y === 0
+                }
+                throttledIteration = (throttledIteration+1)%prompter.wheelThrottleFactor
+            }
+            else {
+                // Regular scroll
+                const delta = (prompter.__invertScrollDirection?-1:1)*wheel.angleDelta.y/2;
+                var i=prompter.__i;
+                prompter.__i=0;
+                if (prompter.position-delta >= -prompter.topMargin && prompter.position-delta<=editor.implicitHeight-(overlay.height-prompter.bottomMargin))
+                    prompter.position -= delta;
+                // If scroll were to go out of bounds, cap it
+                else if (prompter.position-delta > -prompter.topMargin)
+                    prompter.position = editor.implicitHeight-(overlay.height-prompter.bottomMargin)
+                else
+                    prompter.position = -prompter.topMargin
+                prompter.__i=i;
+                // Resume prompting
+                if (parseInt(prompter.state)===Prompter.States.Prompting && prompter.__play)
+                    prompter.position = prompter.__destination
+            }
+        }
     }
 
     //FastBlur {

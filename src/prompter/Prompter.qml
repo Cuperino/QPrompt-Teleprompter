@@ -136,7 +136,6 @@ Flickable {
     property alias openDialog: openDialog
     property alias textColor: document.textColor
     property alias textBackground: document.textBackground
-    property alias mouse: mouse
     property alias fontSize: editor.font.pixelSize
     property alias letterSpacing: editor.font.letterSpacing
     property alias wordSpacing: editor.font.wordSpacing
@@ -559,65 +558,6 @@ Flickable {
         duration: Kirigami.Units.veryLongDuration
         easing.type: Easing.InOutQuart
     }
-    MouseArea {
-        id: mouse
-        // Mouse wheel controls
-        property int throttledIteration: 0
-        //propagateComposedEvents: false
-        acceptedButtons: Qt.LeftButton
-        hoverEnabled: false
-        //scrollGestureEnabled: Qt.platform.os==="osx"
-        // The following placement allows covering beyond the boundaries of the editor and into the prompter's margins.
-        anchors.fill: parent
-//        anchors.left: parent.left
-//        anchors.right: parent.right
-//        y: -prompter.height
-//        height: parent.height+2*prompter.height
-        cursorShape: (pressed || dragging) ? Qt.ClosedHandCursor : Qt.OpenHandCursor
-        onWheel: (wheel)=> {
-            if (prompter.__noScroll && parseInt(prompter.state)===Prompter.States.Prompting)
-                return;
-            else if (parseInt(prompter.state)===Prompter.States.Prompting && (prompter.__scrollAsDial && !(wheel.modifiers & Qt.ControlModifier || wheel.modifiers & Qt.MetaModifier) || !prompter.__scrollAsDial && (wheel.modifiers & Qt.ControlModifier || wheel.modifiers & Qt.MetaModifier))) {
-                if (!(throttleWheel && throttledIteration)) {
-                    if (wheel.angleDelta.y > 0) {
-                        if (prompter.__invertScrollDirection)
-                            increaseVelocity(wheel);
-                        else/* if (prompter.__i>1)*/ {
-                            if (!toolbar.onlyPositiveVelocity || prompter.__i>0)
-                                decreaseVelocity(wheel);
-                        }
-                    }
-                    else if (wheel.angleDelta.y < 0) {
-                        if (prompter.__invertScrollDirection/* && prompter.__i>1*/) {
-                            if (!toolbar.onlyPositiveVelocity || prompter.__i>0)
-                                decreaseVelocity(wheel);
-                        }
-                        else
-                            increaseVelocity(wheel);
-                    }
-                    // Do nothing if wheel.angleDelta.y === 0
-                }
-                throttledIteration = (throttledIteration+1)%prompter.wheelThrottleFactor
-            }
-            else {
-                // Regular scroll
-                const delta = (prompter.__invertScrollDirection?-1:1)*wheel.angleDelta.y/2;
-                var i=__i;
-                __i=0;
-                if (prompter.position-delta >= -prompter.topMargin && prompter.position-delta<=editor.implicitHeight-(overlay.height-prompter.bottomMargin))
-                    prompter.position -= delta;
-                // If scroll were to go out of bounds, cap it
-                else if (prompter.position-delta > -prompter.topMargin)
-                    prompter.position = editor.implicitHeight-(overlay.height-prompter.bottomMargin)
-                else
-                    prompter.position = -prompter.topMargin
-                __i=i;
-                // Resume prompting
-                if (parseInt(prompter.state)===Prompter.States.Prompting && prompter.__play)
-                    prompter.position = prompter.__destination
-            }
-        }
-    }
     Item {
         id: positionHandler
         // Force positionHandler's position to reset to center on resize.
@@ -922,7 +862,7 @@ Flickable {
                     onDropped: {
                         const position = editor.positionAt(drop.x, drop.y)
                         if (drop.hasHtml) {
-                            const filteredHtml = document.filterHtml(drop.html)
+                            const filteredHtml = document.filterHtml(drop.html, false)
                             editor.insert(position, filteredHtml)
                         }
                         else if (drop.hasText)
@@ -931,24 +871,19 @@ Flickable {
                     MouseArea {
                         acceptedButtons: Qt.RightButton
                         anchors.fill: parent
-                        cursorShape: dragTarget.containsDrag ? (dragTarget.droppable ? Qt.DragCopyCursor : Qt.ForbiddenCursor) : Qt.IBeamCursor
-                        drag.target: editor
-                        drag.minimumX: leftWidthAdjustmentBar.drag.minimumX
-                        drag.maximumX: leftWidthAdjustmentBar.drag.maximumX
-                        drag.minimumY: 0
-                        drag.maximumY: 0
+                        cursorShape: limitedMouse.cursorShape
                         onClicked: {
                             if (Kirigami.Settings.isMobile)
                                 contextMenu.popup(this)
                             else
                                 nativeContextMenu.open()
                         }
-                        onReleased: leftWidthAdjustmentBar.onReleased(mouse)
                     }
                     MouseArea {
                         id: limitedMouse
                         enabled: false
                         acceptedButtons: Qt.LeftButton
+                        cursorShape: dragTarget.containsDrag ? (dragTarget.droppable ? Qt.DragCopyCursor : Qt.ForbiddenCursor) : Qt.IBeamCursor
                         anchors.fill: parent
                         onClicked: if (editor.focus) editor.cursorPosition = editor.positionAt(mouseX, mouseY);
                         onDoubleClicked: {
@@ -1554,6 +1489,10 @@ Flickable {
                 position: position
                 timeToArival: 0
             }
+            PropertyChanges {
+                target: mouse
+                z: 0
+            }
         },
         State {
             name: Prompter.States.Standby
@@ -1601,6 +1540,10 @@ Flickable {
                 opacity: 0
                 enabled: false
             }
+            PropertyChanges {
+                target: mouse
+                z: 5
+            }
         },
         State {
             name: Prompter.States.Countdown
@@ -1646,6 +1589,10 @@ Flickable {
                 target: rightWidthAdjustmentBar
                 opacity: 0
                 enabled: false
+            }
+            PropertyChanges {
+                target: mouse
+                z: 5
             }
         },
         State {
@@ -1705,6 +1652,10 @@ Flickable {
             PropertyChanges {
                 target: limitedMouse
                 enabled: true
+            }
+            PropertyChanges {
+                target: mouse
+                z: 5
             }
         }
     ]
