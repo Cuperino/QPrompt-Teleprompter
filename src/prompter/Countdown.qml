@@ -51,13 +51,14 @@ Item {
     visible: false
     opacity: 0  // Initial opacity should be 0 to prevent animation jitters on first run.
     transform: __flips
-    anchors {
-        left: parent.left
-        right: parent.right
-        top: parent.top
-        //bottom: parent.bottom
-    }
-    height: prompter.height
+    anchors.fill: parent
+//    anchors {
+//        left: parent.left
+//        right: parent.right
+//        top: parent.top
+//        //bottom: parent.bottom
+//    }
+    //height: prompter.height
     Settings {
         category: "countdown"
         property alias enabled: countdown.enabled

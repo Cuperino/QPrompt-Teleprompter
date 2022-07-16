@@ -52,11 +52,11 @@ Item {
         return (digitalHours).toFixed(2).toString().slice(2)+":"+(digitalMinutes).toFixed(2).toString().slice(2)+":"+(digitalSeconds).toFixed(2).toString().slice(2);
     }
     function startTimer() {
-        console.log("Start timer")
+        //console.log("Start timer")
         startTime = new Date().getTime() - elapsedMilliseconds
     }
     function stopTimer() {
-        console.log("Stop timer")
+        //console.log("Stop timer")
         const currentTime = new Date().getTime()
         elapsedMilliseconds = currentTime - startTime
     }
@@ -95,12 +95,13 @@ Item {
     enabled: stopwatch || eta
     visible: enabled
     clip: true
-    height: prompter.height
-    anchors {
-        left: parent.left
-        right: parent.right
-        top: parent.top
-    }
+    anchors.fill: parent
+//    height: prompter.height
+//    anchors {
+//        left: parent.left
+//        right: parent.right
+//        top: parent.top
+//    }
 
     Settings {
         id: timerSettings
