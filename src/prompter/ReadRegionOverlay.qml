@@ -80,15 +80,15 @@ Item {
         }
     }
     transform: __flips
-    //anchors.fill: parent
-    anchors {
-       left: parent.left
-       right: parent.right
-       top: parent.top
-       //bottom: parent.bottom
-    }
+    anchors.fill: parent
+//    anchors {
+//       left: parent.left
+//       right: parent.right
+//       top: parent.top
+//       //bottom: parent.bottom
+//    }
+//    height: prompter.height //parent.implicitFooterHeight
     ////width: editor.width
-    height: prompter.height //parent.implicitFooterHeight
     //height: parent.height //parent.implicitFooterHeight
     //function toggle() {
     //    var states = ["top", "middle", "bottom", "free", "fixed"]
@@ -155,7 +155,7 @@ Item {
                 id: leftPointer
                 x: prompter.editorXWidth*overlay.width + prompter.editorXOffset*overlay.width - (2.8*pointers.__stretchX+pointers.__offsetX)*pointers.__pointerUnit
                 ShapePath {
-                    strokeWidth: pointers.__pointerUnit/3
+                    strokeWidth: pointers.__pointerUnit*0.3
                     strokeColor: pointers.__strokeColor
                     fillColor: pointers.__fillColor
                     // Top left starting point
@@ -172,7 +172,7 @@ Item {
                 id: rightPointer
                 x: parent.parent.width - prompter.editorXWidth*overlay.width + prompter.editorXOffset*overlay.width + (2.7*pointers.__stretchX+pointers.__offsetX)*pointers.__pointerUnit
                 ShapePath {
-                    strokeWidth: pointers.__pointerUnit/3
+                    strokeWidth: pointers.__pointerUnit*0.3
                     strokeColor: pointers.__strokeColor
                     fillColor: pointers.__fillColor
                     // Top right starting point
