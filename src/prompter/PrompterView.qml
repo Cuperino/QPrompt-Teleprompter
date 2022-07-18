@@ -38,6 +38,7 @@ Item {
     property alias prompterBackground: prompterBackground
     property alias timer: timer
     property alias find: find
+    property alias mouse: mouse
     //property bool project: true
     property int forcedOrientation: 0
     property real __baseSpeed: editorToolbar.baseSpeedSlider.value
