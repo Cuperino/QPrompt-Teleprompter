@@ -380,6 +380,18 @@ Kirigami.ApplicationWindow {
     // Right Context Drawer
     contextDrawer: Kirigami.ContextDrawer {
         id: contextDrawer
+        MouseArea {
+            anchors.fill: parent
+            acceptedButtons: Qt.NoButton
+            onWheel: (wheel)=>root.pageStack.currentItem.viewport.mouse.wheel(wheel)
+        }
+    }
+    MouseArea {
+        height: 40
+        anchors.left: parent.left
+        anchors.right: parent.right
+        acceptedButtons: Qt.NoButton
+        onWheel: (wheel)=>root.pageStack.currentItem.viewport.mouse.wheel(wheel)
     }
 
     // Top bar foreground hack for window dragging
