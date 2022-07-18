@@ -452,10 +452,10 @@ Flickable {
 
     //Rectangle {
     //    id: startPositionDebug
+    //    visible: root.ee
     //    // Set this value to the same as __atStart's evaluated equation
     //    y: __jitterMargin-topMargin+1
     //    anchors {
-    //        id: startPositionDebug
     //        left: parent.left
     //        right: parent.right
     //    }
@@ -464,6 +464,7 @@ Flickable {
     //}
     //Rectangle {
     //    id: endPositionDebug
+    //    visible: root.ee
     //    // Set this value to the same as __atStart's evaluated equation
     //    y: editor.height-topMargin+fontSize+__jitterMargin-1
     //    anchors {

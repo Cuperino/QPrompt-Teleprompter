@@ -58,6 +58,8 @@ Kirigami.ApplicationWindow {
     property double __opacity: 1
     property int __iDefault: 3
     property int onDiscard: Prompter.CloseActions.Ignore
+    property bool ee: false
+    property bool theforce: false
 
     title: root.pageStack.currentItem.document.fileName + (root.pageStack.currentItem.document.modified?"*":"") + " - " + aboutData.displayName
     width: 1220  // Set at 1220 to show all functionality at a glance. Set to 1200 to fit both 1280 4:3 and 1200 height monitors. Keep at or bellow 1024 and at or above 960, for best usability with common 4:3 resolutions
@@ -165,9 +167,9 @@ Kirigami.ApplicationWindow {
         bannerVisible: true
         onBannerClicked: {
             bannerCounter++;
-            if (!(bannerCounter%10)) {
-                // Insert Easter egg here.
-            }
+            // Enable easter eggs.
+            if (!(bannerCounter%10))
+                ee = true
         }
         actions: [
             Kirigami.Action {
@@ -370,8 +372,22 @@ Kirigami.ApplicationWindow {
             //     }
             // }
         }
-        content: []
-
+        content: [
+            Button {
+                visible: {
+                    const date = new Date();
+                    return ee || date.getMonth()===4 && date.getDate()===4
+                }
+                text: i18n("Darth mode")
+                flat: true
+                checkable: true
+                checked: root.theforce
+                onClicked: {
+                    root.theforce = !root.theforce
+                    globalMenu.close()
+                }
+            }
+        ]
         WheelSettingsOverlay{
             id: wheelSettings
         }

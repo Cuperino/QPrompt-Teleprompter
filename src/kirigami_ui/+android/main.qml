@@ -58,6 +58,8 @@ Kirigami.ApplicationWindow {
     property double __opacity: 1
     property int __iDefault: 3
     property int onDiscard: Prompter.CloseActions.Ignore
+    property bool ee: false
+    property bool theforce: false
 
     title: root.pageStack.currentItem.document.fileName + (root.pageStack.currentItem.document.modified?"*":"") + " - " + aboutData.displayName
 
@@ -158,9 +160,9 @@ Kirigami.ApplicationWindow {
         bannerVisible: true
         onBannerClicked: {
             bannerCounter++;
-            if (!(bannerCounter%10)) {
-                // Insert Easter egg here.
-            }
+            // Enable easter eggs.
+            if (!(bannerCounter%10))
+                ee = true
         }
         actions: [
             Kirigami.Action {
@@ -348,7 +350,22 @@ Kirigami.ApplicationWindow {
             //     }
             // }
         }
-        content: []
+        content: [
+            Button {
+                visible: {
+                    const date = new Date();
+                    return ee || date.getMonth()===4 && date.getDate()===4
+                }
+                text: i18n("Darth mode")
+                flat: true
+                checkable: true
+                checked: root.theforce
+                onClicked: {
+                    root.theforce = !root.theforce
+                    globalMenu.close()
+                }
+            }
+        ]
 
         WheelSettingsOverlay{
             id: wheelSettings

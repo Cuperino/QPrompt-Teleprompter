@@ -649,11 +649,11 @@ Kirigami.Page {
 
     PrompterView {
         id: viewport
-        height: (forcedOrientation && forcedOrientation!==3 ? parent.width : parent.height) + (Kirigami.Settings.isMobile ? 68 : 0)
+        height: (forcedOrientation && forcedOrientation!==3 ? parent.width : (root.theforce && !forcedOrientation ? 3 : 1) * parent.height) + (Kirigami.Settings.isMobile ? 68 : 0)
         // anchors.bottomMargin: Kirigami.Settings.isMobile ? -68 : 0
-        width: forcedOrientation && forcedOrientation!==3 ? parent.height : parent.width
-        x: forcedOrientation===1 || forcedOrientation===3 ? parent.width : 0
-        y: forcedOrientation===2 || forcedOrientation===3 ? parent.height : 0
+        width: (forcedOrientation && forcedOrientation!==3 ? parent.height : (root.theforce && !forcedOrientation ? 0.3 : 1) * parent.width)
+        x: (forcedOrientation===1 || forcedOrientation===3 ? parent.width : (root.theforce && !forcedOrientation ? width*1.165 : 0))
+        y: (forcedOrientation===2 || forcedOrientation===3 ? parent.height : - (root.theforce && !forcedOrientation ? height/4 : 0))
         transform: Rotation {
             origin.x: 0; origin.y: 0;
             angle: switch (viewport.forcedOrientation) {
@@ -729,7 +729,8 @@ Kirigami.Page {
         //height: Kirigami.Settings.isMobile ? 3 : 2
         anchors.left: parent.left;
         anchors.right: parent.right;
-        anchors.top: viewport.bottom;
+        //anchors.top: viewport.bottom;
+        y: parent.height
     }
 
     // progress: parseInt(viewport.prompter.state)===Prompter.States.Prompting ? viewport.prompter.progress : undefined
