@@ -903,7 +903,7 @@ Flickable {
                     scrollGestureEnabled: false
                     propagateComposedEvents: true
                     hoverEnabled: false
-                    cursorShape: prompter.dragging ? Qt.ClosedHandCursor : ((pressed || drag.active) ? Qt.SplitHCursor : (flicking ? Qt.OpenHandCursor : Qt.SizeHorCursor))
+                    cursorShape: prompter.dragging ? Qt.ClosedHandCursor : ((pressed || drag.active) ? (forcedOrientation && forcedOrientation!==3 ? Qt.SplitVCursor : Qt.SplitHCursor) : (flicking ? Qt.OpenHandCursor : (forcedOrientation && forcedOrientation!==3 ? Qt.SizeVerCursor : Qt.SizeHorCursor)))
                     anchors.left: Qt.application.layoutDirection===Qt.LeftToRight ? editor.left : undefined
                     anchors.right: Qt.application.layoutDirection===Qt.RightToLeft ? editor.right : undefined
                     drag.target: editor
