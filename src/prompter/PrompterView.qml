@@ -28,7 +28,7 @@ import org.kde.kirigami 2.11 as Kirigami
 
 Item {
     id: viewport
-    
+
     property alias prompter: prompter
     property alias editor: prompter.editor
     property alias document: prompter.document
@@ -44,8 +44,6 @@ Item {
     property real __baseSpeed: editorToolbar.baseSpeedSlider.value
     property real __curvature: editorToolbar.baseAccelerationSlider.value
 
-    //anchors.fill: parent
-
     //layer.enabled: true
     // Undersample
     //layer.mipmap: true
@@ -54,6 +52,13 @@ Item {
     //layer.smooth: true
     // Make texture the size of the largest destinations.
     //layer.textureSize: Qt.size(projectionWindow.width, projectionWindow.height)
+
+    transform: Rotation {
+        origin.x: (forcedOrientation && forcedOrientation!==3 ? parent.height/2 : parent.width*0.15);
+        origin.y: (forcedOrientation && forcedOrientation!==3 ? parent.width/2 : parent.height);
+        axis { x: root.theforce?1:0; y: 0; z: 0 }
+        angle: 77
+    }
 
     Find {
         id: find
@@ -66,13 +71,26 @@ Item {
         z: 4
         anchors.fill: parent
     }
-    
+
+    Rectangle {
+        visible: root.theforce
+        anchors.top: parent.top
+        anchors.left: parent.left
+        anchors.right: parent.right
+        height: parent.height>>1
+        z: 5
+        gradient: Gradient {
+            GradientStop { position: 0.0; color: root.background.color }
+            GradientStop { position: 1.0; color: "transparent" }
+        }
+    }
+
     ReadRegionOverlay {
         id: overlay
         z: 2
         anchors.fill: parent
     }
-    
+
     TimerClock {
        id: timer
        z: 3
@@ -91,13 +109,6 @@ Item {
         letterSpacing: fontSize * editorToolbar.letterSpacingSlider.value / 81
         wordSpacing: fontSize * editorToolbar.wordSpacingSlider.value / 81
         //Math.pow((fontSizeSlider.value*prompter.__vw),3)
-
-        //// FFA
-        //transform: Rotation {
-        //    origin.x: parent.width/2; origin.y: parent.height/2;
-        //    axis { x: 1; y: 0; z: 0 }
-        //    angle: 65
-        //}
     }
 
     MouseArea {
