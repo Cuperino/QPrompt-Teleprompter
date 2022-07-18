@@ -38,6 +38,7 @@ Kirigami.Page {
     property alias viewport: viewport
     property alias prompter: viewport.prompter
     property alias editor: viewport.editor
+    property alias countdown: viewport.countdown
     property alias overlay: viewport.overlay
     property alias document: viewport.document
     property alias openDialog: viewport.openDialog
@@ -45,6 +46,7 @@ Kirigami.Page {
     property alias find: viewport.find
     property alias key_configuration_overlay: key_configuration_overlay
     property alias displaySettings: displaySettings
+    property alias sideDrawer: sideDrawer
     property int hideDecorations: 1
 
     // Unused signal. Leaving for reference.
