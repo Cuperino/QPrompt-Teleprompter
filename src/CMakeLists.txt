@@ -216,7 +216,6 @@ elseif(WIN32 OR APPLE)
         Qt${QT_VERSION_MAJOR}::QuickControls2
         Qt${QT_VERSION_MAJOR}::Network
         Qt${QT_VERSION_MAJOR}::Widgets
-        Qt${QT_VERSION_MAJOR}::X11Extras
         KF5::I18n
         KF5::Kirigami2
         KF5::CoreAddons
@@ -240,6 +239,7 @@ else()
         Qt${QT_VERSION_MAJOR}::QuickControls2
         Qt${QT_VERSION_MAJOR}::Network
         Qt${QT_VERSION_MAJOR}::Widgets
+        Qt${QT_VERSION_MAJOR}::X11Extras
         KF5::I18n
         KF5::Kirigami2
         KF5::CoreAddons
