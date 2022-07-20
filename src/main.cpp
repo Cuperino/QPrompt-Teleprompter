@@ -172,7 +172,7 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
 #endif
 
     // Toggle transparency of all windows
-    QHotkey hotkey(QKeySequence("Ctrl+Alt+F10"), true, &app);
+    QHotkey hotkey(QKeySequence("Meta+Alt+F10"), true, &app);
     QObject::connect(&hotkey, &QHotkey::activated, qApp, [&]() {
         QWindowList windows = app.allWindows();
         QWindow *topWindow = windows.first();
