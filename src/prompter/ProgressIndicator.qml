@@ -36,7 +36,7 @@ ScrollBar {
     //opacity: opaqueScroller ? 0.40 : 1
     contentItem: Rectangle {
         //implicitWidth: interactive ? 14 : 6
-        implicitWidth: interactive ? 10 : 6
+        implicitWidth: interactive ? 12 : 6
         implicitHeight: 100
         radius: scroller.pressed && !(prompter.__atStart||prompter.__atEnd) ? width / 2 : 0
         color: opaqueScroller ? (scroller.pressed ? "#ffffff" : "#d7d9d7") : "#d7d9d7";
