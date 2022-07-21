@@ -606,20 +606,30 @@ Kirigami.Page {
                 }
             }
             Kirigami.Action {
-                text: i18nc("Enable scaling prompter copies being projected onto displays", "Scale projections")
+                text: i18nc("Display prompter copies onto displays", "Enable projection")
+                //tooltip: i18n("Display prompter copies onto extended displays")
+                //enabled: parseInt(prompter.state)===Prompter.States.Editing
                 checkable: true
-                checked: projectionManager.reScale
+                checked: projectionManager.isEnabled
                 onTriggered: {
-                    projectionManager.reScale = !projectionManager.reScale
+                    if (projectionManager.isEnabled) {
+                        projectionManager.isEnabled = false;
+                        projectionManager.close()
+                    }
+                    else {
+                        projectionManager.isEnabled = true;
+                        projectionManager.project();
+                    }
                     contextDrawer.close()
                 }
             }
             Kirigami.Action {
-                text: i18nc("Preview projecting prompter copies onto displays", "Preview projections")
-                tooltip: i18n("Project prompter copies onto extended displays")
-                enabled: parseInt(prompter.state)===Prompter.States.Editing
+                enabled: projectionManager.isEnabled
+                text: i18nc("Enable scaling prompter copies being projected onto displays", "Scale projection")
+                checkable: true
+                checked: projectionManager.reScale
                 onTriggered: {
-                    projectionManager.preview()
+                    projectionManager.reScale = !projectionManager.reScale
                     contextDrawer.close()
                 }
             }

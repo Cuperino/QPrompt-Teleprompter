@@ -254,7 +254,7 @@ Flickable {
             case Prompter.States.Prompting:
                 timer.reset();
                 prompter.focus = true;
-                if (projectionManager.model.count===0)
+                if (!projectionManager.model.count && projectionManager.isEnabled)
                     projectionManager.project();
                 //showPassiveNotification(i18n("Prompt started"), 850*countdown.__iterations)
                 if (state!==Prompter.States.Countdown)
