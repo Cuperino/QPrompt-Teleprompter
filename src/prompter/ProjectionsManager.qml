@@ -101,6 +101,7 @@ Item {
         }
     }
     function close() {
+        update()
         return projectionModel.clear()
     }
     function preview() {
@@ -109,10 +110,19 @@ Item {
         this.isPreview = true;
         this.project();
     }
-
+    function update() {
+        const totalRegisteredDisplays = displayModel.count,
+              totalProjectedDisplays = projectionModel.count;
+        for (var i=0; i<totalRegisteredDisplays; i++)
+            for (var j=0; j<totalProjectedDisplays; j++)
+                if (displayModel.get(i).name===projectionModel.get(j).name) {
+                    console.log(i, j, projectionModel.get(i).name, projectionModel.get(j).flip)
+                    displayModel.get(i).flipSetting = projectionModel.get(j).flip;
+                    break;
+                }
+    }
     Settings {
         property alias scale: projectionManager.reScale
-        property alias projections: projectionModel
         category: "projections"
     }
     Component {
@@ -132,6 +142,7 @@ Item {
             visible: true
             color: "transparent"
             onClosing: {
+                projectionManager.update()
                 projectionManager.isPreview = false;
                 projectionModel.clear()
             }
@@ -242,8 +253,28 @@ Item {
                     Button {
                         id: closeButton
                         text: i18n("Close")
-                        // flat: true
+                        flat: parseInt(forwardTo.state) === Prompter.States.Countdown || parseInt(forwardTo.state) === Prompter.States.Prompting
                         onClicked: projectionWindow.close()
+                    }
+                    Button {
+                        id: horizontalFlipButton
+                        text: i18nc("Mirrors prompter horizontally", "Horizontal mirror")
+                        icon.name: "object-flip-horizontal"
+                        flat: parseInt(forwardTo.state) === Prompter.States.Countdown || parseInt(forwardTo.state) === Prompter.States.Prompting
+                        onClicked: {
+                            model.flip = model.flip + (model.flip % 2 ? 1 : -1)
+                            projectionManager.update()
+                        }
+                    }
+                    Button {
+                        id: verticalFlipButton
+                        text: i18nc("Mirrors prompter vertically", "Vertical mirror")
+                        icon.name: "object-flip-vertical";
+                        flat: parseInt(forwardTo.state) === Prompter.States.Countdown || parseInt(forwardTo.state) === Prompter.States.Prompting
+                        onClicked: {
+                            model.flip = (model.flip + 1) % 4 + 1
+                            projectionManager.update()
+                        }
                     }
                 }
             }

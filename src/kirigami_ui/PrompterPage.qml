@@ -575,7 +575,8 @@ Kirigami.Page {
                             flipSetting = (flipSetting+1)%5
                             projectionManager.putDisplayFlip(display.name, flipSetting)
                         }
-                        enabled: parseInt(prompter.state)===Prompter.States.Editing
+                        // enabled: parseInt(prompter.state)===Prompter.States.Editing
+                        enabled: projectionManager.model.count===0
                         activeTextColor: "#FFFFFF"
                         activeBackgroundColor: "#797979"
                         actions: [
