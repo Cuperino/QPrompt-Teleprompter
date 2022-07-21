@@ -982,7 +982,7 @@ Flickable {
                         }
                     }
                     // In all modes, editor should...
-                    if (['osx', 'ios'].indexOf(Qt.platform.os)===-1 ? event.modifiers & Qt.ControlModifier : event.modifiers & Qt.MetaModifier)
+                    if (event.modifiers & Qt.ControlModifier)
                         switch (event.key) {
                             case Qt.Key_B:
                                 document.bold = !document.bold;
@@ -1009,6 +1009,11 @@ Flickable {
                             //case Qt.Key_J:
                             //    document.alignment = Qt.AlignJustify;
                             //    return;
+                            // Forward these other keys to prompter.
+                            case Qt.Key_F:
+                            case Qt.Key_V:
+                                prompter.Keys.onPressed(event);
+                                return;
                         }
                     // If no modifiers are pressed...
                     else
@@ -1374,17 +1379,27 @@ Flickable {
             //    document.redo();
         }
 
-        // Key press that apply states other than Editing or Prompting.  Pause toggles prompter state.
+        // Key press that apply states other than Editing or Prompting.
+        // Pause and stop toggle prompter state.
         else if (parseInt(prompter.state)!==Prompter.States.Editing && event.key===keys.stop && event.modifiers===keys.stopModifiers || parseInt(prompter.state)!==Prompter.States.Editing && event.key===keys.pause && event.modifiers===keys.pauseModifiers || event.key===Qt.Key_SysReq || event.key===Qt.Key_Play || event.key===Qt.Key_Pause)
             prompter.toggle();
 
         // Keys presses that apply the same to all states, including previous
-        if (event.key===keys.toggle && event.modifiers===keys.toggleModifiers)
+        if (event.key===Qt.Key_F && event.modifiers & Qt.ControlModifier)
+            find.open();
+        else if (event.key===Qt.Key_V && event.modifiers & Qt.ControlModifier) {
+            event.accepted = true
+            if (event.modifiers & Qt.ShiftModifier)
+                document.paste(true);
+            else
+                document.paste();
+        }
+        else if (event.key===keys.toggle && event.modifiers===keys.toggleModifiers)
             // Toggle state
             prompter.toggle();
         else if (event.key===keys.skipBackwards && event.modifiers===keys.skipBackwardsModifiers) {
             // Move back
-            /* if (['osx', 'ios'].indexOf(Qt.platform.os)===-1 ? event.modifiers & Qt.ControlModifier : event.modifiers & Qt.MetaModifier)
+            /* if (event.modifiers & Qt.ControlModifier)
                 prompter.goToPreviousMarker();
             else */
             if (!this.__atStart) {
@@ -1402,7 +1417,7 @@ Flickable {
         }
         else if (event.key===keys.skipForward && event.modifiers===keys.skipForwardModifiers) {
             // Move Forward
-            /* if (['osx', 'ios'].indexOf(Qt.platform.os)===-1 ? event.modifiers & Qt.ControlModifier : event.modifiers & Qt.MetaModifier)
+            /* if (event.modifiers & Qt.ControlModifier)
                 prompter.goToNextMarker();
             else */
             if (!this.__atEnd) {
@@ -1423,15 +1438,6 @@ Flickable {
         // Go to next marker
         else if (event.key===keys.nextMarker && event.modifiers===keys.nextMarkerModifiers)
             prompter.goToNextMarker();
-        else if (event.key===Qt.Key_F && (['osx', 'ios'].indexOf(Qt.platform.os)===-1 ? event.modifiers & Qt.ControlModifier : event.modifiers & Qt.MetaModifier))
-            find.open();
-        else if (event.key===Qt.Key_V && (['osx', 'ios'].indexOf(Qt.platform.os)===-1 ? event.modifiers & Qt.ControlModifier : event.modifiers & Qt.MetaModifier)) {
-            event.accepted = true
-            if (event.modifiers & Qt.ShiftModifier)
-                document.paste(true);
-            else
-                document.paste();
-        }
         return
     }
     Keys.onReleased: {
