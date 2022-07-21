@@ -156,14 +156,14 @@ Item {
                     if (projectionManager.isPreview)
                         projectionWindow.close();
                     else
-                        projectionManager.forwardTo.toggle()
+                        projectionManager.forwardTo.prompter.toggle()
                 }
                 onWheel: (wheel)=> {
                     projectionManager.forwardTo.mouse.wheel(wheel)
                 }
                 Keys.onShortcutOverride: event.accepted = (event.key === Qt.Key_Escape)
                 Keys.onEscapePressed: projectionWindow.close()
-                Keys.forwardTo: projectionManager.forwardTo
+                Keys.forwardTo: projectionManager.forwardTo.prompter
                 Rectangle {
                     id: topFill
                     color: backgroundColor
@@ -253,14 +253,14 @@ Item {
                     Button {
                         id: closeButton
                         text: i18n("Close")
-                        flat: parseInt(forwardTo.state) === Prompter.States.Countdown || parseInt(forwardTo.state) === Prompter.States.Prompting
+                        flat: parseInt(forwardTo.prompter.state) === Prompter.States.Countdown || parseInt(forwardTo.prompter.state) === Prompter.States.Prompting
                         onClicked: projectionWindow.close()
                     }
                     Button {
                         id: horizontalFlipButton
                         text: i18nc("Mirrors prompter horizontally", "Horizontal mirror")
                         icon.name: "object-flip-horizontal"
-                        flat: parseInt(forwardTo.state) === Prompter.States.Countdown || parseInt(forwardTo.state) === Prompter.States.Prompting
+                        flat: parseInt(forwardTo.prompter.state) === Prompter.States.Countdown || parseInt(forwardTo.prompter.state) === Prompter.States.Prompting
                         onClicked: {
                             model.flip = model.flip + (model.flip % 2 ? 1 : -1)
                             projectionManager.update()
@@ -270,7 +270,7 @@ Item {
                         id: verticalFlipButton
                         text: i18nc("Mirrors prompter vertically", "Vertical mirror")
                         icon.name: "object-flip-vertical";
-                        flat: parseInt(forwardTo.state) === Prompter.States.Countdown || parseInt(forwardTo.state) === Prompter.States.Prompting
+                        flat: parseInt(forwardTo.prompter.state) === Prompter.States.Countdown || parseInt(forwardTo.prompter.state) === Prompter.States.Prompting
                         onClicked: {
                             model.flip = (model.flip + 1) % 4 + 1
                             projectionManager.update()

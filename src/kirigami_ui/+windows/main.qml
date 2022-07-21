@@ -490,7 +490,7 @@ Kirigami.ApplicationWindow {
         backgroundColor: root.pageStack.currentItem.prompterBackground.color
         backgroundOpacity: root.pageStack.currentItem.prompterBackground.opacity
         // Forward to prompter and not editor to prevent editing from projection windows
-        forwardTo: root.pageStack.currentItem.prompter
+        forwardTo: root.pageStack.currentItem.viewport
     }
 
     // Prompter Page Contents
