@@ -288,7 +288,7 @@ Item {
                         }
                         transform: Scale {
                             origin.y: verticalFlipButton.height/2
-                            origin.x: horizontalFlipButton.width/2
+                            origin.x: verticalFlipButton.width/2
                             xScale: model.flip===2 || model.flip===4 ? -1 : 1
                             yScale: model.flip===3 || model.flip===4 ? -1 : 1
                         }
