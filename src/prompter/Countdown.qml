@@ -354,7 +354,7 @@ Item {
         }
         PropertyChanges {
             target: dissolveOut
-            running: false
+            running: countdown.__iterations===countdown.__disappearWithin
         }
     }
     ]
