@@ -95,7 +95,7 @@ Item {
                     "p": ""
                 });
         }
-        if (projectionModel.count===0 && this.isEnabled && !(parseInt(forwardTo.prompter.state) === Prompter.States.Countdown || parseInt(forwardTo.prompter.state) === Prompter.States.Prompting))
+        if (projectionModel.count===0 && this.isEnabled && parseInt(forwardTo.prompter.state) === Prompter.States.Editing)
             alertDialog.requestDisplays();
     }
     function close() {
