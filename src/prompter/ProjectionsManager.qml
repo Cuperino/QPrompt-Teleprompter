@@ -34,7 +34,7 @@ Item {
     property real backgroundOpacity: 1
     property color backgroundColor: "#000"
     property bool reScale: true
-    property bool isPreview: false
+    property bool isEnabled: false
     property var forwardTo // prompter
 
     function getDisplayFlip(screenName, flipSetting) {
@@ -95,20 +95,12 @@ Item {
                     "p": ""
                 });
         }
-        if (projectionModel.count===0 && this.isPreview) {
+        if (projectionModel.count===0 && this.isEnabled && !(parseInt(forwardTo.prompter.state) === Prompter.States.Countdown || parseInt(forwardTo.prompter.state) === Prompter.States.Prompting))
             alertDialog.requestDisplays();
-            this.isPreview = false;
-        }
     }
     function close() {
         update()
         return projectionModel.clear()
-    }
-    function preview() {
-        if (this.isPreview)
-            this.close()
-        this.isPreview = true;
-        this.project();
     }
     function update() {
         const totalRegisteredDisplays = displayModel.count,
@@ -122,6 +114,7 @@ Item {
                 }
     }
     Settings {
+        property alias enable: projectionManager.isEnabled
         property alias scale: projectionManager.reScale
         category: "projections"
     }
@@ -143,21 +136,15 @@ Item {
             color: "transparent"
             onClosing: {
                 projectionManager.update()
-                projectionManager.isPreview = false;
                 projectionModel.clear()
             }
             MouseArea {
                 enabled: true
-                anchors.fill:parent
-                cursorShape: projectionManager.isPreview ? Qt.ForbiddenCursor : Qt.PointingHandCursor
+                anchors.fill: parent
+                cursorShape: Qt.PointingHandCursor
                 // Keyboard inputs
                 focus: true
-                onClicked: {
-                    if (projectionManager.isPreview)
-                        projectionWindow.close();
-                    else
-                        projectionManager.forwardTo.prompter.toggle()
-                }
+                onClicked: projectionManager.forwardTo.prompter.toggle()
                 onWheel: (wheel)=> {
                     projectionManager.forwardTo.mouse.wheel(wheel)
                 }
@@ -245,35 +232,65 @@ Item {
                     }
                 }
                 GridLayout {
+                    opacity: parseInt(forwardTo.prompter.state) === Prompter.States.Countdown || parseInt(forwardTo.prompter.state) === Prompter.States.Prompting ? 0.2 : 1
                     anchors.left: parent.left
                     anchors.right: parent.right
                     anchors.bottom: parent.bottom
                     anchors.leftMargin: 10
                     anchors.bottomMargin: 5
+                    Behavior on opacity {
+                        enabled: true
+                        animation: NumberAnimation {
+                            duration: Kirigami.Units.longDuration
+                            easing.type: Easing.OutQuad
+                        }
+                    }
                     Button {
                         id: closeButton
                         text: i18n("Close")
                         flat: parseInt(forwardTo.prompter.state) === Prompter.States.Countdown || parseInt(forwardTo.prompter.state) === Prompter.States.Prompting
                         onClicked: projectionWindow.close()
+                        transform: Scale {
+                            origin.y: closeButton.height/2
+                            origin.x: closeButton.width/2
+                            xScale: model.flip===2 || model.flip===4 ? -1 : 1
+                            yScale: model.flip===3 || model.flip===4 ? -1 : 1
+                        }
                     }
                     Button {
                         id: horizontalFlipButton
                         text: i18nc("Mirrors prompter horizontally", "Horizontal mirror")
                         icon.name: "object-flip-horizontal"
+                        checkable: true
+                        checked: model.flip===2 || model.flip===4
                         flat: parseInt(forwardTo.prompter.state) === Prompter.States.Countdown || parseInt(forwardTo.prompter.state) === Prompter.States.Prompting
                         onClicked: {
                             model.flip = model.flip + (model.flip % 2 ? 1 : -1)
                             projectionManager.update()
+                        }
+                        transform: Scale {
+                            origin.y: horizontalFlipButton.height/2
+                            origin.x: horizontalFlipButton.width/2
+                            xScale: model.flip===2 || model.flip===4 ? -1 : 1
+                            yScale: model.flip===3 || model.flip===4 ? -1 : 1
                         }
                     }
                     Button {
                         id: verticalFlipButton
                         text: i18nc("Mirrors prompter vertically", "Vertical mirror")
                         icon.name: "object-flip-vertical";
+                        checkable: true
+                        checked: model.flip===3 || model.flip===4
                         flat: parseInt(forwardTo.prompter.state) === Prompter.States.Countdown || parseInt(forwardTo.prompter.state) === Prompter.States.Prompting
                         onClicked: {
                             model.flip = (model.flip + 1) % 4 + 1
                             projectionManager.update()
+                        }
+                        transform: Scale {
+                            origin.y: verticalFlipButton.height/2
+                            origin.x: horizontalFlipButton.width/2
+                            xScale: model.flip===2 || model.flip===4 ? -1 : 1
+                            yScale: model.flip===3 || model.flip===4 ? -1 : 1
                         }
                     }
                 }
@@ -296,7 +313,7 @@ Item {
         id: alertDialog
 
         function requestDisplays() {
-            alertDialog.text = i18n("For projection previews to display, you need at least one screen set to a projection setting other than \"Off\"")
+            alertDialog.text = i18n("For screen projections to show, you must set at least one screen to a projection setting other than \"Off\"")
             alertDialog.detailedText = ""
             alertDialog.icon = StandardIcon.Information
             alertDialog.visible = true
