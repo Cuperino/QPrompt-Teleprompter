@@ -1394,6 +1394,8 @@ Flickable {
             else
                 document.paste();
         }
+        if (event.key===Qt.Key_D && event.modifiers & Qt.ControlModifier)
+            editor.cursorPosition = editor.selectionStart;
         else if (event.key===keys.toggle && event.modifiers===keys.toggleModifiers)
             // Toggle state
             prompter.toggle();
