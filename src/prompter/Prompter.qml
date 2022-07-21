@@ -537,14 +537,11 @@ Flickable {
 //        }
         // Enter edit mode
         ScriptAction {
-            script: loopCountdown.resetCountdown();
-        }
-        ScriptAction {
-            script: prompter.toggle();
-        }
-        // Enter whichever mode follows?
-        ScriptAction {
-            script: prompter.toggle();
+            script: {
+                loopCountdown.resetCountdown();
+                prompter.cancel();
+                prompter.toggle();
+            }
         }
     }
     NumberAnimation on position {
