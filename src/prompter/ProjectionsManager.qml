@@ -35,6 +35,7 @@ Item {
     property color backgroundColor: "#000"
     property bool reScale: true
     property bool isEnabled: false
+    property string screensStringified: ""
     property var forwardTo // prompter
 
     function getDisplayFlip(screenName, flipSetting) {
@@ -82,7 +83,7 @@ Item {
                 else
                     flip = this.defaultDisplayMode;
             // Comment the following line to debug with a single screen.
-            if (flip!==0 /*&& Qt.application.screens[i].name!==screen.name*/)
+            if (flip>0 /*&& Qt.application.screens[i].name!==screen.name*/)
                 projectionModel.append ({
                     "id": i,
                     "screen": Qt.application.screens[i],
@@ -95,11 +96,10 @@ Item {
                     "p": ""
                 });
         }
-        if (projectionModel.count===0 && this.isEnabled && parseInt(forwardTo.prompter.state) === Prompter.States.Editing)
-            alertDialog.requestDisplays();
+        //if (projectionModel.count===0 && this.isEnabled && parseInt(forwardTo.prompter.state) === Prompter.States.Editing)
+            //alertDialog.requestDisplays();
     }
     function close() {
-        update()
         return projectionModel.clear()
     }
     function update() {
@@ -108,14 +108,37 @@ Item {
         for (var i=0; i<totalRegisteredDisplays; i++)
             for (var j=0; j<totalProjectedDisplays; j++)
                 if (displayModel.get(i).name===projectionModel.get(j).name) {
-                    console.log(i, j, projectionModel.get(i).name, projectionModel.get(j).flip)
+                    //console.log(i, j, projectionModel.get(i).name, projectionModel.get(j).flip)
                     displayModel.get(i).flipSetting = projectionModel.get(j).flip;
                     break;
                 }
     }
+    function addMissingProjections() {
+        const totalRegisteredDisplays = displayModel.count,
+              totalProjectedDisplays = projectionModel.count;
+        let count = 0;
+        for (let i=0; i<totalRegisteredDisplays; i++)
+            if (displayModel.get(i).flipSetting!==0)
+                count++;
+        if (totalProjectedDisplays!==count)
+            project();
+    }
+    function updateFromRoot(screenName, flipSetting) {
+        const totalProjectedDisplays = projectionModel.count;
+        for (let j=0; j<totalProjectedDisplays; j++) {
+            var model = projectionModel.get(j);
+            if (model.name===screenName) {
+                model.flip = flipSetting;
+                break;
+            }
+        }
+        if (projectionManager.isEnabled)
+            addMissingProjections();
+    }
     Settings {
         property alias enable: projectionManager.isEnabled
         property alias scale: projectionManager.reScale
+        property alias screens: projectionManager.screensStringified
         category: "projections"
     }
     Component {
@@ -124,7 +147,7 @@ Item {
             id: projectionWindow
             title: i18n("Projection Window")
             transientParent: root
-            screen: model.screen
+            //screen: model.screen
             modality: Qt.NonModal
             x: model.x
             y: model.y
@@ -132,11 +155,13 @@ Item {
             height: model.height
             visibility: ['windows', 'osx'].indexOf(Qt.platform.os)===-1 ? Kirigami.ApplicationWindow.FullScreen : Kirigami.ApplicationWindow.Maximized
             flags: Qt.FramelessWindowHint
-            visible: true
+            visible: root.visible
             color: "transparent"
             onClosing: {
-                projectionManager.update()
-                projectionModel.clear()
+                model.flip = 0;
+                projectionManager.update();
+                projectionModel.remove(model.index);
+                //displayModel.remove(model.index);
             }
             MouseArea {
                 enabled: true
@@ -145,9 +170,7 @@ Item {
                 // Keyboard inputs
                 focus: true
                 onClicked: projectionManager.forwardTo.prompter.toggle()
-                onWheel: (wheel)=> {
-                    projectionManager.forwardTo.mouse.wheel(wheel)
-                }
+                onWheel: (wheel)=>projectionManager.forwardTo.mouse.wheel(wheel)
                 Keys.onShortcutOverride: event.accepted = (event.key === Qt.Key_Escape)
                 Keys.onEscapePressed: projectionWindow.close()
                 Keys.forwardTo: projectionManager.forwardTo.prompter
@@ -230,8 +253,15 @@ Item {
                         origin.y: img.paintedHeight/2
                         yScale: model.flip===3 || model.flip===4 ? -1 : 1
                     }
+                    Rectangle {
+                        color: "#000000"
+                        anchors.fill: parent
+                        visible: model.flip===0
+                        opacity: 0.6
+                    }
                 }
                 GridLayout {
+                    enabled: model.flip
                     opacity: parseInt(forwardTo.prompter.state) === Prompter.States.Countdown || parseInt(forwardTo.prompter.state) === Prompter.States.Prompting ? 0.2 : 1
                     anchors.left: parent.left
                     anchors.right: parent.right
@@ -312,12 +342,12 @@ Item {
     MessageDialog {
         id: alertDialog
 
-        function requestDisplays() {
-            alertDialog.text = i18n("For screen projections to show, you must set at least one screen to a projection setting other than \"Off\"")
-            alertDialog.detailedText = ""
-            alertDialog.icon = StandardIcon.Information
-            alertDialog.visible = true
-        }
+//         function requestDisplays() {
+//             alertDialog.text = i18n("For screen projections to show, you must set at least one screen to a projection setting other than \"Off\"")
+//             alertDialog.detailedText = ""
+//             alertDialog.icon = StandardIcon.Information
+//             alertDialog.visible = true
+//         }
 //         function warnSameDisplay(screenName) {
 //             alertDialog.text = i18n("You've enabled a screen projection on display \"%1\". Please note this projection will not show unless you place the editor on a different screen.", screenName)
 //             //alertDialog.text = i18n("QPrompt will not project to the screen where the editor is at.")

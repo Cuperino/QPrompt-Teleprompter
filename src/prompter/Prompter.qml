@@ -254,8 +254,8 @@ Flickable {
             case Prompter.States.Prompting:
                 timer.reset();
                 prompter.focus = true;
-                if (!projectionManager.model.count && projectionManager.isEnabled)
-                    projectionManager.project();
+                if (projectionManager.isEnabled)
+                    projectionManager.addMissingProjections()
                 //showPassiveNotification(i18n("Prompt started"), 850*countdown.__iterations)
                 if (state!==Prompter.States.Countdown)
                     document.parse()
@@ -1189,7 +1189,7 @@ Flickable {
             // if (document.quitOnSave)
             //     Qt.quit()
             // else
-            console.log("onDiscard:", root.onDiscard)
+            //console.log("onDiscard:", root.onDiscard)
             switch (parseInt(root.onDiscard)) {
                 case Prompter.CloseActions.LoadGuide: document.modified = false; document.loadGuide(); break;
                 case Prompter.CloseActions.LoadNew: document.modified = false; document.newDocument(); break;

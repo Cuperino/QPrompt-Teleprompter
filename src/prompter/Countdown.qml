@@ -159,13 +159,8 @@ Item {
             easing.type: Easing.Linear
             alwaysRunToEnd: true
             onStarted: {
-                console.log("onStartedRan")
-                console.log(canvas.__iteration)
-                console.log(countdown.__disappearWithin-1)
-                if (canvas.__iteration===countdown.__disappearWithin-1) {
-                    console.log("dissolveOut.running")
+                if (canvas.__iteration===countdown.__disappearWithin-1)
                     dissolveOut.running = true
-                }
             }
             onFinished: {
                 if (countdown.running && canvas.__iteration>0) {
