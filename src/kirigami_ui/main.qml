@@ -797,10 +797,10 @@ Kirigami.ApplicationWindow {
             }
         }
         // Update Projections
-        const n = projectionManager.model.count;
-        if (n)
+        if (projectionManager.isEnabled && root.visible && projectionManager.model.count)
             root.pageStack.currentItem.viewport.grabToImage(function(p) {
-                for (var i=0; i<n; ++i)
+                // Recount projections on each for loop iteration to prevent value from going stale because a window was closed from a different thread.
+                for (var i=0; i<projectionManager.model.count; i++)
                     projectionManager.model.setProperty(i, "p", String(p.url));
             });
     }

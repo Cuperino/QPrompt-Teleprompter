@@ -574,9 +574,10 @@ Kirigami.Page {
                         function toggleDisplayFlip() {
                             flipSetting = (flipSetting+1)%5
                             projectionManager.putDisplayFlip(display.name, flipSetting)
+                            projectionManager.updateFromRoot(display.name, flipSetting)
                         }
                         // enabled: parseInt(prompter.state)===Prompter.States.Editing
-                        enabled: projectionManager.model.count===0
+                        // enabled: projectionManager.model.count===0
                         activeTextColor: "#FFFFFF"
                         activeBackgroundColor: "#797979"
                         actions: [
@@ -608,18 +609,14 @@ Kirigami.Page {
             Kirigami.Action {
                 text: i18nc("Display prompter copies onto displays", "Enable projection")
                 //tooltip: i18n("Display prompter copies onto extended displays")
-                //enabled: parseInt(prompter.state)===Prompter.States.Editing
                 checkable: true
                 checked: projectionManager.isEnabled
                 onTriggered: {
-                    if (projectionManager.isEnabled) {
-                        projectionManager.isEnabled = false;
-                        projectionManager.close()
-                    }
-                    else {
-                        projectionManager.isEnabled = true;
+                    projectionManager.isEnabled = !projectionManager.isEnabled;
+                    if (projectionManager.isEnabled)
                         projectionManager.project();
-                    }
+                    else
+                        projectionManager.close();
                     contextDrawer.close()
                 }
             }

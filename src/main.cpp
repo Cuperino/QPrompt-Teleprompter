@@ -72,9 +72,9 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
     //#if KF5Crash_FOUND
         //KCrash::setDrKonqiEnabled(true);
         KCrash::initialize();
-        KCrash::setErrorMessage("QPrompt crashed. Please report now at https://feedback.qprompt.app");
+        KCrash::setErrorMessage("QPrompt crashed. Please report now to https://feedback.qprompt.app");
         //KCrash::setCrashHandler( KCrash::defaultCrashHandler );
-        //KCrash::setFlags(KCrash::AutoRestart); // |KCrash::SaferDialog
+        KCrash::setFlags(KCrash::AutoRestart); // |KCrash::SaferDialog
         qDebug() << "DrKonqui" << KCrash::isDrKonqiEnabled();
     //#endif
 
