@@ -221,10 +221,19 @@ Flickable {
         property alias width: prompter.contentsPlacement
         property alias offset: positionHandler.placement
     }
-    // Toggle prompter state
+
+    function restoreFocus() {
+        if (parseInt(state)===Prompter.States.Editing)
+            editor.focus = !Kirigami.Settings.isMobile
+        else
+            focus = true
+    }
+
     function cancel() {
         state = Prompter.States.Editing
     }
+
+    // Toggle prompter state
     function toggle() {
         // Cancel auto loop if running
         if (loop.running)
@@ -243,17 +252,15 @@ Flickable {
         state = nextIndex
 
         switch (parseInt(state)) {
-            case Prompter.States.Editing:
-                //showPassiveNotification(i18n("Editing"), 850*countdown.__iterations)
-                // if (closeProjectionUponPromptEnd)
-                //     projectionManager.close();
-                editor.focus = !Kirigami.Settings.isMobile
-                break;
+            //case Prompter.States.Editing:
+                ////showPassiveNotification(i18n("Editing"), 850*countdown.__iterations)
+                //// if (closeProjectionUponPromptEnd)
+                ////     projectionManager.close();
+                //break;
             case Prompter.States.Standby:
             case Prompter.States.Countdown:
             case Prompter.States.Prompting:
                 timer.reset();
-                prompter.focus = true;
                 if (projectionManager.isEnabled)
                     projectionManager.addMissingProjections()
                 //showPassiveNotification(i18n("Prompt started"), 850*countdown.__iterations)
@@ -261,7 +268,7 @@ Flickable {
                     document.parse()
                 break;
         }
-        //console.log("toggle state:", state)
+        prompter.restoreFocus()
     }
 
     function increaseVelocity(event) {
@@ -402,10 +409,7 @@ Flickable {
             prompter.goTo(p0_lineStart);
 
         // Focus controls
-        if (parseInt(prompter.state) !== Prompter.States.Editing || Kirigami.Settings.isMobile)
-            prompter.focus = true;
-        else
-            editor.focus = true;
+        prompter.restoreFocus()
         // Close drawer in mobile mode
         contextDrawer.close();
     }
@@ -680,9 +684,11 @@ Flickable {
                             font.family: iconFont.name
                             flat: !(pressed || prompter.__atStart)
                             //cursorShape: Qt.PointingHandCursor
-                            onClicked:
+                            onClicked: {
                                 if (root.passiveNotifications)
                                     showPassiveNotification(i18n("Double tap to go back to the start"));
+                                prompter.focus = true
+                            }
                             // Using onPressed to get an immediate response. We should to be forgiving of users who may take too long to press time based buttons
                             onPressed:
                                 if (loop.running) {
@@ -704,6 +710,7 @@ Flickable {
                                     //}
                                     //showPassiveNotification(goToStartNotification);
                                 //}
+                                prompter.restoreFocus()
                             }
                             Rectangle {
                                 anchors.fill: parent
