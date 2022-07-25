@@ -29,6 +29,7 @@ import Qt.labs.settings 1.0
 Item {
     id: projectionManager
     readonly property alias model: projectionModel
+    readonly property alias alertDialog: alertDialog
     readonly property real internalBackgroundOpacity: backgroundOpacity // /2+0.5
     property int defaultDisplayMode: 0
     property real backgroundOpacity: 1
@@ -38,6 +39,22 @@ Item {
     property string screensStringified: ""
     property var forwardTo // prompter
 
+    function toggle() {
+        isEnabled = !isEnabled;
+        if (isEnabled) {
+            project();
+            const total = projectionModel.count;
+            let count = 0;
+            for (let i=0; i<total; ++i)
+                if (projectionModel.get(i).flip!==0)
+                    count++;
+            console.log(count)
+            if (count===0)
+                alertDialog.requestDisplays()
+        }
+        else
+            closeAll();
+    }
     function getDisplayFlip(screenName, flipSetting) {
         const totalDisplays = displayModel.count;
         for (var j=0; j<totalDisplays; j++)
@@ -99,7 +116,7 @@ Item {
         //if (projectionModel.count===0 && this.isEnabled && parseInt(forwardTo.prompter.state) === Prompter.States.Editing)
             //alertDialog.requestDisplays();
     }
-    function close() {
+    function closeAll() {
         return projectionModel.clear()
     }
     function update() {
@@ -342,12 +359,12 @@ Item {
     MessageDialog {
         id: alertDialog
 
-//         function requestDisplays() {
-//             alertDialog.text = i18n("For screen projections to show, you must set at least one screen to a projection setting other than \"Off\"")
-//             alertDialog.detailedText = ""
-//             alertDialog.icon = StandardIcon.Information
-//             alertDialog.visible = true
-//         }
+        function requestDisplays() {
+            alertDialog.text = i18n("For screen projections to show, you must set at least one screen to a projection setting other than \"Off\"")
+            alertDialog.detailedText = ""
+            alertDialog.icon = StandardIcon.Information
+            alertDialog.visible = true
+        }
 //         function warnSameDisplay(screenName) {
 //             alertDialog.text = i18n("You've enabled a screen projection on display \"%1\". Please note this projection will not show unless you place the editor on a different screen.", screenName)
 //             //alertDialog.text = i18n("QPrompt will not project to the screen where the editor is at.")

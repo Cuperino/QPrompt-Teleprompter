@@ -651,11 +651,7 @@ Kirigami.Page {
                 checkable: true
                 checked: projectionManager.isEnabled
                 onTriggered: {
-                    projectionManager.isEnabled = !projectionManager.isEnabled;
-                    if (projectionManager.isEnabled)
-                        projectionManager.project();
-                    else
-                        projectionManager.close();
+                    projectionManager.toggle()
                     contextDrawer.close()
                     prompter.restoreFocus()
                 }
