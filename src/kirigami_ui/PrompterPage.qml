@@ -599,7 +599,7 @@ Kirigami.Page {
         },
         Kirigami.Action {
             id: displaySettings
-            visible: !Kirigami.Settings.isMobile || 'linux'===Qt.platform.os
+            visible: !Kirigami.Settings.isMobile || Qt.platform.os==='linux'
             text: i18nc("Screens refers to computer displays", "Screens")
 
             Kirigami.Action {
@@ -615,8 +615,7 @@ Kirigami.Page {
                             projectionManager.putDisplayFlip(display.name, flipSetting)
                             projectionManager.updateFromRoot(display.name, flipSetting)
                         }
-                        // enabled: parseInt(prompter.state)===Prompter.States.Editing
-                        // enabled: projectionManager.model.count===0
+                        //enabled: name!==screen.name || Qt.platform.os==='osx'
                         activeTextColor: "#FFFFFF"
                         activeBackgroundColor: "#797979"
                         actions: [

@@ -63,13 +63,6 @@ Item {
         return this.defaultDisplayMode
     }
     function putDisplayFlip(screenName, flipSetting) {
-//         if (flipSetting) {
-//             if (Qt.application.screens.length===1)
-//                 alertDialog.requestDisplays()
-//             else
-//             if (screenName===screen.name)
-//                 alertDialog.warnSameDisplay(screenName)
-//         }
         // Auto maximize main window on display flip selection.
         if (flipSetting && visibility!==Kirigami.ApplicationWindow.FullScreen && !Kirigami.Settings.isMobile)
             root.showMaximized()
@@ -77,8 +70,10 @@ Item {
         const configuredDisplays = displayModel.count;
         for (var j=0; j<configuredDisplays; j++)
             if (displayModel.get(j).name===screenName) {
-                displayModel.get(j).flipSetting = flipSetting;
-                // console.log(displayModel)
+                //if (flipSetting && screenName===screen.name)
+                    //displayModel.get(j).flipSetting = 0;
+                //else
+                    displayModel.get(j).flipSetting = flipSetting;
                 return;
             }
         // If configuration does not exists, add it.
@@ -164,15 +159,20 @@ Item {
             id: projectionWindow
             title: i18n("Projection Window")
             transientParent: root
-            //screen: model.screen
+            screen: model.screen
             modality: Qt.NonModal
             x: model.x
             y: model.y
             width: model.width
             height: model.height
-            visibility: ['windows', 'osx'].indexOf(Qt.platform.os)===-1 ? Kirigami.ApplicationWindow.FullScreen : Kirigami.ApplicationWindow.Maximized
+            visibility:
+                if (!root.visibility || (model.name===root.screen.name && Qt.platform.os!=="osx"))
+                    return Kirigami.ApplicationWindow.Hidden
+                else if (['windows', 'osx'].indexOf(Qt.platform.os)===-1)
+                    return Kirigami.ApplicationWindow.FullScreen
+                else
+                    return Kirigami.ApplicationWindow.Maximized
             flags: Qt.FramelessWindowHint
-            visible: root.visible
             color: "transparent"
             onClosing: {
                 model.flip = 0;
