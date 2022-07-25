@@ -78,7 +78,11 @@ Kirigami.Page {
             text: pageStack.globalToolBar.actualStyle === Kirigami.ApplicationHeaderStyle.None ? i18n("Decrease velocity") : ""
             iconName: Qt.application.layoutDirection === Qt.RightToLeft ? "go-previous-rtl" : "go-previous"
             icon.source: Qt.application.layoutDirection === Qt.RightToLeft ? "icons/go-next.svg" : "icons/go-previous.svg"
-            onTriggered: parseInt(prompter.state) === Prompter.States.Prompting ? viewport.prompter.decreaseVelocity(false) : prompter.goToPreviousMarker()
+            onTriggered:
+                if (parseInt(prompter.state) === Prompter.States.Prompting)
+                    viewport.prompter.decreaseVelocity(false)
+                else
+                    prompter.goToPreviousMarker()
         }
         right: Kirigami.Action {
             id: increaseVelocityButton
@@ -86,7 +90,11 @@ Kirigami.Page {
             text: pageStack.globalToolBar.actualStyle === Kirigami.ApplicationHeaderStyle.None ? i18n("Increase velocity") : ""
             iconName: Qt.application.layoutDirection === Qt.RightToLeft ? "go-next-rtl" : "go-next"
             icon.source: Qt.application.layoutDirection === Qt.RightToLeft ? "icons/go-previous.svg" : "icons/go-next.svg"
-            onTriggered: parseInt(prompter.state) === Prompter.States.Prompting ? viewport.prompter.increaseVelocity(false) : prompter.goToNextMarker()
+            onTriggered:
+                if (parseInt(prompter.state) === Prompter.States.Prompting)
+                    viewport.prompter.increaseVelocity(false)
+                else
+                    prompter.goToNextMarker()
         }
         contextualActions: [
         // This may have not been a right design choice. It needs user beta testers' validation. Disabling for initial release.
@@ -115,6 +123,7 @@ Kirigami.Page {
                 onTriggered: {
                     viewport.overlay.positionState = ReadRegionOverlay.PositionStates.Top
                     contextDrawer.close()
+                    prompter.restoreFocus()
                 }
             }
             Kirigami.Action {
@@ -126,6 +135,7 @@ Kirigami.Page {
                 onTriggered: {
                     viewport.overlay.positionState = ReadRegionOverlay.PositionStates.Middle
                     contextDrawer.close()
+                    prompter.restoreFocus()
                 }
             }
             Kirigami.Action {
@@ -137,6 +147,7 @@ Kirigami.Page {
                 onTriggered: {
                     viewport.overlay.positionState = ReadRegionOverlay.PositionStates.Bottom
                     contextDrawer.close()
+                    prompter.restoreFocus()
                 }
             }
             Kirigami.Action {
@@ -148,6 +159,7 @@ Kirigami.Page {
                 onTriggered: {
                     viewport.overlay.positionState = ReadRegionOverlay.PositionStates.Free
                     contextDrawer.close()
+                    prompter.restoreFocus()
                 }
             }
             Kirigami.Action {
@@ -159,6 +171,7 @@ Kirigami.Page {
                 onTriggered: {
                     viewport.overlay.positionState = ReadRegionOverlay.PositionStates.Fixed
                     contextDrawer.close()
+                    prompter.restoreFocus()
                 }
             }
             Kirigami.Action {
@@ -240,6 +253,7 @@ Kirigami.Page {
                 onTriggered: {
                     overlay.styleState = ReadRegionOverlay.PointerStates.LeftPointer
                     contextDrawer.close()
+                    prompter.restoreFocus()
                 }
             }
             Kirigami.Action {
@@ -251,6 +265,7 @@ Kirigami.Page {
                 onTriggered: {
                     overlay.styleState = ReadRegionOverlay.PointerStates.RightPointer
                     contextDrawer.close()
+                    prompter.restoreFocus()
                 }
             }
             Kirigami.Action {
@@ -262,6 +277,7 @@ Kirigami.Page {
                 onTriggered: {
                     overlay.styleState = ReadRegionOverlay.PointerStates.Pointers
                     contextDrawer.close()
+                    prompter.restoreFocus()
                 }
             }
             Kirigami.Action {
@@ -273,6 +289,7 @@ Kirigami.Page {
                 onTriggered: {
                     overlay.styleState = ReadRegionOverlay.PointerStates.Bars
                     contextDrawer.close()
+                    prompter.restoreFocus()
                 }
             }
             Kirigami.Action {
@@ -284,6 +301,7 @@ Kirigami.Page {
                 onTriggered: {
                     overlay.styleState = ReadRegionOverlay.PointerStates.BarsLeft
                     contextDrawer.close()
+                    prompter.restoreFocus()
                 }
             }
             Kirigami.Action {
@@ -295,6 +313,7 @@ Kirigami.Page {
                 onTriggered: {
                     overlay.styleState = ReadRegionOverlay.PointerStates.BarsRight
                     contextDrawer.close()
+                    prompter.restoreFocus()
                 }
             }
             Kirigami.Action {
@@ -306,6 +325,7 @@ Kirigami.Page {
                 onTriggered: {
                     overlay.styleState = ReadRegionOverlay.PointerStates.All
                     contextDrawer.close()
+                    prompter.restoreFocus()
                 }
             }
             Kirigami.Action {
@@ -317,6 +337,7 @@ Kirigami.Page {
                 onTriggered: {
                     overlay.styleState = ReadRegionOverlay.PointerStates.None
                     contextDrawer.close()
+                    prompter.restoreFocus()
                 }
             }
         },
@@ -332,6 +353,7 @@ Kirigami.Page {
                 onTriggered: {
                     viewport.timer.stopwatch = !viewport.timer.stopwatch
                     // contextDrawer.close()
+                    prompter.restoreFocus()
                 }
             }
             Kirigami.Action {
@@ -343,6 +365,7 @@ Kirigami.Page {
                 onTriggered: {
                     viewport.timer.eta = !viewport.timer.eta
                     // contextDrawer.close()
+                    prompter.restoreFocus()
                 }
             }
             Kirigami.Action {
@@ -352,6 +375,7 @@ Kirigami.Page {
                 onTriggered: {
                     viewport.timer.setColor()
                     contextDrawer.close()
+                    prompter.restoreFocus()
                 }
             }
             Kirigami.Action {
@@ -362,6 +386,7 @@ Kirigami.Page {
                 onTriggered: {
                     viewport.timer.clearColor()
                     contextDrawer.close()
+                    prompter.restoreFocus()
                 }
             }
         },
@@ -381,6 +406,7 @@ Kirigami.Page {
                     //if (viewport.countdown.enabled)
                     //    // Use of implemented feature might go here.
                     // contextDrawer.close()
+                    prompter.restoreFocus()
                 }
             }
             Kirigami.Action {
@@ -396,6 +422,7 @@ Kirigami.Page {
                     //if (viewport.countdown.enabled)
                     //    // Use of implemented feature might go here.
                     // contextDrawer.close()
+                    prompter.restoreFocus()
                 }
             }
             Kirigami.Action {
@@ -409,6 +436,7 @@ Kirigami.Page {
                 onTriggered: {
                     viewport.countdown.autoStart = !viewport.countdown.autoStart
                     // contextDrawer.close()
+                    prompter.restoreFocus()
                 }
             }
             Kirigami.Action {
@@ -419,6 +447,7 @@ Kirigami.Page {
                 onTriggered: {
                     viewport.countdown.configuration.open()
                     contextDrawer.close()
+                    prompter.restoreFocus()
                 }
             }
         },
@@ -442,6 +471,7 @@ Kirigami.Page {
                     //viewport.prompter.__flipX = false
                     //viewport.prompter.__flipY = false
                     //contextDrawer.close()
+                    //prompter.restoreFocus()
                 //}
             //}
             Kirigami.Action {
@@ -457,6 +487,7 @@ Kirigami.Page {
                     //viewport.prompter.__flipY = false
                     viewport.prompter.__flipX = !viewport.prompter.__flipX
                     contextDrawer.close()
+                    prompter.restoreFocus()
                 }
             }
             Kirigami.Action {
@@ -472,6 +503,7 @@ Kirigami.Page {
                     //viewport.prompter.__flipY = true
                     viewport.prompter.__flipY = !viewport.prompter.__flipY
                     contextDrawer.close()
+                    prompter.restoreFocus()
                 }
             }
             //Kirigami.Action {
@@ -493,6 +525,7 @@ Kirigami.Page {
                     //if (viewport.forcedOrientation!==1)
                     viewport.forcedOrientation = 0
                     contextDrawer.close()
+                    prompter.restoreFocus()
                 }
             }
             Kirigami.Action {
@@ -503,6 +536,7 @@ Kirigami.Page {
                     //if (viewport.forcedOrientation!==1)
                     viewport.forcedOrientation = 1
                     contextDrawer.close()
+                    prompter.restoreFocus()
                 }
             }
             Kirigami.Action {
@@ -513,6 +547,7 @@ Kirigami.Page {
                     //if (viewport.forcedOrientation!==2)
                     viewport.forcedOrientation = 2
                     contextDrawer.close()
+                    prompter.restoreFocus()
                 }
             }
             //Kirigami.Action {
@@ -523,6 +558,7 @@ Kirigami.Page {
                     ////if (viewport.forcedOrientation!==3)
                     //viewport.forcedOrientation = 3
                     //contextDrawer.close()
+                    //prompter.restoreFocus()
                 //}
             //}
         },
@@ -536,6 +572,7 @@ Kirigami.Page {
                 onTriggered: {
                     prompterBackground.loadBackgroundImage()
                     contextDrawer.close()
+                    prompter.restoreFocus()
                 }
             }
             Kirigami.Action {
@@ -545,6 +582,7 @@ Kirigami.Page {
                 onTriggered: {
                     prompterBackground.backgroundColorDialog.open()
                     contextDrawer.close()
+                    prompter.restoreFocus()
                 }
             }
             Kirigami.Action {
@@ -555,6 +593,7 @@ Kirigami.Page {
                 onTriggered: {
                     prompterBackground.clearBackground()
                     contextDrawer.close()
+                    prompter.restoreFocus()
                 }
             }
         },
@@ -618,6 +657,7 @@ Kirigami.Page {
                     else
                         projectionManager.close();
                     contextDrawer.close()
+                    prompter.restoreFocus()
                 }
             }
             Kirigami.Action {
@@ -626,8 +666,9 @@ Kirigami.Page {
                 checkable: true
                 checked: projectionManager.reScale
                 onTriggered: {
-                    projectionManager.reScale = !projectionManager.reScale
-                    contextDrawer.close()
+                    projectionManager.reScale = !projectionManager.reScale;
+                    contextDrawer.close();
+                    prompter.restoreFocus()
                 }
             }
         },
@@ -638,6 +679,7 @@ Kirigami.Page {
         //    onTriggered: {
         //        console.log("Debug Action")
         //        prompterPage.test( true )
+        //        prompter.restoreFocus()
         //    }
         //},
         Kirigami.Action {
@@ -647,6 +689,7 @@ Kirigami.Page {
             onTriggered: {
                 root.__fullScreen = !root.__fullScreen
                 contextDrawer.close()
+                prompter.restoreFocus()
             }
         }
         ]
@@ -659,6 +702,7 @@ Kirigami.Page {
 
     PrompterView {
         id: viewport
+        property alias toolbar: editorToolbar
         height: (forcedOrientation && forcedOrientation!==3 ? parent.width : (root.theforce && !forcedOrientation ? 3 : 1) * parent.height) + (Kirigami.Settings.isMobile ? 68 : 0)
         // anchors.bottomMargin: Kirigami.Settings.isMobile ? -68 : 0
         width: (forcedOrientation && forcedOrientation!==3 ? parent.height : (root.theforce && !forcedOrientation ? 0.3 : 1) * parent.width)
@@ -680,6 +724,9 @@ Kirigami.Page {
                 //}
             //}
         }
+        // Workaround to make regular Page let its contents be covered by action buttons.
+        anchors.bottomMargin: pageStack.globalToolBar.actualStyle === Kirigami.ApplicationHeaderStyle.None ? -68 : 0
+        prompter.performFileOperations: true
         //Behavior on x {
             //enabled: true
             //animation: NumberAnimation {
@@ -708,10 +755,6 @@ Kirigami.Page {
                 //easing.type: Easing.OutQuad
             //}
         //}
-        //// Workaround to make regular Page let its contents be covered by action buttons.
-        //anchors.bottomMargin: pageStack.globalToolBar.actualStyle === Kirigami.ApplicationHeaderStyle.None ? -68 : 0
-        prompter.performFileOperations: true
-        property alias toolbar: editorToolbar
     }
 
     // The following rectangles add a background that is shown behind the mobile action buttons when the user is in desktop mode but the action buttons are showing. These also improve contrast with the editor toolbar when opacity is active.
