@@ -64,7 +64,7 @@ Item {
     }
     function putDisplayFlip(screenName, flipSetting) {
         // Auto maximize main window on display flip selection.
-        if (flipSetting && visibility!==Kirigami.ApplicationWindow.FullScreen && !Kirigami.Settings.isMobile)
+        if (flipSetting && Qt.platform.os!=='windows' && visibility!==Kirigami.ApplicationWindow.FullScreen && !Kirigami.Settings.isMobile)
             root.showMaximized()
         // If configuration exists for element, update it.
         const configuredDisplays = displayModel.count;
