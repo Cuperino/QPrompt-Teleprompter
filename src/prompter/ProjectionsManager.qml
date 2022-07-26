@@ -82,6 +82,22 @@ Item {
             "flipSetting": flipSetting
         });
     }
+    function addMissingProjections() {
+        const totalRegisteredDisplays = displayModel.count,
+              totalProjectedDisplays = projectionModel.count;
+        let count = 0;
+        for (let i=0; i<totalRegisteredDisplays; i++)
+            if (displayModel.get(i).flipSetting!==0)
+                count++;
+        // Alternative behavior: do not auto remove screens on Windows to prevent crash.
+        if (Qt.platform.os==="windows") {
+            if (totalProjectedDisplays<count)
+                project();
+        }
+        // Behavior for all other OS
+        else if (totalProjectedDisplays!==count)
+            project();
+    }
     function project() {
         projectionModel.clear();
         var flip = this.defaultDisplayMode;
@@ -124,16 +140,6 @@ Item {
                     displayModel.get(i).flipSetting = projectionModel.get(j).flip;
                     break;
                 }
-    }
-    function addMissingProjections() {
-        const totalRegisteredDisplays = displayModel.count,
-              totalProjectedDisplays = projectionModel.count;
-        let count = 0;
-        for (let i=0; i<totalRegisteredDisplays; i++)
-            if (displayModel.get(i).flipSetting!==0)
-                count++;
-        if (totalProjectedDisplays!==count)
-            project();
     }
     function updateFromRoot(screenName, flipSetting) {
         const totalProjectedDisplays = projectionModel.count;
