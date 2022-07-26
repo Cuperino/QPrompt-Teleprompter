@@ -195,7 +195,7 @@ Item {
                 onClicked: projectionManager.forwardTo.prompter.toggle()
                 onWheel: (wheel)=>projectionManager.forwardTo.mouse.wheel(wheel)
                 Keys.onShortcutOverride: event.accepted = (event.key === Qt.Key_Escape)
-                Keys.onEscapePressed: projectionWindow.close()
+                Keys.onEscapePressed: projectionManager.forwardTo.prompter.cancel()
                 Keys.forwardTo: projectionManager.forwardTo.prompter
                 Rectangle {
                     id: topFill
