@@ -615,7 +615,7 @@ Kirigami.Page {
                             projectionManager.putDisplayFlip(display.name, flipSetting)
                             projectionManager.updateFromRoot(display.name, flipSetting)
                         }
-                        enabled: name!==screen.name || Qt.platform.os==='osx'
+                        enabled: display.name!==screen.name || Qt.platform.os!=='windows'
                         activeTextColor: "#FFFFFF"
                         activeBackgroundColor: "#797979"
                         actions: [
