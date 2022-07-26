@@ -278,7 +278,6 @@ Item {
                     }
                 }
                 GridLayout {
-                    enabled: model.flip
                     opacity: parseInt(forwardTo.prompter.state) === Prompter.States.Countdown || parseInt(forwardTo.prompter.state) === Prompter.States.Prompting ? 0.2 : 1
                     anchors.left: parent.left
                     anchors.right: parent.right
@@ -306,6 +305,7 @@ Item {
                     }
                     Button {
                         id: horizontalFlipButton
+                        enabled: model.flip
                         text: i18nc("Mirrors prompter horizontally", "Horizontal mirror")
                         icon.name: "object-flip-horizontal"
                         checkable: true
@@ -324,6 +324,7 @@ Item {
                     }
                     Button {
                         id: verticalFlipButton
+                        enabled: model.flip
                         text: i18nc("Mirrors prompter vertically", "Vertical mirror")
                         icon.name: "object-flip-vertical";
                         checkable: true
