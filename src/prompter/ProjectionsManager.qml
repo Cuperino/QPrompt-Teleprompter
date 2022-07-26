@@ -189,10 +189,12 @@ Item {
             MouseArea {
                 enabled: true
                 anchors.fill: parent
-                cursorShape: Qt.PointingHandCursor
+                cursorShape: model.flip ? Qt.PointingHandCursor : Qt.ForbiddenCursor
                 // Keyboard inputs
                 focus: true
-                onClicked: projectionManager.forwardTo.prompter.toggle()
+                onClicked:
+                    if (model.flip)
+                        projectionManager.forwardTo.prompter.toggle();
                 onWheel: (wheel)=>projectionManager.forwardTo.mouse.wheel(wheel)
                 Keys.onShortcutOverride: event.accepted = (event.key === Qt.Key_Escape)
                 Keys.onEscapePressed: projectionManager.forwardTo.prompter.cancel()
@@ -257,7 +259,7 @@ Item {
                 // The actual projection
                 Image {
                     id: img
-                    source: model.p
+                    source: model.flip ? model.p : false
                     // Keep loading asynchronous. Improve responsiveness of main thread.
                     asynchronous: true
                     // Cache image if it's not being re-scaled so it could be used on n projection without much additional cost.
@@ -280,7 +282,14 @@ Item {
                         color: "#000000"
                         anchors.fill: parent
                         visible: model.flip===0
-                        opacity: 0.6
+                        Image {
+                            source: "qrc:/images/qprompt.png"
+                            fillMode: Image.PreserveAspectFit
+                            width: parent.width * 3 / 4
+                            height: parent.height * 3 / 4
+                            anchors.horizontalCenter: parent.horizontalCenter
+                            anchors.verticalCenter: parent.verticalCenter
+                        }
                     }
                 }
                 GridLayout {
