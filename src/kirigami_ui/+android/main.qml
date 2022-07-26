@@ -312,8 +312,16 @@ Kirigami.ApplicationWindow {
                     // If Escape is pressed while prompting, return focus to prompter, thus leaving edit while prompting mode.
                     if (parseInt(root.pageStack.currentItem.prompter.state)===Prompter.States.Prompting && root.pageStack.currentItem.editor.focus)
                         root.pageStack.currentItem.prompter.focus = true;
-                    else
+                    else {
                         root.pageStack.currentItem.prompter.cancel()
+                        root.pageStack.currentItem.find.close()
+                        wheelSettings.close()
+                    }
+                    root.pageStack.currentItem.sideDrawer.close()
+                    root.pageStack.currentItem.countdown.configuration.close()
+                    root.pageStack.currentItem.key_configuration_overlay.close()
+                    root.pageStack.currentItem.footer.namedMarkerConfiguration.close()
+                    root.pageStack.layers.clear();
                 }
                 shortcut: StandardKey.Cancel
             }
