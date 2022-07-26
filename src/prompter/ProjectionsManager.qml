@@ -172,7 +172,7 @@ Item {
             width: model.width
             height: model.height
             visibility:
-                if (!root.visible || (model.name===root.screen.name && Qt.platform.os!=="osx"))
+                if (!root.visible || (model.name===root.screen.name && Qt.platform.os==="windows"))
                     return Kirigami.ApplicationWindow.Hidden
                 else if (['windows', 'osx'].indexOf(Qt.platform.os)===-1)
                     return Kirigami.ApplicationWindow.FullScreen
