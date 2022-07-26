@@ -70,7 +70,7 @@ Kirigami.OverlaySheet {
                 Layout.fillWidth: true
                 wrapMode: Text.WordWrap
                 text: i18n("Enable throttling for use with touchpads, disable for precise scolling.")
-                color: root.palette.windowText
+                color: root.palette.midlight
                 Layout.leftMargin: Kirigami.Units.smallSpacing
                 Layout.rightMargin: Kirigami.Units.smallSpacing
             }
