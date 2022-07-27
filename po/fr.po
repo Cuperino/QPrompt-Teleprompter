@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/Cuperino/QPrompt/issues/new/choose\n"
 "POT-Creation-Date: 2022-07-27 14:53-0400\n"
-"PO-Revision-Date: 2022-07-06 19:59+0000\n"
+"PO-Revision-Date: 2022-07-27 22:56+0000\n"
 "Last-Translator: Javier O. Cordero Pérez <javiercorderoperez@gmail.com>\n"
 "Language-Team: French <http://l10n.cuperino.com/projects/qprompt/qprompt-app/"
 "fr/>\n"
@@ -64,10 +64,9 @@ msgstr "Touches du clavier"
 
 #: kirigami_ui/+android/main.qml:223 kirigami_ui/main.qml:235
 #: kirigami_ui/+windows/main.qml:230
-#, fuzzy
 msgctxt "Open 'scroll settings' from main menu and global menu actions"
 msgid "Scroll throttle settings"
-msgstr "Paramétrage d'entrée"
+msgstr "Paramétrage de défilement"
 
 #: kirigami_ui/+android/main.qml:228 kirigami_ui/main.qml:241
 #: kirigami_ui/main.qml:691 kirigami_ui/+windows/main.qml:235
@@ -110,13 +109,13 @@ msgstr "&Autres réglages"
 #: kirigami_ui/+windows/main.qml:279
 msgctxt "Main menu actions"
 msgid "Always hide formatting tools"
-msgstr ""
+msgstr "Toujours masquer outils de formatage"
 
 #: kirigami_ui/+android/main.qml:281 kirigami_ui/main.qml:300
 #: kirigami_ui/+windows/main.qml:288
 msgctxt "Main menu actions. Hides formatting tools while not in edit mode."
 msgid "Auto hide formatting tools"
-msgstr ""
+msgstr "Masquer automatiquement outils de formatage"
 
 #: kirigami_ui/+android/main.qml:296 kirigami_ui/main.qml:328
 #: kirigami_ui/+windows/main.qml:313
@@ -132,15 +131,14 @@ msgstr "&Quitter"
 
 #: kirigami_ui/+android/main.qml:331 kirigami_ui/main.qml:386
 #: kirigami_ui/main.qml:723 kirigami_ui/+windows/main.qml:353
-#, fuzzy
 msgctxt "Main menu and global actions. Load document that welcomes users."
 msgid "Load &Welcome"
-msgstr "Charger le Bienvenue de l'Utilisateur"
+msgstr "Charger Bienvenue"
 
 #: kirigami_ui/+android/main.qml:367 kirigami_ui/main.qml:422
 #: kirigami_ui/+windows/main.qml:389
 msgid "Darth mode"
-msgstr ""
+msgstr "Mode Dark"
 
 #: kirigami_ui/+android/main.qml:458 kirigami_ui/main.qml:876
 #: kirigami_ui/+windows/main.qml:530
@@ -837,16 +835,14 @@ msgid "HV Mirror"
 msgstr "Miroir HV"
 
 #: kirigami_ui/PrompterPage.qml:696
-#, fuzzy
 msgctxt "Display prompter copies onto displays"
 msgid "Enable projection"
-msgstr "Échelle des projections"
+msgstr "Activer la projection"
 
 #: kirigami_ui/PrompterPage.qml:708
-#, fuzzy
 msgctxt "Enable scaling prompter copies being projected onto displays"
 msgid "Scale projection"
-msgstr "Échelle des projections"
+msgstr "Échelle de projection"
 
 #: kirigami_ui/PrompterPage.qml:731
 msgid "Leave Fullscreen"
@@ -1078,25 +1074,26 @@ msgstr ""
 
 #: kirigami_ui/WheelSettingsOverlay.qml:31
 msgid "Wheel and touchpad scroll settings"
-msgstr ""
+msgstr "Paramètres de défilement de la molette et du pavé tactile"
 
 #: kirigami_ui/WheelSettingsOverlay.qml:38
-#, fuzzy
 msgctxt "Label at wheel settings overlay"
 msgid "Use scroll as velocity dial"
 msgstr "Utilisez le défilement comme cadran de vitesse"
 
 #: kirigami_ui/WheelSettingsOverlay.qml:57
 msgid "Enable throttling"
-msgstr ""
+msgstr "Activer la limitation"
 
 #: kirigami_ui/WheelSettingsOverlay.qml:74
 msgid "Throttle factor"
-msgstr ""
+msgstr "Facteur de limitation"
 
 #: kirigami_ui/WheelSettingsOverlay.qml:93
 msgid "Enable throttling for use with touchpads, disable for precise scolling."
 msgstr ""
+"Activer la limitation pour une utilisation avec les pavés tactiles, "
+"désactivée pour un défilement précis."
 
 #: main.cpp:88
 msgid "© 2021 Javier O. Cordero Pérez"
@@ -1121,12 +1118,12 @@ msgstr "Écrit le code clé à la chaîne d'abstraction QML"
 #: main.cpp:115 rc.cpp:1
 msgctxt "NAME OF TRANSLATORS"
 msgid "Your names"
-msgstr "Fanch"
+msgstr "Fanch, Vincent Berry"
 
 #: main.cpp:115 rc.cpp:2
 msgctxt "EMAIL OF TRANSLATORS"
 msgid "Your emails"
-msgstr "fanch.le.cleach@gmail.com"
+msgstr "fanch.le.cleach@gmail.com, berryv@outlook.fr"
 
 #: main.cpp:123
 msgid "Failed to load icons from fontello.ttf"
@@ -1148,11 +1145,11 @@ msgstr[1] "Disparition dans moins de %1 secondes"
 
 #: prompter/Find.qml:125
 msgid "End reached, searching from the start."
-msgstr ""
+msgstr "Fin atteinte, recherche depuis le début."
 
 #: prompter/Find.qml:127
 msgid "Start reached, searching from the end."
-msgstr ""
+msgstr "Début atteint, recherche à partir de la fin."
 
 #: prompter/ProjectionsManager.qml:166
 msgid "Projection Window"
@@ -1163,13 +1160,12 @@ msgid "Close"
 msgstr "Fermer"
 
 #: prompter/ProjectionsManager.qml:379
-#, fuzzy
 msgid ""
 "For screen projections to show, you must set at least one screen to a "
 "projection setting other than \"Off\""
 msgstr ""
-"Pour que les aperçus de projection s’affichent, il faut au moins un écran "
-"réglé sur un paramètre de projection autre que \"Éteint\""
+"Pour que les projection s'affichent, il faut au moins un écran réglé sur un "
+"paramètre de projection autre que \"Éteint\""
 
 #: prompter/PrompterBackground.qml:121
 msgid "JPEG image"
@@ -1193,11 +1189,11 @@ msgstr "Revenir au début"
 
 #: prompter/Prompter.qml:696
 msgid "Auto rewind cancelled"
-msgstr ""
+msgstr "Rembobinage automatique annulé"
 
 #: prompter/Prompter.qml:754
 msgid "The End"
-msgstr ""
+msgstr "Fin"
 
 #: prompter/Prompter.qml:1067
 msgid "New document"
