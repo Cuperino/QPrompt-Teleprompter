@@ -32,6 +32,7 @@ Item {
     }
     property var document
     property bool isOpen: false
+    property bool resultsFound: false
     readonly property int searchBarWidth: 660
     readonly property int searchBarMargin: 6
     function focusSearch() {
@@ -110,12 +111,24 @@ Item {
                 case Find.Mode.Next:
                     range = document.search(text, true); break;
             }
-            if (range.y > range.x)
+            if (range.y > range.x) {
                 editor.select(range.x, range.y)
-            else
+                resultsFound=true
+            }
+            else {
                 editor.cursorPosition = range.x
-            if (text.length>0)
-                prompter.position = editor.cursorRectangle.y - (overlay.__readRegionPlacement*(overlay.height-overlay.readRegionHeight)+overlay.readRegionHeight/2) + 1
+                resultsFound=false
+            }
+            if (text.length>0) {
+                const newPosition = editor.cursorRectangle.y - (overlay.__readRegionPlacement*(overlay.height-overlay.readRegionHeight)+overlay.readRegionHeight/2) + 1;
+                if (mode===Find.Mode.Next && newPosition<prompter.position)
+                    showPassiveNotification(i18n("End reached, searching from the start."))
+                else if (mode===Find.Mode.Previous && newPosition>prompter.position)
+                    showPassiveNotification(i18n("Start reached, searching from the end."))
+                prompter.position = newPosition;
+            }
+            else
+                resultsFound=false
         }
         anchors.fill: parent
         spacing: 6
@@ -141,11 +154,13 @@ Item {
         }
         Button {
             text: "\u25B2"
+            enabled: resultsFound
             flat: true
             onClicked: find.previous()
         }
         Button {
             text: "\u25BC"
+            enabled: resultsFound
             flat: true
             onClicked: find.next()
         }
