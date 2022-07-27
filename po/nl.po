@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/Cuperino/QPrompt/issues/new/choose\n"
 "POT-Creation-Date: 2022-07-27 14:53-0400\n"
-"PO-Revision-Date: 2022-07-06 19:59+0000\n"
+"PO-Revision-Date: 2022-07-27 22:56+0000\n"
 "Last-Translator: Javier O. Cordero Pérez <javiercorderoperez@gmail.com>\n"
 "Language-Team: Dutch <http://l10n.cuperino.com/projects/qprompt/qprompt-app/"
 "nl/>\n"
@@ -64,10 +64,9 @@ msgstr "Toetsenbord"
 
 #: kirigami_ui/+android/main.qml:223 kirigami_ui/main.qml:235
 #: kirigami_ui/+windows/main.qml:230
-#, fuzzy
 msgctxt "Open 'scroll settings' from main menu and global menu actions"
 msgid "Scroll throttle settings"
-msgstr "&Instellingen"
+msgstr "Scroll instellingen"
 
 #: kirigami_ui/+android/main.qml:228 kirigami_ui/main.qml:241
 #: kirigami_ui/main.qml:691 kirigami_ui/+windows/main.qml:235
@@ -275,13 +274,12 @@ msgid "Increase Velocity"
 msgstr "Verhoog Snelheid"
 
 #: kirigami_ui/InputsOverlay.qml:187
-#, fuzzy
 msgid "Stop"
-msgstr "Stop Horloge"
+msgstr "Stop"
 
 #: kirigami_ui/InputsOverlay.qml:195
 msgid "Play/Pause"
-msgstr "Play/Pause"
+msgstr "Speel/Pauze"
 
 #: kirigami_ui/InputsOverlay.qml:203
 msgid "Reverse"
@@ -292,7 +290,6 @@ msgid "Rewind"
 msgstr ""
 
 #: kirigami_ui/InputsOverlay.qml:219
-#, fuzzy
 msgid "Fast Forward"
 msgstr "Beweeg Vooruit"
 
@@ -836,13 +833,11 @@ msgid "HV Mirror"
 msgstr "HV Spiegelbeeld"
 
 #: kirigami_ui/PrompterPage.qml:696
-#, fuzzy
 msgctxt "Display prompter copies onto displays"
 msgid "Enable projection"
-msgstr "Projectie Schaal"
+msgstr "Projectie Inschakelen"
 
 #: kirigami_ui/PrompterPage.qml:708
-#, fuzzy
 msgctxt "Enable scaling prompter copies being projected onto displays"
 msgid "Scale projection"
 msgstr "Projectie Schaal"
@@ -1064,7 +1059,6 @@ msgid "Wheel and touchpad scroll settings"
 msgstr ""
 
 #: kirigami_ui/WheelSettingsOverlay.qml:38
-#, fuzzy
 msgctxt "Label at wheel settings overlay"
 msgid "Use scroll as velocity dial"
 msgstr "Roller als Snelheid"
@@ -1104,12 +1098,12 @@ msgstr ""
 #: main.cpp:115 rc.cpp:1
 msgctxt "NAME OF TRANSLATORS"
 msgid "Your names"
-msgstr ""
+msgstr "Marc Wegkamp"
 
 #: main.cpp:115 rc.cpp:2
 msgctxt "EMAIL OF TRANSLATORS"
 msgid "Your emails"
-msgstr ""
+msgstr "Magicalmarc@gmail.com"
 
 #: main.cpp:123
 msgid "Failed to load icons from fontello.ttf"
