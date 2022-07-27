@@ -606,7 +606,6 @@ ToolBar {
                 font.pointSize: 13
                 focusPolicy: Qt.TabFocus
                 onClicked: {
-                    console.log(highlightDialog.color);
                     highlightDialog.color = Qt.rgba(0,0,0,0);
                     // if (Qt.colorEqual(highlightDialog.color, "#000000"))
                     //     highlightDialog.color = Qt.rgba(0,0,0,0);
@@ -1127,7 +1126,7 @@ ToolBar {
                 //row.setMarkerKeyButton.item.text = "";
                 column.setMarkerKeyButton.item.text = prompter.document.getMarkerKey();
             else {
-                prompter.focus = true
+                prompter.restoreFocus()
                 if (sideDrawer.reOpen) {
                     prompter.document.parse()
                     sideDrawer.open()
@@ -1153,7 +1152,6 @@ ToolBar {
                 target: setMarkerKeyButton.item
                 function onToggleButtonsOff() { target.checked = false; }
                 function onSetKey(keyCode) {
-                    //console.log(keyCode);
                     prompter.document.setKeyMarker(keyCode);
                     timer.start();
                 }

@@ -343,19 +343,35 @@ Kirigami.ApplicationWindow {
             Kirigami.Action {
                 visible: false
                 onTriggered: {
-                    // If Escape is pressed while prompting, return focus to prompter, thus leaving edit while prompting mode.
-                    if (parseInt(root.pageStack.currentItem.prompter.state)===Prompter.States.Prompting && root.pageStack.currentItem.editor.focus)
-                        root.pageStack.currentItem.prompter.focus = true;
-                    else {
-                        root.pageStack.currentItem.prompter.cancel()
-                        root.pageStack.currentItem.find.close()
-                        wheelSettings.close()
+                    // Close all sub pages
+                    if (root.pageStack.layers.depth > 1) {
+                        root.pageStack.layers.clear();
+                        root.pageStack.currentItem.prompter.restoreFocus()
                     }
-                    root.pageStack.currentItem.sideDrawer.close()
-                    root.pageStack.currentItem.countdown.configuration.close()
-                    root.pageStack.currentItem.key_configuration_overlay.close()
-                    root.pageStack.currentItem.footer.namedMarkerConfiguration.close()
-                    root.pageStack.layers.clear();
+                    // Close open drawers
+                    else if (root.pageStack.currentItem.sideDrawer.drawerOpen)
+                        root.pageStack.currentItem.sideDrawer.close()
+                    // Close open overlay sheets
+                    else if (root.pageStack.currentItem.countdown.configuration.sheetOpen)
+                        root.pageStack.currentItem.countdown.configuration.close()
+                    else if (root.pageStack.currentItem.key_configuration_overlay.sheetOpen)
+                        root.pageStack.currentItem.key_configuration_overlay.close()
+                    else if (root.pageStack.currentItem.footer.namedMarkerConfiguration.sheetOpen)
+                        root.pageStack.currentItem.footer.namedMarkerConfiguration.close()
+                    else if (wheelSettings.sheetOpen)
+                        wheelSettings.close()
+                    // Close find, compare against enabled instead of isOpen to prevent closing find while it is invisible.
+                    else if (root.pageStack.currentItem.find.enabled)
+                        root.pageStack.currentItem.find.close()
+                    // If editing while prompting, return focus to prompter, thus leaving edit while prompting mode.
+                    else if (parseInt(root.pageStack.currentItem.prompter.state)===Prompter.States.Prompting && root.pageStack.currentItem.editor.focus)
+                        root.pageStack.currentItem.prompter.focus = true;
+                    // Return to edit mode if prompter is in focus
+                    else if (root.pageStack.currentItem.prompter.focus)
+                        root.pageStack.currentItem.prompter.cancel()
+                    // In any other situation, restore focus to the prompter
+                    else
+                       root.pageStack.currentItem.prompter.restoreFocus()
                 }
                 shortcut: StandardKey.Cancel
             },
@@ -754,7 +770,6 @@ Kirigami.ApplicationWindow {
     pageStack.globalToolBar.toolbarActionAlignment: Qt.AlignHCenter
     pageStack.initialPage: prompterPageComponent
     // Auto hide global toolbar on fullscreen
-    //pageStack.globalToolBar.style: Kirigami.Settings.isMobile ? (root.pageStack.layers.depth > 1 ? Kirigami.ApplicationHeaderStyle.Titles : Kirigami.ApplicationHeaderStyle.None) : (parseInt(root.pageStack.currentItem.prompter.state)!==Prompter.States.Editing && (visibility===Kirigami.ApplicationWindow.FullScreen || root.pageStack.currentItem.overlay.atTop) ? Kirigami.ApplicationHeaderStyle.None : Kirigami.ApplicationHeaderStyle.ToolBar)
     pageStack.globalToolBar.style:
         if (Kirigami.Settings.isMobile) {
             if (root.pageStack.layers.depth > 1)
