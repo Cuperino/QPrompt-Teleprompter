@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/Cuperino/QPrompt/issues/new/choose\n"
 "POT-Creation-Date: 2022-07-27 14:53-0400\n"
-"PO-Revision-Date: 2022-07-08 00:24+0000\n"
+"PO-Revision-Date: 2022-07-27 22:56+0000\n"
 "Last-Translator: Javier O. Cordero Pérez <javiercorderoperez@gmail.com>\n"
 "Language-Team: German <http://l10n.cuperino.com/projects/qprompt/qprompt-app/"
 "de/>\n"
@@ -64,10 +64,9 @@ msgstr "Tastatureingaben"
 
 #: kirigami_ui/+android/main.qml:223 kirigami_ui/main.qml:235
 #: kirigami_ui/+windows/main.qml:230
-#, fuzzy
 msgctxt "Open 'scroll settings' from main menu and global menu actions"
 msgid "Scroll throttle settings"
-msgstr "Steuerung"
+msgstr "Drosselklappeneinstellungen scrollen"
 
 #: kirigami_ui/+android/main.qml:228 kirigami_ui/main.qml:241
 #: kirigami_ui/main.qml:691 kirigami_ui/+windows/main.qml:235
@@ -290,7 +289,6 @@ msgid "Rewind"
 msgstr ""
 
 #: kirigami_ui/InputsOverlay.qml:219
-#, fuzzy
 msgid "Fast Forward"
 msgstr "Vorwärts bewegen"
 
@@ -1064,7 +1062,6 @@ msgid "Wheel and touchpad scroll settings"
 msgstr ""
 
 #: kirigami_ui/WheelSettingsOverlay.qml:38
-#, fuzzy
 msgctxt "Label at wheel settings overlay"
 msgid "Use scroll as velocity dial"
 msgstr "Scrollrad als Geschwindigkeitsrad nutzen"
@@ -1104,12 +1101,12 @@ msgstr ""
 #: main.cpp:115 rc.cpp:1
 msgctxt "NAME OF TRANSLATORS"
 msgid "Your names"
-msgstr "Jonas Mapache, Maximilian Efinger"
+msgstr "Jonas Mapache, Maximilian Efinger, Fabian Bott"
 
 #: main.cpp:115 rc.cpp:2
 msgctxt "EMAIL OF TRANSLATORS"
 msgid "Your emails"
-msgstr "jonasmapache@gmail.com, maximilian.efinger@gmx.de"
+msgstr "jonasmapache@gmail.com, maximilian.efinger@gmx.de, fabianbott@gmail.com"
 
 #: main.cpp:123
 msgid "Failed to load icons from fontello.ttf"
