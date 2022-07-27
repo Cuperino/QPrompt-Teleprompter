@@ -188,6 +188,7 @@ ToolBar {
             ToolButton {
                 id: searchButton
                 visible: !mobileOrSmallScreen || parseInt(prompter.state)===Prompter.States.Editing && root.width > 360
+                enabled: parseInt(prompter.state)===Prompter.States.Editing || parseInt(prompter.state)===Prompter.States.Standby
                 text: Qt.application.layoutDirection===Qt.LeftToRight ? "\uE847" : "\uE848"
                 contentItem: Loader { sourceComponent: textComponent }
                 font.family: iconFont.name
