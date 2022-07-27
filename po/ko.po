@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/Cuperino/QPrompt/issues/new/choose\n"
 "POT-Creation-Date: 2022-07-27 14:53-0400\n"
-"PO-Revision-Date: 2022-07-08 00:24+0000\n"
+"PO-Revision-Date: 2022-07-27 22:56+0000\n"
 "Last-Translator: Javier O. Cordero Pérez <javiercorderoperez@gmail.com>\n"
 "Language-Team: Korean <http://l10n.cuperino.com/projects/qprompt/qprompt-app/"
 "ko/>\n"
@@ -64,10 +64,9 @@ msgstr "키보드 입력"
 
 #: kirigami_ui/+android/main.qml:223 kirigami_ui/main.qml:235
 #: kirigami_ui/+windows/main.qml:230
-#, fuzzy
 msgctxt "Open 'scroll settings' from main menu and global menu actions"
 msgid "Scroll throttle settings"
-msgstr "&설정"
+msgstr "스크롤 설정"
 
 #: kirigami_ui/+android/main.qml:228 kirigami_ui/main.qml:241
 #: kirigami_ui/main.qml:691 kirigami_ui/+windows/main.qml:235
@@ -132,10 +131,9 @@ msgstr "&나가기"
 
 #: kirigami_ui/+android/main.qml:331 kirigami_ui/main.qml:386
 #: kirigami_ui/main.qml:723 kirigami_ui/+windows/main.qml:353
-#, fuzzy
 msgctxt "Main menu and global actions. Load document that welcomes users."
 msgid "Load &Welcome"
-msgstr "사용자 불러오기 &환영합니다"
+msgstr "불러오기 &환영합니다"
 
 #: kirigami_ui/+android/main.qml:367 kirigami_ui/main.qml:422
 #: kirigami_ui/+windows/main.qml:389
@@ -1099,12 +1097,12 @@ msgstr ""
 #: main.cpp:115 rc.cpp:1
 msgctxt "NAME OF TRANSLATORS"
 msgid "Your names"
-msgstr ""
+msgstr "KyungLae"
 
 #: main.cpp:115 rc.cpp:2
 msgctxt "EMAIL OF TRANSLATORS"
 msgid "Your emails"
-msgstr ""
+msgstr "ray0412@naver.com"
 
 #: main.cpp:123
 msgid "Failed to load icons from fontello.ttf"
