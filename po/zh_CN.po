@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/Cuperino/QPrompt/issues/new/choose\n"
 "POT-Creation-Date: 2022-07-27 14:53-0400\n"
-"PO-Revision-Date: 2022-07-06 19:59+0000\n"
+"PO-Revision-Date: 2022-07-27 22:56+0000\n"
 "Last-Translator: Javier O. Cordero Pérez <javiercorderoperez@gmail.com>\n"
 "Language-Team: Chinese (Simplified) <http://l10n.cuperino.com/projects/"
 "qprompt/qprompt-app/zh_CN/>\n"
@@ -64,10 +64,9 @@ msgstr "键盘输入"
 
 #: kirigami_ui/+android/main.qml:223 kirigami_ui/main.qml:235
 #: kirigami_ui/+windows/main.qml:230
-#, fuzzy
 msgctxt "Open 'scroll settings' from main menu and global menu actions"
 msgid "Scroll throttle settings"
-msgstr "输入控制设置"
+msgstr "滚动油门设置"
 
 #: kirigami_ui/+android/main.qml:228 kirigami_ui/main.qml:241
 #: kirigami_ui/main.qml:691 kirigami_ui/+windows/main.qml:235
@@ -110,13 +109,13 @@ msgstr "其他设置"
 #: kirigami_ui/+windows/main.qml:279
 msgctxt "Main menu actions"
 msgid "Always hide formatting tools"
-msgstr ""
+msgstr "始终隐藏格式化工具"
 
 #: kirigami_ui/+android/main.qml:281 kirigami_ui/main.qml:300
 #: kirigami_ui/+windows/main.qml:288
 msgctxt "Main menu actions. Hides formatting tools while not in edit mode."
 msgid "Auto hide formatting tools"
-msgstr ""
+msgstr "自动隐藏格式工具"
 
 #: kirigami_ui/+android/main.qml:296 kirigami_ui/main.qml:328
 #: kirigami_ui/+windows/main.qml:313
@@ -132,15 +131,14 @@ msgstr "退出"
 
 #: kirigami_ui/+android/main.qml:331 kirigami_ui/main.qml:386
 #: kirigami_ui/main.qml:723 kirigami_ui/+windows/main.qml:353
-#, fuzzy
 msgctxt "Main menu and global actions. Load document that welcomes users."
 msgid "Load &Welcome"
-msgstr "加载欢迎页"
+msgstr "加载欢迎"
 
 #: kirigami_ui/+android/main.qml:367 kirigami_ui/main.qml:422
 #: kirigami_ui/+windows/main.qml:389
 msgid "Darth mode"
-msgstr ""
+msgstr "星球模式"
 
 #: kirigami_ui/+android/main.qml:458 kirigami_ui/main.qml:876
 #: kirigami_ui/+windows/main.qml:530
@@ -834,13 +832,11 @@ msgid "HV Mirror"
 msgstr "HV 镜像"
 
 #: kirigami_ui/PrompterPage.qml:696
-#, fuzzy
 msgctxt "Display prompter copies onto displays"
 msgid "Enable projection"
-msgstr "等比例投影"
+msgstr "启用投影"
 
 #: kirigami_ui/PrompterPage.qml:708
-#, fuzzy
 msgctxt "Enable scaling prompter copies being projected onto displays"
 msgid "Scale projection"
 msgstr "等比例投影"
@@ -1066,25 +1062,24 @@ msgstr ""
 
 #: kirigami_ui/WheelSettingsOverlay.qml:31
 msgid "Wheel and touchpad scroll settings"
-msgstr ""
+msgstr "滚轮和触摸板滚动设置"
 
 #: kirigami_ui/WheelSettingsOverlay.qml:38
-#, fuzzy
 msgctxt "Label at wheel settings overlay"
 msgid "Use scroll as velocity dial"
 msgstr "使用滚轮控制速度"
 
 #: kirigami_ui/WheelSettingsOverlay.qml:57
 msgid "Enable throttling"
-msgstr ""
+msgstr "启用节流"
 
 #: kirigami_ui/WheelSettingsOverlay.qml:74
 msgid "Throttle factor"
-msgstr ""
+msgstr "节流因子"
 
 #: kirigami_ui/WheelSettingsOverlay.qml:93
 msgid "Enable throttling for use with touchpads, disable for precise scolling."
-msgstr ""
+msgstr "启用节流以与触摸板一起使用，禁用以进行精确滚动。"
 
 #: main.cpp:88
 msgid "© 2021 Javier O. Cordero Pérez"
@@ -1109,12 +1104,12 @@ msgstr "将键代码写入字符串QML提取"
 #: main.cpp:115 rc.cpp:1
 msgctxt "NAME OF TRANSLATORS"
 msgid "Your names"
-msgstr "你的名字"
+msgstr "北北″"
 
 #: main.cpp:115 rc.cpp:2
 msgctxt "EMAIL OF TRANSLATORS"
 msgid "Your emails"
-msgstr "你的邮箱"
+msgstr "9778566@qq.com"
 
 #: main.cpp:123
 msgid "Failed to load icons from fontello.ttf"
@@ -1135,11 +1130,11 @@ msgstr[0] "在 %1 秒内消失"
 
 #: prompter/Find.qml:125
 msgid "End reached, searching from the start."
-msgstr ""
+msgstr "到达终点，从起点开始寻找。"
 
 #: prompter/Find.qml:127
 msgid "Start reached, searching from the end."
-msgstr ""
+msgstr "起点到达，从终点开始寻找。"
 
 #: prompter/ProjectionsManager.qml:166
 msgid "Projection Window"
@@ -1150,7 +1145,6 @@ msgid "Close"
 msgstr "关闭"
 
 #: prompter/ProjectionsManager.qml:379
-#, fuzzy
 msgid ""
 "For screen projections to show, you must set at least one screen to a "
 "projection setting other than \"Off\""
@@ -1178,11 +1172,11 @@ msgstr "双击返回最开始"
 
 #: prompter/Prompter.qml:696
 msgid "Auto rewind cancelled"
-msgstr ""
+msgstr "已取消自动倒带"
 
 #: prompter/Prompter.qml:754
 msgid "The End"
-msgstr ""
+msgstr "结束"
 
 #: prompter/Prompter.qml:1067
 msgid "New document"
