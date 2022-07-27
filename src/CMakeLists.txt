@@ -272,7 +272,7 @@ if(ANDROID OR APPLE OR WIN32 OR IOS OR WASM)
         edit-redo
         edit-undo
         filename-bpm-amarok
-        format-fill-color
+        fill-color
         format-font-size-more
         format-justify-center
         format-text-color
@@ -290,6 +290,7 @@ if(ANDROID OR APPLE OR WIN32 OR IOS OR WASM)
         keyframe-add
         list-remove
         mail-mark-unread
+        newline
         object-flip-horizontal
         object-flip-vertical
         object-rotate-left
