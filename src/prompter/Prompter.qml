@@ -877,6 +877,7 @@ Flickable {
                         acceptedButtons: Qt.RightButton
                         anchors.fill: parent
                         cursorShape: limitedMouse.cursorShape
+                        scrollGestureEnabled: false
                         onClicked: {
                             if (Kirigami.Settings.isMobile)
                                 contextMenu.popup(this)
@@ -890,6 +891,7 @@ Flickable {
                         acceptedButtons: Qt.LeftButton
                         cursorShape: dragTarget.containsDrag ? (dragTarget.droppable ? Qt.DragCopyCursor : Qt.ForbiddenCursor) : Qt.IBeamCursor
                         anchors.fill: parent
+                        scrollGestureEnabled: false
                         onClicked: if (editor.focus) editor.cursorPosition = editor.positionAt(mouseX, mouseY);
                         onDoubleClicked: {
                             if (!Kirigami.Settings.isMobile)
