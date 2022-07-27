@@ -8,10 +8,10 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/Cuperino/QPrompt/issues/new/choose\n"
 "POT-Creation-Date: 2022-07-27 14:53-0400\n"
-"PO-Revision-Date: 2022-07-08 00:24+0000\n"
+"PO-Revision-Date: 2022-07-27 22:56+0000\n"
 "Last-Translator: Javier O. Cordero Pérez <javiercorderoperez@gmail.com>\n"
-"Language-Team: Occitan <http://l10n.cuperino.com/projects/qprompt/qprompt-"
-"app/oc/>\n"
+"Language-Team: Occitan <http://l10n.cuperino.com/projects/qprompt/"
+"qprompt-app/oc/>\n"
 "Language: oc\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -67,7 +67,7 @@ msgstr ""
 #, fuzzy
 msgctxt "Open 'scroll settings' from main menu and global menu actions"
 msgid "Scroll throttle settings"
-msgstr "Contraròtles"
+msgstr "Paramétrage de défilement"
 
 #: kirigami_ui/+android/main.qml:228 kirigami_ui/main.qml:241
 #: kirigami_ui/main.qml:691 kirigami_ui/+windows/main.qml:235
@@ -274,9 +274,8 @@ msgid "Increase Velocity"
 msgstr ""
 
 #: kirigami_ui/InputsOverlay.qml:187
-#, fuzzy
 msgid "Stop"
-msgstr "Cronomètre"
+msgstr "Arrêter"
 
 #: kirigami_ui/InputsOverlay.qml:195
 msgid "Play/Pause"
@@ -485,13 +484,11 @@ msgid "&Underline"
 msgstr ""
 
 #: kirigami_ui/main.qml:628
-#, fuzzy
 msgctxt "Global menu and editor actions. Text alignment."
 msgid "Align &Left"
 msgstr "&Esquèrra"
 
 #: kirigami_ui/main.qml:628
-#, fuzzy
 msgctxt "Global menu and editor actions. Text alignment."
 msgid "Align &Right"
 msgstr "&Drecha"
@@ -502,13 +499,11 @@ msgid "Align Cen&ter"
 msgstr ""
 
 #: kirigami_ui/main.qml:645
-#, fuzzy
 msgctxt "Global menu actions. Text alignment."
 msgid "Align &Right"
 msgstr "&Drecha"
 
 #: kirigami_ui/main.qml:645
-#, fuzzy
 msgctxt "Global menu actions. Text alignment."
 msgid "Align &Left"
 msgstr "&Esquèrra"
@@ -770,7 +765,6 @@ msgstr "Revirament orizontal"
 
 #. i18n("V Flip")
 #: kirigami_ui/PrompterPage.qml:527 prompter/ProjectionsManager.qml:343
-#, fuzzy
 msgctxt "Mirrors prompter vertically"
 msgid "Vertical mirror"
 msgstr "Revirament vertical"
