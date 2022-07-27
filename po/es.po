@@ -9,10 +9,10 @@ msgstr ""
 "Project-Id-Version: 1.1.0\n"
 "Report-Msgid-Bugs-To: https://github.com/Cuperino/QPrompt/issues/new/choose\n"
 "POT-Creation-Date: 2022-07-27 14:53-0400\n"
-"PO-Revision-Date: 2022-07-06 19:59+0000\n"
+"PO-Revision-Date: 2022-07-27 22:56+0000\n"
 "Last-Translator: Javier O. Cordero Pérez <javiercorderoperez@gmail.com>\n"
-"Language-Team: Spanish <http://l10n.cuperino.com/projects/qprompt/qprompt-"
-"app/es/>\n"
+"Language-Team: Spanish <http://l10n.cuperino.com/projects/qprompt/"
+"qprompt-app/es/>\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -65,10 +65,9 @@ msgstr "Entradas de teclado"
 
 #: kirigami_ui/+android/main.qml:223 kirigami_ui/main.qml:235
 #: kirigami_ui/+windows/main.qml:230
-#, fuzzy
 msgctxt "Open 'scroll settings' from main menu and global menu actions"
 msgid "Scroll throttle settings"
-msgstr "Configuración del teclado"
+msgstr "Configurar desplazamientos"
 
 #: kirigami_ui/+android/main.qml:228 kirigami_ui/main.qml:241
 #: kirigami_ui/main.qml:691 kirigami_ui/+windows/main.qml:235
@@ -111,13 +110,13 @@ msgstr "&Otros Ajustes"
 #: kirigami_ui/+windows/main.qml:279
 msgctxt "Main menu actions"
 msgid "Always hide formatting tools"
-msgstr ""
+msgstr "Ocultar herramientas de formato"
 
 #: kirigami_ui/+android/main.qml:281 kirigami_ui/main.qml:300
 #: kirigami_ui/+windows/main.qml:288
 msgctxt "Main menu actions. Hides formatting tools while not in edit mode."
 msgid "Auto hide formatting tools"
-msgstr ""
+msgstr "Auto ocultar herramientas de formato"
 
 #: kirigami_ui/+android/main.qml:296 kirigami_ui/main.qml:328
 #: kirigami_ui/+windows/main.qml:313
@@ -133,15 +132,14 @@ msgstr "Sali&r"
 
 #: kirigami_ui/+android/main.qml:331 kirigami_ui/main.qml:386
 #: kirigami_ui/main.qml:723 kirigami_ui/+windows/main.qml:353
-#, fuzzy
 msgctxt "Main menu and global actions. Load document that welcomes users."
 msgid "Load &Welcome"
-msgstr "Cargar &Bienvenida de Usuario"
+msgstr "Cargar &Bienvenida"
 
 #: kirigami_ui/+android/main.qml:367 kirigami_ui/main.qml:422
 #: kirigami_ui/+windows/main.qml:389
 msgid "Darth mode"
-msgstr ""
+msgstr "Modo galáctico"
 
 #: kirigami_ui/+android/main.qml:458 kirigami_ui/main.qml:876
 #: kirigami_ui/+windows/main.qml:530
@@ -837,16 +835,14 @@ msgid "HV Mirror"
 msgstr "Espejo HV"
 
 #: kirigami_ui/PrompterPage.qml:696
-#, fuzzy
 msgctxt "Display prompter copies onto displays"
 msgid "Enable projection"
-msgstr "Escalar proyecciones"
+msgstr "Habilitar proyección"
 
 #: kirigami_ui/PrompterPage.qml:708
-#, fuzzy
 msgctxt "Enable scaling prompter copies being projected onto displays"
 msgid "Scale projection"
-msgstr "Escalar proyecciones"
+msgstr "Escalar proyección"
 
 #: kirigami_ui/PrompterPage.qml:731
 msgid "Leave Fullscreen"
@@ -1077,25 +1073,26 @@ msgstr ""
 
 #: kirigami_ui/WheelSettingsOverlay.qml:31
 msgid "Wheel and touchpad scroll settings"
-msgstr ""
+msgstr "Configuración de rueda y desplazamiento"
 
 #: kirigami_ui/WheelSettingsOverlay.qml:38
-#, fuzzy
 msgctxt "Label at wheel settings overlay"
 msgid "Use scroll as velocity dial"
 msgstr "Tratar desplazamientos como ajustes de velocidad"
 
 #: kirigami_ui/WheelSettingsOverlay.qml:57
 msgid "Enable throttling"
-msgstr ""
+msgstr "Habilitar constricción"
 
 #: kirigami_ui/WheelSettingsOverlay.qml:74
 msgid "Throttle factor"
-msgstr ""
+msgstr "Factor de constricción"
 
 #: kirigami_ui/WheelSettingsOverlay.qml:93
 msgid "Enable throttling for use with touchpads, disable for precise scolling."
 msgstr ""
+"Habilite constricción cuando use touchpad, deshabilite para un "
+"desplazamiento preciso."
 
 #: main.cpp:88
 msgid "© 2021 Javier O. Cordero Pérez"
@@ -1147,11 +1144,11 @@ msgstr[1] "Ocultar cuando falten %1 segundos"
 
 #: prompter/Find.qml:125
 msgid "End reached, searching from the start."
-msgstr ""
+msgstr "Fin alcanzado, realizando búsqueda desde el inicio."
 
 #: prompter/Find.qml:127
 msgid "Start reached, searching from the end."
-msgstr ""
+msgstr "Inicio alcanzado, realizando búsqueda desdes el final."
 
 #: prompter/ProjectionsManager.qml:166
 msgid "Projection Window"
@@ -1162,13 +1159,12 @@ msgid "Close"
 msgstr "Cerrar"
 
 #: prompter/ProjectionsManager.qml:379
-#, fuzzy
 msgid ""
 "For screen projections to show, you must set at least one screen to a "
 "projection setting other than \"Off\""
 msgstr ""
-"Para que la previsualización de las proyecciones se muestre, necesitas que "
-"al menos un monitor esté configurado para proyectar"
+"Para que la proyección se muestre, necesita que al menos un monitor esté "
+"configurado para proyectar"
 
 #: prompter/PrompterBackground.qml:121
 msgid "JPEG image"
@@ -1192,11 +1188,11 @@ msgstr "Toque dos veces para ir al comienzo"
 
 #: prompter/Prompter.qml:696
 msgid "Auto rewind cancelled"
-msgstr ""
+msgstr "Canceló el auto rebobinado"
 
 #: prompter/Prompter.qml:754
 msgid "The End"
-msgstr ""
+msgstr "Fin"
 
 #: prompter/Prompter.qml:1067
 msgid "New document"
