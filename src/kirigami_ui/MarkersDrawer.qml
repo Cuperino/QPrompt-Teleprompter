@@ -46,12 +46,14 @@ Kirigami.OverlayDrawer {
 
     function toggle() {
         reOpen = false
-        if (drawerOpen)
+        if (drawerOpen) {
             close()
+        }
         else {
             prompter.document.parse()
             open()
         }
+        prompter.restoreFocus()
     }
 
     Component {
