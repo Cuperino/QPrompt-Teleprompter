@@ -277,7 +277,7 @@ Kirigami.ApplicationWindow {
                 Kirigami.Action {
                     id: hideFormattingToolsAlwaysSetting
                     text: i18nc("Main menu actions", "Always hide formatting tools")
-                    iconName: "list-remove"
+                    iconName: "newline"
                     checkable: true
                     checked: root.pageStack.currentItem.footer.hideFormattingToolsAlways
                     onTriggered: root.pageStack.currentItem.footer.hideFormattingToolsAlways = !root.pageStack.currentItem.footer.hideFormattingToolsAlways
