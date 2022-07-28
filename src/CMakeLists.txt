@@ -43,26 +43,6 @@ set(qprompt_ASSETS
     icons/icons.qrc
 )
 
-
-#include(FetchContent)
-#FetchContent_Declare(
-#        qhotkey
-#        GIT_REPOSITORY https://github.com/Cuperino/QHotkey
-#        GIT_TAG master
-#)
-
-#set(QHOTKEY_EXAMPLES OFF CACHE INTERNAL "")
-#set(QHOTKEY_INSTALL OFF CACHE INTERNAL "")
-
-#FetchContent_GetProperties(QHotkey)
-#if (NOT qhotkey_POPULATED)
-#    FetchContent_Populate(QHotkey)
-#    message(STATUS "QHotkey source dir: ${qhotkey_SOURCE_DIR}")
-#    message(STATUS "QHotkey binary dir: ${qhotkey_BINARY_DIR}")
-#    add_subdirectory(${qhotkey_SOURCE_DIR} ${qhotkey_BINARY_DIR})
-#endif ()
-
-
 if (NOT APPLE AND NOT ANDROID)
     set(ICONS_FOLDER ${CMAKE_CURRENT_SOURCE_DIR}/icons/hicolor)
     set(RASTER_ICONS
@@ -205,8 +185,6 @@ elseif(HAIKU)
         KF5::IconThemes
     )
 elseif(WIN32 OR APPLE)
-#    target_include_directories(${PROJECT_NAME} PUBLIC ${qhotkey_SOURCE_DIR}/QHotkey)
-#    target_link_directories(${PROJECT_NAME} PUBLIC ${qhotkey_SOURCE_DIR}/QHotkey)
     target_link_libraries(${PROJECT_NAME} PUBLIC
         Qt${QT_VERSION_MAJOR}::Core
         Qt${QT_VERSION_MAJOR}::Quick
@@ -219,17 +197,27 @@ elseif(WIN32 OR APPLE)
         KF5::I18n
         KF5::Kirigami2
         KF5::CoreAddons
-        KF5::Crash
-        qhotkey
     )
+    if (KF5Crash_FOUND)
+        add_definitions(-DKF5Crash_FOUND)
+        target_link_libraries(${PROJECT_NAME} LINK_PRIVATE
+            KF5::Crash
+        )
+    endif()
+    if (QHotkey_FOUND)
+        add_definitions(-DQHotkey_FOUND)
+        target_link_libraries(${PROJECT_NAME} LINK_PRIVATE
+            qhotkey
+        )
+    endif()
     if(APPLE AND NOT IOS)
         target_include_directories(mactouchbar PUBLIC ${kdmactouchbar_SOURCE_DIR}/KDMacTouchBar)
         target_link_directories(mactouchbar PUBLIC ${kdmactouchbar_SOURCE_DIR}/KDMacTouchBar)
         target_link_libraries(${PROJECT_NAME} PUBLIC KDMacTouchBar)
     endif()
 else()
-    target_include_directories(${PROJECT_NAME} PUBLIC ${qhotkey_SOURCE_DIR}/QHotkey)
-    target_link_directories(${PROJECT_NAME} PUBLIC ${qhotkey_SOURCE_DIR}/QHotkey)
+    #target_include_directories(${PROJECT_NAME} PUBLIC ${qhotkey_SOURCE_DIR}/QHotkey)
+    #target_link_directories(${PROJECT_NAME} PUBLIC ${qhotkey_SOURCE_DIR}/QHotkey)
     target_link_libraries(${PROJECT_NAME} PUBLIC
         Qt${QT_VERSION_MAJOR}::Core
         Qt${QT_VERSION_MAJOR}::Quick
@@ -244,9 +232,19 @@ else()
         KF5::Kirigami2
         KF5::CoreAddons
         KF5::IconThemes
-        KF5::Crash
-        qhotkey
     )
+    if (KF5Crash_FOUND)
+        add_definitions(-DKF5Crash_FOUND)
+        target_link_libraries(${PROJECT_NAME} LINK_PRIVATE
+            KF5::Crash
+        )
+    endif()
+    if (QHotkey_FOUND)
+        add_definitions(-DQHotkey_FOUND)
+        target_link_libraries(${PROJECT_NAME} PUBLIC
+            qhotkey
+        )
+    endif()
 endif()
 
 # Copy icons that are not font based

@@ -178,6 +178,11 @@ elseif(HAIKU)
         CoreAddons
         IconThemes
     )
+    find_package(KF5Crash ${REQUIRED_KF5_VERSION} CONFIG QUIET)
+        set_package_properties(KF5Crash PROPERTIES
+        DESCRIPTION "Graceful handling of application crashes."
+        TYPE OPTIONAL
+    )
 elseif(WIN32 OR APPLE)
     find_package(Qt${QT_VERSION_MAJOR} ${QT5_MIN_VERSION} REQUIRED NO_MODULE COMPONENTS
         Core
@@ -194,15 +199,17 @@ elseif(WIN32 OR APPLE)
         Kirigami2
         I18n
         CoreAddons
-        Crash
     )
-#    find_package(KF5Crash ${KF_MIN_VERSION} CONFIG QUIET)
+    find_package(KF5Crash ${KF_MIN_VERSION} COMPONENTS)
     set_package_properties(KF5Crash PROPERTIES
         DESCRIPTION "Graceful handling of application crashes."
-        TYPE OPTIONAL)
-    find_package(QHotkey 1.5.0 REQUIRED COMPONENTS
-        QHotkey
+        TYPE OPTIONAL
     )
+    if(WIN32)
+        find_package(QHotkey 1.5.0 COMPONENTS
+            QHotkey
+        )
+    endif()
     # KDMacTouchBar (Mac only)
     if(APPLE AND NOT IOS)
         add_subdirectory("3rdparty/KDMacTouchBar" build/kdmactouchbar)
@@ -227,13 +234,13 @@ else()
         I18n
         CoreAddons
         IconThemes
-        Crash
     )
-#    find_package(KF5Crash ${KF_MIN_VERSION} CONFIG QUIET)
+    find_package(KF5Crash ${REQUIRED_KF5_VERSION} COMPONENTS)
     set_package_properties(KF5Crash PROPERTIES
         DESCRIPTION "Graceful handling of application crashes."
-        TYPE OPTIONAL)
-    find_package(QHotkey 1.5.0 REQUIRED COMPONENTS
+        TYPE OPTIONAL
+    )
+    find_package(QHotkey 1.5.0 COMPONENTS
         QHotkey
     )
 endif()
