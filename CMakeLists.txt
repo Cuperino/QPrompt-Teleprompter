@@ -26,7 +26,12 @@ set(RELEASE_SERVICE_VERSION_MAJOR "1")
 set(RELEASE_SERVICE_VERSION_MINOR "1")
 set(RELEASE_SERVICE_VERSION_MICRO "0")
 set(RELEASE_SERVICE_VERSION "${RELEASE_SERVICE_VERSION_MAJOR}.${RELEASE_SERVICE_VERSION_MINOR}.${RELEASE_SERVICE_VERSION_MICRO}")
-project(qprompt VERSION ${RELEASE_SERVICE_VERSION})
+
+project(qprompt
+    VERSION ${RELEASE_SERVICE_VERSION}
+    DESCRIPTION "Teleprompter software for all video creators"
+    HOMEPAGE_URL "https://qprompt.app/"
+    LANGUAGES CXX)
 
 # Find includes in corresponding build directories
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
@@ -35,21 +40,20 @@ set(CMAKE_AUTOUIC ON)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 # Leave C++ standard at version 17 to build Ubuntu 18.04 compatible AppImage
 set(CMAKE_CXX_STANDARD 17)
-#set(CMAKE_CXX_STANDARD 20)
 # Instruct CMake to run moc automatically when needed
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
 
 set(QT_DEFAULT_MAJOR_VERSION 5)
 set(QT_MIN_VERSION 5.15.2)
-# KF5 5.68 for native Ubuntu 20.04
-# Use 5.83 to have current ecm_add_app_icon syntax
+# KF5 5.78 for Ubuntu 21.04 and Debian 11, which require no backporting
+# Use 5.83 ECM on Windows to make use of ecm_add_app_icon syntax
 if (WIN32)
     set(ECM_MIN_VERSION 5.83.0)
 else()
-    set(ECM_MIN_VERSION 5.68.0)
+    set(ECM_MIN_VERSION 5.78.0)
 endif()
-set(KF_MIN_VERSION 5.68.0)
+set(KF_MIN_VERSION 5.78.0)
 if (APPLE)
     set(APPLE_SUPPRESS_X11_WARNING ON)
 endif()
@@ -62,10 +66,8 @@ if (UNIX AND NOT APPLE AND NOT ANDROID)
     list(APPEND QML_DIRS "/usr/lib/x86_64-linux-gnu/qt5/qml")
     list(APPEND KIRIGAMI_DIRS "/usr/lib/x86_64-linux-gnu/qt5/qml/org/kde/kirigami.2")
 elseif (UNIX AND APPLE)
-#    list(APPEND QML_DIRS "/usr/local/lib/qml")
-#    list(APPEND KIRIGAMI_DIRS "/usr/local/lib/qml/org/kde/kirigami.2")
-#    list(APPEND QML_DIRS "/opt/homebrew/lib/qml")
-#    list(APPEND KIRIGAMI_DIRS "/opt/homebrew/lib/qml/org/kde/kirigami.2")
+    list(APPEND QML_DIRS "/opt/homebrew/lib/qml")
+    list(APPEND KIRIGAMI_DIRS "/opt/homebrew/lib/qml/org/kde/kirigami.2")
 elseif (WIN32)
     list(APPEND QML_DIRS "C:/CraftRoot/qml")
     list(APPEND KIRIGAMI_DIRS "C:/CraftRoot/qml/org/kde/kirigami.2")
@@ -286,11 +288,11 @@ if (${ECM_SOURCE_UNDER_VERSION_CONTROL})
     add_definitions(-DGIT_BRANCH="${GIT_BRANCH}")
 
 else()
-    add_definitions(-DGIT_COMMIT_HASH="${RELEASE_SERVICE_VERSION}")
+    add_definitions(-DGIT_COMMIT_HASH="${PROJECT_VERSION}")
     add_definitions(-DGIT_BRANCH="Stable")
 endif()
 
-ecm_setup_version(${RELEASE_SERVICE_VERSION}
+ecm_setup_version(${PROJECT_VERSION}
     VARIABLE_PREFIX QPROMPT
     VERSION_HEADER "${CMAKE_CURRENT_BINARY_DIR}/qprompt_version.h"
 )
@@ -313,46 +315,32 @@ if (WIN32 OR UNIX) # AND NOT ANDROID
 endif()
 
 # CPACK: General Settings
-set(CPACK_GENERATOR "TBZ2")
-set(CPACK_PACKAGE_NAME "qprompt")
-set(CPACK_PACKAGE_DESCRIPTION_SUMMARY "Personal Teleprompter App")
-
-set(CPACK_PACKAGE_DESCRIPTION_FILE "${CMAKE_SOURCE_DIR}/${DESCRIPTION_FILE}")
+set(CPACK_GENERATOR "DEB")
 set(CPACK_PACKAGE_VENDOR "Javier O. Cordero Pérez")
 set(CPACK_PACKAGE_CONTACT "javiercorderoperez@gmail.com")
-set(CPACK_PACKAGE_VERSION_MAJOR "${RELEASE_SERVICE_VERSION_MAJOR}")
-set(CPACK_PACKAGE_VERSION_MINOR "${RELEASE_SERVICE_VERSION_MINOR}")
-set(CPACK_PACKAGE_VERSION_PATCH "${RELEASE_SERVICE_VERSION_MICRO}")
-set(CPACK_PACKAGE_VERSION "${RELEASE_SERVICE_VERSION}")
+set(CPACK_PACKAGE_DESCRIPTION_FILE "${CMAKE_SOURCE_DIR}/${DESCRIPTION_FILE}")
 set(CPACK_RESOURCE_FILE_README "${CMAKE_SOURCE_DIR}/${README_FILE}")
 
 set(ICONS_DIR "${CMAKE_SOURCE_DIR}/icons")
 set(IMAGES_DIR "${CMAKE_SOURCE_DIR}/images")
-set(PROJECT_URL "https://qprompt.app")
 set(COMPRESION_TYPE "xz")
 
 if(UNIX AND NOT ANDROID)
     # CPACK: DEB Specific Settings
     set(CPACK_DEBIAN_PACKAGE_SECTION "Multimedia")
-    set(CPACK_DEBIAN_PACKAGE_HOMEPAGE ${PROJECT_URL})
     set(CPACK_DEBIAN_COMPRESSION_TYPE ${COMPRESION_TYPE})
-    # Set to dependencies as Ubuntu 21.04. Chose Ubuntu 21.04 as base because Desktop version has ARM support and provided Qt version requires no backporting.
-    set(CPACK_DEBIAN_PACKAGE_DEPENDS "libqt5svg5 (>= 5.15.2), libqt5x11extras5 (>= 5.15.2), qml-module-qt-labs-platform (>=5.15.2), qml-module-qtqml (>=5.15.2), qml-module-qtqml-models2 (>=5.15.2), qml-module-qtqml-statemachine (>=5.15.2), qml-module-qtquick-controls (>=5.15.2), qml-module-qtquick-controls2 (>=5.15.2), qml-module-qtquick-dialogs (>=5.15.2), qml-module-qtquick-shapes (>=5.15.2), qml-module-org-kde-kirigami2 (>=5.78.0), libkf5i18n5 (>= 5.78.0), libkf5coreaddons5 (>= 5.78.0)")
+    # Set to dependencies as Debian 11 and Ubuntu 21.04. Chose these two distros as base because Desktop version has ARM support and provided Qt versions require no backporting.
+    set(CPACK_DEBIAN_PACKAGE_DEPENDS "libqt5svg5 (>= 5.15.2), libqt5x11extras5 (>= 5.15.2), qml-module-qt-labs-platform (>=5.15.2), qml-module-qtqml (>=5.15.2), qml-module-qtqml-models2 (>=5.15.2), qml-module-qtqml-statemachine (>=5.15.2), qml-module-qtquick-controls (>=5.15.2), qml-module-qtquick-controls2 (>=5.15.2), qml-module-qtquick-dialogs (>=5.15.2), qml-module-qtquick-shapes (>=5.15.2), qml-module-org-kde-kirigami2 (>=5.78.0), libkf5i18n5 (>= 5.78.0), libkf5coreaddons5 (>= 5.78.0), libkf5crash5 (>= 5.78.0)")
 
     # CPACK: RPM Specific Settings
     set(CPACK_RPM_PACKAGE_LICENSE "GPLv3")
     set(CPACK_RPM_PACKAGE_GROUP "Multimedia/Video")
-    set(CPACK_RPM_PACKAGE_URL ${PROJECT_URL})
+    set(CPACK_RPM_PACKAGE_REQUIRES "qt5-qtbase >= 5.15.2, qt5-qtx11extras >= 5.15.2, qt5-qtbase-gui >= 5.15.2, qt5-qtdeclarative >= 5.15.2, qt5-qtsvg >= 5.15.2, qt5-qtquickcontrols >= 5.15.2, qt5-qtquickcontrols2 >= 5.15.2, kf5-ki18n >= 5.73.0, kf5-kirigami2 >= 5.73.0, kf5-kcoreaddons >= 5.73.0, kf5-kcrash >= 5.73.0")
     set(CPACK_RPM_COMPRESSION_TYPE ${COMPRESION_TYPE})
-    set(CPACK_RPM_PACKAGE_REQUIRES "qt5-qtbase >= 5.15.2, qt5-qtx11extras >= 5.15.2, qt5-qtbase-gui >= 5.15.2, qt5-qtdeclarative >= 5.15.2, qt5-qtsvg >= 5.15.2, qt5-qtquickcontrols >= 5.15.2, qt5-qtquickcontrols2 >= 5.15.2, kf5-ki18n >= 5.73.0, kf5-kirigami2 >= 5.73.0, kf5-kcoreaddons >= 5.73.0")
-
-    set(CPACK_SYSTEM_NAME "${CMAKE_SYSTEM_NAME}-${CMAKE_SYSTEM_PROCESSOR}")
 
 elseif(WIN32)
     set(CPACK_GENERATOR "NSIS")
     set(CPACK_PACKAGE_EXECUTABLES "QPrompt" "QPrompt")
-    set(CPACK_NSIS_BRANDING_TEXT "QPrompt Teleprompter App")
-    set(CPACK_PACKAGE_FILE_NAME "QPrompt ${RELEASE_SERVICE_VERSION}")
     set(CPACK_RESOURCE_FILE_LICENSE "${CMAKE_SOURCE_DIR}/${LICENSE_FILE}")
     set(CPACK_NSIS_EXECUTABLES_DIRECTORY "${BIN_INSTALL_DIR}")
     set(CPACK_NSIS_MUI_ICON "${ICONS_DIR}/qprompt.ico")
@@ -361,8 +349,6 @@ elseif(WIN32)
     set(CPACK_NSIS_MUI_UNWELCOMEFINISHPAGE_BITMAP "${IMAGES_DIR}/welcome.bmp")
     set(CPACK_NSIS_MUI_HEADERIMAGE "${IMAGES_DIR}/header.bmp")
     set(CPACK_NSIS_CONTACT ${CPACK_PACKAGE_CONTACT})
-
-    set(CPACK_NSIS_URL_INFO_ABOUT ${PROJECT_URL})
     set(CPACK_NSIS_INSTALLED_ICON_NAME "qprompt${CMAKE_EXECUTABLE_SUFFIX}")
     set(CPACK_NSIS_MENU_LINKS
         "${LICENSE_FILE}" "License"
@@ -375,7 +361,7 @@ elseif(APPLE AND NOT IOS)
     set(CPACK_DMG_FORMAT "UDBZ")
     set(CPACK_DMG_VOLUME_NAME "QPrompt")
     set(CPACK_SYSTEM_NAME "OSX")
-    set(CPACK_PACKAGE_FILE_NAME "QPrompt-${RELEASE_SERVICE_VERSION}")
+    set(CPACK_PACKAGE_FILE_NAME "QPrompt-${PROJECT_VERSION}")
     set(CPACK_PACKAGE_ICON "${ICONS_DIR}/qprompt.icns")
     #set(CPACK_DMG_DS_STORE "${IMAGES_DIR}/DSStore")
     set(CPACK_DMG_BACKGROUND_IMAGE "${IMAGES_DIR}/DMGBackground.png")
