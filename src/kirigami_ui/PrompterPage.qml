@@ -353,8 +353,8 @@ Kirigami.Page {
             Kirigami.Action {
                 id: readRegionNoneButton
                 text: i18nc("Disable all reading region indicators", "Hidden")
-                iconName: "format-justify-center"
-                icon.source: "icons/format-justify-center.svg"
+                iconName: "view-list-text"
+                icon.source: "icons/view-list-text.svg"
                 tooltip: i18nc("Disable all reading region indicators", "Disable reading region indicators")
                 enabled: parseInt(overlay.styleState)!==ReadRegionOverlay.PointerStates.None
                 onTriggered: {
