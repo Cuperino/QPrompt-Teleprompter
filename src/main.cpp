@@ -43,11 +43,14 @@
 #include <KI18n/KLocalizedString>
 #include <KCoreAddons/KAboutData>
 
-//#if KF5Crash_FOUND
+#if defined(KF5Crash_FOUND)
 #include <KCrash>
-//#endif
+#endif
 
+#if defined(QHotkey_FOUND)
 #include <QHotkey>
+#endif
+
 #if defined(Q_OS_MACOS)
 #include <../3rdparty/KDMacTouchBar/src/kdmactouchbar.h>
 #endif
@@ -69,14 +72,14 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
     QApplication app(argc, argv);
 #endif
 
-    //#if KF5Crash_FOUND
-        //KCrash::setDrKonqiEnabled(true);
-        KCrash::initialize();
-        KCrash::setErrorMessage("QPrompt crashed. Please report now to https://feedback.qprompt.app");
-        //KCrash::setCrashHandler( KCrash::defaultCrashHandler );
-        KCrash::setFlags(KCrash::AutoRestart); // |KCrash::SaferDialog
-        qDebug() << "DrKonqui" << KCrash::isDrKonqiEnabled();
-    //#endif
+#if defined(KF5Crash_FOUND)
+    //KCrash::setDrKonqiEnabled(true);
+    KCrash::initialize();
+    KCrash::setErrorMessage("QPrompt crashed. Please report now to https://feedback.qprompt.app");
+    //KCrash::setCrashHandler( KCrash::defaultCrashHandler );
+    KCrash::setFlags(KCrash::AutoRestart); // |KCrash::SaferDialog
+    //qDebug() << "DrKonqui" << KCrash::isDrKonqiEnabled();
+#endif
 
     KLocalizedString::setApplicationDomain("qprompt");
     QCoreApplication::setOrganizationName(QString::fromStdString("Cuperino"));
@@ -171,6 +174,7 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
 ////    // connect(stopAction, &QAction::triggered, this, &MainWindow::activated);
 #endif
 
+#if defined(QHotkey_FOUND)
     // Toggle transparency of all windows
     QHotkey hotkey(QKeySequence("Meta+Alt+F10"), true, &app);
     QObject::connect(&hotkey, &QHotkey::activated, qApp, [&]() {
@@ -184,6 +188,7 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
             else
                 windows[i]->setOpacity(1.0);
     });
+#endif
 
     // Un-comment to force RightToLeft Layout for debugging purposes
     //app.setLayoutDirection(Qt::RightToLeft);
