@@ -451,7 +451,7 @@ Flickable {
         else
            position = position
     }
-
+    boundsBehavior: Flickable.DragOverBounds
     flickableDirection: Flickable.VerticalFlick
 
     //Rectangle {
