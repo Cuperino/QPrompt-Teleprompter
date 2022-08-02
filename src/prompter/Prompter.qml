@@ -452,8 +452,16 @@ Flickable {
            position = position
     }
     boundsBehavior: Flickable.DragOverBounds
+    flickDeceleration: 5000
     flickableDirection: Flickable.VerticalFlick
 
+    MouseArea {
+        anchors.fill: parent
+        scrollGestureEnabled: true
+        onWheel: (wheel)=> {
+            mouse.onWheel(wheel)
+        }
+    }
     //Rectangle {
     //    id: startPositionDebug
     //    visible: root.ee
