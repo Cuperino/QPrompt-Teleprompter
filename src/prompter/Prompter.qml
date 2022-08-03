@@ -456,6 +456,9 @@ Flickable {
     flickableDirection: Flickable.VerticalFlick
 
     MouseArea {
+        // Enabling on Linux prevents bug where wheel doesn't respond after returning to edit mode.
+        // Disabling on macOS prevents bug where scrolling past prompter edges in edit mode resets prompter to a previous position
+        enabled: Qt.platform.os==="linux" || Qt.platform.os==="windows"
         anchors.fill: parent
         scrollGestureEnabled: true
         onWheel: (wheel)=> {
