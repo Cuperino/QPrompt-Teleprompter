@@ -206,15 +206,15 @@ elseif(WIN32 OR APPLE)
     endif()
     if (QHotkey_FOUND)
         add_definitions(-DQHotkey_FOUND)
-        target_link_libraries(${PROJECT_NAME} LINK_PRIVATE
+        target_link_libraries(${PROJECT_NAME} PUBLIC
             qhotkey
         )
     endif()
-#    if(APPLE AND NOT IOS)
-#        target_include_directories(mactouchbar PRIVATE ${kdmactouchbar_SOURCE_DIR}/KDMacTouchBar)
-#        target_link_directories(mactouchbar PRIVATE ${kdmactouchbar_SOURCE_DIR}/KDMacTouchBar)
-#        target_link_libraries(${PROJECT_NAME} LINK_PRIVATE KDMacTouchBar)
-#    endif()
+    if(APPLE AND NOT IOS)
+        target_include_directories(mactouchbar PUBLIC ${kdmactouchbar_SOURCE_DIR}/KDMacTouchBar)
+        target_link_directories(mactouchbar PUBLIC ${kdmactouchbar_SOURCE_DIR}/KDMacTouchBar)
+        target_link_libraries(${PROJECT_NAME} PUBLIC KDMacTouchBar)
+    endif()
 else()
     #target_include_directories(${PROJECT_NAME} PUBLIC ${qhotkey_SOURCE_DIR}/QHotkey)
     #target_link_directories(${PROJECT_NAME} PUBLIC ${qhotkey_SOURCE_DIR}/QHotkey)
@@ -241,7 +241,7 @@ else()
     endif()
     if (QHotkey_FOUND)
         add_definitions(-DQHotkey_FOUND)
-        target_link_libraries(${PROJECT_NAME} LINK_PRIVATE
+        target_link_libraries(${PROJECT_NAME} PUBLIC
             qhotkey
         )
     endif()
