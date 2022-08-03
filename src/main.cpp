@@ -51,7 +51,7 @@
 #include <QHotkey>
 #endif
 
-#if defined(Q_OS_MACOS) && defined(KDMacTouchBar_FOUND)
+#if defined(Q_OS_MACOS)
 #include <../3rdparty/KDMacTouchBar/src/kdmactouchbar.h>
 #endif
 
@@ -136,7 +136,7 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
     // KirigamiPlugin::getInstance().registerTypes();
     // #endif
 
-#if defined(Q_OS_MACOS) && defined(KDMacTouchBar_FOUND)
+#if defined(Q_OS_MACOS)
     // Enable automatic display of dialog prompts on the touchbar.
     KDMacTouchBar::setAutomaticallyCreateMessageBoxTouchBar(true);
 //    // Create touchbar for use through all of QPrompt's execusion
