@@ -26,6 +26,7 @@ MouseArea {
     property var window: parent
     property int prevX: 0
     property int prevY: 0
+    enabled: Qt.platform.os!=="android"
     cursorShape: pressed ? Qt.ClosedHandCursor : Qt.OpenHandCursor
     onPressed: {
         prevX=mouse.x
