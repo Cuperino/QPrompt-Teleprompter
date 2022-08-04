@@ -51,8 +51,8 @@
     <kudo>HiDpiIcon</kudo>
     <kudo>HighContrast</kudo>
     <kudo>ModernToolkit</kudo>
-  </kudos>
-  <content_rating type="oars-1.1" />-->
+  </kudos>-->
+  <content_rating type="oars-1.0"></content_rating>
   <releases>
     <release version="1.0" type="stable" date="2021-12-31">
       <artifacts>
