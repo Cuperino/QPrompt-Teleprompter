@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/Cuperino/QPrompt/issues/new/choose\n"
-"POT-Creation-Date: 2022-08-03 21:49-0400\n"
+"POT-Creation-Date: 2022-08-04 05:28-0400\n"
 "PO-Revision-Date: 2022-07-27 22:56+0000\n"
 "Last-Translator: Javier O. Cordero Pérez <javiercorderoperez@gmail.com>\n"
 "Language-Team: Korean <http://l10n.cuperino.com/projects/qprompt/qprompt-app/"
@@ -537,7 +537,7 @@ msgctxt "Global menu actions. Load about page. \"About AppName\""
 msgid "Abou&t %1"
 msgstr ""
 
-#: kirigami_ui/MarkersDrawer.qml:113
+#: kirigami_ui/MarkersDrawer.qml:114
 msgctxt "Close sidebar listing user defined markers"
 msgid "Close Marker List"
 msgstr ""
@@ -1094,17 +1094,22 @@ msgstr ""
 msgid "Wrote keycode to string QML abstraction"
 msgstr ""
 
-#: main.cpp:118 rc.cpp:1
+#: main.cpp:120
+msgctxt "Active software tester"
+msgid "Active tester"
+msgstr ""
+
+#: main.cpp:122 rc.cpp:1
 msgctxt "NAME OF TRANSLATORS"
 msgid "Your names"
 msgstr "KyungLae"
 
-#: main.cpp:118 rc.cpp:2
+#: main.cpp:122 rc.cpp:2
 msgctxt "EMAIL OF TRANSLATORS"
 msgid "Your emails"
 msgstr "ray0412@naver.com"
 
-#: main.cpp:126
+#: main.cpp:130
 msgid "Failed to load icons from fontello.ttf"
 msgstr ""
 
