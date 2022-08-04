@@ -690,25 +690,8 @@ Flickable {
                         }
                         Button {
                             id: rewindButton
-                            text: "\uE81A"
-                            font.pixelSize: 2*fontSize
-                            font.family: iconFont.name
-                            flat: !(pressed || prompter.__atStart)
-                            //cursorShape: Qt.PointingHandCursor
-                            onClicked: {
-                                if (root.passiveNotifications)
-                                    showPassiveNotification(i18n("Double tap to go back to the start"));
-                                prompter.focus = true
-                            }
-                            // Using onPressed to get an immediate response. We should to be forgiving of users who may take too long to press time based buttons
-                            onPressed:
-                                if (loop.running) {
-                                    loop.stop()
-                                    showPassiveNotification(i18n("Auto rewind cancelled"));
-                                    prompter.focus = true
-                                }
-                            onDoubleClicked: {
-                                reset.toStart()
+                            function rewind() {
+                                reset.toStart();
                                 //if (root.passiveNotifications) {
                                     //// Run hidePassiveNotification second to avoid Kirigami bug from 5.83.0 that prevents the method from completing execution.
                                     ////hidePassiveNotification()
@@ -721,8 +704,35 @@ Flickable {
                                     //}
                                     //showPassiveNotification(goToStartNotification);
                                 //}
-                                prompter.restoreFocus()
+                                prompter.restoreFocus();
                             }
+                            text: "\uE81A"
+                            font.pixelSize: 2*fontSize
+                            font.family: iconFont.name
+                            flat: !(pressed || prompter.__atStart)
+                            //cursorShape: Qt.PointingHandCursor
+                            onClicked: {
+                                if (root.passiveNotifications) {
+                                    if (Qt.platform.os==="android")
+                                        showPassiveNotification(i18n("Press and hold to go back to the start"));
+                                    else
+                                        showPassiveNotification(i18n("Double tap to go back to the start"));
+                                }
+                                prompter.focus = true
+                            }
+                            // Using onPressed to get an immediate response. We should to be forgiving of users who may take too long to press time based buttons
+                            onPressed:
+                                if (loop.running) {
+                                    loop.stop();
+                                    showPassiveNotification(i18n("Auto rewind cancelled"));
+                                    prompter.focus = true;
+                                }
+                            onDoubleClicked:
+                                if (Qt.platform.os!=="android")
+                                    rewindButton.rewind();
+                            onPressAndHold:
+                                if (Qt.platform.os==="android")
+                                    rewindButton.rewind();
                             Rectangle {
                                 anchors.fill: parent
                                 anchors.topMargin: 6
