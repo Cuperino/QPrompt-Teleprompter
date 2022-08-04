@@ -172,7 +172,7 @@ elseif(HAIKU)
         Widgets
     )
     # By requiring newer Qt version to use QML compiler, Snap can be built without it.
-    find_package(Qt${QT_VERSION_MAJOR} 5.15.5 NO_MODULE COMPONENTS
+    find_package(Qt${QT_VERSION_MAJOR} ${QT5_MIN_VERSION} NO_MODULE COMPONENTS
         QmlImportScanner  # Used to get static QML. Gets ignored if not a static build
         QuickCompiler
     )

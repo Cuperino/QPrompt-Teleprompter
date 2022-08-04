@@ -59,6 +59,7 @@ parts:
     - libkf5i18n-dev
     - libkf5coreaddons-dev
     - libkf5crash-dev
+    - qtdeclarative5-dev-tools
     prime:
     - "$exclusion"
 
