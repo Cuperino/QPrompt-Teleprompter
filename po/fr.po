@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/Cuperino/QPrompt/issues/new/choose\n"
 "POT-Creation-Date: 2022-08-03 21:49-0400\n"
-"PO-Revision-Date: 2022-07-27 22:56+0000\n"
+"PO-Revision-Date: 2022-08-04 09:10+0000\n"
 "Last-Translator: Javier O. Cordero Pérez <javiercorderoperez@gmail.com>\n"
 "Language-Team: French <http://l10n.cuperino.com/projects/qprompt/qprompt-app/"
 "fr/>\n"
@@ -1189,6 +1189,7 @@ msgid "Press and hold to go back to the start"
 msgstr "Revenir au début"
 
 #: prompter/Prompter.qml:719
+#, fuzzy
 msgid "Double tap to go back to the start"
 msgstr "Revenir au début"
 
