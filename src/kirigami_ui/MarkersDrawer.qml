@@ -77,6 +77,7 @@ Kirigami.OverlayDrawer {
                 }
             },*/
             Kirigami.Action {
+                visible: !(Qt.platform.os==="android" || Qt.platform.os==="ios")
                 icon.name: "document-properties"
                 icon.source: "qrc:/icons/document-properties.svg"
                 onTriggered: {
