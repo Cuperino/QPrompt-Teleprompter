@@ -46,6 +46,7 @@ set(CMAKE_AUTORCC ON)
 
 set(QT_DEFAULT_MAJOR_VERSION 5)
 set(QT_MIN_VERSION 5.15.2)
+# KF5 and ECM 5.68 for Ubuntu 20.04 based Snap package.
 # KF5 5.78 for Ubuntu 21.04 and Debian 11, which require no backporting
 # Use 5.83 ECM on Windows to make use of ecm_add_app_icon syntax
 if (WIN32)
@@ -170,7 +171,8 @@ elseif(HAIKU)
         Network
         Widgets
     )
-    find_package(Qt${QT_VERSION_MAJOR} ${QT5_MIN_VERSION} NO_MODULE COMPONENTS
+    # By requiring newer Qt version to use QML compiler, Snap can be built without it.
+    find_package(Qt${QT_VERSION_MAJOR} 5.15.5 NO_MODULE COMPONENTS
         QmlImportScanner  # Used to get static QML. Gets ignored if not a static build
         QuickCompiler
     )

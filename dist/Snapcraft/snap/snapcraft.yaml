@@ -22,12 +22,14 @@ architectures:
 
 parts:
   qprompt:
+    after:
+    - qhotkey
     parse-info:
     - usr/share/metainfo/com.cuperino.qprompt.appdata.xml
     plugin: cmake
     source: https://github.com/Cuperino/QPrompt.git
     source-type: git
-    source-branch: main
+    source-branch: v1.1
     cmake-parameters:
     #- "-DKDE_INSTALL_USE_QT_SYS_PATHS=ON"
     - "-DCMAKE_INSTALL_PREFIX=/usr"
@@ -35,7 +37,7 @@ parts:
     - "-DENABLE_TESTING=OFF"
     - "-DBUILD_TESTING=OFF"
     - "-DKDE_SKIP_TEST_SETTINGS=ON"
-    - "-DCMAKE_FIND_ROOT_PATH=/usr\\;/root/stage\\;/snap/kde-frameworks-5-96-qt-5-15-5-core20-sdk/current"
+    - "-DCMAKE_FIND_ROOT_PATH=/usr\\;/root/stage\\;/snap/kde-frameworks-5-91-qt-5-15-3-core20-sdk/current"
     #- "-DKDE_INSTALL_PLUGINDIR=/usr/lib/x86_64-linux-gnu/qt5/plugins/"
     filesets:
       exclusion:
@@ -49,8 +51,8 @@ parts:
       - "-usr/lib/gcc"
       #- "-usr/lib/gcc/x86_64-linux-gnu/6.0.0"
     build-snaps:
-    - kde-frameworks-5-96-qt-5-15-5-core20-sdk
-    - kde-frameworks-5-96-qt-5-15-5-core20
+    - kde-frameworks-5-91-qt-5-15-3-core20-sdk
+    - kde-frameworks-5-91-qt-5-15-3-core20
     build-packages:
     - extra-cmake-modules
     - kirigami2-dev
@@ -59,6 +61,14 @@ parts:
     - libkf5crash-dev
     prime:
     - "$exclusion"
+
+  qhotkey:
+    plugin: cmake
+    source: https://github.com/Skycoder42/QHotkey.git
+    source-type: git
+    source-branch: master
+    build-packages:
+    - libqt5x11extras5-dev
 
 apps:
   qprompt:
