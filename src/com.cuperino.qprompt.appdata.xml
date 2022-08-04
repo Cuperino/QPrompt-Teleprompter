@@ -52,7 +52,7 @@
     <kudo>HighContrast</kudo>
     <kudo>ModernToolkit</kudo>
   </kudos>-->
-  <content_rating type="oars-1.0"></content_rating>
+  <content_rating type="oars-1.0" />
   <releases>
     <release version="1.0" type="stable" date="2021-12-31">
       <artifacts>
