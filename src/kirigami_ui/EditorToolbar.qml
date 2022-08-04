@@ -700,7 +700,7 @@ ToolBar {
             //visible: parseInt(prompter.state)===Prompter.States.Editing
             ToolButton {
                 id: wheelThrottleSettingsButton
-                visible: !Kirigami.Settings.isMobile // || parseInt(prompter.state)===Prompter.States.Editing
+                visible: !(Qt.platform.os==="android" || Qt.platform.os==="ios")
                 text: "\uE7FF"
                 contentItem: Loader { sourceComponent: textComponent }
                 font.family: iconFont.name
