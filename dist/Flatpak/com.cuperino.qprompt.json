@@ -23,13 +23,24 @@
    ],
    "modules": [
       {
+         "name": "qhotkey",
+         "buildsystem": "cmake-ninja",
+         "sources": [
+            {
+               "type": "git",
+               "url": "https://github.com/Skycoder42/QHotkey.git",
+               "branch": "master"
+            }
+         ]
+      },
+      {
          "name": "qprompt",
          "buildsystem": "cmake-ninja",
          "sources": [
             {
                "type": "git",
                "url": "https://github.com/Cuperino/QPrompt.git",
-               "branch": "main"
+               "branch": "v1.1"
             }
          ]
       }
