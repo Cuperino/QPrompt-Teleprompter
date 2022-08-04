@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/Cuperino/QPrompt/issues/new/choose\n"
-"POT-Creation-Date: 2022-07-27 14:53-0400\n"
+"POT-Creation-Date: 2022-08-03 21:49-0400\n"
 "PO-Revision-Date: 2022-07-27 22:56+0000\n"
 "Last-Translator: Javier O. Cordero Pérez <javiercorderoperez@gmail.com>\n"
 "Language-Team: French <http://l10n.cuperino.com/projects/qprompt/qprompt-app/"
@@ -346,20 +346,20 @@ msgctxt "Global menu actions"
 msgid "&Redo"
 msgstr "Refaire"
 
-#: kirigami_ui/main.qml:483 prompter/Prompter.qml:1220
-#: prompter/Prompter.qml:1267
+#: kirigami_ui/main.qml:483 prompter/Prompter.qml:1241
+#: prompter/Prompter.qml:1288
 msgctxt "Global menu and editor context menu actions"
 msgid "&Copy"
 msgstr "&Copier"
 
-#: kirigami_ui/main.qml:488 prompter/Prompter.qml:1225
-#: prompter/Prompter.qml:1272
+#: kirigami_ui/main.qml:488 prompter/Prompter.qml:1246
+#: prompter/Prompter.qml:1293
 msgctxt "Global menu and editor context menu actions"
 msgid "Cu&t"
 msgstr "Cou&per"
 
-#: kirigami_ui/main.qml:493 prompter/Prompter.qml:1230
-#: prompter/Prompter.qml:1277
+#: kirigami_ui/main.qml:493 prompter/Prompter.qml:1251
+#: prompter/Prompter.qml:1298
 msgctxt "Global menu and editor context menu actions"
 msgid "&Paste"
 msgstr "C&oller"
@@ -1095,37 +1095,37 @@ msgstr ""
 "Activer la limitation pour une utilisation avec les pavés tactiles, "
 "désactivée pour un défilement précis."
 
-#: main.cpp:88
+#: main.cpp:91
 msgid "© 2021 Javier O. Cordero Pérez"
 msgstr "© 2021 Javier O. Cordero Pérez"
 
-#: main.cpp:89
+#: main.cpp:92
 msgid "© 2021-%1 Javier O. Cordero Pérez"
 msgstr "© 2021-%1 Javier O. Cordero Pérez"
 
-#: main.cpp:92
+#: main.cpp:95
 msgid "Personal teleprompter software for all video makers."
 msgstr "Logiciel téléprompteur personnel pour tous les vidéastes."
 
-#: main.cpp:104
+#: main.cpp:107
 msgid "Author"
 msgstr "Auteur"
 
-#: main.cpp:111
+#: main.cpp:114
 msgid "Wrote keycode to string QML abstraction"
 msgstr "Écrit le code clé à la chaîne d'abstraction QML"
 
-#: main.cpp:115 rc.cpp:1
+#: main.cpp:118 rc.cpp:1
 msgctxt "NAME OF TRANSLATORS"
 msgid "Your names"
 msgstr "Fanch, Vincent Berry"
 
-#: main.cpp:115 rc.cpp:2
+#: main.cpp:118 rc.cpp:2
 msgctxt "EMAIL OF TRANSLATORS"
 msgid "Your emails"
 msgstr "fanch.le.cleach@gmail.com, berryv@outlook.fr"
 
-#: main.cpp:123
+#: main.cpp:126
 msgid "Failed to load icons from fontello.ttf"
 msgstr "Échec du chargement des icônes de fontello.tff"
 
@@ -1179,50 +1179,55 @@ msgstr "Image PNG"
 msgid "GIF animation"
 msgstr "Animation GIF"
 
-#: prompter/Prompter.qml:606
+#: prompter/Prompter.qml:617
 msgid "Error loading file…"
 msgstr "Erreur de chargement du fichier…"
 
-#: prompter/Prompter.qml:689
+#: prompter/Prompter.qml:717
+#, fuzzy
+msgid "Press and hold to go back to the start"
+msgstr "Revenir au début"
+
+#: prompter/Prompter.qml:719
 msgid "Double tap to go back to the start"
 msgstr "Revenir au début"
 
-#: prompter/Prompter.qml:696
+#: prompter/Prompter.qml:727
 msgid "Auto rewind cancelled"
 msgstr "Rembobinage automatique annulé"
 
-#: prompter/Prompter.qml:754
+#: prompter/Prompter.qml:775
 msgid "The End"
 msgstr "Fin"
 
-#: prompter/Prompter.qml:1067
+#: prompter/Prompter.qml:1088
 msgid "New document"
 msgstr "Nouveau document"
 
-#: prompter/Prompter.qml:1076
+#: prompter/Prompter.qml:1097
 msgid "welcome_en.html"
 msgstr "welcome_fr.html"
 
-#: prompter/Prompter.qml:1081
+#: prompter/Prompter.qml:1102
 msgid "User welcome loaded"
 msgstr "Mot de bienvenue de l’utilisateur chargé"
 
-#: prompter/Prompter.qml:1101 prompter/Prompter.qml:1197
+#: prompter/Prompter.qml:1122 prompter/Prompter.qml:1218
 msgctxt "Saved FILE_NAME"
 msgid "Saved %1"
 msgstr "%1 enregistré"
 
-#: prompter/Prompter.qml:1154 prompter/Prompter.qml:1184
+#: prompter/Prompter.qml:1175 prompter/Prompter.qml:1205
 msgctxt "Format name (FORMAT_EXTENSION)"
 msgid "Hypertext Markup Language (%1)"
 msgstr "Langage Signalétique Hyper Text (%1)"
 
-#: prompter/Prompter.qml:1155
+#: prompter/Prompter.qml:1176
 msgctxt "Format name (FORMAT_EXTENSION)"
 msgid "Markdown (%1)"
 msgstr "Markdown (%1)"
 
-#: prompter/Prompter.qml:1156 prompter/Prompter.qml:1185
+#: prompter/Prompter.qml:1177 prompter/Prompter.qml:1206
 msgctxt "Format name (FORMAT_EXTENSION)"
 msgid "Plain Text (%1)"
 msgstr "Texte Brut (%1)"
@@ -1233,49 +1238,49 @@ msgstr "Texte Brut (%1)"
 #. i18nc("Format name (FORMAT_EXTENSION)", "Apple Pages Document (%1)", "PAGES") + "(*.pages *.PAGES)",
 #. i18nc("Format name (FORMAT_EXTENSION)", "Rich Text Format (%1)", "RTF") + "(*.rtf *.RTF)",
 #. i18nc("Format name (FORMAT_EXTENSION)", "Portable Document Format (%1)", "PDF") + "(*.pdf *.PDF)",
-#: prompter/Prompter.qml:1163
+#: prompter/Prompter.qml:1184
 msgctxt "All file formats"
 msgid "All Formats"
 msgstr "Tous les formats"
 
-#: prompter/Prompter.qml:1236 prompter/Prompter.qml:1283
+#: prompter/Prompter.qml:1257 prompter/Prompter.qml:1304
 msgctxt "Editor context menu actions"
 msgid "Fo&nt…"
 msgstr "Police…"
 
-#: prompter/Prompter.qml:1240 prompter/Prompter.qml:1287
+#: prompter/Prompter.qml:1261 prompter/Prompter.qml:1308
 msgctxt "Editor context menu actions"
 msgid "Co&lor…"
 msgstr "Couleur…"
 
-#: prompter/Prompter.qml:1244 prompter/Prompter.qml:1291
+#: prompter/Prompter.qml:1265 prompter/Prompter.qml:1312
 msgctxt "Editor context menu actions"
 msgid "Hi&ghlight…"
 msgstr "Surbrillance…"
 
-#: prompter/Prompter.qml:1256
+#: prompter/Prompter.qml:1277
 msgctxt "Editor context menu actions"
 msgid "&Undo"
 msgstr "&Annuler"
 
-#: prompter/Prompter.qml:1261
+#: prompter/Prompter.qml:1282
 msgctxt "Editor context menu actions"
 msgid "Redo"
 msgstr "Refaire"
 
-#: prompter/Prompter.qml:1532
+#: prompter/Prompter.qml:1553
 msgid "Begin countdown"
 msgstr "Démarrer le compte à rebours"
 
-#: prompter/Prompter.qml:1532
+#: prompter/Prompter.qml:1553
 msgid "Start prompting"
 msgstr "Démarrer le prompteur"
 
-#: prompter/Prompter.qml:1583
+#: prompter/Prompter.qml:1604
 msgid "Skip countdown"
 msgstr "Passer le compte à rebours"
 
-#: prompter/Prompter.qml:1630
+#: prompter/Prompter.qml:1651
 msgid "Return to edit mode"
 msgstr "Revenir au mode édition"
 
