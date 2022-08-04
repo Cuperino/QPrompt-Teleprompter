@@ -52,9 +52,11 @@ parts:
     - kde-frameworks-5-96-qt-5-15-5-core20-sdk
     - kde-frameworks-5-96-qt-5-15-5-core20
     build-packages:
+    - extra-cmake-modules
     - kirigami2-dev
-    - ki18n-dev
-    - kcoreaddons-dev
+    - libkf5i18n-dev
+    - libkf5coreaddons-dev
+    - libkf5crash-dev
     prime:
     - "$exclusion"
 
