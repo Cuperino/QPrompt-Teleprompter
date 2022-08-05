@@ -227,10 +227,10 @@ else()
         Widgets
         X11Extras
     )
-    find_package(Qt${QT_VERSION_MAJOR} ${QT5_MIN_VERSION} NO_MODULE COMPONENTS
-        QmlImportScanner  # Used to get static QML. Gets ignored if not a static build
-        QuickCompiler
-    )
+    #find_package(Qt${QT_VERSION_MAJOR} ${QT5_MIN_VERSION} NO_MODULE COMPONENTS
+        #QmlImportScanner  # Used to get static QML. Gets ignored if not a static build
+        #QuickCompiler
+    #)
     find_package(KF5 ${KF_MIN_VERSION} REQUIRED COMPONENTS
         Kirigami2
         I18n
