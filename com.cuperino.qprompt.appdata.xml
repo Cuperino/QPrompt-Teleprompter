@@ -58,6 +58,7 @@
       <artifact type="source">
         <location>https://github.com/Cuperino/QPrompt/archive/refs/tags/v1.1.0.tar.gz</location>
         <checksum type="sha256">4a40a96ace90335b5e084627e70ea51c04c54153c4db17d1a01283a808bb0cdf</checksum>
+      </artifact>
       <artifact type="binary" platform="x86_64-linux-clang">
         <location>https://github.com/Cuperino/QPrompt/releases/download/v1.1.0/qprompt-v1.1-8fc947c-linux-64-clang.AppImage</location>
         <checksum type="sha256">159ea797095c9c7bdcba604afa705168c8f3ff516e65ba5db08a927047f74940</checksum>
