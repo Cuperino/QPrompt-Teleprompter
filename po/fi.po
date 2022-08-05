@@ -8,57 +8,59 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/Cuperino/QPrompt/issues/new/choose\n"
 "POT-Creation-Date: 2022-08-04 05:31-0400\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Automatically generated\n"
-"Language-Team: none\n"
+"PO-Revision-Date: 2022-08-07 00:19+0000\n"
+"Last-Translator: LINUX-SAUNA <linuxsauna@protonmail.com>\n"
+"Language-Team: Finnish <http://l10n.cuperino.com/projects/qprompt/"
+"qprompt-app/fi/>\n"
 "Language: fi\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.11.2\n"
 
 #: kirigami_ui/+android/main.qml:169 kirigami_ui/main.qml:176
 #: kirigami_ui/main.qml:446 kirigami_ui/+windows/main.qml:176
 msgctxt "Main menu and global menu actions"
 msgid "&New"
-msgstr ""
+msgstr "&Uusi"
 
 #: kirigami_ui/+android/main.qml:175 kirigami_ui/main.qml:183
 #: kirigami_ui/main.qml:450 kirigami_ui/+windows/main.qml:182
 msgctxt "Main menu and global menu actions"
 msgid "&Open"
-msgstr ""
+msgstr "&Avaa"
 
 #: kirigami_ui/+android/main.qml:184 kirigami_ui/main.qml:193
 #: kirigami_ui/main.qml:454 kirigami_ui/+windows/main.qml:191
 msgctxt "Main menu and global menu actions"
 msgid "&Save"
-msgstr ""
+msgstr "&Tallenna"
 
 #: kirigami_ui/+android/main.qml:193 kirigami_ui/main.qml:203
 #: kirigami_ui/+windows/main.qml:200
 msgctxt "Main menu and global menu actions"
 msgid "Save &As"
-msgstr ""
+msgstr "Tallenna &Nimellä"
 
 #: kirigami_ui/+android/main.qml:203 kirigami_ui/main.qml:214
 #: kirigami_ui/+windows/main.qml:210
 msgctxt "Main menu actions"
 msgid "&Recent Files"
-msgstr ""
+msgstr "&Viimeaikaiset Tiedostot"
 
 #: kirigami_ui/+android/main.qml:211 kirigami_ui/main.qml:223
 #: kirigami_ui/+windows/main.qml:218
 msgctxt "Main menu actions. Menu regarding input settings."
 msgid "&Controls Settings"
-msgstr ""
+msgstr "&Ohjainten asetukset"
 
 #: kirigami_ui/+android/main.qml:215 kirigami_ui/main.qml:228
 #: kirigami_ui/+windows/main.qml:222
 msgctxt ""
 "Main menu and global menu actions. Opens dialog to configure keyboard inputs."
 msgid "Keyboard Inputs"
-msgstr ""
+msgstr "Näppäimistösyötteet"
 
 #: kirigami_ui/+android/main.qml:223 kirigami_ui/main.qml:235
 #: kirigami_ui/+windows/main.qml:230
