@@ -71,12 +71,12 @@ if (NOT APPLE AND NOT ANDROID)
     )
 endif()
 
-# Qt5QuickCompiler is an optional dependency. Script must check that it is present before attempting to use
-if (Qt${QT_VERSION_MAJOR}QuickCompiler_FOUND)
-    qtquick_compiler_add_resources(qprompt_QML_SRCS qml.qrc)
-else ()
-    set(qprompt_QML_SRCS qml.qrc)
-endif()
+## Qt5QuickCompiler is an optional dependency. Script must check that it is present before attempting to use
+#if (Qt${QT_VERSION_MAJOR}QuickCompiler_FOUND)
+    #qtquick_compiler_add_resources(qprompt_QML_SRCS qml.qrc)
+#else ()
+set(qprompt_QML_SRCS qml.qrc)
+#endif()
 
 
 if(ANDROID)
@@ -310,10 +310,10 @@ if(ANDROID OR APPLE OR WIN32 OR IOS OR WASM)
 endif()
 
 
-# Get static QML. Gets ignored if not a static build
-if (QtQmlImportScanner_FOUND)
-    qt_import_qml_plugins(${PROJECT_NAME})
-endif()
+## Get static QML. Gets ignored if not a static build
+#if (QtQmlImportScanner_FOUND)
+    #qt_import_qml_plugins(${PROJECT_NAME})
+#endif()
 
 
 # Include KI18N translations
