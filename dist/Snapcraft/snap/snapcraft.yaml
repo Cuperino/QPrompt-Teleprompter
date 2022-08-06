@@ -1,7 +1,7 @@
 name: qprompt
 base: core20
 version: '1.1.0'
-summary: Teleprompter software for all video creators # 79 char long summary
+summary: Personal teleprompter software # 79 char long summary
 description: |
   Personal teleprompter software for all video creators.
   Built with ease of use, productivity, control accuracy, and
@@ -29,9 +29,9 @@ parts:
     plugin: cmake
     source: https://github.com/Cuperino/QPrompt.git
     source-type: git
-    source-branch: v1.1
+    source-branch: main
     cmake-parameters:
-    #- "-DKDE_INSTALL_USE_QT_SYS_PATHS=ON"
+    - "-DKDE_INSTALL_USE_QT_SYS_PATHS=ON"
     - "-DCMAKE_INSTALL_PREFIX=/usr"
     - "-DCMAKE_BUILD_TYPE=Release"
     - "-DENABLE_TESTING=OFF"
@@ -48,18 +48,42 @@ parts:
       - "-usr/share/man/*"
       - "-usr/share/icons/breeze-dark*"
       - "-usr/bin/X11"
-      - "-usr/lib/gcc"
-      #- "-usr/lib/gcc/x86_64-linux-gnu/6.0.0"
-    build-snaps:
-    - kde-frameworks-5-qt-5-15-core20-sdk
-    - kde-frameworks-5-qt-5-15-core20
+      - "-usr/lib/gcc/x86_64-linux-gnu/6.0.0"
+    #build-snaps:
+    #- kde-frameworks-5-qt-5-15-core20-sdk
+    #- kde-frameworks-5-qt-5-15-core20
     build-packages:
-    - extra-cmake-modules
     - kirigami2-dev
+    - libqt5svg5-dev
+    - libqt5x11extras5-dev
+    - qml-module-qt-labs-platform
+    #- qml-module-qtqml
+    - qml-module-qtqml-models2
+    - qml-module-qtqml-statemachine
+    - qml-module-qtquick-controls
+    - qml-module-qtquick-controls2
+    - qml-module-qtquick-dialogs
+    - qml-module-qtquick-shapes
+    - qml-module-org-kde-kirigami2
     - libkf5i18n-dev
     - libkf5coreaddons-dev
     - libkf5crash-dev
-    #- qtdeclarative5-dev-tools
+    stage-packages:
+    - libqt5svg5
+    - libqt5x11extras5
+    - qml-module-qt-labs-platform
+    #- qml-module-qtqml
+    - qml-module-qtqml-models2
+    - qml-module-qtqml-statemachine
+    - qml-module-qtquick-controls
+    - qml-module-qtquick-controls2
+    - qml-module-qtquick-dialogs
+    - qml-module-qtquick-shapes
+    - qml-module-org-kde-kirigami2
+    - libkf5i18n5
+    - libkf5coreaddons5
+    - libkf5kirigami2-5
+    - libkf5crash5
     prime:
     - "$exclusion"
 
