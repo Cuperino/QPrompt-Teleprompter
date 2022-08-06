@@ -18,7 +18,7 @@ compression: lzo
 icon: snap/gui/icon.png
 
 architectures:
-- build-on: [amd64, arm64]
+- build-on: [amd64]
 
 parts:
   qprompt:
@@ -54,6 +54,7 @@ parts:
     - kde-frameworks-5-91-qt-5-15-3-core20
     build-packages:
     - kirigami2-dev
+    - libgl-dev
     prime:
     - "$exclusion"
 
