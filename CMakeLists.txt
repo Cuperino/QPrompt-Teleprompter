@@ -45,7 +45,7 @@ set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
 
 set(QT_DEFAULT_MAJOR_VERSION 5)
-set(QT_MIN_VERSION 5.15.2)
+set(QT_MIN_VERSION 5.12.8)
 # KF5 and ECM 5.68 for Ubuntu 20.04 based Snap package.
 # KF5 5.78 for Ubuntu 21.04 and Debian 11, which require no backporting
 # Use 5.83 ECM on Windows to make use of ecm_add_app_icon syntax
