@@ -482,8 +482,10 @@ void DocumentHandler::load(const QUrl &fileUrl)
             if (QTextDocument *doc = textDocument()) {
                 doc->setBaseUrl(path.adjusted(QUrl::RemoveFilename));
                 // File formats managed by Qt
-                if (mime.inherits(QString::fromStdString("text/html")))
-                    Q_EMIT loaded(QString::fromUtf8(data), Qt::RichText);
+                if (mime.inherits(QString::fromStdString("text/html"))) {
+                    QString html = QString::fromUtf8(data).replace(QRegularExpression(QString::fromStdString("((font-size|letter-spacing|word-spacing|font-weight):\\s*-?[\\d]+(?:.[\\d]+)*(?:(?:px)|(?:pt)|(?:em)|(?:ex));?\\s*)")), QString::fromStdString(""));
+                    Q_EMIT loaded(html, Qt::RichText);
+                }
                 #if QT_VERSION >= 0x050F00
                 else if (mime.inherits(QString::fromStdString("text/markdown")))
                     Q_EMIT loaded(QString::fromUtf8(data), Qt::MarkdownText);
@@ -523,7 +525,7 @@ void DocumentHandler::load(const QUrl &fileUrl)
                     else {
                         // Interpret RAW data using Qt's auto detection
 #if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
-                        // I doubt that this is a propper conversion. Needs proper testing.
+                        // I doubt that this is a proper conversion. Needs proper testing.
                         Q_EMIT loaded(QString::fromStdString(data.toStdString()), Qt::AutoText);
 #else
                         QTextCodec *codec = QTextCodec::codecForName("UTF-8");
