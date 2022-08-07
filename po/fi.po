@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/Cuperino/QPrompt/issues/new/choose\n"
 "POT-Creation-Date: 2022-08-04 05:31-0400\n"
-"PO-Revision-Date: 2022-08-07 00:19+0000\n"
+"PO-Revision-Date: 2022-08-08 16:27+0000\n"
 "Last-Translator: LINUX-SAUNA <linuxsauna@protonmail.com>\n"
 "Language-Team: Finnish <http://l10n.cuperino.com/projects/qprompt/"
 "qprompt-app/fi/>\n"
@@ -66,7 +66,7 @@ msgstr "Näppäimistösyötteet"
 #: kirigami_ui/+windows/main.qml:230
 msgctxt "Open 'scroll settings' from main menu and global menu actions"
 msgid "Scroll throttle settings"
-msgstr ""
+msgstr "Vierityksen kiihdytysasetukset"
 
 #: kirigami_ui/+android/main.qml:228 kirigami_ui/main.qml:241
 #: kirigami_ui/main.qml:691 kirigami_ui/+windows/main.qml:235
@@ -74,14 +74,14 @@ msgctxt ""
 "Main menu and global menu actions. Have up arrow behave like down arrow and "
 "vice versa while prompting."
 msgid "Invert &arrow keys"
-msgstr ""
+msgstr "Käänteistä &nuolinäppäimet"
 
 #: kirigami_ui/+android/main.qml:236 kirigami_ui/main.qml:250
 #: kirigami_ui/main.qml:698 kirigami_ui/+windows/main.qml:243
 msgctxt ""
 "Main menu and global menu actions. Invert scroll direction while prompting."
 msgid "Invert &scroll direction"
-msgstr ""
+msgstr "Käänteistä &vierityksen suunta"
 
 #: kirigami_ui/+android/main.qml:244 kirigami_ui/main.qml:259
 #: kirigami_ui/main.qml:683 kirigami_ui/+windows/main.qml:251
@@ -97,220 +97,220 @@ msgctxt ""
 "Main menu and global menu actions. Touchpad scrolling and mouse wheel use "
 "have no effect while prompting."
 msgid "Disable scrolling while prompting"
-msgstr ""
+msgstr "Kytke vieritys pois päältä lähettäessä"
 
 #: kirigami_ui/+android/main.qml:261 kirigami_ui/main.qml:278
 #: kirigami_ui/+windows/main.qml:268
 msgctxt "Main menu actions"
 msgid "Other &Settings"
-msgstr ""
+msgstr "Muut &Asetukset"
 
 #: kirigami_ui/+android/main.qml:272 kirigami_ui/main.qml:290
 #: kirigami_ui/+windows/main.qml:279
 msgctxt "Main menu actions"
 msgid "Always hide formatting tools"
-msgstr ""
+msgstr "Piilota muotoilutyökalut aina"
 
 #: kirigami_ui/+android/main.qml:281 kirigami_ui/main.qml:300
 #: kirigami_ui/+windows/main.qml:288
 msgctxt "Main menu actions. Hides formatting tools while not in edit mode."
 msgid "Auto hide formatting tools"
-msgstr ""
+msgstr "Piilota muotoilutyökalut automaattisesti"
 
 #: kirigami_ui/+android/main.qml:296 kirigami_ui/main.qml:328
 #: kirigami_ui/+windows/main.qml:313
 msgctxt "Main menu actions. Load about page."
 msgid "Abou&t %1"
-msgstr ""
+msgstr "Tietoj&a %1"
 
 #: kirigami_ui/+android/main.qml:302 kirigami_ui/main.qml:335
 #: kirigami_ui/main.qml:463 kirigami_ui/+windows/main.qml:319
 msgctxt "Main menu and global menu actions"
 msgid "&Quit"
-msgstr ""
+msgstr "&Lopeta"
 
 #: kirigami_ui/+android/main.qml:331 kirigami_ui/main.qml:386
 #: kirigami_ui/main.qml:723 kirigami_ui/+windows/main.qml:353
 msgctxt "Main menu and global actions. Load document that welcomes users."
 msgid "Load &Welcome"
-msgstr ""
+msgstr "Lataa &Tervetuloikkuna"
 
 #: kirigami_ui/+android/main.qml:367 kirigami_ui/main.qml:422
 #: kirigami_ui/+windows/main.qml:389
 msgid "Darth mode"
-msgstr ""
+msgstr "Darth-tila"
 
 #: kirigami_ui/+android/main.qml:458 kirigami_ui/main.qml:876
 #: kirigami_ui/+windows/main.qml:530
 msgctxt "Title for save before closing dialog"
 msgid "Save Document"
-msgstr ""
+msgstr "Tallenna asiakirja"
 
 #: kirigami_ui/+android/main.qml:459 kirigami_ui/main.qml:877
 #: kirigami_ui/+windows/main.qml:531
 msgid "Save changes to document before closing?"
-msgstr ""
+msgstr "Tallenna muutokset asiakirjaan ennen sulkemista?"
 
 #: kirigami_ui/EditorToolbar.qml:344 kirigami_ui/EditorToolbar.qml:354
 msgctxt "Editor actions. Text alignment."
 msgid "&Left"
-msgstr ""
+msgstr "&Vasen"
 
 #: kirigami_ui/EditorToolbar.qml:344 kirigami_ui/EditorToolbar.qml:354
 msgctxt "Editor actions. Text alignment."
 msgid "&Right"
-msgstr ""
+msgstr "&Oikea"
 
 #: kirigami_ui/EditorToolbar.qml:349
 msgctxt "Editor actions. Text alignment."
 msgid "C&enter"
-msgstr ""
+msgstr "K&eskellä"
 
 #: kirigami_ui/EditorToolbar.qml:503
 msgctxt "FontName (Translatable font details)"
 msgid "DejaVu (default, Roman, Cyrillic)"
-msgstr ""
+msgstr "DejaVu (vakiollinen, roomalainen, kyrillinen)"
 
 #: kirigami_ui/EditorToolbar.qml:507
 msgctxt "FontName (Translatable font details)"
 msgid "OpenDyslexic (Roman)"
-msgstr ""
+msgstr "OpenDyslexic (roomalainen)"
 
 #: kirigami_ui/EditorToolbar.qml:511
 msgctxt "FontName (Translatable font details)"
 msgid "Source Han Sans (CH, JP, KO)"
-msgstr ""
+msgstr "Lähde Han Sans (CH, JP, KO)"
 
 #: kirigami_ui/EditorToolbar.qml:515
 msgctxt "FontName (Translatable font details)"
 msgid "Scheherazade New (Arabic)"
-msgstr ""
+msgstr "Scheherazade uusi (arabialainen)"
 
 #: kirigami_ui/EditorToolbar.qml:519
 msgctxt "FontName (Translatable font details)"
 msgid "Palanquin (Devangari)"
-msgstr ""
+msgstr "Palanquin (Devanagari)"
 
 #: kirigami_ui/EditorToolbar.qml:523
 msgctxt "FontName (Translatable font details)"
 msgid "Kalpurush (Bengali)"
-msgstr ""
+msgstr "Kalpurush (bengalilainen)"
 
 #: kirigami_ui/EditorToolbar.qml:529
 msgctxt "Opens system font selection dialog"
 msgid "Choose System Font"
-msgstr ""
+msgstr "Valitse järjestelmäkirjasin"
 
 #: kirigami_ui/EditorToolbar.qml:767
 msgctxt "Velocity {VELOCITY_STEPS}"
 msgid "Velocity <pre>%1</pre>"
-msgstr ""
+msgstr "Viertonopeus <pre>%1</pre>"
 
 #: kirigami_ui/EditorToolbar.qml:801
 msgctxt "Opacity {TRANSPARENCY_PERCENTAGE}"
 msgid "Opacity <pre>%1</pre>"
-msgstr ""
+msgstr "Läpikuultavuus <pre>%1</pre>"
 
 #: kirigami_ui/EditorToolbar.qml:837 kirigami_ui/EditorToolbar.qml:855
 msgctxt "Font size 100% (083)"
 msgid "Font size <pre>%1% (%2)</pre>"
-msgstr ""
+msgstr "Kirjasimen koko <pre>%1% (%2)</pre>"
 
 #: kirigami_ui/EditorToolbar.qml:893
 msgctxt "Line height 100%"
 msgid "Line height <pre>%1%</pre>"
-msgstr ""
+msgstr "Viivakorkeus <pre>%1%</pre>"
 
 #: kirigami_ui/EditorToolbar.qml:931
 msgctxt "Word spacing <pre>±00<pre>"
 msgid "Word spacing <pre>%1</pre>"
-msgstr ""
+msgstr "Sanojen välit <pre>%1</pre>"
 
 #: kirigami_ui/EditorToolbar.qml:967
 msgctxt "Letter spacing ±00"
 msgid "Letter spacing <pre>%1</pre>"
-msgstr ""
+msgstr "Kirjainvälit <pre>%1</pre>"
 
 #: kirigami_ui/EditorToolbar.qml:1003
 msgctxt "Step speed 1.00"
 msgid "Step speed <pre>%1</pre>"
-msgstr ""
+msgstr "Askelnopeus <pre>%1</pre>"
 
 #: kirigami_ui/EditorToolbar.qml:1044
 msgctxt "Step acceleration 1.15"
 msgid "Step acceleration <pre>%1</pre>"
-msgstr ""
+msgstr "Askelkiihdytys <pre>%1</pre>"
 
 #: kirigami_ui/EditorToolbar.qml:1118
 msgctxt ""
 "Refers to a key on the keyboard used to skip to a user defined marker while "
 "prompting"
 msgid "Skip Key"
-msgstr ""
+msgstr "Näppäin ohittamista varten"
 
 #: kirigami_ui/EditorToolbar.qml:1141
 msgctxt ""
 "Refers to a key on the keyboard used to skip to a user defined marker while "
 "prompting"
 msgid "Key to perform skip to this marker"
-msgstr ""
+msgstr "Näppäin jolla suoritat ylihyppäämisen"
 
 #: kirigami_ui/InputsOverlay.qml:33
 msgctxt "Title of dialog where users customize keyboard inputs"
 msgid "Key Bindings"
-msgstr ""
+msgstr "Näppäinsidonnat"
 
 #: kirigami_ui/InputsOverlay.qml:163
 msgid "Toggle Prompter State"
-msgstr ""
+msgstr "Kytke prompteri-tila"
 
 #: kirigami_ui/InputsOverlay.qml:171
 msgid "Decrease Velocity"
-msgstr ""
+msgstr "Vähennä vauhtia"
 
 #: kirigami_ui/InputsOverlay.qml:179
 msgid "Increase Velocity"
-msgstr ""
+msgstr "Lisää vauhtia"
 
 #: kirigami_ui/InputsOverlay.qml:187
 msgid "Stop"
-msgstr ""
+msgstr "Pysäytä"
 
 #: kirigami_ui/InputsOverlay.qml:195
 msgid "Play/Pause"
-msgstr ""
+msgstr "Toista/tauota"
 
 #: kirigami_ui/InputsOverlay.qml:203
 msgid "Reverse"
-msgstr ""
+msgstr "Käänteistä"
 
 #: kirigami_ui/InputsOverlay.qml:211
 msgid "Rewind"
-msgstr ""
+msgstr "Kelaa taaksepäin"
 
 #: kirigami_ui/InputsOverlay.qml:219
 msgid "Fast Forward"
-msgstr ""
+msgstr "Pikakelaa eteenpäin"
 
 #: kirigami_ui/InputsOverlay.qml:227
 msgctxt "Skip to earlier text while prompting or editing"
 msgid "Move Backwards"
-msgstr ""
+msgstr "Liiku taaksepäin"
 
 #: kirigami_ui/InputsOverlay.qml:235
 msgctxt "Skip to later text while prompting or editing"
 msgid "Move Forward"
-msgstr ""
+msgstr "Liiku eteenpäin"
 
 #: kirigami_ui/InputsOverlay.qml:243
 msgctxt "Skip to closest marker behind of current position"
 msgid "Go to Previous Marker"
-msgstr ""
+msgstr "Siirry aiempaan merkkiin"
 
 #: kirigami_ui/InputsOverlay.qml:251
 msgctxt "Skip to closest marker ahead of current position"
 msgid "Go to Next Marker"
-msgstr ""
+msgstr "Menee seuraavaan merkkiin"
 
 #: kirigami_ui/main.qml:309 kirigami_ui/+windows/main.qml:296
 msgctxt ""
@@ -319,294 +319,294 @@ msgctxt ""
 "to always use the default renderer, which features smoother sub-pixel "
 "animations."
 msgid "Force sub-pixel text renderer past 120px"
-msgstr ""
+msgstr "Pakota alipikselin tekstihahmonnus ylemmäs kuin 120px"
 
 #: kirigami_ui/main.qml:443
 msgctxt "Global menu actions"
 msgid "&File"
-msgstr ""
+msgstr "&Tiedosto"
 
 #: kirigami_ui/main.qml:458
 msgctxt "Main menu and global menu actions"
 msgid "Save &As…"
-msgstr ""
+msgstr "Tallenna &nimellä…"
 
 #: kirigami_ui/main.qml:469
 msgctxt "Global menu actions"
 msgid "&Edit"
-msgstr ""
+msgstr "&Muokkaa"
 
 #: kirigami_ui/main.qml:472
 msgctxt "Global menu actions"
 msgid "&Undo"
-msgstr ""
+msgstr "&Kumoa"
 
 #: kirigami_ui/main.qml:477
 msgctxt "Global menu actions"
 msgid "&Redo"
-msgstr ""
+msgstr "&Tee uudelleen"
 
 #: kirigami_ui/main.qml:483 prompter/Prompter.qml:1241
 #: prompter/Prompter.qml:1288
 msgctxt "Global menu and editor context menu actions"
 msgid "&Copy"
-msgstr ""
+msgstr "&Kopioi"
 
 #: kirigami_ui/main.qml:488 prompter/Prompter.qml:1246
 #: prompter/Prompter.qml:1293
 msgctxt "Global menu and editor context menu actions"
 msgid "Cu&t"
-msgstr ""
+msgstr "Leikka&a"
 
 #: kirigami_ui/main.qml:493 prompter/Prompter.qml:1251
 #: prompter/Prompter.qml:1298
 msgctxt "Global menu and editor context menu actions"
 msgid "&Paste"
-msgstr ""
+msgstr "&Liitä"
 
 #: kirigami_ui/main.qml:500
 msgctxt "Global menu actions"
 msgid "&View"
-msgstr ""
+msgstr "&Näytä"
 
 #: kirigami_ui/main.qml:503
 msgctxt "Global menu actions"
 msgid "Full &screen"
-msgstr ""
+msgstr "Koko&ruutu"
 
 #: kirigami_ui/main.qml:517
 msgctxt "Global menu actions. Indicators highlight reading region."
 msgid "&Indicators"
-msgstr ""
+msgstr "&Osoittimet"
 
 #: kirigami_ui/main.qml:519
 msgctxt "Global menu actions. Shows pointer to the left of the reading region."
 msgid "&Left Pointer"
-msgstr ""
+msgstr "&Vasen osoitin"
 
 #: kirigami_ui/main.qml:525
 msgctxt ""
 "Global menu actions. Shows pointer to the right of the reading region."
 msgid "&Right Pointer"
-msgstr ""
+msgstr "&Oikea osoitin"
 
 #: kirigami_ui/main.qml:531
 msgctxt ""
 "Global menu actions. Shows pointers to the left and right of the reading "
 "region."
 msgid "B&oth Pointers"
-msgstr ""
+msgstr "M&olemmat osoittimet"
 
 #: kirigami_ui/main.qml:538
 msgctxt "Global menu actions. Translucent bars indicate reading region."
 msgid "&Bars"
-msgstr ""
+msgstr "&Palkit"
 
 #: kirigami_ui/main.qml:544
 msgctxt ""
 "Global menu actions. Translucent bars and left pointer indicate reading "
 "region."
 msgid "Bars Lef&t"
-msgstr ""
+msgstr "Palkit vasemmall&a"
 
 #: kirigami_ui/main.qml:550
 msgctxt ""
 "Global menu actions. Translucent bars and right pointer indicate reading "
 "region."
 msgid "Bars Ri&ght"
-msgstr ""
+msgstr "Palkit oikeall&a"
 
 #: kirigami_ui/main.qml:557
 msgctxt "Global menu actions. Enable all reading region indicators."
 msgid "&All"
-msgstr ""
+msgstr "&Kaikki"
 
 #: kirigami_ui/main.qml:563
 msgctxt "Global menu actions. Disable all reading region indicators."
 msgid "&Hidden"
-msgstr ""
+msgstr "&Piilossa"
 
 #: kirigami_ui/main.qml:570
 msgctxt ""
 "Global menu actions. Reading region indicates where a talent should be "
 "reading from."
 msgid "Readin&g region"
-msgstr ""
+msgstr "Luk&u alue"
 
 #: kirigami_ui/main.qml:572
 msgctxt "Global menu actions. Align reading region to top of prompter."
 msgid "&Top"
-msgstr ""
+msgstr "&Yläosa"
 
 #: kirigami_ui/main.qml:578
 msgctxt ""
 "Global menu actions. Align reading region to vertical center of prompter."
 msgid "&Middle"
-msgstr ""
+msgstr "&Keskellä"
 
 #: kirigami_ui/main.qml:584
 msgctxt "Global menu actions. Align reading region to bottom of prompter."
 msgid "&Bottom"
-msgstr ""
+msgstr "&Alaosa"
 
 #: kirigami_ui/main.qml:591
 msgctxt ""
 "Global menu actions. Enables drag and drop positioning of reading region."
 msgid "F&ree placement"
-msgstr ""
+msgstr "V&apaa asettelu"
 
 #: kirigami_ui/main.qml:597
 msgctxt ""
 "Global menu actions. Fix positioning of reading region to what was set in "
 "\"Free placement\" mode."
 msgid "C&ustom (Fixed placement)"
-msgstr ""
+msgstr "M&ukautettu (korjattu asettelu)"
 
 #: kirigami_ui/main.qml:606
 msgctxt "Global menu actions"
 msgid "For&mat"
-msgstr ""
+msgstr "Muo&to"
 
 #: kirigami_ui/main.qml:609
 msgctxt "Global menu actions"
 msgid "&Bold"
-msgstr ""
+msgstr "&Lihavoitu"
 
 #: kirigami_ui/main.qml:615
 msgctxt "Global menu actions"
 msgid "&Italic"
-msgstr ""
+msgstr "&Viistetty"
 
 #: kirigami_ui/main.qml:621
 msgctxt "Global menu actions"
 msgid "&Underline"
-msgstr ""
+msgstr "&Alleviivattu"
 
 #: kirigami_ui/main.qml:628
 msgctxt "Global menu and editor actions. Text alignment."
 msgid "Align &Left"
-msgstr ""
+msgstr "Järjestä &vasemmalle"
 
 #: kirigami_ui/main.qml:628
 msgctxt "Global menu and editor actions. Text alignment."
 msgid "Align &Right"
-msgstr ""
+msgstr "Järjestä &oikealle"
 
 #: kirigami_ui/main.qml:639
 msgctxt "Global menu actions. Text alignment."
 msgid "Align Cen&ter"
-msgstr ""
+msgstr "Aseta kes&kelle"
 
 #: kirigami_ui/main.qml:645
 msgctxt "Global menu actions. Text alignment."
 msgid "Align &Right"
-msgstr ""
+msgstr "Järjestä &oikealle"
 
 #: kirigami_ui/main.qml:645
 msgctxt "Global menu actions. Text alignment."
 msgid "Align &Left"
-msgstr ""
+msgstr "Järjestä &vasemmalle"
 
 #: kirigami_ui/main.qml:664
 msgctxt "Global menu actions. Opens dialog to format currently selected text."
 msgid "C&haracter"
-msgstr ""
+msgstr "M&erkki"
 
 #: kirigami_ui/main.qml:668
 msgctxt "Global menu actions. Opens dialog to color currently selected text."
 msgid "Fo&nt Color"
-msgstr ""
+msgstr "Ki&rjasimen väri"
 
 #: kirigami_ui/main.qml:674
 msgctxt "Global menu actions. Menu regarding input settings."
 msgid "Controls"
-msgstr ""
+msgstr "Ohjaimet"
 
 #: kirigami_ui/main.qml:707
 msgctxt "Global menu actions"
 msgid "&Help"
-msgstr ""
+msgstr "&Apu"
 
 #: kirigami_ui/main.qml:710
 msgctxt "Global menu actions"
 msgid "Report &Bug…"
-msgstr ""
+msgstr "Tee selonteko &virheestä…"
 
 #: kirigami_ui/main.qml:729
 msgctxt "Global menu actions. Load about page. \"About AppName\""
 msgid "Abou&t %1"
-msgstr ""
+msgstr "Tietoj&a %1"
 
 #: kirigami_ui/MarkersDrawer.qml:114
 msgctxt "Close sidebar listing user defined markers"
 msgid "Close Marker List"
-msgstr ""
+msgstr "Sulje merkkiluettelo"
 
 #: kirigami_ui/PrompterPage.qml:70
 msgid "Start prompter"
-msgstr ""
+msgstr "Aloita prompteri"
 
 #: kirigami_ui/PrompterPage.qml:78
 msgid "Decrease velocity"
-msgstr ""
+msgstr "Vähennä vauhtia"
 
 #: kirigami_ui/PrompterPage.qml:92
 msgid "Increase velocity"
-msgstr ""
+msgstr "Lisää vauhtia"
 
 #: kirigami_ui/PrompterPage.qml:117
 msgctxt "Reading region indicates where a talent should be reading from"
 msgid "Reading region"
-msgstr ""
+msgstr "Lukualue"
 
 #: kirigami_ui/PrompterPage.qml:119
 msgctxt "Reading region indicates where a talent should be reading from"
 msgid "Change reading region placement"
-msgstr ""
+msgstr "Muuta lukualueen kohtaa"
 
 #: kirigami_ui/PrompterPage.qml:125
 msgctxt "Align reading region to top of prompter"
 msgid "Top"
-msgstr ""
+msgstr "Yläosa"
 
 #: kirigami_ui/PrompterPage.qml:127
 msgid "Move reading region to the top, convenient for use with webcams"
-msgstr ""
+msgstr "Vinkki: yläosalle"
 
 #: kirigami_ui/PrompterPage.qml:138
 msgctxt "Align reading region to vertical center of prompter"
 msgid "Middle"
-msgstr ""
+msgstr "Keskellä"
 
 #: kirigami_ui/PrompterPage.qml:140
 msgid "Move reading region to the vertical center"
-msgstr ""
+msgstr "Vinkki: keskiosalle"
 
 #: kirigami_ui/PrompterPage.qml:151
 msgctxt "Align reading region to bottom of prompter"
 msgid "Bottom"
-msgstr ""
+msgstr "Alaosa"
 
 #: kirigami_ui/PrompterPage.qml:153
 msgid "Move reading region to the bottom"
-msgstr ""
+msgstr "Siirrä lukualue alaosaan"
 
 #: kirigami_ui/PrompterPage.qml:164
 msgctxt ""
 "Refers to free placement. Enables drag and drop positioning of reading "
 "region."
 msgid "Free"
-msgstr ""
+msgstr "Vapaa"
 
 #: kirigami_ui/PrompterPage.qml:166
 msgid "Move reading region freely by dragging and dropping"
-msgstr ""
+msgstr "Vinkki: vapaalle asettelulle"
 
 #: kirigami_ui/PrompterPage.qml:177
 msgctxt ""
 "Fix positioning of reading region to what was set in \"Free placement\" mode"
 msgid "Custom"
-msgstr ""
+msgstr "Muovattu"
 
 #: kirigami_ui/PrompterPage.qml:179
 msgid "Fix reading region to the position set using free placement mode"
