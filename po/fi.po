@@ -9,7 +9,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: https://github.com/Cuperino/QPrompt/issues/new/choose\n"
 "POT-Creation-Date: 2022-08-04 05:31-0400\n"
 "PO-Revision-Date: 2022-08-08 16:27+0000\n"
-"Last-Translator: LINUX-SAUNA <linuxsauna@protonmail.com>\n"
+"Last-Translator: Javier O. Cordero Pérez <javiercorderoperez@gmail.com>\n"
 "Language-Team: Finnish <http://l10n.cuperino.com/projects/qprompt/"
 "qprompt-app/fi/>\n"
 "Language: fi\n"
@@ -1102,12 +1102,12 @@ msgstr ""
 #: main.cpp:122 rc.cpp:1
 msgctxt "NAME OF TRANSLATORS"
 msgid "Your names"
-msgstr ""
+msgstr "LINUX-SAUNA"
 
 #: main.cpp:122 rc.cpp:2
 msgctxt "EMAIL OF TRANSLATORS"
 msgid "Your emails"
-msgstr ""
+msgstr "linuxsauna@protonmail.com"
 
 #: main.cpp:130
 msgid "Failed to load icons from fontello.ttf"
