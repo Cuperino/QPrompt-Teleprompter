@@ -38,15 +38,13 @@ Item {
     readonly property real __vw: parent.width / 100
     readonly property real __minv: __vw<__vh ? __vw : __vh
     readonly property real __maxv: __vw>__vh ? __vw : __vh
+    readonly property int offsetCentre: prompter.editorXOffset*prompter.width+prompter.centreX
     readonly property Scale __flips: Flip{}
     property bool frame: true
     property bool autoStart: false
     property bool running: false
     property int __iterations: 1
     property int __disappearWithin: 1
-    function requestPaint() {
-        canvas.requestPaint()
-    }
     enabled: false
     visible: false
     opacity: 0  // Initial opacity should be 0 to prevent animation jitters on first run.
@@ -58,7 +56,7 @@ Item {
 //        top: parent.top
 //        //bottom: parent.bottom
 //    }
-    //height: prompter.height
+//    height: prompter.height
     Settings {
         category: "countdown"
         property alias enabled: countdown.enabled
@@ -67,137 +65,116 @@ Item {
         property alias iterations: countdown.__iterations
         property alias disappearWithin: countdown.__disappearWithin
     }
-//     Behavior on opacity {
-//         enabled: true
-//         animation: NumberAnimation {
-//             duration: Kirigami.Units.shortDuration
-//             easing.type: Easing.OutQuad
-//         }
-//     }
     Rectangle {
         anchors.fill: parent
         visible: countdown.enabled
-        opacity: canvas.enabled ? 0.48 : 0.24
-        //opacity: 0.3
+        opacity: clock.enabled ? 0.48 : 0.24
         color: "#333"
-    }
-    Canvas {
-        id: canvas
-        anchors.fill: parent
+        Shape {
+            id: clock
+            anchors.fill: parent
 
-        property int __iteration: countdown.__iterations - 1
-        property real rotations: 0
-        // __countdownRadius is of the size from the center to any corner, which is also the hypotenuse formed by taking half of the width and height as hicks (catetos).
-        readonly property real __hypotenuse: 1.4333*Math.sqrt(Math.pow(parent.height/2, 2)+Math.pow(parent.width/2, 2))
+            property int __iteration: countdown.__iterations - 1
+            property real rotations: 0
+            // __countdownRadius is of the size from the center to any corner, which is also the hypotenuse formed by taking half of the width and height as hicks (catetos).
+            readonly property real __hypotenuse: 1.4333*Math.sqrt(Math.pow(prompter.centreY, 2)+Math.pow(prompter.centreX, 2))
+            asynchronous: true
 
-        renderStrategy: Canvas.Cooperative
-
-        onRotationsChanged: requestPaint()
-        onWidthChanged: requestPaint()
-        onHeightChanged: requestPaint()
-
-        onPaint: {
-            const centreX = prompter.editorXOffset*prompter.width+prompter.centreX;
-            const centreY = prompter.centreY;
-            // Initial canvas values
-            const ctx = getContext("2d");
-            ctx.reset();
-            ctx.fillStyle = "rgba(127, 127, 127, 0.3)";
-            ctx.lineWidth = 7 * (prompter.fontSize / 81);
-            // Background Animation
-            ctx.beginPath();
-            ctx.moveTo(centreX, centreY);
-            ctx.arc(centreX, centreY, __hypotenuse, -Math.PI/2, Math.PI*rotations-Math.PI/2, false);
-            ctx.lineTo(centreX, centreY);
-            if (canvas.enabled)
-                ctx.fill();
-            // Vertical Line
-            ctx.lineCap = 'butt';
-            ctx.strokeStyle = "#474747";
-            //ctx.setLineDash([1]);
-            ctx.beginPath();
-            ctx.moveTo(centreX, 0);
-            ctx.lineTo(centreX, height);
-            ctx.stroke();
-            // Horizontal Line
-            //ctx.setLineDash([]);  // Has no effect. Likely a bug in Qt 5's canvas implementation.
-            ctx.beginPath();
-            ctx.strokeStyle = "#282828";
-            ctx.moveTo(0, overlay.__readRegionPlacement*(height-overlay.readRegionHeight)+overlay.readRegionHeight/2);
-            ctx.lineTo(width, overlay.__readRegionPlacement*(height-overlay.readRegionHeight)+overlay.readRegionHeight/2);
-            ctx.stroke();
-            if (canvas.enabled) {
-                // Background Radial Line
-                ctx.strokeStyle = "#333";
-                ctx.lineCap = 'round';
-                ctx.beginPath();
-                ctx.arc(centreX, centreY, __hypotenuse+ctx.lineWidth, -Math.PI/2, Math.PI*rotations-Math.PI/2, false);
-                ctx.lineTo(centreX, centreY);
-                ctx.stroke();
-                // Concentric circles
-                ctx.strokeStyle = "#FFF";
-                // Outer circle
-                ctx.beginPath();
-                ctx.arc(centreX, centreY, 84*__minv/2, 0, 2*Math.PI, false);
-                ctx.stroke();
-                // Inner circle
-                ctx.beginPath();
-                ctx.arc(centreX, centreY, 74*__minv/2, 0, 2*Math.PI, false);
-                ctx.stroke();
-            }
-        }
-        NumberAnimation {
-            id: countdownAnimation
-            running: countdown.running
-            target: canvas
-            property: "rotations"
-            from: 0
-            to: 2
-            duration: 1000
-            // Uncomment loops to debug animation
-            //loops: Animation.Infinite
-            easing.type: Easing.Linear
-            alwaysRunToEnd: true
-            onStarted: {
-                if (canvas.__iteration===countdown.__disappearWithin-1)
-                    dissolveOut.running = true
-            }
-            onFinished: {
-                if (countdown.running && canvas.__iteration>0) {
-                    canvas.__iteration--;
-                    console.log("onFinished");
-                    console.log(canvas.__iteration);
-                    running = true;
-                } else {
-                    canvas.__iteration = countdown.__iterations;
-                    if (parseInt(prompter.state)===Prompter.States.Countdown)
-                        prompter.state++; // = Prompter.States.Prompting;
-                    //countdown.visible = false
-                    //showPassiveNotification(i18n("Prompting Started"));
+            ShapePath {
+                fillColor: "#888888";
+                strokeColor: "#333";
+                strokeWidth: 7 * (prompter.fontSize / 81);
+                startX: offsetCentre;
+                startY: prompter.centreY
+                PathAngleArc {
+                    centerX: offsetCentre;
+                    centerY: prompter.centreY;
+                    radiusX: clock.__hypotenuse;
+                    radiusY: -clock.__hypotenuse;
+                    startAngle: 90.0
+                    sweepAngle: -clock.rotations*180
+                    moveToStart: false
                 }
             }
+            NumberAnimation {
+                id: countdownAnimation
+                running: countdown.running
+                target: clock
+                property: "rotations"
+                from: 0
+                to: 2
+                duration: 1000
+                // Uncomment loops to debug animation
+                //loops: Animation.Infinite
+                easing.type: Easing.Linear
+                alwaysRunToEnd: true
+                onStarted: {
+                    if (clock.__iteration===countdown.__disappearWithin-1)
+                        dissolveOut.running = true
+                }
+                onFinished: {
+                    if (countdown.running && clock.__iteration>0) {
+                        clock.__iteration--;
+                        //console.log("onFinished");
+                        //console.log(clock.__iteration);
+                        running = true;
+                    } else {
+                        clock.__iteration = countdown.__iterations;
+                        if (parseInt(prompter.state)===Prompter.States.Countdown)
+                            prompter.state++;
+                    }
+                }
+            }
+            NumberAnimation {
+                id: dissolveIn
+                running: false
+                target: countdown
+                property: "opacity"
+                from: 0
+                to: 1
+                duration: 200
+                alwaysRunToEnd: false
+                easing.type: Easing.OutQuint
+            }
+            NumberAnimation {
+                id: dissolveOut
+                running: false
+                target: countdown
+                property: "opacity"
+                from: 1
+                to: 0
+                duration: 1000
+                alwaysRunToEnd: true
+                easing.type: Easing.InQuint
+            }
         }
-        NumberAnimation {
-            id: dissolveIn
-            running: false
-            target: countdown
-            property: "opacity"
-            from: 0
-            to: 1
-            duration: 200
-            alwaysRunToEnd: false
-            easing.type: Easing.OutQuint
+    }
+    Shape {
+        id: frame
+        anchors.fill: parent
+        // Vertical line
+        ShapePath {
+            strokeColor: "#474747";
+            strokeWidth: 7 * (prompter.fontSize / 81);
+            fillColor: "transparent";
+            startX: offsetCentre;
+            startY: 0
+            PathLine {
+                relativeX: 0;
+                y: prompter.height
+            }
         }
-        NumberAnimation {
-            id: dissolveOut
-            running: false
-            target: countdown
-            property: "opacity"
-            from: 1
-            to: 0
-            duration: 1000
-            alwaysRunToEnd: true
-            easing.type: Easing.InQuint
+        // Horizontal line
+        ShapePath {
+            strokeColor: "#282828";
+            strokeWidth: 7 * (prompter.fontSize / 81);
+            fillColor: "transparent";
+            startX: 0
+            startY: overlay.__readRegionPlacement*(height-overlay.readRegionHeight)+overlay.readRegionHeight/2
+            PathLine {
+                x: prompter.width
+                relativeY: 0;
+            }
         }
     }
     Label {
@@ -205,22 +182,55 @@ Item {
 //         anchors.fill: parent
         anchors.top: parent.top
         anchors.bottom: parent.bottom
-        //anchors.leftMargin: prompter.editorXOffset*prompter.width+prompter.centreX
-        //anchors.rightMargin: prompter.editorXOffset*prompter.width+prompter.centreX
-        //leftMargin: prompter.editorXOffset*prompter.width+prompter.centreX
+        //anchors.leftMargin: offsetCentre
+        //anchors.rightMargin: offsetCentre
+        //leftMargin: offsetCentre
         width: editor.width
         x: editor.x + prompter.editorXOffset*prompter.width // +prompter.centreX // -font.pixelSize/4
-        text: String(canvas.__iteration+1)
+        text: String(clock.__iteration+1)
         horizontalAlignment: Text.AlignHCenter
         verticalAlignment: Text.AlignVCenter
         color: "#FFF"
         // Make base font size relative to editor's width
-        font.pixelSize: canvas.__iteration > 98 ? 48*__minv : canvas.__iteration > 8 ? 54*__minv : 68*__minv
+        font.pixelSize: clock.__iteration > 98 ? 48*__minv : clock.__iteration > 8 ? 54*__minv : 68*__minv
         font.family: numbersFont.name
         renderType: font.pixelSize < 121 || screen.devicePixelRatio !== 1.0 || root.forceQtTextRenderer ? Text.QtRendering : Text.NativeRendering
         FontLoader {
             id: numbersFont
             source: "fonts/libertinus-sans.otf"
+        }
+    }
+    Shape {
+        visible: countdown.enabled
+        anchors.fill: parent
+        ShapePath {
+            strokeColor: "#FFF";
+            strokeWidth: 7 * (prompter.fontSize / 81);
+            fillColor: "transparent";
+            startX: offsetCentre + 74*__minv/2;
+            startY: prompter.centreY;
+            PathAngleArc {
+                centerX: offsetCentre;
+                centerY: prompter.centreY;
+                radiusX: 74*__minv/2;
+                radiusY: -radiusX;
+                startAngle: 0.0
+                sweepAngle: 360.0
+                moveToStart: false
+            }
+            PathMove {
+                x: offsetCentre + 84*__minv/2;
+                y: prompter.centreY;
+            }
+            PathAngleArc {
+                centerX: offsetCentre;
+                centerY: prompter.centreY;
+                radiusX: 84*__minv/2;
+                radiusY: -radiusX;
+                startAngle: 0.0
+                sweepAngle: 360.0
+                moveToStart: false
+            }
         }
     }
     MouseArea {
@@ -296,7 +306,7 @@ Item {
             running: false
         }
         PropertyChanges {
-            target: canvas
+            target: clock
             __iteration: countdown.__iterations - 1
         }
     },
@@ -317,14 +327,8 @@ Item {
             running: false
         }
         PropertyChanges {
-            target: canvas
+            target: clock
             __iteration: countdown.__iterations - 1
-        }
-        StateChangeScript {
-            name: "paintReady"
-            script: {
-                canvas.requestPaint()
-            }
         }
     },
     State {
@@ -338,7 +342,7 @@ Item {
             running: true
         }
         PropertyChanges {
-            target: canvas
+            target: clock
             __iteration: countdown.__iterations - 1
         }
         PropertyChanges {

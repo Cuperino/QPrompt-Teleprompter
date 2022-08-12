@@ -61,7 +61,6 @@ Item {
     property real linesInRegion: 3
     property color __color: 'black'
     property alias __readRegionPlacement: readRegion.__placement
-    on__ReadRegionPlacementChanged: countdown.requestPaint()
     property alias enabled: readRegion.enabled
     property string positionState: ReadRegionOverlay.PositionStates.Middle
     property string styleState: Qt.application.layoutDirection===Qt.LeftToRight ? "barsLeft" : "barsRight"
