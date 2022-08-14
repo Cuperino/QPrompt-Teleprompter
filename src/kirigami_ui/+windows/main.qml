@@ -477,13 +477,10 @@ Kirigami.ApplicationWindow {
             root.pageStack.currentItem.editor.cursorPosition = m.position
             // Here, p is for position
             const p = root.pageStack.currentItem.editor.cursorRectangle.y
-            if (q !== p) {
-                if (q < p) {
-                    const url = m.url;
-                    //console.log(url);
-                }
-                q = p;
-            }
+            //if (q < p) {
+                //console.log(m.url);
+            //}
+            q = p;
         }
         // Update Projections
         if (projectionManager.isEnabled && root.visible && projectionManager.model.count)
