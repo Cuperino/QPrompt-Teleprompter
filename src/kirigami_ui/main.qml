@@ -819,13 +819,14 @@ Kirigami.ApplicationWindow {
             // Detect when moving past a marker.
             // I'm doing this here because there's no event that occurs on each bit of scroll, and this takes much less CPU than a timer, is more precise and scales better.
             root.pageStack.currentItem.prompter.setCursorAtCurrentPosition()
-            root.pageStack.currentItem.editor.cursorPosition = root.pageStack.currentItem.document.nextMarker(root.pageStack.currentItem.editor.cursorPosition).position
+            const m = root.pageStack.currentItem.document.previousMarker(root.pageStack.currentItem.editor.cursorPosition)
+            root.pageStack.currentItem.editor.cursorPosition = m.position
             // Here, p is for position
             const p = root.pageStack.currentItem.editor.cursorRectangle.y
             if (q !== p) {
-                if (q < p && q !== 0) {
-                    const url = root.pageStack.currentItem.document.previousMarker(root.pageStack.currentItem.editor.cursorPosition).url;
-                    console.log(url);
+                if (q < p) {
+                    const url = m.url;
+                    //console.log(url);
                 }
                 q = p;
             }

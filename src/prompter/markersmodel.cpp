@@ -167,7 +167,7 @@ Marker MarkersModel::binarySearch(int l, int r, int goalPosition, bool reverse=f
                 //return m_data.at(mid);
                 // Return a virtual marker that goes after the last marker. This workaround ensures we can detect when the prompter moves past the last marker.
                 Marker virtualMarker = Marker();
-                virtualMarker.position = m_data.at(mid).position+30;
+                virtualMarker.position = m_data.at(mid).position;
                 return virtualMarker;
             }
             // If not last element

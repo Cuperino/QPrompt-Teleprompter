@@ -429,6 +429,28 @@ Kirigami.ApplicationWindow {
         value: root.italic
     }*/
 
+    property int q: 0
+    onFrameSwapped: {
+        // Check that state is not prompting and editor isn't active.
+        // In this implementation we can't detect moving past marker while the editor is active because this feature shares its cursor as a means of detection.
+        if (parseInt(root.pageStack.currentItem.prompter.state)===Prompter.States.Prompting && !root.pageStack.currentItem.editor.focus) {
+            // Detect when moving past a marker.
+            // I'm doing this here because there's no event that occurs on each bit of scroll, and this takes much less CPU than a timer, is more precise and scales better.
+            root.pageStack.currentItem.prompter.setCursorAtCurrentPosition()
+            const m = root.pageStack.currentItem.document.previousMarker(root.pageStack.currentItem.editor.cursorPosition)
+            root.pageStack.currentItem.editor.cursorPosition = m.position
+            // Here, p is for position
+            const p = root.pageStack.currentItem.editor.cursorRectangle.y
+            if (q !== p) {
+                if (q < p) {
+                    const url = m.url;
+                    //console.log(url);
+                }
+                q = p;
+            }
+        }
+    }
+
     // Prompter Page Contents
     //pageStack.initialPage:
 
