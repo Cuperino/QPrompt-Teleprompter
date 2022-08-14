@@ -292,6 +292,15 @@ Kirigami.ApplicationWindow {
                     onTriggered: root.pageStack.currentItem.footer.hideFormattingToolsWhilePrompting = !root.pageStack.currentItem.footer.hideFormattingToolsWhilePrompting
                 }
                 Kirigami.Action {
+                    id: enableOverlayContrastSetting
+                    text: i18nc("Main menu actions. Disables contrast effect for the \"bars\" reading region indicator.", "Disable overlay contrast")
+                    //iconName: "edit-opacity"
+                    iconSource: "qrc:/icons/edit-opacity.svg"
+                    checkable: true
+                    checked: root.pageStack.currentItem.overlay.disableOverlayContrast
+                    onTriggered: root.pageStack.currentItem.overlay.disableOverlayContrast = !root.pageStack.currentItem.overlay.disableOverlayContrast
+                }
+                Kirigami.Action {
                     id: subpixelSetting
                     text: i18nc("Main menu actions. QPrompt switches between two text rendering techniques when the base font size exceeds 120px. Enabling this option forces QPrompt to always use the default renderer, which features smoother sub-pixel animations.", "Force sub-pixel text renderer past 120px")
                     // Hiding option because only Qt text renderer is used on devices of greater pixel density, due to bug in rendering native fonts while scaling is enabled.
