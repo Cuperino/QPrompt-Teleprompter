@@ -62,6 +62,7 @@ Item {
     property color __color: 'black'
     property alias __readRegionPlacement: readRegion.__placement
     property alias enabled: readRegion.enabled
+    property bool disableOverlayContrast: false
     property string positionState: ReadRegionOverlay.PositionStates.Middle
     property string styleState: Qt.application.layoutDirection===Qt.LeftToRight ? "barsLeft" : "barsRight"
     function toggleLinesInRegion(reverse) {
@@ -102,6 +103,7 @@ Item {
         property alias placement: readRegion.__customPlacement
         property alias enabled: readRegion.enabled
         property alias linesInRegion: overlay.linesInRegion
+        property alias disableOverlayContrast: overlay.disableOverlayContrast
     }
     MouseArea {
         id: overlayMouseArea
@@ -413,6 +415,7 @@ Item {
         opacity: overlay.__opacity*2/3
         color: overlay.__color
         Rectangle {
+            visible: !overlay.disableOverlayContrast
             anchors.fill: parent
             opacity: overlay.__opacity*2/3
             color: "#FFF"
@@ -428,6 +431,7 @@ Item {
         opacity: overlay.__opacity*2/3
         color: overlay.__color
         Rectangle {
+            visible: !overlay.disableOverlayContrast
             anchors.fill: parent
             opacity: overlay.__opacity*2/3
             color: "#FFF"
