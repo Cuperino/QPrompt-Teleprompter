@@ -205,7 +205,7 @@ Item {
         anchors.fill: parent
         ShapePath {
             strokeColor: "#FFF";
-            strokeWidth: 7 * (prompter.fontSize / 81);
+            strokeWidth: 4 * (prompter.fontSize / 81);
             fillColor: "transparent";
             startX: offsetCentre + 74*__minv/2;
             startY: prompter.centreY;
