@@ -935,7 +935,7 @@ void DocumentHandler::preventSleep() {
             {
                 jint levelAndFlags = QAndroidJniObject::getStaticField<jint>("android/os/PowerManager","SCREEN_DIM_WAKE_LOCK");
 
-                QAndroidJniObject tag = QAndroidJniObject::fromString( "Prevent sleep while prompting" );
+                QAndroidJniObject tag = QAndroidJniObject::fromString( "Prevent Sleep" );
 
                 QAndroidJniObject wakeLock = powerMgr.callObjectMethod("newWakeLock", "(ILjava/lang/String;)Landroid/os/PowerManager$WakeLock;", levelAndFlags,tag.object<jstring>());
 

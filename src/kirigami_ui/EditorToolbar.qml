@@ -82,7 +82,7 @@ ToolBar {
     property bool showFontSpacingOptions: false
     property bool showAnimationConfigOptions: false
     property bool hideFormattingToolsWhilePrompting: false
-    property bool hideFormattingToolsAlways: false
+    property bool hideFormattingToolsAlways: Qt.platform.os==="linux" && Kirigami.Settings.isMobile || Qt.platform.os==="android" || Qt.platform.os==="ios"
 
     readonly property alias fontSizeSlider: fontSizeSlider
     readonly property alias lineHeightSlider: lineHeightSlider

@@ -284,6 +284,15 @@ Kirigami.ApplicationWindow {
                     checked: root.pageStack.currentItem.footer.hideFormattingToolsWhilePrompting
                     onTriggered: root.pageStack.currentItem.footer.hideFormattingToolsWhilePrompting = !root.pageStack.currentItem.footer.hideFormattingToolsWhilePrompting
                 }
+                Kirigami.Action {
+                    id: enableOverlayContrastSetting
+                    text: i18nc("Main menu actions. Disables contrast effect for the \"bars\" reading region indicator.", "Disable overlay contrast")
+                    //iconName: "edit-opacity"
+                    iconSource: "qrc:/icons/edit-opacity.svg"
+                    checkable: true
+                    checked: root.pageStack.currentItem.overlay.disableOverlayContrast
+                    onTriggered: root.pageStack.currentItem.overlay.disableOverlayContrast = !root.pageStack.currentItem.overlay.disableOverlayContrast
+                }
 //                 Kirigami.Action {
 //                     text: i18nc("Main menu actions", "Restore factory defaults")
 //                     iconName: "edit-clear-history"
