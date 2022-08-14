@@ -74,6 +74,7 @@
 #include <vector>
 #if defined(Q_OS_ANDROID)
 #include <QtAndroid>
+#include <QAndroidJniObject>
 #endif
 #if defined(Q_OS_ANDROID) || defined(Q_OS_IOS) || defined(Q_OS_WASM) || defined(Q_OS_WATCHOS) || defined(Q_OS_QNX)
 #include <QGuiApplication>
@@ -918,4 +919,34 @@ Marker DocumentHandler::previousMarker(int position) {
     if (markersListDirty())
         parse();
     return Q_EMIT this->_markersModel->previousMarker(position);
+}
+
+void DocumentHandler::preventSleep() {
+#if defined(Q_OS_ANDROID)
+    // Code by jpo38 from StackOverflow. Licensed CC-BY-SA 3.0.
+    QAndroidJniObject activity = QAndroidJniObject::callStaticObjectMethod("org/qtproject/qt5/android/QtNative", "activity", "()Landroid/app/Activity;");
+    if ( activity.isValid() )
+    {
+        QAndroidJniObject serviceName = QAndroidJniObject::getStaticObjectField<jstring>("android/content/Context","POWER_SERVICE");
+        if ( serviceName.isValid() )
+        {
+            QAndroidJniObject powerMgr = activity.callObjectMethod("getSystemService", "(Ljava/lang/String;)Ljava/lang/Object;",serviceName.object<jobject>());
+            if ( powerMgr.isValid() )
+            {
+                jint levelAndFlags = QAndroidJniObject::getStaticField<jint>("android/os/PowerManager","SCREEN_DIM_WAKE_LOCK");
+
+                QAndroidJniObject tag = QAndroidJniObject::fromString( "Prevent sleep while prompting" );
+
+                QAndroidJniObject wakeLock = powerMgr.callObjectMethod("newWakeLock", "(ILjava/lang/String;)Landroid/os/PowerManager$WakeLock;", levelAndFlags,tag.object<jstring>());
+
+                if ( wakeLock.isValid() )
+                    wakeLock.callMethod<void>("acquire", "()V");
+                else
+                    assert( false );
+            }
+        }
+    }
+#elif defined(Q_OS_IOS)
+    // To be implemented...
+#endif
 }

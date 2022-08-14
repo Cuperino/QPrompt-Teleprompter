@@ -192,6 +192,8 @@ public:
     Q_INVOKABLE QPoint search(const QString &subString, const bool next=false, const bool reverse=false);
     Q_INVOKABLE int keySearch(int key);
 
+    Q_INVOKABLE void preventSleep();
+
 public Q_SLOTS:
     void load(const QUrl &fileUrl);
     void reload(const QString &fileUrl);
