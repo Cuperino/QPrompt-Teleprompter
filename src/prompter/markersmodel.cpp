@@ -157,8 +157,12 @@ Marker MarkersModel::binarySearch(int l, int r, int goalPosition, bool reverse=f
             // If last element
             if (mid==rowCount()-1) {
                 // qDebug() << "mid equals";
-                if (reverse)
-                    return m_data.at(mid-1);
+                if (reverse) {
+                    if (mid==0)
+                        return nullptr;
+                    else
+                        return m_data.at(mid-1);
+                }
                 // Return last marker
                 //return m_data.at(mid);
                 // Return a virtual marker that goes after the last marker. This workaround ensures we can detect when the prompter moves past the last marker.
