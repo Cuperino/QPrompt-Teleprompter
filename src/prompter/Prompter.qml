@@ -1185,6 +1185,7 @@ Flickable {
             i18nc("All file formats", "All Formats") + "(*.*)"
         ]
         folder: shortcuts.documents
+        //fileMode: FileDialog.OpenFile
         onAccepted: {
             document.load("qrc:/blank.html")
             document.load(openDialog.fileUrl)
@@ -1201,7 +1202,7 @@ Flickable {
     FileDialog {
         id: saveDialog
         selectExisting: false
-        defaultSuffix: nameFilters[0]
+        defaultSuffix: 'html'
         nameFilters: [
             i18nc("Format name (FORMAT_EXTENSION)", "Hypertext Markup Language (%1)", "HTML") + "(*.html *.htm *.xhtml *.HTML *.HTM *.XHTML)",
             i18nc("Format name (FORMAT_EXTENSION)", "Plain Text (%1)", "TXT") + "(*.txt *.text *.TXT *.TEXT)"
@@ -1213,6 +1214,7 @@ Flickable {
         selectedNameFilter: nameFilters[0]
         //selectedNameFilter: nameFilters[document.fileType === "txt" ? 0 : 1]
         folder: shortcuts.documents
+        //fileMode: FileDialog.SaveFile
         onAccepted: {
             document.saveAs(saveDialog.fileUrl)
             document.isNewFile = false
