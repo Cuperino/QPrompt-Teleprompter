@@ -406,11 +406,11 @@ Kirigami.ApplicationWindow {
         onWheel: (wheel)=>root.pageStack.currentItem.viewport.mouse.wheel(wheel)
     }
 
-    Item {
-        id: projectionManager
-        readonly property bool isEnabled: false
-        readonly property bool reScale: false
-    }
+    // Item {
+        // id: projectionManager
+        // readonly property bool isEnabled: false
+        // readonly property bool reScale: false
+    // }
 
     // Kirigami PageStack and PageRow
     pageStack.globalToolBar.toolbarActionAlignment: Qt.AlignHCenter
