@@ -943,7 +943,7 @@ void DocumentHandler::preventSleep() {
         QAndroidJniObject window = activity.callObjectMethod("getWindow", "()Landroid/view/Window;");
         if (window.isValid()) {
             // Get flag to be set.
-            jint screenFlag = QAndroidJniObject::getStaticField<jint>("android/view/WindowManager/LayoutParams", "FLAG_KEEP_SCREEN_ON");
+            jint screenFlag = QAndroidJniObject::getStaticField<jint>("org/qtproject/qt5/android/view/WindowManager/LayoutParams", "FLAG_KEEP_SCREEN_ON");
             // Set the flag by passing integer argument to void addFlags method.
             window.callMethod<void>("addFlags", "(I)V", screenFlag);
             qDebug() << "QPrompt: flag added.";
