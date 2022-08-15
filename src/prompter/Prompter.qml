@@ -261,13 +261,13 @@ Flickable {
             case Prompter.States.Countdown:
             case Prompter.States.Prompting:
                 timer.reset();
-                if (projectionManager.isEnabled)
-                    projectionManager.addMissingProjections()
-                //showPassiveNotification(i18n("Prompt started"), 850*countdown.__iterations)
                 if (state!==Prompter.States.Countdown)
                     document.parse()
                 else if (state===Prompter.States.Prompting)
                     document.preventSleep()
+                if (projectionManager.isEnabled)
+                    projectionManager.addMissingProjections()
+                //showPassiveNotification(i18n("Prompt started"), 850*countdown.__iterations)
                 break;
         }
         prompter.restoreFocus()

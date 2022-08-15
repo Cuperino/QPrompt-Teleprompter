@@ -406,10 +406,14 @@ Kirigami.ApplicationWindow {
         onWheel: (wheel)=>root.pageStack.currentItem.viewport.mouse.wheel(wheel)
     }
 
+    // // This is a placeholder for projectionManager, which will not be implemented on Android
     // Item {
         // id: projectionManager
         // readonly property bool isEnabled: false
         // readonly property bool reScale: false
+        // function addMissingProjections() {
+            // // stub
+        // }
     // }
 
     // Kirigami PageStack and PageRow
@@ -456,9 +460,9 @@ Kirigami.ApplicationWindow {
             root.pageStack.currentItem.editor.cursorPosition = m.position
             // Here, p is for position
             const p = root.pageStack.currentItem.editor.cursorRectangle.y
-            //if (q < p) {
-                //console.log(m.url);
-            //}
+            if (q < p) {
+                console.log(m.url);
+            }
             q = p;
         }
     }
