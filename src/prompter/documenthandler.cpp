@@ -923,27 +923,27 @@ Marker DocumentHandler::previousMarker(int position) {
 
 void DocumentHandler::preventSleep() {
 #if defined(Q_OS_ANDROID)
-    // Code by jpo38 from StackOverflow. Licensed CC-BY-SA 3.0.
+    // Use Android Java wrapper to set flag that prevents screen from turning off.
+
+    // Native type list and locations:
+    // public interface WindowManager
+    // public static class WindowManager.LayoutParams
+    // public abstract class Window // android.view.Window
+
+    // Code to wrap:
+    // import android.view.WindowManager;
+    // getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+
+    // Get pointer object to main/current Android activity.
     QAndroidJniObject activity = QAndroidJniObject::callStaticObjectMethod("org/qtproject/qt5/android/QtNative", "activity", "()Landroid/app/Activity;");
-    if ( activity.isValid() )
-    {
-        QAndroidJniObject serviceName = QAndroidJniObject::getStaticObjectField<jstring>("android/content/Context","POWER_SERVICE");
-        if ( serviceName.isValid() )
-        {
-            QAndroidJniObject powerMgr = activity.callObjectMethod("getSystemService", "(Ljava/lang/String;)Ljava/lang/Object;",serviceName.object<jobject>());
-            if ( powerMgr.isValid() )
-            {
-                jint levelAndFlags = QAndroidJniObject::getStaticField<jint>("android/os/PowerManager","SCREEN_DIM_WAKE_LOCK");
-
-                QAndroidJniObject tag = QAndroidJniObject::fromString( "Prevent Sleep" );
-
-                QAndroidJniObject wakeLock = powerMgr.callObjectMethod("newWakeLock", "(ILjava/lang/String;)Landroid/os/PowerManager$WakeLock;", levelAndFlags,tag.object<jstring>());
-
-                if ( wakeLock.isValid() )
-                    wakeLock.callMethod<void>("acquire", "()V");
-                else
-                    assert( false );
-            }
+    if ( activity.isValid() ) {
+        // Get window pointer object from activity.
+        QAndroidJniObject window = activity.callObjectMethod("getWindow", "()Landroid/view/Window;");
+        if ( window.isValid() ) {
+            // Get flag to be set.
+            jint screenFlag = QAndroidJniObject::getStaticField<jint>("android/view/WindowManager/LayoutParams", "FLAG_KEEP_SCREEN_ON");
+            // Set the flag by passing integer argument to void addFlags method.
+            window.callMethod("addFlags", "(I)V", screenFlag);
         }
     }
 #elif defined(Q_OS_IOS)
