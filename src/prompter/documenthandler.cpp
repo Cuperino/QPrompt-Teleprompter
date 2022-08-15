@@ -943,7 +943,7 @@ void DocumentHandler::preventSleep() {
             // Get flag to be set.
             jint screenFlag = QAndroidJniObject::getStaticField<jint>("android/view/WindowManager/LayoutParams", "FLAG_KEEP_SCREEN_ON");
             // Set the flag by passing integer argument to void addFlags method.
-            window.callMethod("addFlags", "(I)V", screenFlag);
+            window.callMethod<void>("addFlags", "(I)V", screenFlag);
         }
     }
 #elif defined(Q_OS_IOS)
