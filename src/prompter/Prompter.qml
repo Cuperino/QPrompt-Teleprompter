@@ -266,7 +266,7 @@ Flickable {
                 //showPassiveNotification(i18n("Prompt started"), 850*countdown.__iterations)
                 if (state!==Prompter.States.Countdown)
                     document.parse()
-                if (state!==Prompter.States.Prompting)
+                else if (state===Prompter.States.Prompting)
                     document.preventSleep()
                 break;
         }
