@@ -934,18 +934,27 @@ void DocumentHandler::preventSleep() {
     // import android.view.WindowManager;
     // getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 
+    qDebug() << "QPrompt: Attempting to prevent sleep.";
+
     // Get pointer object to main/current Android activity.
     QAndroidJniObject activity = QAndroidJniObject::callStaticObjectMethod("org/qtproject/qt5/android/QtNative", "activity", "()Landroid/app/Activity;");
-    if ( activity.isValid() ) {
+    if (activity.isValid()) {
         // Get window pointer object from activity.
         QAndroidJniObject window = activity.callObjectMethod("getWindow", "()Landroid/view/Window;");
-        if ( window.isValid() ) {
+        if (window.isValid()) {
             // Get flag to be set.
             jint screenFlag = QAndroidJniObject::getStaticField<jint>("android/view/WindowManager/LayoutParams", "FLAG_KEEP_SCREEN_ON");
             // Set the flag by passing integer argument to void addFlags method.
             window.callMethod<void>("addFlags", "(I)V", screenFlag);
+            qDebug() << "QPrompt: flag added.";
         }
+        else
+            qDebug() << "QPrompt: Window is not valid.";
     }
+    else
+        qDebug() << "QPrompt: Activity is not valid.";
+
+    qDebug() << "QPrompt: Did it work?";
 #elif defined(Q_OS_IOS)
     // To be implemented...
 #endif
