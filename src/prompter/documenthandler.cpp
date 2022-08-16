@@ -921,40 +921,49 @@ Marker DocumentHandler::previousMarker(int position) {
     return Q_EMIT this->_markersModel->previousMarker(position);
 }
 
-void DocumentHandler::preventSleep() {
+void DocumentHandler::preventSleep(bool prevent) {
 #if defined(Q_OS_ANDROID)
-    // Use Android Java wrapper to set flag that prevents screen from turning off.
-
-    // Native type list and locations:
-    // public interface WindowManager
-    // public static class WindowManager.LayoutParams
-    // public abstract class Window // android.view.Window
-
-    // Code to wrap:
-    // import android.view.WindowManager;
-    // getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
-
-    qDebug() << "QPrompt: Attempting to prevent sleep.";
-
-    // Get pointer object to main/current Android activity.
-    QAndroidJniObject activity = QAndroidJniObject::callStaticObjectMethod("org/qtproject/qt5/android/QtNative", "activity", "()Landroid/app/Activity;");
-    if (activity.isValid()) {
-        // Get window pointer object from activity.
-        QAndroidJniObject window = activity.callObjectMethod("getWindow", "()Landroid/view/Window;");
-        if (window.isValid()) {
-            // Get flag to be set.
-            jint screenFlag = QAndroidJniObject::getStaticField<jint>("org/qtproject/qt5/android/view/WindowManager/LayoutParams", "FLAG_KEEP_SCREEN_ON");
-            // Set the flag by passing integer argument to void addFlags method.
-            window.callMethod<void>("addFlags", "(I)V", screenFlag);
-            qDebug() << "QPrompt: flag added.";
-        }
-        else
-            qDebug() << "QPrompt: Window is not valid.";
-    }
-    else
-        qDebug() << "QPrompt: Activity is not valid.";
-
-    qDebug() << "QPrompt: Did it work?";
+    // The following code is commented out because, even tho it's technically correct, it makes QPrompt to crash on user interaction and during automatic state switching, depending on which flag is set.
+//     // Use Android Java wrapper to set flag that prevents screen from turning off.
+// 
+//     // Native type list and locations:
+//     // public interface WindowManager
+//     // public static class WindowManager.LayoutParams
+//     // public abstract class Window // android.view.Window
+// 
+//     // Code to wrap:
+//     // import android.view.WindowManager;
+//     // getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+//     // getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+// 
+//     qDebug() << "Attempt to prevent sleep.";
+//     // Get pointer object to main/current Android activity.
+//     QAndroidJniObject activity = QAndroidJniObject::callStaticObjectMethod("org/qtproject/qt5/android/QtNative", "activity", "()Landroid/app/Activity;");
+//     if (activity.isValid()) {
+//         // Get window pointer object from activity.
+//         QAndroidJniObject window = activity.callObjectMethod("getWindow", "()Landroid/view/Window;");
+//         if (window.isValid()) {
+//             // Get flags to be toggled
+//             const jint dimFlag = QAndroidJniObject::getStaticField<jint>("org/qtproject/qt5/android/view/WindowManager/LayoutParams", "FLAG_DIM_BEHIND"), // 2
+//                        //blurFlag = QAndroidJniObject::getStaticField<jint>("org/qtproject/qt5/android/view/WindowManager/LayoutParams", "FLAG_BLUR_BEHIND"), // 4
+//                        screenFlag = QAndroidJniObject::getStaticField<jint>("org/qtproject/qt5/android/view/WindowManager/LayoutParams", "FLAG_KEEP_SCREEN_ON"); // 128
+//             if (prevent) {
+//                 // Set the flag by passing integer argument to void addFlags method.
+//                 window.callMethod<void>("addFlags", "(II)V", dimFlag, screenFLag);
+//                 qDebug() << "Added window flags.";
+//             }
+//             else {
+//                 // Unset the flags.
+//                 window.callMethod<void>("clearFlags", "(II)V", dimFlag, screenFlag);
+//                 qDebug() << "Removed window flags.";
+//             }
+//         }
+//         else
+//             qDebug() << "Window is not valid.";
+//     }
+//     else
+//         qDebug() << "Activity is not valid.";
+//     qDebug() << "End: Attempt to prevent sleep";
 #elif defined(Q_OS_IOS)
     // To be implemented...
 #endif
