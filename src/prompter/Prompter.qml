@@ -252,21 +252,22 @@ Flickable {
         state = nextIndex
 
         switch (parseInt(state)) {
-            //case Prompter.States.Editing:
+            case Prompter.States.Editing:
                 ////showPassiveNotification(i18n("Editing"), 850*countdown.__iterations)
                 //// if (closeProjectionUponPromptEnd)
                 ////     projectionManager.close();
-                //break;
+                document.preventSleep(false);
+                break;
             case Prompter.States.Standby:
             case Prompter.States.Countdown:
             case Prompter.States.Prompting:
                 timer.reset();
                 if (state!==Prompter.States.Countdown)
-                    document.parse()
-                else if (state===Prompter.States.Prompting)
-                    document.preventSleep()
+                    document.parse();
+                //if (state===Prompter.States.Prompting)
+                    document.preventSleep(true);
                 if (projectionManager.isEnabled)
-                    projectionManager.addMissingProjections()
+                    projectionManager.addMissingProjections();
                 //showPassiveNotification(i18n("Prompt started"), 850*countdown.__iterations)
                 break;
         }
