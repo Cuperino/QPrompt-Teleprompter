@@ -1195,10 +1195,11 @@ Flickable {
             editor.resetPosition = true;
             if (parseInt(prompter.state)!==Prompter.States.Editing)
                 prompter.state = Prompter.States.Editing;
-            if ([nameFilters[0], nameFilters[2]].indexOf(selectedNameFilter)===-1)
-                document.isNewFile = true;
-            else
-                document.isNewFile = false;
+            document.isNewFile = !(nameFilters[0]===selectedNameFilter || Qt.platform.os!=="android" && nameFilters[2]===selectedNameFilter)
+            //if (nameFilters[0]===selectedNameFilter || Qt.platform.os!=="android" && nameFilters[2]===selectedNameFilter)
+            //    document.isNewFile = false;
+            //else
+            //    document.isNewFile = true;
         }
     }
 
@@ -1206,11 +1207,16 @@ Flickable {
         id: saveDialog
         selectExisting: false
         defaultSuffix: 'html'
-        nameFilters: [
-            i18nc("Format name (FORMAT_EXTENSION)", "Hypertext Markup Language (%1)", "HTML") + "(*.html *.htm *.xhtml *.HTML *.HTM *.XHTML)",
-            i18nc("Format name (FORMAT_EXTENSION)", "Plain Text (%1)", "TXT") + "(*.txt *.text *.TXT *.TEXT)"
-            //i18nc("All file formats", "All Formats") + "(*.*)"
-        ]
+        nameFilters: if (Qt.platform.os==="android")
+            return [
+                i18nc("Format name (FORMAT_EXTENSION)", "Hypertext Markup Language (%1)", "HTML") + "(*.html *.htm *.xhtml *.HTML *.HTM *.XHTML)"
+            ]
+        else
+            return [
+                i18nc("Format name (FORMAT_EXTENSION)", "Hypertext Markup Language (%1)", "HTML") + "(*.html *.htm *.xhtml *.HTML *.HTM *.XHTML)",
+                i18nc("Format name (FORMAT_EXTENSION)", "Plain Text (%1)", "TXT") + "(*.txt *.text *.TXT *.TEXT)"
+                //i18nc("All file formats", "All Formats") + "(*.*)"
+            ]
         //// Always in the same format as original file
         //selectedNameFilter.index: document.fileType === "txt" ? 0 : 1
         // Always save as HTML

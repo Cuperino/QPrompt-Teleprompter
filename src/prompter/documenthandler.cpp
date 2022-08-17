@@ -593,19 +593,26 @@ void DocumentHandler::saveAs(const QUrl &fileUrl)
     QTextDocument *doc = textDocument();
     if (!doc)
         return;
-#if defined(Q_OS_ANDROID)
+#ifdef Q_OS_ANDROID
     // https://developer.android.com/reference/android/Manifest.permission
     const QStringList permissions = QStringList("android.permission.WRITE_EXTERNAL_STORAGE");
     const int milisecondTimeoutWait = 120000;
     QtAndroid::PermissionResultMap result = QtAndroid::requestPermissionsSync(permissions, milisecondTimeoutWait);
-#endif
-    const QString filePath = fileUrl.toLocalFile();
-    const bool isHtml = QFileInfo(filePath).suffix().contains(QLatin1String("html"));
+    QString filePath = fileUrl.toString();
     QFile file(filePath);
+    const bool isHtml = true;
+#else
+    QString filePath = fileUrl.toLocalFile();
+    QFile file(filePath);
+    QFileInfo fileInfo = QFileInfo(filePath);
+    const bool isHtml = fileInfo.suffix().contains(QLatin1String("html")) || fileInfo.suffix().contains(QLatin1String("htm")) || fileInfo.suffix().contains(QLatin1String("xhtml")) || fileInfo.suffix().contains(QLatin1String("HTML")) || fileInfo.suffix().contains(QLatin1String("HTM")) || fileInfo.suffix().contains(QLatin1String("XHTML"));
+#endif
+
     if (!file.open(QFile::WriteOnly | QFile::Truncate | (isHtml ? QFile::NotOpen : QFile::Text))) {
         Q_EMIT error(tr("Cannot save: ") + file.errorString());
         return;
     }
+
     file.write((isHtml ? doc->toHtml() : doc->toPlainText()).toUtf8());
     file.close();
     
