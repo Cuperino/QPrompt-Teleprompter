@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/Cuperino/QPrompt/issues/new/choose\n"
 "POT-Creation-Date: 2022-08-04 05:31-0400\n"
-"PO-Revision-Date: 2022-07-27 22:56+0000\n"
-"Last-Translator: Javier O. Cordero Pérez <javiercorderoperez@gmail.com>\n"
+"PO-Revision-Date: 2022-08-16 15:19+0000\n"
+"Last-Translator: Matyáš Levíček <matyas.levicek@levicek.net>\n"
 "Language-Team: Czech <http://l10n.cuperino.com/projects/qprompt/qprompt-app/"
 "cs/>\n"
 "Language: cs\n"
@@ -1073,7 +1073,7 @@ msgstr "Nastavení rolování kolečkem a touchpadem"
 #: kirigami_ui/WheelSettingsOverlay.qml:38
 msgctxt "Label at wheel settings overlay"
 msgid "Use scroll as velocity dial"
-msgstr "Použít kolečko myši jako akcelerátor"
+msgstr "Použít kolečko myši pro ovládání rychlosti"
 
 #: kirigami_ui/WheelSettingsOverlay.qml:57
 msgid "Enable throttling"
@@ -1111,17 +1111,17 @@ msgstr "Naprogramoval abstrakci QML pro převod kódů klávesnice na text"
 #: main.cpp:120
 msgctxt "Active software tester"
 msgid "Active tester"
-msgstr ""
+msgstr "Aktivní tester"
 
 #: main.cpp:122 rc.cpp:1
 msgctxt "NAME OF TRANSLATORS"
 msgid "Your names"
-msgstr "Jaroslav Svoboda"
+msgstr "Jaroslav Svoboda, Matyáš Levíček"
 
 #: main.cpp:122 rc.cpp:2
 msgctxt "EMAIL OF TRANSLATORS"
 msgid "Your emails"
-msgstr "multi.flexi@seznam.cz"
+msgstr "multi.flexi@seznam.cz, matyas@levicek.net"
 
 #: main.cpp:130
 msgid "Failed to load icons from fontello.ttf"
@@ -1183,9 +1183,8 @@ msgid "Error loading file…"
 msgstr "Chyba při nahrávání souboru…"
 
 #: prompter/Prompter.qml:717
-#, fuzzy
 msgid "Press and hold to go back to the start"
-msgstr "Dvojitým klepnutím přetočíte zpět"
+msgstr "Stiskněte a podržte pro vrácení se na začátek"
 
 #: prompter/Prompter.qml:719
 msgid "Double tap to go back to the start"
