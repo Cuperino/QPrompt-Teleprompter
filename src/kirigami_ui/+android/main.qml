@@ -127,6 +127,10 @@ Kirigami.ApplicationWindow {
     // Full screen
     visibility: __fullScreen ? Kirigami.ApplicationWindow.FullScreen : (!__autoFullScreen ? Kirigami.ApplicationWindow.AutomaticVisibility : (parseInt(root.pageStack.currentItem.prompter.state)===Prompter.States.Editing ? Kirigami.ApplicationWindow.Maximized : Kirigami.ApplicationWindow.FullScreen))
 
+    onWidthChanged: {
+        root.pageStack.currentItem.footer.paragraphSpacingSlider.update()
+    }
+
     // Open save dialog on closing
     onClosing: {
         root.onDiscard = Prompter.CloseActions.Quit

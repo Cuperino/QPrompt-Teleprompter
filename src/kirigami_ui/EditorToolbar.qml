@@ -88,6 +88,7 @@ ToolBar {
     readonly property alias lineHeightSlider: lineHeightSlider
     readonly property alias letterSpacingSlider: letterSpacingSlider
     readonly property alias wordSpacingSlider: wordSpacingSlider
+    readonly property alias paragraphSpacingSlider: paragraphSpacingSlider
     readonly property alias fontWYSIWYGSizeSlider: fontWYSIWYGSizeSlider
     readonly property alias opacitySlider: opacitySlider
     readonly property alias baseSpeedSlider: baseSpeedSlider
@@ -146,7 +147,8 @@ ToolBar {
         property alias fontSize: fontSizeSlider.value
         property alias letterSpacing: letterSpacingSlider.value
         property alias wordSpacing: wordSpacingSlider.value
-        //property alias lineHeight: lineHeightSlider.value
+        property alias lineHeight: lineHeightSlider.value
+        property alias paragraphSpacingSlider: paragraphSpacingSlider.value
         property alias fontWYSIWYGSizeSlider: fontWYSIWYGSizeSlider.value
     }
     FontLoader {
@@ -823,7 +825,10 @@ ToolBar {
                 //visible: showSliderIcons
                 checkable: true
                 checked: !prompter.__wysiwyg
-                onClicked: prompter.toggleWysiwyg()
+                onClicked: {
+                    prompter.toggleWysiwyg()
+                    paragraphSpacingSlider.update()
+                }
                 contentItem: Loader { sourceComponent: textComponent }
                 font.family: iconFont.name
                 font.pointSize: 13
@@ -849,6 +854,7 @@ ToolBar {
                     value: 100
                     to: 158
                     stepSize: 1
+                    onMoved: paragraphSpacingSlider.update()
                 }
                 Label {
                     visible: prompter.__wysiwyg
@@ -867,6 +873,7 @@ ToolBar {
                     to: 180 // 200
                     stepSize: 0.5
                     focusPolicy: Qt.TabFocus
+                    onMoved: paragraphSpacingSlider.update()
                 }
             }
         }
@@ -904,7 +911,50 @@ ToolBar {
                 to: 180
                 stepSize: 1
                 focusPolicy: Qt.TabFocus
-                onMoved: prompter.document.setLineHeight(value)
+                onMoved: lineHeightSlider.update()
+                function update() {
+                    prompter.document.setLineHeight(value)
+                }
+            }
+        }
+        RowLayout {
+            visible: height>0
+            height: showFontSpacingOptions ? implicitHeight : 0
+            clip: true
+            Behavior on height{
+                enabled: true
+                animation: NumberAnimation {
+                    duration: Kirigami.Units.shortDuration
+                    easing.type: Easing.OutQuad
+                }
+            }
+            ToolButton {
+                text: "\uE806"
+                visible: showSliderIcons
+                enabled: false
+                contentItem: Loader { sourceComponent: textComponent }
+                font.family: iconFont.name
+                font.pointSize: 13
+            }
+            Label {
+                text: i18nc("Paragraph spacing ±00", "Paragraph spacing <pre>%1%</pre>", (paragraphSpacingSlider.value/10).toFixed(3).slice(2))
+                color: Kirigami.Theme.textColor
+                Layout.topMargin: 4
+                Layout.bottomMargin: -14
+                Layout.rightMargin: 3
+                Layout.leftMargin: showSliderIcons ? 1 : 8
+            }
+            Slider {
+                id: paragraphSpacingSlider
+                from: 0
+                value: 0
+                to: 2.0
+                stepSize: 0.01
+                focusPolicy: Qt.TabFocus
+                onMoved: update()
+                function update() {
+                    prompter.document.setParagraphHeight(prompter.fontSize * value)
+                }
             }
         }
         RowLayout {
