@@ -1148,6 +1148,8 @@ Flickable {
         onLoaded: {
             editor.textFormat = format
             editor.text = text
+            editorToolbar.lineHeightSlider.update()
+            editorToolbar.paragraphSpacingSlider.update()
         }
         onError: {
             errorDialog.text = message

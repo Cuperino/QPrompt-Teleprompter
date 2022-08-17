@@ -743,6 +743,11 @@ Kirigami.Page {
         id: editorToolbar
     }
 
+    Component.onCompleted: {
+        //editorToolbar.lineHeightSlider.update()
+        //editorToolbar.paragraphSpacingSlider.update()
+    }
+
     PrompterView {
         id: viewport
         property alias toolbar: editorToolbar

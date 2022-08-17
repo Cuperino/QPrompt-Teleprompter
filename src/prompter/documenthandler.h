@@ -181,6 +181,7 @@ public:
     Q_INVOKABLE Marker previousMarker(int position);
     Q_INVOKABLE Marker nextMarker(int position);
     Q_INVOKABLE void setLineHeight(int lineHeight);
+    Q_INVOKABLE void setParagraphHeight(int paragraphHeight);
 
     Q_INVOKABLE void paste(bool withoutFormating);
     Q_INVOKABLE void paste();

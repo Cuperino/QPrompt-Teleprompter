@@ -141,7 +141,7 @@ void DocumentHandler::setDocument(QQuickTextDocument *document)
         m_document->textDocument()->disconnect(this);
     m_document = document;
     if (m_document) {
-        m_document->textDocument()->setDefaultStyleSheet(QString::fromStdString("body{margin:0;padding:0;color:\"#FFFFFF\";}a:link,a:visited,a:hover,a:active,a:before,a:after{text-decoration:overline;color:\"#FFFFFF\";background-color:rgba(0,0,0,0.0);}blockquote,address,cite,code,pre,h1,h2,h3,h4,h5,h6,table,tbody,td,th,thead,tr,dl,dt,big,small,tt,font{white-space:pre-wrap;font-size:medium;line-height:100%;margin:0;padding:0;border-width:2px;border-collapse:collapse;border-style:solid;border-color:\"#404040\";background-color:rgba(0,0,0,0.0);font-weight:normal;}table,tbody,thead{width:100%;}table,tbody,thead,td,th,tr{border:1pt;valign:top;background-color:rgba(0,0,0,0.0);}img{margin:5pt;width:50vw;}h1,h2,h3,h4,h5,h6,big{font-size:medium;font-weight:normal;}"));
+        m_document->textDocument()->setDefaultStyleSheet(QString::fromStdString("body{margin:0;padding:0;color:\"#FFFFFF\";}a:link,a:visited,a:hover,a:active,a:before,a:after{text-decoration:overline;color:\"#FFFFFF\";background-color:rgba(0,0,0,0.0);}blockquote,address,cite,code,pre,h1,h2,h3,h4,h5,h6,table,tbody,td,th,thead,tr,dl,dt,big,small,tt,font{white-space:pre-wrap;font-size:medium;line-height:100%;margin:0;padding:0;border-width:2px;border-collapse:collapse;border-style:solid;border-color:\"#404040\";background-color:rgba(0,0,0,0.0);font-weight:normal;}table,tbody,thead{width:100%;}table,tbody,thead,td,th,tr{border:1pt;valign:top;background-color:rgba(0,0,0,0.0);}img{margin:5pt;width:50vw;}p{margin:0;}h1,h2,h3,h4,h5,h6,big{font-size:medium;font-weight:normal;}"));
         connect(m_document->textDocument(), &QTextDocument::modificationChanged, this, &DocumentHandler::modifiedChanged);
         connect(m_document->textDocument(), &QTextDocument::contentsChanged, this, &DocumentHandler::setMarkersListDirty);
     }
@@ -830,6 +830,20 @@ void DocumentHandler::setLineHeight(int lineHeight)
     cursor.select(QTextCursor::Document);
     QTextBlockFormat modifier = QTextBlockFormat();
     modifier.setLineHeight(lineHeight, QTextBlockFormat::ProportionalHeight);
+    cursor.mergeBlockFormat(modifier);
+    cursor.endEditBlock();
+}
+
+// Paragraph Height
+void DocumentHandler::setParagraphHeight(int paragraphHeight)
+{
+    QTextCursor cursor = textCursor();
+    if (cursor.isNull())
+        return;
+    cursor.joinPreviousEditBlock();
+    cursor.select(QTextCursor::Document);
+    QTextBlockFormat modifier = QTextBlockFormat();
+    modifier.setBottomMargin(paragraphHeight);
     cursor.mergeBlockFormat(modifier);
     cursor.endEditBlock();
 }
