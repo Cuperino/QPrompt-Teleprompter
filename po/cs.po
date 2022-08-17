@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/Cuperino/QPrompt/issues/new/choose\n"
-"POT-Creation-Date: 2022-08-04 05:31-0400\n"
+"POT-Creation-Date: 2022-08-17 01:58-0400\n"
 "PO-Revision-Date: 2022-08-16 15:19+0000\n"
 "Last-Translator: Matyáš Levíček <matyas.levicek@levicek.net>\n"
 "Language-Team: Czech <http://l10n.cuperino.com/projects/qprompt/qprompt-app/"
@@ -20,19 +20,19 @@ msgstr ""
 "X-Generator: Weblate 4.11.2\n"
 
 #: kirigami_ui/+android/main.qml:169 kirigami_ui/main.qml:176
-#: kirigami_ui/main.qml:446 kirigami_ui/+windows/main.qml:176
+#: kirigami_ui/main.qml:455 kirigami_ui/+windows/main.qml:176
 msgctxt "Main menu and global menu actions"
 msgid "&New"
 msgstr "&Nový"
 
 #: kirigami_ui/+android/main.qml:175 kirigami_ui/main.qml:183
-#: kirigami_ui/main.qml:450 kirigami_ui/+windows/main.qml:182
+#: kirigami_ui/main.qml:459 kirigami_ui/+windows/main.qml:182
 msgctxt "Main menu and global menu actions"
 msgid "&Open"
 msgstr "&Otevřít"
 
 #: kirigami_ui/+android/main.qml:184 kirigami_ui/main.qml:193
-#: kirigami_ui/main.qml:454 kirigami_ui/+windows/main.qml:191
+#: kirigami_ui/main.qml:463 kirigami_ui/+windows/main.qml:191
 msgctxt "Main menu and global menu actions"
 msgid "&Save"
 msgstr "Uložit"
@@ -69,7 +69,7 @@ msgid "Scroll throttle settings"
 msgstr "Posouvání nastavení plynu"
 
 #: kirigami_ui/+android/main.qml:228 kirigami_ui/main.qml:241
-#: kirigami_ui/main.qml:691 kirigami_ui/+windows/main.qml:235
+#: kirigami_ui/main.qml:700 kirigami_ui/+windows/main.qml:235
 msgctxt ""
 "Main menu and global menu actions. Have up arrow behave like down arrow and "
 "vice versa while prompting."
@@ -77,14 +77,14 @@ msgid "Invert &arrow keys"
 msgstr "Prohodit kurzorové šipky"
 
 #: kirigami_ui/+android/main.qml:236 kirigami_ui/main.qml:250
-#: kirigami_ui/main.qml:698 kirigami_ui/+windows/main.qml:243
+#: kirigami_ui/main.qml:707 kirigami_ui/+windows/main.qml:243
 msgctxt ""
 "Main menu and global menu actions. Invert scroll direction while prompting."
 msgid "Invert &scroll direction"
 msgstr "Přirozený posuv"
 
 #: kirigami_ui/+android/main.qml:244 kirigami_ui/main.qml:259
-#: kirigami_ui/main.qml:683 kirigami_ui/+windows/main.qml:251
+#: kirigami_ui/main.qml:692 kirigami_ui/+windows/main.qml:251
 msgctxt ""
 "Main menu and global menu actions. Have touchpad and mouse wheel scrolling "
 "adjust velocity instead of scrolling like most other apps."
@@ -92,7 +92,7 @@ msgid "Use scroll as velocity &dial"
 msgstr "Použít kolečko myši jako akcelerátor"
 
 #: kirigami_ui/+android/main.qml:253 kirigami_ui/main.qml:269
-#: kirigami_ui/main.qml:677 kirigami_ui/+windows/main.qml:260
+#: kirigami_ui/main.qml:686 kirigami_ui/+windows/main.qml:260
 msgctxt ""
 "Main menu and global menu actions. Touchpad scrolling and mouse wheel use "
 "have no effect while prompting."
@@ -117,37 +117,44 @@ msgctxt "Main menu actions. Hides formatting tools while not in edit mode."
 msgid "Auto hide formatting tools"
 msgstr "Automatické skrytí formátovacích nástrojů"
 
-#: kirigami_ui/+android/main.qml:296 kirigami_ui/main.qml:328
-#: kirigami_ui/+windows/main.qml:313
+#: kirigami_ui/+android/main.qml:289 kirigami_ui/main.qml:309
+#: kirigami_ui/+windows/main.qml:296
+msgctxt ""
+"Main menu actions. Disables contrast effect for the reading region overlay."
+msgid "Disable overlay contrast"
+msgstr ""
+
+#: kirigami_ui/+android/main.qml:305 kirigami_ui/main.qml:337
+#: kirigami_ui/+windows/main.qml:322
 msgctxt "Main menu actions. Load about page."
 msgid "Abou&t %1"
 msgstr "O %1"
 
-#: kirigami_ui/+android/main.qml:302 kirigami_ui/main.qml:335
-#: kirigami_ui/main.qml:463 kirigami_ui/+windows/main.qml:319
+#: kirigami_ui/+android/main.qml:311 kirigami_ui/main.qml:344
+#: kirigami_ui/main.qml:472 kirigami_ui/+windows/main.qml:328
 msgctxt "Main menu and global menu actions"
 msgid "&Quit"
 msgstr "Ukončit"
 
-#: kirigami_ui/+android/main.qml:331 kirigami_ui/main.qml:386
-#: kirigami_ui/main.qml:723 kirigami_ui/+windows/main.qml:353
+#: kirigami_ui/+android/main.qml:340 kirigami_ui/main.qml:395
+#: kirigami_ui/main.qml:732 kirigami_ui/+windows/main.qml:362
 msgctxt "Main menu and global actions. Load document that welcomes users."
 msgid "Load &Welcome"
 msgstr "Otevřít Uvítání"
 
-#: kirigami_ui/+android/main.qml:367 kirigami_ui/main.qml:422
-#: kirigami_ui/+windows/main.qml:389
+#: kirigami_ui/+android/main.qml:376 kirigami_ui/main.qml:431
+#: kirigami_ui/+windows/main.qml:398
 msgid "Darth mode"
 msgstr "Hvězdný režim"
 
-#: kirigami_ui/+android/main.qml:458 kirigami_ui/main.qml:876
-#: kirigami_ui/+windows/main.qml:530
+#: kirigami_ui/+android/main.qml:496 kirigami_ui/main.qml:883
+#: kirigami_ui/+windows/main.qml:537
 msgctxt "Title for save before closing dialog"
 msgid "Save Document"
 msgstr "Uložit dokument"
 
-#: kirigami_ui/+android/main.qml:459 kirigami_ui/main.qml:877
-#: kirigami_ui/+windows/main.qml:531
+#: kirigami_ui/+android/main.qml:497 kirigami_ui/main.qml:884
+#: kirigami_ui/+windows/main.qml:538
 msgid "Save changes to document before closing?"
 msgstr "Uložit změny v dokumentu před uzavřením?"
 
@@ -312,7 +319,7 @@ msgctxt "Skip to closest marker ahead of current position"
 msgid "Go to Next Marker"
 msgstr "Skok na následující záložku"
 
-#: kirigami_ui/main.qml:309 kirigami_ui/+windows/main.qml:296
+#: kirigami_ui/main.qml:318 kirigami_ui/+windows/main.qml:305
 msgctxt ""
 "Main menu actions. QPrompt switches between two text rendering techniques "
 "when the base font size exceeds 120px. Enabling this option forces QPrompt "
@@ -321,218 +328,218 @@ msgctxt ""
 msgid "Force sub-pixel text renderer past 120px"
 msgstr "Vynutit subpixelové vykreslování textu většího než 120px"
 
-#: kirigami_ui/main.qml:443
+#: kirigami_ui/main.qml:452
 msgctxt "Global menu actions"
 msgid "&File"
 msgstr "Soubor"
 
-#: kirigami_ui/main.qml:458
+#: kirigami_ui/main.qml:467
 msgctxt "Main menu and global menu actions"
 msgid "Save &As…"
 msgstr "Uložit jako…"
 
-#: kirigami_ui/main.qml:469
+#: kirigami_ui/main.qml:478
 msgctxt "Global menu actions"
 msgid "&Edit"
 msgstr "Upravit"
 
-#: kirigami_ui/main.qml:472
+#: kirigami_ui/main.qml:481
 msgctxt "Global menu actions"
 msgid "&Undo"
 msgstr "Zpět"
 
-#: kirigami_ui/main.qml:477
+#: kirigami_ui/main.qml:486
 msgctxt "Global menu actions"
 msgid "&Redo"
 msgstr "Znovu"
 
-#: kirigami_ui/main.qml:483 prompter/Prompter.qml:1241
-#: prompter/Prompter.qml:1288
+#: kirigami_ui/main.qml:492 prompter/Prompter.qml:1253
+#: prompter/Prompter.qml:1300
 msgctxt "Global menu and editor context menu actions"
 msgid "&Copy"
 msgstr "Kopírovat"
 
-#: kirigami_ui/main.qml:488 prompter/Prompter.qml:1246
-#: prompter/Prompter.qml:1293
+#: kirigami_ui/main.qml:497 prompter/Prompter.qml:1258
+#: prompter/Prompter.qml:1305
 msgctxt "Global menu and editor context menu actions"
 msgid "Cu&t"
 msgstr "Vyjmout"
 
-#: kirigami_ui/main.qml:493 prompter/Prompter.qml:1251
-#: prompter/Prompter.qml:1298
+#: kirigami_ui/main.qml:502 prompter/Prompter.qml:1263
+#: prompter/Prompter.qml:1310
 msgctxt "Global menu and editor context menu actions"
 msgid "&Paste"
 msgstr "Vložit"
 
-#: kirigami_ui/main.qml:500
+#: kirigami_ui/main.qml:509
 msgctxt "Global menu actions"
 msgid "&View"
 msgstr "Zobrazení"
 
-#: kirigami_ui/main.qml:503
+#: kirigami_ui/main.qml:512
 msgctxt "Global menu actions"
 msgid "Full &screen"
 msgstr "Celá obrazovka"
 
-#: kirigami_ui/main.qml:517
+#: kirigami_ui/main.qml:526
 msgctxt "Global menu actions. Indicators highlight reading region."
 msgid "&Indicators"
 msgstr "Ukazatelé"
 
-#: kirigami_ui/main.qml:519
+#: kirigami_ui/main.qml:528
 msgctxt "Global menu actions. Shows pointer to the left of the reading region."
 msgid "&Left Pointer"
 msgstr "Levý ukazatel"
 
-#: kirigami_ui/main.qml:525
+#: kirigami_ui/main.qml:534
 msgctxt ""
 "Global menu actions. Shows pointer to the right of the reading region."
 msgid "&Right Pointer"
 msgstr "Pravý ukazatel"
 
-#: kirigami_ui/main.qml:531
+#: kirigami_ui/main.qml:540
 msgctxt ""
 "Global menu actions. Shows pointers to the left and right of the reading "
 "region."
 msgid "B&oth Pointers"
 msgstr "Oba ukazatele"
 
-#: kirigami_ui/main.qml:538
+#: kirigami_ui/main.qml:547
 msgctxt "Global menu actions. Translucent bars indicate reading region."
 msgid "&Bars"
 msgstr "Pruh"
 
-#: kirigami_ui/main.qml:544
+#: kirigami_ui/main.qml:553
 msgctxt ""
 "Global menu actions. Translucent bars and left pointer indicate reading "
 "region."
 msgid "Bars Lef&t"
 msgstr "Pruh a ukazatel vlevo"
 
-#: kirigami_ui/main.qml:550
+#: kirigami_ui/main.qml:559
 msgctxt ""
 "Global menu actions. Translucent bars and right pointer indicate reading "
 "region."
 msgid "Bars Ri&ght"
 msgstr "Pruh a ukazatel vpravo"
 
-#: kirigami_ui/main.qml:557
+#: kirigami_ui/main.qml:566
 msgctxt "Global menu actions. Enable all reading region indicators."
 msgid "&All"
 msgstr "Vše"
 
-#: kirigami_ui/main.qml:563
+#: kirigami_ui/main.qml:572
 msgctxt "Global menu actions. Disable all reading region indicators."
 msgid "&Hidden"
 msgstr "Skrýt"
 
-#: kirigami_ui/main.qml:570
+#: kirigami_ui/main.qml:579
 msgctxt ""
 "Global menu actions. Reading region indicates where a talent should be "
 "reading from."
 msgid "Readin&g region"
 msgstr "Oblast pro čtení"
 
-#: kirigami_ui/main.qml:572
+#: kirigami_ui/main.qml:581
 msgctxt "Global menu actions. Align reading region to top of prompter."
 msgid "&Top"
 msgstr "Nahoře"
 
-#: kirigami_ui/main.qml:578
+#: kirigami_ui/main.qml:587
 msgctxt ""
 "Global menu actions. Align reading region to vertical center of prompter."
 msgid "&Middle"
 msgstr "Uprostřed"
 
-#: kirigami_ui/main.qml:584
+#: kirigami_ui/main.qml:593
 msgctxt "Global menu actions. Align reading region to bottom of prompter."
 msgid "&Bottom"
 msgstr "Vespod"
 
-#: kirigami_ui/main.qml:591
+#: kirigami_ui/main.qml:600
 msgctxt ""
 "Global menu actions. Enables drag and drop positioning of reading region."
 msgid "F&ree placement"
 msgstr "Volné umístnění"
 
-#: kirigami_ui/main.qml:597
+#: kirigami_ui/main.qml:606
 msgctxt ""
 "Global menu actions. Fix positioning of reading region to what was set in "
 "\"Free placement\" mode."
 msgid "C&ustom (Fixed placement)"
 msgstr "Vlastní (pevné umístění)"
 
-#: kirigami_ui/main.qml:606
+#: kirigami_ui/main.qml:615
 msgctxt "Global menu actions"
 msgid "For&mat"
 msgstr "Formát"
 
-#: kirigami_ui/main.qml:609
+#: kirigami_ui/main.qml:618
 msgctxt "Global menu actions"
 msgid "&Bold"
 msgstr "Tučné"
 
-#: kirigami_ui/main.qml:615
+#: kirigami_ui/main.qml:624
 msgctxt "Global menu actions"
 msgid "&Italic"
 msgstr "Kurzíva"
 
-#: kirigami_ui/main.qml:621
+#: kirigami_ui/main.qml:630
 msgctxt "Global menu actions"
 msgid "&Underline"
 msgstr "Podtržené"
 
-#: kirigami_ui/main.qml:628
+#: kirigami_ui/main.qml:637
 msgctxt "Global menu and editor actions. Text alignment."
 msgid "Align &Left"
 msgstr "Zarovnat vlevo"
 
-#: kirigami_ui/main.qml:628
+#: kirigami_ui/main.qml:637
 msgctxt "Global menu and editor actions. Text alignment."
 msgid "Align &Right"
 msgstr "Zarovnat vpravo"
 
-#: kirigami_ui/main.qml:639
+#: kirigami_ui/main.qml:648
 msgctxt "Global menu actions. Text alignment."
 msgid "Align Cen&ter"
 msgstr "Zarovnat na střed"
 
-#: kirigami_ui/main.qml:645
+#: kirigami_ui/main.qml:654
 msgctxt "Global menu actions. Text alignment."
 msgid "Align &Right"
 msgstr "Zarovnat vpravo"
 
-#: kirigami_ui/main.qml:645
+#: kirigami_ui/main.qml:654
 msgctxt "Global menu actions. Text alignment."
 msgid "Align &Left"
 msgstr "Zarovnat vlevo"
 
-#: kirigami_ui/main.qml:664
+#: kirigami_ui/main.qml:673
 msgctxt "Global menu actions. Opens dialog to format currently selected text."
 msgid "C&haracter"
 msgstr "Písmo"
 
-#: kirigami_ui/main.qml:668
+#: kirigami_ui/main.qml:677
 msgctxt "Global menu actions. Opens dialog to color currently selected text."
 msgid "Fo&nt Color"
 msgstr "Barva písma"
 
-#: kirigami_ui/main.qml:674
+#: kirigami_ui/main.qml:683
 msgctxt "Global menu actions. Menu regarding input settings."
 msgid "Controls"
 msgstr "Ovládání"
 
-#: kirigami_ui/main.qml:707
+#: kirigami_ui/main.qml:716
 msgctxt "Global menu actions"
 msgid "&Help"
 msgstr "Nápověda"
 
-#: kirigami_ui/main.qml:710
+#: kirigami_ui/main.qml:719
 msgctxt "Global menu actions"
 msgid "Report &Bug…"
 msgstr "Nahlásit chybu…"
 
-#: kirigami_ui/main.qml:729
+#: kirigami_ui/main.qml:738
 msgctxt "Global menu actions. Load about page. \"About AppName\""
 msgid "Abou&t %1"
 msgstr "O %1"
@@ -1088,54 +1095,54 @@ msgid "Enable throttling for use with touchpads, disable for precise scolling."
 msgstr ""
 "Povolit omezování pro použití s touchpady, deaktivovat pro přesné rolování."
 
-#: main.cpp:91
+#: main.cpp:90
 msgid "© 2021 Javier O. Cordero Pérez"
 msgstr "© 2021 Javier O. Cordero Pérez"
 
-#: main.cpp:92
+#: main.cpp:91
 msgid "© 2021-%1 Javier O. Cordero Pérez"
 msgstr "© 2021-%1 Javier O. Cordero Pérez"
 
-#: main.cpp:95
+#: main.cpp:94
 msgid "Personal teleprompter software for all video makers."
 msgstr "Software pro vlastní čtecí zařízení pro všechny video tvůrce."
 
-#: main.cpp:107
+#: main.cpp:106
 msgid "Author"
 msgstr "Autor"
 
-#: main.cpp:114
+#: main.cpp:113
 msgid "Wrote keycode to string QML abstraction"
 msgstr "Naprogramoval abstrakci QML pro převod kódů klávesnice na text"
 
-#: main.cpp:120
+#: main.cpp:119
 msgctxt "Active software tester"
 msgid "Active tester"
 msgstr "Aktivní tester"
 
-#: main.cpp:122 rc.cpp:1
+#: main.cpp:121 rc.cpp:1
 msgctxt "NAME OF TRANSLATORS"
 msgid "Your names"
 msgstr "Jaroslav Svoboda, Matyáš Levíček"
 
-#: main.cpp:122 rc.cpp:2
+#: main.cpp:121 rc.cpp:2
 msgctxt "EMAIL OF TRANSLATORS"
 msgid "Your emails"
 msgstr "multi.flexi@seznam.cz, matyas@levicek.net"
 
-#: main.cpp:130
+#: main.cpp:129
 msgid "Failed to load icons from fontello.ttf"
 msgstr "Načtení ikon z fontello.ttf se nezdařilo"
 
-#: prompter/Countdown.qml:236
+#: prompter/Countdown.qml:246
 msgid "Countdown Setup"
 msgstr "Nastavení odpočtu"
 
-#: prompter/Countdown.qml:245
+#: prompter/Countdown.qml:255
 msgid "Countdown iterations"
 msgstr "Opakování odpočtu"
 
-#: prompter/Countdown.qml:264
+#: prompter/Countdown.qml:274
 msgid "Disappear within 1 second to go"
 msgid_plural "Disappear within %1 seconds to go"
 msgstr[0] "Skryjte se do 1 sekundy"
@@ -1178,54 +1185,55 @@ msgstr "PNG obrázek"
 msgid "GIF animation"
 msgstr "GIF animace"
 
-#: prompter/Prompter.qml:617
+#: prompter/Prompter.qml:620
 msgid "Error loading file…"
 msgstr "Chyba při nahrávání souboru…"
 
-#: prompter/Prompter.qml:717
+#: prompter/Prompter.qml:720
 msgid "Press and hold to go back to the start"
 msgstr "Stiskněte a podržte pro vrácení se na začátek"
 
-#: prompter/Prompter.qml:719
+#: prompter/Prompter.qml:722
 msgid "Double tap to go back to the start"
 msgstr "Dvojitým klepnutím přetočíte zpět"
 
-#: prompter/Prompter.qml:727
+#: prompter/Prompter.qml:730
 msgid "Auto rewind cancelled"
 msgstr "Automatické převíjení zpět zrušeno"
 
-#: prompter/Prompter.qml:775
+#: prompter/Prompter.qml:778
 msgid "The End"
 msgstr "Konec"
 
-#: prompter/Prompter.qml:1088
+#: prompter/Prompter.qml:1091
 msgid "New document"
 msgstr "Nový dokument"
 
-#: prompter/Prompter.qml:1097
+#: prompter/Prompter.qml:1100
 msgid "welcome_en.html"
 msgstr "welcome_cs.html"
 
-#: prompter/Prompter.qml:1102
+#: prompter/Prompter.qml:1105
 msgid "User welcome loaded"
 msgstr "Uvítání uživatele načteno"
 
-#: prompter/Prompter.qml:1122 prompter/Prompter.qml:1218
+#: prompter/Prompter.qml:1126 prompter/Prompter.qml:1230
 msgctxt "Saved FILE_NAME"
 msgid "Saved %1"
 msgstr "Uloženo %1"
 
-#: prompter/Prompter.qml:1175 prompter/Prompter.qml:1205
+#: prompter/Prompter.qml:1179 prompter/Prompter.qml:1212
+#: prompter/Prompter.qml:1216
 msgctxt "Format name (FORMAT_EXTENSION)"
 msgid "Hypertext Markup Language (%1)"
 msgstr "Hypertext Markup Language (%1)"
 
-#: prompter/Prompter.qml:1176
+#: prompter/Prompter.qml:1180
 msgctxt "Format name (FORMAT_EXTENSION)"
 msgid "Markdown (%1)"
 msgstr "Markdown (%1)"
 
-#: prompter/Prompter.qml:1177 prompter/Prompter.qml:1206
+#: prompter/Prompter.qml:1181 prompter/Prompter.qml:1217
 msgctxt "Format name (FORMAT_EXTENSION)"
 msgid "Plain Text (%1)"
 msgstr "Prostý text (%1)"
@@ -1236,49 +1244,49 @@ msgstr "Prostý text (%1)"
 #. i18nc("Format name (FORMAT_EXTENSION)", "Apple Pages Document (%1)", "PAGES") + "(*.pages *.PAGES)",
 #. i18nc("Format name (FORMAT_EXTENSION)", "Rich Text Format (%1)", "RTF") + "(*.rtf *.RTF)",
 #. i18nc("Format name (FORMAT_EXTENSION)", "Portable Document Format (%1)", "PDF") + "(*.pdf *.PDF)",
-#: prompter/Prompter.qml:1184
+#: prompter/Prompter.qml:1188
 msgctxt "All file formats"
 msgid "All Formats"
 msgstr "Všechny formáty"
 
-#: prompter/Prompter.qml:1257 prompter/Prompter.qml:1304
+#: prompter/Prompter.qml:1269 prompter/Prompter.qml:1316
 msgctxt "Editor context menu actions"
 msgid "Fo&nt…"
 msgstr "Písmo…"
 
-#: prompter/Prompter.qml:1261 prompter/Prompter.qml:1308
+#: prompter/Prompter.qml:1273 prompter/Prompter.qml:1320
 msgctxt "Editor context menu actions"
 msgid "Co&lor…"
 msgstr "Barva…"
 
-#: prompter/Prompter.qml:1265 prompter/Prompter.qml:1312
+#: prompter/Prompter.qml:1277 prompter/Prompter.qml:1324
 msgctxt "Editor context menu actions"
 msgid "Hi&ghlight…"
 msgstr "Zvýraznění…"
 
-#: prompter/Prompter.qml:1277
+#: prompter/Prompter.qml:1289
 msgctxt "Editor context menu actions"
 msgid "&Undo"
 msgstr "Zpět"
 
-#: prompter/Prompter.qml:1282
+#: prompter/Prompter.qml:1294
 msgctxt "Editor context menu actions"
 msgid "Redo"
 msgstr "Znovu"
 
-#: prompter/Prompter.qml:1553
+#: prompter/Prompter.qml:1565
 msgid "Begin countdown"
 msgstr "Začít odpočet"
 
-#: prompter/Prompter.qml:1553
+#: prompter/Prompter.qml:1565
 msgid "Start prompting"
 msgstr "Promítat"
 
-#: prompter/Prompter.qml:1604
+#: prompter/Prompter.qml:1616
 msgid "Skip countdown"
 msgstr "Přeskočit odpočet"
 
-#: prompter/Prompter.qml:1651
+#: prompter/Prompter.qml:1663
 msgid "Return to edit mode"
 msgstr "Návrat do módu úprav"
 
