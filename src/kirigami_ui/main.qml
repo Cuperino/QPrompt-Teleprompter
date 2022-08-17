@@ -306,7 +306,7 @@ Kirigami.ApplicationWindow {
                 }
                 Kirigami.Action {
                     id: enableOverlayContrastSetting
-                    text: i18nc("Main menu actions. Disables contrast effect for the \"bars\" reading region indicator.", "Disable overlay contrast")
+                    text: i18nc("Main menu actions. Disables contrast effect for the reading region overlay.", "Disable overlay contrast")
                     //iconName: "edit-opacity"
                     iconSource: "qrc:/icons/edit-opacity.svg"
                     checkable: true
