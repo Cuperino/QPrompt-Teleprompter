@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/Cuperino/QPrompt/issues/new/choose\n"
 "POT-Creation-Date: 2022-08-18 00:34-0400\n"
-"PO-Revision-Date: 2022-08-04 09:10+0000\n"
+"PO-Revision-Date: 2022-08-18 05:59+0000\n"
 "Last-Translator: Javier O. Cordero Pérez <javiercorderoperez@gmail.com>\n"
 "Language-Team: French <http://l10n.cuperino.com/projects/qprompt/qprompt-app/"
 "fr/>\n"
@@ -122,7 +122,7 @@ msgstr "Masquer automatiquement outils de formatage"
 msgctxt ""
 "Main menu actions. Disables contrast effect for the reading region overlay."
 msgid "Disable overlay contrast"
-msgstr ""
+msgstr "Désactiver contraste de superposition"
 
 #: kirigami_ui/+android/main.qml:309 kirigami_ui/main.qml:341
 #: kirigami_ui/+windows/main.qml:326
@@ -229,10 +229,9 @@ msgid "Line height <pre>%1%</pre>"
 msgstr "Hauteur de ligne <pre>%1%</pre>"
 
 #: kirigami_ui/EditorToolbar.qml:940
-#, fuzzy
 msgctxt "Paragraph spacing ±00"
 msgid "Paragraph spacing <pre>%1%</pre>"
-msgstr "Espacement des mots <pre>%1</pre>"
+msgstr "Espacement des paragraphes <pre>%1</pre>"
 
 #: kirigami_ui/EditorToolbar.qml:981
 msgctxt "Word spacing <pre>±00<pre>"
@@ -1131,17 +1130,18 @@ msgstr "Écrit le code clé à la chaîne d'abstraction QML"
 #: main.cpp:119
 msgctxt "Active software tester"
 msgid "Active tester"
-msgstr ""
+msgstr "Bêta-testeur actif"
 
 #: main.cpp:121 rc.cpp:1
 msgctxt "NAME OF TRANSLATORS"
 msgid "Your names"
-msgstr "Fanch, Vincent Berry"
+msgstr "Fanch, Vincent Berry, Javier Cordero"
 
 #: main.cpp:121 rc.cpp:2
 msgctxt "EMAIL OF TRANSLATORS"
 msgid "Your emails"
-msgstr "fanch.le.cleach@gmail.com, berryv@outlook.fr"
+msgstr ""
+"fanch.le.cleach@gmail.com, berryv@outlook.fr, javiercorderoperez@gmail.com"
 
 #: main.cpp:129
 msgid "Failed to load icons from fontello.ttf"
@@ -1202,14 +1202,12 @@ msgid "Error loading file…"
 msgstr "Erreur de chargement du fichier…"
 
 #: prompter/Prompter.qml:720
-#, fuzzy
 msgid "Press and hold to go back to the start"
-msgstr "Revenir au début"
+msgstr "Appuyez longuement pour revenir au début"
 
 #: prompter/Prompter.qml:722
-#, fuzzy
 msgid "Double tap to go back to the start"
-msgstr "Revenir au début"
+msgstr "Appuyez deux fois pour revenir au début"
 
 #: prompter/Prompter.qml:730
 msgid "Auto rewind cancelled"
