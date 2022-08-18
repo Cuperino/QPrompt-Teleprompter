@@ -8,10 +8,10 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/Cuperino/QPrompt/issues/new/choose\n"
 "POT-Creation-Date: 2022-08-18 00:34-0400\n"
-"PO-Revision-Date: 2022-04-18 05:00+0000\n"
+"PO-Revision-Date: 2022-08-18 05:59+0000\n"
 "Last-Translator: Javier O. Cordero Pérez <javiercorderoperez@gmail.com>\n"
-"Language-Team: Japanese <http://l10n.cuperino.com/projects/qprompt/qprompt-"
-"app/ja/>\n"
+"Language-Team: Japanese <http://l10n.cuperino.com/projects/qprompt/"
+"qprompt-app/ja/>\n"
 "Language: ja\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -23,19 +23,19 @@ msgstr ""
 #: kirigami_ui/main.qml:459 kirigami_ui/+windows/main.qml:180
 msgctxt "Main menu and global menu actions"
 msgid "&New"
-msgstr ""
+msgstr "ファイル"
 
 #: kirigami_ui/+android/main.qml:179 kirigami_ui/main.qml:187
 #: kirigami_ui/main.qml:463 kirigami_ui/+windows/main.qml:186
 msgctxt "Main menu and global menu actions"
 msgid "&Open"
-msgstr ""
+msgstr "開いた"
 
 #: kirigami_ui/+android/main.qml:188 kirigami_ui/main.qml:197
 #: kirigami_ui/main.qml:467 kirigami_ui/+windows/main.qml:195
 msgctxt "Main menu and global menu actions"
 msgid "&Save"
-msgstr ""
+msgstr "保存"
 
 #: kirigami_ui/+android/main.qml:197 kirigami_ui/main.qml:207
 #: kirigami_ui/+windows/main.qml:204
@@ -47,26 +47,26 @@ msgstr ""
 #: kirigami_ui/+windows/main.qml:214
 msgctxt "Main menu actions"
 msgid "&Recent Files"
-msgstr ""
+msgstr "最近使用したファイル"
 
 #: kirigami_ui/+android/main.qml:215 kirigami_ui/main.qml:227
 #: kirigami_ui/+windows/main.qml:222
 msgctxt "Main menu actions. Menu regarding input settings."
 msgid "&Controls Settings"
-msgstr ""
+msgstr "コントロール設定"
 
 #: kirigami_ui/+android/main.qml:219 kirigami_ui/main.qml:232
 #: kirigami_ui/+windows/main.qml:226
 msgctxt ""
 "Main menu and global menu actions. Opens dialog to configure keyboard inputs."
 msgid "Keyboard Inputs"
-msgstr ""
+msgstr "キーボード入力"
 
 #: kirigami_ui/+android/main.qml:227 kirigami_ui/main.qml:239
 #: kirigami_ui/+windows/main.qml:234
 msgctxt "Open 'scroll settings' from main menu and global menu actions"
 msgid "Scroll throttle settings"
-msgstr ""
+msgstr "滚动油门设置"
 
 #: kirigami_ui/+android/main.qml:232 kirigami_ui/main.qml:245
 #: kirigami_ui/main.qml:704 kirigami_ui/+windows/main.qml:239
@@ -74,14 +74,14 @@ msgctxt ""
 "Main menu and global menu actions. Have up arrow behave like down arrow and "
 "vice versa while prompting."
 msgid "Invert &arrow keys"
-msgstr ""
+msgstr "矢印キーを反転する"
 
 #: kirigami_ui/+android/main.qml:240 kirigami_ui/main.qml:254
 #: kirigami_ui/main.qml:711 kirigami_ui/+windows/main.qml:247
 msgctxt ""
 "Main menu and global menu actions. Invert scroll direction while prompting."
 msgid "Invert &scroll direction"
-msgstr ""
+msgstr "スクロール方向を逆にする"
 
 #: kirigami_ui/+android/main.qml:248 kirigami_ui/main.qml:263
 #: kirigami_ui/main.qml:696 kirigami_ui/+windows/main.qml:255
@@ -89,7 +89,7 @@ msgctxt ""
 "Main menu and global menu actions. Have touchpad and mouse wheel scrolling "
 "adjust velocity instead of scrolling like most other apps."
 msgid "Use scroll as velocity &dial"
-msgstr ""
+msgstr "スクロールをベロシティ ダイヤルとして使用する"
 
 #: kirigami_ui/+android/main.qml:257 kirigami_ui/main.qml:273
 #: kirigami_ui/main.qml:690 kirigami_ui/+windows/main.qml:264
@@ -97,116 +97,116 @@ msgctxt ""
 "Main menu and global menu actions. Touchpad scrolling and mouse wheel use "
 "have no effect while prompting."
 msgid "Disable scrolling while prompting"
-msgstr ""
+msgstr "プロンプト中のスクロールを無効にする"
 
 #: kirigami_ui/+android/main.qml:265 kirigami_ui/main.qml:282
 #: kirigami_ui/+windows/main.qml:272
 msgctxt "Main menu actions"
 msgid "Other &Settings"
-msgstr ""
+msgstr "その他の設定"
 
 #: kirigami_ui/+android/main.qml:276 kirigami_ui/main.qml:294
 #: kirigami_ui/+windows/main.qml:283
 msgctxt "Main menu actions"
 msgid "Always hide formatting tools"
-msgstr ""
+msgstr "書式設定ツールを常に非表示にする"
 
 #: kirigami_ui/+android/main.qml:285 kirigami_ui/main.qml:304
 #: kirigami_ui/+windows/main.qml:292
 msgctxt "Main menu actions. Hides formatting tools while not in edit mode."
 msgid "Auto hide formatting tools"
-msgstr ""
+msgstr "書式設定ツールを自動的に隠する"
 
 #: kirigami_ui/+android/main.qml:293 kirigami_ui/main.qml:313
 #: kirigami_ui/+windows/main.qml:300
 msgctxt ""
 "Main menu actions. Disables contrast effect for the reading region overlay."
 msgid "Disable overlay contrast"
-msgstr ""
+msgstr "読み取り領域のコントラストを無効にする"
 
 #: kirigami_ui/+android/main.qml:309 kirigami_ui/main.qml:341
 #: kirigami_ui/+windows/main.qml:326
 msgctxt "Main menu actions. Load about page."
 msgid "Abou&t %1"
-msgstr ""
+msgstr "%1について"
 
 #: kirigami_ui/+android/main.qml:315 kirigami_ui/main.qml:348
 #: kirigami_ui/main.qml:476 kirigami_ui/+windows/main.qml:332
 msgctxt "Main menu and global menu actions"
 msgid "&Quit"
-msgstr ""
+msgstr "終了する"
 
 #: kirigami_ui/+android/main.qml:344 kirigami_ui/main.qml:399
 #: kirigami_ui/main.qml:736 kirigami_ui/+windows/main.qml:366
 msgctxt "Main menu and global actions. Load document that welcomes users."
 msgid "Load &Welcome"
-msgstr ""
+msgstr "ようこそを開く"
 
 #: kirigami_ui/+android/main.qml:380 kirigami_ui/main.qml:435
 #: kirigami_ui/+windows/main.qml:402
 msgid "Darth mode"
-msgstr ""
+msgstr "ダースモード"
 
 #: kirigami_ui/+android/main.qml:500 kirigami_ui/main.qml:887
 #: kirigami_ui/+windows/main.qml:541
 msgctxt "Title for save before closing dialog"
 msgid "Save Document"
-msgstr ""
+msgstr "ドキュメントを保存"
 
 #: kirigami_ui/+android/main.qml:501 kirigami_ui/main.qml:888
 #: kirigami_ui/+windows/main.qml:542
 msgid "Save changes to document before closing?"
-msgstr ""
+msgstr "ドキュメントを閉じる前に変更を保存しますか?"
 
 #: kirigami_ui/EditorToolbar.qml:346 kirigami_ui/EditorToolbar.qml:356
 msgctxt "Editor actions. Text alignment."
 msgid "&Left"
-msgstr ""
+msgstr "左"
 
 #: kirigami_ui/EditorToolbar.qml:346 kirigami_ui/EditorToolbar.qml:356
 msgctxt "Editor actions. Text alignment."
 msgid "&Right"
-msgstr ""
+msgstr "右"
 
 #: kirigami_ui/EditorToolbar.qml:351
 msgctxt "Editor actions. Text alignment."
 msgid "C&enter"
-msgstr ""
+msgstr "中心"
 
 #: kirigami_ui/EditorToolbar.qml:505
 msgctxt "FontName (Translatable font details)"
 msgid "DejaVu (default, Roman, Cyrillic)"
-msgstr ""
+msgstr "DejaVu (既定、ローマ字とキリル文字)"
 
 #: kirigami_ui/EditorToolbar.qml:509
 msgctxt "FontName (Translatable font details)"
 msgid "OpenDyslexic (Roman)"
-msgstr ""
+msgstr "OpenDyslexic (ローマ字)"
 
 #: kirigami_ui/EditorToolbar.qml:513
 msgctxt "FontName (Translatable font details)"
 msgid "Source Han Sans (CH, JP, KO)"
-msgstr ""
+msgstr "源ノ角ゴシック (CN, JP, KR)"
 
 #: kirigami_ui/EditorToolbar.qml:517
 msgctxt "FontName (Translatable font details)"
 msgid "Scheherazade New (Arabic)"
-msgstr ""
+msgstr "Scheherazade New (アラビア文字)"
 
 #: kirigami_ui/EditorToolbar.qml:521
 msgctxt "FontName (Translatable font details)"
 msgid "Palanquin (Devangari)"
-msgstr ""
+msgstr "Palanquin (デーバンガリ文字)"
 
 #: kirigami_ui/EditorToolbar.qml:525
 msgctxt "FontName (Translatable font details)"
 msgid "Kalpurush (Bengali)"
-msgstr ""
+msgstr "Kalpurush (ベンガル文字)"
 
 #: kirigami_ui/EditorToolbar.qml:531
 msgctxt "Opens system font selection dialog"
 msgid "Choose System Font"
-msgstr ""
+msgstr "システムフォントを選択"
 
 #: kirigami_ui/EditorToolbar.qml:769
 msgctxt "Velocity {VELOCITY_STEPS}"
@@ -278,11 +278,11 @@ msgstr ""
 
 #: kirigami_ui/InputsOverlay.qml:171
 msgid "Decrease Velocity"
-msgstr ""
+msgstr "速度を下げる"
 
 #: kirigami_ui/InputsOverlay.qml:179
 msgid "Increase Velocity"
-msgstr ""
+msgstr "速度を上げる"
 
 #: kirigami_ui/InputsOverlay.qml:187
 msgid "Stop"
@@ -560,11 +560,11 @@ msgstr ""
 
 #: kirigami_ui/PrompterPage.qml:78
 msgid "Decrease velocity"
-msgstr ""
+msgstr "速度を下げる"
 
 #: kirigami_ui/PrompterPage.qml:92
 msgid "Increase velocity"
-msgstr ""
+msgstr "速度を上げる"
 
 #: kirigami_ui/PrompterPage.qml:117
 msgctxt "Reading region indicates where a talent should be reading from"
@@ -1072,7 +1072,7 @@ msgstr ""
 #: kirigami_ui/WheelSettingsOverlay.qml:38
 msgctxt "Label at wheel settings overlay"
 msgid "Use scroll as velocity dial"
-msgstr ""
+msgstr "スクロールをベロシティ ダイヤルとして使用する"
 
 #: kirigami_ui/WheelSettingsOverlay.qml:57
 msgid "Enable throttling"
@@ -1114,12 +1114,12 @@ msgstr ""
 #: main.cpp:121 rc.cpp:1
 msgctxt "NAME OF TRANSLATORS"
 msgid "Your names"
-msgstr ""
+msgstr "Javier Cordero"
 
 #: main.cpp:121 rc.cpp:2
 msgctxt "EMAIL OF TRANSLATORS"
 msgid "Your emails"
-msgstr ""
+msgstr "javiercorderoperez@gmail.com"
 
 #: main.cpp:129
 msgid "Failed to load icons from fontello.ttf"
@@ -1275,4 +1275,4 @@ msgstr ""
 
 #: prompter/Prompter.qml:1665
 msgid "Return to edit mode"
-msgstr ""
+msgstr "編集モードに戻る"
