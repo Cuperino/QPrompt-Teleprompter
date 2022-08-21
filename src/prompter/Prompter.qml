@@ -1682,11 +1682,11 @@ Flickable {
                 activeFocusOnPress: false
             }
             PropertyChanges {
-                target: decreaseVelocityButton
+                target: prompterPage.decreaseVelocityButton
                 enabled: true
             }
             PropertyChanges {
-                target: increaseVelocityButton
+                target: prompterPage.increaseVelocityButton
                 enabled: true
             }
             PropertyChanges {
