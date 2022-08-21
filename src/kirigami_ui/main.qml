@@ -30,6 +30,7 @@ import Qt.labs.platform 1.1 as Labs
 import Qt.labs.settings 1.0
 
 import com.cuperino.qprompt.document 1.0
+//import com.cuperino.qprompt.prompterwindow 1.0
 
 Kirigami.ApplicationWindow {
     id: root
@@ -856,6 +857,10 @@ Kirigami.ApplicationWindow {
         backgroundOpacity: root.pageStack.currentItem.prompterBackground.opacity
         // Forward to prompter and not editor to prevent editing from projection windows
         forwardTo: root.pageStack.currentItem.viewport
+    }
+
+    PrompterWindow {
+        id: prompterWindow
     }
 
     // Prompter Page Contents
