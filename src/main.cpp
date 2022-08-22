@@ -35,6 +35,8 @@
 #include <QQmlFileSelector>
 #include <QQuickStyle>
 #include <QIcon>
+#include <QQuickView>
+//#include "appwindow.h"
 
 #if defined(Q_OS_IOS) || defined(Q_OS_WASM) || defined(Q_OS_WATCHOS) || defined(Q_OS_QNX)
 #include "../3rdparty/kirigami/src/kirigamiplugin.h"
@@ -133,11 +135,12 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
     qmlRegisterType<DocumentHandler>(QPROMPT_URI".document", 1, 0, "DocumentHandler");
     qmlRegisterType<MarkersModel>(QPROMPT_URI".markers", 1, 0, "MarkersModel");
     qmlRegisterType<QmlUtil>(QPROMPT_URI".qmlutil", 1, 0, "QmlUtil");
-    qmlRegisterType<QPromptWindow>(QPROMPT_URI".prompterwindow", 1, 0, "QPromptWindow");
+    QQmlApplicationEngine engine;
+//    qmlRegisterType<PrompterWindow>(QPROMPT_URI".prompterwindow", 1, 0, "PrompterWindow");
 
     qRegisterMetaType<Marker>();
 
-    static QQmlApplicationEngine engine;
+
     // #ifdef Q_OS_ANDROID
     // KirigamiPlugin::getInstance().registerTypes();
     // #endif
@@ -219,6 +222,9 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
     if (engine.rootObjects().isEmpty()) {
         return -1;
     }
+
+    PrompterWindow view(&engine, 0);
+    view.show();
 
 //     qDebug() << QProcess::systemEnvironment();
 
