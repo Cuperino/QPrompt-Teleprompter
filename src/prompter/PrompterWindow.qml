@@ -27,7 +27,7 @@ import QtQuick.Window 2.15
 import QtQuick.Layouts 1.12
 import Qt.labs.settings 1.0
 
-import com.cuperino.qprompt.prompterwindow 1.0
+import com.cuperino.qprompt.qpromptwindow 1.0
 
 QPromptWindow {
     title: i18n("Prompter")
@@ -41,16 +41,16 @@ QPromptWindow {
 //    Settings {
 //        category: "prompterWindow"
 //    }
-//    PrompterView {
-//        id: externalViewport
-//        anchors.fill: parent
-//        prompter.state: Prompter.States.Prompting
-//        prompter.performFileOperations: false
-//    }
-//    Item {
-//        id: decreaseVelocityButton
-//    }
-//    Item {
-//        id: increaseVelocityButton
-//    }
+    PrompterView {
+        id: externalViewport
+        anchors.fill: parent
+        prompter.state: Prompter.States.Prompting
+        prompter.performFileOperations: false
+    }
+    Item {
+        id: decreaseVelocityButton
+    }
+    Item {
+        id: increaseVelocityButton
+    }
 }

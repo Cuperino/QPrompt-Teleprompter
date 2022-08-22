@@ -31,16 +31,16 @@ import Qt.labs.settings 1.0
 Item {
     id: prompterPage
     anchors.fill: parent
-    Label {
-        text: "test"
-        anchors.fill: parent
-    }
-//    PrompterView {
-//        id: externalViewport
+//    Label {
+//        text: "test"
 //        anchors.fill: parent
-//        prompter.state: Prompter.States.Prompting
-//        prompter.performFileOperations: false
 //    }
+    PrompterView {
+        id: externalViewport
+        anchors.fill: parent
+        prompter.state: Prompter.States.Prompting
+        prompter.performFileOperations: false
+    }
     Item {
         id: decreaseVelocityButton
     }

@@ -859,9 +859,9 @@ Kirigami.ApplicationWindow {
         forwardTo: root.pageStack.currentItem.viewport
     }
 
-    PrompterWindow {
-        id: prompterWindow
-    }
+//    PrompterWindow {
+//        id: prompterWindow
+//    }
 
     // Prompter Page Contents
     //pageStack.initialPage:
