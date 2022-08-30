@@ -60,7 +60,6 @@
 #include "../qprompt_version.h"
 #include "prompter/documenthandler.h"
 #include "qt/qmlutil.hpp"
-#include "prompter/prompterwindow.h"
 
 #define QPROMPT_URI "com.cuperino.qprompt"
 
@@ -222,9 +221,6 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
     if (engine.rootObjects().isEmpty()) {
         return -1;
     }
-
-    PrompterWindow view(&engine, 0);
-    view.show();
 
 //     qDebug() << QProcess::systemEnvironment();
 

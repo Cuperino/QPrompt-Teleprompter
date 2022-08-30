@@ -27,8 +27,6 @@ set(qprompt_SRCS
     main.cpp
     prompter/documenthandler.cpp
     prompter/markersmodel.cpp
-    prompter/qpromptwindow.cpp
-    prompter/prompterwindow.cpp
     #prompter/timer/promptertimer.cpp
     #${qprompt_QM_LOADER}
 )
@@ -36,8 +34,6 @@ set(qprompt_SRCS
 set(qprompt_HDRS
     prompter/documenthandler.h
     prompter/markersmodel.h
-    prompter/qpromptwindow.h
-    prompter/prompterwindow.h
     #prompter/timer/promptertimer.h
     qt/qmlutil.hpp
 )
@@ -75,12 +71,12 @@ if (NOT APPLE AND NOT ANDROID)
     )
 endif()
 
-## Qt5QuickCompiler is an optional dependency. Script must check that it is present before attempting to use
-#if (Qt${QT_VERSION_MAJOR}QuickCompiler_FOUND)
-    #qtquick_compiler_add_resources(qprompt_QML_SRCS qml.qrc)
-#else ()
-set(qprompt_QML_SRCS qml.qrc)
-#endif()
+# Qt5QuickCompiler is an optional dependency. Script must check that it is present before attempting to use
+if (Qt${QT_VERSION_MAJOR}QuickCompiler_FOUND)
+    qtquick_compiler_add_resources(qprompt_QML_SRCS qml.qrc)
+else ()
+    set(qprompt_QML_SRCS qml.qrc)
+endif()
 
 
 if(ANDROID)
