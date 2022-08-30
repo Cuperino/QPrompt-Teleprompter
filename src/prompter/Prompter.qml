@@ -1527,10 +1527,6 @@ Flickable {
                 activeFocusOnPress: true
                 //cursorPosition: editor.positionAt(0, editor.position + 1*overlay.height/2)
             }
-//            PropertyChanges {
-//                target: root
-//                //prompterVisibility: Kirigami.ApplicationWindow.Maximized
-//            }
             PropertyChanges {
                 target: prompter
                 z: 2
@@ -1558,10 +1554,6 @@ Flickable {
                 target: timer
                 elapsedMilliseconds: 0
             }
-            //PropertyChanges {
-            //    target: root
-            //    //prompterVisibility: Kirigami.ApplicationWindow.FullScreen
-            //}
             PropertyChanges {
                 target: promptingButton
                 text: viewport.countdown.enabled ? i18n("Begin countdown") : i18n("Start prompting")
@@ -1609,10 +1601,6 @@ Flickable {
                 target: timer
                 elapsedMilliseconds: 0
             }
-//            PropertyChanges {
-//                target: root
-//                //prompterVisibility: Kirigami.ApplicationWindow.FullScreen
-//            }
             PropertyChanges {
                 target: promptingButton
                 text: i18n("Skip countdown")
@@ -1656,10 +1644,6 @@ Flickable {
                 running: prompter.__play && prompter.__velocity>0
                 elapsedMilliseconds: 0
             }
-//            PropertyChanges {
-//                target: root
-//                //prompterVisibility: Kirigami.ApplicationWindow.FullScreen
-//            }
             PropertyChanges {
                 target: promptingButton
                 text: i18n("Return to edit mode")

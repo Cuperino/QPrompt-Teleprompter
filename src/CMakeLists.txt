@@ -71,12 +71,12 @@ if (NOT APPLE AND NOT ANDROID)
     )
 endif()
 
-## Qt5QuickCompiler is an optional dependency. Script must check that it is present before attempting to use
-#if (Qt${QT_VERSION_MAJOR}QuickCompiler_FOUND)
-    #qtquick_compiler_add_resources(qprompt_QML_SRCS qml.qrc)
-#else ()
-set(qprompt_QML_SRCS qml.qrc)
-#endif()
+# Qt5QuickCompiler is an optional dependency. Script must check that it is present before attempting to use
+if (Qt${QT_VERSION_MAJOR}QuickCompiler_FOUND)
+    qtquick_compiler_add_resources(qprompt_QML_SRCS qml.qrc)
+else ()
+    set(qprompt_QML_SRCS qml.qrc)
+endif()
 
 
 if(ANDROID)
