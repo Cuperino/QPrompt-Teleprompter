@@ -29,6 +29,7 @@ import Qt.labs.settings 1.0
 Item {
     id: projectionManager
     readonly property alias model: projectionModel
+    readonly property alias projections: projections
     readonly property alias alertDialog: alertDialog
     readonly property real internalBackgroundOpacity: backgroundOpacity // /2+0.5
     property int defaultDisplayMode: 0
@@ -257,26 +258,19 @@ Item {
                     opacity: 0.6
                 }
                 // The actual projection
-                Image {
+                ShaderEffect {
                     id: img
-                    source: model.flip ? model.p : false
-                    // Keep loading asynchronous. Improve responsiveness of main thread.
-                    asynchronous: true
-                    // Cache image if it's not being re-scaled so it could be used on n projection without much additional cost.
-                    cache: !reScale
-                    // Mirror Horizontally: Save time by mirroring image on copy instead of flipping the result
-                    mirror: model.flip===2 || model.flip===4
-                    // Keep image vertically centered relative to the window's MouseArea, which fills the window.
+                    property variant source: projectionManager.forwardTo
                     anchors.horizontalCenter: parent.horizontalCenter
                     anchors.verticalCenter: parent.verticalCenter
-                    // Set width and height to source size depending on whether or not the image will be re-scaled.
-                    fillMode: reScale ? Image.PreserveAspectFit : Image.Pad
-                    width: !reScale ? sourceSize.width : parent.width
-                    height: !reScale ? sourceSize.height : (parent.width/sourceSize.width) * sourceSize.height
-                    // Mirror Vertically: do a transformation for the vertical flip. There's no trick to get a performance gain here.
+                    width: reScale ? parent.width : projectionManager.forwardTo.width
+                    height: reScale ? (parent.width / projectionManager.forwardTo.width) * projectionManager.forwardTo.height : projectionManager.forwardTo.height
+                    blending: false
                     transform: Scale {
-                        origin.y: img.paintedHeight/2
+                        origin.y: img.height/2
                         yScale: model.flip===3 || model.flip===4 ? -1 : 1
+                        origin.x: img.width/2
+                        xScale: model.flip===2 || model.flip===4 ? -1 : 1
                     }
                     Rectangle {
                         color: "#000000"
@@ -327,8 +321,9 @@ Item {
                         checked: model.flip===2 || model.flip===4
                         flat: parseInt(forwardTo.prompter.state) === Prompter.States.Countdown || parseInt(forwardTo.prompter.state) === Prompter.States.Prompting
                         onClicked: {
-                            model.flip = model.flip + (model.flip % 2 ? 1 : -1)
-                            projectionManager.update()
+                            model.flip = model.flip + (model.flip % 2 ? 1 : -1);
+                            projectionManager.update();
+                            root.update();
                         }
                         transform: Scale {
                             origin.y: horizontalFlipButton.height/2
@@ -346,8 +341,9 @@ Item {
                         checked: model.flip===3 || model.flip===4
                         flat: parseInt(forwardTo.prompter.state) === Prompter.States.Countdown || parseInt(forwardTo.prompter.state) === Prompter.States.Prompting
                         onClicked: {
-                            model.flip = (model.flip + 1) % 4 + 1
-                            projectionManager.update()
+                            model.flip = (model.flip + 1) % 4 + 1;
+                            projectionManager.update();
+                            root.update();
                         }
                         transform: Scale {
                             origin.y: verticalFlipButton.height/2
