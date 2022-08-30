@@ -30,7 +30,6 @@ import Qt.labs.platform 1.1 as Labs
 import Qt.labs.settings 1.0
 
 import com.cuperino.qprompt.document 1.0
-//import com.cuperino.qprompt.prompterwindow 1.0
 
 Kirigami.ApplicationWindow {
     id: root
@@ -843,12 +842,15 @@ Kirigami.ApplicationWindow {
             q = p;
         }
         // Update Projections
-        if (projectionManager.isEnabled && root.visible && projectionManager.model.count)
-            root.pageStack.currentItem.viewport.grabToImage(function(p) {
-                // Recount projections on each for loop iteration to prevent value from going stale because a window was closed from a different thread.
-                for (var i=0; i<projectionManager.model.count; i++)
-                    projectionManager.model.setProperty(i, "p", String(p.url));
-            });
+        if (projectionManager.isEnabled && root.visible/* && projectionManager.model.count*/)
+            // Recount projections on each for loop iteration to prevent value from going stale because a window was closed from a different thread.
+            for (var i=0; i<projectionManager.projections.count; i++) {
+                const w = projectionManager.projections.objectAt(i)
+                if (w/*!==null*/)
+                    w.update();
+                else
+                    break;
+            }
     }
 
     ProjectionsManager {
@@ -858,13 +860,6 @@ Kirigami.ApplicationWindow {
         // Forward to prompter and not editor to prevent editing from projection windows
         forwardTo: root.pageStack.currentItem.viewport
     }
-
-//    PrompterWindow {
-//        id: prompterWindow
-//    }
-
-    // Prompter Page Contents
-    //pageStack.initialPage:
 
     // Prompter Page Component {
     Component {
