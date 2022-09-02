@@ -1,0 +1,87 @@
+SUMMARY="Personal Teleprompter App"
+DESCRIPTION="Teleprompter software for all video creators.
+Built with ease of use, productivity, control accuracy, and smooth performance in mind."
+HOMEPAGE="https://qprompt.app"
+COPYRIGHT="2022 Javier O. Cordero Perez"
+LICENSE="GNU GPL v3"
+REVISION="1"
+SOURCE_URI="https://github.com/Cuperino/QPrompt/archive/refs/tags/v$portVersion.tar.gz"
+CHECKSUM_SHA256="7433940ca36f914feb2afa1e1350682080333e39fe6b4c4f4a07b1ca06dbc2fa"
+SOURCE_DIR="QPrompt-$portVersion"
+#ADDITIONAL_FILES="qprompt.rdef.in"
+
+ARCHITECTURES="all !x86_gcc2"
+SECONDARY_ARCHITECTURES="x86"
+
+PROVIDES="
+	qprompt$secondaryArchSuffix = $portVersion
+	app:QPrompt = $portVersion
+	"
+REQUIRES="
+	haiku$secondaryArchSuffix
+	qqc2_desktop_style$secondaryArchSuffix
+	qthaikuplugins$secondaryArchSuffix
+	kcoreaddons$secondaryArchSuffix
+	ki18n$secondaryArchSuffix
+	kiconthemes$secondaryArchSuffix
+	kirigami$secondaryArchSuffix
+	kcrash$secondaryArchSuffix
+	qt5$secondaryArchSuffix
+	"
+
+BUILD_REQUIRES="
+	haiku${secondaryArchSuffix}_devel
+	qqc2_desktop_style${secondaryArchSuffix}_devel
+	extra_cmake_modules$secondaryArchSuffix
+	kcoreaddons${secondaryArchSuffix}_devel
+	ki18n${secondaryArchSuffix}_devel
+	kiconthemes${secondaryArchSuffix}_devel
+	kirigami${secondaryArchSuffix}_devel
+	kcrash${secondaryArchSuffix}_devel
+	qt5${secondaryArchSuffix}_devel
+	"
+BUILD_PREREQUIRES="
+	cmd:g++$secondaryArchSuffix
+	cmd:cmake
+	cmd:make
+	"
+
+BUILD()
+{
+	sed -e '/ecm_find_qmlmodule/ s/^#*/#/' -i CMakeLists.txt
+
+	cmake -B build -S . \
+	-DCMAKE_BUILD_TYPE=Release \
+	$cmakeDirArgs \
+	-DCMAKE_INSTALL_BINDIR=$appsDir \
+	-DECM_DIR=/system/data/cmake/Modules/ECM/cmake -L
+
+	make -C build $jobArgs
+}
+
+INSTALL()
+{
+	make -C build install
+
+	mv $appsDir/qprompt $appsDir/QPrompt
+
+	mkdir -p $docDir
+	mv $prefix/doc/qprompt/* $docDir
+	rm -rf $prefix/doc
+
+#	local APP_SIGNATURE="application/x-vnd.cuperino.qprompt"
+#	local MAJOR="echo "$portVersion" | cut -d. -f1"
+#	local MIDDLE="echo "$portVersion" | cut -d. -f2"
+#	local MINOR="echo "$portVersion" | cut -d. -f3"
+#	local LONG_INFO="$SUMMARY"
+#	sed
+#	-e "s|@APP_SIGNATURE@|$APP_SIGNATURE|"
+#	-e "s|@MAJOR@|$MAJOR|"
+#	-e "s|@MIDDLE@|$MIDDLE|"
+#	-e "s|@MINOR@|$MINOR|"
+#	-e "s|@LONG_INFO@|$LONG_INFO|"
+#	$portDir/additional-files/qprompt.rdef.in > qprompt.rdef
+
+#	addResourcesToBinaries qprompt.rdef $appsDir/QPrompt
+	addAppDeskbarSymlink $appsDir/QPrompt
+}
