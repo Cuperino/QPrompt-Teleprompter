@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/Cuperino/QPrompt/issues/new/choose\n"
 "POT-Creation-Date: 2022-08-18 00:34-0400\n"
-"PO-Revision-Date: 2022-09-03 23:58+0000\n"
-"Last-Translator: marttin carvalho <marttinhoblue@gmail.com>\n"
+"PO-Revision-Date: 2022-09-04 00:00+0000\n"
+"Last-Translator: Lia Guedes <liaguedes9999@gmail.com>\n"
 "Language-Team: Portuguese <http://l10n.cuperino.com/projects/qprompt/"
 "qprompt-app/pt/>\n"
 "Language: pt\n"
@@ -296,25 +296,25 @@ msgstr "Iniciar/Pausar"
 
 #: kirigami_ui/InputsOverlay.qml:203
 msgid "Reverse"
-msgstr ""
+msgstr "Rolar ao contrário"
 
 #: kirigami_ui/InputsOverlay.qml:211
 msgid "Rewind"
-msgstr ""
+msgstr "Voltar o texto"
 
 #: kirigami_ui/InputsOverlay.qml:219
 msgid "Fast Forward"
-msgstr ""
+msgstr "Avançar rápido"
 
 #: kirigami_ui/InputsOverlay.qml:227
 msgctxt "Skip to earlier text while prompting or editing"
 msgid "Move Backwards"
-msgstr ""
+msgstr "Mover para cima"
 
 #: kirigami_ui/InputsOverlay.qml:235
 msgctxt "Skip to later text while prompting or editing"
 msgid "Move Forward"
-msgstr ""
+msgstr "Mover para baixo"
 
 #: kirigami_ui/InputsOverlay.qml:243
 msgctxt "Skip to closest marker behind of current position"
