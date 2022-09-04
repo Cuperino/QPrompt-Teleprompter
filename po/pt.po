@@ -9,7 +9,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: https://github.com/Cuperino/QPrompt/issues/new/choose\n"
 "POT-Creation-Date: 2022-08-18 00:34-0400\n"
 "PO-Revision-Date: 2022-09-04 00:09+0000\n"
-"Last-Translator: Lia Guedes <liaguedes9999@gmail.com>\n"
+"Last-Translator: marttin carvalho <marttinhoblue@gmail.com>\n"
 "Language-Team: Portuguese <http://l10n.cuperino.com/projects/qprompt/"
 "qprompt-app/pt/>\n"
 "Language: pt\n"
@@ -529,32 +529,32 @@ msgstr "C&aractere"
 #: kirigami_ui/main.qml:681
 msgctxt "Global menu actions. Opens dialog to color currently selected text."
 msgid "Fo&nt Color"
-msgstr ""
+msgstr "Co&r da Fonte"
 
 #: kirigami_ui/main.qml:687
 msgctxt "Global menu actions. Menu regarding input settings."
 msgid "Controls"
-msgstr ""
+msgstr "Controles"
 
 #: kirigami_ui/main.qml:720
 msgctxt "Global menu actions"
 msgid "&Help"
-msgstr ""
+msgstr "&Ajuda"
 
 #: kirigami_ui/main.qml:723
 msgctxt "Global menu actions"
 msgid "Report &Bug…"
-msgstr ""
+msgstr "Reportar &Bugs…"
 
 #: kirigami_ui/main.qml:742
 msgctxt "Global menu actions. Load about page. \"About AppName\""
 msgid "Abou&t %1"
-msgstr ""
+msgstr "Sobr&e %1"
 
 #: kirigami_ui/MarkersDrawer.qml:114
 msgctxt "Close sidebar listing user defined markers"
 msgid "Close Marker List"
-msgstr ""
+msgstr "Fechar lista de marcadores"
 
 #: kirigami_ui/PrompterPage.qml:70
 msgid "Start prompter"
