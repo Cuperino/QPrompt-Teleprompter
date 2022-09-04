@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/Cuperino/QPrompt/issues/new/choose\n"
 "POT-Creation-Date: 2022-08-18 00:34-0400\n"
-"PO-Revision-Date: 2022-09-04 00:00+0000\n"
-"Last-Translator: Lia Guedes <liaguedes9999@gmail.com>\n"
+"PO-Revision-Date: 2022-09-04 00:02+0000\n"
+"Last-Translator: marttin carvalho <marttinhoblue@gmail.com>\n"
 "Language-Team: Portuguese <http://l10n.cuperino.com/projects/qprompt/"
 "qprompt-app/pt/>\n"
 "Language: pt\n"
@@ -338,33 +338,33 @@ msgstr ""
 #: kirigami_ui/main.qml:456
 msgctxt "Global menu actions"
 msgid "&File"
-msgstr ""
+msgstr "&Arquivo"
 
 #: kirigami_ui/main.qml:471
 msgctxt "Main menu and global menu actions"
 msgid "Save &As…"
-msgstr ""
+msgstr "Salvar &Como…"
 
 #: kirigami_ui/main.qml:482
 msgctxt "Global menu actions"
 msgid "&Edit"
-msgstr ""
+msgstr "&Editar"
 
 #: kirigami_ui/main.qml:485
 msgctxt "Global menu actions"
 msgid "&Undo"
-msgstr ""
+msgstr "&Desfazer"
 
 #: kirigami_ui/main.qml:490
 msgctxt "Global menu actions"
 msgid "&Redo"
-msgstr ""
+msgstr "&Refazer"
 
 #: kirigami_ui/main.qml:496 prompter/Prompter.qml:1255
 #: prompter/Prompter.qml:1302
 msgctxt "Global menu and editor context menu actions"
 msgid "&Copy"
-msgstr ""
+msgstr "&Copiar"
 
 #: kirigami_ui/main.qml:501 prompter/Prompter.qml:1260
 #: prompter/Prompter.qml:1307
