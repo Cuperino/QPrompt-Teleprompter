@@ -922,11 +922,11 @@ msgstr "Desligado"
 
 #: kirigami_ui/TelemetryPage.qml:95
 msgid "Basic program and system information"
-msgstr ""
+msgstr "Informações básicas do programa e do sistema"
 
 #: kirigami_ui/TelemetryPage.qml:96
 msgid "Application version"
-msgstr ""
+msgstr "Versão do aplicativo"
 
 #: kirigami_ui/TelemetryPage.qml:97
 msgid "Platform information"
