@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/Cuperino/QPrompt/issues/new/choose\n"
 "POT-Creation-Date: 2022-08-18 00:34-0400\n"
-"PO-Revision-Date: 2022-09-04 00:03+0000\n"
-"Last-Translator: marttin carvalho <marttinhoblue@gmail.com>\n"
+"PO-Revision-Date: 2022-09-04 00:06+0000\n"
+"Last-Translator: Lia Guedes <liaguedes9999@gmail.com>\n"
 "Language-Team: Portuguese <http://l10n.cuperino.com/projects/qprompt/"
 "qprompt-app/pt/>\n"
 "Language: pt\n"
@@ -381,71 +381,71 @@ msgstr "&Colar"
 #: kirigami_ui/main.qml:513
 msgctxt "Global menu actions"
 msgid "&View"
-msgstr ""
+msgstr "&Visualização"
 
 #: kirigami_ui/main.qml:516
 msgctxt "Global menu actions"
 msgid "Full &screen"
-msgstr ""
+msgstr "Tela &Cheia"
 
 #: kirigami_ui/main.qml:530
 msgctxt "Global menu actions. Indicators highlight reading region."
 msgid "&Indicators"
-msgstr ""
+msgstr "&Indicadores"
 
 #: kirigami_ui/main.qml:532
 msgctxt "Global menu actions. Shows pointer to the left of the reading region."
 msgid "&Left Pointer"
-msgstr ""
+msgstr "&Ponteiro esquerdo"
 
 #: kirigami_ui/main.qml:538
 msgctxt ""
 "Global menu actions. Shows pointer to the right of the reading region."
 msgid "&Right Pointer"
-msgstr ""
+msgstr "&Ponteiro direito"
 
 #: kirigami_ui/main.qml:544
 msgctxt ""
 "Global menu actions. Shows pointers to the left and right of the reading "
 "region."
 msgid "B&oth Pointers"
-msgstr ""
+msgstr "D&ois ponteiros"
 
 #: kirigami_ui/main.qml:551
 msgctxt "Global menu actions. Translucent bars indicate reading region."
 msgid "&Bars"
-msgstr ""
+msgstr "&Barras"
 
 #: kirigami_ui/main.qml:557
 msgctxt ""
 "Global menu actions. Translucent bars and left pointer indicate reading "
 "region."
 msgid "Bars Lef&t"
-msgstr ""
+msgstr "Barras e esquerd&a"
 
 #: kirigami_ui/main.qml:563
 msgctxt ""
 "Global menu actions. Translucent bars and right pointer indicate reading "
 "region."
 msgid "Bars Ri&ght"
-msgstr ""
+msgstr "Barras e di&reita"
 
 #: kirigami_ui/main.qml:570
 msgctxt "Global menu actions. Enable all reading region indicators."
 msgid "&All"
-msgstr ""
+msgstr "&Todos"
 
 #: kirigami_ui/main.qml:576
 msgctxt "Global menu actions. Disable all reading region indicators."
 msgid "&Hidden"
-msgstr ""
+msgstr "&Esconder"
 
 #: kirigami_ui/main.qml:583
 msgctxt ""
 "Global menu actions. Reading region indicates where a talent should be "
 "reading from."
 msgid "Readin&g region"
-msgstr ""
+msgstr "Regiã&o de leitura"
 
 #: kirigami_ui/main.qml:585
 msgctxt "Global menu actions. Align reading region to top of prompter."
