@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/Cuperino/QPrompt/issues/new/choose\n"
 "POT-Creation-Date: 2022-08-18 00:34-0400\n"
-"PO-Revision-Date: 2022-09-04 00:02+0000\n"
-"Last-Translator: Lia Guedes <liaguedes9999@gmail.com>\n"
+"PO-Revision-Date: 2022-09-04 00:03+0000\n"
+"Last-Translator: marttin carvalho <marttinhoblue@gmail.com>\n"
 "Language-Team: Portuguese <http://l10n.cuperino.com/projects/qprompt/"
 "qprompt-app/pt/>\n"
 "Language: pt\n"
@@ -370,13 +370,13 @@ msgstr "&Copiar"
 #: prompter/Prompter.qml:1307
 msgctxt "Global menu and editor context menu actions"
 msgid "Cu&t"
-msgstr ""
+msgstr "Corta&r"
 
 #: kirigami_ui/main.qml:506 prompter/Prompter.qml:1265
 #: prompter/Prompter.qml:1312
 msgctxt "Global menu and editor context menu actions"
 msgid "&Paste"
-msgstr ""
+msgstr "&Colar"
 
 #: kirigami_ui/main.qml:513
 msgctxt "Global menu actions"
