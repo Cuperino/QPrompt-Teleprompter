@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/Cuperino/QPrompt/issues/new/choose\n"
 "POT-Creation-Date: 2022-08-18 00:34-0400\n"
-"PO-Revision-Date: 2022-09-04 00:48+0000\n"
-"Last-Translator: marttin carvalho <marttinhoblue@gmail.com>\n"
+"PO-Revision-Date: 2022-09-04 00:50+0000\n"
+"Last-Translator: Lia Guedes <liaguedes9999@gmail.com>\n"
 "Language-Team: Portuguese <http://l10n.cuperino.com/projects/qprompt/"
 "qprompt-app/pt/>\n"
 "Language: pt\n"
@@ -1176,13 +1176,12 @@ msgid "Close"
 msgstr "Fechar"
 
 #: prompter/ProjectionsManager.qml:379
-#, fuzzy
 msgid ""
 "For screen projections to show, you must set at least one screen to a "
 "projection setting other than \"Off\""
 msgstr ""
 "Para que as projeções de tela sejam exibidas, você deve definir pelo menos "
-"uma tela para uma configuração de projeção que não esteja \"Desligado\""
+"uma tela para uma configuração de projeção que não seja \"Desligado\""
 
 #: prompter/PrompterBackground.qml:121
 msgid "JPEG image"
@@ -1227,28 +1226,28 @@ msgstr "welcome_pt-br.html"
 
 #: prompter/Prompter.qml:1105
 msgid "User welcome loaded"
-msgstr ""
+msgstr "Boas vindas ao usuário carregadas"
 
 #: prompter/Prompter.qml:1126 prompter/Prompter.qml:1232
 msgctxt "Saved FILE_NAME"
 msgid "Saved %1"
-msgstr "Salvo %1"
+msgstr "Salvo em %1"
 
 #: prompter/Prompter.qml:1181 prompter/Prompter.qml:1214
 #: prompter/Prompter.qml:1218
 msgctxt "Format name (FORMAT_EXTENSION)"
 msgid "Hypertext Markup Language (%1)"
-msgstr ""
+msgstr "Hypertext Markup Language (%1)"
 
 #: prompter/Prompter.qml:1182
 msgctxt "Format name (FORMAT_EXTENSION)"
 msgid "Markdown (%1)"
-msgstr ""
+msgstr "Markdown (%1)"
 
 #: prompter/Prompter.qml:1183 prompter/Prompter.qml:1219
 msgctxt "Format name (FORMAT_EXTENSION)"
 msgid "Plain Text (%1)"
-msgstr ""
+msgstr "Apenas texto (%1)"
 
 #. i18nc("Format name (FORMAT_EXTENSION)", "OpenDocument Format Text Document (%1)", "ODT") + "(*.odt *.ODT)",
 #. i18nc("Format name (FORMAT_EXTENSION)", "AbiWord Document (%1)", "ABW") + "(*.abw *.ABW *.zabw *.ZABW)",
