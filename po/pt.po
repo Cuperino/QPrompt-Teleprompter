@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/Cuperino/QPrompt/issues/new/choose\n"
 "POT-Creation-Date: 2022-08-18 00:34-0400\n"
-"PO-Revision-Date: 2022-09-04 00:07+0000\n"
+"PO-Revision-Date: 2022-09-04 00:09+0000\n"
 "Last-Translator: Lia Guedes <liaguedes9999@gmail.com>\n"
 "Language-Team: Portuguese <http://l10n.cuperino.com/projects/qprompt/"
 "qprompt-app/pt/>\n"
@@ -484,47 +484,47 @@ msgstr "For&mato"
 #: kirigami_ui/main.qml:622
 msgctxt "Global menu actions"
 msgid "&Bold"
-msgstr ""
+msgstr "&Negrito"
 
 #: kirigami_ui/main.qml:628
 msgctxt "Global menu actions"
 msgid "&Italic"
-msgstr ""
+msgstr "&Itálico"
 
 #: kirigami_ui/main.qml:634
 msgctxt "Global menu actions"
 msgid "&Underline"
-msgstr ""
+msgstr "&Sublinhado"
 
 #: kirigami_ui/main.qml:641
 msgctxt "Global menu and editor actions. Text alignment."
 msgid "Align &Left"
-msgstr ""
+msgstr "Alinhar à &Esquerda"
 
 #: kirigami_ui/main.qml:641
 msgctxt "Global menu and editor actions. Text alignment."
 msgid "Align &Right"
-msgstr ""
+msgstr "Alinhar à direita"
 
 #: kirigami_ui/main.qml:652
 msgctxt "Global menu actions. Text alignment."
 msgid "Align Cen&ter"
-msgstr ""
+msgstr "Alinhar ao cen&tro"
 
 #: kirigami_ui/main.qml:658
 msgctxt "Global menu actions. Text alignment."
 msgid "Align &Right"
-msgstr ""
+msgstr "Alinhar à &direita"
 
 #: kirigami_ui/main.qml:658
 msgctxt "Global menu actions. Text alignment."
 msgid "Align &Left"
-msgstr ""
+msgstr "Alinhar à esquerda"
 
 #: kirigami_ui/main.qml:677
 msgctxt "Global menu actions. Opens dialog to format currently selected text."
 msgid "C&haracter"
-msgstr ""
+msgstr "C&aractere"
 
 #: kirigami_ui/main.qml:681
 msgctxt "Global menu actions. Opens dialog to color currently selected text."
