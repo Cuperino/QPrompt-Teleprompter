@@ -9,7 +9,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: https://github.com/Cuperino/QPrompt/issues/new/choose\n"
 "POT-Creation-Date: 2022-08-18 00:34-0400\n"
 "PO-Revision-Date: 2022-09-04 00:21+0000\n"
-"Last-Translator: Lia Guedes <liaguedes9999@gmail.com>\n"
+"Last-Translator: marttin carvalho <marttinhoblue@gmail.com>\n"
 "Language-Team: Portuguese <http://l10n.cuperino.com/projects/qprompt/"
 "qprompt-app/pt/>\n"
 "Language: pt\n"
@@ -860,19 +860,19 @@ msgstr "Escala de projeção"
 
 #: kirigami_ui/PrompterPage.qml:731
 msgid "Leave Fullscreen"
-msgstr ""
+msgstr "Sair da tela cheia"
 
 #: kirigami_ui/PrompterPage.qml:731
 msgid "Fullscreen"
-msgstr ""
+msgstr "Tela cheia"
 
 #: kirigami_ui/RemotePage.qml:28
 msgid "Remote Control"
-msgstr ""
+msgstr "Controle remoto"
 
 #: kirigami_ui/TelemetryPage.qml:30
 msgid "Telemetry Settings"
-msgstr ""
+msgstr "Configurações de telemetria"
 
 #: kirigami_ui/TelemetryPage.qml:55
 msgid ""
