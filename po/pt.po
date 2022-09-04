@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/Cuperino/QPrompt/issues/new/choose\n"
 "POT-Creation-Date: 2022-08-18 00:34-0400\n"
-"PO-Revision-Date: 2022-09-04 00:13+0000\n"
+"PO-Revision-Date: 2022-09-04 00:14+0000\n"
 "Last-Translator: marttin carvalho <marttinhoblue@gmail.com>\n"
 "Language-Team: Portuguese <http://l10n.cuperino.com/projects/qprompt/"
 "qprompt-app/pt/>\n"
@@ -662,7 +662,7 @@ msgstr "Ponteiro direito"
 
 #: kirigami_ui/PrompterPage.qml:280
 msgid "Right pointer indicates reading region"
-msgstr ""
+msgstr "Ponteiro direito indica região de leitura"
 
 #: kirigami_ui/PrompterPage.qml:290
 msgctxt "Shows pointers to the left and right of the reading region"
