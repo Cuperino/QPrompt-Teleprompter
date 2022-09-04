@@ -9,7 +9,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: https://github.com/Cuperino/QPrompt/issues/new/choose\n"
 "POT-Creation-Date: 2022-08-18 00:34-0400\n"
 "PO-Revision-Date: 2022-09-04 00:18+0000\n"
-"Last-Translator: Lia Guedes <liaguedes9999@gmail.com>\n"
+"Last-Translator: marttin carvalho <marttinhoblue@gmail.com>\n"
 "Language-Team: Portuguese <http://l10n.cuperino.com/projects/qprompt/"
 "qprompt-app/pt/>\n"
 "Language: pt\n"
@@ -744,7 +744,7 @@ msgstr ""
 
 #: kirigami_ui/PrompterPage.qml:422 kirigami_ui/PrompterPage.qml:445
 msgid "Countdown"
-msgstr ""
+msgstr "Contagem regressiva"
 
 #: kirigami_ui/PrompterPage.qml:428
 msgctxt ""
