@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/Cuperino/QPrompt/issues/new/choose\n"
 "POT-Creation-Date: 2022-08-18 00:34-0400\n"
-"PO-Revision-Date: 2022-09-04 00:31+0000\n"
-"Last-Translator: marttin carvalho <marttinhoblue@gmail.com>\n"
+"PO-Revision-Date: 2022-09-04 00:48+0000\n"
+"Last-Translator: Lia Guedes <liaguedes9999@gmail.com>\n"
 "Language-Team: Portuguese <http://l10n.cuperino.com/projects/qprompt/"
 "qprompt-app/pt/>\n"
 "Language: pt\n"
@@ -1000,11 +1000,11 @@ msgstr "Presença de imagem de fundo"
 
 #: kirigami_ui/TelemetryPage.qml:164
 msgid "Help us understand how users operate QPrompt"
-msgstr "Nos ajude a entender como os usuários usam QPrompt"
+msgstr "Nos ajude a entender como os usuários operam o QPrompt"
 
 #: kirigami_ui/TelemetryPage.qml:165
 msgid "Random session ID"
-msgstr ""
+msgstr "ID de sessão aleatório"
 
 #: kirigami_ui/TelemetryPage.qml:166
 msgid "Session number"
@@ -1025,51 +1025,51 @@ msgstr "Dimensões de área do prompt"
 
 #: kirigami_ui/TelemetryPage.qml:170
 msgid "Dimensions of lines of text being prompted"
-msgstr ""
+msgstr "Dimensão das linhas de texto durante o prompt"
 
 #: kirigami_ui/TelemetryPage.qml:171
 msgid "Font settings per block of lines of text being prompted"
-msgstr ""
+msgstr "Configurações de fonte por bloco de linhas de texto durante o prompt"
 
 #: kirigami_ui/TelemetryPage.qml:172
 msgid "Languages likely present in the text being prompted"
-msgstr ""
+msgstr "Linguagens prováveis de estarem presentes no texto durante o prompt"
 
 #: kirigami_ui/TelemetryPage.qml:173
 msgid "Prompt starting line number and position"
-msgstr ""
+msgstr "Linha e posição do início de prompt"
 
 #: kirigami_ui/TelemetryPage.qml:174
 msgid "Manual scroll start and end timestamps"
-msgstr ""
+msgstr "Timestamps de início e fim da rolagem manual"
 
 #: kirigami_ui/TelemetryPage.qml:175
 msgid "Scroll starting line number and position"
-msgstr ""
+msgstr "Linha e posição do início da rolagem"
 
 #: kirigami_ui/TelemetryPage.qml:176
 msgid "Scroll end line number and position"
-msgstr ""
+msgstr "Número e posição da última linha de rolagem"
 
 #: kirigami_ui/TelemetryPage.qml:177
 msgid "Scroll duration"
-msgstr ""
+msgstr "Duração de rolagem"
 
 #: kirigami_ui/TelemetryPage.qml:178
 msgid "Prompt duration"
-msgstr ""
+msgstr "Duração de prompt"
 
 #: kirigami_ui/TelemetryPage.qml:179
 msgid "Velocity changes with timestamp"
-msgstr ""
+msgstr "Mudanças de velocidade com timestamp"
 
 #: kirigami_ui/TelemetryPage.qml:180
 msgid "Source of changes to velocity"
-msgstr ""
+msgstr "Fonte de mudanças de velocidade"
 
 #: kirigami_ui/TelemetryPage.qml:181
 msgid "Source of manual changes to scroll position"
-msgstr ""
+msgstr "Fonte de mudanças manuais da posição de rolagem"
 
 #: kirigami_ui/TelemetryPage.qml:190
 msgid ""
@@ -1078,92 +1078,98 @@ msgid ""
 "not to collect any of the actual text and images that you work with, so I "
 "ask you: please leave telemetry enabled."
 msgstr ""
+"Esta informação é muito importante para mim, Javier, o autor do projeto, e "
+"ela poderia fazer o desenvolvimento do QPrompt sustentável. Fiz além do "
+"esperado pra não coletar nenhum do texto e das imagens que vocês trabalham, "
+"então eu vos peço: Por favor, deixem a telemetria ligada."
 
 #: kirigami_ui/WheelSettingsOverlay.qml:31
 msgid "Wheel and touchpad scroll settings"
-msgstr ""
+msgstr "Configurações de scroll da rolagem e do touchpad"
 
 #: kirigami_ui/WheelSettingsOverlay.qml:38
 msgctxt "Label at wheel settings overlay"
 msgid "Use scroll as velocity dial"
-msgstr ""
+msgstr "Usar a roda do mouse como controle de velocidade"
 
 #: kirigami_ui/WheelSettingsOverlay.qml:57
 msgid "Enable throttling"
-msgstr ""
+msgstr "Habilitar diminuição de potência"
 
 #: kirigami_ui/WheelSettingsOverlay.qml:74
 msgid "Throttle factor"
-msgstr ""
+msgstr "Diminuição de potência"
 
 #: kirigami_ui/WheelSettingsOverlay.qml:93
 msgid "Enable throttling for use with touchpads, disable for precise scolling."
 msgstr ""
+"Diminua a potência para uso com touchpad, desabilite para ter uma rolagem "
+"precisa."
 
 #: main.cpp:90
 msgid "© 2021 Javier O. Cordero Pérez"
-msgstr ""
+msgstr "© 2021 Javier O. Cordero Pérez"
 
 #: main.cpp:91
 msgid "© 2021-%1 Javier O. Cordero Pérez"
-msgstr ""
+msgstr "© 2021-%1 Javier O. Cordero Pérez"
 
 #: main.cpp:94
 msgid "Personal teleprompter software for all video makers."
-msgstr ""
+msgstr "Software pessoal de teleprompter para todos criadores de vídeo."
 
 #: main.cpp:106
 msgid "Author"
-msgstr ""
+msgstr "Autor"
 
 #: main.cpp:113
 msgid "Wrote keycode to string QML abstraction"
-msgstr ""
+msgstr "Programar abstração de QML para converter códigos de teclado para texto"
 
 #: main.cpp:119
 msgctxt "Active software tester"
 msgid "Active tester"
-msgstr ""
+msgstr "Testador ativo"
 
 #: main.cpp:121 rc.cpp:1
 msgctxt "NAME OF TRANSLATORS"
 msgid "Your names"
-msgstr ""
+msgstr "Lia Guedes e Marttin Carvalho"
 
 #: main.cpp:121 rc.cpp:2
 msgctxt "EMAIL OF TRANSLATORS"
 msgid "Your emails"
-msgstr ""
+msgstr "contatoliaguedes@gmail.com, marttinhoblue@gmail.com"
 
 #: main.cpp:129
 msgid "Failed to load icons from fontello.ttf"
-msgstr ""
+msgstr "Não foi possível carregar ícones da fonte fontello.ttf"
 
 #: prompter/Countdown.qml:246
 msgid "Countdown Setup"
-msgstr ""
+msgstr "Configurações de contagem regressiva"
 
 #: prompter/Countdown.qml:255
 msgid "Countdown iterations"
-msgstr ""
+msgstr "Iterações de contagem regressiva"
 
 #: prompter/Countdown.qml:274
 msgid "Disappear within 1 second to go"
 msgid_plural "Disappear within %1 seconds to go"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Desaparecer em 1 segundo para iniciar"
+msgstr[1] "Desaparecer em %1 segundos para iniciar"
 
 #: prompter/Find.qml:125
 msgid "End reached, searching from the start."
-msgstr ""
+msgstr "Fim alcançado, procurando do início."
 
 #: prompter/Find.qml:127
 msgid "Start reached, searching from the end."
-msgstr ""
+msgstr "Início alcançado, procurando do final."
 
 #: prompter/ProjectionsManager.qml:166
 msgid "Projection Window"
-msgstr ""
+msgstr "Janela de projeção"
 
 #: prompter/ProjectionsManager.qml:311
 msgid "Close"
