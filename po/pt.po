@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/Cuperino/QPrompt/issues/new/choose\n"
 "POT-Creation-Date: 2022-08-18 00:34-0400\n"
-"PO-Revision-Date: 2022-09-04 00:09+0000\n"
-"Last-Translator: marttin carvalho <marttinhoblue@gmail.com>\n"
+"PO-Revision-Date: 2022-09-04 00:13+0000\n"
+"Last-Translator: Lia Guedes <liaguedes9999@gmail.com>\n"
 "Language-Team: Portuguese <http://l10n.cuperino.com/projects/qprompt/"
 "qprompt-app/pt/>\n"
 "Language: pt\n"
@@ -558,79 +558,82 @@ msgstr "Fechar lista de marcadores"
 
 #: kirigami_ui/PrompterPage.qml:70
 msgid "Start prompter"
-msgstr ""
+msgstr "Iniciar prompter"
 
 #: kirigami_ui/PrompterPage.qml:78
 msgid "Decrease velocity"
-msgstr ""
+msgstr "Diminuir velocidade"
 
 #: kirigami_ui/PrompterPage.qml:92
 msgid "Increase velocity"
-msgstr ""
+msgstr "Aumentar velocidade"
 
 #: kirigami_ui/PrompterPage.qml:117
 msgctxt "Reading region indicates where a talent should be reading from"
 msgid "Reading region"
-msgstr ""
+msgstr "Região de leitura"
 
 #: kirigami_ui/PrompterPage.qml:119
 msgctxt "Reading region indicates where a talent should be reading from"
 msgid "Change reading region placement"
-msgstr ""
+msgstr "Mudar a posição da região de leitura"
 
 #: kirigami_ui/PrompterPage.qml:125
 msgctxt "Align reading region to top of prompter"
 msgid "Top"
-msgstr ""
+msgstr "Em cima"
 
 #: kirigami_ui/PrompterPage.qml:127
 msgid "Move reading region to the top, convenient for use with webcams"
 msgstr ""
+"Mover a região de leitura para cima, mais conveniente para uso com webcams"
 
 #: kirigami_ui/PrompterPage.qml:138
 msgctxt "Align reading region to vertical center of prompter"
 msgid "Middle"
-msgstr ""
+msgstr "Meio"
 
 #: kirigami_ui/PrompterPage.qml:140
 msgid "Move reading region to the vertical center"
-msgstr ""
+msgstr "Mover a região de leitura para o centro verticalmente"
 
 #: kirigami_ui/PrompterPage.qml:151
 msgctxt "Align reading region to bottom of prompter"
 msgid "Bottom"
-msgstr ""
+msgstr "Embaixo"
 
 #: kirigami_ui/PrompterPage.qml:153
 msgid "Move reading region to the bottom"
-msgstr ""
+msgstr "Mover a região de leitura para baixo"
 
 #: kirigami_ui/PrompterPage.qml:164
 msgctxt ""
 "Refers to free placement. Enables drag and drop positioning of reading "
 "region."
 msgid "Free"
-msgstr ""
+msgstr "Livre"
 
 #: kirigami_ui/PrompterPage.qml:166
 msgid "Move reading region freely by dragging and dropping"
-msgstr ""
+msgstr "Mover região de leitura livremente ao arrastar e soltar"
 
 #: kirigami_ui/PrompterPage.qml:177
 msgctxt ""
 "Fix positioning of reading region to what was set in \"Free placement\" mode"
 msgid "Custom"
-msgstr ""
+msgstr "Customizada"
 
 #: kirigami_ui/PrompterPage.qml:179
 msgid "Fix reading region to the position set using free placement mode"
 msgstr ""
+"Fixar a região de leitura pela posição configurada usando o posicionamento "
+"livre"
 
 #: kirigami_ui/PrompterPage.qml:205
 msgctxt ""
 "Height of reading region relative to single line height. E.g. Height: 2.5"
 msgid "Height: %1"
-msgstr ""
+msgstr "Altura: %1"
 
 #: kirigami_ui/PrompterPage.qml:259
 msgctxt "Indicators highlight reading region"
