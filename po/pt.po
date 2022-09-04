@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/Cuperino/QPrompt/issues/new/choose\n"
 "POT-Creation-Date: 2022-08-18 00:34-0400\n"
-"PO-Revision-Date: 2022-09-04 00:14+0000\n"
+"PO-Revision-Date: 2022-09-04 00:17+0000\n"
 "Last-Translator: Lia Guedes <liaguedes9999@gmail.com>\n"
 "Language-Team: Portuguese <http://l10n.cuperino.com/projects/qprompt/"
 "qprompt-app/pt/>\n"
@@ -661,63 +661,63 @@ msgstr "Ponteiro direito"
 
 #: kirigami_ui/PrompterPage.qml:280
 msgid "Right pointer indicates reading region"
-msgstr "Ponteiro direito indica região de leitura"
+msgstr "Ponteiro direito indica a região de leitura"
 
 #: kirigami_ui/PrompterPage.qml:290
 msgctxt "Shows pointers to the left and right of the reading region"
 msgid "Both pointers"
-msgstr ""
+msgstr "Dois ponteiros"
 
 #: kirigami_ui/PrompterPage.qml:293
 msgid "Left and right pointers indicate reading region"
-msgstr ""
+msgstr "Ponteiros esquerdo e direito indicam a região de leitura"
 
 #: kirigami_ui/PrompterPage.qml:303
 msgctxt "Translucent bars indicate reading region"
 msgid "Bar"
-msgstr ""
+msgstr "Barra"
 
 #: kirigami_ui/PrompterPage.qml:306
 msgid "Translucent bars indicate reading region"
-msgstr ""
+msgstr "Barra translúcida indica a região de leitura"
 
 #: kirigami_ui/PrompterPage.qml:316
 msgctxt "Translucent bars and left pointer indicate reading region"
 msgid "Bar && left"
-msgstr ""
+msgstr "Barra && ponteiro esquerdo"
 
 #: kirigami_ui/PrompterPage.qml:319
 msgid "Translucent bars and left pointer indicate reading region"
-msgstr ""
+msgstr "Barra translúcida e ponteiro esquerdo indicam a região de leitura"
 
 #: kirigami_ui/PrompterPage.qml:329
 msgctxt "Translucent bars and right pointer indicate reading region"
 msgid "Bar && right"
-msgstr ""
+msgstr "Barra && Ponteiro direito"
 
 #: kirigami_ui/PrompterPage.qml:332
 msgid "Translucent bars and right pointer indicate reading region"
-msgstr ""
+msgstr "Barra translúcida e ponteiro direito indicam a região de leitura"
 
 #: kirigami_ui/PrompterPage.qml:342
 msgctxt "Enable all reading region indicators"
 msgid "All"
-msgstr ""
+msgstr "Tudo"
 
 #: kirigami_ui/PrompterPage.qml:345
 msgctxt "Enable all reading region indicators"
 msgid "Use all reading region indicators"
-msgstr ""
+msgstr "Usar todos indicadores de região de leitura"
 
 #: kirigami_ui/PrompterPage.qml:355
 msgctxt "Disable all reading region indicators"
 msgid "Hidden"
-msgstr ""
+msgstr "Esconder"
 
 #: kirigami_ui/PrompterPage.qml:358
 msgctxt "Disable all reading region indicators"
 msgid "Disable reading region indicators"
-msgstr ""
+msgstr "Desabilita os indicadores de região de leitura"
 
 #: kirigami_ui/PrompterPage.qml:369
 msgid "Timer"
