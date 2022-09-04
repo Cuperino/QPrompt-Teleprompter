@@ -9,7 +9,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: https://github.com/Cuperino/QPrompt/issues/new/choose\n"
 "POT-Creation-Date: 2022-08-18 00:34-0400\n"
 "PO-Revision-Date: 2022-09-04 00:18+0000\n"
-"Last-Translator: marttin carvalho <marttinhoblue@gmail.com>\n"
+"Last-Translator: Lia Guedes <liaguedes9999@gmail.com>\n"
 "Language-Team: Portuguese <http://l10n.cuperino.com/projects/qprompt/"
 "qprompt-app/pt/>\n"
 "Language: pt\n"
@@ -730,7 +730,7 @@ msgstr "Cronômetro"
 #: kirigami_ui/PrompterPage.qml:389
 msgctxt "Estimated Time of Arrival"
 msgid "ETA"
-msgstr ""
+msgstr "Tempo estimado de leitura"
 
 #: kirigami_ui/PrompterPage.qml:398
 msgctxt "Color of timer text"
