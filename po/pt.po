@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/Cuperino/QPrompt/issues/new/choose\n"
 "POT-Creation-Date: 2022-08-18 00:34-0400\n"
-"PO-Revision-Date: 2022-09-04 00:17+0000\n"
+"PO-Revision-Date: 2022-09-04 00:18+0000\n"
 "Last-Translator: marttin carvalho <marttinhoblue@gmail.com>\n"
 "Language-Team: Portuguese <http://l10n.cuperino.com/projects/qprompt/"
 "qprompt-app/pt/>\n"
@@ -735,7 +735,7 @@ msgstr ""
 #: kirigami_ui/PrompterPage.qml:398
 msgctxt "Color of timer text"
 msgid "Timer color"
-msgstr ""
+msgstr "Cor do temporizador"
 
 #: kirigami_ui/PrompterPage.qml:409
 msgctxt "Reset color of timer text back to default"
