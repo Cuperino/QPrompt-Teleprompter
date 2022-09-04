@@ -9,7 +9,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: https://github.com/Cuperino/QPrompt/issues/new/choose\n"
 "POT-Creation-Date: 2022-08-18 00:34-0400\n"
 "PO-Revision-Date: 2022-09-04 00:14+0000\n"
-"Last-Translator: marttin carvalho <marttinhoblue@gmail.com>\n"
+"Last-Translator: Lia Guedes <liaguedes9999@gmail.com>\n"
 "Language-Team: Portuguese <http://l10n.cuperino.com/projects/qprompt/"
 "qprompt-app/pt/>\n"
 "Language: pt\n"
@@ -641,10 +641,9 @@ msgid "Indicators"
 msgstr "Indicadores"
 
 #: kirigami_ui/PrompterPage.qml:260
-#, fuzzy
 msgctxt "Indicators highlight reading region"
 msgid "Change reading region indicators"
-msgstr "Muda indicador de região de leitura"
+msgstr "Alterar indicador de região de leitura"
 
 #: kirigami_ui/PrompterPage.qml:264
 msgctxt "Shows pointer to the left of the reading region"
@@ -653,7 +652,7 @@ msgstr "Ponteiro esquerdo"
 
 #: kirigami_ui/PrompterPage.qml:267
 msgid "Left pointer indicates reading region"
-msgstr "Ponteiro esquerdo indica região de leitura"
+msgstr "Ponteiro esquerdo indica a região de leitura"
 
 #: kirigami_ui/PrompterPage.qml:277
 msgctxt "Shows pointer to the right of the reading region"
