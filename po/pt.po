@@ -9,7 +9,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: https://github.com/Cuperino/QPrompt/issues/new/choose\n"
 "POT-Creation-Date: 2022-08-18 00:34-0400\n"
 "PO-Revision-Date: 2022-09-04 00:00+0000\n"
-"Last-Translator: marttin carvalho <marttinhoblue@gmail.com>\n"
+"Last-Translator: Lia Guedes <liaguedes9999@gmail.com>\n"
 "Language-Team: Portuguese <http://l10n.cuperino.com/projects/qprompt/"
 "qprompt-app/pt/>\n"
 "Language: pt\n"
@@ -319,7 +319,7 @@ msgstr "Mover para baixo"
 #: kirigami_ui/InputsOverlay.qml:243
 msgctxt "Skip to closest marker behind of current position"
 msgid "Go to Previous Marker"
-msgstr "Ir para marcador anterior"
+msgstr "Ir para o marcador anterior"
 
 #: kirigami_ui/InputsOverlay.qml:251
 msgctxt "Skip to closest marker ahead of current position"
