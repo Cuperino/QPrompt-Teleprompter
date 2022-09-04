@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/Cuperino/QPrompt/issues/new/choose\n"
 "POT-Creation-Date: 2022-08-18 00:34-0400\n"
-"PO-Revision-Date: 2022-09-04 00:56+0000\n"
-"Last-Translator: marttin carvalho <marttinhoblue@gmail.com>\n"
+"PO-Revision-Date: 2022-09-05 01:44+0000\n"
+"Last-Translator: Lia Guedes <liaguedes9999@gmail.com>\n"
 "Language-Team: Portuguese <http://l10n.cuperino.com/projects/qprompt/"
 "qprompt-app/pt/>\n"
 "Language: pt\n"
@@ -93,7 +93,6 @@ msgstr "Usar scroll do mouse como &velocidade"
 
 #: kirigami_ui/+android/main.qml:257 kirigami_ui/main.qml:273
 #: kirigami_ui/main.qml:690 kirigami_ui/+windows/main.qml:264
-#, fuzzy
 msgctxt ""
 "Main menu and global menu actions. Touchpad scrolling and mouse wheel use "
 "have no effect while prompting."
@@ -145,7 +144,6 @@ msgstr "Carregar o texto de &boas-vindas"
 
 #: kirigami_ui/+android/main.qml:380 kirigami_ui/main.qml:435
 #: kirigami_ui/+windows/main.qml:402
-#, fuzzy
 msgid "Darth mode"
 msgstr "Modo galáctico"
 
@@ -1011,7 +1009,6 @@ msgid "Session number"
 msgstr "Número da sessão"
 
 #: kirigami_ui/TelemetryPage.qml:167
-#, fuzzy
 msgid "Session prompt number"
 msgstr "Número da sessão do prompt"
 
@@ -1208,7 +1205,6 @@ msgid "Double tap to go back to the start"
 msgstr "Toque duplo para voltar ao início"
 
 #: prompter/Prompter.qml:730
-#, fuzzy
 msgid "Auto rewind cancelled"
 msgstr "Cancelar volta automática do texto"
 
