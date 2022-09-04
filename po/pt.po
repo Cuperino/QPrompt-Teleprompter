@@ -9,7 +9,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: https://github.com/Cuperino/QPrompt/issues/new/choose\n"
 "POT-Creation-Date: 2022-08-18 00:34-0400\n"
 "PO-Revision-Date: 2022-09-04 00:25+0000\n"
-"Last-Translator: Lia Guedes <liaguedes9999@gmail.com>\n"
+"Last-Translator: marttin carvalho <marttinhoblue@gmail.com>\n"
 "Language-Team: Portuguese <http://l10n.cuperino.com/projects/qprompt/"
 "qprompt-app/pt/>\n"
 "Language: pt\n"
@@ -896,29 +896,29 @@ msgstr ""
 
 #: kirigami_ui/TelemetryPage.qml:69
 msgid "Telemetry"
-msgstr ""
+msgstr "Telemetria"
 
 #: kirigami_ui/TelemetryPage.qml:72
 msgid "Enabled"
-msgstr ""
+msgstr "Habilitado"
 
 #: kirigami_ui/TelemetryPage.qml:72
 msgid "Disabled"
-msgstr ""
+msgstr "Desabilitado"
 
 #: kirigami_ui/TelemetryPage.qml:81 kirigami_ui/TelemetryPage.qml:103
 #: kirigami_ui/TelemetryPage.qml:125 kirigami_ui/TelemetryPage.qml:151
 #: kirigami_ui/WheelSettingsOverlay.qml:42
 #: kirigami_ui/WheelSettingsOverlay.qml:61
 msgid "On"
-msgstr ""
+msgstr "Ligado"
 
 #: kirigami_ui/TelemetryPage.qml:81 kirigami_ui/TelemetryPage.qml:103
 #: kirigami_ui/TelemetryPage.qml:125 kirigami_ui/TelemetryPage.qml:151
 #: kirigami_ui/WheelSettingsOverlay.qml:42
 #: kirigami_ui/WheelSettingsOverlay.qml:61
 msgid "Off"
-msgstr ""
+msgstr "Desligado"
 
 #: kirigami_ui/TelemetryPage.qml:95
 msgid "Basic program and system information"
