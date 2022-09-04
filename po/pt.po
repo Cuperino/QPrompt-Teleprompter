@@ -324,7 +324,7 @@ msgstr "Ir para marcador anterior"
 #: kirigami_ui/InputsOverlay.qml:251
 msgctxt "Skip to closest marker ahead of current position"
 msgid "Go to Next Marker"
-msgstr ""
+msgstr "Ir para o próximo marcador"
 
 #: kirigami_ui/main.qml:322 kirigami_ui/+windows/main.qml:309
 msgctxt ""
