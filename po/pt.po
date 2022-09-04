@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/Cuperino/QPrompt/issues/new/choose\n"
 "POT-Creation-Date: 2022-08-18 00:34-0400\n"
-"PO-Revision-Date: 2022-09-04 00:18+0000\n"
+"PO-Revision-Date: 2022-09-04 00:21+0000\n"
 "Last-Translator: Lia Guedes <liaguedes9999@gmail.com>\n"
 "Language-Team: Portuguese <http://l10n.cuperino.com/projects/qprompt/"
 "qprompt-app/pt/>\n"
@@ -750,113 +750,113 @@ msgstr "Contagem regressiva"
 msgctxt ""
 "Enables automatic alignment of prompter and text with the reading region"
 msgid "Auto frame"
-msgstr ""
+msgstr "Auto-alinhar"
 
 #: kirigami_ui/PrompterPage.qml:462
 msgctxt "Auto start countdown upon prompter getting started"
 msgid "Auto start"
-msgstr ""
+msgstr "Começar automaticamente"
 
 #: kirigami_ui/PrompterPage.qml:465
 msgid "Start countdown automatically"
-msgstr ""
+msgstr "Começar a contagem automaticamente"
 
 #: kirigami_ui/PrompterPage.qml:475
 msgctxt "Configure countdown duration"
 msgid "Set duration"
-msgstr ""
+msgstr "Definir duração"
 
 #: kirigami_ui/PrompterPage.qml:493
 msgctxt "Prompter orientation and mirroring"
 msgid "Orientation"
-msgstr ""
+msgstr "Orientação"
 
 #. i18n("H Flip")
 #: kirigami_ui/PrompterPage.qml:510 prompter/ProjectionsManager.qml:324
 msgctxt "Mirrors prompter horizontally"
 msgid "Horizontal mirror"
-msgstr ""
+msgstr "Espelhar horizontalmente"
 
 #. i18n("V Flip")
 #: kirigami_ui/PrompterPage.qml:527 prompter/ProjectionsManager.qml:343
 msgctxt "Mirrors prompter vertically"
 msgid "Vertical mirror"
-msgstr ""
+msgstr "Espelhar verticalmente"
 
 #: kirigami_ui/PrompterPage.qml:555
 msgctxt "Prompter rotation is disabled"
 msgid "Don't rotate"
-msgstr ""
+msgstr "Não girar"
 
 #: kirigami_ui/PrompterPage.qml:567
 msgctxt "Rotate prompter 90 degrees to the right"
 msgid "90° clockwise"
-msgstr ""
+msgstr "90° no sentido horário"
 
 #: kirigami_ui/PrompterPage.qml:579
 msgctxt "Rotate prompter 90 degrees to the left"
 msgid "90° counter"
-msgstr ""
+msgstr "90° no sentido anti-horário"
 
 #: kirigami_ui/PrompterPage.qml:605
 msgctxt "Background refers to what appears behind the prompter"
 msgid "Background"
-msgstr ""
+msgstr "Fundo"
 
 #: kirigami_ui/PrompterPage.qml:608
 msgctxt "Set background image"
 msgid "Set image"
-msgstr ""
+msgstr "Definir imagem"
 
 #: kirigami_ui/PrompterPage.qml:619
 msgctxt "Set background color tint"
 msgid "Set color"
-msgstr ""
+msgstr "Definir cor"
 
 #: kirigami_ui/PrompterPage.qml:630
 msgctxt "Set background settings back to default"
 msgid "Clear"
-msgstr ""
+msgstr "Limpar"
 
 #: kirigami_ui/PrompterPage.qml:644
 msgctxt "Screens refers to computer displays"
 msgid "Screens"
-msgstr ""
+msgstr "Monitores"
 
 #: kirigami_ui/PrompterPage.qml:685
 msgctxt "Screen is disabled"
 msgid "Off"
-msgstr ""
+msgstr "Desligado"
 
 #: kirigami_ui/PrompterPage.qml:686
 msgctxt "Screen is enabled but mirroring is disabled"
 msgid "No Mirror"
-msgstr ""
+msgstr "Sem espelhar"
 
 #: kirigami_ui/PrompterPage.qml:687
 msgctxt "Horizontal mirroring"
 msgid "H Mirror"
-msgstr ""
+msgstr "Espelho horizontal"
 
 #: kirigami_ui/PrompterPage.qml:688
 msgctxt "Vertical mirroring"
 msgid "V Mirror"
-msgstr ""
+msgstr "Espelho vertical"
 
 #: kirigami_ui/PrompterPage.qml:689
 msgctxt "Horizontal and vertical mirroring"
 msgid "HV Mirror"
-msgstr ""
+msgstr "Espelho vertical e horizontal"
 
 #: kirigami_ui/PrompterPage.qml:696
 msgctxt "Display prompter copies onto displays"
 msgid "Enable projection"
-msgstr ""
+msgstr "Habilitar projeção"
 
 #: kirigami_ui/PrompterPage.qml:708
 msgctxt "Enable scaling prompter copies being projected onto displays"
 msgid "Scale projection"
-msgstr ""
+msgstr "Escala de projeção"
 
 #: kirigami_ui/PrompterPage.qml:731
 msgid "Leave Fullscreen"
