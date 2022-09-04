@@ -1273,7 +1273,7 @@ msgstr "Co&r…"
 #: prompter/Prompter.qml:1279 prompter/Prompter.qml:1326
 msgctxt "Editor context menu actions"
 msgid "Hi&ghlight…"
-msgstr "Re&alce de texto…"
+msgstr "Re&alçar texto…"
 
 #: prompter/Prompter.qml:1291
 msgctxt "Editor context menu actions"
