@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/Cuperino/QPrompt/issues/new/choose\n"
 "POT-Creation-Date: 2022-08-18 00:34-0400\n"
-"PO-Revision-Date: 2022-09-04 00:25+0000\n"
-"Last-Translator: marttin carvalho <marttinhoblue@gmail.com>\n"
+"PO-Revision-Date: 2022-09-04 00:31+0000\n"
+"Last-Translator: Lia Guedes <liaguedes9999@gmail.com>\n"
 "Language-Team: Portuguese <http://l10n.cuperino.com/projects/qprompt/"
 "qprompt-app/pt/>\n"
 "Language: pt\n"
@@ -930,51 +930,53 @@ msgstr "Versão do aplicativo"
 
 #: kirigami_ui/TelemetryPage.qml:97
 msgid "Platform information"
-msgstr ""
+msgstr "Informações da plataforma"
 
 #: kirigami_ui/TelemetryPage.qml:98
 msgid "Qt version information"
-msgstr ""
+msgstr "Informação da versão do Qt"
 
 #: kirigami_ui/TelemetryPage.qml:99 kirigami_ui/TelemetryPage.qml:120
 msgid "Locale information (timezone and keyboard layout)"
-msgstr ""
+msgstr "Informações locais (fuso-horário e layout do teclado)"
 
 #: kirigami_ui/TelemetryPage.qml:116
 msgid "Program run statistics: Help us study user retention"
-msgstr ""
+msgstr "Estatísticas do programa: Ajude-nos a estudar retenção do usuário"
 
 #: kirigami_ui/TelemetryPage.qml:117
 msgid "Randomly generated install ID"
-msgstr ""
+msgstr "ID de instalação gerado aleatoriamente"
 
 #: kirigami_ui/TelemetryPage.qml:118
 msgid "Launch times"
-msgstr ""
+msgstr "Vezes que o programa foi iniciado"
 
 #: kirigami_ui/TelemetryPage.qml:119
 msgid "Usage time"
-msgstr ""
+msgstr "Tempo de uso"
 
 #: kirigami_ui/TelemetryPage.qml:138
 msgid "Feature use frequency: Help us know what features are most important"
 msgstr ""
+"Frequência de uso de recursos: Ajude-nos a saber quais recursos são mais "
+"importantes"
 
 #: kirigami_ui/TelemetryPage.qml:139
 msgid "Flip settings"
-msgstr ""
+msgstr "Configurações de espelho"
 
 #: kirigami_ui/TelemetryPage.qml:140
 msgid "Reading region settings"
-msgstr ""
+msgstr "Configurações de região de leitura"
 
 #: kirigami_ui/TelemetryPage.qml:141
 msgid "Pointer settings"
-msgstr ""
+msgstr "Configurações de ponteiro"
 
 #: kirigami_ui/TelemetryPage.qml:142
 msgid "Countdown settings"
-msgstr ""
+msgstr "Configurações de contagem regressiva"
 
 #: kirigami_ui/TelemetryPage.qml:143
 msgid "Keyboard shortcut settings"
