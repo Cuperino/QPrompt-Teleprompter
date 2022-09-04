@@ -9,7 +9,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: https://github.com/Cuperino/QPrompt/issues/new/choose\n"
 "POT-Creation-Date: 2022-08-18 00:34-0400\n"
 "PO-Revision-Date: 2022-09-04 00:31+0000\n"
-"Last-Translator: Lia Guedes <liaguedes9999@gmail.com>\n"
+"Last-Translator: marttin carvalho <marttinhoblue@gmail.com>\n"
 "Language-Team: Portuguese <http://l10n.cuperino.com/projects/qprompt/"
 "qprompt-app/pt/>\n"
 "Language: pt\n"
@@ -980,27 +980,27 @@ msgstr "Configurações de contagem regressiva"
 
 #: kirigami_ui/TelemetryPage.qml:143
 msgid "Keyboard shortcut settings"
-msgstr ""
+msgstr "Configurações de atalhos de teclado"
 
 #: kirigami_ui/TelemetryPage.qml:144
 msgid "Input control settings"
-msgstr ""
+msgstr "Configurações de controles de entrada"
 
 #: kirigami_ui/TelemetryPage.qml:145
 msgid "Base speed and acceleration curvature settings"
-msgstr ""
+msgstr "Configurações de velocidade base e curvatura de aceleração"
 
 #: kirigami_ui/TelemetryPage.qml:146
 msgid "Background color and opacity settings"
-msgstr ""
+msgstr "Cor do fundo e configurações de opacidade"
 
 #: kirigami_ui/TelemetryPage.qml:147
 msgid "Presence of a background image"
-msgstr ""
+msgstr "Presença de imagem de fundo"
 
 #: kirigami_ui/TelemetryPage.qml:164
 msgid "Help us understand how users operate QPrompt"
-msgstr ""
+msgstr "Nos ajude a entender como os usuários usam QPrompt"
 
 #: kirigami_ui/TelemetryPage.qml:165
 msgid "Random session ID"
@@ -1008,19 +1008,20 @@ msgstr ""
 
 #: kirigami_ui/TelemetryPage.qml:166
 msgid "Session number"
-msgstr ""
+msgstr "Número da sessão"
 
 #: kirigami_ui/TelemetryPage.qml:167
+#, fuzzy
 msgid "Session prompt number"
-msgstr ""
+msgstr "Número da sessão do prompt"
 
 #: kirigami_ui/TelemetryPage.qml:168
 msgid "Window dimensions"
-msgstr ""
+msgstr "Dimensões de janela"
 
 #: kirigami_ui/TelemetryPage.qml:169
 msgid "Prompt area dimensions"
-msgstr ""
+msgstr "Dimensões de área do prompt"
 
 #: kirigami_ui/TelemetryPage.qml:170
 msgid "Dimensions of lines of text being prompted"
