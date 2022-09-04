@@ -9,7 +9,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: https://github.com/Cuperino/QPrompt/issues/new/choose\n"
 "POT-Creation-Date: 2022-08-18 00:34-0400\n"
 "PO-Revision-Date: 2022-09-04 00:48+0000\n"
-"Last-Translator: Lia Guedes <liaguedes9999@gmail.com>\n"
+"Last-Translator: marttin carvalho <marttinhoblue@gmail.com>\n"
 "Language-Team: Portuguese <http://l10n.cuperino.com/projects/qprompt/"
 "qprompt-app/pt/>\n"
 "Language: pt\n"
@@ -1173,53 +1173,57 @@ msgstr "Janela de projeção"
 
 #: prompter/ProjectionsManager.qml:311
 msgid "Close"
-msgstr ""
+msgstr "Fechar"
 
 #: prompter/ProjectionsManager.qml:379
+#, fuzzy
 msgid ""
 "For screen projections to show, you must set at least one screen to a "
 "projection setting other than \"Off\""
 msgstr ""
+"Para que as projeções de tela sejam exibidas, você deve definir pelo menos "
+"uma tela para uma configuração de projeção que não esteja \"Desligado\""
 
 #: prompter/PrompterBackground.qml:121
 msgid "JPEG image"
-msgstr ""
+msgstr "Imagem JPEG"
 
 #: prompter/PrompterBackground.qml:122
 msgid "PNG image"
-msgstr ""
+msgstr "Imagem PNG"
 
 #: prompter/PrompterBackground.qml:123
 msgid "GIF animation"
-msgstr ""
+msgstr "Animação GIF"
 
 #: prompter/Prompter.qml:620
 msgid "Error loading file…"
-msgstr ""
+msgstr "Erro ao carregar arquivo…"
 
 #: prompter/Prompter.qml:720
 msgid "Press and hold to go back to the start"
-msgstr ""
+msgstr "Pressione e segure para voltar para o inicio"
 
 #: prompter/Prompter.qml:722
 msgid "Double tap to go back to the start"
-msgstr ""
+msgstr "Toque duplo para voltar ao início"
 
 #: prompter/Prompter.qml:730
+#, fuzzy
 msgid "Auto rewind cancelled"
-msgstr ""
+msgstr "Cancelar volta automática do texto"
 
 #: prompter/Prompter.qml:778
 msgid "The End"
-msgstr ""
+msgstr "Fim"
 
 #: prompter/Prompter.qml:1091
 msgid "New document"
-msgstr ""
+msgstr "Novo documento"
 
 #: prompter/Prompter.qml:1100
 msgid "welcome_en.html"
-msgstr ""
+msgstr "welcome_pt-br.html"
 
 #: prompter/Prompter.qml:1105
 msgid "User welcome loaded"
@@ -1228,7 +1232,7 @@ msgstr ""
 #: prompter/Prompter.qml:1126 prompter/Prompter.qml:1232
 msgctxt "Saved FILE_NAME"
 msgid "Saved %1"
-msgstr ""
+msgstr "Salvo %1"
 
 #: prompter/Prompter.qml:1181 prompter/Prompter.qml:1214
 #: prompter/Prompter.qml:1218
