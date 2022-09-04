@@ -9,7 +9,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: https://github.com/Cuperino/QPrompt/issues/new/choose\n"
 "POT-Creation-Date: 2022-08-18 00:34-0400\n"
 "PO-Revision-Date: 2022-09-04 00:07+0000\n"
-"Last-Translator: marttin carvalho <marttinhoblue@gmail.com>\n"
+"Last-Translator: Lia Guedes <liaguedes9999@gmail.com>\n"
 "Language-Team: Portuguese <http://l10n.cuperino.com/projects/qprompt/"
 "qprompt-app/pt/>\n"
 "Language: pt\n"
@@ -450,7 +450,7 @@ msgstr "Regiã&o de leitura"
 #: kirigami_ui/main.qml:585
 msgctxt "Global menu actions. Align reading region to top of prompter."
 msgid "&Top"
-msgstr "&Acima"
+msgstr "&Em cima"
 
 #: kirigami_ui/main.qml:591
 msgctxt ""
@@ -461,20 +461,20 @@ msgstr "&Centro"
 #: kirigami_ui/main.qml:597
 msgctxt "Global menu actions. Align reading region to bottom of prompter."
 msgid "&Bottom"
-msgstr "&Abaixo"
+msgstr "&Embaixo"
 
 #: kirigami_ui/main.qml:604
 msgctxt ""
 "Global menu actions. Enables drag and drop positioning of reading region."
 msgid "F&ree placement"
-msgstr "P&osicionamento livre"
+msgstr "P&osição livre"
 
 #: kirigami_ui/main.qml:610
 msgctxt ""
 "Global menu actions. Fix positioning of reading region to what was set in "
 "\"Free placement\" mode."
 msgid "C&ustom (Fixed placement)"
-msgstr ""
+msgstr "C&ustomizado (Posição fixa)"
 
 #: kirigami_ui/main.qml:619
 msgctxt "Global menu actions"
