@@ -458,10 +458,10 @@ Flickable {
     flickableDirection: Flickable.VerticalFlick
     //flickDeceleration: 5000
     MouseArea {
-        // Enabling on Linux prevents bug where wheel doesn't respond after returning to edit mode.
+        // Enabling on Linux and Haiku OS prevents bug where wheel doesn't respond after returning to edit mode.
         // Enabling on Windows maintains behavior from 1.0, which gives consistent precission when using a mouse wheel than the behavior from Qt.
         // Disabling on macOS prevents bug where scrolling past prompter edges in edit mode resets prompter to a previous position
-        enabled: Qt.platform.os==="linux" || Qt.platform.os==="windows"
+        enabled: Qt.platform.os!=="osx" && Qt.platform.os!=="android" && Qt.platform.os!=="ios"
         anchors.fill: parent
         scrollGestureEnabled: true
         onWheel: (wheel)=> {

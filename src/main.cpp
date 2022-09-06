@@ -73,7 +73,7 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
 #else
     putenv("QSG_RENDER_LOOP=basic");
 #endif
-#else
+#elif not defined(Q_OS_ANDROID) and not defined(Q_OS_IOS) and not defined(Q_OS_WASM) and not defined(Q_OS_WATCHOS) and not defined(Q_OS_QNX)
     setenv("QSG_RENDER_LOOP","basic",1);
 #endif
 
