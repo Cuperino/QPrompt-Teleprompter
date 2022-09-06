@@ -66,7 +66,17 @@
 
 Q_DECL_EXPORT int main(int argc, char *argv[])
 {
+
+#if defined(Q_OS_WINDOWS)
+#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
+    putenv("QSG_RENDER_LOOP=windows");
+#else
+    putenv("QSG_RENDER_LOOP=basic");
+#endif
+#else
     setenv("QSG_RENDER_LOOP","basic",1);
+#endif
+
 #if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
     QGuiApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
 #endif
