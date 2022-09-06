@@ -35,7 +35,7 @@
     <mediatype>text/markdown</mediatype>
     <mediatype>text/html</mediatype>
   </provides>
-  <requires>
+<!--  <requires>
     <display_length compare="gte">292</display_length>
   </requires>
   <recommends>
@@ -129,5 +129,5 @@
         </artifact>
       </artifacts>
     </release>
-  </releases>
+  </releases>-->
 </component>
