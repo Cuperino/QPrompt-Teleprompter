@@ -57,6 +57,7 @@
 #include <../3rdparty/KDMacTouchBar/src/kdmactouchbar.h>
 #endif
 
+#include <stdlib.h>
 #include "../qprompt_version.h"
 #include "prompter/documenthandler.h"
 #include "qt/qmlutil.hpp"
@@ -65,6 +66,7 @@
 
 Q_DECL_EXPORT int main(int argc, char *argv[])
 {
+    setenv("QSG_RENDER_LOOP","basic",1);
 #if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
     QGuiApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
 #endif
