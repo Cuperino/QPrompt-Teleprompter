@@ -545,7 +545,7 @@ void DocumentHandler::load(const QUrl &fileUrl)
             if (newPath)
                 _fileSystemWatcher->removePath(QQmlFile::urlToLocalFileOrQrc(this->fileUrl()));
             _fileSystemWatcher->addPath(fileName);
-            connect( _fileSystemWatcher, SIGNAL( fileChanged(QString) ), this, SLOT( reload(QString) ) );
+            connect( _fileSystemWatcher, SIGNAL( fileChanged(QString) ), this, SLOT( reload(QString) ), Qt::UniqueConnection );
         }
     }
 
