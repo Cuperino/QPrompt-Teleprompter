@@ -97,6 +97,7 @@
 #endif
 #include <QTextDocument>
 #include <QTextBlock>
+#include <QTimer>
 #include <QClipboard>
 #include <QMimeData>
 #include <QRegularExpression>
@@ -136,7 +137,7 @@ void DocumentHandler::setDocument(QQuickTextDocument *document)
 {
     if (document == m_document)
         return;
-    
+
     if (m_document)
         m_document->textDocument()->disconnect(this);
     m_document = document;
@@ -157,7 +158,7 @@ void DocumentHandler::setCursorPosition(int position)
 {
     if (position == m_cursorPosition)
         return;
-    
+
     m_cursorPosition = position;
     reset();
     Q_EMIT cursorPositionChanged();
@@ -172,7 +173,7 @@ void DocumentHandler::setSelectionStart(int position)
 {
     if (position == m_selectionStart)
         return;
-    
+
     m_selectionStart = position;
     Q_EMIT selectionStartChanged();
 }
@@ -186,7 +187,7 @@ void DocumentHandler::setSelectionEnd(int position)
 {
     if (position == m_selectionEnd)
         return;
-    
+
     m_selectionEnd = position;
     Q_EMIT selectionEndChanged();
 }
@@ -266,7 +267,7 @@ void DocumentHandler::setAlignment(Qt::Alignment alignment)
 //         return false;
 //     return textCursor().charFormat().fontWeight() == QFont::Bold;
 // }
-// 
+//
 // void DocumentHandler::setAnchor(QStringList names)
 // {
 //     QTextCharFormat format;
@@ -274,7 +275,7 @@ void DocumentHandler::setAlignment(Qt::Alignment alignment)
 //     mergeFormatOnWordOrSelection(format);
 //     Q_EMIT anchorChanged();
 // }
-// 
+//
 bool DocumentHandler::bold() const
 {
     QTextCursor cursor = textCursor();
@@ -420,17 +421,17 @@ void DocumentHandler::setFontSize(int size)
 {
     if (size <= 0)
         return;
-    
+
     QTextCursor cursor = textCursor();
     if (cursor.isNull())
         return;
-    
+
     if (!cursor.hasSelection())
         cursor.select(QTextCursor::WordUnderCursor);
-    
+
     if (cursor.charFormat().property(QTextFormat::FontPointSize).toInt() == size)
         return;
-    
+
     QTextCharFormat format;
     format.setFontPointSize(size);
     mergeFormatOnWordOrSelection(format);
@@ -465,7 +466,7 @@ void DocumentHandler::load(const QUrl &fileUrl)
 {
 //     if (fileUrl == m_fileUrl)
 //         return;
-    
+
     QQmlEngine *engine = qmlEngine(this);
     if (!engine) {
         qWarning() << "load() called before DocumentHandler has QQmlEngine";
@@ -588,11 +589,16 @@ QString DocumentHandler::import(QString fileName, ImportFormat type)
     return filterHtml(QString::fromStdString(html.toStdString()), false);
 }
 
+void DocumentHandler::unblockFileWatcher() {
+    _fileSystemWatcher->blockSignals(false);
+}
+
 void DocumentHandler::saveAs(const QUrl &fileUrl)
 {
     QTextDocument *doc = textDocument();
     if (!doc)
         return;
+    _fileSystemWatcher->blockSignals(true);
 #ifdef Q_OS_ANDROID
     // https://developer.android.com/reference/android/Manifest.permission
     const QStringList permissions = QStringList("android.permission.WRITE_EXTERNAL_STORAGE");
@@ -616,12 +622,14 @@ void DocumentHandler::saveAs(const QUrl &fileUrl)
     file.write((isHtml ? doc->toHtml() : doc->toPlainText()).toUtf8());
     file.flush();
     file.close();
-    
+
     doc->setModified(false);
-    
+
+    QTimer::singleShot(2600, this, &DocumentHandler::unblockFileWatcher);
+
     if (fileUrl == m_fileUrl)
         return;
-    
+
     m_fileUrl = fileUrl;
     Q_EMIT fileUrlChanged();
 }
@@ -653,7 +661,7 @@ QTextCursor DocumentHandler::textCursor() const
     QTextDocument *doc = textDocument();
     if (!doc)
         return QTextCursor();
-    
+
     QTextCursor cursor = QTextCursor(doc);
     if (m_selectionStart != m_selectionEnd) {
         cursor.setPosition(m_selectionStart);
@@ -668,7 +676,7 @@ QTextDocument *DocumentHandler::textDocument() const
 {
     if (!m_document)
         return nullptr;
-    
+
     return m_document->textDocument();
 }
 
@@ -947,17 +955,17 @@ void DocumentHandler::preventSleep(bool prevent) {
 #if defined(Q_OS_ANDROID)
     // The following code is commented out because, even tho it's technically correct, it makes QPrompt to crash on user interaction and during automatic state switching, depending on which flag is set.
 //     // Use Android Java wrapper to set flag that prevents screen from turning off.
-// 
+//
 //     // Native type list and locations:
 //     // public interface WindowManager
 //     // public static class WindowManager.LayoutParams
 //     // public abstract class Window // android.view.Window
-// 
+//
 //     // Code to wrap:
 //     // import android.view.WindowManager;
 //     // getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 //     // getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
-// 
+//
 //     qDebug() << "Attempt to prevent sleep.";
 //     // Get pointer object to main/current Android activity.
 //     QAndroidJniObject activity = QAndroidJniObject::callStaticObjectMethod("org/qtproject/qt5/android/QtNative", "activity", "()Landroid/app/Activity;");

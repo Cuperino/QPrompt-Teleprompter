@@ -235,6 +235,7 @@ private:
     void reset();
     QTextCursor textCursor() const;
     QTextDocument *textDocument() const;
+    void unblockFileWatcher();
     void mergeFormatOnWordOrSelection(const QTextCharFormat &format);
 
     enum ImportFormat {NONE, PDF, ODT, DOCX, DOC, RTF, ABW, EPUB, MOBI, AZW, PAGES, PAGESX};
