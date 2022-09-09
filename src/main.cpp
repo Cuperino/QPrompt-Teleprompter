@@ -73,8 +73,8 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
 #else
     putenv("QSG_RENDER_LOOP=basic");
 #endif
-#elif not defined(Q_OS_ANDROID) and not defined(Q_OS_IOS) and not defined(Q_OS_WASM) and not defined(Q_OS_WATCHOS) and not defined(Q_OS_QNX)
-    setenv("QSG_RENDER_LOOP","basic",1);
+#elif defined(Q_OS_MACOS) or defined(Q_OS_LINUX)
+    setenv("QSG_RENDER_LOOP", "basic", 1);
 #endif
 
 #if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
