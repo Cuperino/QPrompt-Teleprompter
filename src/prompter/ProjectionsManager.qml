@@ -180,7 +180,7 @@ Item {
                 else
                     return Kirigami.ApplicationWindow.Maximized
             flags: Qt.FramelessWindowHint
-            color: "transparent"
+            color: root.__translucidBackground ? "transparent" : "initial"
             onClosing: {
                 model.flip = 0;
                 projectionManager.update();

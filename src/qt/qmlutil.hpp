@@ -7,6 +7,8 @@
 
 #include <QObject>
 #include <QKeySequence>
+#include <QProcess>
+#include <QCoreApplication>
 
 // A singleton object to implement C++ functions that can be called from QML
 class QmlUtil : public QObject{
@@ -38,6 +40,10 @@ public:
             modifierOnlyString.replace(QString::fromStdString("_"), QString::fromStdString("..."));
             return modifierOnlyString;
         }
+    }
+    Q_INVOKABLE void restartApplication() {
+        QProcess::startDetached(QCoreApplication::applicationFilePath(), {});
+        QCoreApplication::quit();
     }
 };
 #endif // QMLUTIL_H
