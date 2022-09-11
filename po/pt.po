@@ -8,10 +8,10 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/Cuperino/QPrompt/issues/new/choose\n"
 "POT-Creation-Date: 2022-09-11 19:17-0400\n"
-"PO-Revision-Date: 2022-09-05 01:44+0000\n"
-"Last-Translator: marttin carvalho <marttinhoblue@gmail.com>\n"
-"Language-Team: Portuguese <http://l10n.cuperino.com/projects/qprompt/qprompt-"
-"app/pt/>\n"
+"PO-Revision-Date: 2022-09-11 23:51+0000\n"
+"Last-Translator: Javier O. Cordero Pérez <javiercorderoperez@gmail.com>\n"
+"Language-Team: Portuguese <http://l10n.cuperino.com/projects/qprompt/"
+"qprompt-app/pt/>\n"
 "Language: pt\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -326,7 +326,7 @@ msgstr "Ir para o próximo marcador"
 
 #: kirigami_ui/main.qml:326 kirigami_ui/+windows/main.qml:313
 msgid "Disable background transparency"
-msgstr ""
+msgstr "Desativar a transparência do fundo"
 
 #: kirigami_ui/main.qml:341 kirigami_ui/+windows/main.qml:328
 msgctxt ""
@@ -556,7 +556,7 @@ msgstr "Sobr&e %1"
 #: kirigami_ui/main.qml:906 kirigami_ui/+windows/main.qml:560
 msgctxt "Restart application_name"
 msgid "Restart %1"
-msgstr ""
+msgstr "Reiniciar %1"
 
 #: kirigami_ui/main.qml:907 kirigami_ui/+windows/main.qml:561
 msgctxt ""
@@ -569,6 +569,10 @@ msgid ""
 "\n"
 "Would you like to restart %1 now? All changes to document will be lost."
 msgstr ""
+"%1 deve ser reiniciado para que esta alteração tenha efeito.\n"
+"\n"
+"Deseja reiniciar %1 agora? Quaisquer modificações feitas no documento serão "
+"perdidas."
 
 #: kirigami_ui/MarkersDrawer.qml:114
 msgctxt "Close sidebar listing user defined markers"
@@ -1153,7 +1157,7 @@ msgstr "Testador ativo"
 #: main.cpp:135 rc.cpp:1
 msgctxt "NAME OF TRANSLATORS"
 msgid "Your names"
-msgstr "Lia Guedes e Marttin Carvalho"
+msgstr "Lia Guedes, Marttin Carvalho"
 
 #: main.cpp:135 rc.cpp:2
 msgctxt "EMAIL OF TRANSLATORS"
