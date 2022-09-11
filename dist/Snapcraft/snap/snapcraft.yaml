@@ -1,6 +1,6 @@
 name: qprompt
 base: core20
-version: '1.1.1'
+version: '1.1.2'
 summary: Personal teleprompter software # 79 char long summary
 description: |
   Personal teleprompter software for all video creators.
@@ -29,7 +29,7 @@ parts:
     plugin: cmake
     source: https://github.com/Cuperino/QPrompt.git
     source-type: git
-    source-tag: v1.1.1-snap
+    source-tag: v1.1.2-snap
     cmake-parameters:
     - "-DKDE_INSTALL_USE_QT_SYS_PATHS=ON"
     - "-DCMAKE_INSTALL_PREFIX=/usr"
