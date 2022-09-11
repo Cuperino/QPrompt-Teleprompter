@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/Cuperino/QPrompt/issues/new/choose\n"
 "POT-Creation-Date: 2022-09-11 19:17-0400\n"
-"PO-Revision-Date: 2022-08-18 05:59+0000\n"
+"PO-Revision-Date: 2022-09-11 23:51+0000\n"
 "Last-Translator: Javier O. Cordero Pérez <javiercorderoperez@gmail.com>\n"
 "Language-Team: French <http://l10n.cuperino.com/projects/qprompt/qprompt-app/"
 "fr/>\n"
@@ -326,7 +326,7 @@ msgstr "Aller au marqueur suivant"
 
 #: kirigami_ui/main.qml:326 kirigami_ui/+windows/main.qml:313
 msgid "Disable background transparency"
-msgstr ""
+msgstr "Désactiver la transparence de l'arrière-plan"
 
 #: kirigami_ui/main.qml:341 kirigami_ui/+windows/main.qml:328
 msgctxt ""
@@ -556,7 +556,7 @@ msgstr "À propos %1"
 #: kirigami_ui/main.qml:906 kirigami_ui/+windows/main.qml:560
 msgctxt "Restart application_name"
 msgid "Restart %1"
-msgstr ""
+msgstr "Redémarrer %1"
 
 #: kirigami_ui/main.qml:907 kirigami_ui/+windows/main.qml:561
 msgctxt ""
@@ -569,6 +569,10 @@ msgid ""
 "\n"
 "Would you like to restart %1 now? All changes to document will be lost."
 msgstr ""
+"%1 doit être redémarré pour que cette modification prenne effet.\n"
+"\n"
+"Voulez-vous redémarrer %1 maintenant ? Toutes les modifications que vous "
+"avez apportées au document seront perdues."
 
 #: kirigami_ui/MarkersDrawer.qml:114
 msgctxt "Close sidebar listing user defined markers"
