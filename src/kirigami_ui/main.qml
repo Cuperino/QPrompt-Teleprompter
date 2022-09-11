@@ -30,6 +30,7 @@ import Qt.labs.platform 1.1 as Labs
 import Qt.labs.settings 1.0
 
 import com.cuperino.qprompt.document 1.0
+import com.cuperino.qprompt.qmlutil 1.0
 
 Kirigami.ApplicationWindow {
     id: root
@@ -39,7 +40,7 @@ Kirigami.ApplicationWindow {
     property bool fullScreenPlatform: Kirigami.Settings.isMobile || ['android', 'ios', 'wasm', 'tvos', 'qnx', 'ipados', 'osx'].indexOf(Qt.platform.os)!==-1
     //readonly property bool __translucidBackground: !Material.background.a // === 0
     //readonly property bool __translucidBackground: !Kirigami.Theme.backgroundColor.a && ['ios', 'wasm', 'tvos', 'qnx', 'ipados'].indexOf(Qt.platform.os)===-1
-    readonly property bool __translucidBackground: true
+    property bool __translucidBackground: true
     readonly property bool themeIsMaterial: Kirigami.Settings.style==="Material" // || Kirigami.Settings.isMobile
     // mobileOrSmallScreen helps determine when to follow mobile behaviors from desktop non-mobile devices
     readonly property bool mobileOrSmallScreen: Kirigami.Settings.isMobile || root.width < 1220
@@ -97,6 +98,7 @@ Kirigami.ApplicationWindow {
     Settings {
         category: "background"
         property alias opacity: root.__opacity
+        property alias transparency: root.__translucidBackground
     }
     Settings {
         category: "telemetry"
@@ -108,7 +110,7 @@ Kirigami.ApplicationWindow {
 
     // Make backgrounds transparent
     //Material.background: "transparent"
-    color: "transparent"
+    color: root.__translucidBackground ? "transparent" : "initial"
     // More ways to enforce transparency across systems
     //visible: true
     readonly property int hideDecorators: root.pageStack.currentItem.overlay.atTop && !root.pageStack.currentItem.viewport.forcedOrientation && parseInt(root.pageStack.currentItem.prompter.state)!==Prompter.States.Editing || Qt.platform.os==="osx" && root.pageStack.currentItem.prompterBackground.opacity!==1 ? Qt.FramelessWindowHint : Qt.Window
@@ -316,6 +318,23 @@ Kirigami.ApplicationWindow {
                     checkable: true
                     checked: root.pageStack.currentItem.overlay.disableOverlayContrast
                     onTriggered: root.pageStack.currentItem.overlay.disableOverlayContrast = !root.pageStack.currentItem.overlay.disableOverlayContrast
+                }
+                Kirigami.Action {
+                    id: transparencySetting
+                    property bool dirty: false
+                    visible: ["android", "ios", "tvos", "ipados", "qnx"].indexOf(Qt.platform.os)===-1
+                    text: i18n("Disable background transparency")
+                    //iconName: "contrast"
+                    iconSource: "qrc:/icons/contrast.svg"
+                    checkable: true
+                    checked: !root.__translucidBackground
+                    onTriggered: {
+                        root.__translucidBackground = !root.__translucidBackground;
+                        if (!transparencySetting.dirty) {
+                            transparencySetting.dirty = true;
+                            restartDialog.visible = true;
+                        }
+                    }
                 }
                 Kirigami.Action {
                     id: subpixelSetting
@@ -883,6 +902,16 @@ Kirigami.ApplicationWindow {
 
     // Dialogues
     Labs.MessageDialog {
+        id: restartDialog
+        title: i18nc("Restart application_name", "Restart %1", aboutData.displayName)
+        text: i18nc("application needs to restart for this change to fully take effect.\n\nWould you like to restart application now? All changes to document will be lost.", "%1 needs to restart for this change to fully take effect.\n\nWould you like to restart %1 now? All changes to document will be lost.", aboutData.displayName)
+        buttons: Labs.MessageDialog.Yes | Labs.MessageDialog.No
+        onYesClicked: {
+            qmlutil.restartApplication()
+        }
+    }
+
+    Labs.MessageDialog {
         id : closeDialog
         title: i18nc("Title for save before closing dialog", "Save Document")
         text: i18n("Save changes to document before closing?")
@@ -926,5 +955,8 @@ Kirigami.ApplicationWindow {
         {
             root.pageStack.currentItem.document.saveDialog(parseInt(root.onDiscard)==Prompter.CloseActions.Quit)
         }
+    }
+    QmlUtil {
+        id: qmlutil
     }
 }
