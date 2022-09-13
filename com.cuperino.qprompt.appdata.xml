@@ -13,7 +13,7 @@
   <developer_name>Javier O. Cordero Pérez</developer_name>
   <update_contact>javiercorderoperez@gmail.com</update_contact>
   <description>
-    <p>Open source personal teleprompter software for all video creators. Built with ease of use, fast performance, control accuracy, and cross-platform support in mind. QPrompt's convergent user interface can run on Linux, Windows, macOS, and Android.</p>
+    <p>Open source personal teleprompter software for all video creators. Built with ease of use, control accuracy, fast performance, and cross-platform support in mind. QPrompt's convergent user interface can run on Linux, Windows, macOS, and Android.</p>
   </description>
   <screenshots>
     <screenshot type="default">
@@ -35,7 +35,7 @@
     <mediatype>text/markdown</mediatype>
     <mediatype>text/html</mediatype>
   </provides>
-<!--  <requires>
+  <requires>
     <display_length compare="gte">292</display_length>
   </requires>
   <recommends>
@@ -54,6 +54,36 @@
   </kudos>
   <content_rating type="oars-1.0" />
   <releases>
+    <release version="1.1.2" type="stable" date="2022-9-12">
+      <artifact type="source">
+        <location>https://github.com/Cuperino/QPrompt/archive/refs/tags/v1.1.2.tar.gz</location>
+        <checksum type="sha256">178cd9dd37ff22bf4a3f8865ac68885a2c50cb4563ec3fc769176560f380c466</checksum>
+      </artifact>
+      <artifact type="binary" platform="x86_64-linux-clang">
+        <location>https://github.com/Cuperino/QPrompt/releases/download/v1.1.2/qprompt-v1.1.2-072f0a7-linux-64-clang.AppImage</location>
+        <checksum type="sha256">8ea9208d5602ebea6f55b87cd1b6c4855d5c1e76ecfa476738cedfa75c6e9179</checksum>
+      </artifact>
+      <artifact type="binary" platform="aarch64-linux-gnu">
+        <location>https://github.com/Cuperino/QPrompt/releases/download/v1.1.2/qprompt-v1.1.2-072f0a7-linux-arm64-gcc.deb</location>
+        <checksum type="sha256">010d890210e1b3c6a63f04e86de345c753516d9fa72f2beeda5ffeae6962797c</checksum>
+      </artifact>
+      <artifact type="binary" platform="x86_64-windows-msvc">
+        <location>https://github.com/Cuperino/QPrompt/releases/download/v1.1.2/qprompt-v1.1.2-072f0a7-windows-msvc2019_64-cl.exe</location>
+        <checksum type="sha256">44866f5dc0ed8f02029429aaa932d3fe5c6ccb5b7b84f01ad2785e85ef1474d8</checksum>
+      </artifact>
+      <artifact type="binary" platform="x86_64-macos-clang">
+        <location>https://github.com/Cuperino/QPrompt/releases/download/v1.1.2/qprompt-v1.1.2-072f0a7-macos-64-clang.dmg</location>
+        <checksum type="sha256">9562e41846ea2e1a44a472e3bceb23b7f5f7a09f19ae4b417495c5058edb2466</checksum>
+      </artifact>
+      <artifact type="binary" platform="arm64-v8a-android">
+        <location>https://github.com/Cuperino/QPrompt/releases/download/v1.1.2/qprompt-v1.1.2-072f0a7-android-64-debug.apk</location>
+        <checksum type="sha256">faf94f37add3734f13d4d6cefad6971ea8538faee5d87c9dd9bc051fcb65fc13</checksum>
+      </artifact>
+      <artifact type="binary" platform="x86_64-haiku-gcc">
+        <location>https://github.com/Cuperino/QPrompt/releases/download/v1.1.2/qprompt-1.1.2-1-x86_64.hpkg</location>
+        <checksum type="sha256">25c031cce3fa2ebb341007984809e14b6363122953763a7319f9b33c091b8fc3</checksum>
+      </artifact>
+    </release>
     <release version="1.1.1" type="stable" date="2022-8-18">
       <artifact type="source">
         <location>https://github.com/Cuperino/QPrompt/archive/refs/tags/v1.1.1.tar.gz</location>
@@ -129,5 +159,5 @@
         </artifact>
       </artifacts>
     </release>
-  </releases>-->
+  </releases>
 </component>
