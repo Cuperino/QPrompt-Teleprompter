@@ -22,8 +22,9 @@
 import QtQuick 2.12
 
 import Qt.labs.settings 1.0
-import QtQuick.Dialogs 1.2
-import org.kde.kirigami 2.11 as Kirigami
+//import QtQuick.Dialogs
+import Qt.labs.platform 1.1 as Labs
+//import org.kde.kirigami 2.11 as Kirigami
 
 Rectangle {
     id: prompterBackground
@@ -103,9 +104,8 @@ Rectangle {
             }
         }
 
-        ColorDialog {
+        Labs.ColorDialog {
             id: backgroundColorDialog
-            showAlphaChannel: false
             currentColor: appTheme.__backgroundColor
             onAccepted: {
                 console.log(color)
@@ -113,16 +113,17 @@ Rectangle {
             }
         }
 
-        FileDialog {
+        Labs.FileDialog {
             id: openBackgroundDialog
-            selectExisting: true
-            selectedNameFilter: nameFilters[0]
+            //selectExisting: true
+            //selectedNameFilter: nameFilters[0]
             nameFilters: [
               i18n("JPEG image") + "(*.jpg *.jpeg *.JPG *.JPEG)",
               i18n("PNG image") + "(*.png *.PNG)",
               i18n("GIF animation") + "(*.gif *.GIF)"
             ]
-            folder: shortcuts.pictures
+            fileMode: Labs.FileDialog.OpenFile
+            //folder: shortcuts.pictures
             onAccepted: prompterBackground.setBackgroundImage(openBackgroundDialog.fileUrl)
         }
     }

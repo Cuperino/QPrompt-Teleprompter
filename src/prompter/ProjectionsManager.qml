@@ -22,7 +22,8 @@
 import QtQuick 2.12
 import org.kde.kirigami 2.11 as Kirigami
 import QtQuick.Controls 2.15
-import QtQuick.Dialogs 1.2
+//import QtQuick.Dialogs
+import Qt.labs.platform 1.1 as Labs
 import QtQuick.Window 2.15
 import QtQuick.Layouts 1.12
 import Qt.labs.settings 1.0
@@ -174,11 +175,11 @@ Item {
             height: model.height
             visibility:
                 if (!root.visible || (model.name===root.screen.name && Qt.platform.os==="windows"))
-                    return Kirigami.ApplicationWindow.Hidden
+                    return ApplicationWindow.Hidden
                 else if (['windows', 'osx'].indexOf(Qt.platform.os)===-1)
-                    return Kirigami.ApplicationWindow.FullScreen
+                    return ApplicationWindow.FullScreen
                 else
-                    return Kirigami.ApplicationWindow.Maximized
+                    return ApplicationWindow.Maximized
             flags: Qt.FramelessWindowHint
             color: root.__translucidBackground ? "transparent" : "initial"
             onClosing: {
@@ -368,7 +369,7 @@ Item {
         asynchronous: true
         delegate: projectionDelegte
     }
-    MessageDialog {
+    Labs.MessageDialog {
         id: alertDialog
 
         function requestDisplays() {

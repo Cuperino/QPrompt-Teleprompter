@@ -95,10 +95,11 @@ ToolBar {
     readonly property alias namedMarkerConfiguration: namedMarkerConfiguration
     readonly property alias baseAccelerationSlider: baseAccelerationSlider
     readonly property alias onlyPositiveVelocity: positiveVelocity.checked
-    readonly property bool showSliderIcons: root.width > 404
-    readonly property bool showingFormattingTools: parseInt(prompter.state)!==Prompter.States.Editing && (!toolbar.hideFormattingToolsWhilePrompting || editor.focus)
-    // Hide toolbar when read region is set to bottom and prompter is not in editing state.
-    enabled: !(parseInt(prompter.state)!==Prompter.States.Editing && (overlay.atBottom && !viewport.forcedOrientation || root.visibility===Kirigami.ApplicationWindow.FullScreen && !editor.focus))
+    readonly property bool showSliderIcons: toolbar.width > 404
+    readonly property bool showingFormattingTools: parseInt(viewport.prompter.state)!==Prompter.States.Editing && (!toolbar.hideFormattingToolsWhilePrompting || editor.focus)
+
+    // Hide toolbar when read region is set to bottom and viewport.prompter is not in editing state.
+    enabled: !(parseInt(viewport.prompter.state)!==Prompter.States.Editing && (overlay.atBottom && !viewport.forcedOrientation || root.visibility===Kirigami.ApplicationWindow.FullScreen && !editor.focus))
     height: enabled ? implicitHeight : 0
     //Behavior on height {
     //    id: height
