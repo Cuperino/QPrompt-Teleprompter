@@ -21,7 +21,7 @@
 
 /****************************************************************************
  **
- ** Copyright (C) 2017 The Qt Company Ltd.
+ ** Copyright (C) 2017, 2021 The Qt Company Ltd.
  ** Contact: https://www.qt.io/licensing/
  **
  ** This file contains code originating from examples from the Qt Toolkit.
@@ -71,16 +71,16 @@
  ****************************************************************************/
 
 import QtQuick 2.12
-import org.kde.kirigami 2.11 as Kirigami
 import QtQuick.Controls 2.12
 import QtQuick.Controls.Material 2.12
 import QtQuick.Layouts 1.12
 import QtQuick.Window 2.12
-//import QtQuick.Dialogs 1.2
+import QtQuick.Dialogs 1.3
 import Qt.labs.platform 1.1 as Labs
 import Qt.labs.settings 1.0
 
 import com.cuperino.qprompt.document 1.0
+import com.cuperino.qprompt.abstractunits 1.0
 
 Flickable {
     id: prompter
@@ -222,9 +222,26 @@ Flickable {
         property alias offset: positionHandler.placement
     }
 
+    property int q: 0
+    function markerCompare() {
+        // Check that state is not prompting and editor isn't active.
+        if (parseInt(state)===Prompter.States.Prompting && !editor.focus) {
+            // Detect when moving past a marker.
+            prompter.setCursorAtCurrentPosition()
+            const m = document.previousMarker(editor.cursorPosition)
+            editor.cursorPosition = m.position
+            // Here, p is for position
+            const p = editor.cursorRectangle.y
+            //if (q < p) {
+            //    console.log(m.url);
+            //}
+            q = p;
+        }
+    }
+
     function restoreFocus() {
         if (parseInt(state)===Prompter.States.Editing)
-            editor.focus = !Kirigami.Settings.isMobile
+            editor.focus = !root.__isMobile
         else
             focus = true
     }
@@ -304,7 +321,7 @@ Flickable {
 
     function editMarker(cursorPosition, fragmentLength) {
         editor.select(cursorPosition, fragmentLength);
-        editorToolbar.namedMarkerConfiguration.open();
+        namedMarkerConfiguration.open();
     }
 
     function goTo(cursorPosition) {
@@ -464,7 +481,7 @@ Flickable {
         enabled: Qt.platform.os!=="android" && Qt.platform.os!=="ios" && Qt.platform.os!=="osx"
         anchors.fill: parent
         scrollGestureEnabled: true
-        onWheel: (wheel)=> {
+        onWheel: function (wheel) {
             mouse.onWheel(wheel)
         }
     }
@@ -542,7 +559,7 @@ Flickable {
             target: prompter
             property: "position"
             to: __jitterMargin-topMargin+1
-            duration: Kirigami.Units.veryLongDuration
+            duration: Units.VeryLongDuration
             easing.type: Easing.InOutQuart
         }
 //        ScriptAction {
@@ -571,7 +588,7 @@ Flickable {
             start()
         }
         to: __jitterMargin-topMargin+1
-        duration: Kirigami.Units.veryLongDuration
+        duration: Units.VeryLongDuration
         easing.type: Easing.InOutQuart
     }
     Item {
@@ -612,14 +629,14 @@ Flickable {
                 width: prompter.width-2*Math.abs(x)
 
                 // Start with the editor in focus
-                focus: !Kirigami.Settings.isMobile
+                focus: !root.__isMobile
 
                 textFormat: Qt.RichText
                 wrapMode: TextArea.Wrap
                 readOnly: false
                 text: i18n("Error loading file…")
 
-                selectByMouse: !Kirigami.Settings.isMobile
+                selectByMouse: !root.__isMobile
                 persistentSelection: true
                 selectionColor: "#333d9ef3"
                 selectedTextColor: selectionColor
@@ -631,7 +648,9 @@ Flickable {
                 bottomPadding: 0
 
                 onCursorRectangleChanged: prompter.ensureVisible(cursorRectangle)
-                onLinkActivated: console.log(link)
+                onLinkActivated: function (link) {
+                    console.log(link);
+                }
 
                 background: Item {}
 
@@ -682,7 +701,7 @@ Flickable {
                     Behavior on opacity {
                         enabled: true
                         animation: NumberAnimation {
-                            duration: Kirigami.Units.longDuration
+                            duration: Units.LongDuration
                             easing.type: Easing.OutQuad
                         }
                     }
@@ -903,7 +922,7 @@ Flickable {
                         cursorShape: limitedMouse.cursorShape
                         scrollGestureEnabled: false
                         onClicked: {
-                            if (Kirigami.Settings.isMobile)
+                            if (root.__isMobile)
                                 contextMenu.popup(this)
                             else
                                 nativeContextMenu.open()
@@ -918,7 +937,7 @@ Flickable {
                         scrollGestureEnabled: false
                         onClicked: if (editor.focus) editor.cursorPosition = editor.positionAt(mouseX, mouseY);
                         onDoubleClicked: {
-                            if (!Kirigami.Settings.isMobile)
+                            if (!root.__isMobile)
                                 editor.toggleEditorFocus(mouse);
                         }
                     }
@@ -976,7 +995,7 @@ Flickable {
                     onReleased: positionHandler.placement = (2 * (editor.x - 2 * positionHandler.x) + editor.width - positionHandler.width) / positionHandler.width
                 }
 
-                Keys.onPressed: {
+                Keys.onPressed: function(event) {
                     // Prompter related keys are processed first for faster response times.
                     // Assumption: Editor is focused.
                     if (parseInt(prompter.state) === Prompter.States.Prompting) {
@@ -1145,13 +1164,13 @@ Flickable {
         //textColor: "#FFF"
         //textBackground: "#000"
 
-        onLoaded: {
+        onLoaded: function (text, format) {
             editor.textFormat = format
             editor.text = text
             editorToolbar.lineHeightSlider.update()
             editorToolbar.paragraphSpacingSlider.update()
         }
-        onError: {
+        onError: function (message) {
             errorDialog.text = message
             errorDialog.visible = true
         }
@@ -1173,10 +1192,10 @@ Flickable {
         id: scrollBar
     }
 
-    Labs.FileDialog {
+    FileDialog {
         id: openDialog
-        //selectExisting: true
-        //selectedNameFilter: nameFilters[0]
+        selectExisting: true
+        selectedNameFilter: nameFilters[0]
         nameFilters: [
             i18nc("Format name (FORMAT_EXTENSION)", "Hypertext Markup Language (%1)", "HTML") + "(*.html *.htm *.xhtml *.HTML *.HTM *.XHTML)",
             i18nc("Format name (FORMAT_EXTENSION)", "Markdown (%1)", "MD") + "(*.md *.MD)",
@@ -1189,8 +1208,8 @@ Flickable {
             //i18nc("Format name (FORMAT_EXTENSION)", "Portable Document Format (%1)", "PDF") + "(*.pdf *.PDF)",
             i18nc("All file formats", "All Formats") + "(*.*)"
         ]
-        //folder: shortcuts.documents
-        fileMode: Labs.FileDialog.OpenFile
+        folder: shortcuts.documents
+        //fileMode: Labs.FileDialog.OpenFile
         onAccepted: {
             document.load("qrc:/blank.html")
             document.load(openDialog.fileUrl)
@@ -1198,16 +1217,16 @@ Flickable {
             if (parseInt(prompter.state)!==Prompter.States.Editing)
                 prompter.state = Prompter.States.Editing;
             document.isNewFile = !(nameFilters[0]===selectedNameFilter || Qt.platform.os!=="android" && nameFilters[2]===selectedNameFilter)
-            //if (nameFilters[0]===selectedNameFilter || Qt.platform.os!=="android" && nameFilters[2]===selectedNameFilter)
-            //    document.isNewFile = false;
-            //else
-            //    document.isNewFile = true;
+            if (nameFilters[0]===selectedNameFilter || Qt.platform.os!=="android" && nameFilters[2]===selectedNameFilter)
+                document.isNewFile = false;
+            else
+                document.isNewFile = true;
         }
     }
 
-    Labs.FileDialog {
+    FileDialog {
         id: saveDialog
-        //selectExisting: false
+        selectExisting: false
         defaultSuffix: 'html'
         nameFilters: if (Qt.platform.os==="android")
             return [
@@ -1223,8 +1242,8 @@ Flickable {
         //selectedNameFilter.index: document.fileType === "txt" ? 0 : 1
         // Always save as HTML
         //selectedNameFilter: nameFilters[0]
-        //folder: shortcuts.documents
-        fileMode: Labs.FileDialog.SaveFile
+        folder: shortcuts.documents
+        //fileMode: Labs.FileDialog.SaveFile
         onAccepted: {
             document.saveAs(saveDialog.fileUrl)
             document.isNewFile = false
@@ -1335,7 +1354,7 @@ Flickable {
     }
 
     // Key bindings
-    Keys.onPressed: {
+    Keys.onPressed: function(event) {
         if (parseInt(prompter.state)===Prompter.States.Prompting) {
             if (event.key===keys.increaseVelocity && event.modifiers===keys.increaseVelocityModifiers || event.key===Qt.Key_VolumeDowm) {
                 // Increase Velocity
@@ -1485,7 +1504,7 @@ Flickable {
             prompter.goToNextMarker();
         return
     }
-    Keys.onReleased: {
+    Keys.onReleased: function(event) {
         if (parseInt(prompter.state)===Prompter.States.Prompting) {
             if (winding && (event.key===keyBeingPressed && (event.key===keys.rewind || event.key===keys.fastForward))) {
                 // Let go
@@ -1521,8 +1540,8 @@ Flickable {
             }
             PropertyChanges {
                 target: editor
-                focus: !Kirigami.Settings.isMobile
-                selectByMouse: !Kirigami.Settings.isMobile
+                focus: !root.__isMobile
+                selectByMouse: !root.__isMobile
                 activeFocusOnPress: true
                 //cursorPosition: editor.positionAt(0, editor.position + 1*overlay.height/2)
             }

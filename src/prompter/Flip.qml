@@ -20,7 +20,7 @@
  ****************************************************************************/
 
 import QtQuick 2.12
-import org.kde.kirigami 2.11 as Kirigami
+import com.cuperino.qprompt.abstractunits 1.0
 
 Scale {
     origin.x: width/2
@@ -32,14 +32,14 @@ Scale {
     Behavior on xScale {
         enabled: true
         animation: NumberAnimation {
-            duration: Kirigami.Units.longDuration
+            duration: Units.LongDuration
             easing.type: Easing.OutQuad
         }
     }
     Behavior on yScale {
         enabled: true
         animation: NumberAnimation {
-            duration: Kirigami.Units.longDuration
+            duration: Units.LongDuration
             easing.type: Easing.OutQuad
         }
     }

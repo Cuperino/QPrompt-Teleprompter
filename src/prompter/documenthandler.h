@@ -115,7 +115,8 @@ class DocumentHandler : public QObject
     Q_PROPERTY(bool modified READ modified WRITE setModified NOTIFY modifiedChanged)
     
 //     Q_PROPERTY(MarkersModel* markers READ markers CONSTANT STORED false)
-    
+    QML_ELEMENT
+
 public:
     explicit DocumentHandler(QObject *parent = nullptr);
     

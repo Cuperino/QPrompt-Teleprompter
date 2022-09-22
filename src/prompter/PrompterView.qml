@@ -24,7 +24,6 @@ import QtQuick.Window 2.12
 import QtQml.Models 2.12
 import Qt.labs.settings 1.0
 //import QtGraphicalEffects 1.15
-import org.kde.kirigami 2.11 as Kirigami
 
 Item {
     id: viewport

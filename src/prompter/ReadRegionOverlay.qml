@@ -26,6 +26,7 @@ import QtQuick.Window 2.0
 import QtQuick.Layouts 1.12
 import QtQuick.Controls.Material 2.12
 import Qt.labs.settings 1.0
+import com.cuperino.qprompt.abstractunits 1.0
 
 Item {
     id: overlay
@@ -330,7 +331,7 @@ Item {
                     NumberAnimation {
                         targets: [pointers, leftPointer, rightPointer, topBar, bottomBar]
                         properties: "opacity"
-                        duration: Kirigami.Units.shortDuration
+                        duration: Units.ShortDuration
                         easing.type: Easing.OutQuad
                     }
                 }
@@ -391,13 +392,13 @@ Item {
                 NumberAnimation {
                     targets: [readRegion, pointers, overlay]
                     properties: "__placement,__opacity"
-                    duration: Kirigami.Units.shortDuration
+                    duration: Units.ShortDuration
                     easing.type: Easing.OutQuad
                 }
                 ColorAnimation {
                     targets: [pointers]
                     properties: "__fillColor,__strokeColor"
-                    duration: Kirigami.Units.shortDuration
+                    duration: Units.ShortDuration
                     easing.type: Easing.OutQuad
                 }
             }
@@ -459,7 +460,7 @@ Item {
             NumberAnimation {
                 targets: [overlay]
                 properties: "__opacity"
-                duration: Kirigami.Units.longDuration
+                duration: Units.LongDuration
             }
         }
     ]

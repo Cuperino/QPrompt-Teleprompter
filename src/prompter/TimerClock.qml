@@ -25,7 +25,6 @@ import QtQuick.Shapes 1.12
 import QtQuick.Layouts 1.12
 import QtQuick.Dialogs 1.2
 import Qt.labs.settings 1.0
-import org.kde.kirigami 2.11 as Kirigami
 
 //import com.cuperino.qprompt.promptertimer 1.0
 
@@ -111,11 +110,6 @@ Item {
         property color color: timerColorDialog.currentColor
     }
 
-    FontLoader {
-        id: monoSpacedFont
-        name: "Monospace"
-    }
-
     Item {
         id: stopwatch
         readonly property real centreX: width / 2;
@@ -126,7 +120,7 @@ Item {
         property real customRelativeXpos: 0.5
         property real relativeXpos: customRelativeXpos
         x: relativeXpos * (clock.width - stopwatch.width)
-        y: overlay.__readRegionPlacement >= 0.5 ? centreY * 2 / 5 : clock.height - height - centreY * 2 / 5 - (pageStack.globalToolBar.actualStyle === Kirigami.ApplicationHeaderStyle.None ? 54 : 0)
+        y: overlay.__readRegionPlacement >= 0.5 ? centreY * 2 / 5 : clock.height - height - centreY * 2 / 5
         width: clockGrid.implicitWidth
         height: clockGrid.implicitHeight
         Rectangle {
@@ -143,8 +137,8 @@ Item {
             Label {
                 id: promptTime
                 visible: clock.stopwatch
-                text: /*i18n("SW") + " " +*/ "00:00:00"
-                font.family: monoSpacedFont.name
+                text: /*i18n("SW") + " " +*/ "<pre>00:00:00</pre>"
+                font.family: "Monospace"
                 font.pixelSize: stopwatch.fontSize
                 color: clock.textColor
                 leftPadding: stopwatch.marginX
@@ -155,8 +149,8 @@ Item {
             Label {
                 id: etaTimer
                 visible: clock.eta
-                text: /*i18n("ET") + " " +*/ "00:00:00"
-                font.family: monoSpacedFont.name
+                text: /*i18n("ET") + " " +*/ "<pre>00:00:00</pre>"
+                font.family: "Monospace"
                 font.pixelSize: stopwatch.fontSize
                 color: clock.textColor
                 leftPadding: stopwatch.marginX
@@ -195,7 +189,7 @@ Item {
 
     ColorDialog {
         id: timerColorDialog
-        showAlphaChannel: false
+        showAlphaChannel: false  // Line required for Android in Qt 5. Remove when refactoring to Qt 6.
         color: '#AAA'
         onAccepted: {
             timerSettings.color = currentColor

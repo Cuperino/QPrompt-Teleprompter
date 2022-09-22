@@ -34,6 +34,7 @@ set(qprompt_HDRS
     prompter/marker.hpp
     prompter/markersmodel.h
     prompter/documenthandler.h
+    qt/abstractunits.hpp
     qt/qmlutil.hpp
 )
 

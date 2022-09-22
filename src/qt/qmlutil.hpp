@@ -13,6 +13,7 @@
 // A singleton object to implement C++ functions that can be called from QML
 class QmlUtil : public QObject{
    Q_OBJECT
+   QML_ELEMENT
 public:
     Q_INVOKABLE bool isKeyUnknown(const int key) {
         // weird key codes that appear when modifiers

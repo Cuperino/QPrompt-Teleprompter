@@ -27,7 +27,7 @@ import QtQuick.Layouts 1.12
 import com.cuperino.qprompt.qmlutil 1.0
 
 Kirigami.OverlaySheet {
-    id: key_configuration_overlay
+    id: keyConfigurationOverlay
 
     header: Kirigami.Heading {
         text: i18nc("Title of dialog where users customize keyboard inputs", "Key Bindings")

@@ -24,10 +24,11 @@ import org.kde.kirigami 2.11 as Kirigami
 import QtQuick.Window 2.12
 import QtQuick.Controls 2.12
 import QtQuick.Layouts 1.12
-import QtQuick.Dialogs 1.2
-import Qt.labs.platform 1.1 as Labs
+import QtQuick.Dialogs 1.3
+//import Qt.labs.platform 1.1 as Labs
 
 import com.cuperino.qprompt.markers 1.0
+import com.cuperino.qprompt.abstractunits 1.0
 
 Kirigami.Page {
     id: prompterPage
@@ -44,7 +45,9 @@ Kirigami.Page {
     property alias openDialog: viewport.openDialog
     property alias prompterBackground: viewport.prompterBackground
     property alias find: viewport.find
-    property alias key_configuration_overlay: key_configuration_overlay
+    property alias keyConfigurationOverlay: keyConfigurationOverlay
+    property alias countdownConfiguration: countdownConfiguration
+    property alias namedMarkerConfiguration: namedMarkerConfiguration
     property alias displaySettings: displaySettings
     property alias sideDrawer: sideDrawer
     property int hideDecorations: 1
@@ -476,7 +479,7 @@ Kirigami.Page {
                 iconName: "keyframe-add"
                 icon.source: "icons/keyframe-add.svg"
                 onTriggered: {
-                    viewport.countdown.configuration.open()
+                    countdownConfiguration.open()
                     contextDrawer.close()
                     viewport.prompter.restoreFocus()
                 }
@@ -772,7 +775,7 @@ Kirigami.Page {
             //Behavior on angle {
                 //enabled: true
                 //animation: NumberAnimation {
-                    //duration: Kirigami.Units.longDuration
+                    //duration: Units.longDuration
                     //easing.type: Easing.OutQuad
                 //}
             //}
@@ -783,28 +786,28 @@ Kirigami.Page {
         //Behavior on x {
             //enabled: true
             //animation: NumberAnimation {
-                //duration: Kirigami.Units.longDuration
+                //duration: Units.longDuration
                 //easing.type: Easing.OutQuad
             //}
         //}
         //Behavior on y {
             //enabled: true
             //animation: NumberAnimation {
-                //duration: Kirigami.Units.longDuration
+                //duration: Units.longDuration
                 //easing.type: Easing.OutQuad
             //}
         //}
         //Behavior on width {
             //enabled: viewport.forcedOrientation
             //animation: NumberAnimation {
-                //duration: Kirigami.Units.longDuration
+                //duration: Units.longDuration
                 //easing.type: Easing.OutQuad
             //}
         //}
         //Behavior on height {
             //enabled: viewport.forcedOrientation
             //animation: NumberAnimation {
-                //duration: Kirigami.Units.longDuration
+                //duration: Units.longDuration
                 //easing.type: Easing.OutQuad
             //}
         //}
@@ -841,11 +844,8 @@ Kirigami.Page {
 
     // progress: parseInt(viewport.prompter.state)===Prompter.States.Prompting ? viewport.prompter.progress : undefined
 
-    Labs.FontDialog {
+    FontDialog {
         id: fontDialog
-        //monospacedFonts: true
-        //nonScalableFonts: true
-        //proportionalFonts: true
         font: Qt.font({
             family: viewport.prompter.document.fontFamily,
 
@@ -920,6 +920,162 @@ Kirigami.Page {
     }
 
     InputsOverlay {
-        id: key_configuration_overlay
+        id: keyConfigurationOverlay
     }
+
+    Kirigami.OverlaySheet {
+        id: countdownConfiguration
+        onSheetOpenChanged: prompterPage.actions.main.checked = sheetOpen
+
+        header: Kirigami.Heading {
+            text: i18n("Countdown Setup")
+            level: 1
+        }
+
+        RowLayout {
+            width: parent.width
+
+            ColumnLayout {
+                Label {
+                    text: i18n("Countdown iterations")
+                }
+                SpinBox {
+                    value: countdown.__iterations
+                    from: 1
+                    to: 300  // 5*60
+                    onValueModified: {
+                        focus: true
+                        countdown.__iterations = value
+                        if (countdown.__disappearWithin && countdown.__disappearWithin >= countdown.__iterations)
+                            countdown.__disappearWithin = countdown.__iterations
+                    }
+                    Layout.fillWidth: true
+                    Layout.leftMargin: Kirigami.Units.smallSpacing
+                    Layout.rightMargin: Kirigami.Units.smallSpacing
+                }
+            }
+            ColumnLayout {
+                Label {
+                    text: i18np("Disappear within 1 second to go",
+                                "Disappear within %1 seconds to go", countdown.__disappearWithin);
+                }
+                SpinBox {
+                    value: countdown.__disappearWithin
+                    from: 1
+                    to: 10
+                    onValueModified: {
+                        focus: true
+                        countdown.__disappearWithin = value
+                        if (countdown.__iterations <= countdown.__disappearWithin)
+                            countdown.__iterations = countdown.__disappearWithin
+                    }
+                    Layout.fillWidth: true
+                    Layout.leftMargin: Kirigami.Units.smallSpacing
+                    Layout.rightMargin: Kirigami.Units.smallSpacing
+                }
+            }
+        }
+    }
+
+    Kirigami.OverlaySheet {
+        id: namedMarkerConfiguration
+        header: Kirigami.Heading {
+            text: i18nc("Refers to a key on the keyboard used to skip to a user defined marker while prompting", "Skip Key")
+            level: 1
+        }
+        onSheetOpenChanged: {
+            prompterPage.actions.main.checked = sheetOpen;
+            // When opening overlay, reset key input button's text.
+            // Dev: When opening overlay, reset key input button's text to current anchor's key value.
+            if (sheetOpen)
+                //row.setMarkerKeyButton.item.text = "";
+                column.setMarkerKeyButton.item.text = prompter.document.getMarkerKey();
+            else {
+                prompter.restoreFocus()
+                if (sideDrawer.reOpen) {
+                    prompter.document.parse()
+                    sideDrawer.open()
+                }
+            }
+        }
+        ColumnLayout {
+            id: column
+            property alias setMarkerKeyButton: setMarkerKeyButton
+            width: parent.width
+            Label {
+                text: i18nc("Refers to a key on the keyboard used to skip to a user defined marker while prompting", "Key to perform skip to this marker")
+            }
+            Loader {
+                id: setMarkerKeyButton
+                asynchronous: true
+                Layout.fillWidth: true
+            }
+            Component.onCompleted: {
+                setMarkerKeyButton.setSource("KeyInputButton.qml", { "text": "" });
+            }
+            Connections {
+                target: setMarkerKeyButton.item
+                function onToggleButtonsOff() { target.checked = false; }
+                function onSetKey(keyCode) {
+                    prompter.document.setKeyMarker(keyCode);
+                    timer.start();
+                }
+            }
+            Timer {
+                id: timer
+                running: false
+                repeat: false
+                interval: Units.LongDuration
+                onTriggered: namedMarkerConfiguration.close()
+            }
+        }
+    }
+
+    //Kirigami.OverlaySheet {
+        //id: stepsConfiguration
+        //onSheetOpenChanged: {
+            //prompterPage.actions.main.checked = sheetOpen;
+            //if (!sheetOpen)
+                //prompter.focus = true
+        //}
+        //background: Rectangle {
+            ////color: Kirigami.Theme.activeBackgroundColor
+            //color: appTheme.__backgroundColor
+            //anchors.fill: parent
+        //}
+        //header: Kirigami.Heading {
+            //text: i18n("Start Velocity")
+            //level: 1
+        //}
+
+        //ColumnLayout {
+            //width: parent.width
+            //Label {
+                //text: i18n("Velocity to have when starting to prompt")
+            //}
+            //RowLayout {
+                //SpinBox {
+                    //id: defaultSteps
+                    //Layout.fillWidth: true
+                    //Layout.leftMargin: Units.SmallSpacing
+                    //Layout.rightMargin: Units.SmallSpacing
+                    //value: __iDefault
+                    //from: 1
+                    //to: velocityControlSlider.to
+                    //onValueModified: {
+                        //__iDefault = value
+                    //}
+                //}
+                //Button {
+                    //visible: parseInt(prompter.state)===Prompter.States.Prompting && prompter.__velocity>0
+                    //flat: true
+                    //text: "Make current velocity default"
+                    //onClicked: {
+                        //defaultSteps.value = prompter.__i;
+                        //__iDefault = prompter.__i;
+                    //}
+                //}
+            //}
+        //}
+    //}
 }
