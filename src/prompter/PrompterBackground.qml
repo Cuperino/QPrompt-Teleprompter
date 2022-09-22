@@ -22,9 +22,9 @@
 import QtQuick 2.12
 
 import Qt.labs.settings 1.0
-//import QtQuick.Dialogs
-import Qt.labs.platform 1.1 as Labs
-//import org.kde.kirigami 2.11 as Kirigami
+import QtQuick.Dialogs 1.3
+//import Qt.labs.platform 1.1 as Labs
+import com.cuperino.qprompt.abstractunits 1.0
 
 Rectangle {
     id: prompterBackground
@@ -60,7 +60,7 @@ Rectangle {
 
     anchors.fill: parent
     color: backgroundColor
-    opacity: /*parent.toolbar.opacitySlider.pressed || projectionManager.isPreview ? */parent.toolbar.opacitySlider.value/100 /*: 1 */
+    opacity: /*editorToolbar.opacitySlider.pressed || projectionManager.isPreview ? */editorToolbar.opacitySlider.value/100 /*: 1 */
 
     Settings {
         id: backgroundSettings
@@ -104,7 +104,7 @@ Rectangle {
             }
         }
 
-        Labs.ColorDialog {
+        ColorDialog {
             id: backgroundColorDialog
             currentColor: appTheme.__backgroundColor
             onAccepted: {
@@ -113,17 +113,17 @@ Rectangle {
             }
         }
 
-        Labs.FileDialog {
+        FileDialog {
             id: openBackgroundDialog
-            //selectExisting: true
-            //selectedNameFilter: nameFilters[0]
+            selectExisting: true
+            selectedNameFilter: nameFilters[0]
             nameFilters: [
               i18n("JPEG image") + "(*.jpg *.jpeg *.JPG *.JPEG)",
               i18n("PNG image") + "(*.png *.PNG)",
               i18n("GIF animation") + "(*.gif *.GIF)"
             ]
-            fileMode: Labs.FileDialog.OpenFile
-            //folder: shortcuts.pictures
+            // fileMode: Labs.FileDialog.OpenFile
+            folder: shortcuts.pictures
             onAccepted: prompterBackground.setBackgroundImage(openBackgroundDialog.fileUrl)
         }
     }
@@ -139,7 +139,7 @@ Rectangle {
     Behavior on opacity {
         enabled: true
         animation: NumberAnimation {
-            duration: Kirigami.Units.longDuration
+            duration: Units.LongDuration
             easing.type: Easing.OutQuad
         }
     }

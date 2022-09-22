@@ -71,10 +71,13 @@
  ****************************************************************************/
 
 import QtQuick 2.12
-import org.kde.kirigami 2.11 as Kirigami
 import QtQuick.Controls 2.12
 import QtQuick.Layouts 1.12
 import Qt.labs.settings 1.0
+
+import org.kde.kirigami 2.11 as Kirigami
+
+import com.cuperino.qprompt.abstractunits 1.0
 
 ToolBar {
     id: toolbar
@@ -82,7 +85,7 @@ ToolBar {
     property bool showFontSpacingOptions: false
     property bool showAnimationConfigOptions: false
     property bool hideFormattingToolsWhilePrompting: false
-    property bool hideFormattingToolsAlways: Qt.platform.os==="linux" && Kirigami.Settings.isMobile || Qt.platform.os==="android" || Qt.platform.os==="ios"
+    property bool hideFormattingToolsAlways: Qt.platform.os==="linux" && root.__isMobile || Qt.platform.os==="android" || Qt.platform.os==="ios"
 
     readonly property alias fontSizeSlider: fontSizeSlider
     readonly property alias lineHeightSlider: lineHeightSlider
@@ -92,24 +95,23 @@ ToolBar {
     readonly property alias fontWYSIWYGSizeSlider: fontWYSIWYGSizeSlider
     readonly property alias opacitySlider: opacitySlider
     readonly property alias baseSpeedSlider: baseSpeedSlider
-    readonly property alias namedMarkerConfiguration: namedMarkerConfiguration
     readonly property alias baseAccelerationSlider: baseAccelerationSlider
     readonly property alias onlyPositiveVelocity: positiveVelocity.checked
     readonly property bool showSliderIcons: toolbar.width > 404
     readonly property bool showingFormattingTools: parseInt(viewport.prompter.state)!==Prompter.States.Editing && (!toolbar.hideFormattingToolsWhilePrompting || editor.focus)
 
     // Hide toolbar when read region is set to bottom and viewport.prompter is not in editing state.
-    enabled: !(parseInt(viewport.prompter.state)!==Prompter.States.Editing && (overlay.atBottom && !viewport.forcedOrientation || root.visibility===Kirigami.ApplicationWindow.FullScreen && !editor.focus))
+    enabled: !(parseInt(viewport.prompter.state)!==Prompter.States.Editing && (overlay.atBottom && !viewport.forcedOrientation || root.visibility===ApplicationWindow.FullScreen && !editor.focus))
     height: enabled ? implicitHeight : 0
     //Behavior on height {
     //    id: height
     //    enabled: true
     //    animation: NumberAnimation {
-    //        duration: Kirigami.Units.shortDuration>>1
+    //        duration: Units.ShortDuration>>1
     //        easing.type: Easing.OutQuad
     //    }
     //}
-
+    position: ToolBar.Footer
     background: Rectangle {
         color: Kirigami.Theme.alternateBackgroundColor.a===0 ? appTheme.__backgroundColor : Kirigami.Theme.alternateBackgroundColor
         opacity: root.__opacity * 0.4 + 0.6
@@ -119,8 +121,8 @@ ToolBar {
             onWheel: (wheel)=>viewport.mouse.wheel(wheel)
         }
         Rectangle {
-            color: parseInt(prompter.state)===Prompter.States.Prompting && editor.focus ? "#00AA00" : Kirigami.Theme.activeBackgroundColor
-            opacity: parseInt(prompter.state)!==Prompter.States.Editing ? 0.4 : 1
+            color: parseInt(viewport.prompter.state)===Prompter.States.Prompting && editor.focus ? "#00AA00" : Kirigami.Theme.activeBackgroundColor
+            opacity: parseInt(viewport.prompter.state)!==Prompter.States.Editing ? 0.4 : 1
             height: 3
             anchors.top: parent.top
             anchors.left: parent.left
@@ -142,7 +144,7 @@ ToolBar {
         property alias hideFormattingToolsWhilePrompting: toolbar.hideFormattingToolsWhilePrompting
     }
     Settings {
-        category: "prompter"
+        category: "viewport.prompter"
         property alias baseSpeed: baseSpeedSlider.value
         property alias baseAcceleration: baseAccelerationSlider.value
         property alias fontSize: fontSizeSlider.value
@@ -162,7 +164,6 @@ ToolBar {
             anchors.fill: parent
             text: parent.parent.text
             font: parent.parent.font
-            Kirigami.Theme.colorSet: Kirigami.Theme.Button
             color: parent.parent.enabled ? (parent.parent.down ? /*Kirigami.Theme.positiveTextColor*/Kirigami.Theme.focusColor : (parent.parent.checked ? Kirigami.Theme.focusColor : Kirigami.Theme.textColor)) : (root.themeIsMaterial ? "#888" : Kirigami.Theme.textColor)
             horizontalAlignment: Text.AlignHCenter
             verticalAlignment: Text.AlignVCenter
@@ -177,7 +178,7 @@ ToolBar {
             ToolButton {
                 id: bookmarkListButton
                 text: "\uF0DB" /*uE804*/
-                visible: Kirigami.Settings.isMobile ? root.width > 339 : true // root.width > 458
+                visible: root.__isMobile ? root.width > 339 : true // root.width > 458
                 contentItem: Loader { sourceComponent: textComponent }
                 font.family: iconFont.name
                 font.pointSize: 13
@@ -190,8 +191,8 @@ ToolBar {
             }
             ToolButton {
                 id: searchButton
-                visible: !mobileOrSmallScreen || parseInt(prompter.state)===Prompter.States.Editing && root.width > 360
-                enabled: parseInt(prompter.state)===Prompter.States.Editing || parseInt(prompter.state)===Prompter.States.Standby
+                visible: !mobileOrSmallScreen || parseInt(viewport.prompter.state)===Prompter.States.Editing && root.width > 360
+                enabled: parseInt(viewport.prompter.state)===Prompter.States.Editing || parseInt(viewport.prompter.state)===Prompter.States.Standby
                 text: Qt.application.layoutDirection===Qt.LeftToRight ? "\uE847" : "\uE848"
                 contentItem: Loader { sourceComponent: textComponent }
                 font.family: iconFont.name
@@ -207,19 +208,19 @@ ToolBar {
                 font.family: iconFont.name
                 font.pointSize: 13
                 focusPolicy: Qt.TabFocus
-                checked: prompter.document.regularMarker
+                checked: viewport.prompter.document.regularMarker
                 checkable: true
-                onClicked: prompter.document.regularMarker = !prompter.document.regularMarker
+                onClicked: viewport.prompter.document.regularMarker = !viewport.prompter.document.regularMarker
             }
             ToolButton {
                 id: namedBookmarkButton
-                visible: !Kirigami.Settings.isMobile // || parseInt(prompter.state)===Prompter.States.Editing
+                visible: !root.__isMobile // || parseInt(viewport.prompter.state)===Prompter.States.Editing
                 text: "\uE844"
                 contentItem: Loader { sourceComponent: textComponent }
                 font.family: iconFont.name
                 font.pointSize: 13
                 focusPolicy: Qt.TabFocus
-                checked: prompter.document.namedMarker
+                checked: viewport.prompter.document.namedMarker
                 checkable: true
                 onClicked: namedMarkerConfiguration.open()
             }
@@ -238,13 +239,13 @@ ToolBar {
         }
         Row {
             id: playbackRow
-//            visible: !Kirigami.Settings.isMobile || parseInt(prompter.state)===Prompter.States.Prompting
+//            visible: !root.__isMobile || parseInt(viewport.prompter.state)===Prompter.States.Prompting
             visible:
-                if (Kirigami.Settings.isMobile)
-                    return parseInt(prompter.state)===Prompter.States.Prompting
+                if (root.__isMobile)
+                    return parseInt(viewport.prompter.state)===Prompter.States.Prompting
                 else
-                    return !toolbar.hideFormattingToolsAlways && (showingFormattingTools || parseInt(prompter.state)===Prompter.States.Editing) || root.width>489;
-//                    if (parseInt(prompter.state)===Prompter.States.Editing)
+                    return !toolbar.hideFormattingToolsAlways && (showingFormattingTools || parseInt(viewport.prompter.state)===Prompter.States.Editing) || root.width>489;
+//                    if (parseInt(viewport.prompter.state)===Prompter.States.Editing)
 //                        return true
 //                    else if (root.width>459)
 //                        return !toolbar.hideFormattingToolsAlways && showingFormattingTools;
@@ -258,7 +259,7 @@ ToolBar {
                 font.family: iconFont.name
                 font.pointSize: 13
                 focusPolicy: Qt.TabFocus
-                onClicked: prompter.goToPreviousMarker()
+                onClicked: viewport.prompter.goToPreviousMarker()
             }
             ToolButton {
                 id: nextMarkerButton
@@ -267,31 +268,31 @@ ToolBar {
                 font.family: iconFont.name
                 font.pointSize: 13
                 focusPolicy: Qt.TabFocus
-                onClicked: prompter.goToNextMarker()
+                onClicked: viewport.prompter.goToNextMarker()
             }
             ToolSeparator {
-                contentItem.visible: !Kirigami.Settings.isMobile && root.width>458 ? playbackRow.y === undoRedoRow.y || playbackRow.y === advancedButtonsRow.y : playbackRow.y === alignmentRowMobile.y
+                contentItem.visible: !root.__isMobile && root.width>458 ? playbackRow.y === undoRedoRow.y || playbackRow.y === advancedButtonsRow.y : playbackRow.y === alignmentRowMobile.y
             }
         }
         Row {
             id: undoRedoRow
-            visible: !toolbar.hideFormattingToolsAlways && (Kirigami.Settings.isMobile ? parseInt(prompter.state)===Prompter.States.Editing && Qt.platform.os!=='ios' :  (showingFormattingTools || parseInt(prompter.state)===Prompter.States.Editing) && root.width>458)
+            visible: !toolbar.hideFormattingToolsAlways && (root.__isMobile ? parseInt(viewport.prompter.state)===Prompter.States.Editing && Qt.platform.os!=='ios' :  (showingFormattingTools || parseInt(viewport.prompter.state)===Prompter.States.Editing) && root.width>458)
             ToolButton {
                 text: Qt.application.layoutDirection===Qt.LeftToRight?"\uE74F":"\uE801"
                 contentItem: Loader { sourceComponent: textComponent }
                 font.family: iconFont.name
                 font.pointSize: 13
                 focusPolicy: Qt.TabFocus
-                enabled: prompter.editor.canUndo
-                onClicked: prompter.editor.undo()
+                enabled: viewport.prompter.editor.canUndo
+                onClicked: viewport.prompter.editor.undo()
             }
             ToolButton {
                 text: Qt.application.layoutDirection===Qt.LeftToRight?"\uE801":"\uE74F"
                 contentItem: Loader { sourceComponent: textComponent }
                 font.family: iconFont.name
                 font.pointSize: 13
-                enabled: prompter.editor.canRedo
-                onClicked: prompter.editor.redo()
+                enabled: viewport.prompter.editor.canRedo
+                onClicked: viewport.prompter.editor.redo()
             }
             ToolSeparator {
                 contentItem.visible: undoRedoRow.y === editRow.y
@@ -299,7 +300,7 @@ ToolBar {
         }
         Row {
             id: editRow
-            visible: !toolbar.hideFormattingToolsAlways && !Kirigami.Settings.isMobile && root.width>458 && (showingFormattingTools || parseInt(prompter.state)===Prompter.States.Editing)
+            visible: !toolbar.hideFormattingToolsAlways && !root.__isMobile && root.width>458 && (showingFormattingTools || parseInt(viewport.prompter.state)===Prompter.States.Editing)
             ToolButton {
                 id: copyButton
                 text: "\uF0C5"
@@ -307,8 +308,8 @@ ToolBar {
                 font.family: iconFont.name
                 font.pointSize: 13
                 focusPolicy: Qt.TabFocus
-                enabled: prompter.editor.selectedText
-                onClicked: prompter.editor.copy()
+                enabled: viewport.prompter.editor.selectedText
+                onClicked: viewport.prompter.editor.copy()
             }
             ToolButton {
                 id: cutButton
@@ -317,8 +318,8 @@ ToolBar {
                 font.family: iconFont.name
                 font.pointSize: 13
                 focusPolicy: Qt.TabFocus
-                enabled: prompter.editor.selectedText
-                onClicked: prompter.editor.cut()
+                enabled: viewport.prompter.editor.selectedText
+                onClicked: viewport.prompter.editor.cut()
             }
             ToolButton {
                 id: pasteButton
@@ -327,8 +328,8 @@ ToolBar {
                 font.family: iconFont.name
                 font.pointSize: 13
                 focusPolicy: Qt.TabFocus
-                enabled: prompter.editor.canPaste
-                onClicked: prompter.editor.paste()
+                enabled: viewport.prompter.editor.canPaste
+                onClicked: viewport.prompter.editor.paste()
             }
             ToolSeparator {
                 contentItem.visible: mobileOrSmallScreen ? editRow.y === alignmentRowMobile.y : editRow.y === formatRow.y
@@ -336,7 +337,7 @@ ToolBar {
         }
         Row {
             id: alignmentRowMobile
-            visible: !toolbar.hideFormattingToolsAlways && (showingFormattingTools || parseInt(prompter.state)===Prompter.States.Editing) && mobileOrSmallScreen //&&
+            visible: !toolbar.hideFormattingToolsAlways && (showingFormattingTools || parseInt(viewport.prompter.state)===Prompter.States.Editing) && mobileOrSmallScreen //&&
             Menu {
                 id: textAlignmentMenu
                 background: Rectangle {
@@ -345,23 +346,23 @@ ToolBar {
                 }
                 MenuItem {
                     text: Qt.application.layoutDirection===Qt.LeftToRight ? i18nc("Editor actions. Text alignment.", "&Left") : i18nc("Editor actions. Text alignment.", "&Right")
-                    enabled: Qt.application.layoutDirection===Qt.LeftToRight ? prompter.document.alignment !== Qt.AlignLeft : prompter.document.alignment !== Qt.AlignRight
-                    onTriggered: prompter.document.alignment = Qt.AlignLeft
+                    enabled: Qt.application.layoutDirection===Qt.LeftToRight ? viewport.prompter.document.alignment !== Qt.AlignLeft : viewport.prompter.document.alignment !== Qt.AlignRight
+                    onTriggered: viewport.prompter.document.alignment = Qt.AlignLeft
                 }
                 MenuItem {
                     text: i18nc("Editor actions. Text alignment.", "C&enter")
-                    enabled: !(prompter.document.alignment === Qt.AlignHCenter || (prompter.document.alignment !== Qt.AlignLeft && prompter.document.alignment !== Qt.AlignRight/*&& prompter.document.alignment !== Qt.AlignJustify*/))
-                    onTriggered: prompter.document.alignment = Qt.AlignHCenter
+                    enabled: !(viewport.prompter.document.alignment === Qt.AlignHCenter || (viewport.prompter.document.alignment !== Qt.AlignLeft && viewport.prompter.document.alignment !== Qt.AlignRight/*&& viewport.prompter.document.alignment !== Qt.AlignJustify*/))
+                    onTriggered: viewport.prompter.document.alignment = Qt.AlignHCenter
                 }
                 MenuItem {
                     text: Qt.application.layoutDirection===Qt.LeftToRight ? i18nc("Editor actions. Text alignment.", "&Right") : i18nc("Editor actions. Text alignment.", "&Left")
-                    enabled: Qt.application.layoutDirection===Qt.LeftToRight ? prompter.document.alignment !== Qt.AlignRight : prompter.document.alignment !== Qt.AlignLeft
-                    onTriggered: prompter.document.alignment = Qt.AlignRight
+                    enabled: Qt.application.layoutDirection===Qt.LeftToRight ? viewport.prompter.document.alignment !== Qt.AlignRight : viewport.prompter.document.alignment !== Qt.AlignLeft
+                    onTriggered: viewport.prompter.document.alignment = Qt.AlignRight
                 }
                 //MenuItem {
                 //    text: i18nc("Editor actions. Text alignment.", "&Justify")
-                //    enabled: prompter.document.alignment !== Qt.AlignHustify
-                //    onTriggered: prompter.document.alignment = Qt.AlignJustify
+                //    enabled: viewport.prompter.document.alignment !== Qt.AlignHustify
+                //    onTriggered: viewport.prompter.document.alignment = Qt.AlignJustify
                 //}
             }
             ToolButton {
@@ -373,7 +374,7 @@ ToolBar {
                 font.pointSize: 13
                 focusPolicy: Qt.TabFocus
                 checkable: true
-                checked: Qt.application.layoutDirection===Qt.LeftToRight ? prompter.document.alignment === Qt.AlignLeft : prompter.document.alignment === Qt.AlignRight
+                checked: Qt.application.layoutDirection===Qt.LeftToRight ? viewport.prompter.document.alignment === Qt.AlignLeft : viewport.prompter.document.alignment === Qt.AlignRight
                 onClicked: textAlignmentMenu.popup(this)
             }
             ToolButton {
@@ -385,7 +386,7 @@ ToolBar {
                 contentItem: Loader { sourceComponent: textComponent }
                 focusPolicy: Qt.TabFocus
                 checkable: true
-                checked: prompter.document.alignment === Qt.AlignHCenter
+                checked: viewport.prompter.document.alignment === Qt.AlignHCenter
                 onClicked: textAlignmentMenu.popup(this)
             }
             ToolButton {
@@ -397,7 +398,7 @@ ToolBar {
                 font.pointSize: 13
                 focusPolicy: Qt.TabFocus
                 checkable: true
-                checked: Qt.application.layoutDirection===Qt.LeftToRight ? prompter.document.alignment === Qt.AlignRight : prompter.document.alignment === Qt.AlignLeft
+                checked: Qt.application.layoutDirection===Qt.LeftToRight ? viewport.prompter.document.alignment === Qt.AlignRight : viewport.prompter.document.alignment === Qt.AlignLeft
                 onClicked: textAlignmentMenu.popup(this)
             }
             // Justify is proven to make text harder to read for some readers. So I'm commenting out all text justification options from the program. I'm not removing them, only commenting out in case someone needs to re-enable. This article links to various sources that validate my decision: https://kaiweber.wordpress.com/2010/05/31/ragged-right-or-justified-alignment/ - Javier
@@ -410,7 +411,7 @@ ToolBar {
             //    font.pointSize: 13
             //    focusPolicy: Qt.TabFocus
             //    checkable: true
-            //    checked: prompter.document.alignment === Qt.AlignJustify
+            //    checked: viewport.prompter.document.alignment === Qt.AlignJustify
             //    onClicked: textAlignmentMenu.popup(this)
             //}
             ToolSeparator {
@@ -419,7 +420,7 @@ ToolBar {
         }
         Row {
             id: formatRow
-            visible: !toolbar.hideFormattingToolsAlways && (!Kirigami.Settings.isMobile && showingFormattingTools || parseInt(prompter.state)===Prompter.States.Editing)
+            visible: !toolbar.hideFormattingToolsAlways && (!root.__isMobile && showingFormattingTools || parseInt(viewport.prompter.state)===Prompter.States.Editing)
             ToolButton {
                 id: boldButton
                 text: "\uE802"
@@ -428,8 +429,8 @@ ToolBar {
                 font.pointSize: 13
                 focusPolicy: Qt.TabFocus
                 checkable: true
-                checked: prompter.document.bold
-                onClicked: prompter.document.bold = !prompter.document.bold
+                checked: viewport.prompter.document.bold
+                onClicked: viewport.prompter.document.bold = !viewport.prompter.document.bold
             }
             ToolButton {
                 id: italicButton
@@ -439,8 +440,8 @@ ToolBar {
                 font.pointSize: 13
                 focusPolicy: Qt.TabFocus
                 checkable: true
-                checked: prompter.document.italic
-                onClicked: prompter.document.italic = !prompter.document.italic
+                checked: viewport.prompter.document.italic
+                onClicked: viewport.prompter.document.italic = !viewport.prompter.document.italic
             }
             ToolButton {
                 id: underlineButton
@@ -450,8 +451,8 @@ ToolBar {
                 font.pointSize: 13
                 focusPolicy: Qt.TabFocus
                 checkable: true
-                checked: prompter.document.underline
-                onClicked: prompter.document.underline = !prompter.document.underline
+                checked: viewport.prompter.document.underline
+                onClicked: viewport.prompter.document.underline = !viewport.prompter.document.underline
             }
             ToolButton {
                 id: strikeOutButton
@@ -461,8 +462,8 @@ ToolBar {
                 font.pointSize: 13
                 focusPolicy: Qt.TabFocus
                 checkable: true
-                checked: prompter.document.strike
-                onClicked: prompter.document.strike = !prompter.document.strike
+                checked: viewport.prompter.document.strike
+                onClicked: viewport.prompter.document.strike = !viewport.prompter.document.strike
             }
             ToolSeparator {
                 contentItem.visible: formatRow.y === fontRow.y
@@ -470,7 +471,7 @@ ToolBar {
         }
         Row {
             id: fontRow
-            visible: !toolbar.hideFormattingToolsAlways && (!Kirigami.Settings.isMobile && showingFormattingTools || parseInt(prompter.state)===Prompter.States.Editing)
+            visible: !toolbar.hideFormattingToolsAlways && (!root.__isMobile && showingFormattingTools || parseInt(viewport.prompter.state)===Prompter.States.Editing)
             FontLoader {
                 id: westernSeriousSansfFont
                 source: "fonts/dejavu-sans.otf"
@@ -534,8 +535,8 @@ ToolBar {
                     enabled: ['android', 'ios', 'wasm', 'tvos', 'qnx', 'ipados'].indexOf(Qt.platform.os)===-1
                     visible: enabled
                     onTriggered: {
-                        //fontDialog.currentFont.family = prompter.document.fontFamily;
-                        //fontDialog.currentFont.pointSize = prompter.document.fontSize;
+                        //fontDialog.currentFont.family = viewport.prompter.document.fontFamily;
+                        //fontDialog.currentFont.pointSize = viewport.prompter.document.fontSize;
                         fontDialog.open();
                     }
                 }
@@ -549,11 +550,11 @@ ToolBar {
                 contentItem: Loader { sourceComponent: textComponent }
                 font.family: iconFont.name
                 font.pointSize: 13
-                font.bold: prompter.document.bold
-                font.italic: prompter.document.italic
-                font.underline: prompter.document.underline
-                font.strikeout: prompter.document.strike
-                font.overline: prompter.document.regularMarker || prompter.document.namedMarker
+                font.bold: viewport.prompter.document.bold
+                font.italic: viewport.prompter.document.italic
+                font.underline: viewport.prompter.document.underline
+                font.strikeout: viewport.prompter.document.strike
+                font.overline: viewport.prompter.document.regularMarker || viewport.prompter.document.namedMarker
                 onClicked: {
                     fontSelectionMenu.popup(this)
                 }
@@ -564,7 +565,6 @@ ToolBar {
                 contentItem: Text {
                     text: parent.text
                     font: parent.font
-                    Kirigami.Theme.colorSet: Kirigami.Theme.Button
                     color: parent.down ? Kirigami.Theme.positiveTextColor : (parent.checked ? Kirigami.Theme.focusColor : Kirigami.Theme.textColor)
                     horizontalAlignment: Text.AlignHCenter
                     verticalAlignment: Text.AlignVCenter
@@ -574,13 +574,13 @@ ToolBar {
                 font.pointSize: 13
                 focusPolicy: Qt.TabFocus
                 onClicked: {
-                    colorDialog.color = prompter.textColor;
+                    colorDialog.color = viewport.prompter.textColor;
                     colorDialog.open();
                 }
                 Rectangle {
                     width: aFontMetrics.width + 3
                     height: 2
-                    color: prompter.document.textColor
+                    color: viewport.prompter.document.textColor
                     parent: textColorButton.contentItem
                     anchors.horizontalCenter: parent.horizontalCenter
                     anchors.baseline: parent.baseline
@@ -599,7 +599,6 @@ ToolBar {
                 contentItem: Text {
                     text: parent.text
                     font: parent.font
-                    Kirigami.Theme.colorSet: Kirigami.Theme.Button
                     color: parent.down ? Kirigami.Theme.positiveTextColor : (parent.checked ? Kirigami.Theme.focusColor : Kirigami.Theme.textColor)
                     horizontalAlignment: Text.AlignHCenter
                     verticalAlignment: Text.AlignVCenter
@@ -613,13 +612,13 @@ ToolBar {
                     // if (Qt.colorEqual(highlightDialog.color, "#000000"))
                     //     highlightDialog.color = Qt.rgba(0,0,0,0);
                     // else
-                    //     highlightDialog.color = prompter.textBackground;
+                    //     highlightDialog.color = viewport.prompter.textBackground;
                     highlightDialog.open();
                 }
                 Rectangle {
                     width: bFontMetrics.width + 3
                     height: 2
-                    color: prompter.document.textBackground
+                    color: viewport.prompter.document.textBackground
                     parent: textBackgroundButton.contentItem
                     anchors.horizontalCenter: parent.horizontalCenter
                     anchors.baseline: parent.baseline
@@ -638,7 +637,7 @@ ToolBar {
         }
         Row {
             id: alignmentRowDesktop
-            visible: !toolbar.hideFormattingToolsAlways && !mobileOrSmallScreen && (showingFormattingTools || parseInt(prompter.state)===Prompter.States.Editing)
+            visible: !toolbar.hideFormattingToolsAlways && !mobileOrSmallScreen && (showingFormattingTools || parseInt(viewport.prompter.state)===Prompter.States.Editing)
             ToolButton {
                 id: alignLeftButton
                 text: Qt.application.layoutDirection===Qt.LeftToRight ? "\uE808" : "\uE80A"
@@ -647,12 +646,12 @@ ToolBar {
                 font.pointSize: 13
                 focusPolicy: Qt.TabFocus
                 checkable: true
-                checked: Qt.application.layoutDirection===Qt.LeftToRight ? prompter.document.alignment === Qt.AlignLeft : prompter.document.alignment === Qt.AlignRight
+                checked: Qt.application.layoutDirection===Qt.LeftToRight ? viewport.prompter.document.alignment === Qt.AlignLeft : viewport.prompter.document.alignment === Qt.AlignRight
                 onClicked: {
                     if (Qt.application.layoutDirection===Qt.LeftToRight)
-                        prompter.document.alignment = Qt.AlignLeft
+                        viewport.prompter.document.alignment = Qt.AlignLeft
                     else
-                        prompter.document.alignment = Qt.AlignRight
+                        viewport.prompter.document.alignment = Qt.AlignRight
                 }
             }
             ToolButton {
@@ -663,8 +662,8 @@ ToolBar {
                 contentItem: Loader { sourceComponent: textComponent }
                 focusPolicy: Qt.TabFocus
                 checkable: true
-                checked: prompter.document.alignment === Qt.AlignHCenter
-                onClicked: prompter.document.alignment = Qt.AlignHCenter
+                checked: viewport.prompter.document.alignment === Qt.AlignHCenter
+                onClicked: viewport.prompter.document.alignment = Qt.AlignHCenter
             }
             ToolButton {
                 id: alignRightButton
@@ -674,12 +673,12 @@ ToolBar {
                 font.pointSize: 13
                 focusPolicy: Qt.TabFocus
                 checkable: true
-                checked: Qt.application.layoutDirection===Qt.LeftToRight ? prompter.document.alignment === Qt.AlignRight : prompter.document.alignment === Qt.AlignLeft
+                checked: Qt.application.layoutDirection===Qt.LeftToRight ? viewport.prompter.document.alignment === Qt.AlignRight : viewport.prompter.document.alignment === Qt.AlignLeft
                 onClicked: {
                     if (Qt.application.layoutDirection===Qt.LeftToRight)
-                        prompter.document.alignment = Qt.AlignRight
+                        viewport.prompter.document.alignment = Qt.AlignRight
                         else
-                            prompter.document.alignment = Qt.AlignLeft
+                            viewport.prompter.document.alignment = Qt.AlignLeft
                 }
             }
             // Justify is proven to make text harder to read for some readers. So I'm commenting out all text justification options from the program. I'm not removing them, only commenting out in case someone needs to re-enable. This article links to various sources that validate my decision: https://kaiweber.wordpress.com/2010/05/31/ragged-right-or-justified-alignment/ - Javier
@@ -691,8 +690,8 @@ ToolBar {
             //    font.pointSize: 13
             //    focusPolicy: Qt.TabFocus
             //    checkable: true
-            //    checked: prompter.document.alignment === Qt.AlignJustify
-            //    onClicked: prompter.document.alignment = Qt.AlignJustify
+            //    checked: viewport.prompter.document.alignment === Qt.AlignJustify
+            //    onClicked: viewport.prompter.document.alignment = Qt.AlignJustify
             //}
             ToolSeparator {
                 contentItem.visible: alignmentRowDesktop.y === advancedButtonsRow.y
@@ -700,7 +699,7 @@ ToolBar {
         }
         Row {
             id: advancedButtonsRow
-            //visible: parseInt(prompter.state)===Prompter.States.Editing
+            //visible: parseInt(viewport.prompter.state)===Prompter.States.Editing
             ToolButton {
                 id: wheelThrottleSettingsButton
                 visible: !(Qt.platform.os==="android" || Qt.platform.os==="ios")
@@ -709,7 +708,7 @@ ToolBar {
                 font.family: iconFont.name
                 font.pointSize: 13
                 focusPolicy: Qt.TabFocus
-                checked: prompter.document.namedMarker
+                checked: viewport.prompter.document.namedMarker
                 checkable: true
                 onClicked: wheelSettings.open()
             }
@@ -739,7 +738,7 @@ ToolBar {
             }
             //ToolButton {
                 //id: __iDefaultButton
-                //visible: Kirigami.Settings.isMobile ? showAnimationConfigOptions : true
+                //visible: root.__isMobile ? showAnimationConfigOptions : true
                 //text: "\uE858"
                 //contentItem: Loader { sourceComponent: textComponent }
                 //font.family: iconFont.name
@@ -752,8 +751,8 @@ ToolBar {
         }
         RowLayout {
             id: velocityRow
-            enabled: parseInt(prompter.state)===Prompter.States.Prompting
-            visible: !Kirigami.Settings.isMobile && root.width>1481 /*&& (showingFormattingTools || ! toolbar.hideFormattingToolsAlways)*/ || enabled
+            enabled: parseInt(viewport.prompter.state)===Prompter.States.Prompting
+            visible: !root.__isMobile && root.width>1481 /*&& (showingFormattingTools || ! toolbar.hideFormattingToolsAlways)*/ || enabled
             ToolButton {
                 id: positiveVelocity
                 text: "\u002B"
@@ -767,7 +766,7 @@ ToolBar {
                 checked: true
             }
             Label {
-                text: i18nc("Velocity {VELOCITY_STEPS}", "Velocity <pre>%1</pre>", prompter.__i<0 ? '-' + (prompter.__i/100).toFixed(2).slice(3) : '+' + (prompter.__i/100).toFixed(2).slice(2))
+                text: i18nc("Velocity {VELOCITY_STEPS}", "Velocity <pre>%1</pre>", viewport.prompter.__i<0 ? '-' + (viewport.prompter.__i/100).toFixed(2).slice(3) : '+' + (viewport.prompter.__i/100).toFixed(2).slice(2))
                 color: Kirigami.Theme.textColor
                 Layout.topMargin: 4
                 Layout.bottomMargin: -14
@@ -776,24 +775,24 @@ ToolBar {
             }
             Slider {
                 id: velocityControlSlider
-                value: prompter.__i
+                value: viewport.prompter.__i
                 to: 20
                 from: positiveVelocity.checked ? 0 : -velocityControlSlider.to
                 stepSize: 1
                 focusPolicy: Qt.TabFocus
                 onMoved: {
-                    if (!(prompter.__atEnd && value>=0 || prompter.__atStart && value<0)) {
-                        prompter.__i = value
-                        prompter.__play = true
-                        prompter.position = prompter.__destination
+                    if (!(viewport.prompter.__atEnd && value>=0 || viewport.prompter.__atStart && value<0)) {
+                        viewport.prompter.__i = value
+                        viewport.prompter.__play = true
+                        viewport.prompter.position = viewport.prompter.__destination
                     }
                 }
             }
         }
         RowLayout {
-            visible: root.__translucidBackground && (!Kirigami.Settings.isMobile && root.width>(!showingFormattingTools||hideFormattingToolsAlways ? 1195 : 994) || (parseInt(prompter.state)!==Prompter.States.Editing && parseInt(prompter.state)!==Prompter.States.Prompting)) // This check isn't optimized in case more prompter states get added in the future, even tho I think that is unlikely.
+            visible: root.__translucidBackground && (!root.__isMobile && root.width>(!showingFormattingTools||hideFormattingToolsAlways ? 1195 : 994) || (parseInt(viewport.prompter.state)!==Prompter.States.Editing && parseInt(viewport.prompter.state)!==Prompter.States.Prompting)) // This check isn't optimized in case more viewport.prompter states get added in the future, even tho I think that is unlikely.
             ToolButton {
-                visible: !Kirigami.Settings.isMobile && showSliderIcons
+                visible: !root.__isMobile && showSliderIcons
                 text: "\uE810"
                 enabled: false
                 contentItem: Loader { sourceComponent: textComponent }
@@ -825,9 +824,9 @@ ToolBar {
                 text: "\uF088"
                 //visible: showSliderIcons
                 checkable: true
-                checked: !prompter.__wysiwyg
+                checked: !viewport.prompter.__wysiwyg
                 onClicked: {
-                    prompter.toggleWysiwyg()
+                    viewport.prompter.toggleWysiwyg()
                     paragraphSpacingSlider.update()
                 }
                 contentItem: Loader { sourceComponent: textComponent }
@@ -836,11 +835,11 @@ ToolBar {
             }
             RowLayout {
                 visible: height>0
-                height: (parseInt(prompter.state)===Prompter.States.Editing) ? implicitHeight : 0
+                height: (parseInt(viewport.prompter.state)===Prompter.States.Editing) ? implicitHeight : 0
                 clip: true
                 Label {
-                    visible: !prompter.__wysiwyg
-                    text: i18nc("Font size 100% (083)", "Font size <pre>%1% (%2)</pre>", (fontSizeSlider.value/1000).toFixed(3).slice(2), prompter.fontSize)
+                    visible: !viewport.prompter.__wysiwyg
+                    text: i18nc("Font size 100% (083)", "Font size <pre>%1% (%2)</pre>", (fontSizeSlider.value/1000).toFixed(3).slice(2), viewport.prompter.fontSize)
                     color: Kirigami.Theme.textColor
                     Layout.topMargin: 4
                     Layout.bottomMargin: -14
@@ -849,7 +848,7 @@ ToolBar {
                 }
                 Slider {
                     id: fontSizeSlider
-                    visible: !prompter.__wysiwyg
+                    visible: !viewport.prompter.__wysiwyg
                     focusPolicy: Qt.TabFocus
                     from: 90
                     value: 100
@@ -858,8 +857,8 @@ ToolBar {
                     onMoved: paragraphSpacingSlider.update()
                 }
                 Label {
-                    visible: prompter.__wysiwyg
-                    text: i18nc("Font size 100% (083)", "Font size <pre>%1% (%2)</pre>", (fontWYSIWYGSizeSlider.value/1440).toFixed(3).slice(2), (prompter.fontSize/1000).toFixed(3).slice(2))
+                    visible: viewport.prompter.__wysiwyg
+                    text: i18nc("Font size 100% (083)", "Font size <pre>%1% (%2)</pre>", (fontWYSIWYGSizeSlider.value/1440).toFixed(3).slice(2), (viewport.prompter.fontSize/1000).toFixed(3).slice(2))
                     color: Kirigami.Theme.textColor
                     Layout.topMargin: 4
                     Layout.bottomMargin: -14
@@ -868,7 +867,7 @@ ToolBar {
                 }
                 Slider {
                     id: fontWYSIWYGSizeSlider
-                    visible: prompter.__wysiwyg
+                    visible: viewport.prompter.__wysiwyg
                     from: 90
                     value: 144
                     to: 180 // 200
@@ -885,7 +884,7 @@ ToolBar {
             Behavior on height{
                 enabled: true
                 animation: NumberAnimation {
-                    duration: Kirigami.Units.shortDuration
+                    duration: Units.ShortDuration
                     easing.type: Easing.OutQuad
                 }
             }
@@ -914,7 +913,7 @@ ToolBar {
                 focusPolicy: Qt.TabFocus
                 onMoved: lineHeightSlider.update()
                 function update() {
-                    prompter.document.setLineHeight(value)
+                    viewport.prompter.document.setLineHeight(value)
                 }
             }
         }
@@ -925,7 +924,7 @@ ToolBar {
             Behavior on height{
                 enabled: true
                 animation: NumberAnimation {
-                    duration: Kirigami.Units.shortDuration
+                    duration: Units.ShortDuration
                     easing.type: Easing.OutQuad
                 }
             }
@@ -954,7 +953,7 @@ ToolBar {
                 focusPolicy: Qt.TabFocus
                 onMoved: update()
                 function update() {
-                    prompter.document.setParagraphHeight(prompter.fontSize * value)
+                    viewport.prompter.document.setParagraphHeight(viewport.prompter.fontSize * value)
                 }
             }
         }
@@ -965,7 +964,7 @@ ToolBar {
             Behavior on height{
                 enabled: true
                 animation: NumberAnimation {
-                    duration: Kirigami.Units.shortDuration
+                    duration: Units.ShortDuration
                     easing.type: Easing.OutQuad
                 }
             }
@@ -1002,7 +1001,7 @@ ToolBar {
             Behavior on height{
                 enabled: true
                 animation: NumberAnimation {
-                    duration: Kirigami.Units.shortDuration
+                    duration: Units.ShortDuration
                     easing.type: Easing.OutQuad
                 }
             }
@@ -1038,7 +1037,7 @@ ToolBar {
             Behavior on height{
                 enabled: true
                 animation: NumberAnimation {
-                    duration: Kirigami.Units.shortDuration
+                    duration: Units.ShortDuration
                     easing.type: Easing.OutQuad
                 }
             }
@@ -1067,8 +1066,8 @@ ToolBar {
                 focusPolicy: Qt.TabFocus
                 onMoved: {
                     viewport.__baseSpeed = value;
-                    prompter.focus = true;
-                    prompter.position = prompter.__destination
+                    viewport.prompter.focus = true;
+                    viewport.prompter.position = viewport.prompter.__destination
                 }
             }
         }
@@ -1079,7 +1078,7 @@ ToolBar {
             Behavior on height{
                 enabled: true
                 animation: NumberAnimation {
-                    duration: Kirigami.Units.shortDuration
+                    duration: Units.ShortDuration
                     easing.type: Easing.OutQuad
                 }
             }
@@ -1108,111 +1107,9 @@ ToolBar {
                 focusPolicy: Qt.TabFocus
                 onMoved: {
                     viewport.__curvature=value;
-                    prompter.focus = true;
-                    prompter.position = prompter.__destination
+                    viewport.prompter.focus = true;
+                    viewport.prompter.position = viewport.prompter.__destination
                 }
-            }
-        }
-    }
-
-    //Kirigami.OverlaySheet {
-        //id: stepsConfiguration
-        //onSheetOpenChanged: {
-            //prompterPage.actions.main.checked = sheetOpen;
-            //if (!sheetOpen)
-                //prompter.focus = true
-        //}
-        //background: Rectangle {
-            ////color: Kirigami.Theme.activeBackgroundColor
-            //color: appTheme.__backgroundColor
-            //anchors.fill: parent
-        //}
-        //header: Kirigami.Heading {
-            //text: i18n("Start Velocity")
-            //level: 1
-        //}
-
-        //ColumnLayout {
-            //width: parent.width
-            //Label {
-                //text: i18n("Velocity to have when starting to prompt")
-            //}
-            //RowLayout {
-                //SpinBox {
-                    //id: defaultSteps
-                    //Layout.fillWidth: true
-                    //Layout.leftMargin: Kirigami.Units.smallSpacing
-                    //Layout.rightMargin: Kirigami.Units.smallSpacing
-                    //value: __iDefault
-                    //from: 1
-                    //to: velocityControlSlider.to
-                    //onValueModified: {
-                        //__iDefault = value
-                    //}
-                //}
-                //Button {
-                    //visible: parseInt(prompter.state)===Prompter.States.Prompting && prompter.__velocity>0
-                    //flat: true
-                    //text: "Make current velocity default"
-                    //onClicked: {
-                        //defaultSteps.value = prompter.__i;
-                        //__iDefault = prompter.__i;
-                    //}
-                //}
-            //}
-        //}
-    //}
-
-    Kirigami.OverlaySheet {
-        id: namedMarkerConfiguration
-        header: Kirigami.Heading {
-            text: i18nc("Refers to a key on the keyboard used to skip to a user defined marker while prompting", "Skip Key")
-            level: 1
-        }
-        onSheetOpenChanged: {
-            prompterPage.actions.main.checked = sheetOpen;
-            // When opening overlay, reset key input button's text.
-            // Dev: When opening overlay, reset key input button's text to current anchor's key value.
-            if (sheetOpen)
-                //row.setMarkerKeyButton.item.text = "";
-                column.setMarkerKeyButton.item.text = prompter.document.getMarkerKey();
-            else {
-                prompter.restoreFocus()
-                if (sideDrawer.reOpen) {
-                    prompter.document.parse()
-                    sideDrawer.open()
-                }
-            }
-        }
-        ColumnLayout {
-            id: column
-            property alias setMarkerKeyButton: setMarkerKeyButton
-            width: parent.width
-            Label {
-                text: i18nc("Refers to a key on the keyboard used to skip to a user defined marker while prompting", "Key to perform skip to this marker")
-            }
-            Loader {
-                id: setMarkerKeyButton
-                asynchronous: true
-                Layout.fillWidth: true
-            }
-            Component.onCompleted: {
-                setMarkerKeyButton.setSource("KeyInputButton.qml", { "text": "" });
-            }
-            Connections {
-                target: setMarkerKeyButton.item
-                function onToggleButtonsOff() { target.checked = false; }
-                function onSetKey(keyCode) {
-                    prompter.document.setKeyMarker(keyCode);
-                    timer.start();
-                }
-            }
-            Timer {
-                id: timer
-                running: false
-                repeat: false
-                interval: Kirigami.Units.longDuration
-                onTriggered: namedMarkerConfiguration.close()
             }
         }
     }

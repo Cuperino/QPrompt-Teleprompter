@@ -39,6 +39,7 @@ Kirigami.ApplicationWindow {
     property bool fullScreenPlatform: true
     //readonly property bool __translucidBackground: !Material.background.a // === 0
     //readonly property bool __translucidBackground: !Kirigami.Theme.backgroundColor.a && ['ios', 'wasm', 'tvos', 'qnx', 'ipados'].indexOf(Qt.platform.os)===-1
+    readonly property bool __isMobile: Kirigami.Settings.isMobile
     readonly property bool __translucidBackground: true
     readonly property bool themeIsMaterial: Kirigami.Settings.style==="Material" // || Kirigami.Settings.isMobile
     // mobileOrSmallScreen helps determine when to follow mobile behaviors from desktop non-mobile devices
@@ -219,7 +220,7 @@ Kirigami.ApplicationWindow {
                     text: i18nc("Main menu and global menu actions. Opens dialog to configure keyboard inputs.", "Keyboard Inputs")
                     iconName: "key-enter" // "keyboard"
                     onTriggered: {
-                        root.pageStack.currentItem.key_configuration_overlay.open()
+                        root.pageStack.currentItem.keyConfigurationOverlay.open()
                     }
                 }
                 Kirigami.Action {
@@ -332,7 +333,7 @@ Kirigami.ApplicationWindow {
                     }
                     root.pageStack.currentItem.sideDrawer.close()
                     root.pageStack.currentItem.countdown.configuration.close()
-                    root.pageStack.currentItem.key_configuration_overlay.close()
+                    root.pageStack.currentItem.keyConfigurationOverlay.close()
                     root.pageStack.currentItem.footer.namedMarkerConfiguration.close()
                     root.pageStack.layers.clear();
                 }
@@ -452,23 +453,9 @@ Kirigami.ApplicationWindow {
         value: root.italic
     }*/
 
-    property int q: 0
     onFrameSwapped: {
-        // Check that state is not prompting and editor isn't active.
-        // In this implementation we can't detect moving past marker while the editor is active because this feature shares its cursor as a means of detection.
-        if (parseInt(root.pageStack.currentItem.prompter.state)===Prompter.States.Prompting && !root.pageStack.currentItem.editor.focus) {
-            // Detect when moving past a marker.
-            // I'm doing this here because there's no event that occurs on each bit of scroll, and this takes much less CPU than a timer, is more precise and scales better.
-            root.pageStack.currentItem.prompter.setCursorAtCurrentPosition()
-            const m = root.pageStack.currentItem.document.previousMarker(root.pageStack.currentItem.editor.cursorPosition)
-            root.pageStack.currentItem.editor.cursorPosition = m.position
-            // Here, p is for position
-            const p = root.pageStack.currentItem.editor.cursorRectangle.y
-            if (q < p) {
-                console.log(m.url);
-            }
-            q = p;
-        }
+        // Thus runs from here because there's no event that occurs on each bit of scroll, and this takes much less CPU than a timer, is more precise and scales better.
+        root.pageStack.currentItem.prompter.markerCompare()
     }
 
     // Prompter Page Contents

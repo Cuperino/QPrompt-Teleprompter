@@ -20,7 +20,6 @@
  ****************************************************************************/
 
 import QtQuick 2.12
-import org.kde.kirigami 2.11 as Kirigami
 import QtQuick.Controls 2.12
 import QtQuick.Shapes 1.12
 import QtQuick.Layouts 1.12
@@ -33,7 +32,7 @@ Item {
         Ready,
         Running
     }
-    readonly property alias configuration: configuration
+//    readonly property alias configuration: prompterPage.configuration
     readonly property real __vh: parent.height / 100
     readonly property real __vw: parent.width / 100
     readonly property real __minv: __vw<__vh ? __vw : __vh
@@ -237,59 +236,6 @@ Item {
         anchors.fill: parent
         enabled: parseInt(prompter.state) === Prompter.States.Countdown || parseInt(prompter.state) === Prompter.States.Standby
         onClicked: prompter.toggle()
-    }
-    Kirigami.OverlaySheet {
-        id: configuration
-        onSheetOpenChanged: prompterPage.actions.main.checked = sheetOpen
-
-        header: Kirigami.Heading {
-            text: i18n("Countdown Setup")
-            level: 1
-        }
-
-        RowLayout {
-            width: parent.width
-
-            ColumnLayout {
-                Label {
-                    text: i18n("Countdown iterations")
-                }
-                SpinBox {
-                    value: __iterations
-                    from: 1
-                    to: 300  // 5*60
-                    onValueModified: {
-                        focus: true
-                        __iterations = value
-                        if (__disappearWithin && __disappearWithin >= __iterations)
-                            __disappearWithin = __iterations
-                    }
-                    Layout.fillWidth: true
-                    Layout.leftMargin: Kirigami.Units.smallSpacing
-                    Layout.rightMargin: Kirigami.Units.smallSpacing
-                }
-            }
-            ColumnLayout {
-                Label {
-                    text: i18np("Disappear within 1 second to go",
-                                "Disappear within %1 seconds to go", __disappearWithin);
-                }
-                SpinBox {
-                    value: __disappearWithin
-                    from: 1
-                    to: 10
-                    onValueModified: {
-                        focus: true
-                        __disappearWithin = value
-                        if (__iterations <= __disappearWithin)
-                            __iterations = __disappearWithin
-                    }
-                    Layout.fillWidth: true
-                    Layout.leftMargin: Kirigami.Units.smallSpacing
-                    Layout.rightMargin: Kirigami.Units.smallSpacing
-                }
-            }
-        }
     }
 
     states: [

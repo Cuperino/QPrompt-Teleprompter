@@ -22,6 +22,7 @@
 import QtQuick 2.12
 import QtQuick.Controls 2.12
 import QtQuick.Layouts 1.12
+import com.cuperino.qprompt.abstractunits 1.0
 import org.kde.kirigami 2.11 as Kirigami
 
 Item {
@@ -38,13 +39,13 @@ Item {
     function focusSearch() {
         if (isOpen) {
             searchField.text = editor.selectedText
-            // if (Kirigami.Settings.isMobile)
+            // if (root.__isMobile)
             searchField.focus = true
         }
         else {
             // Clear search
             editor.cursorPosition = document.selectionStart
-            if (!Kirigami.Settings.isMobile)
+            if (!root.__isMobile)
                 editor.focus = true
         }
     }
@@ -66,7 +67,7 @@ Item {
     anchors.right: parent.right
     // I am aware that manipulating Y is slower to process, but dynamically switching between top and bottom anchoring is not an option because it overrides height.
     height: isOpen && parseInt(prompter.state)!==Prompter.States.Prompting && parseInt(prompter.state)!==Prompter.States.Countdown ? find.implicitHeight : 0
-    y: Kirigami.Settings.isMobile || overlay.__readRegionPlacement > 0.5 ? 0-find.implicitHeight+height : parent.height-height
+    y: root.__isMobile || overlay.__readRegionPlacement > 0.5 ? 0-find.implicitHeight+height : parent.height-height
     visible: height>0
     enabled: visible
     Rectangle {
@@ -75,7 +76,7 @@ Item {
         anchors.right: find.right
         anchors.leftMargin: -8
         anchors.rightMargin: -12
-        height: Kirigami.Settings.isMobile || overlay.__readRegionPlacement > 0.5 ? find.height : find.height+this.radius
+        height: root.__isMobile || overlay.__readRegionPlacement > 0.5 ? find.height : find.height+this.radius
         radius: 4
         opacity: 0.96
         color: Qt.rgba(Kirigami.Theme.backgroundColor.r, Kirigami.Theme.backgroundColor.g, Kirigami.Theme.backgroundColor.b, 1)
@@ -89,7 +90,7 @@ Item {
     Behavior on height {
         enabled: true
         animation: NumberAnimation {
-            duration: Kirigami.Units.shortDuration
+            duration: Units.ShortDuration
             easing.type: Easing.OutQuad
         }
     }

@@ -60,6 +60,7 @@
 #include <stdlib.h>
 #include "../qprompt_version.h"
 #include "prompter/documenthandler.h"
+#include "qt/abstractunits.hpp"
 #include "qt/qmlutil.hpp"
 
 #define QPROMPT_URI "com.cuperino.qprompt"
@@ -74,7 +75,7 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
     putenv("QSG_RENDER_LOOP=basic");
 #endif
 #elif defined(Q_OS_MACOS) or defined(Q_OS_LINUX)
-    setenv("QSG_RENDER_LOOP", "basic", 1);
+    setenv("QSG_RENDER_LOOP", "basic", 0);
 #endif
 
 #if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
@@ -146,6 +147,7 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
     qmlRegisterType<DocumentHandler>(QPROMPT_URI".document", 1, 0, "DocumentHandler");
     qmlRegisterType<MarkersModel>(QPROMPT_URI".markers", 1, 0, "MarkersModel");
     qmlRegisterType<QmlUtil>(QPROMPT_URI".qmlutil", 1, 0, "QmlUtil");
+    qmlRegisterUncreatableType<AbstractUnits>(QPROMPT_URI".abstractunits", 1, 0, "Units", "Access to Duration enum");
     QQmlApplicationEngine engine;
 //    qmlRegisterType<PrompterWindow>(QPROMPT_URI".prompterwindow", 1, 0, "PrompterWindow");
 

@@ -19,8 +19,7 @@
  **
  ****************************************************************************/
 
-import QtQuick 2.12
-import org.kde.kirigami 2.11 as Kirigami
+import QtQuick 2.13
 import QtQuick.Controls 2.15
 //import QtQuick.Dialogs
 import Qt.labs.platform 1.1 as Labs
@@ -66,7 +65,7 @@ Item {
     }
     function putDisplayFlip(screenName, flipSetting) {
         // Auto maximize main window on display flip selection.
-        if (flipSetting && Qt.platform.os!=='windows' && visibility!==Kirigami.ApplicationWindow.FullScreen && !Kirigami.Settings.isMobile)
+        if (flipSetting && Qt.platform.os!=='windows' && visibility!==ApplicationWindow.FullScreen && !root.__isMobile)
             root.showMaximized()
         // If configuration exists for element, update it.
         const configuredDisplays = displayModel.count;
@@ -297,7 +296,7 @@ Item {
                     Behavior on opacity {
                         enabled: true
                         animation: NumberAnimation {
-                            duration: Kirigami.Units.longDuration
+                            duration: Units.longDuration
                             easing.type: Easing.OutQuad
                         }
                     }

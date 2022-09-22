@@ -21,7 +21,7 @@
 
 import QtQuick 2.12
 import QtQuick.Controls 2.12
-import org.kde.kirigami 2.11 as Kirigami
+import com.cuperino.qprompt.abstractunits 1.0
 
 ScrollBar {
     id: scroller
@@ -30,7 +30,7 @@ ScrollBar {
     rightPadding: 0
     leftInset: 0
     rightInset: 0
-    interactive: !opaqueScroller || Kirigami.Settings.isMobile ? false : true
+    interactive: !opaqueScroller || root.__isMobile ? false : true
     stepSize: prompter.height/(4*(editor.height + prompter.topMargin + prompter.bottomMargin))
     policy: ScrollBar.AlwaysOn
     //opacity: opaqueScroller ? 0.40 : 1
@@ -42,7 +42,7 @@ ScrollBar {
         Behavior on radius {
             enabled: true
             animation: NumberAnimation {
-                duration: Kirigami.Units.shortDuration
+                duration: Units.ShortDuration
                 easing.type: Easing.Linear
             }
         }
