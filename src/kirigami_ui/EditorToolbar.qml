@@ -113,12 +113,14 @@ ToolBar {
     //}
     position: ToolBar.Footer
     background: Rectangle {
-        color: Kirigami.Theme.alternateBackgroundColor.a===0 ? appTheme.__backgroundColor : Kirigami.Theme.alternateBackgroundColor
+        color: Kirigami.Theme.alternateBackgroundColor.a===0 ? root.background.__backgroundColor : Kirigami.Theme.alternateBackgroundColor
         opacity: root.__opacity * 0.4 + 0.6
         MouseArea {
             anchors.fill: parent
             acceptedButtons: Qt.NoButton
-            onWheel: (wheel)=>viewport.mouse.wheel(wheel)
+            onWheel: function (wheel) {
+                viewport.mouse.wheel(wheel)
+            }
         }
         Rectangle {
             color: parseInt(viewport.prompter.state)===Prompter.States.Prompting && editor.focus ? "#00AA00" : Kirigami.Theme.activeBackgroundColor
