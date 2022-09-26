@@ -65,12 +65,6 @@ Item {
         z: 6
     }
 
-    Countdown {
-        id: countdown
-        z: 4
-        anchors.fill: parent
-    }
-
     Rectangle {
         visible: root.theforce
         anchors.top: parent.top
@@ -79,14 +73,14 @@ Item {
         height: parent.height>>1
         z: 5
         gradient: Gradient {
-            GradientStop { position: 0.0; color: root.background.color }
+            GradientStop { position: 0.0; color: root.background.__backgroundColor }
             GradientStop { position: 1.0; color: "transparent" }
         }
     }
 
-    ReadRegionOverlay {
-        id: overlay
-        z: 2
+    Countdown {
+        id: countdown
+        z: 4
         anchors.fill: parent
     }
 
@@ -94,6 +88,12 @@ Item {
        id: timer
        z: 3
        anchors.fill: parent
+    }
+
+    ReadRegionOverlay {
+        id: overlay
+        z: 2
+        anchors.fill: parent
     }
 
     Prompter {

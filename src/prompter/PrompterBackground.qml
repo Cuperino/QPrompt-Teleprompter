@@ -31,14 +31,19 @@ Rectangle {
     readonly property alias backgroundColorDialog: backgroundColorDialog
     //readonly property real __deepeningFactor: 0.89
     //readonly property real __deepeningFactor: themeSwitch.checked ? 0.89 : 1
-    property bool hasBackground: color!==appTheme.__backgroundColor || backgroundImage.opacity>0//backgroundImage.visible
+    property bool hasBackground: color!==root.background.__backgroundColor || backgroundImage.opacity>0//backgroundImage.visible
     property var backgroundImage: null
-    //color: Qt.rgba(appTheme.__backgroundColor.r*__deepeningFactor, appTheme.__backgroundColor.g*__deepeningFactor, appTheme.__backgroundColor.b*__deepeningFactor, appTheme.__backgroundColor.a)
+    //color: Qt.rgba(root.background.__backgroundColor.r*__deepeningFactor, root.background.__backgroundColor.g*__deepeningFactor, root.background.__backgroundColor.b*__deepeningFactor, root.background.__backgroundColor.a)
     //property alias backgroundColor: backgroundSettings.color
-    //property color backgroundColor: appTheme.__backgroundColor
-    //property color backgroundColor: appTheme.selection ? appTheme.__backgroundColor : "#FFFFFF" //: "#FFFFFF"
-    property color backgroundColor: switch(appTheme.selection) {
-        case 0: return appTheme.__backgroundColor;
+    //property color backgroundColor: root.background.__backgroundColor
+    //property color backgroundColor: root.background.selection ? root.background.__backgroundColor : "#FFFFFF" //: "#FFFFFF"
+
+    // property color backgroundColor: "#303030"
+    property color backgroundColor: switch(root.background.selection) {
+        //case 0: root.background.__backgroundColor
+        //case 0: return Qt.rgba(Material.background.r/4, Material.background.g/4, Material.background.b/4, 1);
+        //case 0: return Qt.rgb(Material.background.r/4, Material.background.g/4, Material.background.b/4);
+        case 0: return Material.background;
         case 1: return "#303030";
         case 2: return "#FAFAFA";
     }
@@ -48,7 +53,7 @@ Rectangle {
     }
     function clearBackground() {
         backgroundImage.opacity = 0
-        backgroundColor = appTheme.__backgroundColor
+        backgroundColor = root.background.__backgroundColor
         // Reset background image value such that setting is saved
         resetBackground.start()
     }
@@ -60,7 +65,7 @@ Rectangle {
 
     anchors.fill: parent
     color: backgroundColor
-    opacity: /*editorToolbar.opacitySlider.pressed || projectionManager.isPreview ? */editorToolbar.opacitySlider.value/100 /*: 1 */
+    opacity: /*parent.toolbar.opacitySlider.pressed || projectionManager.isPreview ? */editorToolbar.opacitySlider.value/100 /*: 1 */
 
     Settings {
         id: backgroundSettings
@@ -90,12 +95,12 @@ Rectangle {
 
         readonly property Scale __flips: Flip{}
         transform: __flips
-        
+
         onStatusChanged: {
             if (backgroundImage.status === Image.Ready && !backgroundImage.opacity)
                 backgroundImage.opacity = 0.72*parent.opacity
         }
-        
+
         Behavior on opacity {
             enabled: true
             animation: NumberAnimation {
@@ -106,7 +111,8 @@ Rectangle {
 
         ColorDialog {
             id: backgroundColorDialog
-            currentColor: appTheme.__backgroundColor
+            // showAlphaChannel: false
+            currentColor: root.background.__backgroundColor
             onAccepted: {
                 console.log(color)
                 prompterBackground.backgroundColor = color

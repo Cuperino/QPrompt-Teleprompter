@@ -38,7 +38,7 @@ Item {
     property bool reScale: true
     property bool isEnabled: false
     property string screensStringified: ""
-    property var forwardTo // prompter
+    required property var forwardTo // prompter
 
     function toggle() {
         isEnabled = !isEnabled;
@@ -196,8 +196,12 @@ Item {
                 onClicked:
                     if (model.flip)
                         projectionManager.forwardTo.prompter.toggle();
-                onWheel: (wheel)=>projectionManager.forwardTo.mouse.wheel(wheel)
-                Keys.onShortcutOverride: event.accepted = (event.key === Qt.Key_Escape)
+                onWheel: function (wheel) {
+                    projectionManager.forwardTo.mouse.wheel(wheel);
+                }
+                Keys.onShortcutOverride: function(event) {
+                    event.accepted = (event.key === Qt.Key_Escape)
+                }
                 Keys.onEscapePressed: projectionManager.forwardTo.prompter.cancel()
                 Keys.forwardTo: projectionManager.forwardTo.prompter
                 Rectangle {
