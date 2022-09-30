@@ -39,7 +39,7 @@ Rectangle {
     //property color backgroundColor: root.background.selection ? root.background.__backgroundColor : "#FFFFFF" //: "#FFFFFF"
 
     // property color backgroundColor: "#303030"
-    property color backgroundColor: switch(root.background.selection) {
+    property color backgroundColor: switch(appTheme.selection) {
         //case 0: root.background.__backgroundColor
         //case 0: return Qt.rgba(Material.background.r/4, Material.background.g/4, Material.background.b/4, 1);
         //case 0: return Qt.rgb(Material.background.r/4, Material.background.g/4, Material.background.b/4);
@@ -112,7 +112,7 @@ Rectangle {
         ColorDialog {
             id: backgroundColorDialog
             // showAlphaChannel: false
-            currentColor: root.background.__backgroundColor
+            currentColor: appTheme.__backgroundColor
             onAccepted: {
                 console.log(color)
                 prompterBackground.backgroundColor = color

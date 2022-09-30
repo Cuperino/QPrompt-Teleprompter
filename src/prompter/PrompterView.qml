@@ -73,7 +73,7 @@ Item {
         height: parent.height>>1
         z: 5
         gradient: Gradient {
-            GradientStop { position: 0.0; color: root.background.__backgroundColor }
+            GradientStop { position: 0.0; color: appTheme.__backgroundColor }
             GradientStop { position: 1.0; color: "transparent" }
         }
     }
