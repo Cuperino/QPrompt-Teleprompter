@@ -46,10 +46,10 @@ Kirigami.Page {
     property alias prompterBackground: viewport.prompterBackground
     property alias find: viewport.find
     property alias keyConfigurationOverlay: keyConfigurationOverlay
+    property alias displaySettings: displaySettings
+    property alias markersDrawer: markersDrawer
     property alias countdownConfiguration: countdownConfiguration
     property alias namedMarkerConfiguration: namedMarkerConfiguration
-    property alias displaySettings: displaySettings
-    property alias sideDrawer: sideDrawer
     property int hideDecorations: 1
 
     // Unused signal. Leaving for reference.
@@ -916,7 +916,7 @@ Kirigami.Page {
     //}
 
     MarkersDrawer {
-        id: sideDrawer
+        id: markersDrawer
     }
 
     InputsOverlay {
@@ -991,9 +991,9 @@ Kirigami.Page {
                 column.setMarkerKeyButton.item.text = prompter.document.getMarkerKey();
             else {
                 prompter.restoreFocus()
-                if (sideDrawer.reOpen) {
+                if (markersDrawer.reOpen) {
                     prompter.document.parse()
-                    sideDrawer.open()
+                    markersDrawer.open()
                 }
             }
         }

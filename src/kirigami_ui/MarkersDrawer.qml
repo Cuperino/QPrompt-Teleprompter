@@ -26,7 +26,7 @@ import QtQuick.Controls 2.12
 import QtQuick.Layouts 1.12
 
 Kirigami.OverlayDrawer {
-    id: sideDrawer
+    id: markersDrawer
     property bool reOpen: false
     background: Rectangle {
         color: Qt.rgba(Kirigami.Theme.backgroundColor.r/2, Kirigami.Theme.backgroundColor.g/2, Kirigami.Theme.backgroundColor.b/2, 1)
@@ -85,7 +85,7 @@ Kirigami.OverlayDrawer {
                     // Select marker in document
                     prompter.editMarker(model.position, model.length)
                     reOpen = true;
-                    sideDrawer.close()
+                    markersDrawer.close()
                     // Open marker edit dialog
                 }
             }
@@ -113,7 +113,7 @@ Kirigami.OverlayDrawer {
             icon: Qt.application.layoutDirection===Qt.LeftToRight ? "qrc:/icons/view-left-close.svg" : "qrc:/icons/view-right-close.svg"
             text: i18nc("Close sidebar listing user defined markers", "Close Marker List")
             onClicked: {
-                sideDrawer.toggle();
+                markersDrawer.toggle();
                 //console.log(prompterPage.document.markers())
             }
         }

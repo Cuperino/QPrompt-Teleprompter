@@ -185,10 +185,10 @@ ToolBar {
                 font.family: iconFont.name
                 font.pointSize: 13
                 focusPolicy: Qt.TabFocus
-                checked: sideDrawer.drawerOpen
+                checked: markersDrawer.drawerOpen
                 onClicked: {
                     find.close()
-                    sideDrawer.toggle()
+                    markersDrawer.toggle()
                 }
             }
             ToolButton {
