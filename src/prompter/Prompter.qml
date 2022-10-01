@@ -1142,7 +1142,7 @@ Flickable {
                     saveAsDialog()
                 else {
                     document.modified = false
-                    if (Qt.platform.os==="android" || Qt.platform.os==="ios")
+                    if (Qt.platform.os==="android" || Qt.platform.os==="ios" || visibility===Kirigami.ApplicationWindow.FullScreen)
                         showPassiveNotification(i18nc("Saved FILE_NAME", "Saved %1", document.fileUrl))
                     document.saveAs(document.fileUrl)
                     //if (quit)
