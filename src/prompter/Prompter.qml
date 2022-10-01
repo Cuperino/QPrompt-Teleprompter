@@ -319,6 +319,7 @@ Flickable {
     }
 
     function editMarker(cursorPosition, fragmentLength) {
+        goTo(cursorPosition);
         editor.select(cursorPosition, fragmentLength);
         namedMarkerConfiguration.open();
     }
