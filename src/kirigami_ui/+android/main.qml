@@ -323,19 +323,35 @@ Kirigami.ApplicationWindow {
             Kirigami.Action {
                 visible: false
                 onTriggered: {
-                    // If Escape is pressed while prompting, return focus to prompter, thus leaving edit while prompting mode.
-                    if (parseInt(root.pageStack.currentItem.prompter.state)===Prompter.States.Prompting && root.pageStack.currentItem.editor.focus)
-                        root.pageStack.currentItem.prompter.focus = true;
-                    else {
-                        root.pageStack.currentItem.prompter.cancel()
-                        root.pageStack.currentItem.find.close()
-                        wheelSettings.close()
+                    // Close all sub pages
+                    if (root.pageStack.layers.depth > 1) {
+                        root.pageStack.layers.clear();
+                        root.pageStack.currentItem.prompter.restoreFocus()
                     }
-                    root.pageStack.currentItem.sideDrawer.close()
-                    root.pageStack.currentItem.countdown.configuration.close()
-                    root.pageStack.currentItem.keyConfigurationOverlay.close()
-                    root.pageStack.currentItem.footer.namedMarkerConfiguration.close()
-                    root.pageStack.layers.clear();
+                    // Close open drawers
+                    else if (root.pageStack.currentItem.markersDrawer.drawerOpen)
+                        root.pageStack.currentItem.markersDrawer.toggle()
+                    // Close open overlay sheets
+                    else if (root.pageStack.currentItem.countdownConfiguration.sheetOpen)
+                        root.pageStack.currentItem.countdownConfiguration.close()
+                    else if (root.pageStack.currentItem.keyConfigurationOverlay.sheetOpen)
+                        root.pageStack.currentItem.keyConfigurationOverlay.close()
+                    else if (root.pageStack.currentItem.namedMarkerConfiguration.sheetOpen)
+                        root.pageStack.currentItem.namedMarkerConfiguration.close()
+                    else if (wheelSettings.sheetOpen)
+                        wheelSettings.close()
+                    // Close find, compare against enabled instead of isOpen to prevent closing find while it is invisible.
+                    else if (root.pageStack.currentItem.find.enabled)
+                        root.pageStack.currentItem.find.close()
+                    // If editing while prompting, return focus to prompter, thus leaving edit while prompting mode.
+                    else if (parseInt(root.pageStack.currentItem.prompter.state)===Prompter.States.Prompting && root.pageStack.currentItem.editor.focus)
+                        root.pageStack.currentItem.prompter.focus = true;
+                    // Return to edit mode if prompter is in focus
+                    else if (root.pageStack.currentItem.prompter.focus)
+                        root.pageStack.currentItem.prompter.cancel()
+                    // In any other situation, restore focus to the prompter
+                    else
+                       root.pageStack.currentItem.prompter.restoreFocus()
                 }
                 shortcut: StandardKey.Cancel
             }

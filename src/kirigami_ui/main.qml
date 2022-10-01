@@ -382,9 +382,9 @@ Kirigami.ApplicationWindow {
                         root.pageStack.currentItem.prompter.restoreFocus()
                     }
                     // Close open drawers
-                    else if (root.pageStack.currentItem.sideDrawer.drawerOpen)
-                        root.pageStack.currentItem.sideDrawer.toggle()
-                    // Close open overlay sheetsprompt
+                    else if (root.pageStack.currentItem.markersDrawer.drawerOpen)
+                        root.pageStack.currentItem.markersDrawer.toggle()
+                    // Close open overlay sheets
                     else if (root.pageStack.currentItem.countdownConfiguration.sheetOpen)
                         root.pageStack.currentItem.countdownConfiguration.close()
                     else if (root.pageStack.currentItem.keyConfigurationOverlay.sheetOpen)
