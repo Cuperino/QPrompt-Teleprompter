@@ -431,7 +431,8 @@ Flickable {
         // Focus controls
         prompter.restoreFocus()
         // Close drawer in mobile mode
-        contextDrawer.close();
+        if (typeof contextDrawer!=="undefined")
+            contextDrawer.close();
     }
 
     contentHeight: flickableContent.height
