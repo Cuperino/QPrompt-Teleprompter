@@ -30,7 +30,7 @@ Kirigami.OverlaySheet {
     id: keyConfigurationOverlay
 
     header: Kirigami.Heading {
-        text: qsTr("Key Bindings", "Title of dialog where users customize keyboard inputs")
+        text: i18nc("Title of dialog where users customize keyboard inputs", "Key Bindings")
         level: 1
     }
 
@@ -160,7 +160,7 @@ Kirigami.OverlaySheet {
         }
 
         Label {
-            text: qsTr("Toggle Prompter State")
+            text: i18n("Toggle Prompter State")
         }
         Loader {
             id: keyInputTogglePrompter
@@ -168,7 +168,7 @@ Kirigami.OverlaySheet {
             Layout.fillWidth: true
         }
         Label {
-            text: qsTr("Decrease Velocity")
+            text: i18n("Decrease Velocity")
         }
         Loader {
             id: keyInputDecreaseVelocity
@@ -176,7 +176,7 @@ Kirigami.OverlaySheet {
             Layout.fillWidth: true
         }
         Label {
-            text: qsTr("Increase Velocity")
+            text: i18n("Increase Velocity")
         }
         Loader {
             id: keyInputIncreaseVelocity
@@ -184,7 +184,7 @@ Kirigami.OverlaySheet {
             Layout.fillWidth: true
         }
         Label {
-            text: qsTr("Stop")
+            text: i18n("Stop")
         }
         Loader {
             id: keyInputStop
@@ -192,7 +192,7 @@ Kirigami.OverlaySheet {
             Layout.fillWidth: true
         }
         Label {
-            text: qsTr("Play/Pause")
+            text: i18n("Play/Pause")
         }
         Loader {
             id: keyInputPlayPause
@@ -200,7 +200,7 @@ Kirigami.OverlaySheet {
             Layout.fillWidth: true
         }
         Label {
-            text: qsTr("Reverse")
+            text: i18n("Reverse")
         }
         Loader {
             id: keyInputReverse
@@ -208,7 +208,7 @@ Kirigami.OverlaySheet {
             Layout.fillWidth: true
         }
         Label {
-            text: qsTr("Rewind")
+            text: i18n("Rewind")
         }
         Loader {
             id: keyInputRewind
@@ -216,7 +216,7 @@ Kirigami.OverlaySheet {
             Layout.fillWidth: true
         }
         Label {
-            text: qsTr("Fast Forward")
+            text: i18n("Fast Forward")
         }
         Loader {
             id: keyInputFastForward
@@ -224,7 +224,7 @@ Kirigami.OverlaySheet {
             Layout.fillWidth: true
         }
         Label {
-            text: qsTr("Move Backwards", "Skip to earlier text while prompting or editing")
+            text: i18nc("Skip to earlier text while prompting or editing", "Move Backwards")
         }
         Loader {
             id: keyInputMoveBackwards
@@ -232,7 +232,7 @@ Kirigami.OverlaySheet {
             Layout.fillWidth: true
         }
         Label {
-            text: qsTr("Move Forward", "Skip to later text while prompting or editing")
+            text: i18nc("Skip to later text while prompting or editing", "Move Forward")
         }
         Loader {
             id: keyInputMoveForward
@@ -240,7 +240,7 @@ Kirigami.OverlaySheet {
             Layout.fillWidth: true
         }
         Label {
-            text: qsTr("Go to Previous Marker", "Skip to closest marker behind of current position")
+            text: i18nc("Skip to closest marker behind of current position", "Go to Previous Marker")
         }
         Loader {
             id: keyInputPreviousMarker
@@ -248,7 +248,7 @@ Kirigami.OverlaySheet {
             Layout.fillWidth: true
         }
         Label {
-            text: qsTr("Go to Next Marker", "Skip to closest marker ahead of current position")
+            text: i18nc("Skip to closest marker ahead of current position", "Go to Next Marker")
         }
         Loader {
             id: keyInputNextMarker
