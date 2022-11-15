@@ -43,7 +43,7 @@ Rectangle {
         //case 0: root.background.__backgroundColor
         //case 0: return Qt.rgba(Material.background.r/4, Material.background.g/4, Material.background.b/4, 1);
         //case 0: return Qt.rgb(Material.background.r/4, Material.background.g/4, Material.background.b/4);
-        case 0: return Material.background;
+        case 0: return "#0C0C0C";
         case 1: return "#303030";
         case 2: return "#FAFAFA";
     }
