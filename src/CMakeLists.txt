@@ -25,16 +25,15 @@
 
 set(qprompt_SRCS
     main.cpp
-    prompter/documenthandler.cpp
     prompter/markersmodel.cpp
-    #prompter/timer/promptertimer.cpp
+    prompter/documenthandler.cpp
     #${qprompt_QM_LOADER}
 )
 
 set(qprompt_HDRS
-    prompter/documenthandler.h
+    prompter/marker.hpp
     prompter/markersmodel.h
-    #prompter/timer/promptertimer.h
+    prompter/documenthandler.h
     qt/qmlutil.hpp
 )
 

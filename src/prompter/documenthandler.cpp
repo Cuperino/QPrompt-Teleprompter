@@ -951,7 +951,7 @@ Marker DocumentHandler::previousMarker(int position) {
     return Q_EMIT this->_markersModel->previousMarker(position);
 }
 
-void DocumentHandler::preventSleep(bool prevent) {
+bool DocumentHandler::preventSleep(bool prevent) {
 #if defined(Q_OS_ANDROID)
     // The following code is commented out because, even tho it's technically correct, it makes QPrompt to crash on user interaction and during automatic state switching, depending on which flag is set.
 //     // Use Android Java wrapper to set flag that prevents screen from turning off.
@@ -994,7 +994,11 @@ void DocumentHandler::preventSleep(bool prevent) {
 //     else
 //         qDebug() << "Activity is not valid.";
 //     qDebug() << "End: Attempt to prevent sleep";
+//     return prevent;
 #elif defined(Q_OS_IOS)
     // To be implemented...
 #endif
+    // Not implemented for this operating system, always return false.
+    // Using "prevent" in fallacy statement to clear unused variable warnings. There's probably a better way of implementing this in which this method doesn't get compiled. Nevertheless, the QML layer needs something to invoke.
+    return false&prevent;
 }

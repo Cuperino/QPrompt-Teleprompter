@@ -19,32 +19,13 @@
  **
  ****************************************************************************/
 
-#ifndef MarkerSMODEL_H
-#define MarkerSMODEL_H
+#ifndef MARKERSMODEL_H
+#define MARKERSMODEL_H
 
 #include <QAbstractListModel>
+#include <QObject>
 
-struct Marker {
-    Q_GADGET
-    Q_PROPERTY(int position MEMBER position)
-    Q_PROPERTY(int length MEMBER length)
-    Q_PROPERTY(QString url MEMBER url)
-    public:
-        // Constructors
-        Marker() {}
-        Marker(std::nullptr_t) {}
-        Marker(const QString& text, const int position, const int length, const int key, const QString& keyLetter, const QString& url, const int requestType)
-            : text(text), position(position), key(key), url(url), requestType(requestType) {}
-        // Contents
-        QString text;
-        int position = 0;
-        int length = 1;
-        int key;
-        QString keyLetter;
-        QString url;
-        int requestType;
-};
-Q_DECLARE_METATYPE(Marker)
+#include "marker.hpp"
 
 class MarkersModel : public QAbstractListModel
 {
@@ -104,4 +85,4 @@ private Q_SLOTS:
     Marker binarySearch(int lo, int hi, int x, bool reverse);
 };
 
-#endif // MarkerSMODEL_H
+#endif // MARKERSMODEL_H
