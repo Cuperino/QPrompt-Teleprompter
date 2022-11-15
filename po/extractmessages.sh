@@ -2,6 +2,7 @@
 BASEDIR="../src"	# root of translatable sources
 PROJECT="qprompt"	# project name
 BUGADDR="https://github.com/Cuperino/QPrompt/issues/new/choose"	# MSGID-Bugs
+AUTHOR="Javier O. Cordero Perez"
 WDIR=`pwd`	# working dir
 
 
@@ -23,7 +24,7 @@ cd ${BASEDIR}
 find . -name '*.cpp' -o -name '*.h' -o -name '*.c' -o -name '*.qml' -o -name '*.html' | sort > ${WDIR}/infiles.list
 echo "rc.cpp" >> ${WDIR}/infiles.list
 cd ${WDIR}
-xgettext --from-code=UTF-8 -C -kde -ci18n -ki18n:1 -ki18nc:1c,2 -ki18np:1,2 -ki18ncp:1c,2,3 -ktr2i18n:1 \
+xgettext --from-code=UTF-8 --package-name="${PROJECT}" --package-version="$( git log -1 --format=%h )" --copyright-holder="${AUTHOR}" -C -kde -ci18n -ki18n:1 -ki18nc:1c,2 -ki18np:1,2 -ki18ncp:1c,2,3 -ktr2i18n:1 \
 	-kI18N_NOOP:1 -kI18N_NOOP2:1c,2 -kaliasLocale -kki18n:1 -kki18nc:1c,2 -kki18np:1,2 -kki18ncp:1c,2,3 \
 	--msgid-bugs-address="${BUGADDR}" \
 	--files-from=infiles.list -D ${BASEDIR} -D ${WDIR} -o ${PROJECT}.pot || { echo "error while calling xgettext. aborting."; exit 1; }

@@ -5,9 +5,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
+"Project-Id-Version: qprompt\n"
 "Report-Msgid-Bugs-To: https://github.com/Cuperino/QPrompt/issues/new/choose\n"
-"POT-Creation-Date: 2022-09-11 19:17-0400\n"
+"POT-Creation-Date: 2022-11-15 18:03-0400\n"
 "PO-Revision-Date: 2022-09-11 23:51+0000\n"
 "Last-Translator: Javier O. Cordero Pérez <javiercorderoperez@gmail.com>\n"
 "Language-Team: Chinese (Simplified) <http://l10n.cuperino.com/projects/"
@@ -19,253 +19,239 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Weblate 4.11.2\n"
 
-#: kirigami_ui/+android/main.qml:173 kirigami_ui/main.qml:182
-#: kirigami_ui/main.qml:478 kirigami_ui/+windows/main.qml:182
+#: kirigami_ui/+android/main.qml:174 kirigami_ui/main.qml:183
+#: kirigami_ui/main.qml:479 kirigami_ui/+windows/main.qml:183
 msgctxt "Main menu and global menu actions"
 msgid "&New"
 msgstr "新建"
 
-#: kirigami_ui/+android/main.qml:179 kirigami_ui/main.qml:189
-#: kirigami_ui/main.qml:482 kirigami_ui/+windows/main.qml:188
+#: kirigami_ui/+android/main.qml:180 kirigami_ui/main.qml:190
+#: kirigami_ui/main.qml:483 kirigami_ui/+windows/main.qml:189
 msgctxt "Main menu and global menu actions"
 msgid "&Open"
 msgstr "打开"
 
-#: kirigami_ui/+android/main.qml:188 kirigami_ui/main.qml:199
-#: kirigami_ui/main.qml:486 kirigami_ui/+windows/main.qml:197
+#: kirigami_ui/+android/main.qml:189 kirigami_ui/main.qml:200
+#: kirigami_ui/main.qml:487 kirigami_ui/+windows/main.qml:198
 msgctxt "Main menu and global menu actions"
 msgid "&Save"
 msgstr "保存"
 
-#: kirigami_ui/+android/main.qml:197 kirigami_ui/main.qml:209
-#: kirigami_ui/+windows/main.qml:206
+#: kirigami_ui/+android/main.qml:198 kirigami_ui/main.qml:210
+#: kirigami_ui/+windows/main.qml:207
 msgctxt "Main menu and global menu actions"
 msgid "Save &As"
 msgstr "另存为"
 
-#: kirigami_ui/+android/main.qml:207 kirigami_ui/main.qml:220
-#: kirigami_ui/+windows/main.qml:216
+#: kirigami_ui/+android/main.qml:208 kirigami_ui/main.qml:221
+#: kirigami_ui/+windows/main.qml:217
 msgctxt "Main menu actions"
 msgid "&Recent Files"
 msgstr "最近浏览"
 
-#: kirigami_ui/+android/main.qml:215 kirigami_ui/main.qml:229
-#: kirigami_ui/+windows/main.qml:224
+#: kirigami_ui/+android/main.qml:216 kirigami_ui/main.qml:230
+#: kirigami_ui/+windows/main.qml:225
 msgctxt "Main menu actions. Menu regarding input settings."
 msgid "&Controls Settings"
 msgstr "控制设置"
 
-#: kirigami_ui/+android/main.qml:219 kirigami_ui/main.qml:234
-#: kirigami_ui/+windows/main.qml:228
+#: kirigami_ui/+android/main.qml:220 kirigami_ui/main.qml:235
+#: kirigami_ui/+windows/main.qml:229
 msgctxt ""
 "Main menu and global menu actions. Opens dialog to configure keyboard inputs."
 msgid "Keyboard Inputs"
 msgstr "键盘输入"
 
-#: kirigami_ui/+android/main.qml:227 kirigami_ui/main.qml:241
-#: kirigami_ui/+windows/main.qml:236
+#: kirigami_ui/+android/main.qml:228 kirigami_ui/main.qml:242
+#: kirigami_ui/+windows/main.qml:237
 msgctxt "Open 'scroll settings' from main menu and global menu actions"
 msgid "Scroll throttle settings"
 msgstr "滚动油门设置"
 
-#: kirigami_ui/+android/main.qml:232 kirigami_ui/main.qml:247
-#: kirigami_ui/main.qml:723 kirigami_ui/+windows/main.qml:241
+#: kirigami_ui/+android/main.qml:233 kirigami_ui/main.qml:248
+#: kirigami_ui/main.qml:724 kirigami_ui/+windows/main.qml:242
 msgctxt ""
 "Main menu and global menu actions. Have up arrow behave like down arrow and "
 "vice versa while prompting."
 msgid "Invert &arrow keys"
 msgstr "颠倒箭头方向"
 
-#: kirigami_ui/+android/main.qml:240 kirigami_ui/main.qml:256
-#: kirigami_ui/main.qml:730 kirigami_ui/+windows/main.qml:249
+#: kirigami_ui/+android/main.qml:241 kirigami_ui/main.qml:257
+#: kirigami_ui/main.qml:731 kirigami_ui/+windows/main.qml:250
 msgctxt ""
 "Main menu and global menu actions. Invert scroll direction while prompting."
 msgid "Invert &scroll direction"
 msgstr "颠倒滚动方向"
 
-#: kirigami_ui/+android/main.qml:248 kirigami_ui/main.qml:265
-#: kirigami_ui/main.qml:715 kirigami_ui/+windows/main.qml:257
+#: kirigami_ui/+android/main.qml:249 kirigami_ui/main.qml:266
+#: kirigami_ui/main.qml:716 kirigami_ui/+windows/main.qml:258
 msgctxt ""
 "Main menu and global menu actions. Have touchpad and mouse wheel scrolling "
 "adjust velocity instead of scrolling like most other apps."
 msgid "Use scroll as velocity &dial"
 msgstr "使用滚轮控制速度"
 
-#: kirigami_ui/+android/main.qml:257 kirigami_ui/main.qml:275
-#: kirigami_ui/main.qml:709 kirigami_ui/+windows/main.qml:266
+#: kirigami_ui/+android/main.qml:258 kirigami_ui/main.qml:276
+#: kirigami_ui/main.qml:710 kirigami_ui/+windows/main.qml:267
 msgctxt ""
 "Main menu and global menu actions. Touchpad scrolling and mouse wheel use "
 "have no effect while prompting."
 msgid "Disable scrolling while prompting"
 msgstr "运行时禁止使用滚轮"
 
-#: kirigami_ui/+android/main.qml:265 kirigami_ui/main.qml:284
-#: kirigami_ui/+windows/main.qml:274
+#: kirigami_ui/+android/main.qml:266 kirigami_ui/main.qml:285
+#: kirigami_ui/+windows/main.qml:275
 msgctxt "Main menu actions"
 msgid "Other &Settings"
 msgstr "其他设置"
 
-#: kirigami_ui/+android/main.qml:276 kirigami_ui/main.qml:296
-#: kirigami_ui/+windows/main.qml:285
+#: kirigami_ui/+android/main.qml:277 kirigami_ui/main.qml:297
+#: kirigami_ui/+windows/main.qml:286
 msgctxt "Main menu actions"
 msgid "Always hide formatting tools"
 msgstr "始终隐藏格式化工具"
 
-#: kirigami_ui/+android/main.qml:285 kirigami_ui/main.qml:306
-#: kirigami_ui/+windows/main.qml:294
+#: kirigami_ui/+android/main.qml:286 kirigami_ui/main.qml:307
+#: kirigami_ui/+windows/main.qml:295
 msgctxt "Main menu actions. Hides formatting tools while not in edit mode."
 msgid "Auto hide formatting tools"
 msgstr "自动隐藏格式工具"
 
-#: kirigami_ui/+android/main.qml:293 kirigami_ui/main.qml:315
-#: kirigami_ui/+windows/main.qml:302
+#: kirigami_ui/+android/main.qml:294 kirigami_ui/main.qml:316
+#: kirigami_ui/+windows/main.qml:303
 msgctxt ""
 "Main menu actions. Disables contrast effect for the reading region overlay."
 msgid "Disable overlay contrast"
 msgstr "禁用阅读区域叠加对比度"
 
-#: kirigami_ui/+android/main.qml:309 kirigami_ui/main.qml:360
-#: kirigami_ui/+windows/main.qml:345
+#: kirigami_ui/+android/main.qml:310 kirigami_ui/main.qml:361
+#: kirigami_ui/+windows/main.qml:346
 msgctxt "Main menu actions. Load about page."
 msgid "Abou&t %1"
 msgstr "关于 %1"
 
-#: kirigami_ui/+android/main.qml:315 kirigami_ui/main.qml:367
-#: kirigami_ui/main.qml:495 kirigami_ui/+windows/main.qml:351
+#: kirigami_ui/+android/main.qml:316 kirigami_ui/main.qml:368
+#: kirigami_ui/main.qml:496 kirigami_ui/+windows/main.qml:352
 msgctxt "Main menu and global menu actions"
 msgid "&Quit"
 msgstr "退出"
 
-#: kirigami_ui/+android/main.qml:344 kirigami_ui/main.qml:418
-#: kirigami_ui/main.qml:755 kirigami_ui/+windows/main.qml:385
+#: kirigami_ui/+android/main.qml:361 kirigami_ui/main.qml:419
+#: kirigami_ui/main.qml:756 kirigami_ui/+windows/main.qml:402
 msgctxt "Main menu and global actions. Load document that welcomes users."
 msgid "Load &Welcome"
 msgstr "加载欢迎"
 
-#: kirigami_ui/+android/main.qml:380 kirigami_ui/main.qml:454
-#: kirigami_ui/+windows/main.qml:421
+#: kirigami_ui/+android/main.qml:397 kirigami_ui/main.qml:455
+#: kirigami_ui/+windows/main.qml:438
 msgid "Darth mode"
 msgstr "星球模式"
 
-#: kirigami_ui/+android/main.qml:500 kirigami_ui/main.qml:916
-#: kirigami_ui/+windows/main.qml:570
+#: kirigami_ui/+android/main.qml:503 kirigami_ui/main.qml:907
+#: kirigami_ui/+windows/main.qml:573
 msgctxt "Title for save before closing dialog"
 msgid "Save Document"
 msgstr "保存文档"
 
-#: kirigami_ui/+android/main.qml:501 kirigami_ui/main.qml:917
-#: kirigami_ui/+windows/main.qml:571
+#: kirigami_ui/+android/main.qml:504 kirigami_ui/main.qml:908
+#: kirigami_ui/+windows/main.qml:574
 msgid "Save changes to document before closing?"
 msgstr "是否在关闭前保存对文档的更改?"
 
-#: kirigami_ui/EditorToolbar.qml:346 kirigami_ui/EditorToolbar.qml:356
+#: kirigami_ui/EditorToolbar.qml:350 kirigami_ui/EditorToolbar.qml:360
 msgctxt "Editor actions. Text alignment."
 msgid "&Left"
 msgstr "内容居左"
 
-#: kirigami_ui/EditorToolbar.qml:346 kirigami_ui/EditorToolbar.qml:356
+#: kirigami_ui/EditorToolbar.qml:350 kirigami_ui/EditorToolbar.qml:360
 msgctxt "Editor actions. Text alignment."
 msgid "&Right"
 msgstr "内容居右"
 
-#: kirigami_ui/EditorToolbar.qml:351
+#: kirigami_ui/EditorToolbar.qml:355
 msgctxt "Editor actions. Text alignment."
 msgid "C&enter"
 msgstr "内容居中"
 
-#: kirigami_ui/EditorToolbar.qml:505
+#: kirigami_ui/EditorToolbar.qml:509
 msgctxt "FontName (Translatable font details)"
 msgid "DejaVu (default, Roman, Cyrillic)"
 msgstr "DejaVu（默认、罗马、西里尔文）"
 
-#: kirigami_ui/EditorToolbar.qml:509
+#: kirigami_ui/EditorToolbar.qml:513
 msgctxt "FontName (Translatable font details)"
 msgid "OpenDyslexic (Roman)"
 msgstr "OpenDyslexic (罗马)"
 
-#: kirigami_ui/EditorToolbar.qml:513
+#: kirigami_ui/EditorToolbar.qml:517
 msgctxt "FontName (Translatable font details)"
 msgid "Source Han Sans (CH, JP, KO)"
 msgstr "思源黑体 (中国, 日本, 韩国)"
 
-#: kirigami_ui/EditorToolbar.qml:517
+#: kirigami_ui/EditorToolbar.qml:521
 msgctxt "FontName (Translatable font details)"
 msgid "Scheherazade New (Arabic)"
 msgstr "Scheherazade New（阿拉伯语）"
 
-#: kirigami_ui/EditorToolbar.qml:521
+#: kirigami_ui/EditorToolbar.qml:525
 msgctxt "FontName (Translatable font details)"
 msgid "Palanquin (Devangari)"
 msgstr "Palanquin (梵文字母)"
 
-#: kirigami_ui/EditorToolbar.qml:525
+#: kirigami_ui/EditorToolbar.qml:529
 msgctxt "FontName (Translatable font details)"
 msgid "Kalpurush (Bengali)"
 msgstr "Kalpurush (孟加拉语)"
 
-#: kirigami_ui/EditorToolbar.qml:531
+#: kirigami_ui/EditorToolbar.qml:535
 msgctxt "Opens system font selection dialog"
 msgid "Choose System Font"
 msgstr "选择系统字体"
 
-#: kirigami_ui/EditorToolbar.qml:769
+#: kirigami_ui/EditorToolbar.qml:771
 msgctxt "Velocity {VELOCITY_STEPS}"
 msgid "Velocity <pre>%1</pre>"
 msgstr "速度 <pre>%1</pre>"
 
-#: kirigami_ui/EditorToolbar.qml:803
+#: kirigami_ui/EditorToolbar.qml:805
 msgctxt "Opacity {TRANSPARENCY_PERCENTAGE}"
 msgid "Opacity <pre>%1</pre>"
 msgstr "透明度 <pre>%1</pre>"
 
-#: kirigami_ui/EditorToolbar.qml:842 kirigami_ui/EditorToolbar.qml:861
+#: kirigami_ui/EditorToolbar.qml:844 kirigami_ui/EditorToolbar.qml:863
 msgctxt "Font size 100% (083)"
 msgid "Font size <pre>%1% (%2)</pre>"
 msgstr "字体大小 <pre>%1% (%2)</pre>"
 
-#: kirigami_ui/EditorToolbar.qml:900
+#: kirigami_ui/EditorToolbar.qml:902
 msgctxt "Line height 100%"
 msgid "Line height <pre>%1%</pre>"
 msgstr "行高 <pre>%1%</pre>"
 
-#: kirigami_ui/EditorToolbar.qml:940
+#: kirigami_ui/EditorToolbar.qml:942
 msgctxt "Paragraph spacing ±00"
 msgid "Paragraph spacing <pre>%1%</pre>"
 msgstr "段落间距 <pre>%1</pre>"
 
-#: kirigami_ui/EditorToolbar.qml:981
+#: kirigami_ui/EditorToolbar.qml:983
 msgctxt "Word spacing <pre>±00<pre>"
 msgid "Word spacing <pre>%1</pre>"
 msgstr "词间距 <pre>%1</pre>"
 
-#: kirigami_ui/EditorToolbar.qml:1017
+#: kirigami_ui/EditorToolbar.qml:1019
 msgctxt "Letter spacing ±00"
 msgid "Letter spacing <pre>%1</pre>"
 msgstr "字符间距 <pre>%1</pre>"
 
-#: kirigami_ui/EditorToolbar.qml:1053
+#: kirigami_ui/EditorToolbar.qml:1055
 msgctxt "Step speed 1.00"
 msgid "Step speed <pre>%1</pre>"
 msgstr "步速 <pre>%1</pre>"
 
-#: kirigami_ui/EditorToolbar.qml:1094
+#: kirigami_ui/EditorToolbar.qml:1096
 msgctxt "Step acceleration 1.15"
 msgid "Step acceleration <pre>%1</pre>"
 msgstr "步长加速度 <pre>%1</pre>"
-
-#: kirigami_ui/EditorToolbar.qml:1168
-msgctxt ""
-"Refers to a key on the keyboard used to skip to a user defined marker while "
-"prompting"
-msgid "Skip Key"
-msgstr "跳跃键"
-
-#: kirigami_ui/EditorToolbar.qml:1191
-msgctxt ""
-"Refers to a key on the keyboard used to skip to a user defined marker while "
-"prompting"
-msgid "Key to perform skip to this marker"
-msgstr "按此键执行跳到此标记"
 
 #: kirigami_ui/InputsOverlay.qml:33
 msgctxt "Title of dialog where users customize keyboard inputs"
@@ -324,11 +310,11 @@ msgctxt "Skip to closest marker ahead of current position"
 msgid "Go to Next Marker"
 msgstr "转到下一个标记"
 
-#: kirigami_ui/main.qml:326 kirigami_ui/+windows/main.qml:313
+#: kirigami_ui/main.qml:327 kirigami_ui/+windows/main.qml:314
 msgid "Disable background transparency"
 msgstr "关闭背景透明度"
 
-#: kirigami_ui/main.qml:341 kirigami_ui/+windows/main.qml:328
+#: kirigami_ui/main.qml:342 kirigami_ui/+windows/main.qml:329
 msgctxt ""
 "Main menu actions. QPrompt switches between two text rendering techniques "
 "when the base font size exceeds 120px. Enabling this option forces QPrompt "
@@ -337,228 +323,228 @@ msgctxt ""
 msgid "Force sub-pixel text renderer past 120px"
 msgstr "强制像素文本渲染器超过120px"
 
-#: kirigami_ui/main.qml:475
+#: kirigami_ui/main.qml:476
 msgctxt "Global menu actions"
 msgid "&File"
 msgstr "文件"
 
-#: kirigami_ui/main.qml:490
+#: kirigami_ui/main.qml:491
 msgctxt "Main menu and global menu actions"
 msgid "Save &As…"
 msgstr "另存为…"
 
-#: kirigami_ui/main.qml:501
+#: kirigami_ui/main.qml:502
 msgctxt "Global menu actions"
 msgid "&Edit"
 msgstr "编辑"
 
-#: kirigami_ui/main.qml:504
+#: kirigami_ui/main.qml:505
 msgctxt "Global menu actions"
 msgid "&Undo"
 msgstr "打开"
 
-#: kirigami_ui/main.qml:509
+#: kirigami_ui/main.qml:510
 msgctxt "Global menu actions"
 msgid "&Redo"
 msgstr "恢复"
 
-#: kirigami_ui/main.qml:515 prompter/Prompter.qml:1255
-#: prompter/Prompter.qml:1302
+#: kirigami_ui/main.qml:516 prompter/Prompter.qml:1274
+#: prompter/Prompter.qml:1321
 msgctxt "Global menu and editor context menu actions"
 msgid "&Copy"
 msgstr "复制"
 
-#: kirigami_ui/main.qml:520 prompter/Prompter.qml:1260
-#: prompter/Prompter.qml:1307
+#: kirigami_ui/main.qml:521 prompter/Prompter.qml:1279
+#: prompter/Prompter.qml:1326
 msgctxt "Global menu and editor context menu actions"
 msgid "Cu&t"
 msgstr "剪切"
 
-#: kirigami_ui/main.qml:525 prompter/Prompter.qml:1265
-#: prompter/Prompter.qml:1312
+#: kirigami_ui/main.qml:526 prompter/Prompter.qml:1284
+#: prompter/Prompter.qml:1331
 msgctxt "Global menu and editor context menu actions"
 msgid "&Paste"
 msgstr "粘贴"
 
-#: kirigami_ui/main.qml:532
+#: kirigami_ui/main.qml:533
 msgctxt "Global menu actions"
 msgid "&View"
 msgstr "视图"
 
-#: kirigami_ui/main.qml:535
+#: kirigami_ui/main.qml:536
 msgctxt "Global menu actions"
 msgid "Full &screen"
 msgstr "全屏"
 
-#: kirigami_ui/main.qml:549
+#: kirigami_ui/main.qml:550
 msgctxt "Global menu actions. Indicators highlight reading region."
 msgid "&Indicators"
 msgstr "工具栏"
 
-#: kirigami_ui/main.qml:551
+#: kirigami_ui/main.qml:552
 msgctxt "Global menu actions. Shows pointer to the left of the reading region."
 msgid "&Left Pointer"
 msgstr "左边的箭头"
 
-#: kirigami_ui/main.qml:557
+#: kirigami_ui/main.qml:558
 msgctxt ""
 "Global menu actions. Shows pointer to the right of the reading region."
 msgid "&Right Pointer"
 msgstr "右边的箭头"
 
-#: kirigami_ui/main.qml:563
+#: kirigami_ui/main.qml:564
 msgctxt ""
 "Global menu actions. Shows pointers to the left and right of the reading "
 "region."
 msgid "B&oth Pointers"
 msgstr "左右箭头"
 
-#: kirigami_ui/main.qml:570
+#: kirigami_ui/main.qml:571
 msgctxt "Global menu actions. Translucent bars indicate reading region."
 msgid "&Bars"
 msgstr "工具栏"
 
-#: kirigami_ui/main.qml:576
+#: kirigami_ui/main.qml:577
 msgctxt ""
 "Global menu actions. Translucent bars and left pointer indicate reading "
 "region."
 msgid "Bars Lef&t"
 msgstr "左侧工具栏"
 
-#: kirigami_ui/main.qml:582
+#: kirigami_ui/main.qml:583
 msgctxt ""
 "Global menu actions. Translucent bars and right pointer indicate reading "
 "region."
 msgid "Bars Ri&ght"
 msgstr "右侧工具栏"
 
-#: kirigami_ui/main.qml:589
+#: kirigami_ui/main.qml:590
 msgctxt "Global menu actions. Enable all reading region indicators."
 msgid "&All"
 msgstr "全部"
 
-#: kirigami_ui/main.qml:595
+#: kirigami_ui/main.qml:596
 msgctxt "Global menu actions. Disable all reading region indicators."
 msgid "&Hidden"
 msgstr "隐藏"
 
-#: kirigami_ui/main.qml:602
+#: kirigami_ui/main.qml:603
 msgctxt ""
 "Global menu actions. Reading region indicates where a talent should be "
 "reading from."
 msgid "Readin&g region"
 msgstr "阅读区"
 
-#: kirigami_ui/main.qml:604
+#: kirigami_ui/main.qml:605
 msgctxt "Global menu actions. Align reading region to top of prompter."
 msgid "&Top"
 msgstr "上"
 
-#: kirigami_ui/main.qml:610
+#: kirigami_ui/main.qml:611
 msgctxt ""
 "Global menu actions. Align reading region to vertical center of prompter."
 msgid "&Middle"
 msgstr "中"
 
-#: kirigami_ui/main.qml:616
+#: kirigami_ui/main.qml:617
 msgctxt "Global menu actions. Align reading region to bottom of prompter."
 msgid "&Bottom"
 msgstr "下"
 
-#: kirigami_ui/main.qml:623
+#: kirigami_ui/main.qml:624
 msgctxt ""
 "Global menu actions. Enables drag and drop positioning of reading region."
 msgid "F&ree placement"
 msgstr "自由放置"
 
-#: kirigami_ui/main.qml:629
+#: kirigami_ui/main.qml:630
 msgctxt ""
 "Global menu actions. Fix positioning of reading region to what was set in "
 "\"Free placement\" mode."
 msgid "C&ustom (Fixed placement)"
 msgstr "定制（固定位置）"
 
-#: kirigami_ui/main.qml:638
+#: kirigami_ui/main.qml:639
 msgctxt "Global menu actions"
 msgid "For&mat"
 msgstr "格式"
 
-#: kirigami_ui/main.qml:641
+#: kirigami_ui/main.qml:642
 msgctxt "Global menu actions"
 msgid "&Bold"
 msgstr "粗体"
 
-#: kirigami_ui/main.qml:647
+#: kirigami_ui/main.qml:648
 msgctxt "Global menu actions"
 msgid "&Italic"
 msgstr "斜体"
 
-#: kirigami_ui/main.qml:653
+#: kirigami_ui/main.qml:654
 msgctxt "Global menu actions"
 msgid "&Underline"
 msgstr "下划线"
 
-#: kirigami_ui/main.qml:660
+#: kirigami_ui/main.qml:661
 msgctxt "Global menu and editor actions. Text alignment."
 msgid "Align &Left"
 msgstr "左对齐"
 
-#: kirigami_ui/main.qml:660
+#: kirigami_ui/main.qml:661
 msgctxt "Global menu and editor actions. Text alignment."
 msgid "Align &Right"
 msgstr "右对齐"
 
-#: kirigami_ui/main.qml:671
+#: kirigami_ui/main.qml:672
 msgctxt "Global menu actions. Text alignment."
 msgid "Align Cen&ter"
 msgstr "居中"
 
-#: kirigami_ui/main.qml:677
+#: kirigami_ui/main.qml:678
 msgctxt "Global menu actions. Text alignment."
 msgid "Align &Right"
 msgstr "右对齐"
 
-#: kirigami_ui/main.qml:677
+#: kirigami_ui/main.qml:678
 msgctxt "Global menu actions. Text alignment."
 msgid "Align &Left"
 msgstr "左对齐"
 
-#: kirigami_ui/main.qml:696
+#: kirigami_ui/main.qml:697
 msgctxt "Global menu actions. Opens dialog to format currently selected text."
 msgid "C&haracter"
 msgstr "个性化"
 
-#: kirigami_ui/main.qml:700
+#: kirigami_ui/main.qml:701
 msgctxt "Global menu actions. Opens dialog to color currently selected text."
 msgid "Fo&nt Color"
 msgstr "字体颜色"
 
-#: kirigami_ui/main.qml:706
+#: kirigami_ui/main.qml:707
 msgctxt "Global menu actions. Menu regarding input settings."
 msgid "Controls"
 msgstr "控制"
 
-#: kirigami_ui/main.qml:739
+#: kirigami_ui/main.qml:740
 msgctxt "Global menu actions"
 msgid "&Help"
 msgstr "帮助"
 
-#: kirigami_ui/main.qml:742
+#: kirigami_ui/main.qml:743
 msgctxt "Global menu actions"
 msgid "Report &Bug…"
 msgstr "反馈…"
 
-#: kirigami_ui/main.qml:761
+#: kirigami_ui/main.qml:762
 msgctxt "Global menu actions. Load about page. \"About AppName\""
 msgid "Abou&t %1"
 msgstr "关于 %1"
 
-#: kirigami_ui/main.qml:906 kirigami_ui/+windows/main.qml:560
+#: kirigami_ui/main.qml:897 kirigami_ui/+windows/main.qml:563
 msgctxt "Restart application_name"
 msgid "Restart %1"
 msgstr "重启%1"
 
-#: kirigami_ui/main.qml:907 kirigami_ui/+windows/main.qml:561
+#: kirigami_ui/main.qml:898 kirigami_ui/+windows/main.qml:564
 msgctxt ""
 "application needs to restart for this change to fully take effect.\n"
 "\n"
@@ -578,312 +564,339 @@ msgctxt "Close sidebar listing user defined markers"
 msgid "Close Marker List"
 msgstr "关闭标记列表"
 
-#: kirigami_ui/PrompterPage.qml:70
+#: kirigami_ui/PrompterPage.qml:73
 msgid "Start prompter"
 msgstr "启动提词器"
 
-#: kirigami_ui/PrompterPage.qml:78
+#: kirigami_ui/PrompterPage.qml:81
 msgid "Decrease velocity"
 msgstr "减速"
 
-#: kirigami_ui/PrompterPage.qml:92
+#: kirigami_ui/PrompterPage.qml:95
 msgid "Increase velocity"
 msgstr "加速"
 
-#: kirigami_ui/PrompterPage.qml:117
+#: kirigami_ui/PrompterPage.qml:120
 msgctxt "Reading region indicates where a talent should be reading from"
 msgid "Reading region"
 msgstr "阅读区"
 
-#: kirigami_ui/PrompterPage.qml:119
+#: kirigami_ui/PrompterPage.qml:122
 msgctxt "Reading region indicates where a talent should be reading from"
 msgid "Change reading region placement"
 msgstr "更改阅读区域位置"
 
-#: kirigami_ui/PrompterPage.qml:125
+#: kirigami_ui/PrompterPage.qml:128
 msgctxt "Align reading region to top of prompter"
 msgid "Top"
 msgstr "靠上"
 
-#: kirigami_ui/PrompterPage.qml:127
+#: kirigami_ui/PrompterPage.qml:130
 msgid "Move reading region to the top, convenient for use with webcams"
 msgstr "将阅读区域移到顶部，方便与网络摄像头一起使用"
 
-#: kirigami_ui/PrompterPage.qml:138
+#: kirigami_ui/PrompterPage.qml:141
 msgctxt "Align reading region to vertical center of prompter"
 msgid "Middle"
 msgstr "中间"
 
-#: kirigami_ui/PrompterPage.qml:140
+#: kirigami_ui/PrompterPage.qml:143
 msgid "Move reading region to the vertical center"
 msgstr "将阅读区域移动到垂直中心"
 
-#: kirigami_ui/PrompterPage.qml:151
+#: kirigami_ui/PrompterPage.qml:154
 msgctxt "Align reading region to bottom of prompter"
 msgid "Bottom"
 msgstr "下方"
 
-#: kirigami_ui/PrompterPage.qml:153
+#: kirigami_ui/PrompterPage.qml:156
 msgid "Move reading region to the bottom"
 msgstr "将阅读区域移到底部"
 
-#: kirigami_ui/PrompterPage.qml:164
+#: kirigami_ui/PrompterPage.qml:167
 msgctxt ""
 "Refers to free placement. Enables drag and drop positioning of reading "
 "region."
 msgid "Free"
 msgstr "自由"
 
-#: kirigami_ui/PrompterPage.qml:166
+#: kirigami_ui/PrompterPage.qml:169
 msgid "Move reading region freely by dragging and dropping"
 msgstr "通过拖放自由移动阅读区域"
 
-#: kirigami_ui/PrompterPage.qml:177
+#: kirigami_ui/PrompterPage.qml:180
 msgctxt ""
 "Fix positioning of reading region to what was set in \"Free placement\" mode"
 msgid "Custom"
 msgstr "定制"
 
-#: kirigami_ui/PrompterPage.qml:179
+#: kirigami_ui/PrompterPage.qml:182
 msgid "Fix reading region to the position set using free placement mode"
 msgstr "使用自由放置模式将读阅读区域固定到设置的位置"
 
-#: kirigami_ui/PrompterPage.qml:205
+#: kirigami_ui/PrompterPage.qml:208
 msgctxt ""
 "Height of reading region relative to single line height. E.g. Height: 2.5"
 msgid "Height: %1"
 msgstr "高度: %1"
 
-#: kirigami_ui/PrompterPage.qml:259
+#: kirigami_ui/PrompterPage.qml:262
 msgctxt "Indicators highlight reading region"
 msgid "Indicators"
 msgstr "指示器"
 
-#: kirigami_ui/PrompterPage.qml:260
+#: kirigami_ui/PrompterPage.qml:263
 msgctxt "Indicators highlight reading region"
 msgid "Change reading region indicators"
 msgstr "更改阅读区域指示器"
 
-#: kirigami_ui/PrompterPage.qml:264
+#: kirigami_ui/PrompterPage.qml:267
 msgctxt "Shows pointer to the left of the reading region"
 msgid "Left pointer"
 msgstr "左箭头"
 
-#: kirigami_ui/PrompterPage.qml:267
+#: kirigami_ui/PrompterPage.qml:270
 msgid "Left pointer indicates reading region"
 msgstr "左指针表示阅读区域"
 
-#: kirigami_ui/PrompterPage.qml:277
+#: kirigami_ui/PrompterPage.qml:280
 msgctxt "Shows pointer to the right of the reading region"
 msgid "Right pointer"
 msgstr "右箭头"
 
-#: kirigami_ui/PrompterPage.qml:280
+#: kirigami_ui/PrompterPage.qml:283
 msgid "Right pointer indicates reading region"
 msgstr "右箭头表示阅读区域"
 
-#: kirigami_ui/PrompterPage.qml:290
+#: kirigami_ui/PrompterPage.qml:293
 msgctxt "Shows pointers to the left and right of the reading region"
 msgid "Both pointers"
 msgstr "两个指针"
 
-#: kirigami_ui/PrompterPage.qml:293
+#: kirigami_ui/PrompterPage.qml:296
 msgid "Left and right pointers indicate reading region"
 msgstr "左右指针指示阅读区域"
 
-#: kirigami_ui/PrompterPage.qml:303
+#: kirigami_ui/PrompterPage.qml:306
 msgctxt "Translucent bars indicate reading region"
 msgid "Bar"
 msgstr "控制栏"
 
-#: kirigami_ui/PrompterPage.qml:306
+#: kirigami_ui/PrompterPage.qml:309
 msgid "Translucent bars indicate reading region"
 msgstr "半透明控制栏显示阅读区域"
 
-#: kirigami_ui/PrompterPage.qml:316
+#: kirigami_ui/PrompterPage.qml:319
 msgctxt "Translucent bars and left pointer indicate reading region"
 msgid "Bar && left"
 msgstr "控制栏靠左"
 
-#: kirigami_ui/PrompterPage.qml:319
+#: kirigami_ui/PrompterPage.qml:322
 msgid "Translucent bars and left pointer indicate reading region"
 msgstr "控制栏和左指针表示阅读区域"
 
-#: kirigami_ui/PrompterPage.qml:329
+#: kirigami_ui/PrompterPage.qml:332
 msgctxt "Translucent bars and right pointer indicate reading region"
 msgid "Bar && right"
 msgstr "控制栏居右"
 
-#: kirigami_ui/PrompterPage.qml:332
+#: kirigami_ui/PrompterPage.qml:335
 msgid "Translucent bars and right pointer indicate reading region"
 msgstr "控制栏和右指针表示阅读区域"
 
-#: kirigami_ui/PrompterPage.qml:342
+#: kirigami_ui/PrompterPage.qml:345
 msgctxt "Enable all reading region indicators"
 msgid "All"
 msgstr "显示所有"
 
-#: kirigami_ui/PrompterPage.qml:345
+#: kirigami_ui/PrompterPage.qml:348
 msgctxt "Enable all reading region indicators"
 msgid "Use all reading region indicators"
 msgstr "使用所有阅读区域指示器"
 
-#: kirigami_ui/PrompterPage.qml:355
+#: kirigami_ui/PrompterPage.qml:358
 msgctxt "Disable all reading region indicators"
 msgid "Hidden"
 msgstr "隐藏"
 
-#: kirigami_ui/PrompterPage.qml:358
+#: kirigami_ui/PrompterPage.qml:361
 msgctxt "Disable all reading region indicators"
 msgid "Disable reading region indicators"
 msgstr "隐藏所有阅读区域指示器"
 
-#: kirigami_ui/PrompterPage.qml:369
+#: kirigami_ui/PrompterPage.qml:372
 msgid "Timer"
 msgstr "计时器"
 
-#: kirigami_ui/PrompterPage.qml:376
+#: kirigami_ui/PrompterPage.qml:379
 msgid "Stopwatch"
 msgstr "秒表"
 
-#: kirigami_ui/PrompterPage.qml:389
+#: kirigami_ui/PrompterPage.qml:392
 msgctxt "Estimated Time of Arrival"
 msgid "ETA"
 msgstr "剩余时间"
 
-#: kirigami_ui/PrompterPage.qml:398
+#: kirigami_ui/PrompterPage.qml:401
 msgctxt "Color of timer text"
 msgid "Timer color"
 msgstr "定时器颜色"
 
-#: kirigami_ui/PrompterPage.qml:409
+#: kirigami_ui/PrompterPage.qml:412
 msgctxt "Reset color of timer text back to default"
 msgid "Clear color"
 msgstr "恢复默认颜色"
 
-#: kirigami_ui/PrompterPage.qml:422 kirigami_ui/PrompterPage.qml:445
+#: kirigami_ui/PrompterPage.qml:425 kirigami_ui/PrompterPage.qml:448
 msgid "Countdown"
 msgstr "倒计时"
 
-#: kirigami_ui/PrompterPage.qml:428
+#: kirigami_ui/PrompterPage.qml:431
 msgctxt ""
 "Enables automatic alignment of prompter and text with the reading region"
 msgid "Auto frame"
 msgstr "自动定格"
 
-#: kirigami_ui/PrompterPage.qml:462
+#: kirigami_ui/PrompterPage.qml:465
 msgctxt "Auto start countdown upon prompter getting started"
 msgid "Auto start"
 msgstr "自动开始"
 
-#: kirigami_ui/PrompterPage.qml:465
+#: kirigami_ui/PrompterPage.qml:468
 msgid "Start countdown automatically"
 msgstr "自动开始倒计时"
 
-#: kirigami_ui/PrompterPage.qml:475
+#: kirigami_ui/PrompterPage.qml:478
 msgctxt "Configure countdown duration"
 msgid "Set duration"
 msgstr "设定持续时间"
 
-#: kirigami_ui/PrompterPage.qml:493
+#: kirigami_ui/PrompterPage.qml:496
 msgctxt "Prompter orientation and mirroring"
 msgid "Orientation"
 msgstr "方向"
 
 #. i18n("H Flip")
-#: kirigami_ui/PrompterPage.qml:510 prompter/ProjectionsManager.qml:318
+#: kirigami_ui/PrompterPage.qml:513 prompter/ProjectionsManager.qml:322
 msgctxt "Mirrors prompter horizontally"
 msgid "Horizontal mirror"
 msgstr "水平镜像"
 
 #. i18n("V Flip")
-#: kirigami_ui/PrompterPage.qml:527 prompter/ProjectionsManager.qml:338
+#: kirigami_ui/PrompterPage.qml:530 prompter/ProjectionsManager.qml:342
 msgctxt "Mirrors prompter vertically"
 msgid "Vertical mirror"
 msgstr "垂直镜像"
 
-#: kirigami_ui/PrompterPage.qml:555
+#: kirigami_ui/PrompterPage.qml:558
 msgctxt "Prompter rotation is disabled"
 msgid "Don't rotate"
 msgstr "不旋转"
 
-#: kirigami_ui/PrompterPage.qml:567
+#: kirigami_ui/PrompterPage.qml:570
 msgctxt "Rotate prompter 90 degrees to the right"
 msgid "90° clockwise"
 msgstr "顺时针90°"
 
-#: kirigami_ui/PrompterPage.qml:579
+#: kirigami_ui/PrompterPage.qml:582
 msgctxt "Rotate prompter 90 degrees to the left"
 msgid "90° counter"
 msgstr "逆时针90°"
 
-#: kirigami_ui/PrompterPage.qml:605
+#: kirigami_ui/PrompterPage.qml:608
 msgctxt "Background refers to what appears behind the prompter"
 msgid "Background"
 msgstr "背景"
 
-#: kirigami_ui/PrompterPage.qml:608
+#: kirigami_ui/PrompterPage.qml:611
 msgctxt "Set background image"
 msgid "Set image"
 msgstr "设置背景图片"
 
-#: kirigami_ui/PrompterPage.qml:619
+#: kirigami_ui/PrompterPage.qml:622
 msgctxt "Set background color tint"
 msgid "Set color"
 msgstr "设置背景颜色"
 
-#: kirigami_ui/PrompterPage.qml:630
+#: kirigami_ui/PrompterPage.qml:633
 msgctxt "Set background settings back to default"
 msgid "Clear"
 msgstr "恢复默认"
 
-#: kirigami_ui/PrompterPage.qml:644
+#: kirigami_ui/PrompterPage.qml:647
 msgctxt "Screens refers to computer displays"
 msgid "Screens"
 msgstr "屏幕"
 
-#: kirigami_ui/PrompterPage.qml:685
+#: kirigami_ui/PrompterPage.qml:688
 msgctxt "Screen is disabled"
 msgid "Off"
 msgstr "关闭"
 
-#: kirigami_ui/PrompterPage.qml:686
+#: kirigami_ui/PrompterPage.qml:689
 msgctxt "Screen is enabled but mirroring is disabled"
 msgid "No Mirror"
 msgstr "无镜像"
 
-#: kirigami_ui/PrompterPage.qml:687
+#: kirigami_ui/PrompterPage.qml:690
 msgctxt "Horizontal mirroring"
 msgid "H Mirror"
 msgstr "H 镜像"
 
-#: kirigami_ui/PrompterPage.qml:688
+#: kirigami_ui/PrompterPage.qml:691
 msgctxt "Vertical mirroring"
 msgid "V Mirror"
 msgstr "V 镜像"
 
-#: kirigami_ui/PrompterPage.qml:689
+#: kirigami_ui/PrompterPage.qml:692
 msgctxt "Horizontal and vertical mirroring"
 msgid "HV Mirror"
 msgstr "HV 镜像"
 
-#: kirigami_ui/PrompterPage.qml:696
+#: kirigami_ui/PrompterPage.qml:699
 msgctxt "Display prompter copies onto displays"
 msgid "Enable projection"
 msgstr "启用投影"
 
-#: kirigami_ui/PrompterPage.qml:708
+#: kirigami_ui/PrompterPage.qml:711
 msgctxt "Enable scaling prompter copies being projected onto displays"
 msgid "Scale projection"
 msgstr "等比例投影"
 
-#: kirigami_ui/PrompterPage.qml:731
+#: kirigami_ui/PrompterPage.qml:734
 msgid "Leave Fullscreen"
 msgstr "退出全屏"
 
-#: kirigami_ui/PrompterPage.qml:731
+#: kirigami_ui/PrompterPage.qml:734
 msgid "Fullscreen"
 msgstr "全屏"
+
+#: kirigami_ui/PrompterPage.qml:931
+msgid "Countdown Setup"
+msgstr "倒计时设置"
+
+#: kirigami_ui/PrompterPage.qml:940
+msgid "Countdown iterations"
+msgstr "倒计时迭代"
+
+#: kirigami_ui/PrompterPage.qml:959
+msgid "Disappear within 1 second to go"
+msgid_plural "Disappear within %1 seconds to go"
+msgstr[0] "在 %1 秒内消失"
+
+#: kirigami_ui/PrompterPage.qml:983
+msgctxt ""
+"Refers to a key on the keyboard used to skip to a user defined marker while "
+"prompting"
+msgid "Skip Key"
+msgstr "跳跃键"
+
+#: kirigami_ui/PrompterPage.qml:1006
+msgctxt ""
+"Refers to a key on the keyboard used to skip to a user defined marker while "
+"prompting"
+msgid "Key to perform skip to this marker"
+msgstr "按此键执行跳到此标记"
 
 #: kirigami_ui/RemotePage.qml:28
 msgid "Remote Control"
@@ -1117,63 +1130,50 @@ msgstr "节流因子"
 msgid "Enable throttling for use with touchpads, disable for precise scolling."
 msgstr "启用节流以与触摸板一起使用，禁用以进行精确滚动。"
 
-#: main.cpp:104
+#: main.cpp:105
 msgid "© 2021 Javier O. Cordero Pérez"
 msgstr "© 2022 Javier O. Cordero Pérez"
 
-#: main.cpp:105
+#: main.cpp:106
 msgid "© 2021-%1 Javier O. Cordero Pérez"
 msgstr "© 2021-%1 Javier O. Cordero Pérez"
 
-#: main.cpp:108
+#: main.cpp:109
 msgid "Personal teleprompter software for all video makers."
 msgstr "适用于所有视频制作者的个人提词器软件。"
 
-#: main.cpp:120
+#: main.cpp:121
 msgid "Author"
 msgstr "作者"
 
-#: main.cpp:127
+#: main.cpp:128
 msgid "Wrote keycode to string QML abstraction"
 msgstr "将键代码写入字符串QML提取"
 
-#: main.cpp:133
+#: main.cpp:134
 msgctxt "Active software tester"
 msgid "Active tester"
 msgstr "活跃的 Beta 测试员"
 
-#: main.cpp:135 rc.cpp:1
+#: main.cpp:136 rc.cpp:1
 msgctxt "NAME OF TRANSLATORS"
 msgid "Your names"
 msgstr "北北″"
 
-#: main.cpp:135 rc.cpp:2
+#: main.cpp:136 rc.cpp:2
 msgctxt "EMAIL OF TRANSLATORS"
 msgid "Your emails"
 msgstr "9778566@qq.com"
 
-#: main.cpp:143
+#: main.cpp:144
 msgid "Failed to load icons from fontello.ttf"
 msgstr "无法从字体加载图标"
 
-#: prompter/Countdown.qml:246
-msgid "Countdown Setup"
-msgstr "倒计时设置"
-
-#: prompter/Countdown.qml:255
-msgid "Countdown iterations"
-msgstr "倒计时迭代"
-
-#: prompter/Countdown.qml:274
-msgid "Disappear within 1 second to go"
-msgid_plural "Disappear within %1 seconds to go"
-msgstr[0] "在 %1 秒内消失"
-
-#: prompter/Find.qml:125
+#: prompter/Find.qml:126
 msgid "End reached, searching from the start."
 msgstr "到达终点，从起点开始寻找。"
 
-#: prompter/Find.qml:127
+#: prompter/Find.qml:128
 msgid "Start reached, searching from the end."
 msgstr "起点到达，从终点开始寻找。"
 
@@ -1181,77 +1181,77 @@ msgstr "起点到达，从终点开始寻找。"
 msgid "Projection Window"
 msgstr "投影窗口"
 
-#: prompter/ProjectionsManager.qml:305
+#: prompter/ProjectionsManager.qml:309
 msgid "Close"
 msgstr "关闭"
 
-#: prompter/ProjectionsManager.qml:375
+#: prompter/ProjectionsManager.qml:379
 msgid ""
 "For screen projections to show, you must set at least one screen to a "
 "projection setting other than \"Off\""
 msgstr "要显示投影预览，至少需要将一个屏幕设置为“关闭”以外的投影设置"
 
-#: prompter/PrompterBackground.qml:121
+#: prompter/PrompterBackground.qml:127
 msgid "JPEG image"
 msgstr "JPEG图像"
 
-#: prompter/PrompterBackground.qml:122
+#: prompter/PrompterBackground.qml:128
 msgid "PNG image"
 msgstr "PNG图像"
 
-#: prompter/PrompterBackground.qml:123
+#: prompter/PrompterBackground.qml:129
 msgid "GIF animation"
 msgstr "GIF动画"
 
-#: prompter/Prompter.qml:620
+#: prompter/Prompter.qml:638
 msgid "Error loading file…"
 msgstr "加载文件时出错…"
 
-#: prompter/Prompter.qml:720
+#: prompter/Prompter.qml:740
 msgid "Press and hold to go back to the start"
 msgstr "长按回到起点"
 
-#: prompter/Prompter.qml:722
+#: prompter/Prompter.qml:742
 msgid "Double tap to go back to the start"
 msgstr "双击返回最开始"
 
-#: prompter/Prompter.qml:730
+#: prompter/Prompter.qml:750
 msgid "Auto rewind cancelled"
 msgstr "已取消自动倒带"
 
-#: prompter/Prompter.qml:778
+#: prompter/Prompter.qml:798
 msgid "The End"
 msgstr "结束"
 
-#: prompter/Prompter.qml:1091
+#: prompter/Prompter.qml:1111
 msgid "New document"
 msgstr "新文件"
 
-#: prompter/Prompter.qml:1100
+#: prompter/Prompter.qml:1120
 msgid "welcome_en.html"
 msgstr "welcome_zh_CN.html"
 
-#: prompter/Prompter.qml:1105
+#: prompter/Prompter.qml:1125
 msgid "User welcome loaded"
 msgstr "欢迎用户页"
 
-#: prompter/Prompter.qml:1126 prompter/Prompter.qml:1232
+#: prompter/Prompter.qml:1146 prompter/Prompter.qml:1251
 msgctxt "Saved FILE_NAME"
 msgid "Saved %1"
 msgstr "文件已保存到 %1"
 
-#: prompter/Prompter.qml:1181 prompter/Prompter.qml:1214
-#: prompter/Prompter.qml:1218
+#: prompter/Prompter.qml:1201 prompter/Prompter.qml:1234
+#: prompter/Prompter.qml:1238
 msgctxt "Format name (FORMAT_EXTENSION)"
 msgid "Hypertext Markup Language (%1)"
 msgstr "网页文件 (%1)"
 
-#: prompter/Prompter.qml:1182
+#: prompter/Prompter.qml:1202
 msgctxt "Format name (FORMAT_EXTENSION)"
 msgid "Markdown (%1)"
 msgstr "Markdown文件 (%1)"
 
-#: prompter/Prompter.qml:1183 prompter/Prompter.qml:1219
+#: prompter/Prompter.qml:1203 prompter/Prompter.qml:1239
 msgctxt "Format name (FORMAT_EXTENSION)"
 msgid "Plain Text (%1)"
 msgstr "纯文本 (%1)"
@@ -1262,49 +1262,49 @@ msgstr "纯文本 (%1)"
 #. i18nc("Format name (FORMAT_EXTENSION)", "Apple Pages Document (%1)", "PAGES") + "(*.pages *.PAGES)",
 #. i18nc("Format name (FORMAT_EXTENSION)", "Rich Text Format (%1)", "RTF") + "(*.rtf *.RTF)",
 #. i18nc("Format name (FORMAT_EXTENSION)", "Portable Document Format (%1)", "PDF") + "(*.pdf *.PDF)",
-#: prompter/Prompter.qml:1190
+#: prompter/Prompter.qml:1210
 msgctxt "All file formats"
 msgid "All Formats"
 msgstr "所有格式"
 
-#: prompter/Prompter.qml:1271 prompter/Prompter.qml:1318
+#: prompter/Prompter.qml:1290 prompter/Prompter.qml:1337
 msgctxt "Editor context menu actions"
 msgid "Fo&nt…"
 msgstr "字体…"
 
-#: prompter/Prompter.qml:1275 prompter/Prompter.qml:1322
+#: prompter/Prompter.qml:1294 prompter/Prompter.qml:1341
 msgctxt "Editor context menu actions"
 msgid "Co&lor…"
 msgstr "颜色…"
 
-#: prompter/Prompter.qml:1279 prompter/Prompter.qml:1326
+#: prompter/Prompter.qml:1298 prompter/Prompter.qml:1345
 msgctxt "Editor context menu actions"
 msgid "Hi&ghlight…"
 msgstr "高亮显示…"
 
-#: prompter/Prompter.qml:1291
+#: prompter/Prompter.qml:1310
 msgctxt "Editor context menu actions"
 msgid "&Undo"
 msgstr "撤销"
 
-#: prompter/Prompter.qml:1296
+#: prompter/Prompter.qml:1315
 msgctxt "Editor context menu actions"
 msgid "Redo"
 msgstr "重做"
 
-#: prompter/Prompter.qml:1559
+#: prompter/Prompter.qml:1578
 msgid "Begin countdown"
 msgstr "开始倒计时"
 
-#: prompter/Prompter.qml:1559
+#: prompter/Prompter.qml:1578
 msgid "Start prompting"
 msgstr "开始提示"
 
-#: prompter/Prompter.qml:1606
+#: prompter/Prompter.qml:1624
 msgid "Skip countdown"
 msgstr "跳过倒计时"
 
-#: prompter/Prompter.qml:1649
+#: prompter/Prompter.qml:1667
 msgid "Return to edit mode"
 msgstr "返回编辑模式"
 
