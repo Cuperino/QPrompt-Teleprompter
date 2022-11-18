@@ -1178,8 +1178,8 @@ Flickable {
 
         Component.onCompleted: {
             if (prompter.performFileOperations) {
-                if (Qt.application.arguments.length === 2) {
-                    document.load("file:" + Qt.application.arguments[1]);
+                if (typeof fileToOpen!=="undefined") {
+                    document.load("file:" + fileToOpen);
                     isNewFile = false
                 }
                 else
