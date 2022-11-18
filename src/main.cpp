@@ -68,16 +68,6 @@
 Q_DECL_EXPORT int main(int argc, char *argv[])
 {
 
-#if defined(Q_OS_WINDOWS)
-#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
-    putenv("QSG_RENDER_LOOP=windows");
-#else
-    putenv("QSG_RENDER_LOOP=basic");
-#endif
-#elif defined(Q_OS_MACOS) or defined(Q_OS_LINUX)
-    setenv("QSG_RENDER_LOOP", "basic", 0);
-#endif
-
 #if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
     QGuiApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
 #endif
@@ -87,6 +77,38 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
     QApplication app(argc, argv);
 #endif
 
+    KLocalizedString::setApplicationDomain("qprompt");
+    QCoreApplication::setOrganizationName(QString::fromStdString("Cuperino"));
+    QCoreApplication::setOrganizationDomain(QString::fromStdString(QPROMPT_URI));
+    QCoreApplication::setApplicationName(QString::fromStdString("QPrompt"));
+
+    QCommandLineParser parser;
+    parser.setApplicationDescription(i18n("Personal teleprompter software for all video makers. Built with ease of use, productivity, and smooth performance in mind."));
+    parser.addHelpOption();
+    parser.addVersionOption();
+    parser.addPositionalArgument("source", i18nc("file", "File to copy."));
+    QCommandLineOption multithread(QStringList() << "m" << "multithread",
+            i18n("Enable multi-threaded renderer (disables screen projections and improves performance)"));
+    parser.addOption(multithread);
+    parser.process( app );
+
+    QStringList positionalArguments = parser.positionalArguments();
+    QString fileToOpen = "";
+    if (positionalArguments.length())
+        fileToOpen = parser.positionalArguments().at(0);
+
+#if defined(Q_OS_WINDOWS)
+    if (!parser.isSet(multithread))
+#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
+        putenv("QSG_RENDER_LOOP=windows");
+#else
+        putenv("QSG_RENDER_LOOP=basic");
+#endif
+#elif defined(Q_OS_MACOS) or defined(Q_OS_LINUX)
+    if (!parser.isSet(multithread))
+        setenv("QSG_RENDER_LOOP", "basic", 0);
+#endif
+
 #if defined(KF5Crash_FOUND)
     //KCrash::setDrKonqiEnabled(true);
     KCrash::initialize();
@@ -94,11 +116,6 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
     KCrash::setFlags(KCrash::AutoRestart); // |KCrash::SaferDialog
     //qDebug() << "DrKonqui" << KCrash::isDrKonqiEnabled();
 #endif
-
-    KLocalizedString::setApplicationDomain("qprompt");
-    QCoreApplication::setOrganizationName(QString::fromStdString("Cuperino"));
-    QCoreApplication::setOrganizationDomain(QString::fromStdString(QPROMPT_URI));
-    QCoreApplication::setApplicationName(QString::fromStdString("QPrompt"));
 
     const int currentYear = QDate::currentDate().year();
     QString copyrightYear = QString::number(currentYear);
@@ -222,7 +239,8 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
 #endif
     engine.rootContext()->setContextObject(new KLocalizedContext(&engine));
     engine.rootContext()->setContextProperty(QStringLiteral("aboutData"), QVariant::fromValue(KAboutData::applicationData()));
-
+    if (positionalArguments.length())
+        engine.rootContext()->setContextProperty(QStringLiteral("fileToOpen"), fileToOpen);
     //engine.addImportPath(QStringLiteral("../3rdparty/kirigami/"));
     //engine.addImportPath(QStringLiteral("/usr/local/lib/qml"));
     //engine.addImportPath("/opt/local/lib/qml/org/kde/kirigami.2");
