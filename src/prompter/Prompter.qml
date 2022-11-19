@@ -1716,7 +1716,7 @@ Flickable {
         setCursorAtCurrentPosition()
         var pos = prompter.position
         position = pos
-        timer.updateText()
+        timer.updateTimer()
     }
 
     transitions: [

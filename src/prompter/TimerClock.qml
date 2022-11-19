@@ -31,11 +31,10 @@ import Qt.labs.settings 1.0
 Item {
     id: clock
 
-    property bool running: prompter.__play && parseInt(prompter.state)===Prompter.States.Prompting
+    property bool running: false
     property double elapsedMilliseconds: 0
-    property double startTime: new Date().getTime() - elapsedMilliseconds + 500
-    property double lastTime: 0
-    property double newLastTime: 0
+    property double startTime: new Date().getTime() - elapsedMilliseconds
+    property double lastTime: startTime
     property bool stopwatch: false
     property bool eta: false
     property real size: 0.5
@@ -59,21 +58,28 @@ Item {
         const currentTime = new Date().getTime()
         elapsedMilliseconds = currentTime - startTime
     }
-    function updateText() {
-        let timeToEnd = prompter.__timeToEnd;
-        if (!isFinite(timeToEnd) || prompter.__i<0) {
-            timeToEnd = 2 * (Math.floor(editor.height+prompter.fontSize-prompter.topMargin-1)-prompter.position) / (prompter.__baseSpeed * Math.pow(Math.abs(prompter.__iDefault), prompter.__curvature) * prompter.fontSize/2 * ((prompter.__vw-prompter.__evw/2) / prompter.__vw));
-            if (prompter.__atEnd)
-                timeToEnd = 0
+    function updateTimer() {
+        // Update ETA only if ETA is meant to be shown.
+        if (clock.eta) {
+            let timeToEnd = prompter.__timeToEnd;
+            if (!isFinite(timeToEnd) || prompter.__i<0) {
+                timeToEnd = 2 * (Math.floor(editor.height+prompter.fontSize-prompter.topMargin-1)-prompter.position) / (prompter.__baseSpeed * Math.pow(Math.abs(prompter.__iDefault), prompter.__curvature) * prompter.fontSize/2 * ((prompter.__vw-prompter.__evw/2) / prompter.__vw));
+                if (prompter.__atEnd)
+                    timeToEnd = 0
+            }
+            etaTimer.text = timer.getTimeString(timeToEnd);
         }
-        etaTimer.text = /*i18n("SW") + " " +*/ timer.getTimeString(timeToEnd);
 
-        newLastTime = new Date().getTime()
-        if (clock.stopwatch && !running)
+        // Update stopwatch timer regardless of stopwatch being shown. This allows getting desired value for talent after a run has been completed with the stopwatch hidden.
+        const newLastTime = new Date().getTime()
+        if (!running)
             startTime = startTime + newLastTime - lastTime
         lastTime = newLastTime
         elapsedMilliseconds = lastTime - startTime
-        promptTime.text = /*i18n("SW") + " " +*/ timer.getTimeString(elapsedMilliseconds/1000);
+
+        // Update stopwatch only if stopwatch is meant to be shown.
+        if (clock.stopwatch)
+            promptTime.text = timer.getTimeString(elapsedMilliseconds/1000);
     }
     function reset() {
         timer.elapsedMilliseconds = 0;
@@ -137,7 +143,7 @@ Item {
             Label {
                 id: promptTime
                 visible: clock.stopwatch
-                text: /*i18n("SW") + " " +*/ "<pre>00:00:00</pre>"
+                text: /*i18n("SW") + " " +*/ "00:00:00"
                 font.family: "Monospace"
                 font.pixelSize: stopwatch.fontSize
                 color: clock.textColor
@@ -149,7 +155,7 @@ Item {
             Label {
                 id: etaTimer
                 visible: clock.eta
-                text: /*i18n("ET") + " " +*/ "<pre>00:00:00</pre>"
+                text: /*i18n("ET") + " " +*/ "00:00:00"
                 font.family: "Monospace"
                 font.pixelSize: stopwatch.fontSize
                 color: clock.textColor
@@ -181,10 +187,10 @@ Item {
 
     Timer {
         repeat: true
-        running: clock.eta || clock.running
+        running: true
         triggeredOnStart: true
         interval: 120;
-        onTriggered: updateText();
+        onTriggered: updateTimer();
     }
 
     ColorDialog {
