@@ -155,7 +155,7 @@ Item {
             addMissingProjections();
     }
     Settings {
-        property alias enable: projectionManager.isEnabled
+        property alias enabled: projectionManager.isEnabled
         property alias scale: projectionManager.reScale
         property alias screens: projectionManager.screensStringified
         category: "projections"
