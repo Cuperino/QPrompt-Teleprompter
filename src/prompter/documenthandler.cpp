@@ -73,8 +73,8 @@
 
 #include <vector>
 #if defined(Q_OS_ANDROID)
-#include <QtAndroid>
 #include <QAndroidJniObject>
+#include <QtAndroid>
 #endif
 #if defined(Q_OS_ANDROID) || defined(Q_OS_IOS) || defined(Q_OS_WASM) || defined(Q_OS_WATCHOS) || defined(Q_OS_QNX)
 #include <QGuiApplication>
@@ -95,29 +95,37 @@
 #else
 #include <QTextCodec>
 #endif
-#include <QTextDocument>
-#include <QTextBlock>
-#include <QTimer>
 #include <QClipboard>
-#include <QMimeData>
-#include <QRegularExpression>
-#include <QProcess>
 #include <QDebug>
 #include <QKeySequence>
+#include <QMimeData>
+#include <QProcess>
+#include <QRegularExpression>
+#include <QTextBlock>
+#include <QTextDocument>
+#include <QTimer>
 
 DocumentHandler::DocumentHandler(QObject *parent)
-: QObject(parent)
-, m_document(nullptr)
-, m_cursorPosition(-1)
-, m_selectionStart(0)
-, m_selectionEnd(0)
-, _markersModel(nullptr)
+    : QObject(parent)
+    , m_document(nullptr)
+    , m_cursorPosition(-1)
+    , m_selectionStart(0)
+    , m_selectionEnd(0)
+    , _markersModel(nullptr)
 
 {
     _markersModel = new MarkersModel();
     _fileSystemWatcher = new QFileSystemWatcher();
     pdf_importer = QString::fromStdString("TextExtraction");
     office_importer = QString::fromStdString("soffice");
+
+    m_fontDialog = new SystemFontChooserDialog();
+    QObject::connect(m_fontDialog, &SystemFontChooserDialog::fontFamilyChanged, this, &DocumentHandler::setFontFamily);
+}
+
+DocumentHandler::~DocumentHandler()
+{
+    delete m_fontDialog;
 }
 
 QQuickTextDocument *DocumentHandler::document() const
@@ -128,8 +136,8 @@ QQuickTextDocument *DocumentHandler::document() const
 // QAbstractListModel *DocumentHandler::markers() const
 MarkersModel *DocumentHandler::markers() const
 {
-//     QAbstractListModel *model = _markersModel;
-//     return model ;
+    //     QAbstractListModel *model = _markersModel;
+    //     return model ;
     return _markersModel;
 }
 
@@ -142,7 +150,12 @@ void DocumentHandler::setDocument(QQuickTextDocument *document)
         m_document->textDocument()->disconnect(this);
     m_document = document;
     if (m_document) {
-        m_document->textDocument()->setDefaultStyleSheet(QString::fromStdString("body{margin:0;padding:0;color:\"#FFFFFF\";}a:link,a:visited,a:hover,a:active,a:before,a:after{text-decoration:overline;color:\"#FFFFFF\";background-color:rgba(0,0,0,0.0);}blockquote,address,cite,code,pre,h1,h2,h3,h4,h5,h6,table,tbody,td,th,thead,tr,dl,dt,big,small,tt,font{white-space:pre-wrap;font-size:medium;line-height:100%;margin:0;padding:0;border-width:2px;border-collapse:collapse;border-style:solid;border-color:\"#404040\";background-color:rgba(0,0,0,0.0);font-weight:normal;}table,tbody,thead{width:100%;}table,tbody,thead,td,th,tr{border:1pt;valign:top;background-color:rgba(0,0,0,0.0);}img{margin:5pt;width:50vw;}p{margin:0;}h1,h2,h3,h4,h5,h6,big{font-size:medium;font-weight:normal;}"));
+        m_document->textDocument()->setDefaultStyleSheet(QString::fromStdString(
+            "body{margin:0;padding:0;color:\"#FFFFFF\";}a:link,a:visited,a:hover,a:active,a:before,a:after{text-decoration:overline;color:\"#FFFFFF\";"
+            "background-color:rgba(0,0,0,0.0);}blockquote,address,cite,code,pre,h1,h2,h3,h4,h5,h6,table,tbody,td,th,thead,tr,dl,dt,big,small,tt,font{white-"
+            "space:pre-wrap;font-size:medium;line-height:100%;margin:0;padding:0;border-width:2px;border-collapse:collapse;border-style:solid;border-color:\"#"
+            "404040\";background-color:rgba(0,0,0,0.0);font-weight:normal;}table,tbody,thead{width:100%;}table,tbody,thead,td,th,tr{border:1pt;valign:top;"
+            "background-color:rgba(0,0,0,0.0);}img{margin:5pt;width:50vw;}p{margin:0;}h1,h2,h3,h4,h5,h6,big{font-size:medium;font-weight:normal;}"));
         connect(m_document->textDocument(), &QTextDocument::modificationChanged, this, &DocumentHandler::modifiedChanged);
         connect(m_document->textDocument(), &QTextDocument::contentsChanged, this, &DocumentHandler::setMarkersListDirty);
     }
@@ -198,7 +211,8 @@ QString DocumentHandler::fontFamily() const
     if (cursor.isNull())
         return QString();
     QTextCharFormat format = cursor.charFormat();
-    return format.font().family();
+    const QFont font = format.font();
+    return font.families().length() ? font.families().constFirst() : font.family();
 }
 
 void DocumentHandler::setFontFamily(const QString &family)
@@ -206,7 +220,7 @@ void DocumentHandler::setFontFamily(const QString &family)
     QTextCharFormat format;
     format.setFontFamilies(QStringList(family));
     mergeFormatOnWordOrSelection(format);
-    Q_EMIT fontFamilyChanged();
+    Q_EMIT fontFamilyChanged(family);
 }
 
 QColor DocumentHandler::textColor() const
@@ -260,22 +274,6 @@ void DocumentHandler::setAlignment(Qt::Alignment alignment)
     Q_EMIT alignmentChanged();
 }
 
-// bool DocumentHandler::anchor() const
-// {
-//     QTextCursor cursor = textCursor();
-//     if (cursor.isNull())
-//         return false;
-//     return textCursor().charFormat().fontWeight() == QFont::Bold;
-// }
-//
-// void DocumentHandler::setAnchor(QStringList names)
-// {
-//     QTextCharFormat format;
-//     format.setAnchorNames(names);
-//     mergeFormatOnWordOrSelection(format);
-//     Q_EMIT anchorChanged();
-// }
-//
 bool DocumentHandler::bold() const
 {
     QTextCursor cursor = textCursor();
@@ -345,7 +343,7 @@ bool DocumentHandler::regularMarker() const
     QTextCursor cursor = textCursor();
     if (cursor.isNull())
         return false;
-    return textCursor().charFormat().isAnchor() && textCursor().charFormat().anchorNames().size()==0;
+    return textCursor().charFormat().isAnchor() && textCursor().charFormat().anchorNames().size() == 0;
 }
 
 bool DocumentHandler::namedMarker() const
@@ -353,23 +351,43 @@ bool DocumentHandler::namedMarker() const
     QTextCursor cursor = textCursor();
     if (cursor.isNull())
         return false;
-    return textCursor().charFormat().isAnchor() && textCursor().charFormat().anchorNames().size()>0;
+    return textCursor().charFormat().isAnchor() && textCursor().charFormat().anchorNames().size() > 0;
 }
 
-void DocumentHandler::setKeyMarker(QString keyCodeString=QString::fromStdString(""))
+void DocumentHandler::setKeyMarker(QString keyCodeString = QString::fromStdString(""))
 {
     if (!keyCodeString.length())
         return;
     QTextCharFormat format;
-    //qDebug() << keyCodeString;
-    // Dev: in future versions, append, don't replace prior non-key values.
-    format.setAnchorNames( {QString::fromStdString("key_") + keyCodeString} );
+    // qDebug() << keyCodeString;
+    //  Dev: in future versions, append, don't replace prior non-key values.
+    format.setAnchorNames({QString::fromStdString("key_") + keyCodeString});
     format.setAnchor("#");
     format.setFontUnderline(true);
     format.setFontOverline(true);
     mergeFormatOnWordOrSelection(format);
     this->setMarkersListDirty();
     Q_EMIT markerChanged();
+}
+
+bool DocumentHandler::showFontDialog()
+{
+    QTextCursor cursor = textCursor();
+    if (!cursor.hasSelection())
+        cursor.select(QTextCursor::WordUnderCursor);
+    // Trim text and remove invisible character "￼", which represents images
+    QString text = cursor.selectedText().trimmed().remove("￼");
+    const int length = text.length();
+    if (length == 0)
+        return true;
+    else if (length > 64) {
+        text.truncate(64);
+        int end = text.lastIndexOf(" ");
+        text.truncate(end);
+        text.append(tr("…"));
+    }
+    m_fontDialog->show(fontFamily(), text);
+    return false;
 }
 
 QString DocumentHandler::getMarkerKey()
@@ -385,8 +403,7 @@ QString DocumentHandler::getMarkerKey()
         QString keyCodeString = names.first().mid(4);
         QKeySequence seq = QKeySequence(keyCodeString.toInt());
         key = seq.toString();
-    }
-    else
+    } else
         qDebug() << "Empty";
     // Return key string
     return key;
@@ -457,15 +474,16 @@ QUrl DocumentHandler::fileUrl() const
     return m_fileUrl;
 }
 
-void DocumentHandler::reload(const QString &fileUrl) {
+void DocumentHandler::reload(const QString &fileUrl)
+{
     qWarning() << "reloading";
     load(QUrl(QString::fromStdString("file://") + fileUrl));
 }
 
 void DocumentHandler::load(const QUrl &fileUrl)
 {
-//     if (fileUrl == m_fileUrl)
-//         return;
+    // if (fileUrl == m_fileUrl)
+    //     return;
 
     QQmlEngine *engine = qmlEngine(this);
     if (!engine) {
@@ -485,13 +503,16 @@ void DocumentHandler::load(const QUrl &fileUrl)
                 doc->setBaseUrl(path.adjusted(QUrl::RemoveFilename));
                 // File formats managed by Qt
                 if (mime.inherits(QString::fromStdString("text/html"))) {
-                    QString html = QString::fromUtf8(data).replace(QRegularExpression(QString::fromStdString("((font-size|letter-spacing|word-spacing|font-weight):\\s*-?[\\d]+(?:.[\\d]+)*(?:(?:px)|(?:pt)|(?:em)|(?:ex));?\\s*)")), QString::fromStdString(""));
+                    QString html = QString::fromUtf8(data).replace(
+                        QRegularExpression(QString::fromStdString(
+                            "((font-size|letter-spacing|word-spacing|font-weight):\\s*-?[\\d]+(?:.[\\d]+)*(?:(?:px)|(?:pt)|(?:em)|(?:ex));?\\s*)")),
+                        QString::fromStdString(""));
                     Q_EMIT loaded(html, Qt::RichText);
                 }
-                #if QT_VERSION >= 0x050F00
+#if QT_VERSION >= 0x050F00
                 else if (mime.inherits(QString::fromStdString("text/markdown")))
                     Q_EMIT loaded(QString::fromUtf8(data), Qt::MarkdownText);
-                #endif
+#endif
                 // File formats imported using external software
                 else {
                     ImportFormat type = NONE;
@@ -539,14 +560,14 @@ void DocumentHandler::load(const QUrl &fileUrl)
             }
             reset();
         }
-        bool newPath=false;
-        if (path!=this->fileUrl())
-            newPath=true;
-        if (path.isLocalFile() && (_fileSystemWatcher==nullptr || newPath)) {
+        bool newPath = false;
+        if (path != this->fileUrl())
+            newPath = true;
+        if (path.isLocalFile() && (_fileSystemWatcher == nullptr || newPath)) {
             if (newPath)
                 _fileSystemWatcher->removePath(QQmlFile::urlToLocalFileOrQrc(this->fileUrl()));
             _fileSystemWatcher->addPath(fileName);
-            connect( _fileSystemWatcher, SIGNAL( fileChanged(QString) ), this, SLOT( reload(QString) ), Qt::UniqueConnection );
+            connect(_fileSystemWatcher, SIGNAL(fileChanged(QString)), this, SLOT(reload(QString)), Qt::UniqueConnection);
         }
     }
 
@@ -560,20 +581,20 @@ QString DocumentHandler::import(QString fileName, ImportFormat type)
     QStringList arguments;
 
     // Preferring TextExtraction over alternatives for its better support for RTL languages.
-    if (type==PDF) {
+    if (type == PDF) {
         program = pdf_importer;
         arguments << fileName;
     }
     // Using LibreOffice for most formats because of its ability to preserve formatting while converting to HTML.
-    else if (type==ODT || type==DOCX || type==DOC || type==RTF || type==ABW || type==PAGESX || type==PAGES) {
+    else if (type == ODT || type == DOCX || type == DOC || type == RTF || type == ABW || type == PAGESX || type == PAGES) {
         program = office_importer;
-        arguments << QString::fromStdString("--headless") << QString::fromStdString("--cat") << QString::fromStdString("--convert-to") << QString::fromStdString("html:HTML") << fileName;
-    }
-    else if (type==EPUB || type==MOBI || type==AZW) {
+        arguments << QString::fromStdString("--headless") << QString::fromStdString("--cat") << QString::fromStdString("--convert-to")
+                  << QString::fromStdString("html:HTML") << fileName;
+    } else if (type == EPUB || type == MOBI || type == AZW) {
         // Dev: not implemented
     }
 
-    if (program==QString::fromStdString(""))
+    if (program == QString::fromStdString(""))
         return QString::fromStdString("Unsupported file format");
 
     // Begin execution of external filter
@@ -589,7 +610,8 @@ QString DocumentHandler::import(QString fileName, ImportFormat type)
     return filterHtml(QString::fromStdString(html.toStdString()), false);
 }
 
-void DocumentHandler::unblockFileWatcher() {
+void DocumentHandler::unblockFileWatcher()
+{
     _fileSystemWatcher->blockSignals(false);
 }
 
@@ -611,7 +633,9 @@ void DocumentHandler::saveAs(const QUrl &fileUrl)
     QString filePath = fileUrl.toLocalFile();
     QFile file(filePath);
     QFileInfo fileInfo = QFileInfo(filePath);
-    const bool isHtml = fileInfo.suffix().contains(QLatin1String("html")) || fileInfo.suffix().contains(QLatin1String("htm")) || fileInfo.suffix().contains(QLatin1String("xhtml")) || fileInfo.suffix().contains(QLatin1String("HTML")) || fileInfo.suffix().contains(QLatin1String("HTM")) || fileInfo.suffix().contains(QLatin1String("XHTML"));
+    const bool isHtml = fileInfo.suffix().contains(QLatin1String("html")) || fileInfo.suffix().contains(QLatin1String("htm"))
+        || fileInfo.suffix().contains(QLatin1String("xhtml")) || fileInfo.suffix().contains(QLatin1String("HTML"))
+        || fileInfo.suffix().contains(QLatin1String("HTM")) || fileInfo.suffix().contains(QLatin1String("XHTML"));
 #endif
 
     if (!file.open(QFile::WriteOnly | QFile::Truncate | (isHtml ? QFile::NotOpen : QFile::Text))) {
@@ -644,7 +668,7 @@ void DocumentHandler::save()
 
 void DocumentHandler::reset()
 {
-    Q_EMIT fontFamilyChanged();
+    Q_EMIT fontFamilyChanged(fontFamily());
     Q_EMIT alignmentChanged();
     Q_EMIT boldChanged();
     Q_EMIT italicChanged();
@@ -699,7 +723,7 @@ void DocumentHandler::setModified(bool m)
         m_document->textDocument()->setModified(m);
 }
 
-QString DocumentHandler::filterHtml(QString html, bool ignoreBlackTextColor=true)
+QString DocumentHandler::filterHtml(QString html, bool ignoreBlackTextColor = true)
 // ignoreBlackTextColor=true is the default because websites tend to force black text color
 {
     // Auto-detect content origin
@@ -707,7 +731,10 @@ QString DocumentHandler::filterHtml(QString html, bool ignoreBlackTextColor=true
     // Check for native sources, such as LibreOffice, MS Office, WPS Office, and AbiWord
     // Clean RegEx  (<meta\s?\s*name="?[gG]enerator"?\s?\s*content="(?:(?:(?:(?:Libre)|(?:Open))Office)|(?:Microsoft)))
     // Clean RegEx  <!DOCTYPE html PUBLIC "-//ABISOURCE//DTD XHTML plus AWML
-    if (html.contains(QRegularExpression(QString::fromStdString("(<meta\\s?\\s*name=\"?[gG]enerator\"?\\s?\\s*content=\"(?:(?:(?:(?:Libre)|(?:Open))Office)|(?:Microsoft)))"), QRegularExpression::CaseInsensitiveOption)) || html.contains(QRegularExpression(QString::fromStdString("<!DOCTYPE html PUBLIC \"-//ABISOURCE//DTD XHTML plus AWML")))) {
+    if (html.contains(QRegularExpression(
+            QString::fromStdString("(<meta\\s?\\s*name=\"?[gG]enerator\"?\\s?\\s*content=\"(?:(?:(?:(?:Libre)|(?:Open))Office)|(?:Microsoft)))"),
+            QRegularExpression::CaseInsensitiveOption))
+        || html.contains(QRegularExpression(QString::fromStdString("<!DOCTYPE html PUBLIC \"-//ABISOURCE//DTD XHTML plus AWML")))) {
         comesFromRecognizedNativeSource = true;
         ignoreBlackTextColor = false;
     }
@@ -723,34 +750,53 @@ QString DocumentHandler::filterHtml(QString html, bool ignoreBlackTextColor=true
     // Filters that run always:
     // 1. Remove HTML's non-scaling font-size attributes
     // Clean RegEx  (font-size:\s*[\d]+(?:.[\d]+)*(?:(?:px)|(?:pt)|(?:em)|(?:ex));?\s*)
-    html = html.replace(QRegularExpression(QString::fromStdString("(font-size:\\s*[\\d]+(?:.[\\d]+)*(?:(?:px)|(?:pt)|(?:em)|(?:ex));?\\s*)")), QString::fromStdString(""));
+    html = html.replace(QRegularExpression(QString::fromStdString("(font-size:\\s*[\\d]+(?:.[\\d]+)*(?:(?:px)|(?:pt)|(?:em)|(?:ex));?\\s*)")),
+                        QString::fromStdString(""));
 
     // Filters that apply only to native sources:
     if (comesFromRecognizedNativeSource)
-        // 2. Remove text color attributes from body and CSS portion.  Running it 3 times ensures text, link, and vlink attributes are removed, irregardless of their order, while keeping regex maintainable
-        // Clean RegEx  (?:(?:p\s*{.*(\scolor:\s*#[0123456789abcdefABCDEF]{3}(?:[0123456789abcdefABCDEF]{3})?;))|(?:(?:<[bB][oO][dD][yY]\s).*(\s(?:(?:text)|(?:v?link))="#[0123456789abcdefABCDEF]{3}(?:[0123456789abcdefABCDEF]{3})?").*(\s(?:(?:text)|(?:v?link))="#[0123456789abcdefABCDEF]{3}(?:[0123456789abcdefABCDEF]{3})?").*(\s(?:(?:text)|(?:v?link))="#[0123456789abcdefABCDEF]{3}(?:[0123456789abcdefABCDEF]{3})?")))
-        html = html.replace(QRegularExpression(QString::fromStdString("(?:(?:p\\s*{.*(\\scolor:\\s*#[0123456789abcdefABCDEF]{3}(?:[0123456789abcdefABCDEF]{3})?;))|(?:(?:<[bB][oO][dD][yY]\\s).*(\\s(?:(?:text)|(?:v?link))=\"#[0123456789abcdefABCDEF]{3}(?:[0123456789abcdefABCDEF]{3})?\").*(\\s(?:(?:text)|(?:v?link))=\"#[0123456789abcdefABCDEF]{3}(?:[0123456789abcdefABCDEF]{3})?\").*(\\s(?:(?:text)|(?:v?link))=\"#[0123456789abcdefABCDEF]{3}(?:[0123456789abcdefABCDEF]{3})?\")))")), QString::fromStdString(""));
+        // 2. Remove text color attributes from body and CSS portion.  Running it 3 times ensures text, link, and vlink attributes are removed, irregardless
+        // of their order, while keeping regex maintainable Clean RegEx
+        // (?:(?:p\s*{.*(\scolor:\s*#[0123456789abcdefABCDEF]{3}(?:[0123456789abcdefABCDEF]{3})?;))|(?:(?:<[bB][oO][dD][yY]\s).*(\s(?:(?:text)|(?:v?link))="#[0123456789abcdefABCDEF]{3}(?:[0123456789abcdefABCDEF]{3})?").*(\s(?:(?:text)|(?:v?link))="#[0123456789abcdefABCDEF]{3}(?:[0123456789abcdefABCDEF]{3})?").*(\s(?:(?:text)|(?:v?link))="#[0123456789abcdefABCDEF]{3}(?:[0123456789abcdefABCDEF]{3})?")))
+        html = html.replace(
+            QRegularExpression(QString::fromStdString(
+                "(?:(?:p\\s*{.*(\\scolor:\\s*#[0123456789abcdefABCDEF]{3}(?:[0123456789abcdefABCDEF]{3})?;))|(?:(?:<[bB][oO][dD][yY]\\s).*(\\s(?:(?:text)|("
+                "?:v?"
+                "link))=\"#[0123456789abcdefABCDEF]{3}(?:[0123456789abcdefABCDEF]{3})?\").*(\\s(?:(?:text)|(?:v?link))=\"#[0123456789abcdefABCDEF]{3}(?:["
+                "0123456789abcdefABCDEF]{3})?\").*(\\s(?:(?:text)|(?:v?link))=\"#[0123456789abcdefABCDEF]{3}(?:[0123456789abcdefABCDEF]{3})?\")))")),
+            QString::fromStdString(""));
     // for (int i=0; i<3; ++i)
-    //     html = html.replace(QRegularExpression("(?:(?:<[bB][oO][dD][yY]\\s).*(\\s(?:(?:text)|(?:v?link))=\"#[0123456789abcdefABCDEF]{3}(?:[0123456789abcdefABCDEF]{3})?\"))"), "");
+    //     html =
+    //     html.replace(QRegularExpression("(?:(?:<[bB][oO][dD][yY]\\s).*(\\s(?:(?:text)|(?:v?link))=\"#[0123456789abcdefABCDEF]{3}(?:[0123456789abcdefABCDEF]{3})?\"))"),
+    //     "");
 
     // Filters that apply only to non-native sources:
     else // if (!comesFromRecognizedNativeSource)
         // 3. Preserve highlights: Remove background color attributes from all elements except span, which is commonly used for highlights
-        // Clean RegEx  (?:<[^sS][^pP][^aA][^nN](?:\s*[^>]*(\s*background(?:-color)?:\s*(?:(?:rgba?\(\d\d?\d?,\s*\d\d?\d?,\s*\d\d?\d?(?:,\s*[01]?(?:[.]\d\d*)?)?\))|(?:#[0-9a-fA-F]{3}(?:[0-9a-fA-F]{3})?));?)\s*[^>]*)*>)
-        html = html.replace(QRegularExpression(QString::fromStdString("(?:<[^sS][^pP][^aA][^nN](?:\\s*[^>]*(\\s*background(?:-color)?:\\s*(?:(?:rgba?\\(\\d\\d?\\d?,\\s*\\d\\d?\\d?,\\s*\\d\\d?\\d?(?:,\\s*[01]?(?:[.]\\d\\d*)?)?\\))|(?:#[0-9a-fA-F]{3}(?:[0-9a-fA-F]{3})?));?)\\s*[^>]*)*>)")), QString::fromStdString(""));
+        // Clean RegEx
+        // (?:<[^sS][^pP][^aA][^nN](?:\s*[^>]*(\s*background(?:-color)?:\s*(?:(?:rgba?\(\d\d?\d?,\s*\d\d?\d?,\s*\d\d?\d?(?:,\s*[01]?(?:[.]\d\d*)?)?\))|(?:#[0-9a-fA-F]{3}(?:[0-9a-fA-F]{3})?));?)\s*[^>]*)*>)
+        html = html.replace(QRegularExpression(QString::fromStdString(
+                                "(?:<[^sS][^pP][^aA][^nN](?:\\s*[^>]*(\\s*background(?:-color)?:\\s*(?:(?:rgba?\\(\\d\\d?\\d?,\\s*\\d\\d?\\d?,\\s*\\d\\d?\\d?(?"
+                                ":,\\s*[01]?(?:[.]\\d\\d*)?)?\\))|(?:#[0-9a-fA-F]{3}(?:[0-9a-fA-F]{3})?));?)\\s*[^>]*)*>)")),
+                            QString::fromStdString(""));
 
     // Manual toggle filters
     if (ignoreBlackTextColor || !comesFromRecognizedNativeSource)
-        // 4. Removal of black colored text attribute, subject to source editor.  Applies to Google Docs, OnlyOffice, Microsoft 365 Office Online and random websites.  Not used in LibreOffice, OpenOffice, WPS Office nor regular MS Office. 8-bit color values bellow 100 are ignored when rgb format is used. Has no effect on LibreOffice because of XML differences; nevertheless, there's no need to ignore dark text colors on LibreOffice because LibreOffice has a correct implementation of default colors.
-        // Clean RegEx  (\s*(?:mso-style-textfill-fill-)?color:\s*(?:(?:rgba?\(\d{1,2},\s*\d{1,2},\s*\d{1,2}(?:,\s*[10]?(?:[.]00*)?)?\))|(?:black)|(?:windowtext)|(?:#0{3}(?:0{3})?));?)
-        html = html.replace(QRegularExpression(QString::fromStdString("(\\s*(?:mso-style-textfill-fill-)?color:\\s*(?:(?:rgba?\\(\\d{1,2},\\s*\\d{1,2},\\s*\\d{1,2}(?:,\\s*[10]?(?:[.]00*)?)?\\))|(?:black)|(?:windowtext)|(?:#0{3}(?:0{3})?));?)")), QString::fromStdString(""));
+        // 4. Removal of black colored text attribute, subject to source editor.  Applies to Google Docs, OnlyOffice, Microsoft 365 Office Online and random
+        // websites.  Not used in LibreOffice, OpenOffice, WPS Office nor regular MS Office. 8-bit color values bellow 100 are ignored when rgb format is
+        // used. Has no effect on LibreOffice because of XML differences; nevertheless, there's no need to ignore dark text colors on LibreOffice because
+        // LibreOffice has a correct implementation of default colors. Clean RegEx
+        // (\s*(?:mso-style-textfill-fill-)?color:\s*(?:(?:rgba?\(\d{1,2},\s*\d{1,2},\s*\d{1,2}(?:,\s*[10]?(?:[.]00*)?)?\))|(?:black)|(?:windowtext)|(?:#0{3}(?:0{3})?));?)
+        html = html.replace(QRegularExpression(QString::fromStdString("(\\s*(?:mso-style-textfill-fill-)?color:\\s*(?:(?:rgba?\\(\\d{1,2},\\s*\\d{1,2},\\s*\\d{"
+                                                                      "1,2}(?:,\\s*[10]?(?:[.]00*)?)?\\))|(?:black)|(?:windowtext)|(?:#0{3}(?:0{3})?));?)")),
+                            QString::fromStdString(""));
 
     // Filtering complete
     // qDebug() << html;
     return html;
 }
 
-void DocumentHandler::paste(bool withoutFormating=false)
+void DocumentHandler::paste(bool withoutFormating = false)
 {
     // qDebug() << "Managed Paste";
 #if defined(Q_OS_ANDROID) || defined(Q_OS_IOS) || defined(Q_OS_WASM) || defined(Q_OS_WATCHOS) || defined(Q_OS_QNX)
@@ -767,8 +813,7 @@ void DocumentHandler::paste(bool withoutFormating=false)
             QString filteredHtml = this->filterHtml(mimeData->html());
             this->textCursor().insertHtml(filteredHtml);
         }
-    }
-    else if (mimeData->hasText())
+    } else if (mimeData->hasText())
         this->textCursor().insertText(mimeData->text());
     // Moved image test to last because having it first breaks pasting from AbiWord
     else if (mimeData->hasImage()) {
@@ -798,7 +843,8 @@ void DocumentHandler::setMarkersListDirty()
 }
 
 // Search
-QPoint DocumentHandler::search(const QString &subString, const bool next, const bool reverse) {
+QPoint DocumentHandler::search(const QString &subString, const bool next, const bool reverse)
+{
     // qDebug() << "pre" << this->cursorPosition() << this->selectionStart() << this->selectionEnd();
     QTextCursor cursor;
     if (reverse)
@@ -808,14 +854,14 @@ QPoint DocumentHandler::search(const QString &subString, const bool next, const 
     else
         cursor = this->textDocument()->find(subString, this->selectionStart());
     // If no more results, go to the corresponding start position and do the search once more
-    if (cursor.selectionStart()==-1 && cursor.selectionStart()==-1 && cursor.selectionEnd()==-1) {
+    if (cursor.selectionStart() == -1 && cursor.selectionStart() == -1 && cursor.selectionEnd() == -1) {
         if (reverse)
             cursor = this->textDocument()->find(subString, textDocument()->characterCount(), QTextDocument::FindBackward);
         else
             cursor = this->textDocument()->find(subString, 0);
     }
     // Update cursor
-    if (cursor.selectionStart()!=-1) {
+    if (cursor.selectionStart() != -1) {
         this->setCursorPosition(cursor.selectionStart());
         this->setSelectionStart(cursor.selectionStart());
     }
@@ -825,7 +871,8 @@ QPoint DocumentHandler::search(const QString &subString, const bool next, const 
     return QPoint(this->selectionStart(), this->selectionEnd());
 }
 
-int DocumentHandler::keySearch(int key) {
+int DocumentHandler::keySearch(int key)
+{
     return Q_EMIT this->_markersModel->keySearch(key, cursorPosition(), false, true);
 }
 
@@ -859,8 +906,8 @@ void DocumentHandler::setParagraphHeight(int paragraphHeight)
 
 // Markers (Anchors)
 
-void DocumentHandler::parse() {
-
+void DocumentHandler::parse()
+{
     struct LINE {
         QRectF rect;
         QString text;
@@ -876,8 +923,9 @@ void DocumentHandler::parse() {
     for (QTextBlock it = this->textDocument()->begin(); it != this->textDocument()->end(); it = it.next()) {
         QTextBlock::iterator jt;
 
-        // Navigate the document's physical layout and extract line dimensions and text. Dimensions would be used for telemetry, text would be used as a reference of what to expect during speech recognition.
-        for (int i=0; i<it.layout()->lineCount(); i++) {
+        // Navigate the document's physical layout and extract line dimensions and text. Dimensions would be used for telemetry, text would be used as a
+        // reference of what to expect during speech recognition.
+        for (int i = 0; i < it.layout()->lineCount(); i++) {
             LINE line;
             line.rect = it.layout()->lineAt(i).naturalTextRect();
             line.text = it.text().mid(it.layout()->lineAt(i).textStart(), it.layout()->lineAt(i).textLength());
@@ -910,8 +958,9 @@ void DocumentHandler::parse() {
                         // Assign request type
                         else if (anchorName.startsWith(QString::fromStdString("req_")))
                             // If invalid, default to 0 (GET)
-                            marker.requestType = QStringView(anchorName).mid(4).toInt(); // GET request by default  // Dev: Cast to enumerator to improve readability
-//                         qDebug() << anchorName;
+                            marker.requestType =
+                                QStringView(anchorName).mid(4).toInt(); // GET request by default  // Dev: Cast to enumerator to improve readability
+                        //                         qDebug() << anchorName;
                     }
                     Q_EMIT this->_markersModel->appendMarker(marker);
                 }
@@ -921,39 +970,43 @@ void DocumentHandler::parse() {
     // Set markers list as clean
     this->setMarkersListClean();
 
-    #ifdef QT_DEBUG
+#ifdef QT_DEBUG
     // Output results to terminal, only in debug compilation.
-//     qDebug() << "- Lines (" << lines.size() << ") -";
-//     for (unsigned long i=0; i<lines.size(); i++)
-//         qDebug() << lines.at(i).rect << lines.at(i).text;
+    //     qDebug() << "- Lines (" << lines.size() << ") -";
+    //     for (unsigned long i=0; i<lines.size(); i++)
+    //         qDebug() << lines.at(i).rect << lines.at(i).text;
 
-//     qDebug() << "- Markers (" << this->_markersModel->rowCount() << ") -";
-    for (int i=0; i<this->_markersModel->rowCount(); i++) {
-//         qDebug() << this->_markersModel.data(i, 0);
+    //     qDebug() << "- Markers (" << this->_markersModel->rowCount() << ") -";
+    for (int i = 0; i < this->_markersModel->rowCount(); i++) {
+        //         qDebug() << this->_markersModel.data(i, 0);
         // qDebug() << this->_markersModel.get(i).position << this->_markersModel.get(i).text << this->_markersModel.get(i).names;
         // qDebug() << anchors.at(i).position() << anchors.at(i).text() << anchors.at(i).charFormat().anchorNames();
-        //qDebug() << i;
+        // qDebug() << i;
     }
-    #endif
+#endif
 }
 
-Marker DocumentHandler::nextMarker(int position) {
-//     if (this->_markersModel->rowCount()==0)
+Marker DocumentHandler::nextMarker(int position)
+{
+    //     if (this->_markersModel->rowCount()==0)
     if (markersListDirty())
         parse();
     return Q_EMIT this->_markersModel->nextMarker(position);
 }
 
-Marker DocumentHandler::previousMarker(int position) {
-//     if (this->_markersModel->rowCount()==0)
+Marker DocumentHandler::previousMarker(int position)
+{
+    //     if (this->_markersModel->rowCount()==0)
     if (markersListDirty())
         parse();
     return Q_EMIT this->_markersModel->previousMarker(position);
 }
 
-bool DocumentHandler::preventSleep(bool prevent) {
+bool DocumentHandler::preventSleep(bool prevent)
+{
 #if defined(Q_OS_ANDROID)
-    // The following code is commented out because, even tho it's technically correct, it makes QPrompt to crash on user interaction and during automatic state switching, depending on which flag is set.
+    // The following code is commented out because, even tho it's technically correct, it makes QPrompt to crash on user interaction and during automatic
+    // state switching, depending on which flag is set.
 //     // Use Android Java wrapper to set flag that prevents screen from turning off.
 //
 //     // Native type list and locations:
@@ -974,9 +1027,11 @@ bool DocumentHandler::preventSleep(bool prevent) {
 //         QAndroidJniObject window = activity.callObjectMethod("getWindow", "()Landroid/view/Window;");
 //         if (window.isValid()) {
 //             // Get flags to be toggled
-//             const jint dimFlag = QAndroidJniObject::getStaticField<jint>("org/qtproject/qt5/android/view/WindowManager/LayoutParams", "FLAG_DIM_BEHIND"), // 2
-//                        //blurFlag = QAndroidJniObject::getStaticField<jint>("org/qtproject/qt5/android/view/WindowManager/LayoutParams", "FLAG_BLUR_BEHIND"), // 4
-//                        screenFlag = QAndroidJniObject::getStaticField<jint>("org/qtproject/qt5/android/view/WindowManager/LayoutParams", "FLAG_KEEP_SCREEN_ON"); // 128
+//             const jint dimFlag = QAndroidJniObject::getStaticField<jint>("org/qtproject/qt5/android/view/WindowManager/LayoutParams", "FLAG_DIM_BEHIND"), //
+//             2
+//                        //blurFlag = QAndroidJniObject::getStaticField<jint>("org/qtproject/qt5/android/view/WindowManager/LayoutParams", "FLAG_BLUR_BEHIND"),
+//                        // 4 screenFlag = QAndroidJniObject::getStaticField<jint>("org/qtproject/qt5/android/view/WindowManager/LayoutParams",
+//                        "FLAG_KEEP_SCREEN_ON"); // 128
 //             if (prevent) {
 //                 // Set the flag by passing integer argument to void addFlags method.
 //                 window.callMethod<void>("addFlags", "(II)V", dimFlag, screenFLag);
@@ -999,6 +1054,7 @@ bool DocumentHandler::preventSleep(bool prevent) {
     // To be implemented...
 #endif
     // Not implemented for this operating system, always return false.
-    // Using "prevent" in fallacy statement to clear unused variable warnings. There's probably a better way of implementing this in which this method doesn't get compiled. Nevertheless, the QML layer needs something to invoke.
-    return false&prevent;
+    // Using "prevent" in fallacy statement to clear unused variable warnings. There's probably a better way of implementing this in which this method
+    // doesn't get compiled. Nevertheless, the QML layer needs something to invoke.
+    return false & prevent;
 }
