@@ -32,15 +32,7 @@ class MarkersModel : public QAbstractListModel
     Q_OBJECT
 
 public:
-    enum Roles {
-        TextRole = Qt::UserRole,
-        PositionRole,
-        LengthRole,
-        KeyRole,
-        KeyLetterRole,
-        UrlRole,
-        RequestTypeRole
-    };
+    enum Roles { TextRole = Qt::UserRole, PositionRole, LengthRole, KeyRole, KeyLetterRole, UrlRole, RequestTypeRole };
 
     explicit MarkersModel(QObject *parent = nullptr);
 
@@ -48,21 +40,21 @@ public:
     // QVariant headerMarker(int section, Qt::Orientation orientation, int role = Qt::DisplayRole) const override;
 
     // Basic functionality:
-    //QModelIndex index(int row, int column,
+    // QModelIndex index(int row, int column,
     //                  const QModelIndex &parent = QModelIndex()) const override;
-    //QModelIndex parent(const QModelIndex &index) const override;
+    // QModelIndex parent(const QModelIndex &index) const override;
 
     int rowCount(const QModelIndex &parent = QModelIndex()) const override;
     // int columnCount(const QModelIndex &parent = QModelIndex()) const override;
 
-    QVariant data(const QModelIndex& index, int role = Qt::DisplayRole) const override;
+    QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const override;
 
     QHash<int, QByteArray> roleNames() const override;
 
     bool dirty;
 
-//Q_SIGNALS:
-//     void insertRow(int row, const QModelIndex &parent);
+    // Q_SIGNALS:
+    // void insertRow(int row, const QModelIndex &parent);
     void clearMarkers();
     void appendMarker(Marker &marker);
     void removeMarker(int row);
@@ -70,11 +62,10 @@ public:
     Marker nextMarker(int position);
     int keySearch(int key, int currentPosition, bool reverse, bool wrap);
 
-//     void updateMarker(int row);
-
+    // void updateMarker(int row);
 
 private:
-    QList <Marker> m_data;
+    QList<Marker> m_data;
 
 private Q_SLOTS:
 #if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)

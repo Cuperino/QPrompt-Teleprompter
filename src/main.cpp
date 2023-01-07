@@ -26,24 +26,24 @@
 #include <QApplication>
 #include <QtWidgets>
 #endif
-#include <QQmlApplicationEngine>
-#include <QtQml>
-#include <QtQml/qqml.h>
-#include <QUrl>
-#include <QFontDatabase>
 #include <QDebug>
+#include <QFontDatabase>
+#include <QIcon>
+#include <QQmlApplicationEngine>
 #include <QQmlFileSelector>
 #include <QQuickStyle>
-#include <QIcon>
 #include <QQuickView>
+#include <QUrl>
+#include <QtQml/qqml.h>
+#include <QtQml>
 //#include "appwindow.h"
 
 #if defined(Q_OS_IOS) || defined(Q_OS_WASM) || defined(Q_OS_WATCHOS) || defined(Q_OS_QNX)
 #include "../3rdparty/kirigami/src/kirigamiplugin.h"
 #endif
-#include <KLocalizedContext>
-#include <KI18n/KLocalizedString>
 #include <KCoreAddons/KAboutData>
+#include <KI18n/KLocalizedString>
+#include <KLocalizedContext>
 
 #if defined(KF5Crash_FOUND)
 #include <KCrash>
@@ -57,17 +57,16 @@
 #include <../3rdparty/KDMacTouchBar/src/kdmactouchbar.h>
 #endif
 
-#include <stdlib.h>
 #include "../qprompt_version.h"
 #include "prompter/documenthandler.h"
 #include "qt/abstractunits.hpp"
 #include "qt/qmlutil.hpp"
+#include <stdlib.h>
 
 #define QPROMPT_URI "com.cuperino.qprompt"
 
 Q_DECL_EXPORT int main(int argc, char *argv[])
 {
-
 #if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
     QGuiApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
 #endif
@@ -83,14 +82,16 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
     QCoreApplication::setApplicationName(QString::fromStdString("QPrompt"));
 
     QCommandLineParser parser;
-    parser.setApplicationDescription(i18n("Personal teleprompter software for all video makers. Built with ease of use, productivity, and smooth performance in mind."));
+    parser.setApplicationDescription(
+        i18n("Personal teleprompter software for all video makers. Built with ease of use, productivity, and smooth performance in mind."));
     parser.addHelpOption();
     parser.addVersionOption();
     parser.addPositionalArgument("source", i18nc("file", "File to copy."));
-    QCommandLineOption multithread(QStringList() << "m" << "multithread",
-            i18n("Enable multi-threaded renderer (disables screen projections and improves performance)"));
+    QCommandLineOption multithread(QStringList() << "m"
+                                                 << "multithread",
+                                   i18n("Enable multi-threaded renderer (disables screen projections and improves performance)"));
     parser.addOption(multithread);
-    parser.process( app );
+    parser.process(app);
 
     QStringList positionalArguments = parser.positionalArguments();
     QString fileToOpen = "";
@@ -110,22 +111,24 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
 #endif
 
 #if defined(KF5Crash_FOUND)
-    //KCrash::setDrKonqiEnabled(true);
+    // KCrash::setDrKonqiEnabled(true);
     KCrash::initialize();
-    //KCrash::setCrashHandler( KCrash::defaultCrashHandler );
+    // KCrash::setCrashHandler( KCrash::defaultCrashHandler );
     KCrash::setFlags(KCrash::AutoRestart); // |KCrash::SaferDialog
-    //qDebug() << "DrKonqui" << KCrash::isDrKonqiEnabled();
+    // qDebug() << "DrKonqui" << KCrash::isDrKonqiEnabled();
 #endif
 
     const int currentYear = QDate::currentDate().year();
     QString copyrightYear = QString::number(currentYear);
     QString copyrightStatement1 = i18n("© 2021 Javier O. Cordero Pérez");
     QString copyrightStatement2 = i18n("© 2021-%1 Javier O. Cordero Pérez", copyrightYear);
-    KAboutData aboutData("qprompt", "QPrompt",
+    KAboutData aboutData("qprompt",
+                         "QPrompt",
                          QPROMPT_VERSION_STRING " (" + QString::fromStdString(GIT_BRANCH) + "/" + QString::fromStdString(GIT_COMMIT_HASH) + ")",
                          i18n("Personal teleprompter software for all video makers."),
                          KAboutLicense::GPL_V3,
-                         // ki18ncp("© 2021-currentYear Author", "© 2021 Javier O. Cordero Pérez", "© 2021-<numid>%1</numid> Javier O. Cordero Pérez").subs(currentYear).toString());
+                         // ki18ncp("© 2021-currentYear Author", "© 2021 Javier O. Cordero Pérez", "© 2021-<numid>%1</numid> Javier O. Cordero
+                         // Pérez").subs(currentYear).toString());
                          (currentYear <= 2021) ? copyrightStatement1 : copyrightStatement2);
     // Overwrite default-generated values of organizationDomain & desktopFileName
     aboutData.setHomepage("https://qprompt.app");
@@ -133,43 +136,35 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
     aboutData.setBugAddress("https://github.com/Cuperino/QPrompt/issues");
     aboutData.setOrganizationDomain(QPROMPT_URI);
     aboutData.setDesktopFileName(QPROMPT_URI);
-    aboutData.addAuthor (
-        QString::fromStdString("Javier O. Cordero Pérez"),
-        i18n("Author"),
-        QString::fromStdString("javiercorderoperez@gmail.com"),
-        QString::fromStdString("https://javiercordero.info"),
-        QString::fromStdString("cuperino")
-    );
-    aboutData.addCredit (
-        QString::fromStdString("Mark"),
-        i18n("Wrote keycode to string QML abstraction"),
-        QString::fromStdString(""),
-        QString::fromStdString("https://stackoverflow.com/a/64862996/3833454")
-    );
-    aboutData.addCredit (
-        QString::fromStdString("videosmith"),
-        i18nc("Active software tester", "Active tester")
-    );
+    aboutData.addAuthor(QString::fromStdString("Javier O. Cordero Pérez"),
+                        i18n("Author"),
+                        QString::fromStdString("javiercorderoperez@gmail.com"),
+                        QString::fromStdString("https://javiercordero.info"),
+                        QString::fromStdString("cuperino"));
+    aboutData.addCredit(QString::fromStdString("Mark"),
+                        i18n("Wrote keycode to string QML abstraction"),
+                        QString::fromStdString(""),
+                        QString::fromStdString("https://stackoverflow.com/a/64862996/3833454"));
+    aboutData.addCredit(QString::fromStdString("videosmith"), i18nc("Active software tester", "Active tester"));
     aboutData.setTranslator(i18nc("NAME OF TRANSLATORS", "Your names"), i18nc("EMAIL OF TRANSLATORS", "Your emails"));
-    //aboutData.addLicense(
-    //    KAboutLicense::LGPL_V3
+    // aboutData.addLicense(
+    //     KAboutLicense::LGPL_V3
     //);
-    // Set the application metadata
+    //  Set the application metadata
     KAboutData::setApplicationData(aboutData);
 
     if (QFontDatabase::addApplicationFont(QString::fromStdString(":/fonts/fontello.ttf")) == -1)
         qWarning() << i18n("Failed to load icons from fontello.ttf");
 
-    //qmlRegisterType<PrompterTimer>(QPROMPT_URI + ".promptertimer", 1, 0, "PrompterTimer");
-    qmlRegisterType<DocumentHandler>(QPROMPT_URI".document", 1, 0, "DocumentHandler");
-    qmlRegisterType<MarkersModel>(QPROMPT_URI".markers", 1, 0, "MarkersModel");
-    qmlRegisterType<QmlUtil>(QPROMPT_URI".qmlutil", 1, 0, "QmlUtil");
-    qmlRegisterUncreatableType<AbstractUnits>(QPROMPT_URI".abstractunits", 1, 0, "Units", "Access to Duration enum");
+    // qmlRegisterType<PrompterTimer>(QPROMPT_URI + ".promptertimer", 1, 0, "PrompterTimer");
+    qmlRegisterType<DocumentHandler>(QPROMPT_URI ".document", 1, 0, "DocumentHandler");
+    qmlRegisterType<MarkersModel>(QPROMPT_URI ".markers", 1, 0, "MarkersModel");
+    qmlRegisterType<QmlUtil>(QPROMPT_URI ".qmlutil", 1, 0, "QmlUtil");
+    qmlRegisterUncreatableType<AbstractUnits>(QPROMPT_URI ".abstractunits", 1, 0, "Units", "Access to Duration enum");
     QQmlApplicationEngine engine;
-//    qmlRegisterType<PrompterWindow>(QPROMPT_URI".prompterwindow", 1, 0, "PrompterWindow");
+    // qmlRegisterType<PrompterWindow>(QPROMPT_URI".prompterwindow", 1, 0, "PrompterWindow");
 
     qRegisterMetaType<Marker>();
-
 
     // #ifdef Q_OS_ANDROID
     // KirigamiPlugin::getInstance().registerTypes();
@@ -219,9 +214,9 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
     QObject::connect(&hotkey, &QHotkey::activated, qApp, [&]() {
         QWindowList windows = app.allWindows();
         QWindow *topWindow = windows.first();
-        const bool initiallyOpaque = topWindow->opacity()==1.0;
+        const bool initiallyOpaque = topWindow->opacity() == 1.0;
         const int windowAmount = windows.length();
-        for (int i=0; i<windowAmount; i++)
+        for (int i = 0; i < windowAmount; i++)
             if (initiallyOpaque)
                 windows[i]->setOpacity(0.2);
             else
@@ -230,7 +225,7 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
 #endif
 
     // Un-comment to force RightToLeft Layout for debugging purposes
-    //app.setLayoutDirection(Qt::RightToLeft);
+    // app.setLayoutDirection(Qt::RightToLeft);
 
 #if defined(Q_OS_ANDROID) || defined(Q_OS_IOS) || defined(Q_OS_QNX)
     app.setWindowIcon(QIcon(":/images/qprompt-logo-wireframe.png"));
@@ -241,11 +236,11 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
     engine.rootContext()->setContextProperty(QStringLiteral("aboutData"), QVariant::fromValue(KAboutData::applicationData()));
     if (positionalArguments.length())
         engine.rootContext()->setContextProperty(QStringLiteral("fileToOpen"), fileToOpen);
-    //engine.addImportPath(QStringLiteral("../3rdparty/kirigami/"));
-    //engine.addImportPath(QStringLiteral("/usr/local/lib/qml"));
-    //engine.addImportPath("/opt/local/lib/qml/org/kde/kirigami.2");
+        // engine.addImportPath(QStringLiteral("../3rdparty/kirigami/"));
+        // engine.addImportPath(QStringLiteral("/usr/local/lib/qml"));
+        // engine.addImportPath("/opt/local/lib/qml/org/kde/kirigami.2");
 #if defined(Q_OS_MACOS)
-    //engine.addImportPath(QStringLiteral("/opt/homebrew/lib/qml"));
+    // engine.addImportPath(QStringLiteral("/opt/homebrew/lib/qml"));
     engine.addImportPath(QStringLiteral("/opt/homebrew/Cellar/kf5-kirigami2/5.95.0/lib/qt5/qml"));
 #endif
     engine.load(QUrl(QStringLiteral("qrc:///main.qml")));
@@ -254,7 +249,6 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
         return -1;
     }
 
-//     qDebug() << QProcess::systemEnvironment();
-
+    // qDebug() << QProcess::systemEnvironment();
     return app.exec();
 }

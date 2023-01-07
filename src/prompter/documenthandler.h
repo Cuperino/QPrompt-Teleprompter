@@ -72,69 +72,71 @@
 #ifndef DOCUMENTHANDLER_H
 #define DOCUMENTHANDLER_H
 
-#include <QObject>
-#include <QFont>
-#include <QTextCursor>
-#include <QUrl>
 #include <QFileSystemWatcher>
+#include <QFont>
+#include <QObject>
 #include <QQuickTextDocument>
+#include <QTextCursor>
 #include <QTextDocument>
+#include <QUrl>
 
 #include "prompter/markersmodel.h"
+#include "qt/systemfontchooserdialog.h"
 
 QT_BEGIN_NAMESPACE
 
 class DocumentHandler : public QObject
 {
     Q_OBJECT
-    
+
     Q_PROPERTY(QQuickTextDocument *document READ document WRITE setDocument NOTIFY documentChanged)
     Q_PROPERTY(int cursorPosition READ cursorPosition WRITE setCursorPosition NOTIFY cursorPositionChanged)
     Q_PROPERTY(int selectionStart READ selectionStart WRITE setSelectionStart NOTIFY selectionStartChanged)
     Q_PROPERTY(int selectionEnd READ selectionEnd WRITE setSelectionEnd NOTIFY selectionEndChanged)
-    
+
     Q_PROPERTY(QColor textColor READ textColor WRITE setTextColor NOTIFY textColorChanged)
     Q_PROPERTY(QColor textBackground READ textBackground WRITE setTextBackground NOTIFY textBackgroundChanged)
     Q_PROPERTY(QString fontFamily READ fontFamily WRITE setFontFamily NOTIFY fontFamilyChanged)
     Q_PROPERTY(Qt::Alignment alignment READ alignment WRITE setAlignment NOTIFY alignmentChanged)
-    
+
     Q_PROPERTY(bool bold READ bold WRITE setBold NOTIFY boldChanged)
     Q_PROPERTY(bool italic READ italic WRITE setItalic NOTIFY italicChanged)
     Q_PROPERTY(bool underline READ underline WRITE setUnderline NOTIFY underlineChanged)
     Q_PROPERTY(bool strike READ strike WRITE setStrike NOTIFY strikeChanged)
-    
+
     Q_PROPERTY(bool regularMarker READ regularMarker WRITE setMarker NOTIFY markerChanged)
     Q_PROPERTY(bool namedMarker READ namedMarker NOTIFY markerChanged)
 
     Q_PROPERTY(int fontSize READ fontSize WRITE setFontSize NOTIFY fontSizeChanged)
-    
+
     Q_PROPERTY(QString fileName READ fileName NOTIFY fileUrlChanged)
     Q_PROPERTY(QString fileType READ fileType NOTIFY fileUrlChanged)
     Q_PROPERTY(QUrl fileUrl READ fileUrl NOTIFY fileUrlChanged)
-    
+
     Q_PROPERTY(bool modified READ modified WRITE setModified NOTIFY modifiedChanged)
-    
-//     Q_PROPERTY(MarkersModel* markers READ markers CONSTANT STORED false)
+
+    //     Q_PROPERTY(MarkersModel* markers READ markers CONSTANT STORED false)
     QML_ELEMENT
 
 public:
     explicit DocumentHandler(QObject *parent = nullptr);
-    
+    ~DocumentHandler();
+
     QQuickTextDocument *document() const;
     void setDocument(QQuickTextDocument *document);
-    
+
     int cursorPosition() const;
     void setCursorPosition(int position);
-    
+
     int selectionStart() const;
     void setSelectionStart(int position);
-    
+
     int selectionEnd() const;
     void setSelectionEnd(int position);
-    
+
     QString fontFamily() const;
     void setFontFamily(const QString &family);
-    
+
     QColor textColor() const;
     void setTextColor(const QColor &color);
 
@@ -143,32 +145,28 @@ public:
 
     Qt::Alignment alignment() const;
     void setAlignment(Qt::Alignment alignment);
-    
-    //bool anchor() const;
-    //void setAnchor(QStringList anchorNames);
-    
+
     bool bold() const;
     void setBold(bool bold);
-    
+
     bool italic() const;
     void setItalic(bool italic);
-    
+
     bool underline() const;
     void setUnderline(bool underline);
-    
+
     bool strike() const;
     void setStrike(bool strike);
-    
+
     int fontSize() const;
     void setFontSize(int size);
-    
+
     QString fileName() const;
     QString fileType() const;
     QUrl fileUrl() const;
-    
+
     bool modified() const;
     void setModified(bool m);
-    
 
     bool regularMarker() const;
     bool namedMarker() const;
@@ -177,7 +175,7 @@ public:
     Q_INVOKABLE void setKeyMarker(QString keyCode);
     Q_INVOKABLE QString getMarkerKey();
 
-//     MarkersModel *markers() const;
+    //     MarkersModel *markers() const;
     Q_INVOKABLE MarkersModel *markers() const;
     Q_INVOKABLE Marker previousMarker(int position);
     Q_INVOKABLE Marker nextMarker(int position);
@@ -186,15 +184,17 @@ public:
 
     Q_INVOKABLE void paste(bool withoutFormating);
     Q_INVOKABLE void paste();
-    
+
     Q_INVOKABLE void parse();
     Q_INVOKABLE QString filterHtml(QString html, bool ignoreBlackTextColor);
-    
+
     // Search
-    Q_INVOKABLE QPoint search(const QString &subString, const bool next=false, const bool reverse=false);
+    Q_INVOKABLE QPoint search(const QString &subString, const bool next = false, const bool reverse = false);
     Q_INVOKABLE int keySearch(int key);
 
     Q_INVOKABLE bool preventSleep(bool prevent);
+
+    Q_INVOKABLE bool showFontDialog();
 
 public Q_SLOTS:
     void load(const QUrl &fileUrl);
@@ -203,35 +203,35 @@ public Q_SLOTS:
     void save();
     void setMarkersListClean();
     void setMarkersListDirty();
-    
+
 Q_SIGNALS:
     void documentChanged();
     void cursorPositionChanged();
     void selectionStartChanged();
     void selectionEndChanged();
-    
-    void fontFamilyChanged();
+
+    void fontFamilyChanged(QString);
     void textColorChanged();
     void textBackgroundChanged();
     void alignmentChanged();
-    
+
     void boldChanged();
     void italicChanged();
     void underlineChanged();
     void strikeChanged();
-    
+
     void markerChanged();
-    
+
     void fontSizeChanged();
-    
+
     void textChanged();
     void fileUrlChanged();
-    
+
     void loaded(const QString &text, int format);
     void error(const QString &message);
-    
+
     void modifiedChanged();
-    
+
 private:
     void reset();
     QTextCursor textCursor() const;
@@ -239,7 +239,7 @@ private:
     void unblockFileWatcher();
     void mergeFormatOnWordOrSelection(const QTextCharFormat &format);
 
-    enum ImportFormat {NONE, PDF, ODT, DOCX, DOC, RTF, ABW, EPUB, MOBI, AZW, PAGES, PAGESX};
+    enum ImportFormat { NONE, PDF, ODT, DOCX, DOC, RTF, ABW, EPUB, MOBI, AZW, PAGES, PAGESX };
     QString import(QString fileName, ImportFormat);
 
     QQuickTextDocument *m_document;
@@ -249,8 +249,9 @@ private:
     int m_selectionEnd;
 
     MarkersModel *_markersModel;
-    QFileSystemWatcher * _fileSystemWatcher;
+    QFileSystemWatcher *_fileSystemWatcher;
 
+    SystemFontChooserDialog *m_fontDialog;
     QFont m_font;
     QUrl m_fileUrl;
     QString pdf_importer;

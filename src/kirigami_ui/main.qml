@@ -142,7 +142,7 @@ Kirigami.ApplicationWindow {
     }
 
     // Open save dialog on closing
-    onClosing: {
+    onClosing: function (close) {
         root.onDiscard = Prompter.CloseActions.Quit
         if (root.pageStack.currentItem.document.modified) {
             closeDialog.open()

@@ -76,7 +76,6 @@ import QtQuick.Layouts 1.12
 import Qt.labs.settings 1.0
 
 import org.kde.kirigami 2.11 as Kirigami
-
 import com.cuperino.qprompt.abstractunits 1.0
 
 ToolBar {
@@ -537,9 +536,8 @@ ToolBar {
                     enabled: ['android', 'ios', 'wasm', 'tvos', 'qnx', 'ipados'].indexOf(Qt.platform.os)===-1
                     visible: enabled
                     onTriggered: {
-                        //fontDialog.currentFont.family = viewport.prompter.document.fontFamily;
-                        //fontDialog.currentFont.pointSize = viewport.prompter.document.fontSize;
-                        fontDialog.open();
+                        if (prompterPage.document.showFontDialog())
+                            showPassiveNotification(i18n("No glyphs selected…"));
                     }
                 }
                 MenuSeparator {

@@ -27,6 +27,7 @@ set(qprompt_SRCS
     main.cpp
     prompter/markersmodel.cpp
     prompter/documenthandler.cpp
+    qt/systemfontchooserdialog.cpp
     #${qprompt_QM_LOADER}
 )
 
@@ -34,6 +35,7 @@ set(qprompt_HDRS
     prompter/marker.hpp
     prompter/markersmodel.h
     prompter/documenthandler.h
+    qt/systemfontchooserdialog.h
     qt/abstractunits.hpp
     qt/qmlutil.hpp
 )
@@ -41,6 +43,10 @@ set(qprompt_HDRS
 set(qprompt_ASSETS
     assets.qrc
     icons/icons.qrc
+)
+
+qt_wrap_ui(qprompt_SRCS
+    qt/systemfontchooserdialog.ui
 )
 
 if (NOT APPLE AND NOT ANDROID)
