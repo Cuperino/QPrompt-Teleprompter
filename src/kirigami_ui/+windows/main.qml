@@ -103,7 +103,7 @@ Kirigami.ApplicationWindow {
     }
     Settings {
         category: "telemetry"
-        property alias enable: root.__telemetry
+        property alias enabled: root.__telemetry
     }
 
     //// Theme management
