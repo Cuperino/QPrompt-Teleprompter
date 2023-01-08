@@ -48,7 +48,7 @@ public:
     }
     Q_INVOKABLE void restartApplication()
     {
-        QProcess::startDetached(QCoreApplication::applicationFilePath(), {});
+        QProcess::startDetached(QCoreApplication::applicationFilePath(), {"-q"});
         QCoreApplication::quit();
     }
 };

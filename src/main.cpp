@@ -33,6 +33,7 @@
 #include <QQmlFileSelector>
 #include <QQuickStyle>
 #include <QQuickView>
+#include <QSettings>
 #include <QUrl>
 #include <QtQml/qqml.h>
 #include <QtQml>
@@ -87,10 +88,10 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
     parser.addHelpOption();
     parser.addVersionOption();
     parser.addPositionalArgument("source", i18nc("file", "File to copy."));
-    QCommandLineOption multithread(QStringList() << "m"
-                                                 << "multithread",
-                                   i18n("Enable multi-threaded renderer (disables screen projections and improves performance)"));
-    parser.addOption(multithread);
+    QCommandLineOption qgsIgnore(QStringList() << "q"
+                                               << "qgs_ignore",
+                                 i18n("Ignore QSG_RENDER_LOOP environment variable."));
+    parser.addOption(qgsIgnore);
     parser.process(app);
 
     QStringList positionalArguments = parser.positionalArguments();
@@ -98,16 +99,31 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
     if (positionalArguments.length())
         fileToOpen = parser.positionalArguments().at(0);
 
+    QSettings settings(QCoreApplication::organizationName(), QCoreApplication::applicationName().toLower());
+    auto enableProjections = settings.value("projections/enabled", false);
+
+// The following code forces the use of specific renderer modes to enable screen projections to work.
+// This hacky must be completely
+#if defined(Q_OS_WINDOWS) or defined(Q_OS_MACOS) or defined(Q_OS_LINUX)
+    if (enableProjections.toBool())
 #if defined(Q_OS_WINDOWS)
-    if (!parser.isSet(multithread))
 #if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
         putenv("QSG_RENDER_LOOP=windows");
 #else
         putenv("QSG_RENDER_LOOP=basic");
 #endif
-#elif defined(Q_OS_MACOS) or defined(Q_OS_LINUX)
-    if (!parser.isSet(multithread))
-        setenv("QSG_RENDER_LOOP", "basic", 0);
+    else
+        putenv("QSG_RENDER_LOOP=threaded");
+#else // MACOS or LINUX
+      // On *nix, setenv needs to override QSG_RENDER_LOOP for it to take effect after qprompt automatically restarts.
+      // By default, we do not override environment variables. qgsIgnore is set by the code doing the restart.
+        setenv("QSG_RENDER_LOOP", "basic", parser.isSet(qgsIgnore) ? 1 : 0);
+#if defined(Q_OS_LINUX)
+    // Mac does not currently support threaded mode, forcing it crashes the app on startup.
+    else
+        setenv("QSG_RENDER_LOOP", "threaded", parser.isSet(qgsIgnore) ? 1 : 0);
+#endif
+#endif
 #endif
 
 #if defined(KF5Crash_FOUND)
