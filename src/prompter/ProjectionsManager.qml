@@ -42,19 +42,10 @@ Item {
 
     function toggle() {
         isEnabled = !isEnabled;
-        if (isEnabled) {
-            project();
-            const total = projectionModel.count;
-            let count = 0;
-            for (let i=0; i<total; ++i)
-                if (projectionModel.get(i).flip!==0)
-                    count++;
-            console.log(count)
-            if (count===0)
-                alertDialog.requestDisplays()
-        }
-        else
+        if (!isEnabled)
             closeAll();
+        projectionSettings.sync();
+        restartDialog.visible = true;
     }
     function getDisplayFlip(screenName, flipSetting) {
         const totalDisplays = displayModel.count;
@@ -155,9 +146,10 @@ Item {
             addMissingProjections();
     }
     Settings {
+        id: projectionSettings
         property alias enabled: projectionManager.isEnabled
         property alias scale: projectionManager.reScale
-        property alias screens: projectionManager.screensStringified
+        // property alias screens: projectionManager.screensStringified
         category: "projections"
     }
     Component {
