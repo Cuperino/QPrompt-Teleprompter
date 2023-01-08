@@ -24,7 +24,7 @@ cmake_minimum_required(VERSION 3.16)
 
 set(RELEASE_SERVICE_VERSION_MAJOR "1")
 set(RELEASE_SERVICE_VERSION_MINOR "1")
-set(RELEASE_SERVICE_VERSION_MICRO "2")
+set(RELEASE_SERVICE_VERSION_MICRO "3")
 set(RELEASE_SERVICE_VERSION "${RELEASE_SERVICE_VERSION_MAJOR}.${RELEASE_SERVICE_VERSION_MINOR}.${RELEASE_SERVICE_VERSION_MICRO}")
 
 project(qprompt
@@ -46,15 +46,14 @@ set(CMAKE_AUTORCC ON)
 
 set(QT_DEFAULT_MAJOR_VERSION 5)
 set(QT_MIN_VERSION 5.15.2)
-# KF5 and ECM 5.68 for Ubuntu 20.04 based Snap package.
 # KF5 5.78 for Ubuntu 21.04 and Debian 11, which require no backporting
 # Use 5.83 ECM on Windows to make use of ecm_add_app_icon syntax
 if (WIN32)
     set(ECM_MIN_VERSION 5.83.0)
 else()
-    set(ECM_MIN_VERSION 5.68.0)
+    set(ECM_MIN_VERSION 5.78.0)
 endif()
-set(KF_MIN_VERSION 5.68.0)
+set(KF_MIN_VERSION 5.78.0)
 if (APPLE)
     set(APPLE_SUPPRESS_X11_WARNING ON)
 endif()
