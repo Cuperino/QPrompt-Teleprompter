@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: qprompt\n"
 "Report-Msgid-Bugs-To: https://github.com/Cuperino/QPrompt/issues/new/choose\n"
-"POT-Creation-Date: 2022-11-15 18:03-0400\n"
+"POT-Creation-Date: 2023-01-08 16:46-0400\n"
 "PO-Revision-Date: 2022-09-11 23:51+0000\n"
 "Last-Translator: Javier O. Cordero Pérez <javiercorderoperez@gmail.com>\n"
 "Language-Team: Portuguese <http://l10n.cuperino.com/projects/qprompt/qprompt-"
@@ -158,97 +158,101 @@ msgstr "Salvar documento"
 msgid "Save changes to document before closing?"
 msgstr "Deseja salvar as mudanças do documento antes de fechar?"
 
-#: kirigami_ui/EditorToolbar.qml:350 kirigami_ui/EditorToolbar.qml:360
+#: kirigami_ui/EditorToolbar.qml:349 kirigami_ui/EditorToolbar.qml:359
 msgctxt "Editor actions. Text alignment."
 msgid "&Left"
 msgstr "&Esquerda"
 
-#: kirigami_ui/EditorToolbar.qml:350 kirigami_ui/EditorToolbar.qml:360
+#: kirigami_ui/EditorToolbar.qml:349 kirigami_ui/EditorToolbar.qml:359
 msgctxt "Editor actions. Text alignment."
 msgid "&Right"
 msgstr "&Direita"
 
-#: kirigami_ui/EditorToolbar.qml:355
+#: kirigami_ui/EditorToolbar.qml:354
 msgctxt "Editor actions. Text alignment."
 msgid "C&enter"
 msgstr "C&entro"
 
-#: kirigami_ui/EditorToolbar.qml:509
+#: kirigami_ui/EditorToolbar.qml:508
 msgctxt "FontName (Translatable font details)"
 msgid "DejaVu (default, Roman, Cyrillic)"
 msgstr "DejaVu (padrão, Romana, Cirílico)"
 
-#: kirigami_ui/EditorToolbar.qml:513
+#: kirigami_ui/EditorToolbar.qml:512
 msgctxt "FontName (Translatable font details)"
 msgid "OpenDyslexic (Roman)"
 msgstr "OpenDyslexic (Romana)"
 
-#: kirigami_ui/EditorToolbar.qml:517
+#: kirigami_ui/EditorToolbar.qml:516
 msgctxt "FontName (Translatable font details)"
 msgid "Source Han Sans (CH, JP, KO)"
 msgstr "Source Han Sans (Chinês, Japones, Coreano)"
 
-#: kirigami_ui/EditorToolbar.qml:521
+#: kirigami_ui/EditorToolbar.qml:520
 msgctxt "FontName (Translatable font details)"
 msgid "Scheherazade New (Arabic)"
 msgstr "Scheherazade New (Árabe)"
 
-#: kirigami_ui/EditorToolbar.qml:525
+#: kirigami_ui/EditorToolbar.qml:524
 msgctxt "FontName (Translatable font details)"
 msgid "Palanquin (Devangari)"
 msgstr "Palanquin (Devanágari)"
 
-#: kirigami_ui/EditorToolbar.qml:529
+#: kirigami_ui/EditorToolbar.qml:528
 msgctxt "FontName (Translatable font details)"
 msgid "Kalpurush (Bengali)"
 msgstr "Kalpurush (Bengalês)"
 
-#: kirigami_ui/EditorToolbar.qml:535
+#: kirigami_ui/EditorToolbar.qml:534
 msgctxt "Opens system font selection dialog"
 msgid "Choose System Font"
 msgstr "Escolher Fonte do Sistema"
 
-#: kirigami_ui/EditorToolbar.qml:771
+#: kirigami_ui/EditorToolbar.qml:540
+msgid "No glyphs selected…"
+msgstr ""
+
+#: kirigami_ui/EditorToolbar.qml:769
 msgctxt "Velocity {VELOCITY_STEPS}"
 msgid "Velocity <pre>%1</pre>"
 msgstr "Velocidade <pre>%1</pre>"
 
-#: kirigami_ui/EditorToolbar.qml:805
+#: kirigami_ui/EditorToolbar.qml:803
 msgctxt "Opacity {TRANSPARENCY_PERCENTAGE}"
 msgid "Opacity <pre>%1</pre>"
 msgstr "Opacidade <pre>%1</pre>"
 
-#: kirigami_ui/EditorToolbar.qml:844 kirigami_ui/EditorToolbar.qml:863
+#: kirigami_ui/EditorToolbar.qml:842 kirigami_ui/EditorToolbar.qml:861
 msgctxt "Font size 100% (083)"
 msgid "Font size <pre>%1% (%2)</pre>"
 msgstr "Tamanho da fonte <pre>%1% (%2)</pre>"
 
-#: kirigami_ui/EditorToolbar.qml:902
+#: kirigami_ui/EditorToolbar.qml:900
 msgctxt "Line height 100%"
 msgid "Line height <pre>%1%</pre>"
 msgstr "Tamanho de linha <pre>%1%</pre>"
 
-#: kirigami_ui/EditorToolbar.qml:942
+#: kirigami_ui/EditorToolbar.qml:940
 msgctxt "Paragraph spacing ±00"
 msgid "Paragraph spacing <pre>%1%</pre>"
 msgstr "Espaçamento do parágrafo <pre>%1%</pre>"
 
-#: kirigami_ui/EditorToolbar.qml:983
+#: kirigami_ui/EditorToolbar.qml:981
 msgctxt "Word spacing <pre>±00<pre>"
 msgid "Word spacing <pre>%1</pre>"
 msgstr "Espaçamento de palavras <pre>%1</pre>"
 
-#: kirigami_ui/EditorToolbar.qml:1019
+#: kirigami_ui/EditorToolbar.qml:1017
 msgctxt "Letter spacing ±00"
 msgid "Letter spacing <pre>%1</pre>"
 msgstr "Espaçamento de letras <pre>%1</pre>"
 
-#: kirigami_ui/EditorToolbar.qml:1055
+#: kirigami_ui/EditorToolbar.qml:1053
 msgctxt "Step speed 1.00"
 msgid "Step speed <pre>%1</pre>"
 msgstr "Aumento de rapidez <pre>%1</pre>"
 
-#: kirigami_ui/EditorToolbar.qml:1096
+#: kirigami_ui/EditorToolbar.qml:1094
 msgctxt "Step acceleration 1.15"
 msgid "Step acceleration <pre>%1</pre>"
 msgstr "Aumento de aceleração <pre>%1</pre>"
@@ -781,13 +785,13 @@ msgid "Orientation"
 msgstr "Orientação"
 
 #. i18n("H Flip")
-#: kirigami_ui/PrompterPage.qml:513 prompter/ProjectionsManager.qml:322
+#: kirigami_ui/PrompterPage.qml:513 prompter/ProjectionsManager.qml:314
 msgctxt "Mirrors prompter horizontally"
 msgid "Horizontal mirror"
 msgstr "Espelhar horizontalmente"
 
 #. i18n("V Flip")
-#: kirigami_ui/PrompterPage.qml:530 prompter/ProjectionsManager.qml:342
+#: kirigami_ui/PrompterPage.qml:530 prompter/ProjectionsManager.qml:334
 msgctxt "Mirrors prompter vertically"
 msgid "Vertical mirror"
 msgstr "Espelhar verticalmente"
@@ -1142,43 +1146,58 @@ msgstr ""
 "Diminua a potência para uso com touchpad, desabilite para ter uma rolagem "
 "precisa."
 
-#: main.cpp:105
+#: main.cpp:87
+msgid ""
+"Personal teleprompter software for all video makers. Built with ease of use, "
+"productivity, and smooth performance in mind."
+msgstr ""
+
+#: main.cpp:90
+msgctxt "file"
+msgid "File to copy."
+msgstr ""
+
+#: main.cpp:93
+msgid "Ignore QSG_RENDER_LOOP environment variable."
+msgstr ""
+
+#: main.cpp:139
 msgid "© 2021 Javier O. Cordero Pérez"
 msgstr "© 2021 Javier O. Cordero Pérez"
 
-#: main.cpp:106
+#: main.cpp:140
 msgid "© 2021-%1 Javier O. Cordero Pérez"
 msgstr "© 2021-%1 Javier O. Cordero Pérez"
 
-#: main.cpp:109
+#: main.cpp:144
 msgid "Personal teleprompter software for all video makers."
 msgstr "Software pessoal de teleprompter para todos criadores de vídeo."
 
-#: main.cpp:121
+#: main.cpp:156
 msgid "Author"
 msgstr "Autor"
 
-#: main.cpp:128
+#: main.cpp:161
 msgid "Wrote keycode to string QML abstraction"
 msgstr ""
 "Programar abstração de QML para converter códigos de teclado para texto"
 
-#: main.cpp:134
+#: main.cpp:164
 msgctxt "Active software tester"
 msgid "Active tester"
 msgstr "Testador ativo"
 
-#: main.cpp:136 rc.cpp:1
+#: main.cpp:165 rc.cpp:1
 msgctxt "NAME OF TRANSLATORS"
 msgid "Your names"
 msgstr "Lia Guedes, Marttin Carvalho"
 
-#: main.cpp:136 rc.cpp:2
+#: main.cpp:165 rc.cpp:2
 msgctxt "EMAIL OF TRANSLATORS"
 msgid "Your emails"
 msgstr "contatoliaguedes@gmail.com, marttinhoblue@gmail.com"
 
-#: main.cpp:144
+#: main.cpp:173
 msgid "Failed to load icons from fontello.ttf"
 msgstr "Não foi possível carregar ícones da fonte fontello.ttf"
 
@@ -1190,15 +1209,15 @@ msgstr "Fim alcançado, procurando do início."
 msgid "Start reached, searching from the end."
 msgstr "Início alcançado, procurando do final."
 
-#: prompter/ProjectionsManager.qml:167
+#: prompter/ProjectionsManager.qml:159
 msgid "Projection Window"
 msgstr "Janela de projeção"
 
-#: prompter/ProjectionsManager.qml:309
+#: prompter/ProjectionsManager.qml:301
 msgid "Close"
 msgstr "Fechar"
 
-#: prompter/ProjectionsManager.qml:379
+#: prompter/ProjectionsManager.qml:371
 msgid ""
 "For screen projections to show, you must set at least one screen to a "
 "projection setting other than \"Off\""
