@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: qprompt\n"
 "Report-Msgid-Bugs-To: https://github.com/Cuperino/QPrompt/issues/new/choose\n"
-"POT-Creation-Date: 2022-11-15 18:03-0400\n"
+"POT-Creation-Date: 2023-01-08 16:46-0400\n"
 "PO-Revision-Date: 2022-04-18 05:00+0000\n"
 "Last-Translator: Javier O. Cordero Pérez <javiercorderoperez@gmail.com>\n"
 "Language-Team: Russian <http://l10n.cuperino.com/projects/qprompt/qprompt-"
@@ -159,97 +159,101 @@ msgstr ""
 msgid "Save changes to document before closing?"
 msgstr ""
 
-#: kirigami_ui/EditorToolbar.qml:350 kirigami_ui/EditorToolbar.qml:360
+#: kirigami_ui/EditorToolbar.qml:349 kirigami_ui/EditorToolbar.qml:359
 msgctxt "Editor actions. Text alignment."
 msgid "&Left"
 msgstr ""
 
-#: kirigami_ui/EditorToolbar.qml:350 kirigami_ui/EditorToolbar.qml:360
+#: kirigami_ui/EditorToolbar.qml:349 kirigami_ui/EditorToolbar.qml:359
 msgctxt "Editor actions. Text alignment."
 msgid "&Right"
 msgstr ""
 
-#: kirigami_ui/EditorToolbar.qml:355
+#: kirigami_ui/EditorToolbar.qml:354
 msgctxt "Editor actions. Text alignment."
 msgid "C&enter"
 msgstr ""
 
-#: kirigami_ui/EditorToolbar.qml:509
+#: kirigami_ui/EditorToolbar.qml:508
 msgctxt "FontName (Translatable font details)"
 msgid "DejaVu (default, Roman, Cyrillic)"
 msgstr ""
 
-#: kirigami_ui/EditorToolbar.qml:513
+#: kirigami_ui/EditorToolbar.qml:512
 msgctxt "FontName (Translatable font details)"
 msgid "OpenDyslexic (Roman)"
 msgstr ""
 
-#: kirigami_ui/EditorToolbar.qml:517
+#: kirigami_ui/EditorToolbar.qml:516
 msgctxt "FontName (Translatable font details)"
 msgid "Source Han Sans (CH, JP, KO)"
 msgstr ""
 
-#: kirigami_ui/EditorToolbar.qml:521
+#: kirigami_ui/EditorToolbar.qml:520
 msgctxt "FontName (Translatable font details)"
 msgid "Scheherazade New (Arabic)"
 msgstr ""
 
-#: kirigami_ui/EditorToolbar.qml:525
+#: kirigami_ui/EditorToolbar.qml:524
 msgctxt "FontName (Translatable font details)"
 msgid "Palanquin (Devangari)"
 msgstr ""
 
-#: kirigami_ui/EditorToolbar.qml:529
+#: kirigami_ui/EditorToolbar.qml:528
 msgctxt "FontName (Translatable font details)"
 msgid "Kalpurush (Bengali)"
 msgstr ""
 
-#: kirigami_ui/EditorToolbar.qml:535
+#: kirigami_ui/EditorToolbar.qml:534
 msgctxt "Opens system font selection dialog"
 msgid "Choose System Font"
 msgstr ""
 
-#: kirigami_ui/EditorToolbar.qml:771
+#: kirigami_ui/EditorToolbar.qml:540
+msgid "No glyphs selected…"
+msgstr ""
+
+#: kirigami_ui/EditorToolbar.qml:769
 msgctxt "Velocity {VELOCITY_STEPS}"
 msgid "Velocity <pre>%1</pre>"
 msgstr ""
 
-#: kirigami_ui/EditorToolbar.qml:805
+#: kirigami_ui/EditorToolbar.qml:803
 msgctxt "Opacity {TRANSPARENCY_PERCENTAGE}"
 msgid "Opacity <pre>%1</pre>"
 msgstr ""
 
-#: kirigami_ui/EditorToolbar.qml:844 kirigami_ui/EditorToolbar.qml:863
+#: kirigami_ui/EditorToolbar.qml:842 kirigami_ui/EditorToolbar.qml:861
 msgctxt "Font size 100% (083)"
 msgid "Font size <pre>%1% (%2)</pre>"
 msgstr ""
 
-#: kirigami_ui/EditorToolbar.qml:902
+#: kirigami_ui/EditorToolbar.qml:900
 msgctxt "Line height 100%"
 msgid "Line height <pre>%1%</pre>"
 msgstr ""
 
-#: kirigami_ui/EditorToolbar.qml:942
+#: kirigami_ui/EditorToolbar.qml:940
 msgctxt "Paragraph spacing ±00"
 msgid "Paragraph spacing <pre>%1%</pre>"
 msgstr ""
 
-#: kirigami_ui/EditorToolbar.qml:983
+#: kirigami_ui/EditorToolbar.qml:981
 msgctxt "Word spacing <pre>±00<pre>"
 msgid "Word spacing <pre>%1</pre>"
 msgstr ""
 
-#: kirigami_ui/EditorToolbar.qml:1019
+#: kirigami_ui/EditorToolbar.qml:1017
 msgctxt "Letter spacing ±00"
 msgid "Letter spacing <pre>%1</pre>"
 msgstr ""
 
-#: kirigami_ui/EditorToolbar.qml:1055
+#: kirigami_ui/EditorToolbar.qml:1053
 msgctxt "Step speed 1.00"
 msgid "Step speed <pre>%1</pre>"
 msgstr ""
 
-#: kirigami_ui/EditorToolbar.qml:1096
+#: kirigami_ui/EditorToolbar.qml:1094
 msgctxt "Step acceleration 1.15"
 msgid "Step acceleration <pre>%1</pre>"
 msgstr ""
@@ -775,13 +779,13 @@ msgid "Orientation"
 msgstr ""
 
 #. i18n("H Flip")
-#: kirigami_ui/PrompterPage.qml:513 prompter/ProjectionsManager.qml:322
+#: kirigami_ui/PrompterPage.qml:513 prompter/ProjectionsManager.qml:314
 msgctxt "Mirrors prompter horizontally"
 msgid "Horizontal mirror"
 msgstr ""
 
 #. i18n("V Flip")
-#: kirigami_ui/PrompterPage.qml:530 prompter/ProjectionsManager.qml:342
+#: kirigami_ui/PrompterPage.qml:530 prompter/ProjectionsManager.qml:334
 msgctxt "Mirrors prompter vertically"
 msgid "Vertical mirror"
 msgstr ""
@@ -1123,42 +1127,57 @@ msgstr ""
 msgid "Enable throttling for use with touchpads, disable for precise scolling."
 msgstr ""
 
-#: main.cpp:105
+#: main.cpp:87
+msgid ""
+"Personal teleprompter software for all video makers. Built with ease of use, "
+"productivity, and smooth performance in mind."
+msgstr ""
+
+#: main.cpp:90
+msgctxt "file"
+msgid "File to copy."
+msgstr ""
+
+#: main.cpp:93
+msgid "Ignore QSG_RENDER_LOOP environment variable."
+msgstr ""
+
+#: main.cpp:139
 msgid "© 2021 Javier O. Cordero Pérez"
 msgstr ""
 
-#: main.cpp:106
+#: main.cpp:140
 msgid "© 2021-%1 Javier O. Cordero Pérez"
 msgstr ""
 
-#: main.cpp:109
+#: main.cpp:144
 msgid "Personal teleprompter software for all video makers."
 msgstr ""
 
-#: main.cpp:121
+#: main.cpp:156
 msgid "Author"
 msgstr ""
 
-#: main.cpp:128
+#: main.cpp:161
 msgid "Wrote keycode to string QML abstraction"
 msgstr ""
 
-#: main.cpp:134
+#: main.cpp:164
 msgctxt "Active software tester"
 msgid "Active tester"
 msgstr ""
 
-#: main.cpp:136 rc.cpp:1
+#: main.cpp:165 rc.cpp:1
 msgctxt "NAME OF TRANSLATORS"
 msgid "Your names"
 msgstr ""
 
-#: main.cpp:136 rc.cpp:2
+#: main.cpp:165 rc.cpp:2
 msgctxt "EMAIL OF TRANSLATORS"
 msgid "Your emails"
 msgstr ""
 
-#: main.cpp:144
+#: main.cpp:173
 msgid "Failed to load icons from fontello.ttf"
 msgstr ""
 
@@ -1170,15 +1189,15 @@ msgstr ""
 msgid "Start reached, searching from the end."
 msgstr ""
 
-#: prompter/ProjectionsManager.qml:167
+#: prompter/ProjectionsManager.qml:159
 msgid "Projection Window"
 msgstr ""
 
-#: prompter/ProjectionsManager.qml:309
+#: prompter/ProjectionsManager.qml:301
 msgid "Close"
 msgstr ""
 
-#: prompter/ProjectionsManager.qml:379
+#: prompter/ProjectionsManager.qml:371
 msgid ""
 "For screen projections to show, you must set at least one screen to a "
 "projection setting other than \"Off\""
