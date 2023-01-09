@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: qprompt\n"
 "Report-Msgid-Bugs-To: https://github.com/Cuperino/QPrompt/issues/new/choose\n"
 "POT-Creation-Date: 2023-01-08 16:46-0400\n"
-"PO-Revision-Date: 2023-01-09 00:30+0000\n"
-"Last-Translator: Lia Guedes <liaguedes9999@gmail.com>\n"
+"PO-Revision-Date: 2023-01-10 01:20+0000\n"
+"Last-Translator: marttin carvalho <marttinhoblue@gmail.com>\n"
 "Language-Team: Portuguese <http://l10n.cuperino.com/projects/qprompt/"
 "qprompt-app/pt/>\n"
 "Language: pt\n"
@@ -210,7 +210,7 @@ msgstr "Escolher Fonte do Sistema"
 
 #: kirigami_ui/EditorToolbar.qml:540
 msgid "No glyphs selected…"
-msgstr ""
+msgstr "Nenhum glifo selecionado…"
 
 #: kirigami_ui/EditorToolbar.qml:769
 msgctxt "Velocity {VELOCITY_STEPS}"
@@ -1147,24 +1147,21 @@ msgstr ""
 "precisa."
 
 #: main.cpp:87
-#, fuzzy
 msgid ""
 "Personal teleprompter software for all video makers. Built with ease of use, "
 "productivity, and smooth performance in mind."
 msgstr ""
-"Programa para uso pessoal de teleprompter para todos videomakers. Construido "
+"Programa para uso pessoal de teleprompter para todos videomakers. Construído "
 "para facilidade de uso, produtividade, e performance suave em mente."
 
 #: main.cpp:90
-#, fuzzy
 msgctxt "file"
 msgid "File to copy."
-msgstr "Arquivo para copiar"
+msgstr "Arquivo para copiar."
 
 #: main.cpp:93
-#, fuzzy
 msgid "Ignore QSG_RENDER_LOOP environment variable."
-msgstr "Ignorar variável QSG_RENDER_LOOP"
+msgstr "Ignorar variável QSG_RENDER_LOOP."
 
 #: main.cpp:139
 msgid "© 2021 Javier O. Cordero Pérez"
