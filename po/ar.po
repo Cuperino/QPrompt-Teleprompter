@@ -8,64 +8,66 @@ msgstr ""
 "Project-Id-Version: qprompt 4ae7641\n"
 "Report-Msgid-Bugs-To: https://github.com/Cuperino/QPrompt/issues/new/choose\n"
 "POT-Creation-Date: 2023-01-08 16:46-0400\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Automatically generated\n"
-"Language-Team: none\n"
+"PO-Revision-Date: 2023-01-12 17:20+0000\n"
+"Last-Translator: IVEN <ivenmsf@gmail.com>\n"
+"Language-Team: Arabic <http://l10n.cuperino.com/projects/qprompt/qprompt-app/"
+"ar/>\n"
 "Language: ar\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 "
 "&& n%100<=10 ? 3 : n%100>=11 ? 4 : 5;\n"
+"X-Generator: Weblate 4.11.2\n"
 
 #: kirigami_ui/+android/main.qml:174 kirigami_ui/main.qml:183
 #: kirigami_ui/main.qml:479 kirigami_ui/+windows/main.qml:183
 msgctxt "Main menu and global menu actions"
 msgid "&New"
-msgstr ""
+msgstr "جديد"
 
 #: kirigami_ui/+android/main.qml:180 kirigami_ui/main.qml:190
 #: kirigami_ui/main.qml:483 kirigami_ui/+windows/main.qml:189
 msgctxt "Main menu and global menu actions"
 msgid "&Open"
-msgstr ""
+msgstr "فتح"
 
 #: kirigami_ui/+android/main.qml:189 kirigami_ui/main.qml:200
 #: kirigami_ui/main.qml:487 kirigami_ui/+windows/main.qml:198
 msgctxt "Main menu and global menu actions"
 msgid "&Save"
-msgstr ""
+msgstr "حفظ"
 
 #: kirigami_ui/+android/main.qml:198 kirigami_ui/main.qml:210
 #: kirigami_ui/+windows/main.qml:207
 msgctxt "Main menu and global menu actions"
 msgid "Save &As"
-msgstr ""
+msgstr "حفظ بإسم"
 
 #: kirigami_ui/+android/main.qml:208 kirigami_ui/main.qml:221
 #: kirigami_ui/+windows/main.qml:217
 msgctxt "Main menu actions"
 msgid "&Recent Files"
-msgstr ""
+msgstr "الملفات الاخيرة"
 
 #: kirigami_ui/+android/main.qml:216 kirigami_ui/main.qml:230
 #: kirigami_ui/+windows/main.qml:225
 msgctxt "Main menu actions. Menu regarding input settings."
 msgid "&Controls Settings"
-msgstr ""
+msgstr "ضبط الاعدادات"
 
 #: kirigami_ui/+android/main.qml:220 kirigami_ui/main.qml:235
 #: kirigami_ui/+windows/main.qml:229
 msgctxt ""
 "Main menu and global menu actions. Opens dialog to configure keyboard inputs."
 msgid "Keyboard Inputs"
-msgstr ""
+msgstr "ادخالات لوحة المفاتيح"
 
 #: kirigami_ui/+android/main.qml:228 kirigami_ui/main.qml:242
 #: kirigami_ui/+windows/main.qml:237
 msgctxt "Open 'scroll settings' from main menu and global menu actions"
 msgid "Scroll throttle settings"
-msgstr ""
+msgstr "اعدادات دولاب الفأرة"
 
 #: kirigami_ui/+android/main.qml:233 kirigami_ui/main.qml:248
 #: kirigami_ui/main.qml:724 kirigami_ui/+windows/main.qml:242
@@ -73,14 +75,14 @@ msgctxt ""
 "Main menu and global menu actions. Have up arrow behave like down arrow and "
 "vice versa while prompting."
 msgid "Invert &arrow keys"
-msgstr ""
+msgstr "عكس ومفاتيح الأسهم"
 
 #: kirigami_ui/+android/main.qml:241 kirigami_ui/main.qml:257
 #: kirigami_ui/main.qml:731 kirigami_ui/+windows/main.qml:250
 msgctxt ""
 "Main menu and global menu actions. Invert scroll direction while prompting."
 msgid "Invert &scroll direction"
-msgstr ""
+msgstr "عكس واتجاه التمرير"
 
 #: kirigami_ui/+android/main.qml:249 kirigami_ui/main.qml:266
 #: kirigami_ui/main.qml:716 kirigami_ui/+windows/main.qml:258
@@ -88,7 +90,7 @@ msgctxt ""
 "Main menu and global menu actions. Have touchpad and mouse wheel scrolling "
 "adjust velocity instead of scrolling like most other apps."
 msgid "Use scroll as velocity &dial"
-msgstr ""
+msgstr "استخدم التمرير كسرعة واتصال"
 
 #: kirigami_ui/+android/main.qml:258 kirigami_ui/main.qml:276
 #: kirigami_ui/main.qml:710 kirigami_ui/+windows/main.qml:267
@@ -96,13 +98,13 @@ msgctxt ""
 "Main menu and global menu actions. Touchpad scrolling and mouse wheel use "
 "have no effect while prompting."
 msgid "Disable scrolling while prompting"
-msgstr ""
+msgstr "تعطيل التمرير أثناء العرض"
 
 #: kirigami_ui/+android/main.qml:266 kirigami_ui/main.qml:285
 #: kirigami_ui/+windows/main.qml:275
 msgctxt "Main menu actions"
 msgid "Other &Settings"
-msgstr ""
+msgstr "إعدادات أخرى"
 
 #: kirigami_ui/+android/main.qml:277 kirigami_ui/main.qml:297
 #: kirigami_ui/+windows/main.qml:286
