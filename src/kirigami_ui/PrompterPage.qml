@@ -369,34 +369,52 @@ Kirigami.Page {
         Kirigami.Action {
             id: timerButton
             text: i18n("Timer")
+            // Some speakers want don't want their times visible at all times, but they'd like to
+            // know how long it took them to speak, so they enable and disable timers as desired.
+            // For the total time to be computed correctly, clock operations, as they exist,
+            // need to be running at all times. Running clock operations at all times can result
+            // in degraded performance when running on low end hardware and while using
+            // screen projections. The following action allows enabling and disabling
+            // clock operations without timers having to be visible at all times.
+            Kirigami.Action {
+                id: enableTimersButton
+                checkable: true
+                checked: viewport.timer.timersEnabled
+                text: i18n("Enable timers")
+                onTriggered: {
+                    viewport.timer.enabled = checked;
+                    viewport.prompter.restoreFocus()
+                }
+            }
             Kirigami.Action {
                 id: enableStopwatchButton
+                enabled: viewport.timer.timersEnabled
                 checkable: true
                 checked: viewport.timer.stopwatch
                 iconName: "keyframe"
                 icon.source: "icons/keyframe.svg"
                 text: i18n("Stopwatch")
                 onTriggered: {
-                    viewport.timer.stopwatch = !viewport.timer.stopwatch
-                    // contextDrawer.close()
+                    viewport.timer.stopwatch = checked
                     viewport.prompter.restoreFocus()
                 }
             }
             Kirigami.Action {
                 id: enableETAButton
+                enabled: viewport.timer.timersEnabled
                 checkable: true
                 checked: viewport.timer.eta
                 iconName: "player-time"
                 icon.source: "icons/player-time.svg"
                 text: i18nc("Estimated Time of Arrival", "ETA")
                 onTriggered: {
-                    viewport.timer.eta = !viewport.timer.eta
-                    // contextDrawer.close()
+                    viewport.timer.eta = checked
                     viewport.prompter.restoreFocus()
                 }
             }
             Kirigami.Action {
                 id: timerColorButton
+                enabled: viewport.timer.timersEnabled
                 text: i18nc("Color of timer text", "Timer color")
                 iconName: "format-text-color"
                 icon.source: "icons/format-text-color.svg"
@@ -408,10 +426,10 @@ Kirigami.Page {
             }
             Kirigami.Action {
                 id: clearTimerColorButton
+                enabled: viewport.timer.timersEnabled && !Qt.colorEqual(viewport.timer.textColor, '#AAA')
                 text: i18nc("Reset color of timer text back to default", "Clear color")
                 iconName: "tool_color_eraser"
                 icon.source: "icons/tool_color_eraser.svg"
-                enabled: !Qt.colorEqual(viewport.timer.textColor, '#AAA')
                 onTriggered: {
                     viewport.timer.clearColor()
                     contextDrawer.close()
