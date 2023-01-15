@@ -3,15 +3,18 @@
 
 #include <QObject>
 
-class Marker
-{
+struct Marker {
     Q_GADGET
     Q_PROPERTY(int position MEMBER position)
     Q_PROPERTY(int length MEMBER length)
     Q_PROPERTY(QString url MEMBER url)
 public:
     // Constructors
-    Marker(){};
+    Marker() = default;
+    Marker(int p)
+    {
+        position = p;
+    };
     Marker(std::nullptr_t){};
     // Contents
     QString text;

@@ -73,7 +73,7 @@ private Q_SLOTS:
 #else
     void resetInternalData();
 #endif
-    Marker binarySearch(int lo, int hi, int x, bool reverse);
+    Marker binarySearch(const int lo, const int hi, const int x, const bool reverse);
 };
 
 #endif // MARKERSMODEL_H
