@@ -503,10 +503,9 @@ void DocumentHandler::load(const QUrl &fileUrl)
                 doc->setBaseUrl(path.adjusted(QUrl::RemoveFilename));
                 // File formats managed by Qt
                 if (mime.inherits(QString::fromStdString("text/html"))) {
-                    QString html = QString::fromUtf8(data).replace(
-                        QRegularExpression(QString::fromStdString(
-                            "((font-size|letter-spacing|word-spacing|font-weight):\\s*-?[\\d]+(?:.[\\d]+)*(?:(?:px)|(?:pt)|(?:em)|(?:ex));?\\s*)")),
-                        QString::fromStdString(""));
+                    static QRegularExpression regex_0(QString::fromStdString(
+                        "((font-size|letter-spacing|word-spacing|font-weight):\\s*-?[\\d]+(?:.[\\d]+)*(?:(?:px)|(?:pt)|(?:em)|(?:ex));?\\s*)"));
+                    QString html = QString::fromUtf8(data).replace(regex_0, QString::fromStdString(""));
                     Q_EMIT loaded(html, Qt::RichText);
                 }
 #if QT_VERSION >= 0x050F00
@@ -729,17 +728,18 @@ QString DocumentHandler::filterHtml(QString html, bool ignoreBlackTextColor = tr
     // Auto-detect content origin
     bool comesFromRecognizedNativeSource = false;
     // Check for native sources, such as LibreOffice, MS Office, WPS Office, and AbiWord
-    // Clean RegEx  (<meta\s?\s*name="?[gG]enerator"?\s?\s*content="(?:(?:(?:(?:Libre)|(?:Open))Office)|(?:Microsoft)))
-    // Clean RegEx  <!DOCTYPE html PUBLIC "-//ABISOURCE//DTD XHTML plus AWML
-    if (html.contains(QRegularExpression(
-            QString::fromStdString("(<meta\\s?\\s*name=\"?[gG]enerator\"?\\s?\\s*content=\"(?:(?:(?:(?:Libre)|(?:Open))Office)|(?:Microsoft)))"),
-            QRegularExpression::CaseInsensitiveOption))
-        || html.contains(QRegularExpression(QString::fromStdString("<!DOCTYPE html PUBLIC \"-//ABISOURCE//DTD XHTML plus AWML")))) {
+    // Clean RegEx:  (<meta\s?\s*name="?[gG]enerator"?\s?\s*content="(?:(?:(?:(?:Libre)|(?:Open))Office)|(?:Microsoft)))
+    static QRegularExpression regex_1(
+        QString::fromStdString("(<meta\\s?\\s*name=\"?[gG]enerator\"?\\s?\\s*content=\"(?:(?:(?:(?:Libre)|(?:Open))Office)|(?:Microsoft)))"),
+        QRegularExpression::CaseInsensitiveOption);
+    // Clean RegEx:  <!DOCTYPE html PUBLIC "-//ABISOURCE//DTD XHTML plus AWML
+    static QRegularExpression regex_2(QString::fromStdString("<!DOCTYPE html PUBLIC \"-//ABISOURCE//DTD XHTML plus AWML"));
+    if (html.contains(regex_1) || html.contains(regex_2)) {
         comesFromRecognizedNativeSource = true;
         ignoreBlackTextColor = false;
     }
     // Check for Google Docs
-    // Clean RegEx  id="docs-internal-guid-
+    // Clean RegEx:  id="docs-internal-guid-
     else if (html.contains(QString::fromStdString("id=\"docs-internal-guid-")))
         ignoreBlackTextColor = true;
     // No detection available for the online version of MS Office, because it contents bring no identifying signature.
@@ -749,47 +749,50 @@ QString DocumentHandler::filterHtml(QString html, bool ignoreBlackTextColor = tr
 
     // Filters that run always:
     // 1. Remove HTML's non-scaling font-size attributes
-    // Clean RegEx  (font-size:\s*[\d]+(?:.[\d]+)*(?:(?:px)|(?:pt)|(?:em)|(?:ex));?\s*)
-    html = html.replace(QRegularExpression(QString::fromStdString("(font-size:\\s*[\\d]+(?:.[\\d]+)*(?:(?:px)|(?:pt)|(?:em)|(?:ex));?\\s*)")),
-                        QString::fromStdString(""));
+    // Clean RegEx:  (font-size:\s*[\d]+(?:.[\d]+)*(?:(?:px)|(?:pt)|(?:em)|(?:ex));?\s*)
+    static QRegularExpression regex_3(QString::fromStdString("(font-size:\\s*[\\d]+(?:.[\\d]+)*(?:(?:px)|(?:pt)|(?:em)|(?:ex));?\\s*)"));
+    html = html.replace(regex_3, QString::fromStdString(""));
 
     // Filters that apply only to native sources:
-    if (comesFromRecognizedNativeSource)
+    if (comesFromRecognizedNativeSource) {
+        static QRegularExpression regex_4(QString::fromStdString(
+            "(?:(?:p\\s*{.*(\\scolor:\\s*#[0123456789abcdefABCDEF]{3}(?:[0123456789abcdefABCDEF]{3})?;))|(?:(?:<[bB][oO][dD][yY]\\s).*(\\s(?:(?:text)|("
+            "?:v?"
+            "link))=\"#[0123456789abcdefABCDEF]{3}(?:[0123456789abcdefABCDEF]{3})?\").*(\\s(?:(?:text)|(?:v?link))=\"#[0123456789abcdefABCDEF]{3}(?:["
+            "0123456789abcdefABCDEF]{3})?\").*(\\s(?:(?:text)|(?:v?link))=\"#[0123456789abcdefABCDEF]{3}(?:[0123456789abcdefABCDEF]{3})?\")))"));
         // 2. Remove text color attributes from body and CSS portion.  Running it 3 times ensures text, link, and vlink attributes are removed, irregardless
-        // of their order, while keeping regex maintainable Clean RegEx
+        // of their order, while keeping regex maintainable Clean RegEx:
         // (?:(?:p\s*{.*(\scolor:\s*#[0123456789abcdefABCDEF]{3}(?:[0123456789abcdefABCDEF]{3})?;))|(?:(?:<[bB][oO][dD][yY]\s).*(\s(?:(?:text)|(?:v?link))="#[0123456789abcdefABCDEF]{3}(?:[0123456789abcdefABCDEF]{3})?").*(\s(?:(?:text)|(?:v?link))="#[0123456789abcdefABCDEF]{3}(?:[0123456789abcdefABCDEF]{3})?").*(\s(?:(?:text)|(?:v?link))="#[0123456789abcdefABCDEF]{3}(?:[0123456789abcdefABCDEF]{3})?")))
-        html = html.replace(
-            QRegularExpression(QString::fromStdString(
-                "(?:(?:p\\s*{.*(\\scolor:\\s*#[0123456789abcdefABCDEF]{3}(?:[0123456789abcdefABCDEF]{3})?;))|(?:(?:<[bB][oO][dD][yY]\\s).*(\\s(?:(?:text)|("
-                "?:v?"
-                "link))=\"#[0123456789abcdefABCDEF]{3}(?:[0123456789abcdefABCDEF]{3})?\").*(\\s(?:(?:text)|(?:v?link))=\"#[0123456789abcdefABCDEF]{3}(?:["
-                "0123456789abcdefABCDEF]{3})?\").*(\\s(?:(?:text)|(?:v?link))=\"#[0123456789abcdefABCDEF]{3}(?:[0123456789abcdefABCDEF]{3})?\")))")),
-            QString::fromStdString(""));
-    // for (int i=0; i<3; ++i)
-    //     html =
-    //     html.replace(QRegularExpression("(?:(?:<[bB][oO][dD][yY]\\s).*(\\s(?:(?:text)|(?:v?link))=\"#[0123456789abcdefABCDEF]{3}(?:[0123456789abcdefABCDEF]{3})?\"))"),
-    //     "");
-
+        html = html.replace(regex_4, QString::fromStdString(""));
+        // for (int i=0; i<3; ++i)
+        //     html =
+        //     html.replace(QRegularExpression("(?:(?:<[bB][oO][dD][yY]\\s).*(\\s(?:(?:text)|(?:v?link))=\"#[0123456789abcdefABCDEF]{3}(?:[0123456789abcdefABCDEF]{3})?\"))"),
+        //     "");
+    }
     // Filters that apply only to non-native sources:
     else // if (!comesFromRecognizedNativeSource)
+    {
         // 3. Preserve highlights: Remove background color attributes from all elements except span, which is commonly used for highlights
-        // Clean RegEx
+        // Clean RegEx:
         // (?:<[^sS][^pP][^aA][^nN](?:\s*[^>]*(\s*background(?:-color)?:\s*(?:(?:rgba?\(\d\d?\d?,\s*\d\d?\d?,\s*\d\d?\d?(?:,\s*[01]?(?:[.]\d\d*)?)?\))|(?:#[0-9a-fA-F]{3}(?:[0-9a-fA-F]{3})?));?)\s*[^>]*)*>)
-        html = html.replace(QRegularExpression(QString::fromStdString(
-                                "(?:<[^sS][^pP][^aA][^nN](?:\\s*[^>]*(\\s*background(?:-color)?:\\s*(?:(?:rgba?\\(\\d\\d?\\d?,\\s*\\d\\d?\\d?,\\s*\\d\\d?\\d?(?"
-                                ":,\\s*[01]?(?:[.]\\d\\d*)?)?\\))|(?:#[0-9a-fA-F]{3}(?:[0-9a-fA-F]{3})?));?)\\s*[^>]*)*>)")),
-                            QString::fromStdString(""));
-
+        static QRegularExpression regex_5(QString::fromStdString(
+            "(?:<[^sS][^pP][^aA][^nN](?:\\s*[^>]*(\\s*background(?:-color)?:\\s*(?:(?:rgba?\\(\\d\\d?\\d?,\\s*\\d\\d?\\d?,\\s*\\d\\d?\\d?(?"
+            ":,\\s*[01]?(?:[.]\\d\\d*)?)?\\))|(?:#[0-9a-fA-F]{3}(?:[0-9a-fA-F]{3})?));?)\\s*[^>]*)*>)"));
+        html = html.replace(regex_5, QString::fromStdString(""));
+    }
     // Manual toggle filters
-    if (ignoreBlackTextColor || !comesFromRecognizedNativeSource)
+    if (ignoreBlackTextColor || !comesFromRecognizedNativeSource) {
         // 4. Removal of black colored text attribute, subject to source editor.  Applies to Google Docs, OnlyOffice, Microsoft 365 Office Online and random
         // websites.  Not used in LibreOffice, OpenOffice, WPS Office nor regular MS Office. 8-bit color values bellow 100 are ignored when rgb format is
         // used. Has no effect on LibreOffice because of XML differences; nevertheless, there's no need to ignore dark text colors on LibreOffice because
-        // LibreOffice has a correct implementation of default colors. Clean RegEx
+        // LibreOffice has a correct implementation of default colors.
+        // Clean RegEx:
         // (\s*(?:mso-style-textfill-fill-)?color:\s*(?:(?:rgba?\(\d{1,2},\s*\d{1,2},\s*\d{1,2}(?:,\s*[10]?(?:[.]00*)?)?\))|(?:black)|(?:windowtext)|(?:#0{3}(?:0{3})?));?)
-        html = html.replace(QRegularExpression(QString::fromStdString("(\\s*(?:mso-style-textfill-fill-)?color:\\s*(?:(?:rgba?\\(\\d{1,2},\\s*\\d{1,2},\\s*\\d{"
-                                                                      "1,2}(?:,\\s*[10]?(?:[.]00*)?)?\\))|(?:black)|(?:windowtext)|(?:#0{3}(?:0{3})?));?)")),
-                            QString::fromStdString(""));
+        static QRegularExpression regex_6(
+            QString::fromStdString("(\\s*(?:mso-style-textfill-fill-)?color:\\s*(?:(?:rgba?\\(\\d{1,2},\\s*\\d{1,2},\\s*\\d{"
+                                   "1,2}(?:,\\s*[10]?(?:[.]00*)?)?\\))|(?:black)|(?:windowtext)|(?:#0{3}(?:0{3})?));?)"));
+        html = html.replace(regex_6, QString::fromStdString(""));
+    }
 
     // Filtering complete
     // qDebug() << html;
