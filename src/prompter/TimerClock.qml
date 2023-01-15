@@ -97,7 +97,8 @@ Item {
     readonly property Scale __flips: Flip{}
     transform: __flips
 
-    enabled: stopwatch || eta
+    readonly property bool timersEnabled: enabled && (stopwatch || eta)
+    enabled: false
     visible: enabled
     clip: true
     anchors.fill: parent
@@ -111,6 +112,7 @@ Item {
     Settings {
         id: timerSettings
         category: "timer"
+        property alias enabled: clock.enabled
         property alias stopwatch: clock.stopwatch
         property alias eta: clock.eta
         property color color: timerColorDialog.currentColor
@@ -186,7 +188,7 @@ Item {
     }
 
     Timer {
-        running: true
+        running: clock.enabled
         repeat: true
         triggeredOnStart: true
         interval: 333; // Keep updates at no more than 3fps to improve frame rate.
