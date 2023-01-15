@@ -1555,7 +1555,7 @@ Flickable {
                 timeToArival: 0
             }
             PropertyChanges {
-                target: mouse
+                target: viewport.mouse
                 z: 0
             }
         },
@@ -1601,7 +1601,7 @@ Flickable {
                 enabled: false
             }
             PropertyChanges {
-                target: mouse
+                target: viewport.mouse
                 z: 5
             }
         },
@@ -1647,7 +1647,7 @@ Flickable {
                 enabled: false
             }
             PropertyChanges {
-                target: mouse
+                target: viewport.mouse
                 z: 5
             }
         },
@@ -1706,7 +1706,7 @@ Flickable {
                 enabled: true
             }
             PropertyChanges {
-                target: mouse
+                target: viewport.mouse
                 z: 5
             }
         }

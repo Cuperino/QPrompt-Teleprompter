@@ -186,8 +186,8 @@ Item {
     }
 
     Timer {
-        repeat: true
         running: true
+        repeat: true
         triggeredOnStart: true
         interval: 333; // Keep updates at no more than 3fps to improve frame rate.
         onTriggered: updateTimer();
