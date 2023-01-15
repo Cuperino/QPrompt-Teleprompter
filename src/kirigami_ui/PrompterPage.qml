@@ -859,8 +859,6 @@ Kirigami.Page {
         y: parent.height
     }
 
-    // progress: parseInt(viewport.prompter.state)===Prompter.States.Prompting ? viewport.prompter.progress : undefined
-
     ColorDialog {
         id: colorDialog
         showAlphaChannel: false

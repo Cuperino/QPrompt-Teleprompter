@@ -124,8 +124,6 @@ Flickable {
     readonly property bool __atEnd: position>=editor.height-topMargin+fontSize+__jitterMargin-2
     readonly property int __speedLimit: __vw * 100
     readonly property Scale __flips: Flip{}
-    // Progress indicator
-    readonly property real progress: (position+__jitterMargin)/editor.height
     // Tools to debug __atStart and __atEnd
     //readonly property bool __atStart: false
     //readonly property bool __atEnd: false
