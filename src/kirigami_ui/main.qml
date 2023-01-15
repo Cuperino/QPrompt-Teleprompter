@@ -852,11 +852,11 @@ Kirigami.ApplicationWindow {
         // Thus runs from here because there's no event that occurs on each bit of scroll, and this takes much less CPU than a timer, is more precise and scales better.
         root.pageStack.currentItem.prompter.markerCompare()
         // Update Projections
-        if (projectionManager.isEnabled && root.visible/* && projectionManager.model.count*/)
+        if (projectionManager.isEnabled/* && projectionManager.model.count*/)
             // Recount projections on each for loop iteration to prevent value from going stale because a window was closed from a different thread.
             for (var i=0; i<projectionManager.projections.count; i++) {
                 const w = projectionManager.projections.objectAt(i)
-                if (w!==null)
+                if (w!==null && root.visible)
                     w.update();
                 else
                     break;
