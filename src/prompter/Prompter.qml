@@ -226,14 +226,14 @@ Flickable {
         // Check that state is not prompting and editor isn't active.
         if (parseInt(state)===Prompter.States.Prompting && !editor.focus) {
             // Detect when moving past a marker.
-            prompter.setCursorAtCurrentPosition()
-            const m = document.previousMarker(editor.cursorPosition)
-            editor.cursorPosition = m.position
+            const m = document.previousMarker(editor.positionAt(0, position + overlay.__readRegionPlacement*(overlay.height-overlay.readRegionHeight)+overlay.readRegionHeight/2 + 1));
+            //document.silentlySetCursorPosition(m.position);
+            editor.cursorPosition = m.position;
             // Here, p is for position
-            const p = editor.cursorRectangle.y
-            //if (q < p) {
-            //    console.log(m.url);
-            //}
+            const p = editor.cursorRectangle.y;
+            if (q < p) {
+                console.log(m.url);
+            }
             q = p;
         }
     }
