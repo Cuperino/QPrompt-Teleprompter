@@ -550,11 +550,6 @@ ToolBar {
                 contentItem: Loader { sourceComponent: textComponent }
                 font.family: iconFont.name
                 font.pointSize: 13
-                font.bold: viewport.prompter.document.bold
-                font.italic: viewport.prompter.document.italic
-                font.underline: viewport.prompter.document.underline
-                font.strikeout: viewport.prompter.document.strike
-                font.overline: viewport.prompter.document.regularMarker || viewport.prompter.document.namedMarker
                 onClicked: {
                     fontSelectionMenu.popup(this)
                 }
