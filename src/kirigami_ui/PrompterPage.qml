@@ -33,7 +33,6 @@ import com.cuperino.qprompt.abstractunits 1.0
 Kirigami.Page {
     id: prompterPage
 
-    property alias fontDialog: fontDialog
     property alias colorDialog: colorDialog
     property alias highlightDialog: highlightDialog
     property alias viewport: viewport
@@ -843,50 +842,6 @@ Kirigami.Page {
     }
 
     // progress: parseInt(viewport.prompter.state)===Prompter.States.Prompting ? viewport.prompter.progress : undefined
-
-    FontDialog {
-        id: fontDialog
-        font: Qt.font({
-            family: viewport.prompter.document.fontFamily,
-
-            bold: viewport.prompter.document.bold,
-            italic: viewport.prompter.document.italic,
-            underline: viewport.prompter.document.underline,
-            strikeout: viewport.prompter.document.strike,
-
-            //overline: viewport.prompter.document.overline,
-            //weight: viewport.prompter.document.weight,
-            //capitalization: viewport.prompter.document.capitalization,
-            //letterSpacing: viewport.prompter.document.letterSpacing,
-            //wordSpacing: viewport.prompter.document.wordSpacing,
-            //kerning: viewport.prompter.document.kerning,
-            //preferShaping: viewport.prompter.document.preferShaping,
-            //hintingPreference: viewport.prompter.document.hintingPreference,
-            //styleName: viewport.prompter.document.styleName
-
-            pointSize: ((editorToolbar.fontSizeSlider.value - editorToolbar.fontSizeSlider.from) * (72 - 6) / (editorToolbar.fontSizeSlider.to - editorToolbar.fontSizeSlider.from)) + 6
-        })
-        onAccepted: {
-            viewport.prompter.document.fontFamily = font.family;
-
-            viewport.prompter.document.bold = font.bold;
-            viewport.prompter.document.italic = font.italic;
-            viewport.prompter.document.underline = font.underline;
-            viewport.prompter.document.strike = font.strikeout;
-
-            //viewport.prompter.document.overline = font.overline;
-            //viewport.prompter.document.weight = font.weight;
-            //viewport.prompter.document.capitalization = font.capitalization;
-            //viewport.prompter.document.letterSpacing = font.letterSpacing;
-            //viewport.prompter.document.wordSpacing = font.wordSpacing;
-            //viewport.prompter.document.kerning = font.kerning;
-            //viewport.prompter.document.preferShaping = font.preferShaping;
-            //viewport.prompter.document.hintingPreference = font.hintingPreference;
-            //viewport.prompter.document.styleName = font.styleName;
-
-            editorToolbar.fontSizeSlider.value = ((font.pointSize - 6) * (editorToolbar.fontSizeSlider.to - editorToolbar.fontSizeSlider.from) / (72 - 6)) + editorToolbar.fontSizeSlider.from
-        }
-    }
 
     ColorDialog {
         id: colorDialog
