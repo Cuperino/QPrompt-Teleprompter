@@ -32,7 +32,6 @@ int MarkersModel::rowCount(const QModelIndex &parent) const
 {
     if (!parent.isValid())
         return m_data.size();
-    // return 0;
     return m_data.size();
 }
 
@@ -88,9 +87,6 @@ void MarkersModel::removeMarker(int row)
     endRemoveRows();
 }
 
-// void MarkersModel::insertRow(int row, const QModelIndex &parent)
-// {}
-
 void MarkersModel::clearMarkers()
 {
     beginRemoveRows(QModelIndex(), 0, rowCount());
@@ -141,14 +137,14 @@ int MarkersModel::keySearch(int key, int currentPosition = 0, bool reverse = fal
 }
 
 // Custom Recursive Binary Search: Returns most proximate element in a given direction when searched element is not found.
-Marker MarkersModel::binarySearch(int l, int r, int goalPosition, bool reverse = false)
+Marker MarkersModel::binarySearch(const int l, const int r, const int goalPosition, const bool reverse = false)
 {
     // qDebug() << "search in progress";
     if (r >= l) {
         // qDebug() << "l: " << l << ", r: " << r << ", gp: " << goalPosition;
 
         // Binary search
-        int mid = l + (r - l) / 2;
+        const int mid = l + (r - l) / 2;
 
         const int aimValue = m_data.at(mid).position;
         // Base case
@@ -165,9 +161,7 @@ Marker MarkersModel::binarySearch(int l, int r, int goalPosition, bool reverse =
                 // Return last marker
                 // return m_data.at(mid);
                 // Return a virtual marker that goes after the last marker. This workaround ensures we can detect when the prompter moves past the last marker.
-                Marker virtualMarker = Marker();
-                virtualMarker.position = m_data.at(mid).position;
-                return virtualMarker;
+                return Marker(m_data.at(mid).position);
             }
             // If not last element
             else {
@@ -175,7 +169,7 @@ Marker MarkersModel::binarySearch(int l, int r, int goalPosition, bool reverse =
                 if (reverse) {
                     if (mid - 1 >= 0)
                         return m_data.at(mid - 1);
-                    return nullptr; // 0 // m_data.at(mid);
+                    return nullptr;
                 } else
                     return m_data.at(mid + 1);
             }
@@ -205,8 +199,7 @@ Marker MarkersModel::nextMarker(int position)
         // Find next marker
         return this->binarySearch(0, size - 1, position, false);
     // Stay in place
-    Marker invalidPositionMarker = Marker();
-    invalidPositionMarker.position = -1;
+    Marker invalidPositionMarker = Marker(-1);
     return invalidPositionMarker; // -1
 }
 
@@ -218,5 +211,5 @@ Marker MarkersModel::previousMarker(int position)
         // Find previous marker
         return this->binarySearch(0, size - 1, position, true);
     // Move to start
-    return Marker(nullptr); // 0
+    return nullptr;
 }
