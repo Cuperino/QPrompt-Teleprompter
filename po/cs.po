@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: qprompt\n"
 "Report-Msgid-Bugs-To: https://github.com/Cuperino/QPrompt/issues/new/choose\n"
 "POT-Creation-Date: 2023-01-16 09:28-0400\n"
-"PO-Revision-Date: 2022-09-11 23:51+0000\n"
+"PO-Revision-Date: 2023-01-16 16:05+0000\n"
 "Last-Translator: Javier O. Cordero Pérez <javiercorderoperez@gmail.com>\n"
 "Language-Team: Czech <http://l10n.cuperino.com/projects/qprompt/qprompt-app/"
 "cs/>\n"
@@ -210,7 +210,7 @@ msgstr "Vybrat písmo z OS"
 
 #: kirigami_ui/EditorToolbar.qml:540
 msgid "No glyphs selected…"
-msgstr ""
+msgstr "Nejsou vybrány žádné glyfy…"
 
 #: kirigami_ui/EditorToolbar.qml:764
 msgctxt "Velocity {VELOCITY_STEPS}"
@@ -733,9 +733,8 @@ msgid "Timer"
 msgstr "Časovač"
 
 #: kirigami_ui/PrompterPage.qml:383
-#, fuzzy
 msgid "Enable timers"
-msgstr "Doba používání"
+msgstr "Povolit časovače"
 
 #: kirigami_ui/PrompterPage.qml:396
 msgid "Stopwatch"
@@ -1157,11 +1156,11 @@ msgstr ""
 #: main.cpp:90
 msgctxt "file"
 msgid "File to copy."
-msgstr ""
+msgstr "Soubor ke kopírování."
 
 #: main.cpp:93
 msgid "Ignore QSG_RENDER_LOOP environment variable."
-msgstr ""
+msgstr "Ignorujte proměnnou prostředí QSG_RENDER_LOOP."
 
 #: main.cpp:139
 msgid "© 2021 Javier O. Cordero Pérez"
