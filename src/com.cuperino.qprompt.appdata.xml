@@ -8,6 +8,9 @@
   <url type="homepage">https://qprompt.app</url>
   <url type="translate">https://l10n.qprompt.app</url>
   <url type="bugtracker">https://github.com/Cuperino/QPrompt/issues</url>
+  <url type="contact">https://forum.cuperino.com/</url>
+  <url type="help">https://forum.cuperino.com/</url>
+  <url type="donation">https://www.patreon.com/qpromptapp</url>
   <metadata_license>CC-BY-4.0</metadata_license>
   <project_license>GPL-3.0</project_license>
   <developer_name>Javier O. Cordero Pérez</developer_name>
@@ -35,13 +38,6 @@
     <mediatype>text/markdown</mediatype>
     <mediatype>text/html</mediatype>
   </provides>
-  <requires>
-    <display_length compare="gte">292</display_length>
-  </requires>
-  <recommends>
-    <display_length compare="gte">xsmall</display_length>
-    <display_length compare="lte">xlarge</display_length>
-  </recommends>
   <supports>
     <control>pointing</control>
     <control>keyboard</control>
@@ -54,87 +50,95 @@
   </kudos>
   <content_rating type="oars-1.0" />
   <releases>
+    <release version="1.1.3" type="stable" date="2022-9-12">
+    </release>
     <release version="1.1.2" type="stable" date="2022-9-12">
-      <artifact type="source">
-        <location>https://github.com/Cuperino/QPrompt/archive/refs/tags/v1.1.2.tar.gz</location>
-        <checksum type="sha256">178cd9dd37ff22bf4a3f8865ac68885a2c50cb4563ec3fc769176560f380c466</checksum>
-      </artifact>
-      <artifact type="binary" platform="x86_64-linux-clang">
-        <location>https://github.com/Cuperino/QPrompt/releases/download/v1.1.2/qprompt-v1.1.2-072f0a7-linux-64-clang.AppImage</location>
-        <checksum type="sha256">8ea9208d5602ebea6f55b87cd1b6c4855d5c1e76ecfa476738cedfa75c6e9179</checksum>
-      </artifact>
-      <artifact type="binary" platform="aarch64-linux-gnu">
-        <location>https://github.com/Cuperino/QPrompt/releases/download/v1.1.2/qprompt-v1.1.2-072f0a7-linux-arm64-gcc.deb</location>
-        <checksum type="sha256">010d890210e1b3c6a63f04e86de345c753516d9fa72f2beeda5ffeae6962797c</checksum>
-      </artifact>
-      <artifact type="binary" platform="x86_64-windows-msvc">
-        <location>https://github.com/Cuperino/QPrompt/releases/download/v1.1.2/qprompt-v1.1.2-072f0a7-windows-msvc2019_64-cl.exe</location>
-        <checksum type="sha256">44866f5dc0ed8f02029429aaa932d3fe5c6ccb5b7b84f01ad2785e85ef1474d8</checksum>
-      </artifact>
-      <artifact type="binary" platform="x86_64-macos-clang">
-        <location>https://github.com/Cuperino/QPrompt/releases/download/v1.1.2/qprompt-v1.1.2-072f0a7-macos-64-clang.dmg</location>
-        <checksum type="sha256">9562e41846ea2e1a44a472e3bceb23b7f5f7a09f19ae4b417495c5058edb2466</checksum>
-      </artifact>
-      <artifact type="binary" platform="arm64-v8a-android">
-        <location>https://github.com/Cuperino/QPrompt/releases/download/v1.1.2/qprompt-v1.1.2-072f0a7-android-64-debug.apk</location>
-        <checksum type="sha256">faf94f37add3734f13d4d6cefad6971ea8538faee5d87c9dd9bc051fcb65fc13</checksum>
-      </artifact>
-      <artifact type="binary" platform="x86_64-haiku-gcc">
-        <location>https://github.com/Cuperino/QPrompt/releases/download/v1.1.2/qprompt-1.1.2-1-x86_64.hpkg</location>
-        <checksum type="sha256">25c031cce3fa2ebb341007984809e14b6363122953763a7319f9b33c091b8fc3</checksum>
-      </artifact>
+      <artifacts>
+        <artifact type="source">
+          <location>https://github.com/Cuperino/QPrompt/archive/refs/tags/v1.1.2.tar.gz</location>
+          <checksum type="sha256">178cd9dd37ff22bf4a3f8865ac68885a2c50cb4563ec3fc769176560f380c466</checksum>
+        </artifact>
+        <artifact type="binary" platform="x86_64-linux-gnu">
+          <location>https://github.com/Cuperino/QPrompt/releases/download/v1.1.2/qprompt-v1.1.2-072f0a7-linux-64-clang.AppImage</location>
+          <checksum type="sha256">8ea9208d5602ebea6f55b87cd1b6c4855d5c1e76ecfa476738cedfa75c6e9179</checksum>
+        </artifact>
+        <artifact type="binary" platform="aarch64-linux-gnu">
+          <location>https://github.com/Cuperino/QPrompt/releases/download/v1.1.2/qprompt-v1.1.2-072f0a7-linux-aarch64-gcc.deb</location>
+          <checksum type="sha256">010d890210e1b3c6a63f04e86de345c753516d9fa72f2beeda5ffeae6962797c</checksum>
+        </artifact>
+        <artifact type="binary" platform="x86_64-windows-msvc">
+          <location>https://github.com/Cuperino/QPrompt/releases/download/v1.1.2/qprompt-v1.1.2-072f0a7-windows-msvc2019_64-cl.exe</location>
+          <checksum type="sha256">44866f5dc0ed8f02029429aaa932d3fe5c6ccb5b7b84f01ad2785e85ef1474d8</checksum>
+        </artifact>
+        <artifact type="binary" platform="x86_64-macos-gnu">
+          <location>https://github.com/Cuperino/QPrompt/releases/download/v1.1.2/qprompt-v1.1.2-072f0a7-macos-64-clang.dmg</location>
+          <checksum type="sha256">9562e41846ea2e1a44a472e3bceb23b7f5f7a09f19ae4b417495c5058edb2466</checksum>
+        </artifact>
+        <artifact type="binary" platform="aarch64-linux-android">
+          <location>https://github.com/Cuperino/QPrompt/releases/download/v1.1.2/qprompt-v1.1.2-072f0a7-android-64-debug.apk</location>
+          <checksum type="sha256">faf94f37add3734f13d4d6cefad6971ea8538faee5d87c9dd9bc051fcb65fc13</checksum>
+        </artifact>
+        <artifact type="binary" platform="x86_64-haiku-gnu">
+          <location>https://github.com/Cuperino/QPrompt/releases/download/v1.1.2/qprompt-1.1.2-1-x86_64.hpkg</location>
+          <checksum type="sha256">25c031cce3fa2ebb341007984809e14b6363122953763a7319f9b33c091b8fc3</checksum>
+        </artifact>
+      </artifacts>
     </release>
     <release version="1.1.1" type="stable" date="2022-8-18">
-      <artifact type="source">
-        <location>https://github.com/Cuperino/QPrompt/archive/refs/tags/v1.1.1.tar.gz</location>
-        <checksum type="sha256">556e30d3d79f7e1822a30e260d34aade3b4cae1c7975716a89718b9fc29ecc34</checksum>
-      </artifact>
-      <artifact type="binary" platform="x86_64-linux-clang">
-        <location>https://github.com/Cuperino/QPrompt/releases/download/v1.1.1/qprompt-v1.1.1-a873a2e-linux-64-clang.AppImage</location>
-        <checksum type="sha256">fbc651c0a9763ad684764a715f857aa151d812e2d3c6ff38c4af2e7eb4329b0a</checksum>
-      </artifact>
-      <artifact type="binary" platform="aarch64-linux-gnu">
-        <location>https://github.com/Cuperino/QPrompt/releases/download/v1.1.1/qprompt-v1.1.1-a873a2e-linux-64-gcc.deb</location>
-        <checksum type="sha256">3a477b20986ecfa0bb01ea64beaa2ddeb99f11c41b9d3f49ec0564a87d9061e7</checksum>
-      </artifact>
-      <artifact type="binary" platform="x86_64-windows-msvc">
-        <location>https://github.com/Cuperino/QPrompt/releases/download/v1.1.1/qprompt-v1.1.1-a873a2e-windows-msvc2019_64-cl.exe</location>
-        <checksum type="sha256">acc2f12aa5ab4cb1f63cc791e706502bf35beddc314cd5beb98ea8fbc680d8dc</checksum>
-      </artifact>
-      <artifact type="binary" platform="x86_64-macos-clang">
-        <location>https://github.com/Cuperino/QPrompt/releases/download/v1.1.1/qprompt-v1.1.1-a873a2e-macos-64-clang.dmg</location>
-        <checksum type="sha256">e9a95bb99f455b7d7e7e28aa91094b0287225daaabbec924aaf0d7ef479aac8c</checksum>
-      </artifact>
-      <artifact type="binary" platform="arm64-v8a-android">
-        <location>https://github.com/Cuperino/QPrompt/releases/download/v1.1.1/qprompt-v1.1.1-a873a2e-android-arm64.apk</location>
-        <checksum type="sha256">751345c121f20d191cd6566d03097e3d27b125f0f33f48d6ad93039f5ef2769e</checksum>
-      </artifact>
+      <artifacts>
+        <artifact type="source">
+          <location>https://github.com/Cuperino/QPrompt/archive/refs/tags/v1.1.1.tar.gz</location>
+          <checksum type="sha256">556e30d3d79f7e1822a30e260d34aade3b4cae1c7975716a89718b9fc29ecc34</checksum>
+        </artifact>
+        <artifact type="binary" platform="x86_64-linux-gnu">
+          <location>https://github.com/Cuperino/QPrompt/releases/download/v1.1.1/qprompt-v1.1.1-a873a2e-linux-64-clang.AppImage</location>
+          <checksum type="sha256">fbc651c0a9763ad684764a715f857aa151d812e2d3c6ff38c4af2e7eb4329b0a</checksum>
+        </artifact>
+        <artifact type="binary" platform="aarch64-linux-gnu">
+          <location>https://github.com/Cuperino/QPrompt/releases/download/v1.1.1/qprompt-v1.1.1-a873a2e-linux-64-gcc.deb</location>
+          <checksum type="sha256">3a477b20986ecfa0bb01ea64beaa2ddeb99f11c41b9d3f49ec0564a87d9061e7</checksum>
+        </artifact>
+        <artifact type="binary" platform="x86_64-windows-msvc">
+          <location>https://github.com/Cuperino/QPrompt/releases/download/v1.1.1/qprompt-v1.1.1-a873a2e-windows-msvc2019_64-cl.exe</location>
+          <checksum type="sha256">acc2f12aa5ab4cb1f63cc791e706502bf35beddc314cd5beb98ea8fbc680d8dc</checksum>
+        </artifact>
+        <artifact type="binary" platform="x86_64-macos-gnu">
+          <location>https://github.com/Cuperino/QPrompt/releases/download/v1.1.1/qprompt-v1.1.1-a873a2e-macos-64-clang.dmg</location>
+          <checksum type="sha256">e9a95bb99f455b7d7e7e28aa91094b0287225daaabbec924aaf0d7ef479aac8c</checksum>
+        </artifact>
+        <artifact type="binary" platform="aarch64-linux-android">
+          <location>https://github.com/Cuperino/QPrompt/releases/download/v1.1.1/qprompt-v1.1.1-a873a2e-android-arm64.apk</location>
+          <checksum type="sha256">751345c121f20d191cd6566d03097e3d27b125f0f33f48d6ad93039f5ef2769e</checksum>
+        </artifact>
+      </artifacts>
     </release>
     <release version="1.1" type="stable" date="2022-8-5">
-      <artifact type="source">
-        <location>https://github.com/Cuperino/QPrompt/archive/refs/tags/v1.1.0.tar.gz</location>
-        <checksum type="sha256">4a40a96ace90335b5e084627e70ea51c04c54153c4db17d1a01283a808bb0cdf</checksum>
-      </artifact>
-      <artifact type="binary" platform="x86_64-linux-clang">
-        <location>https://github.com/Cuperino/QPrompt/releases/download/v1.1.0/qprompt-v1.1-8fc947c-linux-64-clang.AppImage</location>
-        <checksum type="sha256">159ea797095c9c7bdcba604afa705168c8f3ff516e65ba5db08a927047f74940</checksum>
-      </artifact>
-      <artifact type="binary" platform="aarch64-linux-gnu">
-        <location>https://github.com/Cuperino/QPrompt/releases/download/v1.1.0/qprompt-v1.1-8fc947c-linux-aarch64.deb</location>
-        <checksum type="sha256">180126eee2c78e7d9392a96e124dbde8e9ebce0d8802fc8097dac1cce6ca6444</checksum>
-      </artifact>
-      <artifact type="binary" platform="x86_64-windows-msvc">
-        <location>https://github.com/Cuperino/QPrompt/releases/download/v1.1.0/qprompt-v1.1-8fc947c-windows-64-msvc2019_64-cl.exe</location>
-        <checksum type="sha256">fc09a6779fb0571822fbe098a5699a8b1e49c071b244b7160654c1f7ee787837</checksum>
-      </artifact>
-      <artifact type="binary" platform="x86_64-macos-clang">
-        <location>https://github.com/Cuperino/QPrompt/releases/download/v1.1.0/qprompt-v1.1-8fc947c-macos-64-clang.dmg</location>
-        <checksum type="sha256">98e0fdddea4900a55e45f87171b8b0d3bed3efe037e4f816bd9c232c51c55bcf</checksum>
-      </artifact>
-      <artifact type="binary" platform="arm64-v8a-android">
-        <location>https://github.com/Cuperino/QPrompt/releases/download/v1.1.0/qprompt-v1.1-8fc947c-android-aarch64-debug.apk</location>
-        <checksum type="sha256">c0a0508e88b8e4847893c04fe2c9c8dacbd540b3f73e8660da48e5d7623bbb34</checksum>
-      </artifact>
+      <artifacts>
+        <artifact type="source">
+          <location>https://github.com/Cuperino/QPrompt/archive/refs/tags/v1.1.0.tar.gz</location>
+          <checksum type="sha256">4a40a96ace90335b5e084627e70ea51c04c54153c4db17d1a01283a808bb0cdf</checksum>
+        </artifact>
+        <artifact type="binary" platform="x86_64-linux-gnu">
+          <location>https://github.com/Cuperino/QPrompt/releases/download/v1.1.0/qprompt-v1.1-8fc947c-linux-64-clang.AppImage</location>
+          <checksum type="sha256">159ea797095c9c7bdcba604afa705168c8f3ff516e65ba5db08a927047f74940</checksum>
+        </artifact>
+        <artifact type="binary" platform="aarch64-linux-gnu">
+          <location>https://github.com/Cuperino/QPrompt/releases/download/v1.1.0/qprompt-v1.1-8fc947c-linux-aarch64.deb</location>
+          <checksum type="sha256">180126eee2c78e7d9392a96e124dbde8e9ebce0d8802fc8097dac1cce6ca6444</checksum>
+        </artifact>
+        <artifact type="binary" platform="x86_64-windows-msvc">
+          <location>https://github.com/Cuperino/QPrompt/releases/download/v1.1.0/qprompt-v1.1-8fc947c-windows-64-msvc2019_64-cl.exe</location>
+          <checksum type="sha256">fc09a6779fb0571822fbe098a5699a8b1e49c071b244b7160654c1f7ee787837</checksum>
+        </artifact>
+        <artifact type="binary" platform="x86_64-macos-gnu">
+          <location>https://github.com/Cuperino/QPrompt/releases/download/v1.1.0/qprompt-v1.1-8fc947c-macos-64-clang.dmg</location>
+          <checksum type="sha256">98e0fdddea4900a55e45f87171b8b0d3bed3efe037e4f816bd9c232c51c55bcf</checksum>
+        </artifact>
+        <artifact type="binary" platform="aarch64-linux-android">
+          <location>https://github.com/Cuperino/QPrompt/releases/download/v1.1.0/qprompt-v1.1-8fc947c-android-aarch64-debug.apk</location>
+          <checksum type="sha256">c0a0508e88b8e4847893c04fe2c9c8dacbd540b3f73e8660da48e5d7623bbb34</checksum>
+        </artifact>
+      </artifacts>
     </release>
     <release version="1.0" type="stable" date="2021-12-31">
       <artifacts>
@@ -148,10 +152,10 @@
         <artifact type="binary" platform="x86_64-windows-msvc">
           <location>https://github.com/Cuperino/QPrompt/releases/download/v1.0.0/qprompt-v1.0-2c9752c-v1.0-windows-msvc2019_64-cl.exe</location>
         </artifact>
-        <artifact type="binary" platform="x86_64-macos-clang">
+        <artifact type="binary" platform="x86_64-macos-gnu">
           <location>https://github.com/Cuperino/QPrompt/releases/download/v1.0.0/qprompt-v1.0-2c9752c-v1.0-macos-64-clang.dmg</location>
         </artifact>
-        <artifact type="binary" platform="arm64-v8a-android">
+        <artifact type="binary" platform="aarch64-linux-android">
           <location>https://github.com/Cuperino/QPrompt/releases/download/v1.0.0/qprompt_build_apk-debug.apk</location>
         </artifact>
         <artifact type="source">
