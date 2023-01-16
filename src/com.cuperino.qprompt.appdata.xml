@@ -8,7 +8,6 @@
   <url type="homepage">https://qprompt.app</url>
   <url type="translate">https://l10n.qprompt.app</url>
   <url type="bugtracker">https://github.com/Cuperino/QPrompt/issues</url>
-  <url type="contact">https://forum.cuperino.com/</url>
   <url type="help">https://forum.cuperino.com/</url>
   <url type="donation">https://www.patreon.com/qpromptapp</url>
   <metadata_license>CC-BY-4.0</metadata_license>
@@ -27,10 +26,6 @@
       <image>https://qprompt.app/assets/img/countdown.png</image>
       <caption>Countdown on stand-by</caption>
     </screenshot>
-    <screenshot>
-      <image>https://a.fsdn.com/con/app/proj/qprompt/screenshots/Screenshot_20211101_041017.png/max/max/1</image>
-      <caption>Opaque background with video in the background, timers, and mirrored contents</caption>
-    </screenshot>
   </screenshots>
   <provides>
     <binary>qprompt</binary>
@@ -38,12 +33,17 @@
     <mediatype>text/markdown</mediatype>
     <mediatype>text/html</mediatype>
   </provides>
-  <supports>
+<!--   <content_rating type="oars-1.0" /> -->
+  <x-kudos>
+    <kudo>HiDpiIcon</kudo>
+    <kudo>HighContrast</kudo>
+    <kudo>ModernToolkit</kudo>
+  </x-kudos>
+  <x-supports>
     <control>pointing</control>
     <control>keyboard</control>
     <control>touch</control>
-  </supports>
-  <content_rating type="oars-1.0" />
+  </x-supports>
   <releases>
     <release version="1.1.3" type="stable" date="2022-9-12">
     </release>
