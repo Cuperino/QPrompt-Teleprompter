@@ -9,10 +9,10 @@ msgstr ""
 "Project-Id-Version: qprompt\n"
 "Report-Msgid-Bugs-To: https://github.com/Cuperino/QPrompt/issues/new/choose\n"
 "POT-Creation-Date: 2023-01-16 09:28-0400\n"
-"PO-Revision-Date: 2023-01-10 01:20+0000\n"
+"PO-Revision-Date: 2023-01-16 15:48+0000\n"
 "Last-Translator: Javier O. Cordero Pérez <javiercorderoperez@gmail.com>\n"
-"Language-Team: Spanish <http://l10n.cuperino.com/projects/qprompt/qprompt-"
-"app/es/>\n"
+"Language-Team: Spanish <http://l10n.cuperino.com/projects/qprompt/"
+"qprompt-app/es/>\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -737,9 +737,8 @@ msgid "Timer"
 msgstr "Indicador de tiempo"
 
 #: kirigami_ui/PrompterPage.qml:383
-#, fuzzy
 msgid "Enable timers"
-msgstr "Tiempo de uso"
+msgstr "Activar temporizadores"
 
 #: kirigami_ui/PrompterPage.qml:396
 msgid "Stopwatch"
