@@ -33,7 +33,7 @@
     <mediatype>text/markdown</mediatype>
     <mediatype>text/html</mediatype>
   </provides>
-<!--   <content_rating type="oars-1.0" /> -->
+  <content_rating type="oars-1.0" />
   <x-kudos>
     <kudo>HiDpiIcon</kudo>
     <kudo>HighContrast</kudo>
