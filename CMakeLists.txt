@@ -47,13 +47,14 @@ set(CMAKE_AUTORCC ON)
 set(QT_DEFAULT_MAJOR_VERSION 5)
 set(QT_MIN_VERSION 5.15.2)
 # KF5 5.78 for Ubuntu 21.04 and Debian 11, which require no backporting
+# KF5 5.68 is used as a hack to allow Snapcraft build on Ubuntu 20.04 core
 # Use 5.83 ECM on Windows to make use of ecm_add_app_icon syntax
 if (WIN32)
     set(ECM_MIN_VERSION 5.83.0)
 else()
-    set(ECM_MIN_VERSION 5.78.0)
+    set(ECM_MIN_VERSION 5.68.0)
 endif()
-set(KF_MIN_VERSION 5.78.0)
+set(KF_MIN_VERSION 5.68.0)
 if (APPLE)
     set(APPLE_SUPPRESS_X11_WARNING ON)
 endif()
