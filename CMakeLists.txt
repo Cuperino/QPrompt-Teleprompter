@@ -132,7 +132,6 @@ if(ANDROID)
         QuickControls2
         Network
         AndroidExtras
-        VirtualKeyboard
         QmlImportScanner  # Used to get static QML. Gets ignored if not a static build
         QuickCompiler
     )
