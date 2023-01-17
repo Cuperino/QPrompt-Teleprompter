@@ -157,7 +157,6 @@ if (ANDROID)
         Qt${QT_VERSION_MAJOR}::QuickControls2
         Qt${QT_VERSION_MAJOR}::Network
         Qt${QT_VERSION_MAJOR}::AndroidExtras
-        Qt${QT_VERSION_MAJOR}::VirtualKeyboard
         KF5::I18n
         KF5::Kirigami2
         KF5::CoreAddons
