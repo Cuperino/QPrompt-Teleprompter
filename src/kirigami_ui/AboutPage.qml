@@ -26,7 +26,6 @@ Kirigami.AboutPage {
     //getInvolvedUrl: "https://l10n.qprompt.app/"
 
     mainAction: Kirigami.Action {
-        //iconName: !Kirigami.Settings.isMobile && pageStack.globalToolBar.actualStyle === Kirigami.ApplicationHeaderStyle.None ? 'go-previous' : (['android', 'ios', 'tvos'].indexOf(Qt.platform.os)===-1 ? "mail-mark-unread" : "draw-star")
         iconSource: !Kirigami.Settings.isMobile && pageStack.globalToolBar.actualStyle === Kirigami.ApplicationHeaderStyle.None ? 'qrc:/icons/go-previous.svg' : (['android', 'ios', 'tvos'].indexOf(Qt.platform.os)===-1 ? "qrc:/icons/mail-mark-unread.svg" : "qrc:/icons/draw-star.svg")
         onTriggered: {
             if (!Kirigami.Settings.isMobile && pageStack.globalToolBar.actualStyle === Kirigami.ApplicationHeaderStyle.None)

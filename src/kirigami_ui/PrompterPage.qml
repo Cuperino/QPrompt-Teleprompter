@@ -70,7 +70,6 @@ Kirigami.Page {
         main: Kirigami.Action {
             id: promptingButton
             text: i18n("Start prompter")
-            iconName: Qt.application.layoutDirection === Qt.RightToLeft ? "go-next-rtl" : "go-next"
             icon.source: Qt.application.layoutDirection === Qt.RightToLeft ? "icons/go-previous.svg" : "icons/go-next.svg"
             onTriggered: prompter.toggle()
         }
@@ -78,7 +77,6 @@ Kirigami.Page {
             id: decreaseVelocityButton
             enabled: Kirigami.Settings.isMobile
             text: pageStack.globalToolBar.actualStyle === Kirigami.ApplicationHeaderStyle.None ? i18n("Decrease velocity") : ""
-            iconName: Qt.application.layoutDirection === Qt.RightToLeft ? "go-previous-rtl" : "go-previous"
             icon.source: Qt.application.layoutDirection === Qt.RightToLeft ? "icons/go-next.svg" : "icons/go-previous.svg"
             onTriggered: {
                 if (parseInt(prompter.state) === Prompter.States.Prompting)
@@ -92,7 +90,6 @@ Kirigami.Page {
             id: increaseVelocityButton
             enabled: Kirigami.Settings.isMobile
             text: pageStack.globalToolBar.actualStyle === Kirigami.ApplicationHeaderStyle.None ? i18n("Increase velocity") : ""
-            iconName: Qt.application.layoutDirection === Qt.RightToLeft ? "go-next-rtl" : "go-next"
             icon.source: Qt.application.layoutDirection === Qt.RightToLeft ? "icons/go-previous.svg" : "icons/go-next.svg"
             onTriggered: {
                 if (parseInt(prompter.state) === Prompter.States.Prompting)
