@@ -8,10 +8,10 @@ msgstr ""
 "Project-Id-Version: qprompt\n"
 "Report-Msgid-Bugs-To: https://github.com/Cuperino/QPrompt/issues/new/choose\n"
 "POT-Creation-Date: 2023-01-16 09:28-0400\n"
-"PO-Revision-Date: 2022-07-27 22:56+0000\n"
-"Last-Translator: Javier O. Cordero Pérez <javiercorderoperez@gmail.com>\n"
-"Language-Team: Italian <http://l10n.cuperino.com/projects/qprompt/qprompt-"
-"app/it/>\n"
+"PO-Revision-Date: 2023-01-18 13:20+0000\n"
+"Last-Translator: Roberto <info@notelseit.com>\n"
+"Language-Team: Italian <http://l10n.cuperino.com/projects/qprompt/"
+"qprompt-app/it/>\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -64,10 +64,9 @@ msgstr "Tastiera del computer"
 
 #: kirigami_ui/+android/main.qml:228 kirigami_ui/main.qml:242
 #: kirigami_ui/+windows/main.qml:237
-#, fuzzy
 msgctxt "Open 'scroll settings' from main menu and global menu actions"
 msgid "Scroll throttle settings"
-msgstr "&Impostazioni"
+msgstr "Impostazioni"
 
 #: kirigami_ui/+android/main.qml:233 kirigami_ui/main.qml:248
 #: kirigami_ui/main.qml:724 kirigami_ui/+windows/main.qml:242
@@ -82,7 +81,7 @@ msgstr "Tasti &freccia inversa"
 msgctxt ""
 "Main menu and global menu actions. Invert scroll direction while prompting."
 msgid "Invert &scroll direction"
-msgstr ""
+msgstr "Invertire la direzione dello &scroller"
 
 #: kirigami_ui/+android/main.qml:249 kirigami_ui/main.qml:266
 #: kirigami_ui/main.qml:716 kirigami_ui/+windows/main.qml:258
@@ -90,7 +89,7 @@ msgctxt ""
 "Main menu and global menu actions. Have touchpad and mouse wheel scrolling "
 "adjust velocity instead of scrolling like most other apps."
 msgid "Use scroll as velocity &dial"
-msgstr ""
+msgstr "Utilizzare lo scroll come velocità e selezione"
 
 #: kirigami_ui/+android/main.qml:258 kirigami_ui/main.qml:276
 #: kirigami_ui/main.qml:710 kirigami_ui/+windows/main.qml:267
@@ -98,76 +97,76 @@ msgctxt ""
 "Main menu and global menu actions. Touchpad scrolling and mouse wheel use "
 "have no effect while prompting."
 msgid "Disable scrolling while prompting"
-msgstr ""
+msgstr "Disattivare lo scrolling durante il prompting"
 
 #: kirigami_ui/+android/main.qml:266 kirigami_ui/main.qml:285
 #: kirigami_ui/+windows/main.qml:275
 msgctxt "Main menu actions"
 msgid "Other &Settings"
-msgstr ""
+msgstr "Altre &Impostazioni"
 
 #: kirigami_ui/+android/main.qml:277 kirigami_ui/main.qml:297
 #: kirigami_ui/+windows/main.qml:286
 msgctxt "Main menu actions"
 msgid "Always hide formatting tools"
-msgstr ""
+msgstr "Nascondere sempre gli strumenti di formattazione"
 
 #: kirigami_ui/+android/main.qml:286 kirigami_ui/main.qml:307
 #: kirigami_ui/+windows/main.qml:295
 msgctxt "Main menu actions. Hides formatting tools while not in edit mode."
 msgid "Auto hide formatting tools"
-msgstr ""
+msgstr "Nascondi automaticamente gli strumenti di formattazione"
 
 #: kirigami_ui/+android/main.qml:294 kirigami_ui/main.qml:316
 #: kirigami_ui/+windows/main.qml:303
 msgctxt ""
 "Main menu actions. Disables contrast effect for the reading region overlay."
 msgid "Disable overlay contrast"
-msgstr ""
+msgstr "Disattivare il contrasto in sovrimpressione"
 
 #: kirigami_ui/+android/main.qml:310 kirigami_ui/main.qml:361
 #: kirigami_ui/+windows/main.qml:346
 msgctxt "Main menu actions. Load about page."
 msgid "Abou&t %1"
-msgstr ""
+msgstr "Informazioni&t %1"
 
 #: kirigami_ui/+android/main.qml:316 kirigami_ui/main.qml:368
 #: kirigami_ui/main.qml:496 kirigami_ui/+windows/main.qml:352
 msgctxt "Main menu and global menu actions"
 msgid "&Quit"
-msgstr ""
+msgstr "Esci"
 
 #: kirigami_ui/+android/main.qml:361 kirigami_ui/main.qml:419
 #: kirigami_ui/main.qml:756 kirigami_ui/+windows/main.qml:402
 msgctxt "Main menu and global actions. Load document that welcomes users."
 msgid "Load &Welcome"
-msgstr ""
+msgstr "Carica e benvenuto"
 
 #: kirigami_ui/+android/main.qml:397 kirigami_ui/main.qml:455
 #: kirigami_ui/+windows/main.qml:438
 msgid "Darth mode"
-msgstr ""
+msgstr "Modalità Scura"
 
 #: kirigami_ui/+android/main.qml:503 kirigami_ui/main.qml:907
 #: kirigami_ui/+windows/main.qml:573
 msgctxt "Title for save before closing dialog"
 msgid "Save Document"
-msgstr ""
+msgstr "Salva Documento"
 
 #: kirigami_ui/+android/main.qml:504 kirigami_ui/main.qml:908
 #: kirigami_ui/+windows/main.qml:574
 msgid "Save changes to document before closing?"
-msgstr ""
+msgstr "Salvare le modifiche al documento prima di chiuderlo?"
 
 #: kirigami_ui/EditorToolbar.qml:349 kirigami_ui/EditorToolbar.qml:359
 msgctxt "Editor actions. Text alignment."
 msgid "&Left"
-msgstr ""
+msgstr "&Sinistra"
 
 #: kirigami_ui/EditorToolbar.qml:349 kirigami_ui/EditorToolbar.qml:359
 msgctxt "Editor actions. Text alignment."
 msgid "&Right"
-msgstr ""
+msgstr "&Destra"
 
 #: kirigami_ui/EditorToolbar.qml:354
 msgctxt "Editor actions. Text alignment."
@@ -177,37 +176,37 @@ msgstr "C&entrato"
 #: kirigami_ui/EditorToolbar.qml:508
 msgctxt "FontName (Translatable font details)"
 msgid "DejaVu (default, Roman, Cyrillic)"
-msgstr ""
+msgstr "DejaVu (default, Roman, Cirillico)"
 
 #: kirigami_ui/EditorToolbar.qml:512
 msgctxt "FontName (Translatable font details)"
 msgid "OpenDyslexic (Roman)"
-msgstr ""
+msgstr "OpenDyslexic (Roman)"
 
 #: kirigami_ui/EditorToolbar.qml:516
 msgctxt "FontName (Translatable font details)"
 msgid "Source Han Sans (CH, JP, KO)"
-msgstr ""
+msgstr "Source Han Sans (CH, JP, KO)"
 
 #: kirigami_ui/EditorToolbar.qml:520
 msgctxt "FontName (Translatable font details)"
 msgid "Scheherazade New (Arabic)"
-msgstr ""
+msgstr "Scheherazade New (Arabic)"
 
 #: kirigami_ui/EditorToolbar.qml:524
 msgctxt "FontName (Translatable font details)"
 msgid "Palanquin (Devangari)"
-msgstr ""
+msgstr "Palanquin (Devangari)"
 
 #: kirigami_ui/EditorToolbar.qml:528
 msgctxt "FontName (Translatable font details)"
 msgid "Kalpurush (Bengali)"
-msgstr ""
+msgstr "Kalpurush (Bengali)"
 
 #: kirigami_ui/EditorToolbar.qml:534
 msgctxt "Opens system font selection dialog"
 msgid "Choose System Font"
-msgstr ""
+msgstr "Scegliere il font di sistema"
 
 #: kirigami_ui/EditorToolbar.qml:540
 msgid "No glyphs selected…"
