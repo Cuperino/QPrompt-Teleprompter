@@ -3,10 +3,12 @@
         <!-- Theme Configuration -->
         <file>qtquickcontrols2.conf</file>
         <!-- User Welcome -->
+        <file alias="welcome_ar.html">documents/welcome_ar.html</file>
         <file alias="welcome_cs.html">documents/welcome_cs.html</file>
         <file alias="welcome_de.html">documents/welcome_de.html</file>
         <file alias="welcome_en.html">documents/welcome_en.html</file>
         <file alias="welcome_es.html">documents/welcome_es.html</file>
+        <file alias="welcome_fi.html">documents/welcome_fi.html</file>
         <file alias="welcome_fr.html">documents/welcome_fr.html</file>
         <file alias="welcome_it.html">documents/welcome_it.html</file>
         <file alias="welcome_ja.html">documents/welcome_ja.html</file>
@@ -14,6 +16,7 @@
         <file alias="welcome_nl.html">documents/welcome_nl.html</file>
         <file alias="welcome_oc.html">documents/welcome_oc.html</file>
         <file alias="welcome_pl.html">documents/welcome_pl.html</file>
+        <file alias="welcome_pt.html">documents/welcome_pt.html</file>
         <file alias="welcome_ru.html">documents/welcome_ru.html</file>
         <file alias="welcome_zh_CN.html">documents/welcome_zh_CN.html</file>
         <!-- Empty Untitled Document -->
