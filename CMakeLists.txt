@@ -46,6 +46,9 @@ set(CMAKE_AUTORCC ON)
 
 set(QT_DEFAULT_MAJOR_VERSION 5)
 set(QT_MIN_VERSION 5.15.2)
+if (ANDROID)
+    set(QT_MIN_VERSION 5.15.8) # due to 5.15.8 changing the Gradle version in a non-backward compat way
+endif()
 # KF5 5.78 for Ubuntu 21.04 and Debian 11, which require no backporting
 # KF5 5.68 is used as a hack to allow Snapcraft build on Ubuntu 20.04 core
 # Use 5.83 ECM on Windows to make use of ecm_add_app_icon syntax
@@ -128,6 +131,8 @@ endif()
 
 
 if(ANDROID)
+    find_package(OpenSSL REQUIRED)
+    find_package(Gradle REQUIRED)
     find_package(Qt${QT_VERSION_MAJOR} ${QT5_MIN_VERSION} REQUIRED NO_MODULE COMPONENTS
         Core
         Quick
