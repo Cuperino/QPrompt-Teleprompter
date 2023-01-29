@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           package="com.cuperino.qprompt"
-          android:versionName="1.1.3"
-          android:versionCode="1660712048"
+          android:versionName="${versionName}"
+          android:versionCode="${versionCode}"
           android:installLocation="auto">
 
     <supports-screens android:largeScreens="true" android:normalScreens="true" android:anyDensity="true" android:smallScreens="true"/>

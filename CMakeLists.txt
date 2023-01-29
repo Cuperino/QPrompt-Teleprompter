@@ -63,7 +63,10 @@ endif()
 # Directories where Qt Creator can find QML files of Kirigami etc. on your system.
 #   (This setting is cached in variable QML_IMPORT_DIR, see below. Delete
 #   ${BUIL_DIR}/CMakeCache.txt to make make changes here effective.)
-if (UNIX AND NOT APPLE AND NOT ANDROID)
+if (ANDROID)
+    list(APPEND QML_DIRS "/home/user/CraftRoot/qml/")
+    list(APPEND KIRIGAMI_DIRS "/home/user/CraftRoot/qml/org/kde/kirigami.2")
+elseif (UNIX AND NOT APPLE)
     list(APPEND QML_DIRS "/usr/lib/x86_64-linux-gnu/qt5/qml")
     list(APPEND KIRIGAMI_DIRS "/usr/lib/x86_64-linux-gnu/qt5/qml/org/kde/kirigami.2")
 elseif (UNIX AND APPLE)
@@ -132,10 +135,14 @@ if(ANDROID)
         Gui
         QuickControls2
         Network
-        AndroidExtras
         QmlImportScanner  # Used to get static QML. Gets ignored if not a static build
         QuickCompiler
     )
+    if (QT_MAJOR_VERSION EQUAL "5")
+        find_package(Qt${QT_VERSION_MAJOR} ${QT5_MIN_VERSION} REQUIRED NO_MODULE COMPONENTS
+            AndroidExtras
+        )
+    endif()
     find_package(KF5 ${KF_MIN_VERSION} REQUIRED COMPONENTS
         Kirigami2
         I18n
@@ -306,6 +313,10 @@ set(DOC_INSTALL_DIR "doc/qprompt")
 
 add_subdirectory(src build)
 ki18n_install(po)
+
+if (ANDROID)
+    configure_file(${ANDROID_PACKAGE_SOURCE_DIR}/version.gradle.in ${CMAKE_BINARY_DIR}/version.gradle)
+endif()
 
 if (WIN32 OR UNIX) # AND NOT ANDROID
     install(FILES com.cuperino.qprompt.appdata.xml DESTINATION ${KDE_INSTALL_METAINFODIR})

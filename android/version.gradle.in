@@ -1,0 +1,6 @@
+// SPDX-FileCopyrightText: 2021 Volker Krause <vkrause@kde.org>
+// SPDX-License-Identifier: BSD-3-Clause
+
+ext {
+    projectVersionFull = "@PROJECT_VERSION@"
+}
