@@ -1,5 +1,5 @@
-<?xml version='1.0' encoding='utf-8'?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="com.cuperino.qprompt" android:versionName="1.1.1" android:versionCode="1660712046" android:installLocation="auto">
+<?xml version="1.0"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="com.cuperino.qprompt" android:versionName="1.1.3ß" android:versionCode="1660712046" android:installLocation="auto">
     <!-- The following comment will be replaced upon deployment with default permissions based on the dependencies of the application.
          Remove the comment if you do not require these default permissions. -->
 
@@ -9,19 +9,12 @@
     <!-- %%INSERT_FEATURES -->
 
     <supports-screens android:largeScreens="true" android:normalScreens="true" android:anyDensity="true" android:smallScreens="true"/>
-    <application
-        android:hardwareAccelerated="true"
-        android:name="org.qtproject.qt5.android.bindings.QtApplication"
-        android:label="QPrompt"
-        android:extractNativeLibs="true"
-        android:icon="@mipmap/ic_launcher"
-        android:allowBackup="true"
-        android:fullBackupContent="true"
-        android:supportsRtl="true"
-        > <!-- android:icon="@drawable/icon" -->
+    <application android:hardwareAccelerated="true" android:name="org.qtproject.qt5.android.bindings.QtApplication" android:label="QPrompt" android:extractNativeLibs="true" android:icon="@drawable/icon" android:allowBackup="true" android:fullBackupContent="true" android:supportsRtl="true">
+        <!-- android:icon="@drawable/icon" -->
         <!-- Screen Orientation https://developer.android.com/guide/topics/manifest/activity-element.html#screen -->
         <!-- Picture in picture https://developer.android.com/guide/topics/ui/picture-in-picture Multi window https://developer.android.com/guide/topics/ui/multi-window -->
-        <activity android:configChanges="orientation|uiMode|screenLayout|screenSize|smallestScreenSize|layoutDirection|locale|fontScale|keyboard|keyboardHidden|navigation|mcc|mnc|density" android:name="org.qtproject.qt5.android.bindings.QtActivity" android:label="QPrompt" android:screenOrientation="fullUser" android:windowSoftInputMode="adjustPan" android:launchMode="singleTop" android:keepScreenOn="true" android:theme="@style/QPrompt.Main.Transparent" android:background="#303030"><!-- adjustPan -->
+        <activity android:configChanges="orientation|uiMode|screenLayout|screenSize|smallestScreenSize|layoutDirection|locale|fontScale|keyboard|keyboardHidden|navigation|mcc|mnc|density" android:name="org.qtproject.qt5.android.bindings.QtActivity" android:label="QPrompt" android:screenOrientation="fullUser" android:windowSoftInputMode="adjustPan" android:launchMode="singleTop" android:keepScreenOn="true" android:background="#303030">
+            <!-- adjustPan -->
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
@@ -56,7 +49,6 @@
             <!-- meta-data android:name="android.app.splash_screen_drawable_portrait" android:resource="@drawable/logo_portrait" / -->
             <!-- meta-data android:name="android.app.splash_screen_drawable_landscape" android:resource="@drawable/logo_landscape" / -->
             <!-- meta-data android:name="android.app.splash_screen_drawable" android:resource="@drawable/logo"/ -->
-            <meta-data android:name="android.app.splash_screen_drawable" android:resource="@drawable/splash"/>
             <!-- meta-data android:name="android.app.splash_screen_sticky" android:value="true"/ -->
             <!-- Splash screen -->
             <!-- Background running -->
@@ -70,16 +62,15 @@
                 * minimal - useful for Quick Controls 2 apps, it is much faster than "full"
                 * none - useful for apps that don't use any of the above Qt modules
             -->
-            <meta-data android:name="android.app.extract_android_style" android:value="minimal"/><!-- none -->
+            <meta-data android:name="android.app.extract_android_style" android:value="minimal"/>
+            <!-- none -->
         </activity>
         <!-- For adding service(s) please check: https://wiki.qt.io/AndroidServices -->
         <!-- <provider android:name="android.support.v4.content.FileProvider" android:authorities="com.cuperino.qprompt.fileprovider" android:grantUriPermissions="true" android:exported="false">
             <meta-data android:name="android.support.FILE_PROVIDER_PATHS" android:resource="@xml/filepaths"/>
         </provider>-->
     </application>
-<uses-sdk android:minSdkVersion="21"
-          android:targetSdkVersion="28"
-          android:maxSdkVersion="28" />
+<uses-sdk android:minSdkVersion="21" android:targetSdkVersion="28" android:maxSdkVersion="28"/>
 <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
 <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
 <uses-permission android:name="android.permission.MANAGE_EXTERNAL_STORAGE"/>
@@ -89,4 +80,5 @@
 <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"/>
 <uses-permission android:name="android.permission.MOUNT_FORMAT_FILESYSTEMS"/>
 <uses-permission android:name="android.permission.ACCESS_CHECKIN_PROPERTIES"/>
+<!-- %%INSERT_PERMISSIONS -->
 </manifest>
