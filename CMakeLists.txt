@@ -94,7 +94,7 @@ set(
 if(ANDROID)
     set(ANDROID_PACKAGE_SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/android)
 	if(NOT ANDROID_ABIS)
-		set(ANDROID_ABIS "armeabi-v7a") # arm64-v8a
+		set(ANDROID_ABIS "arm64-v8a") # armeabi-v7a
 	endif()
 else()
 set(DBINARY_ICONS_RESOURCE ON)
