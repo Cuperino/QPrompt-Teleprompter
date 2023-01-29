@@ -19,7 +19,7 @@ apply from: '../version.gradle'
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar', '*.aar'])
-        compile 'com.android.support:support-v4:25.3.1'
+        api 'com.android.support:support-v4:25.3.1'
 }
 
 def timestamp = (int)(new Date().getTime()/1000)
@@ -78,6 +78,7 @@ android {
         resConfig "en"
         minSdkVersion = qtMinSdkVersion
         targetSdkVersion = qtTargetSdkVersion
+        namespace "com.cuperino.qprompt"
         versionCode timestamp
         versionName projectVersionFull
         manifestPlaceholders = [versionName: projectVersionFull, versionCode: timestamp]
