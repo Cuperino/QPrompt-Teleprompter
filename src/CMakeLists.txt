@@ -86,7 +86,7 @@ set(qprompt_QML_SRCS qml.qrc)
 
 
 if(ANDROID)
-    add_library(${PROJECT_NAME}
+    add_library(${PROJECT_NAME} STATIC
         ${qprompt_SRCS} ${qprompt_HDRS} ${qprompt_QML_SRCS} ${qprompt_ASSETS})
 
 elseif (WASM)
@@ -148,7 +148,7 @@ endif()
 
 # Libraries
 if (ANDROID)
-    target_link_libraries(${PROJECT_NAME}
+    target_link_libraries(${PROJECT_NAME} PRIVATE
         Qt${QT_VERSION_MAJOR}::Core
         Qt${QT_VERSION_MAJOR}::Quick
         Qt${QT_VERSION_MAJOR}::Svg
@@ -161,8 +161,13 @@ if (ANDROID)
         KF5::Kirigami2
         KF5::CoreAddons
     )
+    if (QT_MAJOR_VERSION EQUAL "5")
+        target_link_libraries(${PROJECT_NAME} PRIVATE
+            Qt${QT_VERSION_MAJOR}::AndroidExtras
+        )
+    endif()
 elseif (WASM OR IOS)
-    target_link_libraries(${PROJECT_NAME}
+    target_link_libraries(${PROJECT_NAME} PRIVATE
         Qt${QT_VERSION_MAJOR}::Core
         Qt${QT_VERSION_MAJOR}::Quick
         Qt${QT_VERSION_MAJOR}::Svg
