@@ -6,7 +6,7 @@
           android:installLocation="auto">
 
     <supports-screens android:largeScreens="true" android:normalScreens="true" android:anyDensity="true" android:smallScreens="true"/>
-    <application android:appCategory="video" android:hardwareAccelerated="true" android:name="org.qtproject.qt5.android.bindings.QtApplication" android:label="QPrompt" android:icon="@drawable/icon">
+    <application android:appCategory="video" android:hardwareAccelerated="true" android:name="org.qtproject.qt5.android.bindings.QtApplication" android:label="QPrompt" android:icon="@mipmap/ic_launcher">
         <!-- android:icon="@drawable/icon" -->
         <!-- Screen Orientation https://developer.android.com/guide/topics/manifest/activity-element.html#screen -->
         <!-- Picture in picture https://developer.android.com/guide/topics/ui/picture-in-picture Multi window https://developer.android.com/guide/topics/ui/multi-window -->
