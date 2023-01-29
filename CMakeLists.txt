@@ -131,7 +131,7 @@ endif()
 
 
 if(ANDROID)
-    find_package(Gradle REQUIRED)
+    # find_package(Gradle REQUIRED)
     find_package(Qt${QT_VERSION_MAJOR} ${QT5_MIN_VERSION} REQUIRED NO_MODULE COMPONENTS
         Core
         Quick
