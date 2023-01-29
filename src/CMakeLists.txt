@@ -156,15 +156,11 @@ if (ANDROID)
         Qt${QT_VERSION_MAJOR}::Qml
         Qt${QT_VERSION_MAJOR}::QuickControls2
         Qt${QT_VERSION_MAJOR}::Network
+        Qt${QT_VERSION_MAJOR}::AndroidExtras
         KF5::I18n
         KF5::Kirigami2
         KF5::CoreAddons
     )
-    if (QT_MAJOR_VERSION EQUAL "5")
-        target_link_libraries(${PROJECT_NAME} PRIVATE
-            Qt${QT_VERSION_MAJOR}::AndroidExtras
-        )
-    endif()
 elseif (WASM OR IOS)
     target_link_libraries(${PROJECT_NAME} PRIVATE
         Qt${QT_VERSION_MAJOR}::Core

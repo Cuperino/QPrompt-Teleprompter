@@ -137,12 +137,8 @@ if(ANDROID)
         Network
         QmlImportScanner  # Used to get static QML. Gets ignored if not a static build
         QuickCompiler
+        AndroidExtras
     )
-    if (QT_MAJOR_VERSION EQUAL "5")
-        find_package(Qt${QT_VERSION_MAJOR} ${QT5_MIN_VERSION} REQUIRED NO_MODULE COMPONENTS
-            AndroidExtras
-        )
-    endif()
     find_package(KF5 ${KF_MIN_VERSION} REQUIRED COMPONENTS
         Kirigami2
         I18n
