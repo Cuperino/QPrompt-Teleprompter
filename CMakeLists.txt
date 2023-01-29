@@ -307,6 +307,10 @@ set(DOC_INSTALL_DIR "doc/qprompt")
 add_subdirectory(src build)
 ki18n_install(po)
 
+if (ANDROID)
+    configure_file(${ANDROID_PACKAGE_SOURCE_DIR}/version.gradle.in ${CMAKE_BINARY_DIR}/version.gradle)
+endif()
+
 if (WIN32 OR UNIX) # AND NOT ANDROID
     install(FILES com.cuperino.qprompt.appdata.xml DESTINATION ${KDE_INSTALL_METAINFODIR})
     install(PROGRAMS com.cuperino.qprompt.desktop DESTINATION ${KDE_INSTALL_APPDIR})
