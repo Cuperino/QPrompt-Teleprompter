@@ -13,8 +13,6 @@ buildscript {
     }
 
     dependencies {
-        /* classpath 'com.android.tools.build:gradle:7.0.2' */
-        classpath 'com.android.support:support-v4:25.3.1'
     }
 }
 
