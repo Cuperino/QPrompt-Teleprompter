@@ -15,11 +15,14 @@ repositories {
 }
 
 apply plugin: 'com.android.application'
+apply from: '../version.gradle'
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar', '*.aar'])
         compile 'com.android.support:support-v4:25.3.1'
 }
+
+def timestamp = (int)(new Date().getTime()/1000)
 
 android {
     /*******************************************************
@@ -68,11 +71,24 @@ android {
     // Do not compress Qt binary resources file
     aaptOptions {
         noCompress 'rcc'
+        ignoreAssetsPattern '!<dir>ECM:!<dir>aclocal:!<dir>doc'
     }
 
     defaultConfig {
         resConfig "en"
         minSdkVersion = qtMinSdkVersion
         targetSdkVersion = qtTargetSdkVersion
+        versionCode timestamp
+        versionName projectVersionFull
+        manifestPlaceholders = [versionName: projectVersionFull, versionCode: timestamp]
+    }
+
+    packagingOptions {
+        exclude 'lib/*/*RemoteObjects*'
+        exclude 'lib/*/*_imageformats_qico_*'
+        exclude 'lib/*/*_imageformats_qicns_*'
+        exclude 'lib/*/*_imageformats_qtga_*'
+        exclude 'lib/*/*_imageformats_qtiff_*'
+        exclude 'lib/*/*_qmltooling_*'
     }
 }
