@@ -86,9 +86,8 @@ set(qprompt_QML_SRCS qml.qrc)
 
 
 if(ANDROID)
-    add_library(${PROJECT_NAME} STATIC
+    add_library(${PROJECT_NAME}
         ${qprompt_SRCS} ${qprompt_HDRS} ${qprompt_QML_SRCS} ${qprompt_ASSETS})
-
 elseif (WASM)
     #cmake -DCMAKE_TOOLCHAIN_FILE=$HOME/emsdk/emscripten/1.38.27/cmake/Modules/Platform/Emscripten.cmake -DCMAKE_BUILD_TYPE=Debug -G "Unix Makefiles" ~/path/to/CMakeLists.txt
     set(DFEATURE_developer_build ON)
@@ -148,7 +147,7 @@ endif()
 
 # Libraries
 if (ANDROID)
-    target_link_libraries(${PROJECT_NAME}
+    target_link_libraries(${PROJECT_NAME} PRIVATE
         Qt${QT_VERSION_MAJOR}::Core
         Qt${QT_VERSION_MAJOR}::Quick
         Qt${QT_VERSION_MAJOR}::Svg
@@ -162,7 +161,7 @@ if (ANDROID)
         KF5::CoreAddons
     )
 elseif (WASM OR IOS)
-    target_link_libraries(${PROJECT_NAME}
+    target_link_libraries(${PROJECT_NAME} PRIVATE
         Qt${QT_VERSION_MAJOR}::Core
         Qt${QT_VERSION_MAJOR}::Quick
         Qt${QT_VERSION_MAJOR}::Svg
