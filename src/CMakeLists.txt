@@ -156,7 +156,6 @@ if (ANDROID)
         Qt${QT_VERSION_MAJOR}::Qml
         Qt${QT_VERSION_MAJOR}::QuickControls2
         Qt${QT_VERSION_MAJOR}::Network
-        Qt${QT_VERSION_MAJOR}::AndroidExtras
         KF5::I18n
         KF5::Kirigami2
         KF5::CoreAddons
