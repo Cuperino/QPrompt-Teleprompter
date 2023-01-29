@@ -78,7 +78,7 @@ android {
         resConfig "en"
         minSdkVersion = qtMinSdkVersion
         targetSdkVersion = qtTargetSdkVersion
-        namespace "com.cuperino.qprompt"
+        applicationId "com.cuperino.qprompt"
         versionCode timestamp
         versionName projectVersionFull
         manifestPlaceholders = [versionName: projectVersionFull, versionCode: timestamp]
