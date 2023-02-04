@@ -670,8 +670,8 @@ Flickable {
                     Rectangle {
                         width: 2
                         gradient: Gradient {
-                            GradientStop { position: 0.0; color: "#AA9" }
-                            GradientStop { position: 1.0; color: "#776" }
+                            GradientStop { position: 0.0; color: "#998" }
+                            GradientStop { position: 1.0; color: "#665" }
                         }
                     }
                 }
@@ -946,7 +946,7 @@ Flickable {
                     id: leftWidthAdjustmentBar
                     anchors.top: parent.top
                     anchors.bottom: parent.bottom
-                    opacity: 0.9
+                    opacity: 1
                     width: 25
                     acceptedButtons: Qt.LeftButton
                     scrollGestureEnabled: false
@@ -971,7 +971,7 @@ Flickable {
                 }
                 MouseArea {
                     id: rightWidthAdjustmentBar
-                    opacity: 0.5
+                    opacity: editor.x === leftWidthAdjustmentBar.drag.minimumX ? 0.6 : 1
                     scrollGestureEnabled: false
                     acceptedButtons: Qt.LeftButton
                     propagateComposedEvents: true
@@ -985,7 +985,7 @@ Flickable {
                     drag.smoothed: false
                     drag.minimumX: -editor.x + fontSize/2 //prompter.width - editor.x - editor.width - leftWidthAdjustmentBar.drag.maximumX
                     drag.maximumX: prompter.width - editor.x - parent.width - leftWidthAdjustmentBar.drag.minimumX
-                    cursorShape: (pressed||drag.active||prompter.dragging) ? Qt.ClosedHandCursor : flicking ? Qt.OpenHandCursor : (contentsPlacement ? Qt.PointingHandCursor : Qt.OpenHandCursor)
+                    cursorShape: (pressed||drag.active||prompter.dragging) ? Qt.ClosedHandCursor : flicking ? Qt.OpenHandCursor : (contentsPlacement ? Qt.OpenHandCursor : Qt.ArrowCursor)
                     Loader {
                         sourceComponent: editorSidesBorder
                         anchors {top: parent.top; bottom: parent.bottom; horizontalCenter: parent.horizontalCenter}
