@@ -1140,8 +1140,12 @@ Flickable {
                     saveAsDialog()
                 else {
                     document.modified = false
-                    if (Qt.platform.os==="android" || Qt.platform.os==="ios" || visibility===ApplicationWindow.FullScreen)
-                        showPassiveNotification(i18nc("Saved FILE_NAME", "Saved %1", document.fileUrl))
+                    if (Qt.platform.os==="android" || Qt.platform.os==="ios" || visibility===ApplicationWindow.FullScreen) {
+                        if (document.isNewFile)
+                            showPassiveNotification(i18nc("Saved FILE_NAME", "Saved %1", document.fileUrl))
+                        else
+                            showPassiveNotification(i18n("Saved"))
+                    }
                     document.saveAs(document.fileUrl)
                     //if (quit)
                         //Qt.quit()
