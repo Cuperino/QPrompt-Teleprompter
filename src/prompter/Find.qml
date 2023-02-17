@@ -42,12 +42,8 @@ Item {
             // if (root.__isMobile)
             searchField.focus = true
         }
-        else {
-            // Clear search
-            editor.cursorPosition = document.selectionStart
-            if (!root.__isMobile)
+        else if (!root.__isMobile)
                 editor.focus = true
-        }
     }
     function toggle() {
         isOpen = !visible
