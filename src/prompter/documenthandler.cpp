@@ -830,6 +830,51 @@ void DocumentHandler::paste()
     paste(false);
 }
 
+QPoint DocumentHandler::replaceSelected(QString text)
+{
+    QTextCursor cursor = this->textCursor();
+    if (cursor.selectedText().length()) {
+        cursor.beginEditBlock();
+        cursor.removeSelectedText();
+        const int startPosition = cursor.position();
+        cursor.insertText(text);
+        const int endPosition = cursor.position();
+        cursor.endEditBlock();
+        cursor.setPosition(startPosition);
+        cursor.setPosition(endPosition, QTextCursor::KeepAnchor);
+        this->setSelectionStart(cursor.selectionStart());
+        this->setSelectionEnd(cursor.selectionEnd());
+    }
+    return QPoint(this->selectionStart(), this->selectionEnd());
+}
+
+long DocumentHandler::replaceAll(QString searchedText, QString replacementText, bool regEx)
+{
+    long i = 0;
+    if (searchedText.length() > 0) {
+        QPoint range = search(searchedText, false, true, regEx);
+        bool resultsFound = range.y() > range.x();
+        if (resultsFound) {
+            QTextCursor cursor = this->textCursor();
+            cursor.beginEditBlock();
+            do {
+                i++;
+                // Select result
+                cursor.setPosition(range.x());
+                cursor.setPosition(range.y(), QTextCursor::KeepAnchor);
+                // Replace
+                cursor.removeSelectedText();
+                cursor.insertText(replacementText);
+                // Search again
+                range = search(searchedText, false, true, regEx);
+                resultsFound = range.y() > range.x();
+            } while (resultsFound);
+            cursor.endEditBlock();
+        }
+    }
+    return i;
+}
+
 bool DocumentHandler::markersListDirty() const
 {
     return _markersModel->dirty;
@@ -846,22 +891,40 @@ void DocumentHandler::setMarkersListDirty()
 }
 
 // Search
-QPoint DocumentHandler::search(const QString &subString, const bool next, const bool reverse)
+QPoint DocumentHandler::search(const QString &subString, const bool next, const bool reverse, const bool regEx)
 {
     // qDebug() << "pre" << this->cursorPosition() << this->selectionStart() << this->selectionEnd();
     QTextCursor cursor;
-    if (reverse)
-        cursor = this->textDocument()->find(subString, this->selectionStart(), QTextDocument::FindBackward);
-    else if (next)
-        cursor = this->textDocument()->find(subString, this->selectionEnd());
-    else
-        cursor = this->textDocument()->find(subString, this->selectionStart());
-    // If no more results, go to the corresponding start position and do the search once more
-    if (cursor.selectionStart() == -1 && cursor.selectionStart() == -1 && cursor.selectionEnd() == -1) {
+    if (regEx) {
+        static QRegularExpression searchRegEx;
+        searchRegEx.setPattern(subString);
         if (reverse)
-            cursor = this->textDocument()->find(subString, textDocument()->characterCount(), QTextDocument::FindBackward);
+            cursor = this->textDocument()->find(searchRegEx, this->selectionStart(), QTextDocument::FindBackward);
+        else if (next)
+            cursor = this->textDocument()->find(searchRegEx, this->selectionEnd());
         else
-            cursor = this->textDocument()->find(subString, 0);
+            cursor = this->textDocument()->find(searchRegEx, this->selectionStart());
+        // If no more results, go to the corresponding start position and do the search once more
+        if (cursor.selectionStart() == -1 && cursor.selectionStart() == -1 && cursor.selectionEnd() == -1) {
+            if (reverse)
+                cursor = this->textDocument()->find(searchRegEx, textDocument()->characterCount(), QTextDocument::FindBackward);
+            else
+                cursor = this->textDocument()->find(searchRegEx, 0);
+        }
+    } else {
+        if (reverse)
+            cursor = this->textDocument()->find(subString, this->selectionStart(), QTextDocument::FindBackward);
+        else if (next)
+            cursor = this->textDocument()->find(subString, this->selectionEnd());
+        else
+            cursor = this->textDocument()->find(subString, this->selectionStart());
+        // If no more results, go to the corresponding start position and do the search once more
+        if (cursor.selectionStart() == -1 && cursor.selectionStart() == -1 && cursor.selectionEnd() == -1) {
+            if (reverse)
+                cursor = this->textDocument()->find(subString, textDocument()->characterCount(), QTextDocument::FindBackward);
+            else
+                cursor = this->textDocument()->find(subString, 0);
+        }
     }
     // Update cursor
     if (cursor.selectionStart() != -1) {
