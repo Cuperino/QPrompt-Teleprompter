@@ -184,12 +184,13 @@ public:
 
     Q_INVOKABLE void paste(bool withoutFormating);
     Q_INVOKABLE void paste();
-
+    Q_INVOKABLE QPoint replaceSelected(QString text);
+    Q_INVOKABLE long replaceAll(QString searchedText, QString replacementText, bool regEx);
     Q_INVOKABLE void parse();
     Q_INVOKABLE QString filterHtml(QString html, bool ignoreBlackTextColor);
 
     // Search
-    Q_INVOKABLE QPoint search(const QString &subString, const bool next = false, const bool reverse = false);
+    Q_INVOKABLE QPoint search(const QString &subString, const bool next = false, const bool reverse = false, const bool regEx = false);
     Q_INVOKABLE int keySearch(int key);
 
     Q_INVOKABLE bool preventSleep(bool prevent);
