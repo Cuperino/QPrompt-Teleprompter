@@ -1,0 +1,6 @@
+<RCC>
+    <qresource prefix="/">
+        <!-- Chinese Font is kept separate to reduce RAM consumption during build -->
+        <file alias="fonts/sourcehansans.ttc">editor/SourceHanSans/SourceHanSans-Regular.ttc</file>
+    </qresource>
+</RCC>

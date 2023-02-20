@@ -1,0 +1,12 @@
+<RCC>
+    <qresource prefix="/">
+        <!-- Editor Fonts -->
+        <file alias="fonts/dejavu-sans.otf">editor/dejavu-sans/DejaVuSans.ttf</file>
+        <file alias="fonts/libertinus-sans.otf">editor/Libertinus/static/OTF/LibertinusSans-Regular.otf</file>
+        <file alias="fonts/opendyslexic-bold.otf">editor/OpenDyslexic-Bold.otf</file>
+        <file alias="fonts/scheherazadenew-regular.ttf">editor/ScheherazadeNew/ScheherazadeNew-Regular.ttf</file>
+        <file alias="fonts/kalpurush.ttf">editor/Kalpurush/Kalpurush.ttf</file>
+        <file alias="fonts/palanquin.ttf">editor/Palanquin-Regular.ttf</file>
+        <!-- <file alias="fonts/libertinus-serif.otf">editor/Libertinus/static/OTF/LibertinusSerif-Regular.otf</file> -->
+    </qresource>
+</RCC>
