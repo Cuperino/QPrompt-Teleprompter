@@ -39,13 +39,19 @@ Item {
     property bool isEnabled: false
     property string screensStringified: ""
     required property var forwardTo // prompter
+    property int projectionRestartModulus: 1
 
     function toggle() {
         isEnabled = !isEnabled;
         if (!isEnabled)
             closeAll();
         projectionSettings.sync();
-        restartDialog.visible = true;
+        if (projectionRestartModulus % 2) {
+            restartDialog.visible = true;
+            projectionRestartModulus = 0;
+        }
+        else
+            projectionRestartModulus++;
     }
     function getDisplayFlip(screenName, flipSetting) {
         const totalDisplays = displayModel.count;
