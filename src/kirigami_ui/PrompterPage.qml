@@ -662,7 +662,7 @@ Kirigami.Page {
 
             Kirigami.Action {
                 displayComponent: ListView {
-                    height: contentHeight>580 ? 580 : contentHeight
+                    height: visible ? contentHeight > 580 ? 580 : contentHeight : 0
                     model: Qt.application.screens
                     delegate: Kirigami.SwipeListItem {
                         id: display
@@ -706,6 +706,10 @@ Kirigami.Page {
                                 case 4 : return display.name + " : " + i18nc("Horizontal and vertical mirroring", "HV Mirror");
                             }
                         }
+                    }
+                    Component.onCompleted: {
+                        // By assigning visible non-declaratively, we ensure the menu's state won't be updated until the next time it's openend
+                        visible = projectionManager.isEnabled;
                     }
                 }
             }
