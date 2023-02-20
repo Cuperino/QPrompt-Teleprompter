@@ -39,6 +39,7 @@ Item {
     property bool isEnabled: false
     property string screensStringified: ""
     required property var forwardTo // prompter
+    property bool projectionRestartPrompt: true
     property int projectionRestartModulus: 1
 
     function toggle() {
@@ -46,8 +47,14 @@ Item {
         if (!isEnabled)
             closeAll();
         projectionSettings.sync();
+
+        // If it was initially off, prompt to restart each time it's turned on.
+        // If initially on and turning off, don't prompt to restart more than once.
         if (projectionRestartModulus % 2) {
-            restartDialog.visible = true;
+            if (projectionRestartPrompt)
+                restartDialog.visible = true;
+            if (!isEnabled && projectionRestartPrompt)
+                projectionRestartPrompt = false;
             projectionRestartModulus = 0;
         }
         else
