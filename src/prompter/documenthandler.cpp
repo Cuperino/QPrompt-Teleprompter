@@ -899,17 +899,18 @@ QPoint DocumentHandler::search(const QString &subString, const bool next, const 
         static QRegularExpression searchRegEx;
         searchRegEx.setPattern(subString);
         if (reverse)
-            cursor = this->textDocument()->find(searchRegEx, this->selectionStart(), QTextDocument::FindBackward);
+            cursor = this->textDocument()->find(searchRegEx, this->selectionStart(), QTextDocument::FindBackward | QTextDocument::FindCaseSensitively);
         else if (next)
-            cursor = this->textDocument()->find(searchRegEx, this->selectionEnd());
+            cursor = this->textDocument()->find(searchRegEx, this->selectionEnd(), QTextDocument::FindCaseSensitively);
         else
-            cursor = this->textDocument()->find(searchRegEx, this->selectionStart());
+            cursor = this->textDocument()->find(searchRegEx, this->selectionStart(), QTextDocument::FindCaseSensitively);
         // If no more results, go to the corresponding start position and do the search once more
         if (cursor.selectionStart() == -1 && cursor.selectionStart() == -1 && cursor.selectionEnd() == -1) {
             if (reverse)
-                cursor = this->textDocument()->find(searchRegEx, textDocument()->characterCount(), QTextDocument::FindBackward);
+                cursor =
+                    this->textDocument()->find(searchRegEx, textDocument()->characterCount(), QTextDocument::FindBackward | QTextDocument::FindCaseSensitively);
             else
-                cursor = this->textDocument()->find(searchRegEx, 0);
+                cursor = this->textDocument()->find(searchRegEx, 0, QTextDocument::FindCaseSensitively);
         }
     } else {
         if (reverse)
