@@ -218,6 +218,10 @@ Flickable {
         property alias width: prompter.contentsPlacement
         property alias offset: positionHandler.placement
     }
+    Settings {
+        category: "files"
+        property alias lastDocument: editor.lastDocument
+    }
 
     property int q: 0
     function markerCompare() {
@@ -609,6 +613,7 @@ Flickable {
                 id: editor
 
                 property bool resetPosition: false;
+                property string lastDocument: "";
 
                 function toggleEditorFocus(mouse) {
                     if (!editor.focus) {
@@ -1103,6 +1108,7 @@ Flickable {
             else {
                 document.load("qrc:/blank.html")
                 document.load("qrc:/untitled.html")
+                editor.lastDocument = "blank://"
                 isNewFile = true
                 resetDocumentPosition()
                 if (root.passiveNotifications)
@@ -1116,12 +1122,21 @@ Flickable {
             else {
                 document.load("qrc:/blank.html")
                 document.load("qrc:/"+i18n("welcome_en.html"))
+                editor.lastDocument = ""
                 isNewFile = true
-                // Set document position to 0, so we can get to read the instructions faster.
                 prompter.position = 0
                 if (root.passiveNotifications)
                     showPassiveNotification(i18n("User welcome loaded"))
             }
+        }
+        function loadLastDocument() {
+            root.onDiscard = Prompter.CloseActions.Open
+            document.load("qrc:/blank.html")
+            document.load(editor.lastDocument)
+            isNewFile = false
+            prompter.position = 0
+            if (root.passiveNotifications)
+                showPassiveNotification(i18n("Loaded: %1", editor.lastDocument))
         }
         function open() {
             root.onDiscard = Prompter.CloseActions.Open
@@ -1184,8 +1199,12 @@ Flickable {
                     document.load("file:" + fileToOpen);
                     isNewFile = false
                 }
-                else
+                else if (editor.lastDocument === "")
                     loadGuide();
+                else if (editor.lastDocument === "blank://")
+                    newDocument();
+                else
+                    document.loadLastDocument();
             }
         }
     }
@@ -1216,6 +1235,7 @@ Flickable {
         onAccepted: {
             document.load("qrc:/blank.html")
             document.load(openDialog.fileUrl)
+            editor.lastDocument = document.fileUrl;
             editor.resetPosition = true;
             if (parseInt(prompter.state)!==Prompter.States.Editing)
                 prompter.state = Prompter.States.Editing;
