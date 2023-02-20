@@ -62,6 +62,7 @@ Kirigami.ApplicationWindow {
     property int onDiscard: Prompter.CloseActions.Ignore
     property bool ee: false
     property bool theforce: false
+    property int transparencyRestartModulus: 1
 
     title: root.pageStack.currentItem.document.fileName + (root.pageStack.currentItem.document.modified?"*":"") + " - " + aboutData.displayName
     width: 1220  // Set at 1220 to show all functionality at a glance. Set to 1200 to fit both 1280 4:3 and 1200 height monitors. Keep at or bellow 1024 and at or above 960, for best usability with common 4:3 resolutions
@@ -333,7 +334,12 @@ Kirigami.ApplicationWindow {
                         root.__translucidBackground = !root.__translucidBackground;
                         if (!transparencySetting.dirty) {
                             transparencySetting.dirty = true;
-                            restartDialog.visible = true;
+                            if (transparencyRestartModulus % 2) {
+                                restartDialog.visible = true;
+                                transparencyRestartModulus = 0;
+                            }
+                            else
+                                transparencyRestartModulus++;
                         }
                     }
                 }
