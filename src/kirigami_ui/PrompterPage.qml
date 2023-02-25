@@ -25,6 +25,7 @@ import QtQuick.Window 2.12
 import QtQuick.Controls 2.12
 import QtQuick.Layouts 1.12
 import QtQuick.Dialogs 1.3
+import Qt.labs.settings 1.0
 //import Qt.labs.platform 1.1 as Labs
 
 import com.cuperino.qprompt.markers 1.0
@@ -42,6 +43,7 @@ Kirigami.Page {
     property alias overlay: viewport.overlay
     property alias document: viewport.document
     property alias openDialog: viewport.openDialog
+    property alias networkDialog: networkDialog
     property alias prompterBackground: viewport.prompterBackground
     property alias find: viewport.find
     property alias keyConfigurationOverlay: keyConfigurationOverlay
@@ -999,6 +1001,174 @@ Kirigami.Page {
                 repeat: false
                 interval: Units.LongDuration
                 onTriggered: namedMarkerConfiguration.close()
+            }
+        }
+    }
+
+    Settings {
+        category: "networkDialog"
+        property alias url: openUrl.text
+        property alias autoReload: networkDialog.autoReload
+        property alias autoReloadHours: autoReloadHours.value
+        property alias autoReloadMinutes: autoReloadMinutes.value
+        property alias autoReloadSeconds: autoReloadSeconds.value
+    }
+    Timer {
+        id: autoReloadTimer
+        running: networkDialog.autoReloadRunning
+        repeat: true
+        triggeredOnStart: false
+        interval: 1000 * (3600 * autoReloadHours.value + 60 * autoReloadMinutes.value + autoReloadSeconds.value)
+        onTriggered: networkDialog.openFromRemote();
+    }
+    Kirigami.OverlaySheet {
+        id: networkDialog
+        header: Kirigami.Heading {
+            text: i18n("Open from network...")
+            level: 1
+        }
+        property bool autoReload: false
+        property bool autoReloadRunning: false
+        property string nextReloadTime: ""
+        function updateNextReloadTime() {
+            const date = new Date();
+            date.setTime(date.getTime() + autoReloadTimer.interval);
+            nextReloadTime = date.toLocaleTimeString();
+        }
+        function openFromRemote() {
+            document.loadFromNetwork(openUrl.text);
+            if (!autoReloadRunning)
+                editor.lastDocument = ""
+            if (autoReload) {
+                autoReloadRunning = true;
+                updateNextReloadTime();
+            }
+        }
+        function disableAutoReload() {
+            networkDialog.autoReloadRunning = false;
+        }
+        ColumnLayout {
+            width: parent.width
+            RowLayout {
+                Label {
+                    text: i18n("URL:")
+                }
+                TextField {
+                    id: openUrl
+                    placeholderText: i18n("http, https, and ftp protocols supported")
+                    Layout.fillWidth: true
+                    Layout.leftMargin: Kirigami.Units.smallSpacing
+                    Layout.rightMargin: Kirigami.Units.smallSpacing
+                    onAccepted: networkDialog.openFromRemote()
+                }
+            }
+            RowLayout {
+                Button {
+                    id: autoReloadToggle
+                    flat: true
+                    text: i18n("Auto reload")
+                    checkable: true
+                    checked: networkDialog.autoReload
+                    onToggled: {
+                        networkDialog.autoReload = checked;
+                        if (!checked)
+                            networkDialog.disableAutoReload();
+                    }
+                }
+                Label {
+                    text: i18n("Hours:")
+                }
+                SpinBox {
+                    id: autoReloadHours
+                    Layout.fillWidth: true
+                    Layout.leftMargin: Units.SmallSpacing
+                    Layout.rightMargin: Units.SmallSpacing
+                    enabled: networkDialog.autoReload
+                    value: 0
+                    to: 168
+                    onValueModified: {
+                        if (value === to) {
+                            autoReloadMinutes.value = 0;
+                            autoReloadSeconds.value = 0;
+                        }
+                        // Since this onValueModified will get called regardless of which SpinBox gets modified, this is where and when we update the nextReloadTime
+                        networkDialog.updateNextReloadTime();
+                    }
+                }
+                Label {
+                    text: i18n("Minutes:")
+                }
+                SpinBox {
+                    id: autoReloadMinutes
+                    Layout.fillWidth: true
+                    Layout.leftMargin: Units.SmallSpacing
+                    Layout.rightMargin: Units.SmallSpacing
+                    enabled: networkDialog.autoReload
+                    value: 5
+                    from: value>0 || autoReloadMinutes.value>0 || autoReloadHours.value>0 ? -1 : 0
+                    to: /*autoReloadHours.value===autoReloadHours.to ? 0 :*/ 60
+                    onValueModified: {
+                        if (value < 0) {
+                            value = 59;
+                            --autoReloadHours.value;
+                        }
+                        else if (value > 59) {
+                            value = 0;
+                            ++autoReloadHours.value;
+                        }
+                        autoReloadHours.onValueModified();
+                    }
+                }
+                Label {
+                    text: i18n("Seconds:")
+                }
+                SpinBox {
+                    id: autoReloadSeconds
+                    Layout.fillWidth: true
+                    Layout.leftMargin: Units.SmallSpacing
+                    Layout.rightMargin: Units.SmallSpacing
+                    enabled: networkDialog.autoReload
+                    value: 0
+                    from: value>0 || autoReloadMinutes.value>0 || autoReloadHours.value>0 ? -1 : 1
+                    to: /*autoReloadHours.value===autoReloadHours.to ? 0 :*/ 60
+                    onValueModified: {
+                        if (value < 0) {
+                            value = 59;
+                            --autoReloadMinutes.value;
+                        }
+                        else if (value > 59) {
+                            value = 0;
+                            ++autoReloadMinutes.value;
+                        }
+                        autoReloadMinutes.onValueModified();
+                    }
+                }
+            }
+            RowLayout {
+                Label {
+                    text: autoReloadTimer.running ?
+                              i18nc("Next reload starts at 10:11:12", "Next reload starts at %1", networkDialog.nextReloadTime)
+                            : i18n("Auto reload is not running")
+                    horizontalAlignment: Text.AlignHCenter
+                    Layout.fillWidth: true
+                }
+                Button {
+                    enabled: openUrl.text !== ""
+                    flat: true
+                    text: i18n("Load from Network")
+                    onClicked: {
+                        networkDialog.openFromRemote();
+                        networkDialog.close();
+                    }
+                }
+                Button {
+                    flat: true
+                    text: i18n("Close")
+                    onClicked: {
+                        networkDialog.close();
+                        viewport.prompter.restoreFocus();
+                    }
+                }
             }
         }
     }

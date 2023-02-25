@@ -196,6 +196,15 @@ Kirigami.ApplicationWindow {
                 }
             },
             Kirigami.Action {
+                text: i18nc("Main menu and global menu actions", "&Open remote file")
+                //iconName: "document-open-remote"
+                iconSource: "qrc:/icons/document-open-remote.svg"
+                onTriggered: {
+                    root.onDiscard = Prompter.CloseActions.Network
+                    root.pageStack.currentItem.document.openFromNetwork()
+                }
+            },
+            Kirigami.Action {
                 text: i18nc("Main menu and global menu actions", "&Save")
                 iconName: "document-save"
                 shortcut: StandardKey.Save
@@ -380,6 +389,8 @@ Kirigami.ApplicationWindow {
                         root.pageStack.currentItem.keyConfigurationOverlay.close()
                     else if (root.pageStack.currentItem.namedMarkerConfiguration.sheetOpen)
                         root.pageStack.currentItem.namedMarkerConfiguration.close()
+                    else if (root.pageStack.currentItem.networkDialog.sheetOpen)
+                        root.pageStack.currentItem.networkDialog.close()
                     else if (wheelSettings.sheetOpen)
                         wheelSettings.close()
                     // Close find, compare against enabled instead of isOpen to prevent closing find while it is invisible.
@@ -604,6 +615,9 @@ Kirigami.ApplicationWindow {
                     break;
                 case Prompter.CloseActions.Open:
                     root.pageStack.currentItem.openDialog.open();
+                    break;
+                case Prompter.CloseActions.Network:
+                    root.pageStack.currentItem.networkDialog.open();
                     break;
                 case Prompter.CloseActions.Quit: Qt.quit();
                     break;

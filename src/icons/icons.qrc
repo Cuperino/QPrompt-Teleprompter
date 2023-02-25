@@ -32,6 +32,7 @@
         <file alias="document-save-as.svg">16/document-save-as.svg</file>
         <file alias="document-open.svg">16/document-open.svg</file>
         <file alias="document-open-recent.svg">16/document-open-recent.svg</file>
+        <file alias="document-open-remote.svg">16/document-open-remote.svg</file>
         <file alias="format-font-size-more.svg">16/format-font-size-more.svg</file>
         <file alias="edit-clear-history.svg">16/edit-clear-history.svg</file>
         <file alias="configure.svg">16/configure.svg</file>

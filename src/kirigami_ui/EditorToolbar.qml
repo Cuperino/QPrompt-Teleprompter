@@ -1107,5 +1107,18 @@ ToolBar {
                 }
             }
         }
+        RowLayout {
+            Button {
+                visible: networkDialog.autoReloadRunning
+                text: i18nc("Next reload starts at 10:11:12", "Next reload starts at <pre>%1</pre>", networkDialog.nextReloadTime)
+                onClicked: networkDialog.open()
+                flat: true
+                contentItem: Loader { sourceComponent: textComponent }
+                Layout.topMargin: -8
+                Layout.bottomMargin: -32
+                Layout.rightMargin: 3
+                Layout.leftMargin: showSliderIcons ? 1 : 8
+            }
+        }
     }
 }
