@@ -74,6 +74,7 @@
 
 #include <QFileSystemWatcher>
 #include <QFont>
+#include <QNetworkAccessManager>
 #include <QObject>
 #include <QQuickTextDocument>
 #include <QTextCursor>
@@ -197,7 +198,12 @@ public:
 
     Q_INVOKABLE bool showFontDialog();
 
+    Q_INVOKABLE void networkReplyProgress();
+
+    Q_INVOKABLE void loadFromNetwork(const QUrl &url);
+
 public Q_SLOTS:
+    void loadFromNetworkFinihed();
     void load(const QUrl &fileUrl);
     void reload(const QString &fileUrl);
     void saveAs(const QUrl &fileUrl);
@@ -257,6 +263,9 @@ private:
     QUrl m_fileUrl;
     QString pdf_importer;
     QString office_importer;
+    QNetworkAccessManager *m_network;
+    QNetworkReply *m_reply;
+    QTemporaryFile *m_cache;
 };
 QT_END_NAMESPACE
 

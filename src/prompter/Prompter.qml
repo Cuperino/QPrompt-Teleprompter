@@ -95,6 +95,7 @@ Flickable {
         LoadNew,
         LoadGuide,
         Open,
+        Network,
         Ignore
     }
     enum AtEndActions {
@@ -1101,14 +1102,21 @@ Flickable {
                 editor.resetPosition = false;
             }
         }
+        function clearLastDocument() {
+            editor.lastDocument = "blank://";
+        }
+        function close() {
+            networkDialog.autoReloadRunning = false;
+            document.load("qrc:/blank.html");
+        }
         function newDocument() {
             root.onDiscard = Prompter.CloseActions.LoadNew
             if (document.modified)
                 closeDialog.open()
             else {
-                document.load("qrc:/blank.html")
+                document.close()
                 document.load("qrc:/untitled.html")
-                editor.lastDocument = "blank://"
+                clearLastDocument();
                 isNewFile = true
                 resetDocumentPosition()
                 if (root.passiveNotifications)
@@ -1120,7 +1128,7 @@ Flickable {
             if (document.modified)
                 closeDialog.open()
             else {
-                document.load("qrc:/blank.html")
+                document.close()
                 document.load("qrc:/"+i18n("welcome_en.html"))
                 editor.lastDocument = ""
                 isNewFile = true
@@ -1131,7 +1139,7 @@ Flickable {
         }
         function loadLastDocument() {
             root.onDiscard = Prompter.CloseActions.Open
-            document.load("qrc:/blank.html")
+            document.close()
             document.load(editor.lastDocument)
             isNewFile = false
             prompter.position = 0
@@ -1144,6 +1152,13 @@ Flickable {
                 closeDialog.open()
             else
                 openDialog.open()
+        }
+        function openFromNetwork() {
+            root.onDiscard = Prompter.CloseActions.Network
+            if (document.modified)
+                closeDialog.open()
+            else
+                networkDialog.open()
         }
         function saveAsDialog() {
             saveDialog.open(parseInt(root.onDiscard)===Prompter.CloseActions.Quit)
@@ -1169,6 +1184,7 @@ Flickable {
                         case Prompter.CloseActions.LoadGuide: document.loadGuide(); break;
                         case Prompter.CloseActions.LoadNew: document.newDocument(); break;
                         case Prompter.CloseActions.Open: document.open(); break;
+                        case Prompter.CloseActions.Network: document.openFromNetwork(); break;
                         case Prompter.CloseActions.Quit: Qt.quit()
                     }
                 }
@@ -1233,7 +1249,7 @@ Flickable {
         folder: shortcuts.documents
         //fileMode: Labs.FileDialog.OpenFile
         onAccepted: {
-            document.load("qrc:/blank.html")
+            document.close()
             document.load(openDialog.fileUrl)
             editor.lastDocument = document.fileUrl;
             editor.resetPosition = true;
@@ -1279,6 +1295,7 @@ Flickable {
                 case Prompter.CloseActions.LoadGuide: document.modified = false; document.loadGuide(); break;
                 case Prompter.CloseActions.LoadNew: document.modified = false; document.newDocument(); break;
                 case Prompter.CloseActions.Open: document.open(); /*openOpenDialog.start();*/ break;
+                case Prompter.CloseActions.Network: document.modified = false; document.openFromNetwork(); break;
                 case Prompter.CloseActions.Quit: Qt.quit()
                 //default: Qt.quit();
             }

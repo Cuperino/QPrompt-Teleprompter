@@ -99,8 +99,10 @@
 #include <QDebug>
 #include <QKeySequence>
 #include <QMimeData>
+#include <QNetworkReply>
 #include <QProcess>
 #include <QRegularExpression>
+#include <QTemporaryFile>
 #include <QTextBlock>
 #include <QTextDocument>
 #include <QTimer>
@@ -120,7 +122,16 @@ DocumentHandler::DocumentHandler(QObject *parent)
     office_importer = QString::fromStdString("soffice");
 
     m_fontDialog = new SystemFontChooserDialog();
-    QObject::connect(m_fontDialog, &SystemFontChooserDialog::fontFamilyChanged, this, &DocumentHandler::setFontFamily);
+    m_network = new QNetworkAccessManager(this);
+    m_cache = new QTemporaryFile(this);
+    connect(m_fontDialog, &SystemFontChooserDialog::fontFamilyChanged, this, &DocumentHandler::setFontFamily);
+    connect(m_network, &QNetworkAccessManager::finished, this, &DocumentHandler::loadFromNetworkFinihed);
+    connect(m_reply, &QNetworkReply::downloadProgress, this, &DocumentHandler::networkReplyProgress);
+    connect(m_reply, &QNetworkReply::finished, this, &DocumentHandler::loadFromNetworkFinihed);
+
+    //    connect(reply, &QNetworkReply::finished, this, &HttpWindow::httpFinished);
+    //    connect(reply, &QIODevice::readyRead, this, &HttpWindow::httpReadyRead);
+    //    connect(reply, &QNetworkReply::finished, progressDialog, &ProgressDialog::hide);
 }
 
 DocumentHandler::~DocumentHandler()
@@ -478,6 +489,47 @@ void DocumentHandler::reload(const QString &fileUrl)
 {
     qWarning() << "reloading";
     load(QUrl(QString::fromStdString("file://") + fileUrl));
+}
+
+void DocumentHandler::loadFromNetwork(const QUrl &url)
+{
+    QUrl resultingUrl;
+    QNetworkRequest req;
+    if (url.isRelative()) {
+        resultingUrl.setScheme("http");
+        resultingUrl.setHost(url.path());
+        resultingUrl.setPort(url.port());
+        resultingUrl.setUserName(url.userName());
+        resultingUrl.setPassword(url.password());
+        resultingUrl.setFragment(url.fragment());
+        resultingUrl.setQuery(url.query());
+    } else
+        resultingUrl = url;
+    if (url.isValid()) {
+        req = QNetworkRequest(resultingUrl);
+        req.setAttribute(QNetworkRequest::RedirectPolicyAttribute, true);
+        m_reply = m_network->get(req);
+    }
+}
+
+void DocumentHandler::networkReplyProgress()
+{
+    // ToDo: Add loading progress feedback
+}
+
+void DocumentHandler::loadFromNetworkFinihed()
+{
+    auto document = m_reply->readAll();
+
+    if (document != "") {
+        static QRegularExpression regex_0(
+            QString::fromStdString("((font-size|letter-spacing|word-spacing|font-weight):\\s*-?[\\d]+(?:.[\\d]+)*(?:(?:px)|(?:pt)|(?:em)|(?:ex));?\\s*)"));
+        QString html = QString::fromUtf8(document).replace(regex_0, QString::fromStdString(""));
+        Q_EMIT loaded(html, Qt::RichText);
+
+        m_fileUrl = m_cache->fileName();
+        Q_EMIT fileUrlChanged();
+    }
 }
 
 void DocumentHandler::load(const QUrl &fileUrl)
