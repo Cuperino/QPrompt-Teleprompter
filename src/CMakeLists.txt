@@ -40,20 +40,12 @@ set(qprompt_HDRS
     qt/qmlutil.hpp
 )
 
-if(AVAILABLE_VIRTUAL_MEMORY GREATER 2048)
-    set(qprompt_ASSETS
-        assets.qrc
-        icons/icons.qrc
-        fonts/fonts.qrc
-        fonts/chinese.qrc
-    )
-else()
-    set(qprompt_ASSETS
-        assets.qrc
-        icons/icons.qrc
-        fonts/fonts.qrc
-    )
-endif()
+set(qprompt_ASSETS
+    assets.qrc
+    icons/icons.qrc
+    fonts/fonts.qrc
+    fonts/chinese.qrc
+)
 
 qt_wrap_ui(qprompt_SRCS
     qt/systemfontchooserdialog.ui
