@@ -63,7 +63,7 @@ Item {
     property alias enabled: readRegion.enabled
     property bool disableOverlayContrast: false
     property string positionState: ReadRegionOverlay.PositionStates.Middle
-    property string styleState: Qt.application.layoutDirection===Qt.LeftToRight ? "barsLeft" : "barsRight"
+    property string styleState: Qt.application.layoutDirection===Qt.LeftToRight ? ReadRegionOverlay.PointerStates.BarsLeft : ReadRegionOverlay.PointerStates.BarsRight
     function toggleLinesInRegion(reverse) {
         const minSize = 2,
               maxSize = 5;
