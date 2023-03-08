@@ -126,12 +126,6 @@ DocumentHandler::DocumentHandler(QObject *parent)
     m_cache = new QTemporaryFile(this);
     connect(m_fontDialog, &SystemFontChooserDialog::fontFamilyChanged, this, &DocumentHandler::setFontFamily);
     connect(m_network, &QNetworkAccessManager::finished, this, &DocumentHandler::loadFromNetworkFinihed);
-    connect(m_reply, &QNetworkReply::downloadProgress, this, &DocumentHandler::networkReplyProgress);
-    connect(m_reply, &QNetworkReply::finished, this, &DocumentHandler::loadFromNetworkFinihed);
-
-    //    connect(reply, &QNetworkReply::finished, this, &HttpWindow::httpFinished);
-    //    connect(reply, &QIODevice::readyRead, this, &HttpWindow::httpReadyRead);
-    //    connect(reply, &QNetworkReply::finished, progressDialog, &ProgressDialog::hide);
 }
 
 DocumentHandler::~DocumentHandler()
@@ -510,11 +504,6 @@ void DocumentHandler::loadFromNetwork(const QUrl &url)
         req.setAttribute(QNetworkRequest::RedirectPolicyAttribute, true);
         m_reply = m_network->get(req);
     }
-}
-
-void DocumentHandler::networkReplyProgress()
-{
-    // ToDo: Add loading progress feedback
 }
 
 void DocumentHandler::loadFromNetworkFinihed()
