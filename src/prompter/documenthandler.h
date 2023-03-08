@@ -198,8 +198,6 @@ public:
 
     Q_INVOKABLE bool showFontDialog();
 
-    Q_INVOKABLE void networkReplyProgress();
-
     Q_INVOKABLE void loadFromNetwork(const QUrl &url);
 
 public Q_SLOTS:
