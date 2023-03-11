@@ -263,6 +263,7 @@ if(ANDROID OR APPLE OR WIN32 OR IOS OR WASM)
         chronometer-pause
         circular-arrow-shape
         configure
+        contrast
         dialog-ok-apply
         document-new
         document-open
@@ -273,6 +274,7 @@ if(ANDROID OR APPLE OR WIN32 OR IOS OR WASM)
         draw-rectangle
         draw-star
         edit-clear-history
+        edit-opacity
         edit-redo
         edit-undo
         filename-bpm-amarok

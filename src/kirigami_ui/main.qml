@@ -358,7 +358,7 @@ Kirigami.ApplicationWindow {
                 Kirigami.Action {
                     id: fakeFullscreenSetting
                     text: i18nc("Main menu actions. Fake fullscreen behavior instead of requesting true fullscreen", "Fake fullscreen behavior")
-                    visible: ['linux', 'windows'].indexOf(Qt.platform.os)!==-1
+                    visible: ['linux'].indexOf(Qt.platform.os)!==-1
                     // iconName: "view-fullscreen"
                     iconSource: "qrc:/icons/view-fullscreen.svg"
                     checkable: true
