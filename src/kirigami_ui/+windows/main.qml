@@ -257,7 +257,7 @@ Kirigami.ApplicationWindow {
                     iconName: "circular-arrow-shape"
                     checkable: true
                     checked: root.__invertArrowKeys
-                    onTriggered: root.__invertArrowKeys = !root.__invertArrowKeys
+                    onTriggered: root.__invertArrowKeys = checked
                 }
                 Kirigami.Action {
                     text: i18nc("Main menu and global menu actions. Invert scroll direction while prompting.", "Invert &scroll direction")
@@ -265,7 +265,7 @@ Kirigami.ApplicationWindow {
                     iconName: "gnumeric-object-scrollbar"
                     checkable: true
                     checked: root.__invertScrollDirection
-                    onTriggered: root.__invertScrollDirection = !root.__invertScrollDirection
+                    onTriggered: root.__invertScrollDirection = checked
                 }
                 Kirigami.Action {
                     text: i18nc("Main menu and global menu actions. Have touchpad and mouse wheel scrolling adjust velocity instead of scrolling like most other apps.", "Use scroll as velocity &dial")
@@ -274,14 +274,14 @@ Kirigami.ApplicationWindow {
                     // ToolTip.text: i18n("Use mouse and touchpad scroll as speed dial while prompting")
                     checkable: true
                     checked: root.__scrollAsDial
-                    onTriggered: root.__scrollAsDial = !root.__scrollAsDial
+                    onTriggered: root.__scrollAsDial = checked
                 }
                 Kirigami.Action {
                     text: i18nc("Main menu and global menu actions. Touchpad scrolling and mouse wheel use have no effect while prompting.", "Disable scrolling while prompting")
                     iconName: "paint-none"
                     checkable: true
                     checked: root.__noScroll
-                    onTriggered: root.__noScroll = !root.__noScroll
+                    onTriggered: root.__noScroll = checked
                 }
             },
             Kirigami.Action {
@@ -300,7 +300,7 @@ Kirigami.ApplicationWindow {
                     iconName: "newline"
                     checkable: true
                     checked: root.pageStack.currentItem.footer.hideFormattingToolsAlways
-                    onTriggered: root.pageStack.currentItem.footer.hideFormattingToolsAlways = !root.pageStack.currentItem.footer.hideFormattingToolsAlways
+                    onTriggered: root.pageStack.currentItem.footer.hideFormattingToolsAlways = checked
                 }
                 Kirigami.Action {
                     id: hideFormattingToolsWhilePromptingSetting
@@ -309,7 +309,7 @@ Kirigami.ApplicationWindow {
                     iconName: "list-remove"
                     checkable: true
                     checked: root.pageStack.currentItem.footer.hideFormattingToolsWhilePrompting
-                    onTriggered: root.pageStack.currentItem.footer.hideFormattingToolsWhilePrompting = !root.pageStack.currentItem.footer.hideFormattingToolsWhilePrompting
+                    onTriggered: root.pageStack.currentItem.footer.hideFormattingToolsWhilePrompting = checked
                 }
                 Kirigami.Action {
                     id: enableOverlayContrastSetting
@@ -318,7 +318,7 @@ Kirigami.ApplicationWindow {
                     // iconSource: "qrc:/icons/edit-opacity.svg"
                     checkable: true
                     checked: root.pageStack.currentItem.overlay.disableOverlayContrast
-                    onTriggered: root.pageStack.currentItem.overlay.disableOverlayContrast = !root.pageStack.currentItem.overlay.disableOverlayContrast
+                    onTriggered: root.pageStack.currentItem.overlay.disableOverlayContrast = checked
                 }
                 Kirigami.Action {
                     id: transparencySetting

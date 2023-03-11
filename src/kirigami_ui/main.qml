@@ -264,7 +264,7 @@ Kirigami.ApplicationWindow {
                     iconSource: "qrc:/icons/circular-arrow-shape.svg"
                     checkable: true
                     checked: root.__invertArrowKeys
-                    onTriggered: root.__invertArrowKeys = !root.__invertArrowKeys
+                    onTriggered: root.__invertArrowKeys = checked
                 }
                 Kirigami.Action {
                     text: i18nc("Main menu and global menu actions. Invert scroll direction while prompting.", "Invert &scroll direction")
@@ -273,7 +273,7 @@ Kirigami.ApplicationWindow {
                     iconSource: "qrc:/icons/gnumeric-object-scrollbar.svg"
                     checkable: true
                     checked: root.__invertScrollDirection
-                    onTriggered: root.__invertScrollDirection = !root.__invertScrollDirection
+                    onTriggered: root.__invertScrollDirection = checked
                 }
                 Kirigami.Action {
                     text: i18nc("Main menu and global menu actions. Have touchpad and mouse wheel scrolling adjust velocity instead of scrolling like most other apps.", "Use scroll as velocity &dial")
@@ -283,7 +283,7 @@ Kirigami.ApplicationWindow {
                     // ToolTip.text: i18n("Use mouse and touchpad scroll as speed dial while prompting")
                     checkable: true
                     checked: root.__scrollAsDial
-                    onTriggered: root.__scrollAsDial = !root.__scrollAsDial
+                    onTriggered: root.__scrollAsDial = checked
                 }
                 Kirigami.Action {
                     text: i18nc("Main menu and global menu actions. Touchpad scrolling and mouse wheel use have no effect while prompting.", "Disable scrolling while prompting")
@@ -291,7 +291,7 @@ Kirigami.ApplicationWindow {
                     iconSource: "qrc:/icons/paint-none.svg"
                     checkable: true
                     checked: root.__noScroll
-                    onTriggered: root.__noScroll = !root.__noScroll
+                    onTriggered: root.__noScroll = checked
                 }
             },
             Kirigami.Action {
@@ -312,7 +312,7 @@ Kirigami.ApplicationWindow {
                     iconSource: "qrc:/icons/newline.svg"
                     checkable: true
                     checked: root.pageStack.currentItem.footer.hideFormattingToolsAlways
-                    onTriggered: root.pageStack.currentItem.footer.hideFormattingToolsAlways = !root.pageStack.currentItem.footer.hideFormattingToolsAlways
+                    onTriggered: root.pageStack.currentItem.footer.hideFormattingToolsAlways = checked
                 }
                 Kirigami.Action {
                     id: hideFormattingToolsWhilePromptingSetting
@@ -322,7 +322,7 @@ Kirigami.ApplicationWindow {
                     iconSource: "qrc:/icons/list-remove.svg"
                     checkable: true
                     checked: root.pageStack.currentItem.footer.hideFormattingToolsWhilePrompting
-                    onTriggered: root.pageStack.currentItem.footer.hideFormattingToolsWhilePrompting = !root.pageStack.currentItem.footer.hideFormattingToolsWhilePrompting
+                    onTriggered: root.pageStack.currentItem.footer.hideFormattingToolsWhilePrompting = checked
                 }
                 Kirigami.Action {
                     id: enableOverlayContrastSetting
@@ -331,7 +331,7 @@ Kirigami.ApplicationWindow {
                     iconSource: "qrc:/icons/edit-opacity.svg"
                     checkable: true
                     checked: root.pageStack.currentItem.overlay.disableOverlayContrast
-                    onTriggered: root.pageStack.currentItem.overlay.disableOverlayContrast = !root.pageStack.currentItem.overlay.disableOverlayContrast
+                    onTriggered: root.pageStack.currentItem.overlay.disableOverlayContrast = checked
                 }
                 Kirigami.Action {
                     id: transparencySetting
@@ -374,7 +374,7 @@ Kirigami.ApplicationWindow {
                     iconSource: "qrc:/icons/format-font-size-more.svg"
                     checkable: true
                     checked: root.forceQtTextRenderer
-                    onTriggered: root.forceQtTextRenderer = !root.forceQtTextRenderer
+                    onTriggered: root.forceQtTextRenderer = checked
                 }
 //                 Kirigami.Action {
 //                     text: i18nc("Main menu actions", "Restore factory defaults")
@@ -487,7 +487,7 @@ Kirigami.ApplicationWindow {
                 checkable: true
                 checked: root.theforce
                 onClicked: {
-                    root.theforce = !root.theforce
+                    root.theforce = checked
                     globalMenu.close()
                 }
             }
@@ -672,19 +672,19 @@ Kirigami.ApplicationWindow {
                 text: i18nc("Global menu actions", "&Bold")
                 checkable: true
                 checked: root.pageStack.currentItem.document.bold
-                onTriggered: root.pageStack.currentItem.document.bold = !root.pageStack.currentItem.document.bold
+                onTriggered: root.pageStack.currentItem.document.bold = checked
             }
             Labs.MenuItem {
                 text: i18nc("Global menu actions", "&Italic")
                 checkable: true
                 checked: root.pageStack.currentItem.document.italic
-                onTriggered: root.pageStack.currentItem.document.italic = !root.pageStack.currentItem.document.italic
+                onTriggered: root.pageStack.currentItem.document.italic = checked
             }
             Labs.MenuItem {
                 text: i18nc("Global menu actions", "&Underline")
                 checkable: true
                 checked: root.pageStack.currentItem.document.underline
-                onTriggered: root.pageStack.currentItem.document.underline = !root.pageStack.currentItem.document.underline
+                onTriggered: root.pageStack.currentItem.document.underline = checked
             }
             Labs.MenuSeparator { }
             Labs.MenuItem {
@@ -740,14 +740,14 @@ Kirigami.ApplicationWindow {
                 text: i18nc("Main menu and global menu actions. Touchpad scrolling and mouse wheel use have no effect while prompting.", "Disable scrolling while prompting")
                 checkable: true
                 checked: root.__noScroll
-                onTriggered: root.__noScroll = !root.__noScroll
+                onTriggered: root.__noScroll = checked
             }
             Labs.MenuItem {
                 text: i18nc("Main menu and global menu actions. Have touchpad and mouse wheel scrolling adjust velocity instead of scrolling like most other apps.", "Use scroll as velocity &dial")
                 enabled: !root.__noScroll
                 checkable: true
                 checked: root.__scrollAsDial
-                onTriggered: root.__scrollAsDial = !root.__scrollAsDial
+                onTriggered: root.__scrollAsDial = checked
             }
             Labs.MenuSeparator { }
             Labs.MenuItem {
@@ -755,14 +755,14 @@ Kirigami.ApplicationWindow {
                 enabled: !root.__noScroll
                 checkable: true
                 checked: root.__invertArrowKeys
-                onTriggered: root.__invertArrowKeys = !root.__invertArrowKeys
+                onTriggered: root.__invertArrowKeys = checked
             }
             Labs.MenuItem {
                 text: i18nc("Main menu and global menu actions. Invert scroll direction while prompting.", "Invert &scroll direction")
                 enabled: !root.__noScroll
                 checkable: true
                 checked: root.__invertScrollDirection
-                onTriggered: root.__invertScrollDirection = !root.__invertScrollDirection
+                onTriggered: root.__invertScrollDirection = checked
             }
         },
 
@@ -977,7 +977,7 @@ Kirigami.ApplicationWindow {
         //onSaveClicked: root.pageStack.currentItem.document.saveDialog(true)
         onAccepted:
         {
-            root.pageStack.currentItem.document.saveDialog(parseInt(root.onDiscard)==Prompter.CloseActions.Quit)
+            root.pageStack.currentItem.document.saveDialog(parseInt(root.onDiscard)===Prompter.CloseActions.Quit)
         }
     }
     QmlUtil {
