@@ -35,7 +35,9 @@ import com.cuperino.qprompt.qmlutil 1.0
 Kirigami.ApplicationWindow {
     id: root
     property bool __fullScreen: false
+    property bool __fakeFullscreen: false
     property bool __autoFullScreen: false
+    readonly property bool fullScreenOrFakeFullScreen: visibility===Kirigami.ApplicationWindow.FullScreen || __fakeFullscreen && __fullScreen && visibility===Kirigami.ApplicationWindow.Maximized
     // The following line includes macOS among the list of platforms where full screen buttons are hidden. This is done intentionally because macOS provides its own full screen buttons on the window frame and global menu. We shall not mess with what users of each platform expect.
     property bool fullScreenPlatform: Kirigami.Settings.isMobile || ['android', 'ios', 'wasm', 'tvos', 'qnx', 'ipados', 'osx'].indexOf(Qt.platform.os)!==-1
     //readonly property bool __translucidBackground: !Material.background.a // === 0
@@ -79,6 +81,7 @@ Kirigami.ApplicationWindow {
         property alias y: root.y
         property alias width: root.width
         property alias height: root.height
+        property alias fakeFullScreen: root.__fakeFullscreen
     }
     Settings {
         category: "scroll"
@@ -115,7 +118,7 @@ Kirigami.ApplicationWindow {
     color: root.__translucidBackground ? "transparent" : "initial"
     // More ways to enforce transparency across systems
     //visible: true
-    readonly property int hideDecorators: root.pageStack.currentItem.overlay.atTop && !root.pageStack.currentItem.viewport.forcedOrientation && parseInt(root.pageStack.currentItem.prompter.state)!==Prompter.States.Editing || Qt.platform.os==="osx" && root.pageStack.currentItem.prompterBackground.opacity!==1 ? Qt.FramelessWindowHint : Qt.Window
+    readonly property int hideDecorators: root.pageStack.currentItem.overlay.atTop && !root.pageStack.currentItem.viewport.forcedOrientation && parseInt(root.pageStack.currentItem.prompter.state)!==Prompter.States.Editing || Qt.platform.os==="osx" && root.pageStack.currentItem.prompterBackground.opacity!==1 || __fullScreen && __fakeFullscreen && visibility===Kirigami.ApplicationWindow.Maximized ? Qt.FramelessWindowHint : Qt.Window
     flags: hideDecorators
 
     background: Rectangle {
@@ -136,14 +139,14 @@ Kirigami.ApplicationWindow {
     }
 
     // Full screen
-    visibility: __fullScreen ? Kirigami.ApplicationWindow.FullScreen : (!__autoFullScreen ? Kirigami.ApplicationWindow.AutomaticVisibility : (parseInt(root.pageStack.currentItem.prompter.state)===Prompter.States.Editing ? Kirigami.ApplicationWindow.Maximized : Kirigami.ApplicationWindow.FullScreen))
+    visibility: __fullScreen ? (__fakeFullscreen ? Kirigami.ApplicationWindow.Maximized : Kirigami.ApplicationWindow.FullScreen) : (!__autoFullScreen ? Kirigami.ApplicationWindow.AutomaticVisibility : (parseInt(root.pageStack.currentItem.prompter.state)===Prompter.States.Editing ? Kirigami.ApplicationWindow.Maximized : (__fakeFullscreen ? Kirigami.ApplicationWindow.Maximized : Kirigami.ApplicationWindow.FullScreen)))
 
     onWidthChanged: {
         root.pageStack.currentItem.footer.paragraphSpacingSlider.update()
     }
 
     // Open save dialog on closing
-    onClosing: {
+    onClosing: function (close) {
         root.onDiscard = Prompter.CloseActions.Quit
         if (root.pageStack.currentItem.document.modified) {
             closeDialog.open()
@@ -311,8 +314,8 @@ Kirigami.ApplicationWindow {
                 Kirigami.Action {
                     id: enableOverlayContrastSetting
                     text: i18nc("Main menu actions. Disables contrast effect for the reading region overlay.", "Disable overlay contrast")
-                    //iconName: "edit-opacity"
-                    iconSource: "qrc:/icons/edit-opacity.svg"
+                    iconName: "edit-opacity"
+                    // iconSource: "qrc:/icons/edit-opacity.svg"
                     checkable: true
                     checked: root.pageStack.currentItem.overlay.disableOverlayContrast
                     onTriggered: root.pageStack.currentItem.overlay.disableOverlayContrast = !root.pageStack.currentItem.overlay.disableOverlayContrast
@@ -322,8 +325,8 @@ Kirigami.ApplicationWindow {
                     property bool dirty: false
                     visible: ["android", "ios", "tvos", "ipados", "qnx"].indexOf(Qt.platform.os)===-1
                     text: i18n("Disable background transparency")
-                    //iconName: "contrast"
-                    iconSource: "qrc:/icons/contrast.svg"
+                    iconName: "contrast"
+                    // iconSource: "qrc:/icons/contrast.svg"
                     checkable: true
                     checked: !root.__translucidBackground
                     onTriggered: {
@@ -340,11 +343,22 @@ Kirigami.ApplicationWindow {
                     }
                 }
                 Kirigami.Action {
+                    id: fakeFullscreenSetting
+                    text: i18nc("Main menu actions. Fake fullscreen behavior instead of requesting true fullscreen", "Fake fullscreen behavior")
+                    visible: ['linux', 'windows'].indexOf(Qt.platform.os)!==-1
+                    iconName: "view-fullscreen"
+                    // iconSource: "qrc:/icons/view-fullscreen.svg"
+                    checkable: true
+                    checked: root.__fakeFullscreen
+                    onTriggered: root.__fakeFullscreen = checked
+                }
+                Kirigami.Action {
                     id: subpixelSetting
                     text: i18nc("Main menu actions. QPrompt switches between two text rendering techniques when the base font size exceeds 120px. Enabling this option forces QPrompt to always use the default renderer, which features smoother sub-pixel animations.", "Force sub-pixel text renderer past 120px")
                     // Hiding option because only Qt text renderer is used on devices of greater pixel density, due to bug in rendering native fonts while scaling is enabled.
                     visible: ['android', 'ios', 'wasm', 'tvos', 'qnx', 'ipados'].indexOf(Qt.platform.os)===-1 && screen.devicePixelRatio === 1.0
                     iconName: "format-font-size-more"
+                    // iconSource: "qrc:/icons/format-font-size-more.svg"
                     checkable: true
                     checked: root.forceQtTextRenderer
                     onTriggered: root.forceQtTextRenderer = !root.forceQtTextRenderer
@@ -503,7 +517,20 @@ Kirigami.ApplicationWindow {
     pageStack.globalToolBar.toolbarActionAlignment: Qt.AlignHCenter
     pageStack.initialPage: prompterPageComponent
     // Auto hide global toolbar on fullscreen
-    pageStack.globalToolBar.style: Kirigami.Settings.isMobile ? (root.pageStack.layers.depth > 1 ? Kirigami.ApplicationHeaderStyle.Titles : Kirigami.ApplicationHeaderStyle.None) : (parseInt(root.pageStack.currentItem.prompter.state)!==Prompter.States.Editing && (visibility===Kirigami.ApplicationWindow.FullScreen || root.pageStack.currentItem.overlay.atTop) ? Kirigami.ApplicationHeaderStyle.None : Kirigami.ApplicationHeaderStyle.ToolBar)
+    pageStack.globalToolBar.style:
+        if (Kirigami.Settings.isMobile) {
+            if (root.pageStack.layers.depth > 1)
+                return Kirigami.ApplicationHeaderStyle.Titles
+            else
+                return Kirigami.ApplicationHeaderStyle.None
+        }
+        else {
+            if (parseInt(root.pageStack.currentItem.prompter.state)!==Prompter.States.Editing &&
+                    (fullScreenOrFakeFullScreen || root.pageStack.currentItem.overlay.atTop && !root.pageStack.currentItem.viewport.forcedOrientation))
+                return Kirigami.ApplicationHeaderStyle.None;
+            else
+                return Kirigami.ApplicationHeaderStyle.ToolBar;
+        }
 
     // The following is not possible in the current version of Kirigami, but it should be:
     //pageStack.globalToolBar.background: Rectangle {

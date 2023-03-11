@@ -34,7 +34,9 @@ import com.cuperino.qprompt.document 1.0
 Kirigami.ApplicationWindow {
     id: root
     property bool __fullScreen: false
+    property bool __fakeFullscreen: false
     property bool __autoFullScreen: false
+    readonly property bool fullScreenOrFakeFullScreen: visibility===Kirigami.ApplicationWindow.FullScreen || __fakeFullscreen && __fullScreen && visibility===Kirigami.ApplicationWindow.Maximized
     // The following line includes macOS among the list of platforms where full screen buttons are hidden. This is done intentionally because macOS provides its own full screen buttons on the window frame and global menu. We shall not mess with what users of each platform expect.
     property bool fullScreenPlatform: true
     //readonly property bool __translucidBackground: !Material.background.a // === 0
@@ -126,14 +128,14 @@ Kirigami.ApplicationWindow {
     }
 
     // Full screen
-    visibility: __fullScreen ? Kirigami.ApplicationWindow.FullScreen : (!__autoFullScreen ? Kirigami.ApplicationWindow.AutomaticVisibility : (parseInt(root.pageStack.currentItem.prompter.state)===Prompter.States.Editing ? Kirigami.ApplicationWindow.Maximized : Kirigami.ApplicationWindow.FullScreen))
+    visibility: __fullScreen ? (__fakeFullscreen ? Kirigami.ApplicationWindow.Maximized : Kirigami.ApplicationWindow.FullScreen) : (!__autoFullScreen ? Kirigami.ApplicationWindow.AutomaticVisibility : (parseInt(root.pageStack.currentItem.prompter.state)===Prompter.States.Editing ? Kirigami.ApplicationWindow.Maximized : (__fakeFullscreen ? Kirigami.ApplicationWindow.Maximized : Kirigami.ApplicationWindow.FullScreen)))
 
     onWidthChanged: {
         root.pageStack.currentItem.footer.paragraphSpacingSlider.update()
     }
 
     // Open save dialog on closing
-    onClosing: {
+    onClosing: function (close) {
         root.onDiscard = Prompter.CloseActions.Quit
         if (root.pageStack.currentItem.document.modified) {
             closeDialog.open()
