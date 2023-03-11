@@ -35,7 +35,9 @@ import com.cuperino.qprompt.qmlutil 1.0
 Kirigami.ApplicationWindow {
     id: root
     property bool __fullScreen: false
+    property bool __fakeFullscreen: false
     property bool __autoFullScreen: false
+    readonly property bool fullScreenOrFakeFullScreen: visibility===Kirigami.ApplicationWindow.FullScreen || __fakeFullscreen && __fullScreen && visibility===Kirigami.ApplicationWindow.Maximized
     // The following line includes macOS among the list of platforms where full screen buttons are hidden. This is done intentionally because macOS provides its own full screen buttons on the window frame and global menu. We shall not mess with what users of each platform expect.
     property bool fullScreenPlatform: Kirigami.Settings.isMobile || ['android', 'ios', 'wasm', 'tvos', 'qnx', 'ipados', 'osx'].indexOf(Qt.platform.os)!==-1
     //readonly property bool __translucidBackground: !Material.background.a // === 0
@@ -79,6 +81,7 @@ Kirigami.ApplicationWindow {
         property alias y: root.y
         property alias width: root.width
         property alias height: root.height
+        property alias fakeFullScreen: root.__fakeFullscreen
     }
     Settings {
         category: "scroll"
@@ -115,7 +118,7 @@ Kirigami.ApplicationWindow {
     color: root.__translucidBackground ? "transparent" : "initial"
     // More ways to enforce transparency across systems
     //visible: true
-    readonly property int hideDecorators: root.pageStack.currentItem.overlay.atTop && !root.pageStack.currentItem.viewport.forcedOrientation && parseInt(root.pageStack.currentItem.prompter.state)!==Prompter.States.Editing || Qt.platform.os==="osx" && root.pageStack.currentItem.prompterBackground.opacity!==1 ? Qt.FramelessWindowHint : Qt.Window
+    readonly property int hideDecorators: root.pageStack.currentItem.overlay.atTop && !root.pageStack.currentItem.viewport.forcedOrientation && parseInt(root.pageStack.currentItem.prompter.state)!==Prompter.States.Editing || Qt.platform.os==="osx" && root.pageStack.currentItem.prompterBackground.opacity!==1 || __fullScreen && __fakeFullscreen && visibility===Kirigami.ApplicationWindow.Maximized ? Qt.FramelessWindowHint : Qt.Window
     flags: hideDecorators
 
     background: Rectangle {
@@ -134,9 +137,9 @@ Kirigami.ApplicationWindow {
             case 2: return "#FAFAFA";
         }
     }
-    
+
     // Full screen
-    visibility: __fullScreen ? Kirigami.ApplicationWindow.FullScreen : (!__autoFullScreen ? Kirigami.ApplicationWindow.AutomaticVisibility : (parseInt(root.pageStack.currentItem.prompter.state)===Prompter.States.Editing ? Kirigami.ApplicationWindow.Maximized : Kirigami.ApplicationWindow.FullScreen))
+    visibility: __fullScreen ? (__fakeFullscreen ? Kirigami.ApplicationWindow.Maximized : Kirigami.ApplicationWindow.FullScreen) : (!__autoFullScreen ? Kirigami.ApplicationWindow.AutomaticVisibility : (parseInt(root.pageStack.currentItem.prompter.state)===Prompter.States.Editing ? Kirigami.ApplicationWindow.Maximized : (__fakeFullscreen ? Kirigami.ApplicationWindow.Maximized : Kirigami.ApplicationWindow.FullScreen)))
 
     onWidthChanged: {
         root.pageStack.currentItem.footer.paragraphSpacingSlider.update()
@@ -167,7 +170,7 @@ Kirigami.ApplicationWindow {
     // Left Global Drawer
     globalDrawer: Kirigami.GlobalDrawer {
         id: globalMenu
-        
+
         property int bannerCounter: 0
         // isMenu: true
         title: aboutData.displayName
@@ -335,7 +338,7 @@ Kirigami.ApplicationWindow {
                     property bool dirty: false
                     visible: ["android", "ios", "tvos", "ipados", "qnx"].indexOf(Qt.platform.os)===-1
                     text: i18n("Disable background transparency")
-                    //iconName: "contrast"
+                    // iconName: "contrast"
                     iconSource: "qrc:/icons/contrast.svg"
                     checkable: true
                     checked: !root.__translucidBackground
@@ -353,11 +356,21 @@ Kirigami.ApplicationWindow {
                     }
                 }
                 Kirigami.Action {
+                    id: fakeFullscreenSetting
+                    text: i18nc("Main menu actions. Fake fullscreen behavior instead of requesting true fullscreen", "Fake fullscreen behavior")
+                    visible: ['linux', 'windows'].indexOf(Qt.platform.os)!==-1
+                    // iconName: "view-fullscreen"
+                    iconSource: "qrc:/icons/view-fullscreen.svg"
+                    checkable: true
+                    checked: root.__fakeFullscreen
+                    onTriggered: root.__fakeFullscreen = checked
+                }
+                Kirigami.Action {
                     id: subpixelSetting
                     text: i18nc("Main menu actions. QPrompt switches between two text rendering techniques when the base font size exceeds 120px. Enabling this option forces QPrompt to always use the default renderer, which features smoother sub-pixel animations.", "Force sub-pixel text renderer past 120px")
                     // Hiding option because only Qt text renderer is used on devices of greater pixel density, due to bug in rendering native fonts while scaling is enabled.
                     visible: ['android', 'ios', 'wasm', 'tvos', 'qnx', 'ipados'].indexOf(Qt.platform.os)===-1 && screen.devicePixelRatio === 1.0
-                    //iconName: "format-font-size-more"
+                    // iconName: "format-font-size-more"
                     iconSource: "qrc:/icons/format-font-size-more.svg"
                     checkable: true
                     checked: root.forceQtTextRenderer
@@ -491,7 +504,7 @@ Kirigami.ApplicationWindow {
         menus: [
         Labs.Menu {
             title: i18nc("Global menu actions", "&File")
-            
+
             Labs.MenuItem {
                 text: i18nc("Main menu and global menu actions", "&New")
                 onTriggered: root.pageStack.currentItem.document.newDocument()
@@ -514,10 +527,10 @@ Kirigami.ApplicationWindow {
                 onTriggered: close()
             }
         },
-        
+
         Labs.Menu {
             title: i18nc("Global menu actions", "&Edit")
-            
+
             Labs.MenuItem {
                 text: i18nc("Global menu actions", "&Undo")
                 enabled: root.pageStack.currentItem.editor.canUndo
@@ -545,10 +558,10 @@ Kirigami.ApplicationWindow {
                 onTriggered: root.pageStack.currentItem.editor.paste()
             }
         },
-        
+
         Labs.Menu {
             title: i18nc("Global menu actions", "&View")
-            
+
             Labs.MenuItem {
                 text: i18nc("Global menu actions", "Full &screen")
                 visible: !fullScreenPlatform
@@ -654,7 +667,7 @@ Kirigami.ApplicationWindow {
 
         Labs.Menu {
             title: i18nc("Global menu actions", "For&mat")
-            
+
             Labs.MenuItem {
                 text: i18nc("Global menu actions", "&Bold")
                 checkable: true
@@ -755,7 +768,7 @@ Kirigami.ApplicationWindow {
 
         Labs.Menu {
             title: i18nc("Global menu actions", "&Help")
-            
+
             Labs.MenuItem {
                 text: i18nc("Global menu actions", "Report &Bug…")
                 onTriggered: Qt.openUrlExternally("Global menu actions", "https://feedback.qprompt.app")
@@ -833,7 +846,7 @@ Kirigami.ApplicationWindow {
         }
         else {
             if (parseInt(root.pageStack.currentItem.prompter.state)!==Prompter.States.Editing &&
-                    (visibility===Kirigami.ApplicationWindow.FullScreen || root.pageStack.currentItem.overlay.atTop && !root.pageStack.currentItem.viewport.forcedOrientation))
+                    (fullScreenOrFakeFullScreen || root.pageStack.currentItem.overlay.atTop && !root.pageStack.currentItem.viewport.forcedOrientation))
                 return Kirigami.ApplicationHeaderStyle.None;
             else
                 return Kirigami.ApplicationHeaderStyle.ToolBar;
@@ -846,7 +859,7 @@ Kirigami.ApplicationWindow {
     //property alias root.pageStack.currentItem: root.pageStack.currentItem
     //property alias root.pageStack.currentItem: root.pageStack.layers.currentItem
     // End of Kirigami PageStack configuration
-    
+
     // Patch current page's events to outside its scope.
     //Connections {
         //target: pageStack.currentItem

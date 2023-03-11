@@ -100,7 +100,7 @@ ToolBar {
     readonly property bool showingFormattingTools: parseInt(viewport.prompter.state)!==Prompter.States.Editing && (!toolbar.hideFormattingToolsWhilePrompting || editor.focus)
 
     // Hide toolbar when read region is set to bottom and viewport.prompter is not in editing state.
-    enabled: !(parseInt(viewport.prompter.state)!==Prompter.States.Editing && (overlay.atBottom && !viewport.forcedOrientation || root.visibility===ApplicationWindow.FullScreen && !editor.focus))
+    enabled: !(parseInt(viewport.prompter.state)!==Prompter.States.Editing && (overlay.atBottom && !viewport.forcedOrientation || root.fullScreenOrFakeFullScreen && !editor.focus))
     height: enabled ? implicitHeight : 0
     //Behavior on height {
     //    id: height
