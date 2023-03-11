@@ -343,16 +343,6 @@ Kirigami.ApplicationWindow {
                     }
                 }
                 Kirigami.Action {
-                    id: fakeFullscreenSetting
-                    text: i18nc("Main menu actions. Fake fullscreen behavior instead of requesting true fullscreen", "Fake fullscreen behavior")
-                    visible: ['linux', 'windows'].indexOf(Qt.platform.os)!==-1
-                    iconName: "view-fullscreen"
-                    // iconSource: "qrc:/icons/view-fullscreen.svg"
-                    checkable: true
-                    checked: root.__fakeFullscreen
-                    onTriggered: root.__fakeFullscreen = checked
-                }
-                Kirigami.Action {
                     id: subpixelSetting
                     text: i18nc("Main menu actions. QPrompt switches between two text rendering techniques when the base font size exceeds 120px. Enabling this option forces QPrompt to always use the default renderer, which features smoother sub-pixel animations.", "Force sub-pixel text renderer past 120px")
                     // Hiding option because only Qt text renderer is used on devices of greater pixel density, due to bug in rendering native fonts while scaling is enabled.
