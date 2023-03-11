@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: qprompt\n"
 "Report-Msgid-Bugs-To: https://github.com/Cuperino/QPrompt/issues/new/choose\n"
-"POT-Creation-Date: 2023-02-26 22:55-0400\n"
+"POT-Creation-Date: 2023-03-11 17:57-0400\n"
 "PO-Revision-Date: 2022-07-27 22:56+0000\n"
 "Last-Translator: Javier O. Cordero Pérez <javiercorderoperez@gmail.com>\n"
 "Language-Team: Dutch <http://l10n.cuperino.com/projects/qprompt/qprompt-app/"
@@ -19,149 +19,149 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: Weblate 4.11.2\n"
 
-#: kirigami_ui/+android/main.qml:174 kirigami_ui/main.qml:184
-#: kirigami_ui/main.qml:496 kirigami_ui/+windows/main.qml:184
+#: kirigami_ui/+android/main.qml:176 kirigami_ui/main.qml:187
+#: kirigami_ui/main.qml:509 kirigami_ui/+windows/main.qml:187
 msgctxt "Main menu and global menu actions"
 msgid "&New"
 msgstr "&Nieuw"
 
-#: kirigami_ui/+android/main.qml:180 kirigami_ui/main.qml:191
-#: kirigami_ui/main.qml:500 kirigami_ui/+windows/main.qml:190
+#: kirigami_ui/+android/main.qml:182 kirigami_ui/main.qml:194
+#: kirigami_ui/main.qml:513 kirigami_ui/+windows/main.qml:193
 msgctxt "Main menu and global menu actions"
 msgid "&Open"
 msgstr "&Open"
 
-#: kirigami_ui/+android/main.qml:189 kirigami_ui/main.qml:201
-#: kirigami_ui/+windows/main.qml:199
+#: kirigami_ui/+android/main.qml:191 kirigami_ui/main.qml:204
+#: kirigami_ui/+windows/main.qml:202
 msgctxt "Main menu and global menu actions"
 msgid "&Open remote file"
 msgstr ""
 
-#: kirigami_ui/+android/main.qml:198 kirigami_ui/main.qml:210
-#: kirigami_ui/main.qml:504 kirigami_ui/+windows/main.qml:208
+#: kirigami_ui/+android/main.qml:200 kirigami_ui/main.qml:213
+#: kirigami_ui/main.qml:517 kirigami_ui/+windows/main.qml:211
 msgctxt "Main menu and global menu actions"
 msgid "&Save"
 msgstr "&Opslaan"
 
-#: kirigami_ui/+android/main.qml:207 kirigami_ui/main.qml:220
-#: kirigami_ui/+windows/main.qml:217
+#: kirigami_ui/+android/main.qml:209 kirigami_ui/main.qml:223
+#: kirigami_ui/+windows/main.qml:220
 msgctxt "Main menu and global menu actions"
 msgid "Save &As"
 msgstr "Opslaan &Als"
 
-#: kirigami_ui/+android/main.qml:217 kirigami_ui/main.qml:231
-#: kirigami_ui/+windows/main.qml:227
+#: kirigami_ui/+android/main.qml:219 kirigami_ui/main.qml:234
+#: kirigami_ui/+windows/main.qml:230
 msgctxt "Main menu actions"
 msgid "&Recent Files"
 msgstr "&Recente documenten"
 
-#: kirigami_ui/+android/main.qml:225 kirigami_ui/main.qml:240
-#: kirigami_ui/+windows/main.qml:235
+#: kirigami_ui/+android/main.qml:227 kirigami_ui/main.qml:243
+#: kirigami_ui/+windows/main.qml:238
 msgctxt "Main menu actions. Menu regarding input settings."
 msgid "&Controls Settings"
 msgstr "&Instellingen"
 
-#: kirigami_ui/+android/main.qml:229 kirigami_ui/main.qml:245
-#: kirigami_ui/+windows/main.qml:239
+#: kirigami_ui/+android/main.qml:231 kirigami_ui/main.qml:248
+#: kirigami_ui/+windows/main.qml:242
 msgctxt ""
 "Main menu and global menu actions. Opens dialog to configure keyboard inputs."
 msgid "Keyboard Inputs"
 msgstr "Toetsenbord"
 
-#: kirigami_ui/+android/main.qml:237 kirigami_ui/main.qml:252
-#: kirigami_ui/+windows/main.qml:247
+#: kirigami_ui/+android/main.qml:239 kirigami_ui/main.qml:255
+#: kirigami_ui/+windows/main.qml:250
 msgctxt "Open 'scroll settings' from main menu and global menu actions"
 msgid "Scroll throttle settings"
 msgstr "Scroll instellingen"
 
-#: kirigami_ui/+android/main.qml:242 kirigami_ui/main.qml:258
-#: kirigami_ui/main.qml:741 kirigami_ui/+windows/main.qml:252
+#: kirigami_ui/+android/main.qml:244 kirigami_ui/main.qml:261
+#: kirigami_ui/main.qml:754 kirigami_ui/+windows/main.qml:255
 msgctxt ""
 "Main menu and global menu actions. Have up arrow behave like down arrow and "
 "vice versa while prompting."
 msgid "Invert &arrow keys"
 msgstr "Pijlen Omkeren"
 
-#: kirigami_ui/+android/main.qml:250 kirigami_ui/main.qml:267
-#: kirigami_ui/main.qml:748 kirigami_ui/+windows/main.qml:260
+#: kirigami_ui/+android/main.qml:252 kirigami_ui/main.qml:270
+#: kirigami_ui/main.qml:761 kirigami_ui/+windows/main.qml:263
 msgctxt ""
 "Main menu and global menu actions. Invert scroll direction while prompting."
 msgid "Invert &scroll direction"
 msgstr "Roller Omkeren"
 
-#: kirigami_ui/+android/main.qml:258 kirigami_ui/main.qml:276
-#: kirigami_ui/main.qml:733 kirigami_ui/+windows/main.qml:268
+#: kirigami_ui/+android/main.qml:260 kirigami_ui/main.qml:279
+#: kirigami_ui/main.qml:746 kirigami_ui/+windows/main.qml:271
 msgctxt ""
 "Main menu and global menu actions. Have touchpad and mouse wheel scrolling "
 "adjust velocity instead of scrolling like most other apps."
 msgid "Use scroll as velocity &dial"
 msgstr "Roller als Snelheid"
 
-#: kirigami_ui/+android/main.qml:267 kirigami_ui/main.qml:286
-#: kirigami_ui/main.qml:727 kirigami_ui/+windows/main.qml:277
+#: kirigami_ui/+android/main.qml:269 kirigami_ui/main.qml:289
+#: kirigami_ui/main.qml:740 kirigami_ui/+windows/main.qml:280
 msgctxt ""
 "Main menu and global menu actions. Touchpad scrolling and mouse wheel use "
 "have no effect while prompting."
 msgid "Disable scrolling while prompting"
 msgstr "Roller afgezet tijdens Prompting"
 
-#: kirigami_ui/+android/main.qml:275 kirigami_ui/main.qml:295
-#: kirigami_ui/+windows/main.qml:285
+#: kirigami_ui/+android/main.qml:277 kirigami_ui/main.qml:298
+#: kirigami_ui/+windows/main.qml:288
 msgctxt "Main menu actions"
 msgid "Other &Settings"
 msgstr "Andere Instellingen"
 
-#: kirigami_ui/+android/main.qml:286 kirigami_ui/main.qml:307
-#: kirigami_ui/+windows/main.qml:296
+#: kirigami_ui/+android/main.qml:288 kirigami_ui/main.qml:310
+#: kirigami_ui/+windows/main.qml:299
 msgctxt "Main menu actions"
 msgid "Always hide formatting tools"
 msgstr ""
 
-#: kirigami_ui/+android/main.qml:295 kirigami_ui/main.qml:317
-#: kirigami_ui/+windows/main.qml:305
+#: kirigami_ui/+android/main.qml:297 kirigami_ui/main.qml:320
+#: kirigami_ui/+windows/main.qml:308
 msgctxt "Main menu actions. Hides formatting tools while not in edit mode."
 msgid "Auto hide formatting tools"
 msgstr ""
 
-#: kirigami_ui/+android/main.qml:303 kirigami_ui/main.qml:326
-#: kirigami_ui/+windows/main.qml:313
+#: kirigami_ui/+android/main.qml:305 kirigami_ui/main.qml:329
+#: kirigami_ui/+windows/main.qml:316
 msgctxt ""
 "Main menu actions. Disables contrast effect for the reading region overlay."
 msgid "Disable overlay contrast"
 msgstr ""
 
-#: kirigami_ui/+android/main.qml:319 kirigami_ui/main.qml:376
-#: kirigami_ui/+windows/main.qml:361
+#: kirigami_ui/+android/main.qml:321 kirigami_ui/main.qml:389
+#: kirigami_ui/+windows/main.qml:365
 msgctxt "Main menu actions. Load about page."
 msgid "Abou&t %1"
 msgstr "Betreffend"
 
-#: kirigami_ui/+android/main.qml:325 kirigami_ui/main.qml:383
-#: kirigami_ui/main.qml:513 kirigami_ui/+windows/main.qml:367
+#: kirigami_ui/+android/main.qml:327 kirigami_ui/main.qml:396
+#: kirigami_ui/main.qml:526 kirigami_ui/+windows/main.qml:371
 msgctxt "Main menu and global menu actions"
 msgid "&Quit"
 msgstr "&Verlaten"
 
-#: kirigami_ui/+android/main.qml:372 kirigami_ui/main.qml:436
-#: kirigami_ui/main.qml:773 kirigami_ui/+windows/main.qml:419
+#: kirigami_ui/+android/main.qml:374 kirigami_ui/main.qml:449
+#: kirigami_ui/main.qml:786 kirigami_ui/+windows/main.qml:423
 #, fuzzy
 msgctxt "Main menu and global actions. Load document that welcomes users."
 msgid "Load &Welcome"
 msgstr "Gebruiker Laden"
 
-#: kirigami_ui/+android/main.qml:408 kirigami_ui/main.qml:472
-#: kirigami_ui/+windows/main.qml:455
+#: kirigami_ui/+android/main.qml:410 kirigami_ui/main.qml:485
+#: kirigami_ui/+windows/main.qml:459
 msgid "Darth mode"
 msgstr ""
 
-#: kirigami_ui/+android/main.qml:514 kirigami_ui/main.qml:924
-#: kirigami_ui/+windows/main.qml:590
+#: kirigami_ui/+android/main.qml:516 kirigami_ui/main.qml:937
+#: kirigami_ui/+windows/main.qml:607
 msgctxt "Title for save before closing dialog"
 msgid "Save Document"
 msgstr "Opslaan"
 
-#: kirigami_ui/+android/main.qml:515 kirigami_ui/main.qml:925
-#: kirigami_ui/+windows/main.qml:591
+#: kirigami_ui/+android/main.qml:517 kirigami_ui/main.qml:938
+#: kirigami_ui/+windows/main.qml:608
 msgid "Save changes to document before closing?"
 msgstr "Opslaan voor je verlaat?"
 
@@ -328,11 +328,18 @@ msgctxt "Skip to closest marker ahead of current position"
 msgid "Go to Next Marker"
 msgstr "Ga naar de volgende Markeer punt"
 
-#: kirigami_ui/main.qml:337 kirigami_ui/+windows/main.qml:324
+#: kirigami_ui/main.qml:340 kirigami_ui/+windows/main.qml:327
 msgid "Disable background transparency"
 msgstr ""
 
-#: kirigami_ui/main.qml:357 kirigami_ui/+windows/main.qml:344
+#: kirigami_ui/main.qml:360
+msgctxt ""
+"Main menu actions. Fake fullscreen behavior instead of requesting true "
+"fullscreen"
+msgid "Fake fullscreen behavior"
+msgstr ""
+
+#: kirigami_ui/main.qml:370 kirigami_ui/+windows/main.qml:347
 msgctxt ""
 "Main menu actions. QPrompt switches between two text rendering techniques "
 "when the base font size exceeds 120px. Enabling this option forces QPrompt "
@@ -341,228 +348,228 @@ msgctxt ""
 msgid "Force sub-pixel text renderer past 120px"
 msgstr "Dwing sub-pixel tekst voorbij 120px"
 
-#: kirigami_ui/main.qml:493
+#: kirigami_ui/main.qml:506
 msgctxt "Global menu actions"
 msgid "&File"
 msgstr "Document"
 
-#: kirigami_ui/main.qml:508
+#: kirigami_ui/main.qml:521
 msgctxt "Main menu and global menu actions"
 msgid "Save &As…"
 msgstr "Opslaan &Als…"
 
-#: kirigami_ui/main.qml:519
+#: kirigami_ui/main.qml:532
 msgctxt "Global menu actions"
 msgid "&Edit"
 msgstr "Opstellen"
 
-#: kirigami_ui/main.qml:522
+#: kirigami_ui/main.qml:535
 msgctxt "Global menu actions"
 msgid "&Undo"
 msgstr "&Ontdoen"
 
-#: kirigami_ui/main.qml:527
+#: kirigami_ui/main.qml:540
 msgctxt "Global menu actions"
 msgid "&Redo"
 msgstr "&Over Doen"
 
-#: kirigami_ui/main.qml:533 prompter/Prompter.qml:1313
+#: kirigami_ui/main.qml:546 prompter/Prompter.qml:1313
 #: prompter/Prompter.qml:1360
 msgctxt "Global menu and editor context menu actions"
 msgid "&Copy"
 msgstr "&Kopieëren"
 
-#: kirigami_ui/main.qml:538 prompter/Prompter.qml:1318
+#: kirigami_ui/main.qml:551 prompter/Prompter.qml:1318
 #: prompter/Prompter.qml:1365
 msgctxt "Global menu and editor context menu actions"
 msgid "Cu&t"
 msgstr "Snij"
 
-#: kirigami_ui/main.qml:543 prompter/Prompter.qml:1323
+#: kirigami_ui/main.qml:556 prompter/Prompter.qml:1323
 #: prompter/Prompter.qml:1370
 msgctxt "Global menu and editor context menu actions"
 msgid "&Paste"
 msgstr "&Plakken"
 
-#: kirigami_ui/main.qml:550
+#: kirigami_ui/main.qml:563
 msgctxt "Global menu actions"
 msgid "&View"
 msgstr "Aanschouwen"
 
-#: kirigami_ui/main.qml:553
+#: kirigami_ui/main.qml:566
 msgctxt "Global menu actions"
 msgid "Full &screen"
 msgstr "Vol Scherm"
 
-#: kirigami_ui/main.qml:567
+#: kirigami_ui/main.qml:580
 msgctxt "Global menu actions. Indicators highlight reading region."
 msgid "&Indicators"
 msgstr "Indicatoren"
 
-#: kirigami_ui/main.qml:569
+#: kirigami_ui/main.qml:582
 msgctxt "Global menu actions. Shows pointer to the left of the reading region."
 msgid "&Left Pointer"
 msgstr "&Links Wijzer"
 
-#: kirigami_ui/main.qml:575
+#: kirigami_ui/main.qml:588
 msgctxt ""
 "Global menu actions. Shows pointer to the right of the reading region."
 msgid "&Right Pointer"
 msgstr "&Rechts Wijzer"
 
-#: kirigami_ui/main.qml:581
+#: kirigami_ui/main.qml:594
 msgctxt ""
 "Global menu actions. Shows pointers to the left and right of the reading "
 "region."
 msgid "B&oth Pointers"
 msgstr "Beiden Wijzers"
 
-#: kirigami_ui/main.qml:588
+#: kirigami_ui/main.qml:601
 msgctxt "Global menu actions. Translucent bars indicate reading region."
 msgid "&Bars"
 msgstr "&Balken"
 
-#: kirigami_ui/main.qml:594
+#: kirigami_ui/main.qml:607
 msgctxt ""
 "Global menu actions. Translucent bars and left pointer indicate reading "
 "region."
 msgid "Bars Lef&t"
 msgstr "Balk Links"
 
-#: kirigami_ui/main.qml:600
+#: kirigami_ui/main.qml:613
 msgctxt ""
 "Global menu actions. Translucent bars and right pointer indicate reading "
 "region."
 msgid "Bars Ri&ght"
 msgstr "Balk Rechts"
 
-#: kirigami_ui/main.qml:607
+#: kirigami_ui/main.qml:620
 msgctxt "Global menu actions. Enable all reading region indicators."
 msgid "&All"
 msgstr "&Alles"
 
-#: kirigami_ui/main.qml:613
+#: kirigami_ui/main.qml:626
 msgctxt "Global menu actions. Disable all reading region indicators."
 msgid "&Hidden"
 msgstr "Verborgen"
 
-#: kirigami_ui/main.qml:620
+#: kirigami_ui/main.qml:633
 msgctxt ""
 "Global menu actions. Reading region indicates where a talent should be "
 "reading from."
 msgid "Readin&g region"
 msgstr "Lees Area"
 
-#: kirigami_ui/main.qml:622
+#: kirigami_ui/main.qml:635
 msgctxt "Global menu actions. Align reading region to top of prompter."
 msgid "&Top"
 msgstr "Boven"
 
-#: kirigami_ui/main.qml:628
+#: kirigami_ui/main.qml:641
 msgctxt ""
 "Global menu actions. Align reading region to vertical center of prompter."
 msgid "&Middle"
 msgstr "Middel"
 
-#: kirigami_ui/main.qml:634
+#: kirigami_ui/main.qml:647
 msgctxt "Global menu actions. Align reading region to bottom of prompter."
 msgid "&Bottom"
 msgstr "Onder"
 
-#: kirigami_ui/main.qml:641
+#: kirigami_ui/main.qml:654
 msgctxt ""
 "Global menu actions. Enables drag and drop positioning of reading region."
 msgid "F&ree placement"
 msgstr "Vrije Plaatsing"
 
-#: kirigami_ui/main.qml:647
+#: kirigami_ui/main.qml:660
 msgctxt ""
 "Global menu actions. Fix positioning of reading region to what was set in "
 "\"Free placement\" mode."
 msgid "C&ustom (Fixed placement)"
 msgstr "Aangepast (Vaste Plaatsing)"
 
-#: kirigami_ui/main.qml:656
+#: kirigami_ui/main.qml:669
 msgctxt "Global menu actions"
 msgid "For&mat"
 msgstr "Formaat"
 
-#: kirigami_ui/main.qml:659
+#: kirigami_ui/main.qml:672
 msgctxt "Global menu actions"
 msgid "&Bold"
 msgstr "Opvallend"
 
-#: kirigami_ui/main.qml:665
+#: kirigami_ui/main.qml:678
 msgctxt "Global menu actions"
 msgid "&Italic"
 msgstr "&Italisch"
 
-#: kirigami_ui/main.qml:671
+#: kirigami_ui/main.qml:684
 msgctxt "Global menu actions"
 msgid "&Underline"
 msgstr "&Onderlijnd"
 
-#: kirigami_ui/main.qml:678
+#: kirigami_ui/main.qml:691
 msgctxt "Global menu and editor actions. Text alignment."
 msgid "Align &Left"
 msgstr "Richt Links"
 
-#: kirigami_ui/main.qml:678
+#: kirigami_ui/main.qml:691
 msgctxt "Global menu and editor actions. Text alignment."
 msgid "Align &Right"
 msgstr "Richt Rechts"
 
-#: kirigami_ui/main.qml:689
+#: kirigami_ui/main.qml:702
 msgctxt "Global menu actions. Text alignment."
 msgid "Align Cen&ter"
 msgstr "Richt Middel"
 
-#: kirigami_ui/main.qml:695
+#: kirigami_ui/main.qml:708
 msgctxt "Global menu actions. Text alignment."
 msgid "Align &Right"
 msgstr "Richt Rechts"
 
-#: kirigami_ui/main.qml:695
+#: kirigami_ui/main.qml:708
 msgctxt "Global menu actions. Text alignment."
 msgid "Align &Left"
 msgstr "Richt Links"
 
-#: kirigami_ui/main.qml:714
+#: kirigami_ui/main.qml:727
 msgctxt "Global menu actions. Opens dialog to format currently selected text."
 msgid "C&haracter"
 msgstr "Karakters"
 
-#: kirigami_ui/main.qml:718
+#: kirigami_ui/main.qml:731
 msgctxt "Global menu actions. Opens dialog to color currently selected text."
 msgid "Fo&nt Color"
 msgstr "Font Kleur"
 
-#: kirigami_ui/main.qml:724
+#: kirigami_ui/main.qml:737
 msgctxt "Global menu actions. Menu regarding input settings."
 msgid "Controls"
 msgstr "Beheer"
 
-#: kirigami_ui/main.qml:757
+#: kirigami_ui/main.qml:770
 msgctxt "Global menu actions"
 msgid "&Help"
 msgstr "&Help"
 
-#: kirigami_ui/main.qml:760
+#: kirigami_ui/main.qml:773
 msgctxt "Global menu actions"
 msgid "Report &Bug…"
 msgstr "Rapporteer Probleem…"
 
-#: kirigami_ui/main.qml:779
+#: kirigami_ui/main.qml:792
 msgctxt "Global menu actions. Load about page. \"About AppName\""
 msgid "Abou&t %1"
 msgstr ""
 
-#: kirigami_ui/main.qml:914 kirigami_ui/+windows/main.qml:580
+#: kirigami_ui/main.qml:927 kirigami_ui/+windows/main.qml:597
 msgctxt "Restart application_name"
 msgid "Restart %1"
 msgstr ""
 
-#: kirigami_ui/main.qml:915 kirigami_ui/+windows/main.qml:581
+#: kirigami_ui/main.qml:928 kirigami_ui/+windows/main.qml:598
 msgctxt ""
 "application needs to restart for this change to fully take effect.\n"
 "\n"
