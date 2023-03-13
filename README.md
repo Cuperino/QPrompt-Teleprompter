@@ -28,7 +28,7 @@ Help more users access QPrompt by contributing translations to your native langu
 
 Code contributions are always welcome. Let's talk about what you'd like to do and I will help you get started.
 
-For your contributions to make it into QPrompt, you must sign our Contributor's License Agreement. You will be prompted to digitally sign the agreement the moment you make your first Pull Request here on GitHub. The process is mostly automated to make things easy.
+For your contributions to make it into QPrompt, you must sign our [Contributor's License Agreement](https://github.com/Cuperino/Signatures/blob/main/CLA.md). You will be prompted to digitally sign the agreement the moment you make your first Pull Request here on GitHub. The process is mostly automated to make things easy.
 
 # Code of Conduct
 
