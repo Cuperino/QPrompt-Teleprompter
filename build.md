@@ -22,15 +22,15 @@ To build QPrompt from source you need at least:
 
 ## QPrompt's Dependencies
 
-- A C++ compiler. I advice GNU's gcc for GNU/Linux (most Linuxes), Haiku OS, and esoteric systems; MSVC for Windows (should get you better runtime performance than MinGW); and Clang for macOS, Android, and Non-GNU/Linux.
-- CMake
-- Qt 5. The following components withing Qt are used to create QPrompt: `qt5-base qt5-declarative qt5-quickcontrols qt5-quickcontrols2 qt5-svg qt5-x11extras`
-- KDE's [extra-cmake-modules](url)
-- KDE's [KCoreAddons](https://invent.kde.org/frameworks/kcoreaddons/)
-- KDE's [Ki18n](https://invent.kde.org/frameworks/ki18n)
-- KDE's [Kirigami](https://invent.kde.org/frameworks/kirigami)
-- KDE's [KCrash](https://invent.kde.org/frameworks/kcrash)
-- Skycoder42's [QHotkey](https://github.com/Skycoder42/QHotkey)
+- A C++ compiler that supports C++ 17. I advice GNU's gcc for GNU/Linux (most Linuxes), Haiku OS, and esoteric systems; MSVC for Windows (should get you better runtime performance than MinGW); and Clang for macOS, Android, and Non-GNU/Linux.
+- CMake, version 3.16 or later
+- Qt 5, version 5.15.2 or later. The following components withing Qt are used to create QPrompt: `qt5-base qt5-declarative qt5-quickcontrols qt5-quickcontrols2 qt5-svg qt5-x11extras`
+- KDE's [extra-cmake-modules](url), version 5.78.0 or later
+- KDE's [KCoreAddons](https://invent.kde.org/frameworks/kcoreaddons/), version 5.78.0 or later
+- KDE's [Ki18n](https://invent.kde.org/frameworks/ki18n), version 5.78.0 or later
+- KDE's [Kirigami](https://invent.kde.org/frameworks/kirigami), version 5.78.0 or later
+- KDE's [KCrash](https://invent.kde.org/frameworks/kcrash), version 5.78.0 or later
+- Skycoder42's [QHotkey](https://github.com/Skycoder42/QHotkey), version 1.5.0 or later
 
 *Some of those libraries, such as Ki18n and KCrash, have dependencies of their own, which must also be satisfied for them and QPrompt to build.
 
