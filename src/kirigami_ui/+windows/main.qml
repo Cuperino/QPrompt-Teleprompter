@@ -1,7 +1,7 @@
 /****************************************************************************
  **
  ** QPrompt
- ** Copyright (C) 2020-2022 Javier O. Cordero Pérez
+ ** Copyright (C) 2020-2023 Javier O. Cordero Pérez
  **
  ** This file is part of QPrompt.
  **
@@ -158,13 +158,17 @@ Kirigami.ApplicationWindow {
         root.pageStack.layers.clear()
         root.pageStack.layers.push(aboutPageComponent, {aboutData: aboutData})
     }
+    function loadPathsPage() {
+        root.pageStack.layers.clear()
+        root.pageStack.layers.push(pathsPageComponent, {})
+    }
     function loadRemoteControlPage() {
         root.pageStack.layers.clear()
         root.pageStack.layers.push(remoteControlPageComponent, {})
     }
     function loadTelemetryPage() {
         root.pageStack.layers.clear()
-        root.pageStack.layers.push(telemetryPageComponent)
+        root.pageStack.layers.push(telemetryPageComponent, {})
     }
 
     // Left Global Drawer
@@ -295,6 +299,13 @@ Kirigami.ApplicationWindow {
 //                     }
 //                 }
                 Kirigami.Action {
+                    text: i18nc("Main menu actions. Load Path Settings page.", "External Tools and Applications")
+                    visible: ['android', 'ios', 'tvos', 'wasm'].indexOf(Qt.platform.os)===-1
+                    iconName: "akonadiconsole"
+                    // iconSource: "qrc:/icons/akonadiconsole.svg"
+                    onTriggered: loadPathsPage();
+                }
+                Kirigami.Action {
                     id: hideFormattingToolsAlwaysSetting
                     text: i18nc("Main menu actions", "Always hide formatting tools")
                     iconName: "newline"
@@ -364,7 +375,7 @@ Kirigami.ApplicationWindow {
             Kirigami.Action {
                 text: i18nc("Main menu actions. Load about page.", "Abou&t %1", aboutData.displayName)
                 iconName: "help-about"
-                onTriggered: loadAboutPage()
+                onTriggered: loadAboutPage();
             },
             Kirigami.Action {
                 visible: !Kirigami.Settings.isMobile
@@ -581,6 +592,10 @@ Kirigami.ApplicationWindow {
     Component {
         id: aboutPageComponent
         AboutPage {}
+    }
+    Component {
+        id: pathsPageComponent
+        PathsPage {}
     }
     Component {
         id: remoteControlPageComponent

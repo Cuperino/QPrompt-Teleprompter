@@ -1,7 +1,7 @@
 /****************************************************************************
  **
  ** QPrompt
- ** Copyright (C) 2020-2022 Javier O. Cordero Pérez
+ ** Copyright (C) 2020-2023 Javier O. Cordero Pérez
  **
  ** This file is part of QPrompt.
  **
@@ -89,6 +89,7 @@
 #include <QQmlFile>
 #include <QQmlFileSelector>
 #include <QQuickTextDocument>
+#include <QSettings>
 #include <QTextCharFormat>
 #if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
 #include <QStringConverter>
@@ -119,7 +120,6 @@ DocumentHandler::DocumentHandler(QObject *parent)
     _markersModel = new MarkersModel();
     _fileSystemWatcher = new QFileSystemWatcher();
     pdf_importer = QString::fromStdString("TextExtraction");
-    office_importer = QString::fromStdString("soffice");
 
     m_fontDialog = new SystemFontChooserDialog();
     m_network = new QNetworkAccessManager(this);
@@ -532,6 +532,7 @@ void DocumentHandler::load(const QUrl &fileUrl)
         return;
     }
 
+    bool skipAutoReload = false;
     const QUrl path = QQmlFileSelector(engine).selector()->select(fileUrl);
     const QString fileName = QQmlFile::urlToLocalFileOrQrc(path);
 
@@ -558,26 +559,34 @@ void DocumentHandler::load(const QUrl &fileUrl)
                     ImportFormat type = NONE;
                     if (mime.inherits(QString::fromStdString("application/pdf")))
                         type = PDF;
-                    else if (mime.inherits(QString::fromStdString("application/vnd.oasis.opendocument.text")))
+                    else if (mime.inherits(QString::fromStdString("application/vnd.oasis.opendocument.text"))) {
                         type = ODT;
-                    else if (mime.inherits(QString::fromStdString("application/vnd.openxmlformats-officedocument.wordprocessingml.document")))
+                        skipAutoReload = true;
+                    } else if (mime.inherits(QString::fromStdString("application/vnd.openxmlformats-officedocument.wordprocessingml.document"))) {
                         type = DOCX;
-                    else if (mime.inherits(QString::fromStdString("application/msword")))
+                        skipAutoReload = true;
+                    } else if (mime.inherits(QString::fromStdString("application/msword"))) {
                         type = DOC;
-                    else if (mime.inherits(QString::fromStdString("application/rtf")))
+                        skipAutoReload = true;
+                    } else if (mime.inherits(QString::fromStdString("application/rtf"))) {
                         type = RTF;
-                    else if (mime.inherits(QString::fromStdString("application/x-abiword")))
+                        skipAutoReload = true;
+                    } else if (mime.inherits(QString::fromStdString("application/x-abiword"))) {
                         type = ABW;
-                    else if (mime.inherits(QString::fromStdString("application/epub+zip")))
+                        skipAutoReload = true;
+                    } else if (mime.inherits(QString::fromStdString("application/epub+zip")))
                         type = EPUB;
                     else if (mime.inherits(QString::fromStdString("application/x-mobipocket-ebook")))
                         type = MOBI;
                     else if (mime.inherits(QString::fromStdString("application/vnd.amazon.ebook")))
                         type = AZW;
-                    else if (mime.inherits(QString::fromStdString("application/x-iwork-pages-sffpages")))
+                    else if (mime.inherits(QString::fromStdString("application/x-iwork-pages-sffpages"))) {
                         type = PAGESX;
-                    else if (mime.inherits(QString::fromStdString("application/vnd.apple.pages")))
+                        skipAutoReload = true;
+                    } else if (mime.inherits(QString::fromStdString("application/vnd.apple.pages"))) {
                         type = PAGES;
+                        skipAutoReload = true;
+                    }
                     // Dev: If type is incompatible and system isn't iOS, iPadOS, tvOS, watchOS, VxWorks, or the Universal Windows Platform
                     if (type != NONE) {
                         QString html = import(fileName, type);
@@ -606,8 +615,10 @@ void DocumentHandler::load(const QUrl &fileUrl)
         if (path.isLocalFile() && (_fileSystemWatcher == nullptr || newPath)) {
             if (newPath)
                 _fileSystemWatcher->removePath(QQmlFile::urlToLocalFileOrQrc(this->fileUrl()));
-            _fileSystemWatcher->addPath(fileName);
-            connect(_fileSystemWatcher, SIGNAL(fileChanged(QString)), this, SLOT(reload(QString)), Qt::UniqueConnection);
+            if (!skipAutoReload) {
+                _fileSystemWatcher->addPath(fileName);
+                connect(_fileSystemWatcher, SIGNAL(fileChanged(QString)), this, SLOT(reload(QString)), Qt::UniqueConnection);
+            }
         }
     }
 
@@ -620,14 +631,29 @@ QString DocumentHandler::import(QString fileName, ImportFormat type)
     QString program = QString::fromStdString("");
     QStringList arguments;
 
-    // Preferring TextExtraction over alternatives for its better support for RTL languages.
-    if (type == PDF) {
-        program = pdf_importer;
-        arguments << fileName;
-    }
+    //// Preferring TextExtraction over alternatives for its better support for RTL languages.
+    // if (type == PDF) {
+    //     program = pdf_importer;
+    //     arguments << fileName;
+    // }
+    // else
     // Using LibreOffice for most formats because of its ability to preserve formatting while converting to HTML.
-    else if (type == ODT || type == DOCX || type == DOC || type == RTF || type == ABW || type == PAGESX || type == PAGES) {
-        program = office_importer;
+    if (type == ODT || type == DOCX || type == DOC || type == RTF || type == ABW || type == PAGESX || type == PAGES) {
+        QSettings settings(QCoreApplication::organizationName(), QCoreApplication::applicationName().toLower());
+#if defined(Q_OS_WINDOWS)
+        program = settings.value("paths/soffice", "%ProgramFiles%/LibreOffice/program/soffice.exe").toString();
+        if (program == "")
+            program = "%ProgramFiles%/LibreOffice/program/soffice.exe";
+#elif defined(Q_OS_MACOS)
+        program = settings.value("paths/soffice", "/Applications/LibreOffice.app").toString();
+        if (program == "")
+            program = "/Applications/LibreOffice.app";
+        program += "/Contents/MacOS/soffice";
+#else
+        program = settings.value("paths/soffice", "soffice").toString();
+        if (program == "")
+            program = "soffice";
+#endif
         arguments << QString::fromStdString("--headless") << QString::fromStdString("--cat") << QString::fromStdString("--convert-to")
                   << QString::fromStdString("html:HTML") << fileName;
     } else if (type == EPUB || type == MOBI || type == AZW) {
@@ -642,7 +668,10 @@ QString DocumentHandler::import(QString fileName, ImportFormat type)
     convert.start(program, arguments);
 
     if (!convert.waitForFinished())
-        return QString::fromStdString("An error occurred while attempting to import. Make sure %1 is installed on your system and linked to.").arg(program);
+        return QString::fromStdString(
+                   "An error occurred while attempting to open file in a third party format. Go to \"Main Menu\", \"Other Setttings\", then \"External Tools\" "
+                   "to make sure a corresponding import tool is properly configured.")
+            .arg(program);
 
     QByteArray html = convert.readAll();
     // if (type==DOCX || type==DOC || type==RTF || type==ABW || type==EPUB || type==MOBI || type==AZW)
