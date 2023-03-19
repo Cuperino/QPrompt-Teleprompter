@@ -5,6 +5,7 @@
         <file alias="+android/main.qml">kirigami_ui/+android/main.qml</file>
         <file alias="+windows/main.qml">kirigami_ui/+windows/main.qml</file>
         <file alias="AboutPage.qml">kirigami_ui/AboutPage.qml</file>
+        <file alias="PathsPage.qml">kirigami_ui/PathsPage.qml</file>
         <file alias="PrompterPage.qml">kirigami_ui/PrompterPage.qml</file>
         <file alias="TelemetryPage.qml">kirigami_ui/TelemetryPage.qml</file>
         <file alias="RemotePage.qml">kirigami_ui/RemotePage.qml</file>

@@ -1,7 +1,7 @@
 /****************************************************************************
  **
  ** QPrompt
- ** Copyright (C) 2020-2022 Javier O. Cordero Pérez
+ ** Copyright (C) 2020-2023 Javier O. Cordero Pérez
  **
  ** This file is part of QPrompt.
  **
@@ -260,7 +260,6 @@ private:
     QFont m_font;
     QUrl m_fileUrl;
     QString pdf_importer;
-    QString office_importer;
     QNetworkAccessManager *m_network;
     QNetworkReply *m_reply;
     QTemporaryFile *m_cache;

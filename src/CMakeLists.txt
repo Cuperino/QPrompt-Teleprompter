@@ -1,7 +1,7 @@
 #**************************************************************************
 #
 # QPrompt
-# Copyright (C) 2020-2022 Javier O. Cordero Pérez
+# Copyright (C) 2020-2023 Javier O. Cordero Pérez
 #
 # This file is part of QPrompt.
 #
@@ -257,6 +257,7 @@ endif()
 if(ANDROID OR APPLE OR WIN32 OR IOS OR WASM)
     # Breeze icons names can be found at https://cdn.kde.org/breeze-icons/icons.html
     kirigami_package_breeze_icons(ICONS
+        akonadiconsole
         application-exit
         auto-transition
         chronometer
