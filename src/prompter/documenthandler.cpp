@@ -368,6 +368,7 @@ void DocumentHandler::setKeyMarker(QString keyCodeString = QString::fromStdStrin
     //  Dev: in future versions, append, don't replace prior non-key values.
     format.setAnchorNames({QString::fromStdString("key_") + keyCodeString});
     format.setAnchor("#");
+    format.setAnchor(true);
     format.setFontUnderline(true);
     format.setFontOverline(true);
     mergeFormatOnWordOrSelection(format);
