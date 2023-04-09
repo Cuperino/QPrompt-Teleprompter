@@ -33,7 +33,7 @@
     <mediatype>text/markdown</mediatype>
     <mediatype>text/html</mediatype>
   </provides>
-<!--   <content_rating type="oars-1.0" /> -->
+  <content_rating type="oars-1.0" />
   <x-kudos>
     <kudo>HiDpiIcon</kudo>
     <kudo>HighContrast</kudo>
@@ -45,7 +45,13 @@
     <control>touch</control>
   </x-supports>
   <releases>
-    <release version="1.1.3" type="stable" date="2022-9-12">
+    <release version="1.1.6" type="stable" date="2023-3-5">
+    </release>
+    <release version="1.1.5" type="stable" date="2023-2-26">
+    </release>
+    <release version="1.1.4" type="stable" date="2023-2-4">
+    </release>
+    <release version="1.1.3" type="stable" date="2023-1-16">
     </release>
     <release version="1.1.2" type="stable" date="2022-9-12">
       <artifacts>
