@@ -249,6 +249,7 @@ Flickable {
     }
 
     function cancel() {
+        cursorAutoHide.reset();
         state = Prompter.States.Editing
     }
 
@@ -275,7 +276,8 @@ Flickable {
                 ////showPassiveNotification(i18n("Editing"), 850*countdown.__iterations)
                 //// if (closeProjectionUponPromptEnd)
                 ////     projectionManager.close();
-                document.preventSleep(false);
+                // document.preventSleep(false);
+                cursorAutoHide.reset();
                 break;
             case Prompter.States.Standby:
             case Prompter.States.Countdown:
@@ -620,9 +622,12 @@ Flickable {
                     if (!editor.focus) {
                         editor.focus = true;
                         editor.cursorPosition = editor.positionAt(mouse.x, mouse.y)
+                        cursorAutoHide.reset();
                     }
-                    else
+                    else {
                         prompter.focus = true;
+                        cursorAutoHide.restart();
+                    }
                 }
 
                 //Different styles have different padding and background
@@ -1786,7 +1791,8 @@ Flickable {
             ScriptAction  {
                 // Jump into position
                 script: {
-                    timer.startTimer()
+                    timer.startTimer();
+                    cursorAutoHide.restart();
                 }
             }
         },
