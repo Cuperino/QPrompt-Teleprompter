@@ -26,6 +26,7 @@
         <file alias="Flip.qml">prompter/Flip.qml</file>
         <file alias="ProjectionsManager.qml">prompter/ProjectionsManager.qml</file>
         <file alias="Find.qml">prompter/Find.qml</file>
+        <file alias="CursorAutoHide.qml">prompter/CursorAutoHide.qml</file>
         <!-- Other QML -->
         <file alias="WindowDragger.qml">qt/WindowDragger.qml</file>
     </qresource>

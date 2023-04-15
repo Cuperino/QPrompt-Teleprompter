@@ -171,6 +171,12 @@ Kirigami.ApplicationWindow {
             if (!(bannerCounter%10))
                 ee = true
         }
+        onOpened: function() {
+            cursorAutoHide.reset();
+        }
+        onClosed: function() {
+            cursorAutoHide.restart();
+        }
         actions: [
             Kirigami.Action {
                 text: i18nc("Main menu and global menu actions", "&New")
@@ -426,6 +432,12 @@ Kirigami.ApplicationWindow {
     // Right Context Drawer
     contextDrawer: Kirigami.ContextDrawer {
         id: contextDrawer
+        onOpened: function() {
+            cursorAutoHide.reset();
+        }
+        onClosed: function() {
+            cursorAutoHide.restart();
+        }
         MouseArea {
             anchors.fill: parent
             acceptedButtons: Qt.NoButton
@@ -438,6 +450,11 @@ Kirigami.ApplicationWindow {
         anchors.right: parent.right
         acceptedButtons: Qt.NoButton
         onWheel: (wheel)=>root.pageStack.currentItem.viewport.mouse.wheel(wheel)
+    }
+
+    CursorAutoHide {
+        id: cursorAutoHide
+        anchors.fill: parent
     }
 
     // // This is a placeholder for projectionManager, which will not be implemented on Android
