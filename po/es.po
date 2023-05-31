@@ -9,10 +9,10 @@ msgstr ""
 "Project-Id-Version: qprompt\n"
 "Report-Msgid-Bugs-To: https://github.com/Cuperino/QPrompt/issues/new/choose\n"
 "POT-Creation-Date: 2023-03-11 17:57-0400\n"
-"PO-Revision-Date: 2023-01-16 15:48+0000\n"
+"PO-Revision-Date: 2023-05-31 20:26+0000\n"
 "Last-Translator: Javier O. Cordero Pérez <javiercorderoperez@gmail.com>\n"
-"Language-Team: Spanish <http://l10n.cuperino.com/projects/qprompt/qprompt-"
-"app/es/>\n"
+"Language-Team: Spanish <http://l10n.cuperino.com/projects/qprompt/"
+"qprompt-app/es/>\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -36,7 +36,7 @@ msgstr "&Abrir"
 #: kirigami_ui/+windows/main.qml:202
 msgctxt "Main menu and global menu actions"
 msgid "&Open remote file"
-msgstr ""
+msgstr "&Abrir archivo remoto"
 
 #: kirigami_ui/+android/main.qml:200 kirigami_ui/main.qml:213
 #: kirigami_ui/main.qml:517 kirigami_ui/+windows/main.qml:211
@@ -265,10 +265,9 @@ msgid "Step acceleration <pre>%1</pre>"
 msgstr "Aceleración del incremento <pre>%1</pre>"
 
 #: kirigami_ui/EditorToolbar.qml:1113
-#, fuzzy
 msgctxt "Next reload starts at 10:11:12"
 msgid "Next reload starts at <pre>%1</pre>"
-msgstr "Aceleración del incremento <pre>%1</pre>"
+msgstr "Próxima lectura remota en <pre>%1</pre>"
 
 #: kirigami_ui/InputsOverlay.qml:33
 msgctxt "Title of dialog where users customize keyboard inputs"
@@ -336,7 +335,7 @@ msgctxt ""
 "Main menu actions. Fake fullscreen behavior instead of requesting true "
 "fullscreen"
 msgid "Fake fullscreen behavior"
-msgstr ""
+msgstr "Falsear pantalla completa"
 
 #: kirigami_ui/main.qml:370 kirigami_ui/+windows/main.qml:347
 msgctxt ""
@@ -932,45 +931,44 @@ msgstr "Tecla para saltar a este marcador"
 
 #: kirigami_ui/PrompterPage.qml:1027
 msgid "Open from network..."
-msgstr ""
+msgstr "Abrir de la red…"
 
 #: kirigami_ui/PrompterPage.qml:1054
 msgid "URL:"
-msgstr ""
+msgstr "URL:"
 
 #: kirigami_ui/PrompterPage.qml:1058
 msgid "http, https, and ftp protocols supported"
-msgstr ""
+msgstr "tienen soporte los protocolos http, https y ftp"
 
 #: kirigami_ui/PrompterPage.qml:1069
-#, fuzzy
 msgid "Auto reload"
-msgstr "Auto encuadrar"
+msgstr "Auto recargar"
 
 #: kirigami_ui/PrompterPage.qml:1079
 msgid "Hours:"
-msgstr ""
+msgstr "Horas:"
 
 #: kirigami_ui/PrompterPage.qml:1099
 msgid "Minutes:"
-msgstr ""
+msgstr "Minutos:"
 
 #: kirigami_ui/PrompterPage.qml:1123
 msgid "Seconds:"
-msgstr ""
+msgstr "Segundos:"
 
 #: kirigami_ui/PrompterPage.qml:1150
 msgctxt "Next reload starts at 10:11:12"
 msgid "Next reload starts at %1"
-msgstr ""
+msgstr "Próxima lectura comienza en %1"
 
 #: kirigami_ui/PrompterPage.qml:1151
 msgid "Auto reload is not running"
-msgstr ""
+msgstr "Recarga automática inactiva"
 
 #: kirigami_ui/PrompterPage.qml:1158
 msgid "Load from Network"
-msgstr ""
+msgstr "Cargar de la red"
 
 #: kirigami_ui/PrompterPage.qml:1166 prompter/ProjectionsManager.qml:314
 msgid "Close"
@@ -1285,8 +1283,8 @@ msgstr "Inicio alcanzado, realizando búsqueda desdes el final."
 #: prompter/Find.qml:147
 msgid "Replaced 1 instance"
 msgid_plural "Replaced %1 instances"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Se reemplazó 1 instancia"
+msgstr[1] "Se reemplazaron %1 instancias"
 
 #: prompter/ProjectionsManager.qml:172
 msgid "Projection Window"
@@ -1346,7 +1344,7 @@ msgstr "Bienvenida de usuario cargada"
 
 #: prompter/Prompter.qml:1147
 msgid "Loaded: %1"
-msgstr ""
+msgstr "Cargó: %1"
 
 #: prompter/Prompter.qml:1175 prompter/Prompter.qml:1289
 msgctxt "Saved FILE_NAME"
@@ -1354,9 +1352,8 @@ msgid "Saved %1"
 msgstr "%1 guardado"
 
 #: prompter/Prompter.qml:1177
-#, fuzzy
 msgid "Saved"
-msgstr "&Guardar"
+msgstr "Guardado"
 
 #: prompter/Prompter.qml:1238 prompter/Prompter.qml:1272
 #: prompter/Prompter.qml:1276
