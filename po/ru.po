@@ -8,72 +8,72 @@ msgstr ""
 "Project-Id-Version: qprompt\n"
 "Report-Msgid-Bugs-To: https://github.com/Cuperino/QPrompt/issues/new/choose\n"
 "POT-Creation-Date: 2023-03-11 17:57-0400\n"
-"PO-Revision-Date: 2022-04-18 05:00+0000\n"
-"Last-Translator: Javier O. Cordero Pérez <javiercorderoperez@gmail.com>\n"
-"Language-Team: Russian <http://l10n.cuperino.com/projects/qprompt/qprompt-"
-"app/ru/>\n"
+"PO-Revision-Date: 2023-06-23 09:11+0000\n"
+"Last-Translator: Vadim Smirnov <pr@televideodata.ru>\n"
+"Language-Team: Russian <http://l10n.cuperino.com/projects/qprompt/"
+"qprompt-app/ru/>\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
-"n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 "X-Generator: Weblate 4.11.2\n"
 
 #: kirigami_ui/+android/main.qml:176 kirigami_ui/main.qml:187
 #: kirigami_ui/main.qml:509 kirigami_ui/+windows/main.qml:187
 msgctxt "Main menu and global menu actions"
 msgid "&New"
-msgstr ""
+msgstr "Новый"
 
 #: kirigami_ui/+android/main.qml:182 kirigami_ui/main.qml:194
 #: kirigami_ui/main.qml:513 kirigami_ui/+windows/main.qml:193
 msgctxt "Main menu and global menu actions"
 msgid "&Open"
-msgstr ""
+msgstr "Открыть"
 
 #: kirigami_ui/+android/main.qml:191 kirigami_ui/main.qml:204
 #: kirigami_ui/+windows/main.qml:202
 msgctxt "Main menu and global menu actions"
 msgid "&Open remote file"
-msgstr ""
+msgstr "Открыть удаленный файл"
 
 #: kirigami_ui/+android/main.qml:200 kirigami_ui/main.qml:213
 #: kirigami_ui/main.qml:517 kirigami_ui/+windows/main.qml:211
 msgctxt "Main menu and global menu actions"
 msgid "&Save"
-msgstr ""
+msgstr "Сохранить"
 
 #: kirigami_ui/+android/main.qml:209 kirigami_ui/main.qml:223
 #: kirigami_ui/+windows/main.qml:220
 msgctxt "Main menu and global menu actions"
 msgid "Save &As"
-msgstr ""
+msgstr "Сохранить как"
 
 #: kirigami_ui/+android/main.qml:219 kirigami_ui/main.qml:234
 #: kirigami_ui/+windows/main.qml:230
 msgctxt "Main menu actions"
 msgid "&Recent Files"
-msgstr ""
+msgstr "Последние файлы"
 
 #: kirigami_ui/+android/main.qml:227 kirigami_ui/main.qml:243
 #: kirigami_ui/+windows/main.qml:238
 msgctxt "Main menu actions. Menu regarding input settings."
 msgid "&Controls Settings"
-msgstr ""
+msgstr "Настройки управления"
 
 #: kirigami_ui/+android/main.qml:231 kirigami_ui/main.qml:248
 #: kirigami_ui/+windows/main.qml:242
 msgctxt ""
 "Main menu and global menu actions. Opens dialog to configure keyboard inputs."
 msgid "Keyboard Inputs"
-msgstr ""
+msgstr "Ввод с клавиатуры"
 
 #: kirigami_ui/+android/main.qml:239 kirigami_ui/main.qml:255
 #: kirigami_ui/+windows/main.qml:250
 msgctxt "Open 'scroll settings' from main menu and global menu actions"
 msgid "Scroll throttle settings"
-msgstr ""
+msgstr "Настройки прокрутки"
 
 #: kirigami_ui/+android/main.qml:244 kirigami_ui/main.qml:261
 #: kirigami_ui/main.qml:754 kirigami_ui/+windows/main.qml:255
@@ -81,14 +81,14 @@ msgctxt ""
 "Main menu and global menu actions. Have up arrow behave like down arrow and "
 "vice versa while prompting."
 msgid "Invert &arrow keys"
-msgstr ""
+msgstr "Инвертирование клавиш со стрелками"
 
 #: kirigami_ui/+android/main.qml:252 kirigami_ui/main.qml:270
 #: kirigami_ui/main.qml:761 kirigami_ui/+windows/main.qml:263
 msgctxt ""
 "Main menu and global menu actions. Invert scroll direction while prompting."
 msgid "Invert &scroll direction"
-msgstr ""
+msgstr "Инвертирование и направление прокрутки"
 
 #: kirigami_ui/+android/main.qml:260 kirigami_ui/main.qml:279
 #: kirigami_ui/main.qml:746 kirigami_ui/+windows/main.qml:271
@@ -96,7 +96,7 @@ msgctxt ""
 "Main menu and global menu actions. Have touchpad and mouse wheel scrolling "
 "adjust velocity instead of scrolling like most other apps."
 msgid "Use scroll as velocity &dial"
-msgstr ""
+msgstr "Прокрутка в качестве скорости"
 
 #: kirigami_ui/+android/main.qml:269 kirigami_ui/main.qml:289
 #: kirigami_ui/main.qml:740 kirigami_ui/+windows/main.qml:280
@@ -104,50 +104,50 @@ msgctxt ""
 "Main menu and global menu actions. Touchpad scrolling and mouse wheel use "
 "have no effect while prompting."
 msgid "Disable scrolling while prompting"
-msgstr ""
+msgstr "Отключение колеса прокрутки"
 
 #: kirigami_ui/+android/main.qml:277 kirigami_ui/main.qml:298
 #: kirigami_ui/+windows/main.qml:288
 msgctxt "Main menu actions"
 msgid "Other &Settings"
-msgstr ""
+msgstr "Другие настройки"
 
 #: kirigami_ui/+android/main.qml:288 kirigami_ui/main.qml:310
 #: kirigami_ui/+windows/main.qml:299
 msgctxt "Main menu actions"
 msgid "Always hide formatting tools"
-msgstr ""
+msgstr "Скрыть инструменты форматирования"
 
 #: kirigami_ui/+android/main.qml:297 kirigami_ui/main.qml:320
 #: kirigami_ui/+windows/main.qml:308
 msgctxt "Main menu actions. Hides formatting tools while not in edit mode."
 msgid "Auto hide formatting tools"
-msgstr ""
+msgstr "Автоматическое скрытие инструментов форматирования"
 
 #: kirigami_ui/+android/main.qml:305 kirigami_ui/main.qml:329
 #: kirigami_ui/+windows/main.qml:316
 msgctxt ""
 "Main menu actions. Disables contrast effect for the reading region overlay."
 msgid "Disable overlay contrast"
-msgstr ""
+msgstr "Отключить контрастность наложения"
 
 #: kirigami_ui/+android/main.qml:321 kirigami_ui/main.qml:389
 #: kirigami_ui/+windows/main.qml:365
 msgctxt "Main menu actions. Load about page."
 msgid "Abou&t %1"
-msgstr ""
+msgstr "О программе"
 
 #: kirigami_ui/+android/main.qml:327 kirigami_ui/main.qml:396
 #: kirigami_ui/main.qml:526 kirigami_ui/+windows/main.qml:371
 msgctxt "Main menu and global menu actions"
 msgid "&Quit"
-msgstr ""
+msgstr "Выход"
 
 #: kirigami_ui/+android/main.qml:374 kirigami_ui/main.qml:449
 #: kirigami_ui/main.qml:786 kirigami_ui/+windows/main.qml:423
 msgctxt "Main menu and global actions. Load document that welcomes users."
 msgid "Load &Welcome"
-msgstr ""
+msgstr "Загрузка вступления"
 
 #: kirigami_ui/+android/main.qml:410 kirigami_ui/main.qml:485
 #: kirigami_ui/+windows/main.qml:459
