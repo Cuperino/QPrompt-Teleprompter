@@ -35,8 +35,8 @@ Item {
     property double elapsedMilliseconds: 0
     property double startTime: new Date().getTime() - elapsedMilliseconds
     property double lastTime: startTime
-    property bool stopwatch: false
-    property bool eta: false
+    property bool stopwatch: true
+    property bool eta: true
     property real size: 0.5
     property alias textColor: timerSettings.color
     readonly property real centreX: prompter.centreX;
