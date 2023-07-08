@@ -412,6 +412,8 @@ Kirigami.ApplicationWindow {
                         root.pageStack.currentItem.namedMarkerConfiguration.close()
                     else if (root.pageStack.currentItem.networkDialog.sheetOpen)
                         root.pageStack.currentItem.networkDialog.close()
+                    else if (root.pageStack.currentItem.pointerConfiguration.sheetOpen)
+                        root.pageStack.currentItem.pointerConfiguration.close()
                     else if (wheelSettings.sheetOpen)
                         wheelSettings.close()
                     // Close find, compare against enabled instead of isOpen to prevent closing find while it is invisible.

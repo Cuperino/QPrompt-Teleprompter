@@ -60,5 +60,6 @@
         <file alias="transform-browse.svg">22/transform-browse.svg</file>
         <file alias="contrast.svg">22/contrast.svg</file>
         <file alias="view-fullscreen.svg">16/view-fullscreen.svg</file>
+        <file alias="empty.svg">16/empty.svg</file>
     </qresource>
 </RCC>

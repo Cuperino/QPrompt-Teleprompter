@@ -51,6 +51,7 @@ Kirigami.Page {
     property alias markersDrawer: markersDrawer
     property alias countdownConfiguration: countdownConfiguration
     property alias namedMarkerConfiguration: namedMarkerConfiguration
+    property alias pointerConfiguration: pointerConfiguration
     property int hideDecorations: 1
 
     // Unused signal. Leaving for reference.
@@ -160,8 +161,7 @@ Kirigami.Page {
             }
             Kirigami.Action {
                 id: readRegionFreeButton
-                iconName: "handle-sort"
-                icon.source: "icons/handle-sort.svg"
+                icon.source: "icons/empty.svg"
                 text: i18nc("Refers to free placement. Enables drag and drop positioning of reading region.", "Free")
                 enabled: parseInt(viewport.overlay.positionState)!==ReadRegionOverlay.PositionStates.Free
                 tooltip: i18n("Move reading region freely by dragging and dropping")
@@ -261,14 +261,20 @@ Kirigami.Page {
             tooltip: i18nc("Indicators highlight reading region", "Change reading region indicators")
 
             Kirigami.Action {
+                text: i18nc("Configure reading region pointer indicators", "Pointer Configuration")
+                onTriggered: {
+                    pointerConfiguration.open()
+                }
+            }
+            Kirigami.Action {
                 id: readRegionLeftPointerButton
                 text: i18nc("Shows pointer to the left of the reading region", "Left pointer")
                 iconName: "go-next"
                 icon.source: "icons/go-next.svg"
                 tooltip: i18n("Left pointer indicates reading region")
-                enabled: parseInt(overlay.styleState)!==ReadRegionOverlay.PointerStates.LeftPointer
+                enabled: parseInt(overlay.styleState)!==ReadRegionOverlay.PointerStates.LeftPointer && parseInt(overlay.styleState)!==ReadRegionOverlay.PointerStates.BarsLeftPointer
                 onTriggered: {
-                    overlay.styleState = ReadRegionOverlay.PointerStates.LeftPointer
+                    overlay.styleState = readRegionBarsButton.checked ? ReadRegionOverlay.PointerStates.BarsLeft : ReadRegionOverlay.PointerStates.LeftPointer
                     contextDrawer.close()
                     viewport.prompter.restoreFocus()
                 }
@@ -279,9 +285,9 @@ Kirigami.Page {
                 iconName: "go-previous"
                 icon.source: "icons/go-previous.svg"
                 tooltip: i18n("Right pointer indicates reading region")
-                enabled: parseInt(overlay.styleState)!==ReadRegionOverlay.PointerStates.RightPointer
+                enabled: parseInt(overlay.styleState)!==ReadRegionOverlay.PointerStates.RightPointer && parseInt(overlay.styleState)!==ReadRegionOverlay.PointerStates.BarsRightPointer
                 onTriggered: {
-                    overlay.styleState = ReadRegionOverlay.PointerStates.RightPointer
+                    overlay.styleState = readRegionBarsButton.checked ? ReadRegionOverlay.PointerStates.BarsRight : ReadRegionOverlay.PointerStates.RightPointer
                     contextDrawer.close()
                     viewport.prompter.restoreFocus()
                 }
@@ -292,76 +298,36 @@ Kirigami.Page {
                 iconName: "transform-move-horizontal"
                 icon.source: "icons/transform-move-horizontal.svg"
                 tooltip: i18n("Left and right pointers indicate reading region")
-                enabled: parseInt(overlay.styleState)!==ReadRegionOverlay.PointerStates.Pointers
+                enabled: parseInt(overlay.styleState)!==ReadRegionOverlay.PointerStates.Pointers && parseInt(overlay.styleState)!==ReadRegionOverlay.PointerStates.All
                 onTriggered: {
-                    overlay.styleState = ReadRegionOverlay.PointerStates.Pointers
-                    contextDrawer.close()
-                    viewport.prompter.restoreFocus()
-                }
-            }
-            Kirigami.Action {
-                id: readRegionBarsButton
-                text: i18nc("Translucent bars indicate reading region", "Bar")
-                iconName: "list-remove"
-                icon.source: "icons/list-remove.svg"
-                tooltip: i18n("Translucent bars indicate reading region")
-                enabled: parseInt(overlay.styleState)!==ReadRegionOverlay.PointerStates.Bars
-                onTriggered: {
-                    overlay.styleState = ReadRegionOverlay.PointerStates.Bars
-                    contextDrawer.close()
-                    viewport.prompter.restoreFocus()
-                }
-            }
-            Kirigami.Action {
-                id: readRegionBarsLeftButton
-                text: i18nc("Translucent bars and left pointer indicate reading region", "Bar && left")
-                iconName: "sidebar-collapse-right"
-                icon.source: "icons/sidebar-collapse-right.svg"
-                tooltip: i18n("Translucent bars and left pointer indicate reading region")
-                enabled: parseInt(overlay.styleState)!==ReadRegionOverlay.PointerStates.BarsLeft
-                onTriggered: {
-                    overlay.styleState = ReadRegionOverlay.PointerStates.BarsLeft
-                    contextDrawer.close()
-                    viewport.prompter.restoreFocus()
-                }
-            }
-            Kirigami.Action {
-                id: readRegionBarsRightButton
-                text: i18nc("Translucent bars and right pointer indicate reading region", "Bar && right")
-                iconName: "sidebar-collapse-left"
-                icon.source: "icons/sidebar-collapse-left.svg"
-                tooltip: i18n("Translucent bars and right pointer indicate reading region")
-                enabled: parseInt(overlay.styleState)!==ReadRegionOverlay.PointerStates.BarsRight
-                onTriggered: {
-                    overlay.styleState = ReadRegionOverlay.PointerStates.BarsRight
-                    contextDrawer.close()
-                    viewport.prompter.restoreFocus()
-                }
-            }
-            Kirigami.Action {
-                id: readRegionAllButton
-                text: i18nc("Enable all reading region indicators", "All")
-                iconName: "auto-transition"
-                icon.source: "icons/auto-transition.svg"
-                tooltip: i18nc("Enable all reading region indicators", "Use all reading region indicators")
-                enabled: parseInt(overlay.styleState)!==ReadRegionOverlay.PointerStates.All
-                onTriggered: {
-                    overlay.styleState = ReadRegionOverlay.PointerStates.All
+                    overlay.styleState = readRegionBarsButton.checked ? ReadRegionOverlay.PointerStates.All : ReadRegionOverlay.PointerStates.Pointers
                     contextDrawer.close()
                     viewport.prompter.restoreFocus()
                 }
             }
             Kirigami.Action {
                 id: readRegionNoneButton
-                text: i18nc("Disable all reading region indicators", "Hidden")
+                text: i18nc("Disable all reading region pointers", "No pointers")
                 iconName: "view-list-text"
                 icon.source: "icons/view-list-text.svg"
                 tooltip: i18nc("Disable all reading region indicators", "Disable reading region indicators")
-                enabled: parseInt(overlay.styleState)!==ReadRegionOverlay.PointerStates.None
+                enabled: parseInt(overlay.styleState)!==ReadRegionOverlay.PointerStates.None && parseInt(overlay.styleState)!==ReadRegionOverlay.PointerStates.Bars
                 onTriggered: {
-                    overlay.styleState = ReadRegionOverlay.PointerStates.None
+                    overlay.styleState = readRegionBarsButton.checked ? ReadRegionOverlay.PointerStates.Bars : ReadRegionOverlay.PointerStates.None
                     contextDrawer.close()
                     viewport.prompter.restoreFocus()
+                }
+            }
+            Kirigami.Action {
+                id: readRegionBarsButton
+                text: i18nc("Configure reading region pointer indicators", "Bars")
+                checkable: true
+                checked: parseInt(overlay.styleState)>ReadRegionOverlay.PointerStates.Pointers
+                onTriggered: {
+                    if (parseInt(overlay.styleState)>ReadRegionOverlay.PointerStates.Pointers)
+                        overlay.styleState = parseInt(overlay.styleState) - 4;
+                    else
+                        overlay.styleState = parseInt(overlay.styleState) + 4;
                 }
             }
         },
@@ -1170,6 +1136,17 @@ Kirigami.Page {
                     }
                 }
             }
+        }
+    }
+
+    Kirigami.OverlaySheet {
+        id: pointerConfiguration
+        header: Kirigami.Heading {
+            text: i18nc("Name of section where reding region pointers are configured", "Pointer configuration")
+            level: 1
+        }
+        PointerSettings{
+            id: pointerSettings
         }
     }
 
