@@ -83,7 +83,10 @@ endif()
 #if (Qt${QT_VERSION_MAJOR}QuickCompiler_FOUND)
     #qtquick_compiler_add_resources(qprompt_QML_SRCS qml.qrc)
 #else ()
-set(qprompt_QML_SRCS qml.qrc)
+set(qprompt_QML_SRCS
+    qml.qrc
+    prompter/pointers/pointers.qrc
+)
 #endif()
 
 

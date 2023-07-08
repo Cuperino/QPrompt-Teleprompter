@@ -1,7 +1,7 @@
 /****************************************************************************
- * *
+ **
  ** QPrompt
- ** Copyright (C) 2020-2022 Javier O. Cordero Pérez
+ ** Copyright (C) 2020-2023 Javier O. Cordero Pérez
  **
  ** This file is part of QPrompt.
  **
@@ -25,8 +25,6 @@ import com.cuperino.qprompt.abstractunits 1.0
 Scale {
     origin.x: width/2
     origin.y: height/2
-    //xScale: parseInt(prompter.state)!==Prompter.States.Editing && prompter.__flipX ? -1 : 1
-    //yScale: parseInt(prompter.state)!==Prompter.States.Editing && prompter.__flipY ? -1 : 1
     xScale: prompter.__flipX ? -1 : 1
     yScale: prompter.__flipY ? -1 : 1
     Behavior on xScale {

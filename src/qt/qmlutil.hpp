@@ -27,6 +27,7 @@
 #define QMLUTIL_H
 
 #include <QCoreApplication>
+#include <QFontDatabase>
 #include <QGuiApplication>
 #include <QKeySequence>
 #include <QObject>
@@ -83,6 +84,11 @@ public:
     Q_INVOKABLE void restoreCursor()
     {
         QGuiApplication::restoreOverrideCursor();
+    }
+    Q_INVOKABLE QStringList fontList()
+    {
+        QFontDatabase database;
+        return database.families();
     }
 };
 #endif // QMLUTIL_H

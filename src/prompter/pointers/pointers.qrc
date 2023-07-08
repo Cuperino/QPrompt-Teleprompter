@@ -1,0 +1,7 @@
+<RCC>
+    <qresource prefix="/pointers/">
+        <file>pointer_0.qml</file>
+        <file>pointer_1.qml</file>
+        <file>pointer_2.qml</file>
+    </qresource>
+</RCC>

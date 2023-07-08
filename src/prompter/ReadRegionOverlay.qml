@@ -43,9 +43,9 @@ Item {
     }
     enum PointerStates {
         None,
-        Pointers,
         LeftPointer,
         RightPointer,
+        Pointers,
         Bars,
         BarsLeft,
         BarsRight,
@@ -141,48 +141,201 @@ Item {
         Item {
             id: pointers
 
-            readonly property double __pointerUnit: parent.height / 6
+            readonly property double __pointerUnit: parent.height / 10
             property double __opacity: 1
             property color __strokeColor: parent.Material.theme===Material.Light ? "#4d94cf" : "#2b72ad"
             property color __fillColor: "#00000000"
-            property double __offsetX: 0
-            //property double __offsetX: -0.1111
             property double __stretchX: 0.3333
 
-            //layer.enabled: true
-
-            Shape {
-                id: leftPointer
-                x: prompter.editorXWidth*overlay.width + prompter.editorXOffset*overlay.width - (2.8*pointers.__stretchX+pointers.__offsetX)*pointers.__pointerUnit
-                ShapePath {
-                    strokeWidth: pointers.__pointerUnit*0.3
-                    strokeColor: pointers.__strokeColor
-                    fillColor: pointers.__fillColor
-                    // Top left starting point
-                    startX: pointers.__offsetX*pointers.__pointerUnit; startY: 2*pointers.__pointerUnit
-                    // Center right
-                    PathLine { x: (3*pointers.__stretchX+pointers.__offsetX)*pointers.__pointerUnit; y: 3*pointers.__pointerUnit }
-                    // Bottom left
-                    PathLine { x: pointers.__offsetX*pointers.__pointerUnit; y: 4*pointers.__pointerUnit }
-                    //// Top left return
-                    //PathLine { x: pointers.__offsetX*pointers.__pointerUnit; y: 1*pointers.__pointerUnit }
+            x: prompter.editorXWidth*overlay.width + prompter.editorXOffset*overlay.width
+            width: readRegion.width - 2 * prompter.editorXWidth * readRegion.width
+            height: parent.height
+            anchors.verticalCenter: parent.verticalCenter
+            // anchors.top: parent.top
+            // anchors.bottom: parent.bottom
+            // Debug code
+            Item {
+                id: pointerDebugTools
+                anchors.fill: parent
+                opacity: 0
+                Rectangle {
+                    width: 4
+                    color: "red"
+                    anchors.verticalCenter: parent.verticalCenter
+                    anchors.right: parent.left
+                    anchors.top: parent.top
+                    anchors.bottom: parent.bottom
+                }
+                Rectangle {
+                    width: 4
+                    color: "red"
+                    anchors.verticalCenter: parent.verticalCenter
+                    anchors.left: parent.right
+                    anchors.top: parent.top
+                    anchors.bottom: parent.bottom
+                }
+                // The declaration order of complimentary Animators is important:
+                // The animation which starts at the brightest point must be declared last so that it can be cancelled over previous, darker animations, and the opposite isn't true, resulting in a less jarring experience from quickly toggling between animations.
+                OpacityAnimator {
+                    target: pointerDebugTools;
+                    from: pointerDebugTools.opacity
+                    to: 0;
+                    duration: 500
+                    running: !pointerSettings.debug
+                    onFinished: {
+                        target.opacity = to
+                    }
+                }
+                OpacityAnimator {
+                    target: pointerDebugTools;
+                    running: pointerSettings.debug
+                    duration: 500
+                    from: pointerDebugTools.opacity
+                    to: 1;
+                    onFinished: {
+                        target.opacity = to
+                    }
                 }
             }
-            Shape {
+            // Debug code ends
+            Loader {
+                id: leftPointer
+                anchors.verticalCenter: parent.verticalCenter
+                anchors.right: parent.left
+                source: pointerSettings.pointerKind === PointerSettings.States.QML ? pointerSettings.qmlLeftPath : "qrc:/pointers/pointer_" + pointerSettings.pointerKind + ".qml"
+            }
+            Loader {
                 id: rightPointer
-                x: parent.parent.width - prompter.editorXWidth*overlay.width + prompter.editorXOffset*overlay.width + (2.7*pointers.__stretchX+pointers.__offsetX)*pointers.__pointerUnit
-                ShapePath {
-                    strokeWidth: pointers.__pointerUnit*0.3
-                    strokeColor: pointers.__strokeColor
-                    fillColor: pointers.__fillColor
-                    // Top right starting point
-                    startX: -pointers.__offsetX*pointers.__pointerUnit; startY: 2*pointers.__pointerUnit
-                    // Center left
-                    PathLine { x: -(3*pointers.__stretchX+pointers.__offsetX)*pointers.__pointerUnit; y: 3*pointers.__pointerUnit }
-                    // Bottom right
-                    PathLine { x: -pointers.__offsetX*pointers.__pointerUnit; y: 4*pointers.__pointerUnit }
-                    //// Top right return
-                    //PathLine { x: -pointers.__offsetX*pointers.__pointerUnit; y: 2*pointers.__pointerUnit }
+                anchors.verticalCenter: parent.verticalCenter
+                anchors.left: parent.right
+                source: pointerSettings.pointerKind === PointerSettings.States.QML ? (pointerSettings.sameAsLeftPointer ? pointerSettings.qmlLeftPath : pointerSettings.qmlRightPath) : "qrc:/pointers/pointer_" + pointerSettings.pointerKind + ".qml"
+            }
+            Binding {
+                target: leftPointer.item
+                property: "prompterState"
+                value: parseInt(prompter.state)
+            }
+            Binding {
+                target: rightPointer.item
+                property: "prompterState"
+                value: parseInt(prompter.state)
+            }
+            Binding {
+                target: leftPointer.item
+                property: "configuratorOpen"
+                value: pointerConfiguration.sheetOpen
+            }
+            Binding {
+                target: rightPointer.item
+                property: "configuratorOpen"
+                value: pointerConfiguration.sheetOpen
+            }
+            Binding {
+                target: leftPointer.item
+                property: "colorsEditing"
+                value: pointerSettings.colorsEditing
+            }
+            Binding {
+                target: rightPointer.item
+                property: "colorsEditing"
+                value: pointerSettings.colorsEditing
+            }
+            Binding {
+                target: leftPointer.item
+                property: "colorsReady"
+                value: pointerSettings.colorsReady
+            }
+            Binding {
+                target: rightPointer.item
+                property: "colorsReady"
+                value: pointerSettings.colorsReady
+            }
+            Binding {
+                target: leftPointer.item
+                property: "colorsPrompting"
+                value: pointerSettings.colorsPrompting
+            }
+            Binding {
+                target: rightPointer.item
+                property: "colorsPrompting"
+                value: pointerSettings.colorsPrompting
+            }
+            Binding {
+                target: leftPointer.item
+                property: "text"
+                value: pointerSettings.textLeftPointer
+            }
+            Binding {
+                target: rightPointer.item
+                property: "text"
+                value: pointerSettings.sameAsLeftPointer ? pointerSettings.textLeftPointer : pointerSettings.textRightPointer // "▶"
+            }
+            Binding {
+                target: leftPointer.item
+                property: "lineWidth"
+                value: pointerSettings.arrowLineWidth
+            }
+            Binding {
+                target: rightPointer.item
+                property: "lineWidth"
+                value: pointerSettings.arrowLineWidth
+            }
+            Binding {
+                target: leftPointer.item
+                property: "textVerticalOffset"
+                value: readRegion.height * pointerSettings.textVerticalOffset / 2
+            }
+            Binding {
+                target: rightPointer.item
+                property: "textVerticalOffset"
+                value: readRegion.height * pointerSettings.textVerticalOffset / 2
+            }
+            Binding {
+                target: leftPointer.item
+                property: "imageVerticalOffset"
+                value: readRegion.height * pointerSettings.imageVerticalOffset / 2
+            }
+            Binding {
+                target: rightPointer.item
+                property: "imageVerticalOffset"
+                value: readRegion.height * pointerSettings.imageVerticalOffset / 2
+            }
+            Binding {
+                target: leftPointer.item
+                property: "font.family"
+                value: pointerSettings.textFont
+            }
+            Binding {
+                target: rightPointer.item
+                property: "font.family"
+                value: pointerSettings.textFont
+            }
+            Binding {
+                target: leftPointer.item
+                property: "source"
+                value: pointerSettings.imageLeftPath
+            }
+            Binding {
+                target: rightPointer.item
+                property: "source"
+                value: pointerSettings.sameAsLeftPointer ? pointerSettings.imageLeftPath : pointerSettings.imageRightPath
+            }
+            Binding {
+                target: leftPointer.item
+                property: "tint"
+                value: pointerSettings.tint
+            }
+            Binding {
+                target: rightPointer.item
+                property: "tint"
+                value: pointerSettings.tint
+            }
+            Binding {
+                target: rightPointer.item
+                property: "transform"
+                value: Scale {
+                    xScale: pointerSettings.pointerKind === PointerSettings.States.Arrow || pointerSettings.sameAsLeftPointer ? -1 : 1
+                    origin.x:  (rightPointer.item.width | rightPointer.item.contentWidth) / 2
                 }
             }
 
