@@ -227,7 +227,7 @@ Flickable {
     property int q: 0
     function markerCompare() {
         // Check that state is not prompting and editor isn't active.
-        if (parseInt(state)===Prompter.States.Prompting && !editor.focus) {
+        if (parseInt(state)===Prompter.States.Prompting && !editor.activeFocus) {
             // Detect when moving past a marker.
             const m = document.previousMarker(editor.positionAt(0, position + overlay.__readRegionPlacement*(overlay.height-overlay.readRegionHeight)+overlay.readRegionHeight/2 + 1));
             //document.silentlySetCursorPosition(m.position);
@@ -448,7 +448,34 @@ Flickable {
     // It also provides a workaround to the lack of background in the global toolbar when using transparent backgrounds in Material theme.
     clip: true
     transform: __flips
-    //layer.enabled: true
+    layer.enabled: root.shadows
+    layer.effect: ShaderEffect {
+        width: viewport.width
+        height: viewport.height
+        readonly property variant source: prompterShadowSource
+        readonly property real angle: 180
+        readonly property point offset: Qt.point(prompter.fontSize / 13 * Math.cos(angle), prompter.fontSize / 13 * Math.sin(angle))
+        readonly property size delta: Qt.size(offset.x / width, offset.y / height)
+        readonly property real darkness: 0.5 // + ((prompter.fontSize / (prompter.fontSize + 1)) / 2)
+        readonly property variant shadow: ShaderEffectSource {
+            sourceItem: ShaderEffect {
+                width: viewport.width
+                height: viewport.height
+                readonly property size delta: Qt.size(0.0, 4.0 / height)
+                readonly property variant source: ShaderEffectSource {
+                    sourceItem: ShaderEffect {
+                        width: viewport.width
+                        height: viewport.height
+                        readonly property size delta: Qt.size(4.0 / width, 0.0)
+                        readonly property variant source: prompterShadowSource
+                        fragmentShader: "qrc:/shaders/blur.frag"
+                    }
+                }
+                fragmentShader: "qrc:/shaders/blur.frag"
+            }
+        }
+        fragmentShader: "qrc:/shaders/shadow.frag"
+    }
 
     // Flick while prompting
     onDragStarted: {

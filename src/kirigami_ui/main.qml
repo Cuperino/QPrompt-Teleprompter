@@ -43,6 +43,7 @@ Kirigami.ApplicationWindow {
     //readonly property bool __translucidBackground: !Material.background.a // === 0
     //readonly property bool __translucidBackground: !Kirigami.Theme.backgroundColor.a && ['ios', 'wasm', 'tvos', 'qnx', 'ipados'].indexOf(Qt.platform.os)===-1
     property bool __translucidBackground: true
+    property bool shadows: false
     readonly property bool __isMobile: Kirigami.Settings.isMobile
     readonly property bool themeIsMaterial: Kirigami.Settings.style==="Material" // || Kirigami.Settings.isMobile
     // mobileOrSmallScreen helps determine when to follow mobile behaviors from desktop non-mobile devices
@@ -104,6 +105,7 @@ Kirigami.ApplicationWindow {
         category: "background"
         property alias opacity: root.__opacity
         property alias transparency: root.__translucidBackground
+        property alias shadows: root.shadows
     }
     Settings {
         category: "telemetry"
