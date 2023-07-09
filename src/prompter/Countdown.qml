@@ -1,7 +1,7 @@
 /****************************************************************************
  **
  ** QPrompt
- ** Copyright (C) 2020-2022 Javier O. Cordero Pérez
+ ** Copyright (C) 2020-2023 Javier O. Cordero Pérez
  **
  ** This file is part of QPrompt.
  **
@@ -200,8 +200,15 @@ Item {
         }
     }
     Shape {
+        id: concentricCircles
+        readonly property int diameter: 84*__minv
         visible: countdown.enabled
         anchors.fill: parent
+        layer.enabled: true
+        layer.samples: 4
+        anchors.centerIn: parent
+        width: diameter
+        height: diameter
         ShapePath {
             strokeColor: "#FFF";
             strokeWidth: 4 * (prompter.fontSize / 81);
@@ -218,13 +225,13 @@ Item {
                 moveToStart: false
             }
             PathMove {
-                x: offsetCentre + 84*__minv/2;
+                x: offsetCentre + concentricCircles.diameter/2;
                 y: prompter.centreY;
             }
             PathAngleArc {
                 centerX: offsetCentre;
                 centerY: prompter.centreY;
-                radiusX: 84*__minv/2;
+                radiusX: concentricCircles.diameter/2;
                 radiusY: -radiusX;
                 startAngle: 0.0
                 sweepAngle: 360.0
