@@ -589,6 +589,15 @@ Kirigami.Page {
             id: loadBackgroundButton
             text: i18nc("Background refers to what appears behind the prompter", "Background")
             Kirigami.Action {
+                id: prompterShadowsButton
+                text: i18nc("Enable root.shadows", "Shadows")
+                checkable: true
+                checked: root.shadows
+                onTriggered: {
+                    root.shadows = checked
+                }
+            }
+            Kirigami.Action {
                 id: changeBackgroundImageButton
                 text: i18nc("Set background image", "Set image")
                 iconName: "insert-image"

@@ -96,6 +96,11 @@ Item {
         anchors.fill: parent
     }
 
+    ShaderEffectSource {
+        id: prompterShadowSource
+        sourceItem: prompter
+    }
+
     Prompter {
         id: prompter
         property double delta: 16

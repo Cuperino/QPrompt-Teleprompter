@@ -42,6 +42,7 @@ set(qprompt_HDRS
 
 set(qprompt_ASSETS
     assets.qrc
+    shaders/shaders.qrc
     icons/icons.qrc
     fonts/fonts.qrc
     fonts/chinese.qrc

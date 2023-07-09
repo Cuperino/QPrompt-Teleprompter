@@ -111,6 +111,10 @@ Item {
         cursorShape: Qt.CrossCursor
         propagateComposedEvents: true
     }
+    ShaderEffectSource {
+        id: pointerShadowSource
+        sourceItem: readRegion
+    }
     Item {
         id: readRegion
 
@@ -125,6 +129,35 @@ Item {
         y: readRegion.__placement * (overlay.height - readRegion.height)
         anchors.left: parent.left
         anchors.right: parent.right
+
+        layer.enabled: root.shadows
+        layer.effect: ShaderEffect {
+            width: readRegion.width
+            height: readRegion.height
+            readonly property variant source: pointerShadowSource
+            readonly property real angle: 180
+            readonly property point offset: Qt.point(pointers.__pointerUnit / 3 * Math.cos(angle), pointers.__pointerUnit / 3 * Math.sin(angle))
+            readonly property size delta: Qt.size(offset.x / width, offset.y / height)
+            readonly property real darkness: 0.5
+            readonly property variant shadow: ShaderEffectSource {
+                sourceItem: ShaderEffect {
+                    width: readRegion.width
+                    height: readRegion.height
+                    readonly property size delta: Qt.size(0.0, 4.0 / height)
+                    readonly property variant source: ShaderEffectSource {
+                        sourceItem: ShaderEffect {
+                            width: readRegion.width
+                            height: readRegion.height
+                            readonly property size delta: Qt.size(4.0 / width, 0.0)
+                            readonly property variant source: pointerShadowSource
+                            fragmentShader: "qrc:/shaders/blur.frag"
+                        }
+                    }
+                    fragmentShader: "qrc:/shaders/blur.frag"
+                }
+            }
+            fragmentShader: "qrc:/shaders/shadow.frag"
+        }
 
         MouseArea {
             anchors.fill: parent
