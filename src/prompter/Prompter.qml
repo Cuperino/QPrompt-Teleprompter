@@ -619,7 +619,7 @@ Flickable {
                 property string lastDocument: "";
 
                 function toggleEditorFocus(mouse) {
-                    if (!editor.focus) {
+                    if (!editor.activeFocus) {
                         editor.focus = true;
                         editor.cursorPosition = editor.positionAt(mouse.x, mouse.y)
                         cursorAutoHide.reset();
@@ -945,7 +945,7 @@ Flickable {
                         cursorShape: dragTarget.containsDrag ? (dragTarget.droppable ? Qt.DragCopyCursor : Qt.ForbiddenCursor) : Qt.IBeamCursor
                         anchors.fill: parent
                         scrollGestureEnabled: false
-                        onClicked: if (editor.focus) editor.cursorPosition = editor.positionAt(mouseX, mouseY);
+                        onClicked: if (editor.activeFocus) editor.cursorPosition = editor.positionAt(mouseX, mouseY);
                         onDoubleClicked: {
                             if (!root.__isMobile)
                                 editor.toggleEditorFocus(mouse);
