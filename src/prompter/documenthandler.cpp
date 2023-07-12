@@ -642,9 +642,9 @@ QString DocumentHandler::import(QString fileName, ImportFormat type)
     if (type == ODT || type == DOCX || type == DOC || type == RTF || type == ABW || type == PAGESX || type == PAGES) {
         QSettings settings(QCoreApplication::organizationName(), QCoreApplication::applicationName().toLower());
 #if defined(Q_OS_WINDOWS)
-        program = settings.value("paths/soffice", "%ProgramFiles%/LibreOffice/program/soffice.exe").toString();
+        program = settings.value("paths/soffice", "C:/Program Files/LibreOffice/program/soffice.exe").toString();
         if (program == "")
-            program = "%ProgramFiles%/LibreOffice/program/soffice.exe";
+            program = "C:/Program Files/LibreOffice/program/soffice.exe";
 #elif defined(Q_OS_MACOS)
         program = settings.value("paths/soffice", "/Applications/LibreOffice.app").toString();
         if (program == "")
