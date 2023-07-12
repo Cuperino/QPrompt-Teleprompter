@@ -78,7 +78,7 @@ Kirigami.ScrollablePage {
                 id: sofficePathField
                 placeholderText: switch(Qt.platform.os) {
                                  case "windows":
-                                     return "%ProgramFiles%/LibreOffice/program/soffice.exe";
+                                     return "C:/Program Files/LibreOffice/program/soffice.exe";
                                  case "osx":
                                      return "/Applications/LibreOffice.app";
                                  default:
