@@ -1820,6 +1820,7 @@ Flickable {
                 // Jump into position
                 script: {
                     timer.startTimer();
+                    cursorAutoHide.hide();
                     cursorAutoHide.restart();
                 }
             }
