@@ -1002,6 +1002,9 @@ Kirigami.Page {
             text: i18n("Open from network...")
             level: 1
         }
+        onSheetOpenChanged: {
+            prompterPage.actions.main.checked = sheetOpen;
+        }
         property bool autoReload: false
         property bool autoReloadRunning: false
         property string nextReloadTime: ""
@@ -1153,6 +1156,9 @@ Kirigami.Page {
         header: Kirigami.Heading {
             text: i18nc("Name of section where reding region pointers are configured", "Pointer configuration")
             level: 1
+        }
+        onSheetOpenChanged: {
+            prompterPage.actions.main.checked = sheetOpen;
         }
         PointerSettings{
             id: pointerSettings

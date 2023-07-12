@@ -631,6 +631,7 @@ Kirigami.ApplicationWindow {
         title: i18nc("Restart application_name", "Restart %1", aboutData.displayName)
         text: i18nc("application needs to restart for this change to fully take effect.\n\nWould you like to restart application now? All changes to document will be lost.", "%1 needs to restart for this change to fully take effect.\n\nWould you like to restart %1 now? All changes to document will be lost.", aboutData.displayName)
         buttons: Labs.MessageDialog.Yes | Labs.MessageDialog.No
+        modality: Qt.WindowModal
         onYesClicked: {
             qmlutil.restartApplication()
         }
@@ -643,6 +644,7 @@ Kirigami.ApplicationWindow {
         //icon: StandardIcon.Question
         buttons: (Labs.MessageDialog.Save | Labs.MessageDialog.Discard | Labs.MessageDialog.Cancel)
         //standardButtons: StandardButton.Save | StandardButton.Discard | StandardButton.Cancel
+        modality: Qt.WindowModal
         onDiscardClicked: {
         // onDiscard: {
             //switch (parseInt(root.onDiscard)) {

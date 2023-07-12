@@ -537,6 +537,7 @@ Kirigami.ApplicationWindow {
         //icon: StandardIcon.Question
         buttons: (Labs.MessageDialog.Save | Labs.MessageDialog.Discard | Labs.MessageDialog.Cancel)
         //standardButtons: StandardButton.Save | StandardButton.Discard | StandardButton.Cancel
+        modality: Qt.WindowModal
         onDiscardClicked: {
         // onDiscard: {
             //switch (parseInt(root.onDiscard)) {
