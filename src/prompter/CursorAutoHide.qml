@@ -25,20 +25,24 @@ import com.cuperino.qprompt.qmlutil 1.0
 
 MouseArea {
     id: cursorAutoHide
-    enabled: !root.pageStack.currentItem.editor.focus
+    enabled: !root.pageStack.currentItem.editor.activeFocus
     acceptedButtons: Qt.NoButton
     hoverEnabled: parseInt(root.pageStack.currentItem.prompter.state)===Prompter.States.Prompting
     onPositionChanged: function (mouse) {
         cursorUtil.restoreCursor();
         restart();
     }
+    required property var ignored
     function reset() {
         timer.stop();
         cursorUtil.restoreCursor();
     }
     function restart() {
-        if (parseInt(root.pageStack.currentItem.prompter.state)===Prompter.States.Prompting)
+        if (parseInt(root.pageStack.currentItem.prompter.state)===Prompter.States.Prompting && !ignored.drawerOpen)
             timer.restart();
+    }
+    function hide() {
+        cursorUtil.hideCursor();
     }
     Timer {
         id: timer
@@ -46,9 +50,9 @@ MouseArea {
         interval: 1000
         triggeredOnStart: false
         onTriggered: {
-            cursorUtil.hideCursor();
             stop();
-            console.log("hid")
+            if (root.activeFocusItem === root.pageStack.currentItem.prompter)
+                cursorUtil.hideCursor();
         }
     }
     QmlUtil {

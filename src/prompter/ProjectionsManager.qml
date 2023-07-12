@@ -379,7 +379,7 @@ Item {
     }
     Labs.MessageDialog {
         id: alertDialog
-
+        modality: Qt.WindowModal
         function requestDisplays() {
             alertDialog.text = i18n("For screen projections to show, you must set at least one screen to a projection setting other than \"Off\"")
             alertDialog.detailedText = ""

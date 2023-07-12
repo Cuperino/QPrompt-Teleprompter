@@ -1347,6 +1347,7 @@ Flickable {
 
     Labs.MessageDialog {
         id: errorDialog
+        modality: Qt.WindowModal
     }
 
     // Context Menu
