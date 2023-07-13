@@ -78,9 +78,9 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
 #endif
 
     KLocalizedString::setApplicationDomain("qprompt");
-    QCoreApplication::setOrganizationName(QString::fromStdString("Cuperino"));
-    QCoreApplication::setOrganizationDomain(QString::fromStdString(QPROMPT_URI));
-    QCoreApplication::setApplicationName(QString::fromStdString("QPrompt"));
+    QCoreApplication::setOrganizationName(QString::fromUtf8("Cuperino"));
+    QCoreApplication::setOrganizationDomain(QString::fromUtf8(QPROMPT_URI));
+    QCoreApplication::setApplicationName(QString::fromUtf8("QPrompt"));
 
     QCommandLineParser parser;
     parser.setApplicationDescription(
@@ -104,20 +104,21 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
 
 // The following code forces the use of specific renderer modes to enable screen projections to work.
 // This hacky must be completely
-#if defined(Q_OS_WINDOWS) or defined(Q_OS_MACOS) or defined(Q_OS_LINUX)
+#if defined(Q_OS_WINDOWS)|| defined(Q_OS_MACOS) || defined(Q_OS_LINUX)
     if (enableProjections.toBool())
 #if defined(Q_OS_WINDOWS)
 #if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
-        putenv("QSG_RENDER_LOOP=windows");
+        qputenv("QSG_RENDER_LOOP", "windows");
 #else
-        putenv("QSG_RENDER_LOOP=basic");
+    qputenv("QSG_RENDER_LOOP", "basic");
 #endif
     else
-        putenv("QSG_RENDER_LOOP=threaded");
+        qputenv("QSG_RENDER_LOOP", "threaded");
 #else // MACOS or LINUX
       // On *nix, setenv needs to override QSG_RENDER_LOOP for it to take effect after qprompt automatically restarts.
       // By default, we do not override environment variables. qgsIgnore is set by the code doing the restart.
         setenv("QSG_RENDER_LOOP", "basic", parser.isSet(qgsIgnore) ? 1 : 0);
+        qputenv("QSG_RENDER_LOOP", "basic");
 #if defined(Q_OS_LINUX)
     // Mac does not currently support threaded mode, forcing it crashes the app on startup.
     else
@@ -140,7 +141,7 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
     QString copyrightStatement2 = i18n("© 2021-%1 Javier O. Cordero Pérez", copyrightYear);
     KAboutData aboutData("qprompt",
                          "QPrompt",
-                         QPROMPT_VERSION_STRING " (" + QString::fromStdString(GIT_BRANCH) + "/" + QString::fromStdString(GIT_COMMIT_HASH) + ")",
+                         QPROMPT_VERSION_STRING " (" + QString::fromUtf8(GIT_BRANCH) + "/" + QString::fromUtf8(GIT_COMMIT_HASH) + ")",
                          i18n("Personal teleprompter software for all video makers."),
                          KAboutLicense::GPL_V3,
                          // ki18ncp("© 2021-currentYear Author", "© 2021 Javier O. Cordero Pérez", "© 2021-<numid>%1</numid> Javier O. Cordero
@@ -152,16 +153,16 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
     aboutData.setBugAddress("https://github.com/Cuperino/QPrompt/issues");
     aboutData.setOrganizationDomain(QPROMPT_URI);
     aboutData.setDesktopFileName(QPROMPT_URI);
-    aboutData.addAuthor(QString::fromStdString("Javier O. Cordero Pérez"),
+    aboutData.addAuthor(QString::fromUtf8("Javier O. Cordero Pérez"),
                         i18n("Author"),
-                        QString::fromStdString("javiercorderoperez@gmail.com"),
-                        QString::fromStdString("https://javiercordero.info"),
-                        QString::fromStdString("cuperino"));
-    aboutData.addCredit(QString::fromStdString("Mark"),
+                        QString::fromUtf8("javiercorderoperez@gmail.com"),
+                        QString::fromUtf8("https://javiercordero.info"),
+                        QString::fromUtf8("cuperino"));
+    aboutData.addCredit(QString::fromUtf8("Mark"),
                         i18n("Wrote keycode to string QML abstraction"),
-                        QString::fromStdString(""),
-                        QString::fromStdString("https://stackoverflow.com/a/64862996/3833454"));
-    aboutData.addCredit(QString::fromStdString("videosmith"), i18nc("Active software tester", "Active tester"));
+                        QString::fromUtf8(""),
+                        QString::fromUtf8("https://stackoverflow.com/a/64862996/3833454"));
+    aboutData.addCredit(QString::fromUtf8("videosmith"), i18nc("Active software tester", "Active tester"));
     aboutData.setTranslator(i18nc("NAME OF TRANSLATORS", "Your names"), i18nc("EMAIL OF TRANSLATORS", "Your emails"));
     // aboutData.addLicense(
     //     KAboutLicense::LGPL_V3
@@ -169,7 +170,7 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
     //  Set the application metadata
     KAboutData::setApplicationData(aboutData);
 
-    if (QFontDatabase::addApplicationFont(QString::fromStdString(":/fonts/fontello.ttf")) == -1)
+    if (QFontDatabase::addApplicationFont(QString::fromUtf8(":/fonts/fontello.ttf")) == -1)
         qWarning() << i18n("Failed to load icons from fontello.ttf");
 
     // qmlRegisterType<PrompterTimer>(QPROMPT_URI + ".promptertimer", 1, 0, "PrompterTimer");
@@ -246,7 +247,7 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
 #if defined(Q_OS_ANDROID) || defined(Q_OS_IOS) || defined(Q_OS_QNX)
     app.setWindowIcon(QIcon(":/images/qprompt-logo-wireframe.png"));
 #else
-    app.setWindowIcon(QIcon(QString::fromStdString(":/images/qprompt.png")));
+    app.setWindowIcon(QIcon(QString::fromUtf8(":/images/qprompt.png")));
 #endif
     engine.rootContext()->setContextObject(new KLocalizedContext(&engine));
     engine.rootContext()->setContextProperty(QStringLiteral("aboutData"), QVariant::fromValue(KAboutData::applicationData()));
