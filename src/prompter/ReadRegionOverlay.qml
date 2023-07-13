@@ -194,7 +194,6 @@ Item {
                 Rectangle {
                     width: 4
                     color: "red"
-                    anchors.verticalCenter: parent.verticalCenter
                     anchors.right: parent.left
                     anchors.top: parent.top
                     anchors.bottom: parent.bottom
@@ -202,7 +201,6 @@ Item {
                 Rectangle {
                     width: 4
                     color: "red"
-                    anchors.verticalCenter: parent.verticalCenter
                     anchors.left: parent.right
                     anchors.top: parent.top
                     anchors.bottom: parent.bottom
