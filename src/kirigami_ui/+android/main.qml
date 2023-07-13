@@ -456,6 +456,7 @@ Kirigami.ApplicationWindow {
 
     CursorAutoHide {
         id: cursorAutoHide
+        ignored: root.pageStack.currentItem.markersDrawer
         anchors.fill: parent
     }
 
