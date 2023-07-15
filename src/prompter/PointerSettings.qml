@@ -289,7 +289,7 @@ ColumnLayout {
                     property string value: text ? text : placeholderText
                     text: ""
                     // Skin tone chosen for its lower contrast against both text and background
-                    placeholderText: "🫸🏼"
+                    placeholderText: "\u{1F449}\u{1F3FC}"
                     font.family: pointerSettings.textFont
                     Layout.fillWidth: true
                 }
@@ -304,7 +304,7 @@ ColumnLayout {
                     enabled: true
                     text: ""
                     // Skin tone chosen for its lower contrast against both text and background
-                    placeholderText: "🫷🏼"
+                    placeholderText: "\u{1F448}\u{1F3FC}"
                     font.family: pointerSettings.textFont
                     Layout.fillWidth: true
                 }
