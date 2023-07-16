@@ -184,7 +184,7 @@ Item {
                     return ApplicationWindow.FullScreen
                 else
                     return ApplicationWindow.Maximized
-            flags: Qt.FramelessWindowHint
+            flags: root.__windowStayOnTop ? Qt.FramelessWindowHint | Qt.WindowStaysOnTopHint : Qt.FramelessWindowHint
             color: root.__translucidBackground ? "transparent" : "initial"
             onClosing: {
                 model.flip = 0;

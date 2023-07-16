@@ -43,6 +43,7 @@ Kirigami.ApplicationWindow {
     //readonly property bool __translucidBackground: !Kirigami.Theme.backgroundColor.a && ['ios', 'wasm', 'tvos', 'qnx', 'ipados'].indexOf(Qt.platform.os)===-1
     readonly property bool __isMobile: Kirigami.Settings.isMobile
     readonly property bool __translucidBackground: true
+    readonly property bool __windowStayOnTop: root.pageStack.currentItem.footer.windowStaysOnTop
     readonly property bool themeIsMaterial: Kirigami.Settings.style==="Material" // || Kirigami.Settings.isMobile
     // mobileOrSmallScreen helps determine when to follow mobile behaviors from desktop non-mobile devices
     readonly property bool mobileOrSmallScreen: Kirigami.Settings.isMobile || root.width < 1220

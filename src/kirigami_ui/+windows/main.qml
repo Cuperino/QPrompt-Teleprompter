@@ -43,6 +43,7 @@ Kirigami.ApplicationWindow {
     //readonly property bool __translucidBackground: !Material.background.a // === 0
     //readonly property bool __translucidBackground: !Kirigami.Theme.backgroundColor.a && ['ios', 'wasm', 'tvos', 'qnx', 'ipados'].indexOf(Qt.platform.os)===-1
     property bool __translucidBackground: true
+    readonly property bool __windowStayOnTop: root.pageStack.currentItem.footer.windowStaysOnTop
     readonly property bool __isMobile: Kirigami.Settings.isMobile
     readonly property bool themeIsMaterial: Kirigami.Settings.style==="Material" // || Kirigami.Settings.isMobile
     // mobileOrSmallScreen helps determine when to follow mobile behaviors from desktop non-mobile devices
@@ -119,7 +120,7 @@ Kirigami.ApplicationWindow {
     // More ways to enforce transparency across systems
     //visible: true
     readonly property int hideDecorators: root.pageStack.currentItem.overlay.atTop && !root.pageStack.currentItem.viewport.forcedOrientation && parseInt(root.pageStack.currentItem.prompter.state)!==Prompter.States.Editing || Qt.platform.os==="osx" && root.pageStack.currentItem.prompterBackground.opacity!==1 || __fullScreen && __fakeFullscreen && visibility===Kirigami.ApplicationWindow.Maximized ? Qt.FramelessWindowHint : Qt.Window
-    flags: hideDecorators
+    flags: this.__windowStayOnTop ? hideDecorators | Qt.WindowStaysOnTopHint : hideDecorators
 
     background: Rectangle {
         id: appTheme
