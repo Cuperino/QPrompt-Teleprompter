@@ -96,6 +96,7 @@ ToolBar {
     readonly property alias baseSpeedSlider: baseSpeedSlider
     readonly property alias baseAccelerationSlider: baseAccelerationSlider
     readonly property alias onlyPositiveVelocity: positiveVelocity.checked
+    readonly property alias windowStaysOnTop: windowStayOnTopButton.value
     readonly property bool showSliderIcons: toolbar.width > 404
     readonly property bool showingFormattingTools: parseInt(viewport.prompter.state)!==Prompter.States.Editing && (!toolbar.hideFormattingToolsWhilePrompting || editor.focus)
 
@@ -154,6 +155,7 @@ ToolBar {
         property alias lineHeight: lineHeightSlider.value
         property alias paragraphSpacingSlider: paragraphSpacingSlider.value
         property alias fontWYSIWYGSizeSlider: fontWYSIWYGSizeSlider.value
+        property alias windowStaysOnTop: windowStayOnTopButton.checked
     }
     FontLoader {
         id: iconFont
@@ -787,9 +789,13 @@ ToolBar {
         RowLayout {
             visible: root.__translucidBackground && (!root.__isMobile && root.width>(!showingFormattingTools||hideFormattingToolsAlways ? 1195 : 994) || (parseInt(viewport.prompter.state)!==Prompter.States.Editing && parseInt(viewport.prompter.state)!==Prompter.States.Prompting)) // This check isn't optimized in case more viewport.prompter states get added in the future, even tho I think that is unlikely.
             ToolButton {
+                id: windowStayOnTopButton
+                readonly property bool value: checked && enabled
                 visible: !root.__isMobile && showSliderIcons
                 text: "\uE810"
-                enabled: false
+                enabled: root.__opacity < 1
+                checkable: true
+                checked: true
                 contentItem: Loader { sourceComponent: textComponent }
                 font.family: iconFont.name
                 font.pointSize: 13
