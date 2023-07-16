@@ -44,6 +44,7 @@ Kirigami.ApplicationWindow {
     readonly property bool __isMobile: Kirigami.Settings.isMobile
     readonly property bool __translucidBackground: true
     readonly property bool __windowStayOnTop: root.pageStack.currentItem.footer.windowStaysOnTop
+    property bool shadows: false
     readonly property bool themeIsMaterial: Kirigami.Settings.style==="Material" // || Kirigami.Settings.isMobile
     // mobileOrSmallScreen helps determine when to follow mobile behaviors from desktop non-mobile devices
     readonly property bool mobileOrSmallScreen: Kirigami.Settings.isMobile || root.width < 1220
@@ -94,6 +95,7 @@ Kirigami.ApplicationWindow {
     Settings {
         category: "background"
         property alias opacity: root.__opacity
+        property alias shadows: root.shadows
     }
     Settings {
         category: "telemetry"
