@@ -343,6 +343,46 @@ void DocumentHandler::setStrike(bool strike)
     Q_EMIT strikeChanged();
 }
 
+bool DocumentHandler::subscript() const
+{
+    QTextCursor cursor = textCursor();
+    if (cursor.isNull())
+        return false;
+    return textCursor().charFormat().verticalAlignment() == QTextCharFormat::AlignSubScript;
+}
+
+void DocumentHandler::setSubscript(bool subscript)
+{
+    QTextCharFormat format;
+    if (subscript)
+        format.setVerticalAlignment(QTextCharFormat::AlignSubScript);
+    else
+        format.setVerticalAlignment(QTextCharFormat::AlignNormal);
+    mergeFormatOnWordOrSelection(format);
+    Q_EMIT verticalAlignmentChanged();
+}
+
+bool DocumentHandler::superscript() const
+{
+    QTextCursor cursor = textCursor();
+    if (cursor.isNull())
+        return false;
+    return textCursor().charFormat().verticalAlignment() == QTextCharFormat::AlignSuperScript;
+}
+
+void DocumentHandler::setSuperscript(bool superscript)
+{
+    QTextCharFormat format;
+    if (superscript)
+        format.setVerticalAlignment(QTextCharFormat::AlignSuperScript);
+    else {
+        format.setVerticalAlignment(QTextCharFormat::AlignNormal);
+        // format.setFontPointSize(12);
+    }
+    mergeFormatOnWordOrSelection(format);
+    Q_EMIT verticalAlignmentChanged();
+}
+
 bool DocumentHandler::regularMarker() const
 {
     QTextCursor cursor = textCursor();
@@ -748,6 +788,7 @@ void DocumentHandler::reset()
     Q_EMIT fontSizeChanged();
     Q_EMIT textColorChanged();
     Q_EMIT textBackgroundChanged();
+    Q_EMIT verticalAlignmentChanged();
 }
 
 QTextCursor DocumentHandler::textCursor() const
