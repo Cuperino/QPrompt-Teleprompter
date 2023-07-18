@@ -279,7 +279,7 @@ ToolBar {
         }
         Row {
             id: undoRedoRow
-            visible: !toolbar.hideFormattingToolsAlways && (root.__isMobile ? parseInt(viewport.prompter.state)===Prompter.States.Editing && Qt.platform.os!=='ios' :  (showingFormattingTools || parseInt(viewport.prompter.state)===Prompter.States.Editing) && root.width>458)
+            visible: !toolbar.hideFormattingToolsAlways && (root.__isMobile ? parseInt(viewport.prompter.state)===Prompter.States.Editing && Qt.platform.os!=='ios' :  (showingFormattingTools || parseInt(viewport.prompter.state)===Prompter.States.Editing) && root.width>489)
             ToolButton {
                 text: Qt.application.layoutDirection===Qt.LeftToRight?"\uE74F":"\uE801"
                 contentItem: Loader { sourceComponent: textComponent }
@@ -303,7 +303,7 @@ ToolBar {
         }
         Row {
             id: editRow
-            visible: !toolbar.hideFormattingToolsAlways && !root.__isMobile && root.width>458 && (showingFormattingTools || parseInt(viewport.prompter.state)===Prompter.States.Editing)
+            visible: !toolbar.hideFormattingToolsAlways && !root.__isMobile && root.width>489 && (showingFormattingTools || parseInt(viewport.prompter.state)===Prompter.States.Editing)
             ToolButton {
                 id: copyButton
                 text: "\uF0C5"
@@ -433,7 +433,7 @@ ToolBar {
                 focusPolicy: Qt.TabFocus
                 checkable: true
                 checked: viewport.prompter.document.bold
-                onClicked: viewport.prompter.document.bold = !viewport.prompter.document.bold
+                onClicked: viewport.prompter.document.bold = checked
             }
             ToolButton {
                 id: italicButton
@@ -444,7 +444,7 @@ ToolBar {
                 focusPolicy: Qt.TabFocus
                 checkable: true
                 checked: viewport.prompter.document.italic
-                onClicked: viewport.prompter.document.italic = !viewport.prompter.document.italic
+                onClicked: viewport.prompter.document.italic = checked
             }
             ToolButton {
                 id: underlineButton
@@ -455,7 +455,7 @@ ToolBar {
                 focusPolicy: Qt.TabFocus
                 checkable: true
                 checked: viewport.prompter.document.underline
-                onClicked: viewport.prompter.document.underline = !viewport.prompter.document.underline
+                onClicked: viewport.prompter.document.underline = checked
             }
             ToolButton {
                 id: strikeOutButton
@@ -466,8 +466,48 @@ ToolBar {
                 focusPolicy: Qt.TabFocus
                 checkable: true
                 checked: viewport.prompter.document.strike
-                onClicked: viewport.prompter.document.strike = !viewport.prompter.document.strike
+                onClicked: viewport.prompter.document.strike = checked
             }
+            ToolButton {
+                id: verticalAlignmentButton
+                text: viewport.prompter.document.superscript ? "Aᵃ" : "Aₐ"
+                contentItem: Loader { sourceComponent: textComponent }
+                font.family: iconFont.name
+                font.pointSize: 13
+                focusPolicy: Qt.TabFocus
+                checkable: true
+                checked: viewport.prompter.document.subscript || viewport.prompter.document.superscript
+                onClicked: {
+                    if (viewport.prompter.document.subscript)
+                        viewport.prompter.document.superscript = true
+                    else if (viewport.prompter.document.superscript)
+                        viewport.prompter.document.superscript = false
+                    else
+                        viewport.prompter.document.subscript = true
+                }
+            }
+            //ToolButton {
+            //    id: subscriptButton
+            //    text: "Aₐ"
+            //    contentItem: Loader { sourceComponent: textComponent }
+            //    font.family: iconFont.name
+            //    font.pointSize: 13
+            //    focusPolicy: Qt.TabFocus
+            //    checkable: true
+            //    checked: viewport.prompter.document.subscript
+            //    onClicked: viewport.prompter.document.subscript = checked
+            //}
+            //ToolButton {
+            //    id: superscriptButton
+            //    text: "Aᵃ"
+            //    contentItem: Loader { sourceComponent: textComponent }
+            //    font.family: iconFont.name
+            //    font.pointSize: 13
+            //    focusPolicy: Qt.TabFocus
+            //    checkable: true
+            //    checked: viewport.prompter.document.superscript
+            //    onClicked: viewport.prompter.document.superscript = checked
+            //}
             ToolSeparator {
                 contentItem.visible: formatRow.y === fontRow.y
             }
