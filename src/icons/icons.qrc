@@ -61,5 +61,7 @@
         <file alias="contrast.svg">22/contrast.svg</file>
         <file alias="view-fullscreen.svg">16/view-fullscreen.svg</file>
         <file alias="empty.svg">16/empty.svg</file>
+        <file alias="window-pin.svg">22/window-pin.svg</file>
+        <file alias="window-unpin.svg">22/window-unpin.svg</file>
     </qresource>
 </RCC>

@@ -24,6 +24,7 @@ import QtQuick 2.12
 import org.kde.kirigami 2.11 as Kirigami
 import QtQuick.Controls 2.12
 import QtQuick.Layouts 1.12
+import QtQuick.Controls.Material 2.12
 
 Kirigami.OverlayDrawer {
     id: markersDrawer
@@ -35,7 +36,7 @@ Kirigami.OverlayDrawer {
     }
     width: 260
     //width: popupContent.implicitWidth
-    modal: true
+    modal: !pinButton.checked
     handleVisible: false
     edge: Qt.application.layoutDirection===Qt.LeftToRight ? Qt.LeftEdge : Qt.RightEdge
     leftPadding: 0
@@ -66,7 +67,11 @@ Kirigami.OverlayDrawer {
         id: markerDelegateComponent
         Kirigami.SwipeListItem {
             supportsMouseEvents: true
-            onPressed: prompter.goTo(model.position)
+            onPressed: {
+                prompter.goTo(model.position)
+                if (!pinButton.checked)
+                    markersDrawer.close()
+            }
             Label {
                 text: (model.keyLetter ? "(" + model.keyLetter + ") " : "") + model.text
             }
@@ -113,14 +118,27 @@ Kirigami.OverlayDrawer {
             clip: true
             ScrollBar.vertical: ScrollBar { }
         }
-        Kirigami.BasicListItem {
+        RowLayout {
+            spacing: 0
             Layout.alignment: Qt.AlignBottom
-            //icon: Qt.application.layoutDirection===Qt.LeftToRight ? "view-left-close" : "view-right-close"
-            icon: Qt.application.layoutDirection===Qt.LeftToRight ? "qrc:/icons/view-left-close.svg" : "qrc:/icons/view-right-close.svg"
-            text: i18nc("Close sidebar listing user defined markers", "Close Marker List")
-            onClicked: {
-                markersDrawer.toggle();
-                //console.log(prompterPage.document.markers())
+            Kirigami.BasicListItem {
+                //icon: Qt.application.layoutDirection===Qt.LeftToRight ? "view-left-close" : "view-right-close"
+                icon: Qt.application.layoutDirection===Qt.LeftToRight ? "qrc:/icons/view-left-close.svg" : "qrc:/icons/view-right-close.svg"
+                text: i18nc("Close sidebar listing user defined markers", "Close Marker List")
+                onClicked: {
+                    markersDrawer.toggle();
+                    //console.log(prompterPage.document.markers())
+                }
+            }
+            Button {
+                id: pinButton
+                // icon.name: checked ? "window-pin" : "window-unpin"
+                icon.source: checked ? "qrc:/icons/window-pin.svg" : "qrc:/icons/window-unpin.svg"
+                checkable: true
+                checked: false
+                flat: true
+                Material.theme: Material.Dark
+                Layout.maximumWidth: 50
             }
         }
     }
