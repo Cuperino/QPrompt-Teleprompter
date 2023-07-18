@@ -695,8 +695,8 @@ QString DocumentHandler::import(QString fileName, ImportFormat type)
         if (program == "")
             program = "soffice";
 #endif
-        arguments << QString::fromUtf8("--headless") << QString::fromUtf8("--cat") << QString::fromUtf8("--convert-to")
-                  << QString::fromUtf8("html:HTML") << fileName;
+        arguments << QString::fromUtf8("--headless") << QString::fromUtf8("--cat") << QString::fromUtf8("--convert-to") << QString::fromUtf8("html:HTML")
+                  << fileName;
     } else if (type == EPUB || type == MOBI || type == AZW) {
         // Dev: not implemented
     }
@@ -717,7 +717,7 @@ QString DocumentHandler::import(QString fileName, ImportFormat type)
     QByteArray html = convert.readAll();
     // if (type==DOCX || type==DOC || type==RTF || type==ABW || type==EPUB || type==MOBI || type==AZW)
     //     return filterHtml(html, true);
-    return QString::fromUtf8("");//filterHtml(QString::fromStdString(html.toStdString()), true);
+    return QString::fromUtf8(""); // filterHtml(QString::fromStdString(html.toStdString()), true);
 }
 
 void DocumentHandler::unblockFileWatcher()
@@ -887,9 +887,9 @@ QString DocumentHandler::filterHtml(QString html, bool ignoreBlackTextColor = tr
         // 3. Preserve highlights: Remove background color attributes from all elements except span, which is commonly used for highlights
         // Clean RegEx:
         // (?:<[^sS][^pP][^aA][^nN](?:\s*[^>]*(\s*background(?:-color)?:\s*(?:(?:rgba?\(\d\d?\d?,\s*\d\d?\d?,\s*\d\d?\d?(?:,\s*[01]?(?:[.]\d\d*)?)?\))|(?:#[0-9a-fA-F]{3}(?:[0-9a-fA-F]{3})?));?)\s*[^>]*)*>)
-        static QRegularExpression regex_5(QString::fromUtf8(
-            "(?:<[^sS][^pP][^aA][^nN](?:\\s*[^>]*(\\s*background(?:-color)?:\\s*(?:(?:rgba?\\(\\d\\d?\\d?,\\s*\\d\\d?\\d?,\\s*\\d\\d?\\d?(?"
-            ":,\\s*[01]?(?:[.]\\d\\d*)?)?\\))|(?:#[0-9a-fA-F]{3}(?:[0-9a-fA-F]{3})?));?)\\s*[^>]*)*>)"));
+        static QRegularExpression regex_5(
+            QString::fromUtf8("(?:<[^sS][^pP][^aA][^nN](?:\\s*[^>]*(\\s*background(?:-color)?:\\s*(?:(?:rgba?\\(\\d\\d?\\d?,\\s*\\d\\d?\\d?,\\s*\\d\\d?\\d?(?"
+                              ":,\\s*[01]?(?:[.]\\d\\d*)?)?\\))|(?:#[0-9a-fA-F]{3}(?:[0-9a-fA-F]{3})?));?)\\s*[^>]*)*>)"));
         html = html.replace(regex_5, QString::fromUtf8(""));
     }
     // Manual toggle filters
@@ -902,7 +902,7 @@ QString DocumentHandler::filterHtml(QString html, bool ignoreBlackTextColor = tr
         // (\s*(?:mso-style-textfill-fill-)?color:\s*(?:(?:rgba?\(\d{1,2},\s*\d{1,2},\s*\d{1,2}(?:,\s*[10]?(?:[.]00*)?)?\))|(?:black)|(?:windowtext)|(?:#0{3}(?:0{3})?));?)
         static QRegularExpression regex_6(
             QString::fromUtf8("(\\s*(?:mso-style-textfill-fill-)?color:\\s*(?:(?:rgba?\\(\\d{1,2},\\s*\\d{1,2},\\s*\\d{"
-                                   "1,2}(?:,\\s*[10]?(?:[.]00*)?)?\\))|(?:black)|(?:windowtext)|(?:#0{3}(?:0{3})?));?)"));
+                              "1,2}(?:,\\s*[10]?(?:[.]00*)?)?\\))|(?:black)|(?:windowtext)|(?:#0{3}(?:0{3})?));?)"));
         html = html.replace(regex_6, QString::fromUtf8(""));
     }
 
