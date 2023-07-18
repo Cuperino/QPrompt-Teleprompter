@@ -282,6 +282,9 @@ Flickable {
             case Prompter.States.Standby:
             case Prompter.States.Countdown:
             case Prompter.States.Prompting:
+                // Close markers drawer unless going to Edit state
+                if (markersDrawer.drawerOpen)
+                    markersDrawer.close();
                 timer.reset();
                 if (state!==Prompter.States.Countdown)
                     document.parse();
