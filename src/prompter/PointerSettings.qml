@@ -356,7 +356,7 @@ ColumnLayout {
             }
             RowLayout {
                 id: textVerticalOffsetSlider
-                property real value: -0.06
+                property real value: -0.05
                 Label {
                     text: i18nc("Vertical offset (line height) 1.00", "Vertical offset <pre>%1</pre>", (parent.value < 0 ? "-" : "+") + (parent.value/10).toFixed(3).slice((parent.value < 0 ? 3 : 2)))
                 }
