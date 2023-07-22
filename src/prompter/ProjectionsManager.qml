@@ -192,6 +192,11 @@ Item {
                 projectionModel.remove(model.index);
                 //displayModel.remove(model.index);
             }
+            CursorAutoHide {
+                id: cursorAutoHide
+                ignored: root.pageStack.currentItem.markersDrawer
+                anchors.fill: parent
+            }
             MouseArea {
                 enabled: true
                 anchors.fill: parent
