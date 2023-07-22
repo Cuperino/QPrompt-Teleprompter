@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: qprompt\n"
 "Report-Msgid-Bugs-To: https://github.com/Cuperino/QPrompt/issues/new/choose\n"
 "POT-Creation-Date: 2023-07-09 11:58-0400\n"
-"PO-Revision-Date: 2023-07-22 03:23+0000\n"
-"Last-Translator: Lia Guedes <liaguedes9999@gmail.com>\n"
+"PO-Revision-Date: 2023-07-23 04:11+0000\n"
+"Last-Translator: marttin carvalho <marttinhoblue@gmail.com>\n"
 "Language-Team: Portuguese <http://l10n.cuperino.com/projects/qprompt/"
 "qprompt-app/pt/>\n"
 "Language: pt\n"
@@ -609,13 +609,13 @@ msgstr ""
 #: kirigami_ui/PathsPage.qml:71 kirigami_ui/PathsPage.qml:99
 msgctxt "Browse for PROGRAM"
 msgid "Browse for %1"
-msgstr ""
+msgstr "Procurar por %1"
 
 #: kirigami_ui/PathsPage.qml:104 kirigami_ui/PathsPage.qml:106
 #: kirigami_ui/PathsPage.qml:107
 msgctxt "Format name (FORMAT_EXTENSION)"
 msgid "Executable (%1)"
-msgstr ""
+msgstr "Executável (%1)"
 
 #. i18nc("Format name (FORMAT_EXTENSION)", "Portable Document Format (%1)", "PDF") + "(*.pdf *.PDF)",
 #. i18nc("Format name (FORMAT_EXTENSION)", "Rich Text Format (%1)", "RTF") + "(*.rtf *.RTF)",
@@ -716,10 +716,9 @@ msgid "Change reading region indicators"
 msgstr "Alterar indicador de região de leitura"
 
 #: kirigami_ui/PrompterPage.qml:264
-#, fuzzy
 msgctxt "Configure reading region pointer indicators"
 msgid "Pointer Configuration"
-msgstr "Duração de prompt"
+msgstr "Configuração de ponteiro"
 
 #: kirigami_ui/PrompterPage.qml:271
 msgctxt "Shows pointer to the left of the reading region"
@@ -749,10 +748,9 @@ msgid "Left and right pointers indicate reading region"
 msgstr "Ponteiros esquerdo e direito indicam a região de leitura"
 
 #: kirigami_ui/PrompterPage.qml:310
-#, fuzzy
 msgctxt "Disable all reading region pointers"
 msgid "No pointers"
-msgstr "Dois ponteiros"
+msgstr "Sem ponteiros"
 
 #: kirigami_ui/PrompterPage.qml:313
 msgctxt "Disable all reading region indicators"
@@ -856,7 +854,7 @@ msgstr "Fundo"
 #: kirigami_ui/PrompterPage.qml:593
 msgctxt "Enable root.shadows"
 msgid "Shadows"
-msgstr ""
+msgstr "Sombras"
 
 #: kirigami_ui/PrompterPage.qml:602
 msgctxt "Set background image"
@@ -951,55 +949,53 @@ msgstr "Tecla para pular para este marcador"
 
 #: kirigami_ui/PrompterPage.qml:1002
 msgid "Open from network..."
-msgstr ""
+msgstr "Abrir de rede..."
 
 #: kirigami_ui/PrompterPage.qml:1029
 msgid "URL:"
-msgstr ""
+msgstr "URL:"
 
 #: kirigami_ui/PrompterPage.qml:1033
 msgid "http, https, and ftp protocols supported"
-msgstr ""
+msgstr "http, https e protocolos ftp suportados"
 
 #: kirigami_ui/PrompterPage.qml:1044
-#, fuzzy
 msgid "Auto reload"
-msgstr "Auto-alinhar"
+msgstr "Auto-recarregar"
 
 #: kirigami_ui/PrompterPage.qml:1054
 msgid "Hours:"
-msgstr ""
+msgstr "Horas:"
 
 #: kirigami_ui/PrompterPage.qml:1074
 msgid "Minutes:"
-msgstr ""
+msgstr "Minutos:"
 
 #: kirigami_ui/PrompterPage.qml:1098
 msgid "Seconds:"
-msgstr ""
+msgstr "Segundos:"
 
 #: kirigami_ui/PrompterPage.qml:1125
 msgctxt "Next reload starts at 10:11:12"
 msgid "Next reload starts at %1"
-msgstr ""
+msgstr "Próximo recarregamento começa em %1"
 
 #: kirigami_ui/PrompterPage.qml:1126
 msgid "Auto reload is not running"
-msgstr ""
+msgstr "Auto-recarregamento não está funcionando"
 
 #: kirigami_ui/PrompterPage.qml:1133
 msgid "Load from Network"
-msgstr ""
+msgstr "Carregar de rede"
 
 #: kirigami_ui/PrompterPage.qml:1141 prompter/ProjectionsManager.qml:314
 msgid "Close"
 msgstr "Fechar"
 
 #: kirigami_ui/PrompterPage.qml:1154
-#, fuzzy
 msgctxt "Name of section where reding region pointers are configured"
 msgid "Pointer configuration"
-msgstr "Duração de prompt"
+msgstr "Configuração de ponteiro"
 
 #: kirigami_ui/RemotePage.qml:28
 msgid "Remote Control"
@@ -1318,11 +1314,11 @@ msgstr "Estado de prompting"
 
 #: prompter/PointerSettings.qml:110
 msgid "Editing: "
-msgstr ""
+msgstr "Editando: "
 
 #: prompter/PointerSettings.qml:123
 msgid "Ready: "
-msgstr ""
+msgstr "Pronto: "
 
 #: prompter/PointerSettings.qml:136
 msgid "Prompting: "
