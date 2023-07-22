@@ -9,7 +9,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: https://github.com/Cuperino/QPrompt/issues/new/choose\n"
 "POT-Creation-Date: 2023-07-09 11:58-0400\n"
 "PO-Revision-Date: 2023-07-22 03:23+0000\n"
-"Last-Translator: marttin carvalho <marttinhoblue@gmail.com>\n"
+"Last-Translator: Lia Guedes <liaguedes9999@gmail.com>\n"
 "Language-Team: Portuguese <http://l10n.cuperino.com/projects/qprompt/"
 "qprompt-app/pt/>\n"
 "Language: pt\n"
@@ -35,7 +35,7 @@ msgstr "&Abrir"
 #: kirigami_ui/+windows/main.qml:212
 msgctxt "Main menu and global menu actions"
 msgid "&Open remote file"
-msgstr ""
+msgstr "&Abrir arquivo remoto"
 
 #: kirigami_ui/+android/main.qml:206 kirigami_ui/main.qml:225
 #: kirigami_ui/main.qml:538 kirigami_ui/+windows/main.qml:221
