@@ -51,7 +51,7 @@ MouseArea {
         triggeredOnStart: false
         onTriggered: {
             stop();
-            if (root.activeFocusItem === root.pageStack.currentItem.prompter)
+            if (root.activeFocusItem === root.pageStack.currentItem.prompter || typeof projectionWindow!=="undefined" && projectionWindow.active)
                 cursorUtil.hideCursor();
         }
     }
