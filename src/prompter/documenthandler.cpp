@@ -717,7 +717,7 @@ QString DocumentHandler::import(QString fileName, ImportFormat type)
     QByteArray html = convert.readAll();
     // if (type==DOCX || type==DOC || type==RTF || type==ABW || type==EPUB || type==MOBI || type==AZW)
     //     return filterHtml(html, true);
-    return QString::fromUtf8(""); // filterHtml(QString::fromStdString(html.toStdString()), true);
+    return filterHtml(QString::fromStdString(html.toStdString()), false);
 }
 
 void DocumentHandler::unblockFileWatcher()
