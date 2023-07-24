@@ -33,13 +33,13 @@ MouseArea {
         cursorUtil.restoreCursor();
         restart();
     }
-    required property var ignored
+    property var ignored
     function reset() {
         timer.stop();
         cursorUtil.restoreCursor();
     }
     function restart() {
-        if (parseInt(root.pageStack.currentItem.prompter.state)===Prompter.States.Prompting && !ignored.drawerOpen)
+        if (parseInt(root.pageStack.currentItem.prompter.state)===Prompter.States.Prompting && typeof(ignored)!=="undefined" && !ignored.drawerOpen)
             timer.restart();
     }
     function hide() {
