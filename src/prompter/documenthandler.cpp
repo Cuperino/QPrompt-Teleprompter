@@ -641,7 +641,7 @@ void DocumentHandler::load(const QUrl &fileUrl)
                         // I doubt that this is a proper conversion. Needs proper testing.
                         Q_EMIT loaded(QString::fromUtf8(data.toStdString()), Qt::AutoText);
 #else
-                        QTextCodec *codec = QTextCodec::codecForName("UTF-8");
+                        QTextCodec *codec = QTextCodec::codecForName("utf-8");
                         Q_EMIT loaded(codec->toUnicode(data), Qt::AutoText);
 #endif
                     }
@@ -714,10 +714,16 @@ QString DocumentHandler::import(QString fileName, ImportFormat type)
                    "to make sure a corresponding import tool is properly configured.")
             .arg(program);
 
-    QByteArray html = convert.readAll();
+    const QByteArray bytes = convert.readAll();
+#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0) && defined(Q_OS_WINDOWS)
+    const QTextCodec *codec = QTextCodec::codecForName("utf-8");
+    const QString html = codec->toUnicode(bytes.data());
+#else
+    const QString html = bytes.toStdString();
+#endif
     // if (type==DOCX || type==DOC || type==RTF || type==ABW || type==EPUB || type==MOBI || type==AZW)
     //     return filterHtml(html, true);
-    return filterHtml(QString::fromStdString(html.toStdString()), false);
+    return filterHtml(html, false);
 }
 
 void DocumentHandler::unblockFileWatcher()
