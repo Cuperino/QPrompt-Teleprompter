@@ -26,6 +26,7 @@ import com.cuperino.qprompt.qmlutil 1.0
 MouseArea {
     id: cursorAutoHide
     enabled: !root.pageStack.currentItem.editor.activeFocus
+    focus: false
     acceptedButtons: Qt.NoButton
     hoverEnabled: parseInt(root.pageStack.currentItem.prompter.state)===Prompter.States.Prompting
     onPositionChanged: function (mouse) {
