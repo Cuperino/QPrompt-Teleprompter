@@ -719,7 +719,7 @@ QString DocumentHandler::import(QString fileName, ImportFormat type)
     const QTextCodec *codec = QTextCodec::codecForName("utf-8");
     const QString html = codec->toUnicode(bytes.data());
 #else
-    const QString html = bytes.toStdString();
+    const QString html = QString::fromStdString(bytes.toStdString());
 #endif
     // if (type==DOCX || type==DOC || type==RTF || type==ABW || type==EPUB || type==MOBI || type==AZW)
     //     return filterHtml(html, true);
