@@ -281,6 +281,7 @@ Flickable {
                 break;
             case Prompter.States.Standby:
             case Prompter.States.Countdown:
+                cursorAutoHide.reset();
             case Prompter.States.Prompting:
                 // Close markers drawer unless going to Edit state
                 if (markersDrawer.drawerOpen)
@@ -1843,6 +1844,7 @@ Flickable {
                 script: {
                     if (prompter.__i>0)
                         __iDefault = prompter.__i;
+                    cursorAutoHide.reset();
                 }
             }
         }
