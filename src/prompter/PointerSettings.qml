@@ -65,7 +65,7 @@ ColumnLayout {
             name: PointerSettings.States.Arrow
             PropertyChanges {
                 target: sameAsLeftPointerCheck
-                checked: true
+                checked: false
                 enabled: false
             }
             PropertyChanges {
