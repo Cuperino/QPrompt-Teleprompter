@@ -157,7 +157,7 @@ void DocumentHandler::setDocument(QQuickTextDocument *document)
     if (m_document) {
         m_document->textDocument()->setDefaultStyleSheet(QString::fromUtf8(
             "body{margin:0;padding:0;color:\"#FFFFFF\";}a:link,a:visited,a:hover,a:active,a:before,a:after{text-decoration:overline;color:\"#FFFFFF\";"
-            "background-color:rgba(0,0,0,0.0);}blockquote,address,cite,code,pre,h1,h2,h3,h4,h5,h6,table,tbody,td,th,thead,tr,dl,dt,big,small,tt,font{white-"
+            "background-color:rgba(0,0,0,0.0);}blockquote,address,cite,code,pre,h1,h2,h3,h4,h5,h6,table,tbody,td,th,thead,tr,dl,dt,big,small,tt{white-"
             "space:pre-wrap;font-size:medium;line-height:100%;margin:0;padding:0;border-width:2px;border-collapse:collapse;border-style:solid;border-color:\"#"
             "404040\";background-color:rgba(0,0,0,0.0);font-weight:normal;}table,tbody,thead{width:100%;}table,tbody,thead,td,th,tr{border:1pt;valign:top;"
             "background-color:rgba(0,0,0,0.0);}img{margin:5pt;width:50vw;}p{margin:0;}h1,h2,h3,h4,h5,h6,big{font-size:medium;font-weight:normal;}"));
