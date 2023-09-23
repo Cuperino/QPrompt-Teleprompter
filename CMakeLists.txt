@@ -44,7 +44,7 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
 
-set(QT_DEFAULT_MAJOR_VERSION 6)
+set(QT_DEFAULT_MAJOR_VERSION 5)
 set(QT_MIN_VERSION 5.15.2)
 # KF${QT_VERSION_MAJOR} 5.78 for Ubuntu 21.04 and Debian 11, which require no backporting
 # KF${QT_VERSION_MAJOR} 5.68 is used as a hack to allow Snapcraft build on Ubuntu 20.04 core
@@ -242,12 +242,20 @@ else()
         #QmlImportScanner  # Used to get static QML. Gets ignored if not a static build
         #QuickCompiler
     #)
-    find_package(KF${QT_VERSION_MAJOR} ${KF_MIN_VERSION} REQUIRED COMPONENTS
-        Kirigami2
-        I18n
-        CoreAddons
-        IconThemes
-    )
+    if (QT_VERSION_MAJOR EQUAL 5)
+        find_package(KF${QT_VERSION_MAJOR} ${KF_MIN_VERSION} REQUIRED COMPONENTS
+            Kirigami2
+            I18n
+            CoreAddons
+            IconThemes
+        )
+    else()
+        find_package(KF${QT_VERSION_MAJOR} ${KF_MIN_VERSION} REQUIRED COMPONENTS
+            Kirigami2
+            I18n
+            CoreAddons
+        )
+    endif()
     find_package(KF${QT_VERSION_MAJOR}Crash ${REQUIRED_KF${QT_VERSION_MAJOR}_VERSION} COMPONENTS)
     set_package_properties(KF${QT_VERSION_MAJOR}Crash PROPERTIES
         DESCRIPTION "Graceful handling of application crashes."
@@ -345,12 +353,12 @@ if(UNIX AND NOT ANDROID)
     set(CPACK_DEBIAN_PACKAGE_SECTION "Multimedia")
     set(CPACK_DEBIAN_COMPRESSION_TYPE ${COMPRESION_TYPE})
     # Set to dependencies as Debian 11 and Ubuntu 21.04. Chose these two distros as base because Desktop version has ARM support and provided Qt versions require no backporting.
-    set(CPACK_DEBIAN_PACKAGE_DEPENDS "libqt5svg5 (>= 5.15.2), libqt5x11extras5 (>= 5.15.2), qml-module-qt-labs-platform (>=5.15.2), qml-module-qtqml (>=5.15.2), qml-module-qtqml-models2 (>=5.15.2), qml-module-qtqml-statemachine (>=5.15.2), qml-module-qtquick-controls (>=5.15.2), qml-module-qtquick-controls2 (>=5.15.2), qml-module-qtquick-dialogs (>=5.15.2), qml-module-qtquick-shapes (>=5.15.2), qml-module-org-kde-kirigami2 (>=5.78.0), libkf5i18n5 (>= 5.78.0), libkf5coreaddons5 (>= 5.78.0), libkf5crash5 (>= 5.78.0)")
+    set(CPACK_DEBIAN_PACKAGE_DEPENDS "libqt5svg5 (>= 6.4.2), libqt5x11extras5 (>= 6.4.2), qml-module-qt-labs-platform (>=6.4.2), qml-module-qtqml (>=6.4.2), qml-module-qtqml-models2 (>=6.4.2), qml-module-qtqml-statemachine (>=6.4.2), qml-module-qtquick-controls (>=6.4.2), qml-module-qtquick-controls2 (>=6.4.2), qml-module-qtquick-dialogs (>=6.4.2), qml-module-qtquick-shapes (>=6.4.2), qml-module-org-kde-kirigami2 (>=5.78.0), libkf5i18n5 (>= 5.78.0), libkf5coreaddons5 (>= 5.78.0), libkf5crash5 (>= 5.78.0)")
 
     # CPACK: RPM Specific Settings
     set(CPACK_RPM_PACKAGE_LICENSE "GPLv3")
     set(CPACK_RPM_PACKAGE_GROUP "Multimedia/Video")
-    set(CPACK_RPM_PACKAGE_REQUIRES "qt5-qtbase >= 5.15.2, qt5-qtx11extras >= 5.15.2, qt5-qtbase-gui >= 5.15.2, qt5-qtdeclarative >= 5.15.2, qt5-qtsvg >= 5.15.2, qt5-qtquickcontrols >= 5.15.2, qt5-qtquickcontrols2 >= 5.15.2, kf5-ki18n >= 5.73.0, kf5-kirigami2 >= 5.73.0, kf5-kcoreaddons >= 5.73.0, kf5-kcrash >= 5.73.0")
+    set(CPACK_RPM_PACKAGE_REQUIRES "qt5-qtbase >= 6.4.2, qt5-qtx11extras >= 6.4.2, qt5-qtbase-gui >= 6.4.2, qt5-qtdeclarative >= 6.4.2, qt5-qtsvg >= 6.4.2, qt5-qtquickcontrols >= 6.4.2, qt5-qtquickcontrols2 >= 6.4.2, kf5-ki18n >= 5.73.0, kf5-kirigami2 >= 5.73.0, kf5-kcoreaddons >= 5.73.0, kf5-kcrash >= 5.73.0")
     set(CPACK_RPM_COMPRESSION_TYPE ${COMPRESION_TYPE})
 
 elseif(WIN32)
