@@ -74,11 +74,11 @@ Button {
     }
 
     Layout.fillWidth: true
-    Keys.onShortcutOverride: {
+    Keys.onShortcutOverride: (event) => {
         if (event.key === Qt.Key_Escape)
             event.accepted = true
     }
-    Keys.onPressed: {
+    Keys.onPressed: (event) => {
         if (checked && [Qt.Key_Super_L, Qt.Key_Super_R, Qt.Key_Meta, Qt.Key_Control, Qt.Key_Shift, Qt.Key_Alt, Qt.Key_AltGr].indexOf(event.key)===-1) {
             if (isValidInput(event.key, event.modifiers)) {
                 keyInputButton.setKey(event.key, event.modifiers);

@@ -169,7 +169,7 @@ Item {
                 onTextEdited: find.search(text, Find.Mode.Match)
                 selectByMouse: true
                 Layout.fillWidth: true
-                Keys.onReturnPressed: {
+                Keys.onReturnPressed: (event) => {
                     if (event.modifiers & Qt.ShiftModifier)
                         return find.previous();
                     return find.next();
@@ -212,7 +212,7 @@ Item {
                 wrapMode: TextInput.WordWrap
                 selectByMouse: true
                 Layout.fillWidth: true
-                Keys.onReturnPressed: {
+                Keys.onReturnPressed: (event) => {
                     if (event.modifiers & Qt.ShiftModifier)
                         find.replacePrevious();
                     else
