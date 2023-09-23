@@ -488,9 +488,10 @@ Kirigami.ApplicationWindow {
                 }
             }
         ]
-        WheelSettingsOverlay{
-            id: wheelSettings
-        }
+    }
+
+    WheelSettingsOverlay {
+        id: wheelSettings
     }
 
     // Right Context Drawer
