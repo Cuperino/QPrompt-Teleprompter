@@ -228,21 +228,36 @@ elseif(WIN32 OR APPLE)
 else()
     #target_include_directories(${PROJECT_NAME} PUBLIC ${qhotkey_SOURCE_DIR}/QHotkey)
     #target_link_directories(${PROJECT_NAME} PUBLIC ${qhotkey_SOURCE_DIR}/QHotkey)
-    target_link_libraries(${PROJECT_NAME} PUBLIC
-        Qt${QT_VERSION_MAJOR}::Core
-        Qt${QT_VERSION_MAJOR}::Quick
-        Qt${QT_VERSION_MAJOR}::Gui
-        Qt${QT_VERSION_MAJOR}::Svg
-        Qt${QT_VERSION_MAJOR}::Qml
-        Qt${QT_VERSION_MAJOR}::QuickControls2
-        Qt${QT_VERSION_MAJOR}::Network
-        Qt${QT_VERSION_MAJOR}::Widgets
-        Qt${QT_VERSION_MAJOR}::X11Extras
-        KF${QT_VERSION_MAJOR}::I18n
-        KF${QT_VERSION_MAJOR}::Kirigami2
-        KF${QT_VERSION_MAJOR}::CoreAddons
-        KF5::IconThemes
-    )
+    if (QT_VERSION_MAJOR EQUAL 5)
+        target_link_libraries(${PROJECT_NAME} PUBLIC
+            Qt${QT_VERSION_MAJOR}::Core
+            Qt${QT_VERSION_MAJOR}::Quick
+            Qt${QT_VERSION_MAJOR}::Gui
+            Qt${QT_VERSION_MAJOR}::Svg
+            Qt${QT_VERSION_MAJOR}::Qml
+            Qt${QT_VERSION_MAJOR}::QuickControls2
+            Qt${QT_VERSION_MAJOR}::Network
+            Qt${QT_VERSION_MAJOR}::Widgets
+            Qt${QT_VERSION_MAJOR}::X11Extras
+            KF${QT_VERSION_MAJOR}::I18n
+            KF${QT_VERSION_MAJOR}::Kirigami2
+            KF${QT_VERSION_MAJOR}::CoreAddons
+        )
+    else()
+        target_link_libraries(${PROJECT_NAME} PUBLIC
+            Qt${QT_VERSION_MAJOR}::Core
+            Qt${QT_VERSION_MAJOR}::Quick
+            Qt${QT_VERSION_MAJOR}::Gui
+            Qt${QT_VERSION_MAJOR}::Svg
+            Qt${QT_VERSION_MAJOR}::Qml
+            Qt${QT_VERSION_MAJOR}::QuickControls2
+            Qt${QT_VERSION_MAJOR}::Network
+            Qt${QT_VERSION_MAJOR}::Widgets
+            KF${QT_VERSION_MAJOR}::I18n
+            KF${QT_VERSION_MAJOR}::Kirigami2
+            KF${QT_VERSION_MAJOR}::CoreAddons
+        )
+    endif()
     if (KF5Crash_FOUND)
         add_definitions(-DKF5Crash_FOUND)
         target_link_libraries(${PROJECT_NAME} LINK_PRIVATE
