@@ -42,9 +42,9 @@
 #if defined(Q_OS_IOS) || defined(Q_OS_WASM) || defined(Q_OS_WATCHOS) || defined(Q_OS_QNX)
 #include "../3rdparty/kirigami/src/kirigamiplugin.h"
 #endif
-#include <KCoreAddons/KAboutData>
-#include <KI18n/KLocalizedString>
 #include <KLocalizedContext>
+#include <KLocalizedString>
+#include <kaboutdata.h>
 
 #if defined(KF5Crash_FOUND)
 #include <KCrash>

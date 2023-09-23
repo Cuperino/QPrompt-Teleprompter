@@ -44,10 +44,10 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
 
-set(QT_DEFAULT_MAJOR_VERSION 5)
+set(QT_DEFAULT_MAJOR_VERSION 6)
 set(QT_MIN_VERSION 5.15.2)
-# KF5 5.78 for Ubuntu 21.04 and Debian 11, which require no backporting
-# KF5 5.68 is used as a hack to allow Snapcraft build on Ubuntu 20.04 core
+# KF${QT_VERSION_MAJOR} 5.78 for Ubuntu 21.04 and Debian 11, which require no backporting
+# KF${QT_VERSION_MAJOR} 5.68 is used as a hack to allow Snapcraft build on Ubuntu 20.04 core
 # Use 5.83 ECM on Windows to make use of ecm_add_app_icon syntax
 if (WIN32)
     set(ECM_MIN_VERSION 5.83.0)
@@ -136,7 +136,7 @@ if(ANDROID)
         QmlImportScanner  # Used to get static QML. Gets ignored if not a static build
         QuickCompiler
     )
-    find_package(KF5 ${KF_MIN_VERSION} REQUIRED COMPONENTS
+    find_package(KF${QT_VERSION_MAJOR} ${KF_MIN_VERSION} REQUIRED COMPONENTS
         Kirigami2
         I18n
         CoreAddons
@@ -152,7 +152,7 @@ elseif(WASM OR IOS)
         QmlImportScanner  # Used to get static QML. Gets ignored if not a static build
         QuickCompiler
     )
-    find_package(KF5 ${KF_MIN_VERSION} REQUIRED COMPONENTS
+    find_package(KF${QT_VERSION_MAJOR} ${KF_MIN_VERSION} REQUIRED COMPONENTS
         Kirigami2
         I18n
         CoreAddons
@@ -172,14 +172,14 @@ elseif(HAIKU)
         QmlImportScanner  # Used to get static QML. Gets ignored if not a static build
         QuickCompiler
     )
-    find_package(KF5 ${KF_MIN_VERSION} REQUIRED COMPONENTS
+    find_package(KF${QT_VERSION_MAJOR} ${KF_MIN_VERSION} REQUIRED COMPONENTS
         Kirigami2
         I18n
         CoreAddons
         IconThemes
     )
-    find_package(KF5Crash ${REQUIRED_KF5_VERSION} CONFIG QUIET)
-        set_package_properties(KF5Crash PROPERTIES
+    find_package(KF${QT_VERSION_MAJOR}Crash ${REQUIRED_KF${QT_VERSION_MAJOR}_VERSION} CONFIG QUIET)
+        set_package_properties(KF${QT_VERSION_MAJOR}Crash PROPERTIES
         DESCRIPTION "Graceful handling of application crashes."
         TYPE OPTIONAL
     )
@@ -195,13 +195,13 @@ elseif(WIN32 OR APPLE)
         QmlImportScanner  # Used to get static QML. Gets ignored if not a static build
         QuickCompiler
     )
-    find_package(KF5 ${KF_MIN_VERSION} REQUIRED COMPONENTS
+    find_package(KF${QT_VERSION_MAJOR} ${KF_MIN_VERSION} REQUIRED COMPONENTS
         Kirigami2
         I18n
         CoreAddons
     )
-    find_package(KF5Crash ${KF_MIN_VERSION} COMPONENTS)
-    set_package_properties(KF5Crash PROPERTIES
+    find_package(KF${QT_VERSION_MAJOR}Crash ${KF_MIN_VERSION} COMPONENTS)
+    set_package_properties(KF${QT_VERSION_MAJOR}Crash PROPERTIES
         DESCRIPTION "Graceful handling of application crashes."
         TYPE OPTIONAL
     )
@@ -216,6 +216,17 @@ elseif(WIN32 OR APPLE)
         add_subdirectory("3rdparty/KDMacTouchBar" build/kdmactouchbar)
     endif()
 else()
+    if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
+    find_package(Qt${QT_VERSION_MAJOR} ${QT5_MIN_VERSION} REQUIRED NO_MODULE COMPONENTS
+        Core
+        Quick
+        Svg
+        Gui
+        QuickControls2
+        Network
+        Widgets
+    )
+    else()
     find_package(Qt${QT_VERSION_MAJOR} ${QT5_MIN_VERSION} REQUIRED NO_MODULE COMPONENTS
         Core
         Quick
@@ -226,18 +237,19 @@ else()
         Widgets
         X11Extras
     )
+    endif()
     #find_package(Qt${QT_VERSION_MAJOR} ${QT5_MIN_VERSION} NO_MODULE COMPONENTS
         #QmlImportScanner  # Used to get static QML. Gets ignored if not a static build
         #QuickCompiler
     #)
-    find_package(KF5 ${KF_MIN_VERSION} REQUIRED COMPONENTS
+    find_package(KF${QT_VERSION_MAJOR} ${KF_MIN_VERSION} REQUIRED COMPONENTS
         Kirigami2
         I18n
         CoreAddons
         IconThemes
     )
-    find_package(KF5Crash ${REQUIRED_KF5_VERSION} COMPONENTS)
-    set_package_properties(KF5Crash PROPERTIES
+    find_package(KF${QT_VERSION_MAJOR}Crash ${REQUIRED_KF${QT_VERSION_MAJOR}_VERSION} COMPONENTS)
+    set_package_properties(KF${QT_VERSION_MAJOR}Crash PROPERTIES
         DESCRIPTION "Graceful handling of application crashes."
         TYPE OPTIONAL
     )

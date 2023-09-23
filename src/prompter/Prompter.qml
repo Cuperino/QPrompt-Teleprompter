@@ -1616,7 +1616,7 @@ Flickable {
             //PropertyChanges {
             //target: readRegionButton
             //text: i18n("Custom")
-            //iconName: "dialog-ok-apply"
+            //icon.name: "dialog-ok-apply"
             //}
             PropertyChanges {
                 target: overlay
@@ -1752,7 +1752,7 @@ Flickable {
             PropertyChanges {
                 target: promptingButton
                 text: i18n("Return to edit mode")
-                iconName: Qt.application.layoutDirection===Qt.LeftToRight ? "edit-undo" : "edit-redo"
+                icon.name: Qt.application.layoutDirection===Qt.LeftToRight ? "edit-undo" : "edit-redo"
             }
             PropertyChanges {
                 target: prompter
