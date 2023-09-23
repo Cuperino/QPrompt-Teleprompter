@@ -26,8 +26,7 @@ import QtQuick.Window 2.12
 import QtQuick.Layouts 1.12
 import QtQuick.Controls.Material 2.12
 import Qt.labs.platform 1.1 as Labs
-//import QtQuick.Dialogs 1.3
-import Qt.labs.settings 1.0
+import QtCore
 
 import com.cuperino.qprompt.document 1.0
 import com.cuperino.qprompt.qmlutil 1.0
@@ -989,7 +988,7 @@ Kirigami.ApplicationWindow {
                 ////default: Qt.quit();
             //}
 
-            //document.saveAs(saveDialog.fileUrl)
+            //document.saveAs(saveDialog.file)
             //root.pageStack.currentItem.document.isNewFile = true
             switch (parseInt(root.onDiscard)) {
                 case Prompter.CloseActions.LoadGuide:

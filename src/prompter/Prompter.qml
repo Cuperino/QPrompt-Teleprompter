@@ -74,9 +74,9 @@ import QtQuick 2.12
 import QtQuick.Controls 2.12
 import QtQuick.Layouts 1.12
 import QtQuick.Window 2.12
-import QtQuick.Dialogs 1.3
+import QtQuick.Dialogs
+import QtCore
 import Qt.labs.platform 1.1 as Labs
-import Qt.labs.settings 1.0
 
 import com.cuperino.qprompt.document 1.0
 import com.cuperino.qprompt.abstractunits 1.0
@@ -1208,11 +1208,11 @@ Flickable {
                     document.modified = false
                     if (Qt.platform.os==="android" || Qt.platform.os==="ios" || visibility===ApplicationWindow.FullScreen) {
                         if (document.isNewFile)
-                            showPassiveNotification(i18nc("Saved FILE_NAME", "Saved %1", document.fileUrl))
+                            showPassiveNotification(i18nc("Saved FILE_NAME", "Saved %1", document.file))
                         else
                             showPassiveNotification(i18n("Saved"))
                     }
-                    document.saveAs(document.fileUrl)
+                    document.saveAs(document.file)
                     //if (quit)
                         //Qt.quit()
                     //else
@@ -1266,10 +1266,8 @@ Flickable {
         id: scrollBar
     }
 
-    FileDialog {
+    Labs.FileDialog {
         id: openDialog
-        selectExisting: true
-        selectedNameFilter: nameFilters[0]
         nameFilters:
             ['android', 'ios', 'tvos', 'wasm'].indexOf(Qt.platform.os)===-1 ?
             [
@@ -1293,12 +1291,12 @@ Flickable {
                 i18nc("All file formats", "All Formats") + "(*.*)"
             ]
 
-        folder: shortcuts.documents
-        //fileMode: Labs.FileDialog.OpenFile
+        folder: StandardPaths.writableLocation(StandardPaths.DocumentsLocation)
+        fileMode: FileDialog.OpenFile
         onAccepted: {
             document.close()
-            document.load(openDialog.fileUrl)
-            editor.lastDocument = document.fileUrl;
+            document.load(openDialog.file)
+            editor.lastDocument = document.file;
             editor.resetPosition = true;
             if (parseInt(prompter.state)!==Prompter.States.Editing)
                 prompter.state = Prompter.States.Editing;
@@ -1310,9 +1308,8 @@ Flickable {
         }
     }
 
-    FileDialog {
+    Labs.FileDialog {
         id: saveDialog
-        selectExisting: false
         defaultSuffix: 'html'
         nameFilters: if (Qt.platform.os==="android")
             return [
@@ -1328,12 +1325,12 @@ Flickable {
         //selectedNameFilter.index: document.fileType === "txt" ? 0 : 1
         // Always save as HTML
         //selectedNameFilter: nameFilters[0]
-        folder: shortcuts.documents
-        //fileMode: Labs.FileDialog.SaveFile
+        folder: StandardPaths.writableLocation(StandardPaths.DocumentsLocation)
+        fileMode: FileDialog.SaveFile
         onAccepted: {
-            document.saveAs(saveDialog.fileUrl)
+            document.saveAs(saveDialog.file)
             document.isNewFile = false
-            showPassiveNotification(i18nc("Saved FILE_NAME", "Saved %1", document.fileUrl))
+            showPassiveNotification(i18nc("Saved FILE_NAME", "Saved %1", document.file))
             // if (document.quitOnSave)
             //     Qt.quit()
             // else

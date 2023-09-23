@@ -24,9 +24,8 @@ import org.kde.kirigami 2.11 as Kirigami
 import QtQuick.Window 2.12
 import QtQuick.Controls 2.12
 import QtQuick.Layouts 1.12
-import QtQuick.Dialogs 1.3
-import Qt.labs.settings 1.0
-//import Qt.labs.platform 1.1 as Labs
+import QtCore
+import Qt.labs.platform 1.1 as Labs
 
 import com.cuperino.qprompt.markers 1.0
 import com.cuperino.qprompt.abstractunits 1.0
@@ -69,15 +68,15 @@ Kirigami.Page {
     // Kirigami.Theme.textColor: themeSwitch.checked ? "#465c2b" : "#ffffff"
     // Kirigami.Theme.highlightColor: themeSwitch.checked ? "#89e51c" : "#ffffff"
 
-    actions {
-        main: Kirigami.Action {
+    actions: [
+        Kirigami.Action {
             id: promptingButton
             text: i18n("Start prompter")
             icon.name: Qt.application.layoutDirection === Qt.RightToLeft ? "go-next-rtl" : "go-next"
             icon.source: Qt.application.layoutDirection === Qt.RightToLeft ? "icons/go-previous.svg" : "icons/go-next.svg"
             onTriggered: prompter.toggle()
-        }
-        left: Kirigami.Action {
+        },
+        Kirigami.Action {
             id: decreaseVelocityButton
             enabled: Kirigami.Settings.isMobile
             text: pageStack.globalToolBar.actualStyle === Kirigami.ApplicationHeaderStyle.None ? i18n("Decrease velocity") : ""
@@ -90,8 +89,8 @@ Kirigami.Page {
                     prompter.goToPreviousMarker()
                 viewport.prompter.focus = true;
             }
-        }
-        right: Kirigami.Action {
+        },
+        Kirigami.Action {
             id: increaseVelocityButton
             enabled: Kirigami.Settings.isMobile
             text: pageStack.globalToolBar.actualStyle === Kirigami.ApplicationHeaderStyle.None ? i18n("Increase velocity") : ""
@@ -104,8 +103,7 @@ Kirigami.Page {
                     prompter.goToNextMarker()
                 viewport.prompter.restoreFocus()
             }
-        }
-        contextualActions: [
+        },
         Kirigami.Action {
             id: readRegionButton
             text: i18nc("Reading region indicates where a talent should be reading from", "Reading region")
@@ -725,8 +723,7 @@ Kirigami.Page {
                 viewport.prompter.restoreFocus()
             }
         }
-        ]
-    }
+    ]
 
     // Editor Toolbar
     footer: EditorToolbar {
@@ -829,14 +826,14 @@ Kirigami.Page {
         y: parent.height
     }
 
-    ColorDialog {
+    Labs.ColorDialog {
         id: colorDialog
-        showAlphaChannel: false
+        options: Labs.ColorDialog.ShowAlphaChannel
     }
 
-    ColorDialog {
+    Labs.ColorDialog {
         id: highlightDialog
-        showAlphaChannel: false
+        options: Labs.ColorDialog.ShowAlphaChannel
     }
 
 //     ShaderEffectSource {

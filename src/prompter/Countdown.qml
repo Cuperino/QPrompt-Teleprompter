@@ -23,7 +23,7 @@ import QtQuick 2.12
 import QtQuick.Controls 2.12
 import QtQuick.Shapes 1.12
 import QtQuick.Layouts 1.12
-import Qt.labs.settings 1.0
+import QtCore
 
 Item {
     id: countdown

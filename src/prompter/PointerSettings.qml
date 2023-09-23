@@ -24,8 +24,8 @@ import QtQuick.Controls 2.15
 import QtQuick.Layouts 1.15
 import QtQml.Models 2.2
 import QtQuick.Controls.Material 2.12
-import QtQuick.Dialogs 1.3
-import Qt.labs.settings 1.0
+import QtCore
+import Qt.labs.platform 1.1 as Labs
 
 import com.cuperino.qprompt.qmlutil 1.0
 
@@ -517,7 +517,7 @@ ColumnLayout {
             }
         }
     }
-    ColorDialog {
+    Labs.ColorDialog {
         id: pointerColorDialog
         property var source
         currentColor: appTheme.__backgroundColor
@@ -525,35 +525,31 @@ ColumnLayout {
             source.text = color
         }
     }
-    FileDialog {
+    Labs.FileDialog {
         id: pointerImageFileDialog
         property var source
-        selectExisting: true
-        selectedNameFilter: nameFilters[0]
         nameFilters: [
           i18n("JPEG image") + "(*.jpg *.jpeg *.JPG *.JPEG)",
           i18n("PNG image") + "(*.png *.PNG)",
           i18n("GIF animation") + "(*.gif *.GIF)",
           i18n("WEBP image") + "(*.webp *.WEBP)"
         ]
-        // fileMode: Labs.FileDialog.OpenFile
-        folder: shortcuts.pictures
+        fileMode: Labs.FileDialog.OpenFile
+        folder: StandardPaths.writableLocation(StandardPaths.PicturesLocation)
         onAccepted: {
-            source.text = fileUrl.valueOf()
+            source.text = file.valueOf()
         }
     }
-    FileDialog {
+    Labs.FileDialog {
         id: pointerQmlFileDialog
         property var source
-        selectExisting: true
-        selectedNameFilter: nameFilters[0]
         nameFilters: [
           i18n("QML script") + "(*.qml *.QML)"
         ]
-        // fileMode: Labs.FileDialog.OpenFile
-        folder: shortcuts.documents
+        fileMode: Labs.FileDialog.OpenFile
+        folder: StandardPaths.writableLocation(StandardPaths.DocumentsLocation)
         onAccepted: {
-            source.text = fileUrl.valueOf()
+            source.text = file.valueOf()
         }
     }
 }
