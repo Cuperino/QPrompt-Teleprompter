@@ -1058,7 +1058,7 @@ QPoint DocumentHandler::search(const QString &subString, const bool next, const 
 
 int DocumentHandler::keySearch(int key)
 {
-    return Q_EMIT this->_markersModel->keySearch(key, cursorPosition(), false, true);
+    return _markersModel->keySearch(key, cursorPosition(), false, true);
 }
 
 // Line Height
@@ -1102,7 +1102,7 @@ void DocumentHandler::parse()
     std::vector<LINE> lines;
     lines.reserve(size);
 
-    Q_EMIT this->_markersModel->clearMarkers();
+    _markersModel->clearMarkers();
 
     // Go through the document once
     for (QTextBlock it = this->textDocument()->begin(); it != this->textDocument()->end(); it = it.next()) {
@@ -1147,7 +1147,7 @@ void DocumentHandler::parse()
                                 QStringView(anchorName).mid(4).toInt(); // GET request by default  // Dev: Cast to enumerator to improve readability
                         //                         qDebug() << anchorName;
                     }
-                    Q_EMIT this->_markersModel->appendMarker(marker);
+                    _markersModel->appendMarker(marker);
                 }
             }
         }
@@ -1176,7 +1176,7 @@ Marker DocumentHandler::nextMarker(int position)
     //     if (this->_markersModel->rowCount()==0)
     if (markersListDirty())
         parse();
-    return Q_EMIT this->_markersModel->nextMarker(position);
+    return _markersModel->nextMarker(position);
 }
 
 Marker DocumentHandler::previousMarker(int position)
@@ -1184,7 +1184,7 @@ Marker DocumentHandler::previousMarker(int position)
     //     if (this->_markersModel->rowCount()==0)
     if (markersListDirty())
         parse();
-    return Q_EMIT this->_markersModel->previousMarker(position);
+    return _markersModel->previousMarker(position);
 }
 
 bool DocumentHandler::preventSleep(bool prevent)
