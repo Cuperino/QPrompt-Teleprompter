@@ -77,6 +77,7 @@
 #include <QNetworkAccessManager>
 #include <QObject>
 #include <QQuickTextDocument>
+#include <QTemporaryFile>
 #include <QTextCursor>
 #include <QTextDocument>
 #include <QUrl>

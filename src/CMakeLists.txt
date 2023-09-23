@@ -162,9 +162,9 @@ if (ANDROID)
         Qt${QT_VERSION_MAJOR}::QuickControls2
         Qt${QT_VERSION_MAJOR}::Network
         Qt${QT_VERSION_MAJOR}::AndroidExtras
-        KF5::I18n
-        KF5::Kirigami2
-        KF5::CoreAddons
+        KF${QT_VERSION_MAJOR}::I18n
+        KF${QT_VERSION_MAJOR}::Kirigami2
+        KF${QT_VERSION_MAJOR}::CoreAddons
     )
 elseif (WASM OR IOS)
     target_link_libraries(${PROJECT_NAME} PRIVATE
@@ -175,9 +175,9 @@ elseif (WASM OR IOS)
         Qt${QT_VERSION_MAJOR}::Qml
         Qt${QT_VERSION_MAJOR}::QuickControls2
         Qt${QT_VERSION_MAJOR}::Network
-        KF5::I18n
-        KF5::Kirigami2
-        KF5::CoreAddons
+        KF${QT_VERSION_MAJOR}::I18n
+        KF${QT_VERSION_MAJOR}::Kirigami2
+        KF${QT_VERSION_MAJOR}::CoreAddons
     )
 elseif(HAIKU)
     target_link_libraries(${PROJECT_NAME} PUBLIC
@@ -189,10 +189,10 @@ elseif(HAIKU)
         Qt${QT_VERSION_MAJOR}::QuickControls2
         Qt${QT_VERSION_MAJOR}::Network
         Qt${QT_VERSION_MAJOR}::Widgets
-        KF5::I18n
-        KF5::Kirigami2
-        KF5::CoreAddons
-        KF5::IconThemes
+        KF${QT_VERSION_MAJOR}::I18n
+        KF${QT_VERSION_MAJOR}::Kirigami2
+        KF${QT_VERSION_MAJOR}::CoreAddons
+        KF${QT_VERSION_MAJOR}::IconThemes
     )
 elseif(WIN32 OR APPLE)
     target_link_libraries(${PROJECT_NAME} PUBLIC
@@ -204,9 +204,9 @@ elseif(WIN32 OR APPLE)
         Qt${QT_VERSION_MAJOR}::QuickControls2
         Qt${QT_VERSION_MAJOR}::Network
         Qt${QT_VERSION_MAJOR}::Widgets
-        KF5::I18n
-        KF5::Kirigami2
-        KF5::CoreAddons
+        KF${QT_VERSION_MAJOR}::I18n
+        KF${QT_VERSION_MAJOR}::Kirigami2
+        KF${QT_VERSION_MAJOR}::CoreAddons
     )
     if (KF5Crash_FOUND)
         add_definitions(-DKF5Crash_FOUND)
@@ -238,9 +238,9 @@ else()
         Qt${QT_VERSION_MAJOR}::Network
         Qt${QT_VERSION_MAJOR}::Widgets
         Qt${QT_VERSION_MAJOR}::X11Extras
-        KF5::I18n
-        KF5::Kirigami2
-        KF5::CoreAddons
+        KF${QT_VERSION_MAJOR}::I18n
+        KF${QT_VERSION_MAJOR}::Kirigami2
+        KF${QT_VERSION_MAJOR}::CoreAddons
         KF5::IconThemes
     )
     if (KF5Crash_FOUND)

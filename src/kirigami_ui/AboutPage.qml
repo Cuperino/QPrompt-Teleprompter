@@ -23,19 +23,5 @@ import org.kde.kirigami 2.9 as Kirigami
 
 Kirigami.AboutPage {
     globalToolBarStyle: Kirigami.ApplicationHeaderStyle.Titles
-    //getInvolvedUrl: "https://l10n.qprompt.app/"
-
-    mainAction: Kirigami.Action {
-        iconSource: !Kirigami.Settings.isMobile && pageStack.globalToolBar.actualStyle === Kirigami.ApplicationHeaderStyle.None ? 'qrc:/icons/go-previous.svg' : (['android', 'ios', 'tvos'].indexOf(Qt.platform.os)===-1 ? "qrc:/icons/mail-mark-unread.svg" : "qrc:/icons/draw-star.svg")
-        onTriggered: {
-            if (!Kirigami.Settings.isMobile && pageStack.globalToolBar.actualStyle === Kirigami.ApplicationHeaderStyle.None)
-                root.pageStack.layers.clear()
-            else if (Qt.platform.os === 'android')
-                Qt.openUrlExternally("https://play.google.com/store/apps/details?id=com.cuperino.qprompt")
-            else if (Qt.platform.os === 'ios' || Qt.platform.os === 'tvos')
-                Qt.openUrlExternally("https://apps.apple.com/us/app/qprompt/id##########")
-            else
-                Qt.openUrlExternally("https://feedback.qprompt.app")
-        }
-    }
+    getInvolvedUrl: "https://l10n.qprompt.app/"
 }

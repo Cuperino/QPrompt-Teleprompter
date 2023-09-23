@@ -183,13 +183,13 @@ Kirigami.ApplicationWindow {
         actions: [
             Kirigami.Action {
                 text: i18nc("Main menu and global menu actions", "&New")
-                iconName: "document-new"
+                icon.name: "document-new"
                 shortcut: StandardKey.New
                 onTriggered: root.pageStack.currentItem.document.newDocument()
             },
             Kirigami.Action {
                 text: i18nc("Main menu and global menu actions", "&Open")
-                iconName: "document-open"
+                icon.name: "document-open"
                 shortcut: StandardKey.Open
                 onTriggered: {
                     root.onDiscard = Prompter.CloseActions.Open
@@ -198,8 +198,8 @@ Kirigami.ApplicationWindow {
             },
             Kirigami.Action {
                 text: i18nc("Main menu and global menu actions", "&Open remote file")
-                //iconName: "document-open-remote"
-                iconSource: "qrc:/icons/document-open-remote.svg"
+                //icon.name: "document-open-remote"
+                icon.source: "qrc:/icons/document-open-remote.svg"
                 onTriggered: {
                     root.onDiscard = Prompter.CloseActions.Network
                     root.pageStack.currentItem.document.openFromNetwork()
@@ -207,7 +207,7 @@ Kirigami.ApplicationWindow {
             },
             Kirigami.Action {
                 text: i18nc("Main menu and global menu actions", "&Save")
-                iconName: "document-save"
+                icon.name: "document-save"
                 shortcut: StandardKey.Save
                 onTriggered: {
                     root.onDiscard = Prompter.CloseActions.Ignore
@@ -216,7 +216,7 @@ Kirigami.ApplicationWindow {
             },
             Kirigami.Action {
                 text: i18nc("Main menu and global menu actions", "Save &As")
-                iconName: "document-save-as"
+                icon.name: "document-save-as"
                 shortcut: StandardKey.SaveAs
                 onTriggered: {
                     root.onDiscard = Prompter.CloseActions.Ignore
@@ -226,7 +226,7 @@ Kirigami.ApplicationWindow {
             Kirigami.Action {
                 visible: false
                 text: i18nc("Main menu actions", "&Recent Files")
-                iconName: "document-open-recent"
+                icon.name: "document-open-recent"
                 //Kirigami.Action {
                     //text: i18n("View Action 1")
                     //onTriggered: showPassiveNotification(i18n("View Action 1 clicked"))
@@ -234,11 +234,11 @@ Kirigami.ApplicationWindow {
             },
             Kirigami.Action {
                 text: i18nc("Main menu actions. Menu regarding input settings.", "&Controls Settings")
-                iconName: "transform-browse" // "hand"
+                icon.name: "transform-browse" // "hand"
                 Kirigami.Action {
                     visible: ["android", "ios", "tvos", "ipados", "qnx"].indexOf(Qt.platform.os)===-1
                     text: i18nc("Main menu and global menu actions. Opens dialog to configure keyboard inputs.", "Keyboard Inputs")
-                    iconName: "key-enter" // "keyboard"
+                    icon.name: "key-enter" // "keyboard"
                     onTriggered: {
                         root.pageStack.currentItem.keyConfigurationOverlay.open()
                     }
@@ -246,13 +246,13 @@ Kirigami.ApplicationWindow {
                 Kirigami.Action {
                     visible: ["android", "ios", "tvos", "ipados", "qnx"].indexOf(Qt.platform.os)===-1
                     text: i18nc("Open 'scroll settings' from main menu and global menu actions", "Scroll throttle settings")
-                    iconName: "gnumeric-object-scrollbar" // "keyboard"
+                    icon.name: "gnumeric-object-scrollbar" // "keyboard"
                     onTriggered: wheelSettings.open()
                 }
                 Kirigami.Action {
                     text: i18nc("Main menu and global menu actions. Have up arrow behave like down arrow and vice versa while prompting.", "Invert &arrow keys")
                     enabled: !root.__noScroll
-                    iconName: "circular-arrow-shape"
+                    icon.name: "circular-arrow-shape"
                     checkable: true
                     checked: root.__invertArrowKeys
                     onTriggered: root.__invertArrowKeys = checked
@@ -260,7 +260,7 @@ Kirigami.ApplicationWindow {
                 Kirigami.Action {
                     text: i18nc("Main menu and global menu actions. Invert scroll direction while prompting.", "Invert &scroll direction")
                     enabled: !root.__noScroll
-                    iconName: "gnumeric-object-scrollbar"
+                    icon.name: "gnumeric-object-scrollbar"
                     checkable: true
                     checked: root.__invertScrollDirection
                     onTriggered: root.__invertScrollDirection = checked
@@ -268,7 +268,7 @@ Kirigami.ApplicationWindow {
                 Kirigami.Action {
                     text: i18nc("Main menu and global menu actions. Have touchpad and mouse wheel scrolling adjust velocity instead of scrolling like most other apps.", "Use scroll as velocity &dial")
                     enabled: !root.__noScroll
-                    iconName: "filename-bpm-amarok"
+                    icon.name: "filename-bpm-amarok"
                     // ToolTip.text: i18n("Use mouse and touchpad scroll as speed dial while prompting")
                     checkable: true
                     checked: root.__scrollAsDial
@@ -276,7 +276,7 @@ Kirigami.ApplicationWindow {
                 }
                 Kirigami.Action {
                     text: i18nc("Main menu and global menu actions. Touchpad scrolling and mouse wheel use have no effect while prompting.", "Disable scrolling while prompting")
-                    iconName: "paint-none"
+                    icon.name: "paint-none"
                     checkable: true
                     checked: root.__noScroll
                     onTriggered: root.__noScroll = checked
@@ -284,10 +284,10 @@ Kirigami.ApplicationWindow {
             },
             Kirigami.Action {
                 text: i18nc("Main menu actions", "Other &Settings")
-                iconName: "configure"
+                icon.name: "configure"
 //                 Kirigami.Action {
 //                     text: i18n("Telemetry")
-//                     iconName: "document-send"
+//                     icon.name: "document-send"
 //                     onTriggered: {
 //                         root.loadTelemetryPage()
 //                     }
@@ -295,7 +295,7 @@ Kirigami.ApplicationWindow {
                 Kirigami.Action {
                     id: hideFormattingToolsAlwaysSetting
                     text: i18nc("Main menu actions", "Always hide formatting tools")
-                    iconName: "newline"
+                    icon.name: "newline"
                     checkable: true
                     checked: root.pageStack.currentItem.footer.hideFormattingToolsAlways
                     onTriggered: root.pageStack.currentItem.footer.hideFormattingToolsAlways = checked
@@ -304,7 +304,7 @@ Kirigami.ApplicationWindow {
                     id: hideFormattingToolsWhilePromptingSetting
                     enabled: !hideFormattingToolsAlwaysSetting.checked
                     text: i18nc("Main menu actions. Hides formatting tools while not in edit mode.", "Auto hide formatting tools")
-                    iconName: "list-remove"
+                    icon.name: "list-remove"
                     checkable: true
                     checked: root.pageStack.currentItem.footer.hideFormattingToolsWhilePrompting
                     onTriggered: root.pageStack.currentItem.footer.hideFormattingToolsWhilePrompting = checked
@@ -312,15 +312,15 @@ Kirigami.ApplicationWindow {
                 Kirigami.Action {
                     id: enableOverlayContrastSetting
                     text: i18nc("Main menu actions. Disables contrast effect for the reading region overlay.", "Disable overlay contrast")
-                    //iconName: "edit-opacity"
-                    iconSource: "qrc:/icons/edit-opacity.svg"
+                    //icon.name: "edit-opacity"
+                    icon.source: "qrc:/icons/edit-opacity.svg"
                     checkable: true
                     checked: root.pageStack.currentItem.overlay.disableOverlayContrast
                     onTriggered: root.pageStack.currentItem.overlay.disableOverlayContrast = checked
                 }
 //                 Kirigami.Action {
 //                     text: i18nc("Main menu actions", "Restore factory defaults")
-//                     iconName: "edit-clear-history"
+//                     icon.name: "edit-clear-history"
 //                     onTriggered: {
 //                         showPassiveNotification(i18n("Feature not yet implemented"))
 //                     }
@@ -328,13 +328,13 @@ Kirigami.ApplicationWindow {
             },
             Kirigami.Action {
                 text: i18nc("Main menu actions. Load about page.", "Abou&t %1", aboutData.displayName)
-                iconName: "help-about"
+                icon.name: "help-about"
                 onTriggered: loadAboutPage()
             },
             Kirigami.Action {
                 visible: !Kirigami.Settings.isMobile
                 text: i18nc("Main menu and global menu actions", "&Quit")
-                iconName: "application-exit"
+                icon.name: "application-exit"
                 shortcut: StandardKey.Quit
                 onTriggered: close()
             },
