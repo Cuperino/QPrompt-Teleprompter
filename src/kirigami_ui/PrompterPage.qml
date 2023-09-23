@@ -738,7 +738,7 @@ Kirigami.Page {
     PrompterView {
         id: viewport
         property alias toolbar: editorToolbar
-        height: (forcedOrientation && forcedOrientation!==3 ? parent.width : (root.theforce && !forcedOrientation ? 3 : 1) * parent.height) + (Kirigami.Settings.isMobile ? 68 : 0)
+        height: (forcedOrientation && forcedOrientation!==3 ? parent.width : (root.theforce && !forcedOrientation ? 3 : 1) * parent.height) // + (Kirigami.Settings.isMobile ? 68 : 0)
         // anchors.bottomMargin: Kirigami.Settings.isMobile ? -68 : 0
         width: (forcedOrientation && forcedOrientation!==3 ? parent.height : (root.theforce && !forcedOrientation ? 0.3 : 1) * parent.width)
         x: (forcedOrientation===1 || forcedOrientation===3 ? parent.width : (root.theforce && !forcedOrientation ? width*1.165 : 0))
