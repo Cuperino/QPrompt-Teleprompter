@@ -44,7 +44,7 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
 
-set(QT_DEFAULT_MAJOR_VERSION 6)
+set(QT_DEFAULT_MAJOR_VERSION 5)
 set(QT_MIN_VERSION 5.15.2)
 # KF${QT_VERSION_MAJOR} 5.78 for Ubuntu 21.04 and Debian 11, which require no backporting
 # KF${QT_VERSION_MAJOR} 5.68 is used as a hack to allow Snapcraft build on Ubuntu 20.04 core
