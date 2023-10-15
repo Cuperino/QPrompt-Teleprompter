@@ -315,6 +315,11 @@ Kirigami.ApplicationWindow {
                     onTriggered: loadPathsPage();
                 }
                 Kirigami.Action {
+                    text: i18nc("Main menu actions. Opens dialog for choosing layout direction.", "Layout direction")
+                    icon.source: Qt.application.layoutDirection===Qt.LeftToRight ? "qrc:/icons/format-text-direction-rtl.svg" : "qrc:/icons/format-text-direction-ltr.svg"
+                    onTriggered: layoutDirectionSettings.open()
+                }
+                Kirigami.Action {
                     id: hideFormattingToolsAlwaysSetting
                     text: i18nc("Main menu actions", "Always hide formatting tools")
                     icon.name: "newline"
@@ -488,6 +493,10 @@ Kirigami.ApplicationWindow {
                 }
             }
         ]
+    }
+
+    LayoutDirectionSettings {
+        id: layoutDirectionSettings
     }
 
     WheelSettingsOverlay {

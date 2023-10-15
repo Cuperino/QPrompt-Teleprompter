@@ -126,11 +126,14 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
 #endif
 #endif
 
+    // Substract from 2 because order in app is intentionally inverted from order in Qt
+    app.setLayoutDirection(static_cast<Qt::LayoutDirection>(2 - settings.value("ui/layout", 0).toInt()));
+
 #if defined(KF5Crash_FOUND)
     // KCrash::setDrKonqiEnabled(true);
     KCrash::initialize();
     // KCrash::setCrashHandler( KCrash::defaultCrashHandler );
-    KCrash::setFlags(KCrash::AutoRestart); // |KCrash::SaferDialog
+    KCrash::setFlags(KCrash::AutoRestart); // | KCrash::SaferDialog
     // qDebug() << "DrKonqui" << KCrash::isDrKonqiEnabled();
 #endif
 
