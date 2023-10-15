@@ -14,6 +14,7 @@
         <file alias="InputsOverlay.qml">kirigami_ui/InputsOverlay.qml</file>
         <file alias="KeyInputButton.qml">kirigami_ui/KeyInputButton.qml</file>
         <file alias="WheelSettingsOverlay.qml">kirigami_ui/WheelSettingsOverlay.qml</file>
+        <file alias="LayoutDirectionSettings.qml">kirigami_ui/LayoutDirectionSettingsOverlay.qml</file>
         <!-- Prompter QML -->
         <file alias="PrompterView.qml">prompter/PrompterView.qml</file>
         <file alias="Prompter.qml">prompter/Prompter.qml</file>
