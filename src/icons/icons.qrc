@@ -50,6 +50,8 @@
         <file alias="draw-star.svg">16/draw-star.svg</file>
         <file alias="edit-find.svg">16/edit-find.svg</file>
         <file alias="edit-find-replace.svg">16/edit-find-replace.svg</file>
+        <file alias="format-text-direction-rtl.svg">16/format-text-direction-rtl.svg</file>
+        <file alias="format-text-direction-ltr.svg">16/format-text-direction-ltr.svg</file>
         <file alias="handle-sort.svg">22/handle-sort.svg</file>
         <file alias="gnumeric-object-rectangle.svg">22/gnumeric-object-rectangle.svg</file>
         <file alias="tool_color_eraser.svg">22/tool_color_eraser.svg</file>
