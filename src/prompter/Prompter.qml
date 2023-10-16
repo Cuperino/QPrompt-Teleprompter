@@ -1372,7 +1372,7 @@ Flickable {
         Labs.MenuSeparator {}
         Labs.MenuItem {
             text: i18nc("Editor context menu actions", "Fo&nt…")
-            onTriggered: fontDialog.open()
+            onTriggered: document.showFontDialog()
         }
         Labs.MenuItem {
             text: i18nc("Editor context menu actions", "Co&lor…")
@@ -1419,7 +1419,7 @@ Flickable {
         MenuSeparator {}
         MenuItem {
             text: i18nc("Editor context menu actions", "Fo&nt…")
-            onTriggered: fontDialog.open()
+            onTriggered: document.showFontDialog()
         }
         MenuItem {
             text: i18nc("Editor context menu actions", "Co&lor…")
