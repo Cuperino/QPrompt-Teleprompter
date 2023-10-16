@@ -54,11 +54,11 @@ Shape {
         //        return colorsReady;
         //}
         // Bottom left starting point
-        startX: 0; startY: parent.width
+        startX: Qt.application.layoutDirection===Qt.LeftToRight ? 0 : parent.width; startY: parent.width
         // Center right
-        PathLine { x: parent.width; y: 0 }
+        PathLine { x: Qt.application.layoutDirection===Qt.LeftToRight ? parent.width : 0; y: 0}
         // Top left
-        PathLine { x: 0; y: -parent.width }
+        PathLine { x: Qt.application.layoutDirection===Qt.LeftToRight ? 0 : parent.width; y: -parent.width}
         Behavior on strokeColor {
             enabled: configuratorOpen
             ColorAnimation {
