@@ -318,63 +318,78 @@ Kirigami.ApplicationWindow {
                     onTriggered: layoutDirectionSettings.open()
                 }
                 Kirigami.Action {
-                    id: hideFormattingToolsAlwaysSetting
-                    text: i18nc("Main menu actions", "Always hide formatting tools")
-                    icon.name: "newline"
-                    checkable: true
-                    checked: root.pageStack.currentItem.footer.hideFormattingToolsAlways
-                    onTriggered: root.pageStack.currentItem.footer.hideFormattingToolsAlways = checked
-                }
-                Kirigami.Action {
-                    id: hideFormattingToolsWhilePromptingSetting
-                    enabled: !hideFormattingToolsAlwaysSetting.checked
-                    text: i18nc("Main menu actions. Hides formatting tools while not in edit mode.", "Auto hide formatting tools")
-                    icon.name: "list-remove"
-                    checkable: true
-                    checked: root.pageStack.currentItem.footer.hideFormattingToolsWhilePrompting
-                    onTriggered: root.pageStack.currentItem.footer.hideFormattingToolsWhilePrompting = checked
-                }
-                Kirigami.Action {
-                    id: enableOverlayContrastSetting
-                    text: i18nc("Main menu actions. Disables contrast effect for the reading region overlay.", "Disable overlay contrast")
-                    icon.name: "edit-opacity"
-                    // icon.source: "qrc:/icons/edit-opacity.svg"
-                    checkable: true
-                    checked: root.pageStack.currentItem.overlay.disableOverlayContrast
-                    onTriggered: root.pageStack.currentItem.overlay.disableOverlayContrast = checked
-                }
-                Kirigami.Action {
-                    id: transparencySetting
-                    property bool dirty: false
-                    visible: ["android", "ios", "tvos", "ipados", "qnx"].indexOf(Qt.platform.os)===-1
-                    text: i18n("Disable background transparency")
-                    icon.name: "contrast"
-                    // icon.source: "qrc:/icons/contrast.svg"
-                    checkable: true
-                    checked: !root.__translucidBackground
-                    onTriggered: {
-                        root.__translucidBackground = !root.__translucidBackground;
-                        if (!transparencySetting.dirty) {
-                            transparencySetting.dirty = true;
-                            if (transparencyRestartModulus % 2) {
-                                restartDialog.visible = true;
-                                transparencyRestartModulus = 0;
+                    text: i18nc("Main menu actions. Enters Performance tweaks submenu.", "Performance tweaks")
+                    Kirigami.Action {
+                        text: i18nc("Main menu actions", "Disable screen projections")
+                        enabled: !checked
+                        checkable: true
+                        checked: !projectionManager.isEnabled
+                        onTriggered: projectionManager.toggle()
+                    }
+                    Kirigami.Action {
+                        text: i18nc("Main menu actions", "Disable timers")
+                        enabled: !checked
+                        checkable: true
+                        checked: !root.pageStack.currentItem.viewport.timer.timersEnabled
+                        onTriggered: root.pageStack.currentItem.viewport.timer.enabled = !checked
+                    }
+                    Kirigami.Action {
+                        id: hideFormattingToolsWhilePromptingSetting
+                        enabled: !hideFormattingToolsAlwaysSetting.checked
+                        text: i18nc("Main menu actions. Hides formatting tools while not in edit mode.", "Auto hide formatting tools")
+                        icon.source: "qrc:/icons/list-remove.svg"
+                        checkable: true
+                        checked: root.pageStack.currentItem.footer.hideFormattingToolsWhilePrompting
+                        onTriggered: root.pageStack.currentItem.footer.hideFormattingToolsWhilePrompting = checked
+                    }
+                    Kirigami.Action {
+                        id: hideFormattingToolsAlwaysSetting
+                        text: i18nc("Main menu actions", "Always hide formatting tools")
+                        icon.source: "qrc:/icons/newline.svg"
+                        checkable: true
+                        checked: root.pageStack.currentItem.footer.hideFormattingToolsAlways
+                        onTriggered: root.pageStack.currentItem.footer.hideFormattingToolsAlways = checked
+                    }
+                    Kirigami.Action {
+                        id: enableOverlayContrastSetting
+                        text: i18nc("Main menu actions. Disables contrast effect for the reading region overlay.", "Disable overlay contrast")
+                        icon.source: "qrc:/icons/edit-opacity.svg"
+                        checkable: true
+                        checked: root.pageStack.currentItem.overlay.disableOverlayContrast
+                        onTriggered: root.pageStack.currentItem.overlay.disableOverlayContrast = checked
+                    }
+                    Kirigami.Action {
+                        id: transparencySetting
+                        property bool dirty: false
+                        visible: ["android", "ios", "tvos", "ipados", "qnx"].indexOf(Qt.platform.os)===-1
+                        text: i18n("Disable background transparency")
+                        icon.source: "qrc:/icons/contrast.svg"
+                        checkable: true
+                        checked: !root.__translucidBackground
+                        onTriggered: {
+                            root.__translucidBackground = !root.__translucidBackground;
+                            if (!transparencySetting.dirty) {
+                                transparencySetting.dirty = true;
+                                if (transparencyRestartModulus % 2) {
+                                    restartDialog.visible = true;
+                                    transparencyRestartModulus = 0;
+                                }
+                                else
+                                    transparencyRestartModulus++;
                             }
-                            else
-                                transparencyRestartModulus++;
                         }
                     }
-                }
-                Kirigami.Action {
-                    id: subpixelSetting
-                    text: i18nc("Main menu actions. QPrompt switches between two text rendering techniques when the base font size exceeds 120px. Enabling this option forces QPrompt to always use the default renderer, which features smoother sub-pixel animations.", "Force sub-pixel text renderer past 120px")
-                    // Hiding option because only Qt text renderer is used on devices of greater pixel density, due to bug in rendering native fonts while scaling is enabled.
-                    visible: ['android', 'ios', 'wasm', 'tvos', 'qnx', 'ipados'].indexOf(Qt.platform.os)===-1 && screen.devicePixelRatio === 1.0
-                    icon.name: "format-font-size-more"
-                    // icon.source: "qrc:/icons/format-font-size-more.svg"
-                    checkable: true
-                    checked: root.forceQtTextRenderer
-                    onTriggered: root.forceQtTextRenderer = !root.forceQtTextRenderer
+                    Kirigami.Action {
+                        id: subpixelSetting
+                        text: i18nc("Main menu actions. QPrompt switches between two text rendering techniques when the base font size exceeds 120px. Enabling this option forces QPrompt to always use the default renderer, which features smoother sub-pixel animations.", "Force sub-pixel text renderer past 120px")
+                        // Hiding option because only Qt text renderer is used on devices of greater pixel density, due to bug in rendering native fonts while scaling is enabled.
+                        visible: ['android', 'ios', 'wasm', 'tvos', 'qnx', 'ipados'].indexOf(Qt.platform.os)===-1 && screen.devicePixelRatio === 1.0
+                        icon.name: "format-font-size-more"
+                        // icon.source: "qrc:/icons/format-font-size-more.svg"
+                        checkable: true
+                        checked: root.forceQtTextRenderer
+                        onTriggered: root.forceQtTextRenderer = !root.forceQtTextRenderer
+                    }
                 }
 //                 Kirigami.Action {
 //                     text: i18nc("Main menu actions", "Restore factory defaults")
