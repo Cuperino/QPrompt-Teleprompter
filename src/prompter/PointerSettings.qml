@@ -154,7 +154,7 @@ ColumnLayout {
     RowLayout {
         CheckBox {
             id: sameAsLeftPointerCheck
-            text: i18nc("Uses a mirrored copy of the first pointer as the second pointer", "Reuse left pointer")
+            text: Qt.application.layoutDirection===Qt.LeftToRight ? i18nc("Uses a mirrored copy of the first pointer as the second pointer", "Reuse left pointer") : i18nc("Uses a mirrored copy of the first pointer as the second pointer", "Reuse right pointer")
         }
         CheckBox {
             id: tintCheck
@@ -282,14 +282,14 @@ ColumnLayout {
             height: listView.height
             RowLayout {
                 Label {
-                    text: i18n("Left Pointer: ")
+                    text: Qt.application.layoutDirection===Qt.LeftToRight ? i18n("Left Pointer: ") : i18n("Right Pointer: ")
                 }
                 TextField {
                     id: leftPointerText
                     property string value: text ? text : placeholderText
                     text: ""
                     // Skin tone chosen for its lower contrast against both text and background
-                    placeholderText: Qt.platform.os==="osx" ? ">" : "\u{1F449}\u{1F3FC}"
+                    placeholderText: Qt.application.layoutDirection===Qt.LeftToRight ? (Qt.platform.os==="osx" ? ">" : "\u{1F449}\u{1F3FC}") : (Qt.platform.os==="osx" ? "<" : "\u{1F448}\u{1F3FC}")
                     font.family: pointerSettings.textFont
                     Layout.fillWidth: true
                 }
@@ -304,7 +304,7 @@ ColumnLayout {
                     enabled: true
                     text: ""
                     // Skin tone chosen for its lower contrast against both text and background
-                    placeholderText: Qt.platform.os==="osx" ? "<" : "\u{1F448}\u{1F3FC}"
+                    placeholderText: Qt.application.layoutDirection===Qt.LeftToRight ? (Qt.platform.os==="osx" ? "<" : "\u{1F448}\u{1F3FC}") : (Qt.platform.os==="osx" ? ">" : "\u{1F449}\u{1F3FC}")
                     font.family: pointerSettings.textFont
                     Layout.fillWidth: true
                 }
@@ -383,13 +383,13 @@ ColumnLayout {
             height: listView.height
             RowLayout {
                 Label {
-                    text: i18n("Left Pointer: ")
+                    text: Qt.application.layoutDirection===Qt.LeftToRight ? i18n("Left Pointer: ") : i18n("Right Pointer: ")
                 }
                 TextField {
                     id: leftPointerImagePath
                     property url value: text ? text : placeholderText
                     text: ""
-                    placeholderText: "qrc:/images/left_hand.png"
+                    placeholderText: Qt.application.layoutDirection===Qt.LeftToRight ? "qrc:/images/left_hand.png" : "qrc:/images/right_hand.png"
                     Layout.fillWidth: true
                 }
                 Button {
@@ -404,7 +404,7 @@ ColumnLayout {
             RowLayout {
                 enabled: !pointerSettings.sameAsLeftPointer
                 Label {
-                    text: i18n("Right Pointer: ")
+                    text: Qt.application.layoutDirection===Qt.LeftToRight ? i18n("Right Pointer: ") : i18n("Left Pointer: ")
                 }
                 TextField {
                     id: rightPointerImagePath
@@ -412,7 +412,7 @@ ColumnLayout {
                     visible: !pointerSettings.sameAsLeftPointer
                     enabled: true
                     text: ""
-                    placeholderText: "qrc:/images/right_hand.png"
+                    placeholderText: Qt.application.layoutDirection===Qt.LeftToRight ? "qrc:/images/right_hand.png" : "qrc:/images/left_hand.png"
                     Layout.fillWidth: true
                 }
                 TextField {
@@ -464,7 +464,7 @@ ColumnLayout {
             }
             RowLayout {
                 Label {
-                    text: i18n("Left Pointer: ")
+                    text: Qt.application.layoutDirection===Qt.LeftToRight ? i18n("Left Pointer: ") : i18n("Right Pointer: ")
                 }
                 TextField {
                     id: leftPointerQmlPath
@@ -485,7 +485,7 @@ ColumnLayout {
             RowLayout {
                 enabled: !pointerSettings.sameAsLeftPointer
                 Label {
-                    text: i18n("Right Pointer: ")
+                    text: Qt.application.layoutDirection===Qt.LeftToRight ? i18n("Right Pointer: ") : i18n("Left Pointer: ")
                 }
                 TextField {
                     id: rightPointerQmlPath
