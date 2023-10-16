@@ -260,9 +260,8 @@ Kirigami.Page {
             }
             Kirigami.Action {
                 id: readRegionLeftPointerButton
-                text: i18nc("Shows pointer to the left of the reading region", "Left pointer")
-                icon.name: "go-next"
-                icon.source: "icons/go-next.svg"
+                text: Qt.application.layoutDirection===Qt.LeftToRight ? i18nc("Shows pointer to the left of the reading region", "Left pointer") : i18nc("Shows pointer to the right of the reading region", "Right pointer")
+                icon.source: Qt.application.layoutDirection===Qt.LeftToRight ? "icons/go-next.svg" : "icons/go-previous.svg"
                 tooltip: i18n("Left pointer indicates reading region")
                 enabled: parseInt(overlay.styleState)!==ReadRegionOverlay.PointerStates.LeftPointer && parseInt(overlay.styleState)!==ReadRegionOverlay.PointerStates.BarsLeftPointer
                 onTriggered: {
@@ -273,9 +272,8 @@ Kirigami.Page {
             }
             Kirigami.Action {
                 id: readRegionRightPointerButton
-                text: i18nc("Shows pointer to the right of the reading region", "Right pointer")
-                icon.name: "go-previous"
-                icon.source: "icons/go-previous.svg"
+                text: Qt.application.layoutDirection===Qt.LeftToRight ? i18nc("Shows pointer to the right of the reading region", "Right pointer") : i18nc("Shows pointer to the left of the reading region", "Left pointer")
+                icon.source: Qt.application.layoutDirection===Qt.LeftToRight ? "icons/go-previous.svg" : "icons/go-next.svg"
                 tooltip: i18n("Right pointer indicates reading region")
                 enabled: parseInt(overlay.styleState)!==ReadRegionOverlay.PointerStates.RightPointer && parseInt(overlay.styleState)!==ReadRegionOverlay.PointerStates.BarsRightPointer
                 onTriggered: {
@@ -287,7 +285,6 @@ Kirigami.Page {
             Kirigami.Action {
                 id: readRegionPointersButton
                 text: i18nc("Shows pointers to the left and right of the reading region", "Both pointers")
-                icon.name: "transform-move-horizontal"
                 icon.source: "icons/transform-move-horizontal.svg"
                 tooltip: i18n("Left and right pointers indicate reading region")
                 enabled: parseInt(overlay.styleState)!==ReadRegionOverlay.PointerStates.Pointers && parseInt(overlay.styleState)!==ReadRegionOverlay.PointerStates.All
@@ -300,8 +297,7 @@ Kirigami.Page {
             Kirigami.Action {
                 id: readRegionNoneButton
                 text: i18nc("Disable all reading region pointers", "No pointers")
-                icon.name: "view-list-text"
-                icon.source: "icons/view-list-text.svg"
+                icon.source: Qt.application.layoutDirection===Qt.LeftToRight ? "icons/view-list-text.svg" : "icons/view-list-text-rtl.svg"
                 tooltip: i18nc("Disable all reading region indicators", "Disable reading region indicators")
                 enabled: parseInt(overlay.styleState)!==ReadRegionOverlay.PointerStates.None && parseInt(overlay.styleState)!==ReadRegionOverlay.PointerStates.Bars
                 onTriggered: {
