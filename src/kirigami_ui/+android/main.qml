@@ -298,30 +298,47 @@ Kirigami.ApplicationWindow {
                     onTriggered: layoutDirectionSettings.open()
                 }
                 Kirigami.Action {
-                    id: hideFormattingToolsAlwaysSetting
-                    text: i18nc("Main menu actions", "Always hide formatting tools")
-                    icon.name: "newline"
-                    checkable: true
-                    checked: root.pageStack.currentItem.footer.hideFormattingToolsAlways
-                    onTriggered: root.pageStack.currentItem.footer.hideFormattingToolsAlways = checked
-                }
-                Kirigami.Action {
-                    id: hideFormattingToolsWhilePromptingSetting
-                    enabled: !hideFormattingToolsAlwaysSetting.checked
-                    text: i18nc("Main menu actions. Hides formatting tools while not in edit mode.", "Auto hide formatting tools")
-                    icon.name: "list-remove"
-                    checkable: true
-                    checked: root.pageStack.currentItem.footer.hideFormattingToolsWhilePrompting
-                    onTriggered: root.pageStack.currentItem.footer.hideFormattingToolsWhilePrompting = checked
-                }
-                Kirigami.Action {
-                    id: enableOverlayContrastSetting
-                    text: i18nc("Main menu actions. Disables contrast effect for the reading region overlay.", "Disable overlay contrast")
-                    //icon.name: "edit-opacity"
-                    icon.source: "qrc:/icons/edit-opacity.svg"
-                    checkable: true
-                    checked: root.pageStack.currentItem.overlay.disableOverlayContrast
-                    onTriggered: root.pageStack.currentItem.overlay.disableOverlayContrast = checked
+                    text: i18nc("Main menu actions. Enters Performance tweaks submenu.", "Performance tweaks")
+                    Kirigami.Action {
+                        text: i18nc("Main menu actions", "Disable screen projections")
+                        enabled: !checked
+                        checkable: true
+                        checked: !projectionManager.isEnabled
+                        onTriggered: projectionManager.toggle()
+                    }
+                    Kirigami.Action {
+                        text: i18nc("Main menu actions", "Disable timers")
+                        enabled: !checked
+                        checkable: true
+                        checked: !root.pageStack.currentItem.viewport.timer.timersEnabled
+                        onTriggered: root.pageStack.currentItem.viewport.timer.enabled = !checked
+                    }
+                    Kirigami.Action {
+                        id: hideFormattingToolsWhilePromptingSetting
+                        enabled: !hideFormattingToolsAlwaysSetting.checked
+                        text: i18nc("Main menu actions. Hides formatting tools while not in edit mode.", "Auto hide formatting tools")
+                        icon.source: "qrc:/icons/list-remove.svg"
+                        checkable: true
+                        checked: root.pageStack.currentItem.footer.hideFormattingToolsWhilePrompting
+                        onTriggered: root.pageStack.currentItem.footer.hideFormattingToolsWhilePrompting = checked
+                    }
+                    Kirigami.Action {
+                        id: hideFormattingToolsAlwaysSetting
+                        text: i18nc("Main menu actions", "Always hide formatting tools")
+                        icon.source: "qrc:/icons/newline.svg"
+                        checkable: true
+                        checked: root.pageStack.currentItem.footer.hideFormattingToolsAlways
+                        onTriggered: root.pageStack.currentItem.footer.hideFormattingToolsAlways = checked
+                    }
+                    Kirigami.Action {
+                        id: enableOverlayContrastSetting
+                        text: i18nc("Main menu actions. Disables contrast effect for the reading region overlay.", "Disable overlay contrast")
+                        //icon.name: "edit-opacity"
+                        icon.source: "qrc:/icons/edit-opacity.svg"
+                        checkable: true
+                        checked: root.pageStack.currentItem.overlay.disableOverlayContrast
+                        onTriggered: root.pageStack.currentItem.overlay.disableOverlayContrast = checked
+                    }
                 }
 //                 Kirigami.Action {
 //                     text: i18nc("Main menu actions", "Restore factory defaults")
