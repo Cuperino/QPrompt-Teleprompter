@@ -757,7 +757,7 @@ Kirigami.ApplicationWindow {
             Labs.MenuSeparator { }
             Labs.MenuItem {
                 text: i18nc("Global menu actions. Opens dialog to format currently selected text.", "C&haracter")
-                onTriggered: root.pageStack.currentItem.fontDialog.open();
+                onTriggered: root.pageStack.currentItem.document.showFontDialog();
             }
             Labs.MenuItem {
                 text: i18nc("Global menu actions. Opens dialog to color currently selected text.", "Fo&nt Color")
