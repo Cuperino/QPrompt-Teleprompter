@@ -111,6 +111,7 @@
 DocumentHandler::DocumentHandler(QObject *parent)
     : QObject(parent)
     , m_document(nullptr)
+    , m_autoReload(true)
     , m_cursorPosition(-1)
     , m_selectionStart(0)
     , m_selectionEnd(0)
@@ -562,6 +563,16 @@ void DocumentHandler::loadFromNetworkFinihed()
     }
 }
 
+bool DocumentHandler::autoReload() const
+{
+    return m_autoReload;
+}
+
+void DocumentHandler::setAutoReload(bool enable)
+{
+    m_autoReload = enable;
+}
+
 void DocumentHandler::load(const QUrl &fileUrl)
 {
     // if (fileUrl == m_fileUrl)
@@ -656,7 +667,7 @@ void DocumentHandler::load(const QUrl &fileUrl)
         if (path.isLocalFile() && newPath && _fileSystemWatcher != nullptr) {
             if (newPath)
                 _fileSystemWatcher->removePath(QQmlFile::urlToLocalFileOrQrc(this->fileUrl()));
-            if (!skipAutoReload) {
+            if (!skipAutoReload || autoReload()) {
                 _fileSystemWatcher->addPath(fileName);
                 connect(_fileSystemWatcher, SIGNAL(fileChanged(QString)), this, SLOT(reload(QString)), Qt::UniqueConnection);
             }

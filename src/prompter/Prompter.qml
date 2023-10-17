@@ -182,6 +182,10 @@ Flickable {
         //"toggle": Qt.Key_F9
     //};
     Settings {
+        category: "editor"
+        property alias autoReload: document.autoReload
+    }
+    Settings {
         id: keys
         category: "keys"
         property int increaseVelocity: Qt.Key_Down
