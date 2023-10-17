@@ -407,7 +407,13 @@ Kirigami.ApplicationWindow {
                 Kirigami.Action {
                     text: i18nc("Main menu actions. Enters Other tweaks submenu.", "Other tweaks")
                     icon.source: ""
-                    visible: fakeFullscreenSetting.visible
+                    Kirigami.Action {
+                        text: i18nc("Main menu actions. Enable local file auto reload", "Local file auto reload")
+                        icon.source: "qrc:/icons/document-open.svg"
+                        checkable: true
+                        checked: root.pageStack.currentItem.document.autoReload
+                        onTriggered: root.pageStack.currentItem.document.autoReload = checked
+                    }
                     Kirigami.Action {
                         id: fakeFullscreenSetting
                         text: i18nc("Main menu actions. Fake fullscreen behavior instead of requesting true fullscreen", "Fake fullscreen behavior")

@@ -340,6 +340,16 @@ Kirigami.ApplicationWindow {
                         onTriggered: root.pageStack.currentItem.overlay.disableOverlayContrast = checked
                     }
                 }
+                Kirigami.Action {
+                    text: i18nc("Main menu actions. Enters Other tweaks submenu.", "Other tweaks")
+                    Kirigami.Action {
+                        text: i18nc("Main menu actions. Enable local file auto reload", "Local file auto reload")
+                        icon.source: "qrc:/icons/document-open.svg"
+                        checkable: true
+                        checked: root.pageStack.currentItem.document.autoReload
+                        onTriggered: root.pageStack.currentItem.document.autoReload = checked
+                    }
+                }
 //                 Kirigami.Action {
 //                     text: i18nc("Main menu actions", "Restore factory defaults")
 //                     icon.name: "edit-clear-history"
