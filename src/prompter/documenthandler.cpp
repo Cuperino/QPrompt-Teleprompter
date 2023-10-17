@@ -653,7 +653,7 @@ void DocumentHandler::load(const QUrl &fileUrl)
         bool newPath = false;
         if (path != this->fileUrl())
             newPath = true;
-        if (path.isLocalFile() && (_fileSystemWatcher == nullptr || newPath)) {
+        if (path.isLocalFile() && newPath && _fileSystemWatcher != nullptr) {
             if (newPath)
                 _fileSystemWatcher->removePath(QQmlFile::urlToLocalFileOrQrc(this->fileUrl()));
             if (!skipAutoReload) {
