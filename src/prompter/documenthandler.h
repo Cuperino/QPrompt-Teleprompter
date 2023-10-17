@@ -107,6 +107,7 @@ class DocumentHandler : public QObject
     Q_PROPERTY(bool strike READ strike WRITE setStrike NOTIFY strikeChanged)
     Q_PROPERTY(bool subscript READ subscript WRITE setSubscript NOTIFY verticalAlignmentChanged)
     Q_PROPERTY(bool superscript READ superscript WRITE setSuperscript NOTIFY verticalAlignmentChanged)
+    Q_PROPERTY(bool autoReload READ autoReload WRITE setAutoReload NOTIFY autoReload)
 
     Q_PROPERTY(bool regularMarker READ regularMarker WRITE setMarker NOTIFY markerChanged)
     Q_PROPERTY(bool namedMarker READ namedMarker NOTIFY markerChanged)
@@ -167,6 +168,9 @@ public:
 
     bool superscript() const;
     void setSuperscript(bool superscript);
+
+    bool autoReload() const;
+    void setAutoReload(bool enable);
 
     int fontSize() const;
     void setFontSize(int size);
@@ -234,6 +238,7 @@ Q_SIGNALS:
     void underlineChanged();
     void strikeChanged();
     void verticalAlignmentChanged();
+    void autoReloadChanged();
 
     void markerChanged();
 
@@ -259,6 +264,7 @@ private:
 
     QQuickTextDocument *m_document;
 
+    bool m_autoReload;
     int m_cursorPosition;
     int m_selectionStart;
     int m_selectionEnd;
