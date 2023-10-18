@@ -683,10 +683,10 @@ Flickable {
 
                 selectByMouse: !root.__isMobile
                 persistentSelection: true
-                selectionColor: "#333d9ef3"
-                selectedTextColor: selectionColor
-                //selectionColor: document.textBackground
-                //selectedTextColor: document.textColor
+                selectionColor: find.isOpen ? "#d8ecfd" : "#333d9ef3"
+                selectedTextColor: find.isOpen ? "#163a58" : selectionColor
+                // selectionColor: find.isOpen ? (document.regularMarker | document.namedMarker ? "#d8ecfd" : document.textColor) : "#333d9ef3"
+                // selectedTextColor: find.isOpen ? (document.regularMarker | document.namedMarker ? "#163a58" : document.textBackground) : selectionColor
                 leftPadding: 14
                 rightPadding: 14
                 topPadding: 0
