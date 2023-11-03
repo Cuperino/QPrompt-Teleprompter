@@ -967,10 +967,12 @@ Flickable {
                         cursorShape: limitedMouse.cursorShape
                         scrollGestureEnabled: false
                         onClicked: {
-                            if (root.__isMobile)
-                                contextMenu.popup(this)
-                            else
-                                nativeContextMenu.open()
+                            if (!(parseInt(prompter.state) === Prompter.States.Prompting && !editor.focus)) {
+                                if (root.__isMobile)
+                                    contextMenu.popup(this)
+                                else
+                                    nativeContextMenu.open()
+                            }
                         }
                     }
                     MouseArea {
