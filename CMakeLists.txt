@@ -314,7 +314,7 @@ set(README_FILE "README.md")
 set(DESCRIPTION_FILE "DESCRIPTION.txt")
 list(APPEND DOCS ${LICENSE_FILE} ${README_FILE} ${DESCRIPTION_FILE} "COPYING.ASSETS")
 
-set(DOC_INSTALL_DIR "doc/qprompt")
+set(DOC_INSTALL_DIR "share/doc/qprompt")
 
 add_subdirectory(src build)
 ki18n_install(po)
