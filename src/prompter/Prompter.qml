@@ -80,6 +80,8 @@ import Qt.labs.settings 1.0
 
 import com.cuperino.qprompt.document 1.0
 import com.cuperino.qprompt.abstractunits 1.0
+import com.cuperino.qprompt.keyboardinput 1.0
+import com.cuperino.qprompt.joypadinput 1.0
 
 Flickable {
     id: prompter
@@ -1131,7 +1133,10 @@ Flickable {
             }
         }
     }
-
+    KeyboardInput {
+    }
+    JoypadInput {
+    }
     DocumentHandler {
         id: document
 

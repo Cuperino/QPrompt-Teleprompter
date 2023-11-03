@@ -27,6 +27,7 @@ set(qprompt_SRCS
     main.cpp
     prompter/markersmodel.cpp
     prompter/documenthandler.cpp
+    prompter/inputmanager.cpp
     qt/systemfontchooserdialog.cpp
     #${qprompt_QM_LOADER}
 )
@@ -35,6 +36,7 @@ set(qprompt_HDRS
     prompter/marker.hpp
     prompter/markersmodel.h
     prompter/documenthandler.h
+    prompter/inputmanager.h
     qt/systemfontchooserdialog.h
     qt/abstractunits.hpp
     qt/qmlutil.hpp
@@ -148,7 +150,8 @@ elseif (APPLE)
 
 else() # UNIX
     add_executable(${PROJECT_NAME}
-        ${qprompt_SRCS} ${qprompt_HDRS} ${qprompt_QML_SRCS} ${qprompt_ASSETS} ${qprompt_ICONS})
+        ${qprompt_SRCS} ${qprompt_HDRS} ${qprompt_QML_SRCS} ${qprompt_ASSETS} ${qprompt_ICONS}
+        prompter/inputmanager.h prompter/inputmanager.cpp)
 endif()
 
 # Libraries

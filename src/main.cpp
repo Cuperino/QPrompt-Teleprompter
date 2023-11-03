@@ -60,6 +60,7 @@
 
 #include "../qprompt_version.h"
 #include "prompter/documenthandler.h"
+#include "prompter/inputmanager.h"
 #include "qt/abstractunits.hpp"
 #include "qt/qmlutil.hpp"
 #include <stdlib.h>
@@ -180,6 +181,8 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
     qmlRegisterType<MarkersModel>(QPROMPT_URI ".markers", 1, 0, "MarkersModel");
     qmlRegisterType<QmlUtil>(QPROMPT_URI ".qmlutil", 1, 0, "QmlUtil");
     qmlRegisterUncreatableType<AbstractUnits>(QPROMPT_URI ".abstractunits", 1, 0, "Units", "Access to Duration enum");
+    qmlRegisterType<KeyboardInput>(QPROMPT_URI ".joypadinput", 1, 0, "KeyboardInput");
+    qmlRegisterType<JoypadInput>(QPROMPT_URI ".keyboardinput", 1, 0, "JoypadInput");
     QQmlApplicationEngine engine;
     // qmlRegisterType<PrompterWindow>(QPROMPT_URI".prompterwindow", 1, 0, "PrompterWindow");
 
