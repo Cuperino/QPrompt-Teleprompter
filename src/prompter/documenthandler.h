@@ -107,7 +107,7 @@ class DocumentHandler : public QObject
     Q_PROPERTY(bool strike READ strike WRITE setStrike NOTIFY strikeChanged)
     Q_PROPERTY(bool subscript READ subscript WRITE setSubscript NOTIFY verticalAlignmentChanged)
     Q_PROPERTY(bool superscript READ superscript WRITE setSuperscript NOTIFY verticalAlignmentChanged)
-    Q_PROPERTY(bool autoReload READ autoReload WRITE setAutoReload NOTIFY autoReload)
+    Q_PROPERTY(bool autoReload READ autoReload WRITE setAutoReload NOTIFY autoReloadChanged)
 
     Q_PROPERTY(bool regularMarker READ regularMarker WRITE setMarker NOTIFY markerChanged)
     Q_PROPERTY(bool namedMarker READ namedMarker NOTIFY markerChanged)
