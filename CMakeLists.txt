@@ -329,6 +329,11 @@ if (WIN32 OR UNIX) # AND NOT ANDROID
     install(FILES ${DOCS} DESTINATION ${DOC_INSTALL_DIR})
 endif()
 
+if (UNIX)
+set(MAN_INSTALL_DIR "/usr/share/man/")
+install(FILES /docs/manpage/qprompt.1 DESTINATION ${MAN_INSTALL_DIR}/man1 )
+endif()
+
 # CPACK: General Settings
 set(CPACK_GENERATOR "DEB")
 set(CPACK_PACKAGE_VENDOR "Javier O. Cordero Pérez")
