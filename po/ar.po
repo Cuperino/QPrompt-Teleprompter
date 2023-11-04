@@ -1,7 +1,6 @@
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR Javier O. Cordero Perez
-# This file is distributed under the same license as the qprompt package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# Arabic translations.
+# Copyright (C) 2022-23 Javier O. Cordero Pérez and contributors
+# This file is distributed under the Creative Commons 4.0 Attribution license.
 #
 msgid ""
 msgstr ""
