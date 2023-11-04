@@ -1,9 +1,9 @@
-# QPrompt Spanish Translation
-# Copyright (C) Javier O. Cordero Pérez and Contributors
-# This file is distributed under the Creative Commons 4.0 Attribution License.
-#
+# Spanish translations.
+# Copyright (C) 2022-23 Javier O. Cordero Pérez and contributors
+# This file is distributed under the Creative Commons 4.0 Attribution license.
 # Javier O. Cordero Pérez <javiercorderoperez@gmail.com>, 2022.
 # Luis Blanco <EMAIL@ADDRESS>, 2022.
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: qprompt\n"
