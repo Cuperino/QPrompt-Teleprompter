@@ -18,7 +18,7 @@
         <file alias="welcome_pl.html">documents/welcome_pl.html</file>
         <file alias="welcome_pt.html">documents/welcome_pt.html</file>
         <file alias="welcome_ru.html">documents/welcome_ru.html</file>
-        <file alias="welcome_zh_CN.html">documents/welcome_zh_CN.html</file>
+        <file alias="welcome_zh.html">documents/welcome_zh.html</file>
         <!-- Empty Untitled Document -->
         <!-- The same file is referenced twice. This is intentional and related to clearing a file from within a new file. -->
         <file alias="untitled.html">documents/untitled.html</file>
