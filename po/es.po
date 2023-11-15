@@ -10,7 +10,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: https://github.com/Cuperino/QPrompt/issues/new/choose\n"
 "POT-Creation-Date: 2024-09-29 11:34-0400\n"
 "PO-Revision-Date: 2024-12-17 04:51+0000\n"
-"Last-Translator: Anonymous <noreply@weblate.org>\n"
+"Last-Translator: Adolfo Jayme Barrientos <adolfojb@outlook.com>\n"
 "Language-Team: Spanish <http://l10n.cuperino.com/projects/qprompt/"
 "qprompt-app/es/>\n"
 "Language: es\n"
@@ -220,8 +220,7 @@ msgstr "Guardar documento"
 #: kirigami_ui/+android/main.qml:601 kirigami_ui/+windows/main.qml:715
 #: kirigami_ui/main.qml:1033
 msgid "Save changes to document before closing?"
-msgstr ""
-"¿Quiere guardar los cambios efectuados en el documento antes de cerrar?"
+msgstr "¿Quiere guardar los cambios efectuados en el documento antes de cerrar?"
 
 #: kirigami_ui/+windows/main.qml:309 kirigami_ui/main.qml:320
 msgctxt "Main menu actions. Load Path Settings page."
@@ -622,8 +621,7 @@ msgstr "LibreOffice"
 #: kirigami_ui/PathsPage.qml:63
 msgid ""
 "QPrompt can make transparent use of LibreOffice to convert Microsoft Word, "
-msgstr ""
-"QPrompt puede aprovechar LibreOffice para convertir de Microsoft Word, "
+msgstr "QPrompt puede aprovechar LibreOffice para convertir de Microsoft Word, "
 
 #: kirigami_ui/PathsPage.qml:71 kirigami_ui/PathsPage.qml:99
 msgctxt "Browse for PROGRAM"
