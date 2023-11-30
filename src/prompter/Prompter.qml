@@ -476,13 +476,13 @@ Flickable {
                         height: viewport.height
                         readonly property size delta: Qt.size(4.0 / width, 0.0)
                         readonly property variant source: prompterShadowSource
-                        fragmentShader: "qrc:/shaders/blur.frag"
+                        fragmentShader: "qrc:/shaders/blur.frag.qsb"
                     }
                 }
-                fragmentShader: "qrc:/shaders/blur.frag"
+                fragmentShader: "qrc:/shaders/blur.frag.qsb"
             }
         }
-        fragmentShader: "qrc:/shaders/shadow.frag"
+        fragmentShader: "qrc:/shaders/shadow.frag.qsb"
     }
 
     // Flick while prompting
