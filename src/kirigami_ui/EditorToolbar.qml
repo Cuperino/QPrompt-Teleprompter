@@ -76,7 +76,7 @@ import QtQuick.Layouts 1.12
 import QtCore
 
 import org.kde.kirigami 2.11 as Kirigami
-import com.cuperino.qprompt.abstractunits 1.0
+import com.cuperino.qprompt 1.0
 
 ToolBar {
     id: toolbar

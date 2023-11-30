@@ -24,7 +24,7 @@ import QtQuick 2.12
 import QtCore
 import Qt.labs.platform 1.1 as Labs
 
-import com.cuperino.qprompt.abstractunits 1.0
+import com.cuperino.qprompt 1.0
 
 Rectangle {
     id: prompterBackground

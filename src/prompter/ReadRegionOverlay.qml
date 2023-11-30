@@ -26,7 +26,8 @@ import QtQuick.Window 2.0
 import QtQuick.Layouts 1.12
 import QtQuick.Controls.Material 2.12
 import QtCore
-import com.cuperino.qprompt.abstractunits 1.0
+
+import com.cuperino.qprompt 1.0
 
 Item {
     id: overlay

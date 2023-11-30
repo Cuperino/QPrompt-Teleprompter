@@ -46,7 +46,7 @@
 #include <KLocalizedString>
 #include <kaboutdata.h>
 
-#if defined(KF5Crash_FOUND)
+#if defined(KF6Crash_FOUND)
 #include <KCrash>
 #endif
 
@@ -59,9 +59,9 @@
 #endif
 
 #include "../qprompt_version.h"
-#include "prompter/documenthandler.h"
-#include "qt/abstractunits.hpp"
-#include "qt/qmlutil.hpp"
+#include "abstractunits.hpp"
+//#include "documenthandler.h"
+//#include "qmlutil.hpp"
 #include <stdlib.h>
 
 #define QPROMPT_URI "com.cuperino.qprompt"
@@ -129,7 +129,7 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
     // Substract from 2 because order in app is intentionally inverted from order in Qt
     app.setLayoutDirection(static_cast<Qt::LayoutDirection>(2 - settings.value("ui/layout", 0).toInt()));
 
-#if defined(KF5Crash_FOUND)
+#if defined(KF6Crash_FOUND)
     // KCrash::setDrKonqiEnabled(true);
     KCrash::initialize();
     // KCrash::setCrashHandler( KCrash::defaultCrashHandler );
@@ -176,14 +176,14 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
         qWarning() << i18n("Failed to load icons from fontello.ttf");
 
     // qmlRegisterType<PrompterTimer>(QPROMPT_URI + ".promptertimer", 1, 0, "PrompterTimer");
-    qmlRegisterType<DocumentHandler>(QPROMPT_URI ".document", 1, 0, "DocumentHandler");
-    qmlRegisterType<MarkersModel>(QPROMPT_URI ".markers", 1, 0, "MarkersModel");
-    qmlRegisterType<QmlUtil>(QPROMPT_URI ".qmlutil", 1, 0, "QmlUtil");
-    qmlRegisterUncreatableType<AbstractUnits>(QPROMPT_URI ".abstractunits", 1, 0, "Units", "Access to Duration enum");
+    //    qmlRegisterType<DocumentHandler>(QPROMPT_URI ".document", 1, 0, "DocumentHandler");
+    //    qmlRegisterType<MarkersModel>(QPROMPT_URI ".markers", 1, 0, "MarkersModel");
+    //    qmlRegisterType<QmlUtil>(QPROMPT_URI ".qmlutil", 1, 0, "QmlUtil");
+    //    qmlRegisterUncreatableType</*AbstractUnits*/>(QPROMPT_URI ".abstractunits", 1, 0, "Units", "Access to Duration enum");
     QQmlApplicationEngine engine;
     // qmlRegisterType<PrompterWindow>(QPROMPT_URI".prompterwindow", 1, 0, "PrompterWindow");
 
-    qRegisterMetaType<Marker>();
+    //    qRegisterMetaType<Marker>();
 
     // #ifdef Q_OS_ANDROID
     // KirigamiPlugin::getInstance().registerTypes();
@@ -260,14 +260,14 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
         // engine.addImportPath("/opt/local/lib/qml/org/kde/kirigami.2");
 #if defined(Q_OS_MACOS)
     // engine.addImportPath(QStringLiteral("/opt/homebrew/lib/qml"));
-    engine.addImportPath(QStringLiteral("/opt/homebrew/Cellar/kf5-kirigami2/5.95.0/lib/qt5/qml"));
+    engine.addImportPath(QStringLiteral("/opt/homebrew/Cellar/kf5-kirigami2/5.95.0/lib/qt6/qml"));
 #endif
-    engine.load(QUrl(QStringLiteral("qrc:///main.qml")));
+    engine.load(QUrl(u"qrc:/qt/qml/com/cuperino/qprompt/kirigami_ui/main.qml"_qs));
 
     if (engine.rootObjects().isEmpty()) {
         return -1;
     }
 
-    // qDebug() << QProcess::systemEnvironment();
+    // qDebug() << QProcess::systemEnvironme nt();
     return app.exec();
 }
