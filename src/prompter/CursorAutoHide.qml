@@ -21,7 +21,7 @@
 
 import QtQuick 2.12
 
-import com.cuperino.qprompt.qmlutil 1.0
+import com.cuperino.qprompt 1.0
 
 MouseArea {
     id: cursorAutoHide

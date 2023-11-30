@@ -24,12 +24,14 @@
 
 #include <QAbstractListModel>
 #include <QObject>
+#include <QQmlEngine>
 
 #include "marker.hpp"
 
 class MarkersModel : public QAbstractListModel
 {
     Q_OBJECT
+    QML_ELEMENT
 
 public:
     enum Roles { TextRole = Qt::UserRole, PositionRole, LengthRole, KeyRole, KeyLetterRole, UrlRole, RequestTypeRole };

@@ -73,23 +73,25 @@
 #define DOCUMENTHANDLER_H
 
 #include <QFileSystemWatcher>
-#include <QFont>
 #include <QNetworkAccessManager>
 #include <QObject>
-#include <QQuickTextDocument>
+#include <QQmlEngine>
 #include <QTemporaryFile>
-#include <QTextCursor>
-#include <QTextDocument>
 #include <QUrl>
 
-#include "prompter/markersmodel.h"
-#include "qt/systemfontchooserdialog.h"
+#include "markersmodel.h"
+#include "systemfontchooserdialog.h"
+#include <QFont>
+#include <QQuickTextDocument>
+#include <QTextCursor>
+#include <QTextDocument>
 
 QT_BEGIN_NAMESPACE
 
 class DocumentHandler : public QObject
 {
     Q_OBJECT
+    QML_ELEMENT
 
     Q_PROPERTY(QQuickTextDocument *document READ document WRITE setDocument NOTIFY documentChanged)
     Q_PROPERTY(int cursorPosition READ cursorPosition WRITE setCursorPosition NOTIFY cursorPositionChanged)

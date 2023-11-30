@@ -78,8 +78,7 @@ import QtQuick.Dialogs
 import QtCore
 import Qt.labs.platform 1.1 as Labs
 
-import com.cuperino.qprompt.document 1.0
-import com.cuperino.qprompt.abstractunits 1.0
+import com.cuperino.qprompt 1.0
 
 Flickable {
     id: prompter
@@ -753,7 +752,7 @@ Flickable {
                     RowLayout {
                         FontLoader {
                             id: iconFont
-                            source: "fonts/fontello.ttf"
+                            source: "fonts/icons/fontello.ttf"
                         }
                         Button {
                             id: rewindButton

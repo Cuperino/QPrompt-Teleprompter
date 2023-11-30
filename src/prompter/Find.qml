@@ -22,8 +22,9 @@
 import QtQuick 2.12
 import QtQuick.Controls 2.12
 import QtQuick.Layouts 1.12
-import com.cuperino.qprompt.abstractunits 1.0
+
 import org.kde.kirigami 2.11 as Kirigami
+import com.cuperino.qprompt 1.0
 
 Item {
     enum Mode {

@@ -27,8 +27,7 @@ import QtQuick.Layouts 1.12
 import QtQuick.Controls.Material 2.12
 import QtCore
 
-import com.cuperino.qprompt.document 1.0
-import com.cuperino.qprompt.qmlutil 1.0
+import com.cuperino.qprompt 1.0
 
 Kirigami.ApplicationWindow {
     id: root
@@ -180,13 +179,13 @@ Kirigami.ApplicationWindow {
         // isMenu: true
         title: aboutData.displayName
         titleIcon: ["android"].indexOf(Qt.platform.os)===-1 ? "qrc:/images/qprompt.png" : "qrc:/images/qprompt-logo-wireframe.png"
-        bannerVisible: true
-        onBannerClicked: {
-            bannerCounter++;
-            // Enable easter eggs.
-            if (!(bannerCounter%10))
-                ee = true
-        }
+//        bannerVisible: true
+//        onBannerClicked: {
+//            bannerCounter++;
+//            // Enable easter eggs.
+//            if (!(bannerCounter%10))
+//                ee = true
+//        }
         onOpened: function() {
             cursorAutoHide.reset();
         }
@@ -520,7 +519,7 @@ Kirigami.ApplicationWindow {
         ]
     }
 
-    LayoutDirectionSettings {
+    LayoutDirectionSettingsOverlay {
         id: layoutDirectionSettings
     }
 

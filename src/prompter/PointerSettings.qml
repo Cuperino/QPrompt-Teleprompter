@@ -27,7 +27,7 @@ import QtQuick.Controls.Material 2.12
 import QtCore
 import Qt.labs.platform 1.1 as Labs
 
-import com.cuperino.qprompt.qmlutil 1.0
+import com.cuperino.qprompt 1.0
 
 ColumnLayout {
     id: pointerSettings

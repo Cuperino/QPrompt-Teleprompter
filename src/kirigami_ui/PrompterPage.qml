@@ -27,8 +27,7 @@ import QtQuick.Layouts 1.12
 import QtCore
 import Qt.labs.platform 1.1 as Labs
 
-import com.cuperino.qprompt.markers 1.0
-import com.cuperino.qprompt.abstractunits 1.0
+import com.cuperino.qprompt 1.0
 
 Kirigami.Page {
     id: prompterPage
@@ -859,7 +858,7 @@ Kirigami.Page {
 
     Kirigami.OverlaySheet {
         id: countdownConfiguration
-        onSheetOpenChanged: prompterPage.actions.main.checked = sheetOpen
+        //onSheetOpenChanged: prompterPage.actions.main.checked = sheetOpen
 
         header: Kirigami.Heading {
             text: i18n("Countdown Setup")
@@ -917,21 +916,21 @@ Kirigami.Page {
             text: i18nc("Refers to a key on the keyboard used to skip to a user defined marker while prompting", "Skip Key")
             level: 1
         }
-        onSheetOpenChanged: {
-            prompterPage.actions.main.checked = sheetOpen;
-            // When opening overlay, reset key input button's text.
-            // Dev: When opening overlay, reset key input button's text to current anchor's key value.
-            if (sheetOpen)
-                //row.setMarkerKeyButton.item.text = "";
-                column.setMarkerKeyButton.item.text = prompter.document.getMarkerKey();
-            else {
-                prompter.restoreFocus()
-                if (markersDrawer.reOpen) {
-                    prompter.document.parse()
-                    markersDrawer.open()
-                }
-            }
-        }
+//        onSheetOpenChanged: {
+//            prompterPage.actions.main.checked = sheetOpen;
+//            // When opening overlay, reset key input button's text.
+//            // Dev: When opening overlay, reset key input button's text to current anchor's key value.
+//            if (sheetOpen)
+//                //row.setMarkerKeyButton.item.text = "";
+//                column.setMarkerKeyButton.item.text = prompter.document.getMarkerKey();
+//            else {
+//                prompter.restoreFocus()
+//                if (markersDrawer.reOpen) {
+//                    prompter.document.parse()
+//                    markersDrawer.open()
+//                }
+//            }
+//        }
         ColumnLayout {
             id: column
             property alias setMarkerKeyButton: setMarkerKeyButton
@@ -987,9 +986,9 @@ Kirigami.Page {
             text: i18n("Open from network...")
             level: 1
         }
-        onSheetOpenChanged: {
-            prompterPage.actions.main.checked = sheetOpen;
-        }
+//        onSheetOpenChanged: {
+//            prompterPage.actions.main.checked = sheetOpen;
+//        }
         property bool autoReload: false
         property bool autoReloadRunning: false
         property string nextReloadTime: ""
@@ -1142,9 +1141,9 @@ Kirigami.Page {
             text: i18nc("Name of section where reding region pointers are configured", "Pointer configuration")
             level: 1
         }
-        onSheetOpenChanged: {
-            prompterPage.actions.main.checked = sheetOpen;
-        }
+//        onSheetOpenChanged: {
+//            prompterPage.actions.main.checked = sheetOpen;
+//        }
         PointerSettings{
             id: pointerSettings
         }

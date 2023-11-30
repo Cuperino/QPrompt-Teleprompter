@@ -24,7 +24,7 @@ import org.kde.kirigami 2.11 as Kirigami
 import QtQuick.Controls 2.12
 import QtQuick.Layouts 1.12
 
-import com.cuperino.qprompt.qmlutil 1.0
+import com.cuperino.qprompt 1.0
 
 Kirigami.OverlaySheet {
     id: keyConfigurationOverlay
@@ -34,7 +34,7 @@ Kirigami.OverlaySheet {
         level: 1
     }
 
-    onSheetOpenChanged: prompterPage.actions.main.checked = sheetOpen
+    // onSheetOpenChanged: prompterPage.actions.main.checked = sheetOpen
 
     GridLayout {
         id: buttonGrid

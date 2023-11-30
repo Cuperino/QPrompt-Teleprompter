@@ -26,7 +26,7 @@ import QtQuick.Layouts 1.12
 import QtCore
 import Qt.labs.platform 1.1 as Labs
 
-//import com.cuperino.qprompt.promptertimer 1.0
+//import com.cuperino.qprompt 1.0
 
 Item {
     id: clock

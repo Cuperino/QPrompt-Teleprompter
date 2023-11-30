@@ -70,8 +70,8 @@ Kirigami.OverlaySheet {
             }
         }
     }
-    onSheetOpenChanged: {
-        if (!sheetOpen && layoutSelector.dirty)
-            restartDialog.visible = true;
-    }
+//    onSheetOpenChanged: {
+//        if (!sheetOpen && layoutSelector.dirty)
+//            restartDialog.visible = true;
+//    }
 }
