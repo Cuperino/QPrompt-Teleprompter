@@ -42,7 +42,6 @@ set(qprompt_HDRS
 
 set(qprompt_ASSETS
     assets.qrc
-    shaders/shaders.qrc
     icons/icons.qrc
     fonts/fonts.qrc
     fonts/chinese.qrc
@@ -337,6 +336,16 @@ if(ANDROID OR APPLE OR WIN32 OR IOS OR WASM)
     )
 endif()
 
+qt_add_shaders(
+    ${PROJECT_NAME}
+    "qp_shaders"
+    PREFIX
+    "/shaders"
+    FILES
+    "shaders/blur.frag"
+    "shaders/shadow.frag"
+    "shaders/tint.frag"
+)
 
 ## Get static QML. Gets ignored if not a static build
 #if (QtQmlImportScanner_FOUND)

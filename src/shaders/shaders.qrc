@@ -1,8 +1,0 @@
-<RCC>
-    <qresource prefix="/shaders">
-        <file>blur.frag</file>
-        <file>shadow.frag</file>
-        <file>blur.frag.qsb</file>
-        <file>shadow.frag.qsb</file>
-    </qresource>
-</RCC>
