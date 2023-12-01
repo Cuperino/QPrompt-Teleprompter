@@ -135,6 +135,7 @@ if(ANDROID)
         AndroidExtras
         QmlImportScanner  # Used to get static QML. Gets ignored if not a static build
         QuickCompiler
+        ShaderTools
     )
     find_package(KF${QT_VERSION_MAJOR} ${KF_MIN_VERSION} REQUIRED COMPONENTS
         Kirigami2
@@ -151,6 +152,7 @@ elseif(WASM OR IOS)
         Network
         QmlImportScanner  # Used to get static QML. Gets ignored if not a static build
         QuickCompiler
+        ShaderTools
     )
     find_package(KF${QT_VERSION_MAJOR} ${KF_MIN_VERSION} REQUIRED COMPONENTS
         Kirigami2
@@ -166,6 +168,7 @@ elseif(HAIKU)
         QuickControls2
         Network
         Widgets
+        ShaderTools
     )
     # By requiring newer Qt version to use QML compiler, Snap can be built without it.
     find_package(Qt${QT_VERSION_MAJOR} ${QT5_MIN_VERSION} NO_MODULE COMPONENTS
@@ -194,6 +197,7 @@ elseif(WIN32 OR APPLE)
         Widgets
         QmlImportScanner  # Used to get static QML. Gets ignored if not a static build
         QuickCompiler
+        ShaderTools
     )
     find_package(KF${QT_VERSION_MAJOR} ${KF_MIN_VERSION} REQUIRED COMPONENTS
         Kirigami2
@@ -225,6 +229,7 @@ else()
         QuickControls2
         Network
         Widgets
+        ShaderTools
     )
     else()
     find_package(Qt${QT_VERSION_MAJOR} ${QT5_MIN_VERSION} REQUIRED NO_MODULE COMPONENTS
@@ -235,6 +240,7 @@ else()
         QuickControls2
         Network
         Widgets
+        ShaderTools
         X11Extras
     )
     endif()
