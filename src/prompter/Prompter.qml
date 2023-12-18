@@ -706,7 +706,7 @@ Flickable {
                 renderType: font.pixelSize < 121 || Screen.devicePixelRatio !== 1.0 || root.forceQtTextRenderer ? Text.QtRendering : Text.NativeRendering
                 FontLoader {
                     id: westernSeriousSansfFont
-                    source: "fonts/dejavu-sans.otf"
+                    source: "../fonts/DejaVuSans.ttf"
                 }
 
                 // Draggable width adjustment borders
@@ -752,7 +752,7 @@ Flickable {
                     RowLayout {
                         FontLoader {
                             id: iconFont
-                            source: "fonts/icons/fontello.ttf"
+                            source: "../fonts/fontello.ttf"
                         }
                         Button {
                             id: rewindButton
@@ -1148,7 +1148,7 @@ Flickable {
         }
         function close() {
             networkDialog.autoReloadRunning = false;
-            document.load("qrc:/blank.html");
+            document.load("qrc:/qt/qml/com/cuperino/qprompt/documents/blank.html");
         }
         function newDocument() {
             root.onDiscard = Prompter.CloseActions.LoadNew
@@ -1156,7 +1156,7 @@ Flickable {
                 closeDialog.open()
             else {
                 document.close()
-                document.load("qrc:/untitled.html")
+                document.load("qrc:/qt/qml/com/cuperino/qprompt/documents/untitled.html")
                 clearLastDocument();
                 isNewFile = true
                 resetDocumentPosition()
@@ -1170,7 +1170,7 @@ Flickable {
                 closeDialog.open()
             else {
                 document.close()
-                document.load("qrc:/"+i18n("welcome_en.html"))
+                document.load("qrc:/qt/qml/com/cuperino/qprompt/documents/"+i18n("welcome_en.html"))
                 editor.lastDocument = ""
                 isNewFile = true
                 prompter.position = 0

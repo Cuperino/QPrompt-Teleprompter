@@ -72,7 +72,7 @@ Kirigami.Page {
             id: promptingButton
             text: i18n("Start prompter")
             icon.name: Qt.application.layoutDirection === Qt.RightToLeft ? "go-next-rtl" : "go-next"
-            icon.source: Qt.application.layoutDirection === Qt.RightToLeft ? "icons/go-previous.svg" : "icons/go-next.svg"
+            icon.source: Qt.application.layoutDirection === Qt.RightToLeft ? "../icons/go-previous.svg" : "../icons/go-next.svg"
             onTriggered: prompter.toggle()
         },
         Kirigami.Action {
@@ -80,7 +80,7 @@ Kirigami.Page {
             enabled: Kirigami.Settings.isMobile
             text: pageStack.globalToolBar.actualStyle === Kirigami.ApplicationHeaderStyle.None ? i18n("Decrease velocity") : ""
             icon.name: Qt.application.layoutDirection === Qt.RightToLeft ? "go-previous-rtl" : "go-previous"
-            icon.source: Qt.application.layoutDirection === Qt.RightToLeft ? "icons/go-next.svg" : "icons/go-previous.svg"
+            icon.source: Qt.application.layoutDirection === Qt.RightToLeft ? "../icons/go-next.svg" : "../icons/go-previous.svg"
             onTriggered: {
                 if (parseInt(prompter.state) === Prompter.States.Prompting)
                     viewport.prompter.decreaseVelocity(false)
@@ -94,7 +94,7 @@ Kirigami.Page {
             enabled: Kirigami.Settings.isMobile
             text: pageStack.globalToolBar.actualStyle === Kirigami.ApplicationHeaderStyle.None ? i18n("Increase velocity") : ""
             icon.name: Qt.application.layoutDirection === Qt.RightToLeft ? "go-next-rtl" : "go-next"
-            icon.source: Qt.application.layoutDirection === Qt.RightToLeft ? "icons/go-previous.svg" : "icons/go-next.svg"
+            icon.source: Qt.application.layoutDirection === Qt.RightToLeft ? "../icons/go-previous.svg" : "../icons/go-next.svg"
             onTriggered: {
                 if (parseInt(prompter.state) === Prompter.States.Prompting)
                     viewport.prompter.increaseVelocity(false)
@@ -112,7 +112,7 @@ Kirigami.Page {
             Kirigami.Action {
                 id: readRegionTopButton
                 icon.name: "go-up"
-                icon.source: "icons/go-up.svg"
+                icon.source: "../icons/go-up.svg"
                 text: i18nc("Align reading region to top of prompter", "Top")
                 enabled: parseInt(viewport.overlay.positionState)!==ReadRegionOverlay.PositionStates.Top
                 tooltip: i18n("Move reading region to the top, convenient for use with webcams")
@@ -125,7 +125,7 @@ Kirigami.Page {
             Kirigami.Action {
                 id: readRegionMiddleButton
                 icon.name: "list-remove"
-                icon.source: "icons/list-remove.svg"
+                icon.source: "../icons/list-remove.svg"
                 text: i18nc("Align reading region to vertical center of prompter", "Middle")
                 enabled: parseInt(viewport.overlay.positionState)!==ReadRegionOverlay.PositionStates.Middle
                 tooltip: i18n("Move reading region to the vertical center")
@@ -138,7 +138,7 @@ Kirigami.Page {
             Kirigami.Action {
                 id: readRegionBottomButton
                 icon.name: "go-down"
-                icon.source: "icons/go-down.svg"
+                icon.source: "../icons/go-down.svg"
                 text: i18nc("Align reading region to bottom of prompter", "Bottom")
                 enabled: parseInt(viewport.overlay.positionState)!==ReadRegionOverlay.PositionStates.Bottom
                 tooltip: i18n("Move reading region to the bottom")
@@ -150,7 +150,7 @@ Kirigami.Page {
             }
             Kirigami.Action {
                 id: readRegionFreeButton
-                icon.source: "icons/empty.svg"
+                icon.source: "../icons/empty.svg"
                 text: i18nc("Refers to free placement. Enables drag and drop positioning of reading region.", "Free")
                 enabled: parseInt(viewport.overlay.positionState)!==ReadRegionOverlay.PositionStates.Free
                 tooltip: i18n("Move reading region freely by dragging and dropping")
@@ -163,7 +163,7 @@ Kirigami.Page {
             Kirigami.Action {
                 id: readRegionCustomButton
                 icon.name: "dialog-ok-apply"
-                icon.source: "icons/dialog-ok-apply.svg"
+                icon.source: "../icons/dialog-ok-apply.svg"
                 text: i18nc("Fix positioning of reading region to what was set in \"Free placement\" mode", "Custom")
                 enabled: parseInt(viewport.overlay.positionState)!==ReadRegionOverlay.PositionStates.Fixed
                 tooltip: i18n("Fix reading region to the position set using free placement mode")
@@ -180,12 +180,12 @@ Kirigami.Page {
                     actions: [
                         Kirigami.Action {
                             icon.name: Qt.LeftToRight ? "go-next" : "go-previous";
-                            icon.source: Qt.LeftToRight ? "icons/go-next.svg" : "icons/go-previous.svg"
+                            icon.source: Qt.LeftToRight ? "../icons/go-next.svg" : "../icons/go-previous.svg"
                             onTriggered: viewport.overlay.toggleLinesInRegion(true)
                         },
                         Kirigami.Action {
                             icon.name: (Qt.LeftToRight ? "go-previous" : "go-next");
-                            icon.source: Qt.LeftToRight ? "icons/go-previous.svg" : "icons/go-next.svg"
+                            icon.source: Qt.LeftToRight ? "../icons/go-previous.svg" : "../icons/go-next.svg"
                             onTriggered: viewport.overlay.toggleLinesInRegion(false)
                         }
                     ]
@@ -204,12 +204,12 @@ Kirigami.Page {
             //     visible: enabled
             //     tooltip: i18n("Auto hide window decorations when not editing and read region is set to top")
             //     icon.name: enabled ? (hideDecorations===0 ? "window" : (hideDecorations===1 ? "draw-rectangle" : "gnumeric-object-rectangle")) : ""
-            //     icon.source: enabled ? (hideDecorations===0 ? "icons/window.svg" : (hideDecorations===1 ? "icons/draw-rectangle.svg" : "icons/gnumeric-object-rectangle.svg")) : ""
+            //     icon.source: enabled ? (hideDecorations===0 ? "../icons/window.svg" : (hideDecorations===1 ? "../icons/draw-rectangle.svg" : "../icons/gnumeric-object-rectangle.svg")) : ""
             //     Kirigami.Action {
             //         text: i18n("Normal frame")
             //         tooltip: i18n("Shows windows frame when in windowed mode")
             //         icon.name: "window"
-            //         icon.source: "icons/window.svg"
+            //         icon.source: "../icons/window.svg"
             //         enabled: parent.enabled && hideDecorations!==0
             //         visible: parent.enabled
             //         onTriggered: {
@@ -221,7 +221,7 @@ Kirigami.Page {
             //         text: i18n("Auto hide")
             //         tooltip: i18n("Auto hide window decorations when not editing and read region is set to top")
             //         icon.name: "draw-rectangle"
-            //         icon.source: "icons/draw-rectangle.svg"
+            //         icon.source: "../icons/draw-rectangle.svg"
             //         enabled: parent.enabled && hideDecorations!==1
             //         visible: parent.enabled
             //         onTriggered: {
@@ -233,7 +233,7 @@ Kirigami.Page {
             //         text: i18n("Always hidden")
             //         tooltip: i18n("Always hide window decorations")
             //         icon.name: "gnumeric-object-rectangle"
-            //         icon.source: "icons/gnumeric-object-rectangle.svg"
+            //         icon.source: "../icons/gnumeric-object-rectangle.svg"
             //         enabled: parent.enabled && hideDecorations!==2
             //         visible: parent.enabled
             //         onTriggered: {
@@ -258,7 +258,7 @@ Kirigami.Page {
             Kirigami.Action {
                 id: readRegionLeftPointerButton
                 text: Qt.application.layoutDirection===Qt.LeftToRight ? i18nc("Shows pointer to the left of the reading region", "Left pointer") : i18nc("Shows pointer to the right of the reading region", "Right pointer")
-                icon.source: Qt.application.layoutDirection===Qt.LeftToRight ? "icons/go-next.svg" : "icons/go-previous.svg"
+                icon.source: Qt.application.layoutDirection===Qt.LeftToRight ? "../icons/go-next.svg" : "../icons/go-previous.svg"
                 tooltip: i18n("Left pointer indicates reading region")
                 enabled: parseInt(overlay.styleState)!==ReadRegionOverlay.PointerStates.LeftPointer && parseInt(overlay.styleState)!==ReadRegionOverlay.PointerStates.BarsLeftPointer
                 onTriggered: {
@@ -270,7 +270,7 @@ Kirigami.Page {
             Kirigami.Action {
                 id: readRegionRightPointerButton
                 text: Qt.application.layoutDirection===Qt.LeftToRight ? i18nc("Shows pointer to the right of the reading region", "Right pointer") : i18nc("Shows pointer to the left of the reading region", "Left pointer")
-                icon.source: Qt.application.layoutDirection===Qt.LeftToRight ? "icons/go-previous.svg" : "icons/go-next.svg"
+                icon.source: Qt.application.layoutDirection===Qt.LeftToRight ? "../icons/go-previous.svg" : "../icons/go-next.svg"
                 tooltip: i18n("Right pointer indicates reading region")
                 enabled: parseInt(overlay.styleState)!==ReadRegionOverlay.PointerStates.RightPointer && parseInt(overlay.styleState)!==ReadRegionOverlay.PointerStates.BarsRightPointer
                 onTriggered: {
@@ -282,7 +282,7 @@ Kirigami.Page {
             Kirigami.Action {
                 id: readRegionPointersButton
                 text: i18nc("Shows pointers to the left and right of the reading region", "Both pointers")
-                icon.source: "icons/transform-move-horizontal.svg"
+                icon.source: "../icons/transform-move-horizontal.svg"
                 tooltip: i18n("Left and right pointers indicate reading region")
                 enabled: parseInt(overlay.styleState)!==ReadRegionOverlay.PointerStates.Pointers && parseInt(overlay.styleState)!==ReadRegionOverlay.PointerStates.All
                 onTriggered: {
@@ -294,7 +294,7 @@ Kirigami.Page {
             Kirigami.Action {
                 id: readRegionNoneButton
                 text: i18nc("Disable all reading region pointers", "No pointers")
-                icon.source: Qt.application.layoutDirection===Qt.LeftToRight ? "icons/view-list-text.svg" : "icons/view-list-text-rtl.svg"
+                icon.source: Qt.application.layoutDirection===Qt.LeftToRight ? "../icons/view-list-text.svg" : "../icons/view-list-text-rtl.svg"
                 tooltip: i18nc("Disable all reading region indicators", "Disable reading region indicators")
                 enabled: parseInt(overlay.styleState)!==ReadRegionOverlay.PointerStates.None && parseInt(overlay.styleState)!==ReadRegionOverlay.PointerStates.Bars
                 onTriggered: {
@@ -342,7 +342,7 @@ Kirigami.Page {
                 checkable: true
                 checked: viewport.timer.stopwatch
                 icon.name: "keyframe"
-                icon.source: "icons/keyframe.svg"
+                icon.source: "../icons/keyframe.svg"
                 text: i18n("Stopwatch")
                 onTriggered: {
                     viewport.timer.stopwatch = checked
@@ -355,7 +355,7 @@ Kirigami.Page {
                 checkable: true
                 checked: viewport.timer.eta
                 icon.name: "player-time"
-                icon.source: "icons/player-time.svg"
+                icon.source: "../icons/player-time.svg"
                 text: i18nc("Estimated Time of Arrival", "ETA")
                 onTriggered: {
                     viewport.timer.eta = checked
@@ -367,7 +367,7 @@ Kirigami.Page {
                 enabled: viewport.timer.timersEnabled
                 text: i18nc("Color of timer text", "Timer color")
                 icon.name: "format-text-color"
-                icon.source: "icons/format-text-color.svg"
+                icon.source: "../icons/format-text-color.svg"
                 onTriggered: {
                     viewport.timer.setColor()
                     contextDrawer.close()
@@ -379,7 +379,7 @@ Kirigami.Page {
                 enabled: viewport.timer.timersEnabled && !Qt.colorEqual(viewport.timer.textColor, '#AAA')
                 text: i18nc("Reset color of timer text back to default", "Clear color")
                 icon.name: "tool_color_eraser"
-                icon.source: "icons/tool_color_eraser.svg"
+                icon.source: "../icons/tool_color_eraser.svg"
                 onTriggered: {
                     viewport.timer.clearColor()
                     contextDrawer.close()
@@ -397,7 +397,7 @@ Kirigami.Page {
                 checked: viewport.countdown.frame && !autoStartCountdownButton.checked
                 text: i18nc("Enables automatic alignment of prompter and text with the reading region", "Auto frame")
                 icon.name: "transform-move-vertical"
-                icon.source: "icons/transform-move-vertical.svg"
+                icon.source: "../icons/transform-move-vertical.svg"
                 onTriggered: {
                     viewport.countdown.frame = !viewport.countdown.frame
                     //// Future: Implement way to way to prevent Kirigami.Action from closing parent Action menu.
@@ -414,7 +414,7 @@ Kirigami.Page {
                 checked: viewport.countdown.enabled
                 text: i18n("Countdown")
                 icon.name: "chronometer-pause"
-                icon.source: "icons/chronometer-pause.svg"
+                icon.source: "../icons/chronometer-pause.svg"
                 onTriggered: {
                     viewport.countdown.enabled = !viewport.countdown.enabled
                     //// Future: Implement way to way to prevent Kirigami.Action from closing parent Action menu.
@@ -431,7 +431,7 @@ Kirigami.Page {
                 checked: viewport.countdown.autoStart && enableCountdownButton.checked
                 text: i18nc("Auto start countdown upon prompter getting started", "Auto start")
                 icon.name: "chronometer"
-                icon.source: "icons/chronometer.svg"
+                icon.source: "../icons/chronometer.svg"
                 tooltip: i18n("Start countdown automatically")
                 onTriggered: {
                     viewport.countdown.autoStart = !viewport.countdown.autoStart
@@ -444,7 +444,7 @@ Kirigami.Page {
                 enabled: enableCountdownButton.enabled && viewport.countdown.enabled
                 text: i18nc("Configure countdown duration", "Set duration")
                 icon.name: "keyframe-add"
-                icon.source: "icons/keyframe-add.svg"
+                icon.source: "../icons/keyframe-add.svg"
                 onTriggered: {
                     countdownConfiguration.open()
                     contextDrawer.close()
@@ -479,7 +479,7 @@ Kirigami.Page {
                 //readonly property string shortName: i18n("H Flip")
                 text: i18nc("Mirrors prompter horizontally", "Horizontal mirror")
                 //icon.name: "object-flip-horizontal"
-                //icon.source: "icons/object-flip-horizontal.svg"
+                //icon.source: "../icons/object-flip-horizontal.svg"
                 //enabled: !viewport.prompter.__flipX || viewport.prompter.__flipY
                 checkable: true
                 checked: viewport.prompter.__flipX
@@ -496,7 +496,7 @@ Kirigami.Page {
                 //readonly property string shortName: i18n("V Flip")
                 text: i18nc("Mirrors prompter vertically", "Vertical mirror")
                 //icon.name: "object-flip-vertical"
-                //icon.source: "icons/object-flip-vertical.svg"
+                //icon.source: "../icons/object-flip-vertical.svg"
                 //enabled: viewport.prompter.__flipX || !viewport.prompter.__flipY
                 checkable: true
                 checked: viewport.prompter.__flipY
@@ -512,7 +512,7 @@ Kirigami.Page {
             //Kirigami.Action {
                 //readonly property string shortName: i18n("HV Flip") text: i18n("180° rotation")
                 //icon.name: Qt.LeftToRight ? "object-rotate-left" : "object-rotate-right"
-                //icon.source: Qt.LeftToRight ? "icons/object-rotate-left.svg" : "icons/object-rotate-right.svg"
+                //icon.source: Qt.LeftToRight ? "../icons/object-rotate-left.svg" : "../icons/object-rotate-right.svg"
                 //enabled: !(viewport.prompter.__flipX && viewport.prompter.__flipY)
                 //onTriggered: {
                     //parent.updateButton(this)
@@ -524,7 +524,7 @@ Kirigami.Page {
             Kirigami.Action {
                 text: i18nc("Prompter rotation is disabled", "Don't rotate")
                 icon.name: "window"
-                icon.source: "icons/window.svg"
+                icon.source: "../icons/window.svg"
                 enabled: viewport.forcedOrientation!==0
                 onTriggered: {
                     //if (viewport.forcedOrientation!==1)
@@ -536,7 +536,7 @@ Kirigami.Page {
             Kirigami.Action {
                 text: i18nc("Rotate prompter 90 degrees to the right", "90° clockwise")
                 icon.name: "object-rotate-right"
-                icon.source: "icons/object-rotate-right.svg"
+                icon.source: "../icons/object-rotate-right.svg"
                 enabled: viewport.forcedOrientation!==1
                 onTriggered: {
                     //if (viewport.forcedOrientation!==1)
@@ -548,7 +548,7 @@ Kirigami.Page {
             Kirigami.Action {
                 text: i18nc("Rotate prompter 90 degrees to the left", "90° counter")
                 icon.name: "object-rotate-left"
-                icon.source: "icons/object-rotate-left.svg"
+                icon.source: "../icons/object-rotate-left.svg"
                 enabled: viewport.forcedOrientation!==2
                 onTriggered: {
                     //if (viewport.forcedOrientation!==2)
@@ -560,7 +560,7 @@ Kirigami.Page {
             //Kirigami.Action {
                 //text: i18n("Inverted")
                 //icon.name: Qt.LeftToRight ? "object-rotate-left" : "object-rotate-right"
-                //icon.source: Qt.LeftToRight ? "icons/object-rotate-left.svg" : "icons/object-rotate-right.svg"
+                //icon.source: Qt.LeftToRight ? "../icons/object-rotate-left.svg" : "../icons/object-rotate-right.svg"
                 //enabled: viewport.forcedOrientation!==3
                 //onTriggered: {
                     ////if (viewport.forcedOrientation!==3)
@@ -586,7 +586,7 @@ Kirigami.Page {
                 id: changeBackgroundImageButton
                 text: i18nc("Set background image", "Set image")
                 icon.name: "insert-image"
-                icon.source: "icons/insert-image.svg"
+                icon.source: "../icons/insert-image.svg"
                 onTriggered: {
                     prompterBackground.loadBackgroundImage()
                     contextDrawer.close()
@@ -597,7 +597,7 @@ Kirigami.Page {
                 id: changeBackgroundColorButton
                 text: i18nc("Set background color tint", "Set color")
                 icon.name: "fill-color"
-                icon.source: "icons/fill-color.svg"
+                icon.source: "../icons/fill-color.svg"
                 onTriggered: {
                     prompterBackground.backgroundColorDialog.open()
                     contextDrawer.close()
@@ -609,7 +609,7 @@ Kirigami.Page {
                 text: i18nc("Set background settings back to default", "Clear")
                 enabled: prompterBackground.hasBackground
                 icon.name: "tool_color_eraser"
-                icon.source: "icons/tool_color_eraser.svg"
+                icon.source: "../icons/tool_color_eraser.svg"
                 onTriggered: {
                     prompterBackground.clearBackground()
                     contextDrawer.close()
@@ -648,11 +648,11 @@ Kirigami.Page {
                                     case 4 : return (Qt.LeftToRight ? "object-rotate-left" : "object-rotate-right");
                                 }
                                 icon.source: switch (flipSetting) {
-                                    case 0 : return "icons/window.svg";
-                                    case 1 : return "icons/window-duplicate.svg";
-                                    case 2 : return "icons/object-flip-horizontal.svg";
-                                    case 3 : return "icons/object-flip-vertical.svg";
-                                    case 4 : return (Qt.LeftToRight ? "icons/object-rotate-left.svg" : "icons/object-rotate-right.svg");
+                                    case 0 : return "../icons/window.svg";
+                                    case 1 : return "../icons/window-duplicate.svg";
+                                    case 2 : return "../icons/object-flip-horizontal.svg";
+                                    case 3 : return "../icons/object-flip-vertical.svg";
+                                    case 4 : return (Qt.LeftToRight ? "../icons/object-rotate-left.svg" : "../icons/object-rotate-right.svg");
                                 }
                                 onTriggered: toggleDisplayFlip()
                             }

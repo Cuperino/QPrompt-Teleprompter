@@ -1,3 +1,5 @@
+
+
 /****************************************************************************
  **
  ** QPrompt
@@ -18,7 +20,6 @@
  ** along with this program.  If not, see <http://www.gnu.org/licenses/>.
  **
  ****************************************************************************/
-
 import QtQuick 2.12
 import QtQuick.Shapes 1.12
 import QtQuick.Controls 2.12
@@ -53,10 +54,15 @@ Item {
         All
     }
     readonly property alias readRegionHeight: readRegion.height
-    readonly property double __vw: width/100
-    readonly property bool atTop: !prompter.__flipY && !__readRegionPlacement || prompter.__flipY && __readRegionPlacement===1
-    readonly property bool atBottom: !prompter.__flipY && __readRegionPlacement===1 || prompter.__flipY && !__readRegionPlacement
-    readonly property Scale __flips: Flip{}
+    readonly property double __vw: width / 100
+    readonly property bool atTop: !prompter.__flipY && !__readRegionPlacement
+                                  || prompter.__flipY
+                                  && __readRegionPlacement === 1
+    readonly property bool atBottom: !prompter.__flipY
+                                     && __readRegionPlacement === 1
+                                     || prompter.__flipY
+                                     && !__readRegionPlacement
+    readonly property Scale __flips: Flip {}
     property double __opacity: 0.06
     property real linesInRegion: 3
     property color __color: 'black'
@@ -66,14 +72,12 @@ Item {
     property string positionState: ReadRegionOverlay.PositionStates.Middle
     property string styleState: ReadRegionOverlay.PointerStates.All
     function toggleLinesInRegion(reverse) {
-        const minSize = 2,
-              maxSize = 5;
+        const minSize = 2, maxSize = 5
         if (reverse) {
             linesInRegion -= 0.5
             if (linesInRegion < minSize)
                 linesInRegion = maxSize
-        }
-        else {
+        } else {
             linesInRegion += 0.5
             if (linesInRegion > maxSize)
                 linesInRegion = minSize
@@ -81,13 +85,14 @@ Item {
     }
     transform: __flips
     anchors.fill: parent
-//    anchors {
-//       left: parent.left
-//       right: parent.right
-//       top: parent.top
-//       //bottom: parent.bottom
-//    }
-//    height: prompter.height //parent.implicitFooterHeight
+
+    //    anchors {
+    //       left: parent.left
+    //       right: parent.right
+    //       top: parent.top
+    //       //bottom: parent.bottom
+    //    }
+    //    height: prompter.height //parent.implicitFooterHeight
     ////width: editor.width
     //height: parent.height //parent.implicitFooterHeight
     //function toggle() {
@@ -95,7 +100,6 @@ Item {
     //    var nextIndex = ( states.indexOf(readRegion.state) + 1 ) % states.length
     //    readRegion.state = states[nextIndex]
     //}
-
     Settings {
         category: "readRegion"
         property alias state: overlay.positionState
@@ -121,12 +125,15 @@ Item {
 
         // Compute screen middle in relation to overlay's proportions
         // It's not perfect yet but this is a decent approximation for use in full screen tablets.
-        readonly property double screenMiddle: (screen.height / overlay.height) * (((screen.height / 2) - 40 - root.y) / screen.height)
+        readonly property double screenMiddle: (screen.height / overlay.height)
+                                               * (((screen.height / 2) - 40
+                                                   - root.y) / screen.height)
         property double __customPlacement: 0.5
         property double __placement: __customPlacement
 
         enabled: false
-        height: (linesInRegion * editorToolbar.lineHeightSlider.value/100 * 1.18 + 0.05) * prompter.fontSize
+        height: (linesInRegion * editorToolbar.lineHeightSlider.value / 100
+                 * 1.18 + 0.05) * prompter.fontSize
         y: readRegion.__placement * (overlay.height - readRegion.height)
         anchors.left: parent.left
         anchors.right: parent.right
@@ -137,8 +144,13 @@ Item {
             height: readRegion.height
             readonly property variant source: pointerShadowSource
             readonly property real angle: 180
-            readonly property point offset: Qt.point(pointers.__pointerUnit / 3 * Math.cos(angle), pointers.__pointerUnit / 3 * Math.sin(angle))
-            readonly property size delta: Qt.size(offset.x / width, offset.y / height)
+            readonly property point offset: Qt.point(
+                                                pointers.__pointerUnit / 3 * Math.cos(
+                                                    angle),
+                                                pointers.__pointerUnit / 3 * Math.sin(
+                                                    angle))
+            readonly property size delta: Qt.size(offset.x / width,
+                                                  offset.y / height)
             readonly property real darkness: 0.5
             readonly property variant shadow: ShaderEffectSource {
                 sourceItem: ShaderEffect {
@@ -149,7 +161,8 @@ Item {
                         sourceItem: ShaderEffect {
                             width: readRegion.width
                             height: readRegion.height
-                            readonly property size delta: Qt.size(4.0 / width, 0.0)
+                            readonly property size delta: Qt.size(4.0 / width,
+                                                                  0.0)
                             readonly property variant source: pointerShadowSource
                             fragmentShader: "/shaders/shaders/blur.frag.qsb"
                         }
@@ -167,7 +180,8 @@ Item {
             drag.smoothed: false
             drag.minimumY: 0
             drag.maximumY: overlay.height - this.height
-            cursorShape: (pressed||drag.active) ? Qt.ClosedHandCursor : Qt.OpenHandCursor
+            cursorShape: (pressed
+                          || drag.active) ? Qt.ClosedHandCursor : Qt.OpenHandCursor
             onReleased: {
                 readRegion.__customPlacement = readRegion.y / (overlay.height - readRegion.height)
             }
@@ -177,11 +191,12 @@ Item {
 
             readonly property double __pointerUnit: parent.height / 10
             property double __opacity: 1
-            property color __strokeColor: parent.Material.theme===Material.Light ? "#4d94cf" : "#2b72ad"
+            property color __strokeColor: parent.Material.theme
+                                          === Material.Light ? "#4d94cf" : "#2b72ad"
             property color __fillColor: "#00000000"
             property double __stretchX: 0.3333
 
-            x: prompter.editorXWidth*overlay.width + prompter.editorXOffset*overlay.width
+            x: prompter.editorXWidth * overlay.width + prompter.editorXOffset * overlay.width
             width: readRegion.width - 2 * prompter.editorXWidth * readRegion.width
             height: parent.height
             anchors.verticalCenter: parent.verticalCenter
@@ -209,9 +224,9 @@ Item {
                 // The declaration order of complimentary Animators is important:
                 // The animation which starts at the brightest point must be declared last so that it can be cancelled over previous, darker animations, and the opposite isn't true, resulting in a less jarring experience from quickly toggling between animations.
                 OpacityAnimator {
-                    target: pointerDebugTools;
+                    target: pointerDebugTools
                     from: pointerDebugTools.opacity
-                    to: 0;
+                    to: 0
                     duration: 500
                     running: !pointerSettings.debug
                     onFinished: {
@@ -219,11 +234,11 @@ Item {
                     }
                 }
                 OpacityAnimator {
-                    target: pointerDebugTools;
+                    target: pointerDebugTools
                     running: pointerSettings.debug
                     duration: 500
                     from: pointerDebugTools.opacity
-                    to: 1;
+                    to: 1
                     onFinished: {
                         target.opacity = to
                     }
@@ -234,13 +249,13 @@ Item {
                 id: leftPointer
                 anchors.verticalCenter: parent.verticalCenter
                 anchors.right: parent.left
-                source: pointerSettings.pointerKind === PointerSettings.States.QML ? pointerSettings.qmlLeftPath : "qrc:/pointers/pointer_" + pointerSettings.pointerKind + ".qml"
+                source: pointerSettings.pointerKind === PointerSettings.States.QML ? pointerSettings.qmlLeftPath : "pointers/pointer_" + pointerSettings.pointerKind + ".qml"
             }
             Loader {
                 id: rightPointer
                 anchors.verticalCenter: parent.verticalCenter
                 anchors.left: parent.right
-                source: pointerSettings.pointerKind === PointerSettings.States.QML ? (pointerSettings.sameAsLeftPointer ? pointerSettings.qmlLeftPath : pointerSettings.qmlRightPath) : "qrc:/pointers/pointer_" + pointerSettings.pointerKind + ".qml"
+                source: pointerSettings.pointerKind === PointerSettings.States.QML ? (pointerSettings.sameAsLeftPointer ? pointerSettings.qmlLeftPath : pointerSettings.qmlRightPath) : "pointers/pointer_" + pointerSettings.pointerKind + ".qml"
             }
             Binding {
                 target: leftPointer.item
@@ -366,8 +381,9 @@ Item {
                 target: rightPointer.item
                 property: "transform"
                 value: Scale {
-                    xScale: pointerSettings.pointerKind === PointerSettings.States.Arrow || pointerSettings.sameAsLeftPointer ? -1 : 1
-                    origin.x:  (rightPointer.item.width | rightPointer.item.contentWidth) / 2
+                    xScale: pointerSettings.pointerKind === PointerSettings.States.Arrow
+                            || pointerSettings.sameAsLeftPointer ? -1 : 1
+                    origin.x: (rightPointer.item.width | rightPointer.item.contentWidth) / 2
                 }
             }
 
@@ -512,7 +528,8 @@ Item {
             state: overlay.styleState
             transitions: [
                 Transition {
-                    from: "*"; to: "*"
+                    from: "*"
+                    to: "*"
                     NumberAnimation {
                         targets: [pointers, leftPointer, rightPointer, topBar, bottomBar]
                         properties: "opacity"
@@ -535,7 +552,8 @@ Item {
                 name: ReadRegionOverlay.PositionStates.Middle
                 PropertyChanges {
                     target: readRegion
-                    __placement: ['android', 'ios', 'tvos', 'qnx', 'ipados'].indexOf(Qt.platform.os)===-1? 0.5 : screenMiddle
+                    __placement: ['android', 'ios', 'tvos', 'qnx', 'ipados'].indexOf(
+                        Qt.platform.os) === -1 ? 0.5 : screenMiddle
                 }
             },
             State {
@@ -555,7 +573,8 @@ Item {
                 PropertyChanges {
                     target: pointers
                     // Workaround to ensure pointer color does not remain in its free state setting when changing to other prompter states
-                    __strokeColor: parseInt(prompter.state)===Prompter.States.Editing ? "#2a71ad" : "#4d94cf"
+                    __strokeColor: parseInt(prompter.state)
+                                   === Prompter.States.Editing ? "#2a71ad" : "#4d94cf"
                 }
                 PropertyChanges {
                     target: readRegion
@@ -573,7 +592,8 @@ Item {
         state: overlay.positionState
         transitions: [
             Transition {
-                from: "*"; to: "*"
+                from: "*"
+                to: "*"
                 NumberAnimation {
                     targets: [readRegion, pointers, overlay]
                     properties: "__placement,__opacity"
@@ -596,12 +616,12 @@ Item {
         anchors.bottom: readRegion.top
         anchors.left: parent.left
         anchors.right: parent.right
-        opacity: overlay.__opacity*2/3
+        opacity: overlay.__opacity * 2 / 3
         color: overlay.__color
         Rectangle {
             visible: !overlay.disableOverlayContrast
             anchors.fill: parent
-            opacity: overlay.__opacity*2/3
+            opacity: overlay.__opacity * 2 / 3
             color: "#FFF"
         }
     }
@@ -612,12 +632,12 @@ Item {
         anchors.bottom: parent.bottom
         anchors.left: parent.left
         anchors.right: parent.right
-        opacity: overlay.__opacity*2/3
+        opacity: overlay.__opacity * 2 / 3
         color: overlay.__color
         Rectangle {
             visible: !overlay.disableOverlayContrast
             anchors.fill: parent
-            opacity: overlay.__opacity*2/3
+            opacity: overlay.__opacity * 2 / 3
             color: "#FFF"
         }
     }
@@ -641,7 +661,8 @@ Item {
     transitions: [
         Transition {
             enabled: !root.__autoFullScreen
-            from: "*"; to: "*"
+            from: "*"
+            to: "*"
             NumberAnimation {
                 targets: [overlay]
                 properties: "__opacity"

@@ -179,7 +179,7 @@ Kirigami.ApplicationWindow {
         property int bannerCounter: 0
         // isMenu: true
         title: aboutData.displayName
-        titleIcon: ["android"].indexOf(Qt.platform.os)===-1 ? "qrc:/images/qprompt.png" : "qrc:/images/qprompt-logo-wireframe.png"
+        titleIcon: ["android"].indexOf(Qt.platform.os)===-1 ? "qrc:/qt/qml/com/cuperino/qprompt/images/qprompt.png" : "qrc:/qt/qml/com/cuperino/qprompt/images/qprompt-logo-wireframe.png"
 //        bannerVisible: true
 //        onBannerClicked: {
 //            bannerCounter++;
@@ -197,14 +197,14 @@ Kirigami.ApplicationWindow {
             Kirigami.Action {
                 text: i18nc("Main menu and global menu actions", "&New")
                 //icon.name: "document-new"
-                icon.source: "qrc:/icons/document-new.svg"
+                icon.source: "qrc:/qt/qml/com/cuperino/qprompt/icons/document-new.svg"
                 shortcut: StandardKey.New
                 onTriggered: root.pageStack.currentItem.document.newDocument()
             },
             Kirigami.Action {
                 text: i18nc("Main menu and global menu actions", "&Open")
                 //icon.name: "document-open"
-                icon.source: "qrc:/icons/document-open.svg"
+                icon.source: "qrc:/qt/qml/com/cuperino/qprompt/icons/document-open.svg"
                 shortcut: StandardKey.Open
                 onTriggered: {
                     root.onDiscard = Prompter.CloseActions.Open
@@ -214,7 +214,7 @@ Kirigami.ApplicationWindow {
             Kirigami.Action {
                 text: i18nc("Main menu and global menu actions", "&Open remote file")
                 //icon.name: "document-open-remote"
-                icon.source: "qrc:/icons/document-open-remote.svg"
+                icon.source: "qrc:/qt/qml/com/cuperino/qprompt/icons/document-open-remote.svg"
                 onTriggered: {
                     root.onDiscard = Prompter.CloseActions.Network
                     root.pageStack.currentItem.document.openFromNetwork()
@@ -223,7 +223,7 @@ Kirigami.ApplicationWindow {
             Kirigami.Action {
                 text: i18nc("Main menu and global menu actions", "&Save")
                 //icon.name: "document-save"
-                icon.source: "qrc:/icons/document-save.svg"
+                icon.source: "qrc:/qt/qml/com/cuperino/qprompt/icons/document-save.svg"
                 shortcut: StandardKey.Save
                 onTriggered: {
                     root.onDiscard = Prompter.CloseActions.Ignore
@@ -233,7 +233,7 @@ Kirigami.ApplicationWindow {
             Kirigami.Action {
                 text: i18nc("Main menu and global menu actions", "Save &As")
                 //icon.name: "document-save-as"
-                icon.source: "qrc:/icons/document-save-as.svg"
+                icon.source: "qrc:/qt/qml/com/cuperino/qprompt/icons/document-save-as.svg"
                 shortcut: StandardKey.SaveAs
                 onTriggered: {
                     root.onDiscard = Prompter.CloseActions.Ignore
@@ -244,7 +244,7 @@ Kirigami.ApplicationWindow {
                 visible: false
                 text: i18nc("Main menu actions", "&Recent Files")
                 //icon.name: "document-open-recent"
-                icon.source: "qrc:/icons/document-open-recent.svg"
+                icon.source: "qrc:/qt/qml/com/cuperino/qprompt/icons/document-open-recent.svg"
                 //Kirigami.Action {
                     //text: i18n("View Action 1")
                     //onTriggered: showPassiveNotification(i18n("View Action 1 clicked"))
@@ -253,26 +253,26 @@ Kirigami.ApplicationWindow {
             Kirigami.Action {
                 text: i18nc("Main menu actions. Menu regarding input settings.", "&Controls Settings")
                 //icon.name: "transform-browse" // "hand"
-                icon.source: "qrc:/icons/transform-browse.svg"
+                icon.source: "qrc:/qt/qml/com/cuperino/qprompt/icons/transform-browse.svg"
                 Kirigami.Action {
                     visible: ["android", "ios", "tvos", "ipados", "qnx"].indexOf(Qt.platform.os)===-1
                     text: i18nc("Main menu and global menu actions. Opens dialog to configure keyboard inputs.", "Keyboard Inputs")
                     //icon.name: "key-enter" // "keyboard"
-                    icon.source: "qrc:/icons/key-enter.svg"
+                    icon.source: "qrc:/qt/qml/com/cuperino/qprompt/icons/key-enter.svg"
                     onTriggered: root.pageStack.currentItem.keyConfigurationOverlay.open()
                 }
                 Kirigami.Action {
                     visible: ["android", "ios", "tvos", "ipados", "qnx"].indexOf(Qt.platform.os)===-1
                     text: i18nc("Open 'scroll settings' from main menu and global menu actions", "Scroll throttle settings")
                     //icon.name: "gnumeric-object-scrollbar" // "keyboard"
-                    icon.source: "qrc:/icons/gnumeric-object-scrollbar.svg"
+                    icon.source: "qrc:/qt/qml/com/cuperino/qprompt/icons/gnumeric-object-scrollbar.svg"
                     onTriggered: wheelSettings.open()
                 }
                 Kirigami.Action {
                     text: i18nc("Main menu and global menu actions. Have up arrow behave like down arrow and vice versa while prompting.", "Invert &arrow keys")
                     enabled: !root.__noScroll
                     //icon.name: "circular-arrow-shape"
-                    icon.source: "qrc:/icons/circular-arrow-shape.svg"
+                    icon.source: "qrc:/qt/qml/com/cuperino/qprompt/icons/circular-arrow-shape.svg"
                     checkable: true
                     checked: root.__invertArrowKeys
                     onTriggered: root.__invertArrowKeys = checked
@@ -281,7 +281,7 @@ Kirigami.ApplicationWindow {
                     text: i18nc("Main menu and global menu actions. Invert scroll direction while prompting.", "Invert &scroll direction")
                     enabled: !root.__noScroll
                     //icon.name: "gnumeric-object-scrollbar"
-                    icon.source: "qrc:/icons/gnumeric-object-scrollbar.svg"
+                    icon.source: "qrc:/qt/qml/com/cuperino/qprompt/icons/gnumeric-object-scrollbar.svg"
                     checkable: true
                     checked: root.__invertScrollDirection
                     onTriggered: root.__invertScrollDirection = checked
@@ -290,7 +290,7 @@ Kirigami.ApplicationWindow {
                     text: i18nc("Main menu and global menu actions. Have touchpad and mouse wheel scrolling adjust velocity instead of scrolling like most other apps.", "Use scroll as velocity &dial")
                     enabled: !root.__noScroll
                     //icon.name: "filename-bpm-amarok"
-                    icon.source: "qrc:/icons/filename-bpm-amarok.svg"
+                    icon.source: "qrc:/qt/qml/com/cuperino/qprompt/icons/filename-bpm-amarok.svg"
                     // ToolTip.text: i18n("Use mouse and touchpad scroll as speed dial while prompting")
                     checkable: true
                     checked: root.__scrollAsDial
@@ -299,7 +299,7 @@ Kirigami.ApplicationWindow {
                 Kirigami.Action {
                     text: i18nc("Main menu and global menu actions. Touchpad scrolling and mouse wheel use have no effect while prompting.", "Disable scrolling while prompting")
                     //icon.name: "paint-none"
-                    icon.source: "qrc:/icons/paint-none.svg"
+                    icon.source: "qrc:/qt/qml/com/cuperino/qprompt/icons/paint-none.svg"
                     checkable: true
                     checked: root.__noScroll
                     onTriggered: root.__noScroll = checked
@@ -308,7 +308,7 @@ Kirigami.ApplicationWindow {
             Kirigami.Action {
                 text: i18nc("Main menu actions", "Other &Settings")
                 //icon.name: "configure"
-                icon.source: "qrc:/icons/configure.svg"
+                icon.source: "qrc:/qt/qml/com/cuperino/qprompt/icons/configure.svg"
 //                 Kirigami.Action {
 //                     text: i18n("Telemetry")
 //                     //icon.name: "document-send"
@@ -320,12 +320,12 @@ Kirigami.ApplicationWindow {
                     text: i18nc("Main menu actions. Load Path Settings page.", "External Tools and Applications")
                     visible: ['android', 'ios', 'tvos', 'wasm'].indexOf(Qt.platform.os)===-1
                     icon.name: "akonadiconsole"
-                    // icon.source: "qrc:/icons/akonadiconsole.svg"
+                    // icon.source: "qrc:/qt/qml/com/cuperino/qprompt/icons/akonadiconsole.svg"
                     onTriggered: loadPathsPage();
                 }
                 Kirigami.Action {
                     text: i18nc("Main menu actions. Opens dialog for choosing layout direction.", "Layout direction")
-                    icon.source: Qt.application.layoutDirection===Qt.LeftToRight ? "qrc:/icons/format-text-direction-rtl.svg" : "qrc:/icons/format-text-direction-ltr.svg"
+                    icon.source: Qt.application.layoutDirection===Qt.LeftToRight ? "qrc:/qt/qml/com/cuperino/qprompt/icons/format-text-direction-rtl.svg" : "qrc:/qt/qml/com/cuperino/qprompt/icons/format-text-direction-ltr.svg"
                     onTriggered: layoutDirectionSettings.open()
                 }
                 Kirigami.Action {
@@ -348,7 +348,7 @@ Kirigami.ApplicationWindow {
                         id: hideFormattingToolsWhilePromptingSetting
                         enabled: !hideFormattingToolsAlwaysSetting.checked
                         text: i18nc("Main menu actions. Hides formatting tools while not in edit mode.", "Auto hide formatting tools")
-                        icon.source: "qrc:/icons/list-remove.svg"
+                        icon.source: "qrc:/qt/qml/com/cuperino/qprompt/icons/list-remove.svg"
                         checkable: true
                         checked: root.pageStack.currentItem.footer.hideFormattingToolsWhilePrompting
                         onTriggered: root.pageStack.currentItem.footer.hideFormattingToolsWhilePrompting = checked
@@ -356,7 +356,7 @@ Kirigami.ApplicationWindow {
                     Kirigami.Action {
                         id: hideFormattingToolsAlwaysSetting
                         text: i18nc("Main menu actions", "Always hide formatting tools")
-                        icon.source: "qrc:/icons/newline.svg"
+                        icon.source: "qrc:/qt/qml/com/cuperino/qprompt/icons/newline.svg"
                         checkable: true
                         checked: root.pageStack.currentItem.footer.hideFormattingToolsAlways
                         onTriggered: root.pageStack.currentItem.footer.hideFormattingToolsAlways = checked
@@ -364,7 +364,7 @@ Kirigami.ApplicationWindow {
                     Kirigami.Action {
                         id: enableOverlayContrastSetting
                         text: i18nc("Main menu actions. Disables contrast effect for the reading region overlay.", "Disable overlay contrast")
-                        icon.source: "qrc:/icons/edit-opacity.svg"
+                        icon.source: "qrc:/qt/qml/com/cuperino/qprompt/icons/edit-opacity.svg"
                         checkable: true
                         checked: root.pageStack.currentItem.overlay.disableOverlayContrast
                         onTriggered: root.pageStack.currentItem.overlay.disableOverlayContrast = checked
@@ -374,7 +374,7 @@ Kirigami.ApplicationWindow {
                         property bool dirty: false
                         visible: ["android", "ios", "tvos", "ipados", "qnx"].indexOf(Qt.platform.os)===-1
                         text: i18n("Disable background transparency")
-                        icon.source: "qrc:/icons/contrast.svg"
+                        icon.source: "qrc:/qt/qml/com/cuperino/qprompt/icons/contrast.svg"
                         checkable: true
                         checked: !root.__translucidBackground
                         onTriggered: {
@@ -396,7 +396,7 @@ Kirigami.ApplicationWindow {
                         // Hiding option because only Qt text renderer is used on devices of greater pixel density, due to bug in rendering native fonts while scaling is enabled.
                         visible: ['android', 'ios', 'wasm', 'tvos', 'qnx', 'ipados'].indexOf(Qt.platform.os)===-1 && screen.devicePixelRatio === 1.0
                         // icon.name: "format-font-size-more"
-                        icon.source: "qrc:/icons/format-font-size-more.svg"
+                        icon.source: "qrc:/qt/qml/com/cuperino/qprompt/icons/format-font-size-more.svg"
                         checkable: true
                         checked: root.forceQtTextRenderer
                         onTriggered: root.forceQtTextRenderer = checked
@@ -407,7 +407,7 @@ Kirigami.ApplicationWindow {
                     icon.source: ""
                     Kirigami.Action {
                         text: i18nc("Main menu actions. Enable local file auto reload", "Local file auto reload")
-                        icon.source: "qrc:/icons/document-open.svg"
+                        icon.source: "qrc:/qt/qml/com/cuperino/qprompt/icons/document-open.svg"
                         checkable: true
                         checked: root.pageStack.currentItem.document.autoReload
                         onTriggered: root.pageStack.currentItem.document.autoReload = checked
@@ -416,7 +416,7 @@ Kirigami.ApplicationWindow {
                         id: fakeFullscreenSetting
                         text: i18nc("Main menu actions. Fake fullscreen behavior instead of requesting true fullscreen", "Fake fullscreen behavior")
                         visible: ['linux'].indexOf(Qt.platform.os)!==-1
-                        icon.source: "qrc:/icons/view-fullscreen.svg"
+                        icon.source: "qrc:/qt/qml/com/cuperino/qprompt/icons/view-fullscreen.svg"
                         checkable: true
                         checked: root.__fakeFullscreen
                         onTriggered: root.__fakeFullscreen = checked
@@ -425,7 +425,7 @@ Kirigami.ApplicationWindow {
 //                 Kirigami.Action {
 //                     text: i18nc("Main menu actions", "Restore factory defaults")
 //                     //icon.name: "edit-clear-history"
-//                     icon.source: "qrc:/icons/edit-clear-history.svg"
+//                     icon.source: "qrc:/qt/qml/com/cuperino/qprompt/icons/edit-clear-history.svg"
 //                     onTriggered: {
 //                         showPassiveNotification(i18n("Feature not yet implemented"))
 //                     }
@@ -434,14 +434,14 @@ Kirigami.ApplicationWindow {
             Kirigami.Action {
                 text: i18nc("Main menu actions. Load about page.", "Abou&t %1", aboutData.displayName)
                 //icon.name: "help-about"
-                icon.source: "qrc:/icons/help-about.svg"
+                icon.source: "qrc:/qt/qml/com/cuperino/qprompt/icons/help-about.svg"
                 onTriggered: loadAboutPage()
             },
             Kirigami.Action {
                 visible: !Kirigami.Settings.isMobile
                 text: i18nc("Main menu and global menu actions", "&Quit")
                 //icon.name: "application-exit"
-                icon.source: "qrc:/icons/application-exit.svg"
+                icon.source: "qrc:/qt/qml/com/cuperino/qprompt/icons/application-exit.svg"
                 shortcut: StandardKey.Quit
                 onTriggered: close()
             },
@@ -991,67 +991,67 @@ Kirigami.ApplicationWindow {
         TelemetryPage {}
     }
 
-//    // Dialogues
-//    Labs.MessageDialog {
-//        id: restartDialog
-//        title: i18nc("Restart application_name", "Restart %1", aboutData.displayName)
-//        text: i18nc("application needs to restart for this change to fully take effect.\n\nWould you like to restart application now? All changes to document will be lost.", "%1 needs to restart for this change to fully take effect.\n\nWould you like to restart %1 now? All changes to document will be lost.", aboutData.displayName)
-//        buttons: Labs.MessageDialog.Yes | Labs.MessageDialog.No
-//        modality: Qt.WindowModal
-//        onYesClicked: {
-//            qmlutil.restartApplication()
-//        }
-//    }
+   // Dialogues
+   Labs.MessageDialog {
+       id: restartDialog
+       title: i18nc("Restart application_name", "Restart %1", aboutData.displayName)
+       text: i18nc("application needs to restart for this change to fully take effect.\n\nWould you like to restart application now? All changes to document will be lost.", "%1 needs to restart for this change to fully take effect.\n\nWould you like to restart %1 now? All changes to document will be lost.", aboutData.displayName)
+       buttons: Labs.MessageDialog.Yes | Labs.MessageDialog.No
+       modality: Qt.WindowModal
+       onYesClicked: {
+           qmlutil.restartApplication()
+       }
+   }
 
-//    Labs.MessageDialog {
-//        id : closeDialog
-//        title: i18nc("Title for save before closing dialog", "Save Document")
-//        text: i18n("Save changes to document before closing?")
-//        //icon: StandardIcon.Question
-//        buttons: (Labs.MessageDialog.Save | Labs.MessageDialog.Discard | Labs.MessageDialog.Cancel)
-//        //standardButtons: StandardButton.Save | StandardButton.Discard | StandardButton.Cancel
-//        modality: Qt.WindowModal
-//        onDiscardClicked: {
-//        // onDiscard: {
-//            //switch (parseInt(root.onDiscard)) {
-//                //case Prompter.CloseActions.LoadGuide: root.pageStack.currentItem.document.loadGuide(); break;
-//                //case Prompter.CloseActions.LoadNew: root.pageStack.currentItem.document.newDocument(); break;
-//                //case Prompter.CloseActions.Quit: Qt.quit();
-//                ////case Prompter.CloseActions.Quit:
-//                ////default: Qt.quit();
-//            //}
+   Labs.MessageDialog {
+       id : closeDialog
+       title: i18nc("Title for save before closing dialog", "Save Document")
+       text: i18n("Save changes to document before closing?")
+       //icon: StandardIcon.Question
+       buttons: (Labs.MessageDialog.Save | Labs.MessageDialog.Discard | Labs.MessageDialog.Cancel)
+       //standardButtons: StandardButton.Save | StandardButton.Discard | StandardButton.Cancel
+       modality: Qt.WindowModal
+       onDiscardClicked: {
+       // onDiscard: {
+           //switch (parseInt(root.onDiscard)) {
+               //case Prompter.CloseActions.LoadGuide: root.pageStack.currentItem.document.loadGuide(); break;
+               //case Prompter.CloseActions.LoadNew: root.pageStack.currentItem.document.newDocument(); break;
+               //case Prompter.CloseActions.Quit: Qt.quit();
+               ////case Prompter.CloseActions.Quit:
+               ////default: Qt.quit();
+           //}
 
-//            //document.saveAs(saveDialog.file)
-//            //root.pageStack.currentItem.document.isNewFile = true
-//            switch (parseInt(root.onDiscard)) {
-//                case Prompter.CloseActions.LoadGuide:
-//                    root.pageStack.currentItem.document.modified = false
-//                    root.pageStack.currentItem.document.loadGuide();
-//                    break;
-//                case Prompter.CloseActions.LoadNew:
-//                    root.pageStack.currentItem.document.modified = false
-//                    root.pageStack.currentItem.document.newDocument();
-//                    break;
-//                case Prompter.CloseActions.Open:
-//                    root.pageStack.currentItem.openDialog.open();
-//                    break;
-//                case Prompter.CloseActions.Network:
-//                    root.pageStack.currentItem.networkDialog.open();
-//                    break;
-//                case Prompter.CloseActions.Quit:
-//                    Qt.quit();
-//                    break;
-//                //case Prompter.CloseActions.Ignore:
-//                default:
-//                    break;
-//            }
-//        }
-//        //onSaveClicked: root.pageStack.currentItem.document.saveDialog(true)
-//        onAccepted:
-//        {
-//            root.pageStack.currentItem.document.saveDialog(parseInt(root.onDiscard)===Prompter.CloseActions.Quit)
-//        }
-//    }
+           //document.saveAs(saveDialog.file)
+           //root.pageStack.currentItem.document.isNewFile = true
+           switch (parseInt(root.onDiscard)) {
+               case Prompter.CloseActions.LoadGuide:
+                   root.pageStack.currentItem.document.modified = false
+                   root.pageStack.currentItem.document.loadGuide();
+                   break;
+               case Prompter.CloseActions.LoadNew:
+                   root.pageStack.currentItem.document.modified = false
+                   root.pageStack.currentItem.document.newDocument();
+                   break;
+               case Prompter.CloseActions.Open:
+                   root.pageStack.currentItem.openDialog.open();
+                   break;
+               case Prompter.CloseActions.Network:
+                   root.pageStack.currentItem.networkDialog.open();
+                   break;
+               case Prompter.CloseActions.Quit:
+                   Qt.quit();
+                   break;
+               //case Prompter.CloseActions.Ignore:
+               default:
+                   break;
+           }
+       }
+       //onSaveClicked: root.pageStack.currentItem.document.saveDialog(true)
+       onAccepted:
+       {
+           root.pageStack.currentItem.document.saveDialog(parseInt(root.onDiscard)===Prompter.CloseActions.Quit)
+       }
+   }
     QmlUtil {
         id: qmlutil
     }

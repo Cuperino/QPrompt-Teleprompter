@@ -164,7 +164,7 @@ Kirigami.ApplicationWindow {
         property int bannerCounter: 0
         // isMenu: true
         title: aboutData.displayName
-        titleIcon: ["android"].indexOf(Qt.platform.os)===-1 ? "qrc:/images/qprompt.png" : "qrc:/images/qprompt-logo-wireframe.png"
+        titleIcon: ["android"].indexOf(Qt.platform.os)===-1 ? "qrc:/qt/qml/com/cuperino/qprompt/images/qprompt.png" : "qrc:/qt/qml/com/cuperino/qprompt/images/qprompt-logo-wireframe.png"
 //        bannerVisible: true
 //        onBannerClicked: {
 //            bannerCounter++;
@@ -197,7 +197,7 @@ Kirigami.ApplicationWindow {
             Kirigami.Action {
                 text: i18nc("Main menu and global menu actions", "&Open remote file")
                 //icon.name: "document-open-remote"
-                icon.source: "qrc:/icons/document-open-remote.svg"
+                icon.source: "qrc:/qt/qml/com/cuperino/qprompt/icons/document-open-remote.svg"
                 onTriggered: {
                     root.onDiscard = Prompter.CloseActions.Network
                     root.pageStack.currentItem.document.openFromNetwork()
@@ -292,7 +292,7 @@ Kirigami.ApplicationWindow {
 //                 }
                 Kirigami.Action {
                     text: i18nc("Main menu actions. Opens dialog for choosing layout direction.", "Layout direction")
-                    icon.source: Qt.application.layoutDirection===Qt.LeftToRight ? "qrc:/icons/format-text-direction-rtl.svg" : "qrc:/icons/format-text-direction-ltr.svg"
+                    icon.source: Qt.application.layoutDirection===Qt.LeftToRight ? "qrc:/qt/qml/com/cuperino/qprompt/icons/format-text-direction-rtl.svg" : "qrc:/qt/qml/com/cuperino/qprompt/icons/format-text-direction-ltr.svg"
                     onTriggered: layoutDirectionSettings.open()
                 }
                 Kirigami.Action {
@@ -315,7 +315,7 @@ Kirigami.ApplicationWindow {
                         id: hideFormattingToolsWhilePromptingSetting
                         enabled: !hideFormattingToolsAlwaysSetting.checked
                         text: i18nc("Main menu actions. Hides formatting tools while not in edit mode.", "Auto hide formatting tools")
-                        icon.source: "qrc:/icons/list-remove.svg"
+                        icon.source: "qrc:/qt/qml/com/cuperino/qprompt/icons/list-remove.svg"
                         checkable: true
                         checked: root.pageStack.currentItem.footer.hideFormattingToolsWhilePrompting
                         onTriggered: root.pageStack.currentItem.footer.hideFormattingToolsWhilePrompting = checked
@@ -323,7 +323,7 @@ Kirigami.ApplicationWindow {
                     Kirigami.Action {
                         id: hideFormattingToolsAlwaysSetting
                         text: i18nc("Main menu actions", "Always hide formatting tools")
-                        icon.source: "qrc:/icons/newline.svg"
+                        icon.source: "qrc:/qt/qml/com/cuperino/qprompt/icons/newline.svg"
                         checkable: true
                         checked: root.pageStack.currentItem.footer.hideFormattingToolsAlways
                         onTriggered: root.pageStack.currentItem.footer.hideFormattingToolsAlways = checked
@@ -332,7 +332,7 @@ Kirigami.ApplicationWindow {
                         id: enableOverlayContrastSetting
                         text: i18nc("Main menu actions. Disables contrast effect for the reading region overlay.", "Disable overlay contrast")
                         //icon.name: "edit-opacity"
-                        icon.source: "qrc:/icons/edit-opacity.svg"
+                        icon.source: "qrc:/qt/qml/com/cuperino/qprompt/icons/edit-opacity.svg"
                         checkable: true
                         checked: root.pageStack.currentItem.overlay.disableOverlayContrast
                         onTriggered: root.pageStack.currentItem.overlay.disableOverlayContrast = checked
@@ -342,7 +342,7 @@ Kirigami.ApplicationWindow {
                     text: i18nc("Main menu actions. Enters Other tweaks submenu.", "Other tweaks")
                     Kirigami.Action {
                         text: i18nc("Main menu actions. Enable local file auto reload", "Local file auto reload")
-                        icon.source: "qrc:/icons/document-open.svg"
+                        icon.source: "qrc:/qt/qml/com/cuperino/qprompt/icons/document-open.svg"
                         checkable: true
                         checked: root.pageStack.currentItem.document.autoReload
                         onTriggered: root.pageStack.currentItem.document.autoReload = checked

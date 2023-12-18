@@ -90,7 +90,7 @@ Kirigami.OverlayDrawer {
             Kirigami.Action {
                 visible: !(Qt.platform.os==="android" || Qt.platform.os==="ios")
                 icon.name: "document-properties"
-                icon.source: "qrc:/icons/document-properties.svg"
+                icon.source: ":../icons/document-properties.svg"
                 onTriggered: {
                     print("Edit clicked", model.position)
                     // Select marker in document
@@ -125,7 +125,7 @@ Kirigami.OverlayDrawer {
             // Kirigami.ListItem {
             // Kirigami.BasicListItem {
                 //icon: Qt.application.layoutDirection===Qt.LeftToRight ? "view-left-close" : "view-right-close"
-                icon.source: Qt.application.layoutDirection===Qt.LeftToRight ? "qrc:/icons/view-left-close.svg" : "qrc:/icons/view-right-close.svg"
+                icon.source: Qt.application.layoutDirection===Qt.LeftToRight ? "../icons/view-left-close.svg" : "../icons/view-right-close.svg"
                 text: i18nc("Close sidebar listing user defined markers", "Close Marker List")
                 onClicked: {
                     markersDrawer.toggle();
@@ -135,7 +135,7 @@ Kirigami.OverlayDrawer {
             Button {
                 id: pinButton
                 // icon.name: checked ? "window-pin" : "window-unpin"
-                icon.source: checked ? "qrc:/icons/window-pin.svg" : "qrc:/icons/window-unpin.svg"
+                icon.source: checked ? "../icons/window-pin.svg" : "../icons/window-unpin.svg"
                 checkable: true
                 checked: false
                 flat: true
