@@ -196,7 +196,7 @@ Item {
         renderType: font.pixelSize < 121 || screen.devicePixelRatio !== 1.0 || root.forceQtTextRenderer ? Text.QtRendering : Text.NativeRendering
         FontLoader {
             id: numbersFont
-            source: "fonts/libertinus-sans.otf"
+            source: "../fonts/LibertinusSans-Regular.otf"
         }
     }
     Shape {
