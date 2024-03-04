@@ -106,7 +106,7 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 
 find_package(ECM ${ECM_MIN_VERSION} REQUIRED NO_MODULE)
 set(CMAKE_MODULE_PATH ${ECM_MODULE_PATH})
-find_package(QT NAMES Qt6 Qt6 REQUIRED COMPONENTS Core)
+find_package(QT NAMES Qt5 Qt6)
 
 
 find_package(Git QUIET)
@@ -125,7 +125,7 @@ endif()
 
 
 if(ANDROID)
-    find_package(Qt${QT_VERSION_MAJOR} ${QT6_MIN_VERSION} REQUIRED NO_MODULE COMPONENTS
+    find_package(Qt${QT_VERSION_MAJOR} ${QT_MIN_VERSION} REQUIRED NO_MODULE COMPONENTS
         Core
         Quick
         Svg
@@ -138,12 +138,12 @@ if(ANDROID)
         ShaderTools
     )
     find_package(KF${QT_VERSION_MAJOR} ${KF_MIN_VERSION} REQUIRED COMPONENTS
-        Kirigami
+        Kirigami2
         I18n
         CoreAddons
     )
 elseif(WASM OR IOS)
-    find_package(Qt${QT_VERSION_MAJOR} ${QT6_MIN_VERSION} REQUIRED NO_MODULE COMPONENTS
+    find_package(Qt${QT_VERSION_MAJOR} ${QT_MIN_VERSION} REQUIRED NO_MODULE COMPONENTS
         Core
         Quick
         Svg
@@ -155,12 +155,12 @@ elseif(WASM OR IOS)
         ShaderTools
     )
     find_package(KF${QT_VERSION_MAJOR} ${KF_MIN_VERSION} REQUIRED COMPONENTS
-        Kirigami
+        Kirigami2
         I18n
         CoreAddons
     )
 elseif(HAIKU)
-    find_package(Qt${QT_VERSION_MAJOR} ${QT6_MIN_VERSION} REQUIRED NO_MODULE COMPONENTS
+    find_package(Qt${QT_VERSION_MAJOR} ${QT_MIN_VERSION} REQUIRED NO_MODULE COMPONENTS
         Core
         Quick
         Svg
@@ -171,12 +171,12 @@ elseif(HAIKU)
         ShaderTools
     )
     # By requiring newer Qt version to use QML compiler, Snap can be built without it.
-    find_package(Qt${QT_VERSION_MAJOR} ${QT6_MIN_VERSION} NO_MODULE COMPONENTS
+    find_package(Qt${QT_VERSION_MAJOR} ${QT_MIN_VERSION} NO_MODULE COMPONENTS
         QmlImportScanner  # Used to get static QML. Gets ignored if not a static build
         QuickCompiler
     )
     find_package(KF${QT_VERSION_MAJOR} ${KF_MIN_VERSION} REQUIRED COMPONENTS
-        Kirigami
+        Kirigami2
         I18n
         CoreAddons
 #        IconThemes
@@ -187,7 +187,7 @@ elseif(HAIKU)
         TYPE OPTIONAL
     )
 elseif(WIN32 OR APPLE)
-    find_package(Qt${QT_VERSION_MAJOR} ${QT6_MIN_VERSION} REQUIRED NO_MODULE COMPONENTS
+    find_package(Qt${QT_VERSION_MAJOR} ${QT_MIN_VERSION} REQUIRED NO_MODULE COMPONENTS
         Core
         Quick
         Svg
@@ -200,7 +200,7 @@ elseif(WIN32 OR APPLE)
         ShaderTools
     )
     find_package(KF${QT_VERSION_MAJOR} ${KF_MIN_VERSION} REQUIRED COMPONENTS
-        Kirigami
+        Kirigami2
         I18n
         CoreAddons
     )
@@ -221,41 +221,40 @@ elseif(WIN32 OR APPLE)
     endif()
 else()
     if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
-    find_package(Qt${QT_VERSION_MAJOR} ${QT6_MIN_VERSION} REQUIRED NO_MODULE COMPONENTS
-        Core
-        Quick
-        Svg
-        Gui
-        QuickControls2
-        Network
-        Widgets
-        ShaderTools
-    )
-    find_package(KF${QT_VERSION_MAJOR} ${KF_MIN_VERSION} REQUIRED COMPONENTS
-        Kirigami
-        I18n
-        CoreAddons
+        find_package(Qt${QT_VERSION_MAJOR} ${QT_MIN_VERSION} REQUIRED NO_MODULE COMPONENTS
+            Core
+            Quick
+            Svg
+            Gui
+            QuickControls2
+            Network
+            Widgets
+            ShaderTools
+        )
+        find_package(KF${QT_VERSION_MAJOR} ${KF_MIN_VERSION} REQUIRED COMPONENTS
+            Kirigami2
+            I18n
+            CoreAddons
     )
     else()
-    find_package(Qt${QT_VERSION_MAJOR} ${QT6_MIN_VERSION} REQUIRED NO_MODULE COMPONENTS
-        Core
-        Quick
-        Svg
-        Gui
-        QuickControls2
-        Network
-        Widgets
-        ShaderTools
-        X11Extras
-    )
-    find_package(KF${QT_VERSION_MAJOR} ${KF_MIN_VERSION} REQUIRED COMPONENTS
-        Kirigami
-        I18n
-        CoreAddons
-        IconThemes
-    )
+        find_package(Qt${QT_VERSION_MAJOR} ${QT_MIN_VERSION} REQUIRED NO_MODULE COMPONENTS
+            Core
+            Quick
+            Svg
+            Gui
+            QuickControls2
+            Network
+            Widgets
+            X11Extras
+        )
+        find_package(KF${QT_VERSION_MAJOR} ${KF_MIN_VERSION} REQUIRED COMPONENTS
+            Kirigami2
+            I18n
+            CoreAddons
+            # IconThemes
+        )
     endif()
-    #find_package(Qt${QT_VERSION_MAJOR} ${QT6_MIN_VERSION} NO_MODULE COMPONENTS
+    #find_package(Qt${QT_VERSION_MAJOR} ${QT_MIN_VERSION} NO_MODULE COMPONENTS
         #QmlImportScanner  # Used to get static QML. Gets ignored if not a static build
         #QuickCompiler
     #)
@@ -341,8 +340,8 @@ if (WIN32 OR UNIX) # AND NOT ANDROID
 endif()
 
 if (UNIX)
-set(MAN_INSTALL_DIR "/usr/share/man/")
-install(FILES /docs/manpage/qprompt.1 DESTINATION ${MAN_INSTALL_DIR}/man1 )
+set(MAN_INSTALL_DIR "usr/share/man/")
+install(FILES docs/manpage/qprompt.1 DESTINATION ${MAN_INSTALL_DIR}/man1 )
 endif()
 
 # CPACK: General Settings

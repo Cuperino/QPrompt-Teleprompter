@@ -90,7 +90,12 @@ public:
     }
     Q_INVOKABLE QStringList fontList()
     {
+#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
         return QFontDatabase::families();
+#else
+        QFontDatabase database;
+        return database.families();
+#endif
     }
 };
 #endif // QMLUTIL_H

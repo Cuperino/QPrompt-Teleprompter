@@ -277,7 +277,7 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
             Qt${QT_VERSION_MAJOR}::Network
             Qt${QT_VERSION_MAJOR}::AndroidExtras
             KF${QT_VERSION_MAJOR}::I18n
-            KF${QT_VERSION_MAJOR}::Kirigami
+            KF${QT_VERSION_MAJOR}::Kirigami2
             KF${QT_VERSION_MAJOR}::CoreAddons
         )
     elseif (WASM OR IOS)
@@ -290,7 +290,7 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
             Qt${QT_VERSION_MAJOR}::QuickControls2
             Qt${QT_VERSION_MAJOR}::Network
             KF${QT_VERSION_MAJOR}::I18n
-            KF${QT_VERSION_MAJOR}::Kirigami
+            KF${QT_VERSION_MAJOR}::Kirigami2
             KF${QT_VERSION_MAJOR}::CoreAddons
         )
     elseif(HAIKU)
@@ -304,7 +304,7 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
             Qt${QT_VERSION_MAJOR}::Network
             Qt${QT_VERSION_MAJOR}::Widgets
             KF${QT_VERSION_MAJOR}::I18n
-            KF${QT_VERSION_MAJOR}::Kirigami
+            KF${QT_VERSION_MAJOR}::Kirigami2
             KF${QT_VERSION_MAJOR}::CoreAddons
     #        KF${QT_VERSION_MAJOR}::IconThemes
         )
@@ -319,7 +319,7 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
             Qt${QT_VERSION_MAJOR}::Network
             Qt${QT_VERSION_MAJOR}::Widgets
             KF${QT_VERSION_MAJOR}::I18n
-            KF${QT_VERSION_MAJOR}::Kirigami
+            KF${QT_VERSION_MAJOR}::Kirigami2
             KF${QT_VERSION_MAJOR}::CoreAddons
         )
     else()
@@ -340,7 +340,7 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
             Qt${QT_VERSION_MAJOR}::Widgets
             # Qt${QT_VERSION_MAJOR}::WidgetsPrivate
             KF${QT_VERSION_MAJOR}::I18n
-            KF${QT_VERSION_MAJOR}::Kirigami
+            KF${QT_VERSION_MAJOR}::Kirigami2
             KF${QT_VERSION_MAJOR}::CoreAddons
         )
     endif()
@@ -368,19 +368,19 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
 else()
     set(qprompt_SRCS
         main.cpp
-        prompter/markersmodel.cpp
-        prompter/documenthandler.cpp
-        qt/systemfontchooserdialog.cpp
+        markersmodel.cpp
+        documenthandler.cpp
+        systemfontchooserdialog.cpp
         #${qprompt_QM_LOADER}
     )
 
     set(qprompt_HDRS
-        prompter/marker.hpp
-        prompter/markersmodel.h
-        prompter/documenthandler.h
-        qt/systemfontchooserdialog.h
-        qt/abstractunits.hpp
-        qt/qmlutil.hpp
+        marker.hpp
+        markersmodel.h
+        documenthandler.h
+        systemfontchooserdialog.h
+        abstractunits.hpp
+        qmlutil.hpp
     )
 
     set(qprompt_ASSETS
@@ -505,7 +505,7 @@ else()
             Qt${QT_VERSION_MAJOR}::Network
             Qt${QT_VERSION_MAJOR}::AndroidExtras
             KF${QT_VERSION_MAJOR}::I18n
-            KF${QT_VERSION_MAJOR}::Kirigami
+            KF${QT_VERSION_MAJOR}::Kirigami2
             KF${QT_VERSION_MAJOR}::CoreAddons
         )
     elseif (WASM OR IOS)
@@ -518,7 +518,7 @@ else()
             Qt${QT_VERSION_MAJOR}::QuickControls2
             Qt${QT_VERSION_MAJOR}::Network
             KF${QT_VERSION_MAJOR}::I18n
-            KF${QT_VERSION_MAJOR}::Kirigami
+            KF${QT_VERSION_MAJOR}::Kirigami2
             KF${QT_VERSION_MAJOR}::CoreAddons
         )
     elseif(HAIKU)
@@ -532,7 +532,7 @@ else()
             Qt${QT_VERSION_MAJOR}::Network
             Qt${QT_VERSION_MAJOR}::Widgets
             KF${QT_VERSION_MAJOR}::I18n
-            KF${QT_VERSION_MAJOR}::Kirigami
+            KF${QT_VERSION_MAJOR}::Kirigami2
             KF${QT_VERSION_MAJOR}::CoreAddons
             KF${QT_VERSION_MAJOR}::IconThemes
         )
@@ -547,7 +547,7 @@ else()
             Qt${QT_VERSION_MAJOR}::Network
             Qt${QT_VERSION_MAJOR}::Widgets
             KF${QT_VERSION_MAJOR}::I18n
-            KF${QT_VERSION_MAJOR}::Kirigami
+            KF${QT_VERSION_MAJOR}::Kirigami2
             KF${QT_VERSION_MAJOR}::CoreAddons
         )
         if (KF${QT_VERSION_MAJOR}Crash_FOUND)
@@ -581,7 +581,7 @@ else()
             Qt${QT_VERSION_MAJOR}::Widgets
             Qt${QT_VERSION_MAJOR}::X11Extras
             KF${QT_VERSION_MAJOR}::I18n
-            KF${QT_VERSION_MAJOR}::Kirigami
+            KF${QT_VERSION_MAJOR}::Kirigami2
             KF${QT_VERSION_MAJOR}::CoreAddons
         )
         if (KF${QT_VERSION_MAJOR}Crash_FOUND)

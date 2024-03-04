@@ -36,28 +36,32 @@ CMAKE_PREFIX_PATH="~/Qt/6.7.0/gcc_64/"
 CMAKE_INSTALL_PREFIX="./install"
 
 echo "Build directory is ./build"
-mkdir -p install
+rm -dRf ./build ./install
+mkdir -p build install
 
 echo "Downloading git submodules"
 git submodule update --init --recursive
 
-#echo "Extra CMake Modules"
-#cmake -DCMAKE_BUILD_TYPE=$CMAKE_BUILD_TYPE -DCMAKE_PREFIX_PATH=$CMAKE_PREFIX_PATH -DCMAKE_INSTALL_PREFIX=$CMAKE_INSTALL_PREFIX -B ./3rdparty/extra-cmake-modules/build ./3rdparty/extra-cmake-modules/
-#cmake --build ./3rdparty/extra-cmake-modules/build
-#cmake --install ./3rdparty/extra-cmake-modules/build
+echo "Extra CMake Modules"
+rm -dRf ./3rdparty/extra-cmake-modules/build
+cmake -DCMAKE_BUILD_TYPE=$CMAKE_BUILD_TYPE -DCMAKE_PREFIX_PATH=$CMAKE_PREFIX_PATH -DCMAKE_INSTALL_PREFIX=$CMAKE_INSTALL_PREFIX -B ./3rdparty/extra-cmake-modules/build ./3rdparty/extra-cmake-modules/
+cmake --build ./3rdparty/extra-cmake-modules/build
+cmake --install ./3rdparty/extra-cmake-modules/build
 
-## KDE Frameworks
-#for dependency in ./3rdparty/k*; do
-#    echo $dependency
-#    cmake -DCMAKE_BUILD_TYPE=$CMAKE_BUILD_TYPE -DCMAKE_PREFIX_PATH=$CMAKE_PREFIX_PATH -DCMAKE_INSTALL_PREFIX=$CMAKE_INSTALL_PREFIX -B ./$dependency/build ./$dependency/
-#    cmake --build ./$dependency/build
-#    cmake --install ./$dependency/build
-#done
+# KDE Frameworks
+for dependency in ./3rdparty/k*; do
+    echo $dependency
+    rm -dRf ./$dependency/build
+    cmake -DCMAKE_BUILD_TYPE=$CMAKE_BUILD_TYPE -DCMAKE_PREFIX_PATH=$CMAKE_PREFIX_PATH -DCMAKE_INSTALL_PREFIX=$CMAKE_INSTALL_PREFIX -B ./$dependency/build ./$dependency/
+    cmake --build ./$dependency/build
+    cmake --install ./$dependency/build
+done
 
-#echo "QHotkey"
-#cmake -DCMAKE_BUILD_TYPE=$CMAKE_BUILD_TYPE -DCMAKE_PREFIX_PATH=$CMAKE_PREFIX_PATH -DCMAKE_INSTALL_PREFIX=$CMAKE_INSTALL_PREFIX -B ./3rdparty/QHotkey/build ./3rdparty/QHotkey/
-#cmake --build ./3rdparty/QHotkey/build
-#cmake --install ./3rdparty/QHotkey/build
+echo "QHotkey"
+rm -dRf ./3rdparty/QHotkey/build
+cmake -DCMAKE_BUILD_TYPE=$CMAKE_BUILD_TYPE -DCMAKE_PREFIX_PATH=$CMAKE_PREFIX_PATH -DCMAKE_INSTALL_PREFIX=$CMAKE_INSTALL_PREFIX -B ./3rdparty/QHotkey/build ./3rdparty/QHotkey/
+cmake --build ./3rdparty/QHotkey/build
+cmake --install ./3rdparty/QHotkey/build
 
 echo "QPrompt"
 cmake -DCMAKE_BUILD_TYPE=$CMAKE_BUILD_TYPE -DCMAKE_PREFIX_PATH=$CMAKE_PREFIX_PATH -DCMAKE_INSTALL_PREFIX=$CMAKE_INSTALL_PREFIX -B ./build .

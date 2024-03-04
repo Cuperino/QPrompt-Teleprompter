@@ -1,20 +1,20 @@
 <RCC>
-    <qresource prefix="/">
+    <qresource prefix="/qt/qml/com/cuperino/qprompt/">
         <!-- Kirigami UI QML -->
-        <file alias="main.qml">kirigami_ui/main.qml</file>
-        <file alias="+android/main.qml">kirigami_ui/+android/main.qml</file>
-        <file alias="+windows/main.qml">kirigami_ui/+windows/main.qml</file>
-        <file alias="AboutPage.qml">kirigami_ui/AboutPage.qml</file>
-        <file alias="PathsPage.qml">kirigami_ui/PathsPage.qml</file>
-        <file alias="PrompterPage.qml">kirigami_ui/PrompterPage.qml</file>
-        <file alias="TelemetryPage.qml">kirigami_ui/TelemetryPage.qml</file>
-        <file alias="RemotePage.qml">kirigami_ui/RemotePage.qml</file>
-        <file alias="EditorToolbar.qml">kirigami_ui/EditorToolbar.qml</file>
-        <file alias="MarkersDrawer.qml">kirigami_ui/MarkersDrawer.qml</file>
-        <file alias="InputsOverlay.qml">kirigami_ui/InputsOverlay.qml</file>
-        <file alias="KeyInputButton.qml">kirigami_ui/KeyInputButton.qml</file>
-        <file alias="WheelSettingsOverlay.qml">kirigami_ui/WheelSettingsOverlay.qml</file>
-        <file alias="LayoutDirectionSettings.qml">kirigami_ui/LayoutDirectionSettingsOverlay.qml</file>
+        <file>kirigami_ui/main.qml</file>
+        <file>kirigami_ui/+android/main.qml</file>
+        <file>kirigami_ui/+windows/main.qml</file>
+        <file>kirigami_ui/AboutPage.qml</file>
+        <file>kirigami_ui/PathsPage.qml</file>
+        <file>kirigami_ui/PrompterPage.qml</file>
+        <file>kirigami_ui/TelemetryPage.qml</file>
+        <file>kirigami_ui/RemotePage.qml</file>
+        <file>kirigami_ui/EditorToolbar.qml</file>
+        <file>kirigami_ui/MarkersDrawer.qml</file>
+        <file>kirigami_ui/InputsOverlay.qml</file>
+        <file>kirigami_ui/KeyInputButton.qml</file>
+        <file>kirigami_ui/WheelSettingsOverlay.qml</file>
+        <file>kirigami_ui/LayoutDirectionSettingsOverlay.qml</file>
         <!-- Prompter QML -->
         <file alias="PrompterView.qml">prompter/PrompterView.qml</file>
         <file alias="Prompter.qml">prompter/Prompter.qml</file>
