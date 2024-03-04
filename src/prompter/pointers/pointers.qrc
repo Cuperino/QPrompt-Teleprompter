@@ -1,5 +1,5 @@
 <RCC>
-    <qresource prefix="/pointers/">
+    <qresource prefix="/qt/qml/com/cuperino/qprompt/pointers/">
         <file>pointer_0.qml</file>
         <file>pointer_1.qml</file>
         <file>pointer_2.qml</file>

@@ -269,7 +269,11 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
     // engine.addImportPath(QStringLiteral("/opt/homebrew/lib/qml"));
     engine.addImportPath(QStringLiteral("/opt/homebrew/Cellar/kf5-kirigami2/5.95.0/lib/qt6/qml"));
 #endif
+#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
     engine.load(QUrl(u"qrc:/qt/qml/com/cuperino/qprompt/kirigami_ui/main.qml"_qs));
+#else
+    engine.load(QUrl(QStringLiteral("qrc:/qt/qml/com/cuperino/qprompt/kirigami_ui/main.qml")));
+#endif
 
     if (engine.rootObjects().isEmpty()) {
         // return -1;
