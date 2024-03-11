@@ -8,63 +8,65 @@ msgstr ""
 "Project-Id-Version: qprompt f7ae25f\n"
 "Report-Msgid-Bugs-To: https://github.com/Cuperino/QPrompt/issues/new/choose\n"
 "POT-Creation-Date: 2023-11-03 19:42-0400\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Automatically generated\n"
-"Language-Team: none\n"
+"PO-Revision-Date: 2024-03-12 00:49+0000\n"
+"Last-Translator: Beytullah Akyüz <beytullahakyuz@hotmail.com.tr>\n"
+"Language-Team: Turkish <http://l10n.cuperino.com/projects/qprompt/"
+"qprompt-app/tr/>\n"
 "Language: tr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.11.2\n"
 
 #: kirigami_ui/+android/main.qml:185 kirigami_ui/main.qml:200
 #: kirigami_ui/main.qml:565 kirigami_ui/+windows/main.qml:200
 msgctxt "Main menu and global menu actions"
 msgid "&New"
-msgstr ""
+msgstr "&Yeni"
 
 #: kirigami_ui/+android/main.qml:191 kirigami_ui/main.qml:207
 #: kirigami_ui/main.qml:569 kirigami_ui/+windows/main.qml:206
 msgctxt "Main menu and global menu actions"
 msgid "&Open"
-msgstr ""
+msgstr "&Aç"
 
 #: kirigami_ui/+android/main.qml:200 kirigami_ui/main.qml:217
 #: kirigami_ui/+windows/main.qml:215
 msgctxt "Main menu and global menu actions"
 msgid "&Open remote file"
-msgstr ""
+msgstr "&Uzak dosya aç"
 
 #: kirigami_ui/+android/main.qml:209 kirigami_ui/main.qml:226
 #: kirigami_ui/main.qml:573 kirigami_ui/+windows/main.qml:224
 msgctxt "Main menu and global menu actions"
 msgid "&Save"
-msgstr ""
+msgstr "&Kaydet"
 
 #: kirigami_ui/+android/main.qml:218 kirigami_ui/main.qml:236
 #: kirigami_ui/+windows/main.qml:233
 msgctxt "Main menu and global menu actions"
 msgid "Save &As"
-msgstr ""
+msgstr "&Farklı Kaydet"
 
 #: kirigami_ui/+android/main.qml:228 kirigami_ui/main.qml:247
 #: kirigami_ui/+windows/main.qml:243
 msgctxt "Main menu actions"
 msgid "&Recent Files"
-msgstr ""
+msgstr "&Son Dosyalar"
 
 #: kirigami_ui/+android/main.qml:236 kirigami_ui/main.qml:256
 #: kirigami_ui/+windows/main.qml:251
 msgctxt "Main menu actions. Menu regarding input settings."
 msgid "&Controls Settings"
-msgstr ""
+msgstr "&Kontrol Ayarları"
 
 #: kirigami_ui/+android/main.qml:240 kirigami_ui/main.qml:261
 #: kirigami_ui/+windows/main.qml:255
 msgctxt ""
 "Main menu and global menu actions. Opens dialog to configure keyboard inputs."
 msgid "Keyboard Inputs"
-msgstr ""
+msgstr "Klavye Girişleri"
 
 #: kirigami_ui/+android/main.qml:248 kirigami_ui/main.qml:268
 #: kirigami_ui/+windows/main.qml:263
@@ -78,14 +80,14 @@ msgctxt ""
 "Main menu and global menu actions. Have up arrow behave like down arrow and "
 "vice versa while prompting."
 msgid "Invert &arrow keys"
-msgstr ""
+msgstr "Ters ok tuşları"
 
 #: kirigami_ui/+android/main.qml:261 kirigami_ui/main.qml:283
 #: kirigami_ui/main.qml:817 kirigami_ui/+windows/main.qml:276
 msgctxt ""
 "Main menu and global menu actions. Invert scroll direction while prompting."
 msgid "Invert &scroll direction"
-msgstr ""
+msgstr "Kaydırma yönünü ters çevir"
 
 #: kirigami_ui/+android/main.qml:269 kirigami_ui/main.qml:292
 #: kirigami_ui/main.qml:802 kirigami_ui/+windows/main.qml:284
@@ -93,7 +95,7 @@ msgctxt ""
 "Main menu and global menu actions. Have touchpad and mouse wheel scrolling "
 "adjust velocity instead of scrolling like most other apps."
 msgid "Use scroll as velocity &dial"
-msgstr ""
+msgstr "Hızlı arama olarak kaydırmayı kullan"
 
 #: kirigami_ui/+android/main.qml:278 kirigami_ui/main.qml:302
 #: kirigami_ui/main.qml:796 kirigami_ui/+windows/main.qml:293
@@ -101,80 +103,80 @@ msgctxt ""
 "Main menu and global menu actions. Touchpad scrolling and mouse wheel use "
 "have no effect while prompting."
 msgid "Disable scrolling while prompting"
-msgstr ""
+msgstr "İstemde bulunurken kaydırmayı devre dışı bırak"
 
 #: kirigami_ui/+android/main.qml:286 kirigami_ui/main.qml:311
 #: kirigami_ui/+windows/main.qml:301
 msgctxt "Main menu actions"
 msgid "Other &Settings"
-msgstr ""
+msgstr "Diğer Ayarlar"
 
 #: kirigami_ui/+android/main.qml:296 kirigami_ui/main.qml:329
 #: kirigami_ui/+windows/main.qml:318
 msgctxt "Main menu actions. Opens dialog for choosing layout direction."
 msgid "Layout direction"
-msgstr ""
+msgstr "Düzen yönü"
 
 #: kirigami_ui/+android/main.qml:301 kirigami_ui/main.qml:334
 #: kirigami_ui/+windows/main.qml:323
 msgctxt "Main menu actions. Enters Performance tweaks submenu."
 msgid "Performance tweaks"
-msgstr ""
+msgstr "Performans ince ayarları"
 
 #: kirigami_ui/+android/main.qml:303 kirigami_ui/main.qml:336
 #: kirigami_ui/+windows/main.qml:325
 msgctxt "Main menu actions"
 msgid "Disable screen projections"
-msgstr ""
+msgstr "Ekran projeksiyonlarını devre dışı bırak"
 
 #: kirigami_ui/+android/main.qml:310 kirigami_ui/main.qml:343
 #: kirigami_ui/+windows/main.qml:332
 msgctxt "Main menu actions"
 msgid "Disable timers"
-msgstr ""
+msgstr "Zamanlayıcıları devre dışı bırak"
 
 #: kirigami_ui/+android/main.qml:319 kirigami_ui/main.qml:352
 #: kirigami_ui/+windows/main.qml:341
 msgctxt "Main menu actions. Hides formatting tools while not in edit mode."
 msgid "Auto hide formatting tools"
-msgstr ""
+msgstr "Biçimlendirme araçlarını otomatik gizle"
 
 #: kirigami_ui/+android/main.qml:327 kirigami_ui/main.qml:360
 #: kirigami_ui/+windows/main.qml:349
 msgctxt "Main menu actions"
 msgid "Always hide formatting tools"
-msgstr ""
+msgstr "Biçimlendirme araçlarını her zaman gizle"
 
 #: kirigami_ui/+android/main.qml:335 kirigami_ui/main.qml:368
 #: kirigami_ui/+windows/main.qml:357
 msgctxt ""
 "Main menu actions. Disables contrast effect for the reading region overlay."
 msgid "Disable overlay contrast"
-msgstr ""
+msgstr "Kaplama kontrastını devre dışı bırak"
 
 #: kirigami_ui/+android/main.qml:344 kirigami_ui/main.qml:408
 #: kirigami_ui/+windows/main.qml:397
 msgctxt "Main menu actions. Enters Other tweaks submenu."
 msgid "Other tweaks"
-msgstr ""
+msgstr "Diğer ince ayarlar"
 
 #: kirigami_ui/+android/main.qml:346 kirigami_ui/main.qml:411
 #: kirigami_ui/+windows/main.qml:399
 msgctxt "Main menu actions. Enable local file auto reload"
 msgid "Local file auto reload"
-msgstr ""
+msgstr "Yerel dosya otomatik yeniden yükleme"
 
 #: kirigami_ui/+android/main.qml:362 kirigami_ui/main.qml:437
 #: kirigami_ui/+windows/main.qml:415
 msgctxt "Main menu actions. Load about page."
 msgid "Abou&t %1"
-msgstr ""
+msgstr "Hakkında %1"
 
 #: kirigami_ui/+android/main.qml:368 kirigami_ui/main.qml:444
 #: kirigami_ui/main.qml:582 kirigami_ui/+windows/main.qml:421
 msgctxt "Main menu and global menu actions"
 msgid "&Quit"
-msgstr ""
+msgstr "Çıkış"
 
 #: kirigami_ui/+android/main.qml:419 kirigami_ui/main.qml:501
 #: kirigami_ui/main.qml:842 kirigami_ui/+windows/main.qml:477
@@ -185,33 +187,33 @@ msgstr ""
 #: kirigami_ui/+android/main.qml:455 kirigami_ui/main.qml:537
 #: kirigami_ui/+windows/main.qml:513
 msgid "Darth mode"
-msgstr ""
+msgstr "Darth modu"
 
 #: kirigami_ui/+android/main.qml:577 kirigami_ui/main.qml:1010
 #: kirigami_ui/+windows/main.qml:683
 msgctxt "Title for save before closing dialog"
 msgid "Save Document"
-msgstr ""
+msgstr "Belgeyi Kaydet"
 
 #: kirigami_ui/+android/main.qml:578 kirigami_ui/main.qml:1011
 #: kirigami_ui/+windows/main.qml:684
 msgid "Save changes to document before closing?"
-msgstr ""
+msgstr "Kapatmadan önce belgedeki değişiklikler kaydedilsin mi?"
 
 #: kirigami_ui/EditorToolbar.qml:351 kirigami_ui/EditorToolbar.qml:361
 msgctxt "Editor actions. Text alignment."
 msgid "&Left"
-msgstr ""
+msgstr "Sol"
 
 #: kirigami_ui/EditorToolbar.qml:351 kirigami_ui/EditorToolbar.qml:361
 msgctxt "Editor actions. Text alignment."
 msgid "&Right"
-msgstr ""
+msgstr "Sağ"
 
 #: kirigami_ui/EditorToolbar.qml:356
 msgctxt "Editor actions. Text alignment."
 msgid "C&enter"
-msgstr ""
+msgstr "Ortala"
 
 #: kirigami_ui/EditorToolbar.qml:550
 msgctxt "FontName (Translatable font details)"
@@ -246,136 +248,136 @@ msgstr ""
 #: kirigami_ui/EditorToolbar.qml:576
 msgctxt "Opens system font selection dialog"
 msgid "Choose System Font"
-msgstr ""
+msgstr "Sistem Yazı Tipini Seç"
 
 #: kirigami_ui/EditorToolbar.qml:582
 msgid "No glyphs selected…"
-msgstr ""
+msgstr "Hiçbir sembol seçilmedi…"
 
 #: kirigami_ui/EditorToolbar.qml:806
 msgctxt "Velocity {VELOCITY_STEPS}"
 msgid "Velocity <pre>%1</pre>"
-msgstr ""
+msgstr "Hız <pre>%1</pre>"
 
 #: kirigami_ui/EditorToolbar.qml:844
 msgctxt "Opacity {TRANSPARENCY_PERCENTAGE}"
 msgid "Opacity <pre>%1</pre>"
-msgstr ""
+msgstr "Saydamlık <pre>%1</pre>"
 
 #: kirigami_ui/EditorToolbar.qml:883 kirigami_ui/EditorToolbar.qml:902
 msgctxt "Font size 100% (083)"
 msgid "Font size <pre>%1% (%2)</pre>"
-msgstr ""
+msgstr "Yazı boyutu <pre>%1% (%2)</pre>"
 
 #: kirigami_ui/EditorToolbar.qml:941
 msgctxt "Line height 100%"
 msgid "Line height <pre>%1%</pre>"
-msgstr ""
+msgstr "Satır yüksekliği <pre>%1%</pre>"
 
 #: kirigami_ui/EditorToolbar.qml:981
 msgctxt "Paragraph spacing ±00"
 msgid "Paragraph spacing <pre>%1%</pre>"
-msgstr ""
+msgstr "Paragraf aralığı <pre>%1%</pre>"
 
 #: kirigami_ui/EditorToolbar.qml:1022
 msgctxt "Word spacing <pre>±00<pre>"
 msgid "Word spacing <pre>%1</pre>"
-msgstr ""
+msgstr "Kelime aralığı <pre>%1</pre>"
 
 #: kirigami_ui/EditorToolbar.qml:1058
 msgctxt "Letter spacing ±00"
 msgid "Letter spacing <pre>%1</pre>"
-msgstr ""
+msgstr "Harf aralığı <pre>%1</pre>"
 
 #: kirigami_ui/EditorToolbar.qml:1094
 msgctxt "Step speed 1.00"
 msgid "Step speed <pre>%1</pre>"
-msgstr ""
+msgstr "Adım hızı <pre>%1</pre>"
 
 #: kirigami_ui/EditorToolbar.qml:1135
 msgctxt "Step acceleration 1.15"
 msgid "Step acceleration <pre>%1</pre>"
-msgstr ""
+msgstr "Adım hızlanma <pre>%1</pre>"
 
 #: kirigami_ui/EditorToolbar.qml:1159
 msgctxt "Next reload starts at 10:11:12"
 msgid "Next reload starts at <pre>%1</pre>"
-msgstr ""
+msgstr "Sonraki yeniden yükleme <pre>%1</pre>'de başlayacak"
 
 #: kirigami_ui/InputsOverlay.qml:33
 msgctxt "Title of dialog where users customize keyboard inputs"
 msgid "Key Bindings"
-msgstr ""
+msgstr "Anahtar Bağlamaları"
 
 #: kirigami_ui/InputsOverlay.qml:163
 msgid "Toggle Prompter State"
-msgstr ""
+msgstr "Suflör Durumunu Değiştir"
 
 #: kirigami_ui/InputsOverlay.qml:171
 msgid "Decrease Velocity"
-msgstr ""
+msgstr "Hızı düşür"
 
 #: kirigami_ui/InputsOverlay.qml:179
 msgid "Increase Velocity"
-msgstr ""
+msgstr "Hızı arttır"
 
 #: kirigami_ui/InputsOverlay.qml:187
 msgid "Stop"
-msgstr ""
+msgstr "Durdur"
 
 #: kirigami_ui/InputsOverlay.qml:195
 msgid "Play/Pause"
-msgstr ""
+msgstr "Başlat/Duraklat"
 
 #: kirigami_ui/InputsOverlay.qml:203
 msgid "Reverse"
-msgstr ""
+msgstr "Tersi"
 
 #: kirigami_ui/InputsOverlay.qml:211
 msgid "Rewind"
-msgstr ""
+msgstr "Geri sarma"
 
 #: kirigami_ui/InputsOverlay.qml:219
 msgid "Fast Forward"
-msgstr ""
+msgstr "İleri Sar"
 
 #: kirigami_ui/InputsOverlay.qml:227
 msgctxt "Skip to earlier text while prompting or editing"
 msgid "Move Backwards"
-msgstr ""
+msgstr "Geriye Taşı"
 
 #: kirigami_ui/InputsOverlay.qml:235
 msgctxt "Skip to later text while prompting or editing"
 msgid "Move Forward"
-msgstr ""
+msgstr "Geriye Sar"
 
 #: kirigami_ui/InputsOverlay.qml:243
 msgctxt "Skip to closest marker behind of current position"
 msgid "Go to Previous Marker"
-msgstr ""
+msgstr "Önceki İşeretleyiciye Git"
 
 #: kirigami_ui/InputsOverlay.qml:251
 msgctxt "Skip to closest marker ahead of current position"
 msgid "Go to Next Marker"
-msgstr ""
+msgstr "Sonraki İşaretleyiciye Git"
 
 #: kirigami_ui/LayoutDirectionSettingsOverlay.qml:32
 msgid "Layout direction"
-msgstr ""
+msgstr "Düzen yönü"
 
 #: kirigami_ui/LayoutDirectionSettingsOverlay.qml:38
 msgctxt "Label at layout direction settings overlay"
 msgid "Current layout"
-msgstr ""
+msgstr "Mevcut düzen"
 
 #: kirigami_ui/main.qml:322 kirigami_ui/+windows/main.qml:311
 msgctxt "Main menu actions. Load Path Settings page."
 msgid "External Tools and Applications"
-msgstr ""
+msgstr "Harici Araçlar ve Uygulamalar"
 
 #: kirigami_ui/main.qml:378 kirigami_ui/+windows/main.qml:367
 msgid "Disable background transparency"
-msgstr ""
+msgstr "Arkaplan şeffaflığını devre dışı bırak"
 
 #: kirigami_ui/main.qml:397 kirigami_ui/+windows/main.qml:386
 msgctxt ""
@@ -391,88 +393,88 @@ msgctxt ""
 "Main menu actions. Fake fullscreen behavior instead of requesting true "
 "fullscreen"
 msgid "Fake fullscreen behavior"
-msgstr ""
+msgstr "Sahte tam ekran davranışı"
 
 #: kirigami_ui/main.qml:562
 msgctxt "Global menu actions"
 msgid "&File"
-msgstr ""
+msgstr "Dosya"
 
 #: kirigami_ui/main.qml:577
 msgctxt "Main menu and global menu actions"
 msgid "Save &As…"
-msgstr ""
+msgstr "Farklı Kaydet…"
 
 #: kirigami_ui/main.qml:588
 msgctxt "Global menu actions"
 msgid "&Edit"
-msgstr ""
+msgstr "Düzenle"
 
 #: kirigami_ui/main.qml:591
 msgctxt "Global menu actions"
 msgid "&Undo"
-msgstr ""
+msgstr "Geri al"
 
 #: kirigami_ui/main.qml:596
 msgctxt "Global menu actions"
 msgid "&Redo"
-msgstr ""
+msgstr "Yinele"
 
 #: kirigami_ui/main.qml:602 prompter/Prompter.qml:1367
 #: prompter/Prompter.qml:1414
 msgctxt "Global menu and editor context menu actions"
 msgid "&Copy"
-msgstr ""
+msgstr "Kopyala"
 
 #: kirigami_ui/main.qml:607 prompter/Prompter.qml:1372
 #: prompter/Prompter.qml:1419
 msgctxt "Global menu and editor context menu actions"
 msgid "Cu&t"
-msgstr ""
+msgstr "Kes"
 
 #: kirigami_ui/main.qml:612 prompter/Prompter.qml:1377
 #: prompter/Prompter.qml:1424
 msgctxt "Global menu and editor context menu actions"
 msgid "&Paste"
-msgstr ""
+msgstr "Yapıştır"
 
 #: kirigami_ui/main.qml:619
 msgctxt "Global menu actions"
 msgid "&View"
-msgstr ""
+msgstr "Görünüm"
 
 #: kirigami_ui/main.qml:622
 msgctxt "Global menu actions"
 msgid "Full &screen"
-msgstr ""
+msgstr "Tam ekran"
 
 #: kirigami_ui/main.qml:636
 msgctxt "Global menu actions. Indicators highlight reading region."
 msgid "&Indicators"
-msgstr ""
+msgstr "Göstergeler"
 
 #: kirigami_ui/main.qml:638
 msgctxt "Global menu actions. Shows pointer to the left of the reading region."
 msgid "&Left Pointer"
-msgstr ""
+msgstr "Sol İşaretçi"
 
 #: kirigami_ui/main.qml:644
 msgctxt ""
 "Global menu actions. Shows pointer to the right of the reading region."
 msgid "&Right Pointer"
-msgstr ""
+msgstr "Sağ İşaretçi"
 
 #: kirigami_ui/main.qml:650
 msgctxt ""
 "Global menu actions. Shows pointers to the left and right of the reading "
 "region."
 msgid "B&oth Pointers"
-msgstr ""
+msgstr "Her İki İşaretçi"
 
 #: kirigami_ui/main.qml:657
 msgctxt "Global menu actions. Translucent bars indicate reading region."
 msgid "&Bars"
-msgstr ""
+msgstr "Barlar"
 
 #: kirigami_ui/main.qml:663
 msgctxt ""
