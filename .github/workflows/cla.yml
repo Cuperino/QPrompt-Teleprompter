@@ -19,6 +19,6 @@ jobs:
           remote-organization-name: 'Cuperino'
           remote-repository-name: 'Signatures'
           path-to-signatures: 'cla-v1.json'
-          path-to-document: 'https://github.com/Cuperino/Signatures/blob/master/CLA.md'
+          path-to-document: 'https://github.com/Cuperino/Signatures/blob/main/CLA.md'
           branch: 'main'
           allowlist: Cuperino,bot*
