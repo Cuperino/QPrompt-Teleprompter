@@ -276,9 +276,9 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
             Qt${QT_VERSION_MAJOR}::QuickControls2
             Qt${QT_VERSION_MAJOR}::Network
             Qt${QT_VERSION_MAJOR}::AndroidExtras
-            KF6::I18n
-            KF6::Kirigami
-            KF6::CoreAddons
+            KF${QT_VERSION_MAJOR}::I18n
+            KF${QT_VERSION_MAJOR}::Kirigami
+            KF${QT_VERSION_MAJOR}::CoreAddons
         )
     elseif (WASM OR IOS)
         target_link_libraries(${PROJECT_NAME} PRIVATE
@@ -289,9 +289,9 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
             Qt${QT_VERSION_MAJOR}::Qml
             Qt${QT_VERSION_MAJOR}::QuickControls2
             Qt${QT_VERSION_MAJOR}::Network
-            KF6::I18n
-            KF6::Kirigami
-            KF6::CoreAddons
+            KF${QT_VERSION_MAJOR}::I18n
+            KF${QT_VERSION_MAJOR}::Kirigami
+            KF${QT_VERSION_MAJOR}::CoreAddons
         )
     elseif(HAIKU)
         target_link_libraries(${PROJECT_NAME} PUBLIC
@@ -303,10 +303,10 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
             Qt${QT_VERSION_MAJOR}::QuickControls2
             Qt${QT_VERSION_MAJOR}::Network
             Qt${QT_VERSION_MAJOR}::Widgets
-            KF6::I18n
-            KF6::Kirigami
-            KF6::CoreAddons
-    #        KF6::IconThemes
+            KF${QT_VERSION_MAJOR}::I18n
+            KF${QT_VERSION_MAJOR}::Kirigami
+            KF${QT_VERSION_MAJOR}::CoreAddons
+    #        KF${QT_VERSION_MAJOR}::IconThemes
         )
     elseif(WIN32 OR APPLE)
         target_link_libraries(${PROJECT_NAME} PUBLIC
@@ -318,9 +318,9 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
             Qt${QT_VERSION_MAJOR}::QuickControls2
             Qt${QT_VERSION_MAJOR}::Network
             Qt${QT_VERSION_MAJOR}::Widgets
-            KF6::I18n
-            KF6::Kirigami
-            KF6::CoreAddons
+            KF${QT_VERSION_MAJOR}::I18n
+            KF${QT_VERSION_MAJOR}::Kirigami
+            KF${QT_VERSION_MAJOR}::CoreAddons
         )
     else()
         target_link_libraries(${PROJECT_NAME} PRIVATE
@@ -339,9 +339,9 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
             # Qt${QT_VERSION_MAJOR}::NetworkPrivate
             Qt${QT_VERSION_MAJOR}::Widgets
             # Qt${QT_VERSION_MAJOR}::WidgetsPrivate
-            KF6::I18n
-            KF6::Kirigami
-            KF6::CoreAddons
+            KF${QT_VERSION_MAJOR}::I18n
+            KF${QT_VERSION_MAJOR}::Kirigami
+            KF${QT_VERSION_MAJOR}::CoreAddons
         )
     endif()
     if(APPLE AND NOT IOS)
@@ -504,9 +504,9 @@ else()
             Qt${QT_VERSION_MAJOR}::QuickControls2
             Qt${QT_VERSION_MAJOR}::Network
             Qt${QT_VERSION_MAJOR}::AndroidExtras
-            KF6::I18n
-            KF6::Kirigami
-            KF6::CoreAddons
+            KF${QT_VERSION_MAJOR}::I18n
+            KF${QT_VERSION_MAJOR}::Kirigami
+            KF${QT_VERSION_MAJOR}::CoreAddons
         )
     elseif (WASM OR IOS)
         target_link_libraries(${PROJECT_NAME} PRIVATE
@@ -517,9 +517,9 @@ else()
             Qt${QT_VERSION_MAJOR}::Qml
             Qt${QT_VERSION_MAJOR}::QuickControls2
             Qt${QT_VERSION_MAJOR}::Network
-            KF6::I18n
-            KF6::Kirigami
-            KF6::CoreAddons
+            KF${QT_VERSION_MAJOR}::I18n
+            KF${QT_VERSION_MAJOR}::Kirigami
+            KF${QT_VERSION_MAJOR}::CoreAddons
         )
     elseif(HAIKU)
         target_link_libraries(${PROJECT_NAME} PUBLIC
@@ -531,10 +531,10 @@ else()
             Qt${QT_VERSION_MAJOR}::QuickControls2
             Qt${QT_VERSION_MAJOR}::Network
             Qt${QT_VERSION_MAJOR}::Widgets
-            KF6::I18n
-            KF6::Kirigami
-            KF6::CoreAddons
-            KF6::IconThemes
+            KF${QT_VERSION_MAJOR}::I18n
+            KF${QT_VERSION_MAJOR}::Kirigami
+            KF${QT_VERSION_MAJOR}::CoreAddons
+            KF${QT_VERSION_MAJOR}::IconThemes
         )
     elseif(WIN32 OR APPLE)
         target_link_libraries(${PROJECT_NAME} PUBLIC
@@ -546,14 +546,14 @@ else()
             Qt${QT_VERSION_MAJOR}::QuickControls2
             Qt${QT_VERSION_MAJOR}::Network
             Qt${QT_VERSION_MAJOR}::Widgets
-            KF6::I18n
-            KF6::Kirigami
-            KF6::CoreAddons
+            KF${QT_VERSION_MAJOR}::I18n
+            KF${QT_VERSION_MAJOR}::Kirigami
+            KF${QT_VERSION_MAJOR}::CoreAddons
         )
-        if (KF6Crash_FOUND)
-            add_definitions(-DKF6Crash_FOUND)
+        if (KF${QT_VERSION_MAJOR}Crash_FOUND)
+            add_definitions(-DKF${QT_VERSION_MAJOR}Crash_FOUND)
             target_link_libraries(${PROJECT_NAME} LINK_PRIVATE
-                KF6::Crash
+                KF${QT_VERSION_MAJOR}::Crash
             )
         endif()
         if (QHotkey_FOUND)
@@ -580,14 +580,14 @@ else()
             Qt${QT_VERSION_MAJOR}::Network
             Qt${QT_VERSION_MAJOR}::Widgets
             Qt${QT_VERSION_MAJOR}::X11Extras
-            KF6::I18n
-            KF6::Kirigami
-            KF6::CoreAddons
+            KF${QT_VERSION_MAJOR}::I18n
+            KF${QT_VERSION_MAJOR}::Kirigami
+            KF${QT_VERSION_MAJOR}::CoreAddons
         )
-        if (KF6Crash_FOUND)
-            add_definitions(-DKF6Crash_FOUND)
+        if (KF${QT_VERSION_MAJOR}Crash_FOUND)
+            add_definitions(-DKF${QT_VERSION_MAJOR}Crash_FOUND)
             target_link_libraries(${PROJECT_NAME} LINK_PRIVATE
-                KF6::Crash
+                KF${QT_VERSION_MAJOR}::Crash
             )
         endif()
         if (QHotkey_FOUND)

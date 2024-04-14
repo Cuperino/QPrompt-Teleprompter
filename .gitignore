@@ -48,6 +48,7 @@ Makefile
 
 # Build folders
 **/build
+**/install
 *.flatpak-builder*
 /dist/Snapcraft/*.snap
 

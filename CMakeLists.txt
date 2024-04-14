@@ -45,7 +45,7 @@ set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
 
 set(QT_DEFAULT_MAJOR_VERSION 6)
-set(QT_MIN_VERSION 6.6.0)
+set(QT_MIN_VERSION 6.6.1)
 # KF6 5.78 for Ubuntu 21.04 and Debian 11, which require no backporting
 # KF6 5.68 is used as a hack to allow Snapcraft build on Ubuntu 20.04 core
 # Use 5.83 ECM on Windows to make use of ecm_add_app_icon syntax
@@ -137,7 +137,7 @@ if(ANDROID)
         QuickCompiler
         ShaderTools
     )
-    find_package(KF6 ${KF_MIN_VERSION} REQUIRED COMPONENTS
+    find_package(KF${QT_VERSION_MAJOR} ${KF_MIN_VERSION} REQUIRED COMPONENTS
         Kirigami
         I18n
         CoreAddons
@@ -154,7 +154,7 @@ elseif(WASM OR IOS)
         QuickCompiler
         ShaderTools
     )
-    find_package(KF6 ${KF_MIN_VERSION} REQUIRED COMPONENTS
+    find_package(KF${QT_VERSION_MAJOR} ${KF_MIN_VERSION} REQUIRED COMPONENTS
         Kirigami
         I18n
         CoreAddons
@@ -175,14 +175,14 @@ elseif(HAIKU)
         QmlImportScanner  # Used to get static QML. Gets ignored if not a static build
         QuickCompiler
     )
-    find_package(KF6 ${KF_MIN_VERSION} REQUIRED COMPONENTS
+    find_package(KF${QT_VERSION_MAJOR} ${KF_MIN_VERSION} REQUIRED COMPONENTS
         Kirigami
         I18n
         CoreAddons
 #        IconThemes
     )
-    find_package(KF6Crash ${REQUIRED_KF6_VERSION} CONFIG QUIET)
-        set_package_properties(KF6Crash PROPERTIES
+    find_package(KF${QT_VERSION_MAJOR}Crash ${REQUIRED_KF${QT_VERSION_MAJOR}_VERSION} CONFIG QUIET)
+        set_package_properties(KF${QT_VERSION_MAJOR}Crash PROPERTIES
         DESCRIPTION "Graceful handling of application crashes."
         TYPE OPTIONAL
     )
@@ -199,13 +199,13 @@ elseif(WIN32 OR APPLE)
         QuickCompiler
         ShaderTools
     )
-    find_package(KF6 ${KF_MIN_VERSION} REQUIRED COMPONENTS
+    find_package(KF${QT_VERSION_MAJOR} ${KF_MIN_VERSION} REQUIRED COMPONENTS
         Kirigami
         I18n
         CoreAddons
     )
-    find_package(KF6Crash ${KF_MIN_VERSION} COMPONENTS)
-    set_package_properties(KF6Crash PROPERTIES
+    find_package(KF${QT_VERSION_MAJOR}Crash ${KF_MIN_VERSION} COMPONENTS)
+    set_package_properties(KF${QT_VERSION_MAJOR}Crash PROPERTIES
         DESCRIPTION "Graceful handling of application crashes."
         TYPE OPTIONAL
     )
@@ -231,7 +231,7 @@ else()
         Widgets
         ShaderTools
     )
-    find_package(KF6 ${KF_MIN_VERSION} REQUIRED COMPONENTS
+    find_package(KF${QT_VERSION_MAJOR} ${KF_MIN_VERSION} REQUIRED COMPONENTS
         Kirigami
         I18n
         CoreAddons
@@ -248,7 +248,7 @@ else()
         ShaderTools
         X11Extras
     )
-    find_package(KF6 ${KF_MIN_VERSION} REQUIRED COMPONENTS
+    find_package(KF${QT_VERSION_MAJOR} ${KF_MIN_VERSION} REQUIRED COMPONENTS
         Kirigami
         I18n
         CoreAddons
@@ -259,8 +259,8 @@ else()
         #QmlImportScanner  # Used to get static QML. Gets ignored if not a static build
         #QuickCompiler
     #)
-    find_package(KF6Crash ${REQUIRED_KF6_VERSION} COMPONENTS)
-    set_package_properties(KF6Crash PROPERTIES
+    find_package(KF${QT_VERSION_MAJOR}Crash ${REQUIRED_KF${QT_VERSION_MAJOR}_VERSION} COMPONENTS)
+    set_package_properties(KF${QT_VERSION_MAJOR}Crash PROPERTIES
         DESCRIPTION "Graceful handling of application crashes."
         TYPE OPTIONAL
     )
