@@ -258,13 +258,13 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
 #else
     app.setWindowIcon(QIcon(QString::fromUtf8("qrc:/qt/qml/com/cuperino/qprompt/images/qprompt.png")));
 #endif
+    // Add path to where KDE modules are installed
+    engine.addImportPath(QStringLiteral("../dist/lib/x86_64-linux-gnu/qml"));
+    // Send context data from C++ to QML
     engine.rootContext()->setContextObject(new KLocalizedContext(&engine));
     engine.rootContext()->setContextProperty(QStringLiteral("aboutData"), QVariant::fromValue(KAboutData::applicationData()));
     if (positionalArguments.length())
         engine.rootContext()->setContextProperty(QStringLiteral("fileToOpen"), fileToOpen);
-        // engine.addImportPath(QStringLiteral("../3rdparty/kirigami/"));
-        // engine.addImportPath(QStringLiteral("/usr/local/lib/qml"));
-        // engine.addImportPath("/opt/local/lib/qml/org/kde/kirigami.2");
 #if defined(Q_OS_MACOS)
     // engine.addImportPath(QStringLiteral("/opt/homebrew/lib/qml"));
     engine.addImportPath(QStringLiteral("/opt/homebrew/Cellar/kf5-kirigami2/5.95.0/lib/qt6/qml"));
@@ -276,7 +276,7 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
 #endif
 
     if (engine.rootObjects().isEmpty()) {
-        // return -1;
+        return -1;
     }
 
     // qDebug() << QProcess::systemEnvironme nt();
