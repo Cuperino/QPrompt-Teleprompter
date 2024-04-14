@@ -45,7 +45,7 @@ set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
 
 set(QT_DEFAULT_MAJOR_VERSION 6)
-set(QT_MIN_VERSION 6.6.1)
+set(QT_MIN_VERSION 6.7.0)
 # KF6 5.78 for Ubuntu 21.04 and Debian 11, which require no backporting
 # KF6 5.68 is used as a hack to allow Snapcraft build on Ubuntu 20.04 core
 # Use 5.83 ECM on Windows to make use of ecm_add_app_icon syntax
@@ -59,19 +59,21 @@ if (APPLE)
     set(APPLE_SUPPRESS_X11_WARNING ON)
 endif()
 # ------------------------- BEGIN: lists to maintain manually -------------------------
-
-# Directories where Qt Creator can find QML files of Kirigami etc. on your system.
+# Directories where Qt Creator can find modules and Kirigami's QML files
+list(APPEND QML_DIRS "build/dist/lib/x86_64-linux-gnu/qml")
+list(APPEND KIRIGAMI_DIRS "build/dist/lib/x86_64-linux-gnu/qml/org/kde/kirigami")
+# Directories where Qt Creator can find these files on your system.
 #   (This setting is cached in variable QML_IMPORT_DIR, see below. Delete
 #   ${BUIL_DIR}/CMakeCache.txt to make make changes here effective.)
 if (UNIX AND NOT APPLE AND NOT ANDROID)
     list(APPEND QML_DIRS "/usr/lib/x86_64-linux-gnu/qt6/qml")
-    list(APPEND KIRIGAMI_DIRS "/usr/lib/x86_64-linux-gnu/qt6/qml/org/kde/kirigami.2")
+    list(APPEND KIRIGAMI_DIRS "/usr/lib/x86_64-linux-gnu/qml/org/kde/kirigami")
 elseif (UNIX AND APPLE)
     list(APPEND QML_DIRS "/opt/homebrew/lib/qml")
-    list(APPEND KIRIGAMI_DIRS "/opt/homebrew/lib/qml/org/kde/kirigami.2")
+    list(APPEND KIRIGAMI_DIRS "/opt/homebrew/lib/qml/org/kde/kirigami")
 elseif (WIN32)
     list(APPEND QML_DIRS "C:/CraftRoot/qml")
-    list(APPEND KIRIGAMI_DIRS "C:/CraftRoot/qml/org/kde/kirigami.2")
+    list(APPEND KIRIGAMI_DIRS "C:/CraftRoot/qml/org/kde/kirigami")
 endif()
 # ------------------------- END: lists to maintain manually -------------------------
 
@@ -90,9 +92,9 @@ set(
 
 if(ANDROID)
     set(ANDROID_PACKAGE_SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/android)
-	if(NOT ANDROID_ABIS)
-		set(ANDROID_ABIS "arm64-v8a") # armeabi-v7a
-	endif()
+        if(NOT ANDROID_ABIS)
+                set(ANDROID_ABIS "arm64-v8a") # armeabi-v7a
+        endif()
 else()
 set(DBINARY_ICONS_RESOURCE ON)
 endif()
@@ -106,7 +108,7 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 
 find_package(ECM ${ECM_MIN_VERSION} REQUIRED NO_MODULE)
 set(CMAKE_MODULE_PATH ${ECM_MODULE_PATH})
-find_package(QT NAMES Qt5 Qt6)
+find_package(QT NAMES Qt6)
 
 
 find_package(Git QUIET)

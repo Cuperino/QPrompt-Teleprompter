@@ -235,8 +235,8 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         MACOSX_BUNDLE_SHORT_VERSION_STRING ${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}
         MACOSX_BUNDLE TRUE
         WIN32_EXECUTABLE TRUE
-        QML_CACHEGEN_DIRECT_CALLS ON
-        QT_QMLCACHEGEN_ARGUMENTS "--verbose"
+        QT_QMLCACHEGEN_DIRECT_CALLS OFF
+        # QT_QMLCACHEGEN_ARGUMENTS "--verbose"
     )
 
     if (NOT IOS)
@@ -673,36 +673,37 @@ endif()
 # KI18N translations
 FIND_PROGRAM(GETTEXT_MSGFMT_EXECUTABLE msgfmt)
 IF(NOT GETTEXT_MSGFMT_EXECUTABLE)
-   MESSAGE(
+    MESSAGE(
 "------
                 NOTE: msgfmt not found. Translations will *not* be installed
 ------")
 ELSE(NOT GETTEXT_MSGFMT_EXECUTABLE)
+    SET(LOCALE_INSTALL_DIR ${CMAKE_INSTALL_PREFIX}/usr/share)
 
-   SET(catalogname qprompt)
+    SET(catalogname qprompt)
 
-   FILE(GLOB PO_FILES ../po/*.po)
-   SET(GMO_FILES)
+    FILE(GLOB PO_FILES ../po/*.po)
+    SET(GMO_FILES)
 
-   FOREACH(_poFile ${PO_FILES})
-       GET_FILENAME_COMPONENT(_poFileName ${_poFile} NAME)
-       STRING(REGEX REPLACE "^${catalogname}_?" "" _langCode ${_poFileName} )
-       STRING(REGEX REPLACE "\\.po$" "" _langCode ${_langCode} )
+    FOREACH(_poFile ${PO_FILES})
+        GET_FILENAME_COMPONENT(_poFileName ${_poFile} NAME)
+        STRING(REGEX REPLACE "^${catalogname}_?" "" _langCode ${_poFileName} )
+        STRING(REGEX REPLACE "\\.po$" "" _langCode ${_langCode} )
 
-       IF( _langCode )
-           GET_FILENAME_COMPONENT(_lang ${_poFile} NAME_WE)
-           SET(_gmoFile ${CMAKE_CURRENT_BINARY_DIR}/${_lang}.gmo)
+        IF( _langCode )
+            GET_FILENAME_COMPONENT(_lang ${_poFile} NAME_WE)
+            SET(_gmoFile ${CMAKE_CURRENT_BINARY_DIR}/${_lang}.gmo)
 
-           ADD_CUSTOM_COMMAND(TARGET ${PROJECT_NAME} # ${_gmoFile}
-               COMMAND ${GETTEXT_MSGFMT_EXECUTABLE} --check -o ${_gmoFile} ${_poFile}
-               DEPENDS ${_poFile})
-           INSTALL(FILES ${_gmoFile} DESTINATION ${LOCALE_INSTALL_DIR}/${_langCode}/LC_MESSAGES/ RENAME ${catalogname}.mo)
-           LIST(APPEND GMO_FILES ${_gmoFile})
-       ENDIF( _langCode )
+            ADD_CUSTOM_COMMAND(TARGET ${PROJECT_NAME} # ${_gmoFile}
+                COMMAND ${GETTEXT_MSGFMT_EXECUTABLE} --check -o ${_gmoFile} ${_poFile}
+                DEPENDS ${_poFile})
+            INSTALL(FILES ${_gmoFile} DESTINATION ${LOCALE_INSTALL_DIR}/${_langCode}/LC_MESSAGES/ RENAME ${catalogname}.mo)
+            LIST(APPEND GMO_FILES ${_gmoFile})
+        ENDIF( _langCode )
 
-   ENDFOREACH(_poFile ${PO_FILES})
+    ENDFOREACH(_poFile ${PO_FILES})
 
-   #ADD_CUSTOM_TARGET(translations ALL DEPENDS ${GMO_FILES})
+    #ADD_CUSTOM_TARGET(translations ALL DEPENDS ${GMO_FILES})
 
 ENDIF(NOT GETTEXT_MSGFMT_EXECUTABLE)
 
