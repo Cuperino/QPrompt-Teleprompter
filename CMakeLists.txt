@@ -352,6 +352,7 @@ set(CPACK_PACKAGE_VENDOR "Javier O. Cordero Pérez")
 set(CPACK_PACKAGE_CONTACT "javiercorderoperez@gmail.com")
 set(CPACK_PACKAGE_DESCRIPTION_FILE "${CMAKE_SOURCE_DIR}/${DESCRIPTION_FILE}")
 set(CPACK_RESOURCE_FILE_README "${CMAKE_SOURCE_DIR}/${README_FILE}")
+set(CPACK_RPM_PACKAGE_LICENSE "GPLv3")  # Also used by FreeBSD generator
 
 set(ICONS_DIR "${CMAKE_SOURCE_DIR}/icons")
 set(IMAGES_DIR "${CMAKE_SOURCE_DIR}/images")
@@ -367,7 +368,6 @@ if(UNIX AND NOT ANDROID)
     set(CPACK_DEBIAN_PACKAGE_DEPENDS "libqt6svg5 (>= 6.4.2), libqt6x11extras5 (>= 6.4.2), qml-module-qt-labs-platform (>=6.4.2), qml-module-qtqml (>=6.4.2), qml-module-qtqml-models2 (>=6.4.2), qml-module-qtqml-statemachine (>=6.4.2), qml-module-qtquick-controls (>=6.4.2), qml-module-qtquick-controls2 (>=6.4.2), qml-module-qtquick-dialogs (>=6.4.2), qml-module-qtquick-shapes (>=6.4.2), qml-module-org-kde-Kirigami (>=5.78.0), libkf5i18n5 (>= 5.78.0), libkf5coreaddons5 (>= 5.78.0), libkf5crash5 (>= 5.78.0)")
 
     # CPACK: RPM Specific Settings
-    set(CPACK_RPM_PACKAGE_LICENSE "GPLv3")
     set(CPACK_RPM_PACKAGE_GROUP "Multimedia/Video")
     set(CPACK_RPM_PACKAGE_REQUIRES "qt6-qtbase >= 6.4.2, qt6-qtx11extras >= 6.4.2, qt6-qtbase-gui >= 6.4.2, qt6-qtdeclarative >= 6.4.2, qt6-qtsvg >= 6.4.2, qt6-qtquickcontrols >= 6.4.2, qt6-qtquickcontrols2 >= 6.4.2, kf5-ki18n >= 5.73.0, kf5-kirigami >= 5.73.0, kf5-kcoreaddons >= 5.73.0, kf5-kcrash >= 5.73.0")
     set(CPACK_RPM_COMPRESSION_TYPE ${COMPRESION_TYPE})
@@ -399,6 +399,11 @@ elseif(APPLE AND NOT IOS)
     set(CPACK_PACKAGE_ICON "${ICONS_DIR}/qprompt.icns")
     #set(CPACK_DMG_DS_STORE "${IMAGES_DIR}/DSStore")
     set(CPACK_DMG_BACKGROUND_IMAGE "${IMAGES_DIR}/DMGBackground.png")
+
+elseif(BSD AND NOT APPLE)
+    set(CPACK_FREEBSD_PACKAGE_MAINTAINER ${CPACK_PACKAGE_CONTACT})
+    set(CPACK_FREEBSD_PACKAGE_ORIGIN "multimedia")
+    set(CPACK_FREEBSD_PACKAGE_CATEGORIES "devel/qt6-base, x11-toolkits/qt6-declarative, graphics/qt6-svg, x11-toolkits/qt6-shadertools, multimedia/qt6-multimedia, devel/kf6-kcoreaddons, devel/kf6-ki18n, x11-toolkits/kf6-kirigami, devel/kf6-kcrash, x11-themes/kf6-kiconthemes, x11-toolkits/qhotkey")
 endif()
 
 include(CPack)
