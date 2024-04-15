@@ -358,7 +358,9 @@ set(IMAGES_DIR "${CMAKE_SOURCE_DIR}/images")
 set(COMPRESION_TYPE "xz")
 
 if(UNIX AND NOT ANDROID)
-    # CPACK: DEB Specific Settings
+    # CPACK: Archive generator settings
+    set(CPACK_ARCHIVE_THREADS 0)
+
     set(CPACK_DEBIAN_PACKAGE_SECTION "Multimedia")
     set(CPACK_DEBIAN_COMPRESSION_TYPE ${COMPRESION_TYPE})
     # Set to dependencies as Debian 11 and Ubuntu 21.04. Chose these two distros as base because Desktop version has ARM support and provided Qt versions require no backporting.
