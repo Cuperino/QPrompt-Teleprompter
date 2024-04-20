@@ -845,7 +845,7 @@ Kirigami.ApplicationWindow {
             Labs.MenuItem {
                 text: i18nc("Global menu actions. Load about page. \"About AppName\"", "Abou&t %1", aboutData.displayName)
                 onTriggered: root.loadAboutPage()
-                icon.source: "qrc:/images/qprompt.png"
+                icon.source: "qrc:/qt/qml/com/cuperino/qprompt/images/qprompt.png"
             }
         }
         ]

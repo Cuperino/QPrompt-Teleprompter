@@ -254,7 +254,7 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
     // app.setLayoutDirection(Qt::RightToLeft);
 
 #if defined(Q_OS_ANDROID) || defined(Q_OS_IOS) || defined(Q_OS_QNX)
-    app.setWindowIcon(QIcon(":/images/qprompt-logo-wireframe.png"));
+    app.setWindowIcon(QIcon(":/qt/qml/com/cuperino/qprompt/images/qprompt-logo-wireframe.png"));
 #else
     app.setWindowIcon(QIcon(QString::fromUtf8("qrc:/qt/qml/com/cuperino/qprompt/images/qprompt.png")));
 #endif
