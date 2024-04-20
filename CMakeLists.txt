@@ -20,7 +20,7 @@
 #**************************************************************************
 
 
-cmake_minimum_required(VERSION 3.16)
+cmake_minimum_required(VERSION 3.22)
 
 set(RELEASE_SERVICE_VERSION_MAJOR "1")
 set(RELEASE_SERVICE_VERSION_MINOR "2")
@@ -284,12 +284,6 @@ include(ECMSetupVersion)
 include(ECMSourceVersionControl)
 include(ECMPoQmTools)
 include(FeatureSummary)
-
-#add_subdirectory("3rdparty/extra-cmake-modules" build/ecm)
-#add_subdirectory("3rdparty/kirigami" build/kirigami)
-#add_subdirectory("3rdparty/ki18n" build/ki18n)
-#add_subdirectory("3rdparty/breeze-icons" build/icons)
-#add_subdirectory("3rdparty/calligra/filters/libmsooxml" build/libmsooxml)
 
 if (${ECM_SOURCE_UNDER_VERSION_CONTROL})
     execute_process(
