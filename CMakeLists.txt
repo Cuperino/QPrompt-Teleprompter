@@ -45,7 +45,7 @@ set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
 
 set(QT_DEFAULT_MAJOR_VERSION 6)
-set(QT_MIN_VERSION 6.7.0)
+set(QT_MIN_VERSION 6.6.2)
 # KF6 5.78 for Ubuntu 21.04 and Debian 11, which require no backporting
 # KF6 5.68 is used as a hack to allow Snapcraft build on Ubuntu 20.04 core
 # Use 5.83 ECM on Windows to make use of ecm_add_app_icon syntax
@@ -362,14 +362,15 @@ if(UNIX AND NOT ANDROID)
     # CPACK: Archive generator settings
     set(CPACK_ARCHIVE_THREADS 0)
 
+if(UNIX AND NOT ANDROID)
+    # CPACK: DEB specific settings
     set(CPACK_DEBIAN_PACKAGE_SECTION "Multimedia")
     set(CPACK_DEBIAN_COMPRESSION_TYPE ${COMPRESION_TYPE})
-    # Set to dependencies as Debian 11 and Ubuntu 21.04. Chose these two distros as base because Desktop version has ARM support and provided Qt versions require no backporting.
-    set(CPACK_DEBIAN_PACKAGE_DEPENDS "libqt6svg5 (>= 6.4.2), libqt6x11extras5 (>= 6.4.2), qml-module-qt-labs-platform (>=6.4.2), qml-module-qtqml (>=6.4.2), qml-module-qtqml-models2 (>=6.4.2), qml-module-qtqml-statemachine (>=6.4.2), qml-module-qtquick-controls (>=6.4.2), qml-module-qtquick-controls2 (>=6.4.2), qml-module-qtquick-dialogs (>=6.4.2), qml-module-qtquick-shapes (>=6.4.2), qml-module-org-kde-Kirigami (>=5.78.0), libkf5i18n5 (>= 5.78.0), libkf5coreaddons5 (>= 5.78.0), libkf5crash5 (>= 5.78.0)")
+    set(CPACK_DEBIAN_PACKAGE_DEPENDS "libqt6svg5 (>= 6.6.2), qml-module-qt-labs-platform (>=6.6.2), qml-module-qtqml (>=6.6.2), qml-module-qtqml-models2 (>=6.6.2), qml-module-qtqml-statemachine (>=6.6.2), qml-module-qtquick-controls (>=6.6.2), qml-module-qtquick-controls2 (>=6.6.2), qml-module-qtquick-dialogs (>=6.6.2), qml-module-qtquick-shapes (>=6.6.2), qml-module-org-kde-Kirigami (>=6.0.0), libkf5i18n5 (>= 6.0.0), libkf5coreaddons5 (>= 6.0.0), libkf5crash5 (>= 6.0.0)")
 
-    # CPACK: RPM Specific Settings
+    # CPACK: RPM specific settings
     set(CPACK_RPM_PACKAGE_GROUP "Multimedia/Video")
-    set(CPACK_RPM_PACKAGE_REQUIRES "qt6-qtbase >= 6.4.2, qt6-qtx11extras >= 6.4.2, qt6-qtbase-gui >= 6.4.2, qt6-qtdeclarative >= 6.4.2, qt6-qtsvg >= 6.4.2, qt6-qtquickcontrols >= 6.4.2, qt6-qtquickcontrols2 >= 6.4.2, kf5-ki18n >= 5.73.0, kf5-kirigami >= 5.73.0, kf5-kcoreaddons >= 5.73.0, kf5-kcrash >= 5.73.0")
+    set(CPACK_RPM_PACKAGE_REQUIRES "qt6-qtbase >= 6.6.2, qt6-qtbase-gui >= 6.6.2, qt6-qtdeclarative >= 6.6.2, qt6-qtsvg >= 6.6.2, qt6-qtquickcontrols >= 6.6.2, qt6-qtquickcontrols2 >= 6.6.2, kf5-ki18n >= 6.0.0, kf5-kirigami >= 6.0.0, kf5-kcoreaddons >= 6.0.0, kf5-kcrash >= 6.0.0")
     set(CPACK_RPM_COMPRESSION_TYPE ${COMPRESION_TYPE})
 
 elseif(WIN32)
