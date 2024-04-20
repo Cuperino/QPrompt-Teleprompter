@@ -346,15 +346,18 @@ set(CPACK_PACKAGE_VENDOR "Javier O. Cordero Pérez")
 set(CPACK_PACKAGE_CONTACT "javiercorderoperez@gmail.com")
 set(CPACK_PACKAGE_DESCRIPTION_FILE "${CMAKE_SOURCE_DIR}/${DESCRIPTION_FILE}")
 set(CPACK_RESOURCE_FILE_README "${CMAKE_SOURCE_DIR}/${README_FILE}")
+set(CPACK_RESOURCE_FILE_LICENSE "${CMAKE_SOURCE_DIR}/${LICENSE_FILE}")  # Displays the license on some installers
+set(CPACK_MONOLITHIC_INSTALL On)
+
 set(CPACK_RPM_PACKAGE_LICENSE "GPLv3")  # Also used by FreeBSD generator
 
 set(ICONS_DIR "${CMAKE_SOURCE_DIR}/icons")
 set(IMAGES_DIR "${CMAKE_SOURCE_DIR}/images")
 set(COMPRESION_TYPE "xz")
 
-if(UNIX AND NOT ANDROID)
-    # CPACK: Archive generator settings
-    set(CPACK_ARCHIVE_THREADS 0)
+# CPACK: Archive generator settings
+set(CPACK_THREADS 0)
+set(CPACK_ARCHIVE_THREADS 0)
 
 if(UNIX AND NOT ANDROID)
     # CPACK: DEB specific settings
@@ -380,10 +383,11 @@ elseif(WIN32)
     set(CPACK_NSIS_CONTACT ${CPACK_PACKAGE_CONTACT})
     set(CPACK_NSIS_INSTALLED_ICON_NAME "qprompt${CMAKE_EXECUTABLE_SUFFIX}")
     set(CPACK_NSIS_MENU_LINKS
-        "${LICENSE_FILE}" "License"
-        "${README_FILE}" "Readme"
+        "${CMAKE_SOURCE_DIR}/${LICENSE_FILE}" "License"
+        "${CMAKE_SOURCE_DIR}/${README_FILE}" "Readme"
     )
     set(CPACK_NSIS_MUI_FINISHPAGE_RUN "${CPACK_NSIS_INSTALLED_ICON_NAME}")
+    set(InstallRequiredSystemLibraries On)
 
 elseif(APPLE AND NOT IOS)
     set(CPACK_GENERATOR "DragNDrop")
@@ -392,6 +396,7 @@ elseif(APPLE AND NOT IOS)
     set(CPACK_SYSTEM_NAME "OSX")
     set(CPACK_PACKAGE_FILE_NAME "QPrompt-${PROJECT_VERSION}")
     set(CPACK_PACKAGE_ICON "${ICONS_DIR}/qprompt.icns")
+    set(CPACK_DMG_SLA_USE_RESOURCE_FILE_LICENSE ${LICENSE_FILE})
     #set(CPACK_DMG_DS_STORE "${IMAGES_DIR}/DSStore")
     set(CPACK_DMG_BACKGROUND_IMAGE "${IMAGES_DIR}/DMGBackground.png")
 
