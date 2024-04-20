@@ -27,7 +27,7 @@ usage: $0 <CMAKE_BUILD_TYPE> <CMAKE_PREFIX_PATH> [<QT_MAJOR_VERSION> | ] [CLEAR 
 Defaults:
  * CMAKE_BUILD_TYPE: "Release"
  * CMAKE_PREFIX_PATH: "~/Qt/6.6.1/gcc_64/"
- * QT_MAJOR_VERSION: "6"
+ * QT_MAJOR_VERSION: 6
 
 Setup script for building QPrompt
 This script assumes you've already installed the following dependencies:
@@ -46,7 +46,7 @@ if [ "$CMAKE_PREFIX_PATH" == "" ]
 fi
 QT_MAJOR_VERSION=$3
 if [ "$QT_MAJOR_VERSION" == "" ]
-        then QT_MAJOR_VERSION="5"
+        then QT_MAJOR_VERSION=6
 fi
 CLEAR_ARG="${@: -1}"
 if [ "$CLEAR_ARG" == "CLEAR" ]
