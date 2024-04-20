@@ -211,9 +211,9 @@ elseif(WIN32 OR APPLE)
         DESCRIPTION "Graceful handling of application crashes."
         TYPE OPTIONAL
     )
-#    find_package(QHotkey 1.5.0 COMPONENTS
-#        QHotkey
-#    )
+   find_package(QHotkey 1.5.0 COMPONENTS
+       QHotkey
+   )
     # KDMacTouchBar (Mac only)
     if(APPLE AND NOT IOS)
         if (NOT EXISTS "${PROJECT_SOURCE_DIR}/3rdparty/KDMacTouchBar/CMakeLists.txt")
@@ -265,9 +265,9 @@ else()
         DESCRIPTION "Graceful handling of application crashes."
         TYPE OPTIONAL
     )
-#    find_package(QHotkey 1.5.0 COMPONENTS
-#        QHotkey
-#    )
+   find_package(QHotkey 1.5.0 COMPONENTS
+       QHotkey
+   )
 endif()
 
 if (WIN32 OR UNIX) # AND NOT ANDROID

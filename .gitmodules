@@ -24,4 +24,4 @@
 	url = https://invent.kde.org/frameworks/kcrash.git
 [submodule "3rdparty/QHotkey"]
 	path = 3rdparty/QHotkey
-	url = https://github.com/Skycoder42/QHotkey.git
+	url = https://github.com/Cuperino/QHotkey.git
