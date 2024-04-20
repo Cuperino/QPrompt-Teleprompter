@@ -101,8 +101,11 @@ for dependency in ./3rdparty/k*; do
 done
 
 echo "QHotkey"
-rm -dRf ./3rdparty/QHotkey/build
-cmake -DCMAKE_BUILD_TYPE=$CMAKE_BUILD_TYPE -DCMAKE_PREFIX_PATH=$CMAKE_PREFIX_PATH -DCMAKE_INSTALL_PREFIX=$CMAKE_INSTALL_PREFIX -B ./3rdparty/QHotkey/build ./3rdparty/QHotkey/
+if $CLEAR_ALL
+then
+    rm -dRf ./3rdparty/QHotkey/build
+fi
+cmake -DCMAKE_BUILD_TYPE=$CMAKE_BUILD_TYPE -DCMAKE_PREFIX_PATH=$CMAKE_PREFIX_PATH -DCMAKE_INSTALL_PREFIX=$CMAKE_INSTALL_PREFIX -DBUILD_SHARED_LIBS=ON -DQT_DEFAULT_MAJOR_VERSION=${QT_MAJOR_VERSION} -B ./3rdparty/QHotkey/build ./3rdparty/QHotkey/
 cmake --build ./3rdparty/QHotkey/build
 cmake --install ./3rdparty/QHotkey/build
 

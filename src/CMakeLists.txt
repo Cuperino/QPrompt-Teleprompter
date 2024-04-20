@@ -294,7 +294,7 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
             KF${QT_VERSION_MAJOR}::CoreAddons
         )
     elseif(HAIKU)
-        target_link_libraries(${PROJECT_NAME} PUBLIC
+        target_link_libraries(${PROJECT_NAME} PRIVATE
             Qt${QT_VERSION_MAJOR}::Core
             Qt${QT_VERSION_MAJOR}::Quick
             Qt${QT_VERSION_MAJOR}::Gui
@@ -309,7 +309,7 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
     #        KF${QT_VERSION_MAJOR}::IconThemes
         )
     elseif(WIN32 OR APPLE)
-        target_link_libraries(${PROJECT_NAME} PUBLIC
+        target_link_libraries(${PROJECT_NAME} PRIVATE
             Qt${QT_VERSION_MAJOR}::Core
             Qt${QT_VERSION_MAJOR}::Quick
             Qt${QT_VERSION_MAJOR}::Gui
@@ -345,9 +345,9 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         )
     endif()
     if(APPLE AND NOT IOS)
-        target_include_directories(mactouchbar PUBLIC ${kdmactouchbar_SOURCE_DIR}/KDMacTouchBar)
-        target_link_directories(mactouchbar PUBLIC ${kdmactouchbar_SOURCE_DIR}/KDMacTouchBar)
-        target_link_libraries(${PROJECT_NAME} PUBLIC KDMacTouchBar)
+        target_include_directories(mactouchbar PRIVATE ${kdmactouchbar_SOURCE_DIR}/KDMacTouchBar)
+        target_link_directories(mactouchbar PRIVATE ${kdmactouchbar_SOURCE_DIR}/KDMacTouchBar)
+        target_link_libraries(${PROJECT_NAME} PRIVATE KDMacTouchBar)
     endif()
     #target_include_directories(${PROJECT_NAME} PUBLIC ${qhotkey_SOURCE_DIR}/QHotkey)
     #target_link_directories(${PROJECT_NAME} PUBLIC ${qhotkey_SOURCE_DIR}/QHotkey)
@@ -359,7 +359,7 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
 #    endif()
     if (QHotkey_FOUND)
         add_definitions(-DQHotkey_FOUND)
-        target_link_libraries(${PROJECT_NAME} PUBLIC
+        target_link_libraries(${PROJECT_NAME} PRIVATE
             qhotkey
         )
     endif()
@@ -522,7 +522,7 @@ else()
             KF${QT_VERSION_MAJOR}::CoreAddons
         )
     elseif(HAIKU)
-        target_link_libraries(${PROJECT_NAME} PUBLIC
+        target_link_libraries(${PROJECT_NAME} PRIVATE
             Qt${QT_VERSION_MAJOR}::Core
             Qt${QT_VERSION_MAJOR}::Quick
             Qt${QT_VERSION_MAJOR}::Gui
@@ -537,7 +537,7 @@ else()
             KF${QT_VERSION_MAJOR}::IconThemes
         )
     elseif(WIN32 OR APPLE)
-        target_link_libraries(${PROJECT_NAME} PUBLIC
+        target_link_libraries(${PROJECT_NAME} PRIVATE
             Qt${QT_VERSION_MAJOR}::Core
             Qt${QT_VERSION_MAJOR}::Quick
             Qt${QT_VERSION_MAJOR}::Gui
@@ -558,19 +558,19 @@ else()
         endif()
         if (QHotkey_FOUND)
             add_definitions(-DQHotkey_FOUND)
-            target_link_libraries(${PROJECT_NAME} PUBLIC
+            target_link_libraries(${PROJECT_NAME} PRIVATE
                 qhotkey
             )
         endif()
         if(APPLE AND NOT IOS)
-            target_include_directories(mactouchbar PUBLIC ${kdmactouchbar_SOURCE_DIR}/KDMacTouchBar)
-            target_link_directories(mactouchbar PUBLIC ${kdmactouchbar_SOURCE_DIR}/KDMacTouchBar)
-            target_link_libraries(${PROJECT_NAME} PUBLIC KDMacTouchBar)
+            target_include_directories(mactouchbar PRIVATE ${kdmactouchbar_SOURCE_DIR}/KDMacTouchBar)
+            target_link_directories(mactouchbar PRIVATE ${kdmactouchbar_SOURCE_DIR}/KDMacTouchBar)
+            target_link_libraries(${PROJECT_NAME} PRIVATE KDMacTouchBar)
         endif()
     else()
         #target_include_directories(${PROJECT_NAME} PUBLIC ${qhotkey_SOURCE_DIR}/QHotkey)
         #target_link_directories(${PROJECT_NAME} PUBLIC ${qhotkey_SOURCE_DIR}/QHotkey)
-        target_link_libraries(${PROJECT_NAME} PUBLIC
+        target_link_libraries(${PROJECT_NAME} PRIVATE
             Qt${QT_VERSION_MAJOR}::Core
             Qt${QT_VERSION_MAJOR}::Quick
             Qt${QT_VERSION_MAJOR}::Gui
@@ -592,7 +592,7 @@ else()
         endif()
         if (QHotkey_FOUND)
             add_definitions(-DQHotkey_FOUND)
-            target_link_libraries(${PROJECT_NAME} PUBLIC
+            target_link_libraries(${PROJECT_NAME} PRIVATE
                 qhotkey
             )
         endif()
