@@ -8,7 +8,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: https://github.com/Cuperino/QPrompt/issues/new/choose\n"
 "POT-Creation-Date: 2024-09-29 11:34-0400\n"
 "PO-Revision-Date: 2024-12-17 04:51+0000\n"
-"Last-Translator: Karl SCHUH <k.schuh@schuh-tv.at>\n"
+"Last-Translator: Liebeg <mail@liebeg.eu>\n"
 "Language-Team: German <http://l10n.cuperino.com/projects/qprompt/qprompt-app/"
 "de/>\n"
 "Language: de\n"
@@ -672,8 +672,7 @@ msgstr "Oben"
 
 #: kirigami_ui/PrompterPage.qml:116
 msgid "Move reading region to the top, convenient for use with webcams"
-msgstr ""
-"Lesebereich nach oben Verschieben für einfachere Verwendung mit Webcams"
+msgstr "Lesebereich nach oben Verschieben für einfachere Verwendung mit Webcams"
 
 #: kirigami_ui/PrompterPage.qml:127
 msgctxt "Align reading region to vertical center of prompter"
