@@ -7,8 +7,8 @@ msgstr ""
 "Project-Id-Version: qprompt\n"
 "Report-Msgid-Bugs-To: https://github.com/Cuperino/QPrompt/issues/new/choose\n"
 "POT-Creation-Date: 2023-11-03 19:42-0400\n"
-"PO-Revision-Date: 2023-05-30 11:23+0000\n"
-"Last-Translator: Vincent Berry <berryv@outlook.fr>\n"
+"PO-Revision-Date: 2024-05-03 22:11+0000\n"
+"Last-Translator: Liebeg <mail@liebeg.eu>\n"
 "Language-Team: French <http://l10n.cuperino.com/projects/qprompt/qprompt-app/"
 "fr/>\n"
 "Language: fr\n"
@@ -1373,9 +1373,8 @@ msgid "Ready: "
 msgstr ""
 
 #: prompter/PointerSettings.qml:136
-#, fuzzy
 msgid "Prompting: "
-msgstr "Démarrer le prompteur"
+msgstr "Démarrer le prompteur "
 
 #: prompter/PointerSettings.qml:157
 #, fuzzy
