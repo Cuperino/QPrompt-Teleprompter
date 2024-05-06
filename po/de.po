@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: qprompt\n"
 "Report-Msgid-Bugs-To: https://github.com/Cuperino/QPrompt/issues/new/choose\n"
 "POT-Creation-Date: 2023-11-03 19:42-0400\n"
-"PO-Revision-Date: 2024-05-03 22:11+0000\n"
+"PO-Revision-Date: 2024-05-06 19:54+0000\n"
 "Last-Translator: Liebeg <mail@liebeg.eu>\n"
 "Language-Team: German <http://l10n.cuperino.com/projects/qprompt/qprompt-app/"
 "de/>\n"
@@ -152,7 +152,7 @@ msgstr "Formatierungs Tools automatisch verstecken"
 msgctxt ""
 "Main menu actions. Disables contrast effect for the reading region overlay."
 msgid "Disable overlay contrast"
-msgstr ""
+msgstr "Überlagerungs Kontrast deaktivieren"
 
 #: kirigami_ui/+android/main.qml:344 kirigami_ui/main.qml:408
 #: kirigami_ui/+windows/main.qml:397
@@ -187,7 +187,7 @@ msgstr "Laden &Wilkommen"
 #: kirigami_ui/+android/main.qml:455 kirigami_ui/main.qml:537
 #: kirigami_ui/+windows/main.qml:513
 msgid "Darth mode"
-msgstr ""
+msgstr "Die Dunkle Seite"
 
 #: kirigami_ui/+android/main.qml:577 kirigami_ui/main.qml:1010
 #: kirigami_ui/+windows/main.qml:683
@@ -223,7 +223,7 @@ msgstr ""
 #: kirigami_ui/EditorToolbar.qml:554
 msgctxt "FontName (Translatable font details)"
 msgid "OpenDyslexic (Roman)"
-msgstr ""
+msgstr "OpenDyslexic (Romanisch)"
 
 #: kirigami_ui/EditorToolbar.qml:558
 msgctxt "FontName (Translatable font details)"
@@ -275,10 +275,9 @@ msgid "Line height <pre>%1%</pre>"
 msgstr "Zeilenhöhe <pre>%1%</pre>"
 
 #: kirigami_ui/EditorToolbar.qml:981
-#, fuzzy
 msgctxt "Paragraph spacing ±00"
 msgid "Paragraph spacing <pre>%1%</pre>"
-msgstr "Wortabstand <pre>%1</pre>"
+msgstr "Absatz Abstand <pre>%1</pre>"
 
 #: kirigami_ui/EditorToolbar.qml:1022
 msgctxt "Word spacing <pre>±00<pre>"
@@ -1121,16 +1120,15 @@ msgstr ""
 
 #: kirigami_ui/TelemetryPage.qml:117
 msgid "Randomly generated install ID"
-msgstr ""
+msgstr "Zufällig generierte Installations ID"
 
 #: kirigami_ui/TelemetryPage.qml:118
 msgid "Launch times"
 msgstr ""
 
 #: kirigami_ui/TelemetryPage.qml:119
-#, fuzzy
 msgid "Usage time"
-msgstr "Nutzungs Zeiten"
+msgstr "Nutzungs Dauer"
 
 #: kirigami_ui/TelemetryPage.qml:138
 msgid "Feature use frequency: Help us know what features are most important"
