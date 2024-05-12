@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: qprompt\n"
 "Report-Msgid-Bugs-To: https://github.com/Cuperino/QPrompt/issues/new/choose\n"
 "POT-Creation-Date: 2023-11-03 19:42-0400\n"
-"PO-Revision-Date: 2024-05-06 19:54+0000\n"
+"PO-Revision-Date: 2024-05-13 14:04+0000\n"
 "Last-Translator: Liebeg <mail@liebeg.eu>\n"
 "Language-Team: German <http://l10n.cuperino.com/projects/qprompt/qprompt-app/"
 "de/>\n"
@@ -364,7 +364,7 @@ msgstr "Zum nächsten Marker springen"
 
 #: kirigami_ui/LayoutDirectionSettingsOverlay.qml:32
 msgid "Layout direction"
-msgstr ""
+msgstr "Layout ausrichtung"
 
 #: kirigami_ui/LayoutDirectionSettingsOverlay.qml:38
 msgctxt "Label at layout direction settings overlay"
@@ -390,12 +390,11 @@ msgid "Force sub-pixel text renderer past 120px"
 msgstr "Subpixel-Textrenderer über 120px hinaus erzwingen"
 
 #: kirigami_ui/main.qml:419
-#, fuzzy
 msgctxt ""
 "Main menu actions. Fake fullscreen behavior instead of requesting true "
 "fullscreen"
 msgid "Fake fullscreen behavior"
-msgstr "Fake Vollbild Verhalten"
+msgstr "künstliches Vollbild"
 
 #: kirigami_ui/main.qml:562
 msgctxt "Global menu actions"
@@ -420,7 +419,7 @@ msgstr "&rückgängig machen"
 #: kirigami_ui/main.qml:596
 msgctxt "Global menu actions"
 msgid "&Redo"
-msgstr ""
+msgstr "&Zurücksetzten"
 
 #: kirigami_ui/main.qml:602 prompter/Prompter.qml:1367
 #: prompter/Prompter.qml:1414
@@ -453,7 +452,7 @@ msgstr "Vollbild"
 #: kirigami_ui/main.qml:636
 msgctxt "Global menu actions. Indicators highlight reading region."
 msgid "&Indicators"
-msgstr ""
+msgstr "&Indikatoren"
 
 #: kirigami_ui/main.qml:638
 msgctxt "Global menu actions. Shows pointer to the left of the reading region."
@@ -507,7 +506,7 @@ msgctxt ""
 "Global menu actions. Reading region indicates where a talent should be "
 "reading from."
 msgid "Readin&g region"
-msgstr ""
+msgstr "Les&e Bereich"
 
 #: kirigami_ui/main.qml:691
 msgctxt "Global menu actions. Align reading region to top of prompter."
@@ -529,7 +528,7 @@ msgstr "&Unten"
 msgctxt ""
 "Global menu actions. Enables drag and drop positioning of reading region."
 msgid "F&ree placement"
-msgstr ""
+msgstr "F&rei Platzieren"
 
 #: kirigami_ui/main.qml:716
 msgctxt ""
@@ -571,7 +570,7 @@ msgstr "Rechts &Ausrichten"
 #: kirigami_ui/main.qml:758
 msgctxt "Global menu actions. Text alignment."
 msgid "Align Cen&ter"
-msgstr ""
+msgstr "Zentrieren"
 
 #: kirigami_ui/main.qml:764
 msgctxt "Global menu actions. Text alignment."
@@ -678,11 +677,11 @@ msgstr "Teleprompter starten"
 
 #: kirigami_ui/PrompterPage.qml:83
 msgid "Decrease velocity"
-msgstr ""
+msgstr "Geschwindigkeit veringern"
 
 #: kirigami_ui/PrompterPage.qml:97
 msgid "Increase velocity"
-msgstr ""
+msgstr "Geschwindigkeit erhöhen"
 
 #: kirigami_ui/PrompterPage.qml:111
 msgctxt "Reading region indicates where a talent should be reading from"
@@ -690,9 +689,10 @@ msgid "Reading region"
 msgstr "Lese Bereich"
 
 #: kirigami_ui/PrompterPage.qml:113
+#, fuzzy
 msgctxt "Reading region indicates where a talent should be reading from"
 msgid "Change reading region placement"
-msgstr ""
+msgstr "Verändern des Lese Bereichs"
 
 #: kirigami_ui/PrompterPage.qml:119
 msgctxt "Align reading region to top of prompter"
@@ -726,7 +726,7 @@ msgctxt ""
 "Refers to free placement. Enables drag and drop positioning of reading "
 "region."
 msgid "Free"
-msgstr ""
+msgstr "Frei"
 
 #: kirigami_ui/PrompterPage.qml:159
 msgid "Move reading region freely by dragging and dropping"
@@ -751,7 +751,7 @@ msgstr "Höhe: %1"
 #: kirigami_ui/PrompterPage.qml:252
 msgctxt "Indicators highlight reading region"
 msgid "Indicators"
-msgstr ""
+msgstr "Indikatoren"
 
 #: kirigami_ui/PrompterPage.qml:253
 msgctxt "Indicators highlight reading region"
@@ -766,12 +766,12 @@ msgstr ""
 #: kirigami_ui/PrompterPage.qml:263 kirigami_ui/PrompterPage.qml:275
 msgctxt "Shows pointer to the left of the reading region"
 msgid "Left pointer"
-msgstr ""
+msgstr "Linker Punkt"
 
 #: kirigami_ui/PrompterPage.qml:263 kirigami_ui/PrompterPage.qml:275
 msgctxt "Shows pointer to the right of the reading region"
 msgid "Right pointer"
-msgstr ""
+msgstr "Rechter Punkt"
 
 #: kirigami_ui/PrompterPage.qml:265
 msgid "Left pointer indicates reading region"
@@ -779,27 +779,26 @@ msgstr ""
 
 #: kirigami_ui/PrompterPage.qml:277
 msgid "Right pointer indicates reading region"
-msgstr ""
+msgstr "Rechter Punkt definiert Lese Bereich"
 
 #: kirigami_ui/PrompterPage.qml:287
 msgctxt "Shows pointers to the left and right of the reading region"
 msgid "Both pointers"
-msgstr ""
+msgstr "Beide Punkte"
 
 #: kirigami_ui/PrompterPage.qml:289
 msgid "Left and right pointers indicate reading region"
-msgstr ""
+msgstr "Linker und Rechter Punkt definiert Lese Bereich"
 
 #: kirigami_ui/PrompterPage.qml:299
-#, fuzzy
 msgctxt "Disable all reading region pointers"
 msgid "No pointers"
-msgstr "Zentriert"
+msgstr "Keine Punkte"
 
 #: kirigami_ui/PrompterPage.qml:301
 msgctxt "Disable all reading region indicators"
 msgid "Disable reading region indicators"
-msgstr ""
+msgstr "Deaktiviere Lese Bereich Makierungen"
 
 #: kirigami_ui/PrompterPage.qml:311
 msgctxt "Configure reading region pointer indicators"
@@ -831,7 +830,7 @@ msgstr "Timer farbe"
 #: kirigami_ui/PrompterPage.qml:383
 msgctxt "Reset color of timer text back to default"
 msgid "Clear color"
-msgstr ""
+msgstr "Farbe zurücksetzen"
 
 #: kirigami_ui/PrompterPage.qml:395 kirigami_ui/PrompterPage.qml:418
 msgid "Countdown"
@@ -841,7 +840,7 @@ msgstr "Countdown"
 msgctxt ""
 "Enables automatic alignment of prompter and text with the reading region"
 msgid "Auto frame"
-msgstr ""
+msgstr "Automatisch ausrichten"
 
 #: kirigami_ui/PrompterPage.qml:435
 msgctxt "Auto start countdown upon prompter getting started"
@@ -853,7 +852,6 @@ msgid "Start countdown automatically"
 msgstr "Aktiviert den Countdown automatisch"
 
 #: kirigami_ui/PrompterPage.qml:448
-#, fuzzy
 msgctxt "Configure countdown duration"
 msgid "Set duration"
 msgstr "Dauer konfigurieren"
@@ -861,7 +859,7 @@ msgstr "Dauer konfigurieren"
 #: kirigami_ui/PrompterPage.qml:466
 msgctxt "Prompter orientation and mirroring"
 msgid "Orientation"
-msgstr ""
+msgstr "Orientation"
 
 #. i18n("H Flip")
 #: kirigami_ui/PrompterPage.qml:483 prompter/ProjectionsManager.qml:333
@@ -878,7 +876,7 @@ msgstr "Vertikal spiegeln"
 #: kirigami_ui/PrompterPage.qml:528
 msgctxt "Prompter rotation is disabled"
 msgid "Don't rotate"
-msgstr ""
+msgstr "Nicht drehen"
 
 #: kirigami_ui/PrompterPage.qml:540
 msgctxt "Rotate prompter 90 degrees to the right"
@@ -903,7 +901,7 @@ msgstr "Schatten"
 #: kirigami_ui/PrompterPage.qml:590
 msgctxt "Set background image"
 msgid "Set image"
-msgstr ""
+msgstr "Bild auswählen"
 
 #: kirigami_ui/PrompterPage.qml:601
 msgctxt "Set background color tint"
@@ -913,7 +911,7 @@ msgstr "Farbe setzen"
 #: kirigami_ui/PrompterPage.qml:612
 msgctxt "Set background settings back to default"
 msgid "Clear"
-msgstr ""
+msgstr "Zurücksetzen"
 
 #: kirigami_ui/PrompterPage.qml:626
 msgctxt "Screens refers to computer displays"
@@ -933,17 +931,17 @@ msgstr "kein Spiegel"
 #: kirigami_ui/PrompterPage.qml:669
 msgctxt "Horizontal mirroring"
 msgid "H Mirror"
-msgstr ""
+msgstr "Horizontal Spiegeln"
 
 #: kirigami_ui/PrompterPage.qml:670
 msgctxt "Vertical mirroring"
 msgid "V Mirror"
-msgstr ""
+msgstr "Vertikal Spiegeln"
 
 #: kirigami_ui/PrompterPage.qml:671
 msgctxt "Horizontal and vertical mirroring"
 msgid "HV Mirror"
-msgstr ""
+msgstr "Horizontal und Vertikal Spiegeln"
 
 #: kirigami_ui/PrompterPage.qml:682
 msgctxt "Display prompter copies onto displays"
@@ -969,7 +967,7 @@ msgstr "Countdown Konfiguration"
 
 #: kirigami_ui/PrompterPage.qml:877
 msgid "Countdown iterations"
-msgstr ""
+msgstr "Countdown Durchläufe"
 
 #: kirigami_ui/PrompterPage.qml:896
 msgid "Disappear within 1 second to go"
@@ -993,7 +991,7 @@ msgstr "Taste zum Springen zu dieser Markierung"
 
 #: kirigami_ui/PrompterPage.qml:990
 msgid "Open from network..."
-msgstr ""
+msgstr "Vom Netzwerk öffnen..."
 
 #: kirigami_ui/PrompterPage.qml:1020
 msgid "URL:"
@@ -1022,11 +1020,11 @@ msgstr "Sekunden:"
 #: kirigami_ui/PrompterPage.qml:1116
 msgctxt "Next reload starts at 10:11:12"
 msgid "Next reload starts at %1"
-msgstr ""
+msgstr "Nächster Neustart beginnt in %1"
 
 #: kirigami_ui/PrompterPage.qml:1117
 msgid "Auto reload is not running"
-msgstr ""
+msgstr "Automatischer Reload ist nicht aktiv"
 
 #: kirigami_ui/PrompterPage.qml:1124
 msgid "Load from Network"
@@ -1047,12 +1045,14 @@ msgstr ""
 
 #: kirigami_ui/TelemetryPage.qml:30
 msgid "Telemetry Settings"
-msgstr ""
+msgstr "Telemetrie Einstellungen"
 
 #: kirigami_ui/TelemetryPage.qml:55
 msgid ""
 "The following page is a placeholder. Telemetry has not yet been implemented."
 msgstr ""
+"Die folgende Seite ist ein Platzhalter. Telemetrie wurde noch nicht "
+"implementiert."
 
 #: kirigami_ui/TelemetryPage.qml:66
 msgid ""
@@ -1070,7 +1070,7 @@ msgstr ""
 
 #: kirigami_ui/TelemetryPage.qml:69
 msgid "Telemetry"
-msgstr ""
+msgstr "Telemetrie"
 
 #: kirigami_ui/TelemetryPage.qml:72
 msgid "Enabled"
@@ -1100,15 +1100,15 @@ msgstr ""
 
 #: kirigami_ui/TelemetryPage.qml:96
 msgid "Application version"
-msgstr ""
+msgstr "Software Version"
 
 #: kirigami_ui/TelemetryPage.qml:97
 msgid "Platform information"
-msgstr ""
+msgstr "Plattform Information"
 
 #: kirigami_ui/TelemetryPage.qml:98
 msgid "Qt version information"
-msgstr ""
+msgstr "Qt Versions Information"
 
 #: kirigami_ui/TelemetryPage.qml:99 kirigami_ui/TelemetryPage.qml:120
 msgid "Locale information (timezone and keyboard layout)"
@@ -1140,7 +1140,7 @@ msgstr "Einstellugen Umkehren"
 
 #: kirigami_ui/TelemetryPage.qml:140
 msgid "Reading region settings"
-msgstr ""
+msgstr "Lese Bereichs Einstellungen"
 
 #: kirigami_ui/TelemetryPage.qml:141 prompter/PointerSettings.qml:150
 msgid "Pointer settings"
@@ -1192,7 +1192,7 @@ msgstr "Fenster dimensionen"
 
 #: kirigami_ui/TelemetryPage.qml:169
 msgid "Prompt area dimensions"
-msgstr ""
+msgstr "Projektions Feld Dimensionen"
 
 #: kirigami_ui/TelemetryPage.qml:170
 msgid "Dimensions of lines of text being prompted"
@@ -1232,11 +1232,11 @@ msgstr "Prompt dauer"
 
 #: kirigami_ui/TelemetryPage.qml:179
 msgid "Velocity changes with timestamp"
-msgstr ""
+msgstr "Veränderung der Geschwindigkeit mittels Timestamp"
 
 #: kirigami_ui/TelemetryPage.qml:180
 msgid "Source of changes to velocity"
-msgstr ""
+msgstr "Quelle der Geschwindigkeitsänderungen"
 
 #: kirigami_ui/TelemetryPage.qml:181
 msgid "Source of manual changes to scroll position"
@@ -1280,11 +1280,13 @@ msgid ""
 "Personal teleprompter software for all video makers. Built with ease of use, "
 "productivity, and smooth performance in mind."
 msgstr ""
+"Personale Teleprompting Software für alle Video Produzenten. Entwickelt mit "
+"großer Nuterfreundlichkeit und glatter Performance im Kopf."
 
 #: main.cpp:90
 msgctxt "file"
 msgid "File to copy."
-msgstr ""
+msgstr "Datei zu kopieren."
 
 #: main.cpp:93
 msgid "Ignore QSG_RENDER_LOOP environment variable."
@@ -1292,19 +1294,19 @@ msgstr ""
 
 #: main.cpp:142
 msgid "© 2021 Javier O. Cordero Pérez"
-msgstr ""
+msgstr "© 2021 Javier O. Cordero Pérez"
 
 #: main.cpp:143
 msgid "© 2021-%1 Javier O. Cordero Pérez"
-msgstr ""
+msgstr "© 2021-%1 Javier O. Cordero Pérez"
 
 #: main.cpp:147
 msgid "Personal teleprompter software for all video makers."
-msgstr ""
+msgstr "Personalisierte Teleprompter Software für aller Video Produzenten."
 
 #: main.cpp:159
 msgid "Author"
-msgstr ""
+msgstr "Autor"
 
 #: main.cpp:164
 msgid "Wrote keycode to string QML abstraction"
@@ -1313,7 +1315,7 @@ msgstr ""
 #: main.cpp:167
 msgctxt "Active software tester"
 msgid "Active tester"
-msgstr ""
+msgstr "Aktive Tester"
 
 #: main.cpp:168 rc.cpp:1
 msgctxt "NAME OF TRANSLATORS"
@@ -1332,11 +1334,11 @@ msgstr ""
 
 #: prompter/Find.qml:126
 msgid "End reached, searching from the start."
-msgstr ""
+msgstr "Ende erreicht, Suche vom Anfang beginnen."
 
 #: prompter/Find.qml:128
 msgid "Start reached, searching from the end."
-msgstr ""
+msgstr "Anfang erreicht, Suche vom Ende."
 
 #: prompter/Find.qml:147
 msgid "Replaced 1 instance"
@@ -1346,15 +1348,15 @@ msgstr[1] ""
 
 #: prompter/PointerSettings.qml:104
 msgid "Colors for prompter states"
-msgstr ""
+msgstr "Farben für Prompter Status"
 
 #: prompter/PointerSettings.qml:110
 msgid "Editing: "
-msgstr ""
+msgstr "Editiren: "
 
 #: prompter/PointerSettings.qml:123
 msgid "Ready: "
-msgstr ""
+msgstr "Bereit: "
 
 #: prompter/PointerSettings.qml:136
 msgid "Prompting: "
@@ -1374,7 +1376,7 @@ msgstr "Zentriert"
 
 #: prompter/PointerSettings.qml:161
 msgid "Tint"
-msgstr ""
+msgstr "Tönung"
 
 #: prompter/PointerSettings.qml:165
 msgid "Guides"
