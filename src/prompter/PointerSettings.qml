@@ -25,7 +25,7 @@ import QtQuick.Controls 2.15
 import QtQuick.Layouts 1.15
 import QtQml.Models 2.2
 import QtQuick.Controls.Material 2.12
-import QtCore
+import QtCore 6.5
 import Qt.labs.platform 1.1 as Labs
 
 import com.cuperino.qprompt 1.0
