@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: qprompt\n"
 "Report-Msgid-Bugs-To: https://github.com/Cuperino/QPrompt/issues/new/choose\n"
 "POT-Creation-Date: 2023-11-03 19:42-0400\n"
-"PO-Revision-Date: 2024-05-13 14:04+0000\n"
+"PO-Revision-Date: 2024-06-09 05:04+0000\n"
 "Last-Translator: Liebeg <mail@liebeg.eu>\n"
 "Language-Team: German <http://l10n.cuperino.com/projects/qprompt/qprompt-app/"
 "de/>\n"
@@ -218,7 +218,7 @@ msgstr "Z&entriert"
 #: kirigami_ui/EditorToolbar.qml:550
 msgctxt "FontName (Translatable font details)"
 msgid "DejaVu (default, Roman, Cyrillic)"
-msgstr ""
+msgstr "DejaVu (Standard, Romanisch, zyrillisch)"
 
 #: kirigami_ui/EditorToolbar.qml:554
 msgctxt "FontName (Translatable font details)"
@@ -228,12 +228,12 @@ msgstr "OpenDyslexic (Romanisch)"
 #: kirigami_ui/EditorToolbar.qml:558
 msgctxt "FontName (Translatable font details)"
 msgid "Source Han Sans (CH, JP, KO)"
-msgstr ""
+msgstr "Source Han Sans (CH, JP, KO)"
 
 #: kirigami_ui/EditorToolbar.qml:562
 msgctxt "FontName (Translatable font details)"
 msgid "Scheherazade New (Arabic)"
-msgstr ""
+msgstr "Scheherazade New (Arabisch)"
 
 #: kirigami_ui/EditorToolbar.qml:566
 msgctxt "FontName (Translatable font details)"
@@ -252,7 +252,7 @@ msgstr "Systemschriftart auswählen"
 
 #: kirigami_ui/EditorToolbar.qml:582
 msgid "No glyphs selected…"
-msgstr ""
+msgstr "Keine Glyphen ausgewählt…"
 
 #: kirigami_ui/EditorToolbar.qml:806
 msgctxt "Velocity {VELOCITY_STEPS}"
@@ -300,10 +300,9 @@ msgid "Step acceleration <pre>%1</pre>"
 msgstr "Bescheleunigungsstufen <pre>%1</pre>"
 
 #: kirigami_ui/EditorToolbar.qml:1159
-#, fuzzy
 msgctxt "Next reload starts at 10:11:12"
 msgid "Next reload starts at <pre>%1</pre>"
-msgstr "Bescheleunigungsstufen <pre>%1</pre>"
+msgstr "Nächster Ladevorgang startet um <pre>%1</pre>"
 
 #: kirigami_ui/InputsOverlay.qml:33
 msgctxt "Title of dialog where users customize keyboard inputs"
@@ -312,7 +311,7 @@ msgstr "Tastenkürzel"
 
 #: kirigami_ui/InputsOverlay.qml:163
 msgid "Toggle Prompter State"
-msgstr ""
+msgstr "Umschalten des Prompter Status"
 
 #: kirigami_ui/InputsOverlay.qml:171
 msgid "Decrease Velocity"
@@ -431,7 +430,7 @@ msgstr "&Kopieren"
 #: prompter/Prompter.qml:1419
 msgctxt "Global menu and editor context menu actions"
 msgid "Cu&t"
-msgstr ""
+msgstr "Ausschneiden"
 
 #: kirigami_ui/main.qml:612 prompter/Prompter.qml:1377
 #: prompter/Prompter.qml:1424
@@ -475,21 +474,21 @@ msgstr "Zentriert"
 #: kirigami_ui/main.qml:657
 msgctxt "Global menu actions. Translucent bars indicate reading region."
 msgid "&Bars"
-msgstr ""
+msgstr "&Balken"
 
 #: kirigami_ui/main.qml:663
 msgctxt ""
 "Global menu actions. Translucent bars and left pointer indicate reading "
 "region."
 msgid "Bars Lef&t"
-msgstr ""
+msgstr "Balken Links"
 
 #: kirigami_ui/main.qml:669
 msgctxt ""
 "Global menu actions. Translucent bars and right pointer indicate reading "
 "region."
 msgid "Bars Ri&ght"
-msgstr ""
+msgstr "Balken &Rechts"
 
 #: kirigami_ui/main.qml:676
 msgctxt "Global menu actions. Enable all reading region indicators."
@@ -535,7 +534,7 @@ msgctxt ""
 "Global menu actions. Fix positioning of reading region to what was set in "
 "\"Free placement\" mode."
 msgid "C&ustom (Fixed placement)"
-msgstr ""
+msgstr "Benutzerdefiniert (Fixierte Position)"
 
 #: kirigami_ui/main.qml:725
 msgctxt "Global menu actions"
@@ -650,6 +649,8 @@ msgstr "LibreOffice"
 msgid ""
 "QPrompt can make transparent use of LibreOffice to convert Microsoft Word, "
 msgstr ""
+"QPrompt kann unsichtbare Verwendung von LibreOffice mach um Microsoft Word "
+"zu konvertieren, "
 
 #: kirigami_ui/PathsPage.qml:71 kirigami_ui/PathsPage.qml:99
 msgctxt "Browse for PROGRAM"
@@ -701,7 +702,7 @@ msgstr "Oben"
 
 #: kirigami_ui/PrompterPage.qml:121
 msgid "Move reading region to the top, convenient for use with webcams"
-msgstr ""
+msgstr "Lesebereich nach oben Verschieben für einfachere Verwendung mit Webcams"
 
 #: kirigami_ui/PrompterPage.qml:132
 msgctxt "Align reading region to vertical center of prompter"
@@ -761,7 +762,7 @@ msgstr ""
 #: kirigami_ui/PrompterPage.qml:256
 msgctxt "Configure reading region pointer indicators"
 msgid "Pointer Configuration"
-msgstr ""
+msgstr "Zeiger Konfiguration"
 
 #: kirigami_ui/PrompterPage.qml:263 kirigami_ui/PrompterPage.qml:275
 msgctxt "Shows pointer to the left of the reading region"
@@ -951,7 +952,7 @@ msgstr "Projektion aktivieren"
 #: kirigami_ui/PrompterPage.qml:694
 msgctxt "Enable scaling prompter copies being projected onto displays"
 msgid "Scale projection"
-msgstr ""
+msgstr "Projektion skalieren"
 
 #: kirigami_ui/PrompterPage.qml:717
 msgid "Leave Fullscreen"
@@ -1037,11 +1038,11 @@ msgstr "Schließen"
 #: kirigami_ui/PrompterPage.qml:1145
 msgctxt "Name of section where reding region pointers are configured"
 msgid "Pointer configuration"
-msgstr ""
+msgstr "Zeiger Konfiguration"
 
 #: kirigami_ui/RemotePage.qml:28
 msgid "Remote Control"
-msgstr ""
+msgstr "Fernbedienung"
 
 #: kirigami_ui/TelemetryPage.qml:30
 msgid "Telemetry Settings"
@@ -1096,7 +1097,7 @@ msgstr "Aus"
 
 #: kirigami_ui/TelemetryPage.qml:95
 msgid "Basic program and system information"
-msgstr ""
+msgstr "Einfache Programm und System Informationen"
 
 #: kirigami_ui/TelemetryPage.qml:96
 msgid "Application version"
@@ -1112,11 +1113,12 @@ msgstr "Qt Versions Information"
 
 #: kirigami_ui/TelemetryPage.qml:99 kirigami_ui/TelemetryPage.qml:120
 msgid "Locale information (timezone and keyboard layout)"
-msgstr ""
+msgstr "Lokale Informationen (Zeitzone und Tastaturlayout)"
 
 #: kirigami_ui/TelemetryPage.qml:116
 msgid "Program run statistics: Help us study user retention"
 msgstr ""
+"Programm Laufzeit Statistiken: Helfen Sie uns unsere Nutzer zu verstehen"
 
 #: kirigami_ui/TelemetryPage.qml:117
 msgid "Randomly generated install ID"
@@ -1124,7 +1126,7 @@ msgstr "Zufällig generierte Installations ID"
 
 #: kirigami_ui/TelemetryPage.qml:118
 msgid "Launch times"
-msgstr ""
+msgstr "Startzeiten"
 
 #: kirigami_ui/TelemetryPage.qml:119
 msgid "Usage time"
@@ -1133,6 +1135,8 @@ msgstr "Nutzungs Dauer"
 #: kirigami_ui/TelemetryPage.qml:138
 msgid "Feature use frequency: Help us know what features are most important"
 msgstr ""
+"Funktionen Nutzungshäufigkeit: Lassen sie uns wissen welche Funktionen am "
+"Wichtigsten sind"
 
 #: kirigami_ui/TelemetryPage.qml:139
 msgid "Flip settings"
