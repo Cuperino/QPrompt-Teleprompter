@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: qprompt\n"
 "Report-Msgid-Bugs-To: https://github.com/Cuperino/QPrompt/issues/new/choose\n"
 "POT-Creation-Date: 2023-11-03 19:42-0400\n"
-"PO-Revision-Date: 2024-06-09 05:04+0000\n"
+"PO-Revision-Date: 2024-06-11 17:04+0000\n"
 "Last-Translator: Liebeg <mail@liebeg.eu>\n"
 "Language-Team: German <http://l10n.cuperino.com/projects/qprompt/qprompt-app/"
 "de/>\n"
@@ -1164,7 +1164,7 @@ msgstr "Eingabe Verwaltungs Einstellugen"
 
 #: kirigami_ui/TelemetryPage.qml:145
 msgid "Base speed and acceleration curvature settings"
-msgstr ""
+msgstr "Basis und Beschleunigungskurve konfigurieren"
 
 #: kirigami_ui/TelemetryPage.qml:146
 msgid "Background color and opacity settings"
