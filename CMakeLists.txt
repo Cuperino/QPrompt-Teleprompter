@@ -335,8 +335,6 @@ set(README_FILE "README.md")
 set(DESCRIPTION_FILE "DESCRIPTION.txt")
 list(APPEND DOCS ${LICENSE_FILE} ${README_FILE} ${DESCRIPTION_FILE} "COPYING.ASSETS")
 
-set(DOC_INSTALL_DIR "share/doc/qprompt")
-
 add_subdirectory(src build)
 ki18n_install(po)
 
@@ -344,15 +342,16 @@ if (ANDROID)
     configure_file(${ANDROID_PACKAGE_SOURCE_DIR}/version.gradle.in ${CMAKE_BINARY_DIR}/version.gradle)
 endif()
 
-if (WIN32 OR UNIX) # AND NOT ANDROID
+if (UNIX AND NOT APPLE AND NOT ANDROID)
+    set(DOC_INSTALL_DIR "share/doc/qprompt")
+    set(MAN_INSTALL_DIR "usr/share/man/")
+    install(FILES docs/manpage/qprompt.1 DESTINATION ${MAN_INSTALL_DIR}/man1 )
+endif()
+
+if (WIN32 OR UNIX AND NOT APPLE) # AND NOT ANDROID
     install(FILES com.cuperino.qprompt.appdata.xml DESTINATION ${KDE_INSTALL_METAINFODIR})
     install(PROGRAMS com.cuperino.qprompt.desktop DESTINATION ${KDE_INSTALL_APPDIR})
     install(FILES ${DOCS} DESTINATION ${DOC_INSTALL_DIR})
-endif()
-
-if (UNIX)
-set(MAN_INSTALL_DIR "usr/share/man/")
-install(FILES docs/manpage/qprompt.1 DESTINATION ${MAN_INSTALL_DIR}/man1 )
 endif()
 
 # CPACK: General Settings
