@@ -33,5 +33,5 @@ exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store', 'venv']
 
 html_theme = "sphinx_rtd_theme"
 html_static_path = ['_static']
-html_logo = "qprompt.png"
-html_favicon = "qprompt.ico"
+html_logo = "_static/qprompt.png"
+html_favicon = "_static/qprompt.ico"
