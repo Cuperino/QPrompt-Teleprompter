@@ -152,22 +152,22 @@ if(ANDROID)
         CoreAddons
     )
 elseif(WASM OR IOS)
-    find_package(Qt${QT_VERSION_MAJOR} ${QT_MIN_VERSION} REQUIRED NO_MODULE COMPONENTS
-        Core
-        Quick
-        Svg
-        Gui
-        QuickControls2
-        Network
-        QmlImportScanner  # Used to get static QML. Gets ignored if not a static build
-        QuickCompiler
-        ShaderTools
-    )
-    find_package(KF${QT_VERSION_MAJOR} ${KF_MIN_VERSION} REQUIRED COMPONENTS
-        Kirigami2
-        I18n
-        CoreAddons
-    )
+    if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
+        find_package(Qt${QT_VERSION_MAJOR} ${QT_MIN_VERSION} REQUIRED NO_MODULE COMPONENTS
+            Core
+            Quick
+            Svg
+            Gui
+            QuickControls2
+            Network
+            ShaderTools
+        )
+        find_package(KF${QT_VERSION_MAJOR} ${KF_MIN_VERSION} REQUIRED COMPONENTS
+            Kirigami2
+            I18n
+            CoreAddons
+        )
+    endif()
 elseif(HAIKU)
     find_package(Qt${QT_VERSION_MAJOR} ${QT_MIN_VERSION} REQUIRED NO_MODULE COMPONENTS
         Core
@@ -196,18 +196,30 @@ elseif(HAIKU)
         TYPE OPTIONAL
     )
 elseif(WIN32 OR APPLE)
-    find_package(Qt${QT_VERSION_MAJOR} ${QT_MIN_VERSION} REQUIRED NO_MODULE COMPONENTS
-        Core
-        Quick
-        Svg
-        Gui
-        QuickControls2
-        Network
-        Widgets
-        QmlImportScanner  # Used to get static QML. Gets ignored if not a static build
-        QuickCompiler
-        ShaderTools
-    )
+    if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
+        find_package(Qt6 ${QT_MIN_VERSION} REQUIRED NO_MODULE COMPONENTS
+            Core
+            Quick
+            Svg
+            Gui
+            QuickControls2
+            Network
+            Widgets
+            ShaderTools
+        )
+    else()
+        find_package(Qt5 ${QT_MIN_VERSION} REQUIRED NO_MODULE COMPONENTS
+            Core
+            Quick
+            Svg
+            Gui
+            QuickControls2
+            Network
+            Widgets
+            QmlImportScanner  # Used to get static QML. Gets ignored if not a static build
+            QuickCompiler
+        )
+    endif()
     find_package(KF${QT_VERSION_MAJOR} ${KF_MIN_VERSION} REQUIRED COMPONENTS
         Kirigami2
         I18n
@@ -263,10 +275,6 @@ else()
             # IconThemes
         )
     endif()
-    #find_package(Qt${QT_VERSION_MAJOR} ${QT_MIN_VERSION} NO_MODULE COMPONENTS
-        #QmlImportScanner  # Used to get static QML. Gets ignored if not a static build
-        #QuickCompiler
-    #)
     find_package(KF${QT_VERSION_MAJOR}Crash ${REQUIRED_KF${QT_VERSION_MAJOR}_VERSION} COMPONENTS)
     set_package_properties(KF${QT_VERSION_MAJOR}Crash PROPERTIES
         DESCRIPTION "Graceful handling of application crashes."
