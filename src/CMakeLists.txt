@@ -718,3 +718,14 @@ if (WIN32 OR UNIX) # AND NOT ANDROID)
         install(TARGETS ${PROJECT_NAME} ${KDE_INSTALL_TARGETS_DEFAULT_ARGS})
     endif()
 endif()
+
+set(deploy_tool_options_arg "")
+qt_generate_deploy_qml_app_script(
+    TARGET ${PROJECT_NAME}
+    OUTPUT_SCRIPT deploy_script
+    NO_UNSUPPORTED_PLATFORM_ERROR
+    DEPLOY_TOOL_OPTIONS ${deploy_tool_options_arg}
+    DEPLOY_USER_QML_MODULES_ON_UNSUPPORTED_PLATFORM
+    MACOS_BUNDLE_POST_BUILD
+)
+install(SCRIPT ${deploy_script})
