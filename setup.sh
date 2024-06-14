@@ -21,12 +21,24 @@
 #
 #**************************************************************************
 
+if [[ "$OSTYPE" == "linux-gnu"* ]]; then
+   COMPILER="gcc"
+elif [[ "$OSTYPE" == "darwin"* ]]; then
+    COMPILER="macos"
+elif [[ "$OSTYPE" == "win32" ]]; then
+    COMPILER="msvc"
+elif [[ "$OSTYPE" == "freebsd"* ]]; then
+    COMPILER="gcc"
+else
+    COMPILER="gcc"
+fi
+
 cat << EOF
 usage: $0 <CMAKE_BUILD_TYPE> <CMAKE_PREFIX_PATH> [<QT_MAJOR_VERSION> | ] [CLEAR | CLEAR_ALL]
 
 Defaults:
  * CMAKE_BUILD_TYPE: "Release"
- * CMAKE_PREFIX_PATH: "~/Qt/6.6.1/gcc_64/"
+ * CMAKE_PREFIX_PATH: "~/Qt/6.7.1/$COMPILER/"
  * QT_MAJOR_VERSION: 6
 
 Setup script for building QPrompt
@@ -42,7 +54,7 @@ if [ "$CMAKE_BUILD_TYPE" == "" ]
 fi
 CMAKE_PREFIX_PATH=$2
 if [ "$CMAKE_PREFIX_PATH" == "" ]
-        then CMAKE_PREFIX_PATH="~/Qt/6.6.1/gcc_64/"
+        then CMAKE_PREFIX_PATH="~/Qt/6.7.1/$COMPILER/"
 fi
 QT_MAJOR_VERSION=$3
 if [ "$QT_MAJOR_VERSION" == "" ]
@@ -63,7 +75,7 @@ else
 fi
 
 # Constants
-CMAKE_INSTALL_PREFIX="./build/dist"
+CMAKE_INSTALL_PREFIX="$CMAKE_PREFIX_PATH"
 ARCHITECTURE="$(uname -m)"
 
 echo "Build directory is ./build"
@@ -78,6 +90,10 @@ mkdir -p build install
 
 echo "Downloading git submodules"
 git submodule update --init --recursive
+
+python3 -m venv docs/venv
+source docs/venv/bin/activate
+pip3 install -r docs/requirements.txt
 
 echo "Extra CMake Modules"
 if $CLEAR_ALL
