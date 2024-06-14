@@ -88,6 +88,10 @@ elif $CLEAR # QPrompt
 fi
 mkdir -p build install
 
+if [[ "$OSTYPE" == "darwin"* ]]; then
+    brew install ninja
+fi
+
 echo "Downloading git submodules"
 git submodule update --init --recursive
 
@@ -100,9 +104,8 @@ if $CLEAR_ALL
     then
     rm -dRf ./3rdparty/extra-cmake-modules/build
 fi
-cmake -DCMAKE_BUILD_TYPE=$CMAKE_BUILD_TYPE -DCMAKE_PREFIX_PATH=$CMAKE_PREFIX_PATH -DCMAKE_INSTALL_PREFIX=$CMAKE_INSTALL_PREFIX -B ./3rdparty/extra-cmake-modules/build ./3rdparty/extra-cmake-modules/
-cmake --build ./3rdparty/extra-cmake-modules/build
-cmake --install ./3rdparty/extra-cmake-modules/build
+cmake -DCMAKE_BUILD_TYPE=$CMAKE_BUILD_TYPE -DCMAKE_PREFIX_PATH=$CMAKE_PREFIX_PATH -DCMAKE_INSTALL_PREFIX=$CMAKE_INSTALL_PREFIX -B ./3rdparty/extra-cmake-modules/build -G Ninja ./3rdparty/extra-cmake-modules/
+ninja -C ./3rdparty/extra-cmake-modules/build
 
 # KDE Frameworks
 for dependency in ./3rdparty/k*; do
@@ -111,9 +114,8 @@ for dependency in ./3rdparty/k*; do
     then
         rm -dRf ./$dependency/build
     fi
-    cmake -DCMAKE_BUILD_TYPE=$CMAKE_BUILD_TYPE -DCMAKE_PREFIX_PATH=$CMAKE_PREFIX_PATH -DCMAKE_INSTALL_PREFIX=$CMAKE_INSTALL_PREFIX -B ./$dependency/build ./$dependency/
-    cmake --build ./$dependency/build
-    cmake --install ./$dependency/build
+    cmake -DCMAKE_BUILD_TYPE=$CMAKE_BUILD_TYPE -DCMAKE_PREFIX_PATH=$CMAKE_PREFIX_PATH -DCMAKE_INSTALL_PREFIX=$CMAKE_INSTALL_PREFIX -B ./$dependency/build -G Ninja ./$dependency/
+    ninja -C ./$dependency/build
 done
 
 echo "QHotkey"
@@ -121,11 +123,9 @@ if $CLEAR_ALL
 then
     rm -dRf ./3rdparty/QHotkey/build
 fi
-cmake -DCMAKE_BUILD_TYPE=$CMAKE_BUILD_TYPE -DCMAKE_PREFIX_PATH=$CMAKE_PREFIX_PATH -DCMAKE_INSTALL_PREFIX=$CMAKE_INSTALL_PREFIX -DBUILD_SHARED_LIBS=ON -DQT_DEFAULT_MAJOR_VERSION=${QT_MAJOR_VERSION} -B ./3rdparty/QHotkey/build ./3rdparty/QHotkey/
-cmake --build ./3rdparty/QHotkey/build
-cmake --install ./3rdparty/QHotkey/build
+cmake -DCMAKE_BUILD_TYPE=$CMAKE_BUILD_TYPE -DCMAKE_PREFIX_PATH=$CMAKE_PREFIX_PATH -DCMAKE_INSTALL_PREFIX=$CMAKE_INSTALL_PREFIX -DBUILD_SHARED_LIBS=ON -DQT_DEFAULT_MAJOR_VERSION=${QT_MAJOR_VERSION} -B ./3rdparty/QHotkey/build -G Ninja ./3rdparty/QHotkey/
+ninja -C ./3rdparty/QHotkey/build
 
 echo "QPrompt"
-cmake -DCMAKE_BUILD_TYPE=$CMAKE_BUILD_TYPE -DCMAKE_PREFIX_PATH=$CMAKE_PREFIX_PATH -DCMAKE_INSTALL_PREFIX=$CMAKE_INSTALL_PREFIX -B ./build .
-cmake --build ./build
-cmake --install ./build
+cmake -DCMAKE_BUILD_TYPE=$CMAKE_BUILD_TYPE -DCMAKE_PREFIX_PATH=$CMAKE_PREFIX_PATH -DCMAKE_INSTALL_PREFIX=$CMAKE_INSTALL_PREFIX -B ./build -G Ninja .
+ninja -C build
