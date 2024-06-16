@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: qprompt\n"
 "Report-Msgid-Bugs-To: https://github.com/Cuperino/QPrompt/issues/new/choose\n"
 "POT-Creation-Date: 2023-11-03 19:42-0400\n"
-"PO-Revision-Date: 2024-06-11 17:04+0000\n"
+"PO-Revision-Date: 2024-06-17 06:04+0000\n"
 "Last-Translator: Liebeg <mail@liebeg.eu>\n"
 "Language-Team: German <http://l10n.cuperino.com/projects/qprompt/qprompt-app/"
 "de/>\n"
@@ -1384,29 +1384,27 @@ msgstr "Tönung"
 
 #: prompter/PointerSettings.qml:165
 msgid "Guides"
-msgstr ""
+msgstr "Anleitungen"
 
 #: prompter/PointerSettings.qml:197
-#, fuzzy
 msgid "Arrow"
-msgstr "Pfeiltaste nach oben"
+msgstr "Pfeil"
 
 #: prompter/PointerSettings.qml:201
 msgid "Text"
-msgstr ""
+msgstr "Text"
 
 #: prompter/PointerSettings.qml:205
 msgid "Image"
-msgstr ""
+msgstr "Bild"
 
 #: prompter/PointerSettings.qml:209
 msgid "QML"
-msgstr ""
+msgstr "QML"
 
 #: prompter/PointerSettings.qml:225
-#, fuzzy
 msgid "Line width <pre>%1</pre>"
-msgstr "Zeilenhöhe <pre>%1%</pre>"
+msgstr "Zeilenbreite <pre>%1%</pre>"
 
 #: prompter/PointerSettings.qml:285 prompter/PointerSettings.qml:386
 #: prompter/PointerSettings.qml:407 prompter/PointerSettings.qml:467
@@ -1422,7 +1420,7 @@ msgstr "Rechts "
 
 #: prompter/PointerSettings.qml:328
 msgid "Font: "
-msgstr ""
+msgstr "Schriftart: "
 
 #: prompter/PointerSettings.qml:361 prompter/PointerSettings.qml:438
 #, fuzzy
@@ -1433,7 +1431,7 @@ msgstr "Geschwindigkeit <pre>%1</pre>"
 #: prompter/PointerSettings.qml:396 prompter/PointerSettings.qml:426
 #: prompter/PointerSettings.qml:477 prompter/PointerSettings.qml:507
 msgid "Browse"
-msgstr ""
+msgstr "Durchsuchen"
 
 #: prompter/PointerSettings.qml:462
 msgid "Use QML scripts to draw pointers"
@@ -1441,23 +1439,23 @@ msgstr ""
 
 #: prompter/PointerSettings.qml:534 prompter/PrompterBackground.qml:127
 msgid "JPEG image"
-msgstr ""
+msgstr "JPEG Bild"
 
 #: prompter/PointerSettings.qml:535 prompter/PrompterBackground.qml:128
 msgid "PNG image"
-msgstr ""
+msgstr "PNG Bild"
 
 #: prompter/PointerSettings.qml:536 prompter/PrompterBackground.qml:129
 msgid "GIF animation"
-msgstr ""
+msgstr "GIF Animation"
 
 #: prompter/PointerSettings.qml:537
 msgid "WEBP image"
-msgstr ""
+msgstr "WEBP Bild"
 
 #: prompter/PointerSettings.qml:551
 msgid "QML script"
-msgstr ""
+msgstr "QML Skript"
 
 #: prompter/ProjectionsManager.qml:173
 msgid "Projection Window"
@@ -1471,7 +1469,7 @@ msgstr ""
 
 #: prompter/Prompter.qml:682
 msgid "Error loading file…"
-msgstr ""
+msgstr "Fehler beim laden der Datei…"
 
 #: prompter/Prompter.qml:784
 msgid "Press and hold to go back to the start"
