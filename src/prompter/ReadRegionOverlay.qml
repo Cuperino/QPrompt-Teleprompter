@@ -152,25 +152,24 @@ Item {
             readonly property size delta: Qt.size(offset.x / width,
                                                   offset.y / height)
             readonly property real darkness: 0.5
-            readonly property variant shadow: ShaderEffectSource {
+            readonly property ShaderEffectSource shadow: ShaderEffectSource {
                 sourceItem: ShaderEffect {
                     width: readRegion.width
                     height: readRegion.height
                     readonly property size delta: Qt.size(0.0, 4.0 / height)
-                    readonly property variant source: ShaderEffectSource {
+                    readonly property ShaderEffectSource source: ShaderEffectSource {
                         sourceItem: ShaderEffect {
                             width: readRegion.width
                             height: readRegion.height
-                            readonly property size delta: Qt.size(4.0 / width,
-                                                                  0.0)
-                            readonly property variant source: pointerShadowSource
-                            fragmentShader: "/shaders/shaders/blur.frag.qsb"
+                            readonly property size delta: Qt.size(4.0 / width, 0.0)
+                            readonly property ShaderEffectSource source: pointerShadowSource
+                            fragmentShader: "/qt/qml/com/cuperino/qprompt/shaders/blur.frag.qsb"
                         }
                     }
-                    fragmentShader: "/shaders/shaders/blur.frag.qsb"
+                    fragmentShader: "/qt/qml/com/cuperino/qprompt/shaders/blur.frag.qsb"
                 }
             }
-            fragmentShader: "/shaders/shaders/shadow.frag.qsb"
+            fragmentShader: "/qt/qml/com/cuperino/qprompt/shaders/shadow.frag.qsb"
         }
 
         MouseArea {

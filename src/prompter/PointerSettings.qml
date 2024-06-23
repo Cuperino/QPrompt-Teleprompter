@@ -217,7 +217,7 @@ ColumnLayout {
                            ListView.Beginning)
         }
         TabButton {
-            text: i18n("QML")
+            text: i18n("Custom")
             onClicked: listView.positionViewAtIndex(
                            parseInt(PointerSettings.States.QML),
                            ListView.Beginning)
