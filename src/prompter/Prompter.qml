@@ -456,31 +456,30 @@ Flickable {
     transform: __flips
     layer.enabled: root.shadows
     layer.effect: ShaderEffect {
-        width: viewport.width
-        height: viewport.height
+        id: shadow
         readonly property variant source: prompterShadowSource
         readonly property real angle: 180
         readonly property point offset: Qt.point(prompter.fontSize / 13 * Math.cos(angle), prompter.fontSize / 13 * Math.sin(angle))
         readonly property size delta: Qt.size(offset.x / width, offset.y / height)
         readonly property real darkness: 0.5 // + ((prompter.fontSize / (prompter.fontSize + 1)) / 2)
-        readonly property variant shadow: ShaderEffectSource {
+        readonly property ShaderEffectSource shadow: ShaderEffectSource {
             sourceItem: ShaderEffect {
-                width: viewport.width
-                height: viewport.height
+                width: shadow.source.sourceItem.width
+                height: shadow.source.sourceItem.height
                 readonly property size delta: Qt.size(0.0, 4.0 / height)
-                readonly property variant source: ShaderEffectSource {
+                readonly property ShaderEffectSource source: ShaderEffectSource {
                     sourceItem: ShaderEffect {
-                        width: viewport.width
-                        height: viewport.height
+                        width: shadow.source.sourceItem.width
+                        height: shadow.source.sourceItem.height
                         readonly property size delta: Qt.size(4.0 / width, 0.0)
-                        readonly property variant source: prompterShadowSource
-                        fragmentShader: "/shaders/shaders/blur.frag.qsb"
+                        readonly property ShaderEffectSource source: shadow.source
+                        fragmentShader: "/qt/qml/com/cuperino/qprompt/shaders/blur.frag.qsb"
                     }
                 }
-                fragmentShader: "/shaders/shaders/blur.frag.qsb"
+                fragmentShader: "/qt/qml/com/cuperino/qprompt/shaders/blur.frag.qsb"
             }
         }
-        fragmentShader: "/shaders/shaders/shadow.frag.qsb"
+        fragmentShader: "/qt/qml/com/cuperino/qprompt/shaders/shadow.frag.qsb"
     }
 
     // Flick while prompting

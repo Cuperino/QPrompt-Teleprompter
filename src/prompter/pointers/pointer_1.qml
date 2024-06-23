@@ -50,6 +50,6 @@ Text {
         property color tint: pointerText.color
         width: pointerText.width
         height: pointerText.height
-        fragmentShader: "/shaders/shaders/tint.frag.qsb"
+        fragmentShader: "/qt/qml/com/cuperino/qprompt/shaders/tint.frag.qsb"
     }
 }

@@ -50,6 +50,6 @@ Image {
         property color tint: pointerImage.colorValue
         width: pointerImage.width
         height: pointerImage.height
-        fragmentShader: "/shaders/shaders/tint.frag.qsb"
+        fragmentShader: "/qt/qml/com/cuperino/qprompt/shaders/tint.frag.qsb"
     }
 }
