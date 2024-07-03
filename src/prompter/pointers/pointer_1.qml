@@ -47,36 +47,9 @@ Text {
     layer.enabled: tint
     layer.effect: ShaderEffect {
         property variant src: pointerText
-        property real r: pointerText.color.r * pointerText.color.a
-        property real g: pointerText.color.g * pointerText.color.a
-        property real b: pointerText.color.b * pointerText.color.a
+        property color tint: pointerText.color
         width: pointerText.width
         height: pointerText.height
-        vertexShader: "
-            uniform highp mat4 qt_Matrix;
-            attribute highp vec4 qt_Vertex;
-            attribute highp vec2 qt_MultiTexCoord0;
-            varying highp vec2 coord;
-
-            void main() {
-                coord = qt_MultiTexCoord0;
-                gl_Position = qt_Matrix * qt_Vertex;
-            }
-        "
-        // avg calibrated to achieve similar color from a yellow emoji
-        fragmentShader: "
-            varying highp vec2 coord;
-            uniform sampler2D src;
-
-            uniform lowp float r;
-            uniform lowp float g;
-            uniform lowp float b;
-
-            void main() {
-                lowp vec4 clr = texture2D(src, coord);
-                lowp float avg = (clr.r + clr.g + clr.b) / 2.0;
-                gl_FragColor = vec4(r * avg, g * avg, b * avg, clr.a);
-            }
-        "
+        fragmentShader: "/qt/qml/com/cuperino/qprompt/shaders/tint.frag.qsb"
     }
 }

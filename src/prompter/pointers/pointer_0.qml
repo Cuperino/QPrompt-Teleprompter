@@ -1,3 +1,5 @@
+
+
 /****************************************************************************
  **
  ** QPrompt
@@ -18,12 +20,11 @@
  ** along with this program.  If not, see <http://www.gnu.org/licenses/>.
  **
  ****************************************************************************/
-
 import QtQuick 2.15
 import QtQuick.Shapes 1.15
 import QtQuick.Controls.Material 2.12
 
-import com.cuperino.qprompt.abstractunits 1.0
+import com.cuperino.qprompt 1.0
 
 Shape {
     property int prompterState
@@ -37,13 +38,13 @@ Shape {
     ShapePath {
         strokeWidth: Math.ceil((lineWidth) / 17 * (pointers.__pointerUnit / 2))
         strokeColor: switch (prompterState) {
-        case 0:
-            return colorsEditing;
-        case 3:
-            return colorsPrompting;
-        default:
-            return colorsReady;
-        }
+                     case 0:
+                         return colorsEditing
+                     case 3:
+                         return colorsPrompting
+                     default:
+                         return colorsReady
+                     }
         fillColor: "#00000000"
         //fillColor: switch (prompterState) {
         //    case Prompter.States.Editing:
@@ -54,11 +55,18 @@ Shape {
         //        return colorsReady;
         //}
         // Bottom left starting point
-        startX: Qt.application.layoutDirection===Qt.LeftToRight ? 0 : parent.width; startY: parent.width
+        startX: Qt.application.layoutDirection === Qt.LeftToRight ? 0 : parent.width
+        startY: parent.width
         // Center right
-        PathLine { x: Qt.application.layoutDirection===Qt.LeftToRight ? parent.width : 0; y: 0}
+        PathLine {
+            x: Qt.application.layoutDirection === Qt.LeftToRight ? parent.width : 0
+            y: 0
+        }
         // Top left
-        PathLine { x: Qt.application.layoutDirection===Qt.LeftToRight ? 0 : parent.width; y: -parent.width}
+        PathLine {
+            x: Qt.application.layoutDirection === Qt.LeftToRight ? 0 : parent.width
+            y: -parent.width
+        }
         Behavior on strokeColor {
             enabled: configuratorOpen
             ColorAnimation {

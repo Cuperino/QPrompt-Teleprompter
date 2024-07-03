@@ -23,10 +23,10 @@ import QtQuick 2.12
 import QtQuick.Controls 2.12
 import QtQuick.Shapes 1.12
 import QtQuick.Layouts 1.12
-import QtQuick.Dialogs 1.2
-import Qt.labs.settings 1.0
+import QtCore 6.5
+import Qt.labs.platform 1.1 as Labs
 
-//import com.cuperino.qprompt.promptertimer 1.0
+//import com.cuperino.qprompt 1.0
 
 Item {
     id: clock
@@ -115,7 +115,7 @@ Item {
         property alias enabled: clock.enabled
         property alias stopwatch: clock.stopwatch
         property alias eta: clock.eta
-        property color color: timerColorDialog.currentColor
+        property color color: timerColorDialog.color
     }
 
     Item {
@@ -195,9 +195,9 @@ Item {
         onTriggered: updateTimer();
     }
 
-    ColorDialog {
+    Labs.ColorDialog {
         id: timerColorDialog
-        showAlphaChannel: false  // Line required for Android in Qt 5. Remove when refactoring to Qt 6.
+        options: Labs.ColorDialog.ShowAlphaChannel  // Line required for Android
         color: '#AAA'
         onAccepted: {
             timerSettings.color = currentColor

@@ -1,3 +1,5 @@
+
+
 /****************************************************************************
  **
  ** QPrompt
@@ -18,16 +20,15 @@
  ** along with this program.  If not, see <http://www.gnu.org/licenses/>.
  **
  ****************************************************************************/
-
 import QtQuick 2.15
 import QtQuick.Controls 2.15
 import QtQuick.Layouts 1.15
 import QtQml.Models 2.2
 import QtQuick.Controls.Material 2.12
-import QtQuick.Dialogs 1.3
-import Qt.labs.settings 1.0
+import QtCore 6.5
+import Qt.labs.platform 1.1 as Labs
 
-import com.cuperino.qprompt.qmlutil 1.0
+import com.cuperino.qprompt 1.0
 
 ColumnLayout {
     id: pointerSettings
@@ -73,7 +74,6 @@ ColumnLayout {
                 checked: false
                 enabled: false
             }
-
         }
     ]
     state: pointerSettings.pointerKind
@@ -112,11 +112,11 @@ ColumnLayout {
         TextField {
             id: editingColor
             property color value: text ? text : placeholderText
-            placeholderText: Material.theme===Material.Light ? "#4d94cf" : "#2b72ad"
-            onPressed: (event) => {
-                pointerColorDialog.source = this
-                pointerColorDialog.open()
-            }
+            placeholderText: Material.theme === Material.Light ? "#4d94cf" : "#2b72ad"
+            onPressed: event => {
+                           pointerColorDialog.source = this
+                           pointerColorDialog.open()
+                       }
             Layout.fillWidth: true
         }
         Label {
@@ -125,11 +125,11 @@ ColumnLayout {
         TextField {
             id: readyColor
             property color value: text ? text : placeholderText
-            placeholderText: Material.theme===Material.Light ? "#4d94cf" : "#2b72ad"
-            onPressed: (event) => {
-                pointerColorDialog.source = this
-                pointerColorDialog.open()
-            }
+            placeholderText: Material.theme === Material.Light ? "#4d94cf" : "#2b72ad"
+            onPressed: event => {
+                           pointerColorDialog.source = this
+                           pointerColorDialog.open()
+                       }
             Layout.fillWidth: true
         }
         Label {
@@ -138,11 +138,11 @@ ColumnLayout {
         TextField {
             id: promptingColor
             property color value: text ? text : placeholderText
-            placeholderText: Material.theme===Material.Light ? "#4d94cf" : "#2b72ad"
-            onPressed: (event) => {
-                pointerColorDialog.source = this
-                pointerColorDialog.open()
-            }
+            placeholderText: Material.theme === Material.Light ? "#4d94cf" : "#2b72ad"
+            onPressed: event => {
+                           pointerColorDialog.source = this
+                           pointerColorDialog.open()
+                       }
             Layout.fillWidth: true
         }
     }
@@ -154,7 +154,12 @@ ColumnLayout {
     RowLayout {
         CheckBox {
             id: sameAsLeftPointerCheck
-            text: Qt.application.layoutDirection===Qt.LeftToRight ? i18nc("Uses a mirrored copy of the first pointer as the second pointer", "Reuse left pointer") : i18nc("Uses a mirrored copy of the first pointer as the second pointer", "Reuse right pointer")
+            text: Qt.application.layoutDirection
+                  === Qt.LeftToRight ? i18nc(
+                                           "Uses a mirrored copy of the first pointer as the second pointer",
+                                           "Reuse left pointer") : i18nc(
+                                           "Uses a mirrored copy of the first pointer as the second pointer",
+                                           "Reuse right pointer")
         }
         CheckBox {
             id: tintCheck
@@ -177,7 +182,7 @@ ColumnLayout {
         currentIndex: PointerSettings.States.Arrow
         orientation: ListView.Horizontal
         highlightRangeMode: ListView.StrictlyEnforceRange
-        snapMode: ListView.SnapOneItem;
+        snapMode: ListView.SnapOneItem
         highlightMoveVelocity: 2000
         maximumFlickVelocity: 20000
         height: 180
@@ -195,19 +200,27 @@ ColumnLayout {
         currentIndex: pointerSettings.pointerKind
         TabButton {
             text: i18n("Arrow")
-            onClicked: listView.positionViewAtIndex(parseInt(PointerSettings.States.Arrow), ListView.Beginning);
+            onClicked: listView.positionViewAtIndex(
+                           parseInt(PointerSettings.States.Arrow),
+                           ListView.Beginning)
         }
         TabButton {
             text: i18n("Text")
-            onClicked: listView.positionViewAtIndex(parseInt(PointerSettings.States.Text), ListView.Beginning);
+            onClicked: listView.positionViewAtIndex(
+                           parseInt(PointerSettings.States.Text),
+                           ListView.Beginning)
         }
         TabButton {
             text: i18n("Image")
-            onClicked: listView.positionViewAtIndex(parseInt(PointerSettings.States.Image), ListView.Beginning);
+            onClicked: listView.positionViewAtIndex(
+                           parseInt(PointerSettings.States.Image),
+                           ListView.Beginning)
         }
         TabButton {
-            text: i18n("QML")
-            onClicked: listView.positionViewAtIndex(parseInt(PointerSettings.States.QML), ListView.Beginning);
+            text: i18n("Custom")
+            onClicked: listView.positionViewAtIndex(
+                           parseInt(PointerSettings.States.QML),
+                           ListView.Beginning)
         }
         Layout.fillWidth: true
     }
@@ -222,7 +235,8 @@ ColumnLayout {
                 id: lineWidth
                 property int value: 15 // the user will see value + 1
                 Label {
-                    text: i18n("Line width <pre>%1</pre>", ((parent.value+1)/100).toFixed(2).slice(2))
+                    text: i18n("Line width <pre>%1</pre>",
+                               ((parent.value + 1) / 100).toFixed(2).slice(2))
                 }
                 Slider {
                     value: parent.value
@@ -282,14 +296,16 @@ ColumnLayout {
             height: listView.height
             RowLayout {
                 Label {
-                    text: Qt.application.layoutDirection===Qt.LeftToRight ? i18n("Left Pointer: ") : i18n("Right Pointer: ")
+                    text: Qt.application.layoutDirection
+                          === Qt.LeftToRight ? i18n("Left Pointer: ") : i18n(
+                                                   "Right Pointer: ")
                 }
                 TextField {
                     id: leftPointerText
                     property string value: text ? text : placeholderText
                     text: ""
                     // Skin tone chosen for its lower contrast against both text and background
-                    placeholderText: Qt.application.layoutDirection===Qt.LeftToRight ? (Qt.platform.os==="osx" ? ">" : "\u{1F449}\u{1F3FC}") : (Qt.platform.os==="osx" ? "<" : "\u{1F448}\u{1F3FC}")
+                    placeholderText: Qt.application.layoutDirection === Qt.LeftToRight ? (Qt.platform.os === "osx" ? ">" : "\u{1F449}\u{1F3FC}") : (Qt.platform.os === "osx" ? "<" : "\u{1F448}\u{1F3FC}")
                     font.family: pointerSettings.textFont
                     Layout.fillWidth: true
                 }
@@ -304,7 +320,7 @@ ColumnLayout {
                     enabled: true
                     text: ""
                     // Skin tone chosen for its lower contrast against both text and background
-                    placeholderText: Qt.application.layoutDirection===Qt.LeftToRight ? (Qt.platform.os==="osx" ? "<" : "\u{1F448}\u{1F3FC}") : (Qt.platform.os==="osx" ? ">" : "\u{1F449}\u{1F3FC}")
+                    placeholderText: Qt.application.layoutDirection === Qt.LeftToRight ? (Qt.platform.os === "osx" ? "<" : "\u{1F448}\u{1F3FC}") : (Qt.platform.os === "osx" ? ">" : "\u{1F449}\u{1F3FC}")
                     font.family: pointerSettings.textFont
                     Layout.fillWidth: true
                 }
@@ -348,7 +364,7 @@ ColumnLayout {
                     }
                     Component.onCompleted: {
                         if (!fontSelector.currentIndex)
-                            currentIndex = indexOfValue("DejaVu Sans");
+                            currentIndex = indexOfValue("DejaVu Sans")
                     }
                     Layout.fillWidth: true
                     Material.theme: Material.Dark
@@ -358,7 +374,11 @@ ColumnLayout {
                 id: textVerticalOffsetSlider
                 property real value: -0.05
                 Label {
-                    text: i18nc("Vertical offset (line height) 1.00", "Vertical offset <pre>%1</pre>", (parent.value < 0 ? "-" : "+") + (parent.value/10).toFixed(3).slice((parent.value < 0 ? 3 : 2)))
+                    text: i18nc(
+                              "Vertical offset (line height) 1.00",
+                              "Vertical offset <pre>%1</pre>",
+                              (parent.value < 0 ? "-" : "+") + (parent.value / 10).toFixed(
+                                  3).slice((parent.value < 0 ? 3 : 2)))
                 }
                 Slider {
                     value: parent.value
@@ -383,13 +403,15 @@ ColumnLayout {
             height: listView.height
             RowLayout {
                 Label {
-                    text: Qt.application.layoutDirection===Qt.LeftToRight ? i18n("Left Pointer: ") : i18n("Right Pointer: ")
+                    text: Qt.application.layoutDirection
+                          === Qt.LeftToRight ? i18n("Left Pointer: ") : i18n(
+                                                   "Right Pointer: ")
                 }
                 TextField {
                     id: leftPointerImagePath
                     property url value: text ? text : placeholderText
                     text: ""
-                    placeholderText: Qt.application.layoutDirection===Qt.LeftToRight ? "qrc:/images/left_hand.png" : "qrc:/images/right_hand.png"
+                    placeholderText: Qt.application.layoutDirection === Qt.LeftToRight ? "../../images/left_hand.png" : "../../images/right_hand.png"
                     Layout.fillWidth: true
                 }
                 Button {
@@ -404,7 +426,9 @@ ColumnLayout {
             RowLayout {
                 enabled: !pointerSettings.sameAsLeftPointer
                 Label {
-                    text: Qt.application.layoutDirection===Qt.LeftToRight ? i18n("Right Pointer: ") : i18n("Left Pointer: ")
+                    text: Qt.application.layoutDirection
+                          === Qt.LeftToRight ? i18n("Right Pointer: ") : i18n(
+                                                   "Left Pointer: ")
                 }
                 TextField {
                     id: rightPointerImagePath
@@ -412,7 +436,7 @@ ColumnLayout {
                     visible: !pointerSettings.sameAsLeftPointer
                     enabled: true
                     text: ""
-                    placeholderText: Qt.application.layoutDirection===Qt.LeftToRight ? "qrc:/images/right_hand.png" : "qrc:/images/left_hand.png"
+                    placeholderText: Qt.application.layoutDirection === Qt.LeftToRight ? "../../images/right_hand.png" : "../../images/left_hand.png"
                     Layout.fillWidth: true
                 }
                 TextField {
@@ -435,7 +459,11 @@ ColumnLayout {
                 id: imageVerticalOffsetSlider
                 property real value: 0
                 Label {
-                    text: i18nc("Vertical offset (line height) 1.00", "Vertical offset <pre>%1</pre>", (parent.value < 0 ? "-" : "+") + (parent.value/10).toFixed(3).slice((parent.value < 0 ? 3 : 2)))
+                    text: i18nc(
+                              "Vertical offset (line height) 1.00",
+                              "Vertical offset <pre>%1</pre>",
+                              (parent.value < 0 ? "-" : "+") + (parent.value / 10).toFixed(
+                                  3).slice((parent.value < 0 ? 3 : 2)))
                 }
                 Slider {
                     value: parent.value
@@ -464,13 +492,15 @@ ColumnLayout {
             }
             RowLayout {
                 Label {
-                    text: Qt.application.layoutDirection===Qt.LeftToRight ? i18n("Left Pointer: ") : i18n("Right Pointer: ")
+                    text: Qt.application.layoutDirection
+                          === Qt.LeftToRight ? i18n("Left Pointer: ") : i18n(
+                                                   "Right Pointer: ")
                 }
                 TextField {
                     id: leftPointerQmlPath
                     property url value: text ? text : placeholderText
                     text: ""
-                    placeholderText: "qrc:/pointers/pointer_1.qml"
+                    placeholderText: "pointers/pointer_1.qml"
                     Layout.fillWidth: true
                 }
                 Button {
@@ -485,7 +515,9 @@ ColumnLayout {
             RowLayout {
                 enabled: !pointerSettings.sameAsLeftPointer
                 Label {
-                    text: Qt.application.layoutDirection===Qt.LeftToRight ? i18n("Right Pointer: ") : i18n("Left Pointer: ")
+                    text: Qt.application.layoutDirection
+                          === Qt.LeftToRight ? i18n("Right Pointer: ") : i18n(
+                                                   "Left Pointer: ")
                 }
                 TextField {
                     id: rightPointerQmlPath
@@ -493,7 +525,7 @@ ColumnLayout {
                     visible: !pointerSettings.sameAsLeftPointer
                     enabled: true
                     text: ""
-                    placeholderText: "qrc:/pointers/pointer_2.qml"
+                    placeholderText: "pointers/pointer_2.qml"
                     Layout.fillWidth: true
                 }
                 TextField {
@@ -517,7 +549,7 @@ ColumnLayout {
             }
         }
     }
-    ColorDialog {
+    Labs.ColorDialog {
         id: pointerColorDialog
         property var source
         currentColor: appTheme.__backgroundColor
@@ -525,35 +557,27 @@ ColumnLayout {
             source.text = color
         }
     }
-    FileDialog {
+    Labs.FileDialog {
         id: pointerImageFileDialog
         property var source
-        selectExisting: true
-        selectedNameFilter: nameFilters[0]
-        nameFilters: [
-          i18n("JPEG image") + "(*.jpg *.jpeg *.JPG *.JPEG)",
-          i18n("PNG image") + "(*.png *.PNG)",
-          i18n("GIF animation") + "(*.gif *.GIF)",
-          i18n("WEBP image") + "(*.webp *.WEBP)"
-        ]
-        // fileMode: Labs.FileDialog.OpenFile
-        folder: shortcuts.pictures
+        nameFilters: [i18n("JPEG image") + "(*.jpg *.jpeg *.JPG *.JPEG)", i18n(
+                "PNG image") + "(*.png *.PNG)", i18n(
+                "GIF animation") + "(*.gif *.GIF)", i18n(
+                "WEBP image") + "(*.webp *.WEBP)"]
+        fileMode: Labs.FileDialog.OpenFile
+        folder: StandardPaths.writableLocation(StandardPaths.PicturesLocation)
         onAccepted: {
-            source.text = fileUrl.valueOf()
+            source.text = file.valueOf()
         }
     }
-    FileDialog {
+    Labs.FileDialog {
         id: pointerQmlFileDialog
         property var source
-        selectExisting: true
-        selectedNameFilter: nameFilters[0]
-        nameFilters: [
-          i18n("QML script") + "(*.qml *.QML)"
-        ]
-        // fileMode: Labs.FileDialog.OpenFile
-        folder: shortcuts.documents
+        nameFilters: [i18n("QML script") + "(*.qml *.QML)"]
+        fileMode: Labs.FileDialog.OpenFile
+        folder: StandardPaths.writableLocation(StandardPaths.DocumentsLocation)
         onAccepted: {
-            source.text = fileUrl.valueOf()
+            source.text = file.valueOf()
         }
     }
 }

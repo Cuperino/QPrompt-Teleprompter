@@ -27,11 +27,14 @@
 #define QMLUTIL_H
 
 #include <QCoreApplication>
+#include <QCursor>
 #include <QFontDatabase>
 #include <QGuiApplication>
 #include <QKeySequence>
 #include <QObject>
+#include <QPixmap>
 #include <QProcess>
+#include <QQmlEngine>
 
 // A singleton object to implement C++ functions that can be called from QML
 class QmlUtil : public QObject
@@ -87,8 +90,12 @@ public:
     }
     Q_INVOKABLE QStringList fontList()
     {
+#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+        return QFontDatabase::families();
+#else
         QFontDatabase database;
         return database.families();
+#endif
     }
 };
 #endif // QMLUTIL_H

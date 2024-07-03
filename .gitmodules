@@ -7,3 +7,21 @@
 [submodule "3rdparty/KDMacTouchBar"]
 	path = 3rdparty/KDMacTouchBar
 	url = https://github.com/KDAB/KDMacTouchBar.git
+[submodule "3rdparty/extra-cmake-modules"]
+	path = 3rdparty/extra-cmake-modules
+	url = https://invent.kde.org/frameworks/extra-cmake-modules.git
+[submodule "3rdparty/kcoreaddons"]
+	path = 3rdparty/kcoreaddons
+	url = https://invent.kde.org/frameworks/kcoreaddons.git
+[submodule "3rdparty/ki18n"]
+	path = 3rdparty/ki18n
+	url = https://invent.kde.org/frameworks/ki18n.git
+[submodule "3rdparty/kirigami"]
+	path = 3rdparty/kirigami
+	url = https://invent.kde.org/frameworks/kirigami.git
+[submodule "3rdparty/kcrash"]
+	path = 3rdparty/kcrash
+	url = https://invent.kde.org/frameworks/kcrash.git
+[submodule "3rdparty/QHotkey"]
+	path = 3rdparty/QHotkey
+	url = https://github.com/Cuperino/QHotkey.git

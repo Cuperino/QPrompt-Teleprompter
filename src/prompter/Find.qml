@@ -22,8 +22,9 @@
 import QtQuick 2.12
 import QtQuick.Controls 2.12
 import QtQuick.Layouts 1.12
-import com.cuperino.qprompt.abstractunits 1.0
+
 import org.kde.kirigami 2.11 as Kirigami
+import com.cuperino.qprompt 1.0
 
 Item {
     enum Mode {
@@ -158,7 +159,7 @@ Item {
             }
             Button {
                 visible: !find.replace
-                icon.source: "qrc:/icons/edit-find-replace.svg"
+                icon.source: "../icons/edit-find-replace.svg"
                 flat: true
                 onClicked: find.replace = true
             }
@@ -202,7 +203,7 @@ Item {
             visible: height > 0
             Button {
                 visible: find.replace
-                icon.source: "qrc:/icons/edit-find.svg"
+                icon.source: "../icons/edit-find.svg"
                 flat: true
                 onClicked: find.replace = false;
             }
@@ -233,7 +234,7 @@ Item {
                 onClicked: find.replaceNext()
             }
             Button {
-                icon.source: "qrc:/icons/edit-find-replace.svg"
+                icon.source: "../icons/edit-find-replace.svg"
                 enabled: resultsFound
                 flat: true
                 onClicked: find.replaceAll()

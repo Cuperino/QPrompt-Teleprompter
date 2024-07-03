@@ -23,7 +23,7 @@ import QtQuick 2.12
 import QtQuick.Controls 2.12
 import QtQuick.Shapes 1.12
 import QtQuick.Layouts 1.12
-import Qt.labs.settings 1.0
+import QtCore 6.5
 
 Item {
     id: countdown
@@ -196,7 +196,7 @@ Item {
         renderType: font.pixelSize < 121 || screen.devicePixelRatio !== 1.0 || root.forceQtTextRenderer ? Text.QtRendering : Text.NativeRendering
         FontLoader {
             id: numbersFont
-            source: "fonts/libertinus-sans.otf"
+            source: "../fonts/LibertinusSans-Regular.otf"
         }
     }
     Shape {
