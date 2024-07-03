@@ -20,7 +20,7 @@
 #**************************************************************************
 
 
-cmake_minimum_required(VERSION 3.16)
+cmake_minimum_required(VERSION 3.22)
 
 set(RELEASE_SERVICE_VERSION_MAJOR "1")
 set(RELEASE_SERVICE_VERSION_MINOR "2")
@@ -44,10 +44,10 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
 
-set(QT_DEFAULT_MAJOR_VERSION 5)
-set(QT_MIN_VERSION 5.15.2)
-# KF${QT_VERSION_MAJOR} 5.78 for Ubuntu 21.04 and Debian 11, which require no backporting
-# KF${QT_VERSION_MAJOR} 5.68 is used as a hack to allow Snapcraft build on Ubuntu 20.04 core
+set(QT_DEFAULT_MAJOR_VERSION 6)
+set(QT_MIN_VERSION 6.6.2)
+# KF6 5.78 for Ubuntu 21.04 and Debian 11, which require no backporting
+# KF6 5.68 is used as a hack to allow Snapcraft build on Ubuntu 20.04 core
 # Use 5.83 ECM on Windows to make use of ecm_add_app_icon syntax
 if (WIN32)
     set(ECM_MIN_VERSION 5.83.0)
@@ -59,19 +59,21 @@ if (APPLE)
     set(APPLE_SUPPRESS_X11_WARNING ON)
 endif()
 # ------------------------- BEGIN: lists to maintain manually -------------------------
-
-# Directories where Qt Creator can find QML files of Kirigami etc. on your system.
+# Directories where Qt Creator can find modules and Kirigami's QML files
+list(APPEND QML_DIRS "build/dist/lib/x86_64-linux-gnu/qml")
+list(APPEND KIRIGAMI_DIRS "build/dist/lib/x86_64-linux-gnu/qml/org/kde/kirigami")
+# Directories where Qt Creator can find these files on your system.
 #   (This setting is cached in variable QML_IMPORT_DIR, see below. Delete
 #   ${BUIL_DIR}/CMakeCache.txt to make make changes here effective.)
 if (UNIX AND NOT APPLE AND NOT ANDROID)
-    list(APPEND QML_DIRS "/usr/lib/x86_64-linux-gnu/qt5/qml")
-    list(APPEND KIRIGAMI_DIRS "/usr/lib/x86_64-linux-gnu/qt5/qml/org/kde/kirigami.2")
+    list(APPEND QML_DIRS "/usr/lib/x86_64-linux-gnu/qt6/qml")
+    list(APPEND KIRIGAMI_DIRS "/usr/lib/x86_64-linux-gnu/qml/org/kde/kirigami")
 elseif (UNIX AND APPLE)
     list(APPEND QML_DIRS "/opt/homebrew/lib/qml")
-    list(APPEND KIRIGAMI_DIRS "/opt/homebrew/lib/qml/org/kde/kirigami.2")
+    list(APPEND KIRIGAMI_DIRS "/opt/homebrew/lib/qml/org/kde/kirigami")
 elseif (WIN32)
     list(APPEND QML_DIRS "C:/CraftRoot/qml")
-    list(APPEND KIRIGAMI_DIRS "C:/CraftRoot/qml/org/kde/kirigami.2")
+    list(APPEND KIRIGAMI_DIRS "C:/CraftRoot/qml/org/kde/kirigami")
 endif()
 # ------------------------- END: lists to maintain manually -------------------------
 
@@ -90,9 +92,9 @@ set(
 
 if(ANDROID)
     set(ANDROID_PACKAGE_SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/android)
-	if(NOT ANDROID_ABIS)
-		set(ANDROID_ABIS "arm64-v8a") # armeabi-v7a
-	endif()
+        if(NOT ANDROID_ABIS)
+                set(ANDROID_ABIS "arm64-v8a") # armeabi-v7a
+        endif()
 else()
 set(DBINARY_ICONS_RESOURCE ON)
 endif()
@@ -101,13 +103,20 @@ if(NOT CMAKE_BUILD_TYPE)
     set(CMAKE_BUILD_TYPE "MinSizeRel")
 endif()
 
+list(APPEND CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/cmake")
+
 # Send compiled program and library binaries to "build/bin"
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 
 find_package(ECM ${ECM_MIN_VERSION} REQUIRED NO_MODULE)
-set(CMAKE_MODULE_PATH ${ECM_MODULE_PATH})
-find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Core)
+list(APPEND CMAKE_MODULE_PATH ${ECM_MODULE_PATH})
+find_package(QT NAMES Qt6)
 
+option(DOCS "Check submodules during build" ON)
+if(DOCS)
+    find_package(Sphinx 4.5.0 REQUIRED)
+    add_subdirectory("docs" docs)
+endif()
 
 find_package(Git QUIET)
 if(GIT_FOUND AND EXISTS "${PROJECT_SOURCE_DIR}/.git")
@@ -125,7 +134,7 @@ endif()
 
 
 if(ANDROID)
-    find_package(Qt${QT_VERSION_MAJOR} ${QT5_MIN_VERSION} REQUIRED NO_MODULE COMPONENTS
+    find_package(Qt${QT_VERSION_MAJOR} ${QT_MIN_VERSION} REQUIRED NO_MODULE COMPONENTS
         Core
         Quick
         Svg
@@ -135,6 +144,7 @@ if(ANDROID)
         AndroidExtras
         QmlImportScanner  # Used to get static QML. Gets ignored if not a static build
         QuickCompiler
+        ShaderTools
     )
     find_package(KF${QT_VERSION_MAJOR} ${KF_MIN_VERSION} REQUIRED COMPONENTS
         Kirigami2
@@ -142,23 +152,24 @@ if(ANDROID)
         CoreAddons
     )
 elseif(WASM OR IOS)
-    find_package(Qt${QT_VERSION_MAJOR} ${QT5_MIN_VERSION} REQUIRED NO_MODULE COMPONENTS
-        Core
-        Quick
-        Svg
-        Gui
-        QuickControls2
-        Network
-        QmlImportScanner  # Used to get static QML. Gets ignored if not a static build
-        QuickCompiler
-    )
-    find_package(KF${QT_VERSION_MAJOR} ${KF_MIN_VERSION} REQUIRED COMPONENTS
-        Kirigami2
-        I18n
-        CoreAddons
-    )
+    if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
+        find_package(Qt${QT_VERSION_MAJOR} ${QT_MIN_VERSION} REQUIRED NO_MODULE COMPONENTS
+            Core
+            Quick
+            Svg
+            Gui
+            QuickControls2
+            Network
+            ShaderTools
+        )
+        find_package(KF${QT_VERSION_MAJOR} ${KF_MIN_VERSION} REQUIRED COMPONENTS
+            Kirigami2
+            I18n
+            CoreAddons
+        )
+    endif()
 elseif(HAIKU)
-    find_package(Qt${QT_VERSION_MAJOR} ${QT5_MIN_VERSION} REQUIRED NO_MODULE COMPONENTS
+    find_package(Qt${QT_VERSION_MAJOR} ${QT_MIN_VERSION} REQUIRED NO_MODULE COMPONENTS
         Core
         Quick
         Svg
@@ -166,9 +177,10 @@ elseif(HAIKU)
         QuickControls2
         Network
         Widgets
+        ShaderTools
     )
     # By requiring newer Qt version to use QML compiler, Snap can be built without it.
-    find_package(Qt${QT_VERSION_MAJOR} ${QT5_MIN_VERSION} NO_MODULE COMPONENTS
+    find_package(Qt${QT_VERSION_MAJOR} ${QT_MIN_VERSION} NO_MODULE COMPONENTS
         QmlImportScanner  # Used to get static QML. Gets ignored if not a static build
         QuickCompiler
     )
@@ -176,7 +188,7 @@ elseif(HAIKU)
         Kirigami2
         I18n
         CoreAddons
-        IconThemes
+#        IconThemes
     )
     find_package(KF${QT_VERSION_MAJOR}Crash ${REQUIRED_KF${QT_VERSION_MAJOR}_VERSION} CONFIG QUIET)
         set_package_properties(KF${QT_VERSION_MAJOR}Crash PROPERTIES
@@ -184,17 +196,30 @@ elseif(HAIKU)
         TYPE OPTIONAL
     )
 elseif(WIN32 OR APPLE)
-    find_package(Qt${QT_VERSION_MAJOR} ${QT5_MIN_VERSION} REQUIRED NO_MODULE COMPONENTS
-        Core
-        Quick
-        Svg
-        Gui
-        QuickControls2
-        Network
-        Widgets
-        QmlImportScanner  # Used to get static QML. Gets ignored if not a static build
-        QuickCompiler
-    )
+    if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
+        find_package(Qt6 ${QT_MIN_VERSION} REQUIRED NO_MODULE COMPONENTS
+            Core
+            Quick
+            Svg
+            Gui
+            QuickControls2
+            Network
+            Widgets
+            ShaderTools
+        )
+    else()
+        find_package(Qt5 ${QT_MIN_VERSION} REQUIRED NO_MODULE COMPONENTS
+            Core
+            Quick
+            Svg
+            Gui
+            QuickControls2
+            Network
+            Widgets
+            QmlImportScanner  # Used to get static QML. Gets ignored if not a static build
+            QuickCompiler
+        )
+    endif()
     find_package(KF${QT_VERSION_MAJOR} ${KF_MIN_VERSION} REQUIRED COMPONENTS
         Kirigami2
         I18n
@@ -205,9 +230,9 @@ elseif(WIN32 OR APPLE)
         DESCRIPTION "Graceful handling of application crashes."
         TYPE OPTIONAL
     )
-    find_package(QHotkey 1.5.0 COMPONENTS
-        QHotkey
-    )
+   find_package(QHotkey 1.5.0 COMPONENTS
+       QHotkey
+   )
     # KDMacTouchBar (Mac only)
     if(APPLE AND NOT IOS)
         if (NOT EXISTS "${PROJECT_SOURCE_DIR}/3rdparty/KDMacTouchBar/CMakeLists.txt")
@@ -217,45 +242,47 @@ elseif(WIN32 OR APPLE)
     endif()
 else()
     if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
-    find_package(Qt${QT_VERSION_MAJOR} ${QT5_MIN_VERSION} REQUIRED NO_MODULE COMPONENTS
-        Core
-        Quick
-        Svg
-        Gui
-        QuickControls2
-        Network
-        Widgets
+        find_package(Qt${QT_VERSION_MAJOR} ${QT_MIN_VERSION} REQUIRED NO_MODULE COMPONENTS
+            Core
+            Quick
+            Svg
+            Gui
+            QuickControls2
+            Network
+            Widgets
+            ShaderTools
+        )
+        find_package(KF${QT_VERSION_MAJOR} ${KF_MIN_VERSION} REQUIRED COMPONENTS
+            Kirigami2
+            I18n
+            CoreAddons
     )
     else()
-    find_package(Qt${QT_VERSION_MAJOR} ${QT5_MIN_VERSION} REQUIRED NO_MODULE COMPONENTS
-        Core
-        Quick
-        Svg
-        Gui
-        QuickControls2
-        Network
-        Widgets
-        X11Extras
-    )
+        find_package(Qt${QT_VERSION_MAJOR} ${QT_MIN_VERSION} REQUIRED NO_MODULE COMPONENTS
+            Core
+            Quick
+            Svg
+            Gui
+            QuickControls2
+            Network
+            Widgets
+            X11Extras
+        )
+        find_package(KF${QT_VERSION_MAJOR} ${KF_MIN_VERSION} REQUIRED COMPONENTS
+            Kirigami2
+            I18n
+            CoreAddons
+            # IconThemes
+        )
     endif()
-    #find_package(Qt${QT_VERSION_MAJOR} ${QT5_MIN_VERSION} NO_MODULE COMPONENTS
-        #QmlImportScanner  # Used to get static QML. Gets ignored if not a static build
-        #QuickCompiler
-    #)
-    find_package(KF${QT_VERSION_MAJOR} ${KF_MIN_VERSION} REQUIRED COMPONENTS
-        Kirigami2
-        I18n
-        CoreAddons
-        IconThemes
-    )
     find_package(KF${QT_VERSION_MAJOR}Crash ${REQUIRED_KF${QT_VERSION_MAJOR}_VERSION} COMPONENTS)
     set_package_properties(KF${QT_VERSION_MAJOR}Crash PROPERTIES
         DESCRIPTION "Graceful handling of application crashes."
         TYPE OPTIONAL
     )
-    find_package(QHotkey 1.5.0 COMPONENTS
-        QHotkey
-    )
+   find_package(QHotkey 1.5.0 COMPONENTS
+       QHotkey
+   )
 endif()
 
 if (WIN32 OR UNIX) # AND NOT ANDROID
@@ -272,12 +299,6 @@ include(ECMSetupVersion)
 include(ECMSourceVersionControl)
 include(ECMPoQmTools)
 include(FeatureSummary)
-
-#add_subdirectory("3rdparty/extra-cmake-modules" build/ecm)
-#add_subdirectory("3rdparty/kirigami" build/kirigami)
-#add_subdirectory("3rdparty/ki18n" build/ki18n)
-#add_subdirectory("3rdparty/breeze-icons" build/icons)
-#add_subdirectory("3rdparty/calligra/filters/libmsooxml" build/libmsooxml)
 
 if (${ECM_SOURCE_UNDER_VERSION_CONTROL})
     execute_process(
@@ -323,7 +344,13 @@ if (ANDROID)
     configure_file(${ANDROID_PACKAGE_SOURCE_DIR}/version.gradle.in ${CMAKE_BINARY_DIR}/version.gradle)
 endif()
 
-if (WIN32 OR UNIX) # AND NOT ANDROID
+if (UNIX AND NOT APPLE AND NOT ANDROID)
+    set(DOC_INSTALL_DIR "share/doc/qprompt")
+    set(MAN_INSTALL_DIR "usr/share/man/")
+    install(FILES docs/manpage/qprompt.1 DESTINATION ${MAN_INSTALL_DIR}/man1 )
+endif()
+
+if (WIN32 OR UNIX AND NOT APPLE) # AND NOT ANDROID
     install(FILES com.cuperino.qprompt.appdata.xml DESTINATION ${KDE_INSTALL_METAINFODIR})
     install(PROGRAMS com.cuperino.qprompt.desktop DESTINATION ${KDE_INSTALL_APPDIR})
     install(FILES ${DOCS} DESTINATION ${DOC_INSTALL_DIR})
@@ -340,22 +367,28 @@ set(CPACK_PACKAGE_VENDOR "Javier O. Cordero Pérez")
 set(CPACK_PACKAGE_CONTACT "javiercorderoperez@gmail.com")
 set(CPACK_PACKAGE_DESCRIPTION_FILE "${CMAKE_SOURCE_DIR}/${DESCRIPTION_FILE}")
 set(CPACK_RESOURCE_FILE_README "${CMAKE_SOURCE_DIR}/${README_FILE}")
+set(CPACK_RESOURCE_FILE_LICENSE "${CMAKE_SOURCE_DIR}/${LICENSE_FILE}")  # Displays the license on some installers
+set(CPACK_MONOLITHIC_INSTALL On)
+
+set(CPACK_RPM_PACKAGE_LICENSE "GPLv3")  # Also used by FreeBSD generator
 
 set(ICONS_DIR "${CMAKE_SOURCE_DIR}/icons")
 set(IMAGES_DIR "${CMAKE_SOURCE_DIR}/images")
 set(COMPRESION_TYPE "xz")
 
+# CPACK: Archive generator settings
+set(CPACK_THREADS 0)
+set(CPACK_ARCHIVE_THREADS 0)
+
 if(UNIX AND NOT ANDROID)
-    # CPACK: DEB Specific Settings
+    # CPACK: DEB specific settings
     set(CPACK_DEBIAN_PACKAGE_SECTION "Multimedia")
     set(CPACK_DEBIAN_COMPRESSION_TYPE ${COMPRESION_TYPE})
-    # Set to dependencies as Debian 11 and Ubuntu 21.04. Chose these two distros as base because Desktop version has ARM support and provided Qt versions require no backporting.
-    set(CPACK_DEBIAN_PACKAGE_DEPENDS "libqt5svg5 (>= 5.15.2), libqt5x11extras5 (>= 5.15.2), qml-module-qt-labs-platform (>=5.15.2), qml-module-qtqml (>=5.15.2), qml-module-qtqml-models2 (>=5.15.2), qml-module-qtqml-statemachine (>=5.15.2), qml-module-qtquick-controls (>=5.15.2), qml-module-qtquick-controls2 (>=5.15.2), qml-module-qtquick-dialogs (>=5.15.2), qml-module-qtquick-shapes (>=5.15.2), qml-module-org-kde-kirigami2 (>=5.78.0), libkf5i18n5 (>= 5.78.0), libkf5coreaddons5 (>= 5.78.0), libkf5crash5 (>= 5.78.0)")
+    set(CPACK_DEBIAN_PACKAGE_DEPENDS "libqt6svg5 (>= 6.6.2), qml-module-qt-labs-platform (>=6.6.2), qml-module-qtqml (>=6.6.2), qml-module-qtqml-models2 (>=6.6.2), qml-module-qtqml-statemachine (>=6.6.2), qml-module-qtquick-controls (>=6.6.2), qml-module-qtquick-controls2 (>=6.6.2), qml-module-qtquick-dialogs (>=6.6.2), qml-module-qtquick-shapes (>=6.6.2), qml-module-org-kde-Kirigami (>=6.0.0), libkf5i18n5 (>= 6.0.0), libkf5coreaddons5 (>= 6.0.0), libkf5crash5 (>= 6.0.0)")
 
-    # CPACK: RPM Specific Settings
-    set(CPACK_RPM_PACKAGE_LICENSE "GPLv3")
+    # CPACK: RPM specific settings
     set(CPACK_RPM_PACKAGE_GROUP "Multimedia/Video")
-    set(CPACK_RPM_PACKAGE_REQUIRES "qt5-qtbase >= 5.15.2, qt5-qtx11extras >= 5.15.2, qt5-qtbase-gui >= 5.15.2, qt5-qtdeclarative >= 5.15.2, qt5-qtsvg >= 5.15.2, qt5-qtquickcontrols >= 5.15.2, qt5-qtquickcontrols2 >= 5.15.2, kf5-ki18n >= 5.73.0, kf5-kirigami2 >= 5.73.0, kf5-kcoreaddons >= 5.73.0, kf5-kcrash >= 5.73.0")
+    set(CPACK_RPM_PACKAGE_REQUIRES "qt6-qtbase >= 6.6.2, qt6-qtbase-gui >= 6.6.2, qt6-qtdeclarative >= 6.6.2, qt6-qtsvg >= 6.6.2, qt6-qtquickcontrols >= 6.6.2, qt6-qtquickcontrols2 >= 6.6.2, kf5-ki18n >= 6.0.0, kf5-kirigami >= 6.0.0, kf5-kcoreaddons >= 6.0.0, kf5-kcrash >= 6.0.0")
     set(CPACK_RPM_COMPRESSION_TYPE ${COMPRESION_TYPE})
 
 elseif(WIN32)
@@ -371,10 +404,11 @@ elseif(WIN32)
     set(CPACK_NSIS_CONTACT ${CPACK_PACKAGE_CONTACT})
     set(CPACK_NSIS_INSTALLED_ICON_NAME "qprompt${CMAKE_EXECUTABLE_SUFFIX}")
     set(CPACK_NSIS_MENU_LINKS
-        "${LICENSE_FILE}" "License"
-        "${README_FILE}" "Readme"
+        "${CMAKE_SOURCE_DIR}/${LICENSE_FILE}" "License"
+        "${CMAKE_SOURCE_DIR}/${README_FILE}" "Readme"
     )
     set(CPACK_NSIS_MUI_FINISHPAGE_RUN "${CPACK_NSIS_INSTALLED_ICON_NAME}")
+    set(InstallRequiredSystemLibraries On)
 
 elseif(APPLE AND NOT IOS)
     set(CPACK_GENERATOR "DragNDrop")
@@ -383,8 +417,14 @@ elseif(APPLE AND NOT IOS)
     set(CPACK_SYSTEM_NAME "OSX")
     set(CPACK_PACKAGE_FILE_NAME "QPrompt-${PROJECT_VERSION}")
     set(CPACK_PACKAGE_ICON "${ICONS_DIR}/qprompt.icns")
+    set(CPACK_DMG_SLA_USE_RESOURCE_FILE_LICENSE ${LICENSE_FILE})
     #set(CPACK_DMG_DS_STORE "${IMAGES_DIR}/DSStore")
     set(CPACK_DMG_BACKGROUND_IMAGE "${IMAGES_DIR}/DMGBackground.png")
+
+elseif(BSD AND NOT APPLE)
+    set(CPACK_FREEBSD_PACKAGE_MAINTAINER ${CPACK_PACKAGE_CONTACT})
+    set(CPACK_FREEBSD_PACKAGE_ORIGIN "multimedia")
+    set(CPACK_FREEBSD_PACKAGE_CATEGORIES "devel/qt6-base, x11-toolkits/qt6-declarative, graphics/qt6-svg, x11-toolkits/qt6-shadertools, multimedia/qt6-multimedia, devel/kf6-kcoreaddons, devel/kf6-ki18n, x11-toolkits/kf6-kirigami, devel/kf6-kcrash, x11-themes/kf6-kiconthemes, x11-toolkits/qhotkey")
 endif()
 
 include(CPack)

@@ -23,8 +23,8 @@ import QtQuick 2.12
 import org.kde.kirigami 2.11 as Kirigami
 import QtQuick.Controls 2.12
 import QtQuick.Layouts 1.12
-import QtQuick.Dialogs 1.3
-import Qt.labs.settings 1.0
+import QtCore 6.5
+import Qt.labs.platform 1.1 as Labs
 
 Kirigami.ScrollablePage {
 
@@ -94,11 +94,9 @@ Kirigami.ScrollablePage {
         }
     }
 
-    FileDialog {
+    Labs.FileDialog {
         id: pathsDialog
         title: i18nc("Browse for PROGRAM", "Browse for %1", pathSettings.currentlyBrowsing)
-        selectExisting: true
-        selectedNameFilter: nameFilters[0]
         nameFilters: [
             (Qt.platform.os === "windows"
              ? i18nc("Format name (FORMAT_EXTENSION)", "Executable (%1)", "EXE") + "(" + "*.exe *.EXE" + ")"
@@ -108,11 +106,11 @@ Kirigami.ScrollablePage {
                 )),
             i18nc("All file formats", "All Formats") + "(*.*)"
         ]
-        //fileMode: Labs.FileDialog.OpenFile
+        fileMode: Labs.FileDialog.OpenFile
         onAccepted: {
             if (pathSettings.currentlyBrowsing === "soffice")
                 // Convert URL to scheme and remove scheme part (file://)
-                pathSettings.sofficePath = pathsDialog.fileUrl.toString().slice(Qt.platform.os==="windows" ? 8 : 7);
+                pathSettings.sofficePath = pathsDialog.file.toString().slice(Qt.platform.os==="windows" ? 8 : 7);
             pathSettingsStorage.sync();
         }
     }

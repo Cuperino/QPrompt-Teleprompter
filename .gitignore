@@ -48,6 +48,7 @@ Makefile
 
 # Build folders
 **/build
+**/install
 *.flatpak-builder*
 /dist/Snapcraft/*.snap
 
@@ -61,3 +62,6 @@ Makefile
 # KDE Plasma and MacOS directory folders
 .directory
 .DS_Store
+
+# Python
+**/venv/**

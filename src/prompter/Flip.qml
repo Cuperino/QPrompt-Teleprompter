@@ -20,7 +20,8 @@
  ****************************************************************************/
 
 import QtQuick 2.12
-import com.cuperino.qprompt.abstractunits 1.0
+
+import com.cuperino.qprompt 1.0
 
 Scale {
     origin.x: width/2

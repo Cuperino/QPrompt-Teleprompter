@@ -73,10 +73,10 @@
 import QtQuick 2.12
 import QtQuick.Controls 2.12
 import QtQuick.Layouts 1.12
-import Qt.labs.settings 1.0
+import QtCore 6.5
 
 import org.kde.kirigami 2.11 as Kirigami
-import com.cuperino.qprompt.abstractunits 1.0
+import com.cuperino.qprompt 1.0
 
 ToolBar {
     id: toolbar
@@ -159,7 +159,7 @@ ToolBar {
     }
     FontLoader {
         id: iconFont
-        source: "fonts/fontello.ttf"
+        source: "../fonts/fontello.ttf"
     }
     Component {
         id: textComponent
@@ -517,27 +517,27 @@ ToolBar {
             visible: !toolbar.hideFormattingToolsAlways && (!root.__isMobile && showingFormattingTools || parseInt(viewport.prompter.state)===Prompter.States.Editing)
             FontLoader {
                 id: westernSeriousSansfFont
-                source: "fonts/dejavu-sans.otf"
+                source: "../fonts/DejaVuSans.ttf"
             }
             FontLoader {
                 id: westernDyslexicFont
-                source: "fonts/opendyslexic-bold.otf"
+                source: "../fonts/OpenDyslexic-Bold.otf"
             }
             FontLoader {
                 id: asianSeriousSansFont
-                source: "fonts/sourcehansans.ttc"
+                source: "../fonts/SourceHanSans-Regular.ttc"
             }
             FontLoader {
                 id: arabicHumaneSansFont
-                source: "fonts/scheherazadenew-regular.ttf"
+                source: "../fonts/ScheherazadeNew-Regular.ttf"
             }
             FontLoader {
                 id: devanagariSeriousSansFont
-                source: "fonts/palanquin.ttf"
+                source: "../fonts/Palanquin-Regular.ttf"
             }
             FontLoader {
                 id: bengaliHumaneSerifFont
-                source: "fonts/kalpurush.ttf"
+                source: "../fonts/Kalpurush.ttf"
             }
             Menu {
                 id: fontSelectionMenu

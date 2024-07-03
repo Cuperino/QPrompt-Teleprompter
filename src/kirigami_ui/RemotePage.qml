@@ -27,8 +27,8 @@ Kirigami.Page {
     
     title: i18n("Remote Control")
     
-    Remote {
-        id: remote
-        anchors.fill: parent
-    }
+//    Remote {
+//        id: remote
+//        anchors.fill: parent
+//    }
 }

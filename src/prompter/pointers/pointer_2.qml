@@ -19,10 +19,6 @@
  **
  ****************************************************************************/
 
-// "QML change image color" answer from Mar 4, 2016 by Paweł Krakowiak (user 3994230 on StackOverflow)
-// Link: https://stackoverflow.com/a/35800198/3833454
-// License: https://creativecommons.org/licenses/by-sa/3.0/
-
 import QtQuick 2.15
 
 Image {
@@ -30,7 +26,6 @@ Image {
     property int prompterState
     property bool tint
     property int imageVerticalOffset
-    y: imageVerticalOffset
     property color colorsEditing
     property color colorsReady
     property color colorsPrompting
@@ -42,6 +37,7 @@ Image {
         default:
             return colorsReady;
     }
+    y: imageVerticalOffset
     width: 8 * pointers.__pointerUnit
     fillMode: Image.PreserveAspectFit
     asynchronous: true
@@ -51,36 +47,9 @@ Image {
     layer.enabled: tint
     layer.effect: ShaderEffect {
         property variant src: pointerImage
-        property real r: pointerImage.colorValue.r * pointerImage.colorValue.a
-        property real g: pointerImage.colorValue.g * pointerImage.colorValue.a
-        property real b: pointerImage.colorValue.b * pointerImage.colorValue.a
+        property color tint: pointerImage.colorValue
         width: pointerImage.width
         height: pointerImage.height
-        vertexShader: "
-            uniform highp mat4 qt_Matrix;
-            attribute highp vec4 qt_Vertex;
-            attribute highp vec2 qt_MultiTexCoord0;
-            varying highp vec2 coord;
-
-            void main() {
-                coord = qt_MultiTexCoord0;
-                gl_Position = qt_Matrix * qt_Vertex;
-            }
-        "
-        // avg calibrated to achieve similar color on demo image
-        fragmentShader: "
-            varying highp vec2 coord;
-            uniform sampler2D src;
-
-            uniform lowp float r;
-            uniform lowp float g;
-            uniform lowp float b;
-
-            void main() {
-                lowp vec4 clr = texture2D(src, coord);
-                lowp float avg = (clr.r + clr.g + clr.b) / 2.4;
-                gl_FragColor = vec4(r * avg, g * avg, b * avg, clr.a);
-            }
-        "
+        fragmentShader: "/qt/qml/com/cuperino/qprompt/shaders/tint.frag.qsb"
     }
 }

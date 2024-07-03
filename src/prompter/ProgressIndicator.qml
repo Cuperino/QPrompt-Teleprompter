@@ -21,7 +21,8 @@
 
 import QtQuick 2.12
 import QtQuick.Controls 2.12
-import com.cuperino.qprompt.abstractunits 1.0
+
+import com.cuperino.qprompt 1.0
 
 ScrollBar {
     id: scroller

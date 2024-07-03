@@ -74,12 +74,10 @@ import QtQuick 2.12
 import QtQuick.Controls 2.12
 import QtQuick.Layouts 1.12
 import QtQuick.Window 2.12
-import QtQuick.Dialogs 1.3
+import QtCore 6.5
 import Qt.labs.platform 1.1 as Labs
-import Qt.labs.settings 1.0
 
-import com.cuperino.qprompt.document 1.0
-import com.cuperino.qprompt.abstractunits 1.0
+import com.cuperino.qprompt 1.0
 
 Flickable {
     id: prompter
@@ -458,31 +456,30 @@ Flickable {
     transform: __flips
     layer.enabled: root.shadows
     layer.effect: ShaderEffect {
-        width: viewport.width
-        height: viewport.height
+        id: shadow
         readonly property variant source: prompterShadowSource
         readonly property real angle: 180
         readonly property point offset: Qt.point(prompter.fontSize / 13 * Math.cos(angle), prompter.fontSize / 13 * Math.sin(angle))
         readonly property size delta: Qt.size(offset.x / width, offset.y / height)
         readonly property real darkness: 0.5 // + ((prompter.fontSize / (prompter.fontSize + 1)) / 2)
-        readonly property variant shadow: ShaderEffectSource {
+        readonly property ShaderEffectSource shadow: ShaderEffectSource {
             sourceItem: ShaderEffect {
-                width: viewport.width
-                height: viewport.height
+                width: shadow.source.sourceItem.width
+                height: shadow.source.sourceItem.height
                 readonly property size delta: Qt.size(0.0, 4.0 / height)
-                readonly property variant source: ShaderEffectSource {
+                readonly property ShaderEffectSource source: ShaderEffectSource {
                     sourceItem: ShaderEffect {
-                        width: viewport.width
-                        height: viewport.height
+                        width: shadow.source.sourceItem.width
+                        height: shadow.source.sourceItem.height
                         readonly property size delta: Qt.size(4.0 / width, 0.0)
-                        readonly property variant source: prompterShadowSource
-                        fragmentShader: "qrc:/shaders/blur.frag"
+                        readonly property ShaderEffectSource source: shadow.source
+                        fragmentShader: "/qt/qml/com/cuperino/qprompt/shaders/blur.frag.qsb"
                     }
                 }
-                fragmentShader: "qrc:/shaders/blur.frag"
+                fragmentShader: "/qt/qml/com/cuperino/qprompt/shaders/blur.frag.qsb"
             }
         }
-        fragmentShader: "qrc:/shaders/shadow.frag"
+        fragmentShader: "/qt/qml/com/cuperino/qprompt/shaders/shadow.frag.qsb"
     }
 
     // Flick while prompting
@@ -707,7 +704,7 @@ Flickable {
                 renderType: font.pixelSize < 121 || Screen.devicePixelRatio !== 1.0 || root.forceQtTextRenderer ? Text.QtRendering : Text.NativeRendering
                 FontLoader {
                     id: westernSeriousSansfFont
-                    source: "fonts/dejavu-sans.otf"
+                    source: "../fonts/DejaVuSans.ttf"
                 }
 
                 // Draggable width adjustment borders
@@ -753,7 +750,7 @@ Flickable {
                     RowLayout {
                         FontLoader {
                             id: iconFont
-                            source: "fonts/fontello.ttf"
+                            source: "../fonts/fontello.ttf"
                         }
                         Button {
                             id: rewindButton
@@ -1149,7 +1146,7 @@ Flickable {
         }
         function close() {
             networkDialog.autoReloadRunning = false;
-            document.load("qrc:/blank.html");
+            document.load("qrc:/qt/qml/com/cuperino/qprompt/documents/blank.html");
         }
         function newDocument() {
             root.onDiscard = Prompter.CloseActions.LoadNew
@@ -1157,7 +1154,7 @@ Flickable {
                 closeDialog.open()
             else {
                 document.close()
-                document.load("qrc:/untitled.html")
+                document.load("qrc:/qt/qml/com/cuperino/qprompt/documents/untitled.html")
                 clearLastDocument();
                 isNewFile = true
                 resetDocumentPosition()
@@ -1171,7 +1168,7 @@ Flickable {
                 closeDialog.open()
             else {
                 document.close()
-                document.load("qrc:/"+i18n("welcome_en.html"))
+                document.load("qrc:/qt/qml/com/cuperino/qprompt/documents/"+i18n("welcome_en.html"))
                 editor.lastDocument = ""
                 isNewFile = true
                 prompter.position = 0
@@ -1214,11 +1211,11 @@ Flickable {
                     document.modified = false
                     if (Qt.platform.os==="android" || Qt.platform.os==="ios" || visibility===ApplicationWindow.FullScreen) {
                         if (document.isNewFile)
-                            showPassiveNotification(i18nc("Saved FILE_NAME", "Saved %1", document.fileUrl))
+                            showPassiveNotification(i18nc("Saved FILE_NAME", "Saved %1", document.file))
                         else
                             showPassiveNotification(i18n("Saved"))
                     }
-                    document.saveAs(document.fileUrl)
+                    document.saveAs(document.file)
                     //if (quit)
                         //Qt.quit()
                     //else
@@ -1272,10 +1269,8 @@ Flickable {
         id: scrollBar
     }
 
-    FileDialog {
+    Labs.FileDialog {
         id: openDialog
-        selectExisting: true
-        selectedNameFilter: nameFilters[0]
         nameFilters:
             ['android', 'ios', 'tvos', 'wasm'].indexOf(Qt.platform.os)===-1 ?
             [
@@ -1299,12 +1294,12 @@ Flickable {
                 i18nc("All file formats", "All Formats") + "(*.*)"
             ]
 
-        folder: shortcuts.documents
-        //fileMode: Labs.FileDialog.OpenFile
+        folder: StandardPaths.writableLocation(StandardPaths.DocumentsLocation)
+        fileMode: FileDialog.OpenFile
         onAccepted: {
             document.close()
-            document.load(openDialog.fileUrl)
-            editor.lastDocument = document.fileUrl;
+            document.load(openDialog.file)
+            editor.lastDocument = document.file;
             editor.resetPosition = true;
             if (parseInt(prompter.state)!==Prompter.States.Editing)
                 prompter.state = Prompter.States.Editing;
@@ -1316,9 +1311,8 @@ Flickable {
         }
     }
 
-    FileDialog {
+    Labs.FileDialog {
         id: saveDialog
-        selectExisting: false
         defaultSuffix: 'html'
         nameFilters: if (Qt.platform.os==="android")
             return [
@@ -1334,12 +1328,12 @@ Flickable {
         //selectedNameFilter.index: document.fileType === "txt" ? 0 : 1
         // Always save as HTML
         //selectedNameFilter: nameFilters[0]
-        folder: shortcuts.documents
-        //fileMode: Labs.FileDialog.SaveFile
+        folder: StandardPaths.writableLocation(StandardPaths.DocumentsLocation)
+        fileMode: FileDialog.SaveFile
         onAccepted: {
-            document.saveAs(saveDialog.fileUrl)
+            document.saveAs(saveDialog.file)
             document.isNewFile = false
-            showPassiveNotification(i18nc("Saved FILE_NAME", "Saved %1", document.fileUrl))
+            showPassiveNotification(i18nc("Saved FILE_NAME", "Saved %1", document.file))
             // if (document.quitOnSave)
             //     Qt.quit()
             // else

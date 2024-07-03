@@ -46,7 +46,7 @@
 #include <KLocalizedString>
 #include <kaboutdata.h>
 
-#if defined(KF5Crash_FOUND)
+#if defined(KF6Crash_FOUND)
 #include <KCrash>
 #endif
 
@@ -59,15 +59,20 @@
 #endif
 
 #include "../qprompt_version.h"
-#include "prompter/documenthandler.h"
-#include "qt/abstractunits.hpp"
-#include "qt/qmlutil.hpp"
+#include "abstractunits.hpp"
+//#include "documenthandler.h"
+//#include "qmlutil.hpp"
 #include <stdlib.h>
 
 #define QPROMPT_URI "com.cuperino.qprompt"
 
 Q_DECL_EXPORT int main(int argc, char *argv[])
 {
+    // Set theme
+    qputenv("QT_QUICK_CONTROLS_STYLE", QByteArray("Material"));
+    qputenv("QT_QUICK_CONTROLS_MATERIAL_THEME", QByteArray("Dark"));
+    qputenv("QT_QUICK_CONTROLS_MATERIAL_ACCENT", QByteArray("#3daee9"));
+    // Instantiate app
 #if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
     QGuiApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
 #endif
@@ -76,12 +81,12 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
 #else
     QApplication app(argc, argv);
 #endif
-
+    // Initialize app metadata
     KLocalizedString::setApplicationDomain("qprompt");
     QCoreApplication::setOrganizationName(QString::fromUtf8("Cuperino"));
     QCoreApplication::setOrganizationDomain(QString::fromUtf8(QPROMPT_URI));
     QCoreApplication::setApplicationName(QString::fromUtf8("QPrompt"));
-
+    // Parse command line arguments
     QCommandLineParser parser;
     parser.setApplicationDescription(
         i18n("Personal teleprompter software for all video makers. Built with ease of use, productivity, and smooth performance in mind."));
@@ -93,13 +98,16 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
                                  i18n("Ignore QSG_RENDER_LOOP environment variable."));
     parser.addOption(qgsIgnore);
     parser.process(app);
-
     QStringList positionalArguments = parser.positionalArguments();
     QString fileToOpen = "";
     if (positionalArguments.length())
         fileToOpen = parser.positionalArguments().at(0);
 
+    // Acquire saved settings
     QSettings settings(QCoreApplication::organizationName(), QCoreApplication::applicationName().toLower());
+
+    // Start: Initialize renderer
+#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
     auto enableProjections = settings.value("projections/enabled", false);
 
 // The following code forces the use of specific renderer modes to enable screen projections to work.
@@ -125,11 +133,13 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
 #endif
 #endif
 #endif
+#endif
+    // End: Initialize renderer
 
     // Substract from 2 because order in app is intentionally inverted from order in Qt
     app.setLayoutDirection(static_cast<Qt::LayoutDirection>(2 - settings.value("ui/layout", 0).toInt()));
 
-#if defined(KF5Crash_FOUND)
+#if defined(KF6Crash_FOUND)
     // KCrash::setDrKonqiEnabled(true);
     KCrash::initialize();
     // KCrash::setCrashHandler( KCrash::defaultCrashHandler );
@@ -172,18 +182,15 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
     //  Set the application metadata
     KAboutData::setApplicationData(aboutData);
 
-    if (QFontDatabase::addApplicationFont(QString::fromUtf8(":/fonts/fontello.ttf")) == -1)
-        qWarning() << i18n("Failed to load icons from fontello.ttf");
-
     // qmlRegisterType<PrompterTimer>(QPROMPT_URI + ".promptertimer", 1, 0, "PrompterTimer");
-    qmlRegisterType<DocumentHandler>(QPROMPT_URI ".document", 1, 0, "DocumentHandler");
-    qmlRegisterType<MarkersModel>(QPROMPT_URI ".markers", 1, 0, "MarkersModel");
-    qmlRegisterType<QmlUtil>(QPROMPT_URI ".qmlutil", 1, 0, "QmlUtil");
-    qmlRegisterUncreatableType<AbstractUnits>(QPROMPT_URI ".abstractunits", 1, 0, "Units", "Access to Duration enum");
+    //    qmlRegisterType<DocumentHandler>(QPROMPT_URI ".document", 1, 0, "DocumentHandler");
+    //    qmlRegisterType<MarkersModel>(QPROMPT_URI ".markers", 1, 0, "MarkersModel");
+    //    qmlRegisterType<QmlUtil>(QPROMPT_URI ".qmlutil", 1, 0, "QmlUtil");
+    //    qmlRegisterUncreatableType</*AbstractUnits*/>(QPROMPT_URI ".abstractunits", 1, 0, "Units", "Access to Duration enum");
     QQmlApplicationEngine engine;
     // qmlRegisterType<PrompterWindow>(QPROMPT_URI".prompterwindow", 1, 0, "PrompterWindow");
 
-    qRegisterMetaType<Marker>();
+    //    qRegisterMetaType<Marker>();
 
     // #ifdef Q_OS_ANDROID
     // KirigamiPlugin::getInstance().registerTypes();
@@ -202,7 +209,7 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
 //    //    };
 //    //KDMacTouchBar *touchBar = new KDMacTouchBar(mainWindow);
 //    // Toggle teleprompter state
-//    QIcon qpromptIcon(QStringLiteral("://images/qprompt"));
+//    QIcon qpromptIcon(QStringLiteral(":images/qprompt"));
 //    QAction *action = new QAction(qpromptIcon, "Toggle");
 //    touchBar->addAction(action);
 //    // connect(action, &QAction::triggered, this, &MainWindow::activated);
@@ -210,13 +217,13 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
 //    // Velocity and placement toachbar controls
 //    touchBar->setTouchButtonStyle(KDMacTouchBar::IconOnly);
 //    // Up
-//    QIcon upIcon(QStringLiteral("://icons/go-previous"));
+//    QIcon upIcon(QStringLiteral(":icons/go-previous"));
 //    QAction *reduceAction = new QAction(upIcon, "Reduce");
 //    touchBar->addAction(reduceAction);
 //    touchBar->setPrincipialAction(reduceAction);
 //    // connect(reduceAction, &QAction::triggered, this, &MainWindow::activated);
 //    // Down
-//    QIcon downIcon(QStringLiteral("://icons/go-next"));
+//    QIcon downIcon(QStringLiteral(":icons/go-next"));
 //    QAction *increaseAction = new QAction(downIcon, "Increase");
 //    touchBar->addAction(increaseAction);
 //    // connect(increaseAction, &QAction::triggered, this, &MainWindow::activated);
@@ -247,27 +254,33 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
     // app.setLayoutDirection(Qt::RightToLeft);
 
 #if defined(Q_OS_ANDROID) || defined(Q_OS_IOS) || defined(Q_OS_QNX)
-    app.setWindowIcon(QIcon(":/images/qprompt-logo-wireframe.png"));
+    app.setWindowIcon(QIcon(":/qt/qml/com/cuperino/qprompt/images/qprompt-logo-wireframe.png"));
 #else
-    app.setWindowIcon(QIcon(QString::fromUtf8(":/images/qprompt.png")));
+    app.setWindowIcon(QIcon(QString::fromUtf8("qrc:/qt/qml/com/cuperino/qprompt/images/qprompt.png")));
 #endif
+    // Add path to where KDE modules are installed
+    engine.addImportPath(QStringLiteral("/lib/x86_64-linux-gnu/qml/"));
+    engine.addImportPath(QStringLiteral("../lib/x86_64-linux-gnu/qml/"));
+    engine.addImportPath(QStringLiteral("../dist/lib/x86_64-linux-gnu/qml/"));
+    // Send context data from C++ to QML
     engine.rootContext()->setContextObject(new KLocalizedContext(&engine));
     engine.rootContext()->setContextProperty(QStringLiteral("aboutData"), QVariant::fromValue(KAboutData::applicationData()));
     if (positionalArguments.length())
         engine.rootContext()->setContextProperty(QStringLiteral("fileToOpen"), fileToOpen);
-        // engine.addImportPath(QStringLiteral("../3rdparty/kirigami/"));
-        // engine.addImportPath(QStringLiteral("/usr/local/lib/qml"));
-        // engine.addImportPath("/opt/local/lib/qml/org/kde/kirigami.2");
 #if defined(Q_OS_MACOS)
     // engine.addImportPath(QStringLiteral("/opt/homebrew/lib/qml"));
-    engine.addImportPath(QStringLiteral("/opt/homebrew/Cellar/kf5-kirigami2/5.95.0/lib/qt5/qml"));
+    engine.addImportPath(QStringLiteral("/opt/homebrew/Cellar/kf5-kirigami2/5.95.0/lib/qt6/qml"));
 #endif
-    engine.load(QUrl(QStringLiteral("qrc:///main.qml")));
+#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+    engine.load(QUrl(u"qrc:/qt/qml/com/cuperino/qprompt/kirigami_ui/main.qml"_qs));
+#else
+    engine.load(QUrl(QStringLiteral("qrc:/qt/qml/com/cuperino/qprompt/kirigami_ui/main.qml")));
+#endif
 
     if (engine.rootObjects().isEmpty()) {
         return -1;
     }
 
-    // qDebug() << QProcess::systemEnvironment();
+    // qDebug() << QProcess::systemEnvironme nt();
     return app.exec();
 }
