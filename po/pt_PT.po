@@ -1,0 +1,1640 @@
+# Portuguese translations.
+# SPDX-FileCopyrightText: 2022-24 Javier O. Cordero Pérez and contributors
+# This file is distributed under the Creative Commons 4.0 Attribution license.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: qprompt\n"
+"Report-Msgid-Bugs-To: https://github.com/Cuperino/QPrompt/issues/new/choose\n"
+"POT-Creation-Date: 2024-07-03 05:02-0400\n"
+"PO-Revision-Date: 2024-07-03 05:09-0400\n"
+"Last-Translator: Javier O. Cordero Pérez <javiercorderoperez@gmail.com>\n"
+"Language-Team: Portuguese <kde-i18n-doc@kde.org>\n"
+"Language: pt\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: Lokalize 24.05.1\n"
+
+#: kirigami_ui/+android/main.qml:183 kirigami_ui/main.qml:198
+#: kirigami_ui/main.qml:563 kirigami_ui/+windows/main.qml:197
+msgctxt "Main menu and global menu actions"
+msgid "&New"
+msgstr "&Novo"
+
+#: kirigami_ui/+android/main.qml:189 kirigami_ui/main.qml:205
+#: kirigami_ui/main.qml:567 kirigami_ui/+windows/main.qml:203
+msgctxt "Main menu and global menu actions"
+msgid "&Open"
+msgstr "&Abrir"
+
+#: kirigami_ui/+android/main.qml:198 kirigami_ui/main.qml:215
+#: kirigami_ui/+windows/main.qml:212
+msgctxt "Main menu and global menu actions"
+msgid "&Open remote file"
+msgstr "&Abrir arquivo remoto"
+
+#: kirigami_ui/+android/main.qml:207 kirigami_ui/main.qml:224
+#: kirigami_ui/main.qml:571 kirigami_ui/+windows/main.qml:221
+msgctxt "Main menu and global menu actions"
+msgid "&Save"
+msgstr "&Salvar"
+
+#: kirigami_ui/+android/main.qml:216 kirigami_ui/main.qml:234
+#: kirigami_ui/+windows/main.qml:230
+msgctxt "Main menu and global menu actions"
+msgid "Save &As"
+msgstr "Salvar &como"
+
+#: kirigami_ui/+android/main.qml:226 kirigami_ui/main.qml:245
+#: kirigami_ui/+windows/main.qml:240
+msgctxt "Main menu actions"
+msgid "&Recent Files"
+msgstr "&Arquivos recentes"
+
+#: kirigami_ui/+android/main.qml:234 kirigami_ui/main.qml:254
+#: kirigami_ui/+windows/main.qml:248
+msgctxt "Main menu actions. Menu regarding input settings."
+msgid "&Controls Settings"
+msgstr "&Ajustes de controles"
+
+#: kirigami_ui/+android/main.qml:238 kirigami_ui/main.qml:259
+#: kirigami_ui/+windows/main.qml:252
+msgctxt ""
+"Main menu and global menu actions. Opens dialog to configure keyboard inputs."
+msgid "Keyboard Inputs"
+msgstr "Atalhos de teclado"
+
+#: kirigami_ui/+android/main.qml:246 kirigami_ui/main.qml:266
+#: kirigami_ui/+windows/main.qml:260
+msgctxt "Open 'scroll settings' from main menu and global menu actions"
+msgid "Scroll throttle settings"
+msgstr "Ajustes de velocidade de rolagem"
+
+#: kirigami_ui/+android/main.qml:251 kirigami_ui/main.qml:272
+#: kirigami_ui/main.qml:808 kirigami_ui/+windows/main.qml:265
+msgctxt ""
+"Main menu and global menu actions. Have up arrow behave like down arrow and "
+"vice versa while prompting."
+msgid "Invert &arrow keys"
+msgstr "Inverter &setas do teclado"
+
+#: kirigami_ui/+android/main.qml:259 kirigami_ui/main.qml:281
+#: kirigami_ui/main.qml:815 kirigami_ui/+windows/main.qml:273
+msgctxt ""
+"Main menu and global menu actions. Invert scroll direction while prompting."
+msgid "Invert &scroll direction"
+msgstr "Inverter &direção de rolagem"
+
+#: kirigami_ui/+android/main.qml:267 kirigami_ui/main.qml:290
+#: kirigami_ui/main.qml:800 kirigami_ui/+windows/main.qml:281
+msgctxt ""
+"Main menu and global menu actions. Have touchpad and mouse wheel scrolling "
+"adjust velocity instead of scrolling like most other apps."
+msgid "Use scroll as velocity &dial"
+msgstr "Usar scroll do mouse como &velocidade"
+
+#: kirigami_ui/+android/main.qml:276 kirigami_ui/main.qml:300
+#: kirigami_ui/main.qml:794 kirigami_ui/+windows/main.qml:290
+msgctxt ""
+"Main menu and global menu actions. Touchpad scrolling and mouse wheel use "
+"have no effect while prompting."
+msgid "Disable scrolling while prompting"
+msgstr "Desabilitar rolagem no prompting"
+
+#: kirigami_ui/+android/main.qml:284 kirigami_ui/main.qml:309
+#: kirigami_ui/+windows/main.qml:298
+msgctxt "Main menu actions"
+msgid "Other &Settings"
+msgstr "Outras &configurações"
+
+#: kirigami_ui/+android/main.qml:294 kirigami_ui/main.qml:327
+#: kirigami_ui/+windows/main.qml:315
+msgctxt "Main menu actions. Opens dialog for choosing layout direction."
+msgid "Layout direction"
+msgstr ""
+
+#: kirigami_ui/+android/main.qml:299 kirigami_ui/main.qml:332
+#: kirigami_ui/+windows/main.qml:320
+msgctxt "Main menu actions. Enters Performance tweaks submenu."
+msgid "Performance tweaks"
+msgstr ""
+
+#: kirigami_ui/+android/main.qml:301 kirigami_ui/main.qml:334
+#: kirigami_ui/+windows/main.qml:322
+#, fuzzy
+msgctxt "Main menu actions"
+msgid "Disable screen projections"
+msgstr "Habilitar projeção"
+
+#: kirigami_ui/+android/main.qml:308 kirigami_ui/main.qml:341
+#: kirigami_ui/+windows/main.qml:329
+#, fuzzy
+msgctxt "Main menu actions"
+msgid "Disable timers"
+msgstr "Habilitar temporizadores"
+
+#: kirigami_ui/+android/main.qml:317 kirigami_ui/main.qml:350
+#: kirigami_ui/+windows/main.qml:338
+msgctxt "Main menu actions. Hides formatting tools while not in edit mode."
+msgid "Auto hide formatting tools"
+msgstr "Auto-esconder ferramentas de formatação"
+
+#: kirigami_ui/+android/main.qml:325 kirigami_ui/main.qml:358
+#: kirigami_ui/+windows/main.qml:346
+msgctxt "Main menu actions"
+msgid "Always hide formatting tools"
+msgstr "Sempre esconder ferramentas de formatação"
+
+#: kirigami_ui/+android/main.qml:333 kirigami_ui/main.qml:366
+#: kirigami_ui/+windows/main.qml:354
+msgctxt ""
+"Main menu actions. Disables contrast effect for the reading region overlay."
+msgid "Disable overlay contrast"
+msgstr "Desabilitar contraste de sobreposição"
+
+#: kirigami_ui/+android/main.qml:342 kirigami_ui/main.qml:406
+#: kirigami_ui/+windows/main.qml:394
+msgctxt "Main menu actions. Enters Other tweaks submenu."
+msgid "Other tweaks"
+msgstr ""
+
+#: kirigami_ui/+android/main.qml:344 kirigami_ui/main.qml:409
+#: kirigami_ui/+windows/main.qml:396
+#, fuzzy
+msgctxt "Main menu actions. Enable local file auto reload"
+msgid "Local file auto reload"
+msgstr "Auto-recarregar"
+
+#: kirigami_ui/+android/main.qml:360 kirigami_ui/main.qml:435
+#: kirigami_ui/+windows/main.qml:412
+msgctxt "Main menu actions. Load about page."
+msgid "Abou&t %1"
+msgstr "Sobr&e %1"
+
+#: kirigami_ui/+android/main.qml:366 kirigami_ui/main.qml:442
+#: kirigami_ui/main.qml:580 kirigami_ui/+windows/main.qml:418
+msgctxt "Main menu and global menu actions"
+msgid "&Quit"
+msgstr "&Sair"
+
+#: kirigami_ui/+android/main.qml:417 kirigami_ui/main.qml:499
+#: kirigami_ui/main.qml:840 kirigami_ui/+windows/main.qml:474
+msgctxt "Main menu and global actions. Load document that welcomes users."
+msgid "Load &Welcome"
+msgstr "Carregar o texto de &boas-vindas"
+
+#: kirigami_ui/+android/main.qml:453 kirigami_ui/main.qml:535
+#: kirigami_ui/+windows/main.qml:510
+msgid "Darth mode"
+msgstr "Modo galáctico"
+
+#: kirigami_ui/+android/main.qml:575 kirigami_ui/main.qml:1008
+#: kirigami_ui/+windows/main.qml:680
+msgctxt "Title for save before closing dialog"
+msgid "Save Document"
+msgstr "Salvar documento"
+
+#: kirigami_ui/+android/main.qml:576 kirigami_ui/main.qml:1009
+#: kirigami_ui/+windows/main.qml:681
+msgid "Save changes to document before closing?"
+msgstr "Deseja salvar as mudanças do documento antes de fechar?"
+
+#: kirigami_ui/EditorToolbar.qml:351 kirigami_ui/EditorToolbar.qml:361
+msgctxt "Editor actions. Text alignment."
+msgid "&Left"
+msgstr "&Esquerda"
+
+#: kirigami_ui/EditorToolbar.qml:351 kirigami_ui/EditorToolbar.qml:361
+msgctxt "Editor actions. Text alignment."
+msgid "&Right"
+msgstr "&Direita"
+
+#: kirigami_ui/EditorToolbar.qml:356
+msgctxt "Editor actions. Text alignment."
+msgid "C&enter"
+msgstr "C&entro"
+
+#: kirigami_ui/EditorToolbar.qml:550
+msgctxt "FontName (Translatable font details)"
+msgid "DejaVu (default, Roman, Cyrillic)"
+msgstr "DejaVu (padrão, Romana, Cirílico)"
+
+#: kirigami_ui/EditorToolbar.qml:554
+msgctxt "FontName (Translatable font details)"
+msgid "OpenDyslexic (Roman)"
+msgstr "OpenDyslexic (Romana)"
+
+#: kirigami_ui/EditorToolbar.qml:558
+msgctxt "FontName (Translatable font details)"
+msgid "Source Han Sans (CH, JP, KO)"
+msgstr "Source Han Sans (Chinês, Japones, Coreano)"
+
+#: kirigami_ui/EditorToolbar.qml:562
+msgctxt "FontName (Translatable font details)"
+msgid "Scheherazade New (Arabic)"
+msgstr "Scheherazade New (Árabe)"
+
+#: kirigami_ui/EditorToolbar.qml:566
+msgctxt "FontName (Translatable font details)"
+msgid "Palanquin (Devangari)"
+msgstr "Palanquin (Devanágari)"
+
+#: kirigami_ui/EditorToolbar.qml:570
+msgctxt "FontName (Translatable font details)"
+msgid "Kalpurush (Bengali)"
+msgstr "Kalpurush (Bengalês)"
+
+#: kirigami_ui/EditorToolbar.qml:576
+msgctxt "Opens system font selection dialog"
+msgid "Choose System Font"
+msgstr "Escolher Fonte do Sistema"
+
+#: kirigami_ui/EditorToolbar.qml:582
+msgid "No glyphs selected…"
+msgstr "Nenhum glifo selecionado…"
+
+#: kirigami_ui/EditorToolbar.qml:806
+msgctxt "Velocity {VELOCITY_STEPS}"
+msgid "Velocity <pre>%1</pre>"
+msgstr "Velocidade <pre>%1</pre>"
+
+#: kirigami_ui/EditorToolbar.qml:844
+msgctxt "Opacity {TRANSPARENCY_PERCENTAGE}"
+msgid "Opacity <pre>%1</pre>"
+msgstr "Opacidade <pre>%1</pre>"
+
+#: kirigami_ui/EditorToolbar.qml:883 kirigami_ui/EditorToolbar.qml:902
+msgctxt "Font size 100% (083)"
+msgid "Font size <pre>%1% (%2)</pre>"
+msgstr "Tamanho da fonte <pre>%1% (%2)</pre>"
+
+#: kirigami_ui/EditorToolbar.qml:941
+msgctxt "Line height 100%"
+msgid "Line height <pre>%1%</pre>"
+msgstr "Tamanho de linha <pre>%1%</pre>"
+
+#: kirigami_ui/EditorToolbar.qml:981
+msgctxt "Paragraph spacing ±00"
+msgid "Paragraph spacing <pre>%1%</pre>"
+msgstr "Espaçamento do parágrafo <pre>%1%</pre>"
+
+#: kirigami_ui/EditorToolbar.qml:1022
+msgctxt "Word spacing <pre>±00<pre>"
+msgid "Word spacing <pre>%1</pre>"
+msgstr "Espaçamento de palavras <pre>%1</pre>"
+
+#: kirigami_ui/EditorToolbar.qml:1058
+msgctxt "Letter spacing ±00"
+msgid "Letter spacing <pre>%1</pre>"
+msgstr "Espaçamento de letras <pre>%1</pre>"
+
+#: kirigami_ui/EditorToolbar.qml:1094
+msgctxt "Step speed 1.00"
+msgid "Step speed <pre>%1</pre>"
+msgstr "Aumento de rapidez <pre>%1</pre>"
+
+#: kirigami_ui/EditorToolbar.qml:1135
+msgctxt "Step acceleration 1.15"
+msgid "Step acceleration <pre>%1</pre>"
+msgstr "Aumento de aceleração <pre>%1</pre>"
+
+#: kirigami_ui/EditorToolbar.qml:1159
+#, fuzzy
+msgctxt "Next reload starts at 10:11:12"
+msgid "Next reload starts at <pre>%1</pre>"
+msgstr "Aumento de aceleração <pre>%1</pre>"
+
+#: kirigami_ui/InputsOverlay.qml:33
+msgctxt "Title of dialog where users customize keyboard inputs"
+msgid "Key Bindings"
+msgstr "Atalhos de teclado"
+
+#: kirigami_ui/InputsOverlay.qml:163
+msgid "Toggle Prompter State"
+msgstr "Estado de prompting"
+
+#: kirigami_ui/InputsOverlay.qml:171
+msgid "Decrease Velocity"
+msgstr "Diminuir velocidade"
+
+#: kirigami_ui/InputsOverlay.qml:179
+msgid "Increase Velocity"
+msgstr "Aumentar velocidade"
+
+#: kirigami_ui/InputsOverlay.qml:187
+msgid "Stop"
+msgstr "Parar"
+
+#: kirigami_ui/InputsOverlay.qml:195
+msgid "Play/Pause"
+msgstr "Iniciar/Pausar"
+
+#: kirigami_ui/InputsOverlay.qml:203
+msgid "Reverse"
+msgstr "Rolar ao contrário"
+
+#: kirigami_ui/InputsOverlay.qml:211
+msgid "Rewind"
+msgstr "Voltar o texto"
+
+#: kirigami_ui/InputsOverlay.qml:219
+msgid "Fast Forward"
+msgstr "Avançar rápido"
+
+#: kirigami_ui/InputsOverlay.qml:227
+msgctxt "Skip to earlier text while prompting or editing"
+msgid "Move Backwards"
+msgstr "Mover para cima"
+
+#: kirigami_ui/InputsOverlay.qml:235
+msgctxt "Skip to later text while prompting or editing"
+msgid "Move Forward"
+msgstr "Mover para baixo"
+
+#: kirigami_ui/InputsOverlay.qml:243
+msgctxt "Skip to closest marker behind of current position"
+msgid "Go to Previous Marker"
+msgstr "Ir para o marcador anterior"
+
+#: kirigami_ui/InputsOverlay.qml:251
+msgctxt "Skip to closest marker ahead of current position"
+msgid "Go to Next Marker"
+msgstr "Ir para o próximo marcador"
+
+#: kirigami_ui/LayoutDirectionSettingsOverlay.qml:32
+msgid "Layout direction"
+msgstr ""
+
+#: kirigami_ui/LayoutDirectionSettingsOverlay.qml:38
+msgctxt "Label at layout direction settings overlay"
+msgid "Current layout"
+msgstr ""
+
+#: kirigami_ui/main.qml:320 kirigami_ui/+windows/main.qml:308
+msgctxt "Main menu actions. Load Path Settings page."
+msgid "External Tools and Applications"
+msgstr "Ferramentas e aplicativos externos"
+
+#: kirigami_ui/main.qml:376 kirigami_ui/+windows/main.qml:364
+msgid "Disable background transparency"
+msgstr "Desativar a transparência do fundo"
+
+#: kirigami_ui/main.qml:395 kirigami_ui/+windows/main.qml:383
+msgctxt ""
+"Main menu actions. QPrompt switches between two text rendering techniques "
+"when the base font size exceeds 120px. Enabling this option forces QPrompt "
+"to always use the default renderer, which features smoother sub-pixel "
+"animations."
+msgid "Force sub-pixel text renderer past 120px"
+msgstr "Forçar renderização de sub-píxels de letras com mais de 120px"
+
+#: kirigami_ui/main.qml:417
+msgctxt ""
+"Main menu actions. Fake fullscreen behavior instead of requesting true "
+"fullscreen"
+msgid "Fake fullscreen behavior"
+msgstr ""
+
+#: kirigami_ui/main.qml:560
+msgctxt "Global menu actions"
+msgid "&File"
+msgstr "&Arquivo"
+
+#: kirigami_ui/main.qml:575
+msgctxt "Main menu and global menu actions"
+msgid "Save &As…"
+msgstr "Salvar &Como…"
+
+#: kirigami_ui/main.qml:586
+msgctxt "Global menu actions"
+msgid "&Edit"
+msgstr "&Editar"
+
+#: kirigami_ui/main.qml:589
+msgctxt "Global menu actions"
+msgid "&Undo"
+msgstr "&Desfazer"
+
+#: kirigami_ui/main.qml:594
+msgctxt "Global menu actions"
+msgid "&Redo"
+msgstr "&Refazer"
+
+#: kirigami_ui/main.qml:600 prompter/Prompter.qml:1361
+#: prompter/Prompter.qml:1408
+msgctxt "Global menu and editor context menu actions"
+msgid "&Copy"
+msgstr "&Copiar"
+
+#: kirigami_ui/main.qml:605 prompter/Prompter.qml:1366
+#: prompter/Prompter.qml:1413
+msgctxt "Global menu and editor context menu actions"
+msgid "Cu&t"
+msgstr "Corta&r"
+
+#: kirigami_ui/main.qml:610 prompter/Prompter.qml:1371
+#: prompter/Prompter.qml:1418
+msgctxt "Global menu and editor context menu actions"
+msgid "&Paste"
+msgstr "&Colar"
+
+#: kirigami_ui/main.qml:617
+msgctxt "Global menu actions"
+msgid "&View"
+msgstr "&Visualização"
+
+#: kirigami_ui/main.qml:620
+msgctxt "Global menu actions"
+msgid "Full &screen"
+msgstr "Tela &Cheia"
+
+#: kirigami_ui/main.qml:634
+msgctxt "Global menu actions. Indicators highlight reading region."
+msgid "&Indicators"
+msgstr "&Indicadores"
+
+#: kirigami_ui/main.qml:636
+msgctxt "Global menu actions. Shows pointer to the left of the reading region."
+msgid "&Left Pointer"
+msgstr "&Ponteiro esquerdo"
+
+#: kirigami_ui/main.qml:642
+msgctxt ""
+"Global menu actions. Shows pointer to the right of the reading region."
+msgid "&Right Pointer"
+msgstr "&Ponteiro direito"
+
+#: kirigami_ui/main.qml:648
+msgctxt ""
+"Global menu actions. Shows pointers to the left and right of the reading "
+"region."
+msgid "B&oth Pointers"
+msgstr "D&ois ponteiros"
+
+#: kirigami_ui/main.qml:655
+msgctxt "Global menu actions. Translucent bars indicate reading region."
+msgid "&Bars"
+msgstr "&Barras"
+
+#: kirigami_ui/main.qml:661
+msgctxt ""
+"Global menu actions. Translucent bars and left pointer indicate reading "
+"region."
+msgid "Bars Lef&t"
+msgstr "Barras e esquerd&a"
+
+#: kirigami_ui/main.qml:667
+msgctxt ""
+"Global menu actions. Translucent bars and right pointer indicate reading "
+"region."
+msgid "Bars Ri&ght"
+msgstr "Barras e di&reita"
+
+#: kirigami_ui/main.qml:674
+msgctxt "Global menu actions. Enable all reading region indicators."
+msgid "&All"
+msgstr "&Todos"
+
+#: kirigami_ui/main.qml:680
+msgctxt "Global menu actions. Disable all reading region indicators."
+msgid "&Hidden"
+msgstr "&Esconder"
+
+#: kirigami_ui/main.qml:687
+msgctxt ""
+"Global menu actions. Reading region indicates where a talent should be "
+"reading from."
+msgid "Readin&g region"
+msgstr "Regiã&o de leitura"
+
+#: kirigami_ui/main.qml:689
+msgctxt "Global menu actions. Align reading region to top of prompter."
+msgid "&Top"
+msgstr "&Em cima"
+
+#: kirigami_ui/main.qml:695
+msgctxt ""
+"Global menu actions. Align reading region to vertical center of prompter."
+msgid "&Middle"
+msgstr "&Centro"
+
+#: kirigami_ui/main.qml:701
+msgctxt "Global menu actions. Align reading region to bottom of prompter."
+msgid "&Bottom"
+msgstr "&Embaixo"
+
+#: kirigami_ui/main.qml:708
+msgctxt ""
+"Global menu actions. Enables drag and drop positioning of reading region."
+msgid "F&ree placement"
+msgstr "P&osição livre"
+
+#: kirigami_ui/main.qml:714
+msgctxt ""
+"Global menu actions. Fix positioning of reading region to what was set in "
+"\"Free placement\" mode."
+msgid "C&ustom (Fixed placement)"
+msgstr "C&ustomizado (Posição fixa)"
+
+#: kirigami_ui/main.qml:723
+msgctxt "Global menu actions"
+msgid "For&mat"
+msgstr "For&mato"
+
+#: kirigami_ui/main.qml:726
+msgctxt "Global menu actions"
+msgid "&Bold"
+msgstr "&Negrito"
+
+#: kirigami_ui/main.qml:732
+msgctxt "Global menu actions"
+msgid "&Italic"
+msgstr "&Itálico"
+
+#: kirigami_ui/main.qml:738
+msgctxt "Global menu actions"
+msgid "&Underline"
+msgstr "&Sublinhado"
+
+#: kirigami_ui/main.qml:745
+msgctxt "Global menu and editor actions. Text alignment."
+msgid "Align &Left"
+msgstr "Alinhar à &Esquerda"
+
+#: kirigami_ui/main.qml:745
+msgctxt "Global menu and editor actions. Text alignment."
+msgid "Align &Right"
+msgstr "Alinhar à direita"
+
+#: kirigami_ui/main.qml:756
+msgctxt "Global menu actions. Text alignment."
+msgid "Align Cen&ter"
+msgstr "Alinhar ao cen&tro"
+
+#: kirigami_ui/main.qml:762
+msgctxt "Global menu actions. Text alignment."
+msgid "Align &Right"
+msgstr "Alinhar à &direita"
+
+#: kirigami_ui/main.qml:762
+msgctxt "Global menu actions. Text alignment."
+msgid "Align &Left"
+msgstr "Alinhar à esquerda"
+
+#: kirigami_ui/main.qml:781
+msgctxt "Global menu actions. Opens dialog to format currently selected text."
+msgid "C&haracter"
+msgstr "C&aractere"
+
+#: kirigami_ui/main.qml:785
+msgctxt "Global menu actions. Opens dialog to color currently selected text."
+msgid "Fo&nt Color"
+msgstr "Co&r da Fonte"
+
+#: kirigami_ui/main.qml:791
+msgctxt "Global menu actions. Menu regarding input settings."
+msgid "Controls"
+msgstr "Controles"
+
+#: kirigami_ui/main.qml:824
+msgctxt "Global menu actions"
+msgid "&Help"
+msgstr "&Ajuda"
+
+#: kirigami_ui/main.qml:827
+msgctxt "Global menu actions"
+msgid "Report &Bug…"
+msgstr "Reportar &Bugs…"
+
+#: kirigami_ui/main.qml:846
+msgctxt "Global menu actions. Load about page. \"About AppName\""
+msgid "Abou&t %1"
+msgstr "Sobr&e %1"
+
+#: kirigami_ui/main.qml:997 kirigami_ui/+windows/main.qml:669
+msgctxt "Restart application_name"
+msgid "Restart %1"
+msgstr "Reiniciar %1"
+
+#: kirigami_ui/main.qml:998 kirigami_ui/+windows/main.qml:670
+msgctxt ""
+"application needs to restart for this change to fully take effect.\n"
+"\n"
+"Would you like to restart application now? All changes to document will be "
+"lost."
+msgid ""
+"%1 needs to restart for this change to fully take effect.\n"
+"\n"
+"Would you like to restart %1 now? All changes to document will be lost."
+msgstr ""
+"%1 deve ser reiniciado para que esta alteração tenha efeito.\n"
+"\n"
+"Deseja reiniciar %1 agora? Quaisquer modificações feitas no documento serão "
+"perdidas."
+
+#: kirigami_ui/MarkersDrawer.qml:129
+msgctxt "Close sidebar listing user defined markers"
+msgid "Close Marker List"
+msgstr "Fechar lista de marcadores"
+
+#: kirigami_ui/PathsPage.qml:42
+msgid "External Tools"
+msgstr "Ferramentas externas"
+
+#: kirigami_ui/PathsPage.qml:57
+msgid "LibreOffice"
+msgstr "LibreOffice"
+
+#: kirigami_ui/PathsPage.qml:63
+msgid ""
+"QPrompt can make transparent use of LibreOffice to convert Microsoft Word, "
+msgstr ""
+
+#: kirigami_ui/PathsPage.qml:71 kirigami_ui/PathsPage.qml:99
+msgctxt "Browse for PROGRAM"
+msgid "Browse for %1"
+msgstr "Procurar por %1"
+
+#: kirigami_ui/PathsPage.qml:102 kirigami_ui/PathsPage.qml:104
+#: kirigami_ui/PathsPage.qml:105
+msgctxt "Format name (FORMAT_EXTENSION)"
+msgid "Executable (%1)"
+msgstr "Executável (%1)"
+
+#. i18nc("Format name (FORMAT_EXTENSION)", "Portable Document Format (%1)", "PDF") + "(*.pdf *.PDF)",
+#. i18nc("Format name (FORMAT_EXTENSION)", "Rich Text Format (%1)", "RTF") + "(*.rtf *.RTF)",
+#. i18nc("Format name (FORMAT_EXTENSION)", "Portable Document Format (%1)", "PDF") + "(*.pdf *.PDF)",
+#: kirigami_ui/PathsPage.qml:107 prompter/Prompter.qml:1286
+#: prompter/Prompter.qml:1294
+msgctxt "All file formats"
+msgid "All Formats"
+msgstr "Todos os formatos"
+
+#: kirigami_ui/PrompterPage.qml:73
+msgid "Start prompter"
+msgstr "Iniciar prompter"
+
+#: kirigami_ui/PrompterPage.qml:81
+msgid "Decrease velocity"
+msgstr "Diminuir velocidade"
+
+#: kirigami_ui/PrompterPage.qml:95
+msgid "Increase velocity"
+msgstr "Aumentar velocidade"
+
+#: kirigami_ui/PrompterPage.qml:108
+msgctxt "Reading region indicates where a talent should be reading from"
+msgid "Reading region"
+msgstr "Região de leitura"
+
+#: kirigami_ui/PrompterPage.qml:110
+msgctxt "Reading region indicates where a talent should be reading from"
+msgid "Change reading region placement"
+msgstr "Mudar a posição da região de leitura"
+
+#: kirigami_ui/PrompterPage.qml:116
+msgctxt "Align reading region to top of prompter"
+msgid "Top"
+msgstr "Em cima"
+
+#: kirigami_ui/PrompterPage.qml:118
+msgid "Move reading region to the top, convenient for use with webcams"
+msgstr ""
+"Mover a região de leitura para cima, mais conveniente para uso com webcams"
+
+#: kirigami_ui/PrompterPage.qml:129
+msgctxt "Align reading region to vertical center of prompter"
+msgid "Middle"
+msgstr "Meio"
+
+#: kirigami_ui/PrompterPage.qml:131
+msgid "Move reading region to the vertical center"
+msgstr "Mover a região de leitura para o centro verticalmente"
+
+#: kirigami_ui/PrompterPage.qml:142
+msgctxt "Align reading region to bottom of prompter"
+msgid "Bottom"
+msgstr "Embaixo"
+
+#: kirigami_ui/PrompterPage.qml:144
+msgid "Move reading region to the bottom"
+msgstr "Mover a região de leitura para baixo"
+
+#: kirigami_ui/PrompterPage.qml:154
+msgctxt ""
+"Refers to free placement. Enables drag and drop positioning of reading "
+"region."
+msgid "Free"
+msgstr "Livre"
+
+#: kirigami_ui/PrompterPage.qml:156
+msgid "Move reading region freely by dragging and dropping"
+msgstr "Mover região de leitura livremente ao arrastar e soltar"
+
+#: kirigami_ui/PrompterPage.qml:167
+msgctxt ""
+"Fix positioning of reading region to what was set in \"Free placement\" mode"
+msgid "Custom"
+msgstr "Customizada"
+
+#: kirigami_ui/PrompterPage.qml:169
+msgid "Fix reading region to the position set using free placement mode"
+msgstr ""
+"Fixar a região de leitura pela posição configurada usando o posicionamento "
+"livre"
+
+#: kirigami_ui/PrompterPage.qml:195
+msgctxt ""
+"Height of reading region relative to single line height. E.g. Height: 2.5"
+msgid "Height: %1"
+msgstr "Altura: %1"
+
+#: kirigami_ui/PrompterPage.qml:249
+msgctxt "Indicators highlight reading region"
+msgid "Indicators"
+msgstr "Indicadores"
+
+#: kirigami_ui/PrompterPage.qml:250
+msgctxt "Indicators highlight reading region"
+msgid "Change reading region indicators"
+msgstr "Alterar indicador de região de leitura"
+
+#: kirigami_ui/PrompterPage.qml:253
+msgctxt "Configure reading region pointer indicators"
+msgid "Pointer Configuration"
+msgstr "Configuração de ponteiro"
+
+#: kirigami_ui/PrompterPage.qml:260 kirigami_ui/PrompterPage.qml:272
+msgctxt "Shows pointer to the left of the reading region"
+msgid "Left pointer"
+msgstr "Ponteiro esquerdo"
+
+#: kirigami_ui/PrompterPage.qml:260 kirigami_ui/PrompterPage.qml:272
+msgctxt "Shows pointer to the right of the reading region"
+msgid "Right pointer"
+msgstr "Ponteiro direito"
+
+#: kirigami_ui/PrompterPage.qml:262
+msgid "Left pointer indicates reading region"
+msgstr "Ponteiro esquerdo indica a região de leitura"
+
+#: kirigami_ui/PrompterPage.qml:274
+msgid "Right pointer indicates reading region"
+msgstr "Ponteiro direito indica a região de leitura"
+
+#: kirigami_ui/PrompterPage.qml:284
+msgctxt "Shows pointers to the left and right of the reading region"
+msgid "Both pointers"
+msgstr "Dois ponteiros"
+
+#: kirigami_ui/PrompterPage.qml:286
+msgid "Left and right pointers indicate reading region"
+msgstr "Ponteiros esquerdo e direito indicam a região de leitura"
+
+#: kirigami_ui/PrompterPage.qml:296
+msgctxt "Disable all reading region pointers"
+msgid "No pointers"
+msgstr "Sem ponteiros"
+
+#: kirigami_ui/PrompterPage.qml:298
+msgctxt "Disable all reading region indicators"
+msgid "Disable reading region indicators"
+msgstr "Desabilita os indicadores de região de leitura"
+
+#: kirigami_ui/PrompterPage.qml:308
+#, fuzzy
+msgctxt "Configure reading region pointer indicators"
+msgid "Bars"
+msgstr "&Barras"
+
+#: kirigami_ui/PrompterPage.qml:321
+msgid "Timer"
+msgstr "Temporizador"
+
+#: kirigami_ui/PrompterPage.qml:333
+msgid "Enable timers"
+msgstr "Habilitar temporizadores"
+
+#: kirigami_ui/PrompterPage.qml:346
+msgid "Stopwatch"
+msgstr "Cronômetro"
+
+#: kirigami_ui/PrompterPage.qml:359
+msgctxt "Estimated Time of Arrival"
+msgid "ETA"
+msgstr "Tempo estimado de leitura"
+
+#: kirigami_ui/PrompterPage.qml:368
+msgctxt "Color of timer text"
+msgid "Timer color"
+msgstr "Cor do temporizador"
+
+#: kirigami_ui/PrompterPage.qml:380
+msgctxt "Reset color of timer text back to default"
+msgid "Clear color"
+msgstr "Resetar cor do temporizador"
+
+#: kirigami_ui/PrompterPage.qml:392 kirigami_ui/PrompterPage.qml:415
+msgid "Countdown"
+msgstr "Contagem regressiva"
+
+#: kirigami_ui/PrompterPage.qml:398
+msgctxt ""
+"Enables automatic alignment of prompter and text with the reading region"
+msgid "Auto frame"
+msgstr "Auto-alinhar"
+
+#: kirigami_ui/PrompterPage.qml:432
+msgctxt "Auto start countdown upon prompter getting started"
+msgid "Auto start"
+msgstr "Começar automaticamente"
+
+#: kirigami_ui/PrompterPage.qml:435
+msgid "Start countdown automatically"
+msgstr "Começar a contagem automaticamente"
+
+#: kirigami_ui/PrompterPage.qml:445
+msgctxt "Configure countdown duration"
+msgid "Set duration"
+msgstr "Definir duração"
+
+#: kirigami_ui/PrompterPage.qml:463
+msgctxt "Prompter orientation and mirroring"
+msgid "Orientation"
+msgstr "Orientação"
+
+#. i18n("H Flip")
+#: kirigami_ui/PrompterPage.qml:480 prompter/ProjectionsManager.qml:334
+msgctxt "Mirrors prompter horizontally"
+msgid "Horizontal mirror"
+msgstr "Espelhar horizontalmente"
+
+#. i18n("V Flip")
+#: kirigami_ui/PrompterPage.qml:497 prompter/ProjectionsManager.qml:354
+msgctxt "Mirrors prompter vertically"
+msgid "Vertical mirror"
+msgstr "Espelhar verticalmente"
+
+#: kirigami_ui/PrompterPage.qml:525
+msgctxt "Prompter rotation is disabled"
+msgid "Don't rotate"
+msgstr "Não girar"
+
+#: kirigami_ui/PrompterPage.qml:537
+msgctxt "Rotate prompter 90 degrees to the right"
+msgid "90° clockwise"
+msgstr "90° no sentido horário"
+
+#: kirigami_ui/PrompterPage.qml:549
+msgctxt "Rotate prompter 90 degrees to the left"
+msgid "90° counter"
+msgstr "90° no sentido anti-horário"
+
+#: kirigami_ui/PrompterPage.qml:575
+msgctxt "Background refers to what appears behind the prompter"
+msgid "Background"
+msgstr "Fundo"
+
+#: kirigami_ui/PrompterPage.qml:578
+msgctxt "Enable root.shadows"
+msgid "Shadows"
+msgstr "Sombras"
+
+#: kirigami_ui/PrompterPage.qml:587
+msgctxt "Set background image"
+msgid "Set image"
+msgstr "Definir imagem"
+
+#: kirigami_ui/PrompterPage.qml:598
+msgctxt "Set background color tint"
+msgid "Set color"
+msgstr "Definir cor"
+
+#: kirigami_ui/PrompterPage.qml:609
+msgctxt "Set background settings back to default"
+msgid "Clear"
+msgstr "Limpar"
+
+#: kirigami_ui/PrompterPage.qml:623
+msgctxt "Screens refers to computer displays"
+msgid "Screens"
+msgstr "Monitores"
+
+#: kirigami_ui/PrompterPage.qml:664
+msgctxt "Screen is disabled"
+msgid "Off"
+msgstr "Desligado"
+
+#: kirigami_ui/PrompterPage.qml:665
+msgctxt "Screen is enabled but mirroring is disabled"
+msgid "No Mirror"
+msgstr "Sem espelhar"
+
+#: kirigami_ui/PrompterPage.qml:666
+msgctxt "Horizontal mirroring"
+msgid "H Mirror"
+msgstr "Espelho horizontal"
+
+#: kirigami_ui/PrompterPage.qml:667
+msgctxt "Vertical mirroring"
+msgid "V Mirror"
+msgstr "Espelho vertical"
+
+#: kirigami_ui/PrompterPage.qml:668
+msgctxt "Horizontal and vertical mirroring"
+msgid "HV Mirror"
+msgstr "Espelho vertical e horizontal"
+
+#: kirigami_ui/PrompterPage.qml:679
+msgctxt "Display prompter copies onto displays"
+msgid "Enable projection"
+msgstr "Habilitar projeção"
+
+#: kirigami_ui/PrompterPage.qml:691
+msgctxt "Enable scaling prompter copies being projected onto displays"
+msgid "Scale projection"
+msgstr "Escala de projeção"
+
+#: kirigami_ui/PrompterPage.qml:714
+msgid "Leave Fullscreen"
+msgstr "Sair da tela cheia"
+
+#: kirigami_ui/PrompterPage.qml:714
+msgid "Fullscreen"
+msgstr "Tela cheia"
+
+#: kirigami_ui/PrompterPage.qml:864
+msgid "Countdown Setup"
+msgstr "Configurações de contagem regressiva"
+
+#: kirigami_ui/PrompterPage.qml:873
+#, fuzzy
+msgid "Countdown duration"
+msgstr "Iterações de contagem regressiva"
+
+#: kirigami_ui/PrompterPage.qml:892
+msgid "Disappear within 1 second to go"
+msgid_plural "Disappear within %1 seconds to go"
+msgstr[0] "Desaparecer em 1 segundo para iniciar"
+msgstr[1] "Desaparecer em %1 segundos para iniciar"
+
+#: kirigami_ui/PrompterPage.qml:916
+msgctxt ""
+"Refers to a key on the keyboard used to skip to a user defined marker while "
+"prompting"
+msgid "Skip Key"
+msgstr "Tecla de pular"
+
+#: kirigami_ui/PrompterPage.qml:939
+msgctxt ""
+"Refers to a key on the keyboard used to skip to a user defined marker while "
+"prompting"
+msgid "Key to perform skip to this marker"
+msgstr "Tecla para pular para este marcador"
+
+#: kirigami_ui/PrompterPage.qml:986
+msgid "Open from network..."
+msgstr "Abrir de rede..."
+
+#: kirigami_ui/PrompterPage.qml:1016
+msgid "URL:"
+msgstr "URL:"
+
+#: kirigami_ui/PrompterPage.qml:1020
+msgid "http, https, and ftp protocols supported"
+msgstr "http, https e protocolos ftp suportados"
+
+#: kirigami_ui/PrompterPage.qml:1031
+msgid "Auto reload"
+msgstr "Auto-recarregar"
+
+#: kirigami_ui/PrompterPage.qml:1041
+msgid "Hours:"
+msgstr "Horas:"
+
+#: kirigami_ui/PrompterPage.qml:1061
+msgid "Minutes:"
+msgstr "Minutos:"
+
+#: kirigami_ui/PrompterPage.qml:1085
+msgid "Seconds:"
+msgstr "Segundos:"
+
+#: kirigami_ui/PrompterPage.qml:1112
+msgctxt "Next reload starts at 10:11:12"
+msgid "Next reload starts at %1"
+msgstr "Próximo recarregamento começa em %1"
+
+#: kirigami_ui/PrompterPage.qml:1113
+msgid "Auto reload is not running"
+msgstr "Auto-recarregamento não está funcionando"
+
+#: kirigami_ui/PrompterPage.qml:1120
+msgid "Load from Network"
+msgstr "Carregar de rede"
+
+#: kirigami_ui/PrompterPage.qml:1128 prompter/ProjectionsManager.qml:321
+msgid "Close"
+msgstr "Fechar"
+
+#: kirigami_ui/PrompterPage.qml:1141
+msgctxt "Name of section where reding region pointers are configured"
+msgid "Pointer configuration"
+msgstr "Configuração de ponteiro"
+
+#: kirigami_ui/RemotePage.qml:28
+msgid "Remote Control"
+msgstr "Controle remoto"
+
+#: kirigami_ui/TelemetryPage.qml:30
+msgid "Telemetry Settings"
+msgstr "Configurações de telemetria"
+
+#: kirigami_ui/TelemetryPage.qml:55
+msgid ""
+"The following page is a placeholder. Telemetry has not yet been implemented."
+msgstr ""
+"A página seguinte é um placeholder. Telemetria ainda não foi implementada."
+
+#: kirigami_ui/TelemetryPage.qml:66
+msgid ""
+"Please help improve QPrompt by sharing information on how you use it. "
+"Contributing this information is optional and entirely anonymous. The "
+"project nor I will never collect your personal data, files you use, contents "
+"you work with, or information that could help identify you.\n"
+"- Cuperino (QPrompt's Author)"
+msgstr ""
+"Por favor melhore o QPrompt compartilhando informações de como você usa. "
+"Contribuir com esta informação é opcional e inteiramente anônimo, Nem o "
+"projeto e nem eu vamos coletar suas informações pessoais, arquivos que você "
+"usa, conteúdos que você trabalha, ou informações que podem te identificar.\n"
+"- Cuperino (Autor do QPrompt) (Traduzido por Lia Guedes)"
+
+#: kirigami_ui/TelemetryPage.qml:69
+msgid "Telemetry"
+msgstr "Telemetria"
+
+#: kirigami_ui/TelemetryPage.qml:72
+msgid "Enabled"
+msgstr "Habilitado"
+
+#: kirigami_ui/TelemetryPage.qml:72
+msgid "Disabled"
+msgstr "Desabilitado"
+
+#: kirigami_ui/TelemetryPage.qml:81 kirigami_ui/TelemetryPage.qml:103
+#: kirigami_ui/TelemetryPage.qml:125 kirigami_ui/TelemetryPage.qml:151
+#: kirigami_ui/WheelSettingsOverlay.qml:42
+#: kirigami_ui/WheelSettingsOverlay.qml:61
+msgid "On"
+msgstr "Ligado"
+
+#: kirigami_ui/TelemetryPage.qml:81 kirigami_ui/TelemetryPage.qml:103
+#: kirigami_ui/TelemetryPage.qml:125 kirigami_ui/TelemetryPage.qml:151
+#: kirigami_ui/WheelSettingsOverlay.qml:42
+#: kirigami_ui/WheelSettingsOverlay.qml:61
+msgid "Off"
+msgstr "Desligado"
+
+#: kirigami_ui/TelemetryPage.qml:95
+msgid "Basic program and system information"
+msgstr "Informações básicas do programa e do sistema"
+
+#: kirigami_ui/TelemetryPage.qml:96
+msgid "Application version"
+msgstr "Versão do aplicativo"
+
+#: kirigami_ui/TelemetryPage.qml:97
+msgid "Platform information"
+msgstr "Informações da plataforma"
+
+#: kirigami_ui/TelemetryPage.qml:98
+msgid "Qt version information"
+msgstr "Informação da versão do Qt"
+
+#: kirigami_ui/TelemetryPage.qml:99 kirigami_ui/TelemetryPage.qml:120
+msgid "Locale information (timezone and keyboard layout)"
+msgstr "Informações locais (fuso-horário e layout do teclado)"
+
+#: kirigami_ui/TelemetryPage.qml:116
+msgid "Program run statistics: Help us study user retention"
+msgstr "Estatísticas do programa: Ajude-nos a estudar retenção do usuário"
+
+#: kirigami_ui/TelemetryPage.qml:117
+msgid "Randomly generated install ID"
+msgstr "ID de instalação gerado aleatoriamente"
+
+#: kirigami_ui/TelemetryPage.qml:118
+msgid "Launch times"
+msgstr "Vezes que o programa foi iniciado"
+
+#: kirigami_ui/TelemetryPage.qml:119
+msgid "Usage time"
+msgstr "Tempo de uso"
+
+#: kirigami_ui/TelemetryPage.qml:138
+msgid "Feature use frequency: Help us know what features are most important"
+msgstr ""
+"Frequência de uso de recursos: Ajude-nos a saber quais recursos são mais "
+"importantes"
+
+#: kirigami_ui/TelemetryPage.qml:139
+msgid "Flip settings"
+msgstr "Configurações de espelho"
+
+#: kirigami_ui/TelemetryPage.qml:140
+msgid "Reading region settings"
+msgstr "Configurações de região de leitura"
+
+#: kirigami_ui/TelemetryPage.qml:141 prompter/PointerSettings.qml:150
+msgid "Pointer settings"
+msgstr "Configurações de ponteiro"
+
+#: kirigami_ui/TelemetryPage.qml:142
+msgid "Countdown settings"
+msgstr "Configurações de contagem regressiva"
+
+#: kirigami_ui/TelemetryPage.qml:143
+msgid "Keyboard shortcut settings"
+msgstr "Configurações de atalhos de teclado"
+
+#: kirigami_ui/TelemetryPage.qml:144
+msgid "Input control settings"
+msgstr "Configurações de controles de entrada"
+
+#: kirigami_ui/TelemetryPage.qml:145
+msgid "Base speed and acceleration curvature settings"
+msgstr "Configurações de velocidade base e curvatura de aceleração"
+
+#: kirigami_ui/TelemetryPage.qml:146
+msgid "Background color and opacity settings"
+msgstr "Cor do fundo e configurações de opacidade"
+
+#: kirigami_ui/TelemetryPage.qml:147
+msgid "Presence of a background image"
+msgstr "Presença de imagem de fundo"
+
+#: kirigami_ui/TelemetryPage.qml:164
+msgid "Help us understand how users operate QPrompt"
+msgstr "Nos ajude a entender como os usuários operam o QPrompt"
+
+#: kirigami_ui/TelemetryPage.qml:165
+msgid "Random session ID"
+msgstr "ID de sessão aleatório"
+
+#: kirigami_ui/TelemetryPage.qml:166
+msgid "Session number"
+msgstr "Número da sessão"
+
+#: kirigami_ui/TelemetryPage.qml:167
+msgid "Session prompt number"
+msgstr "Número da sessão do prompt"
+
+#: kirigami_ui/TelemetryPage.qml:168
+msgid "Window dimensions"
+msgstr "Dimensões de janela"
+
+#: kirigami_ui/TelemetryPage.qml:169
+msgid "Prompt area dimensions"
+msgstr "Dimensões de área do prompt"
+
+#: kirigami_ui/TelemetryPage.qml:170
+msgid "Dimensions of lines of text being prompted"
+msgstr "Dimensão das linhas de texto durante o prompt"
+
+#: kirigami_ui/TelemetryPage.qml:171
+msgid "Font settings per block of lines of text being prompted"
+msgstr "Configurações de fonte por bloco de linhas de texto durante o prompt"
+
+#: kirigami_ui/TelemetryPage.qml:172
+msgid "Languages likely present in the text being prompted"
+msgstr "Linguagens prováveis de estarem presentes no texto durante o prompt"
+
+#: kirigami_ui/TelemetryPage.qml:173
+msgid "Prompt starting line number and position"
+msgstr "Linha e posição do início de prompt"
+
+#: kirigami_ui/TelemetryPage.qml:174
+msgid "Manual scroll start and end timestamps"
+msgstr "Timestamps de início e fim da rolagem manual"
+
+#: kirigami_ui/TelemetryPage.qml:175
+msgid "Scroll starting line number and position"
+msgstr "Linha e posição do início da rolagem"
+
+#: kirigami_ui/TelemetryPage.qml:176
+msgid "Scroll end line number and position"
+msgstr "Número e posição da última linha de rolagem"
+
+#: kirigami_ui/TelemetryPage.qml:177
+msgid "Scroll duration"
+msgstr "Duração de rolagem"
+
+#: kirigami_ui/TelemetryPage.qml:178
+msgid "Prompt duration"
+msgstr "Duração de prompt"
+
+#: kirigami_ui/TelemetryPage.qml:179
+msgid "Velocity changes with timestamp"
+msgstr "Mudanças de velocidade com timestamp"
+
+#: kirigami_ui/TelemetryPage.qml:180
+msgid "Source of changes to velocity"
+msgstr "Fonte de mudanças de velocidade"
+
+#: kirigami_ui/TelemetryPage.qml:181
+msgid "Source of manual changes to scroll position"
+msgstr "Fonte de mudanças manuais da posição de rolagem"
+
+#: kirigami_ui/TelemetryPage.qml:190
+msgid ""
+"This information is very important to me, Javier, the project author, and it "
+"could help make QPrompt's development sustainable. I've gone the extra mile "
+"not to collect any of the actual text and images that you work with, so I "
+"ask you: please leave telemetry enabled."
+msgstr ""
+"Esta informação é muito importante para mim, Javier, o autor do projeto, e "
+"ela poderia fazer o desenvolvimento do QPrompt sustentável. Fiz além do "
+"esperado pra não coletar nenhum do texto e das imagens que vocês trabalham, "
+"então eu vos peço: Por favor, deixem a telemetria ligada."
+
+#: kirigami_ui/WheelSettingsOverlay.qml:31
+msgid "Wheel and touchpad scroll settings"
+msgstr "Configurações de scroll da rolagem e do touchpad"
+
+#: kirigami_ui/WheelSettingsOverlay.qml:38
+msgctxt "Label at wheel settings overlay"
+msgid "Use scroll as velocity dial"
+msgstr "Usar a roda do mouse como controle de velocidade"
+
+#: kirigami_ui/WheelSettingsOverlay.qml:57
+msgid "Enable throttling"
+msgstr "Habilitar diminuição de potência"
+
+#: kirigami_ui/WheelSettingsOverlay.qml:74
+msgid "Throttle factor"
+msgstr "Diminuição de potência"
+
+#: kirigami_ui/WheelSettingsOverlay.qml:93
+msgid "Enable throttling for use with touchpads, disable for precise scolling."
+msgstr ""
+"Diminua a potência para uso com touchpad, desabilite para ter uma rolagem "
+"precisa."
+
+#: main.cpp:92
+msgid ""
+"Personal teleprompter software for all video makers. Built with ease of use, "
+"productivity, and smooth performance in mind."
+msgstr ""
+"Programa para uso pessoal de teleprompter para todos videomakers. Construído "
+"para facilidade de uso, produtividade, e performance suave em mente."
+
+#: main.cpp:95
+msgctxt "file"
+msgid "File to copy."
+msgstr "Arquivo para copiar."
+
+#: main.cpp:98
+msgid "Ignore QSG_RENDER_LOOP environment variable."
+msgstr "Ignorar variável QSG_RENDER_LOOP."
+
+#: main.cpp:152
+msgid "© 2021 Javier O. Cordero Pérez"
+msgstr "© 2021 Javier O. Cordero Pérez"
+
+#: main.cpp:153
+msgid "© 2021-%1 Javier O. Cordero Pérez"
+msgstr "© 2021-%1 Javier O. Cordero Pérez"
+
+#: main.cpp:157
+msgid "Personal teleprompter software for all video makers."
+msgstr "Software pessoal de teleprompter para todos criadores de vídeo."
+
+#: main.cpp:169
+msgid "Author"
+msgstr "Autor"
+
+#: main.cpp:174
+msgid "Wrote keycode to string QML abstraction"
+msgstr ""
+"Programar abstração de QML para converter códigos de teclado para texto"
+
+#: main.cpp:177
+msgctxt "Active software tester"
+msgid "Active tester"
+msgstr "Testador ativo"
+
+#: main.cpp:178 rc.cpp:1
+msgctxt "NAME OF TRANSLATORS"
+msgid "Your names"
+msgstr "Lia Guedes, Marttin Carvalho"
+
+#: main.cpp:178 rc.cpp:2
+msgctxt "EMAIL OF TRANSLATORS"
+msgid "Your emails"
+msgstr "contatoliaguedes@gmail.com, marttinhoblue@gmail.com"
+
+#: prompter/Find.qml:127
+msgid "End reached, searching from the start."
+msgstr "Fim alcançado, procurando do início."
+
+#: prompter/Find.qml:129
+msgid "Start reached, searching from the end."
+msgstr "Início alcançado, procurando do final."
+
+#: prompter/Find.qml:148
+msgid "Replaced 1 instance"
+msgid_plural "Replaced %1 instances"
+msgstr[0] ""
+msgstr[1] ""
+
+#: prompter/PointerSettings.qml:104
+#, fuzzy
+msgid "Colors for prompter states"
+msgstr "Estado de prompting"
+
+#: prompter/PointerSettings.qml:110
+msgid "Editing: "
+msgstr "Editando: "
+
+#: prompter/PointerSettings.qml:123
+msgid "Ready: "
+msgstr "Pronto: "
+
+#: prompter/PointerSettings.qml:136
+msgid "Prompting: "
+msgstr "Começar o prompt "
+
+#: prompter/PointerSettings.qml:160
+#, fuzzy
+msgctxt "Uses a mirrored copy of the first pointer as the second pointer"
+msgid "Reuse left pointer"
+msgstr "Ponteiro esquerdo"
+
+#: prompter/PointerSettings.qml:162
+#, fuzzy
+msgctxt "Uses a mirrored copy of the first pointer as the second pointer"
+msgid "Reuse right pointer"
+msgstr "Ponteiro direito"
+
+#: prompter/PointerSettings.qml:166
+msgid "Tint"
+msgstr ""
+
+#: prompter/PointerSettings.qml:170
+msgid "Guides"
+msgstr ""
+
+#: prompter/PointerSettings.qml:202
+msgid "Arrow"
+msgstr ""
+
+#: prompter/PointerSettings.qml:208
+msgid "Text"
+msgstr ""
+
+#: prompter/PointerSettings.qml:214
+msgid "Image"
+msgstr ""
+
+#: prompter/PointerSettings.qml:220
+#, fuzzy
+msgid "Custom"
+msgstr "Customizada"
+
+#: prompter/PointerSettings.qml:238
+#, fuzzy
+msgid "Line width <pre>%1</pre>"
+msgstr "Tamanho de linha <pre>%1%</pre>"
+
+#: prompter/PointerSettings.qml:300 prompter/PointerSettings.qml:407
+#: prompter/PointerSettings.qml:431 prompter/PointerSettings.qml:496
+#: prompter/PointerSettings.qml:520
+msgid "Left Pointer: "
+msgstr "&Ponteiro esquerdo "
+
+#: prompter/PointerSettings.qml:301 prompter/PointerSettings.qml:313
+#: prompter/PointerSettings.qml:408 prompter/PointerSettings.qml:430
+#: prompter/PointerSettings.qml:497 prompter/PointerSettings.qml:519
+msgid "Right Pointer: "
+msgstr "&Ponteiro direito "
+
+#: prompter/PointerSettings.qml:344
+msgid "Font: "
+msgstr ""
+
+#: prompter/PointerSettings.qml:379 prompter/PointerSettings.qml:464
+#, fuzzy
+msgctxt "Vertical offset (line height) 1.00"
+msgid "Vertical offset <pre>%1</pre>"
+msgstr "Velocidade <pre>%1</pre>"
+
+#: prompter/PointerSettings.qml:418 prompter/PointerSettings.qml:450
+#: prompter/PointerSettings.qml:507 prompter/PointerSettings.qml:539
+msgid "Browse"
+msgstr ""
+
+#: prompter/PointerSettings.qml:490
+msgid "Use QML scripts to draw pointers"
+msgstr ""
+
+#: prompter/PointerSettings.qml:563 prompter/PrompterBackground.qml:125
+msgid "JPEG image"
+msgstr "Imagem JPEG"
+
+#: prompter/PointerSettings.qml:564 prompter/PrompterBackground.qml:126
+msgid "PNG image"
+msgstr "Imagem PNG"
+
+#: prompter/PointerSettings.qml:565 prompter/PrompterBackground.qml:127
+msgid "GIF animation"
+msgstr "Animação GIF"
+
+#: prompter/PointerSettings.qml:566
+#, fuzzy
+msgid "WEBP image"
+msgstr "Imagem PNG"
+
+#: prompter/PointerSettings.qml:576
+msgid "QML script"
+msgstr ""
+
+#: prompter/ProjectionsManager.qml:174
+msgid "Projection Window"
+msgstr "Janela de projeção"
+
+#: prompter/ProjectionsManager.qml:391
+msgid ""
+"For screen projections to show, you must set at least one screen to a "
+"projection setting other than \"Off\""
+msgstr ""
+"Para que as projeções de tela sejam exibidas, você deve definir pelo menos "
+"uma tela para uma configuração de projeção que não seja \"Desligado\""
+
+#: prompter/Prompter.qml:679
+msgid "Error loading file…"
+msgstr "Erro ao carregar arquivo…"
+
+#: prompter/Prompter.qml:781
+msgid "Press and hold to go back to the start"
+msgstr "Pressione e segure para voltar para o inicio"
+
+#: prompter/Prompter.qml:783
+msgid "Double tap to go back to the start"
+msgstr "Toque duplo para voltar ao início"
+
+#: prompter/Prompter.qml:791
+msgid "Auto rewind cancelled"
+msgstr "Cancelar volta automática do texto"
+
+#: prompter/Prompter.qml:839
+msgid "The End"
+msgstr "Fim"
+
+#: prompter/Prompter.qml:1162
+msgid "New document"
+msgstr "Novo documento"
+
+#: prompter/Prompter.qml:1171
+msgid "welcome_en.html"
+msgstr "welcome_pt_PT .html"
+
+#: prompter/Prompter.qml:1176
+msgid "User welcome loaded"
+msgstr "Boas vindas ao usuário carregadas"
+
+#: prompter/Prompter.qml:1186
+msgid "Loaded: %1"
+msgstr ""
+
+#: prompter/Prompter.qml:1214 prompter/Prompter.qml:1336
+msgctxt "Saved FILE_NAME"
+msgid "Saved %1"
+msgstr "Salvo em %1"
+
+#: prompter/Prompter.qml:1216
+#, fuzzy
+msgid "Saved"
+msgstr "&Salvar"
+
+#: prompter/Prompter.qml:1277 prompter/Prompter.qml:1289
+#: prompter/Prompter.qml:1319 prompter/Prompter.qml:1323
+msgctxt "Format name (FORMAT_EXTENSION)"
+msgid "Hypertext Markup Language (%1)"
+msgstr "Linguagem de Marcação de HiperTexto (%1)"
+
+#: prompter/Prompter.qml:1278 prompter/Prompter.qml:1290
+msgctxt "Format name (FORMAT_EXTENSION)"
+msgid "Markdown (%1)"
+msgstr "Markdown (%1)"
+
+#: prompter/Prompter.qml:1279 prompter/Prompter.qml:1291
+#: prompter/Prompter.qml:1324
+msgctxt "Format name (FORMAT_EXTENSION)"
+msgid "Plain Text (%1)"
+msgstr "Apenas texto (%1)"
+
+#: prompter/Prompter.qml:1280
+msgctxt "Format name (FORMAT_EXTENSION)"
+msgid "OpenDocument Format Text Document (%1)"
+msgstr ""
+
+#: prompter/Prompter.qml:1281
+msgctxt "Format name (FORMAT_EXTENSION)"
+msgid "AbiWord Document (%1)"
+msgstr ""
+
+#: prompter/Prompter.qml:1282
+msgctxt "Format name (FORMAT_EXTENSION)"
+msgid "Microsoft Word document (%1)"
+msgstr ""
+
+#: prompter/Prompter.qml:1283
+msgctxt "Format name (FORMAT_EXTENSION)"
+msgid "Apple Pages Document (%1)"
+msgstr ""
+
+#: prompter/Prompter.qml:1284
+#, fuzzy
+msgctxt "Format name (FORMAT_EXTENSION)"
+msgid "Rich Text Format (%1)"
+msgstr "Apenas texto (%1)"
+
+#: prompter/Prompter.qml:1377 prompter/Prompter.qml:1424
+msgctxt "Editor context menu actions"
+msgid "Fo&nt…"
+msgstr "Fo&nte…"
+
+#: prompter/Prompter.qml:1381 prompter/Prompter.qml:1428
+msgctxt "Editor context menu actions"
+msgid "Co&lor…"
+msgstr "Co&r…"
+
+#: prompter/Prompter.qml:1385 prompter/Prompter.qml:1432
+msgctxt "Editor context menu actions"
+msgid "Hi&ghlight…"
+msgstr "Re&alçar texto…"
+
+#: prompter/Prompter.qml:1397
+msgctxt "Editor context menu actions"
+msgid "&Undo"
+msgstr "&Desfazer"
+
+#: prompter/Prompter.qml:1402
+msgctxt "Editor context menu actions"
+msgid "Redo"
+msgstr "Refazer"
+
+#: prompter/Prompter.qml:1665
+msgid "Begin countdown"
+msgstr "Começar contagem regressiva"
+
+#: prompter/Prompter.qml:1665
+msgid "Start prompting"
+msgstr "Começar o prompt"
+
+#: prompter/Prompter.qml:1711
+msgid "Skip countdown"
+msgstr "Pular a contagem regressiva"
+
+#: prompter/Prompter.qml:1754
+msgid "Return to edit mode"
+msgstr "Voltar para o modo de edição"
+
+#~ msgid "Failed to load icons from fontello.ttf"
+#~ msgstr "Não foi possível carregar ícones da fonte fontello.ttf"
+
+#~ msgctxt "Translucent bars indicate reading region"
+#~ msgid "Bar"
+#~ msgstr "Barra"
+
+#~ msgid "Translucent bars indicate reading region"
+#~ msgstr "Barra translúcida indica a região de leitura"
+
+#~ msgctxt "Translucent bars and left pointer indicate reading region"
+#~ msgid "Bar && left"
+#~ msgstr "Barra && ponteiro esquerdo"
+
+#~ msgid "Translucent bars and left pointer indicate reading region"
+#~ msgstr "Barra translúcida e ponteiro esquerdo indicam a região de leitura"
+
+#~ msgctxt "Translucent bars and right pointer indicate reading region"
+#~ msgid "Bar && right"
+#~ msgstr "Barra && Ponteiro direito"
+
+#~ msgid "Translucent bars and right pointer indicate reading region"
+#~ msgstr "Barra translúcida e ponteiro direito indicam a região de leitura"
+
+#~ msgctxt "Enable all reading region indicators"
+#~ msgid "All"
+#~ msgstr "Tudo"
+
+#~ msgctxt "Enable all reading region indicators"
+#~ msgid "Use all reading region indicators"
+#~ msgstr "Usar todos indicadores de região de leitura"
+
+#~ msgctxt "Disable all reading region indicators"
+#~ msgid "Hidden"
+#~ msgstr "Esconder"
