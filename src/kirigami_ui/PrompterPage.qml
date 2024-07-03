@@ -870,7 +870,7 @@ Kirigami.Page {
 
             ColumnLayout {
                 Label {
-                    text: i18n("Countdown iterations")
+                    text: i18n("Countdown duration")
                 }
                 SpinBox {
                     value: countdown.__iterations
