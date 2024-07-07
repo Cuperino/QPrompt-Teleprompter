@@ -114,13 +114,15 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         documents/welcome_es.html
         documents/welcome_fi.html
         documents/welcome_fr.html
+        documents/welcome_he.html
         documents/welcome_it.html
         documents/welcome_ja.html
         documents/welcome_ko.html
         documents/welcome_nl.html
         documents/welcome_oc.html
         documents/welcome_pl.html
-        documents/welcome_pt.html
+        documents/welcome_pt_BR.html
+        documents/welcome_pt_PT.html
         documents/welcome_ru.html
         documents/welcome_zh.html
     )
