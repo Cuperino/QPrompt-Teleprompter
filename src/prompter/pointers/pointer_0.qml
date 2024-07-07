@@ -34,7 +34,8 @@ Shape {
     property color colorsReady
     property color colorsPrompting
     width: 1.6 * pointers.__pointerUnit
-    anchors.verticalCenter: parent.verticalCenter
+    height: parent.height
+    anchors.verticalCenter: parent.verticalCentertop
     ShapePath {
         strokeWidth: Math.ceil((lineWidth) / 17 * (pointers.__pointerUnit / 2))
         strokeColor: switch (prompterState) {
