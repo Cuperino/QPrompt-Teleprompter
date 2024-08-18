@@ -78,7 +78,7 @@ fi
 CMAKE_INSTALL_PREFIX="$CMAKE_PREFIX_PATH"
 ARCHITECTURE="$(uname -m)"
 
-echo "Build directory is ./build"
+echo -e "\nBuild directory is ./build"
 if $CLEAR_ALL # QPrompt and dependencies
     then
     rm -dRf ./build ./install
@@ -105,7 +105,9 @@ if $CLEAR_ALL
     rm -dRf ./3rdparty/extra-cmake-modules/build
 fi
 cmake -DCMAKE_BUILD_TYPE=$CMAKE_BUILD_TYPE -DCMAKE_PREFIX_PATH=$CMAKE_PREFIX_PATH -DCMAKE_INSTALL_PREFIX=$CMAKE_INSTALL_PREFIX -B ./3rdparty/extra-cmake-modules/build -G Ninja ./3rdparty/extra-cmake-modules/
-ninja -C ./3rdparty/extra-cmake-modules/build
+# ninja -C ./3rdparty/extra-cmake-modules/build
+cmake --build ./3rdparty/extra-cmake-modules/build
+cmake --install ./3rdparty/extra-cmake-modules/build
 
 # KDE Frameworks
 for dependency in ./3rdparty/k*; do
@@ -115,7 +117,9 @@ for dependency in ./3rdparty/k*; do
         rm -dRf ./$dependency/build
     fi
     cmake -DCMAKE_BUILD_TYPE=$CMAKE_BUILD_TYPE -DCMAKE_PREFIX_PATH=$CMAKE_PREFIX_PATH -DCMAKE_INSTALL_PREFIX=$CMAKE_INSTALL_PREFIX -B ./$dependency/build -G Ninja ./$dependency/
-    ninja -C ./$dependency/build
+#     ninja -C ./$dependency/build
+cmake --build ./$dependency/build
+cmake --install ./$dependency/build
 done
 
 echo "QHotkey"
@@ -124,8 +128,11 @@ then
     rm -dRf ./3rdparty/QHotkey/build
 fi
 cmake -DCMAKE_BUILD_TYPE=$CMAKE_BUILD_TYPE -DCMAKE_PREFIX_PATH=$CMAKE_PREFIX_PATH -DCMAKE_INSTALL_PREFIX=$CMAKE_INSTALL_PREFIX -DBUILD_SHARED_LIBS=ON -DQT_DEFAULT_MAJOR_VERSION=${QT_MAJOR_VERSION} -B ./3rdparty/QHotkey/build -G Ninja ./3rdparty/QHotkey/
-ninja -C ./3rdparty/QHotkey/build
+# ninja -C ./3rdparty/QHotkey/build
+cmake --build ./3rdparty/QHotkey/build
+cmake --install ./3rdparty/QHotkey/build
 
 echo "QPrompt"
 cmake -DCMAKE_BUILD_TYPE=$CMAKE_BUILD_TYPE -DCMAKE_PREFIX_PATH=$CMAKE_PREFIX_PATH -DCMAKE_INSTALL_PREFIX=$CMAKE_INSTALL_PREFIX -B ./build -G Ninja .
-ninja -C build
+# ninja -C build
+cmake --build build
