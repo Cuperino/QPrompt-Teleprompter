@@ -53,6 +53,7 @@ Item {
         BarsRight,
         All
     }
+    readonly property alias bottomBar: bottomBar
     readonly property alias readRegionHeight: readRegion.height
     readonly property double __vw: width / 100
     readonly property bool atTop: !prompter.__flipY && !__readRegionPlacement
