@@ -723,6 +723,9 @@ Flickable {
                     id: rect
                     anchors.left: parent.left
                     anchors.right: parent.right
+                    readonly property int m: (editor.width - prompter.width) / 2
+                    anchors.leftMargin: m
+                    anchors.rightMargin: m
                     anchors.top: editor.bottom
                     height: prompter.bottomMargin
                     color: "#FFF"
@@ -733,12 +736,13 @@ Flickable {
                         opacity: 0.3
                     }
                 }
-                RowLayout {
-                    anchors.horizontalCenter: parent.horizontalCenter
-                    anchors.verticalCenter: rect.verticalCenter
+                Item {
+                    // anchors.verticalCenter: rect.verticalCenter
                     anchors.top: editor.bottom
+                    anchors.left: editor.left
+                    anchors.right: editor.right
                     //anchors.bottom: parent.bottom
-                    spacing: 20
+                    height: overlay.bottomBar.height
                     opacity: parseInt(prompter.state) === Prompter.States.Prompting ? 0.3 : 0.7
                     Behavior on opacity {
                         enabled: true
@@ -747,103 +751,115 @@ Flickable {
                             easing.type: Easing.OutQuad
                         }
                     }
-                    RowLayout {
-                        FontLoader {
-                            id: iconFont
-                            source: "../fonts/fontello.ttf"
-                        }
-                        Button {
-                            id: rewindButton
-                            function rewind() {
-                                reset.toStart();
-                                //if (root.passiveNotifications) {
-                                    //// Run hidePassiveNotification second to avoid Kirigami bug from 5.83.0 that prevents the method from completing execution.
-                                    ////hidePassiveNotification()
-                                    //// Scientist EE
-                                    //let goToStartNotification = "";
-                                    //switch (c++%3) {
-                                        //case 0: goToStartNotification = i18n("Let's go back to the start"); break;
-                                        //case 1: goToStartNotification = i18n("Take me back to the start"); break;
-                                        //case 2: goToStartNotification = i18n("I'm going back to the start"); c=0; break;
-                                    //}
-                                    //showPassiveNotification(goToStartNotification);
-                                //}
-                                prompter.restoreFocus();
-                            }
-                            text: "\uE81A"
-                            font.pixelSize: 2*fontSize
-                            font.family: iconFont.name
-                            flat: !(pressed || prompter.__atStart)
-                            //cursorShape: Qt.PointingHandCursor
-                            onClicked: {
-                                if (root.passiveNotifications) {
-                                    if (Qt.platform.os==="android")
-                                        showPassiveNotification(i18n("Press and hold to go back to the start"));
-                                    else
-                                        showPassiveNotification(i18n("Double tap to go back to the start"));
-                                }
-                                prompter.focus = true
-                            }
-                            // Using onPressed to get an immediate response. We should to be forgiving of users who may take too long to press time based buttons
-                            onPressed:
-                                if (loop.running) {
-                                    loop.stop();
-                                    showPassiveNotification(i18n("Auto rewind cancelled"));
-                                    prompter.focus = true;
-                                }
-                            onDoubleClicked:
-                                if (Qt.platform.os!=="android")
-                                    rewindButton.rewind();
-                            onPressAndHold:
-                                if (Qt.platform.os==="android")
-                                    rewindButton.rewind();
-                            Rectangle {
-                                anchors.fill: parent
-                                anchors.topMargin: 6
-                                anchors.bottomMargin: anchors.topMargin
-                                color: "transparent"
-                                border.color: "#FFF"
-                                border.width: loopCountdown.borderWidth
-                                Rectangle {
-                                    id: loopCountdown
-                                    property int borderWidth: 2
-                                    function resetCountdown() {
-                                        height = rewindButton.height - 2 * (loopCountdown.borderWidth + parent.anchors.topMargin);
-                                    }
-                                    visible: loop.running
-                                    anchors.left: parent.left
-                                    anchors.right: parent.right
-                                    anchors.bottom: parent.bottom
-                                    anchors.leftMargin: borderWidth
-                                    anchors.rightMargin: borderWidth
-                                    anchors.bottomMargin: borderWidth
-                                    height: parent.height - 2*borderWidth
-                                    color: "#FFF"
-                                }
-                                MouseArea {
-                                    anchors.fill: parent
-                                    acceptedButtons: Qt.NoButton
-                                    cursorShape: Qt.PointingHandCursor
-                                }
-                            }
-                        }
-                    }
                     ColumnLayout {
+                        spacing: 8
+                        anchors.horizontalCenter: parent.horizontalCenter
+                        anchors.top: parent.top
+                        anchors.bottom: parent.bottom
+                        RowLayout {
+                            Layout.alignment: Qt.AlignHCenter
+                            FontLoader {
+                                id: iconFont
+                                source: "../fonts/fontello.ttf"
+                            }
+                            Button {
+                                id: rewindButton
+                                function rewind() {
+                                    reset.toStart();
+                                    //if (root.passiveNotifications) {
+                                        //// Run hidePassiveNotification second to avoid Kirigami bug from 5.83.0 that prevents the method from completing execution.
+                                        ////hidePassiveNotification()
+                                        //// Scientist EE
+                                        //let goToStartNotification = "";
+                                        //switch (c++%3) {
+                                            //case 0: goToStartNotification = i18n("Let's go back to the start"); break;
+                                            //case 1: goToStartNotification = i18n("Take me back to the start"); break;
+                                            //case 2: goToStartNotification = i18n("I'm going back to the start"); c=0; break;
+                                        //}
+                                        //showPassiveNotification(goToStartNotification);
+                                    //}
+                                    prompter.restoreFocus();
+                                }
+                                text: "\uE81A"
+                                font.pixelSize: fontSize
+                                font.family: iconFont.name
+                                flat: true
+                                opacity: parseInt(prompter.state) !== Prompter.States.Prompting || prompter.__atEnd
+                                Behavior on opacity {
+                                    enabled: true
+                                    animation: OpacityAnimator {
+                                        duration: Units.LongDuration
+                                        easing.type: Easing.OutQuad
+                                    }
+                                }
+                                //cursorShape: Qt.PointingHandCursor
+                                onClicked: {
+                                    if (root.passiveNotifications) {
+                                        if (Qt.platform.os==="android")
+                                            showPassiveNotification(i18n("Press and hold to go back to the start"));
+                                        else
+                                            showPassiveNotification(i18n("Double tap to go back to the start"));
+                                    }
+                                    prompter.focus = true
+                                }
+                                // Using onPressed to get an immediate response. We should to be forgiving of users who may take too long to press time based buttons
+                                onPressed:
+                                    if (loop.running) {
+                                        loop.stop();
+                                        showPassiveNotification(i18n("Auto rewind cancelled"));
+                                        prompter.focus = true;
+                                    }
+                                onDoubleClicked:
+                                    if (Qt.platform.os!=="android")
+                                        rewindButton.rewind();
+                                onPressAndHold:
+                                    if (Qt.platform.os==="android")
+                                        rewindButton.rewind();
+
+                                Rectangle {
+                                    anchors.fill: parent
+                                    anchors.topMargin: 6
+                                    anchors.bottomMargin: anchors.topMargin
+                                    color: "transparent"
+                                    border.color: "#FFF"
+                                    border.width: loopCountdown.borderWidth
+                                    Rectangle {
+                                        id: loopCountdown
+                                        property int borderWidth: 2
+                                        function resetCountdown() {
+                                            height = rewindButton.height - 2 * (loopCountdown.borderWidth + parent.anchors.topMargin);
+                                        }
+                                        visible: rewindButton.pressed || loop.running
+                                        anchors.left: parent.left
+                                        anchors.right: parent.right
+                                        anchors.bottom: parent.bottom
+                                        anchors.leftMargin: borderWidth
+                                        anchors.rightMargin: borderWidth
+                                        anchors.bottomMargin: borderWidth
+                                        height: parent.height - 2*borderWidth
+                                        color: "#999"
+                                    }
+                                    MouseArea {
+                                        anchors.fill: parent
+                                        acceptedButtons: Qt.NoButton
+                                        cursorShape: Qt.PointingHandCursor
+                                    }
+                                }
+                            }
+                        }
                         RowLayout {
                             // Toggle all buttons off
                             function toggleButtonsOff() {
                                 for (let i=1; i<children.length; i++)
                                     children[i].checked = false;
                             }
-                            Label {
-                                text: i18n("The End")
-                                font.pixelSize: fontSize
-                            }
+                            Layout.alignment: Qt.AlignCenter
+                            ButtonGroup { id: atEndButtons}
                             Button {
                                 text: "\uE815"
-                                font.pixelSize: fontSize
+                                font.pixelSize: (fontSize < 24 ? 24 : fontSize) / 1.5
                                 font.family: iconFont.name
-                                flat: !(pressed||checked)
+                                flat: true
                                 checkable: true
                                 checked: atEndAction===Prompter.AtEndActions.Stop
                                 onClicked: {
@@ -857,6 +873,7 @@ Flickable {
                                     checked = true
                                     prompter.focus = true
                                 }
+                                ButtonGroup.group: atEndButtons
                                 MouseArea {
                                     anchors.fill: parent
                                     acceptedButtons: Qt.NoButton
@@ -865,9 +882,9 @@ Flickable {
                             }
                             Button {
                                 text: "\u21B6"
-                                font.pixelSize: fontSize
+                                font.pixelSize: (fontSize < 24 ? 24 : fontSize) / 1.5
                                 font.family: iconFont.name
-                                flat: !(pressed||checked)
+                                flat: true
                                 checkable: true
                                 checked: atEndAction===Prompter.AtEndActions.Exit
                                 onClicked: {
@@ -881,6 +898,7 @@ Flickable {
                                     checked = true
                                     prompter.focus = true
                                 }
+                                ButtonGroup.group: atEndButtons
                                 MouseArea {
                                     anchors.fill: parent
                                     acceptedButtons: Qt.NoButton
@@ -889,9 +907,9 @@ Flickable {
                             }
                             Button {
                                 text: "🔁"
-                                font.pixelSize: fontSize
+                                font.pixelSize: (fontSize < 24 ? 24 : fontSize) / 1.5
                                 font.family: iconFont.name
-                                flat: !(pressed||checked)
+                                flat: true
                                 checkable: true
                                 checked: atEndAction===Prompter.AtEndActions.Loop
                                 onClicked: {
@@ -905,6 +923,7 @@ Flickable {
                                     checked = true
                                     prompter.focus = true
                                 }
+                                ButtonGroup.group: atEndButtons
                                 MouseArea {
                                     anchors.fill: parent
                                     acceptedButtons: Qt.NoButton
@@ -914,9 +933,11 @@ Flickable {
                         }
                         RowLayout {
                             enabled: atEndAction===Prompter.AtEndActions.Loop
+                            Layout.alignment: Qt.AlignCenter
                             Button {
+                                enabled: false
                                 text: "\uE858"
-                                font.pixelSize: fontSize
+                                font.pixelSize: (fontSize < 24 ? 24 : fontSize) / 1.75
                                 font.family: iconFont.name
                                 flat: true
                                 MouseArea {
@@ -929,6 +950,7 @@ Flickable {
                                 value: prompter.atEndLoopDelay
                                 from: 1
                                 to: 60
+                                font.pixelSize: (fontSize < 24 ? 24 : fontSize) / 1.75
                                 onValueModified: {
                                     focus: true
                                     prompter.atEndLoopDelay = value
@@ -936,6 +958,13 @@ Flickable {
                                 Layout.fillWidth: true
                             }
                         }
+                        // RowLayout {
+                        //     Layout.alignment: Qt.AlignCenter
+                        //     Label {
+                        //         text: i18n("The End")
+                        //         font.pixelSize: (fontSize < 24 ? 24 : fontSize) / 1.5
+                        //     }
+                        // }
                     }
                 }
                 DropArea {
