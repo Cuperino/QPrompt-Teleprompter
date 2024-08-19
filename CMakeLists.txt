@@ -196,43 +196,29 @@ elseif(HAIKU)
         TYPE OPTIONAL
     )
 elseif(WIN32 OR APPLE)
-    if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
-        find_package(Qt6 ${QT_MIN_VERSION} REQUIRED NO_MODULE COMPONENTS
-            Core
-            Quick
-            Svg
-            Gui
-            QuickControls2
-            Network
-            Widgets
-            ShaderTools
-        )
-    else()
-        find_package(Qt5 ${QT_MIN_VERSION} REQUIRED NO_MODULE COMPONENTS
-            Core
-            Quick
-            Svg
-            Gui
-            QuickControls2
-            Network
-            Widgets
-            QmlImportScanner  # Used to get static QML. Gets ignored if not a static build
-            QuickCompiler
-        )
-    endif()
+    find_package(Qt6 ${QT_MIN_VERSION} REQUIRED NO_MODULE COMPONENTS
+        Core
+        Quick
+        Svg
+        Gui
+        QuickControls2
+        Network
+        Widgets
+        ShaderTools
+    )
     find_package(KF${QT_VERSION_MAJOR} ${KF_MIN_VERSION} REQUIRED COMPONENTS
         Kirigami2
         I18n
         CoreAddons
     )
-    find_package(KF${QT_VERSION_MAJOR}Crash ${KF_MIN_VERSION} COMPONENTS)
-    set_package_properties(KF${QT_VERSION_MAJOR}Crash PROPERTIES
-        DESCRIPTION "Graceful handling of application crashes."
-        TYPE OPTIONAL
+    # find_package(KF${QT_VERSION_MAJOR}Crash ${KF_MIN_VERSION} COMPONENTS)
+    # set_package_properties(KF${QT_VERSION_MAJOR}Crash PROPERTIES
+    #     DESCRIPTION "Graceful handling of application crashes."
+    #     TYPE OPTIONAL
+    # )
+    find_package(QHotkey 1.5.0 COMPONENTS
+        QHotkey
     )
-   find_package(QHotkey 1.5.0 COMPONENTS
-       QHotkey
-   )
     # KDMacTouchBar (Mac only)
     if(APPLE AND NOT IOS)
         if (NOT EXISTS "${PROJECT_SOURCE_DIR}/3rdparty/KDMacTouchBar/CMakeLists.txt")
@@ -256,7 +242,7 @@ else()
             Kirigami2
             I18n
             CoreAddons
-    )
+        )
     else()
         find_package(Qt${QT_VERSION_MAJOR} ${QT_MIN_VERSION} REQUIRED NO_MODULE COMPONENTS
             Core
@@ -280,9 +266,9 @@ else()
         DESCRIPTION "Graceful handling of application crashes."
         TYPE OPTIONAL
     )
-   find_package(QHotkey 1.5.0 COMPONENTS
-       QHotkey
-   )
+    find_package(QHotkey 1.5.0 COMPONENTS
+        QHotkey
+    )
 endif()
 
 if (WIN32 OR UNIX) # AND NOT ANDROID
