@@ -25,3 +25,6 @@
 [submodule "3rdparty/QHotkey"]
 	path = 3rdparty/QHotkey
 	url = https://github.com/Cuperino/QHotkey.git
+[submodule "3rdparty/vcpkg"]
+	path = 3rdparty/vcpkg
+	url = https://github.com/microsoft/vcpkg.git
