@@ -1009,7 +1009,7 @@ Flickable {
                         anchors.fill: parent
                         scrollGestureEnabled: false
                         onClicked: if (editor.activeFocus) editor.cursorPosition = editor.positionAt(mouseX, mouseY);
-                        onDoubleClicked: {
+                        onDoubleClicked: (mouse) => {
                             if (!root.__isMobile)
                                 editor.toggleEditorFocus(mouse);
                         }
@@ -1035,7 +1035,7 @@ Flickable {
                     drag.minimumX: fontSize/2 //: -prompter.width*6/20 + width
                     drag.maximumX: prompter.width*9/20 //: -fontSize/2 + width
                     onReleased: prompter.setContentWidth()
-                    //onClicked: {
+                    //onClicked: (mouse) => {
                     //    mouse.accepted = false
                     //}
                     Loader {
