@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: qprompt\n"
 "Report-Msgid-Bugs-To: https://github.com/Cuperino/QPrompt/issues/new/choose\n"
 "POT-Creation-Date: 2024-07-03 05:16-0400\n"
-"PO-Revision-Date: 2024-06-17 06:04+0000\n"
+"PO-Revision-Date: 2024-08-19 09:57+0000\n"
 "Last-Translator: Liebeg <mail@liebeg.eu>\n"
 "Language-Team: German <http://l10n.cuperino.com/projects/qprompt/qprompt-app/"
 "de/>\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.11.2\n"
+"X-Generator: Weblate 5.6.2\n"
 
 #: kirigami_ui/+android/main.qml:183 kirigami_ui/main.qml:198
 #: kirigami_ui/main.qml:563 kirigami_ui/+windows/main.qml:197
@@ -690,10 +690,9 @@ msgid "Reading region"
 msgstr "Lese Bereich"
 
 #: kirigami_ui/PrompterPage.qml:110
-#, fuzzy
 msgctxt "Reading region indicates where a talent should be reading from"
 msgid "Change reading region placement"
-msgstr "Verändern des Lese Bereichs"
+msgstr "Platzierung des Lesebereichs ändern"
 
 #: kirigami_ui/PrompterPage.qml:116
 msgctxt "Align reading region to top of prompter"
@@ -721,7 +720,7 @@ msgstr "Unten"
 
 #: kirigami_ui/PrompterPage.qml:144
 msgid "Move reading region to the bottom"
-msgstr ""
+msgstr "Lesebereich nach unten verschieben"
 
 #: kirigami_ui/PrompterPage.qml:154
 msgctxt ""
@@ -732,7 +731,7 @@ msgstr "Frei"
 
 #: kirigami_ui/PrompterPage.qml:156
 msgid "Move reading region freely by dragging and dropping"
-msgstr ""
+msgstr "Lesebereich frei bewegen mittels Drag & Drop"
 
 #: kirigami_ui/PrompterPage.qml:167
 msgctxt ""
@@ -777,7 +776,7 @@ msgstr "Rechter Punkt"
 
 #: kirigami_ui/PrompterPage.qml:262
 msgid "Left pointer indicates reading region"
-msgstr ""
+msgstr "Linker Zeiger makiert Lesebereich"
 
 #: kirigami_ui/PrompterPage.qml:274
 msgid "Right pointer indicates reading region"
@@ -968,9 +967,8 @@ msgid "Countdown Setup"
 msgstr "Countdown Konfiguration"
 
 #: kirigami_ui/PrompterPage.qml:873
-#, fuzzy
 msgid "Countdown duration"
-msgstr "Countdown Durchläufe"
+msgstr "Countdown Dauer"
 
 #: kirigami_ui/PrompterPage.qml:892
 msgid "Disappear within 1 second to go"
@@ -1202,7 +1200,7 @@ msgstr "Projektions Feld Dimensionen"
 
 #: kirigami_ui/TelemetryPage.qml:170
 msgid "Dimensions of lines of text being prompted"
-msgstr ""
+msgstr "Größer der projizierten Textzeilen"
 
 #: kirigami_ui/TelemetryPage.qml:171
 msgid "Font settings per block of lines of text being prompted"
@@ -1271,11 +1269,11 @@ msgstr "Scrollrad als Geschwindigkeitsrad nutzen"
 
 #: kirigami_ui/WheelSettingsOverlay.qml:57
 msgid "Enable throttling"
-msgstr ""
+msgstr "Drosselung aktivieren"
 
 #: kirigami_ui/WheelSettingsOverlay.qml:74
 msgid "Throttle factor"
-msgstr ""
+msgstr "Drosselungsfaktor"
 
 #: kirigami_ui/WheelSettingsOverlay.qml:93
 msgid "Enable throttling for use with touchpads, disable for precise scolling."
@@ -1458,7 +1456,7 @@ msgstr "QML Skript"
 
 #: prompter/ProjectionsManager.qml:174
 msgid "Projection Window"
-msgstr ""
+msgstr "Projektions Fenster"
 
 #: prompter/ProjectionsManager.qml:391
 msgid ""
