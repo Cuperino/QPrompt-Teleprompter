@@ -1324,7 +1324,7 @@ Flickable {
             ]
 
         folder: StandardPaths.writableLocation(StandardPaths.DocumentsLocation)
-        fileMode: FileDialog.OpenFile
+        fileMode: Labs.FileDialog.OpenFile
         onAccepted: {
             document.close()
             document.load(openDialog.file)
@@ -1358,7 +1358,7 @@ Flickable {
         // Always save as HTML
         //selectedNameFilter: nameFilters[0]
         folder: StandardPaths.writableLocation(StandardPaths.DocumentsLocation)
-        fileMode: FileDialog.SaveFile
+        fileMode: Labs.FileDialog.SaveFile
         onAccepted: {
             document.saveAs(saveDialog.file)
             document.isNewFile = false

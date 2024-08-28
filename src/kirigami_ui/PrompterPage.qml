@@ -1043,8 +1043,8 @@ Kirigami.Page {
                 SpinBox {
                     id: autoReloadHours
                     Layout.fillWidth: true
-                    Layout.leftMargin: Units.SmallSpacing
-                    Layout.rightMargin: Units.SmallSpacing
+                    Layout.leftMargin: Kirigami.Units.SmallSpacing
+                    Layout.rightMargin: Kirigami.Units.SmallSpacing
                     enabled: networkDialog.autoReload
                     value: 0
                     to: 168
@@ -1063,8 +1063,8 @@ Kirigami.Page {
                 SpinBox {
                     id: autoReloadMinutes
                     Layout.fillWidth: true
-                    Layout.leftMargin: Units.SmallSpacing
-                    Layout.rightMargin: Units.SmallSpacing
+                    Layout.leftMargin: Kirigami.Units.SmallSpacing
+                    Layout.rightMargin: Kirigami.Units.SmallSpacing
                     enabled: networkDialog.autoReload
                     value: 5
                     from: value>0 || autoReloadMinutes.value>0 || autoReloadHours.value>0 ? -1 : 0
@@ -1087,8 +1087,8 @@ Kirigami.Page {
                 SpinBox {
                     id: autoReloadSeconds
                     Layout.fillWidth: true
-                    Layout.leftMargin: Units.SmallSpacing
-                    Layout.rightMargin: Units.SmallSpacing
+                    Layout.leftMargin: Kirigami.Units.SmallSpacing
+                    Layout.rightMargin: Kirigami.Units.SmallSpacing
                     enabled: networkDialog.autoReload
                     value: 0
                     from: value>0 || autoReloadMinutes.value>0 || autoReloadHours.value>0 ? -1 : 1
@@ -1175,8 +1175,8 @@ Kirigami.Page {
                 //SpinBox {
                     //id: defaultSteps
                     //Layout.fillWidth: true
-                    //Layout.leftMargin: Units.SmallSpacing
-                    //Layout.rightMargin: Units.SmallSpacing
+                    //Layout.leftMargin: Kirigami.Units.SmallSpacing
+                    //Layout.rightMargin: Kirigami.Units.SmallSpacing
                     //value: __iDefault
                     //from: 1
                     //to: velocityControlSlider.to
