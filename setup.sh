@@ -107,6 +107,7 @@ if [[ "$PLATFORM" == "macos" ]]; then
 elif [[ "$PLATFORM" == "windows" ]]; then
     winget install -e --id Kitware.CMake
     winget install -e --id Ninja-build.Ninja
+    winget install -e --id NSIS.NSIS
 fi
 
 echo "Downloading git submodules"
