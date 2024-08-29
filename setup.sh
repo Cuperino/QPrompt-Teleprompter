@@ -42,7 +42,7 @@ cat << EOF
 usage: $0 <CMAKE_BUILD_TYPE> <CMAKE_PREFIX_PATH> [<QT_MAJOR_VERSION> | ] [CLEAR | CLEAR_ALL]
 
 Defaults:
- * CMAKE_BUILD_TYPE: "Debug"
+ * CMAKE_CONFIGURATION_TYPES: "Debug;Release;RelWithDebInfo;MinSizeRel"
  * CMAKE_PREFIX_PATH: "~/Qt/6.7.2/$COMPILER/"
  * QT_MAJOR_VERSION: 6
 
@@ -53,9 +53,10 @@ This script assumes you've already installed the following dependencies:
  * Qt 6 Open Source
 EOF
 
-CMAKE_BUILD_TYPE=$1
-if [ "$CMAKE_BUILD_TYPE" == "" ]
-    then CMAKE_BUILD_TYPE="Debug"
+CMAKE_CONFIGURATION_TYPES=$1
+if [ "$CMAKE_CONFIGURATION_TYPES" == "" ]; then
+    CMAKE_CONFIGURATION_TYPES="Debug;Release;RelWithDebInfo;MinSizeRel"
+    CMAKE_BUILD_TYPE="Release"
 fi
 CMAKE_PREFIX_PATH=$2
 if [ "$CMAKE_PREFIX_PATH" == "" ]
@@ -164,8 +165,8 @@ for dependency in $tier_0 $tier_1 $tier_2 $tier_3; do
     then
         rm -dRf $dependency/build
     fi
-    cmake -DCMAKE_BUILD_TYPE=$CMAKE_BUILD_TYPE -DCMAKE_CONFIGURATION_TYPES=$CMAKE_BUILD_TYPE -DCMAKE_PREFIX_PATH=$CMAKE_PREFIX_PATH -DCMAKE_INSTALL_PREFIX=$CMAKE_INSTALL_PREFIX -B ./$dependency/build ./$dependency/
-    cmake --build ./$dependency/build
+    cmake -DCMAKE_CONFIGURATION_TYPES=$CMAKE_CONFIGURATION_TYPES -DBUILD_TESTING=OFF -BUILD_QCH=OFF -DCMAKE_PREFIX_PATH=$CMAKE_PREFIX_PATH -DCMAKE_INSTALL_PREFIX=$CMAKE_INSTALL_PREFIX -B ./$dependency/build ./$dependency/
+    cmake --build ./$dependency/build --config $CMAKE_BUILD_TYPE
     cmake --install ./$dependency/build
 done
 
@@ -174,10 +175,10 @@ if $CLEAR_ALL
 then
     rm -dRf 3rdparty/QHotkey/build
 fi
-cmake -DCMAKE_BUILD_TYPE=$CMAKE_BUILD_TYPE -DCMAKE_PREFIX_PATH=$CMAKE_PREFIX_PATH -DCMAKE_INSTALL_PREFIX=$CMAKE_INSTALL_PREFIX -DBUILD_SHARED_LIBS=ON -DQT_DEFAULT_MAJOR_VERSION=${QT_MAJOR_VERSION} -B ./3rdparty/QHotkey/build ./3rdparty/QHotkey/
-cmake --build ./3rdparty/QHotkey/build
+cmake -DCMAKE_CONFIGURATION_TYPES=$CMAKE_CONFIGURATION_TYPES -DCMAKE_PREFIX_PATH=$CMAKE_PREFIX_PATH -DCMAKE_INSTALL_PREFIX=$CMAKE_INSTALL_PREFIX -DBUILD_SHARED_LIBS=ON -DQT_DEFAULT_MAJOR_VERSION=${QT_MAJOR_VERSION} -B ./3rdparty/QHotkey/build ./3rdparty/QHotkey/
+cmake --build ./3rdparty/QHotkey/build --config $CMAKE_BUILD_TYPE
 cmake --install ./3rdparty/QHotkey/build
 
 echo "QPrompt"
-cmake -DCMAKE_BUILD_TYPE=$CMAKE_BUILD_TYPE -DCMAKE_PREFIX_PATH=$CMAKE_PREFIX_PATH -DCMAKE_INSTALL_PREFIX=$CMAKE_INSTALL_PREFIX -B ./build .
-cmake --build build
+cmake -DCMAKE_CONFIGURATION_TYPES=$CMAKE_CONFIGURATION_TYPES -DCMAKE_PREFIX_PATH=$CMAKE_PREFIX_PATH -DCMAKE_INSTALL_PREFIX=$CMAKE_INSTALL_PREFIX -B ./build .
+cmake --build build --config $CMAKE_BUILD_TYPE
