@@ -126,7 +126,7 @@ if [[ "$PLATFORM" == "windows" ]]; then
     # Download and extract gettext binary
     FILENAME="gettext0.21-iconv1.16-shared-64.zip"
     curl -Lo build/$FILENAME "https://github.com/mlocati/gettext-iconv-windows/releases/download/v0.21-v1.16/$FILENAME"
-    unzip build/$FILENAME -od "$CMAKE_PREFIX_PATH"
+    unzip -o build/$FILENAME -d "$CMAKE_PREFIX_PATH"
 fi
 
 # VCPKG
