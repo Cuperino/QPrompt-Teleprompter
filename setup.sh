@@ -140,7 +140,7 @@ else
 VCPKG=./3rdparty/vcpkg/vcpkg
 fi
 # Install VCPKG packages
-$VCPKG install --x-install-root "$CMAKE_PREFIX_PATH" gettext-libintl
+$VCPKG install --x-install-root "$CMAKE_PREFIX_PATH" gettext gettext-libintl
 # Copy installed packages into install prefix
 for package in ./3rdparty/vcpkg/packages/*; do
     echo $package
