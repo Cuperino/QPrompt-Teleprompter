@@ -111,14 +111,14 @@ fi
 echo "Downloading git submodules"
 git submodule update --init --recursive
 
-python3 -m venv docs/venv
+python3 -m venv venv
 if [[ "$PLATFORM" == "windows" ]]; then
-    source docs/venv/Scripts/activate
+    source venv/Scripts/activate
 else
-    source docs/venv/bin/activate
+    source venv/bin/activate
 fi
 python -m pip install --upgrade pip
-python -m pip install -r docs/requirements.txt
+python -m pip install -r requirements.txt
 
 if [[ "$PLATFORM" == "windows" ]]; then
     # Initialize MSVC environment variables
