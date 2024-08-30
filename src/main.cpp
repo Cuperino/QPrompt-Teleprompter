@@ -259,9 +259,14 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
     app.setWindowIcon(QIcon(QString::fromUtf8("qrc:/qt/qml/com/cuperino/qprompt/images/qprompt.png")));
 #endif
     // Add path to where KDE modules are installed
+    // Linux paths
     engine.addImportPath(QStringLiteral("/lib/x86_64-linux-gnu/qml/"));
     engine.addImportPath(QStringLiteral("../lib/x86_64-linux-gnu/qml/"));
     engine.addImportPath(QStringLiteral("../dist/lib/x86_64-linux-gnu/qml/"));
+    // Windows paths
+    engine.addImportPath(QStringLiteral("../../lib/qml/"));
+    engine.addImportPath(QStringLiteral("../lib/qml/"));
+    engine.addImportPath(QStringLiteral("./lib/qml/"));
     // Send context data from C++ to QML
     engine.rootContext()->setContextObject(new KLocalizedContext(&engine));
     engine.rootContext()->setContextProperty(QStringLiteral("aboutData"), QVariant::fromValue(KAboutData::applicationData()));
