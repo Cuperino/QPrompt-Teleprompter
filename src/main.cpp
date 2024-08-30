@@ -267,6 +267,8 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
     engine.addImportPath(QStringLiteral("../../lib/qml/"));
     engine.addImportPath(QStringLiteral("../lib/qml/"));
     engine.addImportPath(QStringLiteral("./lib/qml/"));
+    // MacOS paths
+    engine.addImportPath(QStringLiteral("../build/"));
     // Send context data from C++ to QML
     engine.rootContext()->setContextObject(new KLocalizedContext(&engine));
     engine.rootContext()->setContextProperty(QStringLiteral("aboutData"), QVariant::fromValue(KAboutData::applicationData()));
