@@ -7,8 +7,8 @@ msgstr ""
 "Project-Id-Version: qprompt\n"
 "Report-Msgid-Bugs-To: https://github.com/Cuperino/QPrompt/issues/new/choose\n"
 "POT-Creation-Date: 2024-07-03 05:16-0400\n"
-"PO-Revision-Date: 2024-08-19 09:57+0000\n"
-"Last-Translator: Liebeg <mail@liebeg.eu>\n"
+"PO-Revision-Date: 2024-08-31 12:57+0000\n"
+"Last-Translator: Karl SCHUH <k.schuh@schuh-tv.at>\n"
 "Language-Team: German <http://l10n.cuperino.com/projects/qprompt/qprompt-app/"
 "de/>\n"
 "Language: de\n"
@@ -238,7 +238,7 @@ msgstr "Scheherazade New (Arabisch)"
 #: kirigami_ui/EditorToolbar.qml:566
 msgctxt "FontName (Translatable font details)"
 msgid "Palanquin (Devangari)"
-msgstr ""
+msgstr "Palankin (Devangari)"
 
 #: kirigami_ui/EditorToolbar.qml:570
 msgctxt "FontName (Translatable font details)"
@@ -741,7 +741,7 @@ msgstr "Frei auswählen"
 
 #: kirigami_ui/PrompterPage.qml:169
 msgid "Fix reading region to the position set using free placement mode"
-msgstr ""
+msgstr "Verwende den freien Platzierungsmodus zur Fixierung der Leseposition"
 
 #: kirigami_ui/PrompterPage.qml:195
 msgctxt ""
@@ -757,7 +757,7 @@ msgstr "Indikatoren"
 #: kirigami_ui/PrompterPage.qml:250
 msgctxt "Indicators highlight reading region"
 msgid "Change reading region indicators"
-msgstr ""
+msgstr "Ändere die Anzeiger der Leseregion"
 
 #: kirigami_ui/PrompterPage.qml:253
 msgctxt "Configure reading region pointer indicators"
@@ -973,8 +973,8 @@ msgstr "Countdown Dauer"
 #: kirigami_ui/PrompterPage.qml:892
 msgid "Disappear within 1 second to go"
 msgid_plural "Disappear within %1 seconds to go"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "1 Sekunde vor dem Start ausblenden"
+msgstr[1] "%1 Sekunden vor dem Start ausblenden"
 
 #: kirigami_ui/PrompterPage.qml:916
 msgctxt ""
