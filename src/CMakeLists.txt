@@ -19,8 +19,8 @@
 #
 #**************************************************************************
 
-#include(ECMPoQmTools)
-#ecm_create_qm_loader(qprompt_QM_LOADER ../locale/qprompt.pot)
+include(ECMPoQmTools)
+ecm_create_qm_loader(qprompt_QM_LOADER ../locale/qprompt.pot)
 
 # Qt 6
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
@@ -220,6 +220,7 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         marker.hpp
         markersmodel.h
         markersmodel.cpp
+        ${qprompt_QM_LOADER}
         QML_FILES
         ${qprompt_frontend_sources}
         ${prompter_sources}
@@ -374,7 +375,7 @@ else()
         markersmodel.cpp
         documenthandler.cpp
         systemfontchooserdialog.cpp
-        #${qprompt_QM_LOADER}
+        ${qprompt_QM_LOADER}
     )
 
     set(qprompt_HDRS
