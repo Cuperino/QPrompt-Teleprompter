@@ -681,7 +681,7 @@ IF(NOT GETTEXT_MSGFMT_EXECUTABLE)
                 NOTE: msgfmt not found. Translations will *not* be installed
 ------")
 ELSE(NOT GETTEXT_MSGFMT_EXECUTABLE)
-    SET(LOCALE_INSTALL_DIR ${CMAKE_INSTALL_PREFIX}/usr/share)
+    SET(LOCALE_INSTALL_DIR usr/share)
 
     SET(catalogname qprompt)
 
