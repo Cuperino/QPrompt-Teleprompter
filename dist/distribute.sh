@@ -92,11 +92,16 @@ CMAKE_INSTALL_PREFIX="$CMAKE_PREFIX_PATH"
 ARCHITECTURE="$(uname -m)"
 echo -e "\nArchitecture: $ARCHITECTURE"
 
+if [[ "$PLATFORM"=="windows" ]]
+then
 PATH=$PATH:"C:\Program Files (x86)\NSIS"
+$CMAKE_PREFIX_PATH/bin/windeployqt.exe ./build/bin/$CMAKE_BUILD_TYPE/QPrompt.exe
+elif [[ "$PLATFORM"=="macos" ]]
+$CMAKE_PREFIX_PATH/bin/macdeployqt ./build/bin/QPrompt
+else [[ "$PLATFORM"=="macos" ]]
+fatal "This platform is unsuported by this build script."
+exit
+fi
 
-EXECUTABLE_SUFFIX=".exe"
-WINDEPLOYQT=$CMAKE_PREFIX_PATH/bin/windeployqt$EXECUTABLE_SUFFIX
-ls
-$WINDEPLOYQT ./build/bin/$CMAKE_BUILD_TYPE/QPrompt.exe
 cd build
-# cpack
+cpack
