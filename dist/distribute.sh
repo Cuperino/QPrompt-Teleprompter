@@ -97,8 +97,9 @@ then
 PATH=$PATH:"C:\Program Files (x86)\NSIS"
 $CMAKE_PREFIX_PATH/bin/windeployqt.exe ./build/bin/$CMAKE_BUILD_TYPE/QPrompt.exe
 elif [[ "$PLATFORM"=="macos" ]]
+then
 $CMAKE_PREFIX_PATH/bin/macdeployqt ./build/bin/QPrompt
-else [[ "$PLATFORM"=="macos" ]]
+else
 fatal "This platform is unsuported by this build script."
 exit
 fi
