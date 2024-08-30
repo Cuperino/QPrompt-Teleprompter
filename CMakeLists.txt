@@ -141,7 +141,7 @@ if(ANDROID)
         ShaderTools
     )
     find_package(KF${QT_VERSION_MAJOR} ${KF_MIN_VERSION} REQUIRED COMPONENTS
-        Kirigami
+        Kirigami2
         I18n
         CoreAddons
     )
@@ -157,7 +157,7 @@ elseif(WASM OR IOS)
             ShaderTools
         )
         find_package(KF${QT_VERSION_MAJOR} ${KF_MIN_VERSION} REQUIRED COMPONENTS
-            Kirigami
+            Kirigami2
             I18n
             CoreAddons
         )
@@ -179,7 +179,7 @@ elseif(HAIKU)
         QuickCompiler
     )
     find_package(KF${QT_VERSION_MAJOR} ${KF_MIN_VERSION} REQUIRED COMPONENTS
-        Kirigami
+        Kirigami2
         I18n
         CoreAddons
 #        IconThemes
@@ -201,7 +201,7 @@ elseif(WIN32 OR APPLE)
         ShaderTools
     )
     find_package(KF${QT_VERSION_MAJOR} ${KF_MIN_VERSION} REQUIRED COMPONENTS
-        Kirigami
+        Kirigami2
         I18n
         CoreAddons
     )
@@ -233,7 +233,7 @@ else()
             ShaderTools
         )
         find_package(KF${QT_VERSION_MAJOR} ${KF_MIN_VERSION} REQUIRED COMPONENTS
-            Kirigami
+            Kirigami2
             I18n
             CoreAddons
         )
@@ -249,7 +249,7 @@ else()
             X11Extras
         )
         find_package(KF${QT_VERSION_MAJOR} ${KF_MIN_VERSION} REQUIRED COMPONENTS
-            Kirigami
+            Kirigami2
             I18n
             CoreAddons
             # IconThemes
