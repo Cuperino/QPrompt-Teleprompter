@@ -56,7 +56,7 @@ EOF
 
 CMAKE_BUILD_TYPE=$1
 if [ "$CMAKE_BUILD_TYPE" == "" ]
-    then CMAKE_BUILD_TYPE="Debug"
+    then CMAKE_BUILD_TYPE="Release"
 fi
 CMAKE_PREFIX_PATH=$2
 if [ "$CMAKE_PREFIX_PATH" == "" ]
@@ -97,6 +97,6 @@ PATH=$PATH:"C:\Program Files (x86)\NSIS"
 EXECUTABLE_SUFFIX=".exe"
 WINDEPLOYQT=$CMAKE_PREFIX_PATH/bin/windeployqt$EXECUTABLE_SUFFIX
 ls
-$WINDEPLOYQT ./build/bin/$CMAKE_BUILD_TYPE/qprompt.exe
+$WINDEPLOYQT ./build/bin/$CMAKE_BUILD_TYPE/QPrompt.exe
 cd build
-cpack
+# cpack

@@ -352,8 +352,8 @@ set(CPACK_MONOLITHIC_INSTALL On)
 
 set(CPACK_RPM_PACKAGE_LICENSE "GPLv3")  # Also used by FreeBSD generator
 
-set(ICONS_DIR "${CMAKE_SOURCE_DIR}/icons")
-set(IMAGES_DIR "${CMAKE_SOURCE_DIR}/images")
+set(ICONS_DIR "${CMAKE_SOURCE_DIR}/src/icons")
+set(IMAGES_DIR "${CMAKE_SOURCE_DIR}/src/images")
 set(COMPRESION_TYPE "xz")
 
 # CPACK: Archive generator settings
