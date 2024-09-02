@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: qprompt\n"
 "Report-Msgid-Bugs-To: https://github.com/Cuperino/QPrompt/issues/new/choose\n"
 "POT-Creation-Date: 2024-07-03 05:16-0400\n"
-"PO-Revision-Date: 2024-08-31 12:57+0000\n"
+"PO-Revision-Date: 2024-09-03 17:57+0000\n"
 "Last-Translator: Karl SCHUH <k.schuh@schuh-tv.at>\n"
 "Language-Team: German <http://l10n.cuperino.com/projects/qprompt/qprompt-app/"
 "de/>\n"
@@ -1260,7 +1260,7 @@ msgstr ""
 
 #: kirigami_ui/WheelSettingsOverlay.qml:31
 msgid "Wheel and touchpad scroll settings"
-msgstr ""
+msgstr "Mausrad und Touchpad scroll-Einstellungen"
 
 #: kirigami_ui/WheelSettingsOverlay.qml:38
 msgctxt "Label at wheel settings overlay"
@@ -1278,6 +1278,8 @@ msgstr "Drosselungsfaktor"
 #: kirigami_ui/WheelSettingsOverlay.qml:93
 msgid "Enable throttling for use with touchpads, disable for precise scolling."
 msgstr ""
+"Drosselung bei Verwendung von Touchpad nutzen, abschalten für genaues "
+"Scrollen."
 
 #: main.cpp:92
 msgid ""
@@ -1343,8 +1345,8 @@ msgstr "Anfang erreicht, Suche vom Ende."
 #: prompter/Find.qml:148
 msgid "Replaced 1 instance"
 msgid_plural "Replaced %1 instances"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "1 Instanz ersetzt"
+msgstr[1] "%1 Instanzen ersetzt"
 
 #: prompter/PointerSettings.qml:104
 msgid "Colors for prompter states"
@@ -1366,7 +1368,7 @@ msgstr ""
 #, fuzzy
 msgctxt "Uses a mirrored copy of the first pointer as the second pointer"
 msgid "Reuse left pointer"
-msgstr "Zentriert"
+msgstr "Linken Zeiger wiederverwenden"
 
 #: prompter/PointerSettings.qml:162
 #, fuzzy
