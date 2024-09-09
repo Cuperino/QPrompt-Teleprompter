@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: qprompt 9da810c\n"
 "Report-Msgid-Bugs-To: https://github.com/Cuperino/QPrompt/issues/new/choose\n"
 "POT-Creation-Date: 2024-07-03 05:16-0400\n"
-"PO-Revision-Date: 2024-09-09 16:14+0000\n"
+"PO-Revision-Date: 2024-09-10 16:57+0000\n"
 "Last-Translator: Tymofii Lytvynenko <till.svit@gmail.com>\n"
 "Language-Team: Ukrainian <http://l10n.cuperino.com/projects/qprompt/"
 "qprompt-app/uk/>\n"
@@ -67,13 +67,13 @@ msgstr "&Налаштування керування"
 msgctxt ""
 "Main menu and global menu actions. Opens dialog to configure keyboard inputs."
 msgid "Keyboard Inputs"
-msgstr ""
+msgstr "Введення з клавіатури"
 
 #: kirigami_ui/+android/main.qml:246 kirigami_ui/main.qml:266
 #: kirigami_ui/+windows/main.qml:260
 msgctxt "Open 'scroll settings' from main menu and global menu actions"
 msgid "Scroll throttle settings"
-msgstr ""
+msgstr "Налаштування швидкості прокрутки"
 
 #: kirigami_ui/+android/main.qml:251 kirigami_ui/main.qml:272
 #: kirigami_ui/main.qml:808 kirigami_ui/+windows/main.qml:265
@@ -81,14 +81,14 @@ msgctxt ""
 "Main menu and global menu actions. Have up arrow behave like down arrow and "
 "vice versa while prompting."
 msgid "Invert &arrow keys"
-msgstr ""
+msgstr "Інвертувати &стрілки"
 
 #: kirigami_ui/+android/main.qml:259 kirigami_ui/main.qml:281
 #: kirigami_ui/main.qml:815 kirigami_ui/+windows/main.qml:273
 msgctxt ""
 "Main menu and global menu actions. Invert scroll direction while prompting."
 msgid "Invert &scroll direction"
-msgstr ""
+msgstr "Інвертувати напрямок &прокрутки"
 
 #: kirigami_ui/+android/main.qml:267 kirigami_ui/main.qml:290
 #: kirigami_ui/main.qml:800 kirigami_ui/+windows/main.qml:281
@@ -96,7 +96,7 @@ msgctxt ""
 "Main menu and global menu actions. Have touchpad and mouse wheel scrolling "
 "adjust velocity instead of scrolling like most other apps."
 msgid "Use scroll as velocity &dial"
-msgstr ""
+msgstr "Використовувати прокрутку як швидкість &контролера"
 
 #: kirigami_ui/+android/main.qml:276 kirigami_ui/main.qml:300
 #: kirigami_ui/main.qml:794 kirigami_ui/+windows/main.qml:290
@@ -104,281 +104,281 @@ msgctxt ""
 "Main menu and global menu actions. Touchpad scrolling and mouse wheel use "
 "have no effect while prompting."
 msgid "Disable scrolling while prompting"
-msgstr ""
+msgstr "Вимкнути прокрутку під час роботи суфлера"
 
 #: kirigami_ui/+android/main.qml:284 kirigami_ui/main.qml:309
 #: kirigami_ui/+windows/main.qml:298
 msgctxt "Main menu actions"
 msgid "Other &Settings"
-msgstr ""
+msgstr "Інші &налаштування"
 
 #: kirigami_ui/+android/main.qml:294 kirigami_ui/main.qml:327
 #: kirigami_ui/+windows/main.qml:315
 msgctxt "Main menu actions. Opens dialog for choosing layout direction."
 msgid "Layout direction"
-msgstr ""
+msgstr "Напрямок розмітки"
 
 #: kirigami_ui/+android/main.qml:299 kirigami_ui/main.qml:332
 #: kirigami_ui/+windows/main.qml:320
 msgctxt "Main menu actions. Enters Performance tweaks submenu."
 msgid "Performance tweaks"
-msgstr ""
+msgstr "Оптимізація продуктивності"
 
 #: kirigami_ui/+android/main.qml:301 kirigami_ui/main.qml:334
 #: kirigami_ui/+windows/main.qml:322
 msgctxt "Main menu actions"
 msgid "Disable screen projections"
-msgstr ""
+msgstr "Вимкнути екранні проєкції"
 
 #: kirigami_ui/+android/main.qml:308 kirigami_ui/main.qml:341
 #: kirigami_ui/+windows/main.qml:329
 msgctxt "Main menu actions"
 msgid "Disable timers"
-msgstr ""
+msgstr "Вимкнути таймери"
 
 #: kirigami_ui/+android/main.qml:317 kirigami_ui/main.qml:350
 #: kirigami_ui/+windows/main.qml:338
 msgctxt "Main menu actions. Hides formatting tools while not in edit mode."
 msgid "Auto hide formatting tools"
-msgstr ""
+msgstr "Автоматично приховувати інструменти форматування"
 
 #: kirigami_ui/+android/main.qml:325 kirigami_ui/main.qml:358
 #: kirigami_ui/+windows/main.qml:346
 msgctxt "Main menu actions"
 msgid "Always hide formatting tools"
-msgstr ""
+msgstr "Завжди приховувати інструменти форматування"
 
 #: kirigami_ui/+android/main.qml:333 kirigami_ui/main.qml:366
 #: kirigami_ui/+windows/main.qml:354
 msgctxt ""
 "Main menu actions. Disables contrast effect for the reading region overlay."
 msgid "Disable overlay contrast"
-msgstr ""
+msgstr "Вимкнути накладення контрасту"
 
 #: kirigami_ui/+android/main.qml:342 kirigami_ui/main.qml:406
 #: kirigami_ui/+windows/main.qml:394
 msgctxt "Main menu actions. Enters Other tweaks submenu."
 msgid "Other tweaks"
-msgstr ""
+msgstr "Інші оптимізації"
 
 #: kirigami_ui/+android/main.qml:344 kirigami_ui/main.qml:409
 #: kirigami_ui/+windows/main.qml:396
 msgctxt "Main menu actions. Enable local file auto reload"
 msgid "Local file auto reload"
-msgstr ""
+msgstr "Автоматичне перезавантаження локальних файлів"
 
 #: kirigami_ui/+android/main.qml:360 kirigami_ui/main.qml:435
 #: kirigami_ui/+windows/main.qml:412
 msgctxt "Main menu actions. Load about page."
 msgid "Abou&t %1"
-msgstr ""
+msgstr "Пр&о %1"
 
 #: kirigami_ui/+android/main.qml:366 kirigami_ui/main.qml:442
 #: kirigami_ui/main.qml:580 kirigami_ui/+windows/main.qml:418
 msgctxt "Main menu and global menu actions"
 msgid "&Quit"
-msgstr ""
+msgstr "В&ийти"
 
 #: kirigami_ui/+android/main.qml:417 kirigami_ui/main.qml:499
 #: kirigami_ui/main.qml:840 kirigami_ui/+windows/main.qml:474
 msgctxt "Main menu and global actions. Load document that welcomes users."
 msgid "Load &Welcome"
-msgstr ""
+msgstr "Завантажити &Ласкаво просимо"
 
 #: kirigami_ui/+android/main.qml:453 kirigami_ui/main.qml:535
 #: kirigami_ui/+windows/main.qml:510
 msgid "Darth mode"
-msgstr ""
+msgstr "Режим Дарта"
 
 #: kirigami_ui/+android/main.qml:575 kirigami_ui/main.qml:1008
 #: kirigami_ui/+windows/main.qml:680
 msgctxt "Title for save before closing dialog"
 msgid "Save Document"
-msgstr ""
+msgstr "Зберегти документ"
 
 #: kirigami_ui/+android/main.qml:576 kirigami_ui/main.qml:1009
 #: kirigami_ui/+windows/main.qml:681
 msgid "Save changes to document before closing?"
-msgstr ""
+msgstr "Зберегти зміни в документі перед закриттям?"
 
 #: kirigami_ui/EditorToolbar.qml:351 kirigami_ui/EditorToolbar.qml:361
 msgctxt "Editor actions. Text alignment."
 msgid "&Left"
-msgstr ""
+msgstr "&Ліворуч"
 
 #: kirigami_ui/EditorToolbar.qml:351 kirigami_ui/EditorToolbar.qml:361
 msgctxt "Editor actions. Text alignment."
 msgid "&Right"
-msgstr ""
+msgstr "&Праворуч"
 
 #: kirigami_ui/EditorToolbar.qml:356
 msgctxt "Editor actions. Text alignment."
 msgid "C&enter"
-msgstr ""
+msgstr "&По центру"
 
 #: kirigami_ui/EditorToolbar.qml:550
 msgctxt "FontName (Translatable font details)"
 msgid "DejaVu (default, Roman, Cyrillic)"
-msgstr ""
+msgstr "DejaVu (типово, Латинка, Кирилиця)"
 
 #: kirigami_ui/EditorToolbar.qml:554
 msgctxt "FontName (Translatable font details)"
 msgid "OpenDyslexic (Roman)"
-msgstr ""
+msgstr "OpenDyslexic (Латинка)"
 
 #: kirigami_ui/EditorToolbar.qml:558
 msgctxt "FontName (Translatable font details)"
 msgid "Source Han Sans (CH, JP, KO)"
-msgstr ""
+msgstr "Source Han Sans (Китайська, Японська, Корейська)"
 
 #: kirigami_ui/EditorToolbar.qml:562
 msgctxt "FontName (Translatable font details)"
 msgid "Scheherazade New (Arabic)"
-msgstr ""
+msgstr "Scheherazade New (Арабська)"
 
 #: kirigami_ui/EditorToolbar.qml:566
 msgctxt "FontName (Translatable font details)"
 msgid "Palanquin (Devangari)"
-msgstr ""
+msgstr "Palanquin (Деванагарі)"
 
 #: kirigami_ui/EditorToolbar.qml:570
 msgctxt "FontName (Translatable font details)"
 msgid "Kalpurush (Bengali)"
-msgstr ""
+msgstr "Kalpurush (Бенгальська)"
 
 #: kirigami_ui/EditorToolbar.qml:576
 msgctxt "Opens system font selection dialog"
 msgid "Choose System Font"
-msgstr ""
+msgstr "Обрати системний шрифт"
 
 #: kirigami_ui/EditorToolbar.qml:582
 msgid "No glyphs selected…"
-msgstr ""
+msgstr "Гліфи не вибрані…"
 
 #: kirigami_ui/EditorToolbar.qml:806
 msgctxt "Velocity {VELOCITY_STEPS}"
 msgid "Velocity <pre>%1</pre>"
-msgstr ""
+msgstr "Швидкість <pre>%1</pre>"
 
 #: kirigami_ui/EditorToolbar.qml:844
 msgctxt "Opacity {TRANSPARENCY_PERCENTAGE}"
 msgid "Opacity <pre>%1</pre>"
-msgstr ""
+msgstr "Прозорість <pre>%1</pre>"
 
 #: kirigami_ui/EditorToolbar.qml:883 kirigami_ui/EditorToolbar.qml:902
 msgctxt "Font size 100% (083)"
 msgid "Font size <pre>%1% (%2)</pre>"
-msgstr ""
+msgstr "Розмір шрифту <pre>%1% (%2)</pre>"
 
 #: kirigami_ui/EditorToolbar.qml:941
 msgctxt "Line height 100%"
 msgid "Line height <pre>%1%</pre>"
-msgstr ""
+msgstr "Висота рядка <pre>%1%</pre>"
 
 #: kirigami_ui/EditorToolbar.qml:981
 msgctxt "Paragraph spacing ±00"
 msgid "Paragraph spacing <pre>%1%</pre>"
-msgstr ""
+msgstr "Міжабзацний інтервал <pre>%1%</pre>"
 
 #: kirigami_ui/EditorToolbar.qml:1022
 msgctxt "Word spacing <pre>±00<pre>"
 msgid "Word spacing <pre>%1</pre>"
-msgstr ""
+msgstr "Міжсловний інтервал <pre>%1</pre>"
 
 #: kirigami_ui/EditorToolbar.qml:1058
 msgctxt "Letter spacing ±00"
 msgid "Letter spacing <pre>%1</pre>"
-msgstr ""
+msgstr "Міжлітерний інтервал <pre>%1</pre>"
 
 #: kirigami_ui/EditorToolbar.qml:1094
 msgctxt "Step speed 1.00"
 msgid "Step speed <pre>%1</pre>"
-msgstr ""
+msgstr "Швидкість кроку <pre>%1</pre>"
 
 #: kirigami_ui/EditorToolbar.qml:1135
 msgctxt "Step acceleration 1.15"
 msgid "Step acceleration <pre>%1</pre>"
-msgstr ""
+msgstr "Прискорення кроку <pre>%1</pre>"
 
 #: kirigami_ui/EditorToolbar.qml:1159
 msgctxt "Next reload starts at 10:11:12"
 msgid "Next reload starts at <pre>%1</pre>"
-msgstr ""
+msgstr "Наступне перезавантаження почнеться через <pre>%1</pre>"
 
 #: kirigami_ui/InputsOverlay.qml:33
 msgctxt "Title of dialog where users customize keyboard inputs"
 msgid "Key Bindings"
-msgstr ""
+msgstr "Клавіатурні команди"
 
 #: kirigami_ui/InputsOverlay.qml:163
 msgid "Toggle Prompter State"
-msgstr ""
+msgstr "Перемкнути стан суфлера"
 
 #: kirigami_ui/InputsOverlay.qml:171
 msgid "Decrease Velocity"
-msgstr ""
+msgstr "Зменшити швидкість"
 
 #: kirigami_ui/InputsOverlay.qml:179
 msgid "Increase Velocity"
-msgstr ""
+msgstr "Збільшити швидкість"
 
 #: kirigami_ui/InputsOverlay.qml:187
 msgid "Stop"
-msgstr ""
+msgstr "Зупинити"
 
 #: kirigami_ui/InputsOverlay.qml:195
 msgid "Play/Pause"
-msgstr ""
+msgstr "Пуск/Пауза"
 
 #: kirigami_ui/InputsOverlay.qml:203
 msgid "Reverse"
-msgstr ""
+msgstr "Реверс"
 
 #: kirigami_ui/InputsOverlay.qml:211
 msgid "Rewind"
-msgstr ""
+msgstr "Перемотка назад"
 
 #: kirigami_ui/InputsOverlay.qml:219
 msgid "Fast Forward"
-msgstr ""
+msgstr "Швидко вперед"
 
 #: kirigami_ui/InputsOverlay.qml:227
 msgctxt "Skip to earlier text while prompting or editing"
 msgid "Move Backwards"
-msgstr ""
+msgstr "Рухатися назад"
 
 #: kirigami_ui/InputsOverlay.qml:235
 msgctxt "Skip to later text while prompting or editing"
 msgid "Move Forward"
-msgstr ""
+msgstr "Рухатися вперед"
 
 #: kirigami_ui/InputsOverlay.qml:243
 msgctxt "Skip to closest marker behind of current position"
 msgid "Go to Previous Marker"
-msgstr ""
+msgstr "Перейти до попереднього маркера"
 
 #: kirigami_ui/InputsOverlay.qml:251
 msgctxt "Skip to closest marker ahead of current position"
 msgid "Go to Next Marker"
-msgstr ""
+msgstr "Перейти до наступного маркера"
 
 #: kirigami_ui/LayoutDirectionSettingsOverlay.qml:32
 msgid "Layout direction"
-msgstr ""
+msgstr "Напрямок розмітки"
 
 #: kirigami_ui/LayoutDirectionSettingsOverlay.qml:38
 msgctxt "Label at layout direction settings overlay"
 msgid "Current layout"
-msgstr ""
+msgstr "Поточне розташування"
 
 #: kirigami_ui/main.qml:320 kirigami_ui/+windows/main.qml:308
 msgctxt "Main menu actions. Load Path Settings page."
 msgid "External Tools and Applications"
-msgstr ""
+msgstr "Зовнішні інструменти та застосунки"
 
 #: kirigami_ui/main.qml:376 kirigami_ui/+windows/main.qml:364
 msgid "Disable background transparency"
-msgstr ""
+msgstr "Вимкнути прозорість фону"
 
 #: kirigami_ui/main.qml:395 kirigami_ui/+windows/main.qml:383
 msgctxt ""
@@ -388,234 +388,235 @@ msgctxt ""
 "animations."
 msgid "Force sub-pixel text renderer past 120px"
 msgstr ""
+"Примусово використовувати текстовий рендеринг з субпікселями понад 120px"
 
 #: kirigami_ui/main.qml:417
 msgctxt ""
 "Main menu actions. Fake fullscreen behavior instead of requesting true "
 "fullscreen"
 msgid "Fake fullscreen behavior"
-msgstr ""
+msgstr "Фальшивий режим повного екрану"
 
 #: kirigami_ui/main.qml:560
 msgctxt "Global menu actions"
 msgid "&File"
-msgstr ""
+msgstr "&Файл"
 
 #: kirigami_ui/main.qml:575
 msgctxt "Main menu and global menu actions"
 msgid "Save &As…"
-msgstr ""
+msgstr "Зберегти &як…"
 
 #: kirigami_ui/main.qml:586
 msgctxt "Global menu actions"
 msgid "&Edit"
-msgstr ""
+msgstr "&Редагувати"
 
 #: kirigami_ui/main.qml:589
 msgctxt "Global menu actions"
 msgid "&Undo"
-msgstr ""
+msgstr "&Скасувати"
 
 #: kirigami_ui/main.qml:594
 msgctxt "Global menu actions"
 msgid "&Redo"
-msgstr ""
+msgstr "&Повернути"
 
 #: kirigami_ui/main.qml:600 prompter/Prompter.qml:1361
 #: prompter/Prompter.qml:1408
 msgctxt "Global menu and editor context menu actions"
 msgid "&Copy"
-msgstr ""
+msgstr "&Копіювати"
 
 #: kirigami_ui/main.qml:605 prompter/Prompter.qml:1366
 #: prompter/Prompter.qml:1413
 msgctxt "Global menu and editor context menu actions"
 msgid "Cu&t"
-msgstr ""
+msgstr "Ви&різати"
 
 #: kirigami_ui/main.qml:610 prompter/Prompter.qml:1371
 #: prompter/Prompter.qml:1418
 msgctxt "Global menu and editor context menu actions"
 msgid "&Paste"
-msgstr ""
+msgstr "Встави&ти"
 
 #: kirigami_ui/main.qml:617
 msgctxt "Global menu actions"
 msgid "&View"
-msgstr ""
+msgstr "&Вигляд"
 
 #: kirigami_ui/main.qml:620
 msgctxt "Global menu actions"
 msgid "Full &screen"
-msgstr ""
+msgstr "Повний &екран"
 
 #: kirigami_ui/main.qml:634
 msgctxt "Global menu actions. Indicators highlight reading region."
 msgid "&Indicators"
-msgstr ""
+msgstr "&Індикатори"
 
 #: kirigami_ui/main.qml:636
 msgctxt "Global menu actions. Shows pointer to the left of the reading region."
 msgid "&Left Pointer"
-msgstr ""
+msgstr "&Лівий вказівник"
 
 #: kirigami_ui/main.qml:642
 msgctxt ""
 "Global menu actions. Shows pointer to the right of the reading region."
 msgid "&Right Pointer"
-msgstr ""
+msgstr "&Правий вказівник"
 
 #: kirigami_ui/main.qml:648
 msgctxt ""
 "Global menu actions. Shows pointers to the left and right of the reading "
 "region."
 msgid "B&oth Pointers"
-msgstr ""
+msgstr "О&бидва вказівники"
 
 #: kirigami_ui/main.qml:655
 msgctxt "Global menu actions. Translucent bars indicate reading region."
 msgid "&Bars"
-msgstr ""
+msgstr "&Смуги"
 
 #: kirigami_ui/main.qml:661
 msgctxt ""
 "Global menu actions. Translucent bars and left pointer indicate reading "
 "region."
 msgid "Bars Lef&t"
-msgstr ""
+msgstr "Смуги лів&оруч"
 
 #: kirigami_ui/main.qml:667
 msgctxt ""
 "Global menu actions. Translucent bars and right pointer indicate reading "
 "region."
 msgid "Bars Ri&ght"
-msgstr ""
+msgstr "Смуги прав&оруч"
 
 #: kirigami_ui/main.qml:674
 msgctxt "Global menu actions. Enable all reading region indicators."
 msgid "&All"
-msgstr ""
+msgstr "&Усі"
 
 #: kirigami_ui/main.qml:680
 msgctxt "Global menu actions. Disable all reading region indicators."
 msgid "&Hidden"
-msgstr ""
+msgstr "При&ховані"
 
 #: kirigami_ui/main.qml:687
 msgctxt ""
 "Global menu actions. Reading region indicates where a talent should be "
 "reading from."
 msgid "Readin&g region"
-msgstr ""
+msgstr "Зона чи&тання"
 
 #: kirigami_ui/main.qml:689
 msgctxt "Global menu actions. Align reading region to top of prompter."
 msgid "&Top"
-msgstr ""
+msgstr "&Зверху"
 
 #: kirigami_ui/main.qml:695
 msgctxt ""
 "Global menu actions. Align reading region to vertical center of prompter."
 msgid "&Middle"
-msgstr ""
+msgstr "&Посередині"
 
 #: kirigami_ui/main.qml:701
 msgctxt "Global menu actions. Align reading region to bottom of prompter."
 msgid "&Bottom"
-msgstr ""
+msgstr "&Знизу"
 
 #: kirigami_ui/main.qml:708
 msgctxt ""
 "Global menu actions. Enables drag and drop positioning of reading region."
 msgid "F&ree placement"
-msgstr ""
+msgstr "Вільне розташування"
 
 #: kirigami_ui/main.qml:714
 msgctxt ""
 "Global menu actions. Fix positioning of reading region to what was set in "
 "\"Free placement\" mode."
 msgid "C&ustom (Fixed placement)"
-msgstr ""
+msgstr "К&ористувацьке (Фіксоване розташування)"
 
 #: kirigami_ui/main.qml:723
 msgctxt "Global menu actions"
 msgid "For&mat"
-msgstr ""
+msgstr "Форм&ат"
 
 #: kirigami_ui/main.qml:726
 msgctxt "Global menu actions"
 msgid "&Bold"
-msgstr ""
+msgstr "&Жирний"
 
 #: kirigami_ui/main.qml:732
 msgctxt "Global menu actions"
 msgid "&Italic"
-msgstr ""
+msgstr "&Курсив"
 
 #: kirigami_ui/main.qml:738
 msgctxt "Global menu actions"
 msgid "&Underline"
-msgstr ""
+msgstr "&Підкреслений"
 
 #: kirigami_ui/main.qml:745
 msgctxt "Global menu and editor actions. Text alignment."
 msgid "Align &Left"
-msgstr ""
+msgstr "Вирівняти &ліворуч"
 
 #: kirigami_ui/main.qml:745
 msgctxt "Global menu and editor actions. Text alignment."
 msgid "Align &Right"
-msgstr ""
+msgstr "Вирівняти &праворуч"
 
 #: kirigami_ui/main.qml:756
 msgctxt "Global menu actions. Text alignment."
 msgid "Align Cen&ter"
-msgstr ""
+msgstr "Вирівняти по &центру"
 
 #: kirigami_ui/main.qml:762
 msgctxt "Global menu actions. Text alignment."
 msgid "Align &Right"
-msgstr ""
+msgstr "Вирівняти по &праворуч"
 
 #: kirigami_ui/main.qml:762
 msgctxt "Global menu actions. Text alignment."
 msgid "Align &Left"
-msgstr ""
+msgstr "Вирівняти по &ліворуч"
 
 #: kirigami_ui/main.qml:781
 msgctxt "Global menu actions. Opens dialog to format currently selected text."
 msgid "C&haracter"
-msgstr ""
+msgstr "Симво&ли"
 
 #: kirigami_ui/main.qml:785
 msgctxt "Global menu actions. Opens dialog to color currently selected text."
 msgid "Fo&nt Color"
-msgstr ""
+msgstr "Колір &шрифту"
 
 #: kirigami_ui/main.qml:791
 msgctxt "Global menu actions. Menu regarding input settings."
 msgid "Controls"
-msgstr ""
+msgstr "Керування"
 
 #: kirigami_ui/main.qml:824
 msgctxt "Global menu actions"
 msgid "&Help"
-msgstr ""
+msgstr "&Допомога"
 
 #: kirigami_ui/main.qml:827
 msgctxt "Global menu actions"
 msgid "Report &Bug…"
-msgstr ""
+msgstr "Повідомити про &помилку…"
 
 #: kirigami_ui/main.qml:846
 msgctxt "Global menu actions. Load about page. \"About AppName\""
 msgid "Abou&t %1"
-msgstr ""
+msgstr "Пр&о %1"
 
 #: kirigami_ui/main.qml:997 kirigami_ui/+windows/main.qml:669
 msgctxt "Restart application_name"
 msgid "Restart %1"
-msgstr ""
+msgstr "Перезапустити %1"
 
 #: kirigami_ui/main.qml:998 kirigami_ui/+windows/main.qml:670
 msgctxt ""
@@ -628,35 +629,39 @@ msgid ""
 "\n"
 "Would you like to restart %1 now? All changes to document will be lost."
 msgstr ""
+"Щоб зміна повністю набрала чинності, потрібно перезапустити %1. Бажаєте "
+"перезапустити %1 зараз? Усі зміни в документі будуть втрачені."
 
 #: kirigami_ui/MarkersDrawer.qml:129
 msgctxt "Close sidebar listing user defined markers"
 msgid "Close Marker List"
-msgstr ""
+msgstr "Закрити список маркерів"
 
 #: kirigami_ui/PathsPage.qml:42
 msgid "External Tools"
-msgstr ""
+msgstr "Зовнішні інструменти"
 
 #: kirigami_ui/PathsPage.qml:57
 msgid "LibreOffice"
-msgstr ""
+msgstr "LibreOffice"
 
 #: kirigami_ui/PathsPage.qml:63
 msgid ""
 "QPrompt can make transparent use of LibreOffice to convert Microsoft Word, "
 msgstr ""
+"QPrompt може прозоро використовувати LibreOffice для конвертації файлів "
+"Microsoft Word, "
 
 #: kirigami_ui/PathsPage.qml:71 kirigami_ui/PathsPage.qml:99
 msgctxt "Browse for PROGRAM"
 msgid "Browse for %1"
-msgstr ""
+msgstr "Переглянути для %1"
 
 #: kirigami_ui/PathsPage.qml:102 kirigami_ui/PathsPage.qml:104
 #: kirigami_ui/PathsPage.qml:105
 msgctxt "Format name (FORMAT_EXTENSION)"
 msgid "Executable (%1)"
-msgstr ""
+msgstr "Виконуваний файл (%1)"
 
 #. i18nc("Format name (FORMAT_EXTENSION)", "Portable Document Format (%1)", "PDF") + "(*.pdf *.PDF)",
 #. i18nc("Format name (FORMAT_EXTENSION)", "Rich Text Format (%1)", "RTF") + "(*.rtf *.RTF)",
@@ -665,387 +670,390 @@ msgstr ""
 #: prompter/Prompter.qml:1294
 msgctxt "All file formats"
 msgid "All Formats"
-msgstr ""
+msgstr "Усі формати"
 
 #: kirigami_ui/PrompterPage.qml:73
 msgid "Start prompter"
-msgstr ""
+msgstr "Запустити суфлер"
 
 #: kirigami_ui/PrompterPage.qml:81
 msgid "Decrease velocity"
-msgstr ""
+msgstr "Зменшити швидкість"
 
 #: kirigami_ui/PrompterPage.qml:95
 msgid "Increase velocity"
-msgstr ""
+msgstr "Збільшити швидкість"
 
 #: kirigami_ui/PrompterPage.qml:108
 msgctxt "Reading region indicates where a talent should be reading from"
 msgid "Reading region"
-msgstr ""
+msgstr "Зона читання"
 
 #: kirigami_ui/PrompterPage.qml:110
 msgctxt "Reading region indicates where a talent should be reading from"
 msgid "Change reading region placement"
-msgstr ""
+msgstr "Змінити розташування зони читання"
 
 #: kirigami_ui/PrompterPage.qml:116
 msgctxt "Align reading region to top of prompter"
 msgid "Top"
-msgstr ""
+msgstr "Зверху"
 
 #: kirigami_ui/PrompterPage.qml:118
 msgid "Move reading region to the top, convenient for use with webcams"
-msgstr ""
+msgstr "Перемістити зону читання наверх, зручно для використання з вебкамерою"
 
 #: kirigami_ui/PrompterPage.qml:129
 msgctxt "Align reading region to vertical center of prompter"
 msgid "Middle"
-msgstr ""
+msgstr "Посередині"
 
 #: kirigami_ui/PrompterPage.qml:131
 msgid "Move reading region to the vertical center"
-msgstr ""
+msgstr "Перемістити зону читання у вертикальний центр"
 
 #: kirigami_ui/PrompterPage.qml:142
 msgctxt "Align reading region to bottom of prompter"
 msgid "Bottom"
-msgstr ""
+msgstr "Знизу"
 
 #: kirigami_ui/PrompterPage.qml:144
 msgid "Move reading region to the bottom"
-msgstr ""
+msgstr "Перемістити зону читання вниз"
 
 #: kirigami_ui/PrompterPage.qml:154
 msgctxt ""
 "Refers to free placement. Enables drag and drop positioning of reading "
 "region."
 msgid "Free"
-msgstr ""
+msgstr "Вільне"
 
 #: kirigami_ui/PrompterPage.qml:156
 msgid "Move reading region freely by dragging and dropping"
-msgstr ""
+msgstr "Вільно переміщати зону читання методом перетягування"
 
 #: kirigami_ui/PrompterPage.qml:167
 msgctxt ""
 "Fix positioning of reading region to what was set in \"Free placement\" mode"
 msgid "Custom"
-msgstr ""
+msgstr "Користувацьке"
 
 #: kirigami_ui/PrompterPage.qml:169
 msgid "Fix reading region to the position set using free placement mode"
 msgstr ""
+"Зафіксувати зону читання у положенні, встановленому у режимі вільного "
+"розташування"
 
 #: kirigami_ui/PrompterPage.qml:195
 msgctxt ""
 "Height of reading region relative to single line height. E.g. Height: 2.5"
 msgid "Height: %1"
-msgstr ""
+msgstr "Висота: %1"
 
 #: kirigami_ui/PrompterPage.qml:249
 msgctxt "Indicators highlight reading region"
 msgid "Indicators"
-msgstr ""
+msgstr "Індикатори"
 
 #: kirigami_ui/PrompterPage.qml:250
 msgctxt "Indicators highlight reading region"
 msgid "Change reading region indicators"
-msgstr ""
+msgstr "Змінити індикатори зони читання"
 
 #: kirigami_ui/PrompterPage.qml:253
 msgctxt "Configure reading region pointer indicators"
 msgid "Pointer Configuration"
-msgstr ""
+msgstr "Налаштування вказівників"
 
 #: kirigami_ui/PrompterPage.qml:260 kirigami_ui/PrompterPage.qml:272
 msgctxt "Shows pointer to the left of the reading region"
 msgid "Left pointer"
-msgstr ""
+msgstr "Лівий вказівник"
 
 #: kirigami_ui/PrompterPage.qml:260 kirigami_ui/PrompterPage.qml:272
 msgctxt "Shows pointer to the right of the reading region"
 msgid "Right pointer"
-msgstr ""
+msgstr "Правий вказівник"
 
 #: kirigami_ui/PrompterPage.qml:262
 msgid "Left pointer indicates reading region"
-msgstr ""
+msgstr "Лівий вказівник вказує зону читання"
 
 #: kirigami_ui/PrompterPage.qml:274
 msgid "Right pointer indicates reading region"
-msgstr ""
+msgstr "Правий вказівник вказує зону читання"
 
 #: kirigami_ui/PrompterPage.qml:284
 msgctxt "Shows pointers to the left and right of the reading region"
 msgid "Both pointers"
-msgstr ""
+msgstr "Обидва вказівники"
 
 #: kirigami_ui/PrompterPage.qml:286
 msgid "Left and right pointers indicate reading region"
-msgstr ""
+msgstr "Лівий і правий вказівники вказують зону читання"
 
 #: kirigami_ui/PrompterPage.qml:296
 msgctxt "Disable all reading region pointers"
 msgid "No pointers"
-msgstr ""
+msgstr "Без вказівників"
 
 #: kirigami_ui/PrompterPage.qml:298
 msgctxt "Disable all reading region indicators"
 msgid "Disable reading region indicators"
-msgstr ""
+msgstr "Вимкнути індикатори зони читання"
 
 #: kirigami_ui/PrompterPage.qml:308
 msgctxt "Configure reading region pointer indicators"
 msgid "Bars"
-msgstr ""
+msgstr "Смуги"
 
 #: kirigami_ui/PrompterPage.qml:321
 msgid "Timer"
-msgstr ""
+msgstr "Таймер"
 
 #: kirigami_ui/PrompterPage.qml:333
 msgid "Enable timers"
-msgstr ""
+msgstr "Увімкнути таймери"
 
 #: kirigami_ui/PrompterPage.qml:346
 msgid "Stopwatch"
-msgstr ""
+msgstr "Секундомір"
 
 #: kirigami_ui/PrompterPage.qml:359
 msgctxt "Estimated Time of Arrival"
 msgid "ETA"
-msgstr ""
+msgstr "Час до завершення"
 
 #: kirigami_ui/PrompterPage.qml:368
 msgctxt "Color of timer text"
 msgid "Timer color"
-msgstr ""
+msgstr "Колір таймера"
 
 #: kirigami_ui/PrompterPage.qml:380
 msgctxt "Reset color of timer text back to default"
 msgid "Clear color"
-msgstr ""
+msgstr "Очистити колір"
 
 #: kirigami_ui/PrompterPage.qml:392 kirigami_ui/PrompterPage.qml:415
 msgid "Countdown"
-msgstr ""
+msgstr "Зворотний відлік"
 
 #: kirigami_ui/PrompterPage.qml:398
 msgctxt ""
 "Enables automatic alignment of prompter and text with the reading region"
 msgid "Auto frame"
-msgstr ""
+msgstr "Автоматична рамка"
 
 #: kirigami_ui/PrompterPage.qml:432
 msgctxt "Auto start countdown upon prompter getting started"
 msgid "Auto start"
-msgstr ""
+msgstr "Автоматичний старт"
 
 #: kirigami_ui/PrompterPage.qml:435
 msgid "Start countdown automatically"
-msgstr ""
+msgstr "Запускати зворотний відлік автоматично"
 
 #: kirigami_ui/PrompterPage.qml:445
 msgctxt "Configure countdown duration"
 msgid "Set duration"
-msgstr ""
+msgstr "Встановити тривалість"
 
 #: kirigami_ui/PrompterPage.qml:463
 msgctxt "Prompter orientation and mirroring"
 msgid "Orientation"
-msgstr ""
+msgstr "Орієнтація"
 
 #. i18n("H Flip")
 #: kirigami_ui/PrompterPage.qml:480 prompter/ProjectionsManager.qml:334
 msgctxt "Mirrors prompter horizontally"
 msgid "Horizontal mirror"
-msgstr ""
+msgstr "Горизонтальне віддзеркалення"
 
 #. i18n("V Flip")
 #: kirigami_ui/PrompterPage.qml:497 prompter/ProjectionsManager.qml:354
 msgctxt "Mirrors prompter vertically"
 msgid "Vertical mirror"
-msgstr ""
+msgstr "Вертикальне віддзеркалення"
 
 #: kirigami_ui/PrompterPage.qml:525
 msgctxt "Prompter rotation is disabled"
 msgid "Don't rotate"
-msgstr ""
+msgstr "Не обертати"
 
 #: kirigami_ui/PrompterPage.qml:537
 msgctxt "Rotate prompter 90 degrees to the right"
 msgid "90° clockwise"
-msgstr ""
+msgstr "90° за годинниковою стрілкою"
 
 #: kirigami_ui/PrompterPage.qml:549
 msgctxt "Rotate prompter 90 degrees to the left"
 msgid "90° counter"
-msgstr ""
+msgstr "90° проти годинникової стрілки"
 
 #: kirigami_ui/PrompterPage.qml:575
 msgctxt "Background refers to what appears behind the prompter"
 msgid "Background"
-msgstr ""
+msgstr "Фон"
 
 #: kirigami_ui/PrompterPage.qml:578
 msgctxt "Enable root.shadows"
 msgid "Shadows"
-msgstr ""
+msgstr "Тіні"
 
 #: kirigami_ui/PrompterPage.qml:587
 msgctxt "Set background image"
 msgid "Set image"
-msgstr ""
+msgstr "Встановити зображення"
 
 #: kirigami_ui/PrompterPage.qml:598
 msgctxt "Set background color tint"
 msgid "Set color"
-msgstr ""
+msgstr "Встановити колір"
 
 #: kirigami_ui/PrompterPage.qml:609
 msgctxt "Set background settings back to default"
 msgid "Clear"
-msgstr ""
+msgstr "Очистити"
 
 #: kirigami_ui/PrompterPage.qml:623
 msgctxt "Screens refers to computer displays"
 msgid "Screens"
-msgstr ""
+msgstr "Екрани"
 
 #: kirigami_ui/PrompterPage.qml:664
 msgctxt "Screen is disabled"
 msgid "Off"
-msgstr ""
+msgstr "Вимкнено"
 
 #: kirigami_ui/PrompterPage.qml:665
 msgctxt "Screen is enabled but mirroring is disabled"
 msgid "No Mirror"
-msgstr ""
+msgstr "Без віддзеркалення"
 
 #: kirigami_ui/PrompterPage.qml:666
 msgctxt "Horizontal mirroring"
 msgid "H Mirror"
-msgstr ""
+msgstr "Горизонтальне віддзеркалення"
 
 #: kirigami_ui/PrompterPage.qml:667
 msgctxt "Vertical mirroring"
 msgid "V Mirror"
-msgstr ""
+msgstr "Вертикальне віддзеркалення"
 
 #: kirigami_ui/PrompterPage.qml:668
 msgctxt "Horizontal and vertical mirroring"
 msgid "HV Mirror"
-msgstr ""
+msgstr "Горизонтально-вертикальне віддзеркалення"
 
 #: kirigami_ui/PrompterPage.qml:679
 msgctxt "Display prompter copies onto displays"
 msgid "Enable projection"
-msgstr ""
+msgstr "Увімкнути проєкцію"
 
 #: kirigami_ui/PrompterPage.qml:691
 msgctxt "Enable scaling prompter copies being projected onto displays"
 msgid "Scale projection"
-msgstr ""
+msgstr "Масштабувати проєкцію"
 
 #: kirigami_ui/PrompterPage.qml:714
 msgid "Leave Fullscreen"
-msgstr ""
+msgstr "Вийти з повного екрану"
 
 #: kirigami_ui/PrompterPage.qml:714
 msgid "Fullscreen"
-msgstr ""
+msgstr "Повний екран"
 
 #: kirigami_ui/PrompterPage.qml:864
 msgid "Countdown Setup"
-msgstr ""
+msgstr "Налаштування зворотного відліку"
 
 #: kirigami_ui/PrompterPage.qml:873
 msgid "Countdown duration"
-msgstr ""
+msgstr "Тривалість зворотного відліку"
 
 #: kirigami_ui/PrompterPage.qml:892
 msgid "Disappear within 1 second to go"
 msgid_plural "Disappear within %1 seconds to go"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Зникнути за 1 секунду до кінця"
+msgstr[1] "Зникнути за %1 секунди до кінця"
+msgstr[2] "Зникнути за %1 секунд до кінця"
 
 #: kirigami_ui/PrompterPage.qml:916
 msgctxt ""
 "Refers to a key on the keyboard used to skip to a user defined marker while "
 "prompting"
 msgid "Skip Key"
-msgstr ""
+msgstr "Пропустити клавішу"
 
 #: kirigami_ui/PrompterPage.qml:939
 msgctxt ""
 "Refers to a key on the keyboard used to skip to a user defined marker while "
 "prompting"
 msgid "Key to perform skip to this marker"
-msgstr ""
+msgstr "Клавіша для переходу до цього маркера"
 
 #: kirigami_ui/PrompterPage.qml:986
 msgid "Open from network..."
-msgstr ""
+msgstr "Відкрити з мережі..."
 
 #: kirigami_ui/PrompterPage.qml:1016
 msgid "URL:"
-msgstr ""
+msgstr "URL:"
 
 #: kirigami_ui/PrompterPage.qml:1020
 msgid "http, https, and ftp protocols supported"
-msgstr ""
+msgstr "Підтримуються протоколи http, https і ftp"
 
 #: kirigami_ui/PrompterPage.qml:1031
 msgid "Auto reload"
-msgstr ""
+msgstr "Автоматичне перезавантаження"
 
 #: kirigami_ui/PrompterPage.qml:1041
 msgid "Hours:"
-msgstr ""
+msgstr "Години:"
 
 #: kirigami_ui/PrompterPage.qml:1061
 msgid "Minutes:"
-msgstr ""
+msgstr "Хвилини:"
 
 #: kirigami_ui/PrompterPage.qml:1085
 msgid "Seconds:"
-msgstr ""
+msgstr "Секунди:"
 
 #: kirigami_ui/PrompterPage.qml:1112
 msgctxt "Next reload starts at 10:11:12"
 msgid "Next reload starts at %1"
-msgstr ""
+msgstr "Наступне перезавантаження почнеться через %1"
 
 #: kirigami_ui/PrompterPage.qml:1113
 msgid "Auto reload is not running"
-msgstr ""
+msgstr "Автоматичне перезавантаження не працює"
 
 #: kirigami_ui/PrompterPage.qml:1120
 msgid "Load from Network"
-msgstr ""
+msgstr "Завантажити з мережі"
 
 #: kirigami_ui/PrompterPage.qml:1128 prompter/ProjectionsManager.qml:321
 msgid "Close"
-msgstr ""
+msgstr "Закрити"
 
 #: kirigami_ui/PrompterPage.qml:1141
 msgctxt "Name of section where reding region pointers are configured"
 msgid "Pointer configuration"
-msgstr ""
+msgstr "Налаштування вказівників"
 
 #: kirigami_ui/RemotePage.qml:28
 msgid "Remote Control"
-msgstr ""
+msgstr "Дистанційне керування"
 
 #: kirigami_ui/TelemetryPage.qml:30
 msgid "Telemetry Settings"
-msgstr ""
+msgstr "Налаштування телеметрії"
 
 #: kirigami_ui/TelemetryPage.qml:55
 msgid ""
 "The following page is a placeholder. Telemetry has not yet been implemented."
-msgstr ""
+msgstr "Ця сторінка є заглушкою. Телеметрія ще не реалізована."
 
 #: kirigami_ui/TelemetryPage.qml:66
 msgid ""
@@ -1055,180 +1063,188 @@ msgid ""
 "you work with, or information that could help identify you.\n"
 "- Cuperino (QPrompt's Author)"
 msgstr ""
+"Будь ласка, допоможіть покращити QPrompt, поділившись інформацією про те, як "
+"ви його використовуєте. Надання цієї інформації є добровільним і абсолютно "
+"анонімним. Проєкт або я ніколи не будемо збирати ваші особисті дані, файли, "
+"з якими ви працюєте, вміст, який ви використовуєте, або інформацію, яка може "
+"допомогти ідентифікувати вас. — Cuperino (Автор QPrompt)"
 
 #: kirigami_ui/TelemetryPage.qml:69
 msgid "Telemetry"
-msgstr ""
+msgstr "Телеметрія"
 
 #: kirigami_ui/TelemetryPage.qml:72
 msgid "Enabled"
-msgstr ""
+msgstr "Увімкнено"
 
 #: kirigami_ui/TelemetryPage.qml:72
 msgid "Disabled"
-msgstr ""
+msgstr "Вимкнено"
 
 #: kirigami_ui/TelemetryPage.qml:81 kirigami_ui/TelemetryPage.qml:103
 #: kirigami_ui/TelemetryPage.qml:125 kirigami_ui/TelemetryPage.qml:151
 #: kirigami_ui/WheelSettingsOverlay.qml:42
 #: kirigami_ui/WheelSettingsOverlay.qml:61
 msgid "On"
-msgstr ""
+msgstr "Увімк"
 
 #: kirigami_ui/TelemetryPage.qml:81 kirigami_ui/TelemetryPage.qml:103
 #: kirigami_ui/TelemetryPage.qml:125 kirigami_ui/TelemetryPage.qml:151
 #: kirigami_ui/WheelSettingsOverlay.qml:42
 #: kirigami_ui/WheelSettingsOverlay.qml:61
 msgid "Off"
-msgstr ""
+msgstr "Вимк"
 
 #: kirigami_ui/TelemetryPage.qml:95
 msgid "Basic program and system information"
-msgstr ""
+msgstr "Основна інформація про програму та систему"
 
 #: kirigami_ui/TelemetryPage.qml:96
 msgid "Application version"
-msgstr ""
+msgstr "Версія застосунку"
 
 #: kirigami_ui/TelemetryPage.qml:97
 msgid "Platform information"
-msgstr ""
+msgstr "Інформація про платформу"
 
 #: kirigami_ui/TelemetryPage.qml:98
 msgid "Qt version information"
-msgstr ""
+msgstr "Інформація про версію Qt"
 
 #: kirigami_ui/TelemetryPage.qml:99 kirigami_ui/TelemetryPage.qml:120
 msgid "Locale information (timezone and keyboard layout)"
-msgstr ""
+msgstr "Інформація про локаль (часовий пояс і розкладка клавіатури)"
 
 #: kirigami_ui/TelemetryPage.qml:116
 msgid "Program run statistics: Help us study user retention"
 msgstr ""
+"Статистика запуску програми: Допоможіть нам вивчати утримання користувачів"
 
 #: kirigami_ui/TelemetryPage.qml:117
 msgid "Randomly generated install ID"
-msgstr ""
+msgstr "Випадково згенерований ID встановлення"
 
 #: kirigami_ui/TelemetryPage.qml:118
 msgid "Launch times"
-msgstr ""
+msgstr "Час запуску"
 
 #: kirigami_ui/TelemetryPage.qml:119
 msgid "Usage time"
-msgstr ""
+msgstr "Час використання"
 
 #: kirigami_ui/TelemetryPage.qml:138
 msgid "Feature use frequency: Help us know what features are most important"
 msgstr ""
+"Частота використання функцій: Допоможіть нам зрозуміти, які функції є "
+"найважливішими"
 
 #: kirigami_ui/TelemetryPage.qml:139
 msgid "Flip settings"
-msgstr ""
+msgstr "Налаштування інверсії"
 
 #: kirigami_ui/TelemetryPage.qml:140
 msgid "Reading region settings"
-msgstr ""
+msgstr "Налаштування зони читання"
 
 #: kirigami_ui/TelemetryPage.qml:141 prompter/PointerSettings.qml:150
 msgid "Pointer settings"
-msgstr ""
+msgstr "Налаштування вказівників"
 
 #: kirigami_ui/TelemetryPage.qml:142
 msgid "Countdown settings"
-msgstr ""
+msgstr "Налаштування зворотного відліку"
 
 #: kirigami_ui/TelemetryPage.qml:143
 msgid "Keyboard shortcut settings"
-msgstr ""
+msgstr "Налаштування клавіатурних скорочень"
 
 #: kirigami_ui/TelemetryPage.qml:144
 msgid "Input control settings"
-msgstr ""
+msgstr "Налаштування контролю введення"
 
 #: kirigami_ui/TelemetryPage.qml:145
 msgid "Base speed and acceleration curvature settings"
-msgstr ""
+msgstr "Базова швидкість і криві прискорення"
 
 #: kirigami_ui/TelemetryPage.qml:146
 msgid "Background color and opacity settings"
-msgstr ""
+msgstr "Налаштування кольору фону та прозорості"
 
 #: kirigami_ui/TelemetryPage.qml:147
 msgid "Presence of a background image"
-msgstr ""
+msgstr "Наявність фонової картинки"
 
 #: kirigami_ui/TelemetryPage.qml:164
 msgid "Help us understand how users operate QPrompt"
-msgstr ""
+msgstr "Допоможіть нам зрозуміти, як користувачі працюють з QPrompt"
 
 #: kirigami_ui/TelemetryPage.qml:165
 msgid "Random session ID"
-msgstr ""
+msgstr "Випадковий ID сеансу"
 
 #: kirigami_ui/TelemetryPage.qml:166
 msgid "Session number"
-msgstr ""
+msgstr "Номер сеансу"
 
 #: kirigami_ui/TelemetryPage.qml:167
 msgid "Session prompt number"
-msgstr ""
+msgstr "Номер запиту в сеансі"
 
 #: kirigami_ui/TelemetryPage.qml:168
 msgid "Window dimensions"
-msgstr ""
+msgstr "Розміри вікна"
 
 #: kirigami_ui/TelemetryPage.qml:169
 msgid "Prompt area dimensions"
-msgstr ""
+msgstr "Розміри зони суфлера"
 
 #: kirigami_ui/TelemetryPage.qml:170
 msgid "Dimensions of lines of text being prompted"
-msgstr ""
+msgstr "Розміри рядків тексту, які виводяться на суфлері"
 
 #: kirigami_ui/TelemetryPage.qml:171
 msgid "Font settings per block of lines of text being prompted"
-msgstr ""
+msgstr "Налаштування шрифтів для кожного блоку рядків тексту"
 
 #: kirigami_ui/TelemetryPage.qml:172
 msgid "Languages likely present in the text being prompted"
-msgstr ""
+msgstr "Ймовірні мови, присутні в тексті"
 
 #: kirigami_ui/TelemetryPage.qml:173
 msgid "Prompt starting line number and position"
-msgstr ""
+msgstr "Номер початкового рядка та позиція початку суфлювання"
 
 #: kirigami_ui/TelemetryPage.qml:174
 msgid "Manual scroll start and end timestamps"
-msgstr ""
+msgstr "Часові мітки початку та закінчення ручної прокрутки"
 
 #: kirigami_ui/TelemetryPage.qml:175
 msgid "Scroll starting line number and position"
-msgstr ""
+msgstr "Номер та позиція початкового рядка під час прокрутки"
 
 #: kirigami_ui/TelemetryPage.qml:176
 msgid "Scroll end line number and position"
-msgstr ""
+msgstr "Номер кінцевого рядка під час прокрутки"
 
 #: kirigami_ui/TelemetryPage.qml:177
 msgid "Scroll duration"
-msgstr ""
+msgstr "Тривалість прокрутки"
 
 #: kirigami_ui/TelemetryPage.qml:178
 msgid "Prompt duration"
-msgstr ""
+msgstr "Тривалість суфлювання"
 
 #: kirigami_ui/TelemetryPage.qml:179
 msgid "Velocity changes with timestamp"
-msgstr ""
+msgstr "Зміни швидкості з часовими мітками"
 
 #: kirigami_ui/TelemetryPage.qml:180
 msgid "Source of changes to velocity"
-msgstr ""
+msgstr "Джерело змін швидкості"
 
 #: kirigami_ui/TelemetryPage.qml:181
 msgid "Source of manual changes to scroll position"
-msgstr ""
+msgstr "Джерело ручних змін позиції прокрутки"
 
 #: kirigami_ui/TelemetryPage.qml:190
 msgid ""
@@ -1237,330 +1253,342 @@ msgid ""
 "not to collect any of the actual text and images that you work with, so I "
 "ask you: please leave telemetry enabled."
 msgstr ""
+"Ця інформація дуже важлива для мене, Хав'єра, автора проєкту, і вона може "
+"допомогти зробити розвиток QPrompt стійким. Я доклав максимум зусиль, щоб не "
+"збирати жодних реальних текстів і зображень, з якими ви працюєте, тому я "
+"прошу вас: будь ласка, залиште телеметрію увімкненою."
 
 #: kirigami_ui/WheelSettingsOverlay.qml:31
 msgid "Wheel and touchpad scroll settings"
-msgstr ""
+msgstr "Налаштування прокрутки колесом і сенсорною панеллю"
 
 #: kirigami_ui/WheelSettingsOverlay.qml:38
 msgctxt "Label at wheel settings overlay"
 msgid "Use scroll as velocity dial"
-msgstr ""
+msgstr "Використовувати прокрутку як контролер швидкості"
 
 #: kirigami_ui/WheelSettingsOverlay.qml:57
 msgid "Enable throttling"
-msgstr ""
+msgstr "Увімкнути обмеження швидкості"
 
 #: kirigami_ui/WheelSettingsOverlay.qml:74
 msgid "Throttle factor"
-msgstr ""
+msgstr "Фактор обмеження"
 
 #: kirigami_ui/WheelSettingsOverlay.qml:93
 msgid "Enable throttling for use with touchpads, disable for precise scolling."
 msgstr ""
+"Увімкнути обмеження для використання з сенсорною панеллю, вимкнути для "
+"точної прокрутки."
 
 #: main.cpp:92
 msgid ""
 "Personal teleprompter software for all video makers. Built with ease of use, "
 "productivity, and smooth performance in mind."
 msgstr ""
+"Персональне програмне забезпечення телесуфлера для всіх творців відео. "
+"Створене з урахуванням простоти використання, продуктивності та плавної "
+"роботи."
 
 #: main.cpp:95
 msgctxt "file"
 msgid "File to copy."
-msgstr ""
+msgstr "Файл для копіювання."
 
 #: main.cpp:98
 msgid "Ignore QSG_RENDER_LOOP environment variable."
-msgstr ""
+msgstr "Ігнорувати змінну середовища QSG_RENDER_LOOP."
 
 #: main.cpp:152
 msgid "© 2021 Javier O. Cordero Pérez"
-msgstr ""
+msgstr "© 2021 Хав'єр О. Кордеро Перес"
 
 #: main.cpp:153
 msgid "© 2021-%1 Javier O. Cordero Pérez"
-msgstr ""
+msgstr "© 2021-%1 Хав'єр О. Кордеро Перес"
 
 #: main.cpp:157
 msgid "Personal teleprompter software for all video makers."
-msgstr ""
+msgstr "Персональне програмне забезпечення телесуфлера для всіх творців відео."
 
 #: main.cpp:169
 msgid "Author"
-msgstr ""
+msgstr "Автор"
 
 #: main.cpp:174
 msgid "Wrote keycode to string QML abstraction"
-msgstr ""
+msgstr "Написав абстракцію QML для перетворення ключового коду на рядок"
 
 #: main.cpp:177
 msgctxt "Active software tester"
 msgid "Active tester"
-msgstr ""
+msgstr "Активний тестувальник"
 
 #: main.cpp:178 rc.cpp:1
 msgctxt "NAME OF TRANSLATORS"
 msgid "Your names"
-msgstr ""
+msgstr "Ваші імена"
 
 #: main.cpp:178 rc.cpp:2
 msgctxt "EMAIL OF TRANSLATORS"
 msgid "Your emails"
-msgstr ""
+msgstr "Ваші електронні адреси"
 
 #: prompter/Find.qml:127
 msgid "End reached, searching from the start."
-msgstr ""
+msgstr "Досягнуто кінця, пошук починається з початку."
 
 #: prompter/Find.qml:129
 msgid "Start reached, searching from the end."
-msgstr ""
+msgstr "Досягнуто початку, пошук починається з кінця."
 
 #: prompter/Find.qml:148
 msgid "Replaced 1 instance"
 msgid_plural "Replaced %1 instances"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Замінено 1 зразок"
+msgstr[1] "Замінено %1 зразки"
+msgstr[2] "Замінено %1 зразків"
 
 #: prompter/PointerSettings.qml:104
 msgid "Colors for prompter states"
-msgstr ""
+msgstr "Кольори для станів суфлера"
 
 #: prompter/PointerSettings.qml:110
 msgid "Editing: "
-msgstr ""
+msgstr "Редагування: "
 
 #: prompter/PointerSettings.qml:123
 msgid "Ready: "
-msgstr ""
+msgstr "Готово: "
 
 #: prompter/PointerSettings.qml:136
 msgid "Prompting: "
-msgstr ""
+msgstr "Суфлювання: "
 
 #: prompter/PointerSettings.qml:160
 msgctxt "Uses a mirrored copy of the first pointer as the second pointer"
 msgid "Reuse left pointer"
-msgstr ""
+msgstr "Повторно використовувати лівий вказівник"
 
 #: prompter/PointerSettings.qml:162
 msgctxt "Uses a mirrored copy of the first pointer as the second pointer"
 msgid "Reuse right pointer"
-msgstr ""
+msgstr "Повторно використовувати правий вказівник"
 
 #: prompter/PointerSettings.qml:166
 msgid "Tint"
-msgstr ""
+msgstr "Тінь"
 
 #: prompter/PointerSettings.qml:170
 msgid "Guides"
-msgstr ""
+msgstr "Напрямні"
 
 #: prompter/PointerSettings.qml:202
 msgid "Arrow"
-msgstr ""
+msgstr "Стрілка"
 
 #: prompter/PointerSettings.qml:208
 msgid "Text"
-msgstr ""
+msgstr "Текст"
 
 #: prompter/PointerSettings.qml:214
 msgid "Image"
-msgstr ""
+msgstr "Зображення"
 
 #: prompter/PointerSettings.qml:220
 msgid "Custom"
-msgstr ""
+msgstr "Користувацький"
 
 #: prompter/PointerSettings.qml:238
 msgid "Line width <pre>%1</pre>"
-msgstr ""
+msgstr "Товщина лінії <pre>%1</pre>"
 
 #: prompter/PointerSettings.qml:300 prompter/PointerSettings.qml:407
 #: prompter/PointerSettings.qml:431 prompter/PointerSettings.qml:496
 #: prompter/PointerSettings.qml:520
 msgid "Left Pointer: "
-msgstr ""
+msgstr "Лівий вказівник: "
 
 #: prompter/PointerSettings.qml:301 prompter/PointerSettings.qml:313
 #: prompter/PointerSettings.qml:408 prompter/PointerSettings.qml:430
 #: prompter/PointerSettings.qml:497 prompter/PointerSettings.qml:519
 msgid "Right Pointer: "
-msgstr ""
+msgstr "Правий вказівник: "
 
 #: prompter/PointerSettings.qml:344
 msgid "Font: "
-msgstr ""
+msgstr "Шрифт: "
 
 #: prompter/PointerSettings.qml:379 prompter/PointerSettings.qml:464
 msgctxt "Vertical offset (line height) 1.00"
 msgid "Vertical offset <pre>%1</pre>"
-msgstr ""
+msgstr "Вертикальне зміщення <pre>%1</pre>"
 
 #: prompter/PointerSettings.qml:418 prompter/PointerSettings.qml:450
 #: prompter/PointerSettings.qml:507 prompter/PointerSettings.qml:539
 msgid "Browse"
-msgstr ""
+msgstr "Переглянути"
 
 #: prompter/PointerSettings.qml:490
 msgid "Use QML scripts to draw pointers"
-msgstr ""
+msgstr "Використовувати QML-скрипти для малювання вказівників"
 
 #: prompter/PointerSettings.qml:563 prompter/PrompterBackground.qml:125
 msgid "JPEG image"
-msgstr ""
+msgstr "Зображення у форматі JPEG"
 
 #: prompter/PointerSettings.qml:564 prompter/PrompterBackground.qml:126
 msgid "PNG image"
-msgstr ""
+msgstr "Зображення у форматі PNG"
 
 #: prompter/PointerSettings.qml:565 prompter/PrompterBackground.qml:127
 msgid "GIF animation"
-msgstr ""
+msgstr "Анімація у форматі GIF"
 
 #: prompter/PointerSettings.qml:566
 msgid "WEBP image"
-msgstr ""
+msgstr "Зображення у форматі WEBP"
 
 #: prompter/PointerSettings.qml:576
 msgid "QML script"
-msgstr ""
+msgstr "Скрипт QML"
 
 #: prompter/ProjectionsManager.qml:174
 msgid "Projection Window"
-msgstr ""
+msgstr "Вікно проєкції"
 
 #: prompter/ProjectionsManager.qml:391
 msgid ""
 "For screen projections to show, you must set at least one screen to a "
 "projection setting other than \"Off\""
 msgstr ""
+"Щоб відображати проєкції, необхідно встановити хоча б один екран на "
+"проєкцію, відмінну від \"Вимкнено\""
 
 #: prompter/Prompter.qml:679
 msgid "Error loading file…"
-msgstr ""
+msgstr "Помилка завантаження файлу…"
 
 #: prompter/Prompter.qml:781
 msgid "Press and hold to go back to the start"
-msgstr ""
+msgstr "Натисніть і утримуйте, щоб повернутися на початок"
 
 #: prompter/Prompter.qml:783
 msgid "Double tap to go back to the start"
-msgstr ""
+msgstr "Двічі торкніться, щоб повернутися на початок"
 
 #: prompter/Prompter.qml:791
 msgid "Auto rewind cancelled"
-msgstr ""
+msgstr "Автоматична перемотка скасована"
 
 #: prompter/Prompter.qml:839
 msgid "The End"
-msgstr ""
+msgstr "Кінець"
 
 #: prompter/Prompter.qml:1162
 msgid "New document"
-msgstr ""
+msgstr "Новий документ"
 
 #: prompter/Prompter.qml:1171
 msgid "welcome_en.html"
-msgstr ""
+msgstr "welcome_en.html"
 
 #: prompter/Prompter.qml:1176
 msgid "User welcome loaded"
-msgstr ""
+msgstr "Завантажено привітання користувача"
 
 #: prompter/Prompter.qml:1186
 msgid "Loaded: %1"
-msgstr ""
+msgstr "Завантажено: %1"
 
 #: prompter/Prompter.qml:1214 prompter/Prompter.qml:1336
 msgctxt "Saved FILE_NAME"
 msgid "Saved %1"
-msgstr ""
+msgstr "Збережено %1"
 
 #: prompter/Prompter.qml:1216
 msgid "Saved"
-msgstr ""
+msgstr "Збережено"
 
 #: prompter/Prompter.qml:1277 prompter/Prompter.qml:1289
 #: prompter/Prompter.qml:1319 prompter/Prompter.qml:1323
 msgctxt "Format name (FORMAT_EXTENSION)"
 msgid "Hypertext Markup Language (%1)"
-msgstr ""
+msgstr "Гіпертекстова розмітка (%1)"
 
 #: prompter/Prompter.qml:1278 prompter/Prompter.qml:1290
 msgctxt "Format name (FORMAT_EXTENSION)"
 msgid "Markdown (%1)"
-msgstr ""
+msgstr "Markdown (%1)"
 
 #: prompter/Prompter.qml:1279 prompter/Prompter.qml:1291
 #: prompter/Prompter.qml:1324
 msgctxt "Format name (FORMAT_EXTENSION)"
 msgid "Plain Text (%1)"
-msgstr ""
+msgstr "Звичайний текст (%1)"
 
 #: prompter/Prompter.qml:1280
 msgctxt "Format name (FORMAT_EXTENSION)"
 msgid "OpenDocument Format Text Document (%1)"
-msgstr ""
+msgstr "Текстовий документ у форматі OpenDocument (%1)"
 
 #: prompter/Prompter.qml:1281
 msgctxt "Format name (FORMAT_EXTENSION)"
 msgid "AbiWord Document (%1)"
-msgstr ""
+msgstr "Документ AbiWord (%1)"
 
 #: prompter/Prompter.qml:1282
 msgctxt "Format name (FORMAT_EXTENSION)"
 msgid "Microsoft Word document (%1)"
-msgstr ""
+msgstr "Документ Microsoft Word (%1)"
 
 #: prompter/Prompter.qml:1283
 msgctxt "Format name (FORMAT_EXTENSION)"
 msgid "Apple Pages Document (%1)"
-msgstr ""
+msgstr "Документ Apple Pages (%1)"
 
 #: prompter/Prompter.qml:1284
 msgctxt "Format name (FORMAT_EXTENSION)"
 msgid "Rich Text Format (%1)"
-msgstr ""
+msgstr "Форматований текст (%1)"
 
 #: prompter/Prompter.qml:1377 prompter/Prompter.qml:1424
 msgctxt "Editor context menu actions"
 msgid "Fo&nt…"
-msgstr ""
+msgstr "Шри&фт…"
 
 #: prompter/Prompter.qml:1381 prompter/Prompter.qml:1428
 msgctxt "Editor context menu actions"
 msgid "Co&lor…"
-msgstr ""
+msgstr "Ко&лір…"
 
 #: prompter/Prompter.qml:1385 prompter/Prompter.qml:1432
 msgctxt "Editor context menu actions"
 msgid "Hi&ghlight…"
-msgstr ""
+msgstr "Ви&ділення…"
 
 #: prompter/Prompter.qml:1397
 msgctxt "Editor context menu actions"
 msgid "&Undo"
-msgstr ""
+msgstr "&Скасувати"
 
 #: prompter/Prompter.qml:1402
 msgctxt "Editor context menu actions"
 msgid "Redo"
-msgstr ""
+msgstr "Повернути"
 
 #: prompter/Prompter.qml:1665
 msgid "Begin countdown"
-msgstr ""
+msgstr "Розпочати зворотний відлік"
 
 #: prompter/Prompter.qml:1665
 msgid "Start prompting"
-msgstr ""
+msgstr "Почати суфлювання"
 
 #: prompter/Prompter.qml:1711
 msgid "Skip countdown"
-msgstr ""
+msgstr "Пропустити зворотний відлік"
 
 #: prompter/Prompter.qml:1754
 msgid "Return to edit mode"
-msgstr ""
+msgstr "Повернутися до режиму редагування"
