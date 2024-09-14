@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: qprompt\n"
 "Report-Msgid-Bugs-To: https://github.com/Cuperino/QPrompt/issues/new/choose\n"
 "POT-Creation-Date: 2024-07-03 05:16-0400\n"
-"PO-Revision-Date: 2024-09-13 17:58+0000\n"
+"PO-Revision-Date: 2024-09-15 07:57+0000\n"
 "Last-Translator: Karl SCHUH <k.schuh@schuh-tv.at>\n"
 "Language-Team: German <http://l10n.cuperino.com/projects/qprompt/qprompt-app/"
 "de/>\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.6.2\n"
+"X-Generator: Weblate 5.7.2\n"
 
 #: kirigami_ui/+android/main.qml:183 kirigami_ui/main.qml:198
 #: kirigami_ui/main.qml:563 kirigami_ui/+windows/main.qml:197
@@ -102,7 +102,7 @@ msgctxt ""
 "Main menu and global menu actions. Touchpad scrolling and mouse wheel use "
 "have no effect while prompting."
 msgid "Disable scrolling while prompting"
-msgstr "Scrollen während der Nutzung des Prompters deaktivieren"
+msgstr "kein Scrollen während des Promptens"
 
 #: kirigami_ui/+android/main.qml:284 kirigami_ui/main.qml:309
 #: kirigami_ui/+windows/main.qml:298
@@ -185,6 +185,7 @@ msgstr "Laden &Wilkommen"
 
 #: kirigami_ui/+android/main.qml:453 kirigami_ui/main.qml:535
 #: kirigami_ui/+windows/main.qml:510
+#, fuzzy
 msgid "Darth mode"
 msgstr "\"Darth\"-Modus"
 
@@ -291,12 +292,12 @@ msgstr "Buchstabenabstand <pre>%1</pre>"
 #: kirigami_ui/EditorToolbar.qml:1094
 msgctxt "Step speed 1.00"
 msgid "Step speed <pre>%1</pre>"
-msgstr "Geschwindigkeitsstufen <pre>%1</pre>"
+msgstr "Geschwindigkeitsstufe <pre>%1</pre>"
 
 #: kirigami_ui/EditorToolbar.qml:1135
 msgctxt "Step acceleration 1.15"
 msgid "Step acceleration <pre>%1</pre>"
-msgstr "Bescheleunigungsstufen <pre>%1</pre>"
+msgstr "Bescheleunigungsstufe <pre>%1</pre>"
 
 #: kirigami_ui/EditorToolbar.qml:1159
 msgctxt "Next reload starts at 10:11:12"
@@ -1360,7 +1361,6 @@ msgid "Ready: "
 msgstr "Bereit: "
 
 #: prompter/PointerSettings.qml:136
-#, fuzzy
 msgid "Prompting: "
 msgstr "Prompting: "
 
@@ -1486,7 +1486,7 @@ msgstr "Das Ende"
 
 #: prompter/Prompter.qml:1162
 msgid "New document"
-msgstr "Neues Dokument"
+msgstr "Neue Datei"
 
 #: prompter/Prompter.qml:1171
 msgid "welcome_en.html"
@@ -1534,7 +1534,7 @@ msgstr "OpenDocument Format Text Dokument (%1)"
 #: prompter/Prompter.qml:1281
 msgctxt "Format name (FORMAT_EXTENSION)"
 msgid "AbiWord Document (%1)"
-msgstr "AbiWord Document (%1)"
+msgstr "AbiWord Dokument (%1)"
 
 #: prompter/Prompter.qml:1282
 msgctxt "Format name (FORMAT_EXTENSION)"
@@ -1564,7 +1564,7 @@ msgstr "Farbe…"
 #: prompter/Prompter.qml:1385 prompter/Prompter.qml:1432
 msgctxt "Editor context menu actions"
 msgid "Hi&ghlight…"
-msgstr "Hi&ghlight…"
+msgstr "Hinter&grund…"
 
 #: prompter/Prompter.qml:1397
 msgctxt "Editor context menu actions"
