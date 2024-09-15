@@ -24,7 +24,8 @@
 // #include <QDebug>
 
 MarkersModel::MarkersModel(QObject *parent)
-    : QAbstractListModel(parent)
+    : QAbstractListModel(parent),
+    dirty(false)
 {
 }
 
@@ -94,7 +95,7 @@ void MarkersModel::clearMarkers()
     endRemoveRows();
 }
 
-void MarkersModel::appendMarker(Marker &marker)
+void MarkersModel::appendMarker(const Marker &marker)
 {
     const int listPosition = m_data.size();
     beginInsertRows(QModelIndex(), listPosition, listPosition);
@@ -154,7 +155,7 @@ Marker MarkersModel::binarySearch(const int l, const int r, const int goalPositi
                 // qDebug() << "mid equals";
                 if (reverse) {
                     if (mid == 0)
-                        return nullptr;
+                        return Marker();
                     else
                         return m_data.at(mid - 1);
                 }
@@ -169,7 +170,7 @@ Marker MarkersModel::binarySearch(const int l, const int r, const int goalPositi
                 if (reverse) {
                     if (mid - 1 >= 0)
                         return m_data.at(mid - 1);
-                    return nullptr;
+                    return Marker();
                 } else
                     return m_data.at(mid + 1);
             }
@@ -185,7 +186,7 @@ Marker MarkersModel::binarySearch(const int l, const int r, const int goalPositi
     // qDebug() << "Final l: " << l << ", r: " << r << ", gp: " << goalPosition << ", rows: " << rowCount();
     if (reverse) {
         if (r < 0)
-            return nullptr; // 0 // m_data.at(0).position;
+            return Marker(); // 0 // m_data.at(0).position;
         return m_data.at(r);
     } else
         return m_data.at(l);
@@ -211,5 +212,5 @@ Marker MarkersModel::previousMarker(int position)
         // Find previous marker
         return this->binarySearch(0, size - 1, position, true);
     // Move to start
-    return nullptr;
+    return Marker();
 }
