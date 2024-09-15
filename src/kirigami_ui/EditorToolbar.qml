@@ -83,7 +83,7 @@ ToolBar {
 
     property bool showFontSpacingOptions: false
     property bool showAnimationConfigOptions: false
-    property bool hideFormattingToolsWhilePrompting: false
+    property bool hideFormattingToolsWhilePrompting: true
     property bool hideFormattingToolsAlways: Qt.platform.os==="linux" && root.__isMobile || Qt.platform.os==="android" || Qt.platform.os==="ios"
 
     readonly property alias fontSizeSlider: fontSizeSlider
