@@ -205,11 +205,11 @@ elseif(WIN32 OR APPLE)
         I18n
         CoreAddons
     )
-    # find_package(KF${QT_VERSION_MAJOR}Crash ${KF_MIN_VERSION} COMPONENTS)
-    # set_package_properties(KF${QT_VERSION_MAJOR}Crash PROPERTIES
-    #     DESCRIPTION "Graceful handling of application crashes."
-    #     TYPE OPTIONAL
-    # )
+    find_package(KF${QT_VERSION_MAJOR}Crash ${KF_MIN_VERSION} COMPONENTS)
+    set_package_properties(KF${QT_VERSION_MAJOR}Crash PROPERTIES
+        DESCRIPTION "Graceful handling of application crashes."
+        TYPE OPTIONAL
+    )
     find_package(QHotkey 1.5.0 COMPONENTS
         QHotkey
     )
