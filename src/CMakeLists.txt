@@ -412,6 +412,9 @@ if (WIN32 OR UNIX) # AND NOT ANDROID)
 endif()
 
 set(deploy_tool_options_arg "")
+if(APPLE)
+    set(deploy_tool_options_arg --hardened-runtime)
+endif()
 qt_generate_deploy_qml_app_script(
     TARGET ${PROJECT_NAME}
     OUTPUT_SCRIPT deploy_script
