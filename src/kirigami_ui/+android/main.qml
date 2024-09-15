@@ -297,13 +297,13 @@ Kirigami.ApplicationWindow {
                 }
                 Kirigami.Action {
                     text: i18nc("Main menu actions. Enters Performance tweaks submenu.", "Performance tweaks")
-                    Kirigami.Action {
-                        text: i18nc("Main menu actions", "Disable screen projections")
-                        enabled: !checked
-                        checkable: true
-                        checked: !projectionManager.isEnabled
-                        onTriggered: projectionManager.toggle()
-                    }
+                    // Kirigami.Action {
+                    //     text: i18nc("Main menu actions", "Disable screen projections")
+                    //     enabled: !checked
+                    //     checkable: true
+                    //     checked: !projectionManager.isEnabled
+                    //     onTriggered: projectionManager.toggle()
+                    // }
                     Kirigami.Action {
                         text: i18nc("Main menu actions", "Disable timers")
                         enabled: !checked
