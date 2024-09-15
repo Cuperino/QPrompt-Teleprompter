@@ -191,7 +191,6 @@ Kirigami.Page {
                     ]
                     onClicked: viewport.overlay.toggleLinesInRegion(false)
                     Label {
-                        id: label
                         text: i18nc("Height of reading region relative to single line height. E.g. Height: 2.5", "Height: %1", viewport.overlay.linesInRegion)
                     }
                 }
@@ -659,7 +658,6 @@ Kirigami.Page {
                         ]
                         onClicked: toggleDisplayFlip()
                         Label {
-                            id: label
                             text: switch (flipSetting) {
                                 case 0 : return display.name + " : " + i18nc("Screen is disabled", "Off");
                                 case 1 : return display.name + " : " + i18nc("Screen is enabled but mirroring is disabled", "No Mirror");
