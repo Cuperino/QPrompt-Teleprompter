@@ -22,8 +22,8 @@
 
 cmake_minimum_required(VERSION 3.22)
 
-set(RELEASE_SERVICE_VERSION_MAJOR "1")
-set(RELEASE_SERVICE_VERSION_MINOR "2")
+set(RELEASE_SERVICE_VERSION_MAJOR "2")
+set(RELEASE_SERVICE_VERSION_MINOR "0")
 set(RELEASE_SERVICE_VERSION_MICRO "0")
 set(RELEASE_SERVICE_VERSION "${RELEASE_SERVICE_VERSION_MAJOR}.${RELEASE_SERVICE_VERSION_MINOR}.${RELEASE_SERVICE_VERSION_MICRO}")
 
@@ -45,16 +45,16 @@ set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
 
 set(QT_DEFAULT_MAJOR_VERSION 6)
+# Qt 6.6.2 for Ubuntu 24.10, tho ideally we'd use 6.7.2.
 set(QT_MIN_VERSION 6.6.2)
-# KF6 5.78 for Ubuntu 21.04 and Debian 11, which require no backporting
-# KF6 5.68 is used as a hack to allow Snapcraft build on Ubuntu 20.04 core
-# Use 5.83 ECM on Windows to make use of ecm_add_app_icon syntax
+# Enabling newer ECM appears to break AutoMOC...
 if (WIN32)
     set(ECM_MIN_VERSION 5.83.0)
 else()
     set(ECM_MIN_VERSION 5.68.0)
 endif()
-set(KF_MIN_VERSION 5.68.0)
+# All other KF should go with the latest versions
+set(KF_MIN_VERSION 6.5.0)
 if (APPLE)
     set(APPLE_SUPPRESS_X11_WARNING ON)
 endif()
@@ -179,10 +179,10 @@ elseif(HAIKU)
         QuickCompiler
     )
     find_package(KF${QT_VERSION_MAJOR} ${KF_MIN_VERSION} REQUIRED COMPONENTS
-        Kirigami2
+        Kirigami
         I18n
         CoreAddons
-#        IconThemes
+        IconThemes
     )
     find_package(KF${QT_VERSION_MAJOR}Crash ${REQUIRED_KF${QT_VERSION_MAJOR}_VERSION} CONFIG QUIET)
         set_package_properties(KF${QT_VERSION_MAJOR}Crash PROPERTIES
@@ -190,7 +190,7 @@ elseif(HAIKU)
         TYPE OPTIONAL
     )
 elseif(WIN32 OR APPLE)
-    find_package(Qt6 ${QT_MIN_VERSION} REQUIRED NO_MODULE COMPONENTS
+    find_package(Qt${QT_VERSION_MAJOR} ${QT_MIN_VERSION} REQUIRED NO_MODULE COMPONENTS
         Core
         Quick
         Svg
@@ -252,7 +252,6 @@ else()
             Kirigami2
             I18n
             CoreAddons
-            # IconThemes
         )
     endif()
     find_package(KF${QT_VERSION_MAJOR}Crash ${REQUIRED_KF${QT_VERSION_MAJOR}_VERSION} COMPONENTS)
@@ -359,11 +358,11 @@ if(UNIX AND NOT ANDROID)
     # CPACK: DEB specific settings
     set(CPACK_DEBIAN_PACKAGE_SECTION "Multimedia")
     set(CPACK_DEBIAN_COMPRESSION_TYPE ${COMPRESION_TYPE})
-    set(CPACK_DEBIAN_PACKAGE_DEPENDS "libqt6svg5 (>= 6.6.2), qml-module-qt-labs-platform (>=6.6.2), qml-module-qtqml (>=6.6.2), qml-module-qtqml-models2 (>=6.6.2), qml-module-qtqml-statemachine (>=6.6.2), qml-module-qtquick-controls (>=6.6.2), qml-module-qtquick-controls2 (>=6.6.2), qml-module-qtquick-dialogs (>=6.6.2), qml-module-qtquick-shapes (>=6.6.2), qml-module-org-kde-Kirigami (>=6.0.0), libkf5i18n5 (>= 6.0.0), libkf5coreaddons5 (>= 6.0.0), libkf5crash5 (>= 6.0.0)")
+    set(CPACK_DEBIAN_PACKAGE_DEPENDS "libqt6svg5 (>= 6.6.2), qml-module-qt-labs-platform (>=6.6.2), qml-module-qtqml (>=6.6.2), qml-module-qtqml-models2 (>=6.6.2), qml-module-qtqml-statemachine (>=6.6.2), qml-module-qtquick-controls (>=6.6.2), qml-module-qtquick-controls2 (>=6.6.2), qml-module-qtquick-dialogs (>=6.6.2), qml-module-qtquick-shapes (>=6.6.2), libkf5coreaddons5 (>= 6.5.0), qml-module-org-kde-Kirigami (>=6.5.0), libkf5i18n5 (>= 6.5.0), libkf5crash5 (>= 6.5.0)")
 
     # CPACK: RPM specific settings
     set(CPACK_RPM_PACKAGE_GROUP "Multimedia/Video")
-    set(CPACK_RPM_PACKAGE_REQUIRES "qt6-qtbase >= 6.6.2, qt6-qtbase-gui >= 6.6.2, qt6-qtdeclarative >= 6.6.2, qt6-qtsvg >= 6.6.2, qt6-qtquickcontrols >= 6.6.2, qt6-qtquickcontrols2 >= 6.6.2, kf5-ki18n >= 6.0.0, kf5-kirigami >= 6.0.0, kf5-kcoreaddons >= 6.0.0, kf5-kcrash >= 6.0.0")
+    set(CPACK_RPM_PACKAGE_REQUIRES "qt6-qtbase >= 6.7.2, qt6-qtbase-gui >= 6.7.2, qt6-qtdeclarative >= 6.7.2, qt6-qtsvg >= 6.7.2, qt6-qtquickcontrols >= 6.7.2, qt6-qtquickcontrols2 >= 6.7.2, kf5-kcoreaddons >= 6.5.0, kf5-ki18n >= 6.5.0, kf5-kirigami >= 6.5.0, kf5-kcrash >= 6.5.0")
     set(CPACK_RPM_COMPRESSION_TYPE ${COMPRESION_TYPE})
 
 elseif(WIN32)
