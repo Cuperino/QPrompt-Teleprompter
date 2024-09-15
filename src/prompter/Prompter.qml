@@ -191,9 +191,9 @@ Flickable {
         property int decreaseVelocity: Qt.Key_Up
         property int decreaseVelocityModifiers: Qt.platform.os==="osx" ? Qt.KeypadModifier : Qt.NoModifier
         property int stop: Qt.Key_Space
-        property int stopModifiers: Qt.NoModifier
-        property int pause: Qt.Key_P
-        property int pauseModifiers: Qt.ControlModifier
+        property int stopModifiers: Qt.ControlModifier
+        property int pause: Qt.Key_Space
+        property int pauseModifiers: Qt.NoModifier
         property int reverse: Qt.Key_I
         property int reverseModifiers: Qt.NoModifier
         property int rewind: Qt.Key_R
