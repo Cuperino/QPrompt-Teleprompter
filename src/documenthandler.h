@@ -201,7 +201,7 @@ public:
     Q_INVOKABLE void paste(bool withoutFormating);
     Q_INVOKABLE void paste();
     Q_INVOKABLE QPoint replaceSelected(QString text);
-    Q_INVOKABLE long replaceAll(QString searchedText, QString replacementText, bool regEx);
+    Q_INVOKABLE long replaceAll(const QString &searchedText, const QString &replacementText, bool regEx);
     Q_INVOKABLE void parse();
     Q_INVOKABLE QString filterHtml(QString html, bool ignoreBlackTextColor);
 
@@ -262,7 +262,7 @@ private:
     void mergeFormatOnWordOrSelection(const QTextCharFormat &format);
 
     enum ImportFormat { NONE, PDF, ODT, DOCX, DOC, RTF, ABW, EPUB, MOBI, AZW, PAGES, PAGESX };
-    QString import(QString fileName, ImportFormat);
+    QString import(const QString &fileName, ImportFormat);
 
     QQuickTextDocument *m_document;
 
