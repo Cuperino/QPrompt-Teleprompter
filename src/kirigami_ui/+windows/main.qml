@@ -400,6 +400,14 @@ Kirigami.ApplicationWindow {
                         checked: root.pageStack.currentItem.document.autoReload
                         onTriggered: root.pageStack.currentItem.document.autoReload = checked
                     }
+                    Kirigami.Action {
+                        id: fakeFullscreenSetting
+                        text: i18nc("Main menu actions. Fake fullscreen behavior instead of requesting true fullscreen", "Fake fullscreen behavior")
+                        icon.source: "qrc:/qt/qml/com/cuperino/qprompt/icons/view-fullscreen.svg"
+                        checkable: true
+                        checked: root.__fakeFullscreen
+                        onTriggered: root.__fakeFullscreen = checked
+                    }
                 }
 //                 Kirigami.Action {
 //                     text: i18nc("Main menu actions", "Restore factory defaults")
