@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: qprompt\n"
 "Report-Msgid-Bugs-To: https://github.com/Cuperino/QPrompt/issues/new/choose\n"
 "POT-Creation-Date: 2024-07-03 05:16-0400\n"
-"PO-Revision-Date: 2024-09-15 07:57+0000\n"
+"PO-Revision-Date: 2024-09-16 09:57+0000\n"
 "Last-Translator: Karl SCHUH <k.schuh@schuh-tv.at>\n"
 "Language-Team: German <http://l10n.cuperino.com/projects/qprompt/qprompt-app/"
 "de/>\n"
@@ -94,7 +94,7 @@ msgctxt ""
 "Main menu and global menu actions. Have touchpad and mouse wheel scrolling "
 "adjust velocity instead of scrolling like most other apps."
 msgid "Use scroll as velocity &dial"
-msgstr "Scrollrad als Geschwindigkeitsrad nutzen"
+msgstr "Mausrad als Geschwindigkeitsrad nutzen"
 
 #: kirigami_ui/+android/main.qml:276 kirigami_ui/main.qml:300
 #: kirigami_ui/main.qml:794 kirigami_ui/+windows/main.qml:290
@@ -1265,7 +1265,7 @@ msgstr "Mausrad und Touchpad scroll-Einstellungen"
 #: kirigami_ui/WheelSettingsOverlay.qml:38
 msgctxt "Label at wheel settings overlay"
 msgid "Use scroll as velocity dial"
-msgstr "Scrollrad als Geschwindigkeitsrad nutzen"
+msgstr "Geschwindigkeit mit Mausrad"
 
 #: kirigami_ui/WheelSettingsOverlay.qml:57
 msgid "Enable throttling"
@@ -1278,7 +1278,7 @@ msgstr "Drosselungsfaktor"
 #: kirigami_ui/WheelSettingsOverlay.qml:93
 msgid "Enable throttling for use with touchpads, disable for precise scolling."
 msgstr ""
-"Drosselung bei Verwendung von Touchpad nutzen, abschalten für genaues "
+"Drosselung bei Verwendung eines Touchpads nutzen, abschalten für genaues "
 "Scrollen."
 
 #: main.cpp:92
