@@ -21,15 +21,26 @@
 #
 #**************************************************************************
 
+ARCHITECTURE="$(uname -m)"
+echo -e "\nArchitecture: $ARCHITECTURE"
+
 if [[ "$OSTYPE" == "linux-gnu"* ]]; then
    PLATFORM="linux"
-   COMPILER="gcc"
+   if [ "$ARCHITECTURE" == "aarch64" ]; then
+       COMPILER="gcc_arm64"
+   else
+       COMPILER="gcc"
+   fi
 elif [[ "$OSTYPE" == "darwin"* ]]; then
     PLATFORM="macos"
     COMPILER="macos"
 elif [[ "$OSTYPE" == "win32" || "$OSTYPE" == "msys" ]]; then
     PLATFORM="windows"
-    COMPILER="msvc2019_64"
+    if [ "$ARCHITECTURE" == "aarch64" ]; then
+        COMPILER="msvc2019_arm64"
+    else
+        COMPILER="msvc2019_64"
+    fi
 elif [[ "$OSTYPE" == "freebsd"* ]]; then
     PLATFORM="freebsd"
     COMPILER="gcc"
@@ -86,8 +97,6 @@ fi
 # Constants
 CMAKE_INSTALL_PREFIX="build/install"
 mkdir -p "$CMAKE_INSTALL_PREFIX"
-ARCHITECTURE="$(uname -m)"
-echo -e "\nArchitecture: $ARCHITECTURE"
 
 echo -e "\nBuild directory is ./build"
 if $CLEAR_ALL # QPrompt and dependencies
