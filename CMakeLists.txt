@@ -100,7 +100,7 @@ set(DBINARY_ICONS_RESOURCE ON)
 endif()
 
 if(NOT CMAKE_BUILD_TYPE)
-    set(CMAKE_BUILD_TYPE "MinSizeRel")
+    set(CMAKE_BUILD_TYPE "RelWithDebInfo")
 endif()
 
 list(APPEND CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/cmake")
