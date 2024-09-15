@@ -665,8 +665,7 @@ void DocumentHandler::load(const QUrl &fileUrl)
         if (path != this->fileUrl())
             newPath = true;
         if (path.isLocalFile() && newPath && _fileSystemWatcher != nullptr) {
-            if (newPath)
-                _fileSystemWatcher->removePath(QQmlFile::urlToLocalFileOrQrc(this->fileUrl()));
+            _fileSystemWatcher->removePath(QQmlFile::urlToLocalFileOrQrc(this->fileUrl()));
             if (!skipAutoReload || autoReload()) {
                 _fileSystemWatcher->addPath(fileName);
                 connect(_fileSystemWatcher, SIGNAL(fileChanged(QString)), this, SLOT(reload(QString)), Qt::UniqueConnection);
@@ -678,7 +677,7 @@ void DocumentHandler::load(const QUrl &fileUrl)
     Q_EMIT fileUrlChanged();
 }
 
-QString DocumentHandler::import(QString fileName, ImportFormat type)
+QString DocumentHandler::import(const QString &fileName, ImportFormat type)
 {
     QString program = QString::fromUtf8("");
     QStringList arguments;
@@ -977,7 +976,7 @@ QPoint DocumentHandler::replaceSelected(QString text)
     return QPoint(this->selectionStart(), this->selectionEnd());
 }
 
-long DocumentHandler::replaceAll(QString searchedText, QString replacementText, bool regEx)
+long DocumentHandler::replaceAll(const QString &searchedText, const QString &replacementText, bool regEx)
 {
     long i = 0;
     if (searchedText.length() > 0) {
