@@ -282,6 +282,7 @@ Flickable {
                 cursorAutoHide.reset();
                 break;
             case Prompter.States.Standby:
+                // fall through
             case Prompter.States.Countdown:
                 cursorAutoHide.reset();
             case Prompter.States.Prompting:
