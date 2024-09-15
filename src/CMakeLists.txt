@@ -246,7 +246,7 @@ set_target_properties(${PROJECT_NAME} PROPERTIES
     MACOSX_BUNDLE TRUE
     WIN32_EXECUTABLE TRUE
     QT_QMLCACHEGEN_DIRECT_CALLS ON
-    # QT_QMLCACHEGEN_ARGUMENTS "--static;--direct"
+    QT_QMLCACHEGEN_ARGUMENTS "--static"  # "--static;--verbose"
 )
 
 if (NOT IOS)
