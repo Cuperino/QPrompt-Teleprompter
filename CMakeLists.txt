@@ -126,62 +126,35 @@ if(GIT_FOUND AND EXISTS "${PROJECT_SOURCE_DIR}/.git")
     endif()
 endif()
 
-
+# Common dependencices
+find_package(Qt${QT_VERSION_MAJOR} ${QT_MIN_VERSION} REQUIRED NO_MODULE COMPONENTS
+    Core
+    Quick
+    Svg
+    Gui
+    QuickControls2
+    Network
+    ShaderTools
+)
+find_package(KF${QT_VERSION_MAJOR} ${KF_MIN_VERSION} REQUIRED COMPONENTS
+    Kirigami
+    I18n
+    CoreAddons
+)
+# Desktop only dependencies
+if(NOT ANDROID AND NOT IOS)
+    find_package(Qt${QT_VERSION_MAJOR} ${QT_MIN_VERSION} REQUIRED NO_MODULE COMPONENTS
+        Widgets
+    )
+endif()
+# Platform specific dependencies
 if(ANDROID)
     find_package(Qt${QT_VERSION_MAJOR} ${QT_MIN_VERSION} REQUIRED NO_MODULE COMPONENTS
-        Core
-        Quick
-        Svg
-        Gui
-        QuickControls2
-        Network
         AndroidExtras
-        QmlImportScanner  # Used to get static QML. Gets ignored if not a static build
-        QuickCompiler
-        ShaderTools
     )
-    find_package(KF${QT_VERSION_MAJOR} ${KF_MIN_VERSION} REQUIRED COMPONENTS
-        Kirigami2
-        I18n
-        CoreAddons
-    )
-elseif(WASM OR IOS)
-    if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
-        find_package(Qt${QT_VERSION_MAJOR} ${QT_MIN_VERSION} REQUIRED NO_MODULE COMPONENTS
-            Core
-            Quick
-            Svg
-            Gui
-            QuickControls2
-            Network
-            ShaderTools
-        )
-        find_package(KF${QT_VERSION_MAJOR} ${KF_MIN_VERSION} REQUIRED COMPONENTS
-            Kirigami2
-            I18n
-            CoreAddons
-        )
-    endif()
 elseif(HAIKU)
-    find_package(Qt${QT_VERSION_MAJOR} ${QT_MIN_VERSION} REQUIRED NO_MODULE COMPONENTS
-        Core
-        Quick
-        Svg
-        Gui
-        QuickControls2
-        Network
-        Widgets
-        ShaderTools
-    )
-    # By requiring newer Qt version to use QML compiler, Snap can be built without it.
-    find_package(Qt${QT_VERSION_MAJOR} ${QT_MIN_VERSION} NO_MODULE COMPONENTS
-        QmlImportScanner  # Used to get static QML. Gets ignored if not a static build
-        QuickCompiler
-    )
+    # Haiku OS icons look nice
     find_package(KF${QT_VERSION_MAJOR} ${KF_MIN_VERSION} REQUIRED COMPONENTS
-        Kirigami
-        I18n
-        CoreAddons
         IconThemes
     )
     find_package(KF${QT_VERSION_MAJOR}Crash ${REQUIRED_KF${QT_VERSION_MAJOR}_VERSION} CONFIG QUIET)
@@ -189,23 +162,9 @@ elseif(HAIKU)
         DESCRIPTION "Graceful handling of application crashes."
         TYPE OPTIONAL
     )
-elseif(WIN32 OR APPLE)
-    find_package(Qt${QT_VERSION_MAJOR} ${QT_MIN_VERSION} REQUIRED NO_MODULE COMPONENTS
-        Core
-        Quick
-        Svg
-        Gui
-        QuickControls2
-        Network
-        Widgets
-        ShaderTools
-    )
-    find_package(KF${QT_VERSION_MAJOR} ${KF_MIN_VERSION} REQUIRED COMPONENTS
-        Kirigami2
-        I18n
-        CoreAddons
-    )
-    find_package(KF${QT_VERSION_MAJOR}Crash ${KF_MIN_VERSION} COMPONENTS)
+# Windows, MacOS, and FreeBSD
+else()
+    find_package(KF${QT_VERSION_MAJOR}Crash ${REQUIRED_KF${QT_VERSION_MAJOR}_VERSION} COMPONENTS)
     set_package_properties(KF${QT_VERSION_MAJOR}Crash PROPERTIES
         DESCRIPTION "Graceful handling of application crashes."
         TYPE OPTIONAL
@@ -220,48 +179,6 @@ elseif(WIN32 OR APPLE)
         endif()
         add_subdirectory("3rdparty/KDMacTouchBar" build/kdmactouchbar)
     endif()
-else()
-    if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
-        find_package(Qt${QT_VERSION_MAJOR} ${QT_MIN_VERSION} REQUIRED NO_MODULE COMPONENTS
-            Core
-            Quick
-            Svg
-            Gui
-            QuickControls2
-            Network
-            Widgets
-            ShaderTools
-        )
-        find_package(KF${QT_VERSION_MAJOR} ${KF_MIN_VERSION} REQUIRED COMPONENTS
-            Kirigami2
-            I18n
-            CoreAddons
-        )
-    else()
-        find_package(Qt${QT_VERSION_MAJOR} ${QT_MIN_VERSION} REQUIRED NO_MODULE COMPONENTS
-            Core
-            Quick
-            Svg
-            Gui
-            QuickControls2
-            Network
-            Widgets
-            X11Extras
-        )
-        find_package(KF${QT_VERSION_MAJOR} ${KF_MIN_VERSION} REQUIRED COMPONENTS
-            Kirigami2
-            I18n
-            CoreAddons
-        )
-    endif()
-    find_package(KF${QT_VERSION_MAJOR}Crash ${REQUIRED_KF${QT_VERSION_MAJOR}_VERSION} COMPONENTS)
-    set_package_properties(KF${QT_VERSION_MAJOR}Crash PROPERTIES
-        DESCRIPTION "Graceful handling of application crashes."
-        TYPE OPTIONAL
-    )
-    find_package(QHotkey 1.5.0 COMPONENTS
-        QHotkey
-    )
 endif()
 
 if (WIN32 OR UNIX) # AND NOT ANDROID
