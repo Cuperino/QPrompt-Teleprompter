@@ -92,14 +92,14 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
         i18n("Personal teleprompter software for all video makers. Built with ease of use, productivity, and smooth performance in mind."));
     parser.addHelpOption();
     parser.addVersionOption();
-    parser.addPositionalArgument("source", i18nc("file", "File to copy."));
-    QCommandLineOption qgsIgnore(QStringList() << "q"
-                                               << "qgs_ignore",
+    parser.addPositionalArgument(QLatin1String("source"), i18nc("file", "File to copy."));
+    QCommandLineOption qgsIgnore(QStringList() << QLatin1String("q")
+                                               << QLatin1String("qgs_ignore"),
                                  i18n("Ignore QSG_RENDER_LOOP environment variable."));
     parser.addOption(qgsIgnore);
     parser.process(app);
     QStringList positionalArguments = parser.positionalArguments();
-    QString fileToOpen = "";
+    QString fileToOpen = QLatin1String("");
     if (positionalArguments.length())
         fileToOpen = parser.positionalArguments().at(0);
 
@@ -151,8 +151,8 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
     QString copyrightYear = QString::number(currentYear);
     QString copyrightStatement1 = i18n("© 2021 Javier O. Cordero Pérez");
     QString copyrightStatement2 = i18n("© 2021-%1 Javier O. Cordero Pérez", copyrightYear);
-    KAboutData aboutData("qprompt",
-                         "QPrompt",
+    KAboutData aboutData(QLatin1String("qprompt"),
+                         QLatin1String("QPrompt"),
                          QPROMPT_VERSION_STRING " (" + QString::fromUtf8(GIT_BRANCH) + "/" + QString::fromUtf8(GIT_COMMIT_HASH) + ")",
                          i18n("Personal teleprompter software for all video makers."),
                          KAboutLicense::GPL_V3,
@@ -160,11 +160,11 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
                          // Pérez").subs(currentYear).toString());
                          (currentYear <= 2021) ? copyrightStatement1 : copyrightStatement2);
     // Overwrite default-generated values of organizationDomain & desktopFileName
-    aboutData.setHomepage("https://qprompt.app");
+    aboutData.setHomepage(QLatin1String("https://qprompt.app"));
     aboutData.setProductName("cuperino/qprompt");
     aboutData.setBugAddress("https://github.com/Cuperino/QPrompt/issues");
-    aboutData.setOrganizationDomain(QPROMPT_URI);
-    aboutData.setDesktopFileName(QPROMPT_URI);
+    aboutData.setOrganizationDomain(QByteArray(QPROMPT_URI));
+    aboutData.setDesktopFileName(QLatin1String(QPROMPT_URI));
     aboutData.addAuthor(QString::fromUtf8("Javier O. Cordero Pérez"),
                         i18n("Author"),
                         QString::fromUtf8("javiercorderoperez@gmail.com"),
@@ -236,7 +236,7 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
 
 #if defined(QHotkey_FOUND)
     // Toggle transparency of all windows
-    QHotkey hotkey(QKeySequence("Meta+Alt+F10"), true, &app);
+    QHotkey hotkey(QKeySequence(QLatin1String("Meta+Alt+F10")), true, &app);
     QObject::connect(&hotkey, &QHotkey::activated, qApp, [&]() {
         QWindowList windows = app.allWindows();
         QWindow *topWindow = windows.first();
