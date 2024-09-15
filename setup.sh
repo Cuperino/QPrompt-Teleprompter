@@ -39,12 +39,11 @@ else
 fi
 
 cat << EOF
-usage: $0 <CMAKE_BUILD_TYPE> <CMAKE_PREFIX_PATH> [<QT_MAJOR_VERSION> | ] [CLEAR | CLEAR_ALL]
+usage: $0 <CMAKE_BUILD_TYPE> <CMAKE_PREFIX_PATH> [CLEAR | CLEAR_ALL]
 
 Defaults:
- * CMAKE_CONFIGURATION_TYPES: "Debug;Release;RelWithDebInfo;MinSizeRel"
+ * CMAKE_BUILD_TYPE: "RelWithDebInfo"
  * CMAKE_PREFIX_PATH: "~/Qt/6.7.2/$COMPILER/"
- * QT_MAJOR_VERSION: 6
 
 Setup script for building QPrompt
 This script assumes you've already installed the following dependencies:
@@ -53,10 +52,10 @@ This script assumes you've already installed the following dependencies:
  * Qt 6 Open Source
 EOF
 
-CMAKE_CONFIGURATION_TYPES=$1
-if [ "$CMAKE_CONFIGURATION_TYPES" == "" ]; then
-    CMAKE_CONFIGURATION_TYPES="Debug;Release;RelWithDebInfo;MinSizeRel"
-    CMAKE_BUILD_TYPE="Release"
+CMAKE_CONFIGURATION_TYPES="Debug;Release;RelWithDebInfo;MinSizeRel"
+CMAKE_BUILD_TYPE=$1
+if [ "$CMAKE_BUILD_TYPE" == "" ]; then
+    CMAKE_BUILD_TYPE="RelWithDebInfo"
 fi
 CMAKE_PREFIX_PATH=$2
 if [ "$CMAKE_PREFIX_PATH" == "" ]
@@ -69,10 +68,7 @@ if [ "$CMAKE_PREFIX_PATH" == "" ]
         CMAKE_PREFIX_PATH="~/Qt/6.7.2/$COMPILER/"
     fi
 fi
-QT_MAJOR_VERSION=$3
-if [ "$QT_MAJOR_VERSION" == "" ]
-    then QT_MAJOR_VERSION=6
-fi
+QT_MAJOR_VERSION=6
 CLEAR_ARG="${@: -1}"
 if [ "$CLEAR_ARG" == "CLEAR" ]
     then
@@ -88,7 +84,8 @@ else
 fi
 
 # Constants
-CMAKE_INSTALL_PREFIX="$CMAKE_PREFIX_PATH"
+CMAKE_INSTALL_PREFIX="build/install"
+mkdir -p "$CMAKE_INSTALL_PREFIX"
 ARCHITECTURE="$(uname -m)"
 echo -e "\nArchitecture: $ARCHITECTURE"
 
@@ -169,6 +166,7 @@ for dependency in $tier_0 $tier_1 $tier_2 $tier_3; do
     cmake -DCMAKE_CONFIGURATION_TYPES=$CMAKE_CONFIGURATION_TYPES -DBUILD_TESTING=OFF -BUILD_QCH=OFF -DCMAKE_PREFIX_PATH=$CMAKE_PREFIX_PATH -DCMAKE_INSTALL_PREFIX=$CMAKE_INSTALL_PREFIX -B ./$dependency/build ./$dependency/
     cmake --build ./$dependency/build --config $CMAKE_BUILD_TYPE
     cmake --install ./$dependency/build
+    cp -r "$CMAKE_INSTALL_PREFIX" "$CMAKE_PREFIX_PATH"
 done
 
 echo "QHotkey"
@@ -179,7 +177,10 @@ fi
 cmake -DCMAKE_CONFIGURATION_TYPES=$CMAKE_CONFIGURATION_TYPES -DCMAKE_PREFIX_PATH=$CMAKE_PREFIX_PATH -DCMAKE_INSTALL_PREFIX=$CMAKE_INSTALL_PREFIX -DBUILD_SHARED_LIBS=ON -DQT_DEFAULT_MAJOR_VERSION=${QT_MAJOR_VERSION} -B ./3rdparty/QHotkey/build ./3rdparty/QHotkey/
 cmake --build ./3rdparty/QHotkey/build --config $CMAKE_BUILD_TYPE
 cmake --install ./3rdparty/QHotkey/build
+cp -r "$CMAKE_INSTALL_PREFIX" "$CMAKE_PREFIX_PATH"
 
 echo "QPrompt"
 cmake -DCMAKE_CONFIGURATION_TYPES=$CMAKE_CONFIGURATION_TYPES -DCMAKE_PREFIX_PATH=$CMAKE_PREFIX_PATH -DCMAKE_INSTALL_PREFIX=$CMAKE_INSTALL_PREFIX -B ./build .
-cmake --build build --config $CMAKE_BUILD_TYPE
+cmake --build ./build --config $CMAKE_BUILD_TYPE
+cmake --install ./build
+cp -r "$CMAKE_INSTALL_PREFIX" "$CMAKE_PREFIX_PATH"
