@@ -127,6 +127,7 @@ Kirigami.OverlayDrawer {
                 //icon: Qt.application.layoutDirection===Qt.LeftToRight ? "view-left-close" : "view-right-close"
                 icon.source: Qt.application.layoutDirection===Qt.LeftToRight ? "../icons/view-left-close.svg" : "../icons/view-right-close.svg"
                 text: i18nc("Close sidebar listing user defined markers", "Close Marker List")
+                Material.theme: Material.Dark
                 onClicked: {
                     markersDrawer.toggle();
                     //console.log(prompterPage.document.markers())
