@@ -95,7 +95,7 @@ else
 fi
 
 # Constants
-CMAKE_INSTALL_PREFIX="build/install"
+CMAKE_INSTALL_PREFIX="install"
 mkdir -p "$CMAKE_INSTALL_PREFIX"
 
 echo -e "\nBuild directory is ./build"
@@ -146,7 +146,7 @@ else
 VCPKG=./3rdparty/vcpkg/vcpkg
 fi
 # Install VCPKG packages
-$VCPKG install --x-install-root "$CMAKE_PREFIX_PATH" gettext gettext-libintl
+$VCPKG install --x-install-root $CMAKE_PREFIX_PATH gettext gettext-libintl
 # Copy installed packages into install prefix
 for package in ./3rdparty/vcpkg/packages/*; do
     echo $package
