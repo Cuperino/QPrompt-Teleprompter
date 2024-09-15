@@ -7,7 +7,6 @@
 class AbstractUnits : public QObject
 {
     Q_OBJECT
-    //    QML_ELEMENT
     QML_UNCREATABLE("Cannot create")
 
 public:

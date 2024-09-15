@@ -58,7 +58,7 @@ public:
     // Q_SIGNALS:
     // void insertRow(int row, const QModelIndex &parent);
     void clearMarkers();
-    void appendMarker(Marker &marker);
+    void appendMarker(const Marker &marker);
     void removeMarker(int row);
     Marker previousMarker(int position);
     Marker nextMarker(int position);

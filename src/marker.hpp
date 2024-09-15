@@ -9,13 +9,13 @@ struct Marker {
     Q_PROPERTY(int length MEMBER length)
     Q_PROPERTY(QString url MEMBER url)
 public:
-    // Constructors
-    Marker() = default;
-    Marker(int p)
+    Marker() {
+        position = 0;
+    };
+    explicit Marker(int p)
     {
         position = p;
     };
-    Marker(std::nullptr_t){};
     // Contents
     QString text;
     int position = 0;
