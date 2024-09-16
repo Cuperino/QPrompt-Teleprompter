@@ -24,19 +24,16 @@ ecm_create_qm_loader(qprompt_QM_LOADER ../locale/qprompt.pot)
 
 qt_standard_project_setup()
 
-set(SOURCES
+qt_add_executable(${PROJECT_NAME}
+    main.cpp
     systemfontchooserdialog.h
     systemfontchooserdialog.cpp
 )
 if (NOT ANDROID)
-    qt_wrap_ui(SOURCES
+    qt_wrap_ui(${PROJECT_NAME}
         qt/systemfontchooserdialog.ui
     )
 endif()
-qt_add_executable(${PROJECT_NAME}
-    main.cpp
-    ${SOURCES}
-)
 set(qprompt_frontend_sources
     # Kirigami UI Frontend
     kirigami_ui/main.qml
