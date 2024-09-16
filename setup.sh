@@ -53,7 +53,11 @@ fi
 CMAKE_CONFIGURATION_TYPES="Debug;Release;RelWithDebInfo;MinSizeRel"
 CMAKE_BUILD_TYPE=$1
 if [ "$CMAKE_BUILD_TYPE" == "" ]; then
-    CMAKE_BUILD_TYPE="RelWithDebInfo"
+    if [[ "$PLATFORM" == "windows" ]]; then
+        CMAKE_BUILD_TYPE="Release"
+    else
+        CMAKE_BUILD_TYPE="RelWithDebInfo"
+    fi
 fi
 CMAKE_PREFIX_PATH=$2
 if [ "$CMAKE_PREFIX_PATH" == "" ]
