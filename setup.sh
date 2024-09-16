@@ -81,7 +81,7 @@ This script assumes you've already installed the following dependencies:
  > Git
  > Bash
  > Python 3
- > Qt $QT_VER 
+ > Qt 6 ($QT_VER used by default)
 
  For Linux:
  > build-essential
