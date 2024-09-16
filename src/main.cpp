@@ -237,6 +237,9 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
     engine.addImportPath(QStringLiteral("../../lib/qml/"));
     engine.addImportPath(QStringLiteral("../lib/qml/"));
     engine.addImportPath(QStringLiteral("./lib/qml/"));
+    engine.addImportPath(QStringLiteral("../../../install/lib/qml/"));
+    engine.addImportPath(QStringLiteral("../../install/lib/qml/"));
+    engine.addImportPath(QStringLiteral("./../install/lib/qml/"));
     // MacOS paths
     engine.addImportPath(QStringLiteral("../build/"));
     engine.addImportPath(QStringLiteral("../Resources/qml/"));
