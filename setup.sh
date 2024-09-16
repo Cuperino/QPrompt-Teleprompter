@@ -196,11 +196,11 @@ cmake --install ./build
 cp -r "$CMAKE_INSTALL_PREFIX" "$CMAKE_PREFIX_PATH"
 
 # Copy Qt libraries into install directory
-if [[ "$PLATFORM"=="windows" ]]; then
+if [[ "$PLATFORM" == "windows" ]]; then
     PATH=$PATH:"C:\Program Files (x86)\NSIS"
     $CMAKE_PREFIX_PATH/bin/windeployqt.exe ./install/bin/$CMAKE_BUILD_TYPE/QPrompt.exe
-elif [[ "$PLATFORM"=="macos" ]]; then
+elif [[ "$PLATFORM" == "macos" ]]; then
     $CMAKE_PREFIX_PATH/bin/macdeployqt ./install/bin/QPrompt
-# elif [[ "$PLATFORM"=="linux" ]]; then
+# elif [[ "$PLATFORM" == "linux" ]]; then
 #     $CMAKE_PREFIX_PATH/bin/linuxdeployqt ./install/bin/qprompt
 fi
