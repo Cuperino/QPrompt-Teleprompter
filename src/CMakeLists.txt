@@ -414,15 +414,15 @@ if (WIN32 OR UNIX) # AND NOT ANDROID)
     endif()
 endif()
 
-set(deploy_tool_options_arg "")
-if(APPLE)
-    set(deploy_tool_options_arg --hardened-runtime)
-endif()
+# set(deploy_tool_options_arg "")
+# if(APPLE)
+#     set(deploy_tool_options_arg --hardened-runtime)
+# endif()
 qt_generate_deploy_qml_app_script(
     TARGET ${PROJECT_NAME}
     OUTPUT_SCRIPT deploy_script
     NO_UNSUPPORTED_PLATFORM_ERROR
-    DEPLOY_TOOL_OPTIONS ${deploy_tool_options_arg}
+    # DEPLOY_TOOL_OPTIONS ${deploy_tool_options_arg}
     # DEPLOY_USER_QML_MODULES_ON_UNSUPPORTED_PLATFORM
     MACOS_BUNDLE_POST_BUILD
 )
