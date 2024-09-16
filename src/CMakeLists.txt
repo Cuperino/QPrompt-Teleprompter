@@ -245,8 +245,10 @@ set_target_properties(${PROJECT_NAME} PROPERTIES
     OUTPUT_NAME ${OUTPUT_NAME}
     MACOSX_BUNDLE TRUE
     WIN32_EXECUTABLE TRUE
-    QT_QMLCACHEGEN_DIRECT_CALLS ON
     QT_QMLCACHEGEN_ARGUMENTS "--static"  # "--static;--verbose"
+    # QT_QMLCACHEGEN_DIRECT_CALLS OFF
+    # PLUGIN_TARGET qtlabsplatformplugin inhibits the creation of the backing library, thus headers can't be accessed in direct mode.
+    # See issue: https://bugreports.qt.io/browse/QTBUG-117992?focusedId=750577&page=com.atlassian.jira.plugin.system.issuetabpanels%3Acomment-tabpanel#comment-750577
 )
 
 if (NOT IOS)
@@ -336,24 +338,20 @@ else()
     target_link_libraries(${PROJECT_NAME} PRIVATE
         Qt${QT_VERSION_MAJOR}::Core
         Qt${QT_VERSION_MAJOR}::Quick
-        Qt${QT_VERSION_MAJOR}::QuickPrivate
         Qt${QT_VERSION_MAJOR}::Gui
-        # Qt${QT_VERSION_MAJOR}::GuiPrivate
         Qt${QT_VERSION_MAJOR}::Svg
-        # Qt${QT_VERSION_MAJOR}::SvgPrivate
         Qt${QT_VERSION_MAJOR}::Qml
-        # Qt${QT_VERSION_MAJOR}::QmlPrivate
         Qt${QT_VERSION_MAJOR}::QuickControls2
-        # Qt${QT_VERSION_MAJOR}::QuickControls2Private
         Qt${QT_VERSION_MAJOR}::Network
-        # Qt${QT_VERSION_MAJOR}::NetworkPrivate
         Qt${QT_VERSION_MAJOR}::Widgets
-        # Qt${QT_VERSION_MAJOR}::WidgetsPrivate
         KF${QT_VERSION_MAJOR}::CoreAddons
         KF${QT_VERSION_MAJOR}::I18n
         KF${QT_VERSION_MAJOR}::Kirigami
     )
 endif()
+# Private header/s that would be used if QT_QMLCACHEGEN_DIRECT_CALLS were turned ON
+# - Qt${QT_VERSION_MAJOR}::QuickPrivate
+
 if(APPLE AND NOT IOS)
     target_include_directories(mactouchbar PRIVATE ${kdmactouchbar_SOURCE_DIR}/KDMacTouchBar)
     target_link_directories(mactouchbar PRIVATE ${kdmactouchbar_SOURCE_DIR}/KDMacTouchBar)
