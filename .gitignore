@@ -47,8 +47,8 @@ CMakeLists.txt.user*
 Makefile
 
 # Build folders
-**/build
-**/install
+**/build*
+**/install*
 *.flatpak-builder*
 /dist/Snapcraft/*.snap
 
