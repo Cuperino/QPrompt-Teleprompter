@@ -1,9 +1,7 @@
-
-
 /****************************************************************************
  **
  ** QPrompt
- ** Copyright (C) 2023 Javier O. Cordero Pérez
+ ** Copyright (C) 2023-24 Javier O. Cordero Pérez
  **
  ** This file is part of QPrompt.
  **
@@ -34,7 +32,7 @@ Shape {
     property color colorsReady
     property color colorsPrompting
     width: 1.6 * pointers.__pointerUnit
-    height: parent.height
+    height: 0
     anchors.verticalCenter: parent.verticalCentertop
     ShapePath {
         strokeWidth: Math.ceil((lineWidth) / 17 * (pointers.__pointerUnit / 2))
