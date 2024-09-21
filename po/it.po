@@ -7,16 +7,16 @@ msgstr ""
 "Project-Id-Version: qprompt\n"
 "Report-Msgid-Bugs-To: https://github.com/Cuperino/QPrompt/issues/new/choose\n"
 "POT-Creation-Date: 2024-07-03 05:16-0400\n"
-"PO-Revision-Date: 2023-01-18 13:20+0000\n"
+"PO-Revision-Date: 2024-09-21 12:02+0000\n"
 "Last-Translator: Roberto <info@notelseit.com>\n"
-"Language-Team: Italian <http://l10n.cuperino.com/projects/qprompt/qprompt-"
-"app/it/>\n"
+"Language-Team: Italian <http://l10n.cuperino.com/projects/qprompt/"
+"qprompt-app/it/>\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.11.2\n"
+"X-Generator: Weblate 5.7.2\n"
 
 #: kirigami_ui/+android/main.qml:183 kirigami_ui/main.qml:198
 #: kirigami_ui/main.qml:563 kirigami_ui/+windows/main.qml:197
@@ -34,7 +34,7 @@ msgstr "&Aprire"
 #: kirigami_ui/+windows/main.qml:212
 msgctxt "Main menu and global menu actions"
 msgid "&Open remote file"
-msgstr ""
+msgstr "&Apri file remoto"
 
 #: kirigami_ui/+android/main.qml:207 kirigami_ui/main.qml:224
 #: kirigami_ui/main.qml:571 kirigami_ui/+windows/main.qml:221
@@ -114,13 +114,13 @@ msgstr "Altre &Impostazioni"
 #: kirigami_ui/+windows/main.qml:315
 msgctxt "Main menu actions. Opens dialog for choosing layout direction."
 msgid "Layout direction"
-msgstr ""
+msgstr "Direzione del layout"
 
 #: kirigami_ui/+android/main.qml:299 kirigami_ui/main.qml:332
 #: kirigami_ui/+windows/main.qml:320
 msgctxt "Main menu actions. Enters Performance tweaks submenu."
 msgid "Performance tweaks"
-msgstr ""
+msgstr "Performance tweaks"
 
 #: kirigami_ui/+android/main.qml:301 kirigami_ui/main.qml:334
 #: kirigami_ui/+windows/main.qml:322
@@ -133,7 +133,7 @@ msgstr "Disattivare lo scrolling durante il prompting"
 #: kirigami_ui/+windows/main.qml:329
 msgctxt "Main menu actions"
 msgid "Disable timers"
-msgstr ""
+msgstr "Disabilita timer"
 
 #: kirigami_ui/+android/main.qml:317 kirigami_ui/main.qml:350
 #: kirigami_ui/+windows/main.qml:338
@@ -158,13 +158,13 @@ msgstr "Disattivare il contrasto in sovrimpressione"
 #: kirigami_ui/+windows/main.qml:394
 msgctxt "Main menu actions. Enters Other tweaks submenu."
 msgid "Other tweaks"
-msgstr ""
+msgstr "Altre modifiche"
 
 #: kirigami_ui/+android/main.qml:344 kirigami_ui/main.qml:409
 #: kirigami_ui/+windows/main.qml:396
 msgctxt "Main menu actions. Enable local file auto reload"
 msgid "Local file auto reload"
-msgstr ""
+msgstr "Ricarica automatico file locale"
 
 #: kirigami_ui/+android/main.qml:360 kirigami_ui/main.qml:435
 #: kirigami_ui/+windows/main.qml:412
@@ -252,7 +252,7 @@ msgstr "Scegliere il font di sistema"
 
 #: kirigami_ui/EditorToolbar.qml:582
 msgid "No glyphs selected…"
-msgstr ""
+msgstr "Nessun glyphs selezionato…"
 
 #: kirigami_ui/EditorToolbar.qml:806
 msgctxt "Velocity {VELOCITY_STEPS}"
@@ -262,7 +262,7 @@ msgstr ""
 #: kirigami_ui/EditorToolbar.qml:844
 msgctxt "Opacity {TRANSPARENCY_PERCENTAGE}"
 msgid "Opacity <pre>%1</pre>"
-msgstr ""
+msgstr "Opacità<pre>%1</pre>"
 
 #: kirigami_ui/EditorToolbar.qml:883 kirigami_ui/EditorToolbar.qml:902
 msgctxt "Font size 100% (083)"
