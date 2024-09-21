@@ -1494,7 +1494,7 @@ Flickable {
                     prompter.decreaseVelocity(event)
                 return
             }
-            else if (event.key===keys.stop) {
+            else if (event.key===keys.stop && event.modifiers===keys.stopModifiers) {
                 // Stop
                 prompter.__i = 0;
                 prompter.__iBackup = 0;
@@ -1515,13 +1515,13 @@ Flickable {
                 }
                 return
             }
-            else if (event.key===keys.reverse) {
+            else if (event.key===keys.reverse && event.modifiers===keys.reverseModifiers) {
                 // Reverse
                 __i = -__i;
                 position = __destination
                 return
             }
-            else if (event.key===keys.rewind) {
+            else if (event.key===keys.rewind && event.modifiers===keys.rewindModifiers) {
                 // Rewind
                 if (!winding) {
                     __iBackup = __i;
@@ -1534,7 +1534,7 @@ Flickable {
                 }
                 return
             }
-            else if (event.key===keys.fastForward) {
+            else if (event.key===keys.fastForward && event.modifiers===keys.fastForwardModifiers) {
                 // Fast Forward
                 if (!winding) {
                     __iBackup = __i;
