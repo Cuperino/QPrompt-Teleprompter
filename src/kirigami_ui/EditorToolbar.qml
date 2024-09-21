@@ -164,10 +164,14 @@ ToolBar {
     Component {
         id: textComponent
         Text {
+            SystemPalette {
+                id: disabledButtonPalette
+                colorGroup: SystemPalette.Disabled
+            }
             anchors.fill: parent
             text: parent.parent.text
             font: parent.parent.font
-            color: parent.parent.enabled ? (parent.parent.down ? /*Kirigami.Theme.positiveTextColor*/Kirigami.Theme.focusColor : (parent.parent.checked ? Kirigami.Theme.focusColor : Kirigami.Theme.textColor)) : (root.themeIsMaterial ? "#888" : Kirigami.Theme.textColor)
+            color: parent.parent.enabled ? (parent.parent.down ? /*Kirigami.Theme.positiveTextColor*/Kirigami.Theme.focusColor : (parent.parent.checked ? Kirigami.Theme.focusColor : Kirigami.Theme.textColor)) : disabledButtonPalette.buttonText
             horizontalAlignment: Text.AlignHCenter
             verticalAlignment: Text.AlignVCenter
             elide: Text.ElideRight
