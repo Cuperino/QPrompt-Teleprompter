@@ -1097,7 +1097,7 @@ Flickable {
                             case keys.nextMarker:
                             case keys.toggle:
                                 // If in edit while prompting mode, ensure arrow keys and space bar don't float up to prompter so editor can make proper use of them.
-                                if (event.key === Qt.Key_Up || event.key === Qt.Key_Down || event.key === Qt.Key_Left || event.key === Qt.Key_Right || event.key === Qt.Key_Space) {
+                                if ((Qt.Key_Left <= event.key && event.key <= Qt.Key_Down) || (Qt.Key_Space <= event.key && event.key <= Qt.Key_Dead_Longsolidusoverlay)) {
                                     event.accepted = false;
                                     return;
                                 }
