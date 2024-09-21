@@ -244,6 +244,7 @@ Flickable {
     }
 
     function restoreFocus() {
+        prompterPage.focus = true
         if (parseInt(state)===Prompter.States.Editing)
             editor.focus = !root.__isMobile
         else
@@ -314,6 +315,7 @@ Flickable {
             //if (root.passiveNotifications)
             //    showPassiveNotification(i18n("Increase Velocity"));
         }
+        prompter.restoreFocus()
     }
 
     function decreaseVelocity(event) {
@@ -328,6 +330,7 @@ Flickable {
             //if (root.passiveNotifications)
             //    showPassiveNotification(i18n("Decrease Velocity"));
         }
+        prompter.restoreFocus()
     }
 
     function editMarker(cursorPosition, fragmentLength) {
@@ -653,6 +656,7 @@ Flickable {
 
                 function toggleEditorFocus(mouse) {
                     if (!editor.activeFocus) {
+                        prompter.restoreFocus();
                         editor.focus = true;
                         editor.cursorPosition = editor.positionAt(mouse.x, mouse.y)
                         cursorAutoHide.reset();
