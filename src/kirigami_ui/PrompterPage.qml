@@ -71,10 +71,7 @@ Kirigami.Page {
         Kirigami.Action {
             id: promptingButton
             text: i18n("Start prompter")
-            onTriggered: {
-                prompterPage.focus = true
-                prompter.toggle()
-            }
+            onTriggered: prompter.toggle()
         },
         Kirigami.Action {
             id: decreaseVelocityButton
