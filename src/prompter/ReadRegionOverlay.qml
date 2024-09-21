@@ -270,12 +270,12 @@ Item {
             Binding {
                 target: leftPointer.item
                 property: "configuratorOpen"
-                value: pointerConfiguration.sheetOpen
+                value: pointerConfiguration.opened
             }
             Binding {
                 target: rightPointer.item
                 property: "configuratorOpen"
-                value: pointerConfiguration.sheetOpen
+                value: pointerConfiguration.opened
             }
             Binding {
                 target: leftPointer.item

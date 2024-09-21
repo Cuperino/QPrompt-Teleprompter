@@ -786,7 +786,7 @@ ToolBar {
                 //font.pointSize: 13
                 //focusPolicy: Qt.TabFocus
                 //checkable: true
-                //checked: stepsConfiguration.sheetOpen
+                //checked: stepsConfiguration.opened
                 //onClicked: stepsConfiguration.open()
             //}
         }
