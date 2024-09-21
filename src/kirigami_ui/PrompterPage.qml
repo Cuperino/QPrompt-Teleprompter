@@ -73,7 +73,10 @@ Kirigami.Page {
             text: i18n("Start prompter")
             icon.name: Qt.application.layoutDirection === Qt.RightToLeft ? "go-next-rtl" : "go-next"
             icon.source: Qt.application.layoutDirection === Qt.RightToLeft ? "../icons/go-previous.svg" : "../icons/go-next.svg"
-            onTriggered: prompter.toggle()
+            onTriggered: {
+                prompterPage.focus = true
+                prompter.toggle()
+            }
         },
         Kirigami.Action {
             id: decreaseVelocityButton
