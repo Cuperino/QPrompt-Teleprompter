@@ -1664,6 +1664,10 @@ Flickable {
                 //cursorPosition: editor.positionAt(0, editor.position + 1*overlay.height/2)
             }
             PropertyChanges {
+                target: promptingButton
+                icon.name: Qt.application.layoutDirection === Qt.RightToLeft ? "go-next-rtl" : "go-next"
+            }
+            PropertyChanges {
                 target: prompter
                 z: 2
                 __i: 0
@@ -1693,6 +1697,7 @@ Flickable {
             PropertyChanges {
                 target: promptingButton
                 text: viewport.countdown.enabled ? i18n("Begin countdown") : i18n("Start prompting")
+                icon.name: Qt.application.layoutDirection === Qt.RightToLeft ? "go-next-rtl" : "go-next"
             }
             PropertyChanges {
                 target: prompter
@@ -1739,6 +1744,7 @@ Flickable {
             PropertyChanges {
                 target: promptingButton
                 text: i18n("Skip countdown")
+                icon.name: Qt.application.layoutDirection === Qt.RightToLeft ? "go-next-rtl" : "go-next"
             }
             PropertyChanges {
                 target: prompter
