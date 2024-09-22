@@ -32,6 +32,7 @@ Kirigami.OverlaySheet {
         text: i18n("Layout direction")
         level: 1
     }
+    z: 1
     ColumnLayout {
         RowLayout {
             Label {
