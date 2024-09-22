@@ -855,7 +855,6 @@ Kirigami.Page {
 
     Kirigami.OverlaySheet {
         id: countdownConfiguration
-        //onSheetOpenChanged: prompterPage.actions.main.checked = sheetOpen
 
         header: Kirigami.Heading {
             text: i18n("Countdown Setup")
@@ -913,21 +912,19 @@ Kirigami.Page {
             text: i18nc("Refers to a key on the keyboard used to skip to a user defined marker while prompting", "Skip Key")
             level: 1
         }
-//        onSheetOpenChanged: {
-//            prompterPage.actions.main.checked = sheetOpen;
-//            // When opening overlay, reset key input button's text.
-//            // Dev: When opening overlay, reset key input button's text to current anchor's key value.
-//            if (sheetOpen)
-//                //row.setMarkerKeyButton.item.text = "";
-//                column.setMarkerKeyButton.item.text = prompter.document.getMarkerKey();
-//            else {
-//                prompter.restoreFocus()
-//                if (markersDrawer.reOpen) {
-//                    prompter.document.parse()
-//                    markersDrawer.open()
-//                }
-//            }
-//        }
+        onOpened: {
+            // When opening overlay, reset key input button's text.
+            // Dev: When opening overlay, reset key input button's text to current anchor's key value.
+            //row.setMarkerKeyButton.item.text = "";
+            column.setMarkerKeyButton.item.text = prompter.document.getMarkerKey();
+        }
+        onClosed: {
+            prompter.restoreFocus();
+            if (markersDrawer.reOpen) {
+                prompter.document.parse();
+                markersDrawer.open();
+            }
+        }
         ColumnLayout {
             id: column
             property alias setMarkerKeyButton: setMarkerKeyButton
@@ -983,9 +980,6 @@ Kirigami.Page {
             text: i18n("Open from network...")
             level: 1
         }
-//        onSheetOpenChanged: {
-//            prompterPage.actions.main.checked = sheetOpen;
-//        }
         property bool autoReload: false
         property bool autoReloadRunning: false
         property string nextReloadTime: ""
@@ -1138,9 +1132,6 @@ Kirigami.Page {
             text: i18nc("Name of section where reding region pointers are configured", "Pointer configuration")
             level: 1
         }
-//        onSheetOpenChanged: {
-//            prompterPage.actions.main.checked = sheetOpen;
-//        }
         PointerSettings{
             id: pointerSettings
         }
@@ -1149,7 +1140,6 @@ Kirigami.Page {
     //Kirigami.OverlaySheet {
         //id: stepsConfiguration
         //onSheetOpenChanged: {
-            //prompterPage.actions.main.checked = sheetOpen;
             //if (!sheetOpen)
                 //prompter.focus = true
         //}
