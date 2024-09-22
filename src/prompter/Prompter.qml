@@ -210,6 +210,30 @@ Flickable {
         property int nextMarkerModifiers: Qt.ControlModifier
         property int toggle: Qt.Key_F9
         property int toggleModifiers: Qt.NoModifier
+        property int markerToggle: Qt.Key_M
+        property int markerToggleModifiers: Qt.ControlModifier
+        property int namedMarkerToggle: Qt.Key_M
+        property int namedMarkerToggleModifiers: Qt.ControlModifier | Qt.ShiftModifier
+        property int setVelocity0: Qt.Key_0
+        property int setVelocity0Modifiers: Qt.NoModifier
+        property int setVelocity1: Qt.Key_1
+        property int setVelocity1Modifiers: Qt.NoModifier
+        property int setVelocity2: Qt.Key_2
+        property int setVelocity2Modifiers: Qt.NoModifier
+        property int setVelocity3: Qt.Key_3
+        property int setVelocity3Modifiers: Qt.NoModifier
+        property int setVelocity4: Qt.Key_4
+        property int setVelocity4Modifiers: Qt.NoModifier
+        property int setVelocity5: Qt.Key_5
+        property int setVelocity5Modifiers: Qt.NoModifier
+        property int setVelocity6: Qt.Key_6
+        property int setVelocity6Modifiers: Qt.NoModifier
+        property int setVelocity7: Qt.Key_7
+        property int setVelocity7Modifiers: Qt.NoModifier
+        property int setVelocity8: Qt.Key_8
+        property int setVelocity8Modifiers: Qt.NoModifier
+        property int setVelocity9: Qt.Key_9
+        property int setVelocity9Modifiers: Qt.NoModifier
     }
     Settings {
         category: "atEnd"
@@ -329,6 +353,20 @@ Flickable {
             this.position = this.__destination
             //if (root.passiveNotifications)
             //    showPassiveNotification(i18n("Decrease Velocity"));
+        }
+        prompter.restoreFocus()
+    }
+
+    function setVelocity(velocity: int, event: var) {
+        console.log("velocity: ", velocity)
+        if (this.__atStart)
+            this.__i=0
+        else {
+            this.__i = velocity - 1
+            this.position = this.__destination
+            this.__i = velocity
+            this.__play = true
+            this.position = this.__destination
         }
         prompter.restoreFocus()
     }
@@ -1099,6 +1137,18 @@ Flickable {
                             case keys.skipForward:
                             case keys.previousMarker:
                             case keys.nextMarker:
+                            case keys.markerToggle:
+                            case keys.namedMarkerToggle:
+                            case keys.setVelocity0:
+                            case keys.setVelocity1:
+                            case keys.setVelocity2:
+                            case keys.setVelocity3:
+                            case keys.setVelocity4:
+                            case keys.setVelocity5:
+                            case keys.setVelocity6:
+                            case keys.setVelocity7:
+                            case keys.setVelocity8:
+                            case keys.setVelocity9:
                             case keys.toggle:
                                 // If in edit while prompting mode, ensure arrow keys and space bar don't float up to prompter so editor can make proper use of them.
                                 if ((Qt.Key_Left <= event.key && event.key <= Qt.Key_Down) || (Qt.Key_Space <= event.key && event.key <= Qt.Key_Dead_Longsolidusoverlay)) {
@@ -1514,6 +1564,46 @@ Flickable {
                     prompter.position = prompter.__destination
                 }
                 return
+            }
+            else if (event.key===keys.setVelocity0 && event.modifiers===keys.setVelocity0Modifiers) {
+                setVelocity(0, event);
+                return;
+            }
+            else if (event.key===keys.setVelocity1 && event.modifiers===keys.setVelocity1Modifiers) {
+                setVelocity(1, event);
+                return;
+            }
+            else if (event.key===keys.setVelocity2 && event.modifiers===keys.setVelocity2Modifiers) {
+                setVelocity(2, event);
+                return;
+            }
+            else if (event.key===keys.setVelocity3 && event.modifiers===keys.setVelocity3Modifiers) {
+                setVelocity(3, event);
+                return;
+            }
+            else if (event.key===keys.setVelocity4 && event.modifiers===keys.setVelocity4Modifiers) {
+                setVelocity(4, event);
+                return;
+            }
+            else if (event.key===keys.setVelocity5 && event.modifiers===keys.setVelocity5Modifiers) {
+                setVelocity(5, event);
+                return;
+            }
+            else if (event.key===keys.setVelocity6 && event.modifiers===keys.setVelocity6Modifiers) {
+                setVelocity(6, event);
+                return;
+            }
+            else if (event.key===keys.setVelocity7 && event.modifiers===keys.setVelocity7Modifiers) {
+                setVelocity(7, event);
+                return;
+            }
+            else if (event.key===keys.setVelocity8 && event.modifiers===keys.setVelocity8Modifiers) {
+                setVelocity(8, event);
+                return;
+            }
+            else if (event.key===keys.setVelocity9 && event.modifiers===keys.setVelocity9Modifiers) {
+                setVelocity(9, event);
+                return;
             }
             else if (event.key===keys.reverse && event.modifiers===keys.reverseModifiers) {
                 // Reverse

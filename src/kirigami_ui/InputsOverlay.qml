@@ -29,6 +29,8 @@ import com.cuperino.qprompt 1.0
 Kirigami.OverlaySheet {
     id: keyConfigurationOverlay
 
+    width: root.minimumWidth
+
     header: Kirigami.Heading {
         text: i18nc("Title of dialog where users customize keyboard inputs", "Key Bindings")
         level: 1
@@ -59,6 +61,16 @@ Kirigami.OverlaySheet {
             keyInputMoveForward.setSource("KeyInputButton.qml", { "text": qmlutil.keyToString(prompter.keys.skipForward, prompter.keys.skipForwardModifiers) });
             keyInputPreviousMarker.setSource("KeyInputButton.qml", { "text": qmlutil.keyToString(prompter.keys.previousMarker, prompter.keys.previousMarkerModifiers) });
             keyInputNextMarker.setSource("KeyInputButton.qml", { "text": qmlutil.keyToString(prompter.keys.nextMarker, prompter.keys.nextMarkerModifiers) });
+            keyInputSetVelocity0.setSource("KeyInputButton.qml", { "text": qmlutil.keyToString(prompter.keys.setVelocity0, prompter.keys.setVelocity0Modifiers) });
+            keyInputSetVelocity1.setSource("KeyInputButton.qml", { "text": qmlutil.keyToString(prompter.keys.setVelocity1, prompter.keys.setVelocity1Modifiers) });
+            keyInputSetVelocity2.setSource("KeyInputButton.qml", { "text": qmlutil.keyToString(prompter.keys.setVelocity2, prompter.keys.setVelocity2Modifiers) });
+            keyInputSetVelocity3.setSource("KeyInputButton.qml", { "text": qmlutil.keyToString(prompter.keys.setVelocity3, prompter.keys.setVelocity3Modifiers) });
+            keyInputSetVelocity4.setSource("KeyInputButton.qml", { "text": qmlutil.keyToString(prompter.keys.setVelocity4, prompter.keys.setVelocity4Modifiers) });
+            keyInputSetVelocity5.setSource("KeyInputButton.qml", { "text": qmlutil.keyToString(prompter.keys.setVelocity5, prompter.keys.setVelocity5Modifiers) });
+            keyInputSetVelocity6.setSource("KeyInputButton.qml", { "text": qmlutil.keyToString(prompter.keys.setVelocity6, prompter.keys.setVelocity6Modifiers) });
+            keyInputSetVelocity7.setSource("KeyInputButton.qml", { "text": qmlutil.keyToString(prompter.keys.setVelocity7, prompter.keys.setVelocity7Modifiers) });
+            keyInputSetVelocity8.setSource("KeyInputButton.qml", { "text": qmlutil.keyToString(prompter.keys.setVelocity8, prompter.keys.setVelocity8Modifiers) });
+            keyInputSetVelocity9.setSource("KeyInputButton.qml", { "text": qmlutil.keyToString(prompter.keys.setVelocity9, prompter.keys.setVelocity9Modifiers) });
         }
         Connections {
             target: keyInputTogglePrompter.item
@@ -156,6 +168,86 @@ Kirigami.OverlaySheet {
                 prompter.keys.nextMarkerModifiers = modifiers;
             }
         }
+        Connections {
+            target: keyInputSetVelocity0.item
+            function onToggleButtonsOff() { buttonGrid.toggleButtonsOff(); }
+            function onSetKey(key, modifiers) {
+                prompter.keys.setVelocity0 = key;
+                prompter.keys.setVelocity0Modifiers = modifiers;
+            }
+        }
+        Connections {
+            target: keyInputSetVelocity1.item
+            function onToggleButtonsOff() { buttonGrid.toggleButtonsOff(); }
+            function onSetKey(key, modifiers) {
+                prompter.keys.setVelocity1 = key;
+                prompter.keys.setVelocity1Modifiers = modifiers;
+            }
+        }
+        Connections {
+            target: keyInputSetVelocity2.item
+            function onToggleButtonsOff() { buttonGrid.toggleButtonsOff(); }
+            function onSetKey(key, modifiers) {
+                prompter.keys.setVelocity2 = key;
+                prompter.keys.setVelocity2Modifiers = modifiers;
+            }
+        }
+        Connections {
+            target: keyInputSetVelocity3.item
+            function onToggleButtonsOff() { buttonGrid.toggleButtonsOff(); }
+            function onSetKey(key, modifiers) {
+                prompter.keys.setVelocity3 = key;
+                prompter.keys.setVelocity3Modifiers = modifiers;
+            }
+        }
+        Connections {
+            target: keyInputSetVelocity4.item
+            function onToggleButtonsOff() { buttonGrid.toggleButtonsOff(); }
+            function onSetKey(key, modifiers) {
+                prompter.keys.setVelocity4 = key;
+                prompter.keys.setVelocity4Modifiers = modifiers;
+            }
+        }
+        Connections {
+            target: keyInputSetVelocity5.item
+            function onToggleButtonsOff() { buttonGrid.toggleButtonsOff(); }
+            function onSetKey(key, modifiers) {
+                prompter.keys.setVelocity5 = key;
+                prompter.keys.setVelocity5Modifiers = modifiers;
+            }
+        }
+        Connections {
+            target: keyInputSetVelocity6.item
+            function onToggleButtonsOff() { buttonGrid.toggleButtonsOff(); }
+            function onSetKey(key, modifiers) {
+                prompter.keys.setVelocity6 = key;
+                prompter.keys.setVelocity6Modifiers = modifiers;
+            }
+        }
+        Connections {
+            target: keyInputSetVelocity7.item
+            function onToggleButtonsOff() { buttonGrid.toggleButtonsOff(); }
+            function onSetKey(key, modifiers) {
+                prompter.keys.setVelocity7 = key;
+                prompter.keys.setVelocity7Modifiers = modifiers;
+            }
+        }
+        Connections {
+            target: keyInputSetVelocity8.item
+            function onToggleButtonsOff() { buttonGrid.toggleButtonsOff(); }
+            function onSetKey(key, modifiers) {
+                prompter.keys.setVelocity8 = key;
+                prompter.keys.setVelocity8Modifiers = modifiers;
+            }
+        }
+        Connections {
+            target: keyInputSetVelocity9.item
+            function onToggleButtonsOff() { buttonGrid.toggleButtonsOff(); }
+            function onSetKey(key, modifiers) {
+                prompter.keys.setVelocity9 = key;
+                prompter.keys.setVelocity9Modifiers = modifiers;
+            }
+        }
 
         Label {
             text: i18n("Toggle Prompter State")
@@ -250,6 +342,86 @@ Kirigami.OverlaySheet {
         }
         Loader {
             id: keyInputNextMarker
+            asynchronous: true
+            Layout.fillWidth: true
+        }
+        Label {
+            text: i18nc("Hotkey that sets velocity to a fixed value.", "Set velocity to 0")
+        }
+        Loader {
+            id: keyInputSetVelocity0
+            asynchronous: true
+            Layout.fillWidth: true
+        }
+        Label {
+            text: i18nc("Hotkey that sets velocity to a fixed value.", "Set velocity to 1")
+        }
+        Loader {
+            id: keyInputSetVelocity1
+            asynchronous: true
+            Layout.fillWidth: true
+        }
+        Label {
+            text: i18nc("Hotkey that sets velocity to a fixed value.", "Set velocity to 2")
+        }
+        Loader {
+            id: keyInputSetVelocity2
+            asynchronous: true
+            Layout.fillWidth: true
+        }
+        Label {
+            text: i18nc("Hotkey that sets velocity to a fixed value.", "Set velocity to 3")
+        }
+        Loader {
+            id: keyInputSetVelocity3
+            asynchronous: true
+            Layout.fillWidth: true
+        }
+        Label {
+            text: i18nc("Hotkey that sets velocity to a fixed value.", "Set velocity to 4")
+        }
+        Loader {
+            id: keyInputSetVelocity4
+            asynchronous: true
+            Layout.fillWidth: true
+        }
+        Label {
+            text: i18nc("Hotkey that sets velocity to a fixed value.", "Set velocity to 5")
+        }
+        Loader {
+            id: keyInputSetVelocity5
+            asynchronous: true
+            Layout.fillWidth: true
+        }
+        Label {
+            text: i18nc("Hotkey that sets velocity to a fixed value.", "Set velocity to 6")
+        }
+        Loader {
+            id: keyInputSetVelocity6
+            asynchronous: true
+            Layout.fillWidth: true
+        }
+        Label {
+            text: i18nc("Hotkey that sets velocity to a fixed value.", "Set velocity to 7")
+        }
+        Loader {
+            id: keyInputSetVelocity7
+            asynchronous: true
+            Layout.fillWidth: true
+        }
+        Label {
+            text: i18nc("Hotkey that sets velocity to a fixed value.", "Set velocity to 8")
+        }
+        Loader {
+            id: keyInputSetVelocity8
+            asynchronous: true
+            Layout.fillWidth: true
+        }
+        Label {
+            text: i18nc("Hotkey that sets velocity to a fixed value.", "Set velocity to 9")
+        }
+        Loader {
+            id: keyInputSetVelocity9
             asynchronous: true
             Layout.fillWidth: true
         }
