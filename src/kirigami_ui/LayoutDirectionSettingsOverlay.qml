@@ -45,7 +45,9 @@ Kirigami.OverlaySheet {
                     category: "ui"
                     property alias layout: layoutSelector.currentIndex
                 }
-                model: ["Automatic (determined by the operating system)", "Right to Left", "Left to Right"]
+                model: [ i18nc("Short for automatic", "Auto"),
+                         i18nc("Short for Right to Left layout", "RTL"),
+                         i18nc("Short for Left to Right layout", "LTR") ]
                 popup: Popup {
                     width: parent.width
                     implicitHeight: contentItem.implicitHeight
@@ -70,8 +72,8 @@ Kirigami.OverlaySheet {
             }
         }
     }
-//    onSheetOpenChanged: {
-//        if (!sheetOpen && layoutSelector.dirty)
-//            restartDialog.visible = true;
-//    }
+    onClosed: {
+       if (layoutSelector.dirty)
+           restartDialog.visible = true;
+   }
 }
