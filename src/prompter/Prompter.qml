@@ -1553,7 +1553,7 @@ Flickable {
             // }
 
             // Perform keyCode marker search.
-            let namedAnchorPosition = document.keySearch(event.key, document.cursorPosition, false, true);
+            let namedAnchorPosition = document.keySearch(event.key);
             if (namedAnchorPosition!==-1)
                 prompter.goTo(namedAnchorPosition);
             //// Undo and redo key bindings
