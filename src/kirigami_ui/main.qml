@@ -1051,7 +1051,7 @@ Kirigami.ApplicationWindow {
        {
            root.pageStack.currentItem.document.saveDialog(parseInt(root.onDiscard)===Prompter.CloseActions.Quit)
        }
-   }
+    }
     QmlUtil {
         id: qmlutil
     }

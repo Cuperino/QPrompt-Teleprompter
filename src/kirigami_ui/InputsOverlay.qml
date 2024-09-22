@@ -34,8 +34,6 @@ Kirigami.OverlaySheet {
         level: 1
     }
 
-    // onSheetOpenChanged: prompterPage.actions.main.checked = sheetOpen
-
     GridLayout {
         id: buttonGrid
 
