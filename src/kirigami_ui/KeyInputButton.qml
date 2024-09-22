@@ -45,7 +45,17 @@ Button {
             [prompter.keys.skipForward, prompter.keys.skipForwardModifiers],
             [prompter.keys.previousMarker, prompter.keys.previousMarkerModifiers],
             [prompter.keys.nextMarker, prompter.keys.nextMarkerModifiers],
-            [prompter.keys.toggle, prompter.keys.toggleModifiers]
+            [prompter.keys.toggle, prompter.keys.toggleModifiers],
+            [prompter.keys.setVelocity0, prompter.keys.setVelocity0Modifiers],
+            [prompter.keys.setVelocity1, prompter.keys.setVelocity1Modifiers],
+            [prompter.keys.setVelocity2, prompter.keys.setVelocity2Modifiers],
+            [prompter.keys.setVelocity3, prompter.keys.setVelocity3Modifiers],
+            [prompter.keys.setVelocity4, prompter.keys.setVelocity4Modifiers],
+            [prompter.keys.setVelocity5, prompter.keys.setVelocity5Modifiers],
+            [prompter.keys.setVelocity6, prompter.keys.setVelocity6Modifiers],
+            [prompter.keys.setVelocity7, prompter.keys.setVelocity7Modifiers],
+            [prompter.keys.setVelocity8, prompter.keys.setVelocity8Modifiers],
+            [prompter.keys.setVelocity9, prompter.keys.setVelocity9Modifiers]
         ]
         // Return invalid if key is in use
         let flag = false;
