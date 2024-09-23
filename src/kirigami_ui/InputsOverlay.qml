@@ -45,7 +45,8 @@ Kirigami.OverlaySheet {
         // Toggle all buttons off
         function toggleButtonsOff() {
             for (let i=1; i<children.length; i+=2)
-                children[i].item.checked = false;
+                if (typeof children[i].item !== "undefined")
+                    children[i].item.checked = false;
         }
 
         Component.onCompleted: {
@@ -346,6 +347,45 @@ Kirigami.OverlaySheet {
             Layout.fillWidth: true
         }
         Label {
+            text: i18nc("Hotkey that shifts velocoty to its negative value.", "Set velocity modifier key")
+        }
+        ComboBox {
+            id: keyInputSetVelocityModifier
+            model: [
+                i18nc("Control key", "Ctrl"),
+                i18nc("Alt key", "Alt")
+            ]
+            z: 1
+            onActivated: {
+                switch(currentIndex) {
+                    case 1:
+                        prompter.keys.setVelocityModifier = Qt.ControlModifier; break;
+                    case 2:
+                        prompter.keys.setVelocityModifier = Qt.ShiftModifier; break;
+                    case 3:
+                        prompter.keys.setVelocityModifier = Qt.MetaModifier; break;
+                    case 0:
+                        prompter.keys.setVelocityModifier = Qt.AltModifier; break;
+                }
+                console.log(prompter.keys.setVelocityModifier)
+            }
+            Layout.fillWidth: true
+            Material.theme: Material.Dark
+            Component.onCompleted: {
+                switch(prompter.keys.setVelocityModifier) {
+                    case Qt.ControlModifier:
+                        currentIndex = 1; break;
+                    case Qt.ShiftModifier:
+                        currentIndex = 2; break;
+                    case Qt.MetaModifier:
+                        currentIndex = 3; break;
+                    case Qt.AltModifier:
+                    default:
+                        currentIndex = 0; break;
+                }
+            }
+        }
+        Label {
             text: i18nc("Hotkey that sets velocity to a fixed value.", "Set velocity to 0")
         }
         Loader {
@@ -425,6 +465,7 @@ Kirigami.OverlaySheet {
             asynchronous: true
             Layout.fillWidth: true
         }
+
 
         QmlUtil {
             id: qmlutil
