@@ -234,6 +234,7 @@ Flickable {
         property int setVelocity8Modifiers: Qt.NoModifier
         property int setVelocity9: Qt.Key_9
         property int setVelocity9Modifiers: Qt.NoModifier
+        property int setVelocityModifier: Qt.AltModifier
     }
     Settings {
         category: "atEnd"
@@ -1565,7 +1566,8 @@ Flickable {
                 }
                 return
             }
-            else if (event.key===keys.setVelocity0 && event.modifiers===keys.setVelocity0Modifiers) {
+            else if (event.key===keys.setVelocity0 && (event.modifiers===keys.setVelocity0Modifiers ||
+                                                       event.modifiers===(keys.setVelocity0Modifiers ^ keys.setVelocityModifier))) {
                 setVelocity(0, event);
                 return;
             }
@@ -1573,36 +1575,72 @@ Flickable {
                 setVelocity(1, event);
                 return;
             }
+            else if (event.key===keys.setVelocity1 && event.modifiers===(keys.setVelocity1Modifiers ^ keys.setVelocityModifier)) {
+                setVelocity(-1, event);
+                return;
+            }
             else if (event.key===keys.setVelocity2 && event.modifiers===keys.setVelocity2Modifiers) {
                 setVelocity(2, event);
                 return;
             }
-            else if (event.key===keys.setVelocity3 && event.modifiers===keys.setVelocity3Modifiers) {
+            else if (event.key===keys.setVelocity2 && event.modifiers===(keys.setVelocity2Modifiers ^ keys.setVelocityModifier)) {
+                setVelocity(-2, event);
+                return;
+            }
+            else if (event.key===keys.setVelocity3 && event.modifiers===(keys.setVelocity3Modifiers)) {
                 setVelocity(3, event);
+                return;
+            }
+            else if (event.key===keys.setVelocity3 && event.modifiers===(keys.setVelocity3Modifiers ^ keys.setVelocityModifier)) {
+                setVelocity(-3, event);
                 return;
             }
             else if (event.key===keys.setVelocity4 && event.modifiers===keys.setVelocity4Modifiers) {
                 setVelocity(4, event);
                 return;
             }
+            else if (event.key===keys.setVelocity4 && event.modifiers===(keys.setVelocity4Modifiers ^ keys.setVelocityModifier)) {
+                setVelocity(-4, event);
+                return;
+            }
             else if (event.key===keys.setVelocity5 && event.modifiers===keys.setVelocity5Modifiers) {
                 setVelocity(5, event);
+                return;
+            }
+            else if (event.key===keys.setVelocity5 && event.modifiers===(keys.setVelocity5Modifiers ^ keys.setVelocityModifier)) {
+                setVelocity(-5, event);
                 return;
             }
             else if (event.key===keys.setVelocity6 && event.modifiers===keys.setVelocity6Modifiers) {
                 setVelocity(6, event);
                 return;
             }
+            else if (event.key===keys.setVelocity6 && event.modifiers===(keys.setVelocity6Modifiers ^ keys.setVelocityModifier)) {
+                setVelocity(-6, event);
+                return;
+            }
             else if (event.key===keys.setVelocity7 && event.modifiers===keys.setVelocity7Modifiers) {
                 setVelocity(7, event);
+                return;
+            }
+            else if (event.key===keys.setVelocity7 && event.modifiers===(keys.setVelocity7Modifiers ^ keys.setVelocityModifier)) {
+                setVelocity(-7, event);
                 return;
             }
             else if (event.key===keys.setVelocity8 && event.modifiers===keys.setVelocity8Modifiers) {
                 setVelocity(8, event);
                 return;
             }
+            else if (event.key===keys.setVelocity8 && event.modifiers===(keys.setVelocity8Modifiers ^ keys.setVelocityModifier)) {
+                setVelocity(-8, event);
+                return;
+            }
             else if (event.key===keys.setVelocity9 && event.modifiers===keys.setVelocity9Modifiers) {
                 setVelocity(9, event);
+                return;
+            }
+            else if (event.key===keys.setVelocity9 && event.modifiers===(keys.setVelocity9Modifiers ^ keys.setVelocityModifier)) {
+                setVelocity(-9, event);
                 return;
             }
             else if (event.key===keys.reverse && event.modifiers===keys.reverseModifiers) {
