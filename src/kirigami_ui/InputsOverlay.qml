@@ -72,6 +72,7 @@ Kirigami.OverlaySheet {
             keyInputSetVelocity7.setSource("KeyInputButton.qml", { "text": qmlutil.keyToString(prompter.keys.setVelocity7, prompter.keys.setVelocity7Modifiers) });
             keyInputSetVelocity8.setSource("KeyInputButton.qml", { "text": qmlutil.keyToString(prompter.keys.setVelocity8, prompter.keys.setVelocity8Modifiers) });
             keyInputSetVelocity9.setSource("KeyInputButton.qml", { "text": qmlutil.keyToString(prompter.keys.setVelocity9, prompter.keys.setVelocity9Modifiers) });
+            keyInputSetVelocity10.setSource("KeyInputButton.qml", { "text": qmlutil.keyToString(prompter.keys.setVelocity10, prompter.keys.setVelocity10Modifiers) });
         }
         Connections {
             target: keyInputTogglePrompter.item
@@ -247,6 +248,14 @@ Kirigami.OverlaySheet {
             function onSetKey(key, modifiers) {
                 prompter.keys.setVelocity9 = key;
                 prompter.keys.setVelocity9Modifiers = modifiers;
+            }
+        }
+        Connections {
+            target: keyInputSetVelocity10.item
+            function onToggleButtonsOff() { buttonGrid.toggleButtonsOff(); }
+            function onSetKey(key, modifiers) {
+                prompter.keys.setVelocity10 = key;
+                prompter.keys.setVelocity10Modifiers = modifiers;
             }
         }
 
@@ -462,6 +471,14 @@ Kirigami.OverlaySheet {
         }
         Loader {
             id: keyInputSetVelocity9
+            asynchronous: true
+            Layout.fillWidth: true
+        }
+        Label {
+            text: i18nc("Hotkey that sets velocity to a fixed value.", "Set velocity to 10")
+        }
+        Loader {
+            id: keyInputSetVelocity10
             asynchronous: true
             Layout.fillWidth: true
         }

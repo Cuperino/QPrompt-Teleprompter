@@ -214,7 +214,7 @@ Flickable {
         property int markerToggleModifiers: Qt.ControlModifier
         property int namedMarkerToggle: Qt.Key_M
         property int namedMarkerToggleModifiers: Qt.ControlModifier | Qt.ShiftModifier
-        property int setVelocity0: Qt.Key_0
+        property int setVelocity0: 16781904  // Key: `
         property int setVelocity0Modifiers: Qt.NoModifier
         property int setVelocity1: Qt.Key_1
         property int setVelocity1Modifiers: Qt.NoModifier
@@ -234,6 +234,8 @@ Flickable {
         property int setVelocity8Modifiers: Qt.NoModifier
         property int setVelocity9: Qt.Key_9
         property int setVelocity9Modifiers: Qt.NoModifier
+        property int setVelocity10: Qt.Key_0
+        property int setVelocity10Modifiers: Qt.NoModifier
         property int setVelocityModifier: Qt.AltModifier
     }
     Settings {
@@ -1150,6 +1152,7 @@ Flickable {
                             case keys.setVelocity7:
                             case keys.setVelocity8:
                             case keys.setVelocity9:
+                            case keys.setVelocity10:
                             case keys.toggle:
                                 // If in edit while prompting mode, ensure arrow keys and space bar don't float up to prompter so editor can make proper use of them.
                                 if ((Qt.Key_Left <= event.key && event.key <= Qt.Key_Down) || (Qt.Key_Space <= event.key && event.key <= Qt.Key_Dead_Longsolidusoverlay)) {
@@ -1641,6 +1644,14 @@ Flickable {
             }
             else if (event.key===keys.setVelocity9 && event.modifiers===(keys.setVelocity9Modifiers ^ keys.setVelocityModifier)) {
                 setVelocity(-9, event);
+                return;
+            }
+            else if (event.key===keys.setVelocity10 && event.modifiers===keys.setVelocity10Modifiers) {
+                setVelocity(10, event);
+                return;
+            }
+            else if (event.key===keys.setVelocity10 && event.modifiers===(keys.setVelocity10Modifiers ^ keys.setVelocityModifier)) {
+                setVelocity(-10, event);
                 return;
             }
             else if (event.key===keys.reverse && event.modifiers===keys.reverseModifiers) {
