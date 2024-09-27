@@ -214,7 +214,7 @@ Flickable {
         property int markerToggleModifiers: Qt.ControlModifier
         property int namedMarkerToggle: Qt.Key_M
         property int namedMarkerToggleModifiers: Qt.ControlModifier | Qt.ShiftModifier
-        property int setVelocity0: 16781904  // Key: `
+        property int setVelocity0: 0
         property int setVelocity0Modifiers: Qt.NoModifier
         property int setVelocity1: Qt.Key_1
         property int setVelocity1Modifiers: Qt.NoModifier
