@@ -1387,7 +1387,7 @@ Flickable {
         onAccepted: {
             document.close()
             document.load(openDialog.file)
-            editor.lastDocument = document.file;
+            editor.lastDocument = document.fileUrl;
             editor.resetPosition = true;
             if (parseInt(prompter.state)!==Prompter.States.Editing)
                 prompter.state = Prompter.States.Editing;
