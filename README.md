@@ -15,7 +15,7 @@ QPrompt is written in C++ and QML, using the Qt and Kirigami frameworks to provi
 
 [![Download QPrompt](https://a.fsdn.com/con/app/sf-download-button)](https://sourceforge.net/projects/qprompt/files/latest/download)
 
-Want the latest features? Get the latest development builds over at [Patreon](https://patreon.com/qpromptapp?utm_medium=clipboard_copy&utm_source=copyLink&utm_campaign=creatorshare_fan&utm_content=join_link). Alternatively, follow these instructions to [build QPrompt](https://github.com/Cuperino/QPrompt/blob/main/build.md) yourself.
+Want the latest features? Get the latest development builds over at [Patreon](https://patreon.com/qpromptapp?utm_medium=clipboard_copy&utm_source=copyLink&utm_campaign=creatorshare_fan&utm_content=join_link). Alternatively, follow these instructions to [build QPrompt](https://github.com/Cuperino/QPrompt/blob/main/BUILD.md) yourself.
 
 By becoming a [Patreon supporter](https://patreon.com/qpromptapp?utm_medium=clipboard_copy&utm_source=copyLink&utm_campaign=creatorshare_fan&utm_content=join_link) you get to vote on polls that determine where development should focus.
 
