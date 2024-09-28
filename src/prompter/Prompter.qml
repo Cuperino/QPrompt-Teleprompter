@@ -1193,6 +1193,12 @@ Flickable {
                             //case Qt.Key_J:
                             //    document.alignment = Qt.AlignJustify;
                             //    return;
+                            case Qt.Key_M:
+                                if (event.modifiers & Qt.ShiftModifier)
+                                    namedMarkerConfiguration.open();
+                                else
+                                    document.regularMarker = !document.regularMarker;
+                                return;
                             // Forward these other keys to prompter.
                             case Qt.Key_F:
                             case Qt.Key_V:
