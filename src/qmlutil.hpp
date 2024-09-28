@@ -35,6 +35,7 @@
 #include <QPixmap>
 #include <QProcess>
 #include <QQmlEngine>
+#include <QSettings>
 
 // A singleton object to implement C++ functions that can be called from QML
 class QmlUtil : public QObject
@@ -96,6 +97,12 @@ public:
         QFontDatabase database;
         return database.families();
 #endif
+    }
+    Q_INVOKABLE void factoryReset()
+    {
+        QSettings settings(QCoreApplication::organizationName(), QCoreApplication::applicationName().toLower());
+        settings.clear();
+        restartApplication();
     }
 };
 #endif // QMLUTIL_H
