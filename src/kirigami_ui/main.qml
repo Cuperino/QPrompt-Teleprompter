@@ -278,7 +278,7 @@ Kirigami.ApplicationWindow {
                     onTriggered: root.__invertArrowKeys = checked
                 }
                 Kirigami.Action {
-                    text: i18nc("Main menu and global menu actions. Invert scroll direction while prompting.", "Invert &scroll direction")
+                    text: i18nc("Main menu and global menu actions. Invert scroll direction while prompting.", "Invert &scroll direction (Natural scrolling)")
                     enabled: !root.__noScroll
                     //icon.name: "gnumeric-object-scrollbar"
                     icon.source: "qrc:/qt/qml/com/cuperino/qprompt/icons/gnumeric-object-scrollbar.svg"
@@ -812,7 +812,7 @@ Kirigami.ApplicationWindow {
                 onTriggered: root.__invertArrowKeys = checked
             }
             Labs.MenuItem {
-                text: i18nc("Main menu and global menu actions. Invert scroll direction while prompting.", "Invert &scroll direction")
+                text: i18nc("Main menu and global menu actions. Invert scroll direction while prompting.", "Invert &scroll direction (Natural scrolling)")
                 enabled: !root.__noScroll
                 checkable: true
                 checked: root.__invertScrollDirection
