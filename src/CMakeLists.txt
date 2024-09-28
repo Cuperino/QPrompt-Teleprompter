@@ -123,6 +123,8 @@ set(document_files
     documents/welcome_pt_BR.html
     documents/welcome_pt_PT.html
     documents/welcome_ru.html
+    documents/welcome_uk.html
+    documents/welcome_tr.html
     documents/welcome_zh.html
 )
 set_source_files_properties(documents/untitled.html PROPERTIES QT_RESOURCE_ALIAS documents/blank.html)
