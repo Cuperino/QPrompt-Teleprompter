@@ -348,13 +348,13 @@ Kirigami.ApplicationWindow {
                         onTriggered: root.pageStack.currentItem.document.autoReload = checked
                     }
                 }
-//                 Kirigami.Action {
-//                     text: i18nc("Main menu actions", "Restore factory defaults")
-//                     icon.name: "edit-clear-history"
-//                     onTriggered: {
-//                         showPassiveNotification(i18n("Feature not yet implemented"))
-//                     }
-//                 }
+                Kirigami.Action {
+                    text: i18nc("Main menu actions", "Restore factory defaults")
+                    icon.name: "edit-clear-history"
+                    onTriggered: {
+                        factoryResetDialog.open();
+                    }
+                }
             },
             Kirigami.Action {
                 text: i18nc("Main menu actions. Load about page.", "Abou&t %1", aboutData.displayName)
@@ -567,6 +567,17 @@ Kirigami.ApplicationWindow {
     Component {
         id: telemetryPageComponent
         TelemetryPage {}
+    }
+
+    Labs.MessageDialog {
+        id: factoryResetDialog
+        title: i18n("Factory Reset")
+        text: i18n("Restore all configurations to factory defaults? QPrompt will close if you click Yes and all unsaved document changes will be lost.")
+        buttons: Labs.MessageDialog.Yes | Labs.MessageDialog.No
+        modality: Qt.WindowModal
+        onYesClicked: {
+            qmlutil.factoryReset()
+        }
     }
 
     // Dialogues
