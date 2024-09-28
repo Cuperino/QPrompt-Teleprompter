@@ -523,8 +523,11 @@ QUrl DocumentHandler::fileUrl() const
 
 void DocumentHandler::reload(const QString &fileUrl)
 {
-    qWarning() << "reloading";
-    load(QUrl(QString::fromUtf8("file://") + fileUrl));
+    auto url = QUrl(QString::fromUtf8("file://") + fileUrl);
+    if (url == m_fileUrl) {
+        qWarning() << "reloading";
+        load(url);
+    }
 }
 
 void DocumentHandler::loadFromNetwork(const QUrl &url)
@@ -575,9 +578,6 @@ void DocumentHandler::setAutoReload(bool enable)
 
 void DocumentHandler::load(const QUrl &fileUrl)
 {
-    // if (fileUrl == m_fileUrl)
-    //     return;
-
     QQmlEngine *engine = qmlEngine(this);
     if (!engine) {
         qWarning() << "load() called before DocumentHandler has QQmlEngine";
