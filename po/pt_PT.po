@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: qprompt\n"
 "Report-Msgid-Bugs-To: https://github.com/Cuperino/QPrompt/issues/new/choose\n"
 "POT-Creation-Date: 2024-09-29 11:34-0400\n"
-"PO-Revision-Date: 2024-08-07 14:06+0000\n"
+"PO-Revision-Date: 2024-09-30 12:38+0000\n"
 "Last-Translator: Hugo <hugokarvalho@hotmail.com>\n"
 "Language-Team: Portuguese (Portugal) <http://l10n.cuperino.com/projects/"
 "qprompt/qprompt-app/pt_PT/>\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 5.6.2\n"
+"X-Generator: Weblate 5.7.2\n"
 
 #: kirigami_ui/+android/main.qml:183 kirigami_ui/+windows/main.qml:198
 #: kirigami_ui/main.qml:198 kirigami_ui/main.qml:576
@@ -83,11 +83,10 @@ msgstr "Inverter &setas do teclado"
 
 #: kirigami_ui/+android/main.qml:259 kirigami_ui/+windows/main.qml:274
 #: kirigami_ui/main.qml:281 kirigami_ui/main.qml:828
-#, fuzzy
 msgctxt ""
 "Main menu and global menu actions. Invert scroll direction while prompting."
 msgid "Invert &scroll direction (Natural scrolling)"
-msgstr "Inverter &direção de deslocação"
+msgstr "Inverter &direção de deslocação (Deslocação natural)"
 
 #: kirigami_ui/+android/main.qml:267 kirigami_ui/+windows/main.qml:282
 #: kirigami_ui/main.qml:290 kirigami_ui/main.qml:813
@@ -164,13 +163,13 @@ msgstr "Recarregamento automático do ficheiro local"
 #: kirigami_ui/main.qml:427
 msgctxt "Main menu actions"
 msgid "Language"
-msgstr ""
+msgstr "Idioma"
 
 #: kirigami_ui/+android/main.qml:360 kirigami_ui/+windows/main.qml:421
 #: kirigami_ui/main.qml:434
 msgctxt "Main menu actions"
 msgid "Restore factory defaults"
-msgstr ""
+msgstr "Repor as predefinições de fábrica"
 
 #: kirigami_ui/+android/main.qml:368 kirigami_ui/+windows/main.qml:429
 #: kirigami_ui/main.qml:442
@@ -198,7 +197,7 @@ msgstr "Modo galáctico"
 #: kirigami_ui/+android/main.qml:588 kirigami_ui/+windows/main.qml:703
 #: kirigami_ui/main.qml:1021
 msgid "Factory Reset"
-msgstr ""
+msgstr "Reposição de fábrica"
 
 #: kirigami_ui/+android/main.qml:589 kirigami_ui/+windows/main.qml:704
 #: kirigami_ui/main.qml:1022
@@ -206,6 +205,9 @@ msgid ""
 "Restore all configurations to factory defaults? QPrompt will close if you "
 "click Yes and all unsaved document changes will be lost."
 msgstr ""
+"Restaurar todas as configurações para as predefinições de fábrica? O QPrompt "
+"fechará se clicar em Sim e todas as alterações não guardadas no documento "
+"serão perdidas."
 
 #: kirigami_ui/+android/main.qml:600 kirigami_ui/+windows/main.qml:714
 #: kirigami_ui/main.qml:1032
@@ -427,155 +429,154 @@ msgstr "Ir para o marcador seguinte"
 #: kirigami_ui/InputsOverlay.qml:359
 msgctxt "Hotkey that shifts velocoty to its negative value."
 msgid "Set velocity modifier key"
-msgstr ""
+msgstr "Definir tecla modificadora de velocidade"
 
 #: kirigami_ui/InputsOverlay.qml:364
 msgctxt "Control key"
 msgid "Ctrl"
-msgstr ""
+msgstr "Ctrl"
 
 #: kirigami_ui/InputsOverlay.qml:365
-#, fuzzy
 msgctxt "Alt key"
 msgid "Alt"
-msgstr "Tudo"
+msgstr "Alt"
 
 #: kirigami_ui/InputsOverlay.qml:398
 msgctxt "Hotkey that sets velocity to a fixed value."
 msgid "Set velocity to 0"
-msgstr ""
+msgstr "Definir a velocidade para 0"
 
 #: kirigami_ui/InputsOverlay.qml:406
 msgctxt "Hotkey that sets velocity to a fixed value."
 msgid "Set velocity to 1"
-msgstr ""
+msgstr "Definir a velocidade para 1"
 
 #: kirigami_ui/InputsOverlay.qml:414
 msgctxt "Hotkey that sets velocity to a fixed value."
 msgid "Set velocity to 2"
-msgstr ""
+msgstr "Definir a velocidade para 2"
 
 #: kirigami_ui/InputsOverlay.qml:422
 msgctxt "Hotkey that sets velocity to a fixed value."
 msgid "Set velocity to 3"
-msgstr ""
+msgstr "Definir a velocidade para 3"
 
 #: kirigami_ui/InputsOverlay.qml:430
 msgctxt "Hotkey that sets velocity to a fixed value."
 msgid "Set velocity to 4"
-msgstr ""
+msgstr "Definir a velocidade para 4"
 
 #: kirigami_ui/InputsOverlay.qml:438
 msgctxt "Hotkey that sets velocity to a fixed value."
 msgid "Set velocity to 5"
-msgstr ""
+msgstr "Definir a velocidade para 5"
 
 #: kirigami_ui/InputsOverlay.qml:446
 msgctxt "Hotkey that sets velocity to a fixed value."
 msgid "Set velocity to 6"
-msgstr ""
+msgstr "Definir a velocidade para 6"
 
 #: kirigami_ui/InputsOverlay.qml:454
 msgctxt "Hotkey that sets velocity to a fixed value."
 msgid "Set velocity to 7"
-msgstr ""
+msgstr "Definir a velocidade para 7"
 
 #: kirigami_ui/InputsOverlay.qml:462
 msgctxt "Hotkey that sets velocity to a fixed value."
 msgid "Set velocity to 8"
-msgstr ""
+msgstr "Definir a velocidade para 8"
 
 #: kirigami_ui/InputsOverlay.qml:470
 msgctxt "Hotkey that sets velocity to a fixed value."
 msgid "Set velocity to 9"
-msgstr ""
+msgstr "Definir a velocidade para 9"
 
 #: kirigami_ui/InputsOverlay.qml:478
 msgctxt "Hotkey that sets velocity to a fixed value."
 msgid "Set velocity to 10"
-msgstr ""
+msgstr "Definir a velocidade para 10"
 
 #: kirigami_ui/KeyInputButton.qml:109
-#, fuzzy
 msgctxt "Button to remove a keyboard shortcut"
 msgid "Clear"
 msgstr "Limpar"
 
 #: kirigami_ui/LanguageSettingsOverlay.qml:32
-#, fuzzy
 msgid "Language settings"
-msgstr "Definições de ponteiro"
+msgstr "Definições de idioma"
 
 #: kirigami_ui/LanguageSettingsOverlay.qml:40
 msgctxt "Selector to choose user interface language"
 msgid "UI Language"
-msgstr ""
+msgstr "Idioma da interface"
 
 #: kirigami_ui/LanguageSettingsOverlay.qml:64
 msgctxt "Language"
 msgid "Use system language"
-msgstr ""
+msgstr "Usar o idioma do sistema"
 
 #: kirigami_ui/LanguageSettingsOverlay.qml:68
 msgctxt "Language"
 msgid "English"
-msgstr ""
+msgstr "Inglês"
 
 #: kirigami_ui/LanguageSettingsOverlay.qml:76
 msgctxt "Language"
 msgid "Chinese (Simplified)"
-msgstr ""
+msgstr "Chinês (simplificado)"
 
 #: kirigami_ui/LanguageSettingsOverlay.qml:80
 msgctxt "Language"
 msgid "Czech"
-msgstr ""
+msgstr "Checo"
 
 #: kirigami_ui/LanguageSettingsOverlay.qml:92
 msgctxt "Language"
 msgid "French"
-msgstr ""
+msgstr "Francês"
 
 #: kirigami_ui/LanguageSettingsOverlay.qml:96
 msgctxt "Language"
 msgid "German"
-msgstr ""
+msgstr "Alemão"
 
 #: kirigami_ui/LanguageSettingsOverlay.qml:108
 msgctxt "Language"
 msgid "Japanese"
-msgstr ""
+msgstr "Japonês"
 
 #: kirigami_ui/LanguageSettingsOverlay.qml:124
 msgctxt "Language"
 msgid "Portuguese (Brazil)"
-msgstr ""
+msgstr "Português (Brasil)"
 
 #: kirigami_ui/LanguageSettingsOverlay.qml:128
 msgctxt "Language"
 msgid "Portuguese (Portugal)"
-msgstr ""
+msgstr "Português (Portugal)"
 
 #: kirigami_ui/LanguageSettingsOverlay.qml:136
 msgctxt "Language"
 msgid "Spanish"
-msgstr ""
+msgstr "Espanhol"
 
 #: kirigami_ui/LanguageSettingsOverlay.qml:140
 msgctxt "Language"
 msgid "Turkish"
-msgstr ""
+msgstr "Turco"
 
 #: kirigami_ui/LanguageSettingsOverlay.qml:144
 msgctxt "Language"
 msgid "Ukranian"
-msgstr ""
+msgstr "Ucraniano"
 
 #: kirigami_ui/LanguageSettingsOverlay.qml:172
 msgid ""
 "Is your language not here or it's incomplete?\n"
 "Help us translate QPrompt, visit:"
 msgstr ""
+"A seu idioma não está aqui ou está incompleto?\n"
+"Ajude-nos a traduzir o QPrompt, visite:"
 
 #: kirigami_ui/LayoutDirectionSettingsOverlay.qml:32
 msgid "Layout direction"
@@ -589,17 +590,17 @@ msgstr "Disposição atual"
 #: kirigami_ui/LayoutDirectionSettingsOverlay.qml:49
 msgctxt "Short for automatic"
 msgid "Auto"
-msgstr ""
+msgstr "Auto"
 
 #: kirigami_ui/LayoutDirectionSettingsOverlay.qml:50
 msgctxt "Short for Right to Left layout"
 msgid "RTL"
-msgstr ""
+msgstr "DPE"
 
 #: kirigami_ui/LayoutDirectionSettingsOverlay.qml:51
 msgctxt "Short for Left to Right layout"
 msgid "LTR"
-msgstr ""
+msgstr "EPD"
 
 #: kirigami_ui/MarkersDrawer.qml:129
 msgctxt "Close sidebar listing user defined markers"
