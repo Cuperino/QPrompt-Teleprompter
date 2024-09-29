@@ -168,6 +168,16 @@ Kirigami.OverlaySheet {
                 }
             }
         }
+        Label {
+            text: i18n("Is your language not here or it's incomplete?\nHelp us translate QPrompt, visit:")
+        }
+        Button {
+            text: "http://l10n.qprompt.app"
+            onClicked: {
+                Qt.openUrlExternally(text)
+            }
+            Material.theme: Material.Dark
+        }
     }
     onClosed: {
        if (languageSelector.dirty)

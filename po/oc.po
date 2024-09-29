@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: qprompt\n"
 "Report-Msgid-Bugs-To: https://github.com/Cuperino/QPrompt/issues/new/choose\n"
-"POT-Creation-Date: 2024-09-29 10:42-0400\n"
+"POT-Creation-Date: 2024-09-29 11:34-0400\n"
 "PO-Revision-Date: 2022-07-27 22:56+0000\n"
 "Last-Translator: Javier O. Cordero Pérez <javiercorderoperez@gmail.com>\n"
 "Language-Team: Occitan <http://l10n.cuperino.com/projects/qprompt/qprompt-"
@@ -531,6 +531,16 @@ msgctxt "Language"
 msgid "English"
 msgstr ""
 
+#: kirigami_ui/LanguageSettingsOverlay.qml:76
+msgctxt "Language"
+msgid "Chinese (Simplified)"
+msgstr ""
+
+#: kirigami_ui/LanguageSettingsOverlay.qml:80
+msgctxt "Language"
+msgid "Czech"
+msgstr ""
+
 #: kirigami_ui/LanguageSettingsOverlay.qml:92
 msgctxt "Language"
 msgid "French"
@@ -541,30 +551,9 @@ msgctxt "Language"
 msgid "German"
 msgstr ""
 
-#: kirigami_ui/LanguageSettingsOverlay.qml:104
-#, fuzzy
-msgctxt "Language"
-msgid "Italian"
-msgstr "&Italica"
-
 #: kirigami_ui/LanguageSettingsOverlay.qml:108
 msgctxt "Language"
 msgid "Japanese"
-msgstr ""
-
-#: kirigami_ui/LanguageSettingsOverlay.qml:112
-msgctxt "Language"
-msgid "Korean"
-msgstr ""
-
-#: kirigami_ui/LanguageSettingsOverlay.qml:116
-msgctxt "Language"
-msgid "Occitan"
-msgstr ""
-
-#: kirigami_ui/LanguageSettingsOverlay.qml:120
-msgctxt "Language"
-msgid "Polish"
 msgstr ""
 
 #: kirigami_ui/LanguageSettingsOverlay.qml:124
@@ -575,11 +564,6 @@ msgstr ""
 #: kirigami_ui/LanguageSettingsOverlay.qml:128
 msgctxt "Language"
 msgid "Portuguese (Portugal)"
-msgstr ""
-
-#: kirigami_ui/LanguageSettingsOverlay.qml:132
-msgctxt "Language"
-msgid "Russian"
 msgstr ""
 
 #: kirigami_ui/LanguageSettingsOverlay.qml:136
@@ -595,6 +579,12 @@ msgstr ""
 #: kirigami_ui/LanguageSettingsOverlay.qml:144
 msgctxt "Language"
 msgid "Ukranian"
+msgstr ""
+
+#: kirigami_ui/LanguageSettingsOverlay.qml:172
+msgid ""
+"Is your language not here or it's incomplete?\n"
+"Help us translate QPrompt, visit:"
 msgstr ""
 
 #: kirigami_ui/LayoutDirectionSettingsOverlay.qml:32
@@ -1783,6 +1773,11 @@ msgstr ""
 #: prompter/Prompter.qml:1939
 msgid "Return to edit mode"
 msgstr ""
+
+#, fuzzy
+#~ msgctxt "Language"
+#~ msgid "Italian"
+#~ msgstr "&Italica"
 
 #~ msgctxt "Translucent bars indicate reading region"
 #~ msgid "Bar"
