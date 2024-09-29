@@ -186,6 +186,7 @@ set(icon_files
     icons/16/format-text-direction-ltr.svg
     icons/16/view-fullscreen.svg
     icons/16/empty.svg
+    icons/16/amarok_change_language.svg
     icons/22/handle-sort.svg
     icons/22/gnumeric-object-rectangle.svg
     icons/22/tool_color_eraser.svg
