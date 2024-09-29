@@ -349,19 +349,19 @@ Kirigami.ApplicationWindow {
                     }
                 }
                 Kirigami.Action {
-                    id: languageConfig
-                    text: i18nc("Main menu actions", "Language")
-                    icon.source: "qrc:/qt/qml/com/cuperino/qprompt/icons/amarok_change_language.svg"
-                    onTriggered: {
-                        languageSettings.open();
-                    }
-                }
-                Kirigami.Action {
                     text: i18nc("Main menu actions", "Restore factory defaults")
                     icon.name: "edit-clear-history"
                     onTriggered: {
                         factoryResetDialog.open();
                     }
+                }
+            },
+            Kirigami.Action {
+                id: languageConfig
+                text: i18nc("Main menu actions", "Language")
+                icon.source: "qrc:/qt/qml/com/cuperino/qprompt/icons/amarok_change_language.svg"
+                onTriggered: {
+                    languageSettings.open();
                 }
             },
             Kirigami.Action {
