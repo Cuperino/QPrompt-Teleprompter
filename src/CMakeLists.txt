@@ -50,6 +50,7 @@ set(qprompt_frontend_sources
     kirigami_ui/KeyInputButton.qml
     kirigami_ui/WheelSettingsOverlay.qml
     kirigami_ui/LayoutDirectionSettingsOverlay.qml
+    kirigami_ui/LanguageSettingsOverlay.qml
 )
 
 set(prompter_sources
