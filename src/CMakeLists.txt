@@ -178,6 +178,8 @@ set(icon_files
     icons/16/circular-arrow-shape.svg
     icons/16/key-enter.svg
     icons/16/edit-opacity.svg
+    icons/16/edit-undo.svg
+    icons/16/edit-redo.svg
     icons/16/mail-mark-unread.svg
     icons/16/draw-star.svg
     icons/16/edit-find.svg

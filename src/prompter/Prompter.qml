@@ -1814,7 +1814,8 @@ Flickable {
             }
             PropertyChanges {
                 target: promptingButton
-                icon.name: Qt.application.layoutDirection === Qt.RightToLeft ? "go-next-rtl" : "go-next"
+                icon.source: Qt.application.layoutDirection === Qt.RightToLeft ?
+                                 "../icons/go-previous.svg" : "../icons/go-next.svg"
             }
             PropertyChanges {
                 target: prompter
@@ -1846,7 +1847,8 @@ Flickable {
             PropertyChanges {
                 target: promptingButton
                 text: viewport.countdown.enabled ? i18n("Begin countdown") : i18n("Start prompting")
-                icon.name: Qt.application.layoutDirection === Qt.RightToLeft ? "go-next-rtl" : "go-next"
+                icon.source: Qt.application.layoutDirection === Qt.RightToLeft ?
+                                 "../icons/go-previous.svg" : "../icons/go-next.svg"
             }
             PropertyChanges {
                 target: prompter
@@ -1893,7 +1895,8 @@ Flickable {
             PropertyChanges {
                 target: promptingButton
                 text: i18n("Skip countdown")
-                icon.name: Qt.application.layoutDirection === Qt.RightToLeft ? "go-next-rtl" : "go-next"
+                icon.source: Qt.application.layoutDirection === Qt.RightToLeft ?
+                                 "../icons/go-previous.svg" : "../icons/go-next.svg"
             }
             PropertyChanges {
                 target: prompter
@@ -1937,7 +1940,8 @@ Flickable {
             PropertyChanges {
                 target: promptingButton
                 text: i18n("Return to edit mode")
-                icon.name: Qt.application.layoutDirection===Qt.LeftToRight ? "edit-undo" : "edit-redo"
+                icon.source: Qt.application.layoutDirection === Qt.LeftToRight ?
+                                 "../icons/edit-undo.svg" : "../icons/edit-redo.svg"
             }
             PropertyChanges {
                 target: prompter
