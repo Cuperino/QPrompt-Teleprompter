@@ -423,6 +423,14 @@ Kirigami.ApplicationWindow {
                     }
                 }
                 Kirigami.Action {
+                    id: languageConfig
+                    text: i18nc("Main menu actions", "Language")
+                    icon.source: "qrc:/qt/qml/com/cuperino/qprompt/icons/amarok_change_language.svg"
+                    onTriggered: {
+                        languageSettings.open();
+                    }
+                }
+                Kirigami.Action {
                     text: i18nc("Main menu actions", "Restore factory defaults")
                     icon.source: "qrc:/qt/qml/com/cuperino/qprompt/icons/edit-clear-history.svg"
                     onTriggered: {
@@ -470,6 +478,8 @@ Kirigami.ApplicationWindow {
                         root.pageStack.currentItem.pointerConfiguration.close()
                     else if (layoutDirectionSettings.opened)
                         layoutDirectionSettings.close()
+                    else if (languageSettings.opened)
+                        languageSettings.close()
                     else if (wheelSettings.opened)
                         wheelSettings.close()
                     // Close find, compare against enabled instead of isOpen to prevent closing find while it is invisible.
@@ -545,6 +555,10 @@ Kirigami.ApplicationWindow {
 
     LayoutDirectionSettingsOverlay {
         id: layoutDirectionSettings
+    }
+
+    LanguageSettingsOverlay {
+        id: languageSettings
     }
 
     WheelSettingsOverlay {
