@@ -1639,7 +1639,7 @@ msgstr ""
 
 #: prompter/Prompter.qml:1265
 msgid "welcome_en.html"
-msgstr "welcome_jp.html"
+msgstr "welcome_ja.html"
 
 #: prompter/Prompter.qml:1270
 msgid "User welcome loaded"
