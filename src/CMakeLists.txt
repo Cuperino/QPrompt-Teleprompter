@@ -376,9 +376,9 @@ IF(NOT GETTEXT_MSGFMT_EXECUTABLE)
                 NOTE: msgfmt not found. Translations will *not* be installed
 ------")
 ELSE(NOT GETTEXT_MSGFMT_EXECUTABLE)
-    SET(LOCALE_INSTALL_DIR usr/share)
+    SET(LOCALE_INSTALL_DIR ${CMAKE_INSTALL_PREFIX}/share/locale)
 
-    SET(catalogname qprompt)
+    SET(catalogname ${PROJECT_NAME})
 
     FILE(GLOB PO_FILES ../po/*.po)
     SET(GMO_FILES)
@@ -392,7 +392,7 @@ ELSE(NOT GETTEXT_MSGFMT_EXECUTABLE)
             GET_FILENAME_COMPONENT(_lang ${_poFile} NAME_WE)
             SET(_gmoFile ${CMAKE_CURRENT_BINARY_DIR}/${_lang}.gmo)
 
-            ADD_CUSTOM_COMMAND(TARGET ${PROJECT_NAME} # ${_gmoFile}
+            ADD_CUSTOM_COMMAND(TARGET ${PROJECT_NAME}
                 COMMAND ${GETTEXT_MSGFMT_EXECUTABLE} --check -o ${_gmoFile} ${_poFile}
                 DEPENDS ${_poFile})
             INSTALL(FILES ${_gmoFile} DESTINATION ${LOCALE_INSTALL_DIR}/${_langCode}/LC_MESSAGES/ RENAME ${catalogname}.mo)
