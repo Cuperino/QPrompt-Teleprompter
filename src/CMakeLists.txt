@@ -429,4 +429,6 @@ qt_generate_deploy_qml_app_script(
     # DEPLOY_USER_QML_MODULES_ON_UNSUPPORTED_PLATFORM
     MACOS_BUNDLE_POST_BUILD
 )
-install(SCRIPT ${deploy_script})
+if (NOT UNIX OR APPLE)
+    install(SCRIPT ${deploy_script})
+endif()
