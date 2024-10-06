@@ -376,7 +376,7 @@ IF(NOT GETTEXT_MSGFMT_EXECUTABLE)
                 NOTE: msgfmt not found. Translations will *not* be installed
 ------")
 ELSE(NOT GETTEXT_MSGFMT_EXECUTABLE)
-    SET(LOCALE_INSTALL_DIR ${CMAKE_INSTALL_PREFIX}/share/locale)
+    SET(LOCALE_INSTALL_DIR ${KDE_INSTALL_LOCALEDIR})
 
     SET(catalogname ${PROJECT_NAME})
 
