@@ -275,11 +275,11 @@ if(UNIX AND NOT ANDROID)
     # CPACK: DEB specific settings
     set(CPACK_DEBIAN_PACKAGE_SECTION "Multimedia")
     set(CPACK_DEBIAN_COMPRESSION_TYPE ${COMPRESION_TYPE})
-    set(CPACK_DEBIAN_PACKAGE_DEPENDS "libqt6svg5 (>= 6.6.2), qml-module-qt-labs-platform (>=6.6.2), qml-module-qtqml (>=6.6.2), qml-module-qtqml-models2 (>=6.6.2), qml-module-qtqml-statemachine (>=6.6.2), qml-module-qtquick-controls (>=6.6.2), qml-module-qtquick-controls2 (>=6.6.2), qml-module-qtquick-dialogs (>=6.6.2), qml-module-qtquick-shapes (>=6.6.2), libkf5coreaddons5 (>= 6.5.0), qml-module-org-kde-Kirigami (>=6.5.0), libkf5i18n5 (>= 6.5.0), libkf5crash5 (>= 6.5.0)")
+    set(CPACK_DEBIAN_PACKAGE_DEPENDS "libqt6svg6 (>= 6.6.2), qml6-module-qt-labs-platform (>=6.6.2), qml6-module-qtqml (>=6.6.2), qml6-module-qtqml-models (>=6.6.2), qml6-module-qtqml-statemachine (>=6.6.2), qml6-module-qtquick-controls (>=6.6.2), qml6-module-qtquick-dialogs (>=6.6.2), qml6-module-qtquick-shapes (>=6.6.2), libkf6coreaddons6 (>= 6.5.0), kf6-kirigami (>= 6.5.0), libkf6i18n6 (>= 6.5.0), libkf6crash6 (>= 6.5.0)")
 
     # CPACK: RPM specific settings
     set(CPACK_RPM_PACKAGE_GROUP "Multimedia/Video")
-    set(CPACK_RPM_PACKAGE_REQUIRES "qt6-qtbase >= 6.7.2, qt6-qtbase-gui >= 6.7.2, qt6-qtdeclarative >= 6.7.2, qt6-qtsvg >= 6.7.2, qt6-qtquickcontrols >= 6.7.2, qt6-qtquickcontrols2 >= 6.7.2, kf5-kcoreaddons >= 6.5.0, kf5-ki18n >= 6.5.0, kf5-kirigami >= 6.5.0, kf5-kcrash >= 6.5.0")
+    set(CPACK_RPM_PACKAGE_REQUIRES "qt6-qtbase >= 6.7.2, qt6-qtbase-gui >= 6.7.2, qt6-qtdeclarative >= 6.7.2, qt6-qtsvg >= 6.7.2, qt6-qtquickcontrols >= 6.7.2, qt6-qtquickcontrols2 >= 6.7.2, kf6-kcoreaddons >= 6.5.0, kf6-ki18n >= 6.5.0, kf6-kirigami >= 6.5.0, kf6-kcrash >= 6.5.0")
     set(CPACK_RPM_COMPRESSION_TYPE ${COMPRESION_TYPE})
 
 elseif(WIN32)
