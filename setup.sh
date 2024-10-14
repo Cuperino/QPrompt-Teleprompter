@@ -27,6 +27,7 @@ echo -e "\nArchitecture: $ARCHITECTURE"
 
 if [[ "$OSTYPE" == "linux-gnu"* ]]; then
    PLATFORM="linux"
+   CMAKE_INSTALL_PREFIX="/usr"
    if [ "$ARCHITECTURE" == "aarch64" ]; then
        COMPILER="gcc_arm64"
    else
@@ -34,6 +35,7 @@ if [[ "$OSTYPE" == "linux-gnu"* ]]; then
    fi
 elif [[ "$OSTYPE" == "darwin"* ]]; then
     PLATFORM="macos"
+    CMAKE_INSTALL_PREFIX="/usr"
     COMPILER="macos"
 elif [[ "$OSTYPE" == "win32" || "$OSTYPE" == "msys" ]]; then
     PLATFORM="windows"
@@ -44,9 +46,11 @@ elif [[ "$OSTYPE" == "win32" || "$OSTYPE" == "msys" ]]; then
     fi
 elif [[ "$OSTYPE" == "freebsd"* ]]; then
     PLATFORM="freebsd"
+    CMAKE_INSTALL_PREFIX="/usr"
     COMPILER="gcc"
 else
     PLATFORM="unix"
+    CMAKE_INSTALL_PREFIX="/usr"
     COMPILER="gcc"
 fi
 
@@ -60,8 +64,7 @@ if [ "$CMAKE_BUILD_TYPE" == "" ]; then
     fi
 fi
 CMAKE_PREFIX_PATH=$2
-if [ "$CMAKE_PREFIX_PATH" == "" ]
-    then
+if [ "$CMAKE_PREFIX_PATH" == "" ]; then
     if [[ "$OSTYPE" == "win32" ]]; then
         CMAKE_PREFIX_PATH="C:\\Qt\\$QT_VER\\$COMPILER\\"
     elif [[ "$OSTYPE" == "msys" ]]; then
@@ -90,6 +93,7 @@ This script assumes you've already installed the following dependencies:
  For Linux:
  > build-essential
  > cmake
+ > python3-venv
 
  For macOS:
  > CMake
@@ -104,12 +108,10 @@ EOF
 
 QT_MAJOR_VERSION=6
 CLEAR_ARG="${@: -1}"
-if [ "$CLEAR_ARG" == "CLEAR" ]
-    then
+if [ "$CLEAR_ARG" == "CLEAR" ]; then
     CLEAR=true
     CLEAR_ALL=false
-elif [ "$CLEAR_ARG" == "CLEAR_ALL" ]
-    then
+elif [ "$CLEAR_ARG" == "CLEAR_ALL" ]; then
     CLEAR=true
     CLEAR_ALL=true
 else
@@ -118,8 +120,8 @@ else
 fi
 
 # Constants
-CMAKE_INSTALL_PREFIX="install"
-mkdir -p "$CMAKE_INSTALL_PREFIX"
+AppDir="install"
+mkdir -p "$AppDir"
 
 echo -e "\nBuild directory is ./build"
 if $CLEAR_ALL # QPrompt and dependencies
@@ -174,7 +176,7 @@ $VCPKG install --x-install-root $CMAKE_PREFIX_PATH gettext gettext-libintl
 for package in ./3rdparty/vcpkg/packages/*; do
     echo $package
     cp -rf $package/* $CMAKE_PREFIX_PATH
-    cp -rf $package/* $CMAKE_INSTALL_PREFIX
+    cp -rf $package/* $AppDir
 done
 
 # KDE Frameworks
@@ -193,31 +195,29 @@ tier_3="
 "
 for dependency in $tier_0 $tier_1 $tier_2 $tier_3; do
     echo -e "\n\n~~~" $dependency "~~~\n"
-    if $CLEAR_ALL
-    then
+    if $CLEAR_ALL; then
         rm -dRf $dependency/build
     fi
     cmake -DCMAKE_CONFIGURATION_TYPES=$CMAKE_CONFIGURATION_TYPES -DBUILD_TESTING=OFF -BUILD_QCH=OFF -DCMAKE_PREFIX_PATH=$CMAKE_PREFIX_PATH -DCMAKE_INSTALL_PREFIX=$CMAKE_INSTALL_PREFIX -B ./$dependency/build ./$dependency/
     cmake --build ./$dependency/build --config $CMAKE_BUILD_TYPE
-    cmake --install ./$dependency/build
-    cp -r $CMAKE_INSTALL_PREFIX $CMAKE_PREFIX_PATH
+    DESTDIR=$AppDir cmake --install ./$dependency/build
+    cp -r $AppDir $CMAKE_PREFIX_PATH
 done
 
 echo "QHotkey"
-if $CLEAR_ALL
-then
+if $CLEAR_ALL; then
     rm -dRf 3rdparty/QHotkey/build
 fi
-cmake -DCMAKE_CONFIGURATION_TYPES=$CMAKE_CONFIGURATION_TYPES -DCMAKE_PREFIX_PATH=$CMAKE_PREFIX_PATH -DCMAKE_INSTALL_PREFIX=$CMAKE_INSTALL_PREFIX -DBUILD_SHARED_LIBS=ON -DQT_DEFAULT_MAJOR_VERSION=${QT_MAJOR_VERSION} -B ./3rdparty/QHotkey/build ./3rdparty/QHotkey/
+cmake -DCMAKE_CONFIGURATION_TYPES=$CMAKE_CONFIGURATION_TYPES -DCMAKE_PREFIX_PATH=$CMAKE_PREFIX_PATH -DCMAKE_INSTALL_PREFIX=$CMAKE_INSTALL_PREFIX -DBUILD_SHARED_LIBS=ON -DQT_DEFAULT_MAJOR_VERSION=$QT_MAJOR_VERSION -B ./3rdparty/QHotkey/build ./3rdparty/QHotkey/
 cmake --build ./3rdparty/QHotkey/build --config $CMAKE_BUILD_TYPE
-cmake --install ./3rdparty/QHotkey/build
-cp -r $CMAKE_INSTALL_PREFIX $CMAKE_PREFIX_PATH
+DESTDIR=$AppDir cmake --install ./3rdparty/QHotkey/build
+cp -r $AppDir $CMAKE_PREFIX_PATH
 
 echo "QPrompt"
 cmake -DCMAKE_CONFIGURATION_TYPES=$CMAKE_CONFIGURATION_TYPES -DCMAKE_PREFIX_PATH=$CMAKE_PREFIX_PATH -DCMAKE_INSTALL_PREFIX=$CMAKE_INSTALL_PREFIX -B ./build .
 cmake --build ./build --config $CMAKE_BUILD_TYPE
-cmake --install ./build
-cp -r $CMAKE_INSTALL_PREFIX $CMAKE_PREFIX_PATH
+DESTDIR=$AppDir cmake --install ./build
+cp -r $AppDir $CMAKE_PREFIX_PATH
 
 # Copy Qt libraries into install directory
 if [[ "$PLATFORM" == "windows" ]]; then
@@ -225,6 +225,14 @@ if [[ "$PLATFORM" == "windows" ]]; then
     $CMAKE_PREFIX_PATH/bin/windeployqt.exe ./install/bin/$CMAKE_BUILD_TYPE/QPrompt.exe
 elif [[ "$PLATFORM" == "macos" ]]; then
     $CMAKE_PREFIX_PATH/bin/macdeployqt ./install/QPrompt
-# elif [[ "$PLATFORM" == "linux" ]]; then
-#     $CMAKE_PREFIX_PATH/bin/linuxdeployqt ./install/bin/qprompt
+elif [[ "$PLATFORM" == "linux" ]]; then
+    COMMAND=~/Applications/linuxdeploy-$ARCHITECTURE.AppImage
+    if ! command -v $COMMAND 2>&1 >/dev/null; then
+        echo "$COMMAND could not be found"
+        exit 1
+    fi
+    $COMMAND --appdir ./install --output appimage
+    cd build
+    cpack
+    cd ..
 fi

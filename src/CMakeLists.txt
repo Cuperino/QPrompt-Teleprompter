@@ -34,6 +34,35 @@ if (NOT ANDROID)
         qt/systemfontchooserdialog.ui
     )
 endif()
+
+if (NOT APPLE AND NOT ANDROID)
+    set(ICONS_FOLDER ${CMAKE_CURRENT_SOURCE_DIR}/icons/hicolor)
+    set(RASTER_ICONS
+        ${ICONS_FOLDER}/16-apps-com.cuperino.qprompt.png
+        ${ICONS_FOLDER}/32-apps-com.cuperino.qprompt.png
+        ${ICONS_FOLDER}/48-apps-com.cuperino.qprompt.png
+        ${ICONS_FOLDER}/64-apps-com.cuperino.qprompt.png
+        ${ICONS_FOLDER}/128-apps-com.cuperino.qprompt.png
+        ${ICONS_FOLDER}/256-apps-com.cuperino.qprompt.png
+        ${ICONS_FOLDER}/512-apps-com.cuperino.qprompt.png
+        # Commenting 1024 sized icon out because although ECM does support it, Flatpak does not...
+        # ${ICONS_FOLDER}/1024-apps-com.cuperino.qprompt.png
+    )
+    # set(VECTOR_ICON
+    #     ${ICONS_FOLDER}/sc-apps-com.cuperino.qprompt.svg
+    # )
+    ecm_install_icons(
+        ICONS
+            ${RASTER_ICONS}
+            # ${VECTOR_ICON}
+        DESTINATION ${KDE_INSTALL_ICONDIR}
+        # THEME hicolor
+    )
+    ecm_add_app_icon(qprompt_ICONS
+        ICONS ${RASTER_ICONS}
+    )
+endif()
+
 set(qprompt_frontend_sources
     # Kirigami UI Frontend
     kirigami_ui/main.qml

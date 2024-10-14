@@ -242,7 +242,7 @@ endif()
 
 if (UNIX AND NOT APPLE AND NOT ANDROID)
     set(DOC_INSTALL_DIR "share/doc/qprompt")
-    set(MAN_INSTALL_DIR "usr/share/man/")
+    set(MAN_INSTALL_DIR "share/man/")
     install(FILES docs/manpage/qprompt.1 DESTINATION ${MAN_INSTALL_DIR}/man1)
 endif()
 
