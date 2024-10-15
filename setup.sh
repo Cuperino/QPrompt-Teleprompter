@@ -39,6 +39,7 @@ elif [[ "$OSTYPE" == "darwin"* ]]; then
     COMPILER="macos"
 elif [[ "$OSTYPE" == "win32" || "$OSTYPE" == "msys" ]]; then
     PLATFORM="windows"
+   CMAKE_INSTALL_PREFIX="install"
     if [ "$ARCHITECTURE" == "aarch64" ]; then
         COMPILER="msvc2019_arm64"
     else
