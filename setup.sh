@@ -122,7 +122,7 @@ fi
 
 # Constants
 AppDir="install"
-mkdir -p "$AppDir"
+mkdir -p "$AppDir/usr"
 
 echo -e "\nBuild directory is ./build"
 if $CLEAR_ALL # QPrompt and dependencies
