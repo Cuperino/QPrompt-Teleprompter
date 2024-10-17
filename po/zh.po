@@ -7,16 +7,16 @@ msgstr ""
 "Project-Id-Version: qprompt\n"
 "Report-Msgid-Bugs-To: https://github.com/Cuperino/QPrompt/issues/new/choose\n"
 "POT-Creation-Date: 2024-09-29 11:34-0400\n"
-"PO-Revision-Date: 2023-01-16 16:05+0000\n"
-"Last-Translator: Javier O. Cordero Pérez <javiercorderoperez@gmail.com>\n"
-"Language-Team: Chinese (Simplified) <http://l10n.cuperino.com/projects/"
-"qprompt/qprompt-app/zh_CN/>\n"
-"Language: zh_CN\n"
+"PO-Revision-Date: 2024-10-17 05:25+0000\n"
+"Last-Translator: Bao Wong <bao_wong@163.com>\n"
+"Language-Team: Chinese (Simplified Han script) <http://l10n.cuperino.com/"
+"projects/qprompt/qprompt-app/zh_Hans/>\n"
+"Language: zh\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 4.11.2\n"
+"X-Generator: Weblate 5.7.2\n"
 
 #: kirigami_ui/+android/main.qml:183 kirigami_ui/+windows/main.qml:198
 #: kirigami_ui/main.qml:198 kirigami_ui/main.qml:576
@@ -34,7 +34,7 @@ msgstr "打开"
 #: kirigami_ui/main.qml:215
 msgctxt "Main menu and global menu actions"
 msgid "&Open remote file"
-msgstr ""
+msgstr "打开远程文件"
 
 #: kirigami_ui/+android/main.qml:207 kirigami_ui/+windows/main.qml:222
 #: kirigami_ui/main.qml:224 kirigami_ui/main.qml:584
@@ -83,11 +83,10 @@ msgstr "颠倒箭头方向"
 
 #: kirigami_ui/+android/main.qml:259 kirigami_ui/+windows/main.qml:274
 #: kirigami_ui/main.qml:281 kirigami_ui/main.qml:828
-#, fuzzy
 msgctxt ""
 "Main menu and global menu actions. Invert scroll direction while prompting."
 msgid "Invert &scroll direction (Natural scrolling)"
-msgstr "颠倒滚动方向"
+msgstr "反转滚动方向（自然滚动）"
 
 #: kirigami_ui/+android/main.qml:267 kirigami_ui/+windows/main.qml:282
 #: kirigami_ui/main.qml:290 kirigami_ui/main.qml:813
@@ -115,20 +114,19 @@ msgstr "其他设置"
 #: kirigami_ui/main.qml:327
 msgctxt "Main menu actions. Opens dialog for choosing layout direction."
 msgid "Layout direction"
-msgstr ""
+msgstr "布局方向"
 
 #: kirigami_ui/+android/main.qml:299 kirigami_ui/+windows/main.qml:321
 #: kirigami_ui/main.qml:332
 msgctxt "Main menu actions. Enters Performance tweaks submenu."
 msgid "Performance tweaks"
-msgstr ""
+msgstr "性能调整"
 
 #: kirigami_ui/+android/main.qml:308 kirigami_ui/+windows/main.qml:330
 #: kirigami_ui/main.qml:341
-#, fuzzy
 msgctxt "Main menu actions"
 msgid "Disable timers"
-msgstr "启用定时器"
+msgstr "关闭计时器"
 
 #: kirigami_ui/+android/main.qml:317 kirigami_ui/+windows/main.qml:339
 #: kirigami_ui/main.qml:350
@@ -153,26 +151,25 @@ msgstr "禁用阅读区域叠加对比度"
 #: kirigami_ui/main.qml:406
 msgctxt "Main menu actions. Enters Other tweaks submenu."
 msgid "Other tweaks"
-msgstr ""
+msgstr "其他调整"
 
 #: kirigami_ui/+android/main.qml:344 kirigami_ui/+windows/main.qml:397
 #: kirigami_ui/main.qml:409
-#, fuzzy
 msgctxt "Main menu actions. Enable local file auto reload"
 msgid "Local file auto reload"
-msgstr "自动定格"
+msgstr "本地文件自动重载"
 
 #: kirigami_ui/+android/main.qml:353 kirigami_ui/+windows/main.qml:414
 #: kirigami_ui/main.qml:427
 msgctxt "Main menu actions"
 msgid "Language"
-msgstr ""
+msgstr "语言"
 
 #: kirigami_ui/+android/main.qml:360 kirigami_ui/+windows/main.qml:421
 #: kirigami_ui/main.qml:434
 msgctxt "Main menu actions"
 msgid "Restore factory defaults"
-msgstr ""
+msgstr "恢复默认设置"
 
 #: kirigami_ui/+android/main.qml:368 kirigami_ui/+windows/main.qml:429
 #: kirigami_ui/main.qml:442
@@ -200,14 +197,14 @@ msgstr "星球模式"
 #: kirigami_ui/+android/main.qml:588 kirigami_ui/+windows/main.qml:703
 #: kirigami_ui/main.qml:1021
 msgid "Factory Reset"
-msgstr ""
+msgstr "默认设置"
 
 #: kirigami_ui/+android/main.qml:589 kirigami_ui/+windows/main.qml:704
 #: kirigami_ui/main.qml:1022
 msgid ""
 "Restore all configurations to factory defaults? QPrompt will close if you "
 "click Yes and all unsaved document changes will be lost."
-msgstr ""
+msgstr "是否恢复默认设置？点击“确定”您将丢失所有未保存的文档。"
 
 #: kirigami_ui/+android/main.qml:600 kirigami_ui/+windows/main.qml:714
 #: kirigami_ui/main.qml:1032
@@ -223,7 +220,7 @@ msgstr "是否在关闭前保存对文档的更改?"
 #: kirigami_ui/+windows/main.qml:309 kirigami_ui/main.qml:320
 msgctxt "Main menu actions. Load Path Settings page."
 msgid "External Tools and Applications"
-msgstr ""
+msgstr "外部工具和应用程序"
 
 #: kirigami_ui/+windows/main.qml:365 kirigami_ui/main.qml:376
 msgid "Disable background transparency"
@@ -243,7 +240,7 @@ msgctxt ""
 "Main menu actions. Fake fullscreen behavior instead of requesting true "
 "fullscreen"
 msgid "Fake fullscreen behavior"
-msgstr ""
+msgstr "模拟全屏"
 
 #: kirigami_ui/+windows/main.qml:692 kirigami_ui/main.qml:1010
 msgctxt "Restart application_name"
@@ -365,10 +362,9 @@ msgid "Step acceleration <pre>%1</pre>"
 msgstr "步长加速度 <pre>%1</pre>"
 
 #: kirigami_ui/EditorToolbar.qml:1164
-#, fuzzy
 msgctxt "Next reload starts at 10:11:12"
 msgid "Next reload starts at <pre>%1</pre>"
-msgstr "步长加速度 <pre>%1</pre>"
+msgstr "下次重新加载开始于 <pre>%1</pre>"
 
 #: kirigami_ui/InputsOverlay.qml:35
 msgctxt "Title of dialog where users customize keyboard inputs"
@@ -430,179 +426,180 @@ msgstr "转到下一个标记"
 #: kirigami_ui/InputsOverlay.qml:359
 msgctxt "Hotkey that shifts velocoty to its negative value."
 msgid "Set velocity modifier key"
-msgstr ""
+msgstr "设置速度调整键"
 
 #: kirigami_ui/InputsOverlay.qml:364
+#, fuzzy
 msgctxt "Control key"
 msgid "Ctrl"
-msgstr ""
+msgstr "Ctrl"
 
 #: kirigami_ui/InputsOverlay.qml:365
 #, fuzzy
 msgctxt "Alt key"
 msgid "Alt"
-msgstr "显示所有"
+msgstr "Alt"
 
 #: kirigami_ui/InputsOverlay.qml:398
 msgctxt "Hotkey that sets velocity to a fixed value."
 msgid "Set velocity to 0"
-msgstr ""
+msgstr "速度设置为0"
 
 #: kirigami_ui/InputsOverlay.qml:406
 msgctxt "Hotkey that sets velocity to a fixed value."
 msgid "Set velocity to 1"
-msgstr ""
+msgstr "速度设置为1"
 
 #: kirigami_ui/InputsOverlay.qml:414
 msgctxt "Hotkey that sets velocity to a fixed value."
 msgid "Set velocity to 2"
-msgstr ""
+msgstr "速度设置为2"
 
 #: kirigami_ui/InputsOverlay.qml:422
 msgctxt "Hotkey that sets velocity to a fixed value."
 msgid "Set velocity to 3"
-msgstr ""
+msgstr "速度设置为3"
 
 #: kirigami_ui/InputsOverlay.qml:430
 msgctxt "Hotkey that sets velocity to a fixed value."
 msgid "Set velocity to 4"
-msgstr ""
+msgstr "速度设置为4"
 
 #: kirigami_ui/InputsOverlay.qml:438
 msgctxt "Hotkey that sets velocity to a fixed value."
 msgid "Set velocity to 5"
-msgstr ""
+msgstr "速度设置为5"
 
 #: kirigami_ui/InputsOverlay.qml:446
 msgctxt "Hotkey that sets velocity to a fixed value."
 msgid "Set velocity to 6"
-msgstr ""
+msgstr "速度设置为6"
 
 #: kirigami_ui/InputsOverlay.qml:454
 msgctxt "Hotkey that sets velocity to a fixed value."
 msgid "Set velocity to 7"
-msgstr ""
+msgstr "速度设置为7"
 
 #: kirigami_ui/InputsOverlay.qml:462
 msgctxt "Hotkey that sets velocity to a fixed value."
 msgid "Set velocity to 8"
-msgstr ""
+msgstr "速度设置为8"
 
 #: kirigami_ui/InputsOverlay.qml:470
 msgctxt "Hotkey that sets velocity to a fixed value."
 msgid "Set velocity to 9"
-msgstr ""
+msgstr "速度设置为9"
 
 #: kirigami_ui/InputsOverlay.qml:478
 msgctxt "Hotkey that sets velocity to a fixed value."
 msgid "Set velocity to 10"
-msgstr ""
+msgstr "速度设置为10"
 
 #: kirigami_ui/KeyInputButton.qml:109
-#, fuzzy
 msgctxt "Button to remove a keyboard shortcut"
 msgid "Clear"
-msgstr "恢复默认"
+msgstr "清除"
 
 #: kirigami_ui/LanguageSettingsOverlay.qml:32
-#, fuzzy
 msgid "Language settings"
-msgstr "指针设置"
+msgstr "语言设置"
 
 #: kirigami_ui/LanguageSettingsOverlay.qml:40
 msgctxt "Selector to choose user interface language"
 msgid "UI Language"
-msgstr ""
+msgstr "界面语言"
 
 #: kirigami_ui/LanguageSettingsOverlay.qml:64
 msgctxt "Language"
 msgid "Use system language"
-msgstr ""
+msgstr "使用系统语言"
 
 #: kirigami_ui/LanguageSettingsOverlay.qml:68
 msgctxt "Language"
 msgid "English"
-msgstr ""
+msgstr "英语"
 
 #: kirigami_ui/LanguageSettingsOverlay.qml:76
 msgctxt "Language"
 msgid "Chinese (Simplified)"
-msgstr ""
+msgstr "简体中文"
 
 #: kirigami_ui/LanguageSettingsOverlay.qml:80
 msgctxt "Language"
 msgid "Czech"
-msgstr ""
+msgstr "捷克语"
 
 #: kirigami_ui/LanguageSettingsOverlay.qml:92
 msgctxt "Language"
 msgid "French"
-msgstr ""
+msgstr "法语"
 
 #: kirigami_ui/LanguageSettingsOverlay.qml:96
 msgctxt "Language"
 msgid "German"
-msgstr ""
+msgstr "德语"
 
 #: kirigami_ui/LanguageSettingsOverlay.qml:108
 msgctxt "Language"
 msgid "Japanese"
-msgstr ""
+msgstr "日语"
 
 #: kirigami_ui/LanguageSettingsOverlay.qml:124
 msgctxt "Language"
 msgid "Portuguese (Brazil)"
-msgstr ""
+msgstr "葡萄牙语 （巴西）"
 
 #: kirigami_ui/LanguageSettingsOverlay.qml:128
 msgctxt "Language"
 msgid "Portuguese (Portugal)"
-msgstr ""
+msgstr "葡萄牙语 （葡萄牙）"
 
 #: kirigami_ui/LanguageSettingsOverlay.qml:136
 msgctxt "Language"
 msgid "Spanish"
-msgstr ""
+msgstr "西班牙语"
 
 #: kirigami_ui/LanguageSettingsOverlay.qml:140
 msgctxt "Language"
 msgid "Turkish"
-msgstr ""
+msgstr "土耳其语"
 
 #: kirigami_ui/LanguageSettingsOverlay.qml:144
 msgctxt "Language"
 msgid "Ukranian"
-msgstr ""
+msgstr "乌克兰语"
 
 #: kirigami_ui/LanguageSettingsOverlay.qml:172
 msgid ""
 "Is your language not here or it's incomplete?\n"
 "Help us translate QPrompt, visit:"
 msgstr ""
+"您所使用的语言不在这里？\n"
+"帮我们翻译，请访问："
 
 #: kirigami_ui/LayoutDirectionSettingsOverlay.qml:32
 msgid "Layout direction"
-msgstr ""
+msgstr "布局方向"
 
 #: kirigami_ui/LayoutDirectionSettingsOverlay.qml:39
 msgctxt "Label at layout direction settings overlay"
 msgid "Current layout"
-msgstr ""
+msgstr "当前布局"
 
 #: kirigami_ui/LayoutDirectionSettingsOverlay.qml:49
 msgctxt "Short for automatic"
 msgid "Auto"
-msgstr ""
+msgstr "自动"
 
 #: kirigami_ui/LayoutDirectionSettingsOverlay.qml:50
 msgctxt "Short for Right to Left layout"
 msgid "RTL"
-msgstr ""
+msgstr "从右到左"
 
 #: kirigami_ui/LayoutDirectionSettingsOverlay.qml:51
 msgctxt "Short for Left to Right layout"
 msgid "LTR"
-msgstr ""
+msgstr "从左到右"
 
 #: kirigami_ui/MarkersDrawer.qml:129
 msgctxt "Close sidebar listing user defined markers"
@@ -611,27 +608,28 @@ msgstr "关闭标记列表"
 
 #: kirigami_ui/PathsPage.qml:42
 msgid "External Tools"
-msgstr ""
+msgstr "外部工具"
 
 #: kirigami_ui/PathsPage.qml:57
+#, fuzzy
 msgid "LibreOffice"
-msgstr ""
+msgstr "LibreOffice"
 
 #: kirigami_ui/PathsPage.qml:63
 msgid ""
 "QPrompt can make transparent use of LibreOffice to convert Microsoft Word, "
-msgstr ""
+msgstr "QPrompt可以将LibreOffice文件转换成Microsoft Word "
 
 #: kirigami_ui/PathsPage.qml:71 kirigami_ui/PathsPage.qml:99
 msgctxt "Browse for PROGRAM"
 msgid "Browse for %1"
-msgstr ""
+msgstr "浏览"
 
 #: kirigami_ui/PathsPage.qml:102 kirigami_ui/PathsPage.qml:104
 #: kirigami_ui/PathsPage.qml:105
 msgctxt "Format name (FORMAT_EXTENSION)"
 msgid "Executable (%1)"
-msgstr ""
+msgstr "可执行文件"
 
 #. i18nc("Format name (FORMAT_EXTENSION)", "Portable Document Format (%1)", "PDF") + "(*.pdf *.PDF)",
 #. i18nc("Format name (FORMAT_EXTENSION)", "Rich Text Format (%1)", "RTF") + "(*.rtf *.RTF)",
@@ -729,10 +727,9 @@ msgid "Change reading region indicators"
 msgstr "更改阅读区域指示器"
 
 #: kirigami_ui/PrompterPage.qml:250
-#, fuzzy
 msgctxt "Configure reading region pointer indicators"
 msgid "Pointer Configuration"
-msgstr "提示持续时间"
+msgstr "指针配置"
 
 #: kirigami_ui/PrompterPage.qml:257 kirigami_ui/PrompterPage.qml:269
 msgctxt "Shows pointer to the left of the reading region"
@@ -762,10 +759,9 @@ msgid "Left and right pointers indicate reading region"
 msgstr "左右指针指示阅读区域"
 
 #: kirigami_ui/PrompterPage.qml:293
-#, fuzzy
 msgctxt "Disable all reading region pointers"
 msgid "No pointers"
-msgstr "两个指针"
+msgstr "没有指针"
 
 #: kirigami_ui/PrompterPage.qml:295
 msgctxt "Disable all reading region indicators"
@@ -869,7 +865,7 @@ msgstr "背景"
 #: kirigami_ui/PrompterPage.qml:575
 msgctxt "Enable root.shadows"
 msgid "Shadows"
-msgstr ""
+msgstr "阴影"
 
 #: kirigami_ui/PrompterPage.qml:584
 msgctxt "Set background image"
@@ -939,9 +935,8 @@ msgid "Countdown Setup"
 msgstr "倒计时设置"
 
 #: kirigami_ui/PrompterPage.qml:869
-#, fuzzy
 msgid "Countdown duration"
-msgstr "倒计时迭代"
+msgstr "倒计时时长"
 
 #: kirigami_ui/PrompterPage.qml:888
 msgid "Disappear within 1 second to go"
@@ -964,55 +959,54 @@ msgstr "按此键执行跳到此标记"
 
 #: kirigami_ui/PrompterPage.qml:980
 msgid "Open from network..."
-msgstr ""
+msgstr "从网络上打开"
 
 #: kirigami_ui/PrompterPage.qml:1007
+#, fuzzy
 msgid "URL:"
-msgstr ""
+msgstr "URL:"
 
 #: kirigami_ui/PrompterPage.qml:1011
 msgid "http, https, and ftp protocols supported"
-msgstr ""
+msgstr "支持 HTTP、HTTPS 和 FTP 协议"
 
 #: kirigami_ui/PrompterPage.qml:1022
-#, fuzzy
 msgid "Auto reload"
-msgstr "自动定格"
+msgstr "自动重载"
 
 #: kirigami_ui/PrompterPage.qml:1032
 msgid "Hours:"
-msgstr ""
+msgstr "时："
 
 #: kirigami_ui/PrompterPage.qml:1052
 msgid "Minutes:"
-msgstr ""
+msgstr "分："
 
 #: kirigami_ui/PrompterPage.qml:1076
 msgid "Seconds:"
-msgstr ""
+msgstr "秒："
 
 #: kirigami_ui/PrompterPage.qml:1103
 msgctxt "Next reload starts at 10:11:12"
 msgid "Next reload starts at %1"
-msgstr ""
+msgstr "下次重新加载开始于 %1"
 
 #: kirigami_ui/PrompterPage.qml:1104
 msgid "Auto reload is not running"
-msgstr ""
+msgstr "自动重新加载未运行"
 
 #: kirigami_ui/PrompterPage.qml:1111
 msgid "Load from Network"
-msgstr ""
+msgstr "从网络加载"
 
 #: kirigami_ui/PrompterPage.qml:1119 prompter/ProjectionsManager.qml:321
 msgid "Close"
 msgstr "关闭"
 
 #: kirigami_ui/PrompterPage.qml:1132
-#, fuzzy
 msgctxt "Name of section where reding region pointers are configured"
 msgid "Pointer configuration"
-msgstr "提示持续时间"
+msgstr "指针配置"
 
 #: kirigami_ui/RemotePage.qml:28
 msgid "Remote Control"
@@ -1466,7 +1460,8 @@ msgstr "关于 %1"
 msgid ""
 "Personal teleprompter software for all video makers. Built with ease of use, "
 "productivity, and smooth performance in mind."
-msgstr ""
+msgstr "适用于所有视频制作者的个人提词器软件。旨在提供简便易用、高效生产力和流畅性能"
+"。"
 
 #: main.cpp:113
 msgctxt "file"
@@ -1523,62 +1518,57 @@ msgstr "起点到达，从终点开始寻找。"
 #: prompter/Find.qml:148
 msgid "Replaced 1 instance"
 msgid_plural "Replaced %1 instances"
-msgstr[0] ""
+msgstr[0] "已替换1处"
 
 #: prompter/PointerSettings.qml:104
-#, fuzzy
 msgid "Colors for prompter states"
-msgstr "切换提示状态"
+msgstr "提词器状态颜色"
 
 #: prompter/PointerSettings.qml:110
 msgid "Editing: "
-msgstr ""
+msgstr "编辑： "
 
 #: prompter/PointerSettings.qml:123
 msgid "Ready: "
-msgstr ""
+msgstr "就绪： "
 
 #: prompter/PointerSettings.qml:136
-#, fuzzy
 msgid "Prompting: "
-msgstr "开始提示"
+msgstr "提词中： "
 
 #: prompter/PointerSettings.qml:160
-#, fuzzy
 msgctxt "Uses a mirrored copy of the first pointer as the second pointer"
 msgid "Reuse left pointer"
-msgstr "左箭头"
+msgstr "复用左侧指针"
 
 #: prompter/PointerSettings.qml:162
-#, fuzzy
 msgctxt "Uses a mirrored copy of the first pointer as the second pointer"
 msgid "Reuse right pointer"
-msgstr "右箭头"
+msgstr "复用右侧指针"
 
 #: prompter/PointerSettings.qml:166
 msgid "Tint"
-msgstr ""
+msgstr "色调"
 
 #: prompter/PointerSettings.qml:170
 msgid "Guides"
-msgstr ""
+msgstr "指南"
 
 #: prompter/PointerSettings.qml:202
 msgid "Arrow"
-msgstr ""
+msgstr "箭头"
 
 #: prompter/PointerSettings.qml:208
 msgid "Text"
-msgstr ""
+msgstr "文本"
 
 #: prompter/PointerSettings.qml:214
 msgid "Image"
-msgstr ""
+msgstr "图片"
 
 #: prompter/PointerSettings.qml:220
-#, fuzzy
 msgid "Custom"
-msgstr "定制"
+msgstr "自定义"
 
 #: prompter/PointerSettings.qml:238
 #, fuzzy
@@ -1588,35 +1578,32 @@ msgstr "行高 <pre>%1%</pre>"
 #: prompter/PointerSettings.qml:300 prompter/PointerSettings.qml:407
 #: prompter/PointerSettings.qml:431 prompter/PointerSettings.qml:496
 #: prompter/PointerSettings.qml:520
-#, fuzzy
 msgid "Left Pointer: "
-msgstr "左边的箭头"
+msgstr "左侧箭头 "
 
 #: prompter/PointerSettings.qml:301 prompter/PointerSettings.qml:313
 #: prompter/PointerSettings.qml:408 prompter/PointerSettings.qml:430
 #: prompter/PointerSettings.qml:497 prompter/PointerSettings.qml:519
-#, fuzzy
 msgid "Right Pointer: "
-msgstr "右边的箭头"
+msgstr "右侧箭头 "
 
 #: prompter/PointerSettings.qml:344
 msgid "Font: "
-msgstr ""
+msgstr "字体 "
 
 #: prompter/PointerSettings.qml:379 prompter/PointerSettings.qml:464
-#, fuzzy
 msgctxt "Vertical offset (line height) 1.00"
 msgid "Vertical offset <pre>%1</pre>"
-msgstr "速度 <pre>%1</pre>"
+msgstr "垂直偏移 <pre>%1</pre>"
 
 #: prompter/PointerSettings.qml:418 prompter/PointerSettings.qml:450
 #: prompter/PointerSettings.qml:507 prompter/PointerSettings.qml:539
 msgid "Browse"
-msgstr ""
+msgstr "浏览"
 
 #: prompter/PointerSettings.qml:490
 msgid "Use QML scripts to draw pointers"
-msgstr ""
+msgstr "使用 QML scripts 绘制箭头"
 
 #: prompter/PointerSettings.qml:563 prompter/PrompterBackground.qml:125
 msgid "JPEG image"
@@ -1631,13 +1618,13 @@ msgid "GIF animation"
 msgstr "GIF动画"
 
 #: prompter/PointerSettings.qml:566
-#, fuzzy
 msgid "WEBP image"
-msgstr "PNG图像"
+msgstr "WEBP 图像"
 
 #: prompter/PointerSettings.qml:576
+#, fuzzy
 msgid "QML script"
-msgstr ""
+msgstr "QML script"
 
 #: prompter/ProjectionsManager.qml:174
 msgid "Projection Window"
@@ -1679,7 +1666,7 @@ msgstr "欢迎用户页"
 
 #: prompter/Prompter.qml:1280
 msgid "Loaded: %1"
-msgstr ""
+msgstr "已加载"
 
 #: prompter/Prompter.qml:1308 prompter/Prompter.qml:1430
 msgctxt "Saved FILE_NAME"
@@ -1711,28 +1698,27 @@ msgstr "纯文本 (%1)"
 #: prompter/Prompter.qml:1374
 msgctxt "Format name (FORMAT_EXTENSION)"
 msgid "OpenDocument Format Text Document (%1)"
-msgstr ""
+msgstr "ODF文档(%1)"
 
 #: prompter/Prompter.qml:1375
 msgctxt "Format name (FORMAT_EXTENSION)"
 msgid "AbiWord Document (%1)"
-msgstr ""
+msgstr "AbiWord 文档 (%1)"
 
 #: prompter/Prompter.qml:1376
 msgctxt "Format name (FORMAT_EXTENSION)"
 msgid "Microsoft Word document (%1)"
-msgstr ""
+msgstr "Microsoft Word 文档 (%1)"
 
 #: prompter/Prompter.qml:1377
 msgctxt "Format name (FORMAT_EXTENSION)"
 msgid "Apple Pages Document (%1)"
-msgstr ""
+msgstr "Apple Pages文档 (%1)"
 
 #: prompter/Prompter.qml:1378
-#, fuzzy
 msgctxt "Format name (FORMAT_EXTENSION)"
 msgid "Rich Text Format (%1)"
-msgstr "纯文本 (%1)"
+msgstr "RTF (%1)"
 
 #: prompter/Prompter.qml:1471 prompter/Prompter.qml:1518
 msgctxt "Editor context menu actions"
