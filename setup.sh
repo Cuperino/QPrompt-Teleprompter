@@ -202,7 +202,7 @@ for dependency in $tier_0 $tier_1 $tier_2 $tier_3; do
     cmake -DCMAKE_CONFIGURATION_TYPES=$CMAKE_CONFIGURATION_TYPES -DBUILD_TESTING=OFF -BUILD_QCH=OFF -DCMAKE_PREFIX_PATH=$CMAKE_PREFIX_PATH -DCMAKE_INSTALL_PREFIX=$CMAKE_INSTALL_PREFIX -B ./$dependency/build ./$dependency/
     cmake --build ./$dependency/build --config $CMAKE_BUILD_TYPE
     DESTDIR=$AppDir cmake --install ./$dependency/build
-    cp -r $AppDir/usr/ $CMAKE_PREFIX_PATH
+    cp -r $AppDir/usr/* $CMAKE_PREFIX_PATH
 done
 
 echo "QHotkey"
@@ -212,7 +212,7 @@ fi
 cmake -DCMAKE_CONFIGURATION_TYPES=$CMAKE_CONFIGURATION_TYPES -DCMAKE_PREFIX_PATH=$CMAKE_PREFIX_PATH -DCMAKE_INSTALL_PREFIX=$CMAKE_INSTALL_PREFIX -DBUILD_SHARED_LIBS=ON -DQT_DEFAULT_MAJOR_VERSION=$QT_MAJOR_VERSION -B ./3rdparty/QHotkey/build ./3rdparty/QHotkey/
 cmake --build ./3rdparty/QHotkey/build --config $CMAKE_BUILD_TYPE
 DESTDIR=$AppDir cmake --install ./3rdparty/QHotkey/build
-cp -r $AppDir/usr/ $CMAKE_PREFIX_PATH
+cp -r $AppDir/usr/* $CMAKE_PREFIX_PATH
 
 echo "QPrompt"
 cmake -DCMAKE_CONFIGURATION_TYPES=$CMAKE_CONFIGURATION_TYPES -DCMAKE_PREFIX_PATH=$CMAKE_PREFIX_PATH -DCMAKE_INSTALL_PREFIX=$CMAKE_INSTALL_PREFIX -B ./build .
@@ -226,13 +226,27 @@ if [[ "$PLATFORM" == "windows" ]]; then
 elif [[ "$PLATFORM" == "macos" ]]; then
     $CMAKE_PREFIX_PATH/bin/macdeployqt ./install/QPrompt
 elif [[ "$PLATFORM" == "linux" ]]; then
-    COMMAND=~/Applications/linuxdeploy-$ARCHITECTURE.AppImage
-    if ! command -v $COMMAND 2>&1 >/dev/null; then
-        echo "$COMMAND could not be found"
+    if [ "$ARCHITECTURE" == "aarch64" ]; then
+        cp -r $AppDir/usr/lib/aarch64-linux-gnu/* $CMAKE_PREFIX_PATH/lib/
+    fi
+    mkdir -p ~/Applications/
+    wget -nc -P ~/Applications/ https://github.com/linuxdeploy/linuxdeploy/releases/download/continuous/linuxdeploy-$ARCHITECTURE.AppImage
+    wget -nc -P ~/Applications/ https://github.com/linuxdeploy/linuxdeploy-plugin-qt/releases/download/continuous/linuxdeploy-plugin-qt-$ARCHITECTURE.AppImage
+    LINUX_DEPLOY=~/Applications/linuxdeploy-$ARCHITECTURE.AppImage
+    LINUX_DEPLOY_QT=~/Applications/linuxdeploy-$ARCHITECTURE.AppImage
+    chmod +x $LINUX_DEPLOY
+    chmod +x $LINUX_DEPLOY_QT
+    if ! command -v $LINUX_DEPLOY 2>&1 >/dev/null; then
+        echo "$LINUX_DEPLOY could not be found"
         exit 1
     fi
-    $COMMAND --appdir ./install --output appimage
+    if ! command -v $LINUX_DEPLOY_QT 2>&1 >/dev/null; then
+        echo "$LINUX_DEPLOY could not be found"
+        exit 1
+    fi
+    QMAKE=$CMAKE_PREFIX_PATH/bin/qmake $LINUX_DEPLOY --appdir $AppDir --output appimage --plugin qt
     cd build
     cpack
     cd ..
 fi
+
