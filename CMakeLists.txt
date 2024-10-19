@@ -1,7 +1,7 @@
 #**************************************************************************
 #
 # QPrompt
-# Copyright (C) 2020-2022 Javier O. Cordero Pérez
+# Copyright (C) 2020-2024 Javier O. Cordero Pérez
 #
 # This file is part of QPrompt.
 #
@@ -313,7 +313,7 @@ elseif(APPLE AND NOT IOS)
     set(CPACK_DMG_VOLUME_NAME "QPrompt")
     set(CPACK_BUNDLE_NAME "QPrompt")
     set(CPACK_BUNDLE_ICON "${ICONS_DIR}/qprompt.icns")
-    set(CPACK_BUNDLE_PLIST "QPrompt")
+    # set(CPACK_BUNDLE_PLIST "Info.plist")
     set(CPACK_SYSTEM_NAME "OSX")
     set(CPACK_PACKAGE_FILE_NAME "QPrompt-${PROJECT_VERSION}")
     set(CPACK_PACKAGE_ICON "${ICONS_DIR}/qprompt.icns")

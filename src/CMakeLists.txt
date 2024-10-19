@@ -1,7 +1,7 @@
 #**************************************************************************
 #
 # QPrompt
-# Copyright (C) 2020-2023 Javier O. Cordero Pérez
+# Copyright (C) 2020-2024 Javier O. Cordero Pérez
 #
 # This file is part of QPrompt.
 #
@@ -271,8 +271,11 @@ else()
     set(OUTPUT_NAME "QPrompt")
 endif()
 set_target_properties(${PROJECT_NAME} PROPERTIES
+    MACOSX_BUNDLE_BUNDLE_NAME "QPrompt"
     MACOSX_BUNDLE_GUI_IDENTIFIER com.cuperino.qprompt
     MACOSX_BUNDLE_BUNDLE_VERSION ${PROJECT_VERSION}
+    MACOSX_BUNDLE_COPYRIGHT "Copyright Javier O. Cordero Pérez"
+    MACOSX_BUNDLE_ICON_FILE "icons/qprompt.icns"
     MACOSX_BUNDLE_SHORT_VERSION_STRING ${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}
     OUTPUT_NAME ${OUTPUT_NAME}
     MACOSX_BUNDLE TRUE
