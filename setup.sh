@@ -231,21 +231,20 @@ elif [[ "$PLATFORM" == "linux" ]]; then
     fi
     mkdir -p ~/Applications/
     wget -nc -P ~/Applications/ https://github.com/linuxdeploy/linuxdeploy/releases/download/continuous/linuxdeploy-$ARCHITECTURE.AppImage
-    wget -nc -P ~/Applications/ https://github.com/linuxdeploy/linuxdeploy-plugin-qt/releases/download/continuous/linuxdeploy-plugin-qt-$ARCHITECTURE.AppImage
+    # wget -nc -P ~/Applications/ https://github.com/linuxdeploy/linuxdeploy-plugin-qt/releases/download/continuous/linuxdeploy-plugin-qt-$ARCHITECTURE.AppImage
     LINUX_DEPLOY=~/Applications/linuxdeploy-$ARCHITECTURE.AppImage
-    LINUX_DEPLOY_QT=~/Applications/linuxdeploy-$ARCHITECTURE.AppImage
+    # LINUX_DEPLOY_QT=~/Applications/linuxdeploy-$ARCHITECTURE.AppImage
     chmod +x $LINUX_DEPLOY
-    chmod +x $LINUX_DEPLOY_QT
+    # chmod +x $LINUX_DEPLOY_QT
     if ! command -v $LINUX_DEPLOY 2>&1 >/dev/null; then
         echo "$LINUX_DEPLOY could not be found"
         exit 1
     fi
-    if ! command -v $LINUX_DEPLOY_QT 2>&1 >/dev/null; then
-        echo "$LINUX_DEPLOY could not be found"
-        exit 1
-    fi
-    QMAKE=${CMAKE_PREFIX_PATH}bin/qmake
-    QMAKE=$QMAKE $LINUX_DEPLOY --appdir $AppDir --output appimage --plugin qt
+    # if ! command -v $LINUX_DEPLOY_QT 2>&1 >/dev/null; then
+    #     echo "$LINUX_DEPLOY could not be found"
+    #     exit 1
+    # fi
+    $LINUX_DEPLOY --appdir $AppDir --output appimage # --plugin qt
     cd build
     cpack
     cd ..
