@@ -244,9 +244,9 @@ elif [[ "$PLATFORM" == "linux" ]]; then
         echo "$LINUX_DEPLOY could not be found"
         exit 1
     fi
-    QMAKE=$CMAKE_PREFIX_PATH/bin/qmake $LINUX_DEPLOY --appdir $AppDir --output appimage --plugin qt
+    QMAKE=${CMAKE_PREFIX_PATH}bin/qmake
+    QMAKE=$QMAKE $LINUX_DEPLOY --appdir $AppDir --output appimage --plugin qt
     cd build
     cpack
     cd ..
 fi
-
