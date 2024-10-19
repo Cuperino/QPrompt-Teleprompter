@@ -253,7 +253,13 @@ if (WIN32 OR UNIX AND NOT APPLE) # AND NOT ANDROID
 endif()
 
 # CPACK: General Settings
-set(CPACK_GENERATOR "DEB")
+if (WIN32)
+    set(CPACK_GENERATOR "NSIS")
+elseif (APPLE)
+    set(CPACK_GENERATOR "DragNDrop")
+else()
+    set(CPACK_GENERATOR "DEB")
+endif()
 set(CPACK_PACKAGE_VENDOR "Javier O. Cordero Pérez")
 set(CPACK_PACKAGE_CONTACT "javiercorderoperez@gmail.com")
 set(CPACK_PACKAGE_DESCRIPTION_FILE "${CMAKE_SOURCE_DIR}/${DESCRIPTION_FILE}")
