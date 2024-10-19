@@ -245,7 +245,7 @@ elif [[ "$PLATFORM" == "linux" ]]; then
     #     exit 1
     # fi
     $LINUX_DEPLOY --appdir $AppDir --output appimage # --plugin qt
-    cd build
-    cpack
-    cd ..
 fi
+cd build
+cpack
+cd ..
