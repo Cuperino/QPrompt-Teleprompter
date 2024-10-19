@@ -31,7 +31,7 @@ if [[ "$OSTYPE" == "linux-gnu"* ]]; then
    if [ "$ARCHITECTURE" == "aarch64" ]; then
        COMPILER="gcc_arm64"
    else
-       COMPILER="gcc"
+       COMPILER="gcc_64"
    fi
 elif [[ "$OSTYPE" == "darwin"* ]]; then
     PLATFORM="macos"
