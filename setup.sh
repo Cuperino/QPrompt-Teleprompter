@@ -223,8 +223,6 @@ DESTDIR=$AppDir cmake --install ./build
 if [[ "$PLATFORM" == "windows" ]]; then
     PATH=$PATH:"C:\Program Files (x86)\NSIS"
     $CMAKE_PREFIX_PATH/bin/windeployqt.exe ./install/bin/$CMAKE_BUILD_TYPE/QPrompt.exe
-elif [[ "$PLATFORM" == "macos" ]]; then
-    $CMAKE_PREFIX_PATH/bin/macdeployqt ./install/QPrompt
 elif [[ "$PLATFORM" == "linux" ]]; then
     if [ "$ARCHITECTURE" == "aarch64" ]; then
         cp -r $AppDir/usr/lib/aarch64-linux-gnu/* $CMAKE_PREFIX_PATH/lib/
