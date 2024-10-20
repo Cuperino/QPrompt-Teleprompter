@@ -7,8 +7,8 @@ msgstr ""
 "Project-Id-Version: qprompt\n"
 "Report-Msgid-Bugs-To: https://github.com/Cuperino/QPrompt/issues/new/choose\n"
 "POT-Creation-Date: 2024-09-29 11:34-0400\n"
-"PO-Revision-Date: 2024-09-30 12:38+0000\n"
-"Last-Translator: Karl SCHUH <k.schuh@schuh-tv.at>\n"
+"PO-Revision-Date: 2024-10-21 15:57+0000\n"
+"Last-Translator: Liebeg <mail@liebeg.eu>\n"
 "Language-Team: German <http://l10n.cuperino.com/projects/qprompt/qprompt-app/"
 "de/>\n"
 "Language: de\n"
@@ -1513,13 +1513,14 @@ msgstr "Aktive Tester"
 #: main.cpp:163 rc.cpp:1
 msgctxt "NAME OF TRANSLATORS"
 msgid "Your names"
-msgstr "Jonas Mapache, Maximilian Efinger, Fabian Bott"
+msgstr "Jonas Mapache, Maximilian Efinger, Fabian Bott, Liebeg"
 
 #: main.cpp:163 rc.cpp:2
 msgctxt "EMAIL OF TRANSLATORS"
 msgid "Your emails"
 msgstr ""
-"jonasmapache@gmail.com, maximilian.efinger@gmx.de, fabianbott@gmail.com"
+"jonasmapache@gmail.com, maximilian.efinger@gmx.de, fabianbott@gmail.com, "
+"mail@liebeg.eu"
 
 #: prompter/Find.qml:127
 msgid "End reached, searching from the start."
