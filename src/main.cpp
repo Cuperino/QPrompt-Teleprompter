@@ -160,6 +160,7 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
                         QString::fromUtf8(""),
                         QString::fromUtf8("https://stackoverflow.com/a/64862996/3833454"));
     aboutData.addCredit(QString::fromUtf8("videosmith"), i18nc("Active software tester", "Active tester"));
+    aboutData.setTranslator(i18nc("Liebeg"), i18nc("mail@liebeg.eu", "Translator, Active tester"));
     aboutData.setTranslator(i18nc("NAME OF TRANSLATORS", "Your names"), i18nc("EMAIL OF TRANSLATORS", "Your emails"));
     // aboutData.addLicense(
     //     KAboutLicense::LGPL_V3
