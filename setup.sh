@@ -39,7 +39,7 @@ elif [[ "$OSTYPE" == "darwin"* ]]; then
     COMPILER="macos"
 elif [[ "$OSTYPE" == "win32" || "$OSTYPE" == "msys" ]]; then
     PLATFORM="windows"
-   CMAKE_INSTALL_PREFIX="install"
+    CMAKE_INSTALL_PREFIX="install"
     if [ "$ARCHITECTURE" == "aarch64" ]; then
         COMPILER="msvc2019_arm64"
     else
@@ -121,8 +121,13 @@ else
 fi
 
 # Constants
+if [[ "$PLATFORM" == "windows" ]]; then
+AppDir=""
+else
 AppDir="install"
-mkdir -p "$AppDir/usr"
+fi
+AppDirUsr="install/usr"
+mkdir -p $AppDirUsr
 
 echo -e "\nBuild directory is ./build"
 if $CLEAR_ALL # QPrompt and dependencies
@@ -139,7 +144,7 @@ if [[ "$PLATFORM" == "macos" ]]; then
 elif [[ "$PLATFORM" == "windows" ]]; then
     winget install -e --id Kitware.CMake
     winget install -e --id Ninja-build.Ninja
-    winget install -e --id NSIS.NSIS
+    winget install -e --id JRSoftware.InnoSetup
 fi
 
 echo "Downloading git submodules"
@@ -177,7 +182,7 @@ $VCPKG install --x-install-root $CMAKE_PREFIX_PATH gettext gettext-libintl
 for package in ./3rdparty/vcpkg/packages/*; do
     echo $package
     cp -rf $package/* $CMAKE_PREFIX_PATH
-    cp -rf $package/* $AppDir/usr
+    cp -rf $package/* $AppDirUsr
 done
 
 # KDE Frameworks
@@ -202,7 +207,7 @@ for dependency in $tier_0 $tier_1 $tier_2 $tier_3; do
     cmake -DCMAKE_CONFIGURATION_TYPES=$CMAKE_CONFIGURATION_TYPES -DBUILD_TESTING=OFF -BUILD_QCH=OFF -DCMAKE_PREFIX_PATH=$CMAKE_PREFIX_PATH -DCMAKE_INSTALL_PREFIX=$CMAKE_INSTALL_PREFIX -B ./$dependency/build ./$dependency/
     cmake --build ./$dependency/build --config $CMAKE_BUILD_TYPE
     DESTDIR=$AppDir cmake --install ./$dependency/build
-    cp -r $AppDir/usr/* $CMAKE_PREFIX_PATH
+    cp -r $AppDirUsr/* $CMAKE_PREFIX_PATH
 done
 
 echo "QHotkey"
@@ -212,7 +217,7 @@ fi
 cmake -DCMAKE_CONFIGURATION_TYPES=$CMAKE_CONFIGURATION_TYPES -DCMAKE_PREFIX_PATH=$CMAKE_PREFIX_PATH -DCMAKE_INSTALL_PREFIX=$CMAKE_INSTALL_PREFIX -DBUILD_SHARED_LIBS=ON -DQT_DEFAULT_MAJOR_VERSION=$QT_MAJOR_VERSION -B ./3rdparty/QHotkey/build ./3rdparty/QHotkey/
 cmake --build ./3rdparty/QHotkey/build --config $CMAKE_BUILD_TYPE
 DESTDIR=$AppDir cmake --install ./3rdparty/QHotkey/build
-cp -r $AppDir/usr/* $CMAKE_PREFIX_PATH
+cp -r $AppDirUsr/* $CMAKE_PREFIX_PATH
 
 echo "QPrompt"
 cmake -DCMAKE_CONFIGURATION_TYPES=$CMAKE_CONFIGURATION_TYPES -DCMAKE_PREFIX_PATH=$CMAKE_PREFIX_PATH -DCMAKE_INSTALL_PREFIX=$CMAKE_INSTALL_PREFIX -B ./build .
@@ -225,7 +230,7 @@ if [[ "$PLATFORM" == "windows" ]]; then
     $CMAKE_PREFIX_PATH/bin/windeployqt.exe ./install/bin/$CMAKE_BUILD_TYPE/QPrompt.exe
 elif [[ "$PLATFORM" == "linux" ]]; then
     if [ "$ARCHITECTURE" == "aarch64" ]; then
-        cp -r $AppDir/usr/lib/aarch64-linux-gnu/* $CMAKE_PREFIX_PATH/lib/
+        cp -r $AppDirUsr/lib/aarch64-linux-gnu/* $CMAKE_PREFIX_PATH/lib/
     fi
     mkdir -p ~/Applications/
     wget -nc -P ~/Applications/ https://github.com/linuxdeploy/linuxdeploy/releases/download/continuous/linuxdeploy-$ARCHITECTURE.AppImage

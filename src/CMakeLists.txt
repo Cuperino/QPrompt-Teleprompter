@@ -367,7 +367,7 @@ elseif(WIN32 OR APPLE)
         Qt${QT_VERSION_MAJOR}::Widgets
         KF${QT_VERSION_MAJOR}::I18n
         KF${QT_VERSION_MAJOR}::Kirigami
-        # KF${QT_VERSION_MAJOR}::CoreAddons
+        KF${QT_VERSION_MAJOR}::CoreAddons
     )
 else()
     target_link_libraries(${PROJECT_NAME} PRIVATE
@@ -439,12 +439,16 @@ ENDIF(NOT GETTEXT_MSGFMT_EXECUTABLE)
 
 
 # Installation and bundling
-if (WIN32 OR UNIX) # AND NOT ANDROID)
-    if (APPLE)
-        install(TARGETS ${PROJECT_NAME} ${KDE_INSTALL_TARGETS_DEFAULT_ARGS} BUNDLE DESTINATION .)
+if (APPLE)
+    install(TARGETS ${PROJECT_NAME} ${KDE_INSTALL_TARGETS_DEFAULT_ARGS} BUNDLE DESTINATION .)
+elseif (WIN32 OR UNIX)
+    install(FILES com.cuperino.qprompt.appdata.xml DESTINATION ${KDE_INSTALL_METAINFODIR})
+    install(PROGRAMS com.cuperino.qprompt.desktop DESTINATION ${KDE_INSTALL_APPDIR})
+    if (WIN32)
+        install(TARGETS ${PROJECT_NAME}
+            RUNTIME_DEPENDENCIES DIRECTORIES "${PROJECT_SOURCE_DIR}/install/lib"
+            ${KDE_INSTALL_TARGETS_DEFAULT_ARGS})
     else()
-        install(FILES com.cuperino.qprompt.appdata.xml DESTINATION ${KDE_INSTALL_METAINFODIR})
-        install(PROGRAMS com.cuperino.qprompt.desktop DESTINATION ${KDE_INSTALL_APPDIR})
         install(TARGETS ${PROJECT_NAME} ${KDE_INSTALL_TARGETS_DEFAULT_ARGS})
     endif()
 endif()
