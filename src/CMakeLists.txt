@@ -265,6 +265,10 @@ qt_add_qml_module(
     ${icon_files}
 )
 
+if (FelgoHotReload_FOUND)
+    felgohotreload_configure_executable(${PROJECT_NAME})
+endif()
+
 if (UNIX AND NOT APPLE)
     set(OUTPUT_NAME "qprompt")
 else()

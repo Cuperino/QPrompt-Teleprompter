@@ -37,6 +37,11 @@
 #include <QUrl>
 #include <QtQml/qqml.h>
 #include <QtQml>
+
+#ifdef USE_FELGO_HOT_RELOAD
+#include <FelgoHotReload>
+#endif
+
 //#include "appwindow.h"
 
 #if defined(Q_OS_IOS) || defined(Q_OS_WASM) || defined(Q_OS_WATCHOS) || defined(Q_OS_QNX)
@@ -174,6 +179,10 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
     //    qmlRegisterUncreatableType</*AbstractUnits*/>(QPROMPT_URI ".abstractunits", 1, 0, "Units", "Access to Duration enum");
     QQmlApplicationEngine engine;
     // qmlRegisterType<PrompterWindow>(QPROMPT_URI".prompterwindow", 1, 0, "PrompterWindow");
+
+#ifdef USE_FELGO_HOT_RELOAD
+    static FelgoHotReload felgoHotReload(&engine);
+#endif
 
     //    qRegisterMetaType<Marker>();
 

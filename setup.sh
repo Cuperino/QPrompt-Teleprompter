@@ -22,7 +22,7 @@
 #**************************************************************************
 
 ARCHITECTURE="$(uname -m)"
-QT_VER=6.7.3
+QT_VER=6.7.2
 echo -e "\nArchitecture: $ARCHITECTURE"
 
 if [[ "$OSTYPE" == "linux-gnu"* ]]; then
@@ -220,7 +220,8 @@ DESTDIR=$AppDir cmake --install ./3rdparty/QHotkey/build
 cp -r $AppDirUsr/* $CMAKE_PREFIX_PATH
 
 echo "QPrompt"
-cmake -DCMAKE_CONFIGURATION_TYPES=$CMAKE_CONFIGURATION_TYPES -DCMAKE_PREFIX_PATH=$CMAKE_PREFIX_PATH -DCMAKE_INSTALL_PREFIX=$CMAKE_INSTALL_PREFIX -B ./build .
+FELGO_HOT_RELOAD_PATH=~/FelgoHotReload/client/6.7.2/gcc_64/lib/cmake/FelgoHotReload
+cmake -DCMAKE_CONFIGURATION_TYPES=$CMAKE_CONFIGURATION_TYPES -DCMAKE_PREFIX_PATH=$CMAKE_PREFIX_PATH -DCMAKE_INSTALL_PREFIX=$CMAKE_INSTALL_PREFIX -DFelgoHotReload_DIR=$FELGO_HOT_RELOAD_PATH -B ./build .
 cmake --build ./build --config $CMAKE_BUILD_TYPE
 DESTDIR=$AppDir cmake --install ./build
 

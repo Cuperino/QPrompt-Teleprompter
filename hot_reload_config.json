@@ -1,0 +1,16 @@
+{
+    "main_qml_file": "src/kirigami_ui/main.qml",
+    "qml_module_paths": [
+    {
+        "path": "src",
+        "target_path": "com/cuperino/qprompt"
+    }
+    ],
+    "qml_plugin_paths": [
+    {
+        "path": "build/build/com/cuperino/qprompt",
+        "target_path": "com/cuperino/qprompt"
+    }
+    ],
+    "use_local_plugins": "true"
+}

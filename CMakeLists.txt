@@ -141,6 +141,10 @@ find_package(KF${QT_VERSION_MAJOR} ${KF_MIN_VERSION} REQUIRED COMPONENTS
     I18n
     CoreAddons
 )
+find_package(FelgoHotReload CONFIG)
+set_package_properties(FelgoHotReload PROPERTIES
+    DESCRIPTION "Testing Felgo's software for automatic QML reloading"
+    TYPE OPTIONAL)
 # Desktop only dependencies
 if(NOT ANDROID AND NOT IOS)
     find_package(Qt${QT_VERSION_MAJOR} ${QT_MIN_VERSION} REQUIRED NO_MODULE COMPONENTS
