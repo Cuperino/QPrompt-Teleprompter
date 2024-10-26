@@ -58,9 +58,11 @@ if (NOT APPLE AND NOT ANDROID)
         DESTINATION ${KDE_INSTALL_ICONDIR}
         # THEME hicolor
     )
-    ecm_add_app_icon(qprompt_ICONS
-        ICONS ${RASTER_ICONS}
-    )
+    if (NOT WIN32)
+        ecm_add_app_icon(qprompt_ICONS
+            ICONS ${RASTER_ICONS}
+        )
+    endif()
 endif()
 
 set(qprompt_frontend_sources
@@ -444,13 +446,7 @@ if (APPLE)
 elseif (WIN32 OR UNIX)
     install(FILES com.cuperino.qprompt.appdata.xml DESTINATION ${KDE_INSTALL_METAINFODIR})
     install(PROGRAMS com.cuperino.qprompt.desktop DESTINATION ${KDE_INSTALL_APPDIR})
-    if (WIN32)
-        install(TARGETS ${PROJECT_NAME}
-            RUNTIME_DEPENDENCIES DIRECTORIES "${PROJECT_SOURCE_DIR}/install/lib"
-            ${KDE_INSTALL_TARGETS_DEFAULT_ARGS})
-    else()
-        install(TARGETS ${PROJECT_NAME} ${KDE_INSTALL_TARGETS_DEFAULT_ARGS})
-    endif()
+    install(TARGETS ${PROJECT_NAME} ${KDE_INSTALL_TARGETS_DEFAULT_ARGS})
 endif()
 
 set(deploy_tool_options_arg "")
