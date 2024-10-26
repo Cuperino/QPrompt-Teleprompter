@@ -252,77 +252,80 @@ if (WIN32 OR UNIX AND NOT APPLE) # AND NOT ANDROID
     install(FILES ${DOCS} DESTINATION ${DOC_INSTALL_DIR})
 endif()
 
-# CPACK: General Settings
-set(CPACK_PACKAGE_VENDOR "Javier O. Cordero Pérez")
-set(CPACK_PACKAGE_CONTACT "javiercorderoperez@gmail.com")
-set(CPACK_PACKAGE_DESCRIPTION_FILE "${CMAKE_SOURCE_DIR}/${DESCRIPTION_FILE}")
-set(CPACK_RESOURCE_FILE_README "${CMAKE_SOURCE_DIR}/${README_FILE}")
-set(CPACK_RESOURCE_FILE_LICENSE "${CMAKE_SOURCE_DIR}/${LICENSE_FILE}")  # Displays the license on some installers
-set(CPACK_MONOLITHIC_INSTALL On)
+if(CMAKE_SOURCE_DIR STREQUAL CMAKE_CURRENT_SOURCE_DIR)
+    # CPACK: General Settings
+    set(CPACK_PACKAGE_VENDOR "Javier O. Cordero Pérez")
+    set(CPACK_PACKAGE_CONTACT "javiercorderoperez@gmail.com")
+    set(CPACK_PACKAGE_DESCRIPTION_FILE "${CMAKE_SOURCE_DIR}/${DESCRIPTION_FILE}")
+    set(CPACK_RESOURCE_FILE_README "${CMAKE_SOURCE_DIR}/${README_FILE}")
+    set(CPACK_RESOURCE_FILE_LICENSE "${CMAKE_SOURCE_DIR}/${LICENSE_FILE}")  # Displays the license on some installers
+    set(CPACK_VERBATIM_VARIABLES On)
+    set(CPACK_MONOLITHIC_INSTALL On)
 
-set(CPACK_RPM_PACKAGE_LICENSE "GPLv3")  # Also used by FreeBSD generator
+    set(CPACK_RPM_PACKAGE_LICENSE "GPLv3")  # Also used by FreeBSD generator
 
-set(ICONS_DIR "${CMAKE_SOURCE_DIR}/src/icons")
-set(IMAGES_DIR "${CMAKE_SOURCE_DIR}/src/images")
-set(COMPRESION_TYPE "xz")
+    set(ICONS_DIR "${CMAKE_SOURCE_DIR}/src/icons")
+    set(IMAGES_DIR "${CMAKE_SOURCE_DIR}/src/images")
+    set(COMPRESION_TYPE "xz")
 
-# CPACK: Archive generator settings
-set(CPACK_THREADS 0)
-set(CPACK_ARCHIVE_THREADS 0)
+    # CPACK: Archive generator settings
+    set(CPACK_THREADS 0)
+    set(CPACK_ARCHIVE_THREADS 0)
 
-if(UNIX AND NOT ANDROID AND NOT APPLE)
-    set(CPACK_GENERATOR "DEB")
+    if(UNIX AND NOT ANDROID AND NOT APPLE)
+        set(CPACK_GENERATOR "DEB")
 
-    # CPACK: DEB specific settings
-    set(CPACK_DEBIAN_PACKAGE_SECTION "Multimedia")
-    set(CPACK_DEBIAN_COMPRESSION_TYPE ${COMPRESION_TYPE})
-    set(CPACK_DEBIAN_PACKAGE_DEPENDS "libqt6svg6 (>= 6.6.2), qml6-module-qt-labs-platform (>=6.6.2), qml6-module-qtqml (>=6.6.2), qml6-module-qtqml-models (>=6.6.2), qml6-module-qtqml-statemachine (>=6.6.2), qml6-module-qtquick-controls (>=6.6.2), qml6-module-qtquick-dialogs (>=6.6.2), qml6-module-qtquick-shapes (>=6.6.2), libkf6coreaddons6 (>= 6.5.0), kf6-kirigami (>= 6.5.0), libkf6i18n6 (>= 6.5.0), libkf6crash6 (>= 6.5.0)")
+        # CPACK: DEB specific settings
+        set(CPACK_DEBIAN_PACKAGE_SECTION "Multimedia")
+        set(CPACK_DEBIAN_COMPRESSION_TYPE ${COMPRESION_TYPE})
+        set(CPACK_DEBIAN_PACKAGE_DEPENDS "libqt6svg6 (>= 6.6.2), qml6-module-qt-labs-platform (>=6.6.2), qml6-module-qtqml (>=6.6.2), qml6-module-qtqml-models (>=6.6.2), qml6-module-qtqml-statemachine (>=6.6.2), qml6-module-qtquick-controls (>=6.6.2), qml6-module-qtquick-dialogs (>=6.6.2), qml6-module-qtquick-shapes (>=6.6.2), libkf6coreaddons6 (>= 6.5.0), kf6-kirigami (>= 6.5.0), libkf6i18n6 (>= 6.5.0), libkf6crash6 (>= 6.5.0)")
 
-    # CPACK: RPM specific settings
-    set(CPACK_RPM_PACKAGE_GROUP "Multimedia/Video")
-    set(CPACK_RPM_PACKAGE_REQUIRES "qt6-qtbase >= 6.7.2, qt6-qtbase-gui >= 6.7.2, qt6-qtdeclarative >= 6.7.2, qt6-qtsvg >= 6.7.2, qt6-qtquickcontrols >= 6.7.2, qt6-qtquickcontrols2 >= 6.7.2, kf6-kcoreaddons >= 6.5.0, kf6-ki18n >= 6.5.0, kf6-kirigami >= 6.5.0, kf6-kcrash >= 6.5.0")
-    set(CPACK_RPM_COMPRESSION_TYPE ${COMPRESION_TYPE})
+        # CPACK: RPM specific settings
+        set(CPACK_RPM_PACKAGE_GROUP "Multimedia/Video")
+        set(CPACK_RPM_PACKAGE_REQUIRES "qt6-qtbase >= 6.7.2, qt6-qtbase-gui >= 6.7.2, qt6-qtdeclarative >= 6.7.2, qt6-qtsvg >= 6.7.2, qt6-qtquickcontrols >= 6.7.2, qt6-qtquickcontrols2 >= 6.7.2, kf6-kcoreaddons >= 6.5.0, kf6-ki18n >= 6.5.0, kf6-kirigami >= 6.5.0, kf6-kcrash >= 6.5.0")
+        set(CPACK_RPM_COMPRESSION_TYPE ${COMPRESION_TYPE})
 
-elseif(WIN32)
-    set(CPACK_GENERATOR "INNOSETUP")
-    set(CPACK_PACKAGE_EXECUTABLES "QPrompt" "QPrompt")
-    set(CPACK_RESOURCE_FILE_LICENSE "${CMAKE_SOURCE_DIR}/${LICENSE_FILE}")
-    set(CPACK_NSIS_EXECUTABLES_DIRECTORY "${BIN_INSTALL_DIR}")
-    set(CPACK_NSIS_MUI_ICON "${ICONS_DIR}/qprompt.ico")
-    set(CPACK_PACKAGE_ICON "${IMAGES_DIR}/installer.bmp")
-    set(CPACK_NSIS_MUI_WELCOMEFINISHPAGE_BITMAP "${IMAGES_DIR}/welcome.bmp")
-    set(CPACK_NSIS_MUI_UNWELCOMEFINISHPAGE_BITMAP "${IMAGES_DIR}/welcome.bmp")
-    set(CPACK_NSIS_MUI_HEADERIMAGE "${IMAGES_DIR}/header.bmp")
-    set(CPACK_NSIS_CONTACT ${CPACK_PACKAGE_CONTACT})
-    set(CPACK_NSIS_INSTALLED_ICON_NAME "qprompt${CMAKE_EXECUTABLE_SUFFIX}")
-    set(CPACK_NSIS_MENU_LINKS
-        "${CMAKE_SOURCE_DIR}/${LICENSE_FILE}" "License"
-        "${CMAKE_SOURCE_DIR}/${README_FILE}" "Readme"
-    )
-    set(CPACK_NSIS_MUI_FINISHPAGE_RUN "${CPACK_NSIS_INSTALLED_ICON_NAME}")
-    set(InstallRequiredSystemLibraries On)
+    elseif(WIN32)
+        set(CPACK_GENERATOR "INNOSETUP")
+        set(CPACK_PACKAGE_EXECUTABLES "QPrompt" "QPrompt")
+        set(CPACK_RESOURCE_FILE_LICENSE "${CMAKE_SOURCE_DIR}/${LICENSE_FILE}")
+        set(CPACK_NSIS_EXECUTABLES_DIRECTORY "${BIN_INSTALL_DIR}")
+        set(CPACK_NSIS_MUI_ICON "${ICONS_DIR}/qprompt.ico")
+        set(CPACK_PACKAGE_ICON "${IMAGES_DIR}/installer.bmp")
+        set(CPACK_NSIS_MUI_WELCOMEFINISHPAGE_BITMAP "${IMAGES_DIR}/welcome.bmp")
+        set(CPACK_NSIS_MUI_UNWELCOMEFINISHPAGE_BITMAP "${IMAGES_DIR}/welcome.bmp")
+        set(CPACK_NSIS_MUI_HEADERIMAGE "${IMAGES_DIR}/header.bmp")
+        set(CPACK_NSIS_CONTACT ${CPACK_PACKAGE_CONTACT})
+        set(CPACK_NSIS_INSTALLED_ICON_NAME "qprompt${CMAKE_EXECUTABLE_SUFFIX}")
+        set(CPACK_NSIS_MENU_LINKS
+            "${CMAKE_SOURCE_DIR}/${LICENSE_FILE}" "License"
+            "${CMAKE_SOURCE_DIR}/${README_FILE}" "Readme"
+        )
+        set(CPACK_NSIS_MUI_FINISHPAGE_RUN "${CPACK_NSIS_INSTALLED_ICON_NAME}")
+        set(InstallRequiredSystemLibraries On)
 
-elseif(APPLE AND NOT IOS)
-    set(CPACK_GENERATOR "DragNDrop")
-    set(CPACK_DMG_FORMAT "UDBZ")
-    set(CPACK_DMG_VOLUME_NAME "QPrompt")
-    set(CPACK_BUNDLE_NAME "QPrompt")
-    set(CPACK_BUNDLE_ICON "${ICONS_DIR}/qprompt.icns")
-    # set(CPACK_BUNDLE_PLIST "Info.plist")
-    set(CPACK_SYSTEM_NAME "OSX")
-    set(CPACK_PACKAGE_FILE_NAME "QPrompt-${PROJECT_VERSION}")
-    set(CPACK_PACKAGE_ICON "${ICONS_DIR}/qprompt.icns")
-    set(CPACK_DMG_SLA_USE_RESOURCE_FILE_LICENSE ${LICENSE_FILE})
-    #set(CPACK_DMG_DS_STORE "${IMAGES_DIR}/DSStore")
-    set(CPACK_DMG_BACKGROUND_IMAGE "${IMAGES_DIR}/DMGBackground.png")
+    elseif(APPLE AND NOT IOS)
+        set(CPACK_GENERATOR "DragNDrop")
+        set(CPACK_DMG_FORMAT "UDBZ")
+        set(CPACK_DMG_VOLUME_NAME "QPrompt")
+        set(CPACK_BUNDLE_NAME "QPrompt")
+        set(CPACK_BUNDLE_ICON "${ICONS_DIR}/qprompt.icns")
+        # set(CPACK_BUNDLE_PLIST "Info.plist")
+        set(CPACK_SYSTEM_NAME "OSX")
+        set(CPACK_PACKAGE_FILE_NAME "QPrompt-${PROJECT_VERSION}")
+        set(CPACK_PACKAGE_ICON "${ICONS_DIR}/qprompt.icns")
+        set(CPACK_DMG_SLA_USE_RESOURCE_FILE_LICENSE ${LICENSE_FILE})
+        #set(CPACK_DMG_DS_STORE "${IMAGES_DIR}/DSStore")
+        set(CPACK_DMG_BACKGROUND_IMAGE "${IMAGES_DIR}/DMGBackground.png")
 
-elseif(BSD AND NOT APPLE)
-    set(CPACK_FREEBSD_PACKAGE_MAINTAINER ${CPACK_PACKAGE_CONTACT})
-    set(CPACK_FREEBSD_PACKAGE_ORIGIN "multimedia")
-    set(CPACK_FREEBSD_PACKAGE_CATEGORIES "devel/qt6-base, x11-toolkits/qt6-declarative, graphics/qt6-svg, x11-toolkits/qt6-shadertools, multimedia/qt6-multimedia, devel/kf6-kcoreaddons, devel/kf6-ki18n, x11-toolkits/kf6-kirigami, devel/kf6-kcrash, x11-themes/kf6-kiconthemes, x11-toolkits/qhotkey")
+    elseif(BSD AND NOT APPLE)
+        set(CPACK_FREEBSD_PACKAGE_MAINTAINER ${CPACK_PACKAGE_CONTACT})
+        set(CPACK_FREEBSD_PACKAGE_ORIGIN "multimedia")
+        set(CPACK_FREEBSD_PACKAGE_CATEGORIES "devel/qt6-base, x11-toolkits/qt6-declarative, graphics/qt6-svg, x11-toolkits/qt6-shadertools, multimedia/qt6-multimedia, devel/kf6-kcoreaddons, devel/kf6-ki18n, x11-toolkits/kf6-kirigami, devel/kf6-kcrash, x11-themes/kf6-kiconthemes, x11-toolkits/qhotkey")
+    endif()
+
+    include(CPack)
 endif()
-
-include(CPack)
 
 feature_summary(WHAT ALL FATAL_ON_MISSING_REQUIRED_PACKAGES) # INCLUDE_QUIET_PACKAGES
 
