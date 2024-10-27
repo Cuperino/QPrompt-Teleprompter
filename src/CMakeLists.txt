@@ -413,6 +413,10 @@ IF(NOT GETTEXT_MSGFMT_EXECUTABLE)
 ------")
 ELSE(NOT GETTEXT_MSGFMT_EXECUTABLE)
     SET(LOCALE_INSTALL_DIR ${KDE_INSTALL_LOCALEDIR})
+    # This should set automatically, but for some reason it is not.
+    if(WIN32 AND ${LOCALE_INSTALL_DIR} STREQUAL "share/locale")
+        SET(LOCALE_INSTALL_DIR "bin/data/locale")
+    endif()
 
     SET(catalogname ${PROJECT_NAME})
 
