@@ -182,7 +182,7 @@ $VCPKG install --x-install-root $CMAKE_PREFIX_PATH gettext gettext-libintl
 for package in ./3rdparty/vcpkg/packages/*; do
     echo $package
     cp -rf $package/* $CMAKE_PREFIX_PATH
-    cp -rf $package/* $AppDirUsr
+    cp -rf $package/* ./install
 done
 
 # KDE Frameworks
