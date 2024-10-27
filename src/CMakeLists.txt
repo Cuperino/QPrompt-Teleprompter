@@ -19,8 +19,10 @@
 #
 #**************************************************************************
 
-include(ECMPoQmTools)
-ecm_create_qm_loader(qprompt_QM_LOADER ../locale/qprompt.pot)
+if(NOT WIN32)
+    include(ECMPoQmTools)
+    ecm_create_qm_loader(qprompt_QM_LOADER ../locale/qprompt.pot)
+endif()
 
 qt_standard_project_setup()
 
