@@ -123,10 +123,11 @@ fi
 # Constants
 if [[ "$PLATFORM" == "windows" ]]; then
 AppDir=""
+AppDirUsr="install"
 else
 AppDir="install"
-fi
 AppDirUsr="install/usr"
+fi
 mkdir -p $AppDirUsr
 
 echo -e "\nBuild directory is ./build"
