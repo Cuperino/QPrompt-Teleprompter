@@ -319,8 +319,8 @@ Kirigami.ApplicationWindow {
                 Kirigami.Action {
                     text: i18nc("Main menu actions. Load Path Settings page.", "External Tools and Applications")
                     visible: ['android', 'ios', 'tvos', 'wasm'].indexOf(Qt.platform.os)===-1
-                    icon.name: "akonadiconsole"
-                    // icon.source: "qrc:/qt/qml/com/cuperino/qprompt/icons/akonadiconsole.svg"
+                    // icon.name: "akonadiconsole"
+                    icon.source: "qrc:/qt/qml/com/cuperino/qprompt/icons/akonadiconsole.svg"
                     onTriggered: loadPathsPage();
                 }
                 Kirigami.Action {
@@ -424,6 +424,7 @@ Kirigami.ApplicationWindow {
                 }
                 Kirigami.Action {
                     text: i18nc("Main menu actions", "Restore factory defaults")
+                    // icon.name: "edit-clear-history"
                     icon.source: "qrc:/qt/qml/com/cuperino/qprompt/icons/edit-clear-history.svg"
                     onTriggered: {
                         factoryResetDialog.open();

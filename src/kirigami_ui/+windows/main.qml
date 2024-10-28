@@ -196,13 +196,15 @@ Kirigami.ApplicationWindow {
         actions: [
             Kirigami.Action {
                 text: i18nc("Main menu and global menu actions", "&New")
-                icon.name: "document-new"
+                //icon.name: "document-new"
+                icon.source: "qrc:/qt/qml/com/cuperino/qprompt/icons/document-new.svg"
                 shortcut: StandardKey.New
                 onTriggered: root.pageStack.currentItem.document.newDocument()
             },
             Kirigami.Action {
                 text: i18nc("Main menu and global menu actions", "&Open")
-                icon.name: "document-open"
+                //icon.name: "document-open"
+                icon.source: "qrc:/qt/qml/com/cuperino/qprompt/icons/document-open.svg"
                 shortcut: StandardKey.Open
                 onTriggered: {
                     root.onDiscard = Prompter.CloseActions.Open
@@ -220,7 +222,8 @@ Kirigami.ApplicationWindow {
             },
             Kirigami.Action {
                 text: i18nc("Main menu and global menu actions", "&Save")
-                icon.name: "document-save"
+                //icon.name: "document-save"
+                icon.source: "qrc:/qt/qml/com/cuperino/qprompt/icons/document-save.svg"
                 shortcut: StandardKey.Save
                 onTriggered: {
                     root.onDiscard = Prompter.CloseActions.Ignore
@@ -229,7 +232,8 @@ Kirigami.ApplicationWindow {
             },
             Kirigami.Action {
                 text: i18nc("Main menu and global menu actions", "Save &As")
-                icon.name: "document-save-as"
+                //icon.name: "document-save-as"
+                icon.source: "qrc:/qt/qml/com/cuperino/qprompt/icons/document-save-as.svg"
                 shortcut: StandardKey.SaveAs
                 onTriggered: {
                     root.onDiscard = Prompter.CloseActions.Ignore
@@ -239,7 +243,8 @@ Kirigami.ApplicationWindow {
             Kirigami.Action {
                 visible: false
                 text: i18nc("Main menu actions", "&Recent Files")
-                icon.name: "document-open-recent"
+                //icon.name: "document-open-recent"
+                icon.source: "qrc:/qt/qml/com/cuperino/qprompt/icons/document-open-recent.svg"
                 //Kirigami.Action {
                     //text: i18n("View Action 1")
                     //onTriggered: showPassiveNotification(i18n("View Action 1 clicked"))
@@ -247,25 +252,27 @@ Kirigami.ApplicationWindow {
             },
             Kirigami.Action {
                 text: i18nc("Main menu actions. Menu regarding input settings.", "&Controls Settings")
-                icon.name: "transform-browse" // "hand"
+                // icon.name: "transform-browse" // "hand"
+                icon.source: "qrc:/qt/qml/com/cuperino/qprompt/icons/transform-browse.svg"
                 Kirigami.Action {
                     visible: ["android", "ios", "tvos", "ipados", "qnx"].indexOf(Qt.platform.os)===-1
                     text: i18nc("Main menu and global menu actions. Opens dialog to configure keyboard inputs.", "Keyboard Inputs")
-                    icon.name: "key-enter" // "keyboard"
-                    onTriggered: {
-                        root.pageStack.currentItem.keyConfigurationOverlay.open()
-                    }
+                    // icon.name: "key-enter" // "keyboard"
+                    icon.source: "qrc:/qt/qml/com/cuperino/qprompt/icons/key-enter.svg"
+                    onTriggered: root.pageStack.currentItem.keyConfigurationOverlay.open()
                 }
                 Kirigami.Action {
                     visible: ["android", "ios", "tvos", "ipados", "qnx"].indexOf(Qt.platform.os)===-1
                     text: i18nc("Open 'scroll settings' from main menu and global menu actions", "Scroll throttle settings")
-                    icon.name: "gnumeric-object-scrollbar" // "keyboard"
+                    // icon.name: "gnumeric-object-scrollbar" // "keyboard"
+                    icon.source: "qrc:/qt/qml/com/cuperino/qprompt/icons/gnumeric-object-scrollbar.svg"
                     onTriggered: wheelSettings.open()
                 }
                 Kirigami.Action {
                     text: i18nc("Main menu and global menu actions. Have up arrow behave like down arrow and vice versa while prompting.", "Invert &arrow keys")
                     enabled: !root.__noScroll
-                    icon.name: "circular-arrow-shape"
+                    // icon.name: "circular-arrow-shape"
+                    icon.source: "qrc:/qt/qml/com/cuperino/qprompt/icons/circular-arrow-shape.svg"
                     checkable: true
                     checked: root.__invertArrowKeys
                     onTriggered: root.__invertArrowKeys = checked
@@ -273,7 +280,8 @@ Kirigami.ApplicationWindow {
                 Kirigami.Action {
                     text: i18nc("Main menu and global menu actions. Invert scroll direction while prompting.", "Invert &scroll direction (Natural scrolling)")
                     enabled: !root.__noScroll
-                    icon.name: "gnumeric-object-scrollbar"
+                    // icon.name: "gnumeric-object-scrollbar"
+                    icon.source: "qrc:/qt/qml/com/cuperino/qprompt/icons/gnumeric-object-scrollbar.svg"
                     checkable: true
                     checked: root.__invertScrollDirection
                     onTriggered: root.__invertScrollDirection = checked
@@ -281,7 +289,8 @@ Kirigami.ApplicationWindow {
                 Kirigami.Action {
                     text: i18nc("Main menu and global menu actions. Have touchpad and mouse wheel scrolling adjust velocity instead of scrolling like most other apps.", "Use scroll as velocity &dial")
                     enabled: !root.__noScroll
-                    icon.name: "filename-bpm-amarok"
+                    // icon.name: "filename-bpm-amarok"
+                    icon.source: "qrc:/qt/qml/com/cuperino/qprompt/icons/filename-bpm-amarok.svg"
                     // ToolTip.text: i18n("Use mouse and touchpad scroll as speed dial while prompting")
                     checkable: true
                     checked: root.__scrollAsDial
@@ -289,7 +298,8 @@ Kirigami.ApplicationWindow {
                 }
                 Kirigami.Action {
                     text: i18nc("Main menu and global menu actions. Touchpad scrolling and mouse wheel use have no effect while prompting.", "Disable scrolling while prompting")
-                    icon.name: "paint-none"
+                    //icon.name: "paint-none"
+                    icon.source: "qrc:/qt/qml/com/cuperino/qprompt/icons/paint-none.svg"
                     checkable: true
                     checked: root.__noScroll
                     onTriggered: root.__noScroll = checked
@@ -297,7 +307,8 @@ Kirigami.ApplicationWindow {
             },
             Kirigami.Action {
                 text: i18nc("Main menu actions", "Other &Settings")
-                icon.name: "configure"
+                // icon.name: "configure"
+                icon.source: "qrc:/qt/qml/com/cuperino/qprompt/icons/configure.svg"
 //                 Kirigami.Action {
 //                     text: i18n("Telemetry")
 //                     icon.name: "document-send"
@@ -308,8 +319,8 @@ Kirigami.ApplicationWindow {
                 Kirigami.Action {
                     text: i18nc("Main menu actions. Load Path Settings page.", "External Tools and Applications")
                     visible: ['android', 'ios', 'tvos', 'wasm'].indexOf(Qt.platform.os)===-1
-                    icon.name: "akonadiconsole"
-                    // icon.source: "qrc:/qt/qml/com/cuperino/qprompt/icons/akonadiconsole.svg"
+                    // icon.name: "akonadiconsole"
+                    icon.source: "qrc:/qt/qml/com/cuperino/qprompt/icons/akonadiconsole.svg"
                     onTriggered: loadPathsPage();
                 }
                 Kirigami.Action {
@@ -384,8 +395,8 @@ Kirigami.ApplicationWindow {
                         text: i18nc("Main menu actions. QPrompt switches between two text rendering techniques when the base font size exceeds 120px. Enabling this option forces QPrompt to always use the default renderer, which features smoother sub-pixel animations.", "Force sub-pixel text renderer past 120px")
                         // Hiding option because only Qt text renderer is used on devices of greater pixel density, due to bug in rendering native fonts while scaling is enabled.
                         visible: ['android', 'ios', 'wasm', 'tvos', 'qnx', 'ipados'].indexOf(Qt.platform.os)===-1 && screen.devicePixelRatio === 1.0
-                        icon.name: "format-font-size-more"
-                        // icon.source: "qrc:/qt/qml/com/cuperino/qprompt/icons/format-font-size-more.svg"
+                        // icon.name: "format-font-size-more"
+                        icon.source: "qrc:/qt/qml/com/cuperino/qprompt/icons/format-font-size-more.svg"
                         checkable: true
                         checked: root.forceQtTextRenderer
                         onTriggered: root.forceQtTextRenderer = !root.forceQtTextRenderer
@@ -411,7 +422,8 @@ Kirigami.ApplicationWindow {
                 }
                 Kirigami.Action {
                     text: i18nc("Main menu actions", "Restore factory defaults")
-                    icon.name: "edit-clear-history"
+                    // icon.name: "edit-clear-history"
+                    icon.source: "qrc:/qt/qml/com/cuperino/qprompt/icons/edit-clear-history.svg"
                     onTriggered: {
                         factoryResetDialog.open();
                     }
@@ -427,13 +439,15 @@ Kirigami.ApplicationWindow {
             },
             Kirigami.Action {
                 text: i18nc("Main menu actions. Load about page.", "Abou&t %1", aboutData.displayName)
-                icon.name: "help-about"
+                //icon.name: "help-about"
+                icon.source: "qrc:/qt/qml/com/cuperino/qprompt/icons/help-about.svg"
                 onTriggered: loadAboutPage();
             },
             Kirigami.Action {
                 visible: !Kirigami.Settings.isMobile
                 text: i18nc("Main menu and global menu actions", "&Quit")
-                icon.name: "application-exit"
+                //icon.name: "application-exit"
+                icon.source: "qrc:/qt/qml/com/cuperino/qprompt/icons/application-exit.svg"
                 shortcut: StandardKey.Quit
                 onTriggered: close()
             },
