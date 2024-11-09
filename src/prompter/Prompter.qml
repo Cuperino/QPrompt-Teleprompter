@@ -801,7 +801,6 @@ Flickable {
                         spacing: 8
                         anchors.horizontalCenter: parent.horizontalCenter
                         anchors.top: parent.top
-                        anchors.bottom: parent.bottom
                         RowLayout {
                             Layout.alignment: Qt.AlignHCenter
                             FontLoader {
