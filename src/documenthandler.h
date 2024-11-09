@@ -249,7 +249,7 @@ Q_SIGNALS:
     void textChanged();
     void fileUrlChanged();
 
-    void loaded(const QString &text, int format);
+    void loaded(Qt::TextFormat format);
     void error(const QString &message);
 
     void modifiedChanged();
@@ -262,6 +262,7 @@ private:
     void mergeFormatOnWordOrSelection(const QTextCharFormat &format);
 
     enum ImportFormat { NONE, PDF, ODT, DOCX, DOC, RTF, ABW, EPUB, MOBI, AZW, PAGES, PAGESX };
+    void updateContents(const QString &text, Qt::TextFormat format);
     QString import(const QString &fileName, ImportFormat);
 
     QQuickTextDocument *m_document;

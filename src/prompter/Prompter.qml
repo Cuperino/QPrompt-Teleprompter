@@ -1331,9 +1331,8 @@ Flickable {
         //textColor: "#FFF"
         //textBackground: "#000"
 
-        onLoaded: function (text, format) {
+        onLoaded: function (format) {
             editor.textFormat = format
-            editor.text = text
             editorToolbar.lineHeightSlider.update()
             editorToolbar.paragraphSpacingSlider.update()
         }

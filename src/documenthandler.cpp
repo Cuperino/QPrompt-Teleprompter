@@ -559,7 +559,7 @@ void DocumentHandler::loadFromNetworkFinihed()
         static QRegularExpression regex_0(
             QString::fromUtf8("((font-size|letter-spacing|word-spacing|font-weight):\\s*-?[\\d]+(?:.[\\d]+)*(?:(?:px)|(?:pt)|(?:em)|(?:ex));?\\s*)"));
         QString html = QString::fromUtf8(document).replace(regex_0, QString::fromUtf8(""));
-        Q_EMIT loaded(html, Qt::RichText);
+        updateContents(html, Qt::RichText);
 
         m_fileUrl = m_cache->fileName();
         Q_EMIT fileUrlChanged();
@@ -600,11 +600,11 @@ void DocumentHandler::load(const QUrl &fileUrl)
                     static QRegularExpression regex_0(QString::fromUtf8(
                         "((font-size|letter-spacing|word-spacing|font-weight):\\s*-?[\\d]+(?:.[\\d]+)*(?:(?:px)|(?:pt)|(?:em)|(?:ex));?\\s*)"));
                     QString html = QString::fromUtf8(data).replace(regex_0, QString::fromUtf8(""));
-                    Q_EMIT loaded(html, Qt::RichText);
+                    updateContents(html, Qt::RichText);
                 }
 #if QT_VERSION >= 0x050F00
                 else if (mime.inherits(QString::fromUtf8("text/markdown")))
-                    Q_EMIT loaded(QString::fromUtf8(data), Qt::MarkdownText);
+                    updateContents(QString::fromUtf8(data), Qt::MarkdownText);
 #endif
                 // File formats imported using external software
                 else {
@@ -643,17 +643,17 @@ void DocumentHandler::load(const QUrl &fileUrl)
                     if (type != NONE) {
                         QString html = import(fileName, type);
                         // Process as HTML, even if it is plain text such that it gets rid of unnecessary whitespace.
-                        Q_EMIT loaded(html, Qt::RichText);
+                        updateContents(html, Qt::RichText);
                     }
                     // Read as raw or text file
                     else {
                         // Interpret RAW data using Qt's auto detection
 #if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
                         // I doubt that this is a proper conversion. Needs proper testing.
-                        Q_EMIT loaded(QString::fromUtf8(data.toStdString()), Qt::AutoText);
+                        updateContents(QString::fromUtf8(data.toStdString()), Qt::AutoText);
 #else
                         QTextCodec *codec = QTextCodec::codecForName("utf-8");
-                        Q_EMIT loaded(codec->toUnicode(data), Qt::AutoText);
+                        updateContents(codec->toUnicode(data));
 #endif
                     }
                 }
@@ -734,6 +734,27 @@ QString DocumentHandler::import(const QString &fileName, ImportFormat type)
     // if (type==DOCX || type==DOC || type==RTF || type==ABW || type==EPUB || type==MOBI || type==AZW)
     //     return filterHtml(html, true);
     return filterHtml(html, false);
+}
+
+void DocumentHandler::updateContents(const QString &text, Qt::TextFormat format) {
+    QTextCursor cursor = textCursor();
+    cursor.select(QTextCursor::Document);
+    cursor.removeSelectedText();
+    switch(format) {
+    case Qt::PlainText:
+        cursor.insertText(text);
+        break;
+    case Qt::MarkdownText:
+        cursor.insertMarkdown(text);
+        break;
+    case Qt::RichText:
+        // Document metadata extraction would happen at this time
+        Q_FALLTHROUGH();
+    case Qt::AutoText:
+        cursor.insertHtml(text);
+        break;
+    }
+    Q_EMIT loaded(format);
 }
 
 void DocumentHandler::unblockFileWatcher()
