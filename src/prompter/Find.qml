@@ -97,10 +97,16 @@ Item {
         id: find
         property bool replace: false;
         property bool regEx: false;
+        property bool nextPressedOnce: false;
+        function resetNextPressedFlag() {
+            find.nextPressedOnce = false;
+        }
         function next() {
+            find.resetNextPressedFlag()
             find.search(searchField.text, Find.Mode.Next);
         }
         function previous() {
+            find.resetNextPressedFlag()
             find.search(searchField.text, Find.Mode.Previous);
         }
         function search(text, mode) {
@@ -133,16 +139,22 @@ Item {
                 resultsFound = false
         }
         function replacePrevious(text) {
+            find.resetNextPressedFlag()
             find.previous();
             const range = document.replaceSelected(replaceField.text);
             editor.select(range.x, range.y);
         }
         function replaceNext() {
+            if (find.nextPressedOnce)
+                editor.cursorPosition += editor.selectedText.length
+            else
+                find.nextPressedOnce = true
             find.search(searchField.text, Find.Mode.Match);
             const range = document.replaceSelected(replaceField.text);
             editor.select(range.x, range.y);
         }
         function replaceAll() {
+            find.resetNextPressedFlag()
             const i = document.replaceAll(searchField.text, replaceField.text, find.regEx);
             resultsFound = i > 0;
             showPassiveNotification(i18np("Replaced 1 instance",
@@ -167,7 +179,10 @@ Item {
                 id: searchField
                 placeholderText: ""
                 wrapMode: TextInput.WordWrap
-                onTextEdited: find.search(text, Find.Mode.Match)
+                onTextEdited: {
+                    find.resetNextPressedFlag()
+                    find.search(text, Find.Mode.Match)
+                }
                 selectByMouse: true
                 Layout.fillWidth: true
                 Keys.onReturnPressed: (event) => {
