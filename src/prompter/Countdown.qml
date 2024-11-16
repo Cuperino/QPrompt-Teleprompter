@@ -21,7 +21,7 @@
 
 import QtQuick 2.12
 import QtQuick.Controls 2.12
-import QtQuick.Shapes 1.12
+import QtQuick.Shapes 6.6
 import QtQuick.Layouts 1.12
 import QtCore 6.5
 
@@ -203,9 +203,8 @@ Item {
         id: concentricCircles
         readonly property int diameter: 84*__minv
         visible: countdown.enabled
+        preferredRendererType: Shape.CurveRenderer
         anchors.fill: parent
-        layer.enabled: true
-        layer.samples: 4
         anchors.centerIn: parent
         width: diameter
         height: diameter
