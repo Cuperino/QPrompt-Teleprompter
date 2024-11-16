@@ -877,8 +877,8 @@ Kirigami.ApplicationWindow {
         MouseArea {
             anchors.fill: parent
             acceptedButtons: Qt.NoButton
-            onWheel: function (wheel) {
-                root.pageStack.currentItem.viewport.mouse.wheel(wheel)
+            onWheel: (wheel) => {
+                root.pageStack.currentItem.viewport.mouse.scroll(wheel)
             }
         }
     }
@@ -887,8 +887,8 @@ Kirigami.ApplicationWindow {
         anchors.left: parent.left
         anchors.right: parent.right
         acceptedButtons: Qt.NoButton
-        onWheel: function (wheel) {
-            root.pageStack.currentItem.viewport.mouse.wheel(wheel)
+        onWheel: (wheel) => {
+            root.pageStack.currentItem.viewport.mouse.scroll(wheel)
         }
     }
 

@@ -576,7 +576,9 @@ Kirigami.ApplicationWindow {
         MouseArea {
             anchors.fill: parent
             acceptedButtons: Qt.NoButton
-            onWheel: (wheel)=>root.pageStack.currentItem.viewport.mouse.wheel(wheel)
+            onWheel: (wheel) => {
+                root.pageStack.currentItem.viewport.mouse.scroll(wheel)
+            }
         }
     }
     MouseArea {
@@ -584,7 +586,9 @@ Kirigami.ApplicationWindow {
         anchors.left: parent.left
         anchors.right: parent.right
         acceptedButtons: Qt.NoButton
-        onWheel: (wheel)=>root.pageStack.currentItem.viewport.mouse.wheel(wheel)
+        onWheel: (wheel) => {
+            root.pageStack.currentItem.viewport.mouse.scroll(wheel)
+        }
     }
 
     CursorAutoHide {

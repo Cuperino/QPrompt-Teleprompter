@@ -564,8 +564,8 @@ Flickable {
         enabled: Qt.platform.os!=="android" && Qt.platform.os!=="ios" && Qt.platform.os!=="osx"
         anchors.fill: parent
         scrollGestureEnabled: true
-        onWheel: function (wheel) {
-            mouse.onWheel(wheel)
+        onWheel: (wheel) => {
+            mouse.scroll(wheel)
         }
     }
     //Rectangle {

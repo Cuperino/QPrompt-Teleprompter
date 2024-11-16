@@ -208,8 +208,8 @@ Item {
                 onClicked:
                     if (model.flip)
                         projectionManager.forwardTo.prompter.toggle();
-                onWheel: function (wheel) {
-                    projectionManager.forwardTo.mouse.wheel(wheel);
+                onWheel: (wheel) => {
+                    projectionManager.forwardTo.mouse.scroll(wheel);
                 }
                 Keys.onShortcutOverride: function(event) {
                     event.accepted = (event.key === Qt.Key_Escape)

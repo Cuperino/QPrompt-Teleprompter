@@ -118,8 +118,8 @@ ToolBar {
         MouseArea {
             anchors.fill: parent
             acceptedButtons: Qt.NoButton
-            onWheel: function (wheel) {
-                viewport.mouse.wheel(wheel)
+            onWheel: (wheel) => {
+                viewport.mouse.scroll(wheel)
             }
         }
         Rectangle {

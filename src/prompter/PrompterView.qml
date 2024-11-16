@@ -130,7 +130,10 @@ Item {
 //        y: -prompter.height
 //        height: parent.height+2*prompter.height
         cursorShape: Qt.CrossCursor
-        onWheel: (wheel)=> {
+        onWheel: (wheel) => {
+            scroll(wheel);
+        }
+        function scroll(wheel: var): void {
             if (prompter.__noScroll && parseInt(prompter.state)===Prompter.States.Prompting)
                 return;
             else if (parseInt(prompter.state)===Prompter.States.Prompting && (prompter.__scrollAsDial && !(wheel.modifiers & Qt.ControlModifier || wheel.modifiers & Qt.MetaModifier) || !prompter.__scrollAsDial && (wheel.modifiers & Qt.ControlModifier || wheel.modifiers & Qt.MetaModifier))) {
