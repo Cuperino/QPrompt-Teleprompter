@@ -786,24 +786,6 @@ Kirigami.Page {
             //}
         //}
     }
-
-    // The following rectangles add a background that is shown behind the mobile action buttons when the user is in desktop mode but the action buttons are showing. These also improve contrast with the editor toolbar when opacity is active.
-    // Action buttons are only supposed to be shown in desktop mode if the user is in fullscreen and not in the prompter's editing state, but there is a bug in Kirigami that causes it to appear under some circumstances or all of the time in desktop operating systems. Behavior varies from system to system.
-    Rectangle {
-        anchors.left: parent.left;
-        anchors.right: parent.right;
-        anchors.top: prompterCutOffLine.bottom;
-        // By extending over the editor we avoid seeing a cutoff in opaque mode and improve contrast
-        height: 68 + editor.height
-        color: Kirigami.Theme.alternateBackgroundColor.a ? Qt.rgba(appTheme.__backgroundColor.r*2/3, appTheme.__backgroundColor.g*2/3, appTheme.__backgroundColor.b*2/3, 1)
-                    : Qt.rgba(Kirigami.Theme.alternateBackgroundColor.r*2/3, Kirigami.Theme.alternateBackgroundColor.g*2/3, Kirigami.Theme.alternateBackgroundColor.b*2/3, 1)
-        opacity: root.__opacity * 0.4 + 0.6
-        MouseArea {
-            anchors.fill: parent
-            acceptedButtons: Qt.NoButton
-            onWheel: (wheel)=>viewport.mouse.wheel(wheel)
-        }
-    }
     // The cut off line renders as a solid and doesn't cover the other rectangles to improve performance.
     Rectangle {
         id: prompterCutOffLine
