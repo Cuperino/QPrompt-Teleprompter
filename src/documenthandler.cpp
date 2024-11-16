@@ -1001,10 +1001,13 @@ long DocumentHandler::replaceAll(const QString &searchedText, const QString &rep
 {
     long i = 0;
     if (searchedText.length() > 0) {
-        QPoint range = search(searchedText, false, true, regEx);
+        QTextCursor cursor = this->textCursor();
+        cursor.movePosition(QTextCursor::End);
+        setSelectionStart(cursor.position()-1);
+        setSelectionEnd(cursor.position());
+        QPoint range = search(searchedText, false, true, regEx, false);
         bool resultsFound = range.y() > range.x();
         if (resultsFound) {
-            QTextCursor cursor = this->textCursor();
             cursor.beginEditBlock();
             do {
                 i++;
@@ -1015,7 +1018,7 @@ long DocumentHandler::replaceAll(const QString &searchedText, const QString &rep
                 cursor.removeSelectedText();
                 cursor.insertText(replacementText);
                 // Search again
-                range = search(searchedText, false, true, regEx);
+                range = search(searchedText, false, true, regEx, false);
                 resultsFound = range.y() > range.x();
             } while (resultsFound);
             cursor.endEditBlock();
@@ -1040,7 +1043,7 @@ void DocumentHandler::setMarkersListDirty()
 }
 
 // Search
-QPoint DocumentHandler::search(const QString &subString, const bool next, const bool reverse, const bool regEx)
+QPoint DocumentHandler::search(const QString &subString, const bool next, const bool reverse, const bool regEx, const bool loop)
 {
     // qDebug() << "pre" << this->cursorPosition() << this->selectionStart() << this->selectionEnd();
     QTextCursor cursor;
@@ -1069,7 +1072,7 @@ QPoint DocumentHandler::search(const QString &subString, const bool next, const 
         else
             cursor = this->textDocument()->find(subString, this->selectionStart());
         // If no more results, go to the corresponding start position and do the search once more
-        if (cursor.selectionStart() == -1 && cursor.selectionStart() == -1 && cursor.selectionEnd() == -1) {
+        if (loop && (cursor.selectionStart() == -1 && cursor.selectionStart() == -1 && cursor.selectionEnd() == -1)) {
             if (reverse)
                 cursor = this->textDocument()->find(subString, textDocument()->characterCount(), QTextDocument::FindBackward);
             else

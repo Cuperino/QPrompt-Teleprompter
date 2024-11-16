@@ -206,7 +206,7 @@ public:
     Q_INVOKABLE QString filterHtml(QString html, bool ignoreBlackTextColor);
 
     // Search
-    Q_INVOKABLE QPoint search(const QString &subString, const bool next = false, const bool reverse = false, const bool regEx = false);
+    Q_INVOKABLE QPoint search(const QString &subString, const bool next = false, const bool reverse = false, const bool regEx = false, bool loop = true);
     Q_INVOKABLE int keySearch(int key);
 
     Q_INVOKABLE bool preventSleep(bool prevent);
