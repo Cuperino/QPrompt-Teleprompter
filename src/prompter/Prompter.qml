@@ -1425,6 +1425,7 @@ Flickable {
         onAccepted: {
             document.saveAs(saveDialog.file)
             document.isNewFile = false
+            editor.lastDocument = document.fileUrl;
             showPassiveNotification(i18nc("Saved FILE_NAME", "Saved %1", document.file))
             // if (document.quitOnSave)
             //     Qt.quit()
