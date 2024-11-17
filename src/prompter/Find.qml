@@ -161,6 +161,10 @@ Item {
                                           "Replaced %1 instances", i));
         }
         anchors.fill: parent
+        Keys.onPressed: (event) => {
+            if (event.key === Qt.Key_R && event.modifiers | Qt.CtrlModifier)
+                find.replace = !find.replace;
+        }
         RowLayout {
             spacing: 6
             Button {
