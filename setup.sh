@@ -95,7 +95,7 @@ This script assumes you've already installed the following dependencies:
  > build-essential
  > cmake
  > python3-venv
- > Run: sudo apt install build-essential cmake python3-venv gettext libgl1-mesa-dev libxkbcommon-x11-dev
+ > Run: sudo apt install build-essential cmake python3-venv gettext libgl1-mesa-dev libxkbcommon-x11-dev default-libmysqlclient-dev
 
  For macOS:
  > CMake
@@ -249,6 +249,7 @@ elif [[ "$PLATFORM" == "linux" ]]; then
        echo "$LINUX_DEPLOY_QT could not be found"
         exit 1
     fi
+    export EXTRA_QT_MODULES="core;quick;quickcontrols2;svg;widgets;network;"
     QMAKE=$CMAKE_PREFIX_PATH/bin/qmake $LINUX_DEPLOY --appdir $AppDir --output appimage --plugin qt
 fi
 cd build
