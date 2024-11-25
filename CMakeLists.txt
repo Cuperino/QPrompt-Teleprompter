@@ -141,6 +141,16 @@ find_package(KF${QT_VERSION_MAJOR} ${KF_MIN_VERSION} REQUIRED COMPONENTS
     I18n
     CoreAddons
 )
+get_target_property(KIRRIGAMI_INCLUDE_DIRS KF${QT_VERSION_MAJOR}::Kirigami  # Platform
+    INTERFACE_INCLUDE_DIRECTORIES
+)
+get_target_property(I18N_INCLUDE_DIRS KF${QT_VERSION_MAJOR}::I18n
+    INTERFACE_INCLUDE_DIRECTORIES
+)
+get_target_property(COREADDONS_INCLUDE_DIRS KF${QT_VERSION_MAJOR}::CoreAddons
+    INTERFACE_INCLUDE_DIRECTORIES
+)
+
 # Desktop only dependencies
 if(NOT ANDROID AND NOT IOS)
     find_package(Qt${QT_VERSION_MAJOR} ${QT_MIN_VERSION} REQUIRED NO_MODULE COMPONENTS
@@ -157,7 +167,8 @@ elseif(HAIKU)
     find_package(KF${QT_VERSION_MAJOR} ${KF_MIN_VERSION} REQUIRED COMPONENTS
         IconThemes
     )
-    find_package(KF${QT_VERSION_MAJOR}Crash ${REQUIRED_KF${QT_VERSION_MAJOR}_VERSION} CONFIG QUIET)
+    find_package(KF${QT_VERSION_MAJOR}
+        ${REQUIRED_KF${QT_VERSION_MAJOR}_VERSION} CONFIG QUIET)
         set_package_properties(KF${QT_VERSION_MAJOR}Crash PROPERTIES
         DESCRIPTION "Graceful handling of application crashes."
         TYPE OPTIONAL
@@ -169,8 +180,14 @@ else()
         DESCRIPTION "Graceful handling of application crashes."
         TYPE OPTIONAL
     )
+    get_target_property(KCRASH_INCLUDE_DIRS KF${QT_VERSION_MAJOR}::Crash
+        INTERFACE_INCLUDE_DIRECTORIES
+    )
     find_package(QHotkey 1.5.0 COMPONENTS
         QHotkey
+    )
+    get_target_property(QHOTKEY_INCLUDE_DIRS qhotkey
+        INTERFACE_INCLUDE_DIRECTORIES
     )
     # # KDMacTouchBar (Mac only)
     # if(APPLE AND NOT IOS)
@@ -189,7 +206,7 @@ if (WIN32 OR UNIX) # AND NOT ANDROID
     include(ECMGenerateHeaders)
 endif()
 include(KDECompilerSettings NO_POLICY_SCOPE)
-include(KDEClangFormat)
+# include(KDEClangFormat)
 include(ECMQtDeclareLoggingCategory)
 include(ECMSetupVersion)
 include(ECMSourceVersionControl)
@@ -286,7 +303,7 @@ if(CMAKE_SOURCE_DIR STREQUAL CMAKE_CURRENT_SOURCE_DIR)
         set(CPACK_RPM_COMPRESSION_TYPE ${COMPRESION_TYPE})
 
     elseif(WIN32)
-        set(CPACK_GENERATOR "INNOSETUP")
+        set(CPACK_GENERATOR "IFW")
         set(CPACK_PACKAGE_EXECUTABLES "QPrompt" "QPrompt")
         set(CPACK_RESOURCE_FILE_LICENSE "${CMAKE_SOURCE_DIR}/${LICENSE_FILE}")
         set(CPACK_NSIS_EXECUTABLES_DIRECTORY "${BIN_INSTALL_DIR}")
@@ -330,4 +347,4 @@ endif()
 feature_summary(WHAT ALL FATAL_ON_MISSING_REQUIRED_PACKAGES) # INCLUDE_QUIET_PACKAGES
 
 file(GLOB_RECURSE ALL_CLANG_FORMAT_SOURCE_FILES *.cpp *.h *.hpp)
-kde_clang_format(${ALL_CLANG_FORMAT_SOURCE_FILES})
+# kde_clang_format(${ALL_CLANG_FORMAT_SOURCE_FILES})

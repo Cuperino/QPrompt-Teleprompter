@@ -275,6 +275,7 @@ if (UNIX AND NOT APPLE)
 else()
     set(OUTPUT_NAME "QPrompt")
 endif()
+
 set_target_properties(${PROJECT_NAME} PROPERTIES
     MACOSX_BUNDLE_BUNDLE_NAME "QPrompt"
     MACOSX_BUNDLE_GUI_IDENTIFIER com.cuperino.qprompt
@@ -283,6 +284,7 @@ set_target_properties(${PROJECT_NAME} PROPERTIES
     MACOSX_BUNDLE_ICON_FILE "icons/qprompt.icns"
     MACOSX_BUNDLE_SHORT_VERSION_STRING ${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}
     OUTPUT_NAME ${OUTPUT_NAME}
+    INTERFACE_LINK_LIBRARIES "KF6::CoreAddons;KF6::Crash;KF6::I18n;KF6::Kirigami;qhotkey"
     MACOSX_BUNDLE TRUE
     WIN32_EXECUTABLE TRUE
     # QT_QMLCACHEGEN_ARGUMENTS "--static"  # "--static;--verbose"
@@ -434,8 +436,7 @@ ELSE(NOT GETTEXT_MSGFMT_EXECUTABLE)
             SET(_gmoFile ${CMAKE_CURRENT_BINARY_DIR}/${_lang}.gmo)
 
             ADD_CUSTOM_COMMAND(TARGET ${PROJECT_NAME}
-                COMMAND ${GETTEXT_MSGFMT_EXECUTABLE} --check -o ${_gmoFile} ${_poFile}
-                DEPENDS ${_poFile})
+                COMMAND ${GETTEXT_MSGFMT_EXECUTABLE} --check -o ${_gmoFile} ${_poFile})
             INSTALL(FILES ${_gmoFile} DESTINATION ${LOCALE_INSTALL_DIR}/${_langCode}/LC_MESSAGES/ RENAME ${catalogname}.mo)
             LIST(APPEND GMO_FILES ${_gmoFile})
         ENDIF( _langCode )
@@ -446,6 +447,13 @@ ELSE(NOT GETTEXT_MSGFMT_EXECUTABLE)
 
 ENDIF(NOT GETTEXT_MSGFMT_EXECUTABLE)
 
+set(CUSTOM_KDE_INSTALL_TARGETS_DEFAULT_ARGS  LIBRARY DESTINATION "${CMAKE_INSTALL_LIBDIR}"
+                                      ARCHIVE DESTINATION "${CMAKE_INSTALL_LIBDIR}" COMPONENT Devel
+)
+if(APPLE)
+    set(CUSTOM_KDE_INSTALL_TARGETS_DEFAULT_ARGS  ${KDE_INSTALL_TARGETS_DEFAULT_ARGS}
+                                          BUNDLE DESTINATION "${BUNDLE_INSTALL_DIR}" )
+endif()
 
 # Installation and bundling
 if (APPLE)
@@ -453,7 +461,62 @@ if (APPLE)
 elseif (WIN32 OR UNIX)
     install(FILES com.cuperino.qprompt.appdata.xml DESTINATION ${KDE_INSTALL_METAINFODIR})
     install(PROGRAMS com.cuperino.qprompt.desktop DESTINATION ${KDE_INSTALL_APPDIR})
-    install(TARGETS ${PROJECT_NAME} ${KDE_INSTALL_TARGETS_DEFAULT_ARGS})
+    # install(TARGETS ${PROJECT_NAME} ${KDE_INSTALL_TARGETS_DEFAULT_ARGS})
+    # install(IMPORTED_RUNTIME_ARTIFACTS ${PROJECT_NAME}
+    #     RUNTIME_DEPENDENCY_SET ${PROJECT_NAME}Dependencies
+    #     ${CUSTOM_KDE_INSTALL_TARGETS_DEFAULT_ARGS}
+    #     RUNTIME
+    #         DESTINATION ${CMAKE_INSTALL_BINDIR}
+    #         PRE_EXCLUDE_REGEXES
+    #         # [[api-ms-win-.*]]
+    #         # [[ext-ms-.*]]
+    #         api-ms-
+    #         ext-ms-
+    #         # POST_EXCLUDE_REGEXES ".*system32/.*\\.dll"
+    #         DIRECTORIES ${CMAKE_PREFIX_PATH} ${CMAKE_PREFIX_PATH}/bin ${CMAKE_PREFIX_PATH}/lib
+    #     INCLUDES DESTINATION "${KDE_INSTALL_INCLUDEDIR}"
+    # )
+    install(TARGETS ${PROJECT_NAME}
+        RUNTIME_DEPENDENCY_SET ${PROJECT_NAME}Dependencies
+        ${KDE_INSTALL_TARGETS_DEFAULT_ARGS}
+        # ${CUSTOM_KDE_INSTALL_TARGETS_DEFAULT_ARGS}
+        # RUNTIME
+        #     DESTINATION ${KDE_INSTALL_APPDIR}
+        #     PRE_EXCLUDE_REGEXES
+        #     api-ms-
+        #     ext-ms-
+        #     DIRECTORIES
+        #     ${CMAKE_PREFIX_PATH}
+        #     ${CMAKE_PREFIX_PATH}/bin
+        #     ${CMAKE_PREFIX_PATH}/lib
+        # INCLUDES DESTINATION "${KDE_INSTALL_INCLUDEDIR}"
+    )
+    install(RUNTIME_DEPENDENCY_SET ${PROJECT_NAME}Dependencies
+        # ${KDE_INSTALL_TARGETS_DEFAULT_ARGS}
+        ${CUSTOM_KDE_INSTALL_TARGETS_DEFAULT_ARGS}
+        RUNTIME
+            DESTINATION ${KDE_INSTALL_APPDIR}
+            PRE_EXCLUDE_REGEXES
+            api-ms-
+            ext-ms-
+            # [[api-ms-win-.*]]
+            # [[ext-ms-.*]]
+            DIRECTORIES ${CMAKE_PREFIX_PATH} ${CMAKE_PREFIX_PATH}/bin ${CMAKE_PREFIX_PATH}/lib
+    #     ${CUSTOM_KDE_INSTALL_TARGETS_DEFAULT_ARGS}
+    )
+    # install(TARGETS ${PROJECT_NAME}
+    #     RUNTIME_DEPENDENCIES # ${PROJECT_NAME}Dependencies
+    #     ${CUSTOM_KDE_INSTALL_TARGETS_DEFAULT_ARGS}
+    #     RUNTIME
+    #         # DESTINATION ${CMAKE_INSTALL_BINDIR}
+    #         PRE_EXCLUDE_REGEXES
+    #         "api-ms-"
+    #         "ext-ms-"
+    #         "Qt6"
+    #         # [[api-ms-win-.*]]
+    #         # [[ext-ms-.*]]
+    #         DIRECTORIES ${CMAKE_PREFIX_PATH}/bin ${CMAKE_PREFIX_PATH}/lib
+    # )
 endif()
 
 set(deploy_tool_options_arg "")
