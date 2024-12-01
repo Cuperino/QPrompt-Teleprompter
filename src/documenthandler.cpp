@@ -674,6 +674,7 @@ void DocumentHandler::load(const QUrl &fileUrl)
     }
 
     m_fileUrl = fileUrl;
+    document()->textDocument()->clearUndoRedoStacks();
     Q_EMIT fileUrlChanged();
 }
 
