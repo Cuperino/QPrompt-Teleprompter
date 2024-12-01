@@ -194,6 +194,14 @@ Item {
                 projectionModel.remove(model.index);
                 //displayModel.remove(model.index);
             }
+            RhiPrompterInstantiator {
+                SequentialAnimation on t {
+                    NumberAnimation { to: 1; duration: 2500; easing.type: Easing.InQuad }
+                    NumberAnimation { to: 0; duration: 2500; easing.type: Easing.OutQuad }
+                    loops: Animation.Infinite
+                    running: true
+                }
+            }
             CursorAutoHide {
                 id: cursorAutoHide
                 ignored: root.pageStack.currentItem.markersDrawer
@@ -274,14 +282,13 @@ Item {
                     opacity: 0.6
                 }
                 // The actual projection
-                ShaderEffect {
+                Item {
                     id: img
                     property variant source: projectionManager.forwardTo
                     anchors.horizontalCenter: parent.horizontalCenter
                     anchors.verticalCenter: parent.verticalCenter
                     width: reScale ? parent.width : projectionManager.forwardTo.width
                     height: reScale ? (parent.width / projectionManager.forwardTo.width) * projectionManager.forwardTo.height : projectionManager.forwardTo.height
-                    blending: false
                     transform: Scale {
                         origin.y: img.height/2
                         yScale: model.flip===3 || model.flip===4 ? -1 : 1
@@ -293,7 +300,7 @@ Item {
                         anchors.fill: parent
                         visible: model.flip===0
                         Image {
-                            source: "qrc:/images/qprompt.png"
+                            // source: "qrc:/images/qprompt.png"
                             fillMode: Image.PreserveAspectFit
                             width: parent.width * 3 / 4
                             height: parent.height * 3 / 4
