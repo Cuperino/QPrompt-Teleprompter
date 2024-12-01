@@ -1385,6 +1385,7 @@ Flickable {
                 //i18nc("Format name (FORMAT_EXTENSION)", "Portable Document Format (%1)", "PDF") + "(*.pdf *.PDF)",
                 i18nc("All file formats", "All Formats") + "(*.*)"
             ]
+        selectedNameFilter.index: 0
 
         folder: StandardPaths.writableLocation(StandardPaths.DocumentsLocation)
         fileMode: Labs.FileDialog.OpenFile
@@ -1395,11 +1396,7 @@ Flickable {
             editor.resetPosition = true;
             if (parseInt(prompter.state)!==Prompter.States.Editing)
                 prompter.state = Prompter.States.Editing;
-            document.isNewFile = !(nameFilters[0]===selectedNameFilter || Qt.platform.os!=="android" && nameFilters[2]===selectedNameFilter)
-            if (nameFilters[0]===selectedNameFilter || Qt.platform.os!=="android" && nameFilters[2]===selectedNameFilter)
-                document.isNewFile = false;
-            else
-                document.isNewFile = true;
+            document.isNewFile = !(selectedNameFilter.index===0 || Qt.platform.os!=="android" && selectedNameFilter.index===2)
         }
     }
 
