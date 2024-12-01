@@ -107,30 +107,35 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
     QSettings settings(QCoreApplication::organizationName(), QCoreApplication::applicationName().toLower());
 
     // Start: Initialize renderer
-#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
     auto enableProjections = settings.value("projections/enabled", false);
 
 // The following code forces the use of specific renderer modes to enable screen projections to work.
 // This hacky must be completely
 #if defined(Q_OS_WINDOWS) || defined(Q_OS_MACOS) || defined(Q_OS_LINUX)
-    if (enableProjections.toBool())
+    if (enableProjections.toBool()) {
 #if defined(Q_OS_WINDOWS)
 #if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
         qputenv("QSG_RENDER_LOOP", "windows");
 #else
         qputenv("QSG_RENDER_LOOP", "basic");
 #endif
-    else
+    }
+    else {
         qputenv("QSG_RENDER_LOOP", "threaded");
+    }
 #else // MACOS or LINUX
       // On *nix, setenv needs to override QSG_RENDER_LOOP for it to take effect after qprompt automatically restarts.
       // By default, we do not override environment variables. qgsIgnore is set by the code doing the restart.
         setenv("QSG_RENDER_LOOP", "basic", parser.isSet(qgsIgnore) ? 1 : 0);
+        setenv("QSG_RHI_BACKEND", "vulkan", parser.isSet(qgsIgnore) ? 1 : 0);
+        setenv("QSG_RHI_PREFER_SOFTWARE_RENDERER", "1", parser.isSet(qgsIgnore) ? 1 : 0);
+        setenv("QSG_USE_SIMPLE_ANIMATION_DRIVER", "1", parser.isSet(qgsIgnore) ? 1 : 0);
+        setenv("QT_QPA_UPDATE_IDLE_TIME", "0", parser.isSet(qgsIgnore) ? 1 : 0);
+    }
 #if defined(Q_OS_LINUX)
     // Mac does not currently support threaded mode, forcing it crashes the app on startup.
     else
         setenv("QSG_RENDER_LOOP", "threaded", parser.isSet(qgsIgnore) ? 1 : 0);
-#endif
 #endif
 #endif
 #endif
