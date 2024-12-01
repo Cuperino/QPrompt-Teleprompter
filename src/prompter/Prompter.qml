@@ -1308,7 +1308,7 @@ Flickable {
                         else
                             showPassiveNotification(i18n("Saved"))
                     }
-                    document.saveAs(document.file)
+                    document.saveAs(document.fileUrl)
                     //if (quit)
                         //Qt.quit()
                     //else
