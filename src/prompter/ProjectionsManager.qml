@@ -41,8 +41,7 @@ Item {
     property bool isEnabled: false
     property string screensStringified: ""
     required property var forwardTo // prompter
-    property bool projectionRestartPrompt: false
-    // property bool projectionRestartPrompt: true
+    property bool projectionRestartPrompt: true
     property int projectionRestartModulus: 1
 
     function toggle() {
@@ -51,17 +50,17 @@ Item {
             closeAll();
         projectionSettings.sync();
 
-        // // If it was initially off, prompt to restart each time it's turned on.
-        // // If initially on and turning off, don't prompt to restart more than once.
-        // if (projectionRestartModulus % 2) {
-        //     if (projectionRestartPrompt)
-        //         restartDialog.visible = true;
-        //     if (!isEnabled && projectionRestartPrompt)
-        //         projectionRestartPrompt = false;
-        //     projectionRestartModulus = 0;
-        // }
-        // else
-        //     projectionRestartModulus++;
+        // If it was initially off, prompt to restart each time it's turned on.
+        // If initially on and turning off, don't prompt to restart more than once.
+        if (projectionRestartModulus % 2) {
+            if (projectionRestartPrompt)
+                restartDialog.visible = true;
+            if (!isEnabled && projectionRestartPrompt)
+                projectionRestartPrompt = false;
+            projectionRestartModulus = 0;
+        }
+        else
+            projectionRestartModulus++;
     }
     function getDisplayFlip(screenName, flipSetting) {
         const totalDisplays = displayModel.count;
@@ -195,6 +194,14 @@ Item {
                 projectionModel.remove(model.index);
                 //displayModel.remove(model.index);
             }
+            RhiPrompterInstantiator {
+                SequentialAnimation on t {
+                    NumberAnimation { to: 1; duration: 2500; easing.type: Easing.InQuad }
+                    NumberAnimation { to: 0; duration: 2500; easing.type: Easing.OutQuad }
+                    loops: Animation.Infinite
+                    running: true
+                }
+            }
             CursorAutoHide {
                 id: cursorAutoHide
                 ignored: root.pageStack.currentItem.markersDrawer
@@ -275,17 +282,9 @@ Item {
                     opacity: 0.6
                 }
                 // The actual projection
-                Image {
+                Item {
                     id: img
-                    // property variant source: projectionManager.forwardTo
-                    source: model.flip ? model.p : false
-                    // Keep loading asynchronous. Improve responsiveness of main thread.
-                    asynchronous: true
-                    // Cache image if it's not being re-scaled so it could be used on n projection without much additional cost.
-                    cache: !reScale
-                    // Mirror Horizontally: Save time by mirroring image on copy instead of flipping the result
-                    mirror: model.flip===2 || model.flip===4
-                    // Keep image vertically centered relative to the window's MouseArea, which fills the window.
+                    property variant source: projectionManager.forwardTo
                     anchors.horizontalCenter: parent.horizontalCenter
                     anchors.verticalCenter: parent.verticalCenter
                     width: reScale ? parent.width : projectionManager.forwardTo.width
@@ -301,7 +300,7 @@ Item {
                         anchors.fill: parent
                         visible: model.flip===0
                         Image {
-                            source: "qrc:/images/qprompt.png"
+                            // source: "qrc:/images/qprompt.png"
                             fillMode: Image.PreserveAspectFit
                             width: parent.width * 3 / 4
                             height: parent.height * 3 / 4
