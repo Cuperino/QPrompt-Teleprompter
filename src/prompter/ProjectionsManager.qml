@@ -194,14 +194,6 @@ Item {
                 projectionModel.remove(model.index);
                 //displayModel.remove(model.index);
             }
-            RhiPrompterInstantiator {
-                SequentialAnimation on t {
-                    NumberAnimation { to: 1; duration: 2500; easing.type: Easing.InQuad }
-                    NumberAnimation { to: 0; duration: 2500; easing.type: Easing.OutQuad }
-                    loops: Animation.Infinite
-                    running: true
-                }
-            }
             CursorAutoHide {
                 id: cursorAutoHide
                 ignored: root.pageStack.currentItem.markersDrawer
@@ -301,7 +293,7 @@ Item {
                         anchors.fill: parent
                         visible: model.flip===0
                         Image {
-                            // source: "qrc:/images/qprompt.png"
+                            source: "qrc:/images/qprompt.png"
                             fillMode: Image.PreserveAspectFit
                             width: parent.width * 3 / 4
                             height: parent.height * 3 / 4

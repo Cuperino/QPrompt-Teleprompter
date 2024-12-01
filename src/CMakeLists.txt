@@ -259,8 +259,6 @@ qt_add_qml_module(
     marker.hpp
     markersmodel.h
     markersmodel.cpp
-    rhiprompterinstantiator.h
-    rhiprompterinstantiator.cpp
     ${qprompt_QM_LOADER}
     QML_FILES
     ${qprompt_frontend_sources}
@@ -317,8 +315,6 @@ qt_add_shaders(
     "shaders/blur.frag"
     "shaders/shadow.frag"
     "shaders/tint.frag"
-    "shaders/squircle_rhi.vert"
-    "shaders/squircle_rhi.frag"
 )
 
 # Libraries
@@ -328,7 +324,6 @@ if (ANDROID)
         Qt${QT_VERSION_MAJOR}::Quick
         Qt${QT_VERSION_MAJOR}::Svg
         Qt${QT_VERSION_MAJOR}::Gui
-        Qt${QT_VERSION_MAJOR}::GuiPrivate
         Qt${QT_VERSION_MAJOR}::Qml
         Qt${QT_VERSION_MAJOR}::QuickControls2
         Qt${QT_VERSION_MAJOR}::Network
@@ -343,7 +338,6 @@ elseif (WASM OR IOS)
         Qt${QT_VERSION_MAJOR}::Quick
         Qt${QT_VERSION_MAJOR}::Svg
         Qt${QT_VERSION_MAJOR}::Gui
-        Qt${QT_VERSION_MAJOR}::GuiPrivate
         Qt${QT_VERSION_MAJOR}::Qml
         Qt${QT_VERSION_MAJOR}::QuickControls2
         Qt${QT_VERSION_MAJOR}::Network
@@ -356,7 +350,6 @@ elseif(HAIKU)
         Qt${QT_VERSION_MAJOR}::Core
         Qt${QT_VERSION_MAJOR}::Quick
         Qt${QT_VERSION_MAJOR}::Gui
-        Qt${QT_VERSION_MAJOR}::GuiPrivate
         Qt${QT_VERSION_MAJOR}::Svg
         Qt${QT_VERSION_MAJOR}::Qml
         Qt${QT_VERSION_MAJOR}::QuickControls2
@@ -372,7 +365,6 @@ elseif(WIN32 OR APPLE)
         Qt${QT_VERSION_MAJOR}::Core
         Qt${QT_VERSION_MAJOR}::Quick
         Qt${QT_VERSION_MAJOR}::Gui
-        Qt${QT_VERSION_MAJOR}::GuiPrivate
         Qt${QT_VERSION_MAJOR}::Svg
         Qt${QT_VERSION_MAJOR}::Qml
         Qt${QT_VERSION_MAJOR}::QuickControls2
@@ -387,7 +379,6 @@ else()
         Qt${QT_VERSION_MAJOR}::Core
         Qt${QT_VERSION_MAJOR}::Quick
         Qt${QT_VERSION_MAJOR}::Gui
-        Qt${QT_VERSION_MAJOR}::GuiPrivate
         Qt${QT_VERSION_MAJOR}::Svg
         Qt${QT_VERSION_MAJOR}::Qml
         Qt${QT_VERSION_MAJOR}::QuickControls2
