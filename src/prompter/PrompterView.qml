@@ -42,15 +42,6 @@ Item {
     property real __baseSpeed: editorToolbar.baseSpeedSlider.value
     property real __curvature: editorToolbar.baseAccelerationSlider.value
 
-    //layer.enabled: true
-    // Undersample
-    //layer.mipmap: true
-    // Oversample
-    //layer.samples: 2
-    //layer.smooth: true
-    // Make texture the size of the largest destinations.
-    //layer.textureSize: Qt.size(projectionWindow.width, projectionWindow.height)
-
     transform: Rotation {
         origin.x: (forcedOrientation && forcedOrientation!==3 ? parent.height/2 : parent.width*0.15);
         origin.y: (forcedOrientation && forcedOrientation!==3 ? parent.width/2 : parent.height);
