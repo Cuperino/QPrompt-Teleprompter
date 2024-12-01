@@ -151,7 +151,7 @@ Flickable {
     property bool __invertArrowKeys: root.__invertArrowKeys
     property bool __invertScrollDirection: root.__invertScrollDirection
     property bool __noScroll: root.__noScroll
-    property bool __wysiwyg: true
+    property bool wysiwyg: true
     property bool __play: true
     property int __i: __iDefault
     property int __iBackup: 0
@@ -449,7 +449,7 @@ Flickable {
         const lastPosition = editor.cursorPosition;
 
         // If leaving WYSIWYG mode or cursor is fully out of the viewport visible bounds,
-        if (viewport.prompter.__wysiwyg
+        if (viewport.prompter.wysiwyg
             || lastPosition > editor.positionAt(editor.width, prompter.position+overlay.height-editor.cursorRectangle.height+editor.cursorRectangle.height)
             || lastPosition < editor.positionAt(0, prompter.position)) {
                 // use reading region to place cursor.
@@ -460,7 +460,7 @@ Flickable {
         //console.log("\n\nPos:", p0_lineStart, lastPosition, p0_lineStart<lastPosition, "\n");
 
         // Resize text
-        viewport.prompter.__wysiwyg = !viewport.prompter.__wysiwyg;
+        viewport.prompter.wysiwyg = !viewport.prompter.wysiwyg;
 
         if (p0_lineStart <= lastPosition) {
             //console.log(1, "test last");

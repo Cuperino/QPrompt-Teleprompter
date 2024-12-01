@@ -865,11 +865,15 @@ ToolBar {
             }
         }
         RowLayout {
+            visible: height>0
+            height: (parseInt(viewport.prompter.state)===Prompter.States.Editing) ? implicitHeight : 0
+            clip: true
             ToolButton {
+                enabled: !fontSizeDirectInput.editText
                 text: "\uF088"
                 //visible: showSliderIcons
                 checkable: true
-                checked: !viewport.prompter.__wysiwyg
+                checked: !viewport.prompter.wysiwyg
                 onClicked: {
                     viewport.prompter.toggleWysiwyg()
                     paragraphSpacingSlider.update()
@@ -878,47 +882,87 @@ ToolBar {
                 font.family: iconFont.name
                 font.pointSize: 13
             }
-            RowLayout {
-                visible: height>0
-                height: (parseInt(viewport.prompter.state)===Prompter.States.Editing) ? implicitHeight : 0
-                clip: true
+            MouseArea {
+                id: fontSizeDirectInput
+                property bool editText: false
+                height: fontSizeLabel.height
+                width: fontSizeDirectInput.editText ? fontSizeTextField.width : fontSizeLabel.width
+                onDoubleClicked: {
+                    fontSizeDirectInput.editText = true;
+                }
+                function percentageFromFontSize(fontSize: double): double {
+                    if (viewport.prompter.wysiwyg)
+                        // Inverse of: fontSize = (Math.pow(editorToolbar.fontSizeSlider.value/185,4)*185)*prompter.__vw/10
+                        return Math.pow((fontSize * 10 / prompter.__vw) / 185, 1/4) * 185
+                    else
+                        // Inverse of: fontSize = (Math.pow(editorToolbar.fontSizeSlider.value/185,4)*185)
+                        return Math.pow(fontSize / 185, 1/4) * 185
+                }
+                TextField {
+                    id: fontSizeTextField
+                    anchors.fill: parent
+                    visible: fontSizeDirectInput.editText
+                    readOnly: !visible
+                    text: ""
+                    onVisibleChanged: {
+                        if (visible)
+                            text = viewport.prompter.fontSize;
+                    }
+                    onAccepted: {
+                        const value = fontSizeDirectInput.percentageFromFontSize(text);
+                        if (value > 0) {
+                            if (viewport.prompter.wysiwyg)
+                                fontWYSIWYGSizeSlider.value = value;
+                            else
+                                fontSizeSlider.value = value;
+                        }
+                    }
+                    onEditingFinished: {
+                        fontSizeDirectInput.editText = false;
+                    }
+                    Material.theme: Material.Dark
+                }
                 Label {
-                    visible: !viewport.prompter.__wysiwyg
-                    text: i18nc("Font size 100% (083)", "Font size <pre>%1% (%2)</pre>", (fontSizeSlider.value/1000).toFixed(3).slice(2), viewport.prompter.fontSize)
+                    id: fontSizeLabel
+                    visible: !fontSizeDirectInput.editText
+                    text: viewport.prompter.wysiwyg ?
+                              i18nc("Font size 100% (083)", "Font size <pre>%1% (%2)</pre>", (fontWYSIWYGSizeSlider.value/1440).toFixed(3).slice(2), (viewport.prompter.fontSize/1000).toFixed(3).slice(2))
+                            : i18nc("Font size 100% (083)", "Font size <pre>%1% (%2)</pre>", (fontSizeSlider.value/1000).toFixed(3).slice(2), viewport.prompter.fontSize)
                     color: Kirigami.Theme.textColor
                     Layout.topMargin: 4
                     Layout.bottomMargin: -14
                     Layout.rightMargin: 3
                     Layout.leftMargin: 1
                 }
-                Slider {
-                    id: fontSizeSlider
-                    visible: !viewport.prompter.__wysiwyg
-                    focusPolicy: Qt.TabFocus
-                    from: 90
-                    value: 100
-                    to: 158
-                    stepSize: 1
-                    onMoved: paragraphSpacingSlider.update()
+            }
+            Slider {
+                id: fontSizeSlider
+                visible: !viewport.prompter.wysiwyg
+                focusPolicy: Qt.TabFocus
+                from: 90
+                value: 100
+                to: 158
+                stepSize: 1
+                onMoved: {
+                    if (visible) {
+                        paragraphSpacingSlider.update();
+                        fontSizeDirectInput.editText = false;
+                    }
                 }
-                Label {
-                    visible: viewport.prompter.__wysiwyg
-                    text: i18nc("Font size 100% (083)", "Font size <pre>%1% (%2)</pre>", (fontWYSIWYGSizeSlider.value/1440).toFixed(3).slice(2), (viewport.prompter.fontSize/1000).toFixed(3).slice(2))
-                    color: Kirigami.Theme.textColor
-                    Layout.topMargin: 4
-                    Layout.bottomMargin: -14
-                    Layout.rightMargin: 3
-                    Layout.leftMargin: 1
-                }
-                Slider {
-                    id: fontWYSIWYGSizeSlider
-                    visible: viewport.prompter.__wysiwyg
-                    from: 90
-                    value: 144
-                    to: 180 // 200
-                    stepSize: 0.5
-                    focusPolicy: Qt.TabFocus
-                    onMoved: paragraphSpacingSlider.update()
+            }
+            Slider {
+                id: fontWYSIWYGSizeSlider
+                visible: viewport.prompter.wysiwyg
+                from: 90
+                value: 144
+                to: 180 // 200
+                stepSize: 0.5
+                focusPolicy: Qt.TabFocus
+                onMoved: {
+                    if (visible) {
+                        paragraphSpacingSlider.update();
+                        fontSizeDirectInput.editText = false;
+                    }
                 }
             }
         }
