@@ -282,13 +282,14 @@ Item {
                     opacity: 0.6
                 }
                 // The actual projection
-                Item {
+                ShaderEffect {
                     id: img
                     property variant source: projectionManager.forwardTo
                     anchors.horizontalCenter: parent.horizontalCenter
                     anchors.verticalCenter: parent.verticalCenter
                     width: reScale ? parent.width : projectionManager.forwardTo.width
                     height: reScale ? (parent.width / projectionManager.forwardTo.width) * projectionManager.forwardTo.height : projectionManager.forwardTo.height
+                    blending: false
                     transform: Scale {
                         origin.y: img.height/2
                         yScale: model.flip===3 || model.flip===4 ? -1 : 1
