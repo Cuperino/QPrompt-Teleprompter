@@ -446,7 +446,7 @@ Flickable {
 
     function setContentWidth() {
         //contentsPlacement = Math.abs(editor.x)/prompter.width
-        contentsPlacement = (Math.abs(editor.x)-fontSize/2)/(prompter.width-fontSize)
+        contentsPlacement = Math.abs(editor.x)/(prompter.width-fontSize)
         const offset = 0
         positionHandler.placement = (2 * (editor.x - 2 * offset) + editor.width - positionHandler.width) / positionHandler.width
     }
@@ -736,7 +736,7 @@ Flickable {
                 //Different styles have different padding and background
                 //decorations, but since this editor must resemble the
                 //teleprompter output, we don't need them.
-                x: fontSize/2 + contentsPlacement*(prompter.width-fontSize)
+                x: contentsPlacement*(prompter.width-fontSize)
 
                 // Width drag controls
                 width: prompter.width-2*Math.abs(x)
@@ -1162,7 +1162,7 @@ Flickable {
                     drag.target: editor
                     drag.axis: Drag.XAxis
                     drag.smoothed: false
-                    drag.minimumX: fontSize/2 //: -prompter.width*6/20 + width
+                    drag.minimumX: 0 // fontSize/2 //: -prompter.width*6/20 + width
                     drag.maximumX: prompter.width*9/20 //: -fontSize/2 + width
                     onReleased: prompter.setContentWidth()
                     //onClicked: (mouse) => {
@@ -1196,7 +1196,7 @@ Flickable {
                     drag.target: positionHandler
                     drag.axis: Drag.XAxis
                     drag.smoothed: false
-                    drag.minimumX: -editor.x + fontSize/2 //prompter.width - editor.x - editor.width - leftWidthAdjustmentBar.drag.maximumX
+                    drag.minimumX: -editor.x // + fontSize/2 //prompter.width - editor.x - editor.width - leftWidthAdjustmentBar.drag.maximumX
                     drag.maximumX: prompter.width - editor.x - parent.width - leftWidthAdjustmentBar.drag.minimumX
                     cursorShape: (pressed||drag.active||prompter.dragging) ? Qt.ClosedHandCursor : flicking ? Qt.OpenHandCursor : (contentsPlacement ? Qt.OpenHandCursor : Qt.ArrowCursor)
                     onEntered: hovered = true
