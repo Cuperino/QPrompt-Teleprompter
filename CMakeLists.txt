@@ -22,6 +22,8 @@
 
 cmake_minimum_required(VERSION 3.22)
 
+include(FetchContent)
+
 set(RELEASE_SERVICE_VERSION_MAJOR "2")
 set(RELEASE_SERVICE_VERSION_MINOR "0")
 set(RELEASE_SERVICE_VERSION_MICRO "0")
@@ -54,7 +56,7 @@ else()
     set(ECM_MIN_VERSION 5.68.0)
 endif()
 # All other KF should go with the latest versions
-set(KF_MIN_VERSION 6.5.0)
+set(KF_MIN_VERSION 6.8.0)
 if (APPLE)
     set(APPLE_SUPPRESS_X11_WARNING ON)
 endif()
@@ -136,11 +138,44 @@ find_package(Qt${QT_VERSION_MAJOR} ${QT_MIN_VERSION} REQUIRED NO_MODULE COMPONEN
     Network
     ShaderTools
 )
-find_package(KF${QT_VERSION_MAJOR} ${KF_MIN_VERSION} REQUIRED COMPONENTS
-    Kirigami
-    I18n
-    CoreAddons
+
+set(BUILD_TESTING OFF)
+FetchContent_Declare(
+  ECM
+  GIT_REPOSITORY "${CMAKE_SOURCE_DIR}/3rdparty/extra-cmake-modules"
+  GIT_TAG        "v${KF_MIN_VERSION}"
+  SOURCE_DIR submodules/extra-cmake-modules
 )
+FetchContent_Declare(
+  CoreAddons
+  GIT_REPOSITORY "${CMAKE_SOURCE_DIR}/3rdparty/kcoreaddons"
+  GIT_TAG        "v${KF_MIN_VERSION}"
+  SOURCE_DIR submodules/kcoreaddons
+)
+FetchContent_Declare(
+  I18n
+  GIT_REPOSITORY "${CMAKE_SOURCE_DIR}/3rdparty/ki18n"
+  GIT_TAG        "mods"  # "v${KF_MIN_VERSION}"
+  SOURCE_DIR submodules/ki18n
+)
+FetchContent_Declare(
+  Kirigami
+  GIT_REPOSITORY "${CMAKE_SOURCE_DIR}/3rdparty/kirigami"
+  GIT_TAG        "v${KF_MIN_VERSION}"
+  SOURCE_DIR submodules/kirigami
+)
+# FetchContent_Declare(
+#   Crash
+#   GIT_REPOSITORY "https://invent.kde.org/frameworks/kcrash.git"
+#   GIT_TAG        "v6.8.0"
+#   # SOURCE_DIR 3rdparty/kcrash
+# )
+FetchContent_MakeAvailable(CoreAddons I18n Kirigami)
+# find_package(KF${QT_VERSION_MAJOR} ${KF_MIN_VERSION} REQUIRED COMPONENTS
+#     Kirigami
+#     I18n
+#     CoreAddons
+# )
 # Desktop only dependencies
 if(NOT ANDROID AND NOT IOS)
     find_package(Qt${QT_VERSION_MAJOR} ${QT_MIN_VERSION} REQUIRED NO_MODULE COMPONENTS
@@ -234,7 +269,7 @@ list(APPEND DOCS ${LICENSE_FILE} ${README_FILE} ${DESCRIPTION_FILE} "COPYING.ASS
 set(DOC_INSTALL_DIR "share/doc/qprompt")
 
 add_subdirectory(src build)
-ki18n_install(po)
+# ki18n_install(po)
 
 if (ANDROID)
     configure_file(${ANDROID_PACKAGE_SOURCE_DIR}/version.gradle.in ${CMAKE_BINARY_DIR}/version.gradle)
