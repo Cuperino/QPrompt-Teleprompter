@@ -329,7 +329,7 @@ if (ANDROID)
         Qt${QT_VERSION_MAJOR}::Network
         Qt${QT_VERSION_MAJOR}::AndroidExtras
         KF${QT_VERSION_MAJOR}::CoreAddons
-        KF${QT_VERSION_MAJOR}::I18n
+        # KF${QT_VERSION_MAJOR}::I18n
         KF${QT_VERSION_MAJOR}::Kirigami
     )
 elseif (WASM OR IOS)
@@ -342,7 +342,7 @@ elseif (WASM OR IOS)
         Qt${QT_VERSION_MAJOR}::QuickControls2
         Qt${QT_VERSION_MAJOR}::Network
         KF${QT_VERSION_MAJOR}::CoreAddons
-        KF${QT_VERSION_MAJOR}::I18n
+        # KF${QT_VERSION_MAJOR}::I18n
         KF${QT_VERSION_MAJOR}::Kirigami
     )
 elseif(HAIKU)
@@ -356,7 +356,7 @@ elseif(HAIKU)
         Qt${QT_VERSION_MAJOR}::Network
         Qt${QT_VERSION_MAJOR}::Widgets
         KF${QT_VERSION_MAJOR}::CoreAddons
-        KF${QT_VERSION_MAJOR}::I18n
+        # KF${QT_VERSION_MAJOR}::I18n
         KF${QT_VERSION_MAJOR}::Kirigami
         KF${QT_VERSION_MAJOR}::IconThemes
     )
@@ -370,7 +370,7 @@ elseif(WIN32 OR APPLE)
         Qt${QT_VERSION_MAJOR}::QuickControls2
         Qt${QT_VERSION_MAJOR}::Network
         Qt${QT_VERSION_MAJOR}::Widgets
-        KF${QT_VERSION_MAJOR}::I18n
+        # KF${QT_VERSION_MAJOR}::I18n
         KF${QT_VERSION_MAJOR}::Kirigami
         KF${QT_VERSION_MAJOR}::CoreAddons
     )
@@ -385,7 +385,7 @@ else()
         Qt${QT_VERSION_MAJOR}::Network
         Qt${QT_VERSION_MAJOR}::Widgets
         KF${QT_VERSION_MAJOR}::CoreAddons
-        KF${QT_VERSION_MAJOR}::I18n
+        # KF${QT_VERSION_MAJOR}::I18n
         KF${QT_VERSION_MAJOR}::Kirigami
     )
 endif()

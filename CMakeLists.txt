@@ -56,7 +56,8 @@ else()
     set(ECM_MIN_VERSION 5.68.0)
 endif()
 # All other KF should go with the latest versions
-set(KF_MIN_VERSION 6.8.0)
+set(KF_MIN_VERSION 6.5.0)
+set(KF_PREFFERED_VERSION 6.8.0)
 if (APPLE)
     set(APPLE_SUPPRESS_X11_WARNING ON)
 endif()
@@ -143,34 +144,34 @@ set(BUILD_TESTING OFF)
 FetchContent_Declare(
   ECM
   GIT_REPOSITORY "${CMAKE_SOURCE_DIR}/3rdparty/extra-cmake-modules"
-  GIT_TAG        "v${KF_MIN_VERSION}"
+  GIT_TAG        "v${KF_PREFFERED_VERSION}"
   SOURCE_DIR submodules/extra-cmake-modules
 )
 FetchContent_Declare(
   CoreAddons
   GIT_REPOSITORY "${CMAKE_SOURCE_DIR}/3rdparty/kcoreaddons"
-  GIT_TAG        "v${KF_MIN_VERSION}"
+  GIT_TAG        "v${KF_PREFFERED_VERSION}"
   SOURCE_DIR submodules/kcoreaddons
 )
-FetchContent_Declare(
-  I18n
-  GIT_REPOSITORY "${CMAKE_SOURCE_DIR}/3rdparty/ki18n"
-  GIT_TAG        "mods"  # "v${KF_MIN_VERSION}"
-  SOURCE_DIR submodules/ki18n
-)
+# FetchContent_Declare(
+#   I18n
+#   GIT_REPOSITORY "${CMAKE_SOURCE_DIR}/3rdparty/ki18n"
+#   GIT_TAG        "mods"  # "v${KF_PREFFERED_VERSION}"
+#   SOURCE_DIR submodules/ki18n
+# )
 FetchContent_Declare(
   Kirigami
   GIT_REPOSITORY "${CMAKE_SOURCE_DIR}/3rdparty/kirigami"
-  GIT_TAG        "v${KF_MIN_VERSION}"
+  GIT_TAG        "v${KF_PREFFERED_VERSION}"
   SOURCE_DIR submodules/kirigami
 )
 # FetchContent_Declare(
 #   Crash
-#   GIT_REPOSITORY "https://invent.kde.org/frameworks/kcrash.git"
-#   GIT_TAG        "v6.8.0"
-#   # SOURCE_DIR 3rdparty/kcrash
+#   GIT_REPOSITORY "${CMAKE_SOURCE_DIR}/3rdparty/kcrash"
+#   GIT_TAG        "v${KF_PREFFERED_VERSION}"
+#   SOURCE_DIR submodules/kcrash
 # )
-FetchContent_MakeAvailable(CoreAddons I18n Kirigami)
+FetchContent_MakeAvailable(CoreAddons Kirigami)
 # find_package(KF${QT_VERSION_MAJOR} ${KF_MIN_VERSION} REQUIRED COMPONENTS
 #     Kirigami
 #     I18n

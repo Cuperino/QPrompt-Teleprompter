@@ -42,8 +42,8 @@
 #if defined(Q_OS_IOS) || defined(Q_OS_WASM) || defined(Q_OS_WATCHOS) || defined(Q_OS_QNX)
 #include "../3rdparty/kirigami/src/kirigamiplugin.h"
 #endif
-#include <KLocalizedContext>
-#include <KLocalizedString>
+// #include <KLocalizedContext>
+// #include <KLocalizedString>
 #include <kaboutdata.h>
 
 #if defined(KF6Crash_FOUND)
@@ -82,20 +82,20 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
     QApplication app(argc, argv);
 #endif
     // Initialize app metadata
-    KLocalizedString::setApplicationDomain("qprompt");
+    // KLocalizedString::setApplicationDomain("qprompt");
     QCoreApplication::setOrganizationName(QString::fromUtf8("Cuperino"));
     QCoreApplication::setOrganizationDomain(QString::fromUtf8(QPROMPT_URI));
     QCoreApplication::setApplicationName(QString::fromUtf8("QPrompt"));
     // Parse command line arguments
     QCommandLineParser parser;
     parser.setApplicationDescription(
-        i18n("Personal teleprompter software for all video makers. Built with ease of use, productivity, and smooth performance in mind."));
+        QLatin1String("Personal teleprompter software for all video makers. Built with ease of use, productivity, and smooth performance in mind."));
     parser.addHelpOption();
     parser.addVersionOption();
-    parser.addPositionalArgument(QLatin1String("source"), i18nc("file", "File to copy."));
+    parser.addPositionalArgument(QLatin1String("source"), QLatin1String("file", "File to copy."));
     QCommandLineOption qgsIgnore(QStringList() << QLatin1String("q")
                                                << QLatin1String("qgs_ignore"),
-                                 i18n("Ignore QSG_RENDER_LOOP environment variable."));
+                                 QLatin1String("Ignore QSG_RENDER_LOOP environment variable."));
     parser.addOption(qgsIgnore);
     parser.process(app);
     QStringList positionalArguments = parser.positionalArguments();
@@ -119,12 +119,12 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
 
     const int currentYear = QDate::currentDate().year();
     QString copyrightYear = QString::number(currentYear);
-    QString copyrightStatement1 = i18n("© 2021 Javier O. Cordero Pérez");
-    QString copyrightStatement2 = i18n("© 2021-%1 Javier O. Cordero Pérez", copyrightYear);
+    QString copyrightStatement1 = QLatin1String("© 2021 Javier O. Cordero Pérez");
+    QString copyrightStatement2 = QLatin1String("© 2021-2024 Javier O. Cordero Pérez"); // , copyrightYear);
     KAboutData aboutData(QLatin1String("qprompt"),
                          QLatin1String("QPrompt"),
                          QPROMPT_VERSION_STRING " (" + QString::fromUtf8(GIT_BRANCH) + "/" + QString::fromUtf8(GIT_COMMIT_HASH) + ")",
-                         i18n("Personal teleprompter software for all video makers."),
+                         QLatin1String("Personal teleprompter software for all video makers."),
                          KAboutLicense::GPL_V3,
                          // ki18ncp("© 2021-currentYear Author", "© 2021 Javier O. Cordero Pérez", "© 2021-<numid>%1</numid> Javier O. Cordero
                          // Pérez").subs(currentYear).toString());
@@ -136,16 +136,16 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
     aboutData.setOrganizationDomain(QByteArray(QPROMPT_URI));
     aboutData.setDesktopFileName(QLatin1String(QPROMPT_URI));
     aboutData.addAuthor(QString::fromUtf8("Javier O. Cordero Pérez"),
-                        i18n("Author"),
+                        QLatin1String("Author"),
                         QString::fromUtf8("javiercorderoperez@gmail.com"),
                         QString::fromUtf8("https://javiercordero.info"),
                         QString::fromUtf8("cuperino"));
     aboutData.addCredit(QString::fromUtf8("Mark"),
-                        i18n("Wrote keycode to string QML abstraction"),
+                        QLatin1String("Wrote keycode to string QML abstraction"),
                         QString::fromUtf8(""),
                         QString::fromUtf8("https://stackoverflow.com/a/64862996/3833454"));
-    aboutData.addCredit(QString::fromUtf8("videosmith"), i18nc("Active software tester", "Active tester"));
-    aboutData.setTranslator(i18nc("NAME OF TRANSLATORS", "Your names"), i18nc("EMAIL OF TRANSLATORS", "Your emails"));
+    aboutData.addCredit(QString::fromUtf8("videosmith"), QLatin1String("Active software tester", "Active tester"));
+    aboutData.setTranslator(QLatin1String("NAME OF TRANSLATORS", "Your names"), QLatin1String("EMAIL OF TRANSLATORS", "Your emails"));
     // aboutData.addLicense(
     //     KAboutLicense::LGPL_V3
     //);
@@ -241,7 +241,7 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
     engine.addImportPath(QStringLiteral("../build/"));
     engine.addImportPath(QStringLiteral("../Resources/qml/"));
     // Send context data from C++ to QML
-    engine.rootContext()->setContextObject(new KLocalizedContext(&engine));
+    // engine.rootContext()->setContextObject(new KLocalizedContext(&engine));
     engine.rootContext()->setContextProperty(QStringLiteral("aboutData"), QVariant::fromValue(KAboutData::applicationData()));
     if (positionalArguments.length())
         engine.rootContext()->setContextProperty(QStringLiteral("fileToOpen"), fileToOpen);
