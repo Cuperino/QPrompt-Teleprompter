@@ -142,12 +142,6 @@ find_package(Qt${QT_VERSION_MAJOR} ${QT_MIN_VERSION} REQUIRED NO_MODULE COMPONEN
 
 set(BUILD_TESTING OFF)
 FetchContent_Declare(
-  ECM
-  GIT_REPOSITORY "${CMAKE_SOURCE_DIR}/3rdparty/extra-cmake-modules"
-  GIT_TAG        "v${KF_PREFFERED_VERSION}"
-  SOURCE_DIR submodules/extra-cmake-modules
-)
-FetchContent_Declare(
   CoreAddons
   GIT_REPOSITORY "${CMAKE_SOURCE_DIR}/3rdparty/kcoreaddons"
   GIT_TAG        "v${KF_PREFFERED_VERSION}"
@@ -165,18 +159,15 @@ FetchContent_Declare(
   GIT_TAG        "v${KF_PREFFERED_VERSION}"
   SOURCE_DIR submodules/kirigami
 )
-# FetchContent_Declare(
-#   Crash
-#   GIT_REPOSITORY "${CMAKE_SOURCE_DIR}/3rdparty/kcrash"
-#   GIT_TAG        "v${KF_PREFFERED_VERSION}"
-#   SOURCE_DIR submodules/kcrash
-# )
-FetchContent_MakeAvailable(CoreAddons Kirigami)
-# find_package(KF${QT_VERSION_MAJOR} ${KF_MIN_VERSION} REQUIRED COMPONENTS
-#     Kirigami
-#     I18n
-#     CoreAddons
-# )
+set(BUILD_SHARED_LIBS ON)
+FetchContent_Declare(
+  QHotkey
+  GIT_REPOSITORY "${CMAKE_SOURCE_DIR}/3rdparty/QHotkey"
+  GIT_TAG        "1231c4cc9649ec0132d939cb7e139a82b8edeca0"
+  SOURCE_DIR submodules/QHotkey
+)
+FetchContent_MakeAvailable(CoreAddons Kirigami QHotkey)
+
 # Desktop only dependencies
 if(NOT ANDROID AND NOT IOS)
     find_package(Qt${QT_VERSION_MAJOR} ${QT_MIN_VERSION} REQUIRED NO_MODULE COMPONENTS
@@ -205,9 +196,9 @@ else()
         DESCRIPTION "Graceful handling of application crashes."
         TYPE OPTIONAL
     )
-    find_package(QHotkey 1.5.0 COMPONENTS
-        QHotkey
-    )
+    # find_package(QHotkey 1.5.0 COMPONENTS
+    #
+    # )
     # # KDMacTouchBar (Mac only)
     # if(APPLE AND NOT IOS)
     #     if (NOT EXISTS "${PROJECT_SOURCE_DIR}/3rdparty/KDMacTouchBar/CMakeLists.txt")
