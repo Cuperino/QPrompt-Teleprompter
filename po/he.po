@@ -7,8 +7,8 @@ msgstr ""
 "Project-Id-Version: qprompt 83e8935\n"
 "Report-Msgid-Bugs-To: https://github.com/Cuperino/QPrompt/issues/new/choose\n"
 "POT-Creation-Date: 2024-09-29 11:34-0400\n"
-"PO-Revision-Date: 2023-06-04 06:23+0000\n"
-"Last-Translator: bat adler <batadler@gmail.com>\n"
+"PO-Revision-Date: 2024-12-17 04:52+0000\n"
+"Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Hebrew <http://l10n.cuperino.com/projects/qprompt/qprompt-app/"
 "he/>\n"
 "Language: he\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=4; plural=(n == 1) ? 0 : ((n == 2) ? 1 : ((n > 10 && "
 "n % 10 == 0) ? 2 : 3));\n"
-"X-Generator: Weblate 4.11.2\n"
+"X-Generator: Weblate 5.7.2\n"
 
 #: kirigami_ui/+android/main.qml:183 kirigami_ui/+windows/main.qml:198
 #: kirigami_ui/main.qml:198 kirigami_ui/main.qml:576
@@ -935,6 +935,8 @@ msgid "Disappear within 1 second to go"
 msgid_plural "Disappear within %1 seconds to go"
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
 
 #: kirigami_ui/PrompterPage.qml:912
 msgctxt ""
@@ -1504,6 +1506,8 @@ msgid "Replaced 1 instance"
 msgid_plural "Replaced %1 instances"
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
 
 #: prompter/PointerSettings.qml:104
 msgid "Colors for prompter states"
