@@ -145,7 +145,7 @@ Item {
             Label {
                 id: promptTime
                 visible: clock.stopwatch
-                text: /*i18n("SW") + " " +*/ "00:00:00"
+                text: "00:00:00"
                 font.family: "Monospace"
                 font.pixelSize: stopwatch.fontSize
                 color: clock.textColor
@@ -157,7 +157,7 @@ Item {
             Label {
                 id: etaTimer
                 visible: clock.eta
-                text: /*i18n("ET") + " " +*/ "00:00:00"
+                text: "00:00:00"
                 font.family: "Monospace"
                 font.pixelSize: stopwatch.fontSize
                 color: clock.textColor

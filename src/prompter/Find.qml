@@ -130,9 +130,9 @@ Item {
                 }
                 const newPosition = editor.cursorRectangle.y - (overlay.__readRegionPlacement*(overlay.height-overlay.readRegionHeight)+overlay.readRegionHeight/2) + 1;
                 if (mode===Find.Mode.Next && newPosition<prompter.position)
-                    showPassiveNotification(i18n("End reached, searching from the start."));
+                    showPassiveNotification(qsTr("End reached, searching from the start."));
                 else if (mode===Find.Mode.Previous && newPosition>prompter.position)
-                    showPassiveNotification(i18n("Start reached, searching from the end."));
+                    showPassiveNotification(qsTr("Start reached, searching from the end."));
                 prompter.position = newPosition;
             }
             else
@@ -157,8 +157,7 @@ Item {
             find.resetNextPressedFlag()
             const i = document.replaceAll(searchField.text, replaceField.text, find.regEx);
             resultsFound = i > 0;
-            showPassiveNotification(i18np("Replaced 1 instance",
-                                          "Replaced %1 instances", i));
+            showPassiveNotification(qsTr("Replaced %1 instance(s)", "", i));
         }
         anchors.fill: parent
         Keys.onPressed: (event) => {

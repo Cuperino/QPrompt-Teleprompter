@@ -138,6 +138,7 @@ find_package(Qt${QT_VERSION_MAJOR} ${QT_MIN_VERSION} REQUIRED NO_MODULE COMPONEN
     QuickControls2
     Network
     ShaderTools
+    LinguistTools
 )
 
 set(BUILD_TESTING OFF)
@@ -147,12 +148,6 @@ FetchContent_Declare(
   GIT_TAG        "v${KF_PREFFERED_VERSION}"
   SOURCE_DIR submodules/kcoreaddons
 )
-# FetchContent_Declare(
-#   I18n
-#   GIT_REPOSITORY "${CMAKE_SOURCE_DIR}/3rdparty/ki18n"
-#   GIT_TAG        "mods"  # "v${KF_PREFFERED_VERSION}"
-#   SOURCE_DIR submodules/ki18n
-# )
 FetchContent_Declare(
   Kirigami
   GIT_REPOSITORY "${CMAKE_SOURCE_DIR}/3rdparty/kirigami"
@@ -261,7 +256,17 @@ list(APPEND DOCS ${LICENSE_FILE} ${README_FILE} ${DESCRIPTION_FILE} "COPYING.ASS
 set(DOC_INSTALL_DIR "share/doc/qprompt")
 
 add_subdirectory(src build)
-# ki18n_install(po)
+
+# Shader compilation
+qt_add_shaders(
+    ${PROJECT_NAME}
+    "qp_shaders"
+    PREFIX "/qt/qml/com/cuperino/qprompt"
+    FILES
+    "shaders/blur.frag"
+    "shaders/shadow.frag"
+    "shaders/tint.frag"
+)
 
 if (ANDROID)
     configure_file(${ANDROID_PACKAGE_SOURCE_DIR}/version.gradle.in ${CMAKE_BINARY_DIR}/version.gradle)
@@ -309,7 +314,7 @@ if(CMAKE_SOURCE_DIR STREQUAL CMAKE_CURRENT_SOURCE_DIR)
 
         # CPACK: RPM specific settings
         set(CPACK_RPM_PACKAGE_GROUP "Multimedia/Video")
-        set(CPACK_RPM_PACKAGE_REQUIRES "qt6-qtbase >= 6.7.2, qt6-qtbase-gui >= 6.7.2, qt6-qtdeclarative >= 6.7.2, qt6-qtsvg >= 6.7.2, qt6-qtquickcontrols >= 6.7.2, qt6-qtquickcontrols2 >= 6.7.2, kf6-kcoreaddons >= 6.5.0, kf6-ki18n >= 6.5.0, kf6-kirigami >= 6.5.0, kf6-kcrash >= 6.5.0")
+        set(CPACK_RPM_PACKAGE_REQUIRES "qt6-qtbase >= 6.7.2, qt6-qtbase-gui >= 6.7.2, qt6-qtdeclarative >= 6.7.2, qt6-qtsvg >= 6.7.2, qt6-qtquickcontrols >= 6.7.2, qt6-qtquickcontrols2 >= 6.7.2, kf6-kcoreaddons >= 6.5.0, kf6-kirigami >= 6.5.0, kf6-kcrash >= 6.5.0")
         set(CPACK_RPM_COMPRESSION_TYPE ${COMPRESION_TYPE})
 
     elseif(WIN32)
@@ -344,7 +349,7 @@ if(CMAKE_SOURCE_DIR STREQUAL CMAKE_CURRENT_SOURCE_DIR)
     elseif(BSD AND NOT APPLE)
         set(CPACK_FREEBSD_PACKAGE_MAINTAINER ${CPACK_PACKAGE_CONTACT})
         set(CPACK_FREEBSD_PACKAGE_ORIGIN "multimedia")
-        set(CPACK_FREEBSD_PACKAGE_CATEGORIES "devel/qt6-base, x11-toolkits/qt6-declarative, graphics/qt6-svg, x11-toolkits/qt6-shadertools, multimedia/qt6-multimedia, devel/kf6-kcoreaddons, devel/kf6-ki18n, x11-toolkits/kf6-kirigami, devel/kf6-kcrash, x11-themes/kf6-kiconthemes, x11-toolkits/qhotkey")
+        set(CPACK_FREEBSD_PACKAGE_CATEGORIES "devel/qt6-base, x11-toolkits/qt6-declarative, graphics/qt6-svg, x11-toolkits/qt6-shadertools, multimedia/qt6-multimedia, devel/kf6-kcoreaddons, x11-toolkits/kf6-kirigami, devel/kf6-kcrash, x11-themes/kf6-kiconthemes, x11-toolkits/qhotkey")
     endif()
 
     include(CPack)
