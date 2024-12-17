@@ -7,15 +7,16 @@ msgstr ""
 "Project-Id-Version: qprompt\n"
 "Report-Msgid-Bugs-To: https://github.com/Cuperino/QPrompt/issues/new/choose\n"
 "POT-Creation-Date: 2024-09-29 11:34-0400\n"
-"PO-Revision-Date: 2024-07-03 05:09-0400\n"
-"Last-Translator: Javier O. Cordero Pérez <javiercorderoperez@gmail.com>\n"
-"Language-Team: Portuguese <kde-i18n-doc@kde.org>\n"
-"Language: pt\n"
+"PO-Revision-Date: 2024-12-17 04:52+0000\n"
+"Last-Translator: Anonymous <noreply@weblate.org>\n"
+"Language-Team: Portuguese (Brazil) <http://l10n.cuperino.com/projects/"
+"qprompt/qprompt-app/pt_BR/>\n"
+"Language: pt_BR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Lokalize 24.05.1\n"
+"X-Generator: Weblate 5.7.2\n"
 
 #: kirigami_ui/+android/main.qml:183 kirigami_ui/+windows/main.qml:198
 #: kirigami_ui/main.qml:198 kirigami_ui/main.qml:576
@@ -1504,8 +1505,7 @@ msgstr "Autor"
 
 #: main.cpp:159
 msgid "Wrote keycode to string QML abstraction"
-msgstr ""
-"Programar abstração de QML para converter códigos de teclado para texto"
+msgstr "Programar abstração de QML para converter códigos de teclado para texto"
 
 #: main.cpp:162
 msgctxt "Active software tester"
