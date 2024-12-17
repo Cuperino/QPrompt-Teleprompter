@@ -8,7 +8,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: https://github.com/Cuperino/QPrompt/issues/new/choose\n"
 "POT-Creation-Date: 2024-09-29 11:34-0400\n"
 "PO-Revision-Date: 2024-12-17 04:52+0000\n"
-"Last-Translator: Hugo <hugokarvalho@hotmail.com>\n"
+"Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Portuguese (Portugal) <http://l10n.cuperino.com/projects/"
 "qprompt/qprompt-app/pt_PT/>\n"
 "Language: pt_PT\n"
@@ -1504,8 +1504,7 @@ msgstr "Autor"
 
 #: main.cpp:159
 msgid "Wrote keycode to string QML abstraction"
-msgstr ""
-"Programar abstração de QML para converter códigos de teclado para texto"
+msgstr "Programar abstração de QML para converter códigos de teclado para texto"
 
 #: main.cpp:162
 msgctxt "Active software tester"
