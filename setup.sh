@@ -193,7 +193,6 @@ tier_0="
 "
 tier_1="
     ./3rdparty/kcoreaddons
-    ./3rdparty/ki18n
     ./3rdparty/kcrash
     ./3rdparty/kirigami
 "
