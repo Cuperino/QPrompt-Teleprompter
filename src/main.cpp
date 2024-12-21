@@ -54,10 +54,6 @@
 #include <QHotkey>
 #endif
 
-#if defined(Q_OS_MACOS)
-#include <../3rdparty/KDMacTouchBar/src/kdmactouchbar.h>
-#endif
-
 #include "../qprompt_version.h"
 #include "abstractunits.hpp"
 //#include "documenthandler.h"
@@ -165,44 +161,6 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
     // #ifdef Q_OS_ANDROID
     // KirigamiPlugin::getInstance().registerTypes();
     // #endif
-
-#if defined(Q_OS_MACOS)
-    // Enable automatic display of dialog prompts on the touchbar.
-    KDMacTouchBar::setAutomaticallyCreateMessageBoxTouchBar(true);
-//    // Create touchbar for use through all of QPrompt's execusion
-//    KDMacTouchBar *touchBar = new KDMacTouchBar();
-//    //QMainWindow *mainWindow = nullptr;
-//    //foreach(QWidget *widget, app.topLevelWidgets())
-//    //    if(widget->inherits("QMainWindow")) {
-//    //        mainWindow = qobject_cast<QMainWindow *>(widget);
-//    //        break;
-//    //    };
-//    //KDMacTouchBar *touchBar = new KDMacTouchBar(mainWindow);
-//    // Toggle teleprompter state
-//    QIcon qpromptIcon(QStringLiteral(":images/qprompt"));
-//    QAction *action = new QAction(qpromptIcon, "Toggle");
-//    touchBar->addAction(action);
-//    // connect(action, &QAction::triggered, this, &MainWindow::activated);
-//    touchBar->addSeparator();
-//    // Velocity and placement toachbar controls
-//    touchBar->setTouchButtonStyle(KDMacTouchBar::IconOnly);
-//    // Up
-//    QIcon upIcon(QStringLiteral(":icons/go-previous"));
-//    QAction *reduceAction = new QAction(upIcon, "Reduce");
-//    touchBar->addAction(reduceAction);
-//    touchBar->setPrincipialAction(reduceAction);
-//    // connect(reduceAction, &QAction::triggered, this, &MainWindow::activated);
-//    // Down
-//    QIcon downIcon(QStringLiteral(":icons/go-next"));
-//    QAction *increaseAction = new QAction(downIcon, "Increase");
-//    touchBar->addAction(increaseAction);
-//    // connect(increaseAction, &QAction::triggered, this, &MainWindow::activated);
-////    touchBar->addSeparator();
-////    // Stop prompter
-////    QAction *stopAction = new QAction(upIcon, "Stop");
-////    touchBar->addAction(stopAction);
-////    // connect(stopAction, &QAction::triggered, this, &MainWindow::activated);
-#endif
 
 #if defined(QHotkey_FOUND)
     // Toggle transparency of all windows
