@@ -387,11 +387,11 @@ endif()
 # Private header/s that would be used if QT_QMLCACHEGEN_DIRECT_CALLS were turned ON
 # - Qt${QT_VERSION_MAJOR}::QuickPrivate
 
-# if(APPLE AND NOT IOS)
-#     target_include_directories(mactouchbar PRIVATE ${kdmactouchbar_SOURCE_DIR}/KDMacTouchBar)
-#     target_link_directories(mactouchbar PRIVATE ${kdmactouchbar_SOURCE_DIR}/KDMacTouchBar)
-#     target_link_libraries(${PROJECT_NAME} PRIVATE KDMacTouchBar)
-# endif()
+if(APPLE AND NOT IOS)
+    target_include_directories(mactouchbar PRIVATE ${kdmactouchbar_SOURCE_DIR}/KDMacTouchBar)
+    target_link_directories(mactouchbar PRIVATE ${kdmactouchbar_SOURCE_DIR}/KDMacTouchBar)
+    target_link_libraries(${PROJECT_NAME} PRIVATE KDMacTouchBar)
+endif()
 if (QHotkey_FOUND)
     add_definitions(-DQHotkey_FOUND)
     target_link_libraries(${PROJECT_NAME} PRIVATE
