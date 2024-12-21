@@ -13,9 +13,6 @@
 [submodule "3rdparty/kcoreaddons"]
 	path = 3rdparty/kcoreaddons
 	url = https://invent.kde.org/frameworks/kcoreaddons.git
-[submodule "3rdparty/ki18n"]
-	path = 3rdparty/ki18n
-	url = https://invent.kde.org/frameworks/ki18n.git
 [submodule "3rdparty/kirigami"]
 	path = 3rdparty/kirigami
 	url = https://invent.kde.org/frameworks/kirigami.git
