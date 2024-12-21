@@ -72,6 +72,25 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
     qputenv("QT_QUICK_CONTROLS_STYLE", QByteArray("Material"));
     qputenv("QT_QUICK_CONTROLS_MATERIAL_THEME", QByteArray("Dark"));
     qputenv("QT_QUICK_CONTROLS_MATERIAL_ACCENT", QByteArray("#3daee9"));
+
+    // Initialize app metadata
+    QCoreApplication::setOrganizationName(QString::fromUtf8("Cuperino"));
+    QCoreApplication::setOrganizationDomain(QString::fromUtf8(QPROMPT_URI));
+    QCoreApplication::setApplicationName(QString::fromUtf8("QPrompt"));
+
+    // Acquire saved settings
+    QSettings settings(QCoreApplication::organizationName(), QCoreApplication::applicationName().toLower());
+
+    // The following code forces the use of a specific language.
+    QString language = settings.value("ui/language", "").toString();
+    if (!language.isEmpty()) {
+        auto langCode = language.append(".UTF-8").toStdString();
+        qDebug() << langCode;
+        qputenv("LANGUAGE", langCode);
+        qputenv("LC_ALL", langCode);
+        qputenv("LANG", langCode);
+    }
+
     // Instantiate app
 #if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
     QGuiApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
@@ -81,11 +100,6 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
 #else
     QApplication app(argc, argv);
 #endif
-    // Initialize app metadata
-    // KLocalizedString::setApplicationDomain("qprompt");
-    QCoreApplication::setOrganizationName(QString::fromUtf8("Cuperino"));
-    QCoreApplication::setOrganizationDomain(QString::fromUtf8(QPROMPT_URI));
-    QCoreApplication::setApplicationName(QString::fromUtf8("QPrompt"));
     // Parse command line arguments
     QCommandLineParser parser;
     parser.setApplicationDescription(
@@ -102,9 +116,6 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
     QString fileToOpen = QLatin1String("");
     if (positionalArguments.length())
         fileToOpen = parser.positionalArguments().at(0);
-
-    // Acquire saved settings
-    QSettings settings(QCoreApplication::organizationName(), QCoreApplication::applicationName().toLower());
 
     // Substract from 2 because order in app is intentionally inverted from order in Qt
     app.setLayoutDirection(static_cast<Qt::LayoutDirection>(2 - settings.value("ui/layout", 0).toInt()));
