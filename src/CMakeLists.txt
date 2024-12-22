@@ -408,17 +408,22 @@ elseif (WIN32 OR UNIX)
     install(TARGETS ${PROJECT_NAME} ${KDE_INSTALL_TARGETS_DEFAULT_ARGS})
 endif()
 
-set(deploy_tool_options_arg "")
 if(APPLE)
     set(deploy_tool_options_arg "-always-overwrite -appstore-compliant -sign-for-notarization=\"3rd Party Mac Developer Application: <Team Name>\"")
+    qt_generate_deploy_qml_app_script(
+        TARGET ${PROJECT_NAME}
+        OUTPUT_SCRIPT deploy_script
+        NO_UNSUPPORTED_PLATFORM_ERROR
+        DEPLOY_TOOL_OPTIONS ${deploy_tool_options_arg}
+        MACOS_BUNDLE_POST_BUILD
+    )
+else()
+    qt_generate_deploy_qml_app_script(
+        TARGET ${PROJECT_NAME}
+        OUTPUT_SCRIPT deploy_script
+        NO_UNSUPPORTED_PLATFORM_ERROR
+    )
 endif()
-qt_generate_deploy_qml_app_script(
-    TARGET ${PROJECT_NAME}
-    OUTPUT_SCRIPT deploy_script
-    NO_UNSUPPORTED_PLATFORM_ERROR
-    DEPLOY_TOOL_OPTIONS ${deploy_tool_options_arg}
-    MACOS_BUNDLE_POST_BUILD
-)
 if (NOT UNIX OR APPLE)
     install(SCRIPT ${deploy_script})
 endif()
