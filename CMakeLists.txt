@@ -151,21 +151,22 @@ if (WIN32)
       GIT_TAG        "v${KF_PREFFERED_VERSION}"
       SOURCE_DIR submodules/kirigami
     )
-    set(BUILD_SHARED_LIBS OFF)
-    FetchContent_Declare(
-      QHotkey
-      GIT_REPOSITORY "${CMAKE_SOURCE_DIR}/3rdparty/QHotkey"
-      GIT_TAG        "1231c4cc9649ec0132d939cb7e139a82b8edeca0"
-      SOURCE_DIR submodules/QHotkey
-    )
-    FetchContent_MakeAvailable(CoreAddons Kirigami QHotkey)
+    FetchContent_MakeAvailable(CoreAddons Kirigami)
 else()
     find_package(KF${QT_VERSION_MAJOR} ${KF_MIN_VERSION} REQUIRED COMPONENTS
         Kirigami
         CoreAddons
     )
-    find_package(QHotkey 1.5.0 COMPONENTS)
 endif()
+
+set(BUILD_SHARED_LIBS OFF)
+FetchContent_Declare(
+  QHotkey
+  GIT_REPOSITORY "${CMAKE_SOURCE_DIR}/3rdparty/QHotkey"
+  GIT_TAG        "1231c4cc9649ec0132d939cb7e139a82b8edeca0"
+  SOURCE_DIR submodules/QHotkey
+)
+FetchContent_MakeAvailable(QHotkey)
 
 # Desktop only dependencies
 if(NOT ANDROID AND NOT IOS)
