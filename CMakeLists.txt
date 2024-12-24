@@ -160,7 +160,7 @@ else()
 endif()
 
 if(NOT BSD)
-    set(BUILD_SHARED_LIBS OFF)
+    set(BUILD_SHARED_LIBS ON)
     FetchContent_Declare(
       QHotkey
       GIT_REPOSITORY "${CMAKE_SOURCE_DIR}/3rdparty/QHotkey"
