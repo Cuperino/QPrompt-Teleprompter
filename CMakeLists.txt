@@ -159,15 +159,18 @@ else()
     )
 endif()
 
-set(BUILD_SHARED_LIBS OFF)
-FetchContent_Declare(
-  QHotkey
-  GIT_REPOSITORY "${CMAKE_SOURCE_DIR}/3rdparty/QHotkey"
-  GIT_TAG        "1231c4cc9649ec0132d939cb7e139a82b8edeca0"
-  SOURCE_DIR submodules/QHotkey
-)
-FetchContent_MakeAvailable(QHotkey)
-
+if(NOT BSD)
+    set(BUILD_SHARED_LIBS OFF)
+    FetchContent_Declare(
+      QHotkey
+      GIT_REPOSITORY "${CMAKE_SOURCE_DIR}/3rdparty/QHotkey"
+      GIT_TAG        "1231c4cc9649ec0132d939cb7e139a82b8edeca0"
+      SOURCE_DIR submodules/QHotkey
+    )
+    FetchContent_MakeAvailable(QHotkey)
+else()
+    find_package(QHotkey)
+endif()
 # Desktop only dependencies
 if(NOT ANDROID AND NOT IOS)
     find_package(Qt${QT_VERSION_MAJOR} ${QT_MIN_VERSION} REQUIRED NO_MODULE COMPONENTS
