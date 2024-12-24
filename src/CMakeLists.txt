@@ -37,7 +37,7 @@ if (NOT ANDROID)
     )
 endif()
 
-if (NOT APPLE AND NOT ANDROID)
+if (NOT ANDROID)
     set(ICONS_FOLDER ${CMAKE_CURRENT_SOURCE_DIR}/icons/hicolor)
     set(RASTER_ICONS
         ${ICONS_FOLDER}/16-apps-com.cuperino.qprompt.png
@@ -47,24 +47,23 @@ if (NOT APPLE AND NOT ANDROID)
         ${ICONS_FOLDER}/128-apps-com.cuperino.qprompt.png
         ${ICONS_FOLDER}/256-apps-com.cuperino.qprompt.png
         ${ICONS_FOLDER}/512-apps-com.cuperino.qprompt.png
-        # Commenting 1024 sized icon out because although ECM does support it, Flatpak does not...
-        # ${ICONS_FOLDER}/1024-apps-com.cuperino.qprompt.png
+        ${ICONS_FOLDER}/1024-apps-com.cuperino.qprompt.png
     )
     # set(VECTOR_ICON
     #     ${ICONS_FOLDER}/sc-apps-com.cuperino.qprompt.svg
     # )
-    ecm_install_icons(
-        ICONS
-            ${RASTER_ICONS}
-            # ${VECTOR_ICON}
-        DESTINATION ${KDE_INSTALL_ICONDIR}
-        # THEME hicolor
-    )
-    if (NOT WIN32)
-        ecm_add_app_icon(qprompt_ICONS
-            ICONS ${RASTER_ICONS}
+    if (NOT APPLE)
+        ecm_install_icons(
+            ICONS
+                ${RASTER_ICONS}
+                # ${VECTOR_ICON}
+            DESTINATION ${KDE_INSTALL_ICONDIR}
+            # THEME hicolor
         )
     endif()
+    ecm_add_app_icon(${PROJECT_NAME}
+        ICONS ${RASTER_ICONS}
+    )
 endif()
 
 set(qprompt_frontend_sources
@@ -268,6 +267,7 @@ qt_add_qml_module(
     ${image_files}
     ${document_files}
     ${icon_files}
+    # ${qprompt_ICONS}
 )
 
 if (UNIX AND NOT APPLE)
@@ -280,7 +280,6 @@ set_target_properties(${PROJECT_NAME} PROPERTIES
     MACOSX_BUNDLE_GUI_IDENTIFIER com.cuperino.qprompt
     MACOSX_BUNDLE_BUNDLE_VERSION ${PROJECT_VERSION}
     MACOSX_BUNDLE_COPYRIGHT "Copyright Javier O. Cordero Pérez"
-    MACOSX_BUNDLE_ICON_FILE "icons/qprompt.icns"
     MACOSX_BUNDLE_SHORT_VERSION_STRING ${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}
     OUTPUT_NAME ${OUTPUT_NAME}
     MACOSX_BUNDLE TRUE
