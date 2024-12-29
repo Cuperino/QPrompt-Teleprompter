@@ -284,6 +284,7 @@ set_target_properties(${PROJECT_NAME} PROPERTIES
     OUTPUT_NAME ${OUTPUT_NAME}
     MACOSX_BUNDLE TRUE
     WIN32_EXECUTABLE TRUE
+    POSITION_INDEPENDENT_CODE ${BUILD_SHARED_LIBS}
     # QT_QMLCACHEGEN_ARGUMENTS "--static"  # "--static;--verbose"
     # QT_QMLCACHEGEN_DIRECT_CALLS OFF
     # PLUGIN_TARGET qtlabsplatformplugin inhibits the creation of the backing library, thus headers can't be accessed in direct mode.
