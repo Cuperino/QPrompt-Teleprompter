@@ -7,9 +7,9 @@ msgstr ""
 "Project-Id-Version: qprompt\n"
 "Report-Msgid-Bugs-To: https://github.com/Cuperino/QPrompt/issues/new/choose\n"
 "POT-Creation-Date: 2024-09-29 11:34-0400\n"
-"PO-Revision-Date: 2024-12-17 04:51+0000\n"
-"Last-Translator: \"Javier O. Cordero Pérez\" <javiercorderoperez@gmail.com>\n"
-"Language-Team: Italian <http://l10n.cuperino.com/projects/qprompt/"
+"PO-Revision-Date: 2025-01-08 15:46+0000\n"
+"Last-Translator: William Fanelli <william.f@impronte.com>\n"
+"Language-Team: Italian <http://l10n.cuperino.com/projects/qprompt-v1/"
 "qprompt-app/it/>\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
@@ -28,7 +28,7 @@ msgstr "&Nuovo"
 #: kirigami_ui/main.qml:205 kirigami_ui/main.qml:580
 msgctxt "Main menu and global menu actions"
 msgid "&Open"
-msgstr "&Aprire"
+msgstr "&Apri"
 
 #: kirigami_ui/+android/main.qml:198 kirigami_ui/+windows/main.qml:213
 #: kirigami_ui/main.qml:215
@@ -65,7 +65,7 @@ msgstr "&Impostazioni"
 msgctxt ""
 "Main menu and global menu actions. Opens dialog to configure keyboard inputs."
 msgid "Keyboard Inputs"
-msgstr "Tastiera del computer"
+msgstr "Input da tastiera"
 
 #: kirigami_ui/+android/main.qml:246 kirigami_ui/+windows/main.qml:261
 #: kirigami_ui/main.qml:266
@@ -83,11 +83,10 @@ msgstr "Tasti &freccia inversa"
 
 #: kirigami_ui/+android/main.qml:259 kirigami_ui/+windows/main.qml:274
 #: kirigami_ui/main.qml:281 kirigami_ui/main.qml:828
-#, fuzzy
 msgctxt ""
 "Main menu and global menu actions. Invert scroll direction while prompting."
 msgid "Invert &scroll direction (Natural scrolling)"
-msgstr "Invertire la direzione dello &scroller"
+msgstr "Inverti la direzione dello scroll"
 
 #: kirigami_ui/+android/main.qml:267 kirigami_ui/+windows/main.qml:282
 #: kirigami_ui/main.qml:290 kirigami_ui/main.qml:813
@@ -121,7 +120,7 @@ msgstr "Direzione del layout"
 #: kirigami_ui/main.qml:332
 msgctxt "Main menu actions. Enters Performance tweaks submenu."
 msgid "Performance tweaks"
-msgstr "Performance tweaks"
+msgstr "Ottimizza prestazioni"
 
 #: kirigami_ui/+android/main.qml:308 kirigami_ui/+windows/main.qml:330
 #: kirigami_ui/main.qml:341
@@ -164,13 +163,13 @@ msgstr "Ricarica automatico file locale"
 #: kirigami_ui/main.qml:427
 msgctxt "Main menu actions"
 msgid "Language"
-msgstr ""
+msgstr "Lingua"
 
 #: kirigami_ui/+android/main.qml:360 kirigami_ui/+windows/main.qml:421
 #: kirigami_ui/main.qml:434
 msgctxt "Main menu actions"
 msgid "Restore factory defaults"
-msgstr ""
+msgstr "Resetta al default"
 
 #: kirigami_ui/+android/main.qml:368 kirigami_ui/+windows/main.qml:429
 #: kirigami_ui/main.qml:442
@@ -198,7 +197,7 @@ msgstr "Modalità Scura"
 #: kirigami_ui/+android/main.qml:588 kirigami_ui/+windows/main.qml:703
 #: kirigami_ui/main.qml:1021
 msgid "Factory Reset"
-msgstr ""
+msgstr "Reset Impostazioni"
 
 #: kirigami_ui/+android/main.qml:589 kirigami_ui/+windows/main.qml:704
 #: kirigami_ui/main.qml:1022
@@ -225,7 +224,7 @@ msgstr ""
 
 #: kirigami_ui/+windows/main.qml:365 kirigami_ui/main.qml:376
 msgid "Disable background transparency"
-msgstr ""
+msgstr "Disabilita la trasparenza dello sfondo"
 
 #: kirigami_ui/+windows/main.qml:384 kirigami_ui/main.qml:395
 msgctxt ""
@@ -1424,12 +1423,12 @@ msgstr ""
 #: kirigami_ui/main.qml:804
 msgctxt "Global menu actions. Menu regarding input settings."
 msgid "Controls"
-msgstr ""
+msgstr "Controlli"
 
 #: kirigami_ui/main.qml:837
 msgctxt "Global menu actions"
 msgid "&Help"
-msgstr ""
+msgstr "&Aiuto"
 
 #: kirigami_ui/main.qml:840
 msgctxt "Global menu actions"
@@ -1446,6 +1445,8 @@ msgid ""
 "Personal teleprompter software for all video makers. Built with ease of use, "
 "productivity, and smooth performance in mind."
 msgstr ""
+"Software di teleprompter per tutti i videomaker. Costruito pensando alla "
+"facilità d'uso, alla produttività e alle prestazioni."
 
 #: main.cpp:113
 msgctxt "file"
@@ -1466,7 +1467,7 @@ msgstr ""
 
 #: main.cpp:142
 msgid "Personal teleprompter software for all video makers."
-msgstr ""
+msgstr "Software per teleprompter per tutti i Videomakers."
 
 #: main.cpp:154
 msgid "Author"
@@ -1511,11 +1512,11 @@ msgstr ""
 
 #: prompter/PointerSettings.qml:110
 msgid "Editing: "
-msgstr ""
+msgstr "Modifica: "
 
 #: prompter/PointerSettings.qml:123
 msgid "Ready: "
-msgstr ""
+msgstr "Pronto: "
 
 #: prompter/PointerSettings.qml:136
 msgid "Prompting: "
@@ -1537,11 +1538,11 @@ msgstr ""
 
 #: prompter/PointerSettings.qml:170
 msgid "Guides"
-msgstr ""
+msgstr "Guide"
 
 #: prompter/PointerSettings.qml:202
 msgid "Arrow"
-msgstr ""
+msgstr "Freccia"
 
 #: prompter/PointerSettings.qml:208
 msgid "Text"
@@ -1591,15 +1592,15 @@ msgstr ""
 
 #: prompter/PointerSettings.qml:563 prompter/PrompterBackground.qml:125
 msgid "JPEG image"
-msgstr ""
+msgstr "Immagine JPEG"
 
 #: prompter/PointerSettings.qml:564 prompter/PrompterBackground.qml:126
 msgid "PNG image"
-msgstr ""
+msgstr "Immagine PNG"
 
 #: prompter/PointerSettings.qml:565 prompter/PrompterBackground.qml:127
 msgid "GIF animation"
-msgstr ""
+msgstr "Animazione GIF"
 
 #: prompter/PointerSettings.qml:566
 msgid "WEBP image"
@@ -1657,9 +1658,8 @@ msgid "Saved %1"
 msgstr ""
 
 #: prompter/Prompter.qml:1310
-#, fuzzy
 msgid "Saved"
-msgstr "&Salva"
+msgstr "&Salvato"
 
 #: prompter/Prompter.qml:1371 prompter/Prompter.qml:1383
 #: prompter/Prompter.qml:1413 prompter/Prompter.qml:1417
@@ -1721,7 +1721,7 @@ msgstr ""
 #: prompter/Prompter.qml:1491
 msgctxt "Editor context menu actions"
 msgid "&Undo"
-msgstr ""
+msgstr "&Undo"
 
 #: prompter/Prompter.qml:1496
 msgctxt "Editor context menu actions"
