@@ -33,10 +33,16 @@ if [[ "$OSTYPE" == "linux-gnu"* ]]; then
    else
        COMPILER="gcc_64"
    fi
+   CMAKE=cmake
+   CPACK=cpack
+   PATH=$PATH:~/Qt/Tools/QtInstallerFramework/4.8/bin
 elif [[ "$OSTYPE" == "darwin"* ]]; then
     PLATFORM="macos"
     CMAKE_INSTALL_PREFIX="/usr"
     COMPILER="macos"
+    CMAKE=~/Qt/Tools/CMake/CMake.app/Contents/bin/cmake
+    CPACK=~/Qt/Tools/CMake/CMake.app/Contents/bin/cpack
+    PATH=$PATH:~/Qt/Tools/QtInstallerFramework/4.8/bin
 elif [[ "$OSTYPE" == "win32" || "$OSTYPE" == "msys" ]]; then
     PLATFORM="windows"
     CMAKE_INSTALL_PREFIX="install"
@@ -45,14 +51,20 @@ elif [[ "$OSTYPE" == "win32" || "$OSTYPE" == "msys" ]]; then
     else
         COMPILER="msvc2019_64"
     fi
+    CMAKE=cmake
+    CPACK=cpack
 elif [[ "$OSTYPE" == "freebsd"* ]]; then
     PLATFORM="freebsd"
     CMAKE_INSTALL_PREFIX="/usr"
     COMPILER="gcc"
+    CMAKE=cmake
+    CPACK=cpack
 else
     PLATFORM="unix"
     CMAKE_INSTALL_PREFIX="/usr"
     COMPILER="gcc"
+    CMAKE=cmake
+    CPACK=cpack
 fi
 
 CMAKE_CONFIGURATION_TYPES="Debug;Release;RelWithDebInfo;MinSizeRel"
@@ -122,6 +134,7 @@ else
 fi
 
 # Constants
+BUILD_SHARED_LIBS="OFF"
 if [[ "$PLATFORM" == "windows" ]]; then
 AppDir=""
 AppDirUsr="install"
@@ -141,9 +154,7 @@ elif $CLEAR # QPrompt
 fi
 mkdir -p build install
 
-if [[ "$PLATFORM" == "macos" ]]; then
-    brew install ninja
-elif [[ "$PLATFORM" == "windows" ]]; then
+if [[ "$PLATFORM" == "windows" ]]; then
     winget install -e --id Kitware.CMake
     winget install -e --id Ninja-build.Ninja
     winget install -e --id JRSoftware.InnoSetup
@@ -193,7 +204,6 @@ tier_0="
 "
 tier_1="
     ./3rdparty/kcoreaddons
-    ./3rdparty/kcrash
     ./3rdparty/kirigami
 "
 tier_2="
@@ -205,9 +215,9 @@ for dependency in $tier_0 $tier_1 $tier_2 $tier_3; do
     if $CLEAR_ALL; then
         rm -dRf $dependency/build
     fi
-    cmake -DCMAKE_CONFIGURATION_TYPES=$CMAKE_CONFIGURATION_TYPES -DBUILD_TESTING=OFF -BUILD_QCH=OFF -DCMAKE_PREFIX_PATH=$CMAKE_PREFIX_PATH -DCMAKE_INSTALL_PREFIX=$CMAKE_INSTALL_PREFIX -B ./$dependency/build ./$dependency/
-    cmake --build ./$dependency/build --config $CMAKE_BUILD_TYPE
-    DESTDIR=$AppDir cmake --install ./$dependency/build
+    $CMAKE -DCMAKE_CONFIGURATION_TYPES=$CMAKE_CONFIGURATION_TYPES -DBUILD_TESTING=OFF -BUILD_QCH=OFF -DBUILD_SHARED_LIBS=$BUILD_SHARED_LIBS -DCMAKE_PREFIX_PATH=$CMAKE_PREFIX_PATH -DCMAKE_INSTALL_PREFIX=$CMAKE_INSTALL_PREFIX -B ./$dependency/build ./$dependency/
+    $CMAKE --build ./$dependency/build --config $CMAKE_BUILD_TYPE
+    DESTDIR=$AppDir $CMAKE --install ./$dependency/build
     cp -r $AppDirUsr/* $CMAKE_PREFIX_PATH
 done
 
@@ -215,20 +225,28 @@ echo "QHotkey"
 if $CLEAR_ALL; then
     rm -dRf 3rdparty/QHotkey/build
 fi
-cmake -DCMAKE_CONFIGURATION_TYPES=$CMAKE_CONFIGURATION_TYPES -DCMAKE_PREFIX_PATH=$CMAKE_PREFIX_PATH -DCMAKE_INSTALL_PREFIX=$CMAKE_INSTALL_PREFIX -DBUILD_SHARED_LIBS=ON -DQT_DEFAULT_MAJOR_VERSION=$QT_MAJOR_VERSION -B ./3rdparty/QHotkey/build ./3rdparty/QHotkey/
-cmake --build ./3rdparty/QHotkey/build --config $CMAKE_BUILD_TYPE
-DESTDIR=$AppDir cmake --install ./3rdparty/QHotkey/build
+$CMAKE -DCMAKE_CONFIGURATION_TYPES=$CMAKE_CONFIGURATION_TYPES -DBUILD_SHARED_LIBS=ON -DCMAKE_PREFIX_PATH=$CMAKE_PREFIX_PATH -DCMAKE_INSTALL_PREFIX=$CMAKE_INSTALL_PREFIX -DQT_DEFAULT_MAJOR_VERSION=$QT_MAJOR_VERSION -B ./3rdparty/QHotkey/build ./3rdparty/QHotkey/
+$CMAKE --build ./3rdparty/QHotkey/build --config $CMAKE_BUILD_TYPE
+DESTDIR=$AppDir $CMAKE --install ./3rdparty/QHotkey/build
 cp -r $AppDirUsr/* $CMAKE_PREFIX_PATH
 
 echo "QPrompt"
-cmake -DCMAKE_CONFIGURATION_TYPES=$CMAKE_CONFIGURATION_TYPES -DCMAKE_PREFIX_PATH=$CMAKE_PREFIX_PATH -DCMAKE_INSTALL_PREFIX=$CMAKE_INSTALL_PREFIX -B ./build .
-cmake --build ./build --config $CMAKE_BUILD_TYPE
-DESTDIR=$AppDir cmake --install ./build
+$CMAKE -DCMAKE_CONFIGURATION_TYPES=$CMAKE_CONFIGURATION_TYPES -DBUILD_SHARED_LIBS=$BUILD_SHARED_LIBS -DCMAKE_PREFIX_PATH=$CMAKE_PREFIX_PATH -DCMAKE_INSTALL_PREFIX=$CMAKE_INSTALL_PREFIX -B ./build .
+$CMAKE --build ./build --config $CMAKE_BUILD_TYPE
+DESTDIR=$AppDir $CMAKE --install ./build
 
 # Copy Qt libraries into install directory
 if [[ "$PLATFORM" == "windows" ]]; then
     PATH=$PATH:"C:\Program Files (x86)\NSIS"
     $CMAKE_PREFIX_PATH/bin/windeployqt.exe ./install/bin/$CMAKE_BUILD_TYPE/QPrompt.exe
+    cd build
+    $CPACK
+    cd ..
+elif [[ "$PLATFORM" == "macos" ]]; then
+    # $CMAKE_PREFIX_PATH/bin/macdeployqt ./build/bin/QPrompt.app -qmldir=./build/bin -dmg
+    cd build
+    $CPACK
+    cd ..
 elif [[ "$PLATFORM" == "linux" ]]; then
     if [ "$ARCHITECTURE" == "aarch64" ]; then
         cp -r $AppDirUsr/lib/aarch64-linux-gnu/* $CMAKE_PREFIX_PATH/lib/
@@ -250,7 +268,7 @@ elif [[ "$PLATFORM" == "linux" ]]; then
     fi
     export EXTRA_QT_MODULES="core;quick;quickcontrols2;svg;widgets;network;"
     QMAKE=$CMAKE_PREFIX_PATH/bin/qmake $LINUX_DEPLOY --appdir $AppDir --output appimage --plugin qt
+    cd build
+    $CPACK
+    cd ..
 fi
-cd build
-cpack
-cd ..
