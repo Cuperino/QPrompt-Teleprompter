@@ -160,6 +160,7 @@ else()
 endif()
 
 if(NOT BSD)
+    set(TEMP ${BUILD_SHARED_LIBS})
     set(BUILD_SHARED_LIBS ON)
     FetchContent_Declare(
       QHotkey
@@ -168,6 +169,7 @@ if(NOT BSD)
       SOURCE_DIR submodules/QHotkey
     )
     FetchContent_MakeAvailable(QHotkey)
+    set(BUILD_SHARED_LIBS ${TEMP})
 else()
     find_package(QHotkey)
 endif()
