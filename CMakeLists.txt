@@ -46,6 +46,11 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
 
+set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY "${PROJECT_BINARY_DIR}")
+set(CMAKE_LIBRARY_OUTPUT_DIRECTORY "${PROJECT_BINARY_DIR}")
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${PROJECT_BINARY_DIR}")
+option(BUILD_SHARED_LIBS "Build using shared libraries" OFF)
+
 set(QT_DEFAULT_MAJOR_VERSION 6)
 # Qt 6.6.2 for Ubuntu 24.10, tho ideally we'd use 6.7.2.
 set(QT_MIN_VERSION 6.6.2)
@@ -160,7 +165,6 @@ else()
 endif()
 
 if(NOT BSD)
-    set(BUILD_SHARED_LIBS ON)
     FetchContent_Declare(
       QHotkey
       GIT_REPOSITORY "${CMAKE_SOURCE_DIR}/3rdparty/QHotkey"

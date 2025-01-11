@@ -134,7 +134,7 @@ else
 fi
 
 # Constants
-BUILD_SHARED_LIBS="OFF"
+BUILD_SHARED_LIBS="ON"
 if [[ "$PLATFORM" == "windows" ]]; then
 AppDir=""
 AppDirUsr="install"
