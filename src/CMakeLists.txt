@@ -19,6 +19,13 @@
 #
 #**************************************************************************
 
+get_target_property(KCOREADDONS_INCLUDE_DIRS KF${QT_VERSION_MAJOR}::CoreAddons
+    INTERFACE_INCLUDE_DIRECTORIES
+)
+get_target_property(KIRIGAMI_INCLUDE_DIRS KF${QT_VERSION_MAJOR}::Kirigami
+    INTERFACE_INCLUDE_DIRECTORIES
+)
+
 if(NOT WIN32)
     include(ECMPoQmTools)
     ecm_create_qm_loader(qprompt_QM_LOADER ../locale/qprompt.pot)
@@ -284,6 +291,7 @@ set_target_properties(${PROJECT_NAME} PROPERTIES
     OUTPUT_NAME ${OUTPUT_NAME}
     MACOSX_BUNDLE TRUE
     WIN32_EXECUTABLE TRUE
+    INTERFACE_LINK_LIBRARIES "KF${QT_VERSION_MAJOR}::CoreAddons;KF${QT_VERSION_MAJOR}::Kirigami"
     # QT_QMLCACHEGEN_ARGUMENTS "--static"  # "--static;--verbose"
     # QT_QMLCACHEGEN_DIRECT_CALLS OFF
     # PLUGIN_TARGET qtlabsplatformplugin inhibits the creation of the backing library, thus headers can't be accessed in direct mode.
