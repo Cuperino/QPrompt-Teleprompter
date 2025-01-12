@@ -39,7 +39,7 @@
 #include <QtQml>
 //#include "appwindow.h"
 
-#if defined(Q_OS_IOS) || defined(Q_OS_WASM) || defined(Q_OS_WATCHOS) || defined(Q_OS_QNX)
+#if defined(Q_OS_ANDROID) || defined(Q_OS_MACOS) || defined(Q_OS_IOS) || defined(Q_OS_WASM)
 #include "../3rdparty/kirigami/src/kirigamiplugin.h"
 #endif
 // #include <KLocalizedContext>
@@ -173,9 +173,9 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
 
     //    qRegisterMetaType<Marker>();
 
-    // #ifdef Q_OS_ANDROID
-    // KirigamiPlugin::getInstance().registerTypes();
-    // #endif
+#if defined(Q_OS_ANDROID) || defined(Q_OS_MACOS) || defined(Q_OS_IOS) || defined(Q_OS_WASM)
+    KirigamiPlugin::getInstance().registerTypes();
+#endif
 
 #if defined(Q_OS_MACOS)
     // Enable automatic display of dialog prompts on the touchbar.
@@ -248,17 +248,23 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
     engine.addImportPath(QStringLiteral("../../lib/qml/"));
     engine.addImportPath(QStringLiteral("../lib/qml/"));
     engine.addImportPath(QStringLiteral("./lib/qml/"));
+#if defined(Q_OS_MACOS)
     // MacOS paths
-    engine.addImportPath(QStringLiteral("../build/"));
     engine.addImportPath(QStringLiteral("../Resources/qml/"));
+    QString qmlPath = QApplication::applicationDirPath() + "/../Resources/qml";
+    engine.addImportPath(qmlPath);
+    engine.addImportPath(QStringLiteral("../../../../../../install/usr/lib/qml"));
+    engine.addImportPath(QStringLiteral("../../../../../../install/lib/qml"));
+    engine.addImportPath(QStringLiteral("../../../lib"));
+    engine.addImportPath(QStringLiteral("../build/"));
+    engine.addImportPath(QStringLiteral("../../../../build/"));
+    // engine.addImportPath(QStringLiteral("/opt/homebrew/lib/qml"));
+    // engine.addImportPath(QStringLiteral("/opt/homebrew/Cellar/kf5-kirigami2/5.95.0/lib/qt6/qml"));
     // Send context data from C++ to QML
     // engine.rootContext()->setContextObject(new KLocalizedContext(&engine));
     engine.rootContext()->setContextProperty(QStringLiteral("aboutData"), QVariant::fromValue(KAboutData::applicationData()));
     if (positionalArguments.length())
         engine.rootContext()->setContextProperty(QStringLiteral("fileToOpen"), fileToOpen);
-#if defined(Q_OS_MACOS)
-    // engine.addImportPath(QStringLiteral("/opt/homebrew/lib/qml"));
-    engine.addImportPath(QStringLiteral("/opt/homebrew/Cellar/kf5-kirigami2/5.95.0/lib/qt6/qml"));
 #endif
 #if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
     engine.load(QUrl(u"qrc:/qt/qml/com/cuperino/qprompt/kirigami_ui/main.qml"_qs));

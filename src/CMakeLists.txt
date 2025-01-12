@@ -19,12 +19,14 @@
 #
 #**************************************************************************
 
-get_target_property(KCOREADDONS_INCLUDE_DIRS KF${QT_VERSION_MAJOR}::CoreAddons
-    INTERFACE_INCLUDE_DIRECTORIES
-)
-get_target_property(KIRIGAMI_INCLUDE_DIRS KF${QT_VERSION_MAJOR}::Kirigami
-    INTERFACE_INCLUDE_DIRECTORIES
-)
+if(APPLE AND NOT IOS)
+    get_target_property(KCOREADDONS_INCLUDE_DIRS KF${QT_VERSION_MAJOR}::CoreAddons
+        INTERFACE_INCLUDE_DIRECTORIES
+    )
+    get_target_property(KIRIGAMI_INCLUDE_DIRS KF${QT_VERSION_MAJOR}::Kirigami
+        INTERFACE_INCLUDE_DIRECTORIES
+    )
+endif()
 
 if(NOT WIN32)
     include(ECMPoQmTools)
@@ -282,21 +284,29 @@ if (UNIX AND NOT APPLE)
 else()
     set(OUTPUT_NAME "QPrompt")
 endif()
-set_target_properties(${PROJECT_NAME} PROPERTIES
-    MACOSX_BUNDLE_BUNDLE_NAME "QPrompt"
-    MACOSX_BUNDLE_GUI_IDENTIFIER com.cuperino.qprompt
-    MACOSX_BUNDLE_BUNDLE_VERSION ${PROJECT_VERSION}
-    MACOSX_BUNDLE_COPYRIGHT "Copyright Javier O. Cordero Pérez"
-    MACOSX_BUNDLE_SHORT_VERSION_STRING ${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}
-    OUTPUT_NAME ${OUTPUT_NAME}
-    MACOSX_BUNDLE TRUE
-    WIN32_EXECUTABLE TRUE
-    INTERFACE_LINK_LIBRARIES "KF${QT_VERSION_MAJOR}::CoreAddons;KF${QT_VERSION_MAJOR}::Kirigami"
-    # QT_QMLCACHEGEN_ARGUMENTS "--static"  # "--static;--verbose"
-    # QT_QMLCACHEGEN_DIRECT_CALLS OFF
-    # PLUGIN_TARGET qtlabsplatformplugin inhibits the creation of the backing library, thus headers can't be accessed in direct mode.
-    # See issue: https://bugreports.qt.io/browse/QTBUG-117992?focusedId=750577&page=com.atlassian.jira.plugin.system.issuetabpanels%3Acomment-tabpanel#comment-750577
-)
+
+if(APPLE AND NOT IOS)
+    set_target_properties(${PROJECT_NAME} PROPERTIES
+        OUTPUT_NAME ${OUTPUT_NAME}
+        MACOSX_BUNDLE_BUNDLE_NAME "QPrompt"
+        MACOSX_BUNDLE_GUI_IDENTIFIER com.cuperino.qprompt
+        MACOSX_BUNDLE_BUNDLE_VERSION ${PROJECT_VERSION}
+        MACOSX_BUNDLE_COPYRIGHT "Copyright Javier O. Cordero Pérez"
+        MACOSX_BUNDLE_SHORT_VERSION_STRING ${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}
+        MACOSX_BUNDLE TRUE  # Ignored in other platforms
+        INTERFACE_LINK_LIBRARIES "KF${QT_VERSION_MAJOR}::CoreAddons;KF${QT_VERSION_MAJOR}::Kirigami"
+        QT_QMLCACHEGEN_ARGUMENTS "--static"  # "--static;--verbose"
+    )
+else()
+    set_target_properties(${PROJECT_NAME} PROPERTIES
+        OUTPUT_NAME ${OUTPUT_NAME}
+        WIN32_EXECUTABLE TRUE  # Ignored in other platforms
+        # QT_QMLCACHEGEN_ARGUMENTS "--static"  # "--static;--verbose"
+        # QT_QMLCACHEGEN_DIRECT_CALLS OFF
+        # PLUGIN_TARGET qtlabsplatformplugin inhibits the creation of the backing library, thus headers can't be accessed in direct mode.
+        # See issue: https://bugreports.qt.io/browse/QTBUG-117992?focusedId=750577&page=com.atlassian.jira.plugin.system.issuetabpanels%3Acomment-tabpanel#comment-750577
+    )
+endif()
 
 if (NOT IOS)
     qt_add_resources(${PROJECT_NAME} "fonts"

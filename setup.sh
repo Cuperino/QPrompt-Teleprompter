@@ -36,6 +36,7 @@ if [[ "$OSTYPE" == "linux-gnu"* ]]; then
    CMAKE=cmake
    CPACK=cpack
    PATH=$PATH:~/Qt/Tools/QtInstallerFramework/4.8/bin
+   BUILD_SHARED_LIBS=OFF
 elif [[ "$OSTYPE" == "darwin"* ]]; then
     PLATFORM="macos"
     CMAKE_INSTALL_PREFIX="/usr"
@@ -43,6 +44,7 @@ elif [[ "$OSTYPE" == "darwin"* ]]; then
     CMAKE=~/Qt/Tools/CMake/CMake.app/Contents/bin/cmake
     CPACK=~/Qt/Tools/CMake/CMake.app/Contents/bin/cpack
     PATH=$PATH:~/Qt/Tools/QtInstallerFramework/4.8/bin
+    BUILD_SHARED_LIBS=ON
 elif [[ "$OSTYPE" == "win32" || "$OSTYPE" == "msys" ]]; then
     PLATFORM="windows"
     CMAKE_INSTALL_PREFIX="install"
@@ -53,18 +55,21 @@ elif [[ "$OSTYPE" == "win32" || "$OSTYPE" == "msys" ]]; then
     fi
     CMAKE=cmake
     CPACK=cpack
+    BUILD_SHARED_LIBS=OFF
 elif [[ "$OSTYPE" == "freebsd"* ]]; then
     PLATFORM="freebsd"
     CMAKE_INSTALL_PREFIX="/usr"
     COMPILER="gcc"
     CMAKE=cmake
     CPACK=cpack
+    BUILD_SHARED_LIBS=OFF
 else
     PLATFORM="unix"
     CMAKE_INSTALL_PREFIX="/usr"
     COMPILER="gcc"
     CMAKE=cmake
     CPACK=cpack
+    BUILD_SHARED_LIBS=OFF
 fi
 
 CMAKE_CONFIGURATION_TYPES="Debug;Release;RelWithDebInfo;MinSizeRel"
@@ -134,7 +139,6 @@ else
 fi
 
 # Constants
-BUILD_SHARED_LIBS="OFF"
 if [[ "$PLATFORM" == "windows" ]]; then
 AppDir=""
 AppDirUsr="install"
