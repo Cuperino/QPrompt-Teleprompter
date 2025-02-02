@@ -39,7 +39,10 @@
 #include <QtQml>
 //#include "appwindow.h"
 
-#if defined(Q_OS_IOS) || defined(Q_OS_WASM) || defined(Q_OS_WATCHOS) || defined(Q_OS_QNX)
+#if defined(Q_OS_ANDROID) || defined(Q_OS_MACOS) || defined(Q_OS_IOS) || defined(Q_OS_WASM) || defined(Q_OS_WATCHOS)
+#define KIRIGAMI_BUILD_TYPE_STATIC 1
+#define QT_PLUGIN 1
+#define QT_STATICPLUGIN 1
 #include "../3rdparty/kirigami/src/kirigamiplugin.h"
 #endif
 // #include <KLocalizedContext>
@@ -173,9 +176,9 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
 
     //    qRegisterMetaType<Marker>();
 
-    // #ifdef Q_OS_ANDROID
-    // KirigamiPlugin::getInstance().registerTypes();
-    // #endif
+#if defined(Q_OS_ANDROID) || defined(Q_OS_MACOS) || defined(Q_OS_IOS) || defined(Q_OS_WASM) || defined(Q_OS_WATCHOS)
+    KirigamiPlugin::getInstance().registerTypes();
+#endif
 
 #if defined(Q_OS_MACOS)
     // Enable automatic display of dialog prompts on the touchbar.
@@ -249,8 +252,10 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
     engine.addImportPath(QStringLiteral("../lib/qml/"));
     engine.addImportPath(QStringLiteral("./lib/qml/"));
     // MacOS paths
+    engine.addImportPath(QStringLiteral("./qml"));
     engine.addImportPath(QStringLiteral("../build/"));
     engine.addImportPath(QStringLiteral("../Resources/qml/"));
+    engine.addImportPath(QStringLiteral("../../install/usr/lib/qml/"));
     // Send context data from C++ to QML
     // engine.rootContext()->setContextObject(new KLocalizedContext(&engine));
     engine.rootContext()->setContextProperty(QStringLiteral("aboutData"), QVariant::fromValue(KAboutData::applicationData()));

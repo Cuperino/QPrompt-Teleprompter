@@ -45,6 +45,7 @@ set(CMAKE_CXX_STANDARD 17)
 # Instruct CMake to run moc automatically when needed
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
+set(BUILD_SHARED_LIBS OFF)
 
 set(QT_DEFAULT_MAJOR_VERSION 6)
 # Qt 6.6.2 for Ubuntu 24.10, tho ideally we'd use 6.7.2.
@@ -152,6 +153,17 @@ if (WIN32)
       SOURCE_DIR submodules/kirigami
     )
     FetchContent_MakeAvailable(CoreAddons Kirigami)
+elseif(APPLE)
+    set(BUILD_TESTING OFF)
+    set(BUILD_EXAMPLES OFF)
+    if (NOT EXISTS "${PROJECT_SOURCE_DIR}/3rdparty/kcoreaddons/CMakeLists.txt")
+        message(FATAL_ERROR "KCoreAddons was not downloaded. GIT_SUBMODULE was turned off or failed.")
+    endif()
+    if (NOT EXISTS "${PROJECT_SOURCE_DIR}/3rdparty/kirigami/CMakeLists.txt")
+        message(FATAL_ERROR "Kirigami was not downloaded. GIT_SUBMODULE was turned off or failed.")
+    endif()
+    add_subdirectory("3rdparty/kirigami" build/kirigami)
+    add_subdirectory("3rdparty/kcoreaddons" build/kcoreaddons)
 else()
     find_package(KF${QT_VERSION_MAJOR} ${KF_MIN_VERSION} REQUIRED COMPONENTS
         Kirigami
@@ -160,7 +172,6 @@ else()
 endif()
 
 if(NOT BSD)
-    set(BUILD_SHARED_LIBS ON)
     FetchContent_Declare(
       QHotkey
       GIT_REPOSITORY "${CMAKE_SOURCE_DIR}/3rdparty/QHotkey"

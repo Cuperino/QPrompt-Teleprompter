@@ -19,12 +19,12 @@
 #
 #**************************************************************************
 
-get_target_property(KCOREADDONS_INCLUDE_DIRS KF${QT_VERSION_MAJOR}::CoreAddons
-    INTERFACE_INCLUDE_DIRECTORIES
-)
-get_target_property(KIRIGAMI_INCLUDE_DIRS KF${QT_VERSION_MAJOR}::Kirigami
-    INTERFACE_INCLUDE_DIRECTORIES
-)
+# get_target_property(KCOREADDONS_INCLUDE_DIRS KF${QT_VERSION_MAJOR}::CoreAddons
+#     INTERFACE_INCLUDE_DIRECTORIES
+# )
+# get_target_property(KIRIGAMI_INCLUDE_DIRS KF${QT_VERSION_MAJOR}::Kirigami
+#     INTERFACE_INCLUDE_DIRECTORIES
+# )
 
 if(NOT WIN32)
     include(ECMPoQmTools)
@@ -364,7 +364,7 @@ elseif(HAIKU)
         KF${QT_VERSION_MAJOR}::Kirigami
         KF${QT_VERSION_MAJOR}::IconThemes
     )
-elseif(WIN32 OR APPLE)
+elseif(WIN32)
     target_link_libraries(${PROJECT_NAME} PRIVATE
         Qt${QT_VERSION_MAJOR}::Core
         Qt${QT_VERSION_MAJOR}::Quick
@@ -377,6 +377,25 @@ elseif(WIN32 OR APPLE)
         KF${QT_VERSION_MAJOR}::Kirigami
         KF${QT_VERSION_MAJOR}::CoreAddons
     )
+elseif(APPLE)
+    target_link_libraries(${PROJECT_NAME} PRIVATE
+        Qt${QT_VERSION_MAJOR}::Core
+        Qt${QT_VERSION_MAJOR}::Quick
+        Qt${QT_VERSION_MAJOR}::Gui
+        Qt${QT_VERSION_MAJOR}::Svg
+        Qt${QT_VERSION_MAJOR}::Qml
+        Qt${QT_VERSION_MAJOR}::QuickControls2
+        Qt${QT_VERSION_MAJOR}::Network
+        Qt${QT_VERSION_MAJOR}::Widgets
+    )
+
+    target_include_directories(KF6CoreAddons PRIVATE ${kcoreaddons_SOURCE_DIR}/kcoreaddons)
+    target_link_directories(KF6CoreAddons PRIVATE ${kcoreaddons_SOURCE_DIR}/kcoreaddons)
+    target_link_libraries(${PROJECT_NAME} PRIVATE KF${QT_VERSION_MAJOR}::CoreAddons)
+
+    target_include_directories(Kirigami PRIVATE ${kirigami_SOURCE_DIR}/kirigami)
+    target_link_directories(Kirigami PRIVATE ${kirigami_SOURCE_DIR}/kirigami)
+    target_link_libraries(${PROJECT_NAME} PRIVATE KF${QT_VERSION_MAJOR}::Kirigami)
 else()
     target_link_libraries(${PROJECT_NAME} PRIVATE
         Qt${QT_VERSION_MAJOR}::Core
@@ -409,6 +428,10 @@ endif()
 # Installation and bundling
 if (APPLE)
     install(TARGETS ${PROJECT_NAME} ${KDE_INSTALL_TARGETS_DEFAULT_ARGS} BUNDLE DESTINATION .)
+    install(TARGETS KF6CoreAddons ${KDE_INSTALL_TARGETS_DEFAULT_ARGS} FRAMEWORK DESTINATION QPrompt.app/Contents/Frameworks)
+    install(TARGETS Kirigami ${KDE_INSTALL_TARGETS_DEFAULT_ARGS} FRAMEWORK DESTINATION QPrompt.app/Contents/Frameworks)
+    install(DIRECTORY ../build/bin/org DESTINATION QPrompt.app/Contents/Resources/qml)
+    install(DIRECTORY ../build/bin/org DESTINATION QPrompt.app/Contents/MacOS/qml)
 elseif (WIN32 OR UNIX)
     install(FILES com.cuperino.qprompt.appdata.xml DESTINATION ${KDE_INSTALL_METAINFODIR})
     install(PROGRAMS com.cuperino.qprompt.desktop DESTINATION ${KDE_INSTALL_APPDIR})
