@@ -51,8 +51,8 @@ elif [[ "$OSTYPE" == "win32" || "$OSTYPE" == "msys" ]]; then
     else
         COMPILER="msvc2019_64"
     fi
-    CMAKE=cmake
-    CPACK=cpack
+    CMAKE=C:\\Qt\\Tools\\CMake_64\\bin\\cmake.exe
+    CPACK=C:\\Qt\\Tools\\CMake_64\\bin\\cpack.exe
 elif [[ "$OSTYPE" == "freebsd"* ]]; then
     PLATFORM="freebsd"
     CMAKE_INSTALL_PREFIX="/usr"
