@@ -7,9 +7,9 @@ msgstr ""
 "Project-Id-Version: qprompt\n"
 "Report-Msgid-Bugs-To: https://github.com/Cuperino/QPrompt/issues/new/choose\n"
 "POT-Creation-Date: 2024-09-29 11:34-0400\n"
-"PO-Revision-Date: 2024-12-17 04:51+0000\n"
-"Last-Translator: Anonymous <noreply@weblate.org>\n"
-"Language-Team: Japanese <http://l10n.cuperino.com/projects/qprompt/"
+"PO-Revision-Date: 2025-02-06 08:19+0000\n"
+"Last-Translator: Toru Takeuchi <toru.hr@gmail.com>\n"
+"Language-Team: Japanese <http://l10n.cuperino.com/projects/qprompt-v1/"
 "qprompt-app/ja/>\n"
 "Language: ja\n"
 "MIME-Version: 1.0\n"
@@ -22,13 +22,13 @@ msgstr ""
 #: kirigami_ui/main.qml:198 kirigami_ui/main.qml:576
 msgctxt "Main menu and global menu actions"
 msgid "&New"
-msgstr "ファイル"
+msgstr "新規作成"
 
 #: kirigami_ui/+android/main.qml:189 kirigami_ui/+windows/main.qml:204
 #: kirigami_ui/main.qml:205 kirigami_ui/main.qml:580
 msgctxt "Main menu and global menu actions"
 msgid "&Open"
-msgstr "開いた"
+msgstr "開く"
 
 #: kirigami_ui/+android/main.qml:198 kirigami_ui/+windows/main.qml:213
 #: kirigami_ui/main.qml:215
@@ -46,7 +46,7 @@ msgstr "保存"
 #: kirigami_ui/main.qml:234
 msgctxt "Main menu and global menu actions"
 msgid "Save &As"
-msgstr ""
+msgstr "別名で保存"
 
 #: kirigami_ui/+android/main.qml:226 kirigami_ui/+windows/main.qml:241
 #: kirigami_ui/main.qml:245
@@ -71,7 +71,7 @@ msgstr "キーボード入力"
 #: kirigami_ui/main.qml:266
 msgctxt "Open 'scroll settings' from main menu and global menu actions"
 msgid "Scroll throttle settings"
-msgstr "滚动油门设置"
+msgstr "スクロール設定"
 
 #: kirigami_ui/+android/main.qml:251 kirigami_ui/+windows/main.qml:266
 #: kirigami_ui/main.qml:272 kirigami_ui/main.qml:821
@@ -133,7 +133,7 @@ msgstr ""
 #: kirigami_ui/main.qml:350
 msgctxt "Main menu actions. Hides formatting tools while not in edit mode."
 msgid "Auto hide formatting tools"
-msgstr "書式設定ツールを自動的に隠する"
+msgstr "書式設定ツールを自動的に隠す"
 
 #: kirigami_ui/+android/main.qml:325 kirigami_ui/+windows/main.qml:347
 #: kirigami_ui/main.qml:358
