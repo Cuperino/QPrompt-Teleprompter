@@ -28,18 +28,18 @@ Kirigami.OverlaySheet {
     id: wheelSettings
 
     header: Kirigami.Heading {
-        text: i18n("Wheel and touchpad scroll settings")
+        text: qsTr("Wheel and touchpad scroll settings")
         level: 1
     }
 
     ColumnLayout {
         RowLayout {
             Label {
-                text: i18nc("Label at wheel settings overlay", "Use scroll as velocity dial")
+                text: qsTr("Use scroll as velocity dial", "Label at wheel settings overlay")
             }
             Button {
                 id: useScrollAsDialButton
-                text: checked ? i18n("On") : i18n("Off")
+                text: checked ? qsTr("On") : qsTr("Off")
                 checkable: true
                 checked: root.__scrollAsDial
                 flat: true
@@ -54,11 +54,11 @@ Kirigami.OverlaySheet {
             columns: 2
             ColumnLayout {
                 Label {
-                    text: i18n("Enable throttling")
+                    text: qsTr("Enable throttling")
                 }
                 Button {
                     id: enableThrottleButton
-                    text: checked ? i18n("On") : i18n("Off")
+                    text: checked ? qsTr("On") : qsTr("Off")
                     checkable: true
                     checked: root.__throttleWheel
                     flat: true
@@ -71,7 +71,7 @@ Kirigami.OverlaySheet {
             ColumnLayout {
                 enabled: root.__throttleWheel
                 Label {
-                    text: i18n("Throttle factor");
+                    text: qsTr("Throttle factor");
                 }
                 SpinBox {
                     value: root.__wheelThrottleFactor
@@ -90,7 +90,7 @@ Kirigami.OverlaySheet {
             Label {
                 Layout.fillWidth: true
                 wrapMode: Text.WordWrap
-                text: i18n("Enable throttling for use with touchpads, disable for precise scolling.")
+                text: qsTr("Enable throttling for use with touchpads, disable for precise scolling.")
                 color: "#EED"
                 Layout.leftMargin: Kirigami.Units.smallSpacing
                 Layout.rightMargin: Kirigami.Units.smallSpacing

@@ -21,10 +21,10 @@
 
 if(NOT WIN32)
     include(ECMPoQmTools)
-    ecm_create_qm_loader(qprompt_QM_LOADER ../locale/qprompt.pot)
+    ecm_create_qm_loader(qprompt_QM_LOADER ../po/qprompt.pot)
 endif()
 
-qt_standard_project_setup()
+qt_standard_project_setup(I18N_TRANSLATED_LANGUAGES ar cs de es fi fr he it ja ko nl oc pl pt_BR pt_PT ru tr uk zh)
 
 qt_add_executable(${PROJECT_NAME}
     main.cpp
@@ -65,6 +65,16 @@ if (NOT ANDROID)
         ICONS ${RASTER_ICONS}
     )
 endif()
+
+set(qprompt_cpp
+    qmlutil.hpp
+    abstractunits.hpp
+    documenthandler.h
+    documenthandler.cpp
+    marker.hpp
+    markersmodel.h
+    markersmodel.cpp
+)
 
 set(qprompt_frontend_sources
     # Kirigami UI Frontend
@@ -251,14 +261,7 @@ qt_add_qml_module(
     DEPENDENCIES
     QtQuick
     SOURCES
-    qmlutil.hpp
-    abstractunits.hpp
-    documenthandler.h
-    documenthandler.cpp
-    marker.hpp
-    markersmodel.h
-    markersmodel.cpp
-    ${qprompt_QM_LOADER}
+    ${qprompt_cpp}
     QML_FILES
     ${qprompt_frontend_sources}
     ${prompter_sources}
@@ -305,15 +308,10 @@ else()
     )
 endif()
 
-# Shader compilation
-qt_add_shaders(
-    ${PROJECT_NAME}
-    "qp_shaders"
-    PREFIX "/qt/qml/com/cuperino/qprompt"
-    FILES
-    "shaders/blur.frag"
-    "shaders/shadow.frag"
-    "shaders/tint.frag"
+qt_add_translations(${PROJECT_NAME} SOURCE_TARGETS ${PROJECT_NAME}
+    TS_FILE_DIR ${CMAKE_SOURCE_DIR}/po
+    LUPDATE_OPTIONS -source-language en
+    LRELEASE_OPTIONS -compress -markuntranslated l10n_  # -idbased
 )
 
 # Libraries

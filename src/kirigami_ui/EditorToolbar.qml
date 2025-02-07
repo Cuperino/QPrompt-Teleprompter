@@ -352,22 +352,22 @@ ToolBar {
                     implicitWidth: 120
                 }
                 MenuItem {
-                    text: Qt.application.layoutDirection===Qt.LeftToRight ? i18nc("Editor actions. Text alignment.", "&Left") : i18nc("Editor actions. Text alignment.", "&Right")
+                    text: Qt.application.layoutDirection===Qt.LeftToRight ? qsTr("&Left", "Editor actions. Text alignment.") : qsTr("&Right", "Editor actions. Text alignment.")
                     enabled: Qt.application.layoutDirection===Qt.LeftToRight ? viewport.prompter.document.alignment !== Qt.AlignLeft : viewport.prompter.document.alignment !== Qt.AlignRight
                     onTriggered: viewport.prompter.document.alignment = Qt.AlignLeft
                 }
                 MenuItem {
-                    text: i18nc("Editor actions. Text alignment.", "C&enter")
+                    text: qsTr("C&enter", "Editor actions. Text alignment.")
                     enabled: !(viewport.prompter.document.alignment === Qt.AlignHCenter || (viewport.prompter.document.alignment !== Qt.AlignLeft && viewport.prompter.document.alignment !== Qt.AlignRight/*&& viewport.prompter.document.alignment !== Qt.AlignJustify*/))
                     onTriggered: viewport.prompter.document.alignment = Qt.AlignHCenter
                 }
                 MenuItem {
-                    text: Qt.application.layoutDirection===Qt.LeftToRight ? i18nc("Editor actions. Text alignment.", "&Right") : i18nc("Editor actions. Text alignment.", "&Left")
+                    text: Qt.application.layoutDirection===Qt.LeftToRight ? qsTr("&Right", "Editor actions. Text alignment.") : qsTr("&Left", "Editor actions. Text alignment.")
                     enabled: Qt.application.layoutDirection===Qt.LeftToRight ? viewport.prompter.document.alignment !== Qt.AlignRight : viewport.prompter.document.alignment !== Qt.AlignLeft
                     onTriggered: viewport.prompter.document.alignment = Qt.AlignRight
                 }
                 //MenuItem {
-                //    text: i18nc("Editor actions. Text alignment.", "&Justify")
+                //    text: qsTr("Editor actions. Text alignment.", "&Justify")
                 //    enabled: viewport.prompter.document.alignment !== Qt.AlignHustify
                 //    onTriggered: viewport.prompter.document.alignment = Qt.AlignJustify
                 //}
@@ -551,39 +551,39 @@ ToolBar {
                 }
                 MenuSeparator {}
                 MenuItem {
-                    text: i18nc("FontName (Translatable font details)", "DejaVu (default, Roman, Cyrillic)")
+                    text: qsTr("DejaVu (default, Roman, Cyrillic)", "FontName (Translatable font details)")
                     onTriggered: viewport.prompter.document.fontFamily = westernSeriousSansfFont.name
                 }
                 MenuItem {
-                    text: i18nc("FontName (Translatable font details)", "OpenDyslexic (Roman)")
+                    text: qsTr("OpenDyslexic (Roman)", "FontName (Translatable font details)")
                     onTriggered: viewport.prompter.document.fontFamily = westernDyslexicFont.name
                 }
                 MenuItem {
-                    text: i18nc("FontName (Translatable font details)", "Source Han Sans (CH, JP, KO)")
+                    text: qsTr("Source Han Sans (CH, JP, KO)", "FontName (Translatable font details)")
                     onTriggered: viewport.prompter.document.fontFamily = asianSeriousSansFont.name
                 }
                 MenuItem {
-                    text: i18nc("FontName (Translatable font details)", "Scheherazade New (Arabic)")
+                    text: qsTr("Scheherazade New (Arabic)", "FontName (Translatable font details)")
                     onTriggered: viewport.prompter.document.fontFamily = arabicHumaneSansFont.name
                 }
                 MenuItem {
-                    text: i18nc("FontName (Translatable font details)", "Palanquin (Devangari)")
+                    text: qsTr("Palanquin (Devangari)", "FontName (Translatable font details)")
                     onTriggered: viewport.prompter.document.fontFamily = devanagariSeriousSansFont.name
                 }
                 MenuItem {
-                    text: i18nc("FontName (Translatable font details)", "Kalpurush (Bengali)")
+                    text: qsTr("Kalpurush (Bengali)", "FontName (Translatable font details)")
                     onTriggered: viewport.prompter.document.fontFamily = bengaliHumaneSerifFont.name
                 }
                 MenuSeparator {}
                 MenuItem {
                     id: systemFontButton
-                    text: i18nc("Opens system font selection dialog", "Choose System Font")
+                    text: qsTr("Choose System Font", "Opens system font selection dialog")
                     // Not using isMobile here, because Linux phones, unlike all others, would provide access to system fonts.
                     enabled: ['android', 'ios', 'wasm', 'tvos', 'qnx', 'ipados'].indexOf(Qt.platform.os)===-1
                     visible: enabled
                     onTriggered: {
                         if (prompterPage.document.showFontDialog())
-                            showPassiveNotification(i18n("No glyphs selected…"));
+                            showPassiveNotification(qsTr("No glyphs selected…"));
                     }
                 }
                 MenuSeparator {
@@ -807,7 +807,7 @@ ToolBar {
                 checked: true
             }
             Label {
-                text: i18nc("Velocity {VELOCITY_STEPS}", "Velocity <pre>%1</pre>", viewport.prompter.__i<0 ? '-' + (viewport.prompter.__i/100).toFixed(2).slice(3) : '+' + (viewport.prompter.__i/100).toFixed(2).slice(2))
+                text: qsTr("Velocity <pre>%1</pre>", "Velocity {VELOCITY_STEPS}").arg(viewport.prompter.__i<0 ? '-' + (viewport.prompter.__i/100).toFixed(2).slice(3) : '+' + (viewport.prompter.__i/100).toFixed(2).slice(2))
                 color: Kirigami.Theme.textColor
                 Layout.topMargin: 4
                 Layout.bottomMargin: -14
@@ -845,7 +845,7 @@ ToolBar {
                 font.pointSize: 13
             }
             Label {
-                text: i18nc("Opacity {TRANSPARENCY_PERCENTAGE}", "Opacity <pre>%1</pre>", (root.__opacity/10).toFixed(3).slice(2))
+                text: qsTr("Opacity <pre>%1</pre>", "Opacity {TRANSPARENCY_PERCENTAGE}").arg((root.__opacity/10).toFixed(3).slice(2))
                 color: Kirigami.Theme.textColor
                 Layout.topMargin: 4
                 Layout.bottomMargin: -14
@@ -926,8 +926,8 @@ ToolBar {
                     id: fontSizeLabel
                     visible: !fontSizeDirectInput.editText
                     text: viewport.prompter.wysiwyg ?
-                              i18nc("Font size 100% (083)", "Font size <pre>%1% (%2)</pre>", (fontWYSIWYGSizeSlider.value/1440).toFixed(3).slice(2), (viewport.prompter.fontSize/1000).toFixed(3).slice(2))
-                            : i18nc("Font size 100% (083)", "Font size <pre>%1% (%2)</pre>", (fontSizeSlider.value/1000).toFixed(3).slice(2), viewport.prompter.fontSize)
+                              qsTr("Font size <pre>%1 (%2)</pre>", "Font size 100% (083)").arg((fontWYSIWYGSizeSlider.value/1440).toFixed(3).slice(2)).arg((viewport.prompter.fontSize/1000).toFixed(3).slice(2))
+                            : qsTr("Font size <pre>%1 (%2)</pre>", "Font size 100% (083)").arg((fontSizeSlider.value/1000).toFixed(3).slice(2)).arg(viewport.prompter.fontSize)
                     color: Kirigami.Theme.textColor
                     Layout.topMargin: 4
                     Layout.bottomMargin: -14
@@ -986,7 +986,7 @@ ToolBar {
                 font.pointSize: 13
             }
             Label {
-                text: i18nc("Line height 100%", "Line height <pre>%1%</pre>", (lineHeightSlider.value/1000).toFixed(3).slice(2))
+                text: qsTr("Line height <pre>%1%</pre>", "Line height 100%").arg((lineHeightSlider.value/1000).toFixed(3).slice(2))
                 color: Kirigami.Theme.textColor
                 Layout.topMargin: 4
                 Layout.bottomMargin: -14
@@ -1026,7 +1026,7 @@ ToolBar {
                 font.pointSize: 13
             }
             Label {
-                text: i18nc("Paragraph spacing ±00", "Paragraph spacing <pre>%1%</pre>", (paragraphSpacingSlider.value/10).toFixed(3).slice(2))
+                text: qsTr("Paragraph spacing <pre>%1%</pre>", "Paragraph spacing ±00").arg((paragraphSpacingSlider.value/10).toFixed(3).slice(2))
                 color: Kirigami.Theme.textColor
                 Layout.topMargin: 4
                 Layout.bottomMargin: -14
@@ -1067,7 +1067,7 @@ ToolBar {
                 font.pointSize: 13
             }
             Label {
-                text: i18nc("Word spacing <pre>±00<pre>", "Word spacing <pre>%1</pre>", (wordSpacingSlider.value<0 ? '-' + (wordSpacingSlider.value/100).toFixed(2).slice(3) : '+' + (wordSpacingSlider.value/100).toFixed(2).slice(2)))
+                text: qsTr("Word spacing <pre>%1</pre>", "Word spacing <pre>±00<pre>").arg((wordSpacingSlider.value<0 ? '-' + (wordSpacingSlider.value/100).toFixed(2).slice(3) : '+' + (wordSpacingSlider.value/100).toFixed(2).slice(2)))
                 color: Kirigami.Theme.textColor
                 Layout.topMargin: 4
                 Layout.bottomMargin: -14
@@ -1103,7 +1103,7 @@ ToolBar {
                 font.pointSize: 13
             }
             Label {
-                text: i18nc("Letter spacing ±00", "Letter spacing <pre>%1</pre>", (letterSpacingSlider.value<0 ? '-' + (letterSpacingSlider.value/100).toFixed(2).slice(3) : '+' + (letterSpacingSlider.value/100).toFixed(2).slice(2)))
+                text: qsTr("Letter spacing <pre>%1</pre>", "Letter spacing ±00").arg((letterSpacingSlider.value<0 ? '-' + (letterSpacingSlider.value/100).toFixed(2).slice(3) : '+' + (letterSpacingSlider.value/100).toFixed(2).slice(2)))
                 color: Kirigami.Theme.textColor
                 Layout.topMargin: 4
                 Layout.bottomMargin: -14
@@ -1139,7 +1139,7 @@ ToolBar {
                 font.pointSize: 13
             }
             Label {
-                text: i18nc("Step speed 1.00", "Step speed <pre>%1</pre>", (baseSpeedSlider.value/100).toFixed(2))
+                text: qsTr("Step speed <pre>%1</pre>", "Step speed 1.00").arg((baseSpeedSlider.value/100).toFixed(2))
                 color: Kirigami.Theme.textColor
                 Layout.topMargin: 4
                 Layout.bottomMargin: -14
@@ -1180,7 +1180,7 @@ ToolBar {
                 font.pointSize: 13
             }
             Label {
-                text: i18nc("Step acceleration 1.15", "Step acceleration <pre>%1</pre>", (baseAccelerationSlider.value/100).toFixed(2))
+                text: qsTr("Step acceleration <pre>%1</pre>", "Step acceleration 1.15").arg((baseAccelerationSlider.value/100).toFixed(2))
                 color: Kirigami.Theme.textColor
                 Layout.topMargin: 4
                 Layout.bottomMargin: -14
@@ -1204,7 +1204,7 @@ ToolBar {
         RowLayout {
             Button {
                 visible: networkDialog.autoReloadRunning
-                text: i18nc("Next reload starts at 10:11:12", "Next reload starts at <pre>%1</pre>", networkDialog.nextReloadTime)
+                text: qsTr("Next reload starts at <pre>%1</pre>", "Next reload starts at 10:11:12").arg(networkDialog.nextReloadTime)
                 onClicked: networkDialog.open()
                 flat: true
                 contentItem: Loader { sourceComponent: textComponent }

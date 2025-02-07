@@ -39,7 +39,7 @@ Kirigami.ScrollablePage {
             return sofficePath;
     }
 
-    title: i18n("External Tools")
+    title: qsTr("External Tools")
 
     background: Rectangle {
         color: Kirigami.Theme.alternateBackgroundColor
@@ -54,13 +54,13 @@ Kirigami.ScrollablePage {
         id: path_settings
         width: parent.implicitWidth
         Kirigami.Heading {
-            text: i18n("LibreOffice")
+            text: qsTr("LibreOffice")
         }
         TextArea {
             background: Item{}
             readOnly: true
             wrapMode: TextEdit.Wrap
-            text: i18n("QPrompt can make transparent use of LibreOffice to convert Microsoft Word, "
+            text: qsTr("QPrompt can make transparent use of LibreOffice to convert Microsoft Word, "
                        + "Open Document Format, and other office documents into a format QPrompt "
                        + "understands. Install LibreOffice and ensure this field points to its "
                        + "location, so QPrompt can open office documents.")
@@ -68,7 +68,7 @@ Kirigami.ScrollablePage {
         }
         RowLayout {
             Button {
-                text: i18nc("Browse for PROGRAM", "Browse for %1", "LibreOffice")
+                text: qsTr("Browse for %1", "Browse for PROGRAM").arg("LibreOffice")
                 onPressed: {
                     pathSettings.currentlyBrowsing = "soffice";
                     pathsDialog.open();
@@ -96,15 +96,15 @@ Kirigami.ScrollablePage {
 
     Labs.FileDialog {
         id: pathsDialog
-        title: i18nc("Browse for PROGRAM", "Browse for %1", pathSettings.currentlyBrowsing)
+        title: qsTr("Browse for %1", "Browse for PROGRAM").arg(pathSettings.currentlyBrowsing)
         nameFilters: [
             (Qt.platform.os === "windows"
-             ? i18nc("Format name (FORMAT_EXTENSION)", "Executable (%1)", "EXE") + "(" + "*.exe *.EXE" + ")"
+             ? qsTr("Executable (%1)", "Format name (FORMAT_EXTENSION)").arg("EXE") + "(" + "*.exe *.EXE" + ")"
              : (Qt.platform.os === "osx"
-                ? i18nc("Format name (FORMAT_EXTENSION)", "Executable (%1)", "APP") + "(" + "*.app *.APP" + ")"
-                : i18nc("Format name (FORMAT_EXTENSION)", "Executable (%1)", "BIN") + "(" + "*.bin *.BIN *" + ")"
+                ? qsTr("Executable (%1)", "Format name (FORMAT_EXTENSION)").arg("APP") + "(" + "*.app *.APP" + ")"
+                : qsTr("Executable (%1)", "Format name (FORMAT_EXTENSION)").arg("BIN") + "(" + "*.bin *.BIN *" + ")"
                 )),
-            i18nc("All file formats", "All Formats") + "(*.*)"
+            qsTr("All Formats", "All file formats") + "(*.*)"
         ]
         fileMode: Labs.FileDialog.OpenFile
         onAccepted: {

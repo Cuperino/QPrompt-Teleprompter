@@ -172,7 +172,7 @@ Item {
         id: projectionDelegte
         Window {
             id: projectionWindow
-            title: i18n("Projection Window")
+            title: qsTr("Projection Window")
             transientParent: root
             screen: model.screen
             modality: Qt.NonModal
@@ -326,7 +326,7 @@ Item {
                     }
                     Button {
                         id: closeButton
-                        text: i18n("Close")
+                        text: qsTr("Close")
                         flat: parseInt(forwardTo.prompter.state) === Prompter.States.Countdown || parseInt(forwardTo.prompter.state) === Prompter.States.Prompting
                         onClicked: projectionWindow.close()
                         transform: Scale {
@@ -339,7 +339,7 @@ Item {
                     Button {
                         id: horizontalFlipButton
                         enabled: model.flip
-                        text: i18nc("Mirrors prompter horizontally", "Horizontal mirror")
+                        text: qsTr("Horizontal mirror", "Mirrors prompter horizontally")
                         icon.name: "object-flip-horizontal"
                         checkable: true
                         checked: model.flip===2 || model.flip===4
@@ -359,7 +359,7 @@ Item {
                     Button {
                         id: verticalFlipButton
                         enabled: model.flip
-                        text: i18nc("Mirrors prompter vertically", "Vertical mirror")
+                        text: qsTr("Vertical mirror", "Mirrors prompter vertically")
                         icon.name: "object-flip-vertical";
                         checkable: true
                         checked: model.flip===3 || model.flip===4
@@ -396,15 +396,15 @@ Item {
         id: alertDialog
         modality: Qt.WindowModal
         function requestDisplays() {
-            alertDialog.text = i18n("For screen projections to show, you must set at least one screen to a projection setting other than \"Off\"")
+            alertDialog.text = qsTr("For screen projections to show, you must set at least one screen to a projection setting other than \"Off\"")
             alertDialog.detailedText = ""
             alertDialog.icon = StandardIcon.Information
             alertDialog.visible = true
         }
 //         function warnSameDisplay(screenName) {
-//             alertDialog.text = i18n("You've enabled a screen projection on display \"%1\". Please note this projection will not show unless you place the editor on a different screen.", screenName)
-//             //alertDialog.text = i18n("QPrompt will not project to the screen where the editor is at.")
-//             //alertDialog.detailedText = i18n("You've enabled a screen projection on display \""+screenName+"\". Please note this projection will not show unless you place the editor on a different screen.")
+//             alertDialog.text = qsTr("You've enabled a screen projection on display \"%1\". Please note this projection will not show unless you place the editor on a different screen.", screenName)
+//             //alertDialog.text = qsTr("QPrompt will not project to the screen where the editor is at.")
+//             //alertDialog.detailedText = qsTr("You've enabled a screen projection on display \""+screenName+"\". Please note this projection will not show unless you place the editor on a different screen.")
 //             alertDialog.icon = StandardIcon.Warning
 //             alertDialog.visible = true
 //         }

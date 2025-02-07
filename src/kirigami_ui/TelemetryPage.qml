@@ -27,7 +27,7 @@ import Qt.labs.settings 1.0
 
 Kirigami.ScrollablePage {
 
-    title: i18n("Telemetry Settings")
+    title: qsTr("Telemetry Settings")
     //globalToolBarStyle: Kirigami.ApplicationHeaderStyle.ToolBar
 
     background: Rectangle {
@@ -52,7 +52,7 @@ Kirigami.ScrollablePage {
         Label {
             Layout.fillWidth: true
             wrapMode: Text.WordWrap
-            text: i18n("The following page is a placeholder. Telemetry has not yet been implemented.")
+            text: qsTr("The following page is a placeholder. Telemetry has not yet been implemented.")
         }
         Label {
             text: ""
@@ -63,13 +63,13 @@ Kirigami.ScrollablePage {
             background: Item{}
             readOnly: true
             wrapMode: TextEdit.Wrap
-            text: i18n("Please help improve QPrompt by sharing information on how you use it. Contributing this information is optional and entirely anonymous. The project nor I will never collect your personal data, files you use, contents you work with, or information that could help identify you.\n- Cuperino (QPrompt's Author)")
+            text: qsTr("Please help improve QPrompt by sharing information on how you use it. Contributing this information is optional and entirely anonymous. The project nor I will never collect your personal data, files you use, contents you work with, or information that could help identify you.\n- Cuperino (QPrompt's Author)")
         }
         Label {
-            text: i18n("Telemetry")
+            text: qsTr("Telemetry")
         }
         Button {
-            text: root.__telemetry ? i18n("Enabled") : i18n("Disabled")
+            text: root.__telemetry ? qsTr("Enabled") : qsTr("Disabled")
             checkable: true
             checked: root.__telemetry
             flat: true
@@ -78,7 +78,7 @@ Kirigami.ScrollablePage {
         }
         Button {
             id: platformTelemetryToggle
-            text: checked ? i18n("On") : i18n("Off")
+            text: checked ? qsTr("On") : qsTr("Off")
             enabled: root.__telemetry
             checkable: true
             checked: root.__telemetry
@@ -86,21 +86,21 @@ Kirigami.ScrollablePage {
             Layout.fillWidth: true
             //onClicked: root.__telemetry = !root.__telemetry
         }
-            //text: i18n("Information collected once per session")
+            //text: qsTr("Information collected once per session")
         TextArea {
             implicitWidth: parent.width-80
             background: Item{}
             readOnly: true
             wrapMode: TextEdit.Wrap
-            text: i18n("Basic program and system information")+"\n"+
-            " + " + i18n("Application version")+"\n"+
-            " + " + i18n("Platform information")+"\n"+
-            " + " + i18n("Qt version information")+"\n"+
-            " + " + i18n("Locale information (timezone and keyboard layout)")
+            text: qsTr("Basic program and system information")+"\n"+
+            " + " + qsTr("Application version")+"\n"+
+            " + " + qsTr("Platform information")+"\n"+
+            " + " + qsTr("Qt version information")+"\n"+
+            " + " + qsTr("Locale information (timezone and keyboard layout)")
         }
         Button {
             id: runsTelemetryToggle
-            text: checked ? i18n("On") : i18n("Off")
+            text: checked ? qsTr("On") : qsTr("Off")
             enabled: root.__telemetry
             checkable: true
             checked: root.__telemetry
@@ -113,16 +113,16 @@ Kirigami.ScrollablePage {
             background: Item{}
             readOnly: true
             wrapMode: TextEdit.Wrap
-            text: i18n("Program run statistics: Help us study user retention")+"\n"+
-            " + " + i18n("Randomly generated install ID")+"\n"+
-            " + " + i18n("Launch times")+"\n"+
-            " + " + i18n("Usage time")+"\n"+
-            " + " + i18n("Locale information (timezone and keyboard layout)")
+            text: qsTr("Program run statistics: Help us study user retention")+"\n"+
+            " + " + qsTr("Randomly generated install ID")+"\n"+
+            " + " + qsTr("Launch times")+"\n"+
+            " + " + qsTr("Usage time")+"\n"+
+            " + " + qsTr("Locale information (timezone and keyboard layout)")
         }
-        //text: i18n("Information collected once per prompt")
+        //text: qsTr("Information collected once per prompt")
         Button {
             id: featureTelemetryToggle
-            text: checked ? i18n("On") : i18n("Off")
+            text: checked ? qsTr("On") : qsTr("Off")
             enabled: root.__telemetry
             checkable: true
             checked: root.__telemetry
@@ -135,20 +135,20 @@ Kirigami.ScrollablePage {
             readOnly: true
             background: Item{}
             wrapMode: TextEdit.Wrap
-            text: i18n("Feature use frequency: Help us know what features are most important")+"\n"+
-            " + " + i18n("Flip settings")+"\n"+
-            " + " + i18n("Reading region settings")+"\n"+
-            " + " + i18n("Pointer settings")+"\n"+
-            " + " + i18n("Countdown settings")+"\n"+
-            " + " + i18n("Keyboard shortcut settings")+"\n"+
-            " + " + i18n("Input control settings")+"\n"+
-            " + " + i18n("Base speed and acceleration curvature settings")+"\n"+
-            " + " + i18n("Background color and opacity settings")+"\n"+
-            " + " + i18n("Presence of a background image")
+            text: qsTr("Feature use frequency: Help us know what features are most important")+"\n"+
+            " + " + qsTr("Flip settings")+"\n"+
+            " + " + qsTr("Reading region settings")+"\n"+
+            " + " + qsTr("Pointer settings")+"\n"+
+            " + " + qsTr("Countdown settings")+"\n"+
+            " + " + qsTr("Keyboard shortcut settings")+"\n"+
+            " + " + qsTr("Input control settings")+"\n"+
+            " + " + qsTr("Base speed and acceleration curvature settings")+"\n"+
+            " + " + qsTr("Background color and opacity settings")+"\n"+
+            " + " + qsTr("Presence of a background image")
         }
         Button {
             id: operationsTelemetryToggle
-            text: checked ? i18n("On") : i18n("Off")
+            text: checked ? qsTr("On") : qsTr("Off")
             enabled: root.__telemetry
             checkable: true
             checked: root.__telemetry
@@ -161,24 +161,24 @@ Kirigami.ScrollablePage {
             readOnly: true
             background: Item{}
             wrapMode: TextEdit.Wrap
-            text: i18n("Help us understand how users operate QPrompt")+"*\n"+
-            " + " + i18n("Random session ID")+"\n"+
-            " + " + i18n("Session number")+"\n"+
-            " + " + i18n("Session prompt number")+"\n"+
-            " + " + i18n("Window dimensions")+"\n"+
-            " + " + i18n("Prompt area dimensions")+"\n"+
-            " + " + i18n("Dimensions of lines of text being prompted")+"\n"+
-            " + " + i18n("Font settings per block of lines of text being prompted")+"\n"+
-            " + " + i18n("Languages likely present in the text being prompted")+"\n"+
-            " + " + i18n("Prompt starting line number and position")+"\n"+
-            " + " + i18n("Manual scroll start and end timestamps")+"\n"+
-            " + " + i18n("Scroll starting line number and position")+"\n"+
-            " + " + i18n("Scroll end line number and position")+"\n"+
-            " + " + i18n("Scroll duration")+"\n"+
-            " + " + i18n("Prompt duration")+"\n"+
-            " + " + i18n("Velocity changes with timestamp")+"\n"+
-            " + " + i18n("Source of changes to velocity")+"\n"+
-            " + " + i18n("Source of manual changes to scroll position")+"\n\n"
+            text: qsTr("Help us understand how users operate QPrompt")+"*\n"+
+            " + " + qsTr("Random session ID")+"\n"+
+            " + " + qsTr("Session number")+"\n"+
+            " + " + qsTr("Session prompt number")+"\n"+
+            " + " + qsTr("Window dimensions")+"\n"+
+            " + " + qsTr("Prompt area dimensions")+"\n"+
+            " + " + qsTr("Dimensions of lines of text being prompted")+"\n"+
+            " + " + qsTr("Font settings per block of lines of text being prompted")+"\n"+
+            " + " + qsTr("Languages likely present in the text being prompted")+"\n"+
+            " + " + qsTr("Prompt starting line number and position")+"\n"+
+            " + " + qsTr("Manual scroll start and end timestamps")+"\n"+
+            " + " + qsTr("Scroll starting line number and position")+"\n"+
+            " + " + qsTr("Scroll end line number and position")+"\n"+
+            " + " + qsTr("Scroll duration")+"\n"+
+            " + " + qsTr("Prompt duration")+"\n"+
+            " + " + qsTr("Velocity changes with timestamp")+"\n"+
+            " + " + qsTr("Source of changes to velocity")+"\n"+
+            " + " + qsTr("Source of manual changes to scroll position")+"\n\n"
         }
         Label {
             text: ""
@@ -187,7 +187,7 @@ Kirigami.ScrollablePage {
             implicitWidth: parent.width-80
             readOnly: true
             wrapMode: TextEdit.Wrap
-            text: i18n("This information is very important to me, Javier, the project author, and it could help make QPrompt's development sustainable. I've gone the extra mile not to collect any of the actual text and images that you work with, so I ask you: please leave telemetry enabled.")
+            text: qsTr("This information is very important to me, Javier, the project author, and it could help make QPrompt's development sustainable. I've gone the extra mile not to collect any of the actual text and images that you work with, so I ask you: please leave telemetry enabled.")
             background: Item{}
         }
     }

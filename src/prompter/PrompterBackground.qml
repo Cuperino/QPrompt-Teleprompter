@@ -122,9 +122,9 @@ Rectangle {
         Labs.FileDialog {
             id: openBackgroundDialog
             nameFilters: [
-              i18n("JPEG image") + "(*.jpg *.jpeg *.JPG *.JPEG)",
-              i18n("PNG image") + "(*.png *.PNG)",
-              i18n("GIF animation") + "(*.gif *.GIF)"
+              qsTr("JPEG image") + "(*.jpg *.jpeg *.JPG *.JPEG)",
+              qsTr("PNG image") + "(*.png *.PNG)",
+              qsTr("GIF animation") + "(*.gif *.GIF)"
             ]
             fileMode: Labs.FileDialog.OpenFile
             folder: StandardPaths.writableLocation(StandardPaths.PicturesLocation)
