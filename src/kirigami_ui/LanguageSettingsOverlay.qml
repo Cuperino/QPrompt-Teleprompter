@@ -29,7 +29,7 @@ import QtCore 6.5
 Kirigami.OverlaySheet {
     property alias value: languageSelector.highlightedIndex
     header: Kirigami.Heading {
-        text: i18n("Language settings")
+        text: qsTr("Language settings")
         level: 1
     }
     z: 1
@@ -37,7 +37,7 @@ Kirigami.OverlaySheet {
     ColumnLayout {
         RowLayout {
             Label {
-                text: i18nc("Selector to choose user interface language", "UI Language")
+                text: qsTr("UI Language", "Selector to choose user interface language")
             }
             ComboBox {
                 id: languageSelector
@@ -61,87 +61,87 @@ Kirigami.OverlaySheet {
                 }
                 model: [
                     {
-                        "text": i18nc("Language", "Use system language"),
+                        "text": qsTr("Use system language", "Language"),
                         "value": ""
                     },
                     {
-                        "text": i18nc("Language", "English"),
+                        "text": qsTr("English", "Language"),
                         "value": "en_US"
                     },
                     // {
-                    //     "text": i18nc("Language", "Arabic"),
+                    //     "text": qsTr("Arabic", "Language"),
                     //     "value": "ar_AE"
                     // },
                     {
-                        "text": i18nc("Language", "Chinese (Simplified)"),
+                        "text": qsTr("Chinese (Simplified)", "Language"),
                         "value": "zh_CN"
                     },
                     {
-                        "text": i18nc("Language", "Czech"),
+                        "text": qsTr("Czech", "Language"),
                         "value": "cs_CZ"
                     },
                     // {
-                    //     "text": i18nc("Language", "Dutch"),
+                    //     "text": qsTr("Dutch", "Language"),
                     //     "value": "nl_NL"
                     // },
                     // {
-                    //     "text": i18nc("Language", "Finnish"),
+                    //     "text": qsTr("Finnish", "Language"),
                     //     "value": "fi_FI"
                     // },
                     {
-                        "text": i18nc("Language", "French"),
+                        "text": qsTr("French", "Language"),
                         "value": "fr_FR"
                     },
                     {
-                        "text": i18nc("Language", "German"),
+                        "text": qsTr("German", "Language"),
                         "value": "de_DE"
                     },
                     // {
-                    //     "text": i18nc("Language", "Hebrew"),
+                    //     "text": qsTr("Hebrew", "Language"),
                     //     "value": "he-IL"
                     // },
                     // {
-                    //     "text": i18nc("Language", "Italian"),
+                    //     "text": qsTr("Italian", "Language"),
                     //     "value": "it_IT"
                     // },
                     {
-                        "text": i18nc("Language", "Japanese"),
+                        "text": qsTr("Japanese", "Language"),
                         "value": "ja_JP"
                     },
                     // {
-                    //     "text": i18nc("Language", "Korean"),
+                    //     "text": qsTr("Korean", "Language"),
                     //     "value": "ko_KO"
                     // },
                     // {
-                    //     "text": i18nc("Language", "Occitan"),
+                    //     "text": qsTr("Occitan", "Language"),
                     //     "value": "oc_FR"
                     // },
                     // {
-                    //     "text": i18nc("Language", "Polish"),
+                    //     "text": qsTr("Polish", "Language"),
                     //     "value": "pl_PL"
                     // },
                     {
-                        "text": i18nc("Language", "Portuguese (Brazil)"),
+                        "text": qsTr("Portuguese (Brazil)", "Language"),
                         "value": "pt_BR"
                     },
                     {
-                        "text": i18nc("Language", "Portuguese (Portugal)"),
+                        "text": qsTr("Portuguese (Portugal)", "Language"),
                         "value": "pt_PO"
                     },
                     // {
-                    //     "text": i18nc("Language", "Russian"),
+                    //     "text": qsTr("Russian", "Language"),
                     //     "value": "ru_RU"
                     // },
                     {
-                        "text": i18nc("Language", "Spanish"),
+                        "text": qsTr("Spanish", "Language"),
                         "value": "es_ES"
                     },
                     {
-                        "text": i18nc("Language", "Turkish"),
+                        "text": qsTr("Turkish", "Language"),
                         "value": "tr_TR"
                     },
                     {
-                        "text": i18nc("Language", "Ukranian"),
+                        "text": qsTr("Ukranian", "Language"),
                         "value": "uk_UA"
                     },
                 ]
@@ -169,7 +169,7 @@ Kirigami.OverlaySheet {
             }
         }
         Label {
-            text: i18n("Is your language not here or it's incomplete?\nHelp us translate QPrompt, visit:")
+            text: qsTr("Is your language not here or it's incomplete?\nHelp us translate QPrompt, visit:")
         }
         Button {
             text: "http://l10n.qprompt.app"

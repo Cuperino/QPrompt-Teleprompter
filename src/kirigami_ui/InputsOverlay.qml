@@ -32,7 +32,7 @@ Kirigami.OverlaySheet {
     width: root.minimumWidth
 
     header: Kirigami.Heading {
-        text: i18nc("Title of dialog where users customize keyboard inputs", "Key Bindings")
+        text: qsTr("Key Bindings", "Title of dialog where users customize keyboard inputs")
         level: 1
     }
 
@@ -260,7 +260,7 @@ Kirigami.OverlaySheet {
         }
 
         Label {
-            text: i18n("Toggle Prompter State")
+            text: qsTr("Toggle Prompter State")
         }
         Loader {
             id: keyInputTogglePrompter
@@ -268,7 +268,7 @@ Kirigami.OverlaySheet {
             Layout.fillWidth: true
         }
         Label {
-            text: i18n("Decrease Velocity")
+            text: qsTr("Decrease Velocity")
         }
         Loader {
             id: keyInputDecreaseVelocity
@@ -276,7 +276,7 @@ Kirigami.OverlaySheet {
             Layout.fillWidth: true
         }
         Label {
-            text: i18n("Increase Velocity")
+            text: qsTr("Increase Velocity")
         }
         Loader {
             id: keyInputIncreaseVelocity
@@ -284,7 +284,7 @@ Kirigami.OverlaySheet {
             Layout.fillWidth: true
         }
         Label {
-            text: i18n("Stop")
+            text: qsTr("Stop")
         }
         Loader {
             id: keyInputStop
@@ -292,7 +292,7 @@ Kirigami.OverlaySheet {
             Layout.fillWidth: true
         }
         Label {
-            text: i18n("Play/Pause")
+            text: qsTr("Play/Pause")
         }
         Loader {
             id: keyInputPlayPause
@@ -300,7 +300,7 @@ Kirigami.OverlaySheet {
             Layout.fillWidth: true
         }
         Label {
-            text: i18n("Reverse")
+            text: qsTr("Reverse")
         }
         Loader {
             id: keyInputReverse
@@ -308,7 +308,7 @@ Kirigami.OverlaySheet {
             Layout.fillWidth: true
         }
         Label {
-            text: i18n("Rewind")
+            text: qsTr("Rewind")
         }
         Loader {
             id: keyInputRewind
@@ -316,7 +316,7 @@ Kirigami.OverlaySheet {
             Layout.fillWidth: true
         }
         Label {
-            text: i18n("Fast Forward")
+            text: qsTr("Fast Forward")
         }
         Loader {
             id: keyInputFastForward
@@ -324,7 +324,7 @@ Kirigami.OverlaySheet {
             Layout.fillWidth: true
         }
         Label {
-            text: i18nc("Skip to earlier text while prompting or editing", "Move Backwards")
+            text: qsTr("Move Backwards", "Skip to earlier text while prompting or editing")
         }
         Loader {
             id: keyInputMoveBackwards
@@ -332,7 +332,7 @@ Kirigami.OverlaySheet {
             Layout.fillWidth: true
         }
         Label {
-            text: i18nc("Skip to later text while prompting or editing", "Move Forward")
+            text: qsTr("Move Forward", "Skip to later text while prompting or editing")
         }
         Loader {
             id: keyInputMoveForward
@@ -340,7 +340,7 @@ Kirigami.OverlaySheet {
             Layout.fillWidth: true
         }
         Label {
-            text: i18nc("Skip to closest marker behind of current position", "Go to Previous Marker")
+            text: qsTr("Go to Previous Marker", "Skip to closest marker behind of current position")
         }
         Loader {
             id: keyInputPreviousMarker
@@ -348,7 +348,7 @@ Kirigami.OverlaySheet {
             Layout.fillWidth: true
         }
         Label {
-            text: i18nc("Skip to closest marker ahead of current position", "Go to Next Marker")
+            text: qsTr("Go to Next Marker", "Skip to closest marker ahead of current position")
         }
         Loader {
             id: keyInputNextMarker
@@ -356,13 +356,13 @@ Kirigami.OverlaySheet {
             Layout.fillWidth: true
         }
         Label {
-            text: i18nc("Hotkey that shifts velocoty to its negative value.", "Set velocity modifier key")
+            text: qsTr("Set velocity modifier key", "Hotkey that shifts velocoty to its negative value.")
         }
         ComboBox {
             id: keyInputSetVelocityModifier
             model: [
-                i18nc("Control key", "Ctrl"),
-                i18nc("Alt key", "Alt")
+                qsTr("Ctrl", "Control key"),
+                qsTr("Alt", "Alt key")
             ]
             z: 1
             onActivated: {
@@ -395,7 +395,7 @@ Kirigami.OverlaySheet {
             }
         }
         Label {
-            text: i18nc("Hotkey that sets velocity to a fixed value.", "Set velocity to 0")
+            text: qsTr("Set velocity to 0", "Hotkey that sets velocity to a fixed value.")
         }
         Loader {
             id: keyInputSetVelocity0
@@ -403,7 +403,7 @@ Kirigami.OverlaySheet {
             Layout.fillWidth: true
         }
         Label {
-            text: i18nc("Hotkey that sets velocity to a fixed value.", "Set velocity to 1")
+            text: qsTr("Set velocity to 1", "Hotkey that sets velocity to a fixed value.")
         }
         Loader {
             id: keyInputSetVelocity1
@@ -411,7 +411,7 @@ Kirigami.OverlaySheet {
             Layout.fillWidth: true
         }
         Label {
-            text: i18nc("Hotkey that sets velocity to a fixed value.", "Set velocity to 2")
+            text: qsTr("Set velocity to 2", "Hotkey that sets velocity to a fixed value.")
         }
         Loader {
             id: keyInputSetVelocity2
@@ -419,7 +419,7 @@ Kirigami.OverlaySheet {
             Layout.fillWidth: true
         }
         Label {
-            text: i18nc("Hotkey that sets velocity to a fixed value.", "Set velocity to 3")
+            text: qsTr("Set velocity to 3", "Hotkey that sets velocity to a fixed value.")
         }
         Loader {
             id: keyInputSetVelocity3
@@ -427,7 +427,7 @@ Kirigami.OverlaySheet {
             Layout.fillWidth: true
         }
         Label {
-            text: i18nc("Hotkey that sets velocity to a fixed value.", "Set velocity to 4")
+            text: qsTr("Set velocity to 4", "Hotkey that sets velocity to a fixed value.")
         }
         Loader {
             id: keyInputSetVelocity4
@@ -435,7 +435,7 @@ Kirigami.OverlaySheet {
             Layout.fillWidth: true
         }
         Label {
-            text: i18nc("Hotkey that sets velocity to a fixed value.", "Set velocity to 5")
+            text: qsTr("Set velocity to 5", "Hotkey that sets velocity to a fixed value.")
         }
         Loader {
             id: keyInputSetVelocity5
@@ -443,7 +443,7 @@ Kirigami.OverlaySheet {
             Layout.fillWidth: true
         }
         Label {
-            text: i18nc("Hotkey that sets velocity to a fixed value.", "Set velocity to 6")
+            text: qsTr("Set velocity to 6", "Hotkey that sets velocity to a fixed value.")
         }
         Loader {
             id: keyInputSetVelocity6
@@ -451,7 +451,7 @@ Kirigami.OverlaySheet {
             Layout.fillWidth: true
         }
         Label {
-            text: i18nc("Hotkey that sets velocity to a fixed value.", "Set velocity to 7")
+            text: qsTr("Set velocity to 7", "Hotkey that sets velocity to a fixed value.")
         }
         Loader {
             id: keyInputSetVelocity7
@@ -459,7 +459,7 @@ Kirigami.OverlaySheet {
             Layout.fillWidth: true
         }
         Label {
-            text: i18nc("Hotkey that sets velocity to a fixed value.", "Set velocity to 8")
+            text: qsTr("Set velocity to 8", "Hotkey that sets velocity to a fixed value.")
         }
         Loader {
             id: keyInputSetVelocity8
@@ -467,7 +467,7 @@ Kirigami.OverlaySheet {
             Layout.fillWidth: true
         }
         Label {
-            text: i18nc("Hotkey that sets velocity to a fixed value.", "Set velocity to 9")
+            text: qsTr("Set velocity to 9", "Hotkey that sets velocity to a fixed value.")
         }
         Loader {
             id: keyInputSetVelocity9
@@ -475,7 +475,7 @@ Kirigami.OverlaySheet {
             Layout.fillWidth: true
         }
         Label {
-            text: i18nc("Hotkey that sets velocity to a fixed value.", "Set velocity to 10")
+            text: qsTr("Set velocity to 10", "Hotkey that sets velocity to a fixed value.")
         }
         Loader {
             id: keyInputSetVelocity10

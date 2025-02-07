@@ -1,7 +1,7 @@
 #**************************************************************************
 #
 # QPrompt
-# Copyright (C) 2020-2024 Javier O. Cordero Pérez
+# Copyright (C) 2020-2025 Javier O. Cordero Pérez
 #
 # This file is part of QPrompt.
 #
@@ -21,10 +21,10 @@
 
 if(NOT WIN32)
     include(ECMPoQmTools)
-    ecm_create_qm_loader(qprompt_QM_LOADER ../locale/qprompt.pot)
+    ecm_create_qm_loader(qprompt_QM_LOADER ../po/qprompt.pot)
 endif()
 
-qt_standard_project_setup()
+qt_standard_project_setup(I18N_TRANSLATED_LANGUAGES ar cs de es fi fr he it ja ko nl oc pl pt_BR pt_PT ru tr uk zh)
 
 qt_add_executable(${PROJECT_NAME}
     main.cpp
@@ -65,6 +65,17 @@ if (NOT ANDROID)
         ICONS ${RASTER_ICONS}
     )
 endif()
+
+set(qprompt_cpp
+    qmlutil.hpp
+    abstractunits.hpp
+    documenthandler.h
+    documenthandler.cpp
+    marker.hpp
+    markersmodel.h
+    markersmodel.cpp
+    ${qprompt_QM_LOADER}
+)
 
 set(qprompt_frontend_sources
     # Kirigami UI Frontend
@@ -251,14 +262,7 @@ qt_add_qml_module(
     DEPENDENCIES
     QtQuick
     SOURCES
-    qmlutil.hpp
-    abstractunits.hpp
-    documenthandler.h
-    documenthandler.cpp
-    marker.hpp
-    markersmodel.h
-    markersmodel.cpp
-    ${qprompt_QM_LOADER}
+    ${qprompt_cpp}
     QML_FILES
     ${qprompt_frontend_sources}
     ${prompter_sources}
@@ -284,6 +288,7 @@ set_target_properties(${PROJECT_NAME} PROPERTIES
     OUTPUT_NAME ${OUTPUT_NAME}
     MACOSX_BUNDLE TRUE
     WIN32_EXECUTABLE TRUE
+    INTERFACE_LINK_LIBRARIES "KF${QT_VERSION_MAJOR}::CoreAddons;KF${QT_VERSION_MAJOR}::Kirigami"
     # QT_QMLCACHEGEN_ARGUMENTS "--static"  # "--static;--verbose"
     # QT_QMLCACHEGEN_DIRECT_CALLS OFF
     # PLUGIN_TARGET qtlabsplatformplugin inhibits the creation of the backing library, thus headers can't be accessed in direct mode.
@@ -314,6 +319,12 @@ qt_add_shaders(
     "shaders/blur.frag"
     "shaders/shadow.frag"
     "shaders/tint.frag"
+)
+
+qt_add_translations(${PROJECT_NAME} SOURCE_TARGETS ${PROJECT_NAME}
+    TS_FILE_DIR ${CMAKE_SOURCE_DIR}/po
+    LUPDATE_OPTIONS -source-language en
+    LRELEASE_OPTIONS -compress -markuntranslated l10n_  # -idbased
 )
 
 # Libraries
@@ -369,6 +380,25 @@ elseif(WIN32 OR APPLE)
         KF${QT_VERSION_MAJOR}::Kirigami
         KF${QT_VERSION_MAJOR}::CoreAddons
     )
+elseif(APPLE)
+    target_link_libraries(${PROJECT_NAME} PRIVATE
+        Qt${QT_VERSION_MAJOR}::Core
+        Qt${QT_VERSION_MAJOR}::Quick
+        Qt${QT_VERSION_MAJOR}::Gui
+        Qt${QT_VERSION_MAJOR}::Svg
+        Qt${QT_VERSION_MAJOR}::Qml
+        Qt${QT_VERSION_MAJOR}::QuickControls2
+        Qt${QT_VERSION_MAJOR}::Network
+        Qt${QT_VERSION_MAJOR}::Widgets
+    )
+
+    target_include_directories(KF6CoreAddons PRIVATE ${kcoreaddons_SOURCE_DIR}/kcoreaddons)
+    target_link_directories(KF6CoreAddons PRIVATE ${kcoreaddons_SOURCE_DIR}/kcoreaddons)
+    target_link_libraries(${PROJECT_NAME} PRIVATE KF${QT_VERSION_MAJOR}::CoreAddons)
+
+    target_include_directories(Kirigami PRIVATE ${kirigami_SOURCE_DIR}/kirigami)
+    target_link_directories(Kirigami PRIVATE ${kirigami_SOURCE_DIR}/kirigami)
+    target_link_libraries(${PROJECT_NAME} PRIVATE KF${QT_VERSION_MAJOR}::Kirigami)
 else()
     target_link_libraries(${PROJECT_NAME} PRIVATE
         Qt${QT_VERSION_MAJOR}::Core
@@ -401,6 +431,10 @@ endif()
 # Installation and bundling
 if (APPLE)
     install(TARGETS ${PROJECT_NAME} ${KDE_INSTALL_TARGETS_DEFAULT_ARGS} BUNDLE DESTINATION .)
+    install(TARGETS KF6CoreAddons ${KDE_INSTALL_TARGETS_DEFAULT_ARGS} FRAMEWORK DESTINATION QPrompt.app/Contents/Frameworks)
+    install(TARGETS Kirigami ${KDE_INSTALL_TARGETS_DEFAULT_ARGS} FRAMEWORK DESTINATION QPrompt.app/Contents/Frameworks)
+    install(DIRECTORY ../build/bin/org DESTINATION QPrompt.app/Contents/Resources/qml)
+    install(DIRECTORY ../build/bin/org DESTINATION QPrompt.app/Contents/MacOS/qml)
 elseif (WIN32 OR UNIX)
     install(FILES com.cuperino.qprompt.appdata.xml DESTINATION ${KDE_INSTALL_METAINFODIR})
     install(PROGRAMS com.cuperino.qprompt.desktop DESTINATION ${KDE_INSTALL_APPDIR})

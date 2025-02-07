@@ -29,14 +29,14 @@ import QtCore 6.5
 Kirigami.OverlaySheet {
     property alias value: layoutSelector.highlightedIndex
     header: Kirigami.Heading {
-        text: i18n("Layout direction")
+        text: qsTr("Layout direction")
         level: 1
     }
     z: 1
     ColumnLayout {
         RowLayout {
             Label {
-                text: i18nc("Label at layout direction settings overlay", "Current layout")
+                text: qsTr("Current layout", "Label at layout direction settings overlay")
             }
             ComboBox {
                 id: layoutSelector
@@ -46,9 +46,9 @@ Kirigami.OverlaySheet {
                     category: "ui"
                     property alias layout: layoutSelector.currentIndex
                 }
-                model: [ i18nc("Short for automatic", "Auto"),
-                         i18nc("Short for Right to Left layout", "RTL"),
-                         i18nc("Short for Left to Right layout", "LTR") ]
+                model: [ qsTr("Auto", "Short for automatic"),
+                         qsTr("RTL", "Short for Right to Left layout"),
+                         qsTr("LTR", "Short for Left to Right layout") ]
                 popup: Popup {
                     width: parent.width
                     implicitHeight: contentItem.implicitHeight

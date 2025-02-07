@@ -135,9 +135,10 @@ find_package(Qt${QT_VERSION_MAJOR} ${QT_MIN_VERSION} REQUIRED NO_MODULE COMPONEN
     QuickControls2
     Network
     ShaderTools
+    LinguistTools
 )
 
-if (WIN32)
+if (WIN32 OR APPLE)
     set(BUILD_TESTING OFF)
     FetchContent_Declare(
       CoreAddons
@@ -204,7 +205,7 @@ else()
         if (NOT EXISTS "${PROJECT_SOURCE_DIR}/3rdparty/KDMacTouchBar/CMakeLists.txt")
             message(FATAL_ERROR "KDMacTouchBar was not downloaded. GIT_SUBMODULE was turned off or failed.")
         endif()
-        set(CMAKE_INSTALL_PREFIX ${PROJECT_SOURCE_DIR}/install/usr/)
+        # set(CMAKE_INSTALL_PREFIX ${PROJECT_SOURCE_DIR}/install/usr/)
         add_subdirectory("3rdparty/KDMacTouchBar" build/kdmactouchbar)
     endif()
 endif()

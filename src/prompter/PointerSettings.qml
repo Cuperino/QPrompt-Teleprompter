@@ -101,13 +101,13 @@ ColumnLayout {
         property alias qmlRightPath: rightPointerQmlPath.text
     }
     Label {
-        text: i18n("Colors for prompter states")
+        text: qsTr("Colors for prompter states")
         font.pixelSize: 22
     }
     RowLayout {
         id: pointerColorSettings
         Label {
-            text: i18n("Editing: ")
+            text: qsTr("Editing: ")
         }
         TextField {
             id: editingColor
@@ -120,7 +120,7 @@ ColumnLayout {
             Layout.fillWidth: true
         }
         Label {
-            text: i18n("Ready: ")
+            text: qsTr("Ready: ")
         }
         TextField {
             id: readyColor
@@ -133,7 +133,7 @@ ColumnLayout {
             Layout.fillWidth: true
         }
         Label {
-            text: i18n("Prompting: ")
+            text: qsTr("Prompting: ")
         }
         TextField {
             id: promptingColor
@@ -147,27 +147,27 @@ ColumnLayout {
         }
     }
     Label {
-        text: i18n("Pointer settings")
-        // text: i18n("Pointer mirroring")
+        text: qsTr("Pointer settings")
+        // text: qsTr("Pointer mirroring")
         font.pixelSize: 22
     }
     RowLayout {
         CheckBox {
             id: sameAsLeftPointerCheck
             text: Qt.application.layoutDirection
-                  === Qt.LeftToRight ? i18nc(
-                                           "Uses a mirrored copy of the first pointer as the second pointer",
-                                           "Reuse left pointer") : i18nc(
-                                           "Uses a mirrored copy of the first pointer as the second pointer",
-                                           "Reuse right pointer")
+                  === Qt.LeftToRight ? qsTr(
+                                           "Reuse left pointer",
+                                           "Uses a mirrored copy of the first pointer as the second pointer") : qsTr(
+                                           "Reuse right pointer",
+                                           "Uses a mirrored copy of the first pointer as the second pointer")
         }
         CheckBox {
             id: tintCheck
-            text: i18n("Tint")
+            text: qsTr("Tint")
         }
         CheckBox {
             id: debugPointers
-            text: i18n("Guides")
+            text: qsTr("Guides")
         }
     }
     Rectangle {
@@ -199,25 +199,25 @@ ColumnLayout {
         id: pointerSettingsTabs
         currentIndex: pointerSettings.pointerKind
         TabButton {
-            text: i18n("Arrow")
+            text: qsTr("Arrow")
             onClicked: listView.positionViewAtIndex(
                            parseInt(PointerSettings.States.Arrow),
                            ListView.Beginning)
         }
         TabButton {
-            text: i18n("Text")
+            text: qsTr("Text")
             onClicked: listView.positionViewAtIndex(
                            parseInt(PointerSettings.States.Text),
                            ListView.Beginning)
         }
         TabButton {
-            text: i18n("Image")
+            text: qsTr("Image")
             onClicked: listView.positionViewAtIndex(
                            parseInt(PointerSettings.States.Image),
                            ListView.Beginning)
         }
         TabButton {
-            text: i18n("Custom")
+            text: qsTr("Custom")
             onClicked: listView.positionViewAtIndex(
                            parseInt(PointerSettings.States.QML),
                            ListView.Beginning)
@@ -235,7 +235,7 @@ ColumnLayout {
                 id: lineWidth
                 property int value: 15 // the user will see value + 1
                 Label {
-                    text: i18n("Line width <pre>%1</pre>",
+                    text: qsTr("Line width <pre>%1</pre>",
                                ((parent.value + 1) / 100).toFixed(2).slice(2))
                 }
                 Slider {
@@ -254,7 +254,7 @@ ColumnLayout {
             //    id: xFillExtent
             //    property real value: 0.5
             //    Label {
-            //        text: i18n("Fill extent <pre>%1</pre>", (parent.value/10).toFixed(3).slice(2))
+            //        text: qsTr("Fill extent <pre>%1</pre>", (parent.value/10).toFixed(3).slice(2))
             //    }
             //    Slider {
             //        value: 1
@@ -272,7 +272,7 @@ ColumnLayout {
             //    id: fillOpacity
             //    property real value: 0
             //    Label {
-            //        text: i18n("Fill opacity <pre>%1</pre>", (parent.value/10).toFixed(3).slice(2))
+            //        text: qsTr("Fill opacity <pre>%1</pre>", (parent.value/10).toFixed(3).slice(2))
             //    }
             //    Slider {
             //        value: 0
@@ -297,7 +297,7 @@ ColumnLayout {
             RowLayout {
                 Label {
                     text: Qt.application.layoutDirection
-                          === Qt.LeftToRight ? i18n("Left Pointer: ") : i18n(
+                          === Qt.LeftToRight ? qsTr("Left Pointer: ") : qsTr(
                                                    "Right Pointer: ")
                 }
                 TextField {
@@ -310,7 +310,7 @@ ColumnLayout {
                     Layout.fillWidth: true
                 }
                 Label {
-                    text: i18n("Right Pointer: ")
+                    text: qsTr("Right Pointer: ")
                     enabled: !pointerSettings.sameAsLeftPointer
                 }
                 TextField {
@@ -341,7 +341,7 @@ ColumnLayout {
             }
             RowLayout {
                 Label {
-                    text: i18n("Font: ")
+                    text: qsTr("Font: ")
                 }
                 ComboBox {
                     id: fontSelector
@@ -374,11 +374,10 @@ ColumnLayout {
                 id: textVerticalOffsetSlider
                 property real value: -0.05
                 Label {
-                    text: i18nc(
-                              "Vertical offset (line height) 1.00",
+                    text: qsTr(
                               "Vertical offset <pre>%1</pre>",
-                              (parent.value < 0 ? "-" : "+") + (parent.value / 10).toFixed(
-                                  3).slice((parent.value < 0 ? 3 : 2)))
+                              "Vertical offset (line height) 1.00").arg(
+                                  (parent.value < 0 ? "-" : "+") + (parent.value / 10).toFixed(3).slice((parent.value < 0 ? 3 : 2)))
                 }
                 Slider {
                     value: parent.value
@@ -404,7 +403,7 @@ ColumnLayout {
             RowLayout {
                 Label {
                     text: Qt.application.layoutDirection
-                          === Qt.LeftToRight ? i18n("Left Pointer: ") : i18n(
+                          === Qt.LeftToRight ? qsTr("Left Pointer: ") : qsTr(
                                                    "Right Pointer: ")
                 }
                 TextField {
@@ -415,7 +414,7 @@ ColumnLayout {
                     Layout.fillWidth: true
                 }
                 Button {
-                    text: i18n("Browse")
+                    text: qsTr("Browse")
                     onPressed: {
                         pointerImageFileDialog.source = leftPointerImagePath
                         pointerImageFileDialog.open()
@@ -427,7 +426,7 @@ ColumnLayout {
                 enabled: !pointerSettings.sameAsLeftPointer
                 Label {
                     text: Qt.application.layoutDirection
-                          === Qt.LeftToRight ? i18n("Right Pointer: ") : i18n(
+                          === Qt.LeftToRight ? qsTr("Right Pointer: ") : qsTr(
                                                    "Left Pointer: ")
                 }
                 TextField {
@@ -447,7 +446,7 @@ ColumnLayout {
                     Layout.fillWidth: true
                 }
                 Button {
-                    text: i18n("Browse")
+                    text: qsTr("Browse")
                     onPressed: {
                         pointerImageFileDialog.source = rightPointerImagePath
                         pointerImageFileDialog.open()
@@ -459,11 +458,10 @@ ColumnLayout {
                 id: imageVerticalOffsetSlider
                 property real value: 0
                 Label {
-                    text: i18nc(
-                              "Vertical offset (line height) 1.00",
+                    text: qsTr(
                               "Vertical offset <pre>%1</pre>",
-                              (parent.value < 0 ? "-" : "+") + (parent.value / 10).toFixed(
-                                  3).slice((parent.value < 0 ? 3 : 2)))
+                              "Vertical offset (line height) 1.00").arg(
+                                (parent.value < 0 ? "-" : "+") + (parent.value / 10).toFixed(3).slice((parent.value < 0 ? 3 : 2)))
                 }
                 Slider {
                     value: parent.value
@@ -487,13 +485,13 @@ ColumnLayout {
             height: listView.height
             RowLayout {
                 Label {
-                    text: i18n("Use QML scripts to draw pointers")
+                    text: qsTr("Use QML scripts to draw pointers")
                 }
             }
             RowLayout {
                 Label {
                     text: Qt.application.layoutDirection
-                          === Qt.LeftToRight ? i18n("Left Pointer: ") : i18n(
+                          === Qt.LeftToRight ? qsTr("Left Pointer: ") : qsTr(
                                                    "Right Pointer: ")
                 }
                 TextField {
@@ -504,7 +502,7 @@ ColumnLayout {
                     Layout.fillWidth: true
                 }
                 Button {
-                    text: i18n("Browse")
+                    text: qsTr("Browse")
                     onPressed: {
                         pointerQmlFileDialog.source = leftPointerQmlPath
                         pointerQmlFileDialog.open()
@@ -516,7 +514,7 @@ ColumnLayout {
                 enabled: !pointerSettings.sameAsLeftPointer
                 Label {
                     text: Qt.application.layoutDirection
-                          === Qt.LeftToRight ? i18n("Right Pointer: ") : i18n(
+                          === Qt.LeftToRight ? qsTr("Right Pointer: ") : qsTr(
                                                    "Left Pointer: ")
                 }
                 TextField {
@@ -536,7 +534,7 @@ ColumnLayout {
                     Layout.fillWidth: true
                 }
                 Button {
-                    text: i18n("Browse")
+                    text: qsTr("Browse")
                     onPressed: {
                         pointerQmlFileDialog.source = rightPointerQmlPath
                         pointerQmlFileDialog.open()
@@ -560,9 +558,9 @@ ColumnLayout {
     Labs.FileDialog {
         id: pointerImageFileDialog
         property var source
-        nameFilters: [i18n("JPEG image") + "(*.jpg *.jpeg *.JPG *.JPEG)", i18n(
-                "PNG image") + "(*.png *.PNG)", i18n(
-                "GIF animation") + "(*.gif *.GIF)", i18n(
+        nameFilters: [qsTr("JPEG image") + "(*.jpg *.jpeg *.JPG *.JPEG)", qsTr(
+                "PNG image") + "(*.png *.PNG)", qsTr(
+                "GIF animation") + "(*.gif *.GIF)", qsTr(
                 "WEBP image") + "(*.webp *.WEBP)"]
         fileMode: Labs.FileDialog.OpenFile
         folder: StandardPaths.writableLocation(StandardPaths.PicturesLocation)
@@ -573,7 +571,7 @@ ColumnLayout {
     Labs.FileDialog {
         id: pointerQmlFileDialog
         property var source
-        nameFilters: [i18n("QML script") + "(*.qml *.QML)"]
+        nameFilters: [qsTr("QML script") + "(*.qml *.QML)"]
         fileMode: Labs.FileDialog.OpenFile
         folder: StandardPaths.writableLocation(StandardPaths.DocumentsLocation)
         onAccepted: {

@@ -303,7 +303,7 @@ Flickable {
 
         switch (parseInt(state)) {
             case Prompter.States.Editing:
-                ////showPassiveNotification(i18n("Editing"), 850*countdown.__iterations)
+                ////showPassiveNotification(qsTr("Editing"), 850*countdown.__iterations)
                 //// if (closeProjectionUponPromptEnd)
                 ////     projectionManager.close();
                 // document.preventSleep(false);
@@ -324,7 +324,7 @@ Flickable {
                     document.preventSleep(true);
                 if (projectionManager.isEnabled)
                     projectionManager.addMissingProjections();
-                //showPassiveNotification(i18n("Prompt started"), 850*countdown.__iterations)
+                //showPassiveNotification(qsTr("Prompt started"), 850*countdown.__iterations)
                 break;
         }
         prompter.restoreFocus()
@@ -340,7 +340,7 @@ Flickable {
             this.__play = true
             this.position = this.__destination
             //if (root.passiveNotifications)
-            //    showPassiveNotification(i18n("Increase Velocity"));
+            //    showPassiveNotification(qsTr("Increase Velocity"));
         }
         prompter.restoreFocus()
     }
@@ -355,7 +355,7 @@ Flickable {
             this.__play = true
             this.position = this.__destination
             //if (root.passiveNotifications)
-            //    showPassiveNotification(i18n("Decrease Velocity"));
+            //    showPassiveNotification(qsTr("Decrease Velocity"));
         }
         prompter.restoreFocus()
     }
@@ -605,7 +605,7 @@ Flickable {
                     root.alert(0)
                     if (parseInt(prompter.state) === Prompter.States.Prompting && !prompter.__atStart) {
                         //if (root.passiveNotifications)
-                        //    showPassiveNotification(i18n("End reached"));
+                        //    showPassiveNotification(qsTr("End reached"));
                         switch (prompter.atEndAction) {
                             case Prompter.AtEndActions.Exit:
                                 return prompter.toggle();
@@ -722,7 +722,7 @@ Flickable {
                 textFormat: Qt.RichText
                 wrapMode: TextArea.Wrap
                 readOnly: false
-                text: i18n("Error loading file…")
+                text: qsTr("Error loading file…")
 
                 selectByMouse: !root.__isMobile
                 persistentSelection: true
@@ -817,9 +817,9 @@ Flickable {
                                         //// Scientist EE
                                         //let goToStartNotification = "";
                                         //switch (c++%3) {
-                                            //case 0: goToStartNotification = i18n("Let's go back to the start"); break;
-                                            //case 1: goToStartNotification = i18n("Take me back to the start"); break;
-                                            //case 2: goToStartNotification = i18n("I'm going back to the start"); c=0; break;
+                                            //case 0: goToStartNotification = qsTr("Let's go back to the start"); break;
+                                            //case 1: goToStartNotification = qsTr("Take me back to the start"); break;
+                                            //case 2: goToStartNotification = qsTr("I'm going back to the start"); c=0; break;
                                         //}
                                         //showPassiveNotification(goToStartNotification);
                                     //}
@@ -841,9 +841,9 @@ Flickable {
                                 onClicked: {
                                     if (root.passiveNotifications) {
                                         if (Qt.platform.os==="android")
-                                            showPassiveNotification(i18n("Press and hold to go back to the start"));
+                                            showPassiveNotification(qsTr("Press and hold to go back to the start"));
                                         else
-                                            showPassiveNotification(i18n("Double tap to go back to the start"));
+                                            showPassiveNotification(qsTr("Double tap to go back to the start"));
                                     }
                                     prompter.focus = true
                                 }
@@ -851,7 +851,7 @@ Flickable {
                                 onPressed:
                                     if (loop.running) {
                                         loop.stop();
-                                        showPassiveNotification(i18n("Auto rewind cancelled"));
+                                        showPassiveNotification(qsTr("Auto rewind cancelled"));
                                         prompter.focus = true;
                                     }
                                 onDoubleClicked:
@@ -1006,7 +1006,7 @@ Flickable {
                         // RowLayout {
                         //     Layout.alignment: Qt.AlignCenter
                         //     Label {
-                        //         text: i18n("The End")
+                        //         text: qsTr("The End")
                         //         font.pixelSize: (fontSize < 24 ? 24 : fontSize) / 1.5
                         //     }
                         // }
@@ -1252,7 +1252,7 @@ Flickable {
                 isNewFile = true
                 resetDocumentPosition()
                 if (root.passiveNotifications)
-                    showPassiveNotification(i18n("New document"))
+                    showPassiveNotification(qsTr("New document"))
             }
         }
         function loadGuide() {
@@ -1261,12 +1261,12 @@ Flickable {
                 closeDialog.open()
             else {
                 document.close()
-                document.load("qrc:/qt/qml/com/cuperino/qprompt/documents/"+i18n("welcome_en.html"))
+                document.load("qrc:/qt/qml/com/cuperino/qprompt/documents/"+qsTr("welcome_en.html"))
                 editor.lastDocument = ""
                 isNewFile = true
                 prompter.position = 0
                 if (root.passiveNotifications)
-                    showPassiveNotification(i18n("User welcome loaded"))
+                    showPassiveNotification(qsTr("User welcome loaded"))
             }
         }
         function loadLastDocument() {
@@ -1276,7 +1276,7 @@ Flickable {
             isNewFile = false
             prompter.position = 0
             if (root.passiveNotifications)
-                showPassiveNotification(i18n("Loaded: %1", editor.lastDocument))
+                showPassiveNotification(qsTr("Loaded: %1", editor.lastDocument))
         }
         function open() {
             root.onDiscard = Prompter.CloseActions.Open
@@ -1304,9 +1304,9 @@ Flickable {
                     document.modified = false
                     if (Qt.platform.os==="android" || Qt.platform.os==="ios" || visibility===ApplicationWindow.FullScreen) {
                         if (document.isNewFile)
-                            showPassiveNotification(i18nc("Saved FILE_NAME", "Saved %1", document.file))
+                            showPassiveNotification(qsTr("Saved %1", "Saved FILE_NAME").arg(document.file))
                         else
-                            showPassiveNotification(i18n("Saved"))
+                            showPassiveNotification(qsTr("Saved"))
                     }
                     document.saveAs(document.fileUrl)
                     //if (quit)
@@ -1366,24 +1366,24 @@ Flickable {
         nameFilters:
             ['android', 'ios', 'tvos', 'wasm'].indexOf(Qt.platform.os)===-1 ?
             [
-                i18nc("Format name (FORMAT_EXTENSION)", "Hypertext Markup Language (%1)", "HTML") + "(*.html *.htm *.xhtml *.HTML *.HTM *.XHTML)",
-                i18nc("Format name (FORMAT_EXTENSION)", "Markdown (%1)", "MD") + "(*.md *.MD)",
-                i18nc("Format name (FORMAT_EXTENSION)", "Plain Text (%1)", "TXT") + "(*.txt *.text *.TXT *.TEXT)",
-                i18nc("Format name (FORMAT_EXTENSION)", "OpenDocument Format Text Document (%1)", "ODT") + "(*.odt *.ODT)",
-                i18nc("Format name (FORMAT_EXTENSION)", "AbiWord Document (%1)", "ABW") + "(*.abw *.ABW *.zabw *.ZABW)",
-                i18nc("Format name (FORMAT_EXTENSION)", "Microsoft Word document (%1)", "DOCX, DOC") + "(*.docx *.doc *.DOCX *.DOC)",
-                i18nc("Format name (FORMAT_EXTENSION)", "Apple Pages Document (%1)", "PAGES") + "(*.pages *.PAGES)",
-                i18nc("Format name (FORMAT_EXTENSION)", "Rich Text Format (%1)", "RTF") + "(*.rtf *.RTF)",
-                //i18nc("Format name (FORMAT_EXTENSION)", "Portable Document Format (%1)", "PDF") + "(*.pdf *.PDF)",
-                i18nc("All file formats", "All Formats") + "(*.*)"
+                qsTr("Hypertext Markup Language (%1)", "HTML", "Format name (FORMAT_EXTENSION)") + "(*.html *.htm *.xhtml *.HTML *.HTM *.XHTML)",
+                qsTr("Markdown (%1)", "MD", "Format name (FORMAT_EXTENSION)") + "(*.md *.MD)",
+                qsTr("Plain Text (%1)", "Format name (FORMAT_EXTENSION)").arg("TXT") + "(*.txt *.text *.TXT *.TEXT)",
+                qsTr("OpenDocument Format Text Document (%1)", "Format name (FORMAT_EXTENSION)").arg("ODT") + "(*.odt *.ODT)",
+                qsTr("AbiWord Document (%1)", "Format name (FORMAT_EXTENSION)").arg("ABW") + "(*.abw *.ABW *.zabw *.ZABW)",
+                qsTr("Microsoft Word document (%1)", "Format name (FORMAT_EXTENSION)").arg("DOCX, DOC") + "(*.docx *.doc *.DOCX *.DOC)",
+                qsTr("Apple Pages Document (%1)", "Format name (FORMAT_EXTENSION)").arg("PAGES") + "(*.pages *.PAGES)",
+                qsTr("Rich Text Format (%1)", "Format name (FORMAT_EXTENSION)").arg("RTF") + "(*.rtf *.RTF)",
+                //qsTr("Portable Document Format (%1)", "Format name (FORMAT_EXTENSION)").arg("PDF") + "(*.pdf *.PDF)",
+                qsTr("All Formats", "All file formats") + "(*.*)"
             ]
           : [ // Remove options that rely on external tools in mobile and embedded platforms
-                i18nc("Format name (FORMAT_EXTENSION)", "Hypertext Markup Language (%1)", "HTML") + "(*.html *.htm *.xhtml *.HTML *.HTM *.XHTML)",
-                i18nc("Format name (FORMAT_EXTENSION)", "Markdown (%1)", "MD") + "(*.md *.MD)",
-                i18nc("Format name (FORMAT_EXTENSION)", "Plain Text (%1)", "TXT") + "(*.txt *.text *.TXT *.TEXT)",
-                //i18nc("Format name (FORMAT_EXTENSION)", "Rich Text Format (%1)", "RTF") + "(*.rtf *.RTF)",
-                //i18nc("Format name (FORMAT_EXTENSION)", "Portable Document Format (%1)", "PDF") + "(*.pdf *.PDF)",
-                i18nc("All file formats", "All Formats") + "(*.*)"
+                qsTr("Hypertext Markup Language (%1)", "Format name (FORMAT_EXTENSION)").arg("HTML") + "(*.html *.htm *.xhtml *.HTML *.HTM *.XHTML)",
+                qsTr("Markdown (%1)", "Format name (FORMAT_EXTENSION)").arg("MD") + "(*.md *.MD)",
+                qsTr("Plain Text (%1)", "Format name (FORMAT_EXTENSION)").arg("TXT") + "(*.txt *.text *.TXT *.TEXT)",
+                //qsTr("Rich Text Format (%1)", "Format name (FORMAT_EXTENSION)").arg("RTF") + "(*.rtf *.RTF)",
+                //qsTr("Portable Document Format (%1)", "Format name (FORMAT_EXTENSION)").arg("PDF") + "(*.pdf *.PDF)",
+                qsTr("All Formats", "All file formats") + "(*.*)"
             ]
         selectedNameFilter.index: 0
 
@@ -1405,13 +1405,13 @@ Flickable {
         defaultSuffix: 'html'
         nameFilters: if (Qt.platform.os==="android")
             return [
-                i18nc("Format name (FORMAT_EXTENSION)", "Hypertext Markup Language (%1)", "HTML") + "(*.html *.htm *.xhtml *.HTML *.HTM *.XHTML)"
+                qsTr("Hypertext Markup Language (%1)", "Format name (FORMAT_EXTENSION)").arg("HTML") + "(*.html *.htm *.xhtml *.HTML *.HTM *.XHTML)"
             ]
         else
             return [
-                i18nc("Format name (FORMAT_EXTENSION)", "Hypertext Markup Language (%1)", "HTML") + "(*.html *.htm *.xhtml *.HTML *.HTM *.XHTML)",
-                i18nc("Format name (FORMAT_EXTENSION)", "Plain Text (%1)", "TXT") + "(*.txt *.text *.TXT *.TEXT)"
-                //i18nc("All file formats", "All Formats") + "(*.*)"
+                qsTr("Hypertext Markup Language (%1)", "Format name (FORMAT_EXTENSION)").arg("HTML") + "(*.html *.htm *.xhtml *.HTML *.HTM *.XHTML)",
+                qsTr("Plain Text (%1)", "Format name (FORMAT_EXTENSION)").arg("TXT") + "(*.txt *.text *.TXT *.TEXT)"
+                //qsTr("All Formats", "All file formats") + "(*.*)"
             ]
         //// Always in the same format as original file
         //selectedNameFilter.index: document.fileType === "txt" ? 0 : 1
@@ -1423,7 +1423,7 @@ Flickable {
             document.saveAs(saveDialog.file)
             document.isNewFile = false
             editor.lastDocument = document.fileUrl;
-            showPassiveNotification(i18nc("Saved FILE_NAME", "Saved %1", document.file))
+            showPassiveNotification(qsTr("Saved %1", "Saved FILE_NAME").arg(document.file))
             // if (document.quitOnSave)
             //     Qt.quit()
             // else
@@ -1448,31 +1448,31 @@ Flickable {
     Labs.Menu {
         id: nativeContextMenu
         Labs.MenuItem {
-            text: i18nc("Global menu and editor context menu actions", "&Copy")
+            text: qsTr("&Copy", "Global menu and editor context menu actions")
             enabled: editor.selectedText
             onTriggered: editor.copy()
         }
         Labs.MenuItem {
-            text: i18nc("Global menu and editor context menu actions", "Cu&t")
+            text: qsTr("Cu&t", "Global menu and editor context menu actions")
             enabled: editor.selectedText
             onTriggered: editor.cut()
         }
         Labs.MenuItem {
-            text: i18nc("Global menu and editor context menu actions", "&Paste")
+            text: qsTr("&Paste", "Global menu and editor context menu actions")
             enabled: editor.canPaste
             onTriggered: document.paste()
         }
         Labs.MenuSeparator {}
         Labs.MenuItem {
-            text: i18nc("Editor context menu actions", "Fo&nt…")
+            text: qsTr("Fo&nt…", "Editor context menu actions")
             onTriggered: document.showFontDialog()
         }
         Labs.MenuItem {
-            text: i18nc("Editor context menu actions", "Co&lor…")
+            text: qsTr("Co&lor…", "Editor context menu actions")
             onTriggered: colorDialog.open()
         }
         Labs.MenuItem {
-            text: i18nc("Editor context menu actions", "Hi&ghlight…")
+            text: qsTr("Hi&ghlight…", "Editor context menu actions")
             onTriggered: highlightDialog.open()
         }
     }
@@ -1484,42 +1484,42 @@ Flickable {
             //implicitHeight: 30
         }
         MenuItem {
-            text: i18nc("Editor context menu actions", "&Undo")
+            text: qsTr("&Undo", "Editor context menu actions")
             enabled: prompter.editor.canUndo
             onTriggered: prompter.editor.undo()
         }
         MenuItem {
-            text: i18nc("Editor context menu actions", "Redo")
+            text: qsTr("Redo", "Editor context menu actions")
             enabled: prompter.editor.canRedo
             onTriggered: prompter.editor.redo()
         }
         MenuSeparator {}
         MenuItem {
-            text: i18nc("Global menu and editor context menu actions", "&Copy")
+            text: qsTr("&Copy", "Global menu and editor context menu actions")
             enabled: editor.selectedText
             onTriggered: editor.copy()
         }
         MenuItem {
-            text: i18nc("Global menu and editor context menu actions", "Cu&t")
+            text: qsTr("Cu&t", "Global menu and editor context menu actions")
             enabled: editor.selectedText
             onTriggered: editor.cut()
         }
         MenuItem {
-            text: i18nc("Global menu and editor context menu actions", "&Paste")
+            text: qsTr("&Paste", "Global menu and editor context menu actions")
             enabled: editor.canPaste
             onTriggered: document.paste()
         }
         MenuSeparator {}
         MenuItem {
-            text: i18nc("Editor context menu actions", "Fo&nt…")
+            text: qsTr("Fo&nt…", "Editor context menu actions")
             onTriggered: document.showFontDialog()
         }
         MenuItem {
-            text: i18nc("Editor context menu actions", "Co&lor…")
+            text: qsTr("Co&lor…", "Editor context menu actions")
             onTriggered: colorDialog.open()
         }
         MenuItem {
-            text: i18nc("Editor context menu actions", "Hi&ghlight…")
+            text: qsTr("Hi&ghlight…", "Editor context menu actions")
             onTriggered: highlightDialog.open()
         }
         MenuSeparator {}
@@ -1560,7 +1560,7 @@ Flickable {
             else if (event.key===keys.pause && event.modifiers===keys.pauseModifiers || event.key===Qt.Key_SysReq || event.key===Qt.Key_Play || event.key===Qt.Key_Pause) {
                 // Pause
                 //if (root.passiveNotifications)
-                //    showPassiveNotification((i18n("Toggle Playback"));
+                //    showPassiveNotification((qsTr("Toggle Playback"));
                 if (prompter.__play) {
                     prompter.__play = false
                     prompter.position = prompter.position
@@ -1790,7 +1790,7 @@ Flickable {
             //}
             //PropertyChanges {
             //target: readRegionButton
-            //text: i18n("Custom")
+            //text: qsTr("Custom")
             //icon.name: "dialog-ok-apply"
             //}
             PropertyChanges {
@@ -1842,7 +1842,7 @@ Flickable {
             }
             PropertyChanges {
                 target: promptingButton
-                text: viewport.countdown.enabled ? i18n("Begin countdown") : i18n("Start prompting")
+                text: viewport.countdown.enabled ? qsTr("Begin countdown") : qsTr("Start prompting")
                 icon.source: Qt.application.layoutDirection === Qt.RightToLeft ?
                                  "../icons/go-previous.svg" : "../icons/go-next.svg"
             }
@@ -1890,7 +1890,7 @@ Flickable {
             }
             PropertyChanges {
                 target: promptingButton
-                text: i18n("Skip countdown")
+                text: qsTr("Skip countdown")
                 icon.source: Qt.application.layoutDirection === Qt.RightToLeft ?
                                  "../icons/go-previous.svg" : "../icons/go-next.svg"
             }
@@ -1935,7 +1935,7 @@ Flickable {
             }
             PropertyChanges {
                 target: promptingButton
-                text: i18n("Return to edit mode")
+                text: qsTr("Return to edit mode")
                 icon.source: Qt.application.layoutDirection === Qt.LeftToRight ?
                                  "../icons/edit-undo.svg" : "../icons/edit-redo.svg"
             }

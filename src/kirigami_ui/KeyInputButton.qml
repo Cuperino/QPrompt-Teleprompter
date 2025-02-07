@@ -106,7 +106,7 @@ RowLayout {
     }
     Button {
         id: clearButton
-        text: i18nc("Button to remove a keyboard shortcut", "Clear")
+        text: qsTr("Clear", "Button to remove a keyboard shortcut")
         enabled: keyInputButton.text !== ""
         onClicked: {
             keyInput.setKey(0, 0);
