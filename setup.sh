@@ -70,7 +70,7 @@ fi
 CMAKE_CONFIGURATION_TYPES="Debug;Release;RelWithDebInfo;MinSizeRel"
 CMAKE_BUILD_TYPE=$1
 if [ "$CMAKE_BUILD_TYPE" == "" ]; then
-    if [[ "$PLATFORM" == "windows" ]]; then
+    if [[ "$PLATFORM" == "windows" || "$PLATFORM" == "macos" ]]; then
         CMAKE_BUILD_TYPE="Release"
     else
         CMAKE_BUILD_TYPE="RelWithDebInfo"
@@ -135,13 +135,15 @@ fi
 
 # Constants
 if [[ "$PLATFORM" == "windows" ]]; then
-AppDir=""
-AppDirUsr="install"
+    AppDir=""
+    AppDirUsr="install"
 else
-AppDir="install"
-AppDirUsr="install/usr"
+    AppDir="install"
+    AppDirUsr="install/usr"
 fi
-mkdir -p $AppDirUsr
+if [[ "$PLATFORM" != "macos" ]]; then
+    mkdir -p $AppDirUsr
+fi
 
 echo -e "\nBuild directory is ./build"
 if $CLEAR_ALL # QPrompt and dependencies
@@ -204,6 +206,7 @@ tier_0="
 tier_1="
     ./3rdparty/kcoreaddons
     ./3rdparty/kirigami
+    ./3rdparty/kcrash
 "
 tier_2="
 "
@@ -214,25 +217,33 @@ for dependency in $tier_0 $tier_1 $tier_2 $tier_3; do
     if $CLEAR_ALL; then
         rm -dRf $dependency/build
     fi
-    $CMAKE -DCMAKE_CONFIGURATION_TYPES=$CMAKE_CONFIGURATION_TYPES -DBUILD_TESTING=OFF -BUILD_QCH=OFF -DCMAKE_PREFIX_PATH=$CMAKE_PREFIX_PATH -DCMAKE_INSTALL_PREFIX=$CMAKE_INSTALL_PREFIX -B ./$dependency/build ./$dependency/
+    $CMAKE -DCMAKE_CONFIGURATION_TYPES=$CMAKE_CONFIGURATION_TYPES -DBUILD_TESTING=OFF -BUILD_QCH=OFF -DCMAKE_PREFIX_PATH=$CMAKE_PREFIX_PATH -DCMAKE_INSTALL_PREFIX=$CMAKE_PREFIX_PATH -B ./$dependency/build ./$dependency/
     $CMAKE --build ./$dependency/build --config $CMAKE_BUILD_TYPE
-    DESTDIR=$AppDir $CMAKE --install ./$dependency/build
-    cp -r $AppDirUsr/* $CMAKE_PREFIX_PATH
+    if [[ "$PLATFORM" == "macos" ]]; then
+        $CMAKE --install ./$dependency/build
+    else
+        DESTDIR=$AppDir $CMAKE --install ./$dependency/build
+        cp -r $AppDirUsr/* $CMAKE_PREFIX_PATH
+    fi
 done
 
 echo "QHotkey"
 if $CLEAR_ALL; then
     rm -dRf 3rdparty/QHotkey/build
 fi
-$CMAKE -DCMAKE_CONFIGURATION_TYPES=$CMAKE_CONFIGURATION_TYPES -DBUILD_SHARED_LIBS=ON -DCMAKE_PREFIX_PATH=$CMAKE_PREFIX_PATH -DCMAKE_INSTALL_PREFIX=$CMAKE_INSTALL_PREFIX -DQT_DEFAULT_MAJOR_VERSION=$QT_MAJOR_VERSION -B ./3rdparty/QHotkey/build ./3rdparty/QHotkey/
+$CMAKE -DCMAKE_CONFIGURATION_TYPES=$CMAKE_CONFIGURATION_TYPES -DBUILD_SHARED_LIBS=ON -DCMAKE_PREFIX_PATH=$CMAKE_PREFIX_PATH -DCMAKE_INSTALL_PREFIX=$CMAKE_PREFIX_PATH -DQT_DEFAULT_MAJOR_VERSION=$QT_MAJOR_VERSION -B ./3rdparty/QHotkey/build ./3rdparty/QHotkey/
 $CMAKE --build ./3rdparty/QHotkey/build --config $CMAKE_BUILD_TYPE
-DESTDIR=$AppDir $CMAKE --install ./3rdparty/QHotkey/build
-cp -r $AppDirUsr/* $CMAKE_PREFIX_PATH
+if [[ "$PLATFORM" == "macos" ]]; then
+    $CMAKE --install ./3rdparty/QHotkey/build
+else
+    DESTDIR=$AppDir $CMAKE --install ./3rdparty/QHotkey/build
+    cp -r $AppDirUsr/* $CMAKE_PREFIX_PATH
+fi
 
 echo "QPrompt"
-$CMAKE -DCMAKE_CONFIGURATION_TYPES=$CMAKE_CONFIGURATION_TYPES -DCMAKE_PREFIX_PATH=$CMAKE_PREFIX_PATH -DCMAKE_INSTALL_PREFIX=$CMAKE_INSTALL_PREFIX -B ./build .
+$CMAKE -DCMAKE_CONFIGURATION_TYPES=$CMAKE_CONFIGURATION_TYPES -DCMAKE_PREFIX_PATH=$CMAKE_PREFIX_PATH -DCMAKE_INSTALL_PREFIX=$CMAKE_PREFIX_PATH -B ./build .
 $CMAKE --build ./build --config $CMAKE_BUILD_TYPE
-DESTDIR=$AppDir $CMAKE --install ./build
+$CMAKE --install ./build
 
 # Copy Qt libraries into install directory
 if [[ "$PLATFORM" == "windows" ]]; then
