@@ -8,9 +8,9 @@ msgstr ""
 "Project-Id-Version: qprompt 9da810c\n"
 "Report-Msgid-Bugs-To: https://github.com/Cuperino/QPrompt/issues/new/choose\n"
 "POT-Creation-Date: 2024-09-29 11:34-0400\n"
-"PO-Revision-Date: 2024-12-17 04:52+0000\n"
-"Last-Translator: Anonymous <noreply@weblate.org>\n"
-"Language-Team: Ukrainian <http://l10n.cuperino.com/projects/qprompt/"
+"PO-Revision-Date: 2025-02-11 07:05+0000\n"
+"Last-Translator: Goldberg <rusGoldberg@gmail.com>\n"
+"Language-Team: Ukrainian <http://l10n.cuperino.com/projects/qprompt-v1/"
 "qprompt-app/uk/>\n"
 "Language: uk\n"
 "MIME-Version: 1.0\n"
@@ -85,7 +85,6 @@ msgstr "Інвертувати &стрілки"
 
 #: kirigami_ui/+android/main.qml:259 kirigami_ui/+windows/main.qml:274
 #: kirigami_ui/main.qml:281 kirigami_ui/main.qml:828
-#, fuzzy
 msgctxt ""
 "Main menu and global menu actions. Invert scroll direction while prompting."
 msgid "Invert &scroll direction (Natural scrolling)"
@@ -166,13 +165,13 @@ msgstr "Автоматичне перезавантаження локальни
 #: kirigami_ui/main.qml:427
 msgctxt "Main menu actions"
 msgid "Language"
-msgstr ""
+msgstr "Мова"
 
 #: kirigami_ui/+android/main.qml:360 kirigami_ui/+windows/main.qml:421
 #: kirigami_ui/main.qml:434
 msgctxt "Main menu actions"
 msgid "Restore factory defaults"
-msgstr ""
+msgstr "Відновлення заводських налаштувань"
 
 #: kirigami_ui/+android/main.qml:368 kirigami_ui/+windows/main.qml:429
 #: kirigami_ui/main.qml:442
@@ -200,7 +199,7 @@ msgstr "Режим Дарта"
 #: kirigami_ui/+android/main.qml:588 kirigami_ui/+windows/main.qml:703
 #: kirigami_ui/main.qml:1021
 msgid "Factory Reset"
-msgstr ""
+msgstr "Скидання до заводських налаштувань"
 
 #: kirigami_ui/+android/main.qml:589 kirigami_ui/+windows/main.qml:704
 #: kirigami_ui/main.qml:1022
@@ -208,6 +207,8 @@ msgid ""
 "Restore all configurations to factory defaults? QPrompt will close if you "
 "click Yes and all unsaved document changes will be lost."
 msgstr ""
+"Відновити всі налаштування до заводських налаштувань? QPrompt закриється, "
+"якщо ви натиснете Так, і всі незбережені зміни документа буде втрачено."
 
 #: kirigami_ui/+android/main.qml:600 kirigami_ui/+windows/main.qml:714
 #: kirigami_ui/main.qml:1032
@@ -262,8 +263,9 @@ msgid ""
 "\n"
 "Would you like to restart %1 now? All changes to document will be lost."
 msgstr ""
-"Щоб зміна повністю набрала чинності, потрібно перезапустити %1. Бажаєте "
-"перезапустити %1 зараз? Усі зміни в документі будуть втрачені."
+"%1 потрібно перезапустити, щоб ця зміна повністю вступила в силу.\n"
+"\n"
+"Чи бажаєте ви зараз перезапустити %1? Усі зміни в документі буде втрачено."
 
 #: kirigami_ui/EditorToolbar.qml:355 kirigami_ui/EditorToolbar.qml:365
 msgctxt "Editor actions. Text alignment."
@@ -429,154 +431,154 @@ msgstr "Перейти до наступного маркера"
 #: kirigami_ui/InputsOverlay.qml:359
 msgctxt "Hotkey that shifts velocoty to its negative value."
 msgid "Set velocity modifier key"
-msgstr ""
+msgstr "Встановити клавішу модифікатора швидкості"
 
 #: kirigami_ui/InputsOverlay.qml:364
 msgctxt "Control key"
 msgid "Ctrl"
-msgstr ""
+msgstr "Ctrl"
 
 #: kirigami_ui/InputsOverlay.qml:365
 msgctxt "Alt key"
 msgid "Alt"
-msgstr ""
+msgstr "Alt"
 
 #: kirigami_ui/InputsOverlay.qml:398
 msgctxt "Hotkey that sets velocity to a fixed value."
 msgid "Set velocity to 0"
-msgstr ""
+msgstr "Встановіть швидкість на 0"
 
 #: kirigami_ui/InputsOverlay.qml:406
 msgctxt "Hotkey that sets velocity to a fixed value."
 msgid "Set velocity to 1"
-msgstr ""
+msgstr "Встановіть швидкість на 1"
 
 #: kirigami_ui/InputsOverlay.qml:414
 msgctxt "Hotkey that sets velocity to a fixed value."
 msgid "Set velocity to 2"
-msgstr ""
+msgstr "Встановіть швидкість на 2"
 
 #: kirigami_ui/InputsOverlay.qml:422
 msgctxt "Hotkey that sets velocity to a fixed value."
 msgid "Set velocity to 3"
-msgstr ""
+msgstr "Встановіть швидкість на 3"
 
 #: kirigami_ui/InputsOverlay.qml:430
 msgctxt "Hotkey that sets velocity to a fixed value."
 msgid "Set velocity to 4"
-msgstr ""
+msgstr "Встановіть швидкість на 4"
 
 #: kirigami_ui/InputsOverlay.qml:438
 msgctxt "Hotkey that sets velocity to a fixed value."
 msgid "Set velocity to 5"
-msgstr ""
+msgstr "Встановіть швидкість на 5"
 
 #: kirigami_ui/InputsOverlay.qml:446
 msgctxt "Hotkey that sets velocity to a fixed value."
 msgid "Set velocity to 6"
-msgstr ""
+msgstr "Встановіть швидкість на 6"
 
 #: kirigami_ui/InputsOverlay.qml:454
 msgctxt "Hotkey that sets velocity to a fixed value."
 msgid "Set velocity to 7"
-msgstr ""
+msgstr "Встановіть швидкість на 7"
 
 #: kirigami_ui/InputsOverlay.qml:462
 msgctxt "Hotkey that sets velocity to a fixed value."
 msgid "Set velocity to 8"
-msgstr ""
+msgstr "Встановіть швидкість на 8"
 
 #: kirigami_ui/InputsOverlay.qml:470
 msgctxt "Hotkey that sets velocity to a fixed value."
 msgid "Set velocity to 9"
-msgstr ""
+msgstr "Встановіть швидкість на 9"
 
 #: kirigami_ui/InputsOverlay.qml:478
 msgctxt "Hotkey that sets velocity to a fixed value."
 msgid "Set velocity to 10"
-msgstr ""
+msgstr "Встановіть швидкість на 10"
 
 #: kirigami_ui/KeyInputButton.qml:109
-#, fuzzy
 msgctxt "Button to remove a keyboard shortcut"
 msgid "Clear"
 msgstr "Очистити"
 
 #: kirigami_ui/LanguageSettingsOverlay.qml:32
-#, fuzzy
 msgid "Language settings"
-msgstr "Налаштування вказівників"
+msgstr "Налаштування мови"
 
 #: kirigami_ui/LanguageSettingsOverlay.qml:40
 msgctxt "Selector to choose user interface language"
 msgid "UI Language"
-msgstr ""
+msgstr "Мова інтерфейсу користувача"
 
 #: kirigami_ui/LanguageSettingsOverlay.qml:64
 msgctxt "Language"
 msgid "Use system language"
-msgstr ""
+msgstr "Використовуйте системну мову"
 
 #: kirigami_ui/LanguageSettingsOverlay.qml:68
 msgctxt "Language"
 msgid "English"
-msgstr ""
+msgstr "Англійська"
 
 #: kirigami_ui/LanguageSettingsOverlay.qml:76
 msgctxt "Language"
 msgid "Chinese (Simplified)"
-msgstr ""
+msgstr "Китайська (спрощена)"
 
 #: kirigami_ui/LanguageSettingsOverlay.qml:80
 msgctxt "Language"
 msgid "Czech"
-msgstr ""
+msgstr "Чеська"
 
 #: kirigami_ui/LanguageSettingsOverlay.qml:92
 msgctxt "Language"
 msgid "French"
-msgstr ""
+msgstr "Французька"
 
 #: kirigami_ui/LanguageSettingsOverlay.qml:96
 msgctxt "Language"
 msgid "German"
-msgstr ""
+msgstr "Німецький"
 
 #: kirigami_ui/LanguageSettingsOverlay.qml:108
 msgctxt "Language"
 msgid "Japanese"
-msgstr ""
+msgstr "Японський"
 
 #: kirigami_ui/LanguageSettingsOverlay.qml:124
 msgctxt "Language"
 msgid "Portuguese (Brazil)"
-msgstr ""
+msgstr "Португальська (Бразилія)"
 
 #: kirigami_ui/LanguageSettingsOverlay.qml:128
 msgctxt "Language"
 msgid "Portuguese (Portugal)"
-msgstr ""
+msgstr "Португальська (Португалія)"
 
 #: kirigami_ui/LanguageSettingsOverlay.qml:136
 msgctxt "Language"
 msgid "Spanish"
-msgstr ""
+msgstr "Іспанська"
 
 #: kirigami_ui/LanguageSettingsOverlay.qml:140
 msgctxt "Language"
 msgid "Turkish"
-msgstr ""
+msgstr "Турецька"
 
 #: kirigami_ui/LanguageSettingsOverlay.qml:144
 msgctxt "Language"
 msgid "Ukranian"
-msgstr ""
+msgstr "Українська"
 
 #: kirigami_ui/LanguageSettingsOverlay.qml:172
 msgid ""
 "Is your language not here or it's incomplete?\n"
 "Help us translate QPrompt, visit:"
 msgstr ""
+"Вашої мови тут немає чи вона неповна?\n"
+"Допоможіть нам перекласти QPrompt, відвідайте:"
 
 #: kirigami_ui/LayoutDirectionSettingsOverlay.qml:32
 msgid "Layout direction"
@@ -590,17 +592,17 @@ msgstr "Поточне розташування"
 #: kirigami_ui/LayoutDirectionSettingsOverlay.qml:49
 msgctxt "Short for automatic"
 msgid "Auto"
-msgstr ""
+msgstr "Авто"
 
 #: kirigami_ui/LayoutDirectionSettingsOverlay.qml:50
 msgctxt "Short for Right to Left layout"
 msgid "RTL"
-msgstr ""
+msgstr "справа наліво"
 
 #: kirigami_ui/LayoutDirectionSettingsOverlay.qml:51
 msgctxt "Short for Left to Right layout"
 msgid "LTR"
-msgstr ""
+msgstr "сліва направо"
 
 #: kirigami_ui/MarkersDrawer.qml:129
 msgctxt "Close sidebar listing user defined markers"
@@ -733,7 +735,7 @@ msgstr "Змінити індикатори зони читання"
 #: kirigami_ui/PrompterPage.qml:250
 msgctxt "Configure reading region pointer indicators"
 msgid "Pointer Configuration"
-msgstr "Налаштування вказівників"
+msgstr "Конфігурація покажчика"
 
 #: kirigami_ui/PrompterPage.qml:257 kirigami_ui/PrompterPage.qml:269
 msgctxt "Shows pointer to the left of the reading region"
@@ -837,7 +839,7 @@ msgstr "Орієнтація"
 #: kirigami_ui/PrompterPage.qml:477 prompter/ProjectionsManager.qml:334
 msgctxt "Mirrors prompter horizontally"
 msgid "Horizontal mirror"
-msgstr "Горизонтальне віддзеркалення"
+msgstr "Горизонтальна віддзеркалення"
 
 #. i18n("V Flip")
 #: kirigami_ui/PrompterPage.qml:494 prompter/ProjectionsManager.qml:354
@@ -903,7 +905,7 @@ msgstr "Без віддзеркалення"
 #: kirigami_ui/PrompterPage.qml:663
 msgctxt "Horizontal mirroring"
 msgid "H Mirror"
-msgstr "Горизонтальне віддзеркалення"
+msgstr "Горизонтальна віддзеркалення"
 
 #: kirigami_ui/PrompterPage.qml:664
 msgctxt "Vertical mirroring"
@@ -1034,10 +1036,11 @@ msgid ""
 "- Cuperino (QPrompt's Author)"
 msgstr ""
 "Будь ласка, допоможіть покращити QPrompt, поділившись інформацією про те, як "
-"ви його використовуєте. Надання цієї інформації є добровільним і абсолютно "
-"анонімним. Проєкт або я ніколи не будемо збирати ваші особисті дані, файли, "
-"з якими ви працюєте, вміст, який ви використовуєте, або інформацію, яка може "
-"допомогти ідентифікувати вас. — Cuperino (Автор QPrompt)"
+"ви його використовуєте. Надавати цю інформацію є необов’язковим і повністю "
+"анонімним. Проект і я ніколи не збиратимемо ваші особисті дані, файли, які "
+"ви використовуєте, вміст, з яким ви працюєте, або інформацію, яка може "
+"допомогти вас ідентифікувати.\n"
+"- Куперіно (автор QPrompt)"
 
 #: kirigami_ui/TelemetryPage.qml:69
 msgid "Telemetry"
@@ -1118,7 +1121,7 @@ msgstr "Налаштування зони читання"
 
 #: kirigami_ui/TelemetryPage.qml:141 prompter/PointerSettings.qml:150
 msgid "Pointer settings"
-msgstr "Налаштування вказівників"
+msgstr "Налаштування покажчика"
 
 #: kirigami_ui/TelemetryPage.qml:142
 msgid "Countdown settings"
@@ -1673,7 +1676,7 @@ msgstr "Новий документ"
 
 #: prompter/Prompter.qml:1265
 msgid "welcome_en.html"
-msgstr "welcome_en.html"
+msgstr "welcome_ua.html"
 
 #: prompter/Prompter.qml:1270
 msgid "User welcome loaded"
