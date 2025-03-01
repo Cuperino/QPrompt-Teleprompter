@@ -1372,8 +1372,8 @@ Flickable {
         nameFilters:
             ['android', 'ios', 'tvos', 'wasm'].indexOf(Qt.platform.os)===-1 ?
             [
-                qsTr("Hypertext Markup Language (%1)", "HTML", "Format name (FORMAT_EXTENSION)") + "(*.html *.htm *.xhtml *.HTML *.HTM *.XHTML)",
-                qsTr("Markdown (%1)", "MD", "Format name (FORMAT_EXTENSION)") + "(*.md *.MD)",
+                qsTr("Hypertext Markup Language (%1)", "Format name (FORMAT_EXTENSION)").arg("HTML") + "(*.html *.htm *.xhtml *.HTML *.HTM *.XHTML)",
+                qsTr("Markdown (%1)", "Format name (FORMAT_EXTENSION)").arg("MD") + "(*.md *.MD)",
                 qsTr("Plain Text (%1)", "Format name (FORMAT_EXTENSION)").arg("TXT") + "(*.txt *.text *.TXT *.TEXT)",
                 qsTr("OpenDocument Format Text Document (%1)", "Format name (FORMAT_EXTENSION)").arg("ODT") + "(*.odt *.ODT)",
                 qsTr("AbiWord Document (%1)", "Format name (FORMAT_EXTENSION)").arg("ABW") + "(*.abw *.ABW *.zabw *.ZABW)",

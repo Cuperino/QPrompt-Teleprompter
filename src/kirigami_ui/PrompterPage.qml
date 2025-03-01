@@ -877,7 +877,7 @@ Kirigami.Page {
             }
             ColumnLayout {
                 Label {
-                    text: qsTrp("Disappear within %1 second(s) to go", "", countdown.__disappearWithin);
+                    text: qsTr("Disappear within %1 second(s) to go", "", countdown.__disappearWithin);
                 }
                 SpinBox {
                     value: countdown.__disappearWithin
