@@ -205,5 +205,11 @@ Item {
         onRejected: {
             currentColor = color
         }
+        onVisibleChanged: {
+            if (visible)
+                cursorAutoHide.reset();
+            else
+                cursorAutoHide.restart();
+        }
     }
 }

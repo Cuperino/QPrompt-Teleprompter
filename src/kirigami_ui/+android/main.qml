@@ -603,6 +603,12 @@ Kirigami.ApplicationWindow {
         onYesClicked: {
             qmlutil.factoryReset()
         }
+        onVisibleChanged: {
+            if (visible)
+                cursorAutoHide.reset();
+            else
+                cursorAutoHide.restart();
+        }
     }
 
     // Dialogues
@@ -651,6 +657,12 @@ Kirigami.ApplicationWindow {
         onAccepted:
         {
             root.pageStack.currentItem.document.saveDialog(parseInt(root.onDiscard)===Prompter.CloseActions.Quit)
+        }
+        onVisibleChanged: {
+            if (visible)
+                cursorAutoHide.reset();
+            else
+                cursorAutoHide.restart();
         }
     }
 }

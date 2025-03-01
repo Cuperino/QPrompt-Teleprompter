@@ -800,11 +800,23 @@ Kirigami.Page {
     Labs.ColorDialog {
         id: colorDialog
         options: Labs.ColorDialog.ShowAlphaChannel
+        onVisibleChanged: {
+            if (visible)
+                cursorAutoHide.reset();
+            else
+                cursorAutoHide.restart();
+        }
     }
 
     Labs.ColorDialog {
         id: highlightDialog
         options: Labs.ColorDialog.ShowAlphaChannel
+        onVisibleChanged: {
+            if (visible)
+                cursorAutoHide.reset();
+            else
+                cursorAutoHide.restart();
+        }
     }
 
 //     ShaderEffectSource {

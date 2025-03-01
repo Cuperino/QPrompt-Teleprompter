@@ -1012,6 +1012,12 @@ Kirigami.ApplicationWindow {
         onYesClicked: {
             qmlutil.restartApplication()
         }
+        onVisibleChanged: {
+            if (visible)
+                cursorAutoHide.reset();
+            else
+                cursorAutoHide.restart();
+        }
     }
 
     Labs.MessageDialog {
@@ -1022,6 +1028,12 @@ Kirigami.ApplicationWindow {
         modality: Qt.WindowModal
         onYesClicked: {
             qmlutil.factoryReset()
+        }
+        onVisibleChanged: {
+            if (visible)
+                cursorAutoHide.reset();
+            else
+                cursorAutoHide.restart();
         }
     }
 
@@ -1071,6 +1083,12 @@ Kirigami.ApplicationWindow {
         //onSaveClicked: root.pageStack.currentItem.document.saveDialog(true)
         onAccepted: {
             root.pageStack.currentItem.document.saveDialog(parseInt(root.onDiscard)===Prompter.CloseActions.Quit)
+        }
+        onVisibleChanged: {
+            if (visible)
+                cursorAutoHide.reset();
+            else
+                cursorAutoHide.restart();
         }
     }
     QmlUtil {

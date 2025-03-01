@@ -117,6 +117,12 @@ Rectangle {
                 console.log(color)
                 prompterBackground.backgroundColor = color
             }
+            onVisibleChanged: {
+                if (visible)
+                    cursorAutoHide.reset();
+                else
+                    cursorAutoHide.restart();
+            }
         }
 
         Labs.FileDialog {
@@ -129,6 +135,12 @@ Rectangle {
             fileMode: Labs.FileDialog.OpenFile
             folder: StandardPaths.writableLocation(StandardPaths.PicturesLocation)
             onAccepted: prompterBackground.setBackgroundImage(openBackgroundDialog.file)
+            onVisibleChanged: {
+                if (visible)
+                    cursorAutoHide.reset();
+                else
+                    cursorAutoHide.restart();
+            }
         }
     }
 
