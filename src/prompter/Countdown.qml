@@ -39,7 +39,7 @@ Item {
     readonly property real __maxv: __vw>__vh ? __vw : __vh
     readonly property int offsetCentre: prompter.editorXOffset*prompter.width+prompter.centreX
     readonly property Scale __flips: Flip{}
-    property bool frame: true
+    property bool frame: false
     property bool autoStart: false
     property bool running: false
     property int __iterations: 1
