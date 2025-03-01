@@ -523,6 +523,7 @@ QUrl DocumentHandler::fileUrl() const
 
 void DocumentHandler::reload(const QString &fileUrl)
 {
+    m_reloading = true;
     auto url = QUrl(QString::fromUtf8("file://") + fileUrl);
     if (url == m_fileUrl) {
         qWarning() << "reloading";
@@ -674,7 +675,12 @@ void DocumentHandler::load(const QUrl &fileUrl)
     }
 
     m_fileUrl = fileUrl;
-    document()->textDocument()->clearUndoRedoStacks();
+
+    if (m_reloading)
+        m_reloading = false;
+    else
+        document()->textDocument()->clearUndoRedoStacks();
+
     Q_EMIT fileUrlChanged();
 }
 

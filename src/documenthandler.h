@@ -268,6 +268,7 @@ private:
     QQuickTextDocument *m_document;
 
     bool m_autoReload;
+    bool m_reloading;
     int m_cursorPosition;
     int m_selectionStart;
     int m_selectionEnd;
