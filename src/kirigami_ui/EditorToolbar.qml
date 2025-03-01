@@ -615,7 +615,6 @@ ToolBar {
                 font.pointSize: 13
                 focusPolicy: Qt.TabFocus
                 onClicked: {
-                    colorDialog.color = viewport.prompter.textColor;
                     colorDialog.open();
                 }
                 Rectangle {
@@ -649,11 +648,6 @@ ToolBar {
                 font.pointSize: 13
                 focusPolicy: Qt.TabFocus
                 onClicked: {
-                    highlightDialog.color = Qt.rgba(0,0,0,0);
-                    // if (Qt.colorEqual(highlightDialog.color, "#000000"))
-                    //     highlightDialog.color = Qt.rgba(0,0,0,0);
-                    // else
-                    //     highlightDialog.color = viewport.prompter.textBackground;
                     highlightDialog.open();
                 }
                 Rectangle {
