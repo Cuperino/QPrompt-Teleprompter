@@ -1002,77 +1002,76 @@ Kirigami.ApplicationWindow {
         TelemetryPage {}
     }
 
-   // Dialogues
-   Labs.MessageDialog {
-       id: restartDialog
-       title: qsTr("Restart %1", "Restart application_name").arg(aboutData.displayName)
-       text: qsTr("%1 needs to restart for this change to fully take effect.\n\nWould you like to restart %1 now? All changes to document will be lost.", "application needs to restart for this change to fully take effect.\n\nWould you like to restart application now? All changes to document will be lost.").arg(aboutData.displayName)
-       buttons: Labs.MessageDialog.Yes | Labs.MessageDialog.No
-       modality: Qt.WindowModal
-       onYesClicked: {
-           qmlutil.restartApplication()
-       }
-   }
+    // Dialogues
+     Labs.MessageDialog {
+        id: restartDialog
+        title: qsTr("Restart %1", "Restart application_name").arg(aboutData.displayName)
+        text: qsTr("%1 needs to restart for this change to fully take effect.\n\nWould you like to restart %1 now? All changes to document will be lost.", "application needs to restart for this change to fully take effect.\n\nWould you like to restart application now? All changes to document will be lost.").arg(aboutData.displayName)
+        buttons: Labs.MessageDialog.Yes | Labs.MessageDialog.No
+        modality: Qt.WindowModal
+        onYesClicked: {
+            qmlutil.restartApplication()
+        }
+    }
 
-   Labs.MessageDialog {
-       id: factoryResetDialog
-       title: qsTr("Factory Reset")
-       text: qsTr("Restore all configurations to factory defaults? QPrompt will close if you click Yes and all unsaved document changes will be lost.")
-       buttons: Labs.MessageDialog.Yes | Labs.MessageDialog.No
-       modality: Qt.WindowModal
-       onYesClicked: {
-           qmlutil.factoryReset()
-       }
-   }
+    Labs.MessageDialog {
+        id: factoryResetDialog
+        title: qsTr("Factory Reset")
+        text: qsTr("Restore all configurations to factory defaults? QPrompt will close if you click Yes and all unsaved document changes will be lost.")
+        buttons: Labs.MessageDialog.Yes | Labs.MessageDialog.No
+        modality: Qt.WindowModal
+        onYesClicked: {
+            qmlutil.factoryReset()
+        }
+    }
 
-   Labs.MessageDialog {
-       id : closeDialog
-       title: qsTr("Save Document", "Title for save before closing dialog")
-       text: qsTr("Save changes to document before closing?")
-       //icon: StandardIcon.Question
-       buttons: (Labs.MessageDialog.Save | Labs.MessageDialog.Discard | Labs.MessageDialog.Cancel)
-       //standardButtons: StandardButton.Save | StandardButton.Discard | StandardButton.Cancel
-       modality: Qt.WindowModal
-       onDiscardClicked: {
-       // onDiscard: {
-           //switch (parseInt(root.onDiscard)) {
-               //case Prompter.CloseActions.LoadGuide: root.pageStack.currentItem.document.loadGuide(); break;
-               //case Prompter.CloseActions.LoadNew: root.pageStack.currentItem.document.newDocument(); break;
-               //case Prompter.CloseActions.Quit: Qt.quit();
-               ////case Prompter.CloseActions.Quit:
-               ////default: Qt.quit();
-           //}
+    Labs.MessageDialog {
+        id : closeDialog
+        title: qsTr("Save Document", "Title for save before closing dialog")
+        text: qsTr("Save changes to document before closing?")
+        //icon: StandardIcon.Question
+        buttons: (Labs.MessageDialog.Save | Labs.MessageDialog.Discard | Labs.MessageDialog.Cancel)
+        //standardButtons: StandardButton.Save | StandardButton.Discard | StandardButton.Cancel
+        modality: Qt.WindowModal
+        onDiscardClicked: {
+        // onDiscard: {
+            //switch (parseInt(root.onDiscard)) {
+                //case Prompter.CloseActions.LoadGuide: root.pageStack.currentItem.document.loadGuide(); break;
+                //case Prompter.CloseActions.LoadNew: root.pageStack.currentItem.document.newDocument(); break;
+                //case Prompter.CloseActions.Quit: Qt.quit();
+                ////case Prompter.CloseActions.Quit:
+                ////default: Qt.quit();
+            //}
 
-           //document.saveAs(saveDialog.file)
-           //root.pageStack.currentItem.document.isNewFile = true
-           switch (parseInt(root.onDiscard)) {
-               case Prompter.CloseActions.LoadGuide:
-                   root.pageStack.currentItem.document.modified = false
-                   root.pageStack.currentItem.document.loadGuide();
-                   break;
-               case Prompter.CloseActions.LoadNew:
-                   root.pageStack.currentItem.document.modified = false
-                   root.pageStack.currentItem.document.newDocument();
-                   break;
-               case Prompter.CloseActions.Open:
-                   root.pageStack.currentItem.openDialog.open();
-                   break;
-               case Prompter.CloseActions.Network:
-                   root.pageStack.currentItem.networkDialog.open();
-                   break;
-               case Prompter.CloseActions.Quit:
-                   Qt.quit();
-                   break;
-               //case Prompter.CloseActions.Ignore:
-               default:
-                   break;
-           }
-       }
-       //onSaveClicked: root.pageStack.currentItem.document.saveDialog(true)
-       onAccepted:
-       {
-           root.pageStack.currentItem.document.saveDialog(parseInt(root.onDiscard)===Prompter.CloseActions.Quit)
-       }
+            //document.saveAs(saveDialog.file)
+            //root.pageStack.currentItem.document.isNewFile = true
+            switch (parseInt(root.onDiscard)) {
+                case Prompter.CloseActions.LoadGuide:
+                    root.pageStack.currentItem.document.modified = false
+                    root.pageStack.currentItem.document.loadGuide();
+                    break;
+                case Prompter.CloseActions.LoadNew:
+                    root.pageStack.currentItem.document.modified = false
+                    root.pageStack.currentItem.document.newDocument();
+                    break;
+                case Prompter.CloseActions.Open:
+                    root.pageStack.currentItem.openDialog.open();
+                    break;
+                case Prompter.CloseActions.Network:
+                    root.pageStack.currentItem.networkDialog.open();
+                    break;
+                case Prompter.CloseActions.Quit:
+                    Qt.quit();
+                    break;
+                //case Prompter.CloseActions.Ignore:
+                default:
+                    break;
+            }
+        }
+        //onSaveClicked: root.pageStack.currentItem.document.saveDialog(true)
+        onAccepted: {
+            root.pageStack.currentItem.document.saveDialog(parseInt(root.onDiscard)===Prompter.CloseActions.Quit)
+        }
     }
     QmlUtil {
         id: qmlutil
