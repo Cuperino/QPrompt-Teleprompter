@@ -907,11 +907,13 @@ Kirigami.Page {
         }
         onOpened: {
             // When opening overlay, reset key input button's text.
+            viewport.editor.enabled = false;
             // Dev: When opening overlay, reset key input button's text to current anchor's key value.
             //row.setMarkerKeyButton.item.text = "";
             column.setMarkerKeyButton.item.text = prompter.document.getMarkerKey();
         }
         onClosed: {
+            viewport.editor.enabled = true;
             prompter.restoreFocus();
             if (markersDrawer.reOpen) {
                 prompter.document.parse();
