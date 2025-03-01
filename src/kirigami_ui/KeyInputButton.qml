@@ -31,6 +31,7 @@ RowLayout {
     property alias checked: keyInputButton.checked
     property alias text: keyInputButton.text
 
+    signal clicked()
     signal toggleButtonsOff()
     signal setKey(int key, int modifiers)
 
@@ -40,6 +41,7 @@ RowLayout {
         checkable: true
 
         onClicked: {
+            keyInput.clicked();
             if (checked) {
                 keyInput.toggleButtonsOff()
                 checked = true
@@ -87,7 +89,7 @@ RowLayout {
         Layout.fillWidth: true
         Keys.onShortcutOverride: (event) => {
             if (event.key === Qt.Key_Escape)
-                event.accepted = true
+                event.accepted = true;
         }
         Keys.onPressed: (event) => {
             if (checked && [Qt.Key_Super_L, Qt.Key_Super_R, Qt.Key_Meta, Qt.Key_Control, Qt.Key_Shift, Qt.Key_Alt, Qt.Key_AltGr].indexOf(event.key)===-1) {

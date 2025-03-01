@@ -934,16 +934,22 @@ Kirigami.Page {
             Connections {
                 target: setMarkerKeyButton.item
                 function onToggleButtonsOff() { target.checked = false; }
-                function onSetKey(keyCode) {
+                function onSetKey(keyCode, modifiers) {
                     prompter.document.setKeyMarker(keyCode);
-                    timer.start();
+                    if (keyCode)
+                        timer.start();
+                    else
+                        timer.stop();
+                }
+                function onClicked() {
+                    timer.stop()
                 }
             }
             Timer {
                 id: timer
                 running: false
                 repeat: false
-                interval: Units.LongDuration
+                interval: Units.HumanMoment
                 onTriggered: namedMarkerConfiguration.close()
             }
         }
