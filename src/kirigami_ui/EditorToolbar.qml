@@ -1200,10 +1200,9 @@ ToolBar {
                 text: qsTr("Next reload starts at <pre>%1</pre>", "Next reload starts at 10:11:12").arg(networkDialog.nextReloadTime)
                 onClicked: networkDialog.open()
                 contentItem: Loader { sourceComponent: textComponent }
-                Layout.topMargin: -8
-                Layout.bottomMargin: -32
-                Layout.rightMargin: 3
-                Layout.leftMargin: showSliderIcons ? 1 : 8
+                flat: true
+                Layout.topMargin: -18
+                Layout.bottomMargin: -22
                 Material.theme: Material.Dark
             }
         }
