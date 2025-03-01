@@ -898,6 +898,7 @@ Kirigami.Page {
 
     Kirigami.OverlaySheet {
         id: namedMarkerConfiguration
+        width: 300
         header: Kirigami.Heading {
             text: qsTr("Skip Key", "Refers to a key on the keyboard used to skip to a user defined marker while prompting")
             level: 1
