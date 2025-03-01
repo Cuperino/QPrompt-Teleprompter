@@ -1334,6 +1334,10 @@ Flickable {
             editor.textFormat = format
             editorToolbar.lineHeightSlider.update()
             editorToolbar.paragraphSpacingSlider.update()
+            if (!networkDialog.autoReloadRunning) {
+                editor.cursorPosition = 0
+                prompter.position = editor.cursorRectangle.y - (overlay.__readRegionPlacement*(overlay.height-overlay.readRegionHeight)+overlay.readRegionHeight/2) + 1
+            }
         }
         onError: function (message) {
             errorDialog.text = message
