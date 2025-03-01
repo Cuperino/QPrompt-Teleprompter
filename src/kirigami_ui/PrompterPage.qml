@@ -988,7 +988,12 @@ Kirigami.Page {
             nextReloadTime = date.toLocaleTimeString();
         }
         function openFromRemote() {
-            document.loadFromNetwork(openUrl.text);
+            let address;
+            if (openUrl.text.startsWith("http://") || openUrl.text.startsWith("https://"))
+                address = openUrl.text;
+            else
+                address = "http://" + openUrl.text;
+            document.loadFromNetwork(address);
             if (!autoReloadRunning)
                 editor.lastDocument = ""
             if (autoReload) {
@@ -1007,7 +1012,7 @@ Kirigami.Page {
                 }
                 TextField {
                     id: openUrl
-                    placeholderText: qsTr("http, https, and ftp protocols supported")
+                    placeholderText: "http://"
                     Layout.fillWidth: true
                     Layout.leftMargin: Kirigami.Units.smallSpacing
                     Layout.rightMargin: Kirigami.Units.smallSpacing
