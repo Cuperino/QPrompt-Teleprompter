@@ -1008,7 +1008,6 @@ Kirigami.Page {
             RowLayout {
                 Button {
                     id: autoReloadToggle
-                    flat: true
                     text: qsTr("Auto reload")
                     checkable: true
                     checked: networkDialog.autoReload
@@ -1017,6 +1016,7 @@ Kirigami.Page {
                         if (!checked)
                             networkDialog.disableAutoReload();
                     }
+                    Material.theme: Material.Dark
                 }
                 Label {
                     text: qsTr("Hours:")
@@ -1097,20 +1097,20 @@ Kirigami.Page {
                 }
                 Button {
                     enabled: openUrl.text !== ""
-                    flat: true
                     text: qsTr("Load from Network")
                     onClicked: {
                         networkDialog.openFromRemote();
                         networkDialog.close();
                     }
+                    Material.theme: Material.Dark
                 }
                 Button {
-                    flat: true
                     text: qsTr("Close")
                     onClicked: {
                         networkDialog.close();
                         viewport.prompter.restoreFocus();
                     }
+                    Material.theme: Material.Dark
                 }
             }
         }

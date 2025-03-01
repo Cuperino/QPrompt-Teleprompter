@@ -175,8 +175,8 @@ Item {
             Button {
                 visible: !find.replace
                 icon.source: "../icons/edit-find-replace.svg"
-                flat: true
                 onClicked: find.replace = true
+                Material.theme: Material.Dark
             }
             Kirigami.SearchField {
                 id: searchField
@@ -194,25 +194,26 @@ Item {
                     return find.next();
                 }
                 Keys.onEscapePressed: close()
+                Material.theme: Material.Dark
             }
             Button {
                 text: find.replace ? "\u25B3" : "\u25B2"
                 enabled: resultsFound
-                flat: true
                 onClicked: find.previous()
+                Material.theme: Material.Dark
             }
             Button {
                 text: find.replace ? "\u25BD" : "\u25BC"
                 enabled: resultsFound
-                flat: true
                 onClicked: find.next()
+                Material.theme: Material.Dark
             }
             Button {
                 text: ".*"
                 checkable: true
                 checked: false
-                flat: true
                 onToggled: find.regEx = checked;
+                Material.theme: Material.Dark
             }
         }
         RowLayout {
@@ -222,8 +223,8 @@ Item {
             Button {
                 visible: find.replace
                 icon.source: "../icons/edit-find.svg"
-                flat: true
                 onClicked: find.replace = false;
+                Material.theme: Material.Dark
             }
             TextField {
                 id: replaceField
@@ -238,24 +239,25 @@ Item {
                         find.replaceNext();
                 }
                 Keys.onEscapePressed: close()
+                Material.theme: Material.Dark
             }
             Button {
                 text: "\u25B2"
                 enabled: resultsFound
-                flat: true
                 onClicked: find.replacePrevious()
+                Material.theme: Material.Dark
             }
             Button {
                 text: "\u25BC"
                 enabled: resultsFound
-                flat: true
                 onClicked: find.replaceNext()
+                Material.theme: Material.Dark
             }
             Button {
                 icon.source: "../icons/edit-find-replace.svg"
                 enabled: resultsFound
-                flat: true
                 onClicked: find.replaceAll()
+                Material.theme: Material.Dark
             }
         }
     }

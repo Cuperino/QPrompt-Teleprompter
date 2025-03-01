@@ -1055,10 +1055,10 @@ ToolBar {
                 text: "\uE807" // W
                 visible: showSliderIcons
                 enabled: false
-                flat: true
                 contentItem: Loader { sourceComponent: textComponent }
                 font.family: iconFont.name
                 font.pointSize: 13
+                Material.theme: Material.Dark
             }
             Label {
                 text: qsTr("Word spacing <pre>%1</pre>", "Word spacing <pre>±00<pre>").arg((wordSpacingSlider.value<0 ? '-' + (wordSpacingSlider.value/100).toFixed(2).slice(3) : '+' + (wordSpacingSlider.value/100).toFixed(2).slice(2)))
@@ -1200,12 +1200,12 @@ ToolBar {
                 visible: networkDialog.autoReloadRunning
                 text: qsTr("Next reload starts at <pre>%1</pre>", "Next reload starts at 10:11:12").arg(networkDialog.nextReloadTime)
                 onClicked: networkDialog.open()
-                flat: true
                 contentItem: Loader { sourceComponent: textComponent }
                 Layout.topMargin: -8
                 Layout.bottomMargin: -32
                 Layout.rightMargin: 3
                 Layout.leftMargin: showSliderIcons ? 1 : 8
+                Material.theme: Material.Dark
             }
         }
     }
