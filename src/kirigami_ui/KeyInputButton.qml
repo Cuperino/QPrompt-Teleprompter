@@ -35,6 +35,10 @@ RowLayout {
     signal toggleButtonsOff()
     signal setKey(int key, int modifiers)
 
+    function toggle() {
+        keyInputButton.click();
+    }
+
     Button {
         id: keyInputButton
 
@@ -45,7 +49,11 @@ RowLayout {
             if (checked) {
                 keyInput.toggleButtonsOff()
                 checked = true
+                if (!text)
+                    text = "[…]"
             }
+            else
+                text = ""
         }
 
         // Validate input
@@ -96,9 +104,9 @@ RowLayout {
                 if (isValidInput(event.key, event.modifiers)) {
                     keyInput.setKey(event.key, event.modifiers);
                     text = qmlutil.keyToString(event.key, event.modifiers);
+                    event.accepted = true;
+                    keyInput.toggleButtonsOff();
                 }
-                event.accepted = true;
-                keyInput.toggleButtonsOff();
             }
         }
 
@@ -109,10 +117,19 @@ RowLayout {
     Button {
         id: clearButton
         text: qsTr("Clear", "Button to remove a keyboard shortcut")
-        enabled: keyInputButton.text !== ""
+        enabled: !(keyInputButton.text === "" && keyInputButton.text === "[…]")
         onClicked: {
-            keyInput.setKey(0, 0);
-            keyInputButton.text = "";
+            if (keyInputButton.text === "[…]") {
+                keyInputButton.text = "";
+                keyInputButton.checked = false;
+            }
+            else {
+                keyInput.setKey(0, 0);
+                keyInput.toggleButtonsOff();
+                keyInputButton.checked = true;
+                keyInputButton.focus = true;
+                keyInputButton.text = "[…]";
+            }
         }
     }
 }

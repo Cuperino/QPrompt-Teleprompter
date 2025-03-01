@@ -910,7 +910,12 @@ Kirigami.Page {
             viewport.editor.enabled = false;
             // Dev: When opening overlay, reset key input button's text to current anchor's key value.
             //row.setMarkerKeyButton.item.text = "";
-            column.setMarkerKeyButton.item.text = prompter.document.getMarkerKey();
+            let key = viewport.document.getMarkerKey();
+            if (key)
+                column.setMarkerKeyButton.text = key;
+            else
+                column.setMarkerKeyButton.text = "[…]";
+            column.setMarkerKeyButton.toggle();
         }
         onClosed: {
             viewport.editor.enabled = true;
@@ -922,7 +927,7 @@ Kirigami.Page {
         }
         ColumnLayout {
             id: column
-            property alias setMarkerKeyButton: setMarkerKeyButton
+            property alias setMarkerKeyButton: setMarkerKeyButton.item
             width: parent.width
             Label {
                 text: qsTr("Key to perform skip to this marker", "Refers to a key on the keyboard used to skip to a user defined marker while prompting")

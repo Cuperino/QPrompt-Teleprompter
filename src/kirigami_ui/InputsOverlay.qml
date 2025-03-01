@@ -36,6 +36,10 @@ Kirigami.OverlaySheet {
         level: 1
     }
 
+    onClosed: {
+        buttonGrid.toggleButtonsOff();
+    }
+
     GridLayout {
         id: buttonGrid
 
@@ -45,8 +49,11 @@ Kirigami.OverlaySheet {
         // Toggle all buttons off
         function toggleButtonsOff() {
             for (let i=1; i<children.length; i+=2)
-                if (typeof children[i].item !== "undefined")
+                if (typeof children[i].item !== "undefined") {
                     children[i].item.checked = false;
+                    if (children[i].item.text === "[…]")
+                        children[i].item.text = "";
+                }
         }
 
         Component.onCompleted: {
