@@ -29,7 +29,7 @@ import com.cuperino.qprompt 1.0
 Kirigami.OverlaySheet {
     id: keyConfigurationOverlay
 
-    width: root.minimumWidth
+    width: root.minimumWidth + 70
 
     header: Kirigami.Heading {
         text: qsTr("Key Bindings", "Title of dialog where users customize keyboard inputs")
