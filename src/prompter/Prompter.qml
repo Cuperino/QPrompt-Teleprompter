@@ -990,6 +990,7 @@ Flickable {
                                     acceptedButtons: Qt.NoButton
                                     cursorShape: Qt.CrossCursor
                                 }
+                                Material.theme: Material.Dark
                             }
                             SpinBox {
                                 value: prompter.atEndLoopDelay
@@ -1001,6 +1002,7 @@ Flickable {
                                     prompter.atEndLoopDelay = value
                                 }
                                 Layout.fillWidth: true
+                                Material.theme: Material.Dark
                             }
                         }
                         // RowLayout {

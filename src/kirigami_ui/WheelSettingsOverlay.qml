@@ -42,11 +42,11 @@ Kirigami.OverlaySheet {
                 text: checked ? qsTr("On") : qsTr("Off")
                 checkable: true
                 checked: root.__scrollAsDial
-                flat: true
                 onClicked: root.__scrollAsDial = !root.__scrollAsDial
                 Layout.fillWidth: true
                 Layout.leftMargin: Kirigami.Units.smallSpacing
                 Layout.rightMargin: Kirigami.Units.smallSpacing
+                Material.theme: Material.Dark
             }
         }
         GridLayout {
@@ -61,11 +61,11 @@ Kirigami.OverlaySheet {
                     text: checked ? qsTr("On") : qsTr("Off")
                     checkable: true
                     checked: root.__throttleWheel
-                    flat: true
                     onClicked: root.__throttleWheel = !root.__throttleWheel
                     Layout.fillWidth: true
                     Layout.leftMargin: Kirigami.Units.smallSpacing
                     Layout.rightMargin: Kirigami.Units.smallSpacing
+                    Material.theme: Material.Dark
                 }
             }
             ColumnLayout {
@@ -83,6 +83,7 @@ Kirigami.OverlaySheet {
                     Layout.fillWidth: true
                     Layout.leftMargin: Kirigami.Units.smallSpacing
                     Layout.rightMargin: Kirigami.Units.smallSpacing
+                    Material.theme: Material.Dark
                 }
             }
         }

@@ -118,6 +118,7 @@ ColumnLayout {
                            pointerColorDialog.open()
                        }
             Layout.fillWidth: true
+            Material.theme: Material.Dark
         }
         Label {
             text: qsTr("Ready: ")
@@ -131,6 +132,7 @@ ColumnLayout {
                            pointerColorDialog.open()
                        }
             Layout.fillWidth: true
+            Material.theme: Material.Dark
         }
         Label {
             text: qsTr("Prompting: ")
@@ -144,6 +146,7 @@ ColumnLayout {
                            pointerColorDialog.open()
                        }
             Layout.fillWidth: true
+            Material.theme: Material.Dark
         }
     }
     Label {
@@ -223,6 +226,7 @@ ColumnLayout {
                            ListView.Beginning)
         }
         Layout.fillWidth: true
+        Material.theme: Material.Dark
     }
 
     ObjectModel {
@@ -308,6 +312,7 @@ ColumnLayout {
                     placeholderText: Qt.application.layoutDirection === Qt.LeftToRight ? (Qt.platform.os === "osx" ? ">" : "\u{1F449}\u{1F3FC}") : (Qt.platform.os === "osx" ? "<" : "\u{1F448}\u{1F3FC}")
                     font.family: pointerSettings.textFont
                     Layout.fillWidth: true
+                    Material.theme: Material.Dark
                 }
                 Label {
                     text: qsTr("Right Pointer: ")
@@ -323,6 +328,7 @@ ColumnLayout {
                     placeholderText: Qt.application.layoutDirection === Qt.LeftToRight ? (Qt.platform.os === "osx" ? "<" : "\u{1F448}\u{1F3FC}") : (Qt.platform.os === "osx" ? ">" : "\u{1F449}\u{1F3FC}")
                     font.family: pointerSettings.textFont
                     Layout.fillWidth: true
+                    Material.theme: Material.Dark
                 }
                 TextField {
                     id: invertedPreviewField
@@ -337,6 +343,7 @@ ColumnLayout {
                         origin.x: invertedPreviewField.width / 2
                     }
                     Layout.fillWidth: true
+                    Material.theme: Material.Dark
                 }
             }
             RowLayout {
@@ -389,6 +396,7 @@ ColumnLayout {
                         parent.value = value
                     }
                     Layout.fillWidth: true
+                    Material.theme: Material.Dark
                 }
             }
             Item {

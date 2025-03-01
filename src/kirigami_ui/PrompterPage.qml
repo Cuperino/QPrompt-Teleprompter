@@ -872,6 +872,7 @@ Kirigami.Page {
                     Layout.fillWidth: true
                     Layout.leftMargin: Kirigami.Units.smallSpacing
                     Layout.rightMargin: Kirigami.Units.smallSpacing
+                    Material.theme: Material.Dark
                 }
             }
             ColumnLayout {
@@ -891,6 +892,7 @@ Kirigami.Page {
                     Layout.fillWidth: true
                     Layout.leftMargin: Kirigami.Units.smallSpacing
                     Layout.rightMargin: Kirigami.Units.smallSpacing
+                    Material.theme: Material.Dark
                 }
             }
         }
@@ -1010,6 +1012,7 @@ Kirigami.Page {
                     Layout.leftMargin: Kirigami.Units.smallSpacing
                     Layout.rightMargin: Kirigami.Units.smallSpacing
                     onAccepted: networkDialog.openFromRemote()
+                    Material.theme: Material.Dark
                 }
             }
             RowLayout {
@@ -1044,6 +1047,7 @@ Kirigami.Page {
                         // Since this onValueModified will get called regardless of which SpinBox gets modified, this is where and when we update the nextReloadTime
                         networkDialog.updateNextReloadTime();
                     }
+                    Material.theme: Material.Dark
                 }
                 Label {
                     text: qsTr("Minutes:")
@@ -1068,6 +1072,7 @@ Kirigami.Page {
                         }
                         autoReloadHours.onValueModified();
                     }
+                    Material.theme: Material.Dark
                 }
                 Label {
                     text: qsTr("Seconds:")
@@ -1092,6 +1097,7 @@ Kirigami.Page {
                         }
                         autoReloadMinutes.onValueModified();
                     }
+                    Material.theme: Material.Dark
                 }
             }
             RowLayout {
@@ -1167,6 +1173,7 @@ Kirigami.Page {
                     //onValueModified: {
                         //__iDefault = value
                     //}
+                    // Material.theme: Material.Dark
                 //}
                 //Button {
                     //visible: parseInt(prompter.state)===Prompter.States.Prompting && prompter.__velocity>0
