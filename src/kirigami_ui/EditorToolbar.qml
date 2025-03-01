@@ -831,9 +831,8 @@ ToolBar {
                 readonly property bool value: checked && enabled
                 visible: !root.__isMobile && showSliderIcons
                 text: "\uE810"
-                enabled: root.__opacity < 1
                 checkable: true
-                checked: true
+                checked: false
                 contentItem: Loader { sourceComponent: textComponent }
                 font.family: iconFont.name
                 font.pointSize: 13
