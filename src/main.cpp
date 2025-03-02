@@ -1,7 +1,7 @@
 /****************************************************************************
  **
  ** QPrompt
- ** Copyright (C) 2020-2024 Javier O. Cordero Pérez
+ ** Copyright (C) 2020-2025 Javier O. Cordero Pérez
  **
  ** This file is part of QPrompt.
  **
@@ -130,15 +130,15 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
 
     const int currentYear = QDate::currentDate().year();
     QString copyrightYear = QString::number(currentYear);
-    QString copyrightStatement1 = QLatin1String("© 2021 Javier O. Cordero Pérez");
-    QString copyrightStatement2 = QLatin1String("© 2021-2024 Javier O. Cordero Pérez"); // , copyrightYear);
+    QString copyrightStatement1 = QLatin1String("© 2020 Javier O. Cordero Pérez");
+    QString copyrightStatement2 = QLatin1String("© 2020-2025 Javier O. Cordero Pérez"); // , copyrightYear);
     KAboutData aboutData(QLatin1String("qprompt"),
                          QLatin1String("QPrompt"),
                          QPROMPT_VERSION_STRING " (" + QString::fromUtf8(GIT_BRANCH) + "/" + QString::fromUtf8(GIT_COMMIT_HASH) + ")",
                          QLatin1String("Personal teleprompter software for all video makers."),
                          KAboutLicense::GPL_V3,
                          // Pérez").subs(currentYear).toString());
-                         (currentYear <= 2021) ? copyrightStatement1 : copyrightStatement2);
+                         (currentYear <= 2020) ? copyrightStatement1 : copyrightStatement2);
     // Overwrite default-generated values of organizationDomain & desktopFileName
     aboutData.setHomepage(QLatin1String("https://qprompt.app"));
     aboutData.setProductName("cuperino/qprompt");

@@ -1,7 +1,7 @@
 /****************************************************************************
  **
  ** QPrompt
- ** Copyright (C) 2023-24 Javier O. Cordero Pérez
+ ** Copyright (C) 2023-2024 Javier O. Cordero Pérez
  **
  ** This file is part of QPrompt.
  **

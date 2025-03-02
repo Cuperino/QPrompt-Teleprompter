@@ -50,7 +50,7 @@ There's a large backlog of feature requests, and a few bug reports, most of whic
 QPrompt's supporters, of which Patreons are a small part of, have a lot of influence over what I choose to work on. Supporters include code contributors, documentation writers, translators, people who I know use the software actively and provide occasional feedback, and beta testers.
 
 # Copyright
-Copyright © 2021-2024 [Javier O. Cordero Pérez](https://javiercordero.info)
+Copyright © 2021-2025 [Javier O. Cordero Pérez](https://javiercordero.info)
 
 # License
 QPrompt is free software: you can redistribute it and/or modify

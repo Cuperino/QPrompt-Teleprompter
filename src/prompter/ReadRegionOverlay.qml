@@ -1,9 +1,7 @@
-
-
 /****************************************************************************
  **
  ** QPrompt
- ** Copyright (C) 2020-2022 Javier O. Cordero Pérez
+ ** Copyright (C) 2020-2024 Javier O. Cordero Pérez
  **
  ** This file is part of QPrompt.
  **
@@ -20,6 +18,7 @@
  ** along with this program.  If not, see <http://www.gnu.org/licenses/>.
  **
  ****************************************************************************/
+
 import QtQuick 2.12
 import QtQuick.Shapes 1.12
 import QtQuick.Controls 2.12
