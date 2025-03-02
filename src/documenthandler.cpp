@@ -560,9 +560,10 @@ void DocumentHandler::loadFromNetworkFinihed()
         static QRegularExpression regex_0(
             QString::fromUtf8("((font-size|letter-spacing|word-spacing|font-weight):\\s*-?[\\d]+(?:.[\\d]+)*(?:(?:px)|(?:pt)|(?:em)|(?:ex));?\\s*)"));
         QString html = QString::fromUtf8(document).replace(regex_0, QString::fromUtf8(""));
-        updateContents(html, Qt::RichText);
 
         m_fileUrl = m_cache->fileName();
+        Q_EMIT aboutToReload();
+        updateContents(html, Qt::RichText);
         Q_EMIT fileUrlChanged();
     }
 }

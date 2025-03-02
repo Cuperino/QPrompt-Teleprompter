@@ -1229,6 +1229,7 @@ Flickable {
 
         property bool isNewFile: false
         property bool quitOnSave: false
+        property real positionBackup: 0
 
         function resetDocumentPosition() {
             if (editor.resetPosition) {
@@ -1332,16 +1333,29 @@ Flickable {
         //textColor: "#FFF"
         //textBackground: "#000"
 
-        onLoaded: function (format) {
+        onAboutToReload: {
+            positionBackup = prompter.position;
+        }
+        onLoaded: (format) => {
             editor.textFormat = format
             editorToolbar.lineHeightSlider.update()
             editorToolbar.paragraphSpacingSlider.update()
-            if (!networkDialog.autoReloadRunning) {
+            if (prompterPage.networkDialog.autoReloadRunning && prompterPage.networkDialog.autoReload) {
+                const i = __i;
+                __i = __iBackup
+                if (parseInt(prompter.state)===Prompter.States.Prompting)
+                    __iBackup = 0
+                prompter.position = positionBackup;
+                __i = i
+                if (prompter.__play && i!==0)
+                    prompter.position = prompter.__destination
+            }
+            else {
                 editor.cursorPosition = 0
                 prompter.position = editor.cursorRectangle.y - (overlay.__readRegionPlacement*(overlay.height-overlay.readRegionHeight)+overlay.readRegionHeight/2) + 1
             }
         }
-        onError: function (message) {
+        onError: (message) => {
             errorDialog.text = message
             errorDialog.visible = true
         }

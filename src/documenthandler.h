@@ -225,6 +225,7 @@ public Q_SLOTS:
     void setMarkersListDirty();
 
 Q_SIGNALS:
+    void aboutToReload();
     void documentChanged();
     void cursorPositionChanged();
     void selectionStartChanged();
