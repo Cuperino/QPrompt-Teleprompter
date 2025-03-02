@@ -26,20 +26,20 @@
 
 struct Marker {
     Q_GADGET
-    Q_PROPERTY(int position MEMBER position)
+    Q_PROPERTY(double position MEMBER position)
     Q_PROPERTY(int length MEMBER length)
     Q_PROPERTY(QString url MEMBER url)
 public:
     Marker() {
         position = 0;
     };
-    explicit Marker(int p)
+    explicit Marker(double p)
     {
         position = p;
     };
     // Contents
     QString text;
-    int position = 0;
+    double position = 0;
     int length = 1;
     int key = 0;
     QString keyLetter;
