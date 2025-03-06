@@ -31,6 +31,7 @@ Makefile*
 *build-*
 .clang-format
 .kdev4/
+.qmllint.ini
 
 # Qt unit tests
 target_wrapper.*
