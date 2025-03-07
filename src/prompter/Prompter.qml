@@ -757,10 +757,12 @@ Flickable {
                 Component {
                     id: editorSidesBorder
                     Rectangle {
+                        id: handle
                         width: 2
+                        property bool hovered: false
                         gradient: Gradient {
-                            GradientStop { position: 0.0; color: "#998" }
-                            GradientStop { position: 1.0; color: "#665" }
+                            GradientStop { position: 0.0; color: handle.hovered ? "#CCC" : "#998" }
+                            GradientStop { position: 1.0; color: handle.hovered ? "#CCC" : "#665" }
                         }
                     }
                 }
@@ -1072,7 +1074,7 @@ Flickable {
                     acceptedButtons: Qt.LeftButton
                     scrollGestureEnabled: false
                     propagateComposedEvents: true
-                    hoverEnabled: false
+                    hoverEnabled: true
                     cursorShape: prompter.dragging ? Qt.ClosedHandCursor : ((pressed || drag.active) ? (forcedOrientation && forcedOrientation!==3 ? Qt.SplitVCursor : Qt.SplitHCursor) : (flicking ? Qt.OpenHandCursor : (forcedOrientation && forcedOrientation!==3 ? Qt.SizeVerCursor : Qt.SizeHorCursor)))
                     anchors.left: Qt.application.layoutDirection===Qt.LeftToRight ? editor.left : undefined
                     anchors.right: Qt.application.layoutDirection===Qt.RightToLeft ? editor.right : undefined
@@ -1085,9 +1087,18 @@ Flickable {
                     //onClicked: (mouse) => {
                     //    mouse.accepted = false
                     //}
+                    onEntered: hovered = true
+                    onExited: hovered = false
+                    property bool hovered: false
                     Loader {
+                        id: leftHandle
                         sourceComponent: editorSidesBorder
                         anchors {top: parent.top; bottom: parent.bottom; horizontalCenter: parent.horizontalCenter}
+                    }
+                    Binding {
+                        target: leftHandle.item
+                        property: "hovered"
+                        value: leftWidthAdjustmentBar.hovered
                     }
                 }
                 MouseArea {
@@ -1096,7 +1107,7 @@ Flickable {
                     scrollGestureEnabled: false
                     acceptedButtons: Qt.LeftButton
                     propagateComposedEvents: true
-                    hoverEnabled: false
+                    hoverEnabled: true
                     x: parent.width-width
                     width: 25
                     anchors.top: parent.top
@@ -1107,9 +1118,18 @@ Flickable {
                     drag.minimumX: -editor.x + fontSize/2 //prompter.width - editor.x - editor.width - leftWidthAdjustmentBar.drag.maximumX
                     drag.maximumX: prompter.width - editor.x - parent.width - leftWidthAdjustmentBar.drag.minimumX
                     cursorShape: (pressed||drag.active||prompter.dragging) ? Qt.ClosedHandCursor : flicking ? Qt.OpenHandCursor : (contentsPlacement ? Qt.OpenHandCursor : Qt.ArrowCursor)
+                    onEntered: hovered = true
+                    onExited: hovered = false
+                    property bool hovered: false
                     Loader {
+                        id: rightHandle
                         sourceComponent: editorSidesBorder
                         anchors {top: parent.top; bottom: parent.bottom; horizontalCenter: parent.horizontalCenter}
+                    }
+                    Binding {
+                        target: rightHandle.item
+                        property: "hovered"
+                        value: rightWidthAdjustmentBar.hovered
                     }
                     //onPressed: editor.invertDrag = true
                     onReleased: positionHandler.placement = (2 * (editor.x - 2 * positionHandler.x) + editor.width - positionHandler.width) / positionHandler.width
