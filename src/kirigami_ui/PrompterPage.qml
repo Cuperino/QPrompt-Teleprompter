@@ -901,15 +901,15 @@ Kirigami.Page {
     Kirigami.OverlaySheet {
         id: namedMarkerConfiguration
         width: 300
+
         header: Kirigami.Heading {
             text: qsTr("Skip Key", "Refers to a key on the keyboard used to skip to a user defined marker while prompting")
             level: 1
         }
+
         onOpened: {
             // When opening overlay, reset key input button's text.
             viewport.editor.enabled = false;
-            // Dev: When opening overlay, reset key input button's text to current anchor's key value.
-            //row.setMarkerKeyButton.item.text = "";
             let key = viewport.document.getMarkerKey();
             if (key)
                 column.setMarkerKeyButton.text = key;
@@ -919,12 +919,13 @@ Kirigami.Page {
         }
         onClosed: {
             viewport.editor.enabled = true;
-            prompter.restoreFocus();
+            viewport.prompter.restoreFocus();
             if (markersDrawer.reOpen) {
                 prompter.document.parse();
                 markersDrawer.open();
             }
         }
+
         ColumnLayout {
             id: column
             property alias setMarkerKeyButton: setMarkerKeyButton.item

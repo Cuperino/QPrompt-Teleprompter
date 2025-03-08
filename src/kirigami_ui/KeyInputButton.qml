@@ -45,6 +45,7 @@ RowLayout {
         checkable: true
 
         onClicked: {
+            forceActiveFocus();
             keyInput.clicked();
             if (checked) {
                 keyInput.toggleButtonsOff()
@@ -127,7 +128,7 @@ RowLayout {
                 keyInput.setKey(0, 0);
                 keyInput.toggleButtonsOff();
                 keyInputButton.checked = true;
-                keyInputButton.focus = true;
+                keyInputButton.forceActiveFocus();
                 keyInputButton.text = "[…]";
             }
         }
