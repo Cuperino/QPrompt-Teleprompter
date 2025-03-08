@@ -38,7 +38,6 @@ if [[ "$OSTYPE" == "linux-gnu"* ]]; then
    PATH=$PATH:~/Qt/Tools/QtInstallerFramework/4.8/bin
 elif [[ "$OSTYPE" == "darwin"* ]]; then
     PLATFORM="macos"
-    CMAKE_INSTALL_PREFIX="/usr"
     COMPILER="macos"
     CMAKE=~/Qt/Tools/CMake/CMake.app/Contents/bin/cmake
     CPACK=~/Qt/Tools/CMake/CMake.app/Contents/bin/cpack
@@ -85,6 +84,10 @@ if [ "$CMAKE_PREFIX_PATH" == "" ]; then
     else
         CMAKE_PREFIX_PATH=~/Qt/$QT_VER/$COMPILER/
     fi
+fi
+
+if [[ "$PLATFORM" == "macos" ]]; then
+    CMAKE_INSTALL_PREFIX=$CMAKE_PREFIX_PATH
 fi
 
 cat << EOF
@@ -217,7 +220,7 @@ for dependency in $tier_0 $tier_1 $tier_2 $tier_3; do
     if $CLEAR_ALL; then
         rm -dRf $dependency/build
     fi
-    $CMAKE -DCMAKE_CONFIGURATION_TYPES=$CMAKE_CONFIGURATION_TYPES -DCMAKE_PREFIX_PATH=$CMAKE_PREFIX_PATH -DCMAKE_INSTALL_PREFIX=$CMAKE_PREFIX_PATH -DBUILD_TESTING=OFF -DBUILD_DOC=OFF -BUILD_QCH=OFF -B ./$dependency/build ./$dependency/
+    $CMAKE -DCMAKE_CONFIGURATION_TYPES=$CMAKE_CONFIGURATION_TYPES -DCMAKE_PREFIX_PATH=$CMAKE_PREFIX_PATH -DCMAKE_INSTALL_PREFIX=$CMAKE_INSTALL_PREFIX -DBUILD_TESTING=OFF -DBUILD_DOC=OFF -BUILD_QCH=OFF -B ./$dependency/build ./$dependency/
     $CMAKE --build ./$dependency/build --config $CMAKE_BUILD_TYPE
     if [[ "$PLATFORM" == "macos" ]]; then
         $CMAKE --install ./$dependency/build
@@ -231,7 +234,7 @@ echo "QHotkey"
 if $CLEAR_ALL; then
     rm -dRf 3rdparty/QHotkey/build
 fi
-$CMAKE -DCMAKE_CONFIGURATION_TYPES=$CMAKE_CONFIGURATION_TYPES -DCMAKE_PREFIX_PATH=$CMAKE_PREFIX_PATH -DCMAKE_INSTALL_PREFIX=$CMAKE_PREFIX_PATH -DBUILD_SHARED_LIBS=ON -DQT_DEFAULT_MAJOR_VERSION=$QT_MAJOR_VERSION -B ./3rdparty/QHotkey/build ./3rdparty/QHotkey/
+$CMAKE -DCMAKE_CONFIGURATION_TYPES=$CMAKE_CONFIGURATION_TYPES -DCMAKE_PREFIX_PATH=$CMAKE_PREFIX_PATH -DCMAKE_INSTALL_PREFIX=$CMAKE_INSTALL_PREFIX -DBUILD_SHARED_LIBS=ON -DQT_DEFAULT_MAJOR_VERSION=$QT_MAJOR_VERSION -B ./3rdparty/QHotkey/build ./3rdparty/QHotkey/
 $CMAKE --build ./3rdparty/QHotkey/build --config $CMAKE_BUILD_TYPE
 if [[ "$PLATFORM" == "macos" ]]; then
     $CMAKE --install ./3rdparty/QHotkey/build
@@ -241,7 +244,7 @@ else
 fi
 
 echo "QPrompt"
-$CMAKE -DCMAKE_CONFIGURATION_TYPES=$CMAKE_CONFIGURATION_TYPES -DCMAKE_PREFIX_PATH=$CMAKE_PREFIX_PATH -DCMAKE_INSTALL_PREFIX=$CMAKE_PREFIX_PATH -B ./build .
+$CMAKE -DCMAKE_CONFIGURATION_TYPES=$CMAKE_CONFIGURATION_TYPES -DCMAKE_PREFIX_PATH=$CMAKE_PREFIX_PATH -DCMAKE_INSTALL_PREFIX=$CMAKE_INSTALL_PREFIX -B ./build .
 $CMAKE --build ./build --config $CMAKE_BUILD_TYPE
 $CMAKE --install ./build
 
