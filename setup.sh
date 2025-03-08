@@ -163,49 +163,13 @@ elif $CLEAR # QPrompt
 fi
 mkdir -p build install
 
-if [[ "$PLATFORM" == "windows" ]]; then
-    winget install -e --id Kitware.CMake
-    winget install -e --id Ninja-build.Ninja
-    winget install -e --id JRSoftware.InnoSetup
-fi
-
 echo "Downloading git submodules"
 git submodule update --init --recursive
-
-python3 -m venv venv
-if [[ "$PLATFORM" == "windows" ]]; then
-    source venv/Scripts/activate
-else
-    source venv/bin/activate
-fi
-python -m pip install --upgrade pip
-python -m pip install -r requirements.txt
 
 if [[ "$PLATFORM" == "windows" ]]; then
     # Initialize MSVC environment variables
     "C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Auxiliary\Build\vcvarsall.bat" amd64
-    # Download and extract gettext binary
-    FILENAME="gettext0.21-iconv1.16-shared-64.zip"
-    curl -Lo build/$FILENAME "https://github.com/mlocati/gettext-iconv-windows/releases/download/v0.21-v1.16/$FILENAME"
-    unzip -o build/$FILENAME -d "$CMAKE_PREFIX_PATH"
 fi
-
-# VCPKG
-# Setup VCPKG
-./3rdparty/vcpkg/bootstrap-vcpkg.sh -disableMetrics
-if [[ "$PLATFORM" == "windows" ]]; then
-VCPKG=./3rdparty/vcpkg/vcpkg.exe
-else
-VCPKG=./3rdparty/vcpkg/vcpkg
-fi
-# Install VCPKG packages
-$VCPKG install --x-install-root $CMAKE_PREFIX_PATH gettext gettext-libintl
-# Copy installed packages into install prefix
-for package in ./3rdparty/vcpkg/packages/*; do
-    echo $package
-    cp -rf $package/* $CMAKE_PREFIX_PATH
-    cp -rf $package/* ./install
-done
 
 # KDE Frameworks
 tier_0="
