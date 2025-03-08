@@ -243,6 +243,9 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
     engine.addImportPath(QStringLiteral("/lib/x86_64-linux-gnu/qml/"));
     engine.addImportPath(QStringLiteral("../lib/x86_64-linux-gnu/qml/"));
     engine.addImportPath(QStringLiteral("../dist/lib/x86_64-linux-gnu/qml/"));
+    // Linux AppImage paths
+    engine.addImportPath(QStringLiteral("../usr/lib/x86_64-linux-gnu/qml/"));
+    engine.addImportPath(QStringLiteral("../usr/lib/aarch64-linux-gnu/qml/"));
     // Windows paths
     engine.addImportPath(QStringLiteral("../../lib/qml/"));
     engine.addImportPath(QStringLiteral("../lib/qml/"));

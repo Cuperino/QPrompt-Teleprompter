@@ -148,6 +148,11 @@ if [[ "$PLATFORM" != "macos" ]]; then
     mkdir -p $AppDirUsr
 fi
 
+# Get software version
+QP_VER_MAJOR=$(cat CMakeLists.txt | grep RELEASE_SERVICE_VERSION_MAJOR | tr -d -c 0-9)
+QP_VER_MINOR=$(cat CMakeLists.txt | grep RELEASE_SERVICE_VERSION_MINOR | tr -d -c 0-9)
+QP_VER_MICRO=$(cat CMakeLists.txt | grep RELEASE_SERVICE_VERSION_MICRO | tr -d -c 0-9)
+
 echo -e "\nBuild directory is ./build"
 if $CLEAR_ALL # QPrompt and dependencies
     then
@@ -250,7 +255,6 @@ if [[ "$PLATFORM" == "macos" ]]; then
     $CMAKE --install ./build
 else
     DESTDIR=$AppDir $CMAKE --install ./build
-    cp -r $AppDirUsr/* $CMAKE_PREFIX_PATH
 fi
 
 # Copy Qt libraries into install directory
@@ -266,26 +270,22 @@ elif [[ "$PLATFORM" == "macos" ]]; then
     $CPACK
     cd ..
 elif [[ "$PLATFORM" == "linux" ]]; then
+    # Copy libraries out from multilib subdirectory
     if [ "$ARCHITECTURE" == "aarch64" ]; then
         cp -r $AppDirUsr/lib/aarch64-linux-gnu/* $CMAKE_PREFIX_PATH/lib/
     fi
     mkdir -p ~/Applications/
-    wget -nc -P ~/Applications/ https://github.com/linuxdeploy/linuxdeploy/releases/download/continuous/linuxdeploy-$ARCHITECTURE.AppImage
-    wget -nc -P ~/Applications/ https://github.com/linuxdeploy/linuxdeploy-plugin-qt/releases/download/continuous/linuxdeploy-plugin-qt-$ARCHITECTURE.AppImage
-    LINUX_DEPLOY=~/Applications/linuxdeploy-$ARCHITECTURE.AppImage
-    LINUX_DEPLOY_QT=~/Applications/linuxdeploy-plugin-qt-$ARCHITECTURE.AppImage
-    chmod +x $LINUX_DEPLOY
-    chmod +x $LINUX_DEPLOY_QT
-    if ! command -v $LINUX_DEPLOY 2>&1 >/dev/null; then
-        echo "$LINUX_DEPLOY could not be found"
+    wget -nc -P ~/Applications/ https://github.com/$(wget -q https://github.com/probonopd/go-appimage/releases/expanded_assets/continuous -O - | grep "appimagetool-.*-$ARCHITECTURE.AppImage" | head -n 1 | cut -d '"' -f 2)
+    APPIMAGE_TOOL=~/Applications/$(ls ~/Applications/ | grep "appimagetool-.*-$ARCHITECTURE.AppImage")
+    if ! command -v $APPIMAGE_TOOL 2>&1 >/dev/null; then
+        echo "$APPIMAGE_TOOL could not be found"
         exit 1
     fi
-    if ! command -v $LINUX_DEPLOY_QT 2>&1 >/dev/null; then
-       echo "$LINUX_DEPLOY_QT could not be found"
-        exit 1
-    fi
-    export EXTRA_QT_MODULES="core;quick;quickcontrols2;svg;widgets;network;"
-    QMAKE=$CMAKE_PREFIX_PATH/bin/qmake $LINUX_DEPLOY --appdir $AppDir --output appimage --plugin qt
+    chmod +x $APPIMAGE_TOOL
+    QTDIR=$CMAKE_PREFIX_PATH $APPIMAGE_TOOL deploy $AppDirUsr/share/applications/com.cuperino.qprompt.desktop
+    # Turn AppDir into AppImage
+    VERSION=v$QP_VER_MAJOR.$QP_VER_MINOR.$QP_VER_MICRO-$(git rev-parse --short HEAD) $APPIMAGE_TOOL $AppDir
+    # Build Debian Package
     cd build
     $CPACK
     cd ..
