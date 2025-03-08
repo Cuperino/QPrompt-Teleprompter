@@ -3,7 +3,7 @@
 #**************************************************************************
 #
 # QPrompt
-# Copyright (C) 2024 Javier O. Cordero Pérez
+# Copyright (C) 2024-2025 Javier O. Cordero Pérez
 #
 # This file is part of QPrompt.
 #
@@ -246,7 +246,12 @@ fi
 echo "QPrompt"
 $CMAKE -DCMAKE_CONFIGURATION_TYPES=$CMAKE_CONFIGURATION_TYPES -DCMAKE_PREFIX_PATH=$CMAKE_PREFIX_PATH -DCMAKE_INSTALL_PREFIX=$CMAKE_INSTALL_PREFIX -B ./build .
 $CMAKE --build ./build --config $CMAKE_BUILD_TYPE
-$CMAKE --install ./build
+if [[ "$PLATFORM" == "macos" ]]; then
+    $CMAKE --install ./build
+else
+    DESTDIR=$AppDir $CMAKE --install ./build
+    cp -r $AppDirUsr/* $CMAKE_PREFIX_PATH
+fi
 
 # Copy Qt libraries into install directory
 if [[ "$PLATFORM" == "windows" ]]; then
