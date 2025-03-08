@@ -924,6 +924,7 @@ Kirigami.Page {
             else
                 column.setMarkerKeyButton.text = "[…]";
             column.setMarkerKeyButton.toggle();
+            column.setMarkerKeyButton.checked = true;
         }
         onClosed: {
             column.setMarkerKeyButton.text = "";
