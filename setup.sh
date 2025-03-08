@@ -217,7 +217,7 @@ for dependency in $tier_0 $tier_1 $tier_2 $tier_3; do
     if $CLEAR_ALL; then
         rm -dRf $dependency/build
     fi
-    $CMAKE -DCMAKE_CONFIGURATION_TYPES=$CMAKE_CONFIGURATION_TYPES -DBUILD_TESTING=OFF -BUILD_QCH=OFF -DCMAKE_PREFIX_PATH=$CMAKE_PREFIX_PATH -DCMAKE_INSTALL_PREFIX=$CMAKE_PREFIX_PATH -B ./$dependency/build ./$dependency/
+    $CMAKE -DCMAKE_CONFIGURATION_TYPES=$CMAKE_CONFIGURATION_TYPES -DBUILD_TESTING=OFF -DBUILD_DOC=OFF -BUILD_QCH=OFF -DCMAKE_PREFIX_PATH=$CMAKE_PREFIX_PATH -DCMAKE_INSTALL_PREFIX=$CMAKE_PREFIX_PATH -B ./$dependency/build ./$dependency/
     $CMAKE --build ./$dependency/build --config $CMAKE_BUILD_TYPE
     if [[ "$PLATFORM" == "macos" ]]; then
         $CMAKE --install ./$dependency/build
