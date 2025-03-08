@@ -28,11 +28,23 @@ import QtCore 6.5
 
 Kirigami.OverlaySheet {
     property alias value: layoutSelector.highlightedIndex
+
     header: Kirigami.Heading {
         text: qsTr("Layout direction")
         level: 1
     }
     z: 1
+
+    onOpened: {
+        root.pageStack.currentItem.editor.enabled = false;
+    }
+    onClosed: {
+        root.pageStack.currentItem.editor.enabled = true;
+        root.pageStack.currentItem.prompter.restoreFocus();
+        if (layoutSelector.dirty)
+            restartDialog.visible = true;
+    }
+
     ColumnLayout {
         RowLayout {
             Label {
@@ -73,8 +85,4 @@ Kirigami.OverlaySheet {
             }
         }
     }
-    onClosed: {
-       if (layoutSelector.dirty)
-           restartDialog.visible = true;
-   }
 }

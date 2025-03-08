@@ -32,6 +32,14 @@ Kirigami.OverlaySheet {
         level: 1
     }
 
+    onOpened: {
+        root.pageStack.currentItem.editor.enabled = false;
+    }
+    onClosed: {
+        root.pageStack.currentItem.editor.enabled = true;
+        root.pageStack.currentItem.prompter.restoreFocus();
+    }
+
     ColumnLayout {
         RowLayout {
             Label {

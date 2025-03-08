@@ -28,12 +28,24 @@ import QtCore 6.5
 
 Kirigami.OverlaySheet {
     property alias value: languageSelector.highlightedIndex
+
     header: Kirigami.Heading {
         text: qsTr("Language settings")
         level: 1
     }
     z: 1
     width: root.minimumWidth - 10
+
+    onOpened: {
+        root.pageStack.currentItem.editor.enabled = false;
+    }
+    onClosed: {
+        root.pageStack.currentItem.editor.enabled = true;
+        root.pageStack.currentItem.prompter.restoreFocus();
+        if (languageSelector.dirty)
+            restartDialog.visible = true;
+    }
+
     ColumnLayout {
         RowLayout {
             Label {
@@ -179,8 +191,4 @@ Kirigami.OverlaySheet {
             Material.theme: Material.Dark
         }
     }
-    onClosed: {
-       if (languageSelector.dirty)
-           restartDialog.visible = true;
-   }
 }

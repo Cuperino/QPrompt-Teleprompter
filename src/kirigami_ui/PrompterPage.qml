@@ -852,6 +852,14 @@ Kirigami.Page {
             level: 1
         }
 
+        onOpened: {
+            viewport.editor.enabled = false;
+        }
+        onClosed: {
+            viewport.editor.enabled = true;
+            viewport.prompter.restoreFocus();
+        }
+
         RowLayout {
             width: parent.width
 
@@ -918,6 +926,8 @@ Kirigami.Page {
             column.setMarkerKeyButton.toggle();
         }
         onClosed: {
+            column.setMarkerKeyButton.text = "";
+            column.setMarkerKeyButton.checked = false;
             viewport.editor.enabled = true;
             viewport.prompter.restoreFocus();
             if (markersDrawer.reOpen) {
@@ -986,6 +996,13 @@ Kirigami.Page {
         header: Kirigami.Heading {
             text: qsTr("Open from network...")
             level: 1
+        }
+        onOpened: {
+            viewport.editor.enabled = false;
+        }
+        onClosed: {
+            viewport.editor.enabled = true;
+            viewport.prompter.restoreFocus();
         }
         property bool autoReload: false
         property bool autoReloadRunning: false
@@ -1148,6 +1165,13 @@ Kirigami.Page {
             text: qsTr("Pointer configuration", "Name of section where reding region pointers are configured")
             level: 1
         }
+        onOpened: {
+            viewport.editor.enabled = false;
+        }
+        onClosed: {
+            viewport.editor.enabled = true;
+            viewport.prompter.restoreFocus();
+        }
         PointerSettings{
             id: pointerSettings
         }
@@ -1155,10 +1179,6 @@ Kirigami.Page {
 
     //Kirigami.OverlaySheet {
         //id: stepsConfiguration
-        //onSheetOpenChanged: {
-            //if (!sheetOpen)
-                //prompter.focus = true
-        //}
         //background: Rectangle {
             ////color: Kirigami.Theme.activeBackgroundColor
             //color: appTheme.__backgroundColor
@@ -1168,7 +1188,13 @@ Kirigami.Page {
             //text: qsTr("Start Velocity")
             //level: 1
         //}
-
+        //onOpened: {
+        //    viewport.editor.enabled = false;
+        //}
+        //onClosed: {
+        //    viewport.editor.enabled = true;
+        //    viewport.prompter.restoreFocus();
+        //}
         //ColumnLayout {
             //width: parent.width
             //Label {

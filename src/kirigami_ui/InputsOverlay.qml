@@ -36,8 +36,14 @@ Kirigami.OverlaySheet {
         level: 1
     }
 
+    onOpened: {
+        // When opening overlay, reset key input button's text.
+        viewport.editor.enabled = false;
+    }
     onClosed: {
         buttonGrid.toggleButtonsOff();
+        viewport.editor.enabled = true;
+        prompter.restoreFocus();
     }
 
     GridLayout {
