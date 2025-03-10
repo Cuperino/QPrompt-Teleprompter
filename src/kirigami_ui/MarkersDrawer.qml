@@ -73,6 +73,8 @@ Kirigami.OverlayDrawer {
                     markersDrawer.close()
             }
             Label {
+                x: 10
+                anchors.verticalCenter: parent.verticalCenter
                 text: (model.keyLetter ? "(" + model.keyLetter + ") " : "") + model.text
             }
             actions: [
