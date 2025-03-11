@@ -881,7 +881,16 @@ ToolBar {
                 height: fontSizeLabel.height
                 width: fontSizeDirectInput.editText ? fontSizeTextField.width : fontSizeLabel.width
                 onDoubleClicked: {
+                    if (Qt.platform.os !== "android")
+                        enterEditMode()
+                }
+                onPressAndHold: {
+                    if (Qt.platform.os === "android")
+                        enterEditMode();
+                }
+                function enterEditMode() {
                     fontSizeDirectInput.editText = true;
+                    // fontSizeTextField.selectAll();  // Uncomment to autoselect when entering edit mode.
                 }
                 function percentageFromFontSize(fontSize: double): double {
                     if (viewport.prompter.wysiwyg)
@@ -898,12 +907,14 @@ ToolBar {
                     readOnly: !visible
                     text: ""
                     onVisibleChanged: {
-                        if (visible)
+                        if (visible) {
                             text = viewport.prompter.fontSize;
+                            forceActiveFocus();
+                        }
                     }
                     onAccepted: {
                         const value = fontSizeDirectInput.percentageFromFontSize(text);
-                        if (value > 0) {
+                        if (text !== "") {
                             if (viewport.prompter.wysiwyg)
                                 fontWYSIWYGSizeSlider.value = value;
                             else
@@ -914,6 +925,55 @@ ToolBar {
                         fontSizeDirectInput.editText = false;
                     }
                     Material.theme: Material.Dark
+                    Keys.onUpPressed: {
+                        const fontSize = Number(text) + 1;
+                        const value = fontSizeDirectInput.percentageFromFontSize(fontSize);
+                        if (viewport.prompter.wysiwyg) {
+                            if (value > fontWYSIWYGSizeSlider.to)
+                                fontWYSIWYGSizeSlider.value = fontWYSIWYGSizeSlider.to;
+                            else {
+                                if (value < fontWYSIWYGSizeSlider.from)
+                                    fontWYSIWYGSizeSlider.value = fontWYSIWYGSizeSlider.from;
+                                else
+                                    fontWYSIWYGSizeSlider.value = value;
+                            }
+                        } else {
+                            if (value > fontSizeSlider.to)
+                                fontSizeSlider.value = fontSizeSlider.to;
+                            else {
+                                if (value < fontSizeSlider.from)
+                                    fontSizeSlider.value = fontSizeSlider.from;
+                                else
+                                    fontSizeSlider.value = value;
+                            }
+                        }
+                        text = viewport.prompter.fontSize;
+                    }
+                    Keys.onDownPressed: {
+                        const fontSize = Number(text) - 1;
+                        const value = fontSizeDirectInput.percentageFromFontSize(fontSize);
+                        if (viewport.prompter.wysiwyg) {
+                            if (value < fontWYSIWYGSizeSlider.from)
+                                fontWYSIWYGSizeSlider.value = fontWYSIWYGSizeSlider.from;
+                            else {
+                                if (value > fontWYSIWYGSizeSlider.to)
+                                    fontWYSIWYGSizeSlider.value = fontWYSIWYGSizeSlider.to;
+                                else
+                                    fontWYSIWYGSizeSlider.value = value;
+                            }
+                        }
+                        else {
+                            if (value < fontSizeSlider.from)
+                                fontSizeSlider.value = fontSizeSlider.from;
+                            else {
+                                if (value > fontSizeSlider.to)
+                                    fontSizeSlider.value = fontSizeSlider.to;
+                                else
+                                    fontSizeSlider.value = value;
+                            }
+                        }
+                        text = viewport.prompter.fontSize;
+                    }
                 }
                 Label {
                     id: fontSizeLabel
