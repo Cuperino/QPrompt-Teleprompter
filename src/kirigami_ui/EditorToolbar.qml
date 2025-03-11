@@ -837,13 +837,86 @@ ToolBar {
                 font.family: iconFont.name
                 font.pointSize: 13
             }
-            Label {
-                text: qsTr("Opacity <pre>%1</pre>", "Opacity {TRANSPARENCY_PERCENTAGE}").arg((root.__opacity/10).toFixed(3).slice(2))
-                color: Kirigami.Theme.textColor
-                Layout.topMargin: 4
-                Layout.bottomMargin: -14
-                Layout.rightMargin: 3
-                Layout.leftMargin: showSliderIcons ? 1 : 8
+            MouseArea {
+                id: opacityDirectInput
+                property bool editText: false
+                height: opacityLabel.height
+                width: opacityDirectInput.editText ? opacityTextField.width : opacityLabel.width
+                onDoubleClicked: {
+                    if (Qt.platform.os !== "android")
+                        enterEditMode()
+                }
+                onPressAndHold: {
+                    if (Qt.platform.os === "android")
+                        enterEditMode();
+                }
+                function enterEditMode() {
+                    opacityDirectInput.editText = true;
+                    // opacityTextField.selectAll();  // Uncomment to autoselect when entering edit mode.
+                }
+                TextField {
+                    id: opacityTextField
+                    anchors.fill: parent
+                    anchors.leftMargin: -2
+                    anchors.rightMargin: -2
+                    visible: opacityDirectInput.editText
+                    readOnly: !visible
+                    text: ""
+                    onVisibleChanged: {
+                        if (visible) {
+                            text = opacitySlider.value;
+                            forceActiveFocus();
+                        }
+                    }
+                    onAccepted: {
+                        if (text !== "") {
+                            if (text >= opacitySlider.from)
+                                root.__opacity = opacitySlider.to / 100
+                            else if (text <= opacitySlider.to)
+                                root.__opacity = opacitySlider.from / 100
+                            else
+                                root.__opacity = text / 100
+                        }
+                    }
+                    onEditingFinished: {
+                        opacityDirectInput.editText = false;
+                    }
+                    Material.theme: Material.Dark
+                    Keys.onUpPressed: {
+                        const value = Number(text) + 1;
+                        if (value > opacitySlider.to)
+                            opacitySlider.value = opacitySlider.to;
+                        else {
+                            if (value < opacitySlider.from)
+                                opacitySlider.value = opacitySlider.from;
+                            else
+                                opacitySlider.value = value;
+                        }
+                        text = opacitySlider.value;
+                    }
+                    Keys.onDownPressed: {
+                        const value = Number(text) - 1;
+                        if (value < opacitySlider.from)
+                            opacitySlider.value = opacitySlider.from;
+                        else {
+                            if (value > opacitySlider.to)
+                                opacitySlider.value = opacitySlider.to;
+                            else
+                                opacitySlider.value = value;
+                        }
+                        text = opacitySlider.value;
+                    }
+                }
+                Label {
+                    id: opacityLabel
+                    text: qsTr("Opacity <pre>%1</pre>", "Opacity {TRANSPARENCY_PERCENTAGE}").arg((root.__opacity/10).toFixed(3).slice(2))
+                    visible: !opacityDirectInput.editText
+                    color: Kirigami.Theme.textColor
+                    Layout.topMargin: 4
+                    Layout.bottomMargin: -14
+                    Layout.rightMargin: 3
+                    Layout.leftMargin: showSliderIcons ? 1 : 8
+                }
             }
             Slider {
                 id: opacitySlider
