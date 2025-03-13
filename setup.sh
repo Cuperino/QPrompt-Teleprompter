@@ -250,7 +250,7 @@ elif [[ "$PLATFORM" == "linux" ]]; then
         exit 1
     fi
     chmod +x $APPIMAGE_TOOL
-    QTDIR=$CMAKE_PREFIX_PATH $APPIMAGE_TOOL deploy $AppDirUsr/share/applications/com.cuperino.qprompt.desktop
+    QTDIR=$CMAKE_PREFIX_PATH $APPIMAGE_TOOL -s deploy $AppDirUsr/share/applications/com.cuperino.qprompt.desktop
     # Turn AppDir into AppImage
     VERSION=v$QP_VER_MAJOR.$QP_VER_MINOR.$QP_VER_MICRO-$(git rev-parse --short HEAD) $APPIMAGE_TOOL $AppDir
     # Build Debian Package
