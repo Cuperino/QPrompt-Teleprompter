@@ -1111,13 +1111,90 @@ ToolBar {
                 font.family: iconFont.name
                 font.pointSize: 13
             }
-            Label {
-                text: qsTr("Line height <pre>%1%</pre>", "Line height 100%").arg((lineHeightSlider.value/1000).toFixed(3).slice(2))
-                color: Kirigami.Theme.textColor
-                Layout.topMargin: 4
-                Layout.bottomMargin: -14
-                Layout.rightMargin: 3
-                Layout.leftMargin: showSliderIcons ? 1 : 8
+            MouseArea {
+                id: lineHeightDirectInput
+                property bool editText: false
+                height: lineHeightLabel.height
+                width: lineHeightDirectInput.editText ? lineHeightTextField.width : lineHeightLabel.width
+                onDoubleClicked: {
+                    if (Qt.platform.os !== "android")
+                        enterEditMode()
+                }
+                onPressAndHold: {
+                    if (Qt.platform.os === "android")
+                        enterEditMode();
+                }
+                function enterEditMode() {
+                    lineHeightDirectInput.editText = true;
+                    // lineHeightTextField.selectAll();  // Uncomment to autoselect when entering edit mode.
+                }
+                TextField {
+                    id: lineHeightTextField
+                    anchors.fill: parent
+                    anchors.leftMargin: -2
+                    anchors.rightMargin: -2
+                    visible: lineHeightDirectInput.editText
+                    readOnly: !visible
+                    text: ""
+                    onVisibleChanged: {
+                        if (visible) {
+                            text = lineHeightSlider.value;
+                            forceActiveFocus();
+                        }
+                    }
+                    onAccepted: {
+                        if (text !== "") {
+                            if (text < lineHeightSlider.from)
+                                lineHeightSlider.value = lineHeightSlider.from;
+                            else if (text > lineHeightSlider.to)
+                                lineHeightSlider.value = lineHeightSlider.to;
+                            else
+                                lineHeightSlider.value = text;
+                            text = lineHeightSlider.value;
+                            lineHeightSlider.update();
+                        }
+                    }
+                    onEditingFinished: {
+                        lineHeightDirectInput.editText = false;
+                    }
+                    Material.theme: Material.Dark
+                    Keys.onUpPressed: {
+                        const value = Number(text) + 1;
+                        if (value > lineHeightSlider.to)
+                            lineHeightSlider.value = lineHeightSlider.to;
+                        else {
+                            if (value < lineHeightSlider.from)
+                                lineHeightSlider.value = lineHeightSlider.from;
+                            else
+                                lineHeightSlider.value = value;
+                        }
+                        text = lineHeightSlider.value;
+                        lineHeightSlider.update();
+                    }
+                    Keys.onDownPressed: {
+                        const value = Number(text) - 1;
+                        if (value < lineHeightSlider.from)
+                            lineHeightSlider.value = lineHeightSlider.from;
+                        else {
+                            if (value > lineHeightSlider.to)
+                                lineHeightSlider.value = lineHeightSlider.to;
+                            else
+                                lineHeightSlider.value = value;
+                        }
+                        text = lineHeightSlider.value;
+                        lineHeightSlider.update();
+                    }
+                }
+                Label {
+                    id: lineHeightLabel
+                    text: qsTr("Line height <pre>%1%</pre>", "Line height 100%").arg((lineHeightSlider.value/1000).toFixed(3).slice(2))
+                    visible: !lineHeightDirectInput.editText
+                    color: Kirigami.Theme.textColor
+                    Layout.topMargin: 4
+                    Layout.bottomMargin: -14
+                    Layout.rightMargin: 3
+                    Layout.leftMargin: showSliderIcons ? 1 : 8
+                }
             }
             Slider {
                 id: lineHeightSlider
