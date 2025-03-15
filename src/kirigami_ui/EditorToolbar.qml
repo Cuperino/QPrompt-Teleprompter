@@ -1347,13 +1347,91 @@ ToolBar {
                 font.pointSize: 13
                 Material.theme: Material.Dark
             }
-            Label {
-                text: qsTr("Word spacing <pre>%1</pre>", "Word spacing <pre>±00<pre>").arg((wordSpacingSlider.value<0 ? '-' + (wordSpacingSlider.value/100).toFixed(2).slice(3) : '+' + (wordSpacingSlider.value/100).toFixed(2).slice(2)))
-                color: Kirigami.Theme.textColor
-                Layout.topMargin: 4
-                Layout.bottomMargin: -14
-                Layout.rightMargin: 3
-                Layout.leftMargin: showSliderIcons ? 1 : 8
+            MouseArea {
+                id: wordSpacingDirectInput
+                property bool editText: false
+                height: wordSpacingLabel.height
+                width: wordSpacingDirectInput.editText ? wordSpacingTextField.width : wordSpacingLabel.width
+                onDoubleClicked: {
+                    if (Qt.platform.os !== "android")
+                        enterEditMode()
+                }
+                onPressAndHold: {
+                    if (Qt.platform.os === "android")
+                        enterEditMode();
+                }
+                function enterEditMode() {
+                    wordSpacingDirectInput.editText = true;
+                    // wordSpacingTextField.selectAll();  // Uncomment to autoselect when entering edit mode.
+                }
+                TextField {
+                    id: wordSpacingTextField
+                    anchors.fill: parent
+                    anchors.leftMargin: -2
+                    anchors.rightMargin: -2
+                    visible: wordSpacingDirectInput.editText
+                    readOnly: !visible
+                    text: ""
+                    onVisibleChanged: {
+                        if (visible) {
+                            text = wordSpacingSlider.value;
+                            forceActiveFocus();
+                        }
+                    }
+                    onAccepted: {
+                        if (text !== "") {
+                            const value = text;
+                            if (value < wordSpacingSlider.from)
+                                wordSpacingSlider.value = wordSpacingSlider.from;
+                            else if (value > wordSpacingSlider.to)
+                                wordSpacingSlider.value = wordSpacingSlider.to;
+                            else
+                                wordSpacingSlider.value = value;
+                            text = wordSpacingSlider.value;
+                            wordSpacingSlider.update();
+                        }
+                    }
+                    onEditingFinished: {
+                        wordSpacingDirectInput.editText = false;
+                    }
+                    Material.theme: Material.Dark
+                    Keys.onUpPressed: {
+                        const value = Number(text) + 1;
+                        if (value > wordSpacingSlider.to)
+                            wordSpacingSlider.value = wordSpacingSlider.to;
+                        else {
+                            if (value < wordSpacingSlider.from)
+                                wordSpacingSlider.value = wordSpacingSlider.from;
+                            else
+                                wordSpacingSlider.value = value;
+                        }
+                        text = wordSpacingSlider.value;
+                        wordSpacingSlider.update();
+                    }
+                    Keys.onDownPressed: {
+                        const value = Number(text) - 1;
+                        if (value < wordSpacingSlider.from)
+                            wordSpacingSlider.value = wordSpacingSlider.from;
+                        else {
+                            if (value > wordSpacingSlider.to)
+                                wordSpacingSlider.value = wordSpacingSlider.to;
+                            else
+                                wordSpacingSlider.value = value;
+                        }
+                        text = wordSpacingSlider.value;
+                        wordSpacingSlider.update();
+                    }
+                }
+                Label {
+                    id: wordSpacingLabel
+                    text: qsTr("Word spacing <pre>%1</pre>", "Word spacing <pre>±00<pre>").arg((wordSpacingSlider.value<0 ? '-' + (wordSpacingSlider.value/100).toFixed(2).slice(3) : '+' + (wordSpacingSlider.value/100).toFixed(2).slice(2)))
+                    visible: !wordSpacingDirectInput.editText
+                    color: Kirigami.Theme.textColor
+                    Layout.topMargin: 4
+                    Layout.bottomMargin: -14
+                    Layout.rightMargin: 3
+                    Layout.leftMargin: showSliderIcons ? 1 : 8
+                }
             }
             Slider {
                 id: wordSpacingSlider
