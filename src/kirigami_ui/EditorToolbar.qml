@@ -1583,13 +1583,91 @@ ToolBar {
                 font.family: iconFont.name
                 font.pointSize: 13
             }
-            Label {
-                text: qsTr("Step speed <pre>%1</pre>", "Step speed 1.00").arg((baseSpeedSlider.value/100).toFixed(2))
-                color: Kirigami.Theme.textColor
-                Layout.topMargin: 4
-                Layout.bottomMargin: -14
-                Layout.rightMargin: 3
-                Layout.leftMargin: showSliderIcons ? 1 : 8
+            MouseArea {
+                id: baseSpeedDirectInput
+                property bool editText: false
+                height: baseSpeedLabel.height
+                width: baseSpeedDirectInput.editText ? baseSpeedTextField.width : baseSpeedLabel.width
+                onDoubleClicked: {
+                    if (Qt.platform.os !== "android")
+                        enterEditMode()
+                }
+                onPressAndHold: {
+                    if (Qt.platform.os === "android")
+                        enterEditMode();
+                }
+                function enterEditMode() {
+                    baseSpeedDirectInput.editText = true;
+                    // baseSpeedTextField.selectAll();  // Uncomment to autoselect when entering edit mode.
+                }
+                TextField {
+                    id: baseSpeedTextField
+                    anchors.fill: parent
+                    anchors.leftMargin: -2
+                    anchors.rightMargin: -2
+                    visible: baseSpeedDirectInput.editText
+                    readOnly: !visible
+                    text: ""
+                    onVisibleChanged: {
+                        if (visible) {
+                            text = baseSpeedSlider.value / 100;
+                            forceActiveFocus();
+                        }
+                    }
+                    onAccepted: {
+                        if (text !== "") {
+                            const value = Number(text) * 100;
+                            if (value < baseSpeedSlider.from)
+                                baseSpeedSlider.value = baseSpeedSlider.from;
+                            else if (value > baseSpeedSlider.to)
+                                baseSpeedSlider.value = baseSpeedSlider.to;
+                            else
+                                baseSpeedSlider.value = Math.round(value / baseSpeedSlider.stepSize) * baseSpeedSlider.stepSize;
+                            text = baseSpeedSlider.value;
+                            baseSpeedSlider.update();
+                        }
+                    }
+                    onEditingFinished: {
+                        baseSpeedDirectInput.editText = false;
+                    }
+                    Material.theme: Material.Dark
+                    Keys.onUpPressed: {
+                        const value = Number(text) * 100 + baseSpeedSlider.stepSize
+                        if (value > baseSpeedSlider.to)
+                            baseSpeedSlider.value = baseSpeedSlider.to;
+                        else {
+                            if (value < baseSpeedSlider.from)
+                                baseSpeedSlider.value = baseSpeedSlider.from;
+                            else
+                                baseSpeedSlider.value = Math.round(value / baseSpeedSlider.stepSize) * baseSpeedSlider.stepSize;
+                        }
+                        text = baseSpeedSlider.value / 100;
+                        baseSpeedSlider.update();
+                    }
+                    Keys.onDownPressed: {
+                        const value = Number(text) * 100 - baseSpeedSlider.stepSize;
+                        if (value < baseSpeedSlider.from)
+                            baseSpeedSlider.value = baseSpeedSlider.from;
+                        else {
+                            if (value > baseSpeedSlider.to)
+                                baseSpeedSlider.value = baseSpeedSlider.to;
+                            else
+                                baseSpeedSlider.value = Math.round(value / baseSpeedSlider.stepSize) * baseSpeedSlider.stepSize;
+                        }
+                        text = baseSpeedSlider.value / 100;
+                        baseSpeedSlider.update();
+                    }
+                }
+                Label {
+                    id: baseSpeedLabel
+                    text: qsTr("Step speed <pre>%1</pre>", "Step speed 1.00").arg((baseSpeedSlider.value/100).toFixed(2))
+                    visible: !baseSpeedDirectInput.editText
+                    color: Kirigami.Theme.textColor
+                    Layout.topMargin: 4
+                    Layout.bottomMargin: -14
+                    Layout.rightMargin: 3
+                    Layout.leftMargin: showSliderIcons ? 1 : 8
+                }
             }
             Slider {
                 id: baseSpeedSlider
@@ -1624,13 +1702,91 @@ ToolBar {
                 font.family: iconFont.name
                 font.pointSize: 13
             }
-            Label {
-                text: qsTr("Step acceleration <pre>%1</pre>", "Step acceleration 1.15").arg((baseAccelerationSlider.value/100).toFixed(2))
-                color: Kirigami.Theme.textColor
-                Layout.topMargin: 4
-                Layout.bottomMargin: -14
-                Layout.rightMargin: 3
-                Layout.leftMargin: showSliderIcons ? 1 : 8
+            MouseArea {
+                id: baseAccelerationDirectInput
+                property bool editText: false
+                height: baseAccelerationLabel.height
+                width: baseAccelerationDirectInput.editText ? baseAccelerationTextField.width : baseAccelerationLabel.width
+                onDoubleClicked: {
+                    if (Qt.platform.os !== "android")
+                        enterEditMode()
+                }
+                onPressAndHold: {
+                    if (Qt.platform.os === "android")
+                        enterEditMode();
+                }
+                function enterEditMode() {
+                    baseAccelerationDirectInput.editText = true;
+                    // baseAccelerationTextField.selectAll();  // Uncomment to autoselect when entering edit mode.
+                }
+                TextField {
+                    id: baseAccelerationTextField
+                    anchors.fill: parent
+                    anchors.leftMargin: -2
+                    anchors.rightMargin: -2
+                    visible: baseAccelerationDirectInput.editText
+                    readOnly: !visible
+                    text: ""
+                    onVisibleChanged: {
+                        if (visible) {
+                            text = baseAccelerationSlider.value / 100;
+                            forceActiveFocus();
+                        }
+                    }
+                    onAccepted: {
+                        if (text !== "") {
+                            const value = Number(text) * 100;
+                            if (value < baseAccelerationSlider.from)
+                                baseAccelerationSlider.value = baseAccelerationSlider.from;
+                            else if (value > baseAccelerationSlider.to)
+                                baseAccelerationSlider.value = baseAccelerationSlider.to;
+                            else
+                                baseAccelerationSlider.value = Math.round(value / baseAccelerationSlider.stepSize) * baseAccelerationSlider.stepSize;
+                            text = baseAccelerationSlider.value;
+                            baseAccelerationSlider.update();
+                        }
+                    }
+                    onEditingFinished: {
+                        baseAccelerationDirectInput.editText = false;
+                    }
+                    Material.theme: Material.Dark
+                    Keys.onUpPressed: {
+                        const value = Number(text) * 100 + baseAccelerationSlider.stepSize
+                        if (value > baseAccelerationSlider.to)
+                            baseAccelerationSlider.value = baseAccelerationSlider.to;
+                        else {
+                            if (value < baseAccelerationSlider.from)
+                                baseAccelerationSlider.value = baseAccelerationSlider.from;
+                            else
+                                baseAccelerationSlider.value = Math.round(value / baseAccelerationSlider.stepSize) * baseAccelerationSlider.stepSize;
+                        }
+                        text = baseAccelerationSlider.value / 100;
+                        baseAccelerationSlider.update();
+                    }
+                    Keys.onDownPressed: {
+                        const value = Number(text) * 100 - baseAccelerationSlider.stepSize;
+                        if (value < baseAccelerationSlider.from)
+                            baseAccelerationSlider.value = baseAccelerationSlider.from;
+                        else {
+                            if (value > baseAccelerationSlider.to)
+                                baseAccelerationSlider.value = baseAccelerationSlider.to;
+                            else
+                                baseAccelerationSlider.value = Math.round(value / baseAccelerationSlider.stepSize) * baseAccelerationSlider.stepSize;
+                        }
+                        text = baseAccelerationSlider.value / 100;
+                        baseAccelerationSlider.update();
+                    }
+                }
+                Label {
+                    id: baseAccelerationLabel
+                    text: qsTr("Step acceleration <pre>%1</pre>", "Step acceleration 1.15").arg((baseAccelerationSlider.value/100).toFixed(2))
+                    visible: !baseAccelerationDirectInput.editText
+                    color: Kirigami.Theme.textColor
+                    Layout.topMargin: 4
+                    Layout.bottomMargin: -14
+                    Layout.rightMargin: 3
+                    Layout.leftMargin: showSliderIcons ? 1 : 8
+                }
             }
             Slider {
                 id: baseAccelerationSlider
