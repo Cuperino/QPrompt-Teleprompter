@@ -1461,13 +1461,91 @@ ToolBar {
                 font.family: iconFont.name
                 font.pointSize: 13
             }
-            Label {
-                text: qsTr("Letter spacing <pre>%1</pre>", "Letter spacing ±00").arg((letterSpacingSlider.value<0 ? '-' + (letterSpacingSlider.value/100).toFixed(2).slice(3) : '+' + (letterSpacingSlider.value/100).toFixed(2).slice(2)))
-                color: Kirigami.Theme.textColor
-                Layout.topMargin: 4
-                Layout.bottomMargin: -14
-                Layout.rightMargin: 3
-                Layout.leftMargin: showSliderIcons ? 1 : 8
+            MouseArea {
+                id: letterSpacingDirectInput
+                property bool editText: false
+                height: letterSpacingLabel.height
+                width: letterSpacingDirectInput.editText ? letterSpacingTextField.width : letterSpacingLabel.width
+                onDoubleClicked: {
+                    if (Qt.platform.os !== "android")
+                        enterEditMode()
+                }
+                onPressAndHold: {
+                    if (Qt.platform.os === "android")
+                        enterEditMode();
+                }
+                function enterEditMode() {
+                    letterSpacingDirectInput.editText = true;
+                    // letterSpacingTextField.selectAll();  // Uncomment to autoselect when entering edit mode.
+                }
+                TextField {
+                    id: letterSpacingTextField
+                    anchors.fill: parent
+                    anchors.leftMargin: -2
+                    anchors.rightMargin: -2
+                    visible: letterSpacingDirectInput.editText
+                    readOnly: !visible
+                    text: ""
+                    onVisibleChanged: {
+                        if (visible) {
+                            text = letterSpacingSlider.value;
+                            forceActiveFocus();
+                        }
+                    }
+                    onAccepted: {
+                        if (text !== "") {
+                            const value = text;
+                            if (value < letterSpacingSlider.from)
+                                letterSpacingSlider.value = letterSpacingSlider.from;
+                            else if (value > letterSpacingSlider.to)
+                                letterSpacingSlider.value = letterSpacingSlider.to;
+                            else
+                                letterSpacingSlider.value = value;
+                            text = letterSpacingSlider.value;
+                            letterSpacingSlider.update();
+                        }
+                    }
+                    onEditingFinished: {
+                        letterSpacingDirectInput.editText = false;
+                    }
+                    Material.theme: Material.Dark
+                    Keys.onUpPressed: {
+                        const value = Number(text) + 1;
+                        if (value > letterSpacingSlider.to)
+                            letterSpacingSlider.value = letterSpacingSlider.to;
+                        else {
+                            if (value < letterSpacingSlider.from)
+                                letterSpacingSlider.value = letterSpacingSlider.from;
+                            else
+                                letterSpacingSlider.value = value;
+                        }
+                        text = letterSpacingSlider.value;
+                        letterSpacingSlider.update();
+                    }
+                    Keys.onDownPressed: {
+                        const value = text - 1;
+                        if (value < letterSpacingSlider.from)
+                            letterSpacingSlider.value = letterSpacingSlider.from;
+                        else {
+                            if (value > letterSpacingSlider.to)
+                                letterSpacingSlider.value = letterSpacingSlider.to;
+                            else
+                                letterSpacingSlider.value = value;
+                        }
+                        text = letterSpacingSlider.value;
+                        letterSpacingSlider.update();
+                    }
+                }
+                Label {
+                    id: letterSpacingLabel
+                    text: qsTr("Letter spacing <pre>%1</pre>", "Letter spacing ±00").arg((letterSpacingSlider.value<0 ? '-' + (letterSpacingSlider.value/100).toFixed(2).slice(3) : '+' + (letterSpacingSlider.value/100).toFixed(2).slice(2)))
+                    visible: !letterSpacingDirectInput.editText
+                    color: Kirigami.Theme.textColor
+                    Layout.topMargin: 4
+                    Layout.bottomMargin: -14
+                    Layout.rightMargin: 3
+                    Layout.leftMargin: showSliderIcons ? 1 : 8
+                }
             }
             Slider {
                 id: letterSpacingSlider
