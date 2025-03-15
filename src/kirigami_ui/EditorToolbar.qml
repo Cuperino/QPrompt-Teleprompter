@@ -1228,13 +1228,91 @@ ToolBar {
                 font.family: iconFont.name
                 font.pointSize: 13
             }
-            Label {
-                text: qsTr("Paragraph spacing <pre>%1%</pre>", "Paragraph spacing ±00").arg((paragraphSpacingSlider.value/10).toFixed(3).slice(2))
-                color: Kirigami.Theme.textColor
-                Layout.topMargin: 4
-                Layout.bottomMargin: -14
-                Layout.rightMargin: 3
-                Layout.leftMargin: showSliderIcons ? 1 : 8
+            MouseArea {
+                id: paragraphSpacingDirectInput
+                property bool editText: false
+                height: paragraphSpacingLabel.height
+                width: paragraphSpacingDirectInput.editText ? paragraphSpacingTextField.width : paragraphSpacingLabel.width
+                onDoubleClicked: {
+                    if (Qt.platform.os !== "android")
+                        enterEditMode()
+                }
+                onPressAndHold: {
+                    if (Qt.platform.os === "android")
+                        enterEditMode();
+                }
+                function enterEditMode() {
+                    paragraphSpacingDirectInput.editText = true;
+                    // paragraphSpacingTextField.selectAll();  // Uncomment to autoselect when entering edit mode.
+                }
+                TextField {
+                    id: paragraphSpacingTextField
+                    anchors.fill: parent
+                    anchors.leftMargin: -2
+                    anchors.rightMargin: -2
+                    visible: paragraphSpacingDirectInput.editText
+                    readOnly: !visible
+                    text: ""
+                    onVisibleChanged: {
+                        if (visible) {
+                            text = paragraphSpacingSlider.value * 100;
+                            forceActiveFocus();
+                        }
+                    }
+                    onAccepted: {
+                        if (text !== "") {
+                            const value = text / 100;
+                            if (value < paragraphSpacingSlider.from)
+                                paragraphSpacingSlider.value = paragraphSpacingSlider.from;
+                            else if (value > paragraphSpacingSlider.to)
+                                paragraphSpacingSlider.value = paragraphSpacingSlider.to;
+                            else
+                                paragraphSpacingSlider.value = value;
+                            text = paragraphSpacingSlider.value;
+                            paragraphSpacingSlider.update();
+                        }
+                    }
+                    onEditingFinished: {
+                        paragraphSpacingDirectInput.editText = false;
+                    }
+                    Material.theme: Material.Dark
+                    Keys.onUpPressed: {
+                        const value = (Math.round(text) + 1) / 100;
+                        if (value > paragraphSpacingSlider.to)
+                            paragraphSpacingSlider.value = paragraphSpacingSlider.to;
+                        else {
+                            if (value < paragraphSpacingSlider.from)
+                                paragraphSpacingSlider.value = paragraphSpacingSlider.from;
+                            else
+                                paragraphSpacingSlider.value = value;
+                        }
+                        text = Math.round(paragraphSpacingSlider.value * 100);
+                        paragraphSpacingSlider.update();
+                    }
+                    Keys.onDownPressed: {
+                        const value = (Math.round(text) - 1) / 100;
+                        if (value < paragraphSpacingSlider.from)
+                            paragraphSpacingSlider.value = paragraphSpacingSlider.from;
+                        else {
+                            if (value > paragraphSpacingSlider.to)
+                                paragraphSpacingSlider.value = paragraphSpacingSlider.to;
+                            else
+                                paragraphSpacingSlider.value = value;
+                        }
+                        text = Math.round(paragraphSpacingSlider.value * 100);
+                        paragraphSpacingSlider.update();
+                    }
+                }
+                Label {
+                    id: paragraphSpacingLabel
+                    text: qsTr("Paragraph spacing <pre>%1%</pre>", "Paragraph spacing ±00").arg((paragraphSpacingSlider.value/10).toFixed(3).slice(2))
+                    visible: !paragraphSpacingDirectInput.editText
+                    color: Kirigami.Theme.textColor
+                    Layout.topMargin: 4
+                    Layout.bottomMargin: -14
+                    Layout.rightMargin: 3
+                    Layout.leftMargin: showSliderIcons ? 1 : 8
+                }
             }
             Slider {
                 id: paragraphSpacingSlider
