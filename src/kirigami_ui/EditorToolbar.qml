@@ -1205,7 +1205,8 @@ ToolBar {
                 focusPolicy: Qt.TabFocus
                 onMoved: lineHeightSlider.update()
                 function update() {
-                    viewport.prompter.document.setLineHeight(value)
+                    viewport.prompter.document.setLineHeight(value);
+                    lineHeightTextField.text = value;
                 }
             }
         }
@@ -1323,7 +1324,8 @@ ToolBar {
                 focusPolicy: Qt.TabFocus
                 onMoved: update()
                 function update() {
-                    viewport.prompter.document.setParagraphHeight(viewport.prompter.fontSize * value)
+                    viewport.prompter.document.setParagraphHeight(viewport.prompter.fontSize * value);
+                    paragraphSpacingTextField.text = Math.round(value * 100);
                 }
             }
         }
@@ -1440,6 +1442,9 @@ ToolBar {
                 to: 24
                 stepSize: 1
                 focusPolicy: Qt.TabFocus
+                onMoved: {
+                    wordSpacingTextField.text = value;
+                }
             }
         }
         RowLayout {
@@ -1554,6 +1559,9 @@ ToolBar {
                 to: 12
                 stepSize: 1
                 focusPolicy: Qt.TabFocus
+                onMoved: {
+                    letterSpacingTextField.text = value;
+                }
             }
         }
         RowLayout {
