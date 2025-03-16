@@ -242,6 +242,7 @@ ToolBar {
             //}
             ToolSeparator {
                 contentItem.visible: root.width>458 ? anchorsRow.y === playbackRow.y : anchorsRow.y === playbackRow.y || anchorsRow.y === advancedButtonsRow.y
+                Material.theme: Material.Dark
             }
         }
         Row {
@@ -279,6 +280,7 @@ ToolBar {
             }
             ToolSeparator {
                 contentItem.visible: !root.__isMobile && root.width>458 ? playbackRow.y === undoRedoRow.y || playbackRow.y === advancedButtonsRow.y : playbackRow.y === alignmentRowMobile.y
+                Material.theme: Material.Dark
             }
         }
         Row {
@@ -303,6 +305,7 @@ ToolBar {
             }
             ToolSeparator {
                 contentItem.visible: undoRedoRow.y === editRow.y
+                Material.theme: Material.Dark
             }
         }
         Row {
@@ -340,6 +343,7 @@ ToolBar {
             }
             ToolSeparator {
                 contentItem.visible: mobileOrSmallScreen ? editRow.y === alignmentRowMobile.y : editRow.y === formatRow.y
+                Material.theme: Material.Dark
             }
         }
         Row {
@@ -423,6 +427,7 @@ ToolBar {
             //}
             ToolSeparator {
                 contentItem.visible: alignmentRowMobile.y === formatRow.y
+                Material.theme: Material.Dark
             }
         }
         Row {
@@ -514,6 +519,7 @@ ToolBar {
             //}
             ToolSeparator {
                 contentItem.visible: formatRow.y === fontRow.y
+                Material.theme: Material.Dark
             }
         }
         Row {
@@ -668,6 +674,7 @@ ToolBar {
             }
             ToolSeparator {
                 contentItem.visible: mobileOrSmallScreen ? fontRow.y === advancedButtonsRow.y : fontRow.y === alignmentRowDesktop.y
+                Material.theme: Material.Dark
             }
         }
         Row {
@@ -730,6 +737,7 @@ ToolBar {
             //}
             ToolSeparator {
                 contentItem.visible: alignmentRowDesktop.y === advancedButtonsRow.y
+                Material.theme: Material.Dark
             }
         }
         Row {
