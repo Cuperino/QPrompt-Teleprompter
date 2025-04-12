@@ -138,7 +138,11 @@ find_package(Qt${QT_VERSION_MAJOR} ${QT_MIN_VERSION} REQUIRED NO_MODULE COMPONEN
     LinguistTools
 )
 
-if (WIN32 OR APPLE)
+if (ANDROID OR IOS OR WASM)
+    set(BUILD_SHARED_LIBS OFF)
+endif()
+
+if (WIN32 OR APPLE OR WASM)
     set(BUILD_TESTING OFF)
     FetchContent_Declare(
       CoreAddons
@@ -173,7 +177,7 @@ else()
     find_package(QHotkey)
 endif()
 # Desktop only dependencies
-if(NOT ANDROID AND NOT IOS)
+if(NOT ANDROID AND NOT IOS AND NOT WASM)
     find_package(Qt${QT_VERSION_MAJOR} ${QT_MIN_VERSION} REQUIRED NO_MODULE COMPONENTS
         Widgets
     )

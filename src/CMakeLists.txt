@@ -328,20 +328,11 @@ qt_add_translations(${PROJECT_NAME} SOURCE_TARGETS ${PROJECT_NAME}
 )
 
 # Libraries
-if (ANDROID)
-    target_link_libraries(${PROJECT_NAME} PRIVATE
-        Qt${QT_VERSION_MAJOR}::Core
-        Qt${QT_VERSION_MAJOR}::Quick
-        Qt${QT_VERSION_MAJOR}::Svg
-        Qt${QT_VERSION_MAJOR}::Gui
-        Qt${QT_VERSION_MAJOR}::Qml
-        Qt${QT_VERSION_MAJOR}::QuickControls2
-        Qt${QT_VERSION_MAJOR}::Network
-        Qt${QT_VERSION_MAJOR}::AndroidExtras
-        KF${QT_VERSION_MAJOR}::CoreAddons
-        KF${QT_VERSION_MAJOR}::Kirigami
-    )
-elseif (WASM OR IOS)
+if (ANDROID OR IOS OR WASM)
+    if (WASM)
+        target_compile_options(${PROJECT_NAME} PRIVATE -oz -flto)
+        target_link_options(${PROJECT_NAME} PRIVATE -flto)
+    endif()
     target_link_libraries(${PROJECT_NAME} PRIVATE
         Qt${QT_VERSION_MAJOR}::Core
         Qt${QT_VERSION_MAJOR}::Quick
@@ -380,25 +371,6 @@ elseif(WIN32 OR APPLE)
         KF${QT_VERSION_MAJOR}::Kirigami
         KF${QT_VERSION_MAJOR}::CoreAddons
     )
-elseif(APPLE)
-    target_link_libraries(${PROJECT_NAME} PRIVATE
-        Qt${QT_VERSION_MAJOR}::Core
-        Qt${QT_VERSION_MAJOR}::Quick
-        Qt${QT_VERSION_MAJOR}::Gui
-        Qt${QT_VERSION_MAJOR}::Svg
-        Qt${QT_VERSION_MAJOR}::Qml
-        Qt${QT_VERSION_MAJOR}::QuickControls2
-        Qt${QT_VERSION_MAJOR}::Network
-        Qt${QT_VERSION_MAJOR}::Widgets
-    )
-
-    target_include_directories(KF6CoreAddons PRIVATE ${kcoreaddons_SOURCE_DIR}/kcoreaddons)
-    target_link_directories(KF6CoreAddons PRIVATE ${kcoreaddons_SOURCE_DIR}/kcoreaddons)
-    target_link_libraries(${PROJECT_NAME} PRIVATE KF${QT_VERSION_MAJOR}::CoreAddons)
-
-    target_include_directories(Kirigami PRIVATE ${kirigami_SOURCE_DIR}/kirigami)
-    target_link_directories(Kirigami PRIVATE ${kirigami_SOURCE_DIR}/kirigami)
-    target_link_libraries(${PROJECT_NAME} PRIVATE KF${QT_VERSION_MAJOR}::Kirigami)
 else()
     target_link_libraries(${PROJECT_NAME} PRIVATE
         Qt${QT_VERSION_MAJOR}::Core
@@ -413,8 +385,6 @@ else()
         KF${QT_VERSION_MAJOR}::Kirigami
     )
 endif()
-# Private header/s that would be used if QT_QMLCACHEGEN_DIRECT_CALLS were turned ON
-# - Qt${QT_VERSION_MAJOR}::QuickPrivate
 
 if(APPLE AND NOT IOS)
     target_include_directories(mactouchbar PRIVATE ${kdmactouchbar_SOURCE_DIR}/KDMacTouchBar)
@@ -446,9 +416,15 @@ if(APPLE)
     qt_generate_deploy_qml_app_script(
         TARGET ${PROJECT_NAME}
         OUTPUT_SCRIPT deploy_script
-        NO_UNSUPPORTED_PLATFORM_ERROR
         DEPLOY_TOOL_OPTIONS ${deploy_tool_options_arg}
         MACOS_BUNDLE_POST_BUILD
+    )
+elseif(WIN32)
+    qt_generate_deploy_qml_app_script(
+        TARGET ${PROJECT_NAME}
+        OUTPUT_SCRIPT deploy_script
+        # NO_UNSUPPORTED_PLATFORM_ERROR
+        # DEPLOY_USER_QML_MODULES_ON_UNSUPPORTED_PLATFORM
     )
 else()
     qt_generate_deploy_qml_app_script(
