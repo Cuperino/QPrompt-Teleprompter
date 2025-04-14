@@ -80,7 +80,9 @@
 #include <QUrl>
 
 #include "markersmodel.h"
+#if !(defined(Q_OS_ANDROID) || defined(Q_OS_IOS) || defined(Q_OS_WASM) || defined(Q_OS_WATCHOS))
 #include "systemfontchooserdialog.h"
+#endif
 #include <QFont>
 #include <QQuickTextDocument>
 #include <QTextCursor>
@@ -211,7 +213,9 @@ public:
 
     Q_INVOKABLE bool preventSleep(bool prevent);
 
+#if !(defined(Q_OS_ANDROID) || defined(Q_OS_IOS) || defined(Q_OS_WASM) || defined(Q_OS_WATCHOS))
     Q_INVOKABLE bool showFontDialog();
+#endif
 
     Q_INVOKABLE void loadFromNetwork(const QUrl &url);
 
@@ -264,7 +268,9 @@ private:
 
     enum ImportFormat { NONE, PDF, ODT, DOCX, DOC, RTF, ABW, EPUB, MOBI, AZW, PAGES, PAGESX };
     void updateContents(const QString &text, Qt::TextFormat format);
+#if !(defined(Q_OS_ANDROID) || defined(Q_OS_IOS) || defined(Q_OS_WASM) || defined(Q_OS_WATCHOS))
     QString import(const QString &fileName, ImportFormat);
+#endif
 
     QQuickTextDocument *m_document;
 
@@ -277,7 +283,9 @@ private:
     MarkersModel *_markersModel;
     QFileSystemWatcher *_fileSystemWatcher;
 
+#if !(defined(Q_OS_ANDROID) || defined(Q_OS_IOS) || defined(Q_OS_WASM) || defined(Q_OS_WATCHOS))
     SystemFontChooserDialog *m_fontDialog;
+#endif
     QFont m_font;
     QUrl m_fileUrl;
     QString pdf_importer;

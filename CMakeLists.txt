@@ -35,6 +35,9 @@ project(qprompt
     HOMEPAGE_URL "https://qprompt.app/"
     LANGUAGES CXX)
 
+set(WASM ON)
+set(KF_IGNORE_PLATFORM_CHECK ON)
+
 # Find includes in corresponding build directories
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 # Instruct CMake to create code from Qt designer ui files
@@ -138,25 +141,28 @@ find_package(Qt${QT_VERSION_MAJOR} ${QT_MIN_VERSION} REQUIRED NO_MODULE COMPONEN
     LinguistTools
 )
 
-if (ANDROID OR IOS OR WASM)
+if(ANDROID OR IOS OR WASM)
     set(BUILD_SHARED_LIBS OFF)
 endif()
 
-if (WIN32 OR APPLE OR WASM)
+if(WIN32 OR APPLE OR WASM)
     set(BUILD_TESTING OFF)
-    FetchContent_Declare(
-      CoreAddons
-      GIT_REPOSITORY "${CMAKE_SOURCE_DIR}/3rdparty/kcoreaddons"
-      GIT_TAG        "v${KF_PREFFERED_VERSION}"
-      SOURCE_DIR submodules/kcoreaddons
-    )
+    if(NOT WASM)
+        FetchContent_Declare(
+          CoreAddons
+          GIT_REPOSITORY "${CMAKE_SOURCE_DIR}/3rdparty/kcoreaddons"
+          GIT_TAG        "v${KF_PREFFERED_VERSION}"
+          SOURCE_DIR submodules/kcoreaddons
+        )
+        FetchContent_MakeAvailable(CoreAddons)
+    endif()
     FetchContent_Declare(
       Kirigami
       GIT_REPOSITORY "${CMAKE_SOURCE_DIR}/3rdparty/kirigami"
       GIT_TAG        "v${KF_PREFFERED_VERSION}"
       SOURCE_DIR submodules/kirigami
     )
-    FetchContent_MakeAvailable(CoreAddons Kirigami)
+    FetchContent_MakeAvailable(Kirigami)
 else()
     find_package(KF${QT_VERSION_MAJOR} ${KF_MIN_VERSION} REQUIRED COMPONENTS
         Kirigami
@@ -164,17 +170,19 @@ else()
     )
 endif()
 
-if(NOT BSD)
-    set(BUILD_SHARED_LIBS ON)
-    FetchContent_Declare(
-      QHotkey
-      GIT_REPOSITORY "${CMAKE_SOURCE_DIR}/3rdparty/QHotkey"
-      GIT_TAG        "1231c4cc9649ec0132d939cb7e139a82b8edeca0"
-      SOURCE_DIR submodules/QHotkey
-    )
-    FetchContent_MakeAvailable(QHotkey)
-else()
-    find_package(QHotkey)
+if(NOT ANDROID AND NOT IOS AND NOT WASM)
+    if(NOT BSD)
+        set(BUILD_SHARED_LIBS ON)
+        FetchContent_Declare(
+          QHotkey
+          GIT_REPOSITORY "${CMAKE_SOURCE_DIR}/3rdparty/QHotkey"
+          GIT_TAG        "1231c4cc9649ec0132d939cb7e139a82b8edeca0"
+          SOURCE_DIR submodules/QHotkey
+        )
+        FetchContent_MakeAvailable(QHotkey)
+    else()
+        find_package(QHotkey)
+    endif()
 endif()
 # Desktop only dependencies
 if(NOT ANDROID AND NOT IOS AND NOT WASM)
@@ -356,7 +364,9 @@ if(CMAKE_SOURCE_DIR STREQUAL CMAKE_CURRENT_SOURCE_DIR)
     include(CPack)
 endif()
 
-feature_summary(WHAT ALL FATAL_ON_MISSING_REQUIRED_PACKAGES) # INCLUDE_QUIET_PACKAGES
+if(NOT WASM)
+    feature_summary(WHAT ALL FATAL_ON_MISSING_REQUIRED_PACKAGES) # INCLUDE_QUIET_PACKAGES
+endif()
 
 file(GLOB_RECURSE ALL_CLANG_FORMAT_SOURCE_FILES *.cpp *.h *.hpp)
 kde_clang_format(${ALL_CLANG_FORMAT_SOURCE_FILES})

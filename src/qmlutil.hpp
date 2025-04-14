@@ -33,7 +33,9 @@
 #include <QKeySequence>
 #include <QObject>
 #include <QPixmap>
+#if !(defined(Q_OS_ANDROID) || defined(Q_OS_IOS) || defined(Q_OS_WASM) || defined(Q_OS_WATCHOS))
 #include <QProcess>
+#endif
 #include <QQmlEngine>
 #include <QSettings>
 
@@ -75,7 +77,9 @@ public:
     }
     Q_INVOKABLE void restartApplication()
     {
+#if !(defined(Q_OS_ANDROID) || defined(Q_OS_IOS) || defined(Q_OS_WASM) || defined(Q_OS_WATCHOS))
         QProcess::startDetached(QCoreApplication::applicationFilePath(), {"-q"});
+#endif
         QCoreApplication::quit();
     }
     Q_INVOKABLE void hideCursor()

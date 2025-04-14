@@ -26,18 +26,24 @@ endif()
 
 qt_standard_project_setup(I18N_TRANSLATED_LANGUAGES ar cs de es fi fr he it ja ko nl oc pl pt_BR pt_PT ru tr uk zh)
 
-qt_add_executable(${PROJECT_NAME}
-    main.cpp
-    systemfontchooserdialog.h
-    systemfontchooserdialog.cpp
-)
+if (ANDROID OR IOS OR WASM)
+    qt_add_executable(${PROJECT_NAME}
+        main.cpp
+    )
+else()
+    qt_add_executable(${PROJECT_NAME}
+        main.cpp
+        systemfontchooserdialog.h
+        systemfontchooserdialog.cpp
+    )
+endif()
 if (NOT ANDROID)
     qt_wrap_ui(${PROJECT_NAME}
         qt/systemfontchooserdialog.ui
     )
 endif()
 
-if (NOT ANDROID)
+if (NOT ANDROID AND NOT WASM)
     set(ICONS_FOLDER ${CMAKE_CURRENT_SOURCE_DIR}/icons/hicolor)
     set(RASTER_ICONS
         ${ICONS_FOLDER}/16-apps-com.cuperino.qprompt.png
@@ -328,11 +334,7 @@ qt_add_translations(${PROJECT_NAME} SOURCE_TARGETS ${PROJECT_NAME}
 )
 
 # Libraries
-if (ANDROID OR IOS OR WASM)
-    if (WASM)
-        target_compile_options(${PROJECT_NAME} PRIVATE -oz -flto)
-        target_link_options(${PROJECT_NAME} PRIVATE -flto)
-    endif()
+if (ANDROID OR IOS)
     target_link_libraries(${PROJECT_NAME} PRIVATE
         Qt${QT_VERSION_MAJOR}::Core
         Qt${QT_VERSION_MAJOR}::Quick
@@ -342,6 +344,19 @@ if (ANDROID OR IOS OR WASM)
         Qt${QT_VERSION_MAJOR}::QuickControls2
         Qt${QT_VERSION_MAJOR}::Network
         KF${QT_VERSION_MAJOR}::CoreAddons
+        KF${QT_VERSION_MAJOR}::Kirigami
+    )
+elseif (WASM)
+    target_compile_options(${PROJECT_NAME} PRIVATE -O3 -flto -sDISABLE_EXCEPTION_THROWING=0 -sDISABLE_EXCEPTION_CATCHING=0)
+    target_link_options(${PROJECT_NAME} PRIVATE -flto -fno-except -sASYNCIFY -Os -sDISABLE_EXCEPTION_THROWING=0 -sDISABLE_EXCEPTION_CATCHING=0)
+    target_link_libraries(${PROJECT_NAME} PRIVATE
+        Qt${QT_VERSION_MAJOR}::Core
+        Qt${QT_VERSION_MAJOR}::Quick
+        Qt${QT_VERSION_MAJOR}::Svg
+        Qt${QT_VERSION_MAJOR}::Gui
+        Qt${QT_VERSION_MAJOR}::Qml
+        Qt${QT_VERSION_MAJOR}::QuickControls2
+        Qt${QT_VERSION_MAJOR}::Network
         KF${QT_VERSION_MAJOR}::Kirigami
     )
 elseif(HAIKU)

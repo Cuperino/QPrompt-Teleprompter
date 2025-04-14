@@ -122,16 +122,21 @@ DocumentHandler::DocumentHandler(QObject *parent)
     _fileSystemWatcher = new QFileSystemWatcher();
     pdf_importer = QString::fromUtf8("TextExtraction");
 
-    m_fontDialog = new SystemFontChooserDialog();
     m_network = new QNetworkAccessManager(this);
     m_cache = new QTemporaryFile(this);
-    connect(m_fontDialog, &SystemFontChooserDialog::fontFamilyChanged, this, &DocumentHandler::setFontFamily);
     connect(m_network, &QNetworkAccessManager::finished, this, &DocumentHandler::loadFromNetworkFinihed);
+
+#if !(defined(Q_OS_ANDROID) || defined(Q_OS_IOS) || defined(Q_OS_WASM) || defined(Q_OS_WATCHOS))
+    m_fontDialog = new SystemFontChooserDialog();
+    connect(m_fontDialog, &SystemFontChooserDialog::fontFamilyChanged, this, &DocumentHandler::setFontFamily);
+#endif
 }
 
 DocumentHandler::~DocumentHandler()
 {
+#if !(defined(Q_OS_ANDROID) || defined(Q_OS_IOS) || defined(Q_OS_WASM) || defined(Q_OS_WATCHOS))
     delete m_fontDialog;
+#endif
 }
 
 QQuickTextDocument *DocumentHandler::document() const
@@ -417,6 +422,7 @@ void DocumentHandler::setKeyMarker(QString keyCodeString = QString::fromUtf8("")
     Q_EMIT markerChanged();
 }
 
+#if !(defined(Q_OS_ANDROID) || defined(Q_OS_IOS) || defined(Q_OS_WASM) || defined(Q_OS_WATCHOS))
 bool DocumentHandler::showFontDialog()
 {
     QTextCursor cursor = textCursor();
@@ -436,6 +442,7 @@ bool DocumentHandler::showFontDialog()
     m_fontDialog->show(fontFamily(), text);
     return false;
 }
+#endif
 
 QString DocumentHandler::getMarkerKey()
 {
@@ -610,6 +617,7 @@ void DocumentHandler::load(const QUrl &fileUrl)
 #endif
                 // File formats imported using external software
                 else {
+#if !(defined(Q_OS_ANDROID) || defined(Q_OS_IOS) || defined(Q_OS_WASM) || defined(Q_OS_WATCHOS))
                     ImportFormat type = NONE;
                     if (mime.inherits(QString::fromUtf8("application/pdf")))
                         type = PDF;
@@ -649,6 +657,7 @@ void DocumentHandler::load(const QUrl &fileUrl)
                     }
                     // Read as raw or text file
                     else {
+#endif
                         // Interpret RAW data using Qt's auto detection
 #if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
                         // I doubt that this is a proper conversion. Needs proper testing.
@@ -657,7 +666,9 @@ void DocumentHandler::load(const QUrl &fileUrl)
                         QTextCodec *codec = QTextCodec::codecForName("utf-8");
                         updateContents(codec->toUnicode(data));
 #endif
+#if !(defined(Q_OS_ANDROID) || defined(Q_OS_IOS) || defined(Q_OS_WASM) || defined(Q_OS_WATCHOS))
                     }
+#endif
                 }
                 doc->setModified(false);
             }
@@ -685,6 +696,7 @@ void DocumentHandler::load(const QUrl &fileUrl)
     Q_EMIT fileUrlChanged();
 }
 
+#if !(defined(Q_OS_ANDROID) || defined(Q_OS_IOS) || defined(Q_OS_WASM) || defined(Q_OS_WATCHOS))
 QString DocumentHandler::import(const QString &fileName, ImportFormat type)
 {
     QString program = QString::fromUtf8("");
@@ -743,6 +755,7 @@ QString DocumentHandler::import(const QString &fileName, ImportFormat type)
     //     return filterHtml(html, true);
     return filterHtml(html, false);
 }
+#endif
 
 void DocumentHandler::updateContents(const QString &text, Qt::TextFormat format) {
     QTextCursor cursor = textCursor();

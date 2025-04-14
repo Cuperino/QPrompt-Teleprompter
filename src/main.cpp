@@ -44,7 +44,9 @@
 #endif
 // #include <KLocalizedContext>
 // #include <KLocalizedString>
+#ifndef Q_OS_WASM
 #include <kaboutdata.h>
+#endif
 
 #if defined(KF6Crash_FOUND)
 #include <KCrash>
@@ -132,6 +134,7 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
     QString copyrightYear = QString::number(currentYear);
     QString copyrightStatement1 = QStringLiteral("© 2020 Javier O. Cordero Pérez");
     QString copyrightStatement2 = QStringLiteral("© 2020-2025 Javier O. Cordero Pérez"); // , copyrightYear);
+#ifndef Q_OS_WASM
     KAboutData aboutData(QLatin1String("qprompt"),
                          QLatin1String("QPrompt"),
                          QPROMPT_VERSION_STRING " (" + QString::fromUtf8(GIT_BRANCH) + "/" + QString::fromUtf8(GIT_COMMIT_HASH) + ")",
@@ -161,7 +164,7 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
     //);
     //  Set the application metadata
     KAboutData::setApplicationData(aboutData);
-
+#endif
     // qmlRegisterType<PrompterTimer>(QPROMPT_URI + ".promptertimer", 1, 0, "PrompterTimer");
     //    qmlRegisterType<DocumentHandler>(QPROMPT_URI ".document", 1, 0, "DocumentHandler");
     //    qmlRegisterType<MarkersModel>(QPROMPT_URI ".markers", 1, 0, "MarkersModel");
@@ -172,9 +175,9 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
 
     //    qRegisterMetaType<Marker>();
 
-    // #ifdef Q_OS_ANDROID
-    // KirigamiPlugin::getInstance().registerTypes();
-    // #endif
+#if defined(Q_OS_ANDROID) || defined(Q_OS_IOS) || defined(Q_OS_WASM)
+// KirigamiPlugin::getInstance().registerTypes();
+#endif
 
 #if defined(Q_OS_MACOS)
     // Enable automatic display of dialog prompts on the touchbar.
@@ -233,7 +236,7 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
     // Un-comment to force RightToLeft Layout for debugging purposes
     // app.setLayoutDirection(Qt::RightToLeft);
 
-#if defined(Q_OS_ANDROID) || defined(Q_OS_IOS) || defined(Q_OS_QNX)
+#if defined(Q_OS_ANDROID) || defined(Q_OS_IOS)
     app.setWindowIcon(QIcon(":/qt/qml/com/cuperino/qprompt/images/qprompt-logo-wireframe.png"));
 #else
     app.setWindowIcon(QIcon(":/qt/qml/com/cuperino/qprompt/images/qprompt.png"));
@@ -255,7 +258,9 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
     engine.addImportPath(QStringLiteral("../Resources/qml/"));
     // Send context data from C++ to QML
     // engine.rootContext()->setContextObject(new KLocalizedContext(&engine));
+#ifndef Q_OS_WASM
     engine.rootContext()->setContextProperty(QStringLiteral("aboutData"), QVariant::fromValue(KAboutData::applicationData()));
+#endif
     if (positionalArguments.length())
         engine.rootContext()->setContextProperty(QStringLiteral("fileToOpen"), fileToOpen);
 #if defined(Q_OS_MACOS)
