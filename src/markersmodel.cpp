@@ -138,16 +138,16 @@ int MarkersModel::keySearch(int key, int currentPosition = 0, bool reverse = fal
 }
 
 // Custom Recursive Binary Search: Returns most proximate element in a given direction when searched element is not found.
-Marker MarkersModel::binarySearch(const double l, const double r, const double goalPosition, const bool reverse = false)
+Marker MarkersModel::binarySearch(const int l, const int r, const int goalPosition, const bool reverse = false)
 {
     // qDebug() << "search in progress";
     if (r >= l) {
         // qDebug() << "l: " << l << ", r: " << r << ", gp: " << goalPosition;
 
         // Binary search
-        const double mid = l + (r - l) / 2;
+        const int mid = l + (r - l) / 2;
 
-        const double aimValue = m_data.at(mid).position;
+        const int aimValue = m_data.at(mid).position;
         // Base case
         if (aimValue == goalPosition) {
             // If last element
@@ -192,7 +192,7 @@ Marker MarkersModel::binarySearch(const double l, const double r, const double g
         return m_data.at(l);
 }
 
-Marker MarkersModel::nextMarker(double position)
+Marker MarkersModel::nextMarker(int position)
 {
     // qDebug() << Qt::endl;
     const int size = rowCount();
@@ -204,7 +204,7 @@ Marker MarkersModel::nextMarker(double position)
     return invalidPositionMarker; // -1
 }
 
-Marker MarkersModel::previousMarker(double position)
+Marker MarkersModel::previousMarker(int position)
 {
     // qDebug() << Qt::endl;
     const int size = rowCount();

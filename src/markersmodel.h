@@ -59,8 +59,8 @@ public:
     void clearMarkers();
     void appendMarker(const Marker &marker);
     void removeMarker(int row);
-    Marker previousMarker(double position);
-    Marker nextMarker(double position);
+    Marker previousMarker(int position);
+    Marker nextMarker(int position);
     int keySearch(int key, int currentPosition, bool reverse, bool wrap);
 
     // void updateMarker(int row);
@@ -74,5 +74,5 @@ private Q_SLOTS:
 #else
     void resetInternalData();
 #endif
-    Marker binarySearch(const double l, const double r, const double goalPosition, const bool reverse);
+    Marker binarySearch(const int l, const int r, const int goalPosition, const bool reverse);
 };

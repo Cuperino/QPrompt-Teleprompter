@@ -1226,7 +1226,7 @@ void DocumentHandler::parse()
 #endif
 }
 
-Marker DocumentHandler::nextMarker(int position)
+Marker DocumentHandler::nextMarker(quint64 position)
 {
     //     if (this->_markersModel->rowCount()==0)
     if (markersListDirty())
@@ -1234,7 +1234,7 @@ Marker DocumentHandler::nextMarker(int position)
     return _markersModel->nextMarker(position);
 }
 
-Marker DocumentHandler::previousMarker(int position)
+Marker DocumentHandler::previousMarker(quint64 position)
 {
     //     if (this->_markersModel->rowCount()==0)
     if (markersListDirty())
