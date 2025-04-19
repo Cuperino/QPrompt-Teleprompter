@@ -412,6 +412,8 @@ Flickable {
         if (parseInt(prompter.state)===Prompter.States.Prompting)
             __iBackup = 0
         setCursorAtCurrentPosition()
+        prompter.position += editor.cursorRectangle.height
+        setCursorAtCurrentPosition()
         editor.cursorPosition = document.nextMarker(editor.cursorPosition).position
         prompter.position = editor.cursorRectangle.y - (overlay.__readRegionPlacement*(overlay.height-overlay.readRegionHeight)+overlay.readRegionHeight/2) + 1
         __i = i
