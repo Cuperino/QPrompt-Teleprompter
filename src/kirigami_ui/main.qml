@@ -907,6 +907,7 @@ Kirigami.ApplicationWindow {
         window: root
         height: 40
         width: 120
+        visible: root.visibility!==ApplicationWindow.FullScreen
         enabled: !Kirigami.Settings.isMobile && pageStack.globalToolBar.actualStyle !== Kirigami.ApplicationHeaderStyle.None
         onClicked: {
             root.pageStack.layers.clear();
