@@ -1,7 +1,7 @@
 /****************************************************************************
  **
  ** QPrompt
- ** Copyright (C) 2022-2024 Javier O. Cordero Pérez
+ ** Copyright (C) 2022-2025 Javier O. Cordero Pérez
  **
  ** This file is part of QPrompt.
  **
@@ -23,8 +23,7 @@
 // Link: https://stackoverflow.com/a/64862996/3833454
 // License: https://creativecommons.org/licenses/by-sa/4.0/
 
-#ifndef QMLUTIL_H
-#define QMLUTIL_H
+#pragma once
 
 #include <QCoreApplication>
 #include <QCursor>
@@ -109,4 +108,3 @@ public:
         restartApplication();
     }
 };
-#endif // QMLUTIL_H

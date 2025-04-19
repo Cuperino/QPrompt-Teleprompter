@@ -1,7 +1,7 @@
 /****************************************************************************
  **
  ** QPrompt
- ** Copyright (C) 2022-2023 Javier O. Cordero Pérez
+ ** Copyright (C) 2022-2025 Javier O. Cordero Pérez
  **
  ** This file is part of QPrompt.
  **
@@ -19,8 +19,7 @@
  **
  ****************************************************************************/
 
-#ifndef ABSTRACTUNITS_H
-#define ABSTRACTUNITS_H
+#pragma once
 
 #include <QObject>
 #include <QQmlEngine>
@@ -34,5 +33,3 @@ public:
     enum Durations { VeryShortDuration = 50, ShortDuration = 100, LongDuration = 200, VeryLongDuration = 400, ToolTipDelay = 700, HumanMoment = 2000 };
     Q_ENUM(Durations)
 };
-
-#endif // ABSTRACTUNITS_H

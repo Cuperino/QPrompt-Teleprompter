@@ -1,7 +1,7 @@
 /****************************************************************************
  **
  ** QPrompt
- ** Copyright (C) 2022-2024 Javier O. Cordero Pérez
+ ** Copyright (C) 2022-2025 Javier O. Cordero Pérez
  **
  ** This file is part of QPrompt.
  **
@@ -19,8 +19,7 @@
  **
  ****************************************************************************/
 
-#ifndef MARKER_H
-#define MARKER_H
+#pragma once
 
 #include <QObject>
 
@@ -47,5 +46,3 @@ public:
     int requestType = 0;
 };
 Q_DECLARE_METATYPE(Marker);
-
-#endif // MARKER_H

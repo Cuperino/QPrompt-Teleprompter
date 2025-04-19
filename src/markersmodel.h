@@ -1,7 +1,7 @@
 /****************************************************************************
  **
  ** QPrompt
- ** Copyright (C) 2021-2024 Javier O. Cordero Pérez
+ ** Copyright (C) 2021-2025 Javier O. Cordero Pérez
  **
  ** This file is part of QPrompt.
  **
@@ -19,8 +19,7 @@
  **
  ****************************************************************************/
 
-#ifndef MARKERSMODEL_H
-#define MARKERSMODEL_H
+#pragma once
 
 #include <QAbstractListModel>
 #include <QObject>
@@ -77,5 +76,3 @@ private Q_SLOTS:
 #endif
     Marker binarySearch(const double l, const double r, const double goalPosition, const bool reverse);
 };
-
-#endif // MARKERSMODEL_H

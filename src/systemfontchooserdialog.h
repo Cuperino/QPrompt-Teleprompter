@@ -1,7 +1,7 @@
 /****************************************************************************
  **
  ** QPrompt
- ** Copyright (C) 2023 Javier O. Cordero Pérez
+ ** Copyright (C) 2023-2025 Javier O. Cordero Pérez
  **
  ** This file is part of QPrompt.
  **
@@ -19,8 +19,7 @@
  **
  ****************************************************************************/
 
-#ifndef SYSTEMFONTCHOOSERDIALOG_H
-#define SYSTEMFONTCHOOSERDIALOG_H
+#pragma once
 
 #include <QDialog>
 
@@ -53,5 +52,3 @@ private:
     QString m_fontFamily;
     void setFontFamily(QString);
 };
-
-#endif // SYSTEMFONTCHOOSERDIALOG_H

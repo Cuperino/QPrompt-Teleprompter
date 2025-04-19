@@ -69,8 +69,7 @@
  **
  ****************************************************************************/
 
-#ifndef DOCUMENTHANDLER_H
-#define DOCUMENTHANDLER_H
+#pragma once
 
 #include <QFileSystemWatcher>
 #include <QNetworkAccessManager>
@@ -294,5 +293,3 @@ private:
     QTemporaryFile *m_cache;
 };
 QT_END_NAMESPACE
-
-#endif // DOCUMENTHANDLER_H
