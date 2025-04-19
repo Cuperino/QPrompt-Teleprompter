@@ -35,8 +35,7 @@ project(qprompt
     HOMEPAGE_URL "https://qprompt.app/"
     LANGUAGES CXX)
 
-set(WASM ON)
-set(KF_IGNORE_PLATFORM_CHECK ON)
+option(WASM OFF)
 
 # Find includes in corresponding build directories
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
@@ -155,6 +154,8 @@ if(WIN32 OR APPLE OR WASM)
           SOURCE_DIR submodules/kcoreaddons
         )
         FetchContent_MakeAvailable(CoreAddons)
+    else()
+        set(KF_IGNORE_PLATFORM_CHECK ON)
     endif()
     FetchContent_Declare(
       Kirigami
