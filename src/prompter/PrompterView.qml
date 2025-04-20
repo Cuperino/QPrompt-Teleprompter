@@ -22,7 +22,10 @@
 import QtQuick 2.12
 import QtQuick.Window 2.12
 import QtQml.Models 2.12
+import QtQuick.Controls 2.12
 import QtCore 6.5
+
+import com.cuperino.qprompt 1.0
 
 Item {
     id: viewport
@@ -41,6 +44,8 @@ Item {
     property int forcedOrientation: 0
     property real __baseSpeed: editorToolbar.baseSpeedSlider.value
     property real __curvature: editorToolbar.baseAccelerationSlider.value
+    readonly property bool showingControls: root.__isMobile || root.visibility===ApplicationWindow.FullScreen
+    readonly property bool noDistractingAnimation: parseInt(prompter.state)===Prompter.States.Editing || parseInt(prompter.state)===Prompter.States.Standby
 
     transform: Rotation {
         origin.x: (forcedOrientation && forcedOrientation!==3 ? parent.height/2 : parent.width*0.15);
@@ -53,6 +58,135 @@ Item {
         id: find
         document: prompter.document
         z: 6
+    }
+
+    Column {
+        id: upperControls
+        z: 6
+        padding: 8
+        spacing: 8
+        visible: anchors.leftMargin > -upperControls.width
+        opacity: switch(parseInt(prompter.state)) {
+                 case 2: // Countdown
+                     return 0.3;
+                 case 3: // Prompting
+                     return 0.05;
+                 default:
+                     return 1;
+                 }
+        anchors.top: parent.top
+        anchors.left: parent.left
+        anchors.leftMargin: viewport.showingControls ? 0 : -upperControls.width
+        Behavior on opacity {
+            enabled: parent.visible
+            animation: OpacityAnimator {
+                duration: Units.ShortDuration
+                easing.type: Easing.EaseOut
+            }
+        }
+        Behavior on anchors.leftMargin {
+            enabled: viewport.noDistractingAnimation
+            animation: NumberAnimation {
+                duration: Units.ShortDuration
+                easing.type: Easing.EaseOut
+            }
+        }
+        Button {
+            enabled: parseInt(prompter.state)!==Prompter.States.Editing
+            opacity: enabled ? 1 : 0.2
+            width: 64
+            height: 64
+            // flat: parseInt(prompter.state)===Prompter.States.Prompting
+            icon.source: Qt.application.layoutDirection === Qt.LeftToRight ? "../icons/edit-undo.svg" : "../icons/edit-redo.svg"
+            Material.theme: Material.Dark
+            onClicked: prompter.cancel()
+            Behavior on opacity {
+                enabled: upperControls.visible
+                animation: OpacityAnimator {
+                    duration: Units.ShortDuration
+                    easing.type: Easing.EaseOut
+                }
+            }
+        }
+    }
+
+    Row {
+        id: bottomControls
+        z: 6
+        spacing: 8
+        visible: anchors.bottomMargin > -height
+        opacity: switch(parseInt(prompter.state)) {
+                 case 2: // Countdown
+                     return 0.4
+                 case 3: // Prompting
+                     return 0.2
+                 default:
+                     return 1
+                 }
+        anchors.horizontalCenter: parent.horizontalCenter
+        anchors.bottom: parent.bottom
+        anchors.bottomMargin: viewport.showingControls ? 0 : -height
+        Behavior on opacity {
+            enabled: parent.visible
+            animation: OpacityAnimator {
+                duration: Units.ShortDuration
+                easing.type: Easing.EaseOut
+            }
+        }
+        Behavior on anchors.bottomMargin {
+            enabled: viewport.noDistractingAnimation
+            animation: NumberAnimation {
+                duration: Units.ShortDuration
+                easing.type: Easing.EaseOut
+            }
+        }
+        Button {
+            enabled: parseInt(prompter.state)===Prompter.States.Prompting
+            opacity: enabled ? 1 : 0.2
+            width: 64
+            height: 64
+            anchors.bottom: parent.bottom
+            icon.source: Qt.application.layoutDirection === Qt.RightToLeft ? "../icons/go-next.svg" : "../icons/go-previous.svg"
+            Material.theme: Material.Dark
+            onClicked: prompter.decreaseVelocity(false)
+            Behavior on opacity {
+                enabled: bottomControls.visible
+                animation: OpacityAnimator {
+                    duration: Units.ShortDuration
+                    easing.type: Easing.EaseOut
+                }
+            }
+        }
+        Button {
+            width: 82
+            height: 82
+            anchors.bottom: parent.bottom
+            icon.source: parseInt(prompter.state)===Prompter.States.Prompting ? (prompter.__play ? "../icons/media-playback-pause.svg" : "../icons/media-playback-play.svg") :
+                                                                                Qt.application.layoutDirection === Qt.RightToLeft ? "../icons/go-previous.svg" : "../icons/go-next.svg"
+            Material.theme: Material.Dark
+            onClicked:
+                if (parseInt(prompter.state)===Prompter.States.Prompting)
+                    prompter.pause();
+                else
+                    prompter.toggle();
+        }
+        Button {
+            enabled: parseInt(prompter.state)===Prompter.States.Prompting
+            opacity: enabled ? 1 : 0.2
+            width: 64
+            height: 64
+            anchors.bottom: parent.bottom
+            icon.source: Qt.application.layoutDirection === Qt.RightToLeft ? "../icons/go-previous.svg" : "../icons/go-next.svg"
+            Material.theme: Material.Dark
+            onClicked: prompter.increaseVelocity(false)
+            Behavior on opacity {
+                enabled: bottomControls.visible
+                animation: OpacityAnimator {
+                    duration: Units.ShortDuration
+                    easing.type: Easing.EaseOut
+                }
+            }
+        }
     }
 
     Rectangle {
