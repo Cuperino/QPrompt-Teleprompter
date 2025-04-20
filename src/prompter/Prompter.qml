@@ -360,6 +360,17 @@ Flickable {
         prompter.restoreFocus()
     }
 
+    function pause() {
+        if (prompter.__play) {
+            prompter.__play = false
+            prompter.position = prompter.position
+        }
+        else {
+            prompter.__play = true
+            prompter.position = prompter.__destination
+        }
+    }
+
     function setVelocity(velocity: int, event: var) {
         console.log("velocity: ", velocity)
         if (this.__atStart)
@@ -1603,18 +1614,8 @@ Flickable {
                 return
             }
             else if (event.key===keys.pause && event.modifiers===keys.pauseModifiers || event.key===Qt.Key_SysReq || event.key===Qt.Key_Play || event.key===Qt.Key_Pause) {
-                // Pause
-                //if (root.passiveNotifications)
-                //    showPassiveNotification((qsTr("Toggle Playback"));
-                if (prompter.__play) {
-                    prompter.__play = false
-                    prompter.position = prompter.position
-                }
-                else {
-                    prompter.__play = true
-                    prompter.position = prompter.__destination
-                }
-                return
+                pause();
+                return;
             }
             else if (event.key===keys.setVelocity0 && (event.modifiers===keys.setVelocity0Modifiers ||
                                                        event.modifiers===(keys.setVelocity0Modifiers ^ keys.setVelocityModifier))) {
