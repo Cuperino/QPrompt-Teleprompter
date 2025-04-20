@@ -254,6 +254,7 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
     engine.addImportPath(QStringLiteral("../lib/qml/"));
     engine.addImportPath(QStringLiteral("./lib/qml/"));
     // MacOS paths
+    engine.addImportPath(QStringLiteral("../../../"));
     engine.addImportPath(QStringLiteral("../build/"));
     engine.addImportPath(QStringLiteral("../Resources/qml/"));
     // Send context data from C++ to QML
