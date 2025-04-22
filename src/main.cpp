@@ -72,6 +72,11 @@ using namespace Qt::Literals::StringLiterals;
 
 Q_DECL_EXPORT int main(int argc, char *argv[])
 {
+#if defined(Q_OS_WINDOWS)
+    // Workarround for broken opacity bug in DirectX RHIs...
+    qputenv("QSG_RHI_BACKEND", QByteArray("opengl"));
+#endif
+
     // Set theme
     qputenv("QT_QUICK_CONTROLS_STYLE", QByteArray("Material"));
     qputenv("QT_QUICK_CONTROLS_MATERIAL_THEME", QByteArray("Dark"));
@@ -111,10 +116,6 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
     parser.addHelpOption();
     parser.addVersionOption();
     parser.addPositionalArgument(QLatin1String("source"), QLatin1String("file", "File to copy."));
-    QCommandLineOption qgsIgnore(QStringList() << QLatin1String("q")
-                                               << QLatin1String("qgs_ignore"),
-                                 QLatin1String("Ignore QSG_RENDER_LOOP environment variable."));
-    parser.addOption(qgsIgnore);
     parser.process(app);
     QStringList positionalArguments = parser.positionalArguments();
     QString fileToOpen = QLatin1String("");
