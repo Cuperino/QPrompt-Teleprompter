@@ -710,7 +710,11 @@ QString DocumentHandler::import(const QString &fileName, ImportFormat type)
     // else
     // Using LibreOffice for most formats because of its ability to preserve formatting while converting to HTML.
     if (type == ODT || type == DOCX || type == DOC || type == RTF || type == ABW || type == PAGESX || type == PAGES) {
+#if (defined(Q_OS_MACOS))
+        QSettings settings(QCoreApplication::organizationDomain(), QCoreApplication::applicationName());
+#else
         QSettings settings(QCoreApplication::organizationName(), QCoreApplication::applicationName().toLower());
+#endif
 #if defined(Q_OS_WINDOWS)
         program = settings.value("paths/soffice", "C:/Program Files/LibreOffice/program/soffice.exe").toString();
         if (program == "")

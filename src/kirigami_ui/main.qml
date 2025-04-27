@@ -1028,7 +1028,7 @@ Kirigami.ApplicationWindow {
         buttons: Labs.MessageDialog.Yes | Labs.MessageDialog.No
         modality: Qt.WindowModal
         onYesClicked: {
-            qmlutil.factoryReset()
+            qmlutil.factoryReset();
         }
         onVisibleChanged: {
             if (visible)

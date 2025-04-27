@@ -88,7 +88,11 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
     QCoreApplication::setApplicationName(QString::fromUtf8("QPrompt"));
 
     // Acquire saved settings
+#if (defined(Q_OS_MACOS))
+    QSettings settings(QCoreApplication::organizationDomain(), QCoreApplication::applicationName());
+#else
     QSettings settings(QCoreApplication::organizationName(), QCoreApplication::applicationName().toLower());
+#endif
 
     // The following code forces the use of a specific language.
     QString language = settings.value("ui/language", "").toString();
