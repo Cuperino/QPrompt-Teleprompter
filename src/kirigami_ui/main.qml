@@ -1081,8 +1081,7 @@ Kirigami.ApplicationWindow {
                     break;
             }
         }
-        //onSaveClicked: root.pageStack.currentItem.document.saveDialog(true)
-        onAccepted: {
+        onSaveClicked: {
             root.pageStack.currentItem.document.saveDialog(parseInt(root.onDiscard)===Prompter.CloseActions.Quit)
         }
         onVisibleChanged: {
