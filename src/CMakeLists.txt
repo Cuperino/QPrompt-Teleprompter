@@ -427,11 +427,14 @@ elseif (WIN32 OR UNIX)
 endif()
 
 if(APPLE)
-    set(deploy_tool_options_arg "-always-overwrite -appstore-compliant -sign-for-notarization=\"3rd Party Mac Developer Application: <Team Name>\"")
+    set(MACOS_SIGNING_IDENTITY "")
+    set(EXTRA_DEPLOY_QML_APP_SCRIPT_OPTIONS)
+    set(deploy_tool_options_arg "-always-overwrite -appstore-compliant -sign-for-notarization=${MACOS_SIGNING_IDENTITY}")
+    list(APPEND EXTRA_DEPLOY_QML_APP_SCRIPT_OPTIONS DEPLOY_TOOL_OPTIONS ${deploy_tool_options_arg})
     qt_generate_deploy_qml_app_script(
         TARGET ${PROJECT_NAME}
         OUTPUT_SCRIPT deploy_script
-        DEPLOY_TOOL_OPTIONS ${deploy_tool_options_arg}
+        ${EXTRA_DEPLOY_QML_APP_SCRIPT_OPTIONS}
         MACOS_BUNDLE_POST_BUILD
     )
 elseif(WIN32)
