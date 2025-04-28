@@ -262,7 +262,7 @@ ToolBar {
                 //}
             ToolButton {
                 id: previousMarkerButton
-                text: "\uE81A"
+                text: Qt.application.layoutDirection===Qt.LeftToRight?"\uE81A":"\uE818"
                 contentItem: Loader { sourceComponent: textComponent }
                 font.family: iconFont.name
                 font.pointSize: 13
@@ -271,7 +271,7 @@ ToolBar {
             }
             ToolButton {
                 id: nextMarkerButton
-                text: "\uE818"
+                text: Qt.application.layoutDirection===Qt.LeftToRight?"\uE818":"\uE81A"
                 contentItem: Loader { sourceComponent: textComponent }
                 font.family: iconFont.name
                 font.pointSize: 13
