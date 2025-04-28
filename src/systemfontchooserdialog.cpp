@@ -29,6 +29,7 @@ SystemFontChooserDialog::SystemFontChooserDialog(QWidget *parent)
     , ui(new Ui::SystemFontChooserDialog)
 {
     ui->setupUi(this);
+    setWindowFlags(Qt::WindowStaysOnTopHint);
 }
 
 SystemFontChooserDialog::~SystemFontChooserDialog()
