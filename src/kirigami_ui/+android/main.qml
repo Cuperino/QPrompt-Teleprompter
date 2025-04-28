@@ -176,7 +176,7 @@ Kirigami.ApplicationWindow {
             cursorAutoHide.reset();
         }
         onClosed: function() {
-            cursorAutoHide.restart();
+            // Do not restart cursor here or it'll prevent OverlaySheets accessible from the global menu from working.
         }
         actions: [
             Kirigami.Action {

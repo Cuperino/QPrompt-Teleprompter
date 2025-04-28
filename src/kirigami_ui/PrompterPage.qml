@@ -853,9 +853,11 @@ Kirigami.Page {
         }
 
         onOpened: {
+            cursorAutoHide.reset();
             viewport.editor.enabled = false;
         }
         onClosed: {
+            cursorAutoHide.restart();
             viewport.editor.enabled = true;
             viewport.prompter.restoreFocus();
         }
@@ -916,6 +918,7 @@ Kirigami.Page {
         }
 
         onOpened: {
+            cursorAutoHide.reset();
             // When opening overlay, reset key input button's text.
             viewport.editor.enabled = false;
             let key = viewport.document.getMarkerKey();
@@ -927,6 +930,7 @@ Kirigami.Page {
             column.setMarkerKeyButton.checked = true;
         }
         onClosed: {
+            cursorAutoHide.restart();
             column.setMarkerKeyButton.text = "";
             column.setMarkerKeyButton.checked = false;
             viewport.editor.enabled = true;
@@ -999,9 +1003,11 @@ Kirigami.Page {
             level: 1
         }
         onOpened: {
+            cursorAutoHide.reset();
             viewport.editor.enabled = false;
         }
         onClosed: {
+            cursorAutoHide.restart();
             viewport.editor.enabled = true;
             viewport.prompter.restoreFocus();
         }
@@ -1167,9 +1173,11 @@ Kirigami.Page {
             level: 1
         }
         onOpened: {
+            cursorAutoHide.reset();
             viewport.editor.enabled = false;
         }
         onClosed: {
+            cursorAutoHide.restart();
             viewport.editor.enabled = true;
             viewport.prompter.restoreFocus();
         }
@@ -1190,9 +1198,11 @@ Kirigami.Page {
             //level: 1
         //}
         //onOpened: {
+        //    cursorAutoHide.reset();
         //    viewport.editor.enabled = false;
         //}
         //onClosed: {
+        //    cursorAutoHide.restart();
         //    viewport.editor.enabled = true;
         //    viewport.prompter.restoreFocus();
         //}

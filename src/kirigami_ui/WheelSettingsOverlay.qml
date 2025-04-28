@@ -33,9 +33,11 @@ Kirigami.OverlaySheet {
     }
 
     onOpened: {
+        cursorAutoHide.reset();
         root.pageStack.currentItem.editor.enabled = false;
     }
     onClosed: {
+        cursorAutoHide.restart();
         root.pageStack.currentItem.editor.enabled = true;
         root.pageStack.currentItem.prompter.restoreFocus();
     }

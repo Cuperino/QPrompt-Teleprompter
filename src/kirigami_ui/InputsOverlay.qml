@@ -37,10 +37,12 @@ Kirigami.OverlaySheet {
     }
 
     onOpened: {
+        cursorAutoHide.restart();
         // When opening overlay, reset key input button's text.
         viewport.editor.enabled = false;
     }
     onClosed: {
+        cursorAutoHide.restart();
         buttonGrid.toggleButtonsOff();
         viewport.editor.enabled = true;
         prompter.restoreFocus();
