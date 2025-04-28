@@ -76,9 +76,6 @@ Kirigami.OverlaySheet {
                         currentIndex: layoutSelector.currentIndex
                     }
                 }
-                onActivated: {
-                    dirty = true;
-                }
                 Layout.fillWidth: true
                 Material.theme: Material.Dark
                 Component.onCompleted: {
