@@ -41,7 +41,7 @@ Kirigami.ApplicationWindow {
     //readonly property bool __translucidBackground: !Material.background.a // === 0
     //readonly property bool __translucidBackground: !Kirigami.Theme.backgroundColor.a && ['ios', 'wasm', 'tvos', 'qnx', 'ipados'].indexOf(Qt.platform.os)===-1
     property bool __translucidBackground: true
-    readonly property bool __windowStayOnTop: parseInt(root.pageStack.currentItem.prompter.state)!==Prompter.States.Editing || root.pageStack.currentItem.footer.windowStaysOnTop
+    readonly property bool __windowStayOnTop: root.pageStack.currentItem.footer.windowStaysOnTop
     property bool shadows: false
     readonly property bool __isMobile: Kirigami.Settings.isMobile
     readonly property bool themeIsMaterial: Kirigami.Settings.style==="Material" // || Kirigami.Settings.isMobile
