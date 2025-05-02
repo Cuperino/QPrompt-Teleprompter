@@ -4,12 +4,12 @@
 <context>
     <name>DocumentHandler</name>
     <message>
-        <location filename="../src/documenthandler.cpp" line="434"/>
+        <location filename="../src/documenthandler.cpp" line="440"/>
         <source>…</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/documenthandler.cpp" line="790"/>
+        <location filename="../src/documenthandler.cpp" line="814"/>
         <source>Cannot save: </source>
         <translation type="unfinished"></translation>
     </message>
@@ -17,129 +17,129 @@
 <context>
     <name>EditorToolbar</name>
     <message>
-        <location filename="../src/kirigami_ui/EditorToolbar.qml" line="355"/>
-        <location filename="../src/kirigami_ui/EditorToolbar.qml" line="365"/>
+        <location filename="../src/kirigami_ui/EditorToolbar.qml" line="359"/>
+        <location filename="../src/kirigami_ui/EditorToolbar.qml" line="369"/>
         <source>&amp;Left</source>
         <comment>Editor actions. Text alignment.</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/EditorToolbar.qml" line="355"/>
-        <location filename="../src/kirigami_ui/EditorToolbar.qml" line="365"/>
+        <location filename="../src/kirigami_ui/EditorToolbar.qml" line="359"/>
+        <location filename="../src/kirigami_ui/EditorToolbar.qml" line="369"/>
         <source>&amp;Right</source>
         <comment>Editor actions. Text alignment.</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/EditorToolbar.qml" line="360"/>
+        <location filename="../src/kirigami_ui/EditorToolbar.qml" line="364"/>
         <source>C&amp;enter</source>
         <comment>Editor actions. Text alignment.</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/EditorToolbar.qml" line="554"/>
+        <location filename="../src/kirigami_ui/EditorToolbar.qml" line="560"/>
         <source>DejaVu (default, Roman, Cyrillic)</source>
         <comment>FontName (Translatable font details)</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/EditorToolbar.qml" line="558"/>
+        <location filename="../src/kirigami_ui/EditorToolbar.qml" line="564"/>
         <source>OpenDyslexic (Roman)</source>
         <comment>FontName (Translatable font details)</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/EditorToolbar.qml" line="562"/>
+        <location filename="../src/kirigami_ui/EditorToolbar.qml" line="568"/>
         <source>Source Han Sans (CH, JP, KO)</source>
         <comment>FontName (Translatable font details)</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/EditorToolbar.qml" line="566"/>
+        <location filename="../src/kirigami_ui/EditorToolbar.qml" line="572"/>
         <source>Scheherazade New (Arabic)</source>
         <comment>FontName (Translatable font details)</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/EditorToolbar.qml" line="570"/>
+        <location filename="../src/kirigami_ui/EditorToolbar.qml" line="576"/>
         <source>Palanquin (Devangari)</source>
         <comment>FontName (Translatable font details)</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/EditorToolbar.qml" line="574"/>
+        <location filename="../src/kirigami_ui/EditorToolbar.qml" line="580"/>
         <source>Kalpurush (Bengali)</source>
         <comment>FontName (Translatable font details)</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/EditorToolbar.qml" line="580"/>
+        <location filename="../src/kirigami_ui/EditorToolbar.qml" line="586"/>
         <source>Choose System Font</source>
         <comment>Opens system font selection dialog</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/EditorToolbar.qml" line="586"/>
+        <location filename="../src/kirigami_ui/EditorToolbar.qml" line="592"/>
         <source>No glyphs selected…</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/EditorToolbar.qml" line="810"/>
+        <location filename="../src/kirigami_ui/EditorToolbar.qml" line="812"/>
         <source>Velocity &lt;pre&gt;%1&lt;/pre&gt;</source>
         <comment>Velocity {VELOCITY_STEPS}</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/EditorToolbar.qml" line="848"/>
+        <location filename="../src/kirigami_ui/EditorToolbar.qml" line="920"/>
         <source>Opacity &lt;pre&gt;%1&lt;/pre&gt;</source>
         <comment>Opacity {TRANSPARENCY_PERCENTAGE}</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/EditorToolbar.qml" line="929"/>
-        <location filename="../src/kirigami_ui/EditorToolbar.qml" line="930"/>
+        <location filename="../src/kirigami_ui/EditorToolbar.qml" line="1063"/>
+        <location filename="../src/kirigami_ui/EditorToolbar.qml" line="1064"/>
         <source>Font size &lt;pre&gt;%1 (%2)&lt;/pre&gt;</source>
         <comment>Font size 100% (083)</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/EditorToolbar.qml" line="989"/>
+        <location filename="../src/kirigami_ui/EditorToolbar.qml" line="1198"/>
         <source>Line height &lt;pre&gt;%1%&lt;/pre&gt;</source>
         <comment>Line height 100%</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/EditorToolbar.qml" line="1029"/>
+        <location filename="../src/kirigami_ui/EditorToolbar.qml" line="1317"/>
         <source>Paragraph spacing &lt;pre&gt;%1%&lt;/pre&gt;</source>
         <comment>Paragraph spacing ±00</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/EditorToolbar.qml" line="1070"/>
+        <location filename="../src/kirigami_ui/EditorToolbar.qml" line="1437"/>
         <source>Word spacing &lt;pre&gt;%1&lt;/pre&gt;</source>
         <comment>Word spacing &lt;pre&gt;±00&lt;pre&gt;</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/EditorToolbar.qml" line="1106"/>
+        <location filename="../src/kirigami_ui/EditorToolbar.qml" line="1554"/>
         <source>Letter spacing &lt;pre&gt;%1&lt;/pre&gt;</source>
         <comment>Letter spacing ±00</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/EditorToolbar.qml" line="1142"/>
+        <location filename="../src/kirigami_ui/EditorToolbar.qml" line="1671"/>
         <source>Step speed &lt;pre&gt;%1&lt;/pre&gt;</source>
         <comment>Step speed 1.00</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/EditorToolbar.qml" line="1183"/>
+        <location filename="../src/kirigami_ui/EditorToolbar.qml" line="1790"/>
         <source>Step acceleration &lt;pre&gt;%1&lt;/pre&gt;</source>
         <comment>Step acceleration 1.15</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/EditorToolbar.qml" line="1207"/>
+        <location filename="../src/kirigami_ui/EditorToolbar.qml" line="1816"/>
         <source>Next reload starts at &lt;pre&gt;%1&lt;/pre&gt;</source>
         <comment>Next reload starts at 10:11:12</comment>
         <translation type="unfinished"></translation>
@@ -179,149 +179,149 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/InputsOverlay.qml" line="263"/>
+        <location filename="../src/kirigami_ui/InputsOverlay.qml" line="278"/>
         <source>Toggle Prompter State</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/InputsOverlay.qml" line="271"/>
+        <location filename="../src/kirigami_ui/InputsOverlay.qml" line="286"/>
         <source>Decrease Velocity</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/InputsOverlay.qml" line="279"/>
+        <location filename="../src/kirigami_ui/InputsOverlay.qml" line="294"/>
         <source>Increase Velocity</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/InputsOverlay.qml" line="287"/>
+        <location filename="../src/kirigami_ui/InputsOverlay.qml" line="302"/>
         <source>Stop</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/InputsOverlay.qml" line="295"/>
+        <location filename="../src/kirigami_ui/InputsOverlay.qml" line="310"/>
         <source>Play/Pause</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/InputsOverlay.qml" line="303"/>
+        <location filename="../src/kirigami_ui/InputsOverlay.qml" line="318"/>
         <source>Reverse</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/InputsOverlay.qml" line="311"/>
+        <location filename="../src/kirigami_ui/InputsOverlay.qml" line="326"/>
         <source>Rewind</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/InputsOverlay.qml" line="319"/>
+        <location filename="../src/kirigami_ui/InputsOverlay.qml" line="334"/>
         <source>Fast Forward</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/InputsOverlay.qml" line="327"/>
+        <location filename="../src/kirigami_ui/InputsOverlay.qml" line="342"/>
         <source>Move Backwards</source>
         <comment>Skip to earlier text while prompting or editing</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/InputsOverlay.qml" line="335"/>
+        <location filename="../src/kirigami_ui/InputsOverlay.qml" line="350"/>
         <source>Move Forward</source>
         <comment>Skip to later text while prompting or editing</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/InputsOverlay.qml" line="343"/>
+        <location filename="../src/kirigami_ui/InputsOverlay.qml" line="358"/>
         <source>Go to Previous Marker</source>
         <comment>Skip to closest marker behind of current position</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/InputsOverlay.qml" line="351"/>
+        <location filename="../src/kirigami_ui/InputsOverlay.qml" line="366"/>
         <source>Go to Next Marker</source>
         <comment>Skip to closest marker ahead of current position</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/InputsOverlay.qml" line="359"/>
+        <location filename="../src/kirigami_ui/InputsOverlay.qml" line="374"/>
         <source>Set velocity modifier key</source>
         <comment>Hotkey that shifts velocoty to its negative value.</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/InputsOverlay.qml" line="364"/>
+        <location filename="../src/kirigami_ui/InputsOverlay.qml" line="379"/>
         <source>Ctrl</source>
         <comment>Control key</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/InputsOverlay.qml" line="365"/>
+        <location filename="../src/kirigami_ui/InputsOverlay.qml" line="380"/>
         <source>Alt</source>
         <comment>Alt key</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/InputsOverlay.qml" line="398"/>
+        <location filename="../src/kirigami_ui/InputsOverlay.qml" line="413"/>
         <source>Set velocity to 0</source>
         <comment>Hotkey that sets velocity to a fixed value.</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/InputsOverlay.qml" line="406"/>
+        <location filename="../src/kirigami_ui/InputsOverlay.qml" line="421"/>
         <source>Set velocity to 1</source>
         <comment>Hotkey that sets velocity to a fixed value.</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/InputsOverlay.qml" line="414"/>
+        <location filename="../src/kirigami_ui/InputsOverlay.qml" line="429"/>
         <source>Set velocity to 2</source>
         <comment>Hotkey that sets velocity to a fixed value.</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/InputsOverlay.qml" line="422"/>
+        <location filename="../src/kirigami_ui/InputsOverlay.qml" line="437"/>
         <source>Set velocity to 3</source>
         <comment>Hotkey that sets velocity to a fixed value.</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/InputsOverlay.qml" line="430"/>
+        <location filename="../src/kirigami_ui/InputsOverlay.qml" line="445"/>
         <source>Set velocity to 4</source>
         <comment>Hotkey that sets velocity to a fixed value.</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/InputsOverlay.qml" line="438"/>
+        <location filename="../src/kirigami_ui/InputsOverlay.qml" line="453"/>
         <source>Set velocity to 5</source>
         <comment>Hotkey that sets velocity to a fixed value.</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/InputsOverlay.qml" line="446"/>
+        <location filename="../src/kirigami_ui/InputsOverlay.qml" line="461"/>
         <source>Set velocity to 6</source>
         <comment>Hotkey that sets velocity to a fixed value.</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/InputsOverlay.qml" line="454"/>
+        <location filename="../src/kirigami_ui/InputsOverlay.qml" line="469"/>
         <source>Set velocity to 7</source>
         <comment>Hotkey that sets velocity to a fixed value.</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/InputsOverlay.qml" line="462"/>
+        <location filename="../src/kirigami_ui/InputsOverlay.qml" line="477"/>
         <source>Set velocity to 8</source>
         <comment>Hotkey that sets velocity to a fixed value.</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/InputsOverlay.qml" line="470"/>
+        <location filename="../src/kirigami_ui/InputsOverlay.qml" line="485"/>
         <source>Set velocity to 9</source>
         <comment>Hotkey that sets velocity to a fixed value.</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/InputsOverlay.qml" line="478"/>
+        <location filename="../src/kirigami_ui/InputsOverlay.qml" line="493"/>
         <source>Set velocity to 10</source>
         <comment>Hotkey that sets velocity to a fixed value.</comment>
         <translation type="unfinished"></translation>
@@ -330,7 +330,7 @@
 <context>
     <name>KeyInputButton</name>
     <message>
-        <location filename="../src/kirigami_ui/KeyInputButton.qml" line="109"/>
+        <location filename="../src/kirigami_ui/KeyInputButton.qml" line="120"/>
         <source>Clear</source>
         <comment>Button to remove a keyboard shortcut</comment>
         <translation type="unfinished"></translation>
@@ -339,90 +339,90 @@
 <context>
     <name>LanguageSettingsOverlay</name>
     <message>
-        <location filename="../src/kirigami_ui/LanguageSettingsOverlay.qml" line="32"/>
+        <location filename="../src/kirigami_ui/LanguageSettingsOverlay.qml" line="33"/>
         <source>Language settings</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/LanguageSettingsOverlay.qml" line="40"/>
+        <location filename="../src/kirigami_ui/LanguageSettingsOverlay.qml" line="54"/>
         <source>UI Language</source>
         <comment>Selector to choose user interface language</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/LanguageSettingsOverlay.qml" line="64"/>
+        <location filename="../src/kirigami_ui/LanguageSettingsOverlay.qml" line="78"/>
         <source>Use system language</source>
         <comment>Language</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/LanguageSettingsOverlay.qml" line="68"/>
+        <location filename="../src/kirigami_ui/LanguageSettingsOverlay.qml" line="82"/>
         <source>English</source>
         <comment>Language</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/LanguageSettingsOverlay.qml" line="76"/>
+        <location filename="../src/kirigami_ui/LanguageSettingsOverlay.qml" line="90"/>
         <source>Chinese (Simplified)</source>
         <comment>Language</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/LanguageSettingsOverlay.qml" line="80"/>
+        <location filename="../src/kirigami_ui/LanguageSettingsOverlay.qml" line="94"/>
         <source>Czech</source>
         <comment>Language</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/LanguageSettingsOverlay.qml" line="92"/>
+        <location filename="../src/kirigami_ui/LanguageSettingsOverlay.qml" line="106"/>
         <source>French</source>
         <comment>Language</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/LanguageSettingsOverlay.qml" line="96"/>
+        <location filename="../src/kirigami_ui/LanguageSettingsOverlay.qml" line="110"/>
         <source>German</source>
         <comment>Language</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/LanguageSettingsOverlay.qml" line="108"/>
+        <location filename="../src/kirigami_ui/LanguageSettingsOverlay.qml" line="122"/>
         <source>Japanese</source>
         <comment>Language</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/LanguageSettingsOverlay.qml" line="124"/>
+        <location filename="../src/kirigami_ui/LanguageSettingsOverlay.qml" line="138"/>
         <source>Portuguese (Brazil)</source>
         <comment>Language</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/LanguageSettingsOverlay.qml" line="128"/>
+        <location filename="../src/kirigami_ui/LanguageSettingsOverlay.qml" line="142"/>
         <source>Portuguese (Portugal)</source>
         <comment>Language</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/LanguageSettingsOverlay.qml" line="136"/>
+        <location filename="../src/kirigami_ui/LanguageSettingsOverlay.qml" line="150"/>
         <source>Spanish</source>
         <comment>Language</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/LanguageSettingsOverlay.qml" line="140"/>
+        <location filename="../src/kirigami_ui/LanguageSettingsOverlay.qml" line="154"/>
         <source>Turkish</source>
         <comment>Language</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/LanguageSettingsOverlay.qml" line="144"/>
+        <location filename="../src/kirigami_ui/LanguageSettingsOverlay.qml" line="158"/>
         <source>Ukranian</source>
         <comment>Language</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/LanguageSettingsOverlay.qml" line="172"/>
+        <location filename="../src/kirigami_ui/LanguageSettingsOverlay.qml" line="186"/>
         <source>Is your language not here or it&apos;s incomplete?
 Help us translate QPrompt, visit:</source>
         <translation type="unfinished"></translation>
@@ -431,30 +431,30 @@ Help us translate QPrompt, visit:</source>
 <context>
     <name>LayoutDirectionSettingsOverlay</name>
     <message>
-        <location filename="../src/kirigami_ui/LayoutDirectionSettingsOverlay.qml" line="32"/>
+        <location filename="../src/kirigami_ui/LayoutDirectionSettingsOverlay.qml" line="33"/>
         <source>Layout direction</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/LayoutDirectionSettingsOverlay.qml" line="39"/>
+        <location filename="../src/kirigami_ui/LayoutDirectionSettingsOverlay.qml" line="53"/>
         <source>Current layout</source>
         <comment>Label at layout direction settings overlay</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/LayoutDirectionSettingsOverlay.qml" line="49"/>
+        <location filename="../src/kirigami_ui/LayoutDirectionSettingsOverlay.qml" line="63"/>
         <source>Auto</source>
         <comment>Short for automatic</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/LayoutDirectionSettingsOverlay.qml" line="50"/>
+        <location filename="../src/kirigami_ui/LayoutDirectionSettingsOverlay.qml" line="64"/>
         <source>RTL</source>
         <comment>Short for Right to Left layout</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/LayoutDirectionSettingsOverlay.qml" line="51"/>
+        <location filename="../src/kirigami_ui/LayoutDirectionSettingsOverlay.qml" line="65"/>
         <source>LTR</source>
         <comment>Short for Left to Right layout</comment>
         <translation type="unfinished"></translation>
@@ -463,7 +463,7 @@ Help us translate QPrompt, visit:</source>
 <context>
     <name>MarkersDrawer</name>
     <message>
-        <location filename="../src/kirigami_ui/MarkersDrawer.qml" line="129"/>
+        <location filename="../src/kirigami_ui/MarkersDrawer.qml" line="131"/>
         <source>Close Marker List</source>
         <comment>Close sidebar listing user defined markers</comment>
         <translation type="unfinished"></translation>
@@ -511,17 +511,17 @@ Help us translate QPrompt, visit:</source>
 <context>
     <name>PointerSettings</name>
     <message>
-        <location filename="../src/prompter/PointerSettings.qml" line="104"/>
+        <location filename="../src/prompter/PointerSettings.qml" line="102"/>
         <source>Colors for prompter states</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/prompter/PointerSettings.qml" line="110"/>
+        <location filename="../src/prompter/PointerSettings.qml" line="108"/>
         <source>Editing: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/prompter/PointerSettings.qml" line="123"/>
+        <location filename="../src/prompter/PointerSettings.qml" line="122"/>
         <source>Ready: </source>
         <translation type="unfinished"></translation>
     </message>
@@ -531,123 +531,123 @@ Help us translate QPrompt, visit:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/prompter/PointerSettings.qml" line="150"/>
+        <location filename="../src/prompter/PointerSettings.qml" line="151"/>
         <source>Pointer settings</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/prompter/PointerSettings.qml" line="158"/>
+        <location filename="../src/prompter/PointerSettings.qml" line="159"/>
         <source>Reuse left pointer</source>
         <comment>Uses a mirrored copy of the first pointer as the second pointer</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/prompter/PointerSettings.qml" line="160"/>
+        <location filename="../src/prompter/PointerSettings.qml" line="161"/>
         <source>Reuse right pointer</source>
         <comment>Uses a mirrored copy of the first pointer as the second pointer</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/prompter/PointerSettings.qml" line="166"/>
+        <location filename="../src/prompter/PointerSettings.qml" line="167"/>
         <source>Tint</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/prompter/PointerSettings.qml" line="170"/>
+        <location filename="../src/prompter/PointerSettings.qml" line="171"/>
         <source>Guides</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/prompter/PointerSettings.qml" line="202"/>
+        <location filename="../src/prompter/PointerSettings.qml" line="203"/>
         <source>Arrow</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/prompter/PointerSettings.qml" line="208"/>
+        <location filename="../src/prompter/PointerSettings.qml" line="209"/>
         <source>Text</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/prompter/PointerSettings.qml" line="214"/>
+        <location filename="../src/prompter/PointerSettings.qml" line="215"/>
         <source>Image</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/prompter/PointerSettings.qml" line="220"/>
+        <location filename="../src/prompter/PointerSettings.qml" line="221"/>
         <source>Custom</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/prompter/PointerSettings.qml" line="238"/>
+        <location filename="../src/prompter/PointerSettings.qml" line="240"/>
         <source>Line width &lt;pre&gt;%1&lt;/pre&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/prompter/PointerSettings.qml" line="300"/>
-        <location filename="../src/prompter/PointerSettings.qml" line="406"/>
-        <location filename="../src/prompter/PointerSettings.qml" line="429"/>
-        <location filename="../src/prompter/PointerSettings.qml" line="494"/>
-        <location filename="../src/prompter/PointerSettings.qml" line="517"/>
+        <location filename="../src/prompter/PointerSettings.qml" line="302"/>
+        <location filename="../src/prompter/PointerSettings.qml" line="412"/>
+        <location filename="../src/prompter/PointerSettings.qml" line="435"/>
+        <location filename="../src/prompter/PointerSettings.qml" line="500"/>
+        <location filename="../src/prompter/PointerSettings.qml" line="523"/>
         <source>Left Pointer: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/prompter/PointerSettings.qml" line="300"/>
-        <location filename="../src/prompter/PointerSettings.qml" line="313"/>
-        <location filename="../src/prompter/PointerSettings.qml" line="406"/>
-        <location filename="../src/prompter/PointerSettings.qml" line="429"/>
-        <location filename="../src/prompter/PointerSettings.qml" line="494"/>
-        <location filename="../src/prompter/PointerSettings.qml" line="517"/>
+        <location filename="../src/prompter/PointerSettings.qml" line="302"/>
+        <location filename="../src/prompter/PointerSettings.qml" line="316"/>
+        <location filename="../src/prompter/PointerSettings.qml" line="412"/>
+        <location filename="../src/prompter/PointerSettings.qml" line="435"/>
+        <location filename="../src/prompter/PointerSettings.qml" line="500"/>
+        <location filename="../src/prompter/PointerSettings.qml" line="523"/>
         <source>Right Pointer: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/prompter/PointerSettings.qml" line="344"/>
+        <location filename="../src/prompter/PointerSettings.qml" line="349"/>
         <source>Font: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/prompter/PointerSettings.qml" line="377"/>
-        <location filename="../src/prompter/PointerSettings.qml" line="461"/>
+        <location filename="../src/prompter/PointerSettings.qml" line="382"/>
+        <location filename="../src/prompter/PointerSettings.qml" line="467"/>
         <source>Vertical offset &lt;pre&gt;%1&lt;/pre&gt;</source>
         <comment>Vertical offset (line height) 1.00</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/prompter/PointerSettings.qml" line="417"/>
-        <location filename="../src/prompter/PointerSettings.qml" line="449"/>
-        <location filename="../src/prompter/PointerSettings.qml" line="505"/>
-        <location filename="../src/prompter/PointerSettings.qml" line="537"/>
+        <location filename="../src/prompter/PointerSettings.qml" line="423"/>
+        <location filename="../src/prompter/PointerSettings.qml" line="455"/>
+        <location filename="../src/prompter/PointerSettings.qml" line="511"/>
+        <location filename="../src/prompter/PointerSettings.qml" line="543"/>
         <source>Browse</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/prompter/PointerSettings.qml" line="488"/>
+        <location filename="../src/prompter/PointerSettings.qml" line="494"/>
         <source>Use QML scripts to draw pointers</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/prompter/PointerSettings.qml" line="561"/>
+        <location filename="../src/prompter/PointerSettings.qml" line="567"/>
         <source>JPEG image</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/prompter/PointerSettings.qml" line="561"/>
+        <location filename="../src/prompter/PointerSettings.qml" line="567"/>
         <source>PNG image</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/prompter/PointerSettings.qml" line="562"/>
+        <location filename="../src/prompter/PointerSettings.qml" line="568"/>
         <source>GIF animation</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/prompter/PointerSettings.qml" line="563"/>
+        <location filename="../src/prompter/PointerSettings.qml" line="569"/>
         <source>WEBP image</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/prompter/PointerSettings.qml" line="574"/>
+        <location filename="../src/prompter/PointerSettings.qml" line="580"/>
         <source>QML script</source>
         <translation type="unfinished"></translation>
     </message>
@@ -685,213 +685,189 @@ Help us translate QPrompt, visit:</source>
 <context>
     <name>Prompter</name>
     <message>
-        <location filename="../src/prompter/Prompter.qml" line="725"/>
+        <location filename="../src/prompter/Prompter.qml" line="741"/>
         <source>Error loading file…</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/prompter/Prompter.qml" line="844"/>
+        <location filename="../src/prompter/Prompter.qml" line="862"/>
         <source>Press and hold to go back to the start</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/prompter/Prompter.qml" line="846"/>
+        <location filename="../src/prompter/Prompter.qml" line="864"/>
         <source>Double tap to go back to the start</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/prompter/Prompter.qml" line="854"/>
+        <location filename="../src/prompter/Prompter.qml" line="872"/>
         <source>Auto rewind cancelled</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/prompter/Prompter.qml" line="1255"/>
+        <location filename="../src/prompter/Prompter.qml" line="1294"/>
         <source>New document</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/prompter/Prompter.qml" line="1264"/>
+        <location filename="../src/prompter/Prompter.qml" line="1303"/>
         <source>welcome_en.html</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/prompter/Prompter.qml" line="1269"/>
+        <location filename="../src/prompter/Prompter.qml" line="1308"/>
         <source>User welcome loaded</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/prompter/Prompter.qml" line="1279"/>
+        <location filename="../src/prompter/Prompter.qml" line="1318"/>
         <source>Loaded: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/prompter/Prompter.qml" line="1307"/>
-        <location filename="../src/prompter/Prompter.qml" line="1426"/>
+        <location filename="../src/prompter/Prompter.qml" line="1346"/>
+        <location filename="../src/prompter/Prompter.qml" line="1482"/>
         <source>Saved %1</source>
         <comment>Saved FILE_NAME</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/prompter/Prompter.qml" line="1309"/>
+        <location filename="../src/prompter/Prompter.qml" line="1348"/>
         <source>Saved</source>
         <translation type="unfinished"></translation>
     </message>
-    <message numerus="yes">
-        <location filename="../src/prompter/Prompter.qml" line="1369"/>
-        <source>Hypertext Markup Language (%1)</source>
-        <comment>HTML</comment>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
-            <numerusform></numerusform>
-            <numerusform></numerusform>
-            <numerusform></numerusform>
-            <numerusform></numerusform>
-        </translation>
-    </message>
-    <message numerus="yes">
-        <location filename="../src/prompter/Prompter.qml" line="1370"/>
-        <source>Markdown (%1)</source>
-        <comment>MD</comment>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
-            <numerusform></numerusform>
-            <numerusform></numerusform>
-            <numerusform></numerusform>
-            <numerusform></numerusform>
-        </translation>
-    </message>
     <message>
-        <location filename="../src/prompter/Prompter.qml" line="1371"/>
-        <location filename="../src/prompter/Prompter.qml" line="1383"/>
-        <location filename="../src/prompter/Prompter.qml" line="1413"/>
+        <location filename="../src/prompter/Prompter.qml" line="1427"/>
+        <location filename="../src/prompter/Prompter.qml" line="1439"/>
+        <location filename="../src/prompter/Prompter.qml" line="1469"/>
         <source>Plain Text (%1)</source>
         <comment>Format name (FORMAT_EXTENSION)</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/prompter/Prompter.qml" line="1372"/>
+        <location filename="../src/prompter/Prompter.qml" line="1428"/>
         <source>OpenDocument Format Text Document (%1)</source>
         <comment>Format name (FORMAT_EXTENSION)</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/prompter/Prompter.qml" line="1373"/>
+        <location filename="../src/prompter/Prompter.qml" line="1429"/>
         <source>AbiWord Document (%1)</source>
         <comment>Format name (FORMAT_EXTENSION)</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/prompter/Prompter.qml" line="1374"/>
+        <location filename="../src/prompter/Prompter.qml" line="1430"/>
         <source>Microsoft Word document (%1)</source>
         <comment>Format name (FORMAT_EXTENSION)</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/prompter/Prompter.qml" line="1375"/>
+        <location filename="../src/prompter/Prompter.qml" line="1431"/>
         <source>Apple Pages Document (%1)</source>
         <comment>Format name (FORMAT_EXTENSION)</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/prompter/Prompter.qml" line="1376"/>
+        <location filename="../src/prompter/Prompter.qml" line="1432"/>
         <source>Rich Text Format (%1)</source>
         <comment>Format name (FORMAT_EXTENSION)</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/prompter/Prompter.qml" line="1378"/>
-        <location filename="../src/prompter/Prompter.qml" line="1386"/>
+        <location filename="../src/prompter/Prompter.qml" line="1434"/>
+        <location filename="../src/prompter/Prompter.qml" line="1442"/>
         <source>All Formats</source>
         <comment>All file formats</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/prompter/Prompter.qml" line="1381"/>
-        <location filename="../src/prompter/Prompter.qml" line="1408"/>
-        <location filename="../src/prompter/Prompter.qml" line="1412"/>
+        <location filename="../src/prompter/Prompter.qml" line="1425"/>
+        <location filename="../src/prompter/Prompter.qml" line="1437"/>
+        <location filename="../src/prompter/Prompter.qml" line="1464"/>
+        <location filename="../src/prompter/Prompter.qml" line="1468"/>
         <source>Hypertext Markup Language (%1)</source>
         <comment>Format name (FORMAT_EXTENSION)</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/prompter/Prompter.qml" line="1382"/>
+        <location filename="../src/prompter/Prompter.qml" line="1426"/>
+        <location filename="../src/prompter/Prompter.qml" line="1438"/>
         <source>Markdown (%1)</source>
         <comment>Format name (FORMAT_EXTENSION)</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/prompter/Prompter.qml" line="1451"/>
-        <location filename="../src/prompter/Prompter.qml" line="1498"/>
+        <location filename="../src/prompter/Prompter.qml" line="1507"/>
+        <location filename="../src/prompter/Prompter.qml" line="1554"/>
         <source>&amp;Copy</source>
         <comment>Global menu and editor context menu actions</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/prompter/Prompter.qml" line="1456"/>
-        <location filename="../src/prompter/Prompter.qml" line="1503"/>
+        <location filename="../src/prompter/Prompter.qml" line="1512"/>
+        <location filename="../src/prompter/Prompter.qml" line="1559"/>
         <source>Cu&amp;t</source>
         <comment>Global menu and editor context menu actions</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/prompter/Prompter.qml" line="1461"/>
-        <location filename="../src/prompter/Prompter.qml" line="1508"/>
+        <location filename="../src/prompter/Prompter.qml" line="1517"/>
+        <location filename="../src/prompter/Prompter.qml" line="1564"/>
         <source>&amp;Paste</source>
         <comment>Global menu and editor context menu actions</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/prompter/Prompter.qml" line="1467"/>
-        <location filename="../src/prompter/Prompter.qml" line="1514"/>
+        <location filename="../src/prompter/Prompter.qml" line="1523"/>
+        <location filename="../src/prompter/Prompter.qml" line="1570"/>
         <source>Fo&amp;nt…</source>
         <comment>Editor context menu actions</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/prompter/Prompter.qml" line="1471"/>
-        <location filename="../src/prompter/Prompter.qml" line="1518"/>
+        <location filename="../src/prompter/Prompter.qml" line="1527"/>
+        <location filename="../src/prompter/Prompter.qml" line="1574"/>
         <source>Co&amp;lor…</source>
         <comment>Editor context menu actions</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/prompter/Prompter.qml" line="1475"/>
-        <location filename="../src/prompter/Prompter.qml" line="1522"/>
+        <location filename="../src/prompter/Prompter.qml" line="1531"/>
+        <location filename="../src/prompter/Prompter.qml" line="1578"/>
         <source>Hi&amp;ghlight…</source>
         <comment>Editor context menu actions</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/prompter/Prompter.qml" line="1487"/>
+        <location filename="../src/prompter/Prompter.qml" line="1543"/>
         <source>&amp;Undo</source>
         <comment>Editor context menu actions</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/prompter/Prompter.qml" line="1492"/>
+        <location filename="../src/prompter/Prompter.qml" line="1548"/>
         <source>Redo</source>
         <comment>Editor context menu actions</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/prompter/Prompter.qml" line="1845"/>
+        <location filename="../src/prompter/Prompter.qml" line="1891"/>
         <source>Begin countdown</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/prompter/Prompter.qml" line="1845"/>
+        <location filename="../src/prompter/Prompter.qml" line="1891"/>
         <source>Start prompting</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/prompter/Prompter.qml" line="1893"/>
+        <location filename="../src/prompter/Prompter.qml" line="1939"/>
         <source>Skip countdown</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/prompter/Prompter.qml" line="1938"/>
+        <location filename="../src/prompter/Prompter.qml" line="1984"/>
         <source>Return to edit mode</source>
         <translation type="unfinished"></translation>
     </message>
@@ -899,17 +875,17 @@ Help us translate QPrompt, visit:</source>
 <context>
     <name>PrompterBackground</name>
     <message>
-        <location filename="../src/prompter/PrompterBackground.qml" line="125"/>
+        <location filename="../src/prompter/PrompterBackground.qml" line="131"/>
         <source>JPEG image</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/prompter/PrompterBackground.qml" line="126"/>
+        <location filename="../src/prompter/PrompterBackground.qml" line="132"/>
         <source>PNG image</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/prompter/PrompterBackground.qml" line="127"/>
+        <location filename="../src/prompter/PrompterBackground.qml" line="133"/>
         <source>GIF animation</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1262,85 +1238,92 @@ Help us translate QPrompt, visit:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/PrompterPage.qml" line="839"/>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="851"/>
         <source>Countdown Setup</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/PrompterPage.qml" line="848"/>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="870"/>
         <source>Countdown duration</source>
         <translation type="unfinished"></translation>
     </message>
-    <message>
+    <message numerus="yes">
         <location filename="../src/kirigami_ui/PrompterPage.qml" line="890"/>
+        <source>Disappear within %1 second(s) to go</source>
+        <translation type="unfinished">
+            <numerusform></numerusform>
+            <numerusform></numerusform>
+            <numerusform></numerusform>
+            <numerusform></numerusform>
+            <numerusform></numerusform>
+            <numerusform></numerusform>
+        </translation>
+    </message>
+    <message>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="916"/>
         <source>Skip Key</source>
         <comment>Refers to a key on the keyboard used to skip to a user defined marker while prompting</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/PrompterPage.qml" line="911"/>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="949"/>
         <source>Key to perform skip to this marker</source>
         <comment>Refers to a key on the keyboard used to skip to a user defined marker while prompting</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/PrompterPage.qml" line="958"/>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="1002"/>
         <source>Open from network...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/PrompterPage.qml" line="985"/>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="1043"/>
         <source>URL:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/PrompterPage.qml" line="989"/>
-        <source>http, https, and ftp protocols supported</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/kirigami_ui/PrompterPage.qml" line="1000"/>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="1058"/>
         <source>Auto reload</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/PrompterPage.qml" line="1010"/>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="1069"/>
         <source>Hours:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/PrompterPage.qml" line="1030"/>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="1090"/>
         <source>Minutes:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/PrompterPage.qml" line="1054"/>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="1115"/>
         <source>Seconds:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/PrompterPage.qml" line="1081"/>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="1143"/>
         <source>Next reload starts at %1</source>
         <comment>Next reload starts at 10:11:12</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/PrompterPage.qml" line="1082"/>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="1144"/>
         <source>Auto reload is not running</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/PrompterPage.qml" line="1089"/>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="1150"/>
         <source>Load from Network</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/PrompterPage.qml" line="1097"/>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="1158"/>
         <source>Close</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/PrompterPage.qml" line="1110"/>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="1172"/>
         <source>Pointer configuration</source>
         <comment>Name of section where reding region pointers are configured</comment>
         <translation type="unfinished"></translation>
@@ -1603,35 +1586,35 @@ Help us translate QPrompt, visit:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/WheelSettingsOverlay.qml" line="38"/>
+        <location filename="../src/kirigami_ui/WheelSettingsOverlay.qml" line="48"/>
         <source>Use scroll as velocity dial</source>
         <comment>Label at wheel settings overlay</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/WheelSettingsOverlay.qml" line="42"/>
-        <location filename="../src/kirigami_ui/WheelSettingsOverlay.qml" line="61"/>
+        <location filename="../src/kirigami_ui/WheelSettingsOverlay.qml" line="52"/>
+        <location filename="../src/kirigami_ui/WheelSettingsOverlay.qml" line="71"/>
         <source>On</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/WheelSettingsOverlay.qml" line="42"/>
-        <location filename="../src/kirigami_ui/WheelSettingsOverlay.qml" line="61"/>
+        <location filename="../src/kirigami_ui/WheelSettingsOverlay.qml" line="52"/>
+        <location filename="../src/kirigami_ui/WheelSettingsOverlay.qml" line="71"/>
         <source>Off</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/WheelSettingsOverlay.qml" line="57"/>
+        <location filename="../src/kirigami_ui/WheelSettingsOverlay.qml" line="67"/>
         <source>Enable throttling</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/WheelSettingsOverlay.qml" line="74"/>
+        <location filename="../src/kirigami_ui/WheelSettingsOverlay.qml" line="84"/>
         <source>Throttle factor</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/WheelSettingsOverlay.qml" line="93"/>
+        <location filename="../src/kirigami_ui/WheelSettingsOverlay.qml" line="104"/>
         <source>Enable throttling for use with touchpads, disable for precise scolling.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2145,14 +2128,14 @@ Help us translate QPrompt, visit:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/main.qml" line="1008"/>
+        <location filename="../src/kirigami_ui/main.qml" line="1009"/>
         <location filename="../src/kirigami_ui/+windows/main.qml" line="707"/>
         <source>Restart %1</source>
         <comment>Restart application_name</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/main.qml" line="1009"/>
+        <location filename="../src/kirigami_ui/main.qml" line="1010"/>
         <location filename="../src/kirigami_ui/+windows/main.qml" line="708"/>
         <source>%1 needs to restart for this change to fully take effect.
 
@@ -2163,31 +2146,31 @@ Would you like to restart application now? All changes to document will be lost.
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/main.qml" line="1019"/>
+        <location filename="../src/kirigami_ui/main.qml" line="1026"/>
         <location filename="../src/kirigami_ui/+android/main.qml" line="599"/>
-        <location filename="../src/kirigami_ui/+windows/main.qml" line="718"/>
+        <location filename="../src/kirigami_ui/+windows/main.qml" line="724"/>
         <source>Factory Reset</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/main.qml" line="1020"/>
+        <location filename="../src/kirigami_ui/main.qml" line="1027"/>
         <location filename="../src/kirigami_ui/+android/main.qml" line="600"/>
-        <location filename="../src/kirigami_ui/+windows/main.qml" line="719"/>
+        <location filename="../src/kirigami_ui/+windows/main.qml" line="725"/>
         <source>Restore all configurations to factory defaults? QPrompt will close if you click Yes and all unsaved document changes will be lost.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/main.qml" line="1030"/>
-        <location filename="../src/kirigami_ui/+android/main.qml" line="611"/>
-        <location filename="../src/kirigami_ui/+windows/main.qml" line="729"/>
+        <location filename="../src/kirigami_ui/main.qml" line="1043"/>
+        <location filename="../src/kirigami_ui/+android/main.qml" line="617"/>
+        <location filename="../src/kirigami_ui/+windows/main.qml" line="741"/>
         <source>Save Document</source>
         <comment>Title for save before closing dialog</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/main.qml" line="1031"/>
-        <location filename="../src/kirigami_ui/+android/main.qml" line="612"/>
-        <location filename="../src/kirigami_ui/+windows/main.qml" line="730"/>
+        <location filename="../src/kirigami_ui/main.qml" line="1044"/>
+        <location filename="../src/kirigami_ui/+android/main.qml" line="618"/>
+        <location filename="../src/kirigami_ui/+windows/main.qml" line="742"/>
         <source>Save changes to document before closing?</source>
         <translation type="unfinished"></translation>
     </message>
