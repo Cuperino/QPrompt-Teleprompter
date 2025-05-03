@@ -161,7 +161,7 @@
         <location filename="../src/prompter/Find.qml" line="160"/>
         <source>Replaced %1 instance(s)</source>
         <translation>
-            <numerusform>Replaced %1 instance</numerusform>
+            <numerusform>%1 instancia reemplazada</numerusform>
             <numerusform>%1 instancias reemplazadas</numerusform>
         </translation>
     </message>
@@ -1346,7 +1346,7 @@ Ayúdenos a traducir a QPrompt, visite:</translation>
         <location filename="../src/kirigami_ui/TelemetryPage.qml" line="66"/>
         <source>Please help improve QPrompt by sharing information on how you use it. Contributing this information is optional and entirely anonymous. The project nor I will never collect your personal data, files you use, contents you work with, or information that could help identify you.
 - Cuperino (QPrompt&apos;s Author)</source>
-        <translation>Por favor, ayúdeme a mejorar a QPrompt compartiendo datos sobre cómo lo utiliza. El contribuir esta información es opcional y completamente anónimo. Ni el proyecto ni yo colectaremos sus datos personales, archivos que abra, contenidos con los que trabaje, ni ninguna información que pudiera ayudar a identificarle.\n
+        <translation>Por favor, ayúdeme a mejorar a QPrompt compartiendo datos sobre cómo lo utiliza. El contribuir esta información es opcional y completamente anónimo. Ni el proyecto ni yo colectaremos sus datos personales, archivos que abra, contenidos con los que trabaje, ni ninguna información que pudiera ayudar a identificarle.
 - Cuperino (Autor de QPrompt)</translation>
     </message>
     <message>
