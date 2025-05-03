@@ -474,9 +474,8 @@ Ayúdenos a traducir a QPrompt, visite:</translation>
         <translation>Herramientas externas</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/PathsPage.qml" line="57"/>
         <source>LibreOffice</source>
-        <translation type="unfinished">LibreOffice</translation>
+        <translation type="obsolete">LibreOffice</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/PathsPage.qml" line="63"/>

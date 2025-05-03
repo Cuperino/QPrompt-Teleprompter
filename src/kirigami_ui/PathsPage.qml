@@ -54,7 +54,7 @@ Kirigami.ScrollablePage {
         id: path_settings
         width: parent.implicitWidth
         Kirigami.Heading {
-            text: qsTr("LibreOffice")
+            text: "LibreOffice"
         }
         TextArea {
             background: Item{}

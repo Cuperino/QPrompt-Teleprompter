@@ -477,11 +477,6 @@ Help us translate QPrompt, visit:</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/PathsPage.qml" line="57"/>
-        <source>LibreOffice</source>
-        <translation></translation>
-    </message>
-    <message>
         <location filename="../src/kirigami_ui/PathsPage.qml" line="63"/>
         <source>QPrompt can make transparent use of LibreOffice to convert Microsoft Word, Open Document Format, and other office documents into a format QPrompt understands. Install LibreOffice and ensure this field points to its location, so QPrompt can open office documents.</source>
         <translation></translation>

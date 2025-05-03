@@ -473,9 +473,8 @@ Help us translate QPrompt, visit:</source>
         <translation>Ferramentas externas</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/PathsPage.qml" line="57"/>
         <source>LibreOffice</source>
-        <translation>LibreOffice</translation>
+        <translation type="vanished">LibreOffice</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/PathsPage.qml" line="63"/>
