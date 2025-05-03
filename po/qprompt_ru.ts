@@ -2138,6 +2138,7 @@ Microsoft Word,
     </message>
     <message>
         <location filename="../src/kirigami_ui/main.qml" line="409"/>
+        <location filename="../src/kirigami_ui/+android/main.qml" line="349"/>
         <location filename="../src/kirigami_ui/+windows/main.qml" line="408"/>
         <source>Local file auto reload</source>
         <comment>Main menu actions. Enable local file auto reload</comment>
@@ -2541,12 +2542,6 @@ Would you like to restart application now? All changes to document will be lost.
         <source>Save changes to document before closing?</source>
         <translation>Сохранить изменения в документе перед закрытием?
 </translation>
-    </message>
-    <message>
-        <location filename="../src/kirigami_ui/+android/main.qml" line="349"/>
-        <source>Main menu actions. Enable local file auto reload</source>
-        <comment>Local file auto reload</comment>
-        <translation></translation>
     </message>
 </context>
 </TS>

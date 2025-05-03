@@ -346,7 +346,7 @@ Kirigami.ApplicationWindow {
                 Kirigami.Action {
                     text: qsTr("Other tweaks", "Main menu actions. Enters Other tweaks submenu.")
                     Kirigami.Action {
-                        text: qsTr("Main menu actions. Enable local file auto reload", "Local file auto reload")
+                        text: qsTr("Local file auto reload", "Main menu actions. Enable local file auto reload")
                         icon.source: "qrc:/qt/qml/com/cuperino/qprompt/icons/document-open.svg"
                         checkable: true
                         checked: root.pageStack.currentItem.document.autoReload

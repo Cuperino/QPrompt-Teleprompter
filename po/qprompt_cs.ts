@@ -2130,6 +2130,7 @@ Povolit omezování pro použití s touchpady, deaktivovat pro přesné rolován
     </message>
     <message>
         <location filename="../src/kirigami_ui/main.qml" line="409"/>
+        <location filename="../src/kirigami_ui/+android/main.qml" line="349"/>
         <location filename="../src/kirigami_ui/+windows/main.qml" line="408"/>
         <source>Local file auto reload</source>
         <comment>Main menu actions. Enable local file auto reload</comment>
@@ -2530,12 +2531,6 @@ Would you like to restart application now? All changes to document will be lost.
         <source>Save changes to document before closing?</source>
         <translation>Uložit změny v dokumentu před uzavřením?
 </translation>
-    </message>
-    <message>
-        <location filename="../src/kirigami_ui/+android/main.qml" line="349"/>
-        <source>Main menu actions. Enable local file auto reload</source>
-        <comment>Local file auto reload</comment>
-        <translation></translation>
     </message>
 </context>
 </TS>
