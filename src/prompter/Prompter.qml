@@ -763,7 +763,7 @@ Flickable {
                 font.hintingPreference: Font.PreferFullHinting
                 font.kerning: true
                 font.preferShaping: true
-                renderType: font.pixelSize < 121 || Screen.devicePixelRatio !== 1.0 || root.forceQtTextRenderer ? Text.QtRendering : Text.NativeRendering
+                renderType: (Qt.platform.os==="ios" || Qt.platform.os==="osx") ? Text.NativeRendering : (font.pixelSize < 121 || Screen.devicePixelRatio !== 1.0 || root.forceQtTextRenderer ? Text.QtRendering : Text.NativeRendering)
                 FontLoader {
                     id: westernSeriousSansfFont
                     source: "../fonts/DejaVuSans.ttf"
