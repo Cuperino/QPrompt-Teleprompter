@@ -1206,7 +1206,7 @@ ToolBar {
             }
             Slider {
                 id: lineHeightSlider
-                from: 85
+                from: 30
                 value: 100
                 to: 180
                 stepSize: 1
