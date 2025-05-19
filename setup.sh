@@ -22,27 +22,30 @@
 #**************************************************************************
 
 ARCHITECTURE="$(uname -m)"
-QT_VER=6.8.3
+DEFAULT_QT_VER=6.8.3
 echo -e "\nArchitecture: $ARCHITECTURE"
 
 if [[ "$OSTYPE" == "linux-gnu"* ]]; then
-   PLATFORM="linux"
-   CMAKE_INSTALL_PREFIX="/usr"
-   if [ "$ARCHITECTURE" == "aarch64" ]; then
-       COMPILER="gcc_arm64"
-   else
-       COMPILER="gcc_64"
-   fi
-   CMAKE=cmake
-   CPACK=cpack
-   PATH=$PATH:~/Qt/Tools/QtInstallerFramework/4.8/bin
+    QT_VER=$DEFAULT_QT_VER
+    PLATFORM="linux"
+    CMAKE_INSTALL_PREFIX="/usr"
+    if [ "$ARCHITECTURE" == "aarch64" ]; then
+        COMPILER="gcc_arm64"
+    else
+        COMPILER="gcc_64"
+    fi
+    CMAKE=cmake
+    CPACK=cpack
+    PATH=$PATH:~/Qt/Tools/QtInstallerFramework/4.8/bin
 elif [[ "$OSTYPE" == "darwin"* ]]; then
+    QT_VER=$DEFAULT_QT_VER
     PLATFORM="macos"
     COMPILER="macos"
     CMAKE=~/Qt/Tools/CMake/CMake.app/Contents/bin/cmake
     CPACK=~/Qt/Tools/CMake/CMake.app/Contents/bin/cpack
     PATH=$PATH:~/Qt/Tools/QtInstallerFramework/4.8/bin
 elif [[ "$OSTYPE" == "win32" || "$OSTYPE" == "msys" ]]; then
+    QT_VER=6.7.3
     PLATFORM="windows"
     CMAKE_INSTALL_PREFIX="install"
     if [ "$ARCHITECTURE" == "aarch64" ]; then
@@ -53,12 +56,14 @@ elif [[ "$OSTYPE" == "win32" || "$OSTYPE" == "msys" ]]; then
     CMAKE=C:\\Qt\\Tools\\CMake_64\\bin\\cmake.exe
     CPACK=C:\\Qt\\Tools\\CMake_64\\bin\\cpack.exe
 elif [[ "$OSTYPE" == "freebsd"* ]]; then
+    QT_VER=$DEFAULT_QT_VER
     PLATFORM="freebsd"
     CMAKE_INSTALL_PREFIX="/usr"
     COMPILER="gcc"
     CMAKE=cmake
     CPACK=cpack
 else
+    QT_VER=$DEFAULT_QT_VER
     PLATFORM="unix"
     CMAKE_INSTALL_PREFIX="/usr"
     COMPILER="gcc"
@@ -103,18 +108,12 @@ This script assumes you've already installed the following dependencies:
  For all platforms:
  > Git
  > Bash
- > Python 3
- > Qt 6 ($QT_VER used by default)
+ > Qt 6 ($QT_VER for $COMPILER should be installed)
+ > CMake (from the Qt Maintenance Tool on Windows and Mac
+          and accessible from PATH for all other systens)
 
- For Linux:
- > build-essential
- > cmake
- > python3-venv
- > Run: sudo apt install build-essential cmake python3-venv gettext libgl1-mesa-dev libxkbcommon-x11-dev default-libmysqlclient-dev
-
- For macOS:
- > CMake
- > Homebrew
+ On Ubuntu and Debian Linux, install the following:
+ > sudo apt install build-essential git cmake libgl1-mesa-dev libxkbcommon-x11-dev
 
  For Windows:
  > Visual Studio (Community Edition)
@@ -179,16 +178,15 @@ fi
 tier_0="
     ./3rdparty/extra-cmake-modules
 "
-tier_1="
-    ./3rdparty/kcoreaddons
-    ./3rdparty/kirigami
-    ./3rdparty/kcrash
-"
-tier_2="
-"
-tier_3="
-"
-for dependency in $tier_0 $tier_1 $tier_2 $tier_3; do
+if [[ "$PLATFORM" == "linux" ]]; then
+    tier_1="
+       ./3rdparty/kcoreaddons
+       ./3rdparty/kirigami
+       ./3rdparty/kcrash
+    "
+fi
+
+for dependency in $tier_0 $tier_1 do
     echo -e "\n\n~~~" $dependency "~~~\n"
     if $CLEAR_ALL; then
         rm -dRf $dependency/build
