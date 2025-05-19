@@ -241,7 +241,7 @@ elif [[ "$PLATFORM" == "linux" ]]; then
         cp -r $AppDirUsr/lib/aarch64-linux-gnu/* $CMAKE_PREFIX_PATH/lib/
     fi
     mkdir -p ~/Applications/
-    wget -nc -P ~/Applications/ https://github.com/$(wget -q https://github.com/probonopd/go-appimage/releases/expanded_assets/continuous -O - | grep "appimagetool-.*-$ARCHITECTURE.AppImage" | head -n 1 | cut -d '"' -f 2)
+    wget -nc -P ~/Applications/ https://github.com/$(wget -q https://github.com/probonopd/go-appimage/releases/tag/continuous -O - | grep "appimagetool-.*-$ARCHITECTURE.AppImage" | head -n 1 | cut -d '"' -f 2)
     APPIMAGE_TOOL=~/Applications/$(ls ~/Applications/ | grep "appimagetool-.*-$ARCHITECTURE.AppImage")
     if ! command -v $APPIMAGE_TOOL 2>&1 >/dev/null; then
         echo "$APPIMAGE_TOOL could not be found"
