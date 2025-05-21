@@ -106,6 +106,18 @@ Kirigami.Page {
             tooltip: qsTr("Change reading region placement", "Reading region indicates where a talent should be reading from")
 
             Kirigami.Action {
+                id: readRegionBarsButton
+                text: qsTr("Bars", "Configure reading region pointer indicators")
+                checkable: true
+                checked: parseInt(overlay.styleState)>ReadRegionOverlay.PointerStates.Pointers
+                onTriggered: {
+                    if (parseInt(overlay.styleState)>ReadRegionOverlay.PointerStates.Pointers)
+                        overlay.styleState = parseInt(overlay.styleState) - 4;
+                    else
+                        overlay.styleState = parseInt(overlay.styleState) + 4;
+                }
+            }
+            Kirigami.Action {
                 id: readRegionTopButton
                 icon.name: "go-up"
                 icon.source: "../icons/go-up.svg"
@@ -296,18 +308,6 @@ Kirigami.Page {
                     overlay.styleState = readRegionBarsButton.checked ? ReadRegionOverlay.PointerStates.Bars : ReadRegionOverlay.PointerStates.None
                     contextDrawer.close()
                     viewport.prompter.restoreFocus()
-                }
-            }
-            Kirigami.Action {
-                id: readRegionBarsButton
-                text: qsTr("Bars", "Configure reading region pointer indicators")
-                checkable: true
-                checked: parseInt(overlay.styleState)>ReadRegionOverlay.PointerStates.Pointers
-                onTriggered: {
-                    if (parseInt(overlay.styleState)>ReadRegionOverlay.PointerStates.Pointers)
-                        overlay.styleState = parseInt(overlay.styleState) - 4;
-                    else
-                        overlay.styleState = parseInt(overlay.styleState) + 4;
                 }
             }
         },
