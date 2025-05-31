@@ -186,7 +186,7 @@ if [[ "$PLATFORM" == "linux" ]]; then
     "
 fi
 
-for dependency in $tier_0 $tier_1 do
+for dependency in $tier_0 $tier_1; do
     echo -e "\n\n~~~" $dependency "~~~\n"
     if $CLEAR_ALL; then
         rm -dRf $dependency/build
