@@ -94,16 +94,6 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
     QSettings settings(QCoreApplication::organizationName(), QCoreApplication::applicationName().toLower());
 #endif
 
-    // The following code forces the use of a specific language.
-    QString language = settings.value("ui/language", "").toString();
-    if (!language.isEmpty()) {
-        auto langCode = language.append(".UTF-8").toStdString();
-        qDebug() << langCode;
-        qputenv("LANGUAGE", langCode);
-        qputenv("LC_ALL", langCode);
-        qputenv("LANG", langCode);
-    }
-
     // Instantiate app
 #if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
     QGuiApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
@@ -113,6 +103,20 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
 #else
     QApplication app(argc, argv);
 #endif
+
+    QTranslator translator;
+    // The following code forces the use of a specific language.
+    QString language = settings.value("ui/language", "").toString();
+    if (!language.isEmpty()) {
+        auto langCode = language.append(".UTF-8").toStdString();
+        qDebug() << langCode;
+        qputenv("LANGUAGE", langCode);
+        qputenv("LC_ALL", langCode);
+        qputenv("LANG", langCode);
+        if (translator.load(QLatin1String(":/i18n/qprompt_" + langCode + ".qm")))
+            app.installTranslator(&translator);
+    }
+
     // Parse command line arguments
     QCommandLineParser parser;
     parser.setApplicationDescription(
