@@ -1245,7 +1245,7 @@ Help us translate QPrompt, visit:</source>
     <message numerus="yes">
         <location filename="../src/kirigami_ui/PrompterPage.qml" line="890"/>
         <source>Disappear within %n second(s) to go</source>
-        <translation>
+        <translation type="unfinished">
             <numerusform></numerusform>
             <numerusform></numerusform>
             <numerusform></numerusform>
