@@ -140,7 +140,7 @@ Kirigami.OverlaySheet {
                     },
                     {
                         "text": qsTr("Portuguese (Portugal)", "Language"),
-                        "value": "pt_PO"
+                        "value": "pt_PT"
                     },
                     {
                         "text": qsTr("Russian", "Language"),
