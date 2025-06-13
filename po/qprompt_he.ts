@@ -19,7 +19,7 @@
     <message>
         <location filename="../src/main.cpp" line="176"/>
         <source>Emails of translators</source>
-        <translation type="unfinished"></translation>
+        <translation>batadler@gmail.com</translation>
     </message>
 </context>
 <context>
@@ -520,7 +520,7 @@ Help us translate QPrompt, visit:</source>
     <message>
         <location filename="../src/main.cpp" line="176"/>
         <source>Names of translators</source>
-        <translation type="unfinished"></translation>
+        <translation>bat adler</translation>
     </message>
 </context>
 <context>
