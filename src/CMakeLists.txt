@@ -330,7 +330,7 @@ qt_add_shaders(
 qt_add_translations(${PROJECT_NAME} SOURCE_TARGETS ${PROJECT_NAME}
     TS_FILE_DIR ${CMAKE_SOURCE_DIR}/po
     LUPDATE_OPTIONS -source-language en
-    LRELEASE_OPTIONS -compress -markuntranslated l10n_  # -idbased
+    LRELEASE_OPTIONS -compress  # -idbased
 )
 
 # Libraries
