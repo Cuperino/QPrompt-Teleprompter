@@ -1254,9 +1254,9 @@ Microsoft Word,</translation>
         <location filename="../src/kirigami_ui/PrompterPage.qml" line="890"/>
         <source>Disappear within %n second(s) to go</source>
         <translation>
-            <numerusform></numerusform>
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+            <numerusform>Пропадёт через %n секунду</numerusform>
+            <numerusform>Пропадёт через %n секунд</numerusform>
+            <numerusform>Пропадёт через %n секунд</numerusform>
         </translation>
     </message>
     <message>
