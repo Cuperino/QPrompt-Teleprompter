@@ -1250,8 +1250,8 @@ Bildschirms anders als \&quot;Aus\&quot; geschaltet sein</translation>
         <location filename="../src/kirigami_ui/PrompterPage.qml" line="890"/>
         <source>Disappear within %n second(s) to go</source>
         <translation>
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+            <numerusform>1 Sekunde vor dem Start ausblenden</numerusform>
+            <numerusform>%n Sekunden vor dem Start ausblenden</numerusform>
         </translation>
     </message>
     <message>
