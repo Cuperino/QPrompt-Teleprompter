@@ -1245,8 +1245,8 @@ Fixer la zone de lecture à la position définie en mode de placement libre</tra
         <location filename="../src/kirigami_ui/PrompterPage.qml" line="890"/>
         <source>Disappear within %n second(s) to go</source>
         <translation>
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+            <numerusform>Disparition dans moins de 1 seconde</numerusform>
+            <numerusform>Disparition dans moins de %n secondes</numerusform>
         </translation>
     </message>
     <message>
