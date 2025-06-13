@@ -762,7 +762,7 @@ Help us translate QPrompt, visit:</source>
     <message>
         <location filename="../src/prompter/Prompter.qml" line="1303"/>
         <source>welcome_en.html</source>
-        <translation></translation>
+        <translation>welcome_pl.html</translation>
     </message>
     <message>
         <location filename="../src/prompter/Prompter.qml" line="1308"/>
