@@ -19,7 +19,7 @@
     <message>
         <location filename="../src/main.cpp" line="176"/>
         <source>Emails of translators</source>
-        <translation type="unfinished"></translation>
+        <translation>javiercorderoperez@gmail.com, fitojb@ubuntu.com, rassiel86@gmail.com</translation>
     </message>
 </context>
 <context>
@@ -521,7 +521,7 @@ Ayúdenos a traducir a QPrompt, visite:</translation>
     <message>
         <location filename="../src/main.cpp" line="176"/>
         <source>Names of translators</source>
-        <translation type="unfinished"></translation>
+        <translation>Javier O. Cordero Pérez, Adolfo Jayme-Barrientos, Luis Blanco (RaSSieL)</translation>
     </message>
 </context>
 <context>
