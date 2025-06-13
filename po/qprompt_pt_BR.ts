@@ -358,6 +358,12 @@
         <translation></translation>
     </message>
     <message>
+        <location filename="../src/kirigami_ui/LanguageSettingsOverlay.qml" line="86"/>
+        <source>Arabic</source>
+        <comment>Language</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../src/kirigami_ui/LanguageSettingsOverlay.qml" line="90"/>
         <source>Chinese (Simplified)</source>
         <comment>Language</comment>
@@ -368,6 +374,18 @@
         <source>Czech</source>
         <comment>Language</comment>
         <translation></translation>
+    </message>
+    <message>
+        <location filename="../src/kirigami_ui/LanguageSettingsOverlay.qml" line="98"/>
+        <source>Dutch</source>
+        <comment>Language</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/kirigami_ui/LanguageSettingsOverlay.qml" line="102"/>
+        <source>Finnish</source>
+        <comment>Language</comment>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/LanguageSettingsOverlay.qml" line="106"/>
@@ -382,10 +400,28 @@
         <translation></translation>
     </message>
     <message>
+        <location filename="../src/kirigami_ui/LanguageSettingsOverlay.qml" line="118"/>
+        <source>Italian</source>
+        <comment>Language</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../src/kirigami_ui/LanguageSettingsOverlay.qml" line="122"/>
         <source>Japanese</source>
         <comment>Language</comment>
         <translation></translation>
+    </message>
+    <message>
+        <location filename="../src/kirigami_ui/LanguageSettingsOverlay.qml" line="126"/>
+        <source>Korean</source>
+        <comment>Language</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/kirigami_ui/LanguageSettingsOverlay.qml" line="130"/>
+        <source>Occitan</source>
+        <comment>Language</comment>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/LanguageSettingsOverlay.qml" line="138"/>
@@ -398,6 +434,12 @@
         <source>Portuguese (Portugal)</source>
         <comment>Language</comment>
         <translation></translation>
+    </message>
+    <message>
+        <location filename="../src/kirigami_ui/LanguageSettingsOverlay.qml" line="146"/>
+        <source>Russian</source>
+        <comment>Language</comment>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/LanguageSettingsOverlay.qml" line="150"/>
@@ -917,136 +959,136 @@ uma tela para uma configuração de projeção que não seja \&quot;Desligado\&q
         <translation>Mudar a posição da região de leitura</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/PrompterPage.qml" line="112"/>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="124"/>
         <source>Top</source>
         <comment>Align reading region to top of prompter</comment>
         <translation>Em cima</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/PrompterPage.qml" line="114"/>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="126"/>
         <source>Move reading region to the top, convenient for use with webcams</source>
         <translation>
 Mover a região de leitura para cima, mais conveniente para uso com webcams</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/PrompterPage.qml" line="125"/>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="137"/>
         <source>Middle</source>
         <comment>Align reading region to vertical center of prompter</comment>
         <translation>Meio</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/PrompterPage.qml" line="127"/>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="139"/>
         <source>Move reading region to the vertical center</source>
         <translation>Mover a região de leitura para o centro verticalmente</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/PrompterPage.qml" line="138"/>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="150"/>
         <source>Bottom</source>
         <comment>Align reading region to bottom of prompter</comment>
         <translation>Embaixo</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/PrompterPage.qml" line="140"/>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="152"/>
         <source>Move reading region to the bottom</source>
         <translation>Mover a região de leitura para baixo</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/PrompterPage.qml" line="150"/>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="162"/>
         <source>Free</source>
         <comment>Refers to free placement. Enables drag and drop positioning of reading region.</comment>
         <translation>Livre</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/PrompterPage.qml" line="152"/>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="164"/>
         <source>Move reading region freely by dragging and dropping</source>
         <translation>Mover região de leitura livremente ao arrastar e soltar</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/PrompterPage.qml" line="163"/>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="175"/>
         <source>Custom</source>
         <comment>Fix positioning of reading region to what was set in &quot;Free placement&quot; mode</comment>
         <translation>Customizada</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/PrompterPage.qml" line="165"/>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="177"/>
         <source>Fix reading region to the position set using free placement mode</source>
         <translation>
 Fixar a região de leitura pela posição configurada usando o posicionamento
 livre</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/PrompterPage.qml" line="190"/>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="202"/>
         <source>Height: %1</source>
         <comment>Height of reading region relative to single line height. E.g. Height: 2.5</comment>
         <translation>Altura: %1</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/PrompterPage.qml" line="244"/>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="256"/>
         <source>Indicators</source>
         <comment>Indicators highlight reading region</comment>
         <translation>Indicadores</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/PrompterPage.qml" line="245"/>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="257"/>
         <source>Change reading region indicators</source>
         <comment>Indicators highlight reading region</comment>
         <translation>Alterar indicador de região de leitura</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/PrompterPage.qml" line="248"/>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="260"/>
         <source>Pointer Configuration</source>
         <comment>Configure reading region pointer indicators</comment>
         <translation>Configuração de ponteiro</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/PrompterPage.qml" line="255"/>
         <location filename="../src/kirigami_ui/PrompterPage.qml" line="267"/>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="279"/>
         <source>Left pointer</source>
         <comment>Shows pointer to the left of the reading region</comment>
         <translation>Ponteiro esquerdo</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/PrompterPage.qml" line="255"/>
         <location filename="../src/kirigami_ui/PrompterPage.qml" line="267"/>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="279"/>
         <source>Right pointer</source>
         <comment>Shows pointer to the right of the reading region</comment>
         <translation>Ponteiro direito</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/PrompterPage.qml" line="257"/>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="269"/>
         <source>Left pointer indicates reading region</source>
         <translation>Ponteiro esquerdo indica a região de leitura</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/PrompterPage.qml" line="269"/>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="281"/>
         <source>Right pointer indicates reading region</source>
         <translation>Ponteiro direito indica a região de leitura</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/PrompterPage.qml" line="279"/>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="291"/>
         <source>Both pointers</source>
         <comment>Shows pointers to the left and right of the reading region</comment>
         <translation>Dois ponteiros</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/PrompterPage.qml" line="281"/>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="293"/>
         <source>Left and right pointers indicate reading region</source>
         <translation>Ponteiros esquerdo e direito indicam a região de leitura</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/PrompterPage.qml" line="291"/>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="303"/>
         <source>No pointers</source>
         <comment>Disable all reading region pointers</comment>
         <translation>Sem ponteiros</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/PrompterPage.qml" line="293"/>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="305"/>
         <source>Disable reading region indicators</source>
         <comment>Disable all reading region indicators</comment>
         <translation>Desabilita os indicadores de região de leitura</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/PrompterPage.qml" line="303"/>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="110"/>
         <source>Bars</source>
         <comment>Configure reading region pointer indicators</comment>
         <translation>&amp;Barras</translation>
