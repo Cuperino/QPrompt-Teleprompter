@@ -1253,8 +1253,8 @@ livre</translation>
         <location filename="../src/kirigami_ui/PrompterPage.qml" line="890"/>
         <source>Disappear within %n second(s) to go</source>
         <translation>
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+            <numerusform>Desaparecer no espaço de 1 segundo para iniciar</numerusform>
+            <numerusform>Desaparecer no espaço de %n segundos para iniciar</numerusform>
         </translation>
     </message>
     <message>
