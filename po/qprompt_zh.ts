@@ -1245,7 +1245,7 @@ Help us translate QPrompt, visit:</source>
         <location filename="../src/kirigami_ui/PrompterPage.qml" line="890"/>
         <source>Disappear within %n second(s) to go</source>
         <translation>
-            <numerusform></numerusform>
+            <numerusform>在 %n 秒内消失</numerusform>
         </translation>
     </message>
     <message>
