@@ -770,7 +770,7 @@ Microsoft Word,</translation>
     <message>
         <location filename="../src/prompter/Prompter.qml" line="1303"/>
         <source>welcome_en.html</source>
-        <translation>welcome_ua.html</translation>
+        <translation>welcome_uk.html</translation>
     </message>
     <message>
         <location filename="../src/prompter/Prompter.qml" line="1308"/>
