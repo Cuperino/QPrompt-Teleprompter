@@ -19,7 +19,7 @@
     <message>
         <location filename="../src/main.cpp" line="176"/>
         <source>Emails of translators</source>
-        <translation type="unfinished"></translation>
+        <translation>9778566@qq.com, 1324225711@qq.com, bao_wong@163.com</translation>
     </message>
 </context>
 <context>
@@ -519,7 +519,7 @@ Help us translate QPrompt, visit:</source>
     <message>
         <location filename="../src/main.cpp" line="176"/>
         <source>Names of translators</source>
-        <translation type="unfinished"></translation>
+        <translation>北北″, 黄瀚文, Bao Wong</translation>
     </message>
 </context>
 <context>
