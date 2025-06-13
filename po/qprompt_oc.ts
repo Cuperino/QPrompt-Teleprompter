@@ -19,7 +19,7 @@
     <message>
         <location filename="../src/main.cpp" line="176"/>
         <source>Emails of translators</source>
-        <translation type="unfinished"></translation>
+        <translation>quenty@zaclys.net, cvalmary@yahoo.fr, avogadro-devel@lists.sourceforge.net</translation>
     </message>
 </context>
 <context>
@@ -520,7 +520,7 @@ Help us translate QPrompt, visit:</source>
     <message>
         <location filename="../src/main.cpp" line="176"/>
         <source>Names of translators</source>
-        <translation type="unfinished"></translation>
+        <translation>Quentin PAGÈS, Cédric VALMARY (Tot en òc), Avogadro Team</translation>
     </message>
 </context>
 <context>
