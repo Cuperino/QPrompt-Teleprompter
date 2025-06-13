@@ -769,7 +769,7 @@ menos um ecrã para uma definição de projeção diferente de \&quot;Desligado\
     <message>
         <location filename="../src/prompter/Prompter.qml" line="1303"/>
         <source>welcome_en.html</source>
-        <translation>welcome_pt_PT .html</translation>
+        <translation>welcome_pt_PT.html</translation>
     </message>
     <message>
         <location filename="../src/prompter/Prompter.qml" line="1308"/>
