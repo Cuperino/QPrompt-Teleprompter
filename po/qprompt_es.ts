@@ -369,7 +369,7 @@
         <location filename="../src/kirigami_ui/LanguageSettingsOverlay.qml" line="86"/>
         <source>Arabic</source>
         <comment>Language</comment>
-        <translation type="unfinished"></translation>
+        <translation>Árabe</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/LanguageSettingsOverlay.qml" line="90"/>
@@ -387,13 +387,13 @@
         <location filename="../src/kirigami_ui/LanguageSettingsOverlay.qml" line="98"/>
         <source>Dutch</source>
         <comment>Language</comment>
-        <translation type="unfinished"></translation>
+        <translation>Holandés</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/LanguageSettingsOverlay.qml" line="102"/>
         <source>Finnish</source>
         <comment>Language</comment>
-        <translation type="unfinished"></translation>
+        <translation>Finlandés</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/LanguageSettingsOverlay.qml" line="106"/>
@@ -411,7 +411,7 @@
         <location filename="../src/kirigami_ui/LanguageSettingsOverlay.qml" line="118"/>
         <source>Italian</source>
         <comment>Language</comment>
-        <translation type="unfinished"></translation>
+        <translation>Italiano</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/LanguageSettingsOverlay.qml" line="122"/>
@@ -423,13 +423,13 @@
         <location filename="../src/kirigami_ui/LanguageSettingsOverlay.qml" line="126"/>
         <source>Korean</source>
         <comment>Language</comment>
-        <translation type="unfinished"></translation>
+        <translation>Koreano</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/LanguageSettingsOverlay.qml" line="130"/>
         <source>Occitan</source>
         <comment>Language</comment>
-        <translation type="unfinished"></translation>
+        <translation>Occitano</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/LanguageSettingsOverlay.qml" line="138"/>
@@ -447,7 +447,7 @@
         <location filename="../src/kirigami_ui/LanguageSettingsOverlay.qml" line="146"/>
         <source>Russian</source>
         <comment>Language</comment>
-        <translation type="unfinished"></translation>
+        <translation>Ruso</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/LanguageSettingsOverlay.qml" line="150"/>
