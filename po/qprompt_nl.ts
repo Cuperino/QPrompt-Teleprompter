@@ -19,7 +19,7 @@
     <message>
         <location filename="../src/main.cpp" line="176"/>
         <source>Emails of translators</source>
-        <translation type="unfinished"></translation>
+        <translation>magicalmarc@gmail.com, ericspierings@netscape.net</translation>
     </message>
 </context>
 <context>
@@ -520,7 +520,7 @@ Help us translate QPrompt, visit:</source>
     <message>
         <location filename="../src/main.cpp" line="176"/>
         <source>Names of translators</source>
-        <translation type="unfinished"></translation>
+        <translation>Marc Wegkamp, Eric Spierings</translation>
     </message>
 </context>
 <context>
