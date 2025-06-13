@@ -1245,10 +1245,10 @@ Ayúdenos a traducir a QPrompt, visite:</translation>
     </message>
     <message numerus="yes">
         <location filename="../src/kirigami_ui/PrompterPage.qml" line="890"/>
-        <source>Disappear within %1 second(s) to go</source>
+        <source>Disappear within %n second(s) to go</source>
         <translation>
-            <numerusform>Ocultar faltando %1 segundo</numerusform>
-            <numerusform>Ocultar faltando %1 segundos</numerusform>
+            <numerusform>Ocultar faltando %n segundo</numerusform>
+            <numerusform>Ocultar faltando %n segundos</numerusform>
         </translation>
     </message>
     <message>

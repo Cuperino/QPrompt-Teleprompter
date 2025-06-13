@@ -82,10 +82,10 @@ Kirigami.OverlaySheet {
                         "text": qsTr("English", "Language"),
                         "value": "en_US"
                     },
-                    // {
-                    //     "text": qsTr("Arabic", "Language"),
-                    //     "value": "ar_AE"
-                    // },
+                    {
+                        "text": qsTr("Arabic", "Language"),
+                        "value": "ar_AE"
+                    },
                     {
                         "text": qsTr("Chinese (Simplified)", "Language"),
                         "value": "zh_CN"
@@ -94,14 +94,14 @@ Kirigami.OverlaySheet {
                         "text": qsTr("Czech", "Language"),
                         "value": "cs_CZ"
                     },
-                    // {
-                    //     "text": qsTr("Dutch", "Language"),
-                    //     "value": "nl_NL"
-                    // },
-                    // {
-                    //     "text": qsTr("Finnish", "Language"),
-                    //     "value": "fi_FI"
-                    // },
+                    {
+                        "text": qsTr("Dutch", "Language"),
+                        "value": "nl_NL"
+                    },
+                    {
+                        "text": qsTr("Finnish", "Language"),
+                        "value": "fi_FI"
+                    },
                     {
                         "text": qsTr("French", "Language"),
                         "value": "fr_FR"
@@ -114,22 +114,22 @@ Kirigami.OverlaySheet {
                     //     "text": qsTr("Hebrew", "Language"),
                     //     "value": "he-IL"
                     // },
-                    // {
-                    //     "text": qsTr("Italian", "Language"),
-                    //     "value": "it_IT"
-                    // },
+                    {
+                        "text": qsTr("Italian", "Language"),
+                        "value": "it_IT"
+                    },
                     {
                         "text": qsTr("Japanese", "Language"),
                         "value": "ja_JP"
                     },
-                    // {
-                    //     "text": qsTr("Korean", "Language"),
-                    //     "value": "ko_KO"
-                    // },
-                    // {
-                    //     "text": qsTr("Occitan", "Language"),
-                    //     "value": "oc_FR"
-                    // },
+                    {
+                        "text": qsTr("Korean", "Language"),
+                        "value": "ko_KO"
+                    },
+                    {
+                        "text": qsTr("Occitan", "Language"),
+                        "value": "oc_FR"
+                    },
                     // {
                     //     "text": qsTr("Polish", "Language"),
                     //     "value": "pl_PL"
@@ -142,10 +142,10 @@ Kirigami.OverlaySheet {
                         "text": qsTr("Portuguese (Portugal)", "Language"),
                         "value": "pt_PO"
                     },
-                    // {
-                    //     "text": qsTr("Russian", "Language"),
-                    //     "value": "ru_RU"
-                    // },
+                    {
+                        "text": qsTr("Russian", "Language"),
+                        "value": "ru_RU"
+                    },
                     {
                         "text": qsTr("Spanish", "Language"),
                         "value": "es_ES"

@@ -107,7 +107,11 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
     QTranslator translator;
     // The following code forces the use of a specific language.
     QString language = settings.value("ui/language", "").toString();
-    if (!language.isEmpty()) {
+    if (language.isEmpty()) {
+        if (translator.load(QLatin1String(":/i18n/qprompt_en.qm")))
+            app.installTranslator(&translator);
+    }
+    else {
         auto langCode = language.append(".UTF-8").toStdString();
         qDebug() << langCode;
         qputenv("LANGUAGE", langCode);
