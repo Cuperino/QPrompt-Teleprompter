@@ -1245,9 +1245,9 @@ nastavit na jiné nastavení projekce než „Vypnuto“</translation>
         <location filename="../src/kirigami_ui/PrompterPage.qml" line="890"/>
         <source>Disappear within %n second(s) to go</source>
         <translation>
-            <numerusform></numerusform>
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+            <numerusform>Skryjte se do 1 sekundy</numerusform>
+            <numerusform>Skryjte se do %n sekund</numerusform>
+            <numerusform>Skryjte se do %n sekund</numerusform>
         </translation>
     </message>
     <message>
