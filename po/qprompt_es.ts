@@ -15,6 +15,14 @@
     </message>
 </context>
 <context>
+    <name>EMAILS OF TRANSLATORS</name>
+    <message>
+        <location filename="../src/main.cpp" line="176"/>
+        <source>Emails of translators</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>EditorToolbar</name>
     <message>
         <location filename="../src/kirigami_ui/EditorToolbar.qml" line="359"/>
@@ -506,6 +514,14 @@ Ayúdenos a traducir a QPrompt, visite:</translation>
         <source>Close Marker List</source>
         <comment>Close sidebar listing user defined markers</comment>
         <translation>Ocultar marcadores</translation>
+    </message>
+</context>
+<context>
+    <name>NAMES OF TRANSLATORS</name>
+    <message>
+        <location filename="../src/main.cpp" line="176"/>
+        <source>Names of translators</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
