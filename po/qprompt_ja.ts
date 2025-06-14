@@ -6,7 +6,7 @@
     <message>
         <location filename="../src/documenthandler.cpp" line="440"/>
         <source>…</source>
-        <translation></translation>
+        <translation>⋯⋯</translation>
     </message>
     <message>
         <location filename="../src/documenthandler.cpp" line="814"/>
