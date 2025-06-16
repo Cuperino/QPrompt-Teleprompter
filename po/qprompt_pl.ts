@@ -29,62 +29,62 @@
         <location filename="../src/kirigami_ui/EditorToolbar.qml" line="369"/>
         <source>&amp;Left</source>
         <comment>Editor actions. Text alignment.</comment>
-        <translation></translation>
+        <translation>&amp;Lewy</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/EditorToolbar.qml" line="359"/>
         <location filename="../src/kirigami_ui/EditorToolbar.qml" line="369"/>
         <source>&amp;Right</source>
         <comment>Editor actions. Text alignment.</comment>
-        <translation></translation>
+        <translation>&amp;Prawy</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/EditorToolbar.qml" line="364"/>
         <source>C&amp;enter</source>
         <comment>Editor actions. Text alignment.</comment>
-        <translation></translation>
+        <translation>środ&amp;ek</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/EditorToolbar.qml" line="560"/>
         <source>DejaVu (default, Roman, Cyrillic)</source>
         <comment>FontName (Translatable font details)</comment>
-        <translation></translation>
+        <translation type="unfinished">DejaVu (default, Roman, Cyrillic)</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/EditorToolbar.qml" line="564"/>
         <source>OpenDyslexic (Roman)</source>
         <comment>FontName (Translatable font details)</comment>
-        <translation></translation>
+        <translation type="unfinished">OpenDyslexic (Roman)</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/EditorToolbar.qml" line="568"/>
         <source>Source Han Sans (CH, JP, KO)</source>
         <comment>FontName (Translatable font details)</comment>
-        <translation></translation>
+        <translation type="unfinished">Source Han Sans (CH, JP, KO)</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/EditorToolbar.qml" line="572"/>
         <source>Scheherazade New (Arabic)</source>
         <comment>FontName (Translatable font details)</comment>
-        <translation></translation>
+        <translation type="unfinished">Scheherazade New (Arabic)</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/EditorToolbar.qml" line="576"/>
         <source>Palanquin (Devangari)</source>
         <comment>FontName (Translatable font details)</comment>
-        <translation></translation>
+        <translation type="unfinished">Palanquin (Devangari)</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/EditorToolbar.qml" line="580"/>
         <source>Kalpurush (Bengali)</source>
         <comment>FontName (Translatable font details)</comment>
-        <translation></translation>
+        <translation type="unfinished">Kalpurush (Bengali)</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/EditorToolbar.qml" line="586"/>
         <source>Choose System Font</source>
         <comment>Opens system font selection dialog</comment>
-        <translation></translation>
+        <translation>Wybierz źródło systemu</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/EditorToolbar.qml" line="592"/>
