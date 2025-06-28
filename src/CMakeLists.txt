@@ -24,7 +24,7 @@ if(NOT WIN32)
     ecm_create_qm_loader(qprompt_QM_LOADER ../po/qprompt.pot)
 endif()
 
-qt_standard_project_setup(I18N_TRANSLATED_LANGUAGES ar cs de es fi fr he it ja ko nl oc pl pt_BR pt_PT ru tr uk zh)
+qt_standard_project_setup(I18N_TRANSLATED_LANGUAGES ar cs de en es fi fr he it ja ko nl oc pl pt_BR pt_PT ru tr uk zh)
 
 if (ANDROID OR IOS OR WASM)
     qt_add_executable(${PROJECT_NAME}
@@ -329,6 +329,7 @@ qt_add_shaders(
 
 qt_add_translations(${PROJECT_NAME} SOURCE_TARGETS ${PROJECT_NAME}
     TS_FILE_DIR ${CMAKE_SOURCE_DIR}/po
+    PLURALS_TS_FILE ${CMAKE_SOURCE_DIR}/po/qprompt_en.ts
     LUPDATE_OPTIONS -source-language en
     LRELEASE_OPTIONS -compress  # -idbased
 )
