@@ -114,31 +114,31 @@
         <location filename="../src/kirigami_ui/EditorToolbar.qml" line="1198"/>
         <source>Line height &lt;pre&gt;%1%&lt;/pre&gt;</source>
         <comment>Line height 100%</comment>
-        <translation>Nautor de linha&#x202f;&lt;pre&gt;%1%&lt;/pre&gt;</translation>
+        <translation>Nautor de linha &lt;pre&gt;%1%&lt;/pre&gt;</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/EditorToolbar.qml" line="1317"/>
         <source>Paragraph spacing &lt;pre&gt;%1%&lt;/pre&gt;</source>
         <comment>Paragraph spacing ±00</comment>
-        <translation>Espaciament&#x202f;&lt;pre&gt;%1&lt;/pre&gt;</translation>
+        <translation>Espaciament &lt;pre&gt;%1&lt;/pre&gt;</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/EditorToolbar.qml" line="1437"/>
         <source>Word spacing &lt;pre&gt;%1&lt;/pre&gt;</source>
         <comment>Word spacing &lt;pre&gt;±00&lt;pre&gt;</comment>
-        <translation>Espaciament&#x202f;&lt;pre&gt;%1&lt;/pre&gt;</translation>
+        <translation>Espaciament &lt;pre&gt;%1&lt;/pre&gt;</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/EditorToolbar.qml" line="1554"/>
         <source>Letter spacing &lt;pre&gt;%1&lt;/pre&gt;</source>
         <comment>Letter spacing ±00</comment>
-        <translation>Interletratge&#x202f;&lt;pre&gt;%1&lt;/pre&gt;</translation>
+        <translation>Interletratge &lt;pre&gt;%1&lt;/pre&gt;</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/EditorToolbar.qml" line="1671"/>
         <source>Step speed &lt;pre&gt;%1&lt;/pre&gt;</source>
         <comment>Step speed 1.00</comment>
-        <translation>Velocitat etapa&#x202f;&lt;pre&gt;%1&lt;/pre&gt;</translation>
+        <translation>Velocitat etapa &lt;pre&gt;%1&lt;/pre&gt;</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/EditorToolbar.qml" line="1790"/>
@@ -150,7 +150,7 @@
         <location filename="../src/kirigami_ui/EditorToolbar.qml" line="1816"/>
         <source>Next reload starts at &lt;pre&gt;%1&lt;/pre&gt;</source>
         <comment>Next reload starts at 10:11:12</comment>
-        <translation>Interletratge&#x202f;&lt;pre&gt;%1&lt;/pre&gt;</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -168,7 +168,7 @@
     <message numerus="yes">
         <location filename="../src/prompter/Find.qml" line="160"/>
         <source>Replaced %1 instance(s)</source>
-        <translation>
+        <translation type="unfinished">
             <numerusform></numerusform>
             <numerusform></numerusform>
         </translation>
