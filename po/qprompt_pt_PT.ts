@@ -11,7 +11,7 @@
     <message>
         <location filename="../src/documenthandler.cpp" line="814"/>
         <source>Cannot save: </source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -108,7 +108,7 @@
         <location filename="../src/kirigami_ui/EditorToolbar.qml" line="1064"/>
         <source>Font size &lt;pre&gt;%1 (%2)&lt;/pre&gt;</source>
         <comment>Font size 100% (083)</comment>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/EditorToolbar.qml" line="1198"/>
@@ -418,7 +418,7 @@
         <location filename="../src/kirigami_ui/LanguageSettingsOverlay.qml" line="186"/>
         <source>Is your language not here or it&apos;s incomplete?
 Help us translate QPrompt, visit:</source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -2163,7 +2163,7 @@ Would you like to restart %1 now? All changes to document will be lost.</source>
         <comment>application needs to restart for this change to fully take effect.
 
 Would you like to restart application now? All changes to document will be lost.</comment>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/main.qml" line="1026"/>
