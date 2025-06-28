@@ -414,6 +414,8 @@ if (QHotkey_FOUND)
     )
 endif()
 
+execute_process(COMMAND ${CMAKE_PREFIX_PATH}/bin/lconvert -pluralonly ${CMAKE_SOURCE_DIR}/po/qprompt_en.ts)
+
 # Installation and bundling
 if (APPLE)
     install(TARGETS ${PROJECT_NAME} ${KDE_INSTALL_TARGETS_DEFAULT_ARGS} BUNDLE DESTINATION .)
