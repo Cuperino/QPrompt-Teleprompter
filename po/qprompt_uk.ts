@@ -361,112 +361,59 @@
         <translation>Використовуйте системну мову</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/LanguageSettingsOverlay.qml" line="82"/>
         <source>English</source>
         <comment>Language</comment>
-        <translation>Англійська</translation>
+        <translation type="vanished">Англійська</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/LanguageSettingsOverlay.qml" line="86"/>
-        <source>Arabic</source>
-        <comment>Language</comment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/kirigami_ui/LanguageSettingsOverlay.qml" line="90"/>
         <source>Chinese (Simplified)</source>
         <comment>Language</comment>
-        <translation>Китайська (спрощена)</translation>
+        <translation type="vanished">Китайська (спрощена)</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/LanguageSettingsOverlay.qml" line="94"/>
         <source>Czech</source>
         <comment>Language</comment>
-        <translation>Чеська</translation>
+        <translation type="vanished">Чеська</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/LanguageSettingsOverlay.qml" line="98"/>
-        <source>Dutch</source>
-        <comment>Language</comment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/kirigami_ui/LanguageSettingsOverlay.qml" line="102"/>
-        <source>Finnish</source>
-        <comment>Language</comment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/kirigami_ui/LanguageSettingsOverlay.qml" line="106"/>
         <source>French</source>
         <comment>Language</comment>
-        <translation>Французька</translation>
+        <translation type="vanished">Французька</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/LanguageSettingsOverlay.qml" line="110"/>
         <source>German</source>
         <comment>Language</comment>
-        <translation>Німецький</translation>
+        <translation type="vanished">Німецький</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/LanguageSettingsOverlay.qml" line="118"/>
-        <source>Italian</source>
-        <comment>Language</comment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/kirigami_ui/LanguageSettingsOverlay.qml" line="122"/>
         <source>Japanese</source>
         <comment>Language</comment>
-        <translation>Японський</translation>
+        <translation type="vanished">Японський</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/LanguageSettingsOverlay.qml" line="126"/>
-        <source>Korean</source>
-        <comment>Language</comment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/kirigami_ui/LanguageSettingsOverlay.qml" line="130"/>
-        <source>Occitan</source>
-        <comment>Language</comment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/kirigami_ui/LanguageSettingsOverlay.qml" line="138"/>
         <source>Portuguese (Brazil)</source>
         <comment>Language</comment>
-        <translation>Португальська (Бразилія)</translation>
+        <translation type="vanished">Португальська (Бразилія)</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/LanguageSettingsOverlay.qml" line="142"/>
         <source>Portuguese (Portugal)</source>
         <comment>Language</comment>
-        <translation>Португальська (Португалія)</translation>
+        <translation type="vanished">Португальська (Португалія)</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/LanguageSettingsOverlay.qml" line="146"/>
-        <source>Russian</source>
-        <comment>Language</comment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/kirigami_ui/LanguageSettingsOverlay.qml" line="150"/>
         <source>Spanish</source>
         <comment>Language</comment>
-        <translation>Іспанська</translation>
+        <translation type="vanished">Іспанська</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/LanguageSettingsOverlay.qml" line="154"/>
         <source>Turkish</source>
         <comment>Language</comment>
-        <translation>Турецька</translation>
+        <translation type="vanished">Турецька</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/LanguageSettingsOverlay.qml" line="158"/>
         <source>Ukranian</source>
         <comment>Language</comment>
-        <translation>Українська</translation>
+        <translation type="vanished">Українська</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/LanguageSettingsOverlay.qml" line="186"/>

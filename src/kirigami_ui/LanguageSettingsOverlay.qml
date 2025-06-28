@@ -79,84 +79,84 @@ Kirigami.OverlaySheet {
                         "value": ""
                     },
                     {
-                        "text": qsTr("English", "Language"),
-                        "value": "en_US"
-                    },
-                    {
-                        "text": qsTr("Arabic", "Language"),
+                        "text": "عربي",
                         "value": "ar_AE"
                     },
                     {
-                        "text": qsTr("Chinese (Simplified)", "Language"),
-                        "value": "zh_CN"
-                    },
-                    {
-                        "text": qsTr("Czech", "Language"),
+                        "text": "čeština",
                         "value": "cs_CZ"
                     },
                     {
-                        "text": qsTr("Dutch", "Language"),
-                        "value": "nl_NL"
-                    },
-                    {
-                        "text": qsTr("Finnish", "Language"),
-                        "value": "fi_FI"
-                    },
-                    {
-                        "text": qsTr("French", "Language"),
-                        "value": "fr_FR"
-                    },
-                    {
-                        "text": qsTr("German", "Language"),
+                        "text": "Deutsch",
                         "value": "de_DE"
                     },
-                    // {
-                    //     "text": qsTr("Hebrew", "Language"),
-                    //     "value": "he-IL"
-                    // },
                     {
-                        "text": qsTr("Italian", "Language"),
-                        "value": "it_IT"
+                        "text": "English",
+                        "value": "en_US"
                     },
                     {
-                        "text": qsTr("Japanese", "Language"),
-                        "value": "ja_JP"
-                    },
-                    {
-                        "text": qsTr("Korean", "Language"),
-                        "value": "ko_KO"
-                    },
-                    {
-                        "text": qsTr("Occitan", "Language"),
-                        "value": "oc_FR"
-                    },
-                    // {
-                    //     "text": qsTr("Polish", "Language"),
-                    //     "value": "pl_PL"
-                    // },
-                    {
-                        "text": qsTr("Portuguese (Brazil)", "Language"),
-                        "value": "pt_BR"
-                    },
-                    {
-                        "text": qsTr("Portuguese (Portugal)", "Language"),
-                        "value": "pt_PT"
-                    },
-                    {
-                        "text": qsTr("Russian", "Language"),
-                        "value": "ru_RU"
-                    },
-                    {
-                        "text": qsTr("Spanish", "Language"),
+                        "text": "Español",
                         "value": "es_ES"
                     },
                     {
-                        "text": qsTr("Turkish", "Language"),
+                        "text": "Suomalainen",
+                        "value": "fi_FI"
+                    },
+                    {
+                        "text": "Français",
+                        "value": "fr_FR"
+                    },
+                    // {
+                    //     "text": "עִברִית",
+                    //     "value": "he-IL"
+                    // },
+                    {
+                        "text": "Italiano",
+                        "value": "it_IT"
+                    },
+                    {
+                        "text": "Nederlands",
+                        "value": "nl_NL"
+                    },
+                    {
+                        "text": "日本語",
+                        "value": "ja_JP"
+                    },
+                    {
+                        "text": "한국인",
+                        "value": "ko_KO"
+                    },
+                    {
+                        "text": "Occitan",
+                        "value": "oc_FR"
+                    },
+                    // {
+                    //     "text": "Polski",
+                    //     "value": "pl_PL"
+                    // },
+                    {
+                        "text": "Português (Brasil)",
+                        "value": "pt_BR"
+                    },
+                    {
+                        "text": "Português (Portugal)",
+                        "value": "pt_PT"
+                    },
+                    {
+                        "text": "Русский",
+                        "value": "ru_RU"
+                    },
+                    {
+                        "text": "Türkçe",
                         "value": "tr_TR"
                     },
                     {
-                        "text": qsTr("Ukranian", "Language"),
+                        "text": "Український",
                         "value": "uk_UA"
+                    },
+                    {
+                        "text": "中国人",
+                        "value": "zh_CN"
                     },
                 ]
                 onActivated: (index) => {
