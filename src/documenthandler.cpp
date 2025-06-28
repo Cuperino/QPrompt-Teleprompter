@@ -437,7 +437,7 @@ bool DocumentHandler::showFontDialog()
         text.truncate(64);
         int end = text.lastIndexOf(" ");
         text.truncate(end);
-        text.append(tr("…"));
+        text = tr("%1…").arg(text);
     }
     m_fontDialog->show(fontFamily(), text);
     return false;

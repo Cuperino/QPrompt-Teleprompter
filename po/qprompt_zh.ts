@@ -4,9 +4,13 @@
 <context>
     <name>DocumentHandler</name>
     <message>
-        <location filename="../src/documenthandler.cpp" line="440"/>
         <source>…</source>
-        <translation>……</translation>
+        <translation type="vanished">……</translation>
+    </message>
+    <message>
+        <location filename="../src/documenthandler.cpp" line="440"/>
+        <source>%1…</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/documenthandler.cpp" line="814"/>

@@ -5,8 +5,8 @@
     <name>DocumentHandler</name>
     <message>
         <location filename="../src/documenthandler.cpp" line="440"/>
-        <source>…</source>
-        <translation></translation>
+        <source>%1…</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/documenthandler.cpp" line="814"/>
