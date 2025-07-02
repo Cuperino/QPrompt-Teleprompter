@@ -1,7 +1,7 @@
 [![Awesome](https://cdn.rawgit.com/sindresorhus/awesome/d7305f38d29fed78fa85652e3a63e154dd8e8829/media/badge.svg)](https://github.com/ebu/awesome-broadcasting)
 [![GitHub license](https://img.shields.io/badge/license-GPL3-blue.svg)](https://raw.githubusercontent.com/Cuperino/QPrompt/master/COPYING)
 [![GitHub release](https://img.shields.io/github/release/Cuperino/QPrompt.svg)](https://github.com/Cuperino/QPrompt/releases)
-[![Translation status](https://l10n.cuperino.com/widgets/qprompt/-/qprompt-app/svg-badge.svg)](https://l10n.cuperino.com/engage/qprompt/)
+[![Translation status](https://l10n.cuperino.com/widget/qprompt-v2/qprompt-app/svg-badge.svg)](https://l10n.cuperino.com/engage/qprompt-v2/)
 [![GitHub contributors](https://img.shields.io/github/contributors/Cuperino/QPrompt.svg)](https://github.com/Cuperino/QPrompt/graphs/contributors)
 ![GitHub commit activity](https://img.shields.io/github/commit-activity/m/Cuperino/QPrompt)
 [![SourceForge](https://img.shields.io/sourceforge/dm/qprompt.svg)](https://sourceforge.net/projects/qprompt/)
@@ -20,9 +20,9 @@ Want the latest features? Get the latest development builds over at [Patreon](ht
 By becoming a [Patreon supporter](https://patreon.com/qpromptapp?utm_medium=clipboard_copy&utm_source=copyLink&utm_campaign=creatorshare_fan&utm_content=join_link) you get to vote on polls that determine where development should focus.
 
 # Community Translations
-Help more users access QPrompt by contributing translations to your native language. Visit [l10n.cuperino.com](https://l10n.cuperino.com/projects/qprompt-app/qprompt) to find your language and contribute translations. File an issue at [feedback.qprompt.com](https://github.com/Cuperino/QPrompt/issues/new/choose) if you can't find your language on the page and would like to contribute translations.
+Help more users access QPrompt by contributing translations to your native language. Visit [l10n.cuperino.com](https://l10n.cuperino.com/projects/qprompt-app/qprompt) to select a section of the project, find your language, and contribute translations. File an issue at [feedback.qprompt.com](https://github.com/Cuperino/QPrompt/issues/new/choose) if you can't find your language on the page and would like to contribute translations.
 
-[![Translated languages](https://l10n.cuperino.com/widgets/qprompt/-/multi-auto.svg)](https://l10n.cuperino.com/engage/qprompt/)
+[![Translated languages](https://l10n.cuperino.com/widget/qprompt-v2/multi-auto.svg)](https://l10n.cuperino.com/engage/qprompt-v2/)
 
 # Code Contributions
 
