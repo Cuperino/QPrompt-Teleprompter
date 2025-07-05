@@ -26,6 +26,9 @@ endif()
 
 qt_standard_project_setup(I18N_TRANSLATED_LANGUAGES ar cs de en es fi fr he it ja ko nl oc pl pt_BR pt_PT ru tr uk zh)
 
+set(CMAKE_OSX_DEPLOYMENT_TARGET "10.15")
+set(CMAKE_OSX_ARCHITECTURES="x86_64;arm64")
+
 if (ANDROID OR IOS OR WASM)
     qt_add_executable(${PROJECT_NAME}
         main.cpp
