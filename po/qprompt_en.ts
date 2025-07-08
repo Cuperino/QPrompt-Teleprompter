@@ -5,10 +5,10 @@
     <name>Find</name>
     <message numerus="yes">
         <location filename="../../../../src/prompter/Find.qml" line="160"/>
-        <source>Replaced %1 instance(s)</source>
+        <source>Replaced %n instance(s)</source>
         <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+            <numerusform>Replaced %n instance</numerusform>
+            <numerusform>Replaced %n instances</numerusform>
         </translation>
     </message>
 </context>

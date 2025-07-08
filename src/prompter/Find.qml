@@ -157,7 +157,7 @@ Item {
             find.resetNextPressedFlag()
             const i = document.replaceAll(searchField.text, replaceField.text, find.regEx);
             resultsFound = i > 0;
-            showPassiveNotification(qsTr("Replaced %1 instance(s)", "", i));
+            showPassiveNotification(qsTr("Replaced %n instance(s)", "", i));
         }
         anchors.fill: parent
         Keys.onPressed: (event) => {

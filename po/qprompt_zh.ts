@@ -4,10 +4,6 @@
 <context>
     <name>DocumentHandler</name>
     <message>
-        <source>…</source>
-        <translation type="vanished">……</translation>
-    </message>
-    <message>
         <location filename="../src/documenthandler.cpp" line="440"/>
         <source>%1…</source>
         <translation>%1……</translation>
@@ -171,8 +167,8 @@
     </message>
     <message numerus="yes">
         <location filename="../src/prompter/Find.qml" line="160"/>
-        <source>Replaced %1 instance(s)</source>
-        <translation>
+        <source>Replaced %n instance(s)</source>
+        <translation type="unfinished">
             <numerusform></numerusform>
         </translation>
     </message>
@@ -363,61 +359,6 @@
         <translation>使用系统语言</translation>
     </message>
     <message>
-        <source>English</source>
-        <comment>Language</comment>
-        <translation type="vanished">英语</translation>
-    </message>
-    <message>
-        <source>Chinese (Simplified)</source>
-        <comment>Language</comment>
-        <translation type="vanished">简体中文</translation>
-    </message>
-    <message>
-        <source>Czech</source>
-        <comment>Language</comment>
-        <translation type="vanished">捷克语</translation>
-    </message>
-    <message>
-        <source>French</source>
-        <comment>Language</comment>
-        <translation type="vanished">法语</translation>
-    </message>
-    <message>
-        <source>German</source>
-        <comment>Language</comment>
-        <translation type="vanished">德语</translation>
-    </message>
-    <message>
-        <source>Japanese</source>
-        <comment>Language</comment>
-        <translation type="vanished">日语</translation>
-    </message>
-    <message>
-        <source>Portuguese (Brazil)</source>
-        <comment>Language</comment>
-        <translation type="vanished">葡萄牙语 （巴西）</translation>
-    </message>
-    <message>
-        <source>Portuguese (Portugal)</source>
-        <comment>Language</comment>
-        <translation type="vanished">葡萄牙语 （葡萄牙）</translation>
-    </message>
-    <message>
-        <source>Spanish</source>
-        <comment>Language</comment>
-        <translation type="vanished">西班牙语</translation>
-    </message>
-    <message>
-        <source>Turkish</source>
-        <comment>Language</comment>
-        <translation type="vanished">土耳其语</translation>
-    </message>
-    <message>
-        <source>Ukranian</source>
-        <comment>Language</comment>
-        <translation type="vanished">乌克兰语</translation>
-    </message>
-    <message>
         <location filename="../src/kirigami_ui/LanguageSettingsOverlay.qml" line="186"/>
         <source>Is your language not here or it&apos;s incomplete?
 Help us translate QPrompt, visit:</source>
@@ -479,10 +420,6 @@ Help us translate QPrompt, visit:</source>
         <location filename="../src/kirigami_ui/PathsPage.qml" line="42"/>
         <source>External Tools</source>
         <translation>外部工具</translation>
-    </message>
-    <message>
-        <source>LibreOffice</source>
-        <translation type="vanished">LibreOffice</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/PathsPage.qml" line="63"/>
@@ -678,11 +615,6 @@ Help us translate QPrompt, visit:</source>
         <source>Vertical mirror</source>
         <comment>Mirrors prompter vertically</comment>
         <translation>垂直镜像</translation>
-    </message>
-    <message>
-        <location filename="../src/prompter/ProjectionsManager.qml" line="399"/>
-        <source>For screen projections to show, you must set at least one screen to a projection setting other than &quot;Off&quot;</source>
-        <translation>要显示投影预览，至少需要将一个屏幕设置为“关闭”以外的投影设置</translation>
     </message>
 </context>
 <context>

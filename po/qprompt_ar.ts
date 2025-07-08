@@ -167,8 +167,8 @@
     </message>
     <message numerus="yes">
         <location filename="../src/prompter/Find.qml" line="160"/>
-        <source>Replaced %1 instance(s)</source>
-        <translation>
+        <source>Replaced %n instance(s)</source>
+        <translation type="unfinished">
             <numerusform></numerusform>
             <numerusform></numerusform>
             <numerusform></numerusform>
@@ -619,11 +619,6 @@ Help us translate QPrompt, visit:</source>
         <location filename="../src/prompter/ProjectionsManager.qml" line="362"/>
         <source>Vertical mirror</source>
         <comment>Mirrors prompter vertically</comment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/prompter/ProjectionsManager.qml" line="399"/>
-        <source>For screen projections to show, you must set at least one screen to a projection setting other than &quot;Off&quot;</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

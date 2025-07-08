@@ -167,8 +167,8 @@
     </message>
     <message numerus="yes">
         <location filename="../src/prompter/Find.qml" line="160"/>
-        <source>Replaced %1 instance(s)</source>
-        <translation>
+        <source>Replaced %n instance(s)</source>
+        <translation type="unfinished">
             <numerusform></numerusform>
             <numerusform></numerusform>
             <numerusform></numerusform>
@@ -361,61 +361,6 @@
         <translation>Использовать язык системы</translation>
     </message>
     <message>
-        <source>English</source>
-        <comment>Language</comment>
-        <translation type="vanished">Английский</translation>
-    </message>
-    <message>
-        <source>Chinese (Simplified)</source>
-        <comment>Language</comment>
-        <translation type="vanished">Китайский (упрощённый)</translation>
-    </message>
-    <message>
-        <source>Czech</source>
-        <comment>Language</comment>
-        <translation type="vanished">Чешский</translation>
-    </message>
-    <message>
-        <source>French</source>
-        <comment>Language</comment>
-        <translation type="vanished">Французский</translation>
-    </message>
-    <message>
-        <source>German</source>
-        <comment>Language</comment>
-        <translation type="vanished">Немецкий</translation>
-    </message>
-    <message>
-        <source>Japanese</source>
-        <comment>Language</comment>
-        <translation type="vanished">Японский</translation>
-    </message>
-    <message>
-        <source>Portuguese (Brazil)</source>
-        <comment>Language</comment>
-        <translation type="vanished">Португальский (Бразилия)</translation>
-    </message>
-    <message>
-        <source>Portuguese (Portugal)</source>
-        <comment>Language</comment>
-        <translation type="vanished">Португальский (Португалия)</translation>
-    </message>
-    <message>
-        <source>Spanish</source>
-        <comment>Language</comment>
-        <translation type="vanished">Испанский</translation>
-    </message>
-    <message>
-        <source>Turkish</source>
-        <comment>Language</comment>
-        <translation type="vanished">Турецкий</translation>
-    </message>
-    <message>
-        <source>Ukranian</source>
-        <comment>Language</comment>
-        <translation type="vanished">Украинский</translation>
-    </message>
-    <message>
         <location filename="../src/kirigami_ui/LanguageSettingsOverlay.qml" line="186"/>
         <source>Is your language not here or it&apos;s incomplete?
 Help us translate QPrompt, visit:</source>
@@ -477,10 +422,6 @@ Help us translate QPrompt, visit:</source>
         <location filename="../src/kirigami_ui/PathsPage.qml" line="42"/>
         <source>External Tools</source>
         <translation>Внешние инструменты</translation>
-    </message>
-    <message>
-        <source>LibreOffice</source>
-        <translation type="vanished">LibreOffice</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/PathsPage.qml" line="63"/>
@@ -678,13 +619,6 @@ Microsoft Word,</translation>
         <source>Vertical mirror</source>
         <comment>Mirrors prompter vertically</comment>
         <translation>Вертикальное отражение</translation>
-    </message>
-    <message>
-        <location filename="../src/prompter/ProjectionsManager.qml" line="399"/>
-        <source>For screen projections to show, you must set at least one screen to a projection setting other than &quot;Off&quot;</source>
-        <translation>
-Для отображения проекций на экране необходимо установить хотя бы один экран
-на настройку проекции, отличную от «Выкл.»</translation>
     </message>
 </context>
 <context>

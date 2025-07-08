@@ -167,10 +167,10 @@
     </message>
     <message numerus="yes">
         <location filename="../src/prompter/Find.qml" line="160"/>
-        <source>Replaced %1 instance(s)</source>
+        <source>Replaced %n instance(s)</source>
         <translation>
-            <numerusform>%1 instancia reemplazada</numerusform>
-            <numerusform>%1 instancias reemplazadas</numerusform>
+            <numerusform>%n instancia reemplazada</numerusform>
+            <numerusform>%n instancias reemplazadas</numerusform>
         </translation>
     </message>
 </context>
@@ -358,96 +358,6 @@
         <source>Use system language</source>
         <comment>Language</comment>
         <translation>Utilizar lenguaje del sistema</translation>
-    </message>
-    <message>
-        <source>English</source>
-        <comment>Language</comment>
-        <translation type="vanished">Inglés</translation>
-    </message>
-    <message>
-        <source>Arabic</source>
-        <comment>Language</comment>
-        <translation type="vanished">Árabe</translation>
-    </message>
-    <message>
-        <source>Chinese (Simplified)</source>
-        <comment>Language</comment>
-        <translation type="vanished">Chino (Simplificado)</translation>
-    </message>
-    <message>
-        <source>Czech</source>
-        <comment>Language</comment>
-        <translation type="vanished">Checo</translation>
-    </message>
-    <message>
-        <source>Dutch</source>
-        <comment>Language</comment>
-        <translation type="vanished">Holandés</translation>
-    </message>
-    <message>
-        <source>Finnish</source>
-        <comment>Language</comment>
-        <translation type="vanished">Finlandés</translation>
-    </message>
-    <message>
-        <source>French</source>
-        <comment>Language</comment>
-        <translation type="vanished">Francés</translation>
-    </message>
-    <message>
-        <source>German</source>
-        <comment>Language</comment>
-        <translation type="vanished">Alemán</translation>
-    </message>
-    <message>
-        <source>Italian</source>
-        <comment>Language</comment>
-        <translation type="vanished">Italiano</translation>
-    </message>
-    <message>
-        <source>Japanese</source>
-        <comment>Language</comment>
-        <translation type="vanished">Japonés</translation>
-    </message>
-    <message>
-        <source>Korean</source>
-        <comment>Language</comment>
-        <translation type="vanished">Koreano</translation>
-    </message>
-    <message>
-        <source>Occitan</source>
-        <comment>Language</comment>
-        <translation type="vanished">Occitano</translation>
-    </message>
-    <message>
-        <source>Portuguese (Brazil)</source>
-        <comment>Language</comment>
-        <translation type="vanished">Portugués (Brasil)</translation>
-    </message>
-    <message>
-        <source>Portuguese (Portugal)</source>
-        <comment>Language</comment>
-        <translation type="vanished">Portugués (Portugal)</translation>
-    </message>
-    <message>
-        <source>Russian</source>
-        <comment>Language</comment>
-        <translation type="vanished">Ruso</translation>
-    </message>
-    <message>
-        <source>Spanish</source>
-        <comment>Language</comment>
-        <translation type="vanished">Español</translation>
-    </message>
-    <message>
-        <source>Turkish</source>
-        <comment>Language</comment>
-        <translation type="vanished">Turco</translation>
-    </message>
-    <message>
-        <source>Ukranian</source>
-        <comment>Language</comment>
-        <translation type="vanished">Ucraniano</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/LanguageSettingsOverlay.qml" line="186"/>
@@ -711,11 +621,6 @@ Ayúdenos a traducir a QPrompt, visite:</translation>
         <source>Vertical mirror</source>
         <comment>Mirrors prompter vertically</comment>
         <translation>Invertido vertical</translation>
-    </message>
-    <message>
-        <location filename="../src/prompter/ProjectionsManager.qml" line="399"/>
-        <source>For screen projections to show, you must set at least one screen to a projection setting other than &quot;Off&quot;</source>
-        <translation>Para que la proyección se muestre, necesita que al menos un monitor esté configurado para proyectar</translation>
     </message>
 </context>
 <context>
@@ -1754,7 +1659,7 @@ Ayúdenos a traducir a QPrompt, visite:</translation>
         <location filename="../src/kirigami_ui/+windows/main.qml" line="290"/>
         <source>Use scroll as velocity &amp;dial</source>
         <comment>Main menu and global menu actions. Have touchpad and mouse wheel scrolling adjust velocity instead of scrolling like most other apps.</comment>
-        <translation>Tratar desplazamientos como ajustes de velocidad</translation>
+        <translation>Tratar &amp;desplazamientos como ajustes de velocidad</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/main.qml" line="300"/>
@@ -2129,7 +2034,7 @@ Ayúdenos a traducir a QPrompt, visite:</translation>
         <location filename="../src/kirigami_ui/main.qml" line="795"/>
         <source>C&amp;haracter</source>
         <comment>Global menu actions. Opens dialog to format currently selected text.</comment>
-        <translation>Letra</translation>
+        <translation>Le&amp;tra</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/main.qml" line="799"/>
@@ -2209,11 +2114,6 @@ Le gustaría reiniciar %1 ahora? Todos los cambios sin guardar se perderán.</tr
         <location filename="../src/kirigami_ui/+windows/main.qml" line="742"/>
         <source>Save changes to document before closing?</source>
         <translation>¿Desea guardar los cambios al documento antes de cerrar?</translation>
-    </message>
-    <message>
-        <source>Main menu actions. Enable local file auto reload</source>
-        <comment>Local file auto reload</comment>
-        <translation type="vanished">Auto-recarga de archivos locales modificados</translation>
     </message>
 </context>
 </TS>

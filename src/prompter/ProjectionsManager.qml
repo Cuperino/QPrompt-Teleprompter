@@ -32,7 +32,7 @@ Item {
     id: projectionManager
     readonly property alias model: projectionModel
     readonly property alias projections: projections
-    readonly property alias alertDialog: alertDialog
+    // readonly property alias alertDialog: alertDialog
     readonly property real internalBackgroundOpacity: backgroundOpacity // /2+0.5
     property int defaultDisplayMode: 0
     property real backgroundOpacity: 1
@@ -392,15 +392,15 @@ Item {
         asynchronous: true
         delegate: projectionDelegte
     }
-    Labs.MessageDialog {
-        id: alertDialog
-        modality: Qt.WindowModal
-        function requestDisplays() {
-            alertDialog.text = qsTr("For screen projections to show, you must set at least one screen to a projection setting other than \"Off\"")
-            alertDialog.detailedText = ""
-            alertDialog.icon = StandardIcon.Information
-            alertDialog.visible = true
-        }
+    // Labs.MessageDialog {
+    //     id: alertDialog
+    //     modality: Qt.WindowModal
+    //     function requestDisplays() {
+    //         alertDialog.text = qsTr("For screen projections to show, you must set at least one screen to a projection setting other than \"Off\"")
+    //         alertDialog.detailedText = ""
+    //         alertDialog.icon = StandardIcon.Information
+    //         alertDialog.visible = true
+    //     }
 //         function warnSameDisplay(screenName) {
 //             alertDialog.text = qsTr("You've enabled a screen projection on display \"%1\". Please note this projection will not show unless you place the editor on a different screen.", screenName)
 //             //alertDialog.text = qsTr("QPrompt will not project to the screen where the editor is at.")
@@ -408,5 +408,5 @@ Item {
 //             alertDialog.icon = StandardIcon.Warning
 //             alertDialog.visible = true
 //         }
-    }
+    // }
 }

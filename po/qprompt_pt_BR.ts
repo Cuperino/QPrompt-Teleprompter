@@ -167,8 +167,8 @@
     </message>
     <message numerus="yes">
         <location filename="../src/prompter/Find.qml" line="160"/>
-        <source>Replaced %1 instance(s)</source>
-        <translation>
+        <source>Replaced %n instance(s)</source>
+        <translation type="unfinished">
             <numerusform></numerusform>
             <numerusform></numerusform>
         </translation>
@@ -423,10 +423,6 @@ Help us translate QPrompt, visit:</source>
         <translation>Ferramentas externas</translation>
     </message>
     <message>
-        <source>LibreOffice</source>
-        <translation type="vanished">LibreOffice</translation>
-    </message>
-    <message>
         <location filename="../src/kirigami_ui/PathsPage.qml" line="63"/>
         <source>QPrompt can make transparent use of LibreOffice to convert Microsoft Word, Open Document Format, and other office documents into a format QPrompt understands. Install LibreOffice and ensure this field points to its location, so QPrompt can open office documents.</source>
         <translation type="unfinished"></translation>
@@ -620,13 +616,6 @@ Help us translate QPrompt, visit:</source>
         <source>Vertical mirror</source>
         <comment>Mirrors prompter vertically</comment>
         <translation>Espelhar verticalmente</translation>
-    </message>
-    <message>
-        <location filename="../src/prompter/ProjectionsManager.qml" line="399"/>
-        <source>For screen projections to show, you must set at least one screen to a projection setting other than &quot;Off&quot;</source>
-        <translation>
-Para que as projeções de tela sejam exibidas, você deve definir pelo menos
-uma tela para uma configuração de projeção que não seja \&quot;Desligado\&quot;</translation>
     </message>
 </context>
 <context>

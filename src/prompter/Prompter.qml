@@ -1315,7 +1315,7 @@ Flickable {
             isNewFile = false
             prompter.position = 0
             if (root.passiveNotifications)
-                showPassiveNotification(qsTr("Loaded: %1", editor.lastDocument))
+                showPassiveNotification(qsTr("Loaded: %1").arg(editor.lastDocument))
         }
         function open() {
             root.onDiscard = Prompter.CloseActions.Open
@@ -1343,7 +1343,7 @@ Flickable {
                     document.modified = false
                     if (Qt.platform.os==="android" || Qt.platform.os==="ios" || visibility===ApplicationWindow.FullScreen) {
                         if (document.isNewFile)
-                            showPassiveNotification(qsTr("Saved %1", "Saved FILE_NAME").arg(document.file))
+                            showPassiveNotification(qsTr("Saved %1", "Saved FILE_NAME").arg(document.fileUrl))
                         else
                             showPassiveNotification(qsTr("Saved"))
                     }
@@ -1479,7 +1479,7 @@ Flickable {
             document.saveAs(saveDialog.file)
             document.isNewFile = false
             editor.lastDocument = document.fileUrl;
-            showPassiveNotification(qsTr("Saved %1", "Saved FILE_NAME").arg(document.file))
+            showPassiveNotification(qsTr("Saved %1", "Saved FILE_NAME").arg(document.fileUrl))
             // if (document.quitOnSave)
             //     Qt.quit()
             // else
