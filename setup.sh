@@ -49,9 +49,9 @@ elif [[ "$OSTYPE" == "win32" || "$OSTYPE" == "msys" ]]; then
     PLATFORM="windows"
     CMAKE_INSTALL_PREFIX="install"
     if [ "$ARCHITECTURE" == "aarch64" ]; then
-        COMPILER="msvc2022_arm64"
+        COMPILER="msvc2019_arm64"
     else
-        COMPILER="msvc2022_64"
+        COMPILER="msvc2019_64"
     fi
     CMAKE=C:\\Qt\\Tools\\CMake_64\\bin\\cmake.exe
     CPACK=C:\\Qt\\Tools\\CMake_64\\bin\\cpack.exe
