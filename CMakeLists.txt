@@ -36,6 +36,7 @@ project(qprompt
     LANGUAGES CXX)
 
 option(WASM OFF)
+option(SNAPCRAFT OFF)
 
 # Find includes in corresponding build directories
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
@@ -171,13 +172,13 @@ else()
     )
 endif()
 
-if(NOT ANDROID AND NOT IOS AND NOT WASM)
+if(NOT ANDROID AND NOT IOS AND NOT WASM AND NOT SNAPCRAFT)
     if(NOT BSD)
         set(BUILD_SHARED_LIBS ON)
         FetchContent_Declare(
           QHotkey
           GIT_REPOSITORY "${CMAKE_SOURCE_DIR}/3rdparty/QHotkey"
-          GIT_TAG        "1231c4cc9649ec0132d939cb7e139a82b8edeca0"
+          GIT_TAG        "6c0e98492c59206139f8490706aadeb8ed033057"
           SOURCE_DIR submodules/QHotkey
         )
         FetchContent_MakeAvailable(QHotkey)
