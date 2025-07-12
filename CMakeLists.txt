@@ -172,8 +172,8 @@ else()
     )
 endif()
 
-if(NOT ANDROID AND NOT IOS AND NOT WASM AND NOT SNAPCRAFT)
-    if(NOT BSD)
+if(NOT ANDROID AND NOT IOS AND NOT WASM)
+    if(NOT BSD AND NOT SNAPCRAFT)
         set(BUILD_SHARED_LIBS ON)
         FetchContent_Declare(
           QHotkey
