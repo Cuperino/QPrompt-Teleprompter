@@ -36,7 +36,7 @@ project(qprompt
     LANGUAGES CXX)
 
 option(WASM OFF)
-option(SNAPCRAFT OFF)
+option(SOURCE_DEPENDENCIES_EXCLUSIVELY_FROM_SYSTEM OFF)  # Used only on Linux builds for now
 
 # Find includes in corresponding build directories
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
@@ -173,7 +173,7 @@ else()
 endif()
 
 if(NOT ANDROID AND NOT IOS AND NOT WASM)
-    if(NOT BSD AND NOT SNAPCRAFT)
+    if(NOT BSD AND NOT SOURCE_DEPENDENCIES_EXCLUSIVELY_FROM_SYSTEM)
         set(BUILD_SHARED_LIBS ON)
         FetchContent_Declare(
           QHotkey
