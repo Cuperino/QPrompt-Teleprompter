@@ -56,7 +56,7 @@ if (NOT ANDROID AND NOT WASM)
         ${ICONS_FOLDER}/128-apps-com.cuperino.qprompt.png
         ${ICONS_FOLDER}/256-apps-com.cuperino.qprompt.png
         ${ICONS_FOLDER}/512-apps-com.cuperino.qprompt.png
-        ${ICONS_FOLDER}/1024-apps-com.cuperino.qprompt.png
+        # ${ICONS_FOLDER}/1024-apps-com.cuperino.qprompt.png  # Flatpak has a maximum size of 512
     )
     # set(VECTOR_ICON
     #     ${ICONS_FOLDER}/sc-apps-com.cuperino.qprompt.svg
