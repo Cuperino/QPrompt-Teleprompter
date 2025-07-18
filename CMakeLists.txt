@@ -141,6 +141,17 @@ find_package(Qt${QT_VERSION_MAJOR} ${QT_MIN_VERSION} REQUIRED NO_MODULE COMPONEN
     LinguistTools
 )
 
+get_filename_component(TARGET_PLATFORM ${CMAKE_PREFIX_PATH} NAME)
+if (WIN32)
+    set(FELGO_HOT_RELOAD_PATH "~/FelgoHotReload/client/${Qt6_VERSION}/${TARGET_PLATFORM}/")
+elseif (APPLE)
+    set(FELGO_HOT_RELOAD_PATH "~/FelgoHotReload/client/${Qt6_VERSION}/${TARGET_PLATFORM}/")
+elseif (UNIX)
+    set(FELGO_HOT_RELOAD_PATH "~/FelgoHotReload/client/${Qt6_VERSION}/${TARGET_PLATFORM}/")
+endif()
+set(FelgoHotReload_DIR "${FELGO_HOT_RELOAD_PATH}/lib/cmake/FelgoHotReload" CACHE PATH "FelgoHotReload directory" FORCE)
+find_package(FelgoHotReload CONFIG REQUIRED)
+
 if(ANDROID OR IOS OR WASM)
     set(BUILD_SHARED_LIBS OFF)
 endif()
@@ -323,7 +334,7 @@ if(CMAKE_SOURCE_DIR STREQUAL CMAKE_CURRENT_SOURCE_DIR)
         # CPACK: DEB specific settings
         set(CPACK_DEBIAN_PACKAGE_SECTION "Multimedia")
         set(CPACK_DEBIAN_COMPRESSION_TYPE ${COMPRESION_TYPE})
-        set(CPACK_DEBIAN_PACKAGE_DEPENDS "libqt6svg6 (>= 6.6.2), libqt6qmlworkerscript6 (>=6.6.2), qml6-module-qt-labs-platform (>=6.6.2), qml6-module-qtqml (>=6.6.2), qml6-module-qtqml-models (>=6.6.2), qml6-module-qtqml-statemachine (>=6.6.2), qml6-module-qtquick-controls (>=6.6.2), qml6-module-qtquick-dialogs (>=6.6.2), qml6-module-qtquick-shapes (>=6.6.2), libkf6coreaddons6 (>= 6.5.0), libkirigami6 (>= 6.5.0), libkf6i18n6 (>= 6.5.0), libkf6crash6 (>= 6.5.0)")
+        set(CPACK_DEBIAN_PACKAGE_DEPENDS "libqt6svg6 (>= 6.6.2), qml6-module-qt-labs-platform (>=6.6.2), qml6-module-qtqml (>=6.6.2), qml6-module-qtqml-models (>=6.6.2), qml6-module-qtqml-statemachine (>=6.6.2), qml6-module-qtquick-controls (>=6.6.2), qml6-module-qtquick-dialogs (>=6.6.2), qml6-module-qtquick-shapes (>=6.6.2), libkf6coreaddons6 (>= 6.5.0), libkirigami6 (>= 6.5.0), libkf6i18n6 (>= 6.5.0), libkf6crash6 (>= 6.5.0)")
 
         # CPACK: RPM specific settings
         set(CPACK_RPM_PACKAGE_GROUP "Multimedia/Video")

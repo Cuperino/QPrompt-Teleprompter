@@ -1,0 +1,60 @@
+{
+    "main_qml_file": "src/kirigami_ui/Main.qml",
+    "qml_module_paths": [
+        {
+            "path": "src",
+            "target_path": "com/cuperino/qprompt"
+        },
+        {
+            "path": "src/prompter",
+            "target_path": "com/cuperino/qprompt/prompter"
+        },
+        {
+            "path": "src/prompter/pointers",
+            "target_path": "com/cuperino/qprompt/prompter/pointers"
+        },
+        {
+            "path": "src/kirigami_ui",
+            "target_path": "com/cuperino/qprompt/kirigami_ui"
+        },
+        {
+            "path": "src/fonts/icons",
+            "target_path": "com/cuperino/qprompt/fonts"
+        },
+        {
+            "path": "src/fonts/editor",
+            "target_path": "com/cuperino/qprompt/fonts"
+        },
+        {
+            "path": "src/fonts/editor/dejavu-sans",
+            "target_path": "com/cuperino/qprompt/fonts"
+        },
+        {
+            "path": "src/fonts/editor/Libertinus/static/OTF/",
+            "target_path": "com/cuperino/qprompt/fonts"
+        },
+        {
+            "path": "src/fonts/editor/opendyslexic/compiled/",
+            "target_path": "com/cuperino/qprompt/fonts"
+        },
+        {
+            "path": "src/fonts/editor/ScheherazadeNew/",
+            "target_path": "com/cuperino/qprompt/fonts"
+        },
+        {
+            "path": "src/fonts/editor/Kalpurush",
+            "target_path": "com/cuperino/qprompt/fonts"
+        },
+        {
+            "path": "src/fonts/editor/SourceHanSans",
+            "target_path": "com/cuperino/qprompt/fonts"
+        }
+    ],
+    "qml_plugin_paths": [
+        {
+            "path": "build/build/com/cuperino/qprompt",
+            "target_path": "com/cuperino/qprompt"
+        }
+    ],
+    "use_local_plugins": true
+}
