@@ -169,8 +169,8 @@ if [[ "$PLATFORM" == "windows" ]]; then
     # Initialize MSVC environment variables
     "C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Auxiliary\Build\vcvarsall.bat" amd64
     # Download and extract gettext binary
-    FILENAME="gettext0.24-iconv1.17-shared-64.zip"
-    curl -Lo build/$FILENAME "https://github.com/mlocati/gettext-iconv-windows/releases/download/v0.24-v1.17/$FILENAME"
+    FILENAME="gettext0.25-iconv1.17-shared-64.zip"
+    curl -Lo build/$FILENAME "https://github.com/mlocati/gettext-iconv-windows/releases/download/v0.25-v1.17/$FILENAME"
     unzip -o build/$FILENAME -d "$CMAKE_PREFIX_PATH"
 fi
 
