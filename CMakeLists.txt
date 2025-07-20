@@ -294,6 +294,8 @@ if (WIN32 OR UNIX AND NOT APPLE) # AND NOT ANDROID
     install(FILES ${DOCS} DESTINATION ${DOC_INSTALL_DIR})
 endif()
 
+include(InstallRequiredSystemLibraries)
+
 set(CMAKE_OSX_DEPLOYMENT_TARGET "10.15")
 set(CMAKE_OSX_ARCHITECTURES="x86_64;arm64")
 
