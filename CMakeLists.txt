@@ -294,6 +294,8 @@ if (WIN32 OR UNIX AND NOT APPLE) # AND NOT ANDROID
     install(FILES ${DOCS} DESTINATION ${DOC_INSTALL_DIR})
 endif()
 
+set(CMAKE_INSTALL_UCRT_LIBRARIES On)
+set(InstallRequiredSystemLibraries On)
 include(InstallRequiredSystemLibraries)
 
 set(CMAKE_OSX_DEPLOYMENT_TARGET "10.15")
@@ -346,7 +348,6 @@ if(CMAKE_SOURCE_DIR STREQUAL CMAKE_CURRENT_SOURCE_DIR)
             ${CMAKE_SOURCE_DIR}/${README_FILE} "Readme"
         )
         set(CPACK_NSIS_MUI_FINISHPAGE_RUN "${CPACK_NSIS_INSTALLED_ICON_NAME}")
-        set(InstallRequiredSystemLibraries On)
 
     elseif(APPLE AND NOT IOS)
         set(CPACK_GENERATOR "DragNDrop")
