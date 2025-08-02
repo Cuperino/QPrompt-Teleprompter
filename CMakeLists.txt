@@ -294,7 +294,7 @@ if (WIN32 OR UNIX AND NOT APPLE) # AND NOT ANDROID
     install(FILES ${DOCS} DESTINATION ${DOC_INSTALL_DIR})
 endif()
 
-set(CMAKE_INSTALL_UCRT_LIBRARIES On)
+set(CMAKE_INSTALL_MFC_LIBRARIES On)
 set(InstallRequiredSystemLibraries On)
 include(InstallRequiredSystemLibraries)
 
