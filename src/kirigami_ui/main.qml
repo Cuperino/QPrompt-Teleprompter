@@ -615,6 +615,17 @@ Kirigami.ApplicationWindow {
                 onTriggered: root.pageStack.currentItem.document.open()
             }
             Labs.MenuItem {
+                text: qsTr("&Open", "Main menu and global menu actions")
+                onTriggered: root.pageStack.currentItem.document.open()
+            }
+            Labs.MenuItem {
+                text: qsTr("&Open remote file", "Main menu and global menu actions")
+                onTriggered: {
+                    root.onDiscard = Prompter.CloseActions.Network
+                    root.pageStack.currentItem.document.openFromNetwork()
+                }
+            }
+            Labs.MenuItem {
                 text: qsTr("&Save", "Main menu and global menu actions")
                 onTriggered: root.pageStack.currentItem.document.saveDialog()
             }
