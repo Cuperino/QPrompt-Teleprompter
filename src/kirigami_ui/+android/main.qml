@@ -429,6 +429,7 @@ Kirigami.ApplicationWindow {
                 shortcut: StandardKey.Cancel
             }
         ]
+        footer: OnlineResourceButtons{}
         topContent: RowLayout {
             Button {
                 text: qsTr("Load &Welcome", "Main menu and global actions. Load document that welcomes users.")

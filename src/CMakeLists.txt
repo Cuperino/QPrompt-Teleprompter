@@ -103,6 +103,7 @@ set(qprompt_frontend_sources
     kirigami_ui/WheelSettingsOverlay.qml
     kirigami_ui/LayoutDirectionSettingsOverlay.qml
     kirigami_ui/LanguageSettingsOverlay.qml
+    kirigami_ui/OnlineResourceButtons.qml
 )
 
 set(prompter_sources

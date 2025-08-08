@@ -504,45 +504,7 @@ Kirigami.ApplicationWindow {
                 shortcut: StandardKey.FullScreen
             }
         ]
-        footer: Row {
-            Button {
-                readonly property url uri: "https://qprompt.app"
-                text: "🌐"
-                flat: true
-                onClicked: Qt.openUrlExternally(uri)
-            }
-            Button {
-                readonly property url uri: "https://docs.qprompt.app"
-                text: "📖"
-                flat: true
-                onClicked: Qt.openUrlExternally(uri)
-            }
-            Button {
-                readonly property url uri: "https://forum.qprompt.app"
-                text: "?"
-                flat: true
-                onClicked: Qt.openUrlExternally(uri)
-            }
-            Button {
-                readonly property url uri: "https://feedback.qprompt.app"
-                text: "🐛"
-                flat: true
-                onClicked: Qt.openUrlExternally(uri)
-                ToolTip.text: uri
-            }
-            Button {
-                readonly property url uri: "https://l10n.qprompt.app"
-                text: "🗺"
-                flat: true
-                onClicked: Qt.openUrlExternally(uri)
-            }
-            Button {
-                readonly property url uri: "https://donate.qprompt.app"
-                text: "$"
-                flat: true
-                onClicked: Qt.openUrlExternally(uri)
-            }
-        }
+        footer: OnlineResourceButtons{}
         topContent: Row {
             Button {
                 text: qsTr("Load &Welcome", "Main menu and global actions. Load document that welcomes users.")

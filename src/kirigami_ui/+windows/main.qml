@@ -502,6 +502,7 @@ Kirigami.ApplicationWindow {
                 shortcut: StandardKey.FullScreen
             }
         ]
+        footer: OnlineResourceButtons{}
         topContent: RowLayout {
             Button {
                 text: qsTr("Load &Welcome", "Main menu and global actions. Load document that welcomes users.")
