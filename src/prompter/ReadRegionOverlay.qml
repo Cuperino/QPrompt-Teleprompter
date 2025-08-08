@@ -69,8 +69,8 @@ Item {
     property alias __readRegionPlacement: readRegion.__placement
     property alias enabled: readRegion.enabled
     property bool disableOverlayContrast: false
-    property string positionState: ReadRegionOverlay.PositionStates.Middle
-    property string styleState: ReadRegionOverlay.PointerStates.All
+    property int positionState: ReadRegionOverlay.PositionStates.Middle
+    property int styleState: ReadRegionOverlay.PointerStates.All
     function toggleLinesInRegion(reverse) {
         const minSize = 2, maxSize = 5
         if (reverse) {
@@ -82,6 +82,10 @@ Item {
             if (linesInRegion > maxSize)
                 linesInRegion = minSize
         }
+    }
+    Component.onDestruction: {
+        if (overlay.positionState === ReadRegionOverlay.PositionStates.Free)
+            overlay.positionState = ReadRegionOverlay.PositionStates.Fixed
     }
     transform: __flips
     anchors.fill: parent
