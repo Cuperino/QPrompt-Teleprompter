@@ -536,6 +536,12 @@ Kirigami.ApplicationWindow {
                 flat: true
                 onClicked: Qt.openUrlExternally(uri)
             }
+            Button {
+                readonly property url uri: "https://donate.qprompt.app"
+                text: "$"
+                flat: true
+                onClicked: Qt.openUrlExternally(uri)
+            }
         }
         topContent: Row {
             Button {
