@@ -361,13 +361,15 @@ Flickable {
     }
 
     function pause() {
-        if (prompter.__play) {
-            prompter.__play = false
-            prompter.position = prompter.position
-        }
-        else {
-            prompter.__play = true
-            prompter.position = prompter.__destination
+        if (__i) {
+            if (prompter.__play) {
+                prompter.__play = false
+                prompter.position = prompter.position
+            }
+            else {
+                prompter.__play = true
+                prompter.position = prompter.__destination
+            }
         }
     }
 
