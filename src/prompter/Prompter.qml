@@ -106,7 +106,7 @@ Flickable {
     readonly property real centreX: width / 2;
     readonly property real centreY: height / 2;
     readonly property int fastSpeed: 35;
-    readonly property int __jitterMargin: (__i+viewport.__baseSpeed+viewport.__curvature+fontSize)%2
+    readonly property int __jitterMargin: (__tikTok+viewport.__baseSpeed+viewport.__curvature+fontSize)%2
     readonly property bool __possitiveDirection: __i>=0
     readonly property real __vw: width / 100 // prompter viewport width hundredth
     readonly property real __evw: editor.width / 100 // editor viewport width hundredth
@@ -164,6 +164,7 @@ Flickable {
     //property int __lastRecordedPosition: 0
     //property real customContentsPlacement: 0.1
     property real contentsPlacement: 0
+    property int __tikTok: 0
     // Background
     property double __opacity: root.__opacity
     // Configurable keys commands
@@ -179,6 +180,12 @@ Flickable {
         //"nextMarker": Qt.Key_End,
         //"toggle": Qt.Key_F9
     //};
+    on__IChanged: {
+        if (__tikTok===0)
+            __tikTok = 1
+        else
+            __tikTok = 0
+    }
     Settings {
         category: "editor"
         property alias autoReload: document.autoReload
