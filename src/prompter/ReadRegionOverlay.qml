@@ -188,6 +188,11 @@ Item {
             onReleased: {
                 readRegion.__customPlacement = readRegion.y / (overlay.height - readRegion.height)
             }
+            onDoubleClicked: if (!root.isMobile) fixPlacement()
+            onPressAndHold: if (root.isMobile) fixPlacement()
+            function fixPlacement() {
+                overlay.positionState = ReadRegionOverlay.PositionStates.Fixed;
+            }
         }
         Item {
             id: pointers
