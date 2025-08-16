@@ -150,28 +150,31 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
     QString copyrightStatement1 = QStringLiteral("© 2020 Javier O. Cordero Pérez");
     QString copyrightStatement2 = QStringLiteral("© 2020-2025 Javier O. Cordero Pérez"); // , copyrightYear);
 #ifndef Q_OS_WASM
-    KAboutData aboutData(QLatin1String("qprompt"),
-                         QLatin1String("QPrompt"),
-                         QPROMPT_VERSION_STRING " (" + QString::fromUtf8(GIT_BRANCH) + "/" + QString::fromUtf8(GIT_COMMIT_HASH) + ")",
-                         QLatin1String("Personal teleprompter software for all video makers."),
-                         KAboutLicense::GPL_V3,
-                         // Pérez").subs(currentYear).toString());
-                         (currentYear <= 2020) ? copyrightStatement1 : copyrightStatement2);
+    KAboutData aboutData(
+        QLatin1String("qprompt"),
+        QLatin1String("QPrompt"),
+        QPROMPT_VERSION_STRING " (" + QString::fromUtf8(GIT_BRANCH) + "/" + QString::fromUtf8(GIT_COMMIT_HASH) + ")",
+        QLatin1String("Personal teleprompter software for all video makers."),
+        KAboutLicense::GPL_V3,
+        (currentYear <= 2020) ? copyrightStatement1 : copyrightStatement2);
     // Overwrite default-generated values of organizationDomain & desktopFileName
     aboutData.setHomepage(QLatin1String("https://qprompt.app"));
     aboutData.setProductName("cuperino/qprompt");
     aboutData.setBugAddress("https://github.com/Cuperino/QPrompt/issues");
     aboutData.setOrganizationDomain(QByteArray(QPROMPT_URI));
     aboutData.setDesktopFileName(QLatin1String(QPROMPT_URI));
-    aboutData.addAuthor(QString::fromUtf8("Javier O. Cordero Pérez"),
-                        QLatin1String("Author"),
-                        QString::fromUtf8("javiercorderoperez@gmail.com"),
-                        QString::fromUtf8("https://javiercordero.info"),
-                        QString::fromUtf8("cuperino"));
-    aboutData.addCredit(QString::fromUtf8("Mark"),
-                        QLatin1String("Wrote keycode to string QML abstraction"),
-                        QString::fromUtf8(""),
-                        QString::fromUtf8("https://stackoverflow.com/a/64862996/3833454"));
+    KAboutPerson author(
+        QStringLiteral("Javier O. Cordero Pérez"),
+        QLatin1String("Author"),
+        QLatin1String("javiercorderoperez@gmail.com"),
+        QLatin1String("https://javiercordero.info"),
+        QUrl("https://images.pling.com/cache/100x100-2/img/00/00/62/69/17/photo-2023-05-09-17-58-18-c.jpg"));
+    aboutData.addAuthor(author);
+    aboutData.addCredit(
+        QString::fromUtf8("Mark"),
+        QLatin1String("Wrote keycode to string QML abstraction"),
+        QString::fromUtf8(""),
+        QString::fromUtf8(""));
     aboutData.addCredit(QString::fromUtf8("videosmith"), QLatin1String("Active software tester", "Active tester"));
     aboutData.setTranslator(QCoreApplication::translate("NAMES OF TRANSLATORS", "Names of translators"), QCoreApplication::translate("EMAILS OF TRANSLATORS", "Emails of translators"));
     // aboutData.addLicense(
