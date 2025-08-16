@@ -968,6 +968,11 @@ QString DocumentHandler::filterHtml(QString html, bool ignoreBlackTextColor = tr
         html = html.replace(regex_6, QString::fromUtf8(""));
     }
 
+    // Filter CSS instructions that prevent text wrapping
+    static QRegularExpression regex_7(
+        QString::fromUtf8("(((white-space:\\s*(pre|nowrap))|(text-wrap-mode:\\s*nowrap))\\s*;\\s*)"));
+    html = html.replace(regex_7, QString::fromUtf8(""));
+
     // Filtering complete
     // qDebug() << html;
     return html;
