@@ -946,6 +946,7 @@ Flickable {
                                     prompter.focus = true
                                 }
                                 ButtonGroup.group: atEndButtons
+                                Material.theme: Material.Dark
                                 MouseArea {
                                     anchors.fill: parent
                                     acceptedButtons: Qt.NoButton
@@ -971,6 +972,7 @@ Flickable {
                                     prompter.focus = true
                                 }
                                 ButtonGroup.group: atEndButtons
+                                Material.theme: Material.Dark
                                 MouseArea {
                                     anchors.fill: parent
                                     acceptedButtons: Qt.NoButton
@@ -978,7 +980,8 @@ Flickable {
                                 }
                             }
                             Button {
-                                text: "🔁"
+                                id: autoResetToggleButton
+                                text: "\uE858"
                                 font.pixelSize: (fontSize < 24 ? 24 : fontSize) / 1.5
                                 font.family: iconFont.name
                                 flat: true
@@ -996,6 +999,7 @@ Flickable {
                                     prompter.focus = true
                                 }
                                 ButtonGroup.group: atEndButtons
+                                Material.theme: Material.Dark
                                 MouseArea {
                                     anchors.fill: parent
                                     acceptedButtons: Qt.NoButton
@@ -1006,18 +1010,62 @@ Flickable {
                         RowLayout {
                             enabled: atEndAction===Prompter.AtEndActions.Loop
                             Layout.alignment: Qt.AlignCenter
-                            Button {
-                                enabled: false
-                                text: "\uE858"
-                                font.pixelSize: (fontSize < 24 ? 24 : fontSize) / 1.75
-                                font.family: iconFont.name
-                                flat: true
-                                MouseArea {
-                                    anchors.fill: parent
-                                    acceptedButtons: Qt.NoButton
-                                    cursorShape: Qt.CrossCursor
+                            Flipable {
+                                id: flipable
+                                property bool flipped: enabled
+                                width: back.implicitWidth
+                                height: back.implicitWidth
+                                front: Button {
+                                    text: "\uE858"
+                                    anchors.centerIn: parent
+                                    font.pixelSize: (fontSize < 24 ? 24 : fontSize) / 1.75
+                                    font.family: iconFont.name
+                                    flat: true
+                                    Material.theme: Material.Dark
+                                    MouseArea {
+                                        anchors.fill: parent
+                                        acceptedButtons: Qt.NoButton
+                                        cursorShape: Qt.CrossCursor
+                                    }
                                 }
-                                Material.theme: Material.Dark
+                                back: Button {
+                                    text: "🔃"
+                                    anchors.centerIn: parent
+                                    font.pixelSize: (fontSize < 24 ? 24 : fontSize) / 1.75
+                                    font.family: iconFont.name
+                                    flat: true
+                                    Material.theme: Material.Light
+                                    MouseArea {
+                                        anchors.fill: parent
+                                        acceptedButtons: Qt.NoButton
+                                        cursorShape: Qt.CrossCursor
+                                    }
+                                }
+                                transform: Rotation {
+                                    id: rotation
+                                    origin.x: flipable.width/2
+                                    origin.y: flipable.height/2
+                                    axis.x: 0; axis.y: 1; axis.z: 0
+                                    angle: 0
+                                }
+                                states: State {
+                                    name: "back"
+                                    when: flipable.flipped
+                                    PropertyChanges {
+                                        target: rotation;
+                                        angle: 180
+                                    }
+                                }
+                                transitions: Transition {
+                                    SequentialAnimation {
+                                        PauseAnimation { duration: Units.ShortDuration }
+                                        NumberAnimation {
+                                            target: rotation;
+                                            property: "angle";
+                                            duration: Units.ShortDuration
+                                        }
+                                    }
+                                }
                             }
                             SpinBox {
                                 value: prompter.atEndLoopDelay
