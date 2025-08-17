@@ -267,7 +267,7 @@ Kirigami.Page {
                 text: Qt.application.layoutDirection===Qt.LeftToRight ? qsTr("Left pointer", "Shows pointer to the left of the reading region") : qsTr("Right pointer", "Shows pointer to the right of the reading region")
                 icon.source: Qt.application.layoutDirection===Qt.LeftToRight ? "../icons/go-next.svg" : "../icons/go-previous.svg"
                 tooltip: qsTr("Left pointer indicates reading region")
-                enabled: parseInt(overlay.styleState)!==ReadRegionOverlay.PointerStates.LeftPointer && parseInt(overlay.styleState)!==ReadRegionOverlay.PointerStates.BarsLeftPointer
+                enabled: parseInt(overlay.styleState)!==ReadRegionOverlay.PointerStates.LeftPointer && parseInt(overlay.styleState)!==ReadRegionOverlay.PointerStates.BarsLeft
                 onTriggered: {
                     overlay.styleState = readRegionBarsButton.checked ? ReadRegionOverlay.PointerStates.BarsLeft : ReadRegionOverlay.PointerStates.LeftPointer
                     contextDrawer.close()
@@ -279,7 +279,7 @@ Kirigami.Page {
                 text: Qt.application.layoutDirection===Qt.LeftToRight ? qsTr("Right pointer", "Shows pointer to the right of the reading region") : qsTr("Left pointer", "Shows pointer to the left of the reading region")
                 icon.source: Qt.application.layoutDirection===Qt.LeftToRight ? "../icons/go-previous.svg" : "../icons/go-next.svg"
                 tooltip: qsTr("Right pointer indicates reading region")
-                enabled: parseInt(overlay.styleState)!==ReadRegionOverlay.PointerStates.RightPointer && parseInt(overlay.styleState)!==ReadRegionOverlay.PointerStates.BarsRightPointer
+                enabled: parseInt(overlay.styleState)!==ReadRegionOverlay.PointerStates.RightPointer && parseInt(overlay.styleState)!==ReadRegionOverlay.PointerStates.BarsRight
                 onTriggered: {
                     overlay.styleState = readRegionBarsButton.checked ? ReadRegionOverlay.PointerStates.BarsRight : ReadRegionOverlay.PointerStates.RightPointer
                     contextDrawer.close()

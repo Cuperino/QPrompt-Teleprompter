@@ -661,56 +661,43 @@ Kirigami.ApplicationWindow {
                 Labs.MenuItem {
                     text: qsTr("&Left Pointer", "Global menu actions. Shows pointer to the left of the reading region.")
                     checkable: true
-                    checked: parseInt(root.pageStack.currentItem.overlay.styleState) === ReadRegionOverlay.PointerStates.LeftPointer
-                    onTriggered: root.pageStack.currentItem.overlay.styleState = ReadRegionOverlay.PointerStates.LeftPointer
+                    checked: !(parseInt(root.pageStack.currentItem.overlay.styleState)!==ReadRegionOverlay.PointerStates.LeftPointer && parseInt(root.pageStack.currentItem.overlay.styleState)!==ReadRegionOverlay.PointerStates.BarsLeft)
+                    onTriggered: root.pageStack.currentItem.overlay.styleState = barsGlobalMenu.checked ? ReadRegionOverlay.PointerStates.BarsLeft : ReadRegionOverlay.PointerStates.LeftPointer
                 }
                 Labs.MenuItem {
                     text: qsTr("&Right Pointer", "Global menu actions. Shows pointer to the right of the reading region.")
                     checkable: true
-                    checked: parseInt(root.pageStack.currentItem.overlay.styleState) === ReadRegionOverlay.PointerStates.RightPointer
-                    onTriggered: root.pageStack.currentItem.overlay.styleState = ReadRegionOverlay.PointerStates.RightPointer
+                    checked: !(parseInt(root.pageStack.currentItem.overlay.styleState)!==ReadRegionOverlay.PointerStates.RightPointer && parseInt(root.pageStack.currentItem.overlay.styleState)!==ReadRegionOverlay.PointerStates.BarsRight)
+                    onTriggered: root.pageStack.currentItem.overlay.styleState = barsGlobalMenu.checked ? ReadRegionOverlay.PointerStates.BarsRight : ReadRegionOverlay.PointerStates.RightPointer
                 }
                 Labs.MenuItem {
                     text: qsTr("B&oth Pointers", "Global menu actions. Shows pointers to the left and right of the reading region.")
                     checkable: true
-                    checked: parseInt(root.pageStack.currentItem.overlay.styleState) === ReadRegionOverlay.PointerStates.Pointers
-                    onTriggered: root.pageStack.currentItem.overlay.styleState = ReadRegionOverlay.PointerStates.Pointers
-                }
-                Labs.MenuSeparator { }
-                Labs.MenuItem {
-                    text: qsTr("&Bars", "Global menu actions. Translucent bars indicate reading region.")
-                    checkable: true
-                    checked: parseInt(root.pageStack.currentItem.overlay.styleState) === ReadRegionOverlay.PointerStates.Bars
-                    onTriggered: root.pageStack.currentItem.overlay.styleState = ReadRegionOverlay.PointerStates.Bars
+                    checked: !(parseInt(root.pageStack.currentItem.overlay.styleState)!==ReadRegionOverlay.PointerStates.Pointers && parseInt(root.pageStack.currentItem.overlay.styleState)!==ReadRegionOverlay.PointerStates.All)
+                    onTriggered: root.pageStack.currentItem.overlay.styleState = barsGlobalMenu.checked ? ReadRegionOverlay.PointerStates.All : ReadRegionOverlay.PointerStates.Pointers
                 }
                 Labs.MenuItem {
-                    text: qsTr("Bars Lef&t", "Global menu actions. Translucent bars and left pointer indicate reading region.")
+                    text: qsTr("No pointers", "Disable all reading region pointers")
                     checkable: true
-                    checked: parseInt(root.pageStack.currentItem.overlay.styleState) === ReadRegionOverlay.PointerStates.BarsLeft
-                    onTriggered: root.pageStack.currentItem.overlay.styleState = ReadRegionOverlay.PointerStates.BarsLeft
-                }
-                Labs.MenuItem {
-                    text: qsTr("Bars Ri&ght", "Global menu actions. Translucent bars and right pointer indicate reading region.")
-                    checkable: true
-                    checked: parseInt(root.pageStack.currentItem.overlay.styleState) === ReadRegionOverlay.PointerStates.BarsRight
-                    onTriggered: root.pageStack.currentItem.overlay.styleState = ReadRegionOverlay.PointerStates.BarsRight
-                }
-                Labs.MenuSeparator { }
-                Labs.MenuItem {
-                    text: qsTr("&All", "Global menu actions. Enable all reading region indicators.")
-                    checkable: true
-                    checked: parseInt(root.pageStack.currentItem.overlay.styleState) === ReadRegionOverlay.PointerStates.All
-                    onTriggered: root.pageStack.currentItem.overlay.styleState = ReadRegionOverlay.PointerStates.All
-                }
-                Labs.MenuItem {
-                    text: qsTr("&Hidden", "Global menu actions. Disable all reading region indicators.")
-                    checkable: true
-                    checked: parseInt(root.pageStack.currentItem.overlay.styleState) === ReadRegionOverlay.PointerStates.None
-                    onTriggered: root.pageStack.currentItem.overlay.styleState = ReadRegionOverlay.PointerStates.None
+                    checked: !(parseInt(root.pageStack.currentItem.overlay.styleState)!==ReadRegionOverlay.PointerStates.None && parseInt(root.pageStack.currentItem.overlay.styleState)!==ReadRegionOverlay.PointerStates.Bars)
+                    onTriggered: root.pageStack.currentItem.overlay.styleState = barsGlobalMenu.checked ? ReadRegionOverlay.PointerStates.Bars : ReadRegionOverlay.PointerStates.None
                 }
             }
             Labs.Menu {
                 title: qsTr("Readin&g region", "Global menu actions. Reading region indicates where a talent should be reading from.")
+                Labs.MenuItem {
+                    id: barsGlobalMenu
+                    text: qsTr("&Bars", "Global menu actions. Translucent bars indicate reading region.")
+                    checkable: true
+                    checked: parseInt(root.pageStack.currentItem.overlay.styleState) > ReadRegionOverlay.PointerStates.Pointers
+                    onTriggered: {
+                        if (parseInt(root.pageStack.currentItem.overlay.styleState)>ReadRegionOverlay.PointerStates.Pointers)
+                            root.pageStack.currentItem.overlay.styleState = parseInt(root.pageStack.currentItem.overlay.styleState) - 4;
+                        else
+                            root.pageStack.currentItem.overlay.styleState = parseInt(root.pageStack.currentItem.overlay.styleState) + 4;
+                    }
+                }
+                Labs.MenuSeparator { }
                 Labs.MenuItem {
                     text: qsTr("&Top", "Global menu actions. Align reading region to top of prompter.")
                     checkable: true
