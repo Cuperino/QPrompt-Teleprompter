@@ -817,6 +817,11 @@ Kirigami.ApplicationWindow {
             title: qsTr("Controls", "Global menu actions. Menu regarding input settings.")
 
             Labs.MenuItem {
+                text: qsTr("Keyboard Inputs", "Main menu and global menu actions. Opens dialog to configure keyboard inputs.")
+                onTriggered: root.pageStack.currentItem.keyConfigurationOverlay.open()
+            }
+            Labs.MenuSeparator { }
+            Labs.MenuItem {
                 text: qsTr("Disable scrolling while prompting", "Main menu and global menu actions. Touchpad scrolling and mouse wheel use have no effect while prompting.")
                 checkable: true
                 checked: root.__noScroll
