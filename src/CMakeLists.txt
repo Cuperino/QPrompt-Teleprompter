@@ -234,6 +234,9 @@ set(icon_files
     icons/16/edit-undo.svg
     icons/16/edit-redo.svg
     icons/16/mail-mark-unread.svg
+    icons/16/media-playback-pause.svg
+    icons/16/media-playback-start.svg
+    icons/16/media-playback-stop.svg
     icons/16/draw-star.svg
     icons/16/edit-find.svg
     icons/16/edit-find-replace.svg

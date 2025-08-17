@@ -68,9 +68,9 @@ Item {
         visible: anchors.leftMargin > -upperControls.width
         opacity: switch(parseInt(prompter.state)) {
                  case 2: // Countdown
-                     return 0.3;
+                     return 0.4;
                  case 3: // Prompting
-                     return 0.05;
+                     return 0.1;
                  default:
                      return 1;
                  }
@@ -93,7 +93,7 @@ Item {
         }
         Button {
             enabled: parseInt(prompter.state)!==Prompter.States.Editing
-            opacity: enabled ? 1 : 0.2
+            opacity: enabled ? 1 : 0
             width: 64
             height: 64
             // flat: parseInt(prompter.state)===Prompter.States.Prompting
@@ -161,7 +161,7 @@ Item {
             width: 82
             height: 82
             anchors.bottom: parent.bottom
-            icon.source: parseInt(prompter.state)===Prompter.States.Prompting ? (prompter.__play ? "../icons/media-playback-pause.svg" : "../icons/media-playback-play.svg") :
+            icon.source: parseInt(prompter.state)===Prompter.States.Prompting ? (prompter.__play ? "../icons/media-playback-pause.svg" : "../icons/media-playback-start.svg") :
                                                                                 Qt.application.layoutDirection === Qt.RightToLeft ? "../icons/go-previous.svg" : "../icons/go-next.svg"
             Material.theme: Material.Dark
             onClicked:
