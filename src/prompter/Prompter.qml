@@ -1009,7 +1009,15 @@ Flickable {
                         }
                         RowLayout {
                             enabled: atEndAction===Prompter.AtEndActions.Loop
+                            opacity: parseInt(prompter.state) !== Prompter.States.Prompting || prompter.__atEnd
                             Layout.alignment: Qt.AlignCenter
+                            Behavior on opacity {
+                                enabled: true
+                                animation: OpacityAnimator {
+                                    duration: Units.LongDuration
+                                    easing.type: Easing.OutQuad
+                                }
+                            }
                             Flipable {
                                 id: flipable
                                 property bool flipped: enabled
