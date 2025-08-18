@@ -50,17 +50,18 @@ set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
 
 set(QT_DEFAULT_MAJOR_VERSION 6)
-# Qt 6.6.2 for Ubuntu 24.10, tho ideally we'd use 6.7.2.
-set(QT_MIN_VERSION 6.6.2)
+# Qt 6.7.2 for Ubuntu 24.10, tho ideally we'd use 6.7.3 or 6.8.x.
+set(QT_MIN_VERSION 6.7.2)
 # Enabling newer ECM appears to break AutoMOC...
 if (WIN32)
     set(ECM_MIN_VERSION 5.83.0)
 else()
     set(ECM_MIN_VERSION 5.68.0)
 endif()
-# All other KF should go with the latest versions
-set(KF_MIN_VERSION 6.5.0)
-set(KF_PREFFERED_VERSION 6.8.0)
+# Version with minimum required set of features
+set(KF_MIN_VERSION 6.9.0)
+# Last version known to work
+set(KF_PREFFERED_VERSION 6.14.0)
 if (APPLE)
     set(APPLE_SUPPRESS_X11_WARNING ON)
 endif()
@@ -161,7 +162,7 @@ if(WIN32 OR APPLE OR WASM)
     FetchContent_Declare(
       Kirigami
       GIT_REPOSITORY "${CMAKE_SOURCE_DIR}/3rdparty/kirigami"
-      GIT_TAG        "v${KF_PREFFERED_VERSION}"
+      GIT_TAG        "v6.14.1" # "v${KF_PREFFERED_VERSION}"
       SOURCE_DIR submodules/kirigami
     )
     FetchContent_MakeAvailable(Kirigami)
@@ -327,11 +328,11 @@ if(CMAKE_SOURCE_DIR STREQUAL CMAKE_CURRENT_SOURCE_DIR)
         # CPACK: DEB specific settings
         set(CPACK_DEBIAN_PACKAGE_SECTION "Multimedia")
         set(CPACK_DEBIAN_COMPRESSION_TYPE ${COMPRESION_TYPE})
-        set(CPACK_DEBIAN_PACKAGE_DEPENDS "libqt6svg6 (>= 6.6.2), libqt6qmlworkerscript6 (>=6.6.2), qml6-module-qt-labs-platform (>=6.6.2), qml6-module-qtqml (>=6.6.2), qml6-module-qtqml-models (>=6.6.2), qml6-module-qtqml-statemachine (>=6.6.2), qml6-module-qtquick-controls (>=6.6.2), qml6-module-qtquick-dialogs (>=6.6.2), qml6-module-qtquick-shapes (>=6.6.2), libkf6coreaddons6 (>= 6.5.0), libkirigami6 (>= 6.5.0), libkf6i18n6 (>= 6.5.0), libkf6crash6 (>= 6.5.0)")
+        set(CPACK_DEBIAN_PACKAGE_DEPENDS "libqt6svg6 (>= 6.7.2), libqt6qmlworkerscript6 (>=6.7.2), qml6-module-qt-labs-platform (>=6.7.2), qml6-module-qtqml (>=6.7.2), qml6-module-qtqml-models (>=6.7.2), qml6-module-qtqml-statemachine (>=6.7.2), qml6-module-qtquick-controls (>=6.7.2), qml6-module-qtquick-dialogs (>=6.7.2), qml6-module-qtquick-shapes (>=6.7.2), libkf6coreaddons6 (>= 6.9.0), libkirigami6 (>= 6.9.0), libkf6i18n6 (>= 6.9.0), libkf6crash6 (>= 6.9.0)")
 
         # CPACK: RPM specific settings
         set(CPACK_RPM_PACKAGE_GROUP "Multimedia/Video")
-        set(CPACK_RPM_PACKAGE_REQUIRES "qt6-qtbase >= 6.7.2, qt6-qtbase-gui >= 6.7.2, qt6-qtdeclarative >= 6.7.2, qt6-qtsvg >= 6.7.2, qt6-qtquickcontrols >= 6.7.2, qt6-qtquickcontrols2 >= 6.7.2, kf6-kcoreaddons >= 6.5.0, kf6-kirigami >= 6.5.0, kf6-kcrash >= 6.5.0")
+        set(CPACK_RPM_PACKAGE_REQUIRES "qt6-qtbase >= 6.7.2, qt6-qtbase-gui >= 6.7.2, qt6-qtdeclarative >= 6.7.2, qt6-qtsvg >= 6.7.2, qt6-qtquickcontrols >= 6.7.2, qt6-qtquickcontrols2 >= 6.7.2, kf6-kcoreaddons >= 6.9.0, kf6-kirigami >= 6.9.0, kf6-kcrash >= 6.9.0")
         set(CPACK_RPM_COMPRESSION_TYPE ${COMPRESION_TYPE})
 
     elseif(WIN32)
