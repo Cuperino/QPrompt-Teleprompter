@@ -332,7 +332,7 @@ if(CMAKE_SOURCE_DIR STREQUAL CMAKE_CURRENT_SOURCE_DIR)
 
         # CPACK: RPM specific settings
         set(CPACK_RPM_PACKAGE_GROUP "Multimedia/Video")
-        set(CPACK_RPM_PACKAGE_REQUIRES "qt6-qtbase >= 6.7.2, qt6-qtbase-gui >= 6.7.2, qt6-qtdeclarative >= 6.7.2, qt6-qtsvg >= 6.7.2, qt6-qtquickcontrols >= 6.7.2, qt6-qtquickcontrols2 >= 6.7.2, kf6-kcoreaddons >= 6.9.0, kf6-kirigami >= 6.9.0, kf6-kcrash >= 6.9.0")
+        set(CPACK_RPM_PACKAGE_REQUIRES "qt6-qtbase >= 6.7.2, qt6-qtbase-gui >= 6.7.2, qt6-qtdeclarative >= 6.7.2, qt6-qtsvg >= 6.7.2, qt6-qtquickcontrols2 >= 6.7.2, kf6-kcoreaddons >= 6.9.0, kf6-kirigami >= 6.9.0, kf6-kcrash >= 6.9.0")
         set(CPACK_RPM_COMPRESSION_TYPE ${COMPRESION_TYPE})
 
     elseif(WIN32)
