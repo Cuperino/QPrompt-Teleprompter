@@ -10,7 +10,7 @@ Row {
     }
     Button {
         readonly property url uri: "https://docs.qprompt.app"
-        text: "📖"
+        text: "🕮"
         flat: true
         onClicked: Qt.openUrlExternally(uri)
     }
