@@ -257,6 +257,8 @@ set(icon_files
     icons/22/contrast.svg
     icons/22/window-pin.svg
     icons/22/window-unpin.svg
+    icons/24/go-previous-symbolic.svg
+    icons/24/go-next-symbolic.svg
 )
 
 foreach(file IN LISTS icon_files doc)
