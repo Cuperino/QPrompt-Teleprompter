@@ -22,7 +22,7 @@
 #**************************************************************************
 
 ARCHITECTURE="$(uname -m)"
-DEFAULT_QT_VER=6.7.3
+DEFAULT_QT_VER=6.9.0
 echo -e "\nArchitecture: $ARCHITECTURE"
 
 if [[ "$OSTYPE" == "linux-gnu"* ]]; then
