@@ -1459,6 +1459,7 @@ Flickable {
         onError: (message) => {
             errorDialog.text = message
             errorDialog.visible = true
+            document.modified = false;
         }
 
         Component.onCompleted: {

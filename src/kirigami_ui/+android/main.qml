@@ -132,7 +132,8 @@ Kirigami.ApplicationWindow {
     visibility: __fullScreen ? (__fakeFullscreen ? Kirigami.ApplicationWindow.Maximized : Kirigami.ApplicationWindow.FullScreen) : (!__autoFullScreen ? Kirigami.ApplicationWindow.AutomaticVisibility : (parseInt(root.pageStack.currentItem.prompter.state)===Prompter.States.Editing ? Kirigami.ApplicationWindow.Maximized : (__fakeFullscreen ? Kirigami.ApplicationWindow.Maximized : Kirigami.ApplicationWindow.FullScreen)))
 
     onWidthChanged: {
-        root.pageStack.currentItem.footer.paragraphSpacingSlider.update()
+        root.pageStack.currentItem.footer.paragraphSpacingSlider.update();
+        root.pageStack.currentItem.document.modified = false;
     }
 
     // Open save dialog on closing
