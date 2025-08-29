@@ -230,8 +230,8 @@ Item {
         property double delta: 16
         anchors.fill: parent
         z: 1
-        textColor: colorDialog.color
-        textBackground: highlightDialog.color
+        textColor: colorDialog.acceptedColor
+        textBackground: highlightDialog.acceptedColor
         fontSize: (parseInt(prompter.state)===Prompter.States.Editing && !prompter.wysiwyg) ? (Math.pow(editorToolbar.fontSizeSlider.value/185,4)*185) : (Math.pow(editorToolbar.fontWYSIWYGSizeSlider.value/185,4)*185)*prompter.__vw/10
         // fontSize: (parseInt(prompter.state)===Prompter.States.Editing && !prompter.wysiwyg) ? (Math.pow(editorToolbar.fontSizeSlider.value/185,4)*185) : (Math.pow(editorToolbar.fontWYSIWYGSizeSlider.value/185,4)*185)*prompter.__vw/10
         letterSpacing: fontSize * editorToolbar.letterSpacingSlider.value / 81

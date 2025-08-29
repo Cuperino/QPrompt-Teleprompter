@@ -25,7 +25,7 @@ import QtQuick.Window 2.12
 import QtQuick.Controls 2.12
 import QtQuick.Layouts 1.12
 import QtCore 6.5
-import Qt.labs.platform 1.1 as Labs
+import QtQuick.Dialogs 6.6
 
 import com.cuperino.qprompt 1.0
 
@@ -797,9 +797,15 @@ Kirigami.Page {
         y: parent.height
     }
 
-    Labs.ColorDialog {
+    ColorDialog {
         id: colorDialog
-        options: Labs.ColorDialog.ShowAlphaChannel
+        property color acceptedColor
+        onAccepted: {
+            // Hack to force re-evaluation of acceptedColor's bindings
+            acceptedColor = "#000000";
+            acceptedColor = "#FFFFFF";
+            acceptedColor = selectedColor;
+        }
         onVisibleChanged: {
             if (visible)
                 cursorAutoHide.reset();
@@ -808,9 +814,15 @@ Kirigami.Page {
         }
     }
 
-    Labs.ColorDialog {
+    ColorDialog {
         id: highlightDialog
-        options: Labs.ColorDialog.ShowAlphaChannel
+        property color acceptedColor
+        onAccepted: {
+            // Hack to force re-evaluation of acceptedColor's bindings
+            acceptedColor = "#000000";
+            acceptedColor = "#FFFFFF";
+            acceptedColor = selectedColor;
+        }
         onVisibleChanged: {
             if (visible)
                 cursorAutoHide.reset();
