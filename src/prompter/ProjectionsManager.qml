@@ -301,7 +301,7 @@ Item {
                         anchors.fill: parent
                         visible: model.flip===0
                         Image {
-                            source: "qrc:/images/qprompt.png"
+                            source: "qrc:/qt/qml/com/cuperino/qprompt/images/qprompt.png"
                             fillMode: Image.PreserveAspectFit
                             width: parent.width * 3 / 4
                             height: parent.height * 3 / 4
