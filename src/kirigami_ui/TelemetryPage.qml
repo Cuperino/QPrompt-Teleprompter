@@ -1,7 +1,7 @@
 /****************************************************************************
  **
  ** QPrompt
- ** Copyright (C) 2021-2022 Javier O. Cordero Pérez
+ ** Copyright (C) 2021-2025 Javier O. Cordero Pérez
  **
  ** This file is part of QPrompt.
  **
@@ -23,7 +23,7 @@ import QtQuick 2.12
 import org.kde.kirigami 2.11 as Kirigami
 import QtQuick.Controls 2.12
 import QtQuick.Layouts 1.12
-import Qt.labs.settings 1.0
+import QtCore 6.5
 
 Kirigami.ScrollablePage {
 

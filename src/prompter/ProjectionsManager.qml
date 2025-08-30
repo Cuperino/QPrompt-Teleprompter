@@ -21,8 +21,6 @@
 
 import QtQuick 2.13
 import QtQuick.Controls 2.15
-//import QtQuick.Dialogs
-import Qt.labs.platform 1.1 as Labs
 import QtQuick.Window 2.15
 import QtQuick.Layouts 1.12
 import QtCore 6.5
@@ -32,7 +30,6 @@ Item {
     id: projectionManager
     readonly property alias model: projectionModel
     readonly property alias projections: projections
-    // readonly property alias alertDialog: alertDialog
     readonly property real internalBackgroundOpacity: backgroundOpacity // /2+0.5
     property int defaultDisplayMode: 0
     property real backgroundOpacity: 1
@@ -132,8 +129,6 @@ Item {
                     "p": ""
                 });
         }
-        //if (projectionModel.count===0 && this.isEnabled && parseInt(forwardTo.prompter.state) === Prompter.States.Editing)
-            //alertDialog.requestDisplays();
     }
     function closeAll() {
         return projectionModel.clear()
@@ -392,21 +387,4 @@ Item {
         asynchronous: true
         delegate: projectionDelegte
     }
-    // Labs.MessageDialog {
-    //     id: alertDialog
-    //     modality: Qt.WindowModal
-    //     function requestDisplays() {
-    //         alertDialog.text = qsTr("For screen projections to show, you must set at least one screen to a projection setting other than \"Off\"")
-    //         alertDialog.detailedText = ""
-    //         alertDialog.icon = StandardIcon.Information
-    //         alertDialog.visible = true
-    //     }
-//         function warnSameDisplay(screenName) {
-//             alertDialog.text = qsTr("You've enabled a screen projection on display \"%1\". Please note this projection will not show unless you place the editor on a different screen.", screenName)
-//             //alertDialog.text = qsTr("QPrompt will not project to the screen where the editor is at.")
-//             //alertDialog.detailedText = qsTr("You've enabled a screen projection on display \""+screenName+"\". Please note this projection will not show unless you place the editor on a different screen.")
-//             alertDialog.icon = StandardIcon.Warning
-//             alertDialog.visible = true
-//         }
-    // }
 }
