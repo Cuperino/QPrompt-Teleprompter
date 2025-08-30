@@ -78,7 +78,7 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
 #endif
 
     // Set theme
-    qputenv("QT_QUICK_CONTROLS_STYLE", QByteArray("Material"));
+    QQuickStyle::setStyle("Material");
     qputenv("QT_QUICK_CONTROLS_MATERIAL_THEME", QByteArray("Dark"));
     qputenv("QT_QUICK_CONTROLS_MATERIAL_ACCENT", QByteArray("#3daee9"));
 
