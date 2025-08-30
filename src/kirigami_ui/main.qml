@@ -1081,7 +1081,6 @@ Kirigami.ApplicationWindow {
                 case Prompter.CloseActions.Quit:
                     Qt.quit();
                     break;
-                //case Prompter.CloseActions.Ignore:
                 default:
                     break;
             }

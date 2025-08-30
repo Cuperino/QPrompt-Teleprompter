@@ -24,7 +24,7 @@ import org.kde.kirigami 2.11 as Kirigami
 import QtQuick.Controls 2.12
 import QtQuick.Layouts 1.12
 import QtCore 6.5
-import Qt.labs.platform 1.1 as Labs
+import QtQuick.Dialogs 6.6
 
 Kirigami.ScrollablePage {
 
@@ -94,19 +94,19 @@ Kirigami.ScrollablePage {
         }
     }
 
-    Labs.FileDialog {
+    FileDialog {
         id: pathsDialog
         title: qsTr("Browse for %1", "Browse for PROGRAM").arg(pathSettings.currentlyBrowsing)
         nameFilters: [
             (Qt.platform.os === "windows"
-             ? qsTr("Executable (%1)", "Format name (FORMAT_EXTENSION)").arg("EXE") + "(" + "*.exe *.EXE" + ")"
+             ? qsTr("Executable <%1>", "Format name <FORMAT_EXTENSION>").arg("exe") + "(*.exe *.EXE)"
              : (Qt.platform.os === "osx"
-                ? qsTr("Executable (%1)", "Format name (FORMAT_EXTENSION)").arg("APP") + "(" + "*.app *.APP" + ")"
-                : qsTr("Executable (%1)", "Format name (FORMAT_EXTENSION)").arg("BIN") + "(" + "*.bin *.BIN *" + ")"
+                ? qsTr("Executable <%1>", "Format name <FORMAT_EXTENSION>").arg("app") + "(*.app *.APP)"
+                : qsTr("Executable <%1>", "Format name <FORMAT_EXTENSION>").arg("bin") + "(*.bin *.BIN *)"
                 )),
             qsTr("All Formats", "All file formats") + "(*.*)"
         ]
-        fileMode: Labs.FileDialog.OpenFile
+        fileMode: FileDialog.OpenFile
         onAccepted: {
             if (pathSettings.currentlyBrowsing === "soffice")
                 // Convert URL to scheme and remove scheme part (file://)
