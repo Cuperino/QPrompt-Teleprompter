@@ -23,7 +23,6 @@ import QtQuick 2.12
 
 import QtCore 6.5
 import QtQuick.Dialogs 6.6
-import Qt.labs.platform 1.1 as Labs
 
 import com.cuperino.qprompt 1.0
 
@@ -128,16 +127,16 @@ Rectangle {
             }
         }
 
-        Labs.FileDialog {
+        FileDialog {
             id: openBackgroundDialog
             nameFilters: [
               qsTr("JPEG image") + "(*.jpg *.jpeg *.JPG *.JPEG)",
               qsTr("PNG image") + "(*.png *.PNG)",
               qsTr("GIF animation") + "(*.gif *.GIF)"
             ]
-            fileMode: Labs.FileDialog.OpenFile
-            folder: StandardPaths.writableLocation(StandardPaths.PicturesLocation)
-            onAccepted: prompterBackground.setBackgroundImage(openBackgroundDialog.file)
+            fileMode: FileDialog.OpenFile
+            currentFolder: StandardPaths.writableLocation(StandardPaths.PicturesLocation)
+            onAccepted: prompterBackground.setBackgroundImage(openBackgroundDialog.currentFile)
             onVisibleChanged: {
                 if (visible)
                     cursorAutoHide.reset();
