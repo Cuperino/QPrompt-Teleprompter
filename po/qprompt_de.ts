@@ -11,7 +11,7 @@
     <message>
         <location filename="../src/documenthandler.cpp" line="814"/>
         <source>Cannot save: </source>
-        <translation type="unfinished"></translation>
+        <translation>Speichern nicht möglich: </translation>
     </message>
 </context>
 <context>
@@ -108,7 +108,7 @@
         <location filename="../src/kirigami_ui/EditorToolbar.qml" line="1064"/>
         <source>Font size &lt;pre&gt;%1 (%2)&lt;/pre&gt;</source>
         <comment>Font size 100% (083)</comment>
-        <translation type="unfinished"></translation>
+        <translation>Schriftgröße &lt;pre&gt;%1 (%2)&lt;/pre&gt;</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/EditorToolbar.qml" line="1198"/>
@@ -168,9 +168,9 @@
     <message numerus="yes">
         <location filename="../src/prompter/Find.qml" line="160"/>
         <source>Replaced %n instance(s)</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>%n Instanz ersetzt</numerusform>
+            <numerusform>%n Instanzen ersetzt</numerusform>
         </translation>
     </message>
 </context>
@@ -363,7 +363,8 @@
         <location filename="../src/kirigami_ui/LanguageSettingsOverlay.qml" line="186"/>
         <source>Is your language not here or it&apos;s incomplete?
 Help us translate QPrompt, visit:</source>
-        <translation type="unfinished"></translation>
+        <translation>Ist ihre Sprache nicht vorhanden oder ist sie nicht komplett?
+Helfen sie uns QPrompt zu übersetzen und besuchen sie:</translation>
     </message>
 </context>
 <context>
@@ -425,9 +426,7 @@ Help us translate QPrompt, visit:</source>
     <message>
         <location filename="../src/kirigami_ui/PathsPage.qml" line="63"/>
         <source>QPrompt can make transparent use of LibreOffice to convert Microsoft Word, Open Document Format, and other office documents into a format QPrompt understands. Install LibreOffice and ensure this field points to its location, so QPrompt can open office documents.</source>
-        <translation>
-QPrompt kann unsichtbare Verwendung von LibreOffice mach um Microsoft Word
-zu konvertieren,</translation>
+        <translation>QPrompt kann LibreOffice im Hintergrund verwenden um Microsoft Word, Open Document Format und andere Büro-Dokumente in ein Format zu konvertieren, das QPrompt versteht. Installieren sie LibreOffice und tragen sie hier seinen Speicherort ein, damit QPrompt Büro-Dokumente öffnen kann.</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/PathsPage.qml" line="71"/>
@@ -461,17 +460,17 @@ zu konvertieren,</translation>
     <message>
         <location filename="../src/prompter/PointerSettings.qml" line="108"/>
         <source>Editing: </source>
-        <translation>Editiren:</translation>
+        <translation>Bearbeiten: </translation>
     </message>
     <message>
         <location filename="../src/prompter/PointerSettings.qml" line="122"/>
         <source>Ready: </source>
-        <translation>Bereit:</translation>
+        <translation>Bereit: </translation>
     </message>
     <message>
         <location filename="../src/prompter/PointerSettings.qml" line="136"/>
         <source>Prompting: </source>
-        <translation>Prompting:</translation>
+        <translation>Prompting: </translation>
     </message>
     <message>
         <location filename="../src/prompter/PointerSettings.qml" line="151"/>
@@ -532,7 +531,7 @@ zu konvertieren,</translation>
         <location filename="../src/prompter/PointerSettings.qml" line="500"/>
         <location filename="../src/prompter/PointerSettings.qml" line="523"/>
         <source>Left Pointer: </source>
-        <translation>Zentriert</translation>
+        <translation>Linker Zeiger: </translation>
     </message>
     <message>
         <location filename="../src/prompter/PointerSettings.qml" line="302"/>
@@ -542,12 +541,12 @@ zu konvertieren,</translation>
         <location filename="../src/prompter/PointerSettings.qml" line="500"/>
         <location filename="../src/prompter/PointerSettings.qml" line="523"/>
         <source>Right Pointer: </source>
-        <translation>Rechts</translation>
+        <translation>Rechter Zeiger: </translation>
     </message>
     <message>
         <location filename="../src/prompter/PointerSettings.qml" line="349"/>
         <source>Font: </source>
-        <translation>Schriftart:</translation>
+        <translation>Schriftart: </translation>
     </message>
     <message>
         <location filename="../src/prompter/PointerSettings.qml" line="382"/>
@@ -1281,20 +1280,14 @@ zu konvertieren,</translation>
     <message>
         <location filename="../src/kirigami_ui/TelemetryPage.qml" line="55"/>
         <source>The following page is a placeholder. Telemetry has not yet been implemented.</source>
-        <translation>
-Die folgende Seite ist ein Platzhalter. Telemetrie wurde noch nicht
-implementiert.</translation>
+        <translation>Die folgende Seite ist ein Platzhalter. Telemetrie wurde noch nicht implementiert.</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/TelemetryPage.qml" line="66"/>
         <source>Please help improve QPrompt by sharing information on how you use it. Contributing this information is optional and entirely anonymous. The project nor I will never collect your personal data, files you use, contents you work with, or information that could help identify you.
 - Cuperino (QPrompt&apos;s Author)</source>
-        <translation>
-Bitte helfen sie QPrompt zu verbessern indem sie ihr Informationen teilen.
-Beigetragene Informationen sind Optional und vollständig anonym. Das Projekt
-noch ich werde Ihre personalen Daten, von Ihnen genutzten Datein , von Ihnen
-genutzen Contend oder Informationen die Sie identifizieren können Sammeln.\n
-- Cuperino (QPrompt&apos;s Author)</translation>
+        <translation>Bitte helfen sie QPrompt zu verbessern indem sie ihre Anwendungs-Erfahrungen teilen.Das ist natürlich optional und vollständig anonym. Weder das Projekt, noch ich werden Ihre persönlichen Daten, von Ihnen genutzten Datein , von Ihnen genutze Inhalte oder Informationen die Sie identifizieren können sammeln.
+- Cuperino (Autor von QPrompt)</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/TelemetryPage.qml" line="69"/>
@@ -1356,8 +1349,7 @@ genutzen Contend oder Informationen die Sie identifizieren können Sammeln.\n
     <message>
         <location filename="../src/kirigami_ui/TelemetryPage.qml" line="116"/>
         <source>Program run statistics: Help us study user retention</source>
-        <translation>
-Programm Laufzeit Statistiken: Helfen Sie uns unsere Nutzer zu verstehen</translation>
+        <translation>Programm Laufzeit Statistiken: Helfen Sie uns unsere Nutzer zu verstehen</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/TelemetryPage.qml" line="117"/>
@@ -1377,9 +1369,7 @@ Programm Laufzeit Statistiken: Helfen Sie uns unsere Nutzer zu verstehen</transl
     <message>
         <location filename="../src/kirigami_ui/TelemetryPage.qml" line="138"/>
         <source>Feature use frequency: Help us know what features are most important</source>
-        <translation>
-Funktionen Nutzungshäufigkeit: Lassen sie uns wissen welche Funktionen am
-Wichtigsten sind</translation>
+        <translation>Funktions Nutzungshäufigkeit: Lassen sie uns wissen welche Funktionen am wichtigsten sind</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/TelemetryPage.qml" line="139"/>
@@ -1519,11 +1509,7 @@ Wichtigsten sind</translation>
     <message>
         <location filename="../src/kirigami_ui/TelemetryPage.qml" line="190"/>
         <source>This information is very important to me, Javier, the project author, and it could help make QPrompt&apos;s development sustainable. I&apos;ve gone the extra mile not to collect any of the actual text and images that you work with, so I ask you: please leave telemetry enabled.</source>
-        <translation>
-Diese Information ist sehr wichtig für mich, Javier, den Autor des Projekts,
-und es würde mir helfen QPrompts programmierung Nachhaltig zu machen. Ich
-habe mich dazu entschlossen nicht Text und Bilder die Sie verwenden zu
-Sammeln, also frage ich Sie: Können Sie Telemetry aktivieren lassen.</translation>
+        <translation>Diese Information ist sehr wichtig für mich, Javier, den Autor des Projekts, und es würde mir helfen QPrompts Entwicklung nachhaltig zu machen. Ich habe mich dazu entschlossen Text und Bilder die Sie verwenden nicht zu sammeln, und bitte Sie daher: Lassen Sie die Telemetrie aktiviert.</translation>
     </message>
 </context>
 <context>
@@ -2094,7 +2080,9 @@ Would you like to restart %1 now? All changes to document will be lost.</source>
         <comment>application needs to restart for this change to fully take effect.
 
 Would you like to restart application now? All changes to document will be lost.</comment>
-        <translation type="unfinished"></translation>
+        <translation>%1 muss neu starten um diese Änderung vollständig anzuwenden.
+
+Möchten sie %1 jetzt neu starten? Alle Änderungen an ihrem Dokument werden dabei verloren gehen.</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/main.qml" line="1026"/>
@@ -2108,10 +2096,7 @@ Would you like to restart application now? All changes to document will be lost.
         <location filename="../src/kirigami_ui/+android/main.qml" line="600"/>
         <location filename="../src/kirigami_ui/+windows/main.qml" line="725"/>
         <source>Restore all configurations to factory defaults? QPrompt will close if you click Yes and all unsaved document changes will be lost.</source>
-        <translation>
-Alle Konfigurationen auf Werkseinstellungen zurücksetzen? Wenn sie \&quot;Ja\&quot;
-klicken wird QPrompt beendet und alle nicht gesicherten Änderungen an ihrem
-Dokument gehen verloren.</translation>
+        <translation>Alle Konfigurationen auf Werkseinstellungen zurücksetzen? Wenn sie &quot;Ja&quot; klicken wird QPrompt beendet und alle nicht gesicherten Änderungen an ihrem Dokument gehen verloren.</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/main.qml" line="1043"/>
