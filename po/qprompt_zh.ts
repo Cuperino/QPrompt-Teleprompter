@@ -17,7 +17,7 @@
 <context>
     <name>EMAILS OF TRANSLATORS</name>
     <message>
-        <location filename="../src/main.cpp" line="176"/>
+        <location filename="../src/main.cpp" line="181"/>
         <source>Emails of translators</source>
         <translation>9778566@qq.com, 1324225711@qq.com, bao_wong@163.com</translation>
     </message>
@@ -409,7 +409,7 @@ Help us translate QPrompt, visit:</source>
 <context>
     <name>NAMES OF TRANSLATORS</name>
     <message>
-        <location filename="../src/main.cpp" line="176"/>
+        <location filename="../src/main.cpp" line="181"/>
         <source>Names of translators</source>
         <translation>北北″, 黄瀚文, Bao Wong</translation>
     </message>
@@ -437,9 +437,14 @@ Help us translate QPrompt, visit:</source>
         <location filename="../src/kirigami_ui/PathsPage.qml" line="102"/>
         <location filename="../src/kirigami_ui/PathsPage.qml" line="104"/>
         <location filename="../src/kirigami_ui/PathsPage.qml" line="105"/>
-        <source>Executable (%1)</source>
-        <comment>Format name (FORMAT_EXTENSION)</comment>
-        <translation>可执行文件</translation>
+        <source>Executable &lt;%1&gt;</source>
+        <comment>Format name &lt;FORMAT_EXTENSION&gt;</comment>
+        <translation type="unfinished">可执行文件</translation>
+    </message>
+    <message>
+        <source>Executable &lt;%1&gt;</source>
+        <comment>Format name </comment>
+        <translation type="vanished">可执行文件</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/PathsPage.qml" line="107"/>
@@ -595,23 +600,23 @@ Help us translate QPrompt, visit:</source>
 <context>
     <name>ProjectionsManager</name>
     <message>
-        <location filename="../src/prompter/ProjectionsManager.qml" line="175"/>
+        <location filename="../src/prompter/ProjectionsManager.qml" line="170"/>
         <source>Projection Window</source>
         <translation>投影窗口</translation>
     </message>
     <message>
-        <location filename="../src/prompter/ProjectionsManager.qml" line="329"/>
+        <location filename="../src/prompter/ProjectionsManager.qml" line="324"/>
         <source>Close</source>
         <translation>关闭</translation>
     </message>
     <message>
-        <location filename="../src/prompter/ProjectionsManager.qml" line="342"/>
+        <location filename="../src/prompter/ProjectionsManager.qml" line="337"/>
         <source>Horizontal mirror</source>
         <comment>Mirrors prompter horizontally</comment>
         <translation>水平镜像</translation>
     </message>
     <message>
-        <location filename="../src/prompter/ProjectionsManager.qml" line="362"/>
+        <location filename="../src/prompter/ProjectionsManager.qml" line="357"/>
         <source>Vertical mirror</source>
         <comment>Mirrors prompter vertically</comment>
         <translation>垂直镜像</translation>
@@ -620,189 +625,194 @@ Help us translate QPrompt, visit:</source>
 <context>
     <name>Prompter</name>
     <message>
-        <location filename="../src/prompter/Prompter.qml" line="741"/>
+        <location filename="../src/prompter/Prompter.qml" line="751"/>
         <source>Error loading file…</source>
         <translation>加载文件时出错…</translation>
     </message>
     <message>
-        <location filename="../src/prompter/Prompter.qml" line="862"/>
+        <location filename="../src/prompter/Prompter.qml" line="872"/>
         <source>Press and hold to go back to the start</source>
         <translation>长按回到起点</translation>
     </message>
     <message>
-        <location filename="../src/prompter/Prompter.qml" line="864"/>
+        <location filename="../src/prompter/Prompter.qml" line="874"/>
         <source>Double tap to go back to the start</source>
         <translation>双击返回最开始</translation>
     </message>
     <message>
-        <location filename="../src/prompter/Prompter.qml" line="872"/>
+        <location filename="../src/prompter/Prompter.qml" line="882"/>
         <source>Auto rewind cancelled</source>
         <translation>已取消自动倒带</translation>
     </message>
     <message>
-        <location filename="../src/prompter/Prompter.qml" line="1294"/>
+        <location filename="../src/prompter/Prompter.qml" line="1360"/>
         <source>New document</source>
         <translation>新文件</translation>
     </message>
     <message>
-        <location filename="../src/prompter/Prompter.qml" line="1303"/>
+        <location filename="../src/prompter/Prompter.qml" line="1369"/>
         <source>welcome_en.html</source>
         <translation>welcome_zh.html</translation>
     </message>
     <message>
-        <location filename="../src/prompter/Prompter.qml" line="1308"/>
+        <location filename="../src/prompter/Prompter.qml" line="1374"/>
         <source>User welcome loaded</source>
         <translation>欢迎用户页</translation>
     </message>
     <message>
-        <location filename="../src/prompter/Prompter.qml" line="1318"/>
+        <location filename="../src/prompter/Prompter.qml" line="1384"/>
         <source>Loaded: %1</source>
         <translation>已加载</translation>
     </message>
     <message>
-        <location filename="../src/prompter/Prompter.qml" line="1346"/>
-        <location filename="../src/prompter/Prompter.qml" line="1482"/>
+        <location filename="../src/prompter/Prompter.qml" line="1412"/>
+        <location filename="../src/prompter/Prompter.qml" line="1558"/>
         <source>Saved %1</source>
         <comment>Saved FILE_NAME</comment>
         <translation>文件已保存到 %1</translation>
     </message>
     <message>
-        <location filename="../src/prompter/Prompter.qml" line="1348"/>
+        <location filename="../src/prompter/Prompter.qml" line="1414"/>
         <source>Saved</source>
         <translation>保存</translation>
     </message>
     <message>
-        <location filename="../src/prompter/Prompter.qml" line="1427"/>
-        <location filename="../src/prompter/Prompter.qml" line="1439"/>
-        <location filename="../src/prompter/Prompter.qml" line="1469"/>
-        <source>Plain Text (%1)</source>
-        <comment>Format name (FORMAT_EXTENSION)</comment>
-        <translation>纯文本 (%1)</translation>
+        <source>Plain Text &lt;%1&gt;</source>
+        <comment>Format name </comment>
+        <translation type="vanished">纯文本 &lt;%1&gt;</translation>
     </message>
     <message>
-        <location filename="../src/prompter/Prompter.qml" line="1428"/>
-        <source>OpenDocument Format Text Document (%1)</source>
-        <comment>Format name (FORMAT_EXTENSION)</comment>
-        <translation>ODF文档(%1)</translation>
+        <location filename="../src/prompter/Prompter.qml" line="1495"/>
+        <source>OpenDocument Format Text Document &lt;%1&gt;</source>
+        <comment>Format name &lt;FORMAT_EXTENSION&gt;</comment>
+        <translation>ODF文档&lt;%1&gt;</translation>
     </message>
     <message>
-        <location filename="../src/prompter/Prompter.qml" line="1429"/>
-        <source>AbiWord Document (%1)</source>
-        <comment>Format name (FORMAT_EXTENSION)</comment>
-        <translation>AbiWord 文档 (%1)</translation>
+        <location filename="../src/prompter/Prompter.qml" line="1496"/>
+        <source>AbiWord Document &lt;%1&gt;</source>
+        <comment>Format name &lt;FORMAT_EXTENSION&gt;</comment>
+        <translation>AbiWord 文档 &lt;%1&gt;</translation>
     </message>
     <message>
-        <location filename="../src/prompter/Prompter.qml" line="1430"/>
-        <source>Microsoft Word document (%1)</source>
-        <comment>Format name (FORMAT_EXTENSION)</comment>
-        <translation>Microsoft Word 文档 (%1)</translation>
+        <location filename="../src/prompter/Prompter.qml" line="1497"/>
+        <source>Microsoft Word document &lt;%1&gt;</source>
+        <comment>Format name &lt;FORMAT_EXTENSION&gt;</comment>
+        <translation>Microsoft Word 文档 &lt;%1&gt;</translation>
     </message>
     <message>
-        <location filename="../src/prompter/Prompter.qml" line="1431"/>
-        <source>Apple Pages Document (%1)</source>
-        <comment>Format name (FORMAT_EXTENSION)</comment>
-        <translation>Apple Pages文档 (%1)</translation>
+        <location filename="../src/prompter/Prompter.qml" line="1498"/>
+        <source>Apple Pages Document &lt;%1&gt;</source>
+        <comment>Format name &lt;FORMAT_EXTENSION&gt;</comment>
+        <translation>Apple Pages文档 &lt;%1&gt;</translation>
     </message>
     <message>
-        <location filename="../src/prompter/Prompter.qml" line="1432"/>
-        <source>Rich Text Format (%1)</source>
-        <comment>Format name (FORMAT_EXTENSION)</comment>
-        <translation>RTF (%1)</translation>
+        <location filename="../src/prompter/Prompter.qml" line="1499"/>
+        <source>Rich Text Format &lt;%1&gt;</source>
+        <comment>Format name &lt;FORMAT_EXTENSION&gt;</comment>
+        <translation>RTF &lt;%1&gt;</translation>
     </message>
     <message>
-        <location filename="../src/prompter/Prompter.qml" line="1434"/>
-        <location filename="../src/prompter/Prompter.qml" line="1442"/>
+        <location filename="../src/prompter/Prompter.qml" line="1501"/>
+        <location filename="../src/prompter/Prompter.qml" line="1509"/>
         <source>All Formats</source>
         <comment>All file formats</comment>
         <translation>所有格式</translation>
     </message>
     <message>
-        <location filename="../src/prompter/Prompter.qml" line="1425"/>
-        <location filename="../src/prompter/Prompter.qml" line="1437"/>
-        <location filename="../src/prompter/Prompter.qml" line="1464"/>
-        <location filename="../src/prompter/Prompter.qml" line="1468"/>
-        <source>Hypertext Markup Language (%1)</source>
-        <comment>Format name (FORMAT_EXTENSION)</comment>
-        <translation>网页文件 (%1)</translation>
+        <location filename="../src/prompter/Prompter.qml" line="1492"/>
+        <location filename="../src/prompter/Prompter.qml" line="1504"/>
+        <location filename="../src/prompter/Prompter.qml" line="1540"/>
+        <location filename="../src/prompter/Prompter.qml" line="1544"/>
+        <source>Hypertext Markup Language &lt;%1&gt;</source>
+        <comment>Format name &lt;FORMAT_EXTENSION&gt;</comment>
+        <translation>网页文件 &lt;%1&gt;</translation>
     </message>
     <message>
-        <location filename="../src/prompter/Prompter.qml" line="1426"/>
-        <location filename="../src/prompter/Prompter.qml" line="1438"/>
-        <source>Markdown (%1)</source>
-        <comment>Format name (FORMAT_EXTENSION)</comment>
-        <translation>Markdown文件 (%1)</translation>
+        <location filename="../src/prompter/Prompter.qml" line="1493"/>
+        <location filename="../src/prompter/Prompter.qml" line="1505"/>
+        <source>Markdown &lt;%1&gt;</source>
+        <comment>Format name &lt;FORMAT_EXTENSION&gt;</comment>
+        <translation>Markdown文件 &lt;%1&gt;</translation>
     </message>
     <message>
-        <location filename="../src/prompter/Prompter.qml" line="1507"/>
-        <location filename="../src/prompter/Prompter.qml" line="1554"/>
+        <location filename="../src/prompter/Prompter.qml" line="1494"/>
+        <location filename="../src/prompter/Prompter.qml" line="1506"/>
+        <location filename="../src/prompter/Prompter.qml" line="1545"/>
+        <source>Plain Text &lt;%1&gt;</source>
+        <comment>Format name &lt;FORMAT_EXTENSION&gt;</comment>
+        <translation type="unfinished">纯文本 &lt;%1&gt;</translation>
+    </message>
+    <message>
+        <location filename="../src/prompter/Prompter.qml" line="1583"/>
+        <location filename="../src/prompter/Prompter.qml" line="1630"/>
         <source>&amp;Copy</source>
         <comment>Global menu and editor context menu actions</comment>
         <translation>复制</translation>
     </message>
     <message>
-        <location filename="../src/prompter/Prompter.qml" line="1512"/>
-        <location filename="../src/prompter/Prompter.qml" line="1559"/>
+        <location filename="../src/prompter/Prompter.qml" line="1588"/>
+        <location filename="../src/prompter/Prompter.qml" line="1635"/>
         <source>Cu&amp;t</source>
         <comment>Global menu and editor context menu actions</comment>
         <translation>剪切</translation>
     </message>
     <message>
-        <location filename="../src/prompter/Prompter.qml" line="1517"/>
-        <location filename="../src/prompter/Prompter.qml" line="1564"/>
+        <location filename="../src/prompter/Prompter.qml" line="1593"/>
+        <location filename="../src/prompter/Prompter.qml" line="1640"/>
         <source>&amp;Paste</source>
         <comment>Global menu and editor context menu actions</comment>
         <translation>粘贴</translation>
     </message>
     <message>
-        <location filename="../src/prompter/Prompter.qml" line="1523"/>
-        <location filename="../src/prompter/Prompter.qml" line="1570"/>
+        <location filename="../src/prompter/Prompter.qml" line="1599"/>
+        <location filename="../src/prompter/Prompter.qml" line="1646"/>
         <source>Fo&amp;nt…</source>
         <comment>Editor context menu actions</comment>
         <translation>字体…</translation>
     </message>
     <message>
-        <location filename="../src/prompter/Prompter.qml" line="1527"/>
-        <location filename="../src/prompter/Prompter.qml" line="1574"/>
+        <location filename="../src/prompter/Prompter.qml" line="1603"/>
+        <location filename="../src/prompter/Prompter.qml" line="1650"/>
         <source>Co&amp;lor…</source>
         <comment>Editor context menu actions</comment>
         <translation>颜色…</translation>
     </message>
     <message>
-        <location filename="../src/prompter/Prompter.qml" line="1531"/>
-        <location filename="../src/prompter/Prompter.qml" line="1578"/>
+        <location filename="../src/prompter/Prompter.qml" line="1607"/>
+        <location filename="../src/prompter/Prompter.qml" line="1654"/>
         <source>Hi&amp;ghlight…</source>
         <comment>Editor context menu actions</comment>
         <translation>高亮显示…</translation>
     </message>
     <message>
-        <location filename="../src/prompter/Prompter.qml" line="1543"/>
+        <location filename="../src/prompter/Prompter.qml" line="1619"/>
         <source>&amp;Undo</source>
         <comment>Editor context menu actions</comment>
         <translation>打开</translation>
     </message>
     <message>
-        <location filename="../src/prompter/Prompter.qml" line="1548"/>
+        <location filename="../src/prompter/Prompter.qml" line="1624"/>
         <source>Redo</source>
         <comment>Editor context menu actions</comment>
         <translation>重做</translation>
     </message>
     <message>
-        <location filename="../src/prompter/Prompter.qml" line="1891"/>
+        <location filename="../src/prompter/Prompter.qml" line="1967"/>
         <source>Begin countdown</source>
         <translation>开始倒计时</translation>
     </message>
     <message>
-        <location filename="../src/prompter/Prompter.qml" line="1891"/>
+        <location filename="../src/prompter/Prompter.qml" line="1967"/>
         <source>Start prompting</source>
         <translation>开始提示</translation>
     </message>
     <message>
-        <location filename="../src/prompter/Prompter.qml" line="1939"/>
+        <location filename="../src/prompter/Prompter.qml" line="2015"/>
         <source>Skip countdown</source>
         <translation>跳过倒计时</translation>
     </message>
     <message>
-        <location filename="../src/prompter/Prompter.qml" line="1984"/>
+        <location filename="../src/prompter/Prompter.qml" line="2060"/>
         <source>Return to edit mode</source>
         <translation>返回编辑模式</translation>
     </message>
@@ -810,17 +820,17 @@ Help us translate QPrompt, visit:</source>
 <context>
     <name>PrompterBackground</name>
     <message>
-        <location filename="../src/prompter/PrompterBackground.qml" line="131"/>
+        <location filename="../src/prompter/PrompterBackground.qml" line="133"/>
         <source>JPEG image</source>
         <translation>JPEG图像</translation>
     </message>
     <message>
-        <location filename="../src/prompter/PrompterBackground.qml" line="132"/>
+        <location filename="../src/prompter/PrompterBackground.qml" line="134"/>
         <source>PNG image</source>
         <translation>PNG图像</translation>
     </message>
     <message>
-        <location filename="../src/prompter/PrompterBackground.qml" line="133"/>
+        <location filename="../src/prompter/PrompterBackground.qml" line="135"/>
         <source>GIF animation</source>
         <translation>GIF动画</translation>
     </message>
@@ -1173,87 +1183,87 @@ Help us translate QPrompt, visit:</source>
         <translation>全屏</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/PrompterPage.qml" line="851"/>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="863"/>
         <source>Countdown Setup</source>
         <translation>倒计时设置</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/PrompterPage.qml" line="870"/>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="882"/>
         <source>Countdown duration</source>
         <translation>倒计时时长</translation>
     </message>
     <message numerus="yes">
-        <location filename="../src/kirigami_ui/PrompterPage.qml" line="890"/>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="902"/>
         <source>Disappear within %n second(s) to go</source>
         <translation>
             <numerusform>在 %n 秒内消失</numerusform>
         </translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/PrompterPage.qml" line="916"/>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="928"/>
         <source>Skip Key</source>
         <comment>Refers to a key on the keyboard used to skip to a user defined marker while prompting</comment>
         <translation>跳跃键</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/PrompterPage.qml" line="949"/>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="961"/>
         <source>Key to perform skip to this marker</source>
         <comment>Refers to a key on the keyboard used to skip to a user defined marker while prompting</comment>
         <translation>按此键执行跳到此标记</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/PrompterPage.qml" line="1002"/>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="1014"/>
         <source>Open from network...</source>
         <translation>从网络上打开</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/PrompterPage.qml" line="1043"/>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="1055"/>
         <source>URL:</source>
         <translation>URL:</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/PrompterPage.qml" line="1058"/>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="1070"/>
         <source>Auto reload</source>
         <translation>自动重载</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/PrompterPage.qml" line="1069"/>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="1081"/>
         <source>Hours:</source>
         <translation>时：</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/PrompterPage.qml" line="1090"/>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="1102"/>
         <source>Minutes:</source>
         <translation>分：</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/PrompterPage.qml" line="1115"/>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="1127"/>
         <source>Seconds:</source>
         <translation>秒：</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/PrompterPage.qml" line="1143"/>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="1155"/>
         <source>Next reload starts at %1</source>
         <comment>Next reload starts at 10:11:12</comment>
         <translation>下次重新加载开始于 %1</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/PrompterPage.qml" line="1144"/>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="1156"/>
         <source>Auto reload is not running</source>
         <translation>自动重新加载未运行</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/PrompterPage.qml" line="1150"/>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="1162"/>
         <source>Load from Network</source>
         <translation>从网络加载</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/PrompterPage.qml" line="1158"/>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="1170"/>
         <source>Close</source>
         <translation>关闭</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/PrompterPage.qml" line="1172"/>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="1184"/>
         <source>Pointer configuration</source>
         <comment>Name of section where reding region pointers are configured</comment>
         <translation>指针配置</translation>
@@ -1559,522 +1569,527 @@ Help us translate QPrompt, visit:</source>
 <context>
     <name>main</name>
     <message>
-        <location filename="../src/kirigami_ui/main.qml" line="198"/>
-        <location filename="../src/kirigami_ui/main.qml" line="577"/>
-        <location filename="../src/kirigami_ui/+android/main.qml" line="183"/>
-        <location filename="../src/kirigami_ui/+windows/main.qml" line="198"/>
+        <location filename="../src/kirigami_ui/main.qml" line="200"/>
+        <location filename="../src/kirigami_ui/main.qml" line="580"/>
+        <location filename="../src/kirigami_ui/+android/main.qml" line="185"/>
+        <location filename="../src/kirigami_ui/+windows/main.qml" line="199"/>
         <source>&amp;New</source>
         <comment>Main menu and global menu actions</comment>
         <translation>新建</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/main.qml" line="205"/>
-        <location filename="../src/kirigami_ui/main.qml" line="581"/>
-        <location filename="../src/kirigami_ui/+android/main.qml" line="189"/>
-        <location filename="../src/kirigami_ui/+windows/main.qml" line="205"/>
+        <location filename="../src/kirigami_ui/main.qml" line="207"/>
+        <location filename="../src/kirigami_ui/main.qml" line="584"/>
+        <location filename="../src/kirigami_ui/main.qml" line="588"/>
+        <location filename="../src/kirigami_ui/+android/main.qml" line="191"/>
+        <location filename="../src/kirigami_ui/+windows/main.qml" line="206"/>
         <source>&amp;Open</source>
         <comment>Main menu and global menu actions</comment>
         <translation>打开</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/main.qml" line="215"/>
-        <location filename="../src/kirigami_ui/+android/main.qml" line="198"/>
-        <location filename="../src/kirigami_ui/+windows/main.qml" line="215"/>
+        <location filename="../src/kirigami_ui/main.qml" line="217"/>
+        <location filename="../src/kirigami_ui/main.qml" line="592"/>
+        <location filename="../src/kirigami_ui/+android/main.qml" line="200"/>
+        <location filename="../src/kirigami_ui/+windows/main.qml" line="216"/>
         <source>&amp;Open remote file</source>
         <comment>Main menu and global menu actions</comment>
         <translation>打开远程文件</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/main.qml" line="224"/>
-        <location filename="../src/kirigami_ui/main.qml" line="585"/>
-        <location filename="../src/kirigami_ui/+android/main.qml" line="207"/>
-        <location filename="../src/kirigami_ui/+windows/main.qml" line="224"/>
+        <location filename="../src/kirigami_ui/main.qml" line="226"/>
+        <location filename="../src/kirigami_ui/main.qml" line="599"/>
+        <location filename="../src/kirigami_ui/+android/main.qml" line="209"/>
+        <location filename="../src/kirigami_ui/+windows/main.qml" line="225"/>
         <source>&amp;Save</source>
         <comment>Main menu and global menu actions</comment>
         <translation>保存</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/main.qml" line="234"/>
-        <location filename="../src/kirigami_ui/+android/main.qml" line="216"/>
-        <location filename="../src/kirigami_ui/+windows/main.qml" line="234"/>
+        <location filename="../src/kirigami_ui/main.qml" line="236"/>
+        <location filename="../src/kirigami_ui/+android/main.qml" line="218"/>
+        <location filename="../src/kirigami_ui/+windows/main.qml" line="235"/>
         <source>Save &amp;As</source>
         <comment>Main menu and global menu actions</comment>
         <translation>另存为</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/main.qml" line="245"/>
-        <location filename="../src/kirigami_ui/+android/main.qml" line="226"/>
-        <location filename="../src/kirigami_ui/+windows/main.qml" line="245"/>
+        <location filename="../src/kirigami_ui/main.qml" line="247"/>
+        <location filename="../src/kirigami_ui/+android/main.qml" line="228"/>
+        <location filename="../src/kirigami_ui/+windows/main.qml" line="246"/>
         <source>&amp;Recent Files</source>
         <comment>Main menu actions</comment>
         <translation>最近浏览</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/main.qml" line="254"/>
-        <location filename="../src/kirigami_ui/+android/main.qml" line="234"/>
-        <location filename="../src/kirigami_ui/+windows/main.qml" line="254"/>
+        <location filename="../src/kirigami_ui/main.qml" line="256"/>
+        <location filename="../src/kirigami_ui/+android/main.qml" line="236"/>
+        <location filename="../src/kirigami_ui/+windows/main.qml" line="255"/>
         <source>&amp;Controls Settings</source>
         <comment>Main menu actions. Menu regarding input settings.</comment>
         <translation>控制设置</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/main.qml" line="259"/>
-        <location filename="../src/kirigami_ui/+android/main.qml" line="239"/>
-        <location filename="../src/kirigami_ui/+windows/main.qml" line="259"/>
+        <location filename="../src/kirigami_ui/main.qml" line="261"/>
+        <location filename="../src/kirigami_ui/main.qml" line="809"/>
+        <location filename="../src/kirigami_ui/+android/main.qml" line="241"/>
+        <location filename="../src/kirigami_ui/+windows/main.qml" line="260"/>
         <source>Keyboard Inputs</source>
         <comment>Main menu and global menu actions. Opens dialog to configure keyboard inputs.</comment>
         <translation>键盘输入</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/main.qml" line="266"/>
-        <location filename="../src/kirigami_ui/+android/main.qml" line="246"/>
-        <location filename="../src/kirigami_ui/+windows/main.qml" line="266"/>
+        <location filename="../src/kirigami_ui/main.qml" line="268"/>
+        <location filename="../src/kirigami_ui/+android/main.qml" line="248"/>
+        <location filename="../src/kirigami_ui/+windows/main.qml" line="267"/>
         <source>Scroll throttle settings</source>
         <comment>Open &apos;scroll settings&apos; from main menu and global menu actions</comment>
         <translation>滚动油门设置</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/main.qml" line="272"/>
-        <location filename="../src/kirigami_ui/main.qml" line="822"/>
-        <location filename="../src/kirigami_ui/+android/main.qml" line="252"/>
-        <location filename="../src/kirigami_ui/+windows/main.qml" line="272"/>
+        <location filename="../src/kirigami_ui/main.qml" line="274"/>
+        <location filename="../src/kirigami_ui/main.qml" line="828"/>
+        <location filename="../src/kirigami_ui/+android/main.qml" line="254"/>
+        <location filename="../src/kirigami_ui/+windows/main.qml" line="273"/>
         <source>Invert &amp;arrow keys</source>
         <comment>Main menu and global menu actions. Have up arrow behave like down arrow and vice versa while prompting.</comment>
         <translation>颠倒箭头方向</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/main.qml" line="281"/>
-        <location filename="../src/kirigami_ui/main.qml" line="829"/>
-        <location filename="../src/kirigami_ui/+android/main.qml" line="261"/>
-        <location filename="../src/kirigami_ui/+windows/main.qml" line="281"/>
+        <location filename="../src/kirigami_ui/main.qml" line="283"/>
+        <location filename="../src/kirigami_ui/main.qml" line="835"/>
+        <location filename="../src/kirigami_ui/+android/main.qml" line="263"/>
+        <location filename="../src/kirigami_ui/+windows/main.qml" line="282"/>
         <source>Invert &amp;scroll direction (Natural scrolling)</source>
         <comment>Main menu and global menu actions. Invert scroll direction while prompting.</comment>
         <translation>反转滚动方向（自然滚动）</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/main.qml" line="290"/>
-        <location filename="../src/kirigami_ui/main.qml" line="814"/>
-        <location filename="../src/kirigami_ui/+android/main.qml" line="270"/>
-        <location filename="../src/kirigami_ui/+windows/main.qml" line="290"/>
+        <location filename="../src/kirigami_ui/main.qml" line="292"/>
+        <location filename="../src/kirigami_ui/main.qml" line="820"/>
+        <location filename="../src/kirigami_ui/+android/main.qml" line="272"/>
+        <location filename="../src/kirigami_ui/+windows/main.qml" line="291"/>
         <source>Use scroll as velocity &amp;dial</source>
         <comment>Main menu and global menu actions. Have touchpad and mouse wheel scrolling adjust velocity instead of scrolling like most other apps.</comment>
         <translation>使用滚轮控制速度</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/main.qml" line="300"/>
-        <location filename="../src/kirigami_ui/main.qml" line="808"/>
-        <location filename="../src/kirigami_ui/+android/main.qml" line="280"/>
-        <location filename="../src/kirigami_ui/+windows/main.qml" line="300"/>
+        <location filename="../src/kirigami_ui/main.qml" line="302"/>
+        <location filename="../src/kirigami_ui/main.qml" line="814"/>
+        <location filename="../src/kirigami_ui/+android/main.qml" line="282"/>
+        <location filename="../src/kirigami_ui/+windows/main.qml" line="301"/>
         <source>Disable scrolling while prompting</source>
         <comment>Main menu and global menu actions. Touchpad scrolling and mouse wheel use have no effect while prompting.</comment>
         <translation>运行时禁止使用滚轮</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/main.qml" line="309"/>
-        <location filename="../src/kirigami_ui/+android/main.qml" line="289"/>
-        <location filename="../src/kirigami_ui/+windows/main.qml" line="309"/>
+        <location filename="../src/kirigami_ui/main.qml" line="311"/>
+        <location filename="../src/kirigami_ui/+android/main.qml" line="291"/>
+        <location filename="../src/kirigami_ui/+windows/main.qml" line="310"/>
         <source>Other &amp;Settings</source>
         <comment>Main menu actions</comment>
         <translation>其他设置</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/main.qml" line="320"/>
-        <location filename="../src/kirigami_ui/+windows/main.qml" line="320"/>
+        <location filename="../src/kirigami_ui/main.qml" line="322"/>
+        <location filename="../src/kirigami_ui/+windows/main.qml" line="321"/>
         <source>External Tools and Applications</source>
         <comment>Main menu actions. Load Path Settings page.</comment>
         <translation>外部工具和应用程序</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/main.qml" line="327"/>
-        <location filename="../src/kirigami_ui/+android/main.qml" line="299"/>
-        <location filename="../src/kirigami_ui/+windows/main.qml" line="327"/>
+        <location filename="../src/kirigami_ui/main.qml" line="329"/>
+        <location filename="../src/kirigami_ui/+android/main.qml" line="301"/>
+        <location filename="../src/kirigami_ui/+windows/main.qml" line="328"/>
         <source>Layout direction</source>
         <comment>Main menu actions. Opens dialog for choosing layout direction.</comment>
         <translation>布局方向</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/main.qml" line="332"/>
-        <location filename="../src/kirigami_ui/+android/main.qml" line="304"/>
-        <location filename="../src/kirigami_ui/+windows/main.qml" line="332"/>
+        <location filename="../src/kirigami_ui/main.qml" line="334"/>
+        <location filename="../src/kirigami_ui/+android/main.qml" line="306"/>
+        <location filename="../src/kirigami_ui/+windows/main.qml" line="333"/>
         <source>Performance tweaks</source>
         <comment>Main menu actions. Enters Performance tweaks submenu.</comment>
         <translation>性能调整</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/main.qml" line="334"/>
-        <location filename="../src/kirigami_ui/+android/main.qml" line="306"/>
-        <location filename="../src/kirigami_ui/+windows/main.qml" line="334"/>
+        <location filename="../src/kirigami_ui/main.qml" line="336"/>
+        <location filename="../src/kirigami_ui/+android/main.qml" line="308"/>
+        <location filename="../src/kirigami_ui/+windows/main.qml" line="335"/>
         <source>Disable screen projections</source>
         <comment>Main menu actions</comment>
         <translation>启用投影</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/main.qml" line="341"/>
-        <location filename="../src/kirigami_ui/+android/main.qml" line="313"/>
-        <location filename="../src/kirigami_ui/+windows/main.qml" line="341"/>
+        <location filename="../src/kirigami_ui/main.qml" line="343"/>
+        <location filename="../src/kirigami_ui/+android/main.qml" line="315"/>
+        <location filename="../src/kirigami_ui/+windows/main.qml" line="342"/>
         <source>Disable timers</source>
         <comment>Main menu actions</comment>
         <translation>关闭计时器</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/main.qml" line="350"/>
-        <location filename="../src/kirigami_ui/+android/main.qml" line="322"/>
-        <location filename="../src/kirigami_ui/+windows/main.qml" line="350"/>
+        <location filename="../src/kirigami_ui/main.qml" line="352"/>
+        <location filename="../src/kirigami_ui/+android/main.qml" line="324"/>
+        <location filename="../src/kirigami_ui/+windows/main.qml" line="351"/>
         <source>Auto hide formatting tools</source>
         <comment>Main menu actions. Hides formatting tools while not in edit mode.</comment>
         <translation>自动隐藏格式工具</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/main.qml" line="358"/>
-        <location filename="../src/kirigami_ui/+android/main.qml" line="330"/>
-        <location filename="../src/kirigami_ui/+windows/main.qml" line="358"/>
+        <location filename="../src/kirigami_ui/main.qml" line="360"/>
+        <location filename="../src/kirigami_ui/+android/main.qml" line="332"/>
+        <location filename="../src/kirigami_ui/+windows/main.qml" line="359"/>
         <source>Always hide formatting tools</source>
         <comment>Main menu actions</comment>
         <translation>始终隐藏格式化工具</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/main.qml" line="366"/>
-        <location filename="../src/kirigami_ui/+android/main.qml" line="338"/>
-        <location filename="../src/kirigami_ui/+windows/main.qml" line="366"/>
+        <location filename="../src/kirigami_ui/main.qml" line="368"/>
+        <location filename="../src/kirigami_ui/+android/main.qml" line="340"/>
+        <location filename="../src/kirigami_ui/+windows/main.qml" line="367"/>
         <source>Disable overlay contrast</source>
         <comment>Main menu actions. Disables contrast effect for the reading region overlay.</comment>
         <translation>禁用阅读区域叠加对比度</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/main.qml" line="376"/>
-        <location filename="../src/kirigami_ui/+windows/main.qml" line="376"/>
+        <location filename="../src/kirigami_ui/main.qml" line="378"/>
+        <location filename="../src/kirigami_ui/+windows/main.qml" line="377"/>
         <source>Disable background transparency</source>
         <translation>关闭背景透明度</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/main.qml" line="395"/>
-        <location filename="../src/kirigami_ui/+windows/main.qml" line="395"/>
+        <location filename="../src/kirigami_ui/main.qml" line="397"/>
+        <location filename="../src/kirigami_ui/+windows/main.qml" line="396"/>
         <source>Force sub-pixel text renderer past 120px</source>
         <comment>Main menu actions. QPrompt switches between two text rendering techniques when the base font size exceeds 120px. Enabling this option forces QPrompt to always use the default renderer, which features smoother sub-pixel animations.</comment>
         <translation>强制像素文本渲染器超过120px</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/main.qml" line="406"/>
-        <location filename="../src/kirigami_ui/+android/main.qml" line="347"/>
-        <location filename="../src/kirigami_ui/+windows/main.qml" line="406"/>
+        <location filename="../src/kirigami_ui/main.qml" line="408"/>
+        <location filename="../src/kirigami_ui/+android/main.qml" line="349"/>
+        <location filename="../src/kirigami_ui/+windows/main.qml" line="407"/>
         <source>Other tweaks</source>
         <comment>Main menu actions. Enters Other tweaks submenu.</comment>
         <translation>其他调整</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/main.qml" line="409"/>
-        <location filename="../src/kirigami_ui/+android/main.qml" line="349"/>
-        <location filename="../src/kirigami_ui/+windows/main.qml" line="408"/>
+        <location filename="../src/kirigami_ui/main.qml" line="411"/>
+        <location filename="../src/kirigami_ui/+android/main.qml" line="351"/>
+        <location filename="../src/kirigami_ui/+windows/main.qml" line="409"/>
         <source>Local file auto reload</source>
         <comment>Main menu actions. Enable local file auto reload</comment>
         <translation>本地文件自动重载</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/main.qml" line="417"/>
-        <location filename="../src/kirigami_ui/+windows/main.qml" line="416"/>
+        <location filename="../src/kirigami_ui/main.qml" line="419"/>
+        <location filename="../src/kirigami_ui/+windows/main.qml" line="417"/>
         <source>Fake fullscreen behavior</source>
         <comment>Main menu actions. Fake fullscreen behavior instead of requesting true fullscreen</comment>
         <translation>模拟全屏</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/main.qml" line="426"/>
-        <location filename="../src/kirigami_ui/+android/main.qml" line="357"/>
-        <location filename="../src/kirigami_ui/+windows/main.qml" line="424"/>
+        <location filename="../src/kirigami_ui/main.qml" line="428"/>
+        <location filename="../src/kirigami_ui/+android/main.qml" line="359"/>
+        <location filename="../src/kirigami_ui/+windows/main.qml" line="425"/>
         <source>Restore factory defaults</source>
         <comment>Main menu actions</comment>
         <translation>恢复默认设置</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/main.qml" line="436"/>
-        <location filename="../src/kirigami_ui/+android/main.qml" line="367"/>
-        <location filename="../src/kirigami_ui/+windows/main.qml" line="434"/>
+        <location filename="../src/kirigami_ui/main.qml" line="438"/>
+        <location filename="../src/kirigami_ui/+android/main.qml" line="369"/>
+        <location filename="../src/kirigami_ui/+windows/main.qml" line="435"/>
         <source>Language</source>
         <comment>Main menu actions</comment>
         <translation>语言</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/main.qml" line="443"/>
-        <location filename="../src/kirigami_ui/+android/main.qml" line="374"/>
-        <location filename="../src/kirigami_ui/+windows/main.qml" line="441"/>
+        <location filename="../src/kirigami_ui/main.qml" line="445"/>
+        <location filename="../src/kirigami_ui/+android/main.qml" line="376"/>
+        <location filename="../src/kirigami_ui/+windows/main.qml" line="442"/>
         <source>Abou&amp;t %1</source>
         <comment>Main menu actions. Load about page.</comment>
         <translation>关于 %1</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/main.qml" line="450"/>
-        <location filename="../src/kirigami_ui/main.qml" line="594"/>
-        <location filename="../src/kirigami_ui/+android/main.qml" line="381"/>
-        <location filename="../src/kirigami_ui/+windows/main.qml" line="448"/>
+        <location filename="../src/kirigami_ui/main.qml" line="452"/>
+        <location filename="../src/kirigami_ui/main.qml" line="608"/>
+        <location filename="../src/kirigami_ui/+android/main.qml" line="383"/>
+        <location filename="../src/kirigami_ui/+windows/main.qml" line="449"/>
         <source>&amp;Quit</source>
         <comment>Main menu and global menu actions</comment>
         <translation>退出</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/main.qml" line="509"/>
-        <location filename="../src/kirigami_ui/main.qml" line="854"/>
-        <location filename="../src/kirigami_ui/+android/main.qml" line="434"/>
-        <location filename="../src/kirigami_ui/+windows/main.qml" line="507"/>
+        <location filename="../src/kirigami_ui/main.qml" line="512"/>
+        <location filename="../src/kirigami_ui/main.qml" line="860"/>
+        <location filename="../src/kirigami_ui/+android/main.qml" line="437"/>
+        <location filename="../src/kirigami_ui/+windows/main.qml" line="509"/>
         <source>Load &amp;Welcome</source>
         <comment>Main menu and global actions. Load document that welcomes users.</comment>
         <translation>加载欢迎</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/main.qml" line="545"/>
-        <location filename="../src/kirigami_ui/+android/main.qml" line="470"/>
-        <location filename="../src/kirigami_ui/+windows/main.qml" line="543"/>
+        <location filename="../src/kirigami_ui/main.qml" line="548"/>
+        <location filename="../src/kirigami_ui/+android/main.qml" line="473"/>
+        <location filename="../src/kirigami_ui/+windows/main.qml" line="545"/>
         <source>Darth mode</source>
         <translation>星球模式</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/main.qml" line="574"/>
+        <location filename="../src/kirigami_ui/main.qml" line="577"/>
         <source>&amp;File</source>
         <comment>Global menu actions</comment>
         <translation>文件</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/main.qml" line="589"/>
+        <location filename="../src/kirigami_ui/main.qml" line="603"/>
         <source>Save &amp;As…</source>
         <comment>Main menu and global menu actions</comment>
         <translation>另存为…</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/main.qml" line="600"/>
+        <location filename="../src/kirigami_ui/main.qml" line="614"/>
         <source>&amp;Edit</source>
         <comment>Global menu actions</comment>
         <translation>编辑</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/main.qml" line="603"/>
+        <location filename="../src/kirigami_ui/main.qml" line="617"/>
         <source>&amp;Undo</source>
         <comment>Global menu actions</comment>
         <translation>打开</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/main.qml" line="608"/>
+        <location filename="../src/kirigami_ui/main.qml" line="622"/>
         <source>&amp;Redo</source>
         <comment>Global menu actions</comment>
         <translation>恢复</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/main.qml" line="614"/>
+        <location filename="../src/kirigami_ui/main.qml" line="628"/>
         <source>&amp;Copy</source>
         <comment>Global menu and editor context menu actions</comment>
         <translation>复制</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/main.qml" line="619"/>
+        <location filename="../src/kirigami_ui/main.qml" line="633"/>
         <source>Cu&amp;t</source>
         <comment>Global menu and editor context menu actions</comment>
         <translation>剪切</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/main.qml" line="624"/>
+        <location filename="../src/kirigami_ui/main.qml" line="638"/>
         <source>&amp;Paste</source>
         <comment>Global menu and editor context menu actions</comment>
         <translation>粘贴</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/main.qml" line="631"/>
+        <location filename="../src/kirigami_ui/main.qml" line="645"/>
         <source>&amp;View</source>
         <comment>Global menu actions</comment>
         <translation>视图</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/main.qml" line="634"/>
+        <location filename="../src/kirigami_ui/main.qml" line="648"/>
         <source>Full &amp;screen</source>
         <comment>Global menu actions</comment>
         <translation>全屏</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/main.qml" line="648"/>
+        <location filename="../src/kirigami_ui/main.qml" line="662"/>
         <source>&amp;Indicators</source>
         <comment>Global menu actions. Indicators highlight reading region.</comment>
         <translation>工具栏</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/main.qml" line="650"/>
+        <location filename="../src/kirigami_ui/main.qml" line="664"/>
         <source>&amp;Left Pointer</source>
         <comment>Global menu actions. Shows pointer to the left of the reading region.</comment>
         <translation>左边的箭头</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/main.qml" line="656"/>
+        <location filename="../src/kirigami_ui/main.qml" line="670"/>
         <source>&amp;Right Pointer</source>
         <comment>Global menu actions. Shows pointer to the right of the reading region.</comment>
         <translation>右边的箭头</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/main.qml" line="662"/>
+        <location filename="../src/kirigami_ui/main.qml" line="676"/>
         <source>B&amp;oth Pointers</source>
         <comment>Global menu actions. Shows pointers to the left and right of the reading region.</comment>
         <translation>左右箭头</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/main.qml" line="669"/>
+        <location filename="../src/kirigami_ui/main.qml" line="682"/>
+        <source>No pointers</source>
+        <comment>Disable all reading region pointers</comment>
+        <translation type="unfinished">没有指针</translation>
+    </message>
+    <message>
+        <location filename="../src/kirigami_ui/main.qml" line="692"/>
         <source>&amp;Bars</source>
         <comment>Global menu actions. Translucent bars indicate reading region.</comment>
         <translation>工具栏</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/main.qml" line="675"/>
         <source>Bars Lef&amp;t</source>
         <comment>Global menu actions. Translucent bars and left pointer indicate reading region.</comment>
-        <translation>左侧工具栏</translation>
+        <translation type="vanished">左侧工具栏</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/main.qml" line="681"/>
         <source>Bars Ri&amp;ght</source>
         <comment>Global menu actions. Translucent bars and right pointer indicate reading region.</comment>
-        <translation>右侧工具栏</translation>
+        <translation type="vanished">右侧工具栏</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/main.qml" line="688"/>
         <source>&amp;All</source>
         <comment>Global menu actions. Enable all reading region indicators.</comment>
-        <translation>全部</translation>
+        <translation type="vanished">全部</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/main.qml" line="694"/>
         <source>&amp;Hidden</source>
         <comment>Global menu actions. Disable all reading region indicators.</comment>
-        <translation>隐藏</translation>
+        <translation type="vanished">隐藏</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/main.qml" line="701"/>
+        <location filename="../src/kirigami_ui/main.qml" line="689"/>
         <source>Readin&amp;g region</source>
         <comment>Global menu actions. Reading region indicates where a talent should be reading from.</comment>
         <translation>阅读区</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/main.qml" line="703"/>
+        <location filename="../src/kirigami_ui/main.qml" line="704"/>
         <source>&amp;Top</source>
         <comment>Global menu actions. Align reading region to top of prompter.</comment>
         <translation>上</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/main.qml" line="709"/>
+        <location filename="../src/kirigami_ui/main.qml" line="710"/>
         <source>&amp;Middle</source>
         <comment>Global menu actions. Align reading region to vertical center of prompter.</comment>
         <translation>中</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/main.qml" line="715"/>
+        <location filename="../src/kirigami_ui/main.qml" line="716"/>
         <source>&amp;Bottom</source>
         <comment>Global menu actions. Align reading region to bottom of prompter.</comment>
         <translation>下</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/main.qml" line="722"/>
+        <location filename="../src/kirigami_ui/main.qml" line="723"/>
         <source>F&amp;ree placement</source>
         <comment>Global menu actions. Enables drag and drop positioning of reading region.</comment>
         <translation>自由放置</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/main.qml" line="728"/>
+        <location filename="../src/kirigami_ui/main.qml" line="729"/>
         <source>C&amp;ustom (Fixed placement)</source>
         <comment>Global menu actions. Fix positioning of reading region to what was set in &quot;Free placement&quot; mode.</comment>
         <translation>定制（固定位置）</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/main.qml" line="737"/>
+        <location filename="../src/kirigami_ui/main.qml" line="738"/>
         <source>For&amp;mat</source>
         <comment>Global menu actions</comment>
         <translation>格式</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/main.qml" line="740"/>
+        <location filename="../src/kirigami_ui/main.qml" line="741"/>
         <source>&amp;Bold</source>
         <comment>Global menu actions</comment>
         <translation>粗体</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/main.qml" line="746"/>
+        <location filename="../src/kirigami_ui/main.qml" line="747"/>
         <source>&amp;Italic</source>
         <comment>Global menu actions</comment>
         <translation>斜体</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/main.qml" line="752"/>
+        <location filename="../src/kirigami_ui/main.qml" line="753"/>
         <source>&amp;Underline</source>
         <comment>Global menu actions</comment>
         <translation>下划线</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/main.qml" line="759"/>
+        <location filename="../src/kirigami_ui/main.qml" line="760"/>
         <source>Align &amp;Left</source>
         <comment>Global menu and editor actions. Text alignment.</comment>
         <translation>左对齐</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/main.qml" line="759"/>
+        <location filename="../src/kirigami_ui/main.qml" line="760"/>
         <source>Align &amp;Right</source>
         <comment>Global menu and editor actions. Text alignment.</comment>
         <translation>右对齐</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/main.qml" line="770"/>
+        <location filename="../src/kirigami_ui/main.qml" line="771"/>
         <source>Align Cen&amp;ter</source>
         <comment>Global menu actions. Text alignment.</comment>
         <translation>居中</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/main.qml" line="776"/>
+        <location filename="../src/kirigami_ui/main.qml" line="777"/>
         <source>Align &amp;Right</source>
         <comment>Global menu actions. Text alignment.</comment>
         <translation>右对齐</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/main.qml" line="776"/>
+        <location filename="../src/kirigami_ui/main.qml" line="777"/>
         <source>Align &amp;Left</source>
         <comment>Global menu actions. Text alignment.</comment>
         <translation>左对齐</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/main.qml" line="795"/>
+        <location filename="../src/kirigami_ui/main.qml" line="796"/>
         <source>C&amp;haracter</source>
         <comment>Global menu actions. Opens dialog to format currently selected text.</comment>
         <translation>个性化</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/main.qml" line="799"/>
+        <location filename="../src/kirigami_ui/main.qml" line="800"/>
         <source>Fo&amp;nt Color</source>
         <comment>Global menu actions. Opens dialog to color currently selected text.</comment>
         <translation>字体颜色</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/main.qml" line="805"/>
+        <location filename="../src/kirigami_ui/main.qml" line="806"/>
         <source>Controls</source>
         <comment>Global menu actions. Menu regarding input settings.</comment>
         <translation>控制</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/main.qml" line="838"/>
+        <location filename="../src/kirigami_ui/main.qml" line="844"/>
         <source>&amp;Help</source>
         <comment>Global menu actions</comment>
         <translation>帮助</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/main.qml" line="841"/>
+        <location filename="../src/kirigami_ui/main.qml" line="847"/>
         <source>Report &amp;Bug…</source>
         <comment>Global menu actions</comment>
         <translation>反馈…</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/main.qml" line="860"/>
+        <location filename="../src/kirigami_ui/main.qml" line="866"/>
         <source>Abou&amp;t %1</source>
         <comment>Global menu actions. Load about page. &quot;About AppName&quot;</comment>
         <translation>关于 %1</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/main.qml" line="1009"/>
-        <location filename="../src/kirigami_ui/+windows/main.qml" line="707"/>
+        <location filename="../src/kirigami_ui/main.qml" line="1015"/>
+        <location filename="../src/kirigami_ui/+windows/main.qml" line="709"/>
         <source>Restart %1</source>
         <comment>Restart application_name</comment>
         <translation>重启%1</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/main.qml" line="1010"/>
-        <location filename="../src/kirigami_ui/+windows/main.qml" line="708"/>
+        <location filename="../src/kirigami_ui/main.qml" line="1016"/>
+        <location filename="../src/kirigami_ui/+windows/main.qml" line="710"/>
         <source>%1 needs to restart for this change to fully take effect.
 
 Would you like to restart %1 now? All changes to document will be lost.</source>
@@ -2084,31 +2099,31 @@ Would you like to restart application now? All changes to document will be lost.
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/main.qml" line="1026"/>
-        <location filename="../src/kirigami_ui/+android/main.qml" line="599"/>
-        <location filename="../src/kirigami_ui/+windows/main.qml" line="724"/>
+        <location filename="../src/kirigami_ui/main.qml" line="1035"/>
+        <location filename="../src/kirigami_ui/+android/main.qml" line="602"/>
+        <location filename="../src/kirigami_ui/+windows/main.qml" line="729"/>
         <source>Factory Reset</source>
         <translation>默认设置</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/main.qml" line="1027"/>
-        <location filename="../src/kirigami_ui/+android/main.qml" line="600"/>
-        <location filename="../src/kirigami_ui/+windows/main.qml" line="725"/>
+        <location filename="../src/kirigami_ui/main.qml" line="1036"/>
+        <location filename="../src/kirigami_ui/+android/main.qml" line="603"/>
+        <location filename="../src/kirigami_ui/+windows/main.qml" line="730"/>
         <source>Restore all configurations to factory defaults? QPrompt will close if you click Yes and all unsaved document changes will be lost.</source>
         <translation>是否恢复默认设置？点击“确定”您将丢失所有未保存的文档。</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/main.qml" line="1043"/>
-        <location filename="../src/kirigami_ui/+android/main.qml" line="617"/>
-        <location filename="../src/kirigami_ui/+windows/main.qml" line="741"/>
+        <location filename="../src/kirigami_ui/main.qml" line="1055"/>
+        <location filename="../src/kirigami_ui/+android/main.qml" line="622"/>
+        <location filename="../src/kirigami_ui/+windows/main.qml" line="749"/>
         <source>Save Document</source>
         <comment>Title for save before closing dialog</comment>
         <translation>保存文档</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/main.qml" line="1044"/>
-        <location filename="../src/kirigami_ui/+android/main.qml" line="618"/>
-        <location filename="../src/kirigami_ui/+windows/main.qml" line="742"/>
+        <location filename="../src/kirigami_ui/main.qml" line="1056"/>
+        <location filename="../src/kirigami_ui/+android/main.qml" line="623"/>
+        <location filename="../src/kirigami_ui/+windows/main.qml" line="750"/>
         <source>Save changes to document before closing?</source>
         <translation>是否在关闭前保存对文档的更改?</translation>
     </message>
