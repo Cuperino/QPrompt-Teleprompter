@@ -1579,7 +1579,7 @@ Flickable {
         }
     }
 
-    Labs.MessageDialog {
+    MessageDialog {
         id: errorDialog
         modality: Qt.WindowModal
     }
