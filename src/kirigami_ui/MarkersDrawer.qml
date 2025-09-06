@@ -34,8 +34,7 @@ Kirigami.OverlayDrawer {
         // color: appTheme.__backgroundColor
         opacity: 0.92
     }
-    width: 260
-    //width: popupContent.implicitWidth
+    width: popupContent.implicitWidth > 260 ? popupContent.implicitWidth : 260
     modal: !pinButton.checked
     handleVisible: false
     edge: Qt.application.layoutDirection===Qt.LeftToRight ? Qt.LeftEdge : Qt.RightEdge
