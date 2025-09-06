@@ -25,6 +25,7 @@ import QtQuick.Controls 2.12
 import QtQuick.Window 2.12
 import QtQuick.Layouts 1.12
 import QtQuick.Controls.Material 2.12
+import QtQuick.Dialogs 6.6
 import QtCore 6.5
 
 import com.cuperino.qprompt 1.0
@@ -597,14 +598,17 @@ Kirigami.ApplicationWindow {
         TelemetryPage {}
     }
 
-    Labs.MessageDialog {
+    MessageDialog {
         id: factoryResetDialog
         title: qsTr("Factory Reset")
         text: qsTr("Restore all configurations to factory defaults? QPrompt will close if you click Yes and all unsaved document changes will be lost.")
-        buttons: Labs.MessageDialog.Yes | Labs.MessageDialog.No
+        buttons: MessageDialog.Yes | MessageDialog.No
         modality: Qt.WindowModal
-        onYesClicked: {
-            qmlutil.factoryReset()
+        onButtonClicked: (button, role) => {
+            switch (button) {
+                case MessageDialog.Yes:
+                    qmlutil.factoryReset();
+            }
         }
         onVisibleChanged: {
             if (visible)
@@ -614,51 +618,51 @@ Kirigami.ApplicationWindow {
         }
     }
 
-    // Dialogues
-    Labs.MessageDialog {
+    MessageDialog {
         id : closeDialog
         title: qsTr("Save Document", "Title for save before closing dialog")
         text: qsTr("Save changes to document before closing?")
-        //icon: StandardIcon.Question
-        buttons: (Labs.MessageDialog.Save | Labs.MessageDialog.Discard | Labs.MessageDialog.Cancel)
-        //standardButtons: StandardButton.Save | StandardButton.Discard | StandardButton.Cancel
+        buttons: (MessageDialog.Save | MessageDialog.Discard | MessageDialog.Cancel)
         modality: Qt.WindowModal
-        onDiscardClicked: {
-        // onDiscard: {
-            //switch (parseInt(root.onDiscard)) {
-                //case Prompter.CloseActions.LoadGuide: root.pageStack.currentItem.document.loadGuide(); break;
-                //case Prompter.CloseActions.LoadNew: root.pageStack.currentItem.document.newDocument(); break;
-                //case Prompter.CloseActions.Quit: Qt.quit();
-                ////case Prompter.CloseActions.Quit:
-                ////default: Qt.quit();
-            //}
+        onButtonClicked: (button, role) => {
+            switch (button) {
+                case MessageDialog.Discard:
+                    //switch (parseInt(root.onDiscard)) {
+                        //case Prompter.CloseActions.LoadGuide: root.pageStack.currentItem.document.loadGuide(); break;
+                        //case Prompter.CloseActions.LoadNew: root.pageStack.currentItem.document.newDocument(); break;
+                        //case Prompter.CloseActions.Quit: Qt.quit();
+                        ////case Prompter.CloseActions.Quit:
+                        ////default: Qt.quit();
+                    //}
 
-            //document.saveAs(saveDialog.file)
-            //root.pageStack.currentItem.document.isNewFile = true
-            switch (parseInt(root.onDiscard)) {
-                case Prompter.CloseActions.LoadGuide:
-                    root.pageStack.currentItem.document.modified = false
-                    root.pageStack.currentItem.document.loadGuide();
+                    //document.saveAs(saveDialog.currentFile)
+                    //root.pageStack.currentItem.document.isNewFile = true
+                    switch (parseInt(root.onDiscard)) {
+                        case Prompter.CloseActions.LoadGuide:
+                            root.pageStack.currentItem.document.modified = false
+                            root.pageStack.currentItem.document.loadGuide();
+                            break;
+                        case Prompter.CloseActions.LoadNew:
+                            root.pageStack.currentItem.document.modified = false
+                            root.pageStack.currentItem.document.newDocument();
+                            break;
+                        case Prompter.CloseActions.Open:
+                            root.pageStack.currentItem.openDialog.open();
+                            break;
+                        case Prompter.CloseActions.Network:
+                            root.pageStack.currentItem.networkDialog.open();
+                            break;
+                        case Prompter.CloseActions.Quit:
+                            Qt.quit();
+                            break;
+                        default:
+                            break;
+                    }
                     break;
-                case Prompter.CloseActions.LoadNew:
-                    root.pageStack.currentItem.document.modified = false
-                    root.pageStack.currentItem.document.newDocument();
-                    break;
-                case Prompter.CloseActions.Open:
-                    root.pageStack.currentItem.openDialog.open();
-                    break;
-                case Prompter.CloseActions.Network:
-                    root.pageStack.currentItem.networkDialog.open();
-                    break;
-                case Prompter.CloseActions.Quit: Qt.quit();
-                    break;
-                default: break;
+                case MessageDialog.Save:
+                    root.pageStack.currentItem.document.saveDialog(parseInt(root.onDiscard)===Prompter.CloseActions.Quit)
+                    // root.pageStack.currentItem.document.saveDialog(true)
             }
-        }
-        //onSaveClicked: root.pageStack.currentItem.document.saveDialog(true)
-        onAccepted:
-        {
-            root.pageStack.currentItem.document.saveDialog(parseInt(root.onDiscard)===Prompter.CloseActions.Quit)
         }
         onVisibleChanged: {
             if (visible)
