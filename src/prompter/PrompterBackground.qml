@@ -104,7 +104,7 @@ Rectangle {
 
         ColorDialog {
             id: backgroundColorDialog
-            options: Qt.platform.os === "android" ? ColorDialog.ShowAlphaChannel : 0
+            options: (Qt.platform.os === "ios" ? 0 : ColorDialog.DontUseNativeDialog) | (Qt.platform.os === "android" ? ColorDialog.ShowAlphaChannel : 0)
             property color color: root.background.__backgroundColor
             selectedColor: switch(appTheme.selection) {
                            //case 0: root.background.__backgroundColor

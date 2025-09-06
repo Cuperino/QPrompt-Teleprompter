@@ -554,6 +554,7 @@ ColumnLayout {
     }
     ColorDialog {
         id: pointerColorDialog
+        options: Qt.platform.os === "ios" ? 0 : ColorDialog.DontUseNativeDialog
         property TextField source
         selectedColor: appTheme.__backgroundColor
         onAccepted: {

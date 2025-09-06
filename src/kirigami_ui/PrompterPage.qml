@@ -799,6 +799,7 @@ Kirigami.Page {
 
     ColorDialog {
         id: colorDialog
+        options: Qt.platform.os === "ios" ? 0 : ColorDialog.DontUseNativeDialog
         property color acceptedColor
         onAccepted: {
             // Hack to force re-evaluation of acceptedColor's bindings
@@ -816,6 +817,7 @@ Kirigami.Page {
 
     ColorDialog {
         id: highlightDialog
+        options: Qt.platform.os === "ios" ? 0 : ColorDialog.DontUseNativeDialog
         property color acceptedColor
         onAccepted: {
             // Hack to force re-evaluation of acceptedColor's bindings

@@ -197,7 +197,7 @@ Item {
 
     ColorDialog {
         id: timerColorDialog
-        options: Qt.platform.os === "android" ? ColorDialog.ShowAlphaChannel : 0
+        options: (Qt.platform.os === "ios" ? 0 : ColorDialog.DontUseNativeDialog) | (Qt.platform.os === "android" ? ColorDialog.ShowAlphaChannel : 0)
         property color color: '#AAA'
         onAccepted: {
             timerSettings.color = selectedColor
