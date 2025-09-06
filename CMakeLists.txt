@@ -142,6 +142,17 @@ find_package(Qt${QT_VERSION_MAJOR} ${QT_MIN_VERSION} REQUIRED NO_MODULE COMPONEN
     LinguistTools
 )
 
+get_filename_component(TARGET_PLATFORM ${CMAKE_PREFIX_PATH} NAME)
+if (WIN32)
+    set(FELGO_HOT_RELOAD_PATH "C:/FelgoHotReload/client/${Qt6_VERSION}/${TARGET_PLATFORM}/")
+elseif (APPLE)
+    set(FELGO_HOT_RELOAD_PATH "~/FelgoHotReload/client/${Qt6_VERSION}/${TARGET_PLATFORM}/")
+elseif (UNIX)
+    set(FELGO_HOT_RELOAD_PATH "~/FelgoHotReload/client/${Qt6_VERSION}/${TARGET_PLATFORM}/")
+endif()
+set(FelgoHotReload_DIR "${FELGO_HOT_RELOAD_PATH}/lib/cmake/FelgoHotReload" CACHE PATH "FelgoHotReload directory" FORCE)
+find_package(FelgoHotReload CONFIG REQUIRED)
+
 if(ANDROID OR IOS OR WASM)
     set(BUILD_SHARED_LIBS OFF)
 endif()

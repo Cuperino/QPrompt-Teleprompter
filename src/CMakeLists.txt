@@ -88,9 +88,9 @@ set(qprompt_cpp
 
 set(qprompt_frontend_sources
     # Kirigami UI Frontend
-    kirigami_ui/main.qml
-    kirigami_ui/+android/main.qml
-    kirigami_ui/+windows/main.qml
+    kirigami_ui/Main.qml
+    kirigami_ui/+android/Main.qml
+    kirigami_ui/+windows/Main.qml
     kirigami_ui/AboutPage.qml
     kirigami_ui/PathsPage.qml
     kirigami_ui/PrompterPage.qml
@@ -423,7 +423,11 @@ if (QHotkey_FOUND)
     )
 endif()
 
+target_compile_definitions(${PROJECT_NAME} PRIVATE QML_MODULES_BUILD_PATH="${CMAKE_PREFIX_PATH}/lib/x86_64-linux-gnu/qml")
+
 execute_process(COMMAND ${CMAKE_PREFIX_PATH}/bin/lconvert -pluralonly ${CMAKE_SOURCE_DIR}/po/qprompt_en.ts)
+
+felgohotreload_configure_executable(${PROJECT_NAME})
 
 # Installation and bundling
 if (APPLE)
