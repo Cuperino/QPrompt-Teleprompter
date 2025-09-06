@@ -1618,20 +1618,20 @@ ToolBar {
                     text: ""
                     onVisibleChanged: {
                         if (visible) {
-                            text = baseSpeedSlider.value / 100;
+                            text = (Number.fromLocaleString(Qt.locale(), baseSpeedSlider.value) / 100).toLocaleString(Qt.locale(), "f", 2);
                             forceActiveFocus();
                         }
                     }
                     onAccepted: {
                         if (text !== "") {
-                            const value = Number(text) * 100;
+                            const value = Number.fromLocaleString(Qt.locale(), text) * 100;
                             if (value < baseSpeedSlider.from)
                                 baseSpeedSlider.value = baseSpeedSlider.from;
                             else if (value > baseSpeedSlider.to)
                                 baseSpeedSlider.value = baseSpeedSlider.to;
                             else
                                 baseSpeedSlider.value = Math.round(value / baseSpeedSlider.stepSize) * baseSpeedSlider.stepSize;
-                            text = baseSpeedSlider.value;
+                            text = baseSpeedSlider.value.toLocaleString(Qt.locale(), "f", 2);
                             baseSpeedSlider.update();
                         }
                     }
@@ -1640,7 +1640,7 @@ ToolBar {
                     }
                     Material.theme: Material.Dark
                     Keys.onUpPressed: {
-                        const value = Number(text) * 100 + baseSpeedSlider.stepSize
+                        const value = Number.fromLocaleString(Qt.locale(), text) * 100 + baseSpeedSlider.stepSize
                         if (value > baseSpeedSlider.to)
                             baseSpeedSlider.value = baseSpeedSlider.to;
                         else {
@@ -1649,11 +1649,11 @@ ToolBar {
                             else
                                 baseSpeedSlider.value = Math.round(value / baseSpeedSlider.stepSize) * baseSpeedSlider.stepSize;
                         }
-                        text = baseSpeedSlider.value / 100;
+                        text = (baseSpeedSlider.value / 100).toLocaleString(Qt.locale(), "f", 2);
                         baseSpeedSlider.update();
                     }
                     Keys.onDownPressed: {
-                        const value = Number(text) * 100 - baseSpeedSlider.stepSize;
+                        const value = Number.fromLocaleString(Qt.locale(), text) * 100 - baseSpeedSlider.stepSize;
                         if (value < baseSpeedSlider.from)
                             baseSpeedSlider.value = baseSpeedSlider.from;
                         else {
@@ -1662,13 +1662,13 @@ ToolBar {
                             else
                                 baseSpeedSlider.value = Math.round(value / baseSpeedSlider.stepSize) * baseSpeedSlider.stepSize;
                         }
-                        text = baseSpeedSlider.value / 100;
+                        text = (baseSpeedSlider.value / 100).toLocaleString(Qt.locale(), "f", 2);
                         baseSpeedSlider.update();
                     }
                 }
                 Label {
                     id: baseSpeedLabel
-                    text: qsTr("Step speed <pre>%1</pre>", "Step speed 1.00").arg((baseSpeedSlider.value/100).toFixed(2))
+                    text: qsTr("Step speed <pre>%1</pre>", "Step speed 1.00").arg((baseSpeedSlider.value/100).toLocaleString(Qt.locale(), "f", 2))
                     visible: !baseSpeedDirectInput.editText
                     color: Kirigami.Theme.textColor
                     Layout.topMargin: 4
@@ -1737,20 +1737,20 @@ ToolBar {
                     text: ""
                     onVisibleChanged: {
                         if (visible) {
-                            text = baseAccelerationSlider.value / 100;
+                            text = (baseAccelerationSlider.value / 100).toLocaleString(Qt.locale(), "f", 2);
                             forceActiveFocus();
                         }
                     }
                     onAccepted: {
                         if (text !== "") {
-                            const value = Number(text) * 100;
+                            const value = Number.fromLocaleString(Qt.locale(), baseAccelerationTextField.text) * 100;
                             if (value < baseAccelerationSlider.from)
                                 baseAccelerationSlider.value = baseAccelerationSlider.from;
                             else if (value > baseAccelerationSlider.to)
                                 baseAccelerationSlider.value = baseAccelerationSlider.to;
                             else
                                 baseAccelerationSlider.value = Math.round(value / baseAccelerationSlider.stepSize) * baseAccelerationSlider.stepSize;
-                            text = baseAccelerationSlider.value;
+                            baseAccelerationTextField.text = baseAccelerationSlider.value.toLocaleString(Qt.locale(), "f", 2);
                             baseAccelerationSlider.update();
                         }
                     }
@@ -1759,7 +1759,7 @@ ToolBar {
                     }
                     Material.theme: Material.Dark
                     Keys.onUpPressed: {
-                        const value = Number(text) * 100 + baseAccelerationSlider.stepSize
+                        const value = Number.fromLocaleString(Qt.locale(), baseAccelerationTextField.text) * 100 + baseAccelerationSlider.stepSize
                         if (value > baseAccelerationSlider.to)
                             baseAccelerationSlider.value = baseAccelerationSlider.to;
                         else {
@@ -1768,11 +1768,11 @@ ToolBar {
                             else
                                 baseAccelerationSlider.value = Math.round(value / baseAccelerationSlider.stepSize) * baseAccelerationSlider.stepSize;
                         }
-                        text = baseAccelerationSlider.value / 100;
+                        baseAccelerationTextField.text = (baseAccelerationSlider.value / 100).toLocaleString(Qt.locale(), "f", 2);
                         baseAccelerationSlider.update();
                     }
                     Keys.onDownPressed: {
-                        const value = Number(text) * 100 - baseAccelerationSlider.stepSize;
+                        const value = Number.fromLocaleString(Qt.locale(), baseAccelerationTextField.text) * 100 - baseAccelerationSlider.stepSize;
                         if (value < baseAccelerationSlider.from)
                             baseAccelerationSlider.value = baseAccelerationSlider.from;
                         else {
@@ -1781,13 +1781,13 @@ ToolBar {
                             else
                                 baseAccelerationSlider.value = Math.round(value / baseAccelerationSlider.stepSize) * baseAccelerationSlider.stepSize;
                         }
-                        text = baseAccelerationSlider.value / 100;
+                        baseAccelerationTextField.text = (baseAccelerationSlider.value / 100).toLocaleString(Qt.locale(), "f", 2);
                         baseAccelerationSlider.update();
                     }
                 }
                 Label {
                     id: baseAccelerationLabel
-                    text: qsTr("Step acceleration <pre>%1</pre>", "Step acceleration 1.15").arg((baseAccelerationSlider.value/100).toFixed(2))
+                    text: qsTr("Step acceleration <pre>%1</pre>", "Step acceleration 1.15").arg((baseAccelerationSlider.value/100).toLocaleString(Qt.locale(), "f", 2))
                     visible: !baseAccelerationDirectInput.editText
                     color: Kirigami.Theme.textColor
                     Layout.topMargin: 4

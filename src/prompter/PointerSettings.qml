@@ -237,8 +237,7 @@ ColumnLayout {
                 id: lineWidth
                 property int value: 15 // the user will see value + 1
                 Label {
-                    text: qsTr("Line width <pre>%1</pre>",
-                               ((parent.value + 1) / 100).toFixed(2).slice(2))
+                    text: qsTr("Line width <pre>%1</pre>").arg(((parent.value + 1) / 100).toFixed(2).slice(2))
                 }
                 Slider {
                     value: parent.value

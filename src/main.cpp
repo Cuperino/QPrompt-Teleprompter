@@ -117,6 +117,8 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
         qputenv("LANGUAGE", langCode);
         qputenv("LC_ALL", langCode);
         qputenv("LANG", langCode);
+        QLocale currLocale(QLocale(langCode.c_str()));
+        QLocale::setDefault(currLocale);
         if (translator.load(QLatin1String(":/i18n/qprompt_" + langCode + ".qm")))
             app.installTranslator(&translator);
     }
