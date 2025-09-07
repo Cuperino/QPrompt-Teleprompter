@@ -858,6 +858,14 @@ Flickable {
                                 font.family: iconFont.name
                                 flat: true
                                 opacity: parseInt(prompter.state) !== Prompter.States.Prompting || prompter.__atEnd
+                                contentItem: Text {
+                                    text: parent.text
+                                    font: parent.font
+                                    color: "white"
+                                    renderType: Text.NativeRendering
+                                    horizontalAlignment: Text.AlignHCenter
+                                    verticalAlignment: Text.AlignVCenter
+                                }
                                 Behavior on opacity {
                                     enabled: true
                                     animation: OpacityAnimator {
