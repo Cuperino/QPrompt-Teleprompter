@@ -776,7 +776,19 @@ ToolBar {
                 checkable: true
                 checked: showFontSpacingOptions
                 onClicked: {
-                   showFontSpacingOptions = !showFontSpacingOptions
+                    if (showAnimationConfigOptions) {
+                        showAnimationConfigOptions = false;
+                        fontSpacingOptionsTimer.start();
+                    }
+                    else
+                        showFontSpacingOptions = !showFontSpacingOptions;
+                }
+                Timer {
+                    id: fontSpacingOptionsTimer
+                    interval: 250
+                    onTriggered: {
+                        showFontSpacingOptions = !showAnimationConfigOptions;
+                    }
                 }
             }
             ToolButton {
@@ -788,7 +800,19 @@ ToolBar {
                 checkable: true
                 checked: showAnimationConfigOptions
                 onClicked: {
-                   showAnimationConfigOptions = !showAnimationConfigOptions
+                    if (showFontSpacingOptions) {
+                        showFontSpacingOptions = false;
+                        openAnimationConfigTimer.start();
+                    }
+                    else
+                        showAnimationConfigOptions = !showAnimationConfigOptions;
+                }
+                Timer {
+                    id: openAnimationConfigTimer
+                    interval: 250
+                    onTriggered: {
+                        showAnimationConfigOptions = !showAnimationConfigOptions;
+                    }
                 }
             }
             //ToolButton {
