@@ -1195,8 +1195,9 @@ Kirigami.Page {
             viewport.editor.enabled = true;
             viewport.prompter.restoreFocus();
         }
-        PointerSettings{
+        PointerSettings {
             id: pointerSettings
+            prompterBackground: prompterPage.prompterBackground
         }
     }
 

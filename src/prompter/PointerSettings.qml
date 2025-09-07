@@ -39,6 +39,8 @@ ColumnLayout {
         QML
     }
 
+    required property PrompterBackground prompterBackground
+
     property alias pointerKind: listView.currentIndex
     property alias colorsEditing: editingColor.value
     property alias colorsReady: readyColor.value
@@ -104,45 +106,98 @@ ColumnLayout {
     }
     RowLayout {
         id: pointerColorSettings
-        Label {
-            text: qsTr("Editing: ")
+        Button {
+            implicitWidth: editingColorLabel.implicitWidth + implicitHeight / 2
+            onClicked: event => {
+                if (editingColor.text.length)
+                    editingColor.text = "";
+                else {
+                    pointerColorDialog.source = editingColor;
+                    pointerColorDialog.open();
+                }
+            }
+            Material.theme: Material.Dark
+            Rectangle {
+                color: pointerSettings.prompterBackground.backgroundColor
+                radius: parent.height / 2
+                anchors.fill: parent
+                Label {
+                    id: editingColorLabel
+                    anchors.centerIn: parent
+                    text: qsTr("Editing: ") + (editingColor.text.length ? "\n>🧹<" : "\n>🖌️<")
+                    color: editingColor.text ? Qt.color(editingColor.text) : editingColor.placeholderText
+                    font.bold: true
+                    horizontalAlignment: Qt.AlignHCenter
+                }
+            }
         }
         TextField {
             id: editingColor
             property color value: text ? text : placeholderText
             placeholderText: Material.theme === Material.Light ? "#4d94cf" : "#2b72ad"
-            onPressed: event => {
-                           pointerColorDialog.source = this
-                           pointerColorDialog.open()
-                       }
             Layout.fillWidth: true
             Material.theme: Material.Dark
         }
-        Label {
-            text: qsTr("Ready: ")
+        Button {
+            implicitWidth: editingColorLabel.implicitWidth + implicitHeight / 2
+            onClicked: {
+                if (readyColor.text.length)
+                    readyColor.text = "";
+                else {
+                    pointerColorDialog.source = readyColor;
+                    pointerColorDialog.open();
+                }
+            }
+            Material.theme: Material.Dark
+            Rectangle {
+                color: pointerSettings.prompterBackground.backgroundColor
+                radius: parent.height / 2
+                anchors.fill: parent
+                Label {
+                    id: readyColorLabel
+                    anchors.centerIn: parent
+                    text: qsTr("Ready: ") + (readyColor.text.length ? "\n>🧹<" : "\n>🖌️<")
+                    color: readyColor.text ? Qt.color(readyColor.text) : readyColor.placeholderText
+                    font.bold: true
+                    horizontalAlignment: Qt.AlignHCenter
+                }
+            }
         }
         TextField {
             id: readyColor
             property color value: text ? text : placeholderText
             placeholderText: Material.theme === Material.Light ? "#4d94cf" : "#2b72ad"
-            onPressed: event => {
-                           pointerColorDialog.source = this
-                           pointerColorDialog.open()
-                       }
             Layout.fillWidth: true
             Material.theme: Material.Dark
         }
-        Label {
-            text: qsTr("Prompting: ")
+        Button {
+            implicitWidth: promptingColorLabel.implicitWidth + implicitHeight / 2
+            onClicked: {
+                if (promptingColor.text.length)
+                    promptingColor.text = "";
+                else {
+                    pointerColorDialog.source = promptingColor;
+                    pointerColorDialog.open();
+                }            }
+            Material.theme: Material.Dark
+            Rectangle {
+                color: pointerSettings.prompterBackground.backgroundColor
+                radius: parent.height / 2
+                anchors.fill: parent
+                Label {
+                    id: promptingColorLabel
+                    anchors.centerIn: parent
+                    text: qsTr("Prompting: ") + (promptingColor.text.length ? "\n>🧹<" : "\n>🖌️<")
+                    color: promptingColor.text ? Qt.color(promptingColor.text) : promptingColor.placeholderText
+                    font.bold: true
+                    horizontalAlignment: Qt.AlignHCenter
+                }
+            }
         }
         TextField {
             id: promptingColor
             property color value: text ? text : placeholderText
             placeholderText: Material.theme === Material.Light ? "#4d94cf" : "#2b72ad"
-            onPressed: event => {
-                           pointerColorDialog.source = this
-                           pointerColorDialog.open()
-                       }
             Layout.fillWidth: true
             Material.theme: Material.Dark
         }
@@ -554,9 +609,9 @@ ColumnLayout {
     }
     ColorDialog {
         id: pointerColorDialog
-        options: Qt.platform.os === "ios" ? 0 : ColorDialog.DontUseNativeDialog
+        options: ["ios", "osx"].indexOf(Qt.platform.os) ? 0 : ColorDialog.DontUseNativeDialog
         property TextField source
-        selectedColor: appTheme.__backgroundColor
+        selectedColor: Material.theme === Material.Light ? "#4d94cf" : "#2b72ad"
         onAccepted: {
             source.text = selectedColor
         }
