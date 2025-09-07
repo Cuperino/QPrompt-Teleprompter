@@ -767,6 +767,12 @@
       "css": "list-numbered",
       "code": 61643,
       "src": "fontawesome"
+    },
+    {
+      "uid": "c9d395b295ad7d9c28298dcea916c6df",
+      "css": "popup",
+      "code": 59392,
+      "src": "websymbols"
     }
   ]
 }

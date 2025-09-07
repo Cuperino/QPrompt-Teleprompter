@@ -97,7 +97,7 @@ ToolBar {
     readonly property alias baseAccelerationSlider: baseAccelerationSlider
     readonly property alias onlyPositiveVelocity: positiveVelocity.checked
     readonly property alias windowStaysOnTop: windowStayOnTopButton.value
-    readonly property bool showSliderIcons: toolbar.width > 404
+    readonly property bool showSliderIcons: toolbar.width > 367
     readonly property bool showingFormattingTools: parseInt(viewport.prompter.state)!==Prompter.States.Editing && (!toolbar.hideFormattingToolsWhilePrompting || editor.focus)
 
     // Hide toolbar when read region is set to bottom and viewport.prompter is not in editing state.
@@ -198,7 +198,7 @@ ToolBar {
             }
             ToolButton {
                 id: searchButton
-                visible: !mobileOrSmallScreen || parseInt(viewport.prompter.state)===Prompter.States.Editing && root.width > 360
+                visible: !mobileOrSmallScreen || parseInt(viewport.prompter.state)===Prompter.States.Editing && root.width > 408
                 enabled: parseInt(viewport.prompter.state)===Prompter.States.Editing || parseInt(viewport.prompter.state)===Prompter.States.Standby
                 text: Qt.application.layoutDirection===Qt.LeftToRight ? "\uE847" : "\uE848"
                 contentItem: Loader { sourceComponent: textComponent }
@@ -252,7 +252,7 @@ ToolBar {
                 if (root.__isMobile)
                     return parseInt(viewport.prompter.state)===Prompter.States.Prompting
                 else
-                    return !toolbar.hideFormattingToolsAlways && (showingFormattingTools || parseInt(viewport.prompter.state)===Prompter.States.Editing) || root.width>489;
+                    return !toolbar.hideFormattingToolsAlways && (showingFormattingTools || parseInt(viewport.prompter.state)===Prompter.States.Editing) || root.width>529;
 //                    if (parseInt(viewport.prompter.state)===Prompter.States.Editing)
 //                        return true
 //                    else if (root.width>459)
@@ -285,7 +285,7 @@ ToolBar {
         }
         Row {
             id: undoRedoRow
-            visible: !toolbar.hideFormattingToolsAlways && (root.__isMobile ? parseInt(viewport.prompter.state)===Prompter.States.Editing && Qt.platform.os!=='ios' :  (showingFormattingTools || parseInt(viewport.prompter.state)===Prompter.States.Editing) && root.width>489)
+            visible: !toolbar.hideFormattingToolsAlways && (root.__isMobile ? parseInt(viewport.prompter.state)===Prompter.States.Editing && Qt.platform.os!=='ios' :  (showingFormattingTools || parseInt(viewport.prompter.state)===Prompter.States.Editing) && root.width>458)
             ToolButton {
                 text: Qt.application.layoutDirection===Qt.LeftToRight?"\uE74F":"\uE801"
                 contentItem: Loader { sourceComponent: textComponent }
@@ -304,13 +304,13 @@ ToolBar {
                 onClicked: viewport.prompter.editor.redo()
             }
             ToolSeparator {
-                contentItem.visible: undoRedoRow.y === editRow.y
+                contentItem.visible: undoRedoRow.y === alignmentRowMobile.y
                 Material.theme: Material.Dark
             }
         }
         Row {
             id: editRow
-            visible: !toolbar.hideFormattingToolsAlways && !root.__isMobile && root.width>489 && (showingFormattingTools || parseInt(viewport.prompter.state)===Prompter.States.Editing)
+            visible: !toolbar.hideFormattingToolsAlways && !root.__isMobile && root.width>700 && (showingFormattingTools || parseInt(viewport.prompter.state)===Prompter.States.Editing)
             ToolButton {
                 id: copyButton
                 text: "\uF0C5"
@@ -426,6 +426,7 @@ ToolBar {
             //    onClicked: textAlignmentMenu.popup(this)
             //}
             ToolSeparator {
+                // width: alignmentRowMobile.y === formatRow.y ? contentWidth : contentWidth / 2
                 contentItem.visible: alignmentRowMobile.y === formatRow.y
                 Material.theme: Material.Dark
             }
@@ -756,6 +757,17 @@ ToolBar {
                 onClicked: wheelSettings.open()
             }
             ToolButton {
+                id: windowStayOnTopButton
+                readonly property bool value: checked && enabled
+                visible: !root.__isMobile && showSliderIcons
+                text: "\uE800"
+                checkable: true
+                checked: false
+                contentItem: Loader { sourceComponent: textComponent }
+                font.family: iconFont.name
+                font.pointSize: 13
+            }
+            ToolButton {
                 text: "\uE806"
                 contentItem: Loader { sourceComponent: textComponent }
                 font.family: iconFont.name
@@ -795,7 +807,7 @@ ToolBar {
         RowLayout {
             id: velocityRow
             enabled: parseInt(viewport.prompter.state)===Prompter.States.Prompting
-            visible: !root.__isMobile && root.width>1481 /*&& (showingFormattingTools || ! toolbar.hideFormattingToolsAlways)*/ || enabled
+            visible: !root.__isMobile && root.width>1599 /*&& (showingFormattingTools || ! toolbar.hideFormattingToolsAlways)*/ || enabled
             ToolButton {
                 id: positiveVelocity
                 text: "\u002B"
@@ -833,14 +845,12 @@ ToolBar {
             }
         }
         RowLayout {
-            visible: root.__translucidBackground && (!root.__isMobile && root.width>(!showingFormattingTools||hideFormattingToolsAlways ? 1195 : 994) || (parseInt(viewport.prompter.state)!==Prompter.States.Editing && parseInt(viewport.prompter.state)!==Prompter.States.Prompting)) // This check isn't optimized in case more viewport.prompter states get added in the future, even tho I think that is unlikely.
+            visible: root.__translucidBackground && (!root.__isMobile && root.width>(parseInt(viewport.prompter.state)!==Prompter.States.Prompting ? 650 : 1175) || (parseInt(viewport.prompter.state)!==Prompter.States.Editing && parseInt(viewport.prompter.state)!==Prompter.States.Prompting)) // This check isn't optimized in case more viewport.prompter states get added in the future, even tho I think that is unlikely.
             ToolButton {
-                id: windowStayOnTopButton
                 readonly property bool value: checked && enabled
                 visible: !root.__isMobile && showSliderIcons
                 text: "\uE810"
-                checkable: true
-                checked: false
+                enabled: false
                 contentItem: Loader { sourceComponent: textComponent }
                 font.family: iconFont.name
                 font.pointSize: 13

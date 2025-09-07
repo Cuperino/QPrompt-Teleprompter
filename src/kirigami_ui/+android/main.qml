@@ -45,7 +45,7 @@ Kirigami.ApplicationWindow {
     property bool shadows: false
     readonly property bool themeIsMaterial: Kirigami.Settings.style==="Material" // || Kirigami.Settings.isMobile
     // mobileOrSmallScreen helps determine when to follow mobile behaviors from desktop non-mobile devices
-    readonly property bool mobileOrSmallScreen: Kirigami.Settings.isMobile || root.width < 1220
+    readonly property bool mobileOrSmallScreen: Kirigami.Settings.isMobile || root.width < 1231
     //readonly property bool __translucidBackground: false
     // Scrolling settings
     property bool __scrollAsDial: false
