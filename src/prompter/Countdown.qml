@@ -193,7 +193,7 @@ Item {
         // Make base font size relative to editor's width
         font.pixelSize: clock.__iteration > 98 ? 48*__minv : clock.__iteration > 8 ? 54*__minv : 68*__minv
         font.family: numbersFont.name
-        renderType: font.pixelSize < 121 || screen.devicePixelRatio !== 1.0 || root.forceQtTextRenderer ? Text.QtRendering : Text.NativeRendering
+        renderType: font.pixelSize < 121 || screen.devicePixelRatio !== 1.0 || root.forceQtTextRenderer ? Text.CurveRendering : Text.NativeRendering
         FontLoader {
             id: numbersFont
             source: "../fonts/LibertinusSans-Regular.otf"
