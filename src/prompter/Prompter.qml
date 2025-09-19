@@ -1839,6 +1839,33 @@ Flickable {
         else if (parseInt(prompter.state)!==Prompter.States.Editing && event.key===keys.stop && event.modifiers===keys.stopModifiers || parseInt(prompter.state)!==Prompter.States.Editing && event.key===keys.pause && event.modifiers===keys.pauseModifiers || event.key===Qt.Key_SysReq || event.key===Qt.Key_Play || event.key===Qt.Key_Pause)
             prompter.toggle();
 
+        if (parseInt(prompter.state)!==Prompter.States.Editing) {
+            if (event.key===Qt.Key_Home && event.modifiers===Qt.ControlModifier) {
+                // Go to start
+                if (!this.__atStart) {
+                    __i=0;
+                    prompter.position = __jitterMargin-topMargin+2
+                    if (prompter.__play)
+                        prompter.position = __destination
+                    else
+                        prompter.position = prompter.position
+                }
+                return
+            }
+            else if (event.key===Qt.Key_End && event.modifiers===Qt.ControlModifier) {
+                // Go to end
+                if (!this.__atEnd) {
+                    __i=0;
+                    prompter.position = editor.height-topMargin+fontSize+1
+                    if (prompter.__play)
+                        prompter.position = __destination
+                    else
+                        prompter.position = prompter.position
+                }
+                return
+            }
+        }
+
         // Keys presses that apply the same to all states, including previous
         if (event.key===Qt.Key_F && event.modifiers & Qt.ControlModifier)
             find.open();
