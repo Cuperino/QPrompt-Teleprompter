@@ -217,25 +217,7 @@ public:
     Q_INVOKABLE bool preventSleep(bool prevent);
 
 #if !(defined(Q_OS_ANDROID) || defined(Q_OS_IOS) || defined(Q_OS_WASM) || defined(Q_OS_WATCHOS))
-    Q_INVOKABLE bool showFontDialog()
-    {
-        QTextCursor cursor = textCursor();
-        if (!cursor.hasSelection())
-            cursor.select(QTextCursor::WordUnderCursor);
-        // Trim text and remove invisible character "￼", which represents images
-        QString text = cursor.selectedText().trimmed().remove("￼");
-        const int length = text.length();
-        if (length == 0)
-            return true;
-        else if (length > 64) {
-            text.truncate(64);
-            int end = text.lastIndexOf(" ");
-            text.truncate(end);
-            text = tr("%1…").arg(text);
-        }
-        m_fontDialog->show(fontFamily(), text);
-        return false;
-    }
+    Q_INVOKABLE bool showFontDialog();
 #endif
 
     Q_INVOKABLE void loadFromNetwork(const QUrl &url);
