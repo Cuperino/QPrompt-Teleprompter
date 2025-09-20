@@ -567,7 +567,7 @@ void DocumentHandler::loadFromNetworkFinihed()
         static QRegularExpression regex_0(
             QString::fromUtf8("((font-size|letter-spacing|word-spacing|font-weight):\\s*-?[\\d]+(?:.[\\d]+)*(?:(?:px)|(?:pt)|(?:em)|(?:ex));?\\s*)"));
         QString html = QString::fromUtf8(document).replace(regex_0, QString::fromUtf8(""));
-
+        setDocumentComesFromNetwork(true);
         m_fileUrl = m_cache->fileName();
         Q_EMIT aboutToReload();
         updateContents(html, Qt::RichText);
@@ -583,6 +583,17 @@ bool DocumentHandler::autoReload() const
 void DocumentHandler::setAutoReload(bool enable)
 {
     m_autoReload = enable;
+}
+
+bool DocumentHandler::documentComesFromNetwork() const
+{
+    return m_documentComesFromNetwork;
+}
+
+void DocumentHandler::setDocumentComesFromNetwork(bool comesFromNetwork)
+{
+    m_documentComesFromNetwork = comesFromNetwork;
+    Q_EMIT documentComesFromNetworkChanged();
 }
 
 void DocumentHandler::load(const QUrl &fileUrl)
@@ -693,6 +704,7 @@ void DocumentHandler::load(const QUrl &fileUrl)
     else
         document()->textDocument()->clearUndoRedoStacks();
 
+    setDocumentComesFromNetwork(false);
     Q_EMIT fileUrlChanged();
 }
 

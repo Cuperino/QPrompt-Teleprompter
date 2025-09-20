@@ -1846,13 +1846,39 @@ ToolBar {
         }
         RowLayout {
             Button {
-                visible: networkDialog.autoReloadRunning
+                visible: document.comesFromNetwork && networkDialog.autoReloadRunning
                 text: qsTr("Next reload starts at <pre>%1</pre>", "Next reload starts at 10:11:12").arg(networkDialog.nextReloadTime)
                 onClicked: networkDialog.open()
                 contentItem: Loader { sourceComponent: textComponent }
                 flat: true
+                focusPolicy: Qt.TabFocus
                 Layout.topMargin: -18
                 Layout.bottomMargin: -22
+                Material.theme: Material.Dark
+                ToolButton {
+                    visible: document.comesFromNetwork
+                    text: "🔄"
+                    contentItem: Loader { sourceComponent: textComponent }
+                    font.family: iconFont.name
+                    font.pointSize: 13
+                    focusPolicy: Qt.TabFocus
+                    onClicked: networkDialog.openFromRemote()
+                    // flat: true
+                    anchors.top: parent.top
+                    anchors.right: parent.right
+                    anchors.topMargin: 8
+                    anchors.rightMargin: 8
+                    Material.theme: Material.Dark
+                }
+            }
+            ToolButton {
+                visible: document.comesFromNetwork && !networkDialog.autoReloadRunning
+                text: "🔄"
+                contentItem: Loader { sourceComponent: textComponent }
+                font.family: iconFont.name
+                font.pointSize: 13
+                focusPolicy: Qt.TabFocus
+                onClicked: networkDialog.openFromRemote()
                 Material.theme: Material.Dark
             }
         }

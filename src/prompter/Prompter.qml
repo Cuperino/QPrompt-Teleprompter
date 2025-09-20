@@ -1450,7 +1450,7 @@ Flickable {
             editor.textFormat = format
             editorToolbar.lineHeightSlider.update()
             editorToolbar.paragraphSpacingSlider.update()
-            if (prompterPage.networkDialog.autoReloadRunning && prompterPage.networkDialog.autoReload) {
+            if (document.comesFromNetwork) {
                 const i = __i;
                 __i = __iBackup
                 if (parseInt(prompter.state)===Prompter.States.Prompting)

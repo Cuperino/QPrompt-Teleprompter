@@ -111,6 +111,7 @@ class DocumentHandler : public QObject
     Q_PROPERTY(bool subscript READ subscript WRITE setSubscript NOTIFY verticalAlignmentChanged)
     Q_PROPERTY(bool superscript READ superscript WRITE setSuperscript NOTIFY verticalAlignmentChanged)
     Q_PROPERTY(bool autoReload READ autoReload WRITE setAutoReload NOTIFY autoReloadChanged)
+    Q_PROPERTY(bool comesFromNetwork READ documentComesFromNetwork NOTIFY documentComesFromNetworkChanged)
 
     Q_PROPERTY(bool regularMarker READ regularMarker WRITE setMarker NOTIFY markerChanged)
     Q_PROPERTY(bool namedMarker READ namedMarker NOTIFY markerChanged)
@@ -175,6 +176,9 @@ public:
     bool autoReload() const;
     void setAutoReload(bool enable);
 
+    bool documentComesFromNetwork() const;
+    void setDocumentComesFromNetwork(bool comesFromNetwork);
+
     int fontSize() const;
     void setFontSize(int size);
 
@@ -213,7 +217,25 @@ public:
     Q_INVOKABLE bool preventSleep(bool prevent);
 
 #if !(defined(Q_OS_ANDROID) || defined(Q_OS_IOS) || defined(Q_OS_WASM) || defined(Q_OS_WATCHOS))
-    Q_INVOKABLE bool showFontDialog();
+    Q_INVOKABLE bool showFontDialog()
+    {
+        QTextCursor cursor = textCursor();
+        if (!cursor.hasSelection())
+            cursor.select(QTextCursor::WordUnderCursor);
+        // Trim text and remove invisible character "￼", which represents images
+        QString text = cursor.selectedText().trimmed().remove("￼");
+        const int length = text.length();
+        if (length == 0)
+            return true;
+        else if (length > 64) {
+            text.truncate(64);
+            int end = text.lastIndexOf(" ");
+            text.truncate(end);
+            text = tr("%1…").arg(text);
+        }
+        m_fontDialog->show(fontFamily(), text);
+        return false;
+    }
 #endif
 
     Q_INVOKABLE void loadFromNetwork(const QUrl &url);
@@ -245,6 +267,7 @@ Q_SIGNALS:
     void strikeChanged();
     void verticalAlignmentChanged();
     void autoReloadChanged();
+    void documentComesFromNetworkChanged();
 
     void markerChanged();
 
@@ -275,6 +298,7 @@ private:
 
     bool m_autoReload;
     bool m_reloading;
+    bool m_documentComesFromNetwork;
     int m_cursorPosition;
     int m_selectionStart;
     int m_selectionEnd;
