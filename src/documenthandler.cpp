@@ -290,7 +290,7 @@ bool DocumentHandler::bold() const
     QTextCursor cursor = textCursor();
     if (cursor.isNull())
         return false;
-    return textCursor().charFormat().fontWeight() == QFont::Bold;
+    return textCursor().charFormat().fontWeight() > QFont::Normal;
 }
 
 void DocumentHandler::setBold(bool bold)
