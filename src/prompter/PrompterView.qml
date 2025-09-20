@@ -67,13 +67,13 @@ Item {
         spacing: 8
         visible: anchors.leftMargin > -upperControls.width
         opacity: switch(parseInt(prompter.state)) {
-                 case 2: // Countdown
-                     return 0.4;
-                 case 3: // Prompting
-                     return 0.1;
-                 default:
-                     return 1;
-                 }
+                case 2: // Countdown
+                    return 0.4;
+                case 3: // Prompting
+                    return 0.1;
+                default:
+                    return 1;
+                }
         anchors.top: parent.top
         anchors.left: parent.left
         anchors.leftMargin: viewport.showingControls ? 0 : -upperControls.width
@@ -115,14 +115,17 @@ Item {
         z: 6
         spacing: 8
         visible: anchors.bottomMargin > -height
-        opacity: switch(parseInt(prompter.state)) {
-                 case 2: // Countdown
-                     return 0.4
-                 case 3: // Prompting
-                     return 0.2
-                 default:
-                     return 1
-                 }
+        opacity: if (!root.__isMobile)
+                    switch(parseInt(prompter.state)) {
+                    case 2: // Countdown
+                        return 0.4;
+                    case 3: // Prompting
+                        return 0.2;
+                    default:
+                        return 1;
+                    }
+                else
+                     return 1;
         anchors.horizontalCenter: parent.horizontalCenter
         anchors.bottom: parent.bottom
         anchors.bottomMargin: viewport.showingControls ? 0 : -height
