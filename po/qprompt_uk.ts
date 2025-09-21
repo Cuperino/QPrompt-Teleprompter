@@ -9,7 +9,17 @@
         <translation>%1…</translation>
     </message>
     <message>
-        <location filename="../src/documenthandler.cpp" line="814"/>
+        <location filename="../src/documenthandler.cpp" line="751"/>
+        <source>Unsupported file format</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/documenthandler.cpp" line="758"/>
+        <source>An error occurred while attempting to open file in a third party format. Go to &quot;Main Menu&quot;, &quot;Other Settings&quot;, then &quot;External Tools&quot; to make sure a corresponding import tool is properly configured.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/documenthandler.cpp" line="825"/>
         <source>Cannot save: </source>
         <translation type="unfinished"></translation>
     </message>
@@ -17,7 +27,7 @@
 <context>
     <name>EMAILS OF TRANSLATORS</name>
     <message>
-        <location filename="../src/main.cpp" line="181"/>
+        <location filename="../src/main.cpp" line="183"/>
         <source>Emails of translators</source>
         <translation>Ваші електронні адреси, till.svit@gmail.com, rusGoldberg@gmail.com</translation>
     </message>
@@ -45,109 +55,109 @@
         <translation>&amp;По центру</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/EditorToolbar.qml" line="560"/>
+        <location filename="../src/kirigami_ui/EditorToolbar.qml" line="561"/>
         <source>DejaVu (default, Roman, Cyrillic)</source>
         <comment>FontName (Translatable font details)</comment>
         <translation>DejaVu (типово, Латинка, Кирилиця)</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/EditorToolbar.qml" line="564"/>
+        <location filename="../src/kirigami_ui/EditorToolbar.qml" line="565"/>
         <source>OpenDyslexic (Roman)</source>
         <comment>FontName (Translatable font details)</comment>
         <translation>OpenDyslexic (Латинка)</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/EditorToolbar.qml" line="568"/>
+        <location filename="../src/kirigami_ui/EditorToolbar.qml" line="569"/>
         <source>Source Han Sans (CH, JP, KO)</source>
         <comment>FontName (Translatable font details)</comment>
         <translation>Source Han Sans (Китайська, Японська, Корейська)</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/EditorToolbar.qml" line="572"/>
+        <location filename="../src/kirigami_ui/EditorToolbar.qml" line="573"/>
         <source>Scheherazade New (Arabic)</source>
         <comment>FontName (Translatable font details)</comment>
         <translation>Scheherazade New (Арабська)</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/EditorToolbar.qml" line="576"/>
+        <location filename="../src/kirigami_ui/EditorToolbar.qml" line="577"/>
         <source>Palanquin (Devangari)</source>
         <comment>FontName (Translatable font details)</comment>
         <translation>Palanquin (Деванагарі)</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/EditorToolbar.qml" line="580"/>
+        <location filename="../src/kirigami_ui/EditorToolbar.qml" line="581"/>
         <source>Kalpurush (Bengali)</source>
         <comment>FontName (Translatable font details)</comment>
         <translation>Kalpurush (Бенгальська)</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/EditorToolbar.qml" line="586"/>
+        <location filename="../src/kirigami_ui/EditorToolbar.qml" line="587"/>
         <source>Choose System Font</source>
         <comment>Opens system font selection dialog</comment>
         <translation>Обрати системний шрифт</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/EditorToolbar.qml" line="592"/>
+        <location filename="../src/kirigami_ui/EditorToolbar.qml" line="593"/>
         <source>No glyphs selected…</source>
         <translation>Гліфи не вибрані…</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/EditorToolbar.qml" line="812"/>
+        <location filename="../src/kirigami_ui/EditorToolbar.qml" line="848"/>
         <source>Velocity &lt;pre&gt;%1&lt;/pre&gt;</source>
         <comment>Velocity {VELOCITY_STEPS}</comment>
         <translation>Швидкість &lt;pre&gt;%1&lt;/pre&gt;</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/EditorToolbar.qml" line="920"/>
+        <location filename="../src/kirigami_ui/EditorToolbar.qml" line="954"/>
         <source>Opacity &lt;pre&gt;%1&lt;/pre&gt;</source>
         <comment>Opacity {TRANSPARENCY_PERCENTAGE}</comment>
         <translation>Прозорість &lt;pre&gt;%1&lt;/pre&gt;</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/EditorToolbar.qml" line="1063"/>
-        <location filename="../src/kirigami_ui/EditorToolbar.qml" line="1064"/>
+        <location filename="../src/kirigami_ui/EditorToolbar.qml" line="1097"/>
+        <location filename="../src/kirigami_ui/EditorToolbar.qml" line="1098"/>
         <source>Font size &lt;pre&gt;%1 (%2)&lt;/pre&gt;</source>
         <comment>Font size 100% (083)</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/EditorToolbar.qml" line="1198"/>
+        <location filename="../src/kirigami_ui/EditorToolbar.qml" line="1232"/>
         <source>Line height &lt;pre&gt;%1%&lt;/pre&gt;</source>
         <comment>Line height 100%</comment>
         <translation>Висота рядка &lt;pre&gt;%1%&lt;/pre&gt;</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/EditorToolbar.qml" line="1317"/>
+        <location filename="../src/kirigami_ui/EditorToolbar.qml" line="1351"/>
         <source>Paragraph spacing &lt;pre&gt;%1%&lt;/pre&gt;</source>
         <comment>Paragraph spacing ±00</comment>
         <translation>Міжабзацний інтервал &lt;pre&gt;%1%&lt;/pre&gt;</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/EditorToolbar.qml" line="1437"/>
+        <location filename="../src/kirigami_ui/EditorToolbar.qml" line="1471"/>
         <source>Word spacing &lt;pre&gt;%1&lt;/pre&gt;</source>
         <comment>Word spacing &lt;pre&gt;±00&lt;pre&gt;</comment>
         <translation>Міжсловний інтервал &lt;pre&gt;%1&lt;/pre&gt;</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/EditorToolbar.qml" line="1554"/>
+        <location filename="../src/kirigami_ui/EditorToolbar.qml" line="1588"/>
         <source>Letter spacing &lt;pre&gt;%1&lt;/pre&gt;</source>
         <comment>Letter spacing ±00</comment>
         <translation>Міжлітерний інтервал &lt;pre&gt;%1&lt;/pre&gt;</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/EditorToolbar.qml" line="1671"/>
+        <location filename="../src/kirigami_ui/EditorToolbar.qml" line="1705"/>
         <source>Step speed &lt;pre&gt;%1&lt;/pre&gt;</source>
         <comment>Step speed 1.00</comment>
         <translation>Швидкість кроку &lt;pre&gt;%1&lt;/pre&gt;</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/EditorToolbar.qml" line="1790"/>
+        <location filename="../src/kirigami_ui/EditorToolbar.qml" line="1824"/>
         <source>Step acceleration &lt;pre&gt;%1&lt;/pre&gt;</source>
         <comment>Step acceleration 1.15</comment>
         <translation>Прискорення кроку &lt;pre&gt;%1&lt;/pre&gt;</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/EditorToolbar.qml" line="1816"/>
+        <location filename="../src/kirigami_ui/EditorToolbar.qml" line="1850"/>
         <source>Next reload starts at &lt;pre&gt;%1&lt;/pre&gt;</source>
         <comment>Next reload starts at 10:11:12</comment>
         <translation>Наступне перезавантаження почнеться через &lt;pre&gt;%1&lt;/pre&gt;</translation>
@@ -402,7 +412,7 @@ Help us translate QPrompt, visit:</source>
 <context>
     <name>MarkersDrawer</name>
     <message>
-        <location filename="../src/kirigami_ui/MarkersDrawer.qml" line="131"/>
+        <location filename="../src/kirigami_ui/MarkersDrawer.qml" line="130"/>
         <source>Close Marker List</source>
         <comment>Close sidebar listing user defined markers</comment>
         <translation>Закрити список маркерів</translation>
@@ -411,7 +421,7 @@ Help us translate QPrompt, visit:</source>
 <context>
     <name>NAMES OF TRANSLATORS</name>
     <message>
-        <location filename="../src/main.cpp" line="181"/>
+        <location filename="../src/main.cpp" line="183"/>
         <source>Names of translators</source>
         <translation>Ваші імена, Tymofii Lytvynenko, Goldberg</translation>
     </message>
@@ -455,143 +465,143 @@ Microsoft Word,</translation>
 <context>
     <name>PointerSettings</name>
     <message>
-        <location filename="../src/prompter/PointerSettings.qml" line="102"/>
+        <location filename="../src/prompter/PointerSettings.qml" line="104"/>
         <source>Colors for prompter states</source>
         <translation>Кольори для станів суфлера</translation>
     </message>
     <message>
-        <location filename="../src/prompter/PointerSettings.qml" line="108"/>
+        <location filename="../src/prompter/PointerSettings.qml" line="127"/>
         <source>Editing: </source>
         <translation>Редагування:</translation>
     </message>
     <message>
-        <location filename="../src/prompter/PointerSettings.qml" line="122"/>
+        <location filename="../src/prompter/PointerSettings.qml" line="159"/>
         <source>Ready: </source>
         <translation>Готово:</translation>
     </message>
     <message>
-        <location filename="../src/prompter/PointerSettings.qml" line="136"/>
+        <location filename="../src/prompter/PointerSettings.qml" line="190"/>
         <source>Prompting: </source>
         <translation>Суфлювання:</translation>
     </message>
     <message>
-        <location filename="../src/prompter/PointerSettings.qml" line="151"/>
+        <location filename="../src/prompter/PointerSettings.qml" line="206"/>
         <source>Pointer settings</source>
         <translation>Налаштування покажчика</translation>
     </message>
     <message>
-        <location filename="../src/prompter/PointerSettings.qml" line="159"/>
+        <location filename="../src/prompter/PointerSettings.qml" line="214"/>
         <source>Reuse left pointer</source>
         <comment>Uses a mirrored copy of the first pointer as the second pointer</comment>
         <translation>Повторно використовувати лівий вказівник</translation>
     </message>
     <message>
-        <location filename="../src/prompter/PointerSettings.qml" line="161"/>
+        <location filename="../src/prompter/PointerSettings.qml" line="216"/>
         <source>Reuse right pointer</source>
         <comment>Uses a mirrored copy of the first pointer as the second pointer</comment>
         <translation>Повторно використовувати правий вказівник</translation>
     </message>
     <message>
-        <location filename="../src/prompter/PointerSettings.qml" line="167"/>
+        <location filename="../src/prompter/PointerSettings.qml" line="222"/>
         <source>Tint</source>
         <translation>Тінь</translation>
     </message>
     <message>
-        <location filename="../src/prompter/PointerSettings.qml" line="171"/>
+        <location filename="../src/prompter/PointerSettings.qml" line="226"/>
         <source>Guides</source>
         <translation>Напрямні</translation>
     </message>
     <message>
-        <location filename="../src/prompter/PointerSettings.qml" line="203"/>
+        <location filename="../src/prompter/PointerSettings.qml" line="258"/>
         <source>Arrow</source>
         <translation>Стрілка</translation>
     </message>
     <message>
-        <location filename="../src/prompter/PointerSettings.qml" line="209"/>
+        <location filename="../src/prompter/PointerSettings.qml" line="264"/>
         <source>Text</source>
         <translation>Текст</translation>
     </message>
     <message>
-        <location filename="../src/prompter/PointerSettings.qml" line="215"/>
+        <location filename="../src/prompter/PointerSettings.qml" line="270"/>
         <source>Image</source>
         <translation>Зображення</translation>
     </message>
     <message>
-        <location filename="../src/prompter/PointerSettings.qml" line="221"/>
+        <location filename="../src/prompter/PointerSettings.qml" line="276"/>
         <source>Custom</source>
         <translation>Користувацьке</translation>
     </message>
     <message>
-        <location filename="../src/prompter/PointerSettings.qml" line="240"/>
+        <location filename="../src/prompter/PointerSettings.qml" line="295"/>
         <source>Line width &lt;pre&gt;%1&lt;/pre&gt;</source>
         <translation>Товщина лінії &lt;pre&gt;%1&lt;/pre&gt;</translation>
     </message>
     <message>
-        <location filename="../src/prompter/PointerSettings.qml" line="302"/>
-        <location filename="../src/prompter/PointerSettings.qml" line="412"/>
-        <location filename="../src/prompter/PointerSettings.qml" line="435"/>
-        <location filename="../src/prompter/PointerSettings.qml" line="500"/>
-        <location filename="../src/prompter/PointerSettings.qml" line="523"/>
+        <location filename="../src/prompter/PointerSettings.qml" line="356"/>
+        <location filename="../src/prompter/PointerSettings.qml" line="466"/>
+        <location filename="../src/prompter/PointerSettings.qml" line="489"/>
+        <location filename="../src/prompter/PointerSettings.qml" line="554"/>
+        <location filename="../src/prompter/PointerSettings.qml" line="577"/>
         <source>Left Pointer: </source>
         <translation>Лівий вказівник:</translation>
     </message>
     <message>
-        <location filename="../src/prompter/PointerSettings.qml" line="302"/>
-        <location filename="../src/prompter/PointerSettings.qml" line="316"/>
-        <location filename="../src/prompter/PointerSettings.qml" line="412"/>
-        <location filename="../src/prompter/PointerSettings.qml" line="435"/>
-        <location filename="../src/prompter/PointerSettings.qml" line="500"/>
-        <location filename="../src/prompter/PointerSettings.qml" line="523"/>
+        <location filename="../src/prompter/PointerSettings.qml" line="356"/>
+        <location filename="../src/prompter/PointerSettings.qml" line="370"/>
+        <location filename="../src/prompter/PointerSettings.qml" line="466"/>
+        <location filename="../src/prompter/PointerSettings.qml" line="489"/>
+        <location filename="../src/prompter/PointerSettings.qml" line="554"/>
+        <location filename="../src/prompter/PointerSettings.qml" line="577"/>
         <source>Right Pointer: </source>
         <translation>Правий вказівник:</translation>
     </message>
     <message>
-        <location filename="../src/prompter/PointerSettings.qml" line="349"/>
+        <location filename="../src/prompter/PointerSettings.qml" line="403"/>
         <source>Font: </source>
         <translation>Шрифт:</translation>
     </message>
     <message>
-        <location filename="../src/prompter/PointerSettings.qml" line="382"/>
-        <location filename="../src/prompter/PointerSettings.qml" line="467"/>
+        <location filename="../src/prompter/PointerSettings.qml" line="436"/>
+        <location filename="../src/prompter/PointerSettings.qml" line="521"/>
         <source>Vertical offset &lt;pre&gt;%1&lt;/pre&gt;</source>
         <comment>Vertical offset (line height) 1.00</comment>
         <translation>Вертикальне зміщення &lt;pre&gt;%1&lt;/pre&gt;</translation>
     </message>
     <message>
-        <location filename="../src/prompter/PointerSettings.qml" line="423"/>
-        <location filename="../src/prompter/PointerSettings.qml" line="455"/>
-        <location filename="../src/prompter/PointerSettings.qml" line="511"/>
-        <location filename="../src/prompter/PointerSettings.qml" line="543"/>
+        <location filename="../src/prompter/PointerSettings.qml" line="477"/>
+        <location filename="../src/prompter/PointerSettings.qml" line="509"/>
+        <location filename="../src/prompter/PointerSettings.qml" line="565"/>
+        <location filename="../src/prompter/PointerSettings.qml" line="597"/>
         <source>Browse</source>
         <translation>Переглянути</translation>
     </message>
     <message>
-        <location filename="../src/prompter/PointerSettings.qml" line="494"/>
+        <location filename="../src/prompter/PointerSettings.qml" line="548"/>
         <source>Use QML scripts to draw pointers</source>
         <translation>Використовувати QML-скрипти для малювання вказівників</translation>
     </message>
     <message>
-        <location filename="../src/prompter/PointerSettings.qml" line="567"/>
+        <location filename="../src/prompter/PointerSettings.qml" line="622"/>
         <source>JPEG image</source>
         <translation>Зображення у форматі JPEG</translation>
     </message>
     <message>
-        <location filename="../src/prompter/PointerSettings.qml" line="567"/>
+        <location filename="../src/prompter/PointerSettings.qml" line="622"/>
         <source>PNG image</source>
         <translation>Зображення у форматі PNG</translation>
     </message>
     <message>
-        <location filename="../src/prompter/PointerSettings.qml" line="568"/>
+        <location filename="../src/prompter/PointerSettings.qml" line="623"/>
         <source>GIF animation</source>
         <translation>Анімація у форматі GIF</translation>
     </message>
     <message>
-        <location filename="../src/prompter/PointerSettings.qml" line="569"/>
+        <location filename="../src/prompter/PointerSettings.qml" line="624"/>
         <source>WEBP image</source>
         <translation>Зображення у форматі WEBP</translation>
     </message>
     <message>
-        <location filename="../src/prompter/PointerSettings.qml" line="580"/>
+        <location filename="../src/prompter/PointerSettings.qml" line="635"/>
         <source>QML script</source>
         <translation>Скрипт QML</translation>
     </message>
@@ -629,184 +639,184 @@ Microsoft Word,</translation>
         <translation>Помилка завантаження файлу…</translation>
     </message>
     <message>
-        <location filename="../src/prompter/Prompter.qml" line="872"/>
+        <location filename="../src/prompter/Prompter.qml" line="880"/>
         <source>Press and hold to go back to the start</source>
         <translation>Натисніть і утримуйте, щоб повернутися на початок</translation>
     </message>
     <message>
-        <location filename="../src/prompter/Prompter.qml" line="874"/>
+        <location filename="../src/prompter/Prompter.qml" line="882"/>
         <source>Double tap to go back to the start</source>
         <translation>Двічі торкніться, щоб повернутися на початок</translation>
     </message>
     <message>
-        <location filename="../src/prompter/Prompter.qml" line="882"/>
+        <location filename="../src/prompter/Prompter.qml" line="890"/>
         <source>Auto rewind cancelled</source>
         <translation>Автоматична перемотка скасована</translation>
     </message>
     <message>
-        <location filename="../src/prompter/Prompter.qml" line="1360"/>
+        <location filename="../src/prompter/Prompter.qml" line="1368"/>
         <source>New document</source>
         <translation>Новий документ</translation>
     </message>
     <message>
-        <location filename="../src/prompter/Prompter.qml" line="1369"/>
+        <location filename="../src/prompter/Prompter.qml" line="1377"/>
         <source>welcome_en.html</source>
         <translation>welcome_uk.html</translation>
     </message>
     <message>
-        <location filename="../src/prompter/Prompter.qml" line="1374"/>
+        <location filename="../src/prompter/Prompter.qml" line="1382"/>
         <source>User welcome loaded</source>
         <translation>Завантажено привітання користувача</translation>
     </message>
     <message>
-        <location filename="../src/prompter/Prompter.qml" line="1384"/>
+        <location filename="../src/prompter/Prompter.qml" line="1392"/>
         <source>Loaded: %1</source>
         <translation>Завантажено: %1</translation>
     </message>
     <message>
-        <location filename="../src/prompter/Prompter.qml" line="1412"/>
-        <location filename="../src/prompter/Prompter.qml" line="1558"/>
+        <location filename="../src/prompter/Prompter.qml" line="1420"/>
+        <location filename="../src/prompter/Prompter.qml" line="1566"/>
         <source>Saved %1</source>
         <comment>Saved FILE_NAME</comment>
         <translation>Збережено %1</translation>
     </message>
     <message>
-        <location filename="../src/prompter/Prompter.qml" line="1414"/>
+        <location filename="../src/prompter/Prompter.qml" line="1422"/>
         <source>Saved</source>
         <translation>Збережено</translation>
     </message>
     <message>
-        <location filename="../src/prompter/Prompter.qml" line="1494"/>
-        <location filename="../src/prompter/Prompter.qml" line="1506"/>
-        <location filename="../src/prompter/Prompter.qml" line="1545"/>
+        <location filename="../src/prompter/Prompter.qml" line="1502"/>
+        <location filename="../src/prompter/Prompter.qml" line="1514"/>
+        <location filename="../src/prompter/Prompter.qml" line="1553"/>
         <source>Plain Text &lt;%1&gt;</source>
         <comment>Format name &lt;FORMAT_EXTENSION&gt;</comment>
         <translation>Звичайний текст &lt;%1&gt;</translation>
     </message>
     <message>
-        <location filename="../src/prompter/Prompter.qml" line="1495"/>
+        <location filename="../src/prompter/Prompter.qml" line="1503"/>
         <source>OpenDocument Format Text Document &lt;%1&gt;</source>
         <comment>Format name &lt;FORMAT_EXTENSION&gt;</comment>
         <translation>Текстовий документ у форматі OpenDocument &lt;%1&gt;</translation>
     </message>
     <message>
-        <location filename="../src/prompter/Prompter.qml" line="1496"/>
+        <location filename="../src/prompter/Prompter.qml" line="1504"/>
         <source>AbiWord Document &lt;%1&gt;</source>
         <comment>Format name &lt;FORMAT_EXTENSION&gt;</comment>
         <translation>Документ AbiWord &lt;%1&gt;</translation>
     </message>
     <message>
-        <location filename="../src/prompter/Prompter.qml" line="1497"/>
+        <location filename="../src/prompter/Prompter.qml" line="1505"/>
         <source>Microsoft Word document &lt;%1&gt;</source>
         <comment>Format name &lt;FORMAT_EXTENSION&gt;</comment>
         <translation>Документ Microsoft Word &lt;%1&gt;</translation>
     </message>
     <message>
-        <location filename="../src/prompter/Prompter.qml" line="1498"/>
+        <location filename="../src/prompter/Prompter.qml" line="1506"/>
         <source>Apple Pages Document &lt;%1&gt;</source>
         <comment>Format name &lt;FORMAT_EXTENSION&gt;</comment>
         <translation>Документ Apple Pages &lt;%1&gt;</translation>
     </message>
     <message>
-        <location filename="../src/prompter/Prompter.qml" line="1499"/>
+        <location filename="../src/prompter/Prompter.qml" line="1507"/>
         <source>Rich Text Format &lt;%1&gt;</source>
         <comment>Format name &lt;FORMAT_EXTENSION&gt;</comment>
         <translation>Форматований текст &lt;%1&gt;</translation>
     </message>
     <message>
-        <location filename="../src/prompter/Prompter.qml" line="1501"/>
         <location filename="../src/prompter/Prompter.qml" line="1509"/>
+        <location filename="../src/prompter/Prompter.qml" line="1517"/>
         <source>All Formats</source>
         <comment>All file formats</comment>
         <translation>Усі формати</translation>
     </message>
     <message>
-        <location filename="../src/prompter/Prompter.qml" line="1492"/>
-        <location filename="../src/prompter/Prompter.qml" line="1504"/>
-        <location filename="../src/prompter/Prompter.qml" line="1540"/>
-        <location filename="../src/prompter/Prompter.qml" line="1544"/>
+        <location filename="../src/prompter/Prompter.qml" line="1500"/>
+        <location filename="../src/prompter/Prompter.qml" line="1512"/>
+        <location filename="../src/prompter/Prompter.qml" line="1548"/>
+        <location filename="../src/prompter/Prompter.qml" line="1552"/>
         <source>Hypertext Markup Language &lt;%1&gt;</source>
         <comment>Format name &lt;FORMAT_EXTENSION&gt;</comment>
         <translation>Гіпертекстова розмітка &lt;%1&gt;</translation>
     </message>
     <message>
-        <location filename="../src/prompter/Prompter.qml" line="1493"/>
-        <location filename="../src/prompter/Prompter.qml" line="1505"/>
+        <location filename="../src/prompter/Prompter.qml" line="1501"/>
+        <location filename="../src/prompter/Prompter.qml" line="1513"/>
         <source>Markdown &lt;%1&gt;</source>
         <comment>Format name &lt;FORMAT_EXTENSION&gt;</comment>
         <translation>Markdown &lt;%1&gt;</translation>
     </message>
     <message>
-        <location filename="../src/prompter/Prompter.qml" line="1583"/>
-        <location filename="../src/prompter/Prompter.qml" line="1630"/>
+        <location filename="../src/prompter/Prompter.qml" line="1591"/>
+        <location filename="../src/prompter/Prompter.qml" line="1638"/>
         <source>&amp;Copy</source>
         <comment>Global menu and editor context menu actions</comment>
         <translation>&amp;Копіювати</translation>
     </message>
     <message>
-        <location filename="../src/prompter/Prompter.qml" line="1588"/>
-        <location filename="../src/prompter/Prompter.qml" line="1635"/>
+        <location filename="../src/prompter/Prompter.qml" line="1596"/>
+        <location filename="../src/prompter/Prompter.qml" line="1643"/>
         <source>Cu&amp;t</source>
         <comment>Global menu and editor context menu actions</comment>
         <translation>Ви&amp;різати</translation>
     </message>
     <message>
-        <location filename="../src/prompter/Prompter.qml" line="1593"/>
-        <location filename="../src/prompter/Prompter.qml" line="1640"/>
+        <location filename="../src/prompter/Prompter.qml" line="1601"/>
+        <location filename="../src/prompter/Prompter.qml" line="1648"/>
         <source>&amp;Paste</source>
         <comment>Global menu and editor context menu actions</comment>
         <translation>Встави&amp;ти</translation>
     </message>
     <message>
-        <location filename="../src/prompter/Prompter.qml" line="1599"/>
-        <location filename="../src/prompter/Prompter.qml" line="1646"/>
+        <location filename="../src/prompter/Prompter.qml" line="1607"/>
+        <location filename="../src/prompter/Prompter.qml" line="1654"/>
         <source>Fo&amp;nt…</source>
         <comment>Editor context menu actions</comment>
         <translation>Шри&amp;фт…</translation>
     </message>
     <message>
-        <location filename="../src/prompter/Prompter.qml" line="1603"/>
-        <location filename="../src/prompter/Prompter.qml" line="1650"/>
+        <location filename="../src/prompter/Prompter.qml" line="1611"/>
+        <location filename="../src/prompter/Prompter.qml" line="1658"/>
         <source>Co&amp;lor…</source>
         <comment>Editor context menu actions</comment>
         <translation>Ко&amp;лір…</translation>
     </message>
     <message>
-        <location filename="../src/prompter/Prompter.qml" line="1607"/>
-        <location filename="../src/prompter/Prompter.qml" line="1654"/>
+        <location filename="../src/prompter/Prompter.qml" line="1615"/>
+        <location filename="../src/prompter/Prompter.qml" line="1662"/>
         <source>Hi&amp;ghlight…</source>
         <comment>Editor context menu actions</comment>
         <translation>Ви&amp;ділення…</translation>
     </message>
     <message>
-        <location filename="../src/prompter/Prompter.qml" line="1619"/>
+        <location filename="../src/prompter/Prompter.qml" line="1627"/>
         <source>&amp;Undo</source>
         <comment>Editor context menu actions</comment>
         <translation>&amp;Скасувати</translation>
     </message>
     <message>
-        <location filename="../src/prompter/Prompter.qml" line="1624"/>
+        <location filename="../src/prompter/Prompter.qml" line="1632"/>
         <source>Redo</source>
         <comment>Editor context menu actions</comment>
         <translation>Повернути</translation>
     </message>
     <message>
-        <location filename="../src/prompter/Prompter.qml" line="1967"/>
+        <location filename="../src/prompter/Prompter.qml" line="2002"/>
         <source>Begin countdown</source>
         <translation>Розпочати зворотний відлік</translation>
     </message>
     <message>
-        <location filename="../src/prompter/Prompter.qml" line="1967"/>
+        <location filename="../src/prompter/Prompter.qml" line="2002"/>
         <source>Start prompting</source>
         <translation>Почати суфлювання</translation>
     </message>
     <message>
-        <location filename="../src/prompter/Prompter.qml" line="2015"/>
+        <location filename="../src/prompter/Prompter.qml" line="2050"/>
         <source>Skip countdown</source>
         <translation>Пропустити зворотний відлік</translation>
     </message>
     <message>
-        <location filename="../src/prompter/Prompter.qml" line="2060"/>
+        <location filename="../src/prompter/Prompter.qml" line="2095"/>
         <source>Return to edit mode</source>
         <translation>Повернутися до режиму редагування</translation>
     </message>
@@ -1179,17 +1189,17 @@ Microsoft Word,</translation>
         <translation>Повний екран</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/PrompterPage.qml" line="863"/>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="865"/>
         <source>Countdown Setup</source>
         <translation>Налаштування зворотного відліку</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/PrompterPage.qml" line="882"/>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="884"/>
         <source>Countdown duration</source>
         <translation>Тривалість зворотного відліку</translation>
     </message>
     <message numerus="yes">
-        <location filename="../src/kirigami_ui/PrompterPage.qml" line="902"/>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="904"/>
         <source>Disappear within %n second(s) to go</source>
         <translation>
             <numerusform>Зникнути за %n секунду до кінця</numerusform>
@@ -1198,70 +1208,70 @@ Microsoft Word,</translation>
         </translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/PrompterPage.qml" line="928"/>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="930"/>
         <source>Skip Key</source>
         <comment>Refers to a key on the keyboard used to skip to a user defined marker while prompting</comment>
         <translation>Пропустити клавішу</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/PrompterPage.qml" line="961"/>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="963"/>
         <source>Key to perform skip to this marker</source>
         <comment>Refers to a key on the keyboard used to skip to a user defined marker while prompting</comment>
         <translation>Клавіша для переходу до цього маркера</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/PrompterPage.qml" line="1014"/>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="1016"/>
         <source>Open from network...</source>
         <translation>Відкрити з мережі...</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/PrompterPage.qml" line="1055"/>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="1057"/>
         <source>URL:</source>
         <translation>URL:</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/PrompterPage.qml" line="1070"/>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="1072"/>
         <source>Auto reload</source>
         <translation>Автоматичне перезавантаження</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/PrompterPage.qml" line="1081"/>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="1083"/>
         <source>Hours:</source>
         <translation>Години:</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/PrompterPage.qml" line="1102"/>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="1104"/>
         <source>Minutes:</source>
         <translation>Хвилини:</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/PrompterPage.qml" line="1127"/>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="1129"/>
         <source>Seconds:</source>
         <translation>Секунди:</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/PrompterPage.qml" line="1155"/>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="1157"/>
         <source>Next reload starts at %1</source>
         <comment>Next reload starts at 10:11:12</comment>
         <translation>Наступне перезавантаження почнеться через %1</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/PrompterPage.qml" line="1156"/>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="1158"/>
         <source>Auto reload is not running</source>
         <translation>Автоматичне перезавантаження не працює</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/PrompterPage.qml" line="1162"/>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="1164"/>
         <source>Load from Network</source>
         <translation>Завантажити з мережі</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/PrompterPage.qml" line="1170"/>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="1172"/>
         <source>Close</source>
         <translation>Закрити</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/PrompterPage.qml" line="1184"/>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="1186"/>
         <source>Pointer configuration</source>
         <comment>Name of section where reding region pointers are configured</comment>
         <translation>Конфігурація покажчика</translation>
@@ -1575,198 +1585,198 @@ Microsoft Word,</translation>
 <context>
     <name>main</name>
     <message>
-        <location filename="../src/kirigami_ui/main.qml" line="200"/>
-        <location filename="../src/kirigami_ui/main.qml" line="580"/>
-        <location filename="../src/kirigami_ui/+android/main.qml" line="185"/>
+        <location filename="../src/kirigami_ui/main.qml" line="199"/>
+        <location filename="../src/kirigami_ui/main.qml" line="579"/>
+        <location filename="../src/kirigami_ui/+android/main.qml" line="184"/>
         <location filename="../src/kirigami_ui/+windows/main.qml" line="199"/>
         <source>&amp;New</source>
         <comment>Main menu and global menu actions</comment>
         <translation>&amp;Новий</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/main.qml" line="207"/>
-        <location filename="../src/kirigami_ui/main.qml" line="584"/>
-        <location filename="../src/kirigami_ui/main.qml" line="588"/>
-        <location filename="../src/kirigami_ui/+android/main.qml" line="191"/>
+        <location filename="../src/kirigami_ui/main.qml" line="206"/>
+        <location filename="../src/kirigami_ui/main.qml" line="583"/>
+        <location filename="../src/kirigami_ui/main.qml" line="587"/>
+        <location filename="../src/kirigami_ui/+android/main.qml" line="190"/>
         <location filename="../src/kirigami_ui/+windows/main.qml" line="206"/>
         <source>&amp;Open</source>
         <comment>Main menu and global menu actions</comment>
         <translation>&amp;Відкрити</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/main.qml" line="217"/>
-        <location filename="../src/kirigami_ui/main.qml" line="592"/>
-        <location filename="../src/kirigami_ui/+android/main.qml" line="200"/>
+        <location filename="../src/kirigami_ui/main.qml" line="216"/>
+        <location filename="../src/kirigami_ui/main.qml" line="591"/>
+        <location filename="../src/kirigami_ui/+android/main.qml" line="199"/>
         <location filename="../src/kirigami_ui/+windows/main.qml" line="216"/>
         <source>&amp;Open remote file</source>
         <comment>Main menu and global menu actions</comment>
         <translation>&amp;Відкрити віддалений файл</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/main.qml" line="226"/>
-        <location filename="../src/kirigami_ui/main.qml" line="599"/>
-        <location filename="../src/kirigami_ui/+android/main.qml" line="209"/>
+        <location filename="../src/kirigami_ui/main.qml" line="225"/>
+        <location filename="../src/kirigami_ui/main.qml" line="598"/>
+        <location filename="../src/kirigami_ui/+android/main.qml" line="208"/>
         <location filename="../src/kirigami_ui/+windows/main.qml" line="225"/>
         <source>&amp;Save</source>
         <comment>Main menu and global menu actions</comment>
         <translation>&amp;Зберегти</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/main.qml" line="236"/>
-        <location filename="../src/kirigami_ui/+android/main.qml" line="218"/>
+        <location filename="../src/kirigami_ui/main.qml" line="235"/>
+        <location filename="../src/kirigami_ui/+android/main.qml" line="217"/>
         <location filename="../src/kirigami_ui/+windows/main.qml" line="235"/>
         <source>Save &amp;As</source>
         <comment>Main menu and global menu actions</comment>
         <translation>Зберегти &amp;як</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/main.qml" line="247"/>
-        <location filename="../src/kirigami_ui/+android/main.qml" line="228"/>
+        <location filename="../src/kirigami_ui/main.qml" line="246"/>
+        <location filename="../src/kirigami_ui/+android/main.qml" line="227"/>
         <location filename="../src/kirigami_ui/+windows/main.qml" line="246"/>
         <source>&amp;Recent Files</source>
         <comment>Main menu actions</comment>
         <translation>&amp;Нещодавні файли</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/main.qml" line="256"/>
-        <location filename="../src/kirigami_ui/+android/main.qml" line="236"/>
+        <location filename="../src/kirigami_ui/main.qml" line="255"/>
+        <location filename="../src/kirigami_ui/+android/main.qml" line="235"/>
         <location filename="../src/kirigami_ui/+windows/main.qml" line="255"/>
         <source>&amp;Controls Settings</source>
         <comment>Main menu actions. Menu regarding input settings.</comment>
         <translation>&amp;Налаштування керування</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/main.qml" line="261"/>
-        <location filename="../src/kirigami_ui/main.qml" line="809"/>
-        <location filename="../src/kirigami_ui/+android/main.qml" line="241"/>
+        <location filename="../src/kirigami_ui/main.qml" line="260"/>
+        <location filename="../src/kirigami_ui/main.qml" line="808"/>
+        <location filename="../src/kirigami_ui/+android/main.qml" line="240"/>
         <location filename="../src/kirigami_ui/+windows/main.qml" line="260"/>
         <source>Keyboard Inputs</source>
         <comment>Main menu and global menu actions. Opens dialog to configure keyboard inputs.</comment>
         <translation>Введення з клавіатури</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/main.qml" line="268"/>
-        <location filename="../src/kirigami_ui/+android/main.qml" line="248"/>
+        <location filename="../src/kirigami_ui/main.qml" line="267"/>
+        <location filename="../src/kirigami_ui/+android/main.qml" line="247"/>
         <location filename="../src/kirigami_ui/+windows/main.qml" line="267"/>
         <source>Scroll throttle settings</source>
         <comment>Open &apos;scroll settings&apos; from main menu and global menu actions</comment>
         <translation>Налаштування швидкості прокрутки</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/main.qml" line="274"/>
-        <location filename="../src/kirigami_ui/main.qml" line="828"/>
-        <location filename="../src/kirigami_ui/+android/main.qml" line="254"/>
+        <location filename="../src/kirigami_ui/main.qml" line="273"/>
+        <location filename="../src/kirigami_ui/main.qml" line="827"/>
+        <location filename="../src/kirigami_ui/+android/main.qml" line="253"/>
         <location filename="../src/kirigami_ui/+windows/main.qml" line="273"/>
         <source>Invert &amp;arrow keys</source>
         <comment>Main menu and global menu actions. Have up arrow behave like down arrow and vice versa while prompting.</comment>
         <translation>Інвертувати &amp;стрілки</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/main.qml" line="283"/>
-        <location filename="../src/kirigami_ui/main.qml" line="835"/>
-        <location filename="../src/kirigami_ui/+android/main.qml" line="263"/>
+        <location filename="../src/kirigami_ui/main.qml" line="282"/>
+        <location filename="../src/kirigami_ui/main.qml" line="834"/>
+        <location filename="../src/kirigami_ui/+android/main.qml" line="262"/>
         <location filename="../src/kirigami_ui/+windows/main.qml" line="282"/>
         <source>Invert &amp;scroll direction (Natural scrolling)</source>
         <comment>Main menu and global menu actions. Invert scroll direction while prompting.</comment>
         <translation>Інвертувати напрямок &amp;прокрутки</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/main.qml" line="292"/>
-        <location filename="../src/kirigami_ui/main.qml" line="820"/>
-        <location filename="../src/kirigami_ui/+android/main.qml" line="272"/>
+        <location filename="../src/kirigami_ui/main.qml" line="291"/>
+        <location filename="../src/kirigami_ui/main.qml" line="819"/>
+        <location filename="../src/kirigami_ui/+android/main.qml" line="271"/>
         <location filename="../src/kirigami_ui/+windows/main.qml" line="291"/>
         <source>Use scroll as velocity &amp;dial</source>
         <comment>Main menu and global menu actions. Have touchpad and mouse wheel scrolling adjust velocity instead of scrolling like most other apps.</comment>
         <translation>Використовувати прокрутку як швидкість &amp;контролера</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/main.qml" line="302"/>
-        <location filename="../src/kirigami_ui/main.qml" line="814"/>
-        <location filename="../src/kirigami_ui/+android/main.qml" line="282"/>
+        <location filename="../src/kirigami_ui/main.qml" line="301"/>
+        <location filename="../src/kirigami_ui/main.qml" line="813"/>
+        <location filename="../src/kirigami_ui/+android/main.qml" line="281"/>
         <location filename="../src/kirigami_ui/+windows/main.qml" line="301"/>
         <source>Disable scrolling while prompting</source>
         <comment>Main menu and global menu actions. Touchpad scrolling and mouse wheel use have no effect while prompting.</comment>
         <translation>Вимкнути прокрутку під час роботи суфлера</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/main.qml" line="311"/>
-        <location filename="../src/kirigami_ui/+android/main.qml" line="291"/>
+        <location filename="../src/kirigami_ui/main.qml" line="310"/>
+        <location filename="../src/kirigami_ui/+android/main.qml" line="290"/>
         <location filename="../src/kirigami_ui/+windows/main.qml" line="310"/>
         <source>Other &amp;Settings</source>
         <comment>Main menu actions</comment>
         <translation>Інші &amp;налаштування</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/main.qml" line="322"/>
+        <location filename="../src/kirigami_ui/main.qml" line="321"/>
         <location filename="../src/kirigami_ui/+windows/main.qml" line="321"/>
         <source>External Tools and Applications</source>
         <comment>Main menu actions. Load Path Settings page.</comment>
         <translation>Зовнішні інструменти та застосунки</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/main.qml" line="329"/>
-        <location filename="../src/kirigami_ui/+android/main.qml" line="301"/>
+        <location filename="../src/kirigami_ui/main.qml" line="328"/>
+        <location filename="../src/kirigami_ui/+android/main.qml" line="300"/>
         <location filename="../src/kirigami_ui/+windows/main.qml" line="328"/>
         <source>Layout direction</source>
         <comment>Main menu actions. Opens dialog for choosing layout direction.</comment>
         <translation>Напрямок розмітки</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/main.qml" line="334"/>
-        <location filename="../src/kirigami_ui/+android/main.qml" line="306"/>
+        <location filename="../src/kirigami_ui/main.qml" line="333"/>
+        <location filename="../src/kirigami_ui/+android/main.qml" line="305"/>
         <location filename="../src/kirigami_ui/+windows/main.qml" line="333"/>
         <source>Performance tweaks</source>
         <comment>Main menu actions. Enters Performance tweaks submenu.</comment>
         <translation>Оптимізація продуктивності</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/main.qml" line="336"/>
-        <location filename="../src/kirigami_ui/+android/main.qml" line="308"/>
+        <location filename="../src/kirigami_ui/main.qml" line="335"/>
+        <location filename="../src/kirigami_ui/+android/main.qml" line="307"/>
         <location filename="../src/kirigami_ui/+windows/main.qml" line="335"/>
         <source>Disable screen projections</source>
         <comment>Main menu actions</comment>
         <translation>Вимкнути екранні проєкції</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/main.qml" line="343"/>
-        <location filename="../src/kirigami_ui/+android/main.qml" line="315"/>
+        <location filename="../src/kirigami_ui/main.qml" line="342"/>
+        <location filename="../src/kirigami_ui/+android/main.qml" line="314"/>
         <location filename="../src/kirigami_ui/+windows/main.qml" line="342"/>
         <source>Disable timers</source>
         <comment>Main menu actions</comment>
         <translation>Вимкнути таймери</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/main.qml" line="352"/>
-        <location filename="../src/kirigami_ui/+android/main.qml" line="324"/>
+        <location filename="../src/kirigami_ui/main.qml" line="351"/>
+        <location filename="../src/kirigami_ui/+android/main.qml" line="323"/>
         <location filename="../src/kirigami_ui/+windows/main.qml" line="351"/>
         <source>Auto hide formatting tools</source>
         <comment>Main menu actions. Hides formatting tools while not in edit mode.</comment>
         <translation>Автоматично приховувати інструменти форматування</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/main.qml" line="360"/>
-        <location filename="../src/kirigami_ui/+android/main.qml" line="332"/>
+        <location filename="../src/kirigami_ui/main.qml" line="359"/>
+        <location filename="../src/kirigami_ui/+android/main.qml" line="331"/>
         <location filename="../src/kirigami_ui/+windows/main.qml" line="359"/>
         <source>Always hide formatting tools</source>
         <comment>Main menu actions</comment>
         <translation>Завжди приховувати інструменти форматування</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/main.qml" line="368"/>
-        <location filename="../src/kirigami_ui/+android/main.qml" line="340"/>
+        <location filename="../src/kirigami_ui/main.qml" line="367"/>
+        <location filename="../src/kirigami_ui/+android/main.qml" line="339"/>
         <location filename="../src/kirigami_ui/+windows/main.qml" line="367"/>
         <source>Disable overlay contrast</source>
         <comment>Main menu actions. Disables contrast effect for the reading region overlay.</comment>
         <translation>Вимкнути накладення контрасту</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/main.qml" line="378"/>
+        <location filename="../src/kirigami_ui/main.qml" line="377"/>
         <location filename="../src/kirigami_ui/+windows/main.qml" line="377"/>
         <source>Disable background transparency</source>
         <translation>Вимкнути прозорість фону</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/main.qml" line="397"/>
+        <location filename="../src/kirigami_ui/main.qml" line="396"/>
         <location filename="../src/kirigami_ui/+windows/main.qml" line="396"/>
         <source>Force sub-pixel text renderer past 120px</source>
         <comment>Main menu actions. QPrompt switches between two text rendering techniques when the base font size exceeds 120px. Enabling this option forces QPrompt to always use the default renderer, which features smoother sub-pixel animations.</comment>
@@ -1774,169 +1784,169 @@ Microsoft Word,</translation>
 Примусово використовувати текстовий рендеринг з субпікселями понад 120px</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/main.qml" line="408"/>
-        <location filename="../src/kirigami_ui/+android/main.qml" line="349"/>
+        <location filename="../src/kirigami_ui/main.qml" line="407"/>
+        <location filename="../src/kirigami_ui/+android/main.qml" line="348"/>
         <location filename="../src/kirigami_ui/+windows/main.qml" line="407"/>
         <source>Other tweaks</source>
         <comment>Main menu actions. Enters Other tweaks submenu.</comment>
         <translation>Інші оптимізації</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/main.qml" line="411"/>
-        <location filename="../src/kirigami_ui/+android/main.qml" line="351"/>
+        <location filename="../src/kirigami_ui/main.qml" line="410"/>
+        <location filename="../src/kirigami_ui/+android/main.qml" line="350"/>
         <location filename="../src/kirigami_ui/+windows/main.qml" line="409"/>
         <source>Local file auto reload</source>
         <comment>Main menu actions. Enable local file auto reload</comment>
         <translation>Автоматичне перезавантаження локальних файлів</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/main.qml" line="419"/>
+        <location filename="../src/kirigami_ui/main.qml" line="418"/>
         <location filename="../src/kirigami_ui/+windows/main.qml" line="417"/>
         <source>Fake fullscreen behavior</source>
         <comment>Main menu actions. Fake fullscreen behavior instead of requesting true fullscreen</comment>
         <translation>Фальшивий режим повного екрану</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/main.qml" line="428"/>
-        <location filename="../src/kirigami_ui/+android/main.qml" line="359"/>
+        <location filename="../src/kirigami_ui/main.qml" line="427"/>
+        <location filename="../src/kirigami_ui/+android/main.qml" line="358"/>
         <location filename="../src/kirigami_ui/+windows/main.qml" line="425"/>
         <source>Restore factory defaults</source>
         <comment>Main menu actions</comment>
         <translation>Відновлення заводських налаштувань</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/main.qml" line="438"/>
-        <location filename="../src/kirigami_ui/+android/main.qml" line="369"/>
+        <location filename="../src/kirigami_ui/main.qml" line="437"/>
+        <location filename="../src/kirigami_ui/+android/main.qml" line="368"/>
         <location filename="../src/kirigami_ui/+windows/main.qml" line="435"/>
         <source>Language</source>
         <comment>Main menu actions</comment>
         <translation>Мова</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/main.qml" line="445"/>
-        <location filename="../src/kirigami_ui/+android/main.qml" line="376"/>
+        <location filename="../src/kirigami_ui/main.qml" line="444"/>
+        <location filename="../src/kirigami_ui/+android/main.qml" line="375"/>
         <location filename="../src/kirigami_ui/+windows/main.qml" line="442"/>
         <source>Abou&amp;t %1</source>
         <comment>Main menu actions. Load about page.</comment>
         <translation>Пр&amp;о %1</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/main.qml" line="452"/>
-        <location filename="../src/kirigami_ui/main.qml" line="608"/>
-        <location filename="../src/kirigami_ui/+android/main.qml" line="383"/>
+        <location filename="../src/kirigami_ui/main.qml" line="451"/>
+        <location filename="../src/kirigami_ui/main.qml" line="607"/>
+        <location filename="../src/kirigami_ui/+android/main.qml" line="382"/>
         <location filename="../src/kirigami_ui/+windows/main.qml" line="449"/>
         <source>&amp;Quit</source>
         <comment>Main menu and global menu actions</comment>
         <translation>В&amp;ийти</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/main.qml" line="512"/>
-        <location filename="../src/kirigami_ui/main.qml" line="860"/>
-        <location filename="../src/kirigami_ui/+android/main.qml" line="437"/>
+        <location filename="../src/kirigami_ui/main.qml" line="511"/>
+        <location filename="../src/kirigami_ui/main.qml" line="859"/>
+        <location filename="../src/kirigami_ui/+android/main.qml" line="436"/>
         <location filename="../src/kirigami_ui/+windows/main.qml" line="509"/>
         <source>Load &amp;Welcome</source>
         <comment>Main menu and global actions. Load document that welcomes users.</comment>
         <translation>Завантажити &amp;Ласкаво просимо</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/main.qml" line="548"/>
-        <location filename="../src/kirigami_ui/+android/main.qml" line="473"/>
+        <location filename="../src/kirigami_ui/main.qml" line="547"/>
+        <location filename="../src/kirigami_ui/+android/main.qml" line="472"/>
         <location filename="../src/kirigami_ui/+windows/main.qml" line="545"/>
         <source>Darth mode</source>
         <translation>Режим Дарта</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/main.qml" line="577"/>
+        <location filename="../src/kirigami_ui/main.qml" line="576"/>
         <source>&amp;File</source>
         <comment>Global menu actions</comment>
         <translation>&amp;Файл</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/main.qml" line="603"/>
+        <location filename="../src/kirigami_ui/main.qml" line="602"/>
         <source>Save &amp;As…</source>
         <comment>Main menu and global menu actions</comment>
         <translation>Зберегти &amp;як…</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/main.qml" line="614"/>
+        <location filename="../src/kirigami_ui/main.qml" line="613"/>
         <source>&amp;Edit</source>
         <comment>Global menu actions</comment>
         <translation>&amp;Редагувати</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/main.qml" line="617"/>
+        <location filename="../src/kirigami_ui/main.qml" line="616"/>
         <source>&amp;Undo</source>
         <comment>Global menu actions</comment>
         <translation>&amp;Скасувати</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/main.qml" line="622"/>
+        <location filename="../src/kirigami_ui/main.qml" line="621"/>
         <source>&amp;Redo</source>
         <comment>Global menu actions</comment>
         <translation>&amp;Повернути</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/main.qml" line="628"/>
+        <location filename="../src/kirigami_ui/main.qml" line="627"/>
         <source>&amp;Copy</source>
         <comment>Global menu and editor context menu actions</comment>
         <translation>&amp;Копіювати</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/main.qml" line="633"/>
+        <location filename="../src/kirigami_ui/main.qml" line="632"/>
         <source>Cu&amp;t</source>
         <comment>Global menu and editor context menu actions</comment>
         <translation>Ви&amp;різати</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/main.qml" line="638"/>
+        <location filename="../src/kirigami_ui/main.qml" line="637"/>
         <source>&amp;Paste</source>
         <comment>Global menu and editor context menu actions</comment>
         <translation>Встави&amp;ти</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/main.qml" line="645"/>
+        <location filename="../src/kirigami_ui/main.qml" line="644"/>
         <source>&amp;View</source>
         <comment>Global menu actions</comment>
         <translation>&amp;Вигляд</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/main.qml" line="648"/>
+        <location filename="../src/kirigami_ui/main.qml" line="647"/>
         <source>Full &amp;screen</source>
         <comment>Global menu actions</comment>
         <translation>Повний &amp;екран</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/main.qml" line="662"/>
+        <location filename="../src/kirigami_ui/main.qml" line="661"/>
         <source>&amp;Indicators</source>
         <comment>Global menu actions. Indicators highlight reading region.</comment>
         <translation>&amp;Індикатори</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/main.qml" line="664"/>
+        <location filename="../src/kirigami_ui/main.qml" line="663"/>
         <source>&amp;Left Pointer</source>
         <comment>Global menu actions. Shows pointer to the left of the reading region.</comment>
         <translation>&amp;Лівий вказівник</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/main.qml" line="670"/>
+        <location filename="../src/kirigami_ui/main.qml" line="669"/>
         <source>&amp;Right Pointer</source>
         <comment>Global menu actions. Shows pointer to the right of the reading region.</comment>
         <translation>&amp;Правий вказівник</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/main.qml" line="676"/>
+        <location filename="../src/kirigami_ui/main.qml" line="675"/>
         <source>B&amp;oth Pointers</source>
         <comment>Global menu actions. Shows pointers to the left and right of the reading region.</comment>
         <translation>О&amp;бидва вказівники</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/main.qml" line="682"/>
+        <location filename="../src/kirigami_ui/main.qml" line="681"/>
         <source>No pointers</source>
         <comment>Disable all reading region pointers</comment>
         <translation type="unfinished">Без вказівників</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/main.qml" line="692"/>
+        <location filename="../src/kirigami_ui/main.qml" line="691"/>
         <source>&amp;Bars</source>
         <comment>Global menu actions. Translucent bars indicate reading region.</comment>
         <translation>&amp;Смуги</translation>
@@ -1962,140 +1972,140 @@ Microsoft Word,</translation>
         <translation type="vanished">При&amp;ховані</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/main.qml" line="689"/>
+        <location filename="../src/kirigami_ui/main.qml" line="688"/>
         <source>Readin&amp;g region</source>
         <comment>Global menu actions. Reading region indicates where a talent should be reading from.</comment>
         <translation>Зона чи&amp;тання</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/main.qml" line="704"/>
+        <location filename="../src/kirigami_ui/main.qml" line="703"/>
         <source>&amp;Top</source>
         <comment>Global menu actions. Align reading region to top of prompter.</comment>
         <translation>&amp;Зверху</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/main.qml" line="710"/>
+        <location filename="../src/kirigami_ui/main.qml" line="709"/>
         <source>&amp;Middle</source>
         <comment>Global menu actions. Align reading region to vertical center of prompter.</comment>
         <translation>&amp;Посередині</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/main.qml" line="716"/>
+        <location filename="../src/kirigami_ui/main.qml" line="715"/>
         <source>&amp;Bottom</source>
         <comment>Global menu actions. Align reading region to bottom of prompter.</comment>
         <translation>&amp;Знизу</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/main.qml" line="723"/>
+        <location filename="../src/kirigami_ui/main.qml" line="722"/>
         <source>F&amp;ree placement</source>
         <comment>Global menu actions. Enables drag and drop positioning of reading region.</comment>
         <translation>Вільне розташування</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/main.qml" line="729"/>
+        <location filename="../src/kirigami_ui/main.qml" line="728"/>
         <source>C&amp;ustom (Fixed placement)</source>
         <comment>Global menu actions. Fix positioning of reading region to what was set in &quot;Free placement&quot; mode.</comment>
         <translation>К&amp;ористувацьке (Фіксоване розташування)</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/main.qml" line="738"/>
+        <location filename="../src/kirigami_ui/main.qml" line="737"/>
         <source>For&amp;mat</source>
         <comment>Global menu actions</comment>
         <translation>Форм&amp;ат</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/main.qml" line="741"/>
+        <location filename="../src/kirigami_ui/main.qml" line="740"/>
         <source>&amp;Bold</source>
         <comment>Global menu actions</comment>
         <translation>&amp;Жирний</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/main.qml" line="747"/>
+        <location filename="../src/kirigami_ui/main.qml" line="746"/>
         <source>&amp;Italic</source>
         <comment>Global menu actions</comment>
         <translation>&amp;Курсив</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/main.qml" line="753"/>
+        <location filename="../src/kirigami_ui/main.qml" line="752"/>
         <source>&amp;Underline</source>
         <comment>Global menu actions</comment>
         <translation>&amp;Підкреслений</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/main.qml" line="760"/>
+        <location filename="../src/kirigami_ui/main.qml" line="759"/>
         <source>Align &amp;Left</source>
         <comment>Global menu and editor actions. Text alignment.</comment>
         <translation>Вирівняти &amp;ліворуч</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/main.qml" line="760"/>
+        <location filename="../src/kirigami_ui/main.qml" line="759"/>
         <source>Align &amp;Right</source>
         <comment>Global menu and editor actions. Text alignment.</comment>
         <translation>Вирівняти &amp;праворуч</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/main.qml" line="771"/>
+        <location filename="../src/kirigami_ui/main.qml" line="770"/>
         <source>Align Cen&amp;ter</source>
         <comment>Global menu actions. Text alignment.</comment>
         <translation>Вирівняти по &amp;центру</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/main.qml" line="777"/>
+        <location filename="../src/kirigami_ui/main.qml" line="776"/>
         <source>Align &amp;Right</source>
         <comment>Global menu actions. Text alignment.</comment>
         <translation>Вирівняти &amp;праворуч</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/main.qml" line="777"/>
+        <location filename="../src/kirigami_ui/main.qml" line="776"/>
         <source>Align &amp;Left</source>
         <comment>Global menu actions. Text alignment.</comment>
         <translation>Вирівняти &amp;ліворуч</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/main.qml" line="796"/>
+        <location filename="../src/kirigami_ui/main.qml" line="795"/>
         <source>C&amp;haracter</source>
         <comment>Global menu actions. Opens dialog to format currently selected text.</comment>
         <translation>Симво&amp;ли</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/main.qml" line="800"/>
+        <location filename="../src/kirigami_ui/main.qml" line="799"/>
         <source>Fo&amp;nt Color</source>
         <comment>Global menu actions. Opens dialog to color currently selected text.</comment>
         <translation>Колір &amp;шрифту</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/main.qml" line="806"/>
+        <location filename="../src/kirigami_ui/main.qml" line="805"/>
         <source>Controls</source>
         <comment>Global menu actions. Menu regarding input settings.</comment>
         <translation>Керування</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/main.qml" line="844"/>
+        <location filename="../src/kirigami_ui/main.qml" line="843"/>
         <source>&amp;Help</source>
         <comment>Global menu actions</comment>
         <translation>&amp;Допомога</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/main.qml" line="847"/>
+        <location filename="../src/kirigami_ui/main.qml" line="846"/>
         <source>Report &amp;Bug…</source>
         <comment>Global menu actions</comment>
         <translation>Повідомити про &amp;помилку…</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/main.qml" line="866"/>
+        <location filename="../src/kirigami_ui/main.qml" line="865"/>
         <source>Abou&amp;t %1</source>
         <comment>Global menu actions. Load about page. &quot;About AppName&quot;</comment>
         <translation>Пр&amp;о %1</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/main.qml" line="1015"/>
+        <location filename="../src/kirigami_ui/main.qml" line="1014"/>
         <location filename="../src/kirigami_ui/+windows/main.qml" line="709"/>
         <source>Restart %1</source>
         <comment>Restart application_name</comment>
         <translation>Перезапустити %1</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/main.qml" line="1016"/>
+        <location filename="../src/kirigami_ui/main.qml" line="1015"/>
         <location filename="../src/kirigami_ui/+windows/main.qml" line="710"/>
         <source>%1 needs to restart for this change to fully take effect.
 
@@ -2106,33 +2116,33 @@ Would you like to restart application now? All changes to document will be lost.
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/main.qml" line="1035"/>
-        <location filename="../src/kirigami_ui/+android/main.qml" line="602"/>
-        <location filename="../src/kirigami_ui/+windows/main.qml" line="729"/>
+        <location filename="../src/kirigami_ui/main.qml" line="1031"/>
+        <location filename="../src/kirigami_ui/+android/main.qml" line="601"/>
+        <location filename="../src/kirigami_ui/+windows/main.qml" line="726"/>
         <source>Factory Reset</source>
         <translation>Скидання до заводських налаштувань</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/main.qml" line="1036"/>
-        <location filename="../src/kirigami_ui/+android/main.qml" line="603"/>
-        <location filename="../src/kirigami_ui/+windows/main.qml" line="730"/>
+        <location filename="../src/kirigami_ui/main.qml" line="1032"/>
+        <location filename="../src/kirigami_ui/+android/main.qml" line="602"/>
+        <location filename="../src/kirigami_ui/+windows/main.qml" line="727"/>
         <source>Restore all configurations to factory defaults? QPrompt will close if you click Yes and all unsaved document changes will be lost.</source>
         <translation>
 Відновити всі налаштування до заводських налаштувань? QPrompt закриється,
 якщо ви натиснете Так, і всі незбережені зміни документа буде втрачено.</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/main.qml" line="1055"/>
-        <location filename="../src/kirigami_ui/+android/main.qml" line="622"/>
-        <location filename="../src/kirigami_ui/+windows/main.qml" line="749"/>
+        <location filename="../src/kirigami_ui/main.qml" line="1048"/>
+        <location filename="../src/kirigami_ui/+android/main.qml" line="619"/>
+        <location filename="../src/kirigami_ui/+windows/main.qml" line="743"/>
         <source>Save Document</source>
         <comment>Title for save before closing dialog</comment>
         <translation>Зберегти документ</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/main.qml" line="1056"/>
-        <location filename="../src/kirigami_ui/+android/main.qml" line="623"/>
-        <location filename="../src/kirigami_ui/+windows/main.qml" line="750"/>
+        <location filename="../src/kirigami_ui/main.qml" line="1049"/>
+        <location filename="../src/kirigami_ui/+android/main.qml" line="620"/>
+        <location filename="../src/kirigami_ui/+windows/main.qml" line="744"/>
         <source>Save changes to document before closing?</source>
         <translation>Зберегти зміни в документі перед закриттям?</translation>
     </message>

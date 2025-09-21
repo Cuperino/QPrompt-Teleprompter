@@ -747,16 +747,15 @@ QString DocumentHandler::import(const QString &fileName, ImportFormat type)
         // Dev: not implemented
     }
 
-    if (program == QString::fromUtf8(""))
-        return QString::fromUtf8("Unsupported file format");
+    if (program == QString::fromLatin1(""))
+        return tr("Unsupported file format");
 
     // Begin execution of external filter
     QProcess convert(this);
     convert.start(program, arguments);
 
     if (!convert.waitForFinished())
-        return QString::fromUtf8(
-                   "An error occurred while attempting to open file in a third party format. Go to \"Main Menu\", \"Other Setttings\", then \"External Tools\" "
+        return tr("An error occurred while attempting to open file in a third party format. Go to \"Main Menu\", \"Other Settings\", then \"External Tools\" "
                    "to make sure a corresponding import tool is properly configured.")
             .arg(program);
 
