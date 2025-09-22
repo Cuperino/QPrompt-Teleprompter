@@ -75,6 +75,7 @@ import QtQuick.Controls 2.12
 import QtQuick.Layouts 1.12
 import QtQuick.Window 2.12
 import QtCore 6.5
+import QtQml 6.5
 import QtQuick.Dialogs 6.6
 import Qt.labs.platform 1.1 as Labs
 
@@ -1339,6 +1340,7 @@ Flickable {
 
         property bool isNewFile: false
         property bool quitOnSave: false
+        property bool delayedStart: true
         property real positionBackup: 0
 
         function resetDocumentPosition() {
@@ -1464,6 +1466,10 @@ Flickable {
                 editor.cursorPosition = 0
                 prompter.position = editor.cursorRectangle.y - (overlay.__readRegionPlacement*(overlay.height-overlay.readRegionHeight)+overlay.readRegionHeight/2) + 1
             }
+            if (delayedStart) {
+                delayedStart = false;
+                delayedStartupActions.start();
+            }
         }
         onError: (message) => {
             errorDialog.text = message
@@ -1484,6 +1490,16 @@ Flickable {
                 else
                     document.loadLastDocument();
             }
+        }
+    }
+
+    Timer {
+        id: delayedStartupActions
+        interval: 1
+        onTriggered: () => {
+            const modified = document.modified
+            editorToolbar.paragraphSpacingSlider.update();
+            document.modified = modified;
         }
     }
 
