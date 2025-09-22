@@ -1161,7 +1161,7 @@ Flickable {
                     anchors.top: parent.top
                     anchors.bottom: parent.bottom
                     opacity: 1
-                    width: 25
+                    width: 20
                     acceptedButtons: Qt.LeftButton
                     scrollGestureEnabled: false
                     propagateComposedEvents: true
@@ -1172,8 +1172,8 @@ Flickable {
                     drag.target: editor
                     drag.axis: Drag.XAxis
                     drag.smoothed: false
-                    drag.minimumX: fontSize/2 //: -prompter.width*6/20 + width
-                    drag.maximumX: prompter.width*9/20 //: -fontSize/2 + width
+                    drag.minimumX: fontSize/8 //: -prompter.width*6/20 + width
+                    drag.maximumX: prompter.width*9/20 //: -fontSize/8 + width
                     onReleased: prompter.setContentWidth()
                     //onClicked: (mouse) => {
                     //    mouse.accepted = false
@@ -1200,14 +1200,14 @@ Flickable {
                     propagateComposedEvents: true
                     hoverEnabled: true
                     x: parent.width
-                    width: 25
+                    width: 20
                     anchors.top: parent.top
                     anchors.bottom: parent.bottom
                     drag.target: positionHandler
                     drag.axis: Drag.XAxis
                     drag.smoothed: false
-                    drag.minimumX: -editor.x + fontSize/2 //prompter.width - editor.x - editor.width - leftWidthAdjustmentBar.drag.maximumX
-                    drag.maximumX: prompter.width - editor.x - parent.width - leftWidthAdjustmentBar.drag.minimumX
+                    drag.minimumX: -editor.x + fontSize/8 //prompter.width - editor.x - editor.width - leftWidthAdjustmentBar.drag.maximumX
+                    drag.maximumX: prompter.width - editor.x - parent.width - leftWidthAdjustmentBar.drag.minimumX - fontSize/6
                     cursorShape: (pressed||drag.active||prompter.dragging) ? Qt.ClosedHandCursor : flicking ? Qt.OpenHandCursor : (contentsPlacement ? Qt.OpenHandCursor : Qt.ArrowCursor)
                     onEntered: hovered = true
                     onExited: hovered = false
