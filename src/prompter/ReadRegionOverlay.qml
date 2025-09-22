@@ -257,12 +257,14 @@ Item {
                 id: leftPointer
                 anchors.verticalCenter: parent.verticalCenter
                 anchors.right: parent.left
+                anchors.rightMargin: 3
                 source: pointerSettings.pointerKind === PointerSettings.States.QML ? pointerSettings.qmlLeftPath : "pointers/pointer_" + pointerSettings.pointerKind + ".qml"
             }
             Loader {
                 id: rightPointer
                 anchors.verticalCenter: parent.verticalCenter
                 anchors.left: parent.right
+                anchors.leftMargin: leftPointer.anchors.rightMargin
                 source: pointerSettings.pointerKind === PointerSettings.States.QML ? (pointerSettings.sameAsLeftPointer ? pointerSettings.qmlLeftPath : pointerSettings.qmlRightPath) : "pointers/pointer_" + pointerSettings.pointerKind + ".qml"
             }
             Binding {
