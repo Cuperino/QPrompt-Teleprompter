@@ -1167,8 +1167,8 @@ Flickable {
                     propagateComposedEvents: true
                     hoverEnabled: true
                     cursorShape: prompter.dragging ? Qt.ClosedHandCursor : ((pressed || drag.active) ? (forcedOrientation && forcedOrientation!==3 ? Qt.SplitVCursor : Qt.SplitHCursor) : (flicking ? Qt.OpenHandCursor : (forcedOrientation && forcedOrientation!==3 ? Qt.SizeVerCursor : Qt.SizeHorCursor)))
-                    anchors.left: Qt.application.layoutDirection===Qt.LeftToRight ? editor.left : undefined
-                    anchors.right: Qt.application.layoutDirection===Qt.RightToLeft ? editor.right : undefined
+                    anchors.right: Qt.application.layoutDirection===Qt.LeftToRight ? editor.left : undefined
+                    anchors.left: Qt.application.layoutDirection===Qt.RightToLeft ? editor.right : undefined
                     drag.target: editor
                     drag.axis: Drag.XAxis
                     drag.smoothed: false
@@ -1184,7 +1184,7 @@ Flickable {
                     Loader {
                         id: leftHandle
                         sourceComponent: editorSidesBorder
-                        anchors {top: parent.top; bottom: parent.bottom; horizontalCenter: parent.horizontalCenter}
+                        anchors {top: parent.top; bottom: parent.bottom; right: parent.right}
                     }
                     Binding {
                         target: leftHandle.item
@@ -1199,7 +1199,7 @@ Flickable {
                     acceptedButtons: Qt.LeftButton
                     propagateComposedEvents: true
                     hoverEnabled: true
-                    x: parent.width-width
+                    x: parent.width
                     width: 25
                     anchors.top: parent.top
                     anchors.bottom: parent.bottom
@@ -1215,7 +1215,7 @@ Flickable {
                     Loader {
                         id: rightHandle
                         sourceComponent: editorSidesBorder
-                        anchors {top: parent.top; bottom: parent.bottom; horizontalCenter: parent.horizontalCenter}
+                        anchors {top: parent.top; bottom: parent.bottom; left: parent.left}
                     }
                     Binding {
                         target: rightHandle.item
