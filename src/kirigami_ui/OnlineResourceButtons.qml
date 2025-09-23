@@ -21,43 +21,52 @@
 
 import QtQuick 2.12
 import QtQuick.Controls 2.12
+import QtQuick.Layouts 1.12
 
-Row {
-    Button {
+RowLayout {
+    id: row
+    spacing: 0
+    ToolButton {
         readonly property url uri: "https://qprompt.app"
         text: "🌐"
         flat: true
         onClicked: Qt.openUrlExternally(uri)
+        Layout.fillWidth: true
     }
-    Button {
+    ToolButton {
         readonly property url uri: "https://docs.qprompt.app"
         text: "🕮"
         flat: true
         onClicked: Qt.openUrlExternally(uri)
+        Layout.fillWidth: true
     }
-    Button {
+    ToolButton {
         readonly property url uri: "https://forum.qprompt.app"
         text: "?"
         flat: true
         onClicked: Qt.openUrlExternally(uri)
+        Layout.fillWidth: true
     }
-    Button {
+    ToolButton {
         readonly property url uri: "https://feedback.qprompt.app"
         text: "🐛"
         flat: true
         onClicked: Qt.openUrlExternally(uri)
         ToolTip.text: uri
+        Layout.fillWidth: true
     }
-    Button {
+    ToolButton {
         readonly property url uri: "https://l10n.qprompt.app"
         text: "🗺"
         flat: true
         onClicked: Qt.openUrlExternally(uri)
+        Layout.fillWidth: true
     }
-    Button {
+    ToolButton {
         readonly property url uri: "https://donate.qprompt.app"
         text: "$"
         flat: true
         onClicked: Qt.openUrlExternally(uri)
+        Layout.fillWidth: true
     }
 }
