@@ -21,7 +21,7 @@
     <message>
         <location filename="../src/documenthandler.cpp" line="825"/>
         <source>Cannot save: </source>
-        <translation type="unfinished"></translation>
+        <translation>Não é possível salvar </translation>
     </message>
 </context>
 <context>
@@ -29,7 +29,7 @@
     <message>
         <location filename="../src/main.cpp" line="183"/>
         <source>Emails of translators</source>
-        <translation>contatoliaguedes@gmail.com, marttinhoblue@gmail.com</translation>
+        <translation>contatoliaguedes@gmail.com, marttinhoblue@gmail.com, furtadu@hotmail.com</translation>
     </message>
 </context>
 <context>
@@ -118,7 +118,7 @@
         <location filename="../src/kirigami_ui/EditorToolbar.qml" line="1098"/>
         <source>Font size &lt;pre&gt;%1 (%2)&lt;/pre&gt;</source>
         <comment>Font size 100% (083)</comment>
-        <translation type="unfinished"></translation>
+        <translation>Tamanho da fonte &lt;pre&gt;%1 (%2)&lt;/pre&gt;</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/EditorToolbar.qml" line="1232"/>
@@ -178,9 +178,9 @@
     <message numerus="yes">
         <location filename="../src/prompter/Find.qml" line="160"/>
         <source>Replaced %n instance(s)</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>Substituída %n vez</numerusform>
+            <numerusform>Substituídas %n vezes</numerusform>
         </translation>
     </message>
 </context>
