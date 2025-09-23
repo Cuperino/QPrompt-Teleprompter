@@ -31,6 +31,7 @@ RowLayout {
         text: "🌐"
         flat: true
         onClicked: Qt.openUrlExternally(uri)
+        ToolTip.text: qsTr("Website")
         Layout.fillWidth: true
     }
     ToolButton {
@@ -38,6 +39,7 @@ RowLayout {
         text: "🕮"
         flat: true
         onClicked: Qt.openUrlExternally(uri)
+        ToolTip.text: qsTr("Documentation")
         Layout.fillWidth: true
     }
     ToolButton {
@@ -45,6 +47,7 @@ RowLayout {
         text: "?"
         flat: true
         onClicked: Qt.openUrlExternally(uri)
+        ToolTip.text: qsTr("Forum")
         Layout.fillWidth: true
     }
     ToolButton {
@@ -52,7 +55,7 @@ RowLayout {
         text: "🐛"
         flat: true
         onClicked: Qt.openUrlExternally(uri)
-        ToolTip.text: uri
+        ToolTip.text: qsTr("Feedback")
         Layout.fillWidth: true
     }
     ToolButton {
@@ -60,6 +63,7 @@ RowLayout {
         text: "🗺"
         flat: true
         onClicked: Qt.openUrlExternally(uri)
+        ToolTip.text: qsTr("Translations")
         Layout.fillWidth: true
     }
     ToolButton {
@@ -67,6 +71,7 @@ RowLayout {
         text: "$"
         flat: true
         onClicked: Qt.openUrlExternally(uri)
+        ToolTip.text: qsTr("Donate")
         Layout.fillWidth: true
     }
 }
