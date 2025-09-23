@@ -1175,11 +1175,11 @@ Flickable {
                     drag.minimumX: fontSize/8 //: -prompter.width*6/20 + width
                     drag.maximumX: prompter.width*9/20 //: -fontSize/8 + width
                     onReleased: prompter.setContentWidth()
-                    //onClicked: (mouse) => {
-                    //    mouse.accepted = false
-                    //}
                     onEntered: hovered = true
                     onExited: hovered = false
+                    onDoubleClicked: {
+                        prompter.contentsPlacement = 0;
+                    }
                     property bool hovered: false
                     Loader {
                         id: leftHandle
@@ -1211,6 +1211,10 @@ Flickable {
                     cursorShape: (pressed||drag.active||prompter.dragging) ? Qt.ClosedHandCursor : flicking ? Qt.OpenHandCursor : (contentsPlacement ? Qt.OpenHandCursor : Qt.ArrowCursor)
                     onEntered: hovered = true
                     onExited: hovered = false
+                    onDoubleClicked: {
+                        positionHandler.placement = 0;
+                        prompter.contentsPlacement = 0;
+                    }
                     property bool hovered: false
                     Loader {
                         id: rightHandle
