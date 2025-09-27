@@ -11,7 +11,7 @@
     <message>
         <location filename="../src/documenthandler.cpp" line="751"/>
         <source>Unsupported file format</source>
-        <translation type="unfinished"></translation>
+        <translation>Nicht unterstützter Dateiformat</translation>
     </message>
     <message>
         <location filename="../src/documenthandler.cpp" line="758"/>
