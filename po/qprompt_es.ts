@@ -367,13 +367,13 @@
         <location filename="../src/kirigami_ui/LanguageSettingsOverlay.qml" line="78"/>
         <source>Use system language</source>
         <comment>Language</comment>
-        <translation>Utilizar lenguaje del sistema</translation>
+        <translation>Lenguaje del sistema</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/LanguageSettingsOverlay.qml" line="186"/>
         <source>Is your language not here or it&apos;s incomplete?
 Help us translate QPrompt, visit:</source>
-        <translation>Su lenguage no está disponible?
+        <translation>Su lenguaje no está disponible?
 Ayúdenos a traducir a QPrompt, visite:</translation>
     </message>
 </context>
