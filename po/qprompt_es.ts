@@ -11,12 +11,12 @@
     <message>
         <location filename="../src/documenthandler.cpp" line="751"/>
         <source>Unsupported file format</source>
-        <translation type="unfinished"></translation>
+        <translation>Formato de archivo no compatible</translation>
     </message>
     <message>
         <location filename="../src/documenthandler.cpp" line="758"/>
         <source>An error occurred while attempting to open file in a third party format. Go to &quot;Main Menu&quot;, &quot;Other Settings&quot;, then &quot;External Tools&quot; to make sure a corresponding import tool is properly configured.</source>
-        <translation type="unfinished"></translation>
+        <translation>Se produjo un error al intentar abrir el archivo en un formato de terceros. Vaya al &quot;Menú Principal&quot;, &quot;Otros Ajustes&quot;, &quot;Herramientas y aplicaciones externas&quot; para asegurarse de que la herramienta de importación correspondiente esté bien configurada.</translation>
     </message>
     <message>
         <location filename="../src/documenthandler.cpp" line="825"/>
@@ -1927,7 +1927,7 @@ Ayúdenos a traducir a QPrompt, visite:</translation>
         <location filename="../src/kirigami_ui/main.qml" line="681"/>
         <source>No pointers</source>
         <comment>Disable all reading region pointers</comment>
-        <translation type="unfinished">Ningún apuntador</translation>
+        <translation>Ningún apuntador</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/main.qml" line="691"/>
