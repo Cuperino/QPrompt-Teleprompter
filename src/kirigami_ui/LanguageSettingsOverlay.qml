@@ -34,7 +34,7 @@ Kirigami.OverlaySheet {
         level: 1
     }
     z: 1
-    width: root.minimumWidth - 10
+    width: root.minimumWidth
 
     onOpened: {
         cursorAutoHide.reset();
