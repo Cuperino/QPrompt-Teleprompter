@@ -165,7 +165,7 @@ Flickable {
     readonly property real __curvature: viewport.__curvature / 100
     //property int __lastRecordedPosition: 0
     //property real customContentsPlacement: 0.1
-    property real contentsPlacement: 0
+    property real contentsPlacement: 0.02
     property int __tikTok: 0
     // Background
     property double __opacity: root.__opacity
@@ -254,8 +254,8 @@ Flickable {
     }
     Settings {
         category: "prompterPlacement"
-        property alias width: prompter.contentsPlacement
-        property alias offset: positionHandler.placement
+        property alias width_v2d0: prompter.contentsPlacement
+        property alias offset_v2d0: positionHandler.placement
     }
     Settings {
         category: "files"
@@ -447,8 +447,7 @@ Flickable {
     }
 
     function setContentWidth() {
-        //contentsPlacement = Math.abs(editor.x)/prompter.width
-        contentsPlacement = (Math.abs(editor.x)-fontSize/2)/(prompter.width-fontSize)
+        contentsPlacement = Math.abs(editor.x - 20) / prompter.width
         const offset = 0
         positionHandler.placement = (2 * (editor.x - 2 * offset) + editor.width - positionHandler.width) / positionHandler.width
     }
@@ -738,7 +737,7 @@ Flickable {
                 //Different styles have different padding and background
                 //decorations, but since this editor must resemble the
                 //teleprompter output, we don't need them.
-                x: fontSize/2 + contentsPlacement*(prompter.width-fontSize)
+                x: contentsPlacement*(prompter.width) + 20
 
                 // Width drag controls
                 width: prompter.width-2*Math.abs(x)
@@ -1172,13 +1171,13 @@ Flickable {
                     drag.target: editor
                     drag.axis: Drag.XAxis
                     drag.smoothed: false
-                    drag.minimumX: fontSize/8 //: -prompter.width*6/20 + width
-                    drag.maximumX: prompter.width*9/20 //: -fontSize/8 + width
+                    drag.minimumX: 20
+                    drag.maximumX: prompter.width*9/20
                     onReleased: prompter.setContentWidth()
                     onEntered: hovered = true
                     onExited: hovered = false
                     onDoubleClicked: {
-                        prompter.contentsPlacement = 0;
+                        prompter.contentsPlacement = 0.02;
                     }
                     property bool hovered: false
                     Loader {
@@ -1206,14 +1205,14 @@ Flickable {
                     drag.target: positionHandler
                     drag.axis: Drag.XAxis
                     drag.smoothed: false
-                    drag.minimumX: -editor.x + fontSize/8 //prompter.width - editor.x - editor.width - leftWidthAdjustmentBar.drag.maximumX
-                    drag.maximumX: prompter.width - editor.x - parent.width - leftWidthAdjustmentBar.drag.minimumX - fontSize/6
+                    drag.minimumX: -editor.x + leftWidthAdjustmentBar.drag.minimumX //prompter.width - editor.x - editor.width - leftWidthAdjustmentBar.drag.maximumX
+                    drag.maximumX: prompter.width - editor.x - parent.width - leftWidthAdjustmentBar.drag.minimumX - 13
                     cursorShape: (pressed||drag.active||prompter.dragging) ? Qt.ClosedHandCursor : flicking ? Qt.OpenHandCursor : Qt.OpenHandCursor
                     onEntered: hovered = true
                     onExited: hovered = false
                     onDoubleClicked: {
                         positionHandler.placement = 0;
-                        prompter.contentsPlacement = 0;
+                        prompter.contentsPlacement = 0.02;
                     }
                     property bool hovered: false
                     Loader {
