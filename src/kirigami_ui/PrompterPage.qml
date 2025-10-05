@@ -803,10 +803,7 @@ Kirigami.Page {
         options: Qt.platform.os === "ios" ? 0 : ColorDialog.DontUseNativeDialog
         property color acceptedColor
         onAccepted: {
-            // Hack to force re-evaluation of acceptedColor's bindings
-            acceptedColor = "#000000";
-            acceptedColor = "#FFFFFF";
-            acceptedColor = selectedColor;
+            viewport.document.setTextColor(selectedColor);
         }
         onVisibleChanged: {
             if (visible)
@@ -821,10 +818,7 @@ Kirigami.Page {
         options: Qt.platform.os === "ios" ? 0 : ColorDialog.DontUseNativeDialog
         property color acceptedColor
         onAccepted: {
-            // Hack to force re-evaluation of acceptedColor's bindings
-            acceptedColor = "#000000";
-            acceptedColor = "#FFFFFF";
-            acceptedColor = selectedColor;
+            viewport.document.setTextBackground(selectedColor);
         }
         onVisibleChanged: {
             if (visible)

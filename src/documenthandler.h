@@ -147,10 +147,10 @@ public:
     void setFontFamily(const QString &family);
 
     QColor textColor() const;
-    void setTextColor(const QColor &color);
+    Q_INVOKABLE void setTextColor(const QColor &color);
 
     QColor textBackground() const;
-    void setTextBackground(const QColor &color);
+    Q_INVOKABLE void setTextBackground(const QColor &color);
 
     Qt::Alignment alignment() const;
     void setAlignment(Qt::Alignment alignment);
