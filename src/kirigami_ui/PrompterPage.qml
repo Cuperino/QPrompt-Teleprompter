@@ -25,7 +25,7 @@ import QtQuick.Window 2.12
 import QtQuick.Controls 2.12
 import QtQuick.Layouts 1.12
 import QtCore 6.5
-import QtQuick.Dialogs 6.6
+import Qt.labs.platform 1.1 as Labs
 
 import com.cuperino.qprompt 1.0
 
@@ -798,12 +798,12 @@ Kirigami.Page {
         y: parent.height
     }
 
-    ColorDialog {
+    Labs.ColorDialog {
         id: colorDialog
-        options: Qt.platform.os === "ios" ? 0 : ColorDialog.DontUseNativeDialog
         property color acceptedColor
+        options: Labs.ColorDialog.ShowAlphaChannel
         onAccepted: {
-            viewport.document.setTextColor(selectedColor);
+            viewport.document.setTextColor(colorDialog.color);
         }
         onVisibleChanged: {
             if (visible)
@@ -813,12 +813,12 @@ Kirigami.Page {
         }
     }
 
-    ColorDialog {
+    Labs.ColorDialog {
         id: highlightDialog
-        options: Qt.platform.os === "ios" ? 0 : ColorDialog.DontUseNativeDialog
         property color acceptedColor
+        options: Labs.ColorDialog.ShowAlphaChannel
         onAccepted: {
-            viewport.document.setTextBackground(selectedColor);
+            viewport.document.setTextBackground(highlightDialog.color);
         }
         onVisibleChanged: {
             if (visible)
