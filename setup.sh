@@ -34,8 +34,8 @@ if [[ "$OSTYPE" == "linux-gnu"* ]]; then
     else
         COMPILER="gcc_64"
     fi
-    CMAKE=cmake
-    CPACK=cpack
+    CMAKE=~/Qt/Tools/CMake/bin/cmake
+    CPACK=~/Qt/Tools/CMake/bin/cpack
     PATH=$PATH:~/Qt/Tools/QtInstallerFramework/4.8/bin
 elif [[ "$OSTYPE" == "darwin"* ]]; then
     QT_VER=$DEFAULT_QT_VER
