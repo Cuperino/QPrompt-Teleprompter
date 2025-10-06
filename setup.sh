@@ -165,6 +165,9 @@ mkdir -p build install
 echo "Downloading git submodules"
 git submodule update --init --recursive
 
+if [[ "$PLATFORM" == "linux" ]]; then
+sudo apt install libxkbcommon-dev
+fi
 if [[ "$PLATFORM" == "windows" ]]; then
     # Initialize MSVC environment variables
     "C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Auxiliary\Build\vcvarsall.bat" amd64
