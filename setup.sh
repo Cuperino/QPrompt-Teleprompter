@@ -234,27 +234,11 @@ if [[ "$PLATFORM" == "windows" ]]; then
     $CPACK
     cd ..
 elif [[ "$PLATFORM" == "macos" ]]; then
-    # $CMAKE_PREFIX_PATH/bin/macdeployqt ./build/bin/QPrompt.app -qmldir=./build/bin -dmg
     cd build
     $CPACK
     cd ..
 elif [[ "$PLATFORM" == "linux" ]]; then
-    # Copy libraries out from multilib subdirectory
-    if [ "$ARCHITECTURE" == "aarch64" ]; then
-        cp -r $AppDirUsr/lib/aarch64-linux-gnu/* $CMAKE_PREFIX_PATH/lib/
-    fi
-    mkdir -p ~/Applications/
-    wget -nc -P ~/Applications/ https://github.com/$(wget -q https://github.com/probonopd/go-appimage/releases/tag/continuous -O - | grep "appimagetool-.*-$ARCHITECTURE.AppImage" | head -n 1 | cut -d '"' -f 2)
-    APPIMAGE_TOOL=~/Applications/$(ls ~/Applications/ | grep "appimagetool-.*-$ARCHITECTURE.AppImage")
-    if ! command -v $APPIMAGE_TOOL 2>&1 >/dev/null; then
-        echo "$APPIMAGE_TOOL could not be found"
-        exit 1
-    fi
-    chmod +x $APPIMAGE_TOOL
-    QTDIR=$CMAKE_PREFIX_PATH $APPIMAGE_TOOL -s deploy $AppDirUsr/share/applications/com.cuperino.qprompt.desktop
-    # Turn AppDir into AppImage
-    VERSION=v$QP_VER_MAJOR.$QP_VER_MINOR.$QP_VER_MICRO-$(git rev-parse --short HEAD) $APPIMAGE_TOOL $AppDir
-    # Build Debian Package
+    # Build Deb package
     cd build
     $CPACK
     cd ..
