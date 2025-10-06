@@ -201,9 +201,11 @@ Item {
                 cursorShape: model.flip ? Qt.PointingHandCursor : Qt.ForbiddenCursor
                 // Keyboard inputs
                 focus: true
-                onClicked:
+                onClicked: {
                     if (model.flip)
                         projectionManager.forwardTo.prompter.toggle();
+                    cursorAutoHide.reset();
+                }
                 onWheel: (wheel) => {
                     projectionManager.forwardTo.mouse.scroll(wheel);
                 }
@@ -323,12 +325,23 @@ Item {
                         id: closeButton
                         text: qsTr("Close")
                         flat: parseInt(forwardTo.prompter.state) === Prompter.States.Countdown || parseInt(forwardTo.prompter.state) === Prompter.States.Prompting
-                        onClicked: projectionWindow.close()
+                        onClicked: {
+                            cursorAutoHide.reset();
+                            projectionWindow.close();
+                        }
                         transform: Scale {
                             origin.y: closeButton.height/2
                             origin.x: closeButton.width/2
                             xScale: model.flip===2 || model.flip===4 ? -1 : 1
                             yScale: model.flip===3 || model.flip===4 ? -1 : 1
+                        }
+                        MouseArea {
+                            anchors.fill: parent
+                            hoverEnabled: true
+                            acceptedButtons: Qt.NoButton
+                            cursorShape: Qt.PointingHandCursor
+                            onEntered: cursorAutoHide.reset();
+                            onExited: cursorAutoHide.restart();
                         }
                     }
                     Button {
@@ -340,6 +353,7 @@ Item {
                         checked: model.flip===2 || model.flip===4
                         flat: parseInt(forwardTo.prompter.state) === Prompter.States.Countdown || parseInt(forwardTo.prompter.state) === Prompter.States.Prompting
                         onClicked: {
+                            cursorAutoHide.reset();
                             model.flip = model.flip + (model.flip % 2 ? 1 : -1);
                             projectionManager.update();
                             root.update();
@@ -349,6 +363,14 @@ Item {
                             origin.x: horizontalFlipButton.width/2
                             xScale: model.flip===2 || model.flip===4 ? -1 : 1
                             yScale: model.flip===3 || model.flip===4 ? -1 : 1
+                        }
+                        MouseArea {
+                            anchors.fill: parent
+                            hoverEnabled: true
+                            acceptedButtons: Qt.NoButton
+                            cursorShape: Qt.PointingHandCursor
+                            onEntered: cursorAutoHide.reset();
+                            onExited: cursorAutoHide.restart();
                         }
                     }
                     Button {
@@ -360,6 +382,7 @@ Item {
                         checked: model.flip===3 || model.flip===4
                         flat: parseInt(forwardTo.prompter.state) === Prompter.States.Countdown || parseInt(forwardTo.prompter.state) === Prompter.States.Prompting
                         onClicked: {
+                            cursorAutoHide.reset();
                             model.flip = (model.flip + 1) % 4 + 1;
                             projectionManager.update();
                             root.update();
@@ -369,6 +392,14 @@ Item {
                             origin.x: verticalFlipButton.width/2
                             xScale: model.flip===2 || model.flip===4 ? -1 : 1
                             yScale: model.flip===3 || model.flip===4 ? -1 : 1
+                        }
+                        MouseArea {
+                            anchors.fill: parent
+                            hoverEnabled: true
+                            acceptedButtons: Qt.NoButton
+                            cursorShape: Qt.PointingHandCursor
+                            onEntered: cursorAutoHide.reset();
+                            onExited: cursorAutoHide.restart();
                         }
                     }
                 }
