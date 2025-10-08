@@ -110,7 +110,7 @@ Kirigami.ScrollablePage {
         onAccepted: {
             if (pathSettings.currentlyBrowsing === "soffice")
                 // Convert URL to scheme and remove scheme part (file://)
-                pathSettings.sofficePath = pathsDialog.file.toString().slice(Qt.platform.os==="windows" ? 8 : 7);
+                pathSettings.sofficePath = pathsDialog.selectedFile.toString().slice(Qt.platform.os==="windows" ? 8 : 7);
             pathSettingsStorage.sync();
         }
     }
