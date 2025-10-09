@@ -111,13 +111,19 @@
 DocumentHandler::DocumentHandler(QObject *parent)
     : QObject(parent)
     , m_document(nullptr)
-    , m_autoReload(true)
     , m_cursorPosition(-1)
     , m_selectionStart(0)
     , m_selectionEnd(0)
     , _markersModel(nullptr)
 
 {
+#if (defined(Q_OS_MACOS))
+    QSettings settings(QCoreApplication::organizationDomain(), QCoreApplication::applicationName());
+#else
+    QSettings settings(QCoreApplication::organizationName(), QCoreApplication::applicationName().toLower());
+#endif
+    m_autoReload = settings.value("editor/autoReload", "true").toBool();
+
     _markersModel = new MarkersModel();
     _fileSystemWatcher = new QFileSystemWatcher();
     pdf_importer = QString::fromUtf8("TextExtraction");
@@ -582,6 +588,13 @@ bool DocumentHandler::autoReload() const
 
 void DocumentHandler::setAutoReload(bool enable)
 {
+#if (defined(Q_OS_MACOS))
+    QSettings settings(QCoreApplication::organizationDomain(), QCoreApplication::applicationName());
+#else
+    QSettings settings(QCoreApplication::organizationName(), QCoreApplication::applicationName().toLower());
+#endif
+    settings.setValue("editor/autoReload", enable);
+
     m_autoReload = enable;
 }
 
