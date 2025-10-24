@@ -376,8 +376,8 @@ Kirigami.OverlaySheet {
         ComboBox {
             id: keyInputSetVelocityModifier
             model: [
-                qsTr("Ctrl", "Control key"),
-                qsTr("Alt", "Alt key")
+                qsTr("Alt", "Alt key"),
+                qsTr("Ctrl", "Control key")
             ]
             z: 1
             onActivated: {
