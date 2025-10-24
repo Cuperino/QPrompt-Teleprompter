@@ -380,15 +380,11 @@ Flickable {
 
     function setVelocity(velocity: int, event: var) {
         console.log("velocity: ", velocity)
-        if (this.__atStart)
-            this.__i=0
-        else {
-            this.__i = velocity - 1
-            this.position = this.__destination
-            this.__i = velocity
-            this.__play = true
-            this.position = this.__destination
-        }
+        this.__i = velocity - 1
+        this.position = this.__destination
+        this.__i = velocity
+        this.__play = true
+        this.position = this.__destination
         prompter.restoreFocus()
     }
 
