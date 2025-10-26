@@ -24,7 +24,7 @@ import QtQuick.Controls 2.12
 import QtQuick.Shapes 1.12
 import QtQuick.Layouts 1.12
 import QtCore 6.5
-import QtQuick.Dialogs 6.6
+import Qt.labs.platform 1.1 as Labs
 
 //import com.cuperino.qprompt 1.0
 
@@ -195,21 +195,19 @@ Item {
         onTriggered: updateTimer();
     }
 
-    ColorDialog {
+    Labs.ColorDialog {
         id: timerColorDialog
-        options: (Qt.platform.os === "ios" ? 0 : ColorDialog.DontUseNativeDialog) | (Qt.platform.os === "android" ? ColorDialog.ShowAlphaChannel : 0)
-        property color color: '#AAA'
+        options: Labs.ColorDialog.ShowAlphaChannel  // Line required for Android
+        color: '#AAA'
         onAccepted: {
-            timerSettings.color = selectedColor
+            timerSettings.color = currentColor
         }
         onRejected: {
-            selectedColor = timerColorDialog.color
+            currentColor = color
         }
         onVisibleChanged: {
-            if (visible) {
-                timerColorDialog.color = timerSettings.color
+            if (visible)
                 cursorAutoHide.reset();
-            }
             else
                 cursorAutoHide.restart();
         }
