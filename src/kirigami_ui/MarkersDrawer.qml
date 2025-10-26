@@ -90,8 +90,8 @@ Kirigami.OverlayDrawer {
             },*/
             Kirigami.Action {
                 visible: !(Qt.platform.os==="android" || Qt.platform.os==="ios")
-                icon.name: "document-properties"
-                icon.source: ":../icons/document-properties.svg"
+                // icon.name: "document-properties"
+                icon.source: "../icons/document-properties.svg"
                 onTriggered: {
                     print("Edit clicked", model.position)
                     // Select marker in document
