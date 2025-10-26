@@ -328,7 +328,7 @@ if(CMAKE_SOURCE_DIR STREQUAL CMAKE_CURRENT_SOURCE_DIR)
         # CPACK: DEB specific settings
         set(CPACK_DEBIAN_PACKAGE_SECTION "Multimedia")
         set(CPACK_DEBIAN_COMPRESSION_TYPE ${COMPRESION_TYPE})
-        set(CPACK_DEBIAN_PACKAGE_DEPENDS "libqt6svg6 (>= 6.7.2), libqt6qmlworkerscript6 (>=6.7.2), qml6-module-qt-labs-platform (>=6.7.2), qml6-module-qtqml (>=6.7.2), qml6-module-qtqml-models (>=6.7.2), qml6-module-qtqml-statemachine (>=6.7.2), qml6-module-qtquick-controls (>=6.7.2), qml6-module-qtcore (>=6.7.2), qml6-module-qt-labs-settings (>=6.7.2), qml6-module-qtquick-dialogs (>=6.7.2), qml6-module-qtquick-shapes (>=6.7.2), libkf6coreaddons6 (>= 6.9.0), libkirigami6 (>= 6.9.0), qml6-module-org-kde-kirigami (>=6.9.0), libkf6i18n6 (>= 6.9.0), libkf6crash6 (>= 6.9.0)")
+        set(CPACK_DEBIAN_PACKAGE_DEPENDS "libvulkan-dev (>= 1.4.309), libqt6svg6 (>= 6.7.2), libqt6qmlworkerscript6 (>=6.7.2), qml6-module-qt-labs-platform (>=6.7.2), qml6-module-qtqml (>=6.7.2), qml6-module-qtqml-models (>=6.7.2), qml6-module-qtqml-statemachine (>=6.7.2), qml6-module-qtquick-controls (>=6.7.2), qml6-module-qtcore (>=6.7.2), qml6-module-qt-labs-settings (>=6.7.2), qml6-module-qtquick-dialogs (>=6.7.2), qml6-module-qtquick-shapes (>=6.7.2), libkf6coreaddons6 (>= 6.9.0), libkirigami6 (>= 6.9.0), qml6-module-org-kde-kirigami (>=6.9.0), libkf6i18n6 (>= 6.9.0), libkf6crash6 (>= 6.9.0)")
 
         # CPACK: RPM specific settings
         set(CPACK_RPM_PACKAGE_GROUP "Multimedia/Video")
