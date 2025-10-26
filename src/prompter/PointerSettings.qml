@@ -25,6 +25,7 @@ import QtQml.Models 2.2
 import QtQuick.Controls.Material 2.12
 import QtCore 6.5
 import QtQuick.Dialogs 6.6
+import Qt.labs.platform 1.1 as Labs
 
 import com.cuperino.qprompt 1.0
 
@@ -616,27 +617,27 @@ ColumnLayout {
             source.text = selectedColor
         }
     }
-    FileDialog {
+    Labs.FileDialog {
         id: pointerImageFileDialog
         property var source
         nameFilters: [qsTr("JPEG image") + "(*.jpg *.jpeg *.JPG *.JPEG)", qsTr(
                 "PNG image") + "(*.png *.PNG)", qsTr(
                 "GIF animation") + "(*.gif *.GIF)", qsTr(
                 "WEBP image") + "(*.webp *.WEBP)"]
-        fileMode: FileDialog.OpenFile
-        currentFolder: StandardPaths.writableLocation(StandardPaths.PicturesLocation)
+        fileMode: Labs.FileDialog.OpenFile
+        folder: StandardPaths.writableLocation(StandardPaths.PicturesLocation)
         onAccepted: {
-            source.text = selectedFile.valueOf()
+            source.text = file.valueOf()
         }
     }
-    FileDialog {
+    Labs.FileDialog {
         id: pointerQmlFileDialog
         property var source
         nameFilters: [qsTr("QML script") + "(*.qml *.QML)"]
-        fileMode: FileDialog.OpenFile
-        currentFolder: StandardPaths.writableLocation(StandardPaths.DocumentsLocation)
+        fileMode: Labs.FileDialog.OpenFile
+        folder: StandardPaths.writableLocation(StandardPaths.DocumentsLocation)
         onAccepted: {
-            source.text = selectedFile.valueOf()
+            source.text = file.valueOf()
         }
     }
 }

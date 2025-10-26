@@ -1408,7 +1408,7 @@ Flickable {
         function saveDialog(quit=false) {
             //document.quitOnSave = quit
             if (document.modified) {
-                if (document.isNewFile)
+                if (isNewFile)
                     saveAsDialog()
                 else {
                     document.modified = false
@@ -1503,75 +1503,66 @@ Flickable {
         id: scrollBar
     }
 
-    FileDialog {
+    Labs.FileDialog {
         id: openDialog
         nameFilters:
             ['android', 'ios', 'tvos', 'wasm'].indexOf(Qt.platform.os)===-1 ?
             [
-                qsTr("Hypertext Markup Language <%1>", "Format name <FORMAT_EXTENSION>").arg("html") + "(*.html *.htm *.xhtml *.HTML *.HTM *.XHTML)",
-                qsTr("Markdown <%1>", "Format name <FORMAT_EXTENSION>").arg("md") + "(*.md *.MD)",
-                qsTr("Plain Text <%1>", "Format name <FORMAT_EXTENSION>").arg("txt") + "(*.txt *.text *.TXT *.TEXT)",
-                qsTr("OpenDocument Format Text Document <%1>", "Format name <FORMAT_EXTENSION>").arg("odt") + "(*.odt *.ODT)",
-                qsTr("AbiWord Document <%1>", "Format name <FORMAT_EXTENSION>").arg("abw") + "(*.abw *.ABW *.zabw *.ZABW)",
-                qsTr("Microsoft Word document <%1>", "Format name <FORMAT_EXTENSION>").arg("docx, doc") + "(*.docx *.doc *.DOCX *.DOC)",
-                qsTr("Apple Pages Document <%1>", "Format name <FORMAT_EXTENSION>").arg("pages") + "(*.pages *.PAGES)",
-                qsTr("Rich Text Format <%1>", "Format name <FORMAT_EXTENSION>").arg("rtf") + "(*.rtf *.RTF)",
-                //qsTr("Portable Document Format <%1>", "Format name <FORMAT_EXTENSION>").arg("pdf") + "(*.pdf *.PDF)",
+                qsTr("Hypertext Markup Language (%1)", "Format name (FORMAT_EXTENSION)").arg("HTML") + "(*.html *.htm *.xhtml *.HTML *.HTM *.XHTML)",
+                qsTr("Markdown (%1)", "Format name (FORMAT_EXTENSION)").arg("MD") + "(*.md *.MD)",
+                qsTr("Plain Text (%1)", "Format name (FORMAT_EXTENSION)").arg("TXT") + "(*.txt *.text *.TXT *.TEXT)",
+                qsTr("OpenDocument Format Text Document (%1)", "Format name (FORMAT_EXTENSION)").arg("ODT") + "(*.odt *.ODT)",
+                qsTr("AbiWord Document (%1)", "Format name (FORMAT_EXTENSION)").arg("ABW") + "(*.abw *.ABW *.zabw *.ZABW)",
+                qsTr("Microsoft Word document (%1)", "Format name (FORMAT_EXTENSION)").arg("DOCX, DOC") + "(*.docx *.doc *.DOCX *.DOC)",
+                qsTr("Apple Pages Document (%1)", "Format name (FORMAT_EXTENSION)").arg("PAGES") + "(*.pages *.PAGES)",
+                qsTr("Rich Text Format (%1)", "Format name (FORMAT_EXTENSION)").arg("RTF") + "(*.rtf *.RTF)",
+                //qsTr("Portable Document Format (%1)", "Format name (FORMAT_EXTENSION)").arg("PDF") + "(*.pdf *.PDF)",
                 qsTr("All Formats", "All file formats") + "(*.*)"
             ]
           : [ // Remove options that rely on external tools in mobile and embedded platforms
-                qsTr("Hypertext Markup Language <%1>", "Format name <FORMAT_EXTENSION>").arg("html") + "(*.html *.htm *.xhtml *.HTML *.HTM *.XHTML)",
-                qsTr("Markdown <%1>", "Format name <FORMAT_EXTENSION>").arg("md") + "(*.md *.MD)",
-                qsTr("Plain Text <%1>", "Format name <FORMAT_EXTENSION>").arg("txt") + "(*.txt *.text *.TXT *.TEXT)",
-                //qsTr("Rich Text Format <%1>", "Format name <FORMAT_EXTENSION>").arg("rtf") + "(*.rtf *.RTF)",
-                //qsTr("Portable Document Format <%1>", "Format name <FORMAT_EXTENSION>").arg("pdf") + "(*.pdf *.PDF)",
+                qsTr("Hypertext Markup Language (%1)", "Format name (FORMAT_EXTENSION)").arg("HTML") + "(*.html *.htm *.xhtml *.HTML *.HTM *.XHTML)",
+                qsTr("Markdown (%1)", "Format name (FORMAT_EXTENSION)").arg("MD") + "(*.md *.MD)",
+                qsTr("Plain Text (%1)", "Format name (FORMAT_EXTENSION)").arg("TXT") + "(*.txt *.text *.TXT *.TEXT)",
+                //qsTr("Rich Text Format (%1)", "Format name (FORMAT_EXTENSION)").arg("RTF") + "(*.rtf *.RTF)",
+                //qsTr("Portable Document Format (%1)", "Format name (FORMAT_EXTENSION)").arg("PDF") + "(*.pdf *.PDF)",
                 qsTr("All Formats", "All file formats") + "(*.*)"
             ]
         selectedNameFilter.index: 0
 
-        currentFolder: StandardPaths.writableLocation(StandardPaths.DocumentsLocation)
-        fileMode: FileDialog.OpenFile
+        folder: StandardPaths.writableLocation(StandardPaths.DocumentsLocation)
+        fileMode: Labs.FileDialog.OpenFile
         onAccepted: {
             document.close()
-            const extensionList = Qt.platform.os!=="android" ?
-                ["html", "htm", "xhtml", "HTML", "HTM", "XHTML", "txt", "text", "TXT", "TEXT"] :
-                ["html", "htm", "xhtml", "HTML", "HTM", "XHTML"]
-            document.isNewFile = true;
-            for (const extension of extensionList) {
-                if (String(openDialog.currentFile).endsWith("." + extension)) {
-                    document.isNewFile = false;
-                    break;
-                }
-            }
-            document.load(openDialog.currentFile)
+            document.load(openDialog.file)
             editor.lastDocument = document.fileUrl;
             editor.resetPosition = true;
             if (parseInt(prompter.state)!==Prompter.States.Editing)
                 prompter.state = Prompter.States.Editing;
+            document.isNewFile = !(selectedNameFilter.index===0 || Qt.platform.os!=="android" && selectedNameFilter.index===2)
         }
     }
 
-    FileDialog {
+    Labs.FileDialog {
         id: saveDialog
         defaultSuffix: 'html'
         nameFilters: if (Qt.platform.os==="android")
             return [
-                qsTr("Hypertext Markup Language <%1>", "Format name <FORMAT_EXTENSION>").arg("html") + "(*.html *.htm *.xhtml *.HTML *.HTM *.XHTML)"
+                qsTr("Hypertext Markup Language (%1)", "Format name (FORMAT_EXTENSION)").arg("HTML") + "(*.html *.htm *.xhtml *.HTML *.HTM *.XHTML)"
             ]
         else
             return [
-                qsTr("Hypertext Markup Language <%1>", "Format name <FORMAT_EXTENSION>").arg("html") + "(*.html *.htm *.xhtml *.HTML *.HTM *.XHTML)",
-                qsTr("Plain Text <%1>", "Format name <FORMAT_EXTENSION>").arg("txt") + "(*.txt *.text *.TXT *.TEXT)"
+                qsTr("Hypertext Markup Language (%1)", "Format name (FORMAT_EXTENSION)").arg("HTML") + "(*.html *.htm *.xhtml *.HTML *.HTM *.XHTML)",
+                qsTr("Plain Text (%1)", "Format name (FORMAT_EXTENSION)").arg("TXT") + "(*.txt *.text *.TXT *.TEXT)"
                 //qsTr("All Formats", "All file formats") + "(*.*)"
             ]
         //// Always in the same format as original file
         //selectedNameFilter.index: document.fileType === "txt" ? 0 : 1
         // Always save as HTML
         //selectedNameFilter: nameFilters[0]
-        currentFolder: StandardPaths.writableLocation(StandardPaths.DocumentsLocation)
-        fileMode: FileDialog.SaveFile
+        folder: StandardPaths.writableLocation(StandardPaths.DocumentsLocation)
+        fileMode: Labs.FileDialog.SaveFile
         onAccepted: {
-            document.saveAs(saveDialog.currentFile)
+            document.saveAs(saveDialog.file)
             document.isNewFile = false
             editor.lastDocument = document.fileUrl;
             showPassiveNotification(qsTr("Saved %1", "Saved FILE_NAME").arg(document.fileUrl))
