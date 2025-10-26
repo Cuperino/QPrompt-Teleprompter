@@ -24,7 +24,6 @@ import QtQuick.Layouts 1.15
 import QtQml.Models 2.2
 import QtQuick.Controls.Material 2.12
 import QtCore 6.5
-import QtQuick.Dialogs 6.6
 import Qt.labs.platform 1.1 as Labs
 
 import com.cuperino.qprompt 1.0
@@ -608,13 +607,12 @@ ColumnLayout {
             }
         }
     }
-    ColorDialog {
+    Labs.ColorDialog {
         id: pointerColorDialog
-        options: ["ios", "osx"].indexOf(Qt.platform.os) ? 0 : ColorDialog.DontUseNativeDialog
-        property TextField source
-        selectedColor: Material.theme === Material.Light ? "#4d94cf" : "#2b72ad"
+        property var source
+        currentColor: appTheme.__backgroundColor
         onAccepted: {
-            source.text = selectedColor
+            source.text = color
         }
     }
     Labs.FileDialog {

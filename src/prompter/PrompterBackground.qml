@@ -22,7 +22,6 @@
 import QtQuick 2.12
 
 import QtCore 6.5
-import QtQuick.Dialogs 6.6
 import Qt.labs.platform 1.1 as Labs
 
 import com.cuperino.qprompt 1.0
@@ -40,14 +39,21 @@ Rectangle {
     //property color backgroundColor: root.background.selection ? root.background.__backgroundColor : "#FFFFFF" //: "#FFFFFF"
 
     // property color backgroundColor: "#303030"
-    property color backgroundColor: backgroundColorDialog.selectedColor
+    property color backgroundColor: switch(appTheme.selection) {
+        //case 0: root.background.__backgroundColor
+        //case 0: return Qt.rgba(Material.background.r/4, Material.background.g/4, Material.background.b/4, 1);
+        //case 0: return Qt.rgb(Material.background.r/4, Material.background.g/4, Material.background.b/4);
+        case 0: return "#0C0C0C";
+        case 1: return "#303030";
+        case 2: return "#FAFAFA";
+    }
 
     function loadBackgroundImage() {
         openBackgroundDialog.open()
     }
     function clearBackground() {
         backgroundImage.opacity = 0
-        backgroundColorDialog.selectedColor = root.background.__backgroundColor
+        backgroundColor = root.background.__backgroundColor
         // Reset background image value such that setting is saved
         resetBackground.start()
     }
@@ -65,7 +71,7 @@ Rectangle {
         id: backgroundSettings
         // property color color: "#303030" // "#181818"
         //property color color: Qt.rgba(Kirigami.Theme.backgroundColor.r, Kirigami.Theme.backgroundColor.g, Kirigami.Theme.backgroundColor.b, 1)
-        property alias color: backgroundColorDialog.selectedColor
+        property alias color: prompterBackground.backgroundColor
         property alias image: backgroundImage.source
         category: "background"
     }
@@ -103,26 +109,17 @@ Rectangle {
             }
         }
 
-        ColorDialog {
+        Labs.ColorDialog {
             id: backgroundColorDialog
-            options: (Qt.platform.os === "ios" ? 0 : ColorDialog.DontUseNativeDialog) | (Qt.platform.os === "android" ? ColorDialog.ShowAlphaChannel : 0)
-            property color color: root.background.__backgroundColor
-            selectedColor: switch(appTheme.selection) {
-                           //case 0: root.background.__backgroundColor
-                           //case 0: return Qt.rgba(Material.background.r/4, Material.background.g/4, Material.background.b/4, 1);
-                           //case 0: return Qt.rgb(Material.background.r/4, Material.background.g/4, Material.background.b/4);
-                           case 0: return "#0C0C0C";
-                           case 1: return "#303030";
-                           case 2: return "#FAFAFA";
-                       }
-            onRejected: {
-                backgroundColorDialog.selectedColor = backgroundColorDialog.color
+            options: Labs.ColorDialog.ShowAlphaChannel
+            currentColor: appTheme.__backgroundColor
+            onAccepted: {
+                console.log(color)
+                prompterBackground.backgroundColor = color
             }
             onVisibleChanged: {
-                if (visible) {
-                    backgroundColorDialog.color = backgroundSettings.color
+                if (visible)
                     cursorAutoHide.reset();
-                }
                 else
                     cursorAutoHide.restart();
             }
