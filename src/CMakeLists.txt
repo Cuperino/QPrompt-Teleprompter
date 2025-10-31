@@ -19,6 +19,9 @@
 #
 #**************************************************************************
 
+include_directories(${CMAKE_SOURCE_DIR}/3rdparty/kirigami/src)
+include(${CMAKE_SOURCE_DIR}/3rdparty/kirigami/KF6KirigamiMacros.cmake)
+
 if(NOT WIN32)
     include(ECMPoQmTools)
     ecm_create_qm_loader(qprompt_QM_LOADER ../po/qprompt.pot)
@@ -270,6 +273,15 @@ foreach(file IN LISTS icon_files doc)
     get_filename_component(filename ${file} NAME)
     set_source_files_properties(${file} PROPERTIES QT_RESOURCE_ALIAS icons/${filename})
 endforeach()
+
+if (IOS OR ANDROID OR WASM)
+    kirigami_package_breeze_icons(ICONS
+        list-add
+        help-about
+        application-exit
+        applications-graphics
+    )
+endif()
 
 # App QML Module
 qt_add_qml_module(
