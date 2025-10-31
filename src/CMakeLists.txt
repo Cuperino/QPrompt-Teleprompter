@@ -274,15 +274,6 @@ foreach(file IN LISTS icon_files doc)
     set_source_files_properties(${file} PROPERTIES QT_RESOURCE_ALIAS icons/${filename})
 endforeach()
 
-if (IOS OR ANDROID OR WASM)
-    kirigami_package_breeze_icons(ICONS
-        list-add
-        help-about
-        application-exit
-        applications-graphics
-    )
-endif()
-
 # App QML Module
 qt_add_qml_module(
     ${PROJECT_NAME}
@@ -439,6 +430,68 @@ if (QHotkey_FOUND)
     add_definitions(-DQHotkey_FOUND)
     target_link_libraries(${PROJECT_NAME} PRIVATE
         qhotkey
+    )
+endif()
+
+# Copy icons that are not font based
+if(ANDROID OR APPLE OR WIN32 OR IOS OR WASM)
+    # Breeze icons names can be found at https://cdn.kde.org/breeze-icons/icons.html
+    kirigami_package_breeze_icons(ICONS
+        application-exit
+        auto-transition
+        chronometer
+        chronometer-pause
+        circular-arrow-shape
+        configure
+        dialog-ok-apply
+        document-new
+        document-open
+        document-open-recent
+        document-save
+        document-save-as
+        document-send
+        draw-rectangle
+        draw-star
+        edit-clear-history
+        edit-redo
+        edit-undo
+        filename-bpm-amarok
+        fill-color
+        format-font-size-more
+        format-justify-center
+        format-text-color
+        gnumeric-object-rectangle
+        gnumeric-object-scrollbar
+        go-down
+        go-next
+        go-previous
+        go-up
+        handle-sort
+        help-about
+        insert-image
+        key-enter
+        keyframe
+        keyframe-add
+        list-remove
+        mail-mark-unread
+        newline
+        object-flip-horizontal
+        object-flip-vertical
+        object-rotate-left
+        object-rotate-right
+        paint-none
+        player-time
+        sidebar-collapse-left
+        sidebar-collapse-right
+        tool_color_eraser
+        tools-report-bug
+        transform-browse
+        transform-move-horizontal
+        transform-move-vertical
+        view-left-close
+        view-right-close
+        window
+        window-duplicate
     )
 endif()
 
