@@ -355,6 +355,7 @@ if (ANDROID OR IOS)
         Qt${QT_VERSION_MAJOR}::Network
         KF${QT_VERSION_MAJOR}::CoreAddons
         KF${QT_VERSION_MAJOR}::Kirigami
+        Kirigamiplugin
     )
 elseif (WASM)
     target_compile_options(${PROJECT_NAME} PRIVATE -O3 -flto -sDISABLE_EXCEPTION_THROWING=0 -sDISABLE_EXCEPTION_CATCHING=0)
@@ -368,6 +369,7 @@ elseif (WASM)
         Qt${QT_VERSION_MAJOR}::QuickControls2
         Qt${QT_VERSION_MAJOR}::Network
         KF${QT_VERSION_MAJOR}::Kirigami
+        Kirigamiplugin
     )
 elseif(HAIKU)
     target_link_libraries(${PROJECT_NAME} PRIVATE
