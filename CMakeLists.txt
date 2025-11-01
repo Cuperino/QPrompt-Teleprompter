@@ -146,7 +146,7 @@ if(ANDROID OR IOS OR WASM)
     set(BUILD_SHARED_LIBS OFF)
 endif()
 
-if(WIN32 OR APPLE OR WASM)
+if(WIN32 OR APPLE OR ANDROID OR WASM)
     set(BUILD_TESTING OFF)
     if(NOT WASM)
         FetchContent_Declare(

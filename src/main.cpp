@@ -39,8 +39,9 @@
 #include <QtQml>
 //#include "appwindow.h"
 
-#if defined(Q_OS_IOS) || defined(Q_OS_WASM) || defined(Q_OS_WATCHOS) || defined(Q_OS_QNX)
-#include "../3rdparty/kirigami/src/kirigamiplugin.h"
+#if defined(Q_OS_ANDROID) || defined(Q_OS_IOS) || defined(Q_OS_WASM) || defined(Q_OS_WATCHOS) || defined(Q_OS_QNX)
+#define KIRIGAMI_BUILD_TYPE_STATIC true
+#include <kirigamiplugin.h>
 #endif
 // #include <KLocalizedContext>
 // #include <KLocalizedString>
@@ -198,7 +199,7 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
     //    qRegisterMetaType<Marker>();
 
 #if defined(Q_OS_ANDROID) || defined(Q_OS_IOS) || defined(Q_OS_WASM)
-// KirigamiPlugin::getInstance().registerTypes();
+KirigamiPlugin::getInstance().registerTypes();
 #endif
 
 #if defined(Q_OS_MACOS)
