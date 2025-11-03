@@ -22,7 +22,7 @@
 #**************************************************************************
 
 ARCHITECTURE="$(uname -m)"
-DEFAULT_QT_VER=6.7.3
+DEFAULT_QT_VER=6.8.3
 echo -e "\nArchitecture: $ARCHITECTURE"
 
 if [[ "$OSTYPE" == "linux-gnu"* ]]; then
@@ -45,13 +45,12 @@ elif [[ "$OSTYPE" == "darwin"* ]]; then
     CPACK=~/Qt/Tools/CMake/CMake.app/Contents/bin/cpack
     PATH=$PATH:~/Qt/Tools/QtInstallerFramework/4.8/bin
 elif [[ "$OSTYPE" == "win32" || "$OSTYPE" == "msys" ]]; then
-    QT_VER=6.7.3
     PLATFORM="windows"
     CMAKE_INSTALL_PREFIX="install"
     if [ "$ARCHITECTURE" == "aarch64" ]; then
-        COMPILER="msvc2019_arm64"
+        COMPILER="msvc2022_arm64"
     else
-        COMPILER="msvc2019_64"
+        COMPILER="msvc2022_64"
     fi
     CMAKE=C:\\Qt\\Tools\\CMake_64\\bin\\cmake.exe
     CPACK=C:\\Qt\\Tools\\CMake_64\\bin\\cpack.exe

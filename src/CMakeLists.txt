@@ -88,9 +88,9 @@ set(qprompt_cpp
 
 set(qprompt_frontend_sources
     # Kirigami UI Frontend
-    kirigami_ui/main.qml
-    kirigami_ui/+android/main.qml
-    kirigami_ui/+windows/main.qml
+    kirigami_ui/Main.qml
+    kirigami_ui/+android/Main.qml
+    kirigami_ui/+windows/Main.qml
     kirigami_ui/AboutPage.qml
     kirigami_ui/PathsPage.qml
     kirigami_ui/PrompterPage.qml
@@ -294,6 +294,11 @@ if (UNIX AND NOT APPLE)
 else()
     set(OUTPUT_NAME "QPrompt")
 endif()
+if(EXCLUDE_COREADDONS)
+    set(LINK_LIBRARIES_STRING "KF${QT_VERSION_MAJOR}::Kirigami")
+else()
+    set(LINK_LIBRARIES_STRING "KF${QT_VERSION_MAJOR}::CoreAddons;KF${QT_VERSION_MAJOR}::Kirigami")
+endif()
 set_target_properties(${PROJECT_NAME} PROPERTIES
     MACOSX_BUNDLE_BUNDLE_NAME "QPrompt"
     MACOSX_BUNDLE_GUI_IDENTIFIER com.cuperino.qprompt
@@ -303,7 +308,7 @@ set_target_properties(${PROJECT_NAME} PROPERTIES
     OUTPUT_NAME ${OUTPUT_NAME}
     MACOSX_BUNDLE TRUE
     WIN32_EXECUTABLE TRUE
-    INTERFACE_LINK_LIBRARIES "KF${QT_VERSION_MAJOR}::CoreAddons;KF${QT_VERSION_MAJOR}::Kirigami"
+    INTERFACE_LINK_LIBRARIES "${LINK_LIBRARIES_STRING}"
     # QT_QMLCACHEGEN_ARGUMENTS "--static"  # "--static;--verbose"
     # QT_QMLCACHEGEN_DIRECT_CALLS OFF
     # PLUGIN_TARGET qtlabsplatformplugin inhibits the creation of the backing library, thus headers can't be accessed in direct mode.
@@ -398,6 +403,18 @@ elseif(WIN32 OR APPLE)
         KF${QT_VERSION_MAJOR}::Kirigami
         KF${QT_VERSION_MAJOR}::CoreAddons
     )
+elseif(EXCLUDE_COREADDONS)
+    target_link_libraries(${PROJECT_NAME} PRIVATE
+        Qt${QT_VERSION_MAJOR}::Core
+        Qt${QT_VERSION_MAJOR}::Quick
+        Qt${QT_VERSION_MAJOR}::Gui
+        Qt${QT_VERSION_MAJOR}::Svg
+        Qt${QT_VERSION_MAJOR}::Qml
+        Qt${QT_VERSION_MAJOR}::QuickControls2
+        Qt${QT_VERSION_MAJOR}::Network
+        Qt${QT_VERSION_MAJOR}::Widgets
+        KF${QT_VERSION_MAJOR}::Kirigami
+    )
 else()
     target_link_libraries(${PROJECT_NAME} PRIVATE
         Qt${QT_VERSION_MAJOR}::Core
@@ -425,7 +442,11 @@ if (QHotkey_FOUND)
     )
 endif()
 
+target_compile_definitions(${PROJECT_NAME} PRIVATE QML_MODULES_BUILD_PATH="${CMAKE_PREFIX_PATH}/lib/x86_64-linux-gnu/qml")
+
 execute_process(COMMAND ${CMAKE_PREFIX_PATH}/bin/lconvert -pluralonly ${CMAKE_SOURCE_DIR}/po/qprompt_en.ts)
+
+felgohotreload_configure_executable(${PROJECT_NAME})
 
 # Installation and bundling
 if (APPLE)

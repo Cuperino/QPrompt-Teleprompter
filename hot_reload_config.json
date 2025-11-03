@@ -1,0 +1,80 @@
+{
+    "main_qml_file": "src/kirigami_ui/Main.qml",
+    "qml_module_paths": [
+        {
+            "path": "src",
+            "target_path": "com/cuperino/qprompt"
+        },
+        {
+            "path": "src/prompter",
+            "target_path": "com/cuperino/qprompt/prompter"
+        },
+        {
+            "path": "src/prompter/pointers",
+            "target_path": "com/cuperino/qprompt/prompter/pointers"
+        },
+        {
+            "path": "src/kirigami_ui",
+            "target_path": "com/cuperino/qprompt/kirigami_ui"
+        },
+        {
+            "path": "src/qt",
+            "target_path": "com/cuperino/qprompt/qt"
+        },
+        {
+            "path": "src/fonts/icons",
+            "target_path": "com/cuperino/qprompt/fonts"
+        },
+        {
+            "path": "src/fonts/editor",
+            "target_path": "com/cuperino/qprompt/fonts"
+        },
+        {
+            "path": "src/fonts/editor/dejavu-sans",
+            "target_path": "com/cuperino/qprompt/fonts"
+        },
+        {
+            "path": "src/fonts/editor/Libertinus/static/OTF/",
+            "target_path": "com/cuperino/qprompt/fonts"
+        },
+        {
+            "path": "src/fonts/editor/opendyslexic/compiled/",
+            "target_path": "com/cuperino/qprompt/fonts"
+        },
+        {
+            "path": "src/fonts/editor/ScheherazadeNew/",
+            "target_path": "com/cuperino/qprompt/fonts"
+        },
+        {
+            "path": "src/fonts/editor/Kalpurush",
+            "target_path": "com/cuperino/qprompt/fonts"
+        },
+        {
+            "path": "src/fonts/editor/SourceHanSans",
+            "target_path": "com/cuperino/qprompt/fonts"
+        }
+    ],
+    "qml_plugin_paths": [
+        {
+            "path": "build/Desktop_Qt_6_8_3-Debug/build/com/cuperino/qprompt",
+            "target_path": "com/cuperino/qprompt",
+            "compiler": "gcc_64",
+            "qt_version": "6.8.3"
+        },
+        {
+            "path": "build/6.8.3-raspberrypi-armv8-Debug/build/com/cuperino/qprompt",
+            "target_path": "com/cuperino/qprompt",
+            "compiler": "gcc_arm64_v8a",
+            "qt_version": "6.8.3"
+        },
+        {
+            "path": "build/Qt_6_8_3_for_macOS-Debug/build/com/cuperino/qprompt",
+            "target_path": "com/cuperino/qprompt"
+        },
+        {
+            "path": "build/Desktop_Qt_6_8_3_MSVC2022_64bit-Debug/build/com/cuperino/qprompt",
+            "target_path": "com/cuperino/qprompt"
+        }
+    ],
+    "use_local_plugins": true
+}

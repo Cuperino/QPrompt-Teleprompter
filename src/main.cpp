@@ -61,6 +61,10 @@
 #include <../3rdparty/KDMacTouchBar/src/kdmactouchbar.h>
 #endif
 
+#ifdef USE_FELGO_HOT_RELOAD
+#include <FelgoHotReload>
+#endif
+
 #include "../qprompt_version.h"
 #include "abstractunits.hpp"
 //#include "documenthandler.h"
@@ -280,7 +284,12 @@ KirigamiPlugin::getInstance().registerTypes();
     engine.addImportPath(QStringLiteral("../../../"));
     engine.addImportPath(QStringLiteral("../build/"));
     engine.addImportPath(QStringLiteral("../Resources/qml/"));
-    // Send context data from C++ to QML
+    // Path on build machine, for development purposes
+#ifdef QML_MODULES_BUILD_PATH
+    engine.addImportPath(QML_MODULES_BUILD_PATH);
+#endif
+
+    //// Send context data from C++ to QML
     // engine.rootContext()->setContextObject(new KLocalizedContext(&engine));
 #ifndef Q_OS_WASM
     engine.rootContext()->setContextProperty(QStringLiteral("aboutData"), QVariant::fromValue(KAboutData::applicationData()));
@@ -291,15 +300,15 @@ KirigamiPlugin::getInstance().registerTypes();
     // engine.addImportPath(QStringLiteral("/opt/homebrew/lib/qml"));
     engine.addImportPath(QStringLiteral("/opt/homebrew/Cellar/kf5-kirigami2/5.95.0/lib/qt6/qml"));
 #endif
-#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
-    engine.load(QUrl(u"qrc:/qt/qml/com/cuperino/qprompt/kirigami_ui/main.qml"_s));
+#ifdef USE_FELGO_HOT_RELOAD
+    static FelgoHotReload felgoHotReload(&engine);
 #else
-    engine.load(QUrl(QStringLiteral("qrc:/qt/qml/com/cuperino/qprompt/kirigami_ui/main.qml")));
-#endif
+    engine.load(QUrl(u"qrc:/qt/qml/com/cuperino/qprompt/kirigami_ui/Main.qml"_s));
 
     if (engine.rootObjects().isEmpty()) {
         return -1;
     }
+#endif
 
     // qDebug() << QProcess::systemEnvironme nt();
     return app.exec();
