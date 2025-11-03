@@ -19,61 +19,61 @@
 #
 #**************************************************************************
 
-if(NOT WIN32)
-    include(ECMPoQmTools)
-    ecm_create_qm_loader(qprompt_QM_LOADER ../po/qprompt.pot)
-endif()
+# if(NOT WIN32)
+#     include(ECMPoQmTools)
+#     ecm_create_qm_loader(qprompt_QM_LOADER ../po/qprompt.pot)
+# endif()
 
-qt_standard_project_setup(I18N_TRANSLATED_LANGUAGES ar cs de en es fi fr he it ja ko nl oc pl pt_BR pt_PT ru tr uk zh)
+qt_standard_project_setup(REQUIRES 6.7) # I18N_TRANSLATED_LANGUAGES ar cs de es fi fr he it ja ko nl oc pl pt_BR pt_PT ru tr uk zh)
 
-set(CMAKE_OSX_DEPLOYMENT_TARGET "10.15")
-set(CMAKE_OSX_ARCHITECTURES="x86_64;arm64")
+# set(CMAKE_OSX_DEPLOYMENT_TARGET "10.15")
+# set(CMAKE_OSX_ARCHITECTURES="x86_64;arm64")
 
-if (ANDROID OR IOS OR WASM)
+# if (ANDROID OR IOS OR WASM)
     qt_add_executable(${PROJECT_NAME}
         main.cpp
     )
-else()
-    qt_add_executable(${PROJECT_NAME}
-        main.cpp
-        systemfontchooserdialog.h
-        systemfontchooserdialog.cpp
-    )
-endif()
-if (NOT ANDROID)
-    qt_wrap_ui(${PROJECT_NAME}
-        qt/systemfontchooserdialog.ui
-    )
-endif()
+# else()
+#     qt_add_executable(${PROJECT_NAME}
+#         main.cpp
+#         systemfontchooserdialog.h
+#         systemfontchooserdialog.cpp
+#     )
+# endif()
+# if (NOT ANDROID AND NOT IOS AND NOT WASM)
+#     qt_wrap_ui(${PROJECT_NAME}
+#         qt/systemfontchooserdialog.ui
+#     )
+# endif()
 
-if (NOT ANDROID AND NOT WASM)
-    set(ICONS_FOLDER ${CMAKE_CURRENT_SOURCE_DIR}/icons/hicolor)
-    set(RASTER_ICONS
-        ${ICONS_FOLDER}/16-apps-com.cuperino.qprompt.png
-        ${ICONS_FOLDER}/32-apps-com.cuperino.qprompt.png
-        ${ICONS_FOLDER}/48-apps-com.cuperino.qprompt.png
-        ${ICONS_FOLDER}/64-apps-com.cuperino.qprompt.png
-        ${ICONS_FOLDER}/128-apps-com.cuperino.qprompt.png
-        ${ICONS_FOLDER}/256-apps-com.cuperino.qprompt.png
-        ${ICONS_FOLDER}/512-apps-com.cuperino.qprompt.png
-        # ${ICONS_FOLDER}/1024-apps-com.cuperino.qprompt.png  # Flatpak has a maximum size of 512
-    )
-    # set(VECTOR_ICON
-    #     ${ICONS_FOLDER}/sc-apps-com.cuperino.qprompt.svg
-    # )
-    if (NOT APPLE)
-        ecm_install_icons(
-            ICONS
-                ${RASTER_ICONS}
-                # ${VECTOR_ICON}
-            DESTINATION ${KDE_INSTALL_ICONDIR}
-            # THEME hicolor
-        )
-    endif()
-    ecm_add_app_icon(${PROJECT_NAME}
-        ICONS ${RASTER_ICONS}
-    )
-endif()
+# if (NOT ANDROID AND NOT WASM)
+#     set(ICONS_FOLDER ${CMAKE_CURRENT_SOURCE_DIR}/icons/hicolor)
+#     set(RASTER_ICONS
+#         ${ICONS_FOLDER}/16-apps-com.cuperino.qprompt.png
+#         ${ICONS_FOLDER}/32-apps-com.cuperino.qprompt.png
+#         ${ICONS_FOLDER}/48-apps-com.cuperino.qprompt.png
+#         ${ICONS_FOLDER}/64-apps-com.cuperino.qprompt.png
+#         ${ICONS_FOLDER}/128-apps-com.cuperino.qprompt.png
+#         ${ICONS_FOLDER}/256-apps-com.cuperino.qprompt.png
+#         ${ICONS_FOLDER}/512-apps-com.cuperino.qprompt.png
+#         # ${ICONS_FOLDER}/1024-apps-com.cuperino.qprompt.png  # Flatpak has a maximum size of 512
+#     )
+#     # set(VECTOR_ICON
+#     #     ${ICONS_FOLDER}/sc-apps-com.cuperino.qprompt.svg
+#     # )
+#     if (NOT APPLE)
+#         ecm_install_icons(
+#             ICONS
+#                 ${RASTER_ICONS}
+#                 # ${VECTOR_ICON}
+#             DESTINATION ${KDE_INSTALL_ICONDIR}
+#             # THEME hicolor
+#         )
+#     endif()
+#     ecm_add_app_icon(${PROJECT_NAME}
+#         ICONS ${RASTER_ICONS}
+#     )
+# endif()
 
 set(qprompt_cpp
     qmlutil.hpp
@@ -271,11 +271,10 @@ qt_add_qml_module(
     ${PROJECT_NAME}
     URI com.cuperino.qprompt
     VERSION 1.0
-    RESOURCE_PREFIX /qt/qml/
-    IMPORTS
-    "QtQuick.Controls.Material"
-    DEPENDENCIES
-    QtQuick
+    # IMPORTS
+    # "QtQuick.Controls.Material"
+    # DEPENDENCIES
+    # QtQuick
     SOURCES
     ${qprompt_cpp}
     QML_FILES
@@ -289,62 +288,77 @@ qt_add_qml_module(
     # ${qprompt_ICONS}
 )
 
-if (UNIX AND NOT APPLE)
+if (UNIX AND NOT APPLE AND NOT WASM)
     set(OUTPUT_NAME "qprompt")
 else()
     set(OUTPUT_NAME "QPrompt")
 endif()
 set_target_properties(${PROJECT_NAME} PROPERTIES
-    MACOSX_BUNDLE_BUNDLE_NAME "QPrompt"
-    MACOSX_BUNDLE_GUI_IDENTIFIER com.cuperino.qprompt
-    MACOSX_BUNDLE_BUNDLE_VERSION ${PROJECT_VERSION}
-    MACOSX_BUNDLE_COPYRIGHT "Copyright Javier O. Cordero Pérez"
-    MACOSX_BUNDLE_SHORT_VERSION_STRING ${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}
+    # MACOSX_BUNDLE_BUNDLE_NAME "QPrompt"
+    # MACOSX_BUNDLE_GUI_IDENTIFIER com.cuperino.qprompt
+    # MACOSX_BUNDLE_BUNDLE_VERSION ${PROJECT_VERSION}
+    # MACOSX_BUNDLE_COPYRIGHT "Copyright Javier O. Cordero Pérez"
+    # MACOSX_BUNDLE_SHORT_VERSION_STRING ${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}
     OUTPUT_NAME ${OUTPUT_NAME}
-    MACOSX_BUNDLE TRUE
-    WIN32_EXECUTABLE TRUE
-    INTERFACE_LINK_LIBRARIES "KF${QT_VERSION_MAJOR}::CoreAddons;KF${QT_VERSION_MAJOR}::Kirigami"
+    # MACOSX_BUNDLE TRUE
+    # WIN32_EXECUTABLE TRUE
+    # INTERFACE_LINK_LIBRARIES "KF${QT_VERSION_MAJOR}::CoreAddons;KF${QT_VERSION_MAJOR}::Kirigami"
     # QT_QMLCACHEGEN_ARGUMENTS "--static"  # "--static;--verbose"
     # QT_QMLCACHEGEN_DIRECT_CALLS OFF
     # PLUGIN_TARGET qtlabsplatformplugin inhibits the creation of the backing library, thus headers can't be accessed in direct mode.
     # See issue: https://bugreports.qt.io/browse/QTBUG-117992?focusedId=750577&page=com.atlassian.jira.plugin.system.issuetabpanels%3Acomment-tabpanel#comment-750577
 )
 
-if (NOT IOS)
+# ecm_add_android_apk(${PROJECT_NAME} ANDROID_DIR ${CMAKE_SOURCE_DIR}/android)
+
+# if (NOT IOS AND NOT ANDROID AND NOT WASM)
+#     qt_add_resources(${PROJECT_NAME} "fonts"
+#         PREFIX "/qt/qml/com/cuperino/qprompt/"
+#         BIG_RESOURCES
+#         FILES
+#         ${font_files}
+#     )
+# else()
     qt_add_resources(${PROJECT_NAME} "fonts"
         PREFIX "/qt/qml/com/cuperino/qprompt/"
-        BIG_RESOURCES
         FILES
         ${font_files}
     )
-else()
-    qt_add_resources(${PROJECT_NAME} "fonts"
-        PREFIX "/qt/qml/com/cuperino/qprompt/"
-        FILES
-        ${font_files}
-    )
-endif()
+# endif()
 
-# Shader compilation
-qt_add_shaders(
-    ${PROJECT_NAME}
-    "qp_shaders"
-    PREFIX "/qt/qml/com/cuperino/qprompt"
-    FILES
-    "shaders/blur.frag"
-    "shaders/shadow.frag"
-    "shaders/tint.frag"
-)
+# # Shader compilation
+# qt_add_shaders(
+#     ${PROJECT_NAME}
+#     "qp_shaders"
+#     PREFIX "/qt/qml/com/cuperino/qprompt"
+#     FILES
+#     "shaders/blur.frag"
+#     "shaders/shadow.frag"
+#     "shaders/tint.frag"
+# )
 
-qt_add_translations(${PROJECT_NAME} SOURCE_TARGETS ${PROJECT_NAME}
-    TS_FILE_DIR ${CMAKE_SOURCE_DIR}/po
-    PLURALS_TS_FILE ${CMAKE_SOURCE_DIR}/po/qprompt_en.ts
-    LUPDATE_OPTIONS -source-language en
-    LRELEASE_OPTIONS -compress  # -idbased
-)
+# qt_add_translations(${PROJECT_NAME} SOURCE_TARGETS ${PROJECT_NAME}
+#     TS_FILE_DIR ${CMAKE_SOURCE_DIR}/po
+#     PLURALS_TS_FILE ${CMAKE_SOURCE_DIR}/po/qprompt_en.ts
+#     LUPDATE_OPTIONS -source-language en
+#     LRELEASE_OPTIONS -compress  # -idbased
+# )
 
 # Libraries
-if (ANDROID OR IOS)
+# if (IOS)
+#     target_link_libraries(${PROJECT_NAME} PRIVATE
+#         Qt${QT_VERSION_MAJOR}::Core
+#         Qt${QT_VERSION_MAJOR}::Quick
+#         Qt${QT_VERSION_MAJOR}::Svg
+#         Qt${QT_VERSION_MAJOR}::Gui
+#         Qt${QT_VERSION_MAJOR}::Qml
+#         Qt${QT_VERSION_MAJOR}::QuickControls2
+#         Qt${QT_VERSION_MAJOR}::Network
+#         KF${QT_VERSION_MAJOR}::CoreAddons
+#         KF${QT_VERSION_MAJOR}::Kirigami
+#         Kirigamiplugin
+#     )
+# elseif (ANDROID)
     target_link_libraries(${PROJECT_NAME} PRIVATE
         Qt${QT_VERSION_MAJOR}::Core
         Qt${QT_VERSION_MAJOR}::Quick
@@ -353,118 +367,127 @@ if (ANDROID OR IOS)
         Qt${QT_VERSION_MAJOR}::Qml
         Qt${QT_VERSION_MAJOR}::QuickControls2
         Qt${QT_VERSION_MAJOR}::Network
-        KF${QT_VERSION_MAJOR}::CoreAddons
-        KF${QT_VERSION_MAJOR}::Kirigami
-        Kirigamiplugin
+        # KF${QT_VERSION_MAJOR}::CoreAddons
+        # KF${QT_VERSION_MAJOR}::Kirigami
+        # Kirigamiplugin
+        # OpenSSL::SSL
     )
-elseif (WASM)
-    target_compile_options(${PROJECT_NAME} PRIVATE -O3 -flto -sDISABLE_EXCEPTION_THROWING=0 -sDISABLE_EXCEPTION_CATCHING=0)
-    target_link_options(${PROJECT_NAME} PRIVATE -flto -fno-except -sASYNCIFY -Os -sDISABLE_EXCEPTION_THROWING=0 -sDISABLE_EXCEPTION_CATCHING=0)
-    target_link_libraries(${PROJECT_NAME} PRIVATE
-        Qt${QT_VERSION_MAJOR}::Core
-        Qt${QT_VERSION_MAJOR}::Quick
-        Qt${QT_VERSION_MAJOR}::Svg
-        Qt${QT_VERSION_MAJOR}::Gui
-        Qt${QT_VERSION_MAJOR}::Qml
-        Qt${QT_VERSION_MAJOR}::QuickControls2
-        Qt${QT_VERSION_MAJOR}::Network
-        KF${QT_VERSION_MAJOR}::Kirigami
-        Kirigamiplugin
-    )
-elseif(HAIKU)
-    target_link_libraries(${PROJECT_NAME} PRIVATE
-        Qt${QT_VERSION_MAJOR}::Core
-        Qt${QT_VERSION_MAJOR}::Quick
-        Qt${QT_VERSION_MAJOR}::Gui
-        Qt${QT_VERSION_MAJOR}::Svg
-        Qt${QT_VERSION_MAJOR}::Qml
-        Qt${QT_VERSION_MAJOR}::QuickControls2
-        Qt${QT_VERSION_MAJOR}::Network
-        Qt${QT_VERSION_MAJOR}::Widgets
-        KF${QT_VERSION_MAJOR}::CoreAddons
-        KF${QT_VERSION_MAJOR}::Kirigami
-        KF${QT_VERSION_MAJOR}::IconThemes
-    )
-elseif(WIN32 OR APPLE)
-    target_link_libraries(${PROJECT_NAME} PRIVATE
-        Qt${QT_VERSION_MAJOR}::Core
-        Qt${QT_VERSION_MAJOR}::Quick
-        Qt${QT_VERSION_MAJOR}::Gui
-        Qt${QT_VERSION_MAJOR}::Svg
-        Qt${QT_VERSION_MAJOR}::Qml
-        Qt${QT_VERSION_MAJOR}::QuickControls2
-        Qt${QT_VERSION_MAJOR}::Network
-        Qt${QT_VERSION_MAJOR}::Widgets
-        KF${QT_VERSION_MAJOR}::Kirigami
-        KF${QT_VERSION_MAJOR}::CoreAddons
-    )
-else()
-    target_link_libraries(${PROJECT_NAME} PRIVATE
-        Qt${QT_VERSION_MAJOR}::Core
-        Qt${QT_VERSION_MAJOR}::Quick
-        Qt${QT_VERSION_MAJOR}::Gui
-        Qt${QT_VERSION_MAJOR}::Svg
-        Qt${QT_VERSION_MAJOR}::Qml
-        Qt${QT_VERSION_MAJOR}::QuickControls2
-        Qt${QT_VERSION_MAJOR}::Network
-        Qt${QT_VERSION_MAJOR}::Widgets
-        KF${QT_VERSION_MAJOR}::CoreAddons
-        KF${QT_VERSION_MAJOR}::Kirigami
-    )
-endif()
+# elseif (WASM)
+#     target_compile_options(${PROJECT_NAME} PRIVATE -O3 -flto -sDISABLE_EXCEPTION_THROWING=0 -sDISABLE_EXCEPTION_CATCHING=0)
+#     target_link_options(${PROJECT_NAME} PRIVATE -flto -fno-except -sASYNCIFY -Os -sDISABLE_EXCEPTION_THROWING=0 -sDISABLE_EXCEPTION_CATCHING=0)
+#     target_link_libraries(${PROJECT_NAME} PRIVATE
+#         Qt${QT_VERSION_MAJOR}::Core
+#         Qt${QT_VERSION_MAJOR}::Quick
+#         Qt${QT_VERSION_MAJOR}::Svg
+#         Qt${QT_VERSION_MAJOR}::Gui
+#         Qt${QT_VERSION_MAJOR}::Qml
+#         Qt${QT_VERSION_MAJOR}::QuickControls2
+#         Qt${QT_VERSION_MAJOR}::Network
+#         KF${QT_VERSION_MAJOR}::Kirigami
+#         Kirigamiplugin
+#     )
+# elseif(HAIKU)
+#     target_link_libraries(${PROJECT_NAME} PRIVATE
+#         Qt${QT_VERSION_MAJOR}::Core
+#         Qt${QT_VERSION_MAJOR}::Quick
+#         Qt${QT_VERSION_MAJOR}::Gui
+#         Qt${QT_VERSION_MAJOR}::Svg
+#         Qt${QT_VERSION_MAJOR}::Qml
+#         Qt${QT_VERSION_MAJOR}::QuickControls2
+#         Qt${QT_VERSION_MAJOR}::Network
+#         Qt${QT_VERSION_MAJOR}::Widgets
+#         KF${QT_VERSION_MAJOR}::CoreAddons
+#         KF${QT_VERSION_MAJOR}::Kirigami
+#         KF${QT_VERSION_MAJOR}::IconThemes
+#     )
+# elseif(WIN32 OR APPLE)
+#     target_link_libraries(${PROJECT_NAME} PRIVATE
+#         Qt${QT_VERSION_MAJOR}::Core
+#         Qt${QT_VERSION_MAJOR}::Quick
+#         Qt${QT_VERSION_MAJOR}::Gui
+#         Qt${QT_VERSION_MAJOR}::Svg
+#         Qt${QT_VERSION_MAJOR}::Qml
+#         Qt${QT_VERSION_MAJOR}::QuickControls2
+#         Qt${QT_VERSION_MAJOR}::Network
+#         Qt${QT_VERSION_MAJOR}::Widgets
+#         KF${QT_VERSION_MAJOR}::Kirigami
+#         KF${QT_VERSION_MAJOR}::CoreAddons
+#     )
+# else()
+#     target_link_libraries(${PROJECT_NAME} PRIVATE
+#         Qt${QT_VERSION_MAJOR}::Core
+#         Qt${QT_VERSION_MAJOR}::Quick
+#         Qt${QT_VERSION_MAJOR}::Gui
+#         Qt${QT_VERSION_MAJOR}::Svg
+#         Qt${QT_VERSION_MAJOR}::Qml
+#         Qt${QT_VERSION_MAJOR}::QuickControls2
+#         Qt${QT_VERSION_MAJOR}::Network
+#         Qt${QT_VERSION_MAJOR}::Widgets
+#         KF${QT_VERSION_MAJOR}::CoreAddons
+#         KF${QT_VERSION_MAJOR}::Kirigami
+#     )
+# endif()
 
-if(APPLE AND NOT IOS)
-    target_include_directories(mactouchbar PRIVATE ${kdmactouchbar_SOURCE_DIR}/KDMacTouchBar)
-    target_link_directories(mactouchbar PRIVATE ${kdmactouchbar_SOURCE_DIR}/KDMacTouchBar)
-    target_link_libraries(${PROJECT_NAME} PRIVATE KDMacTouchBar)
-endif()
-if (QHotkey_FOUND)
-    add_definitions(-DQHotkey_FOUND)
-    target_link_libraries(${PROJECT_NAME} PRIVATE
-        qhotkey
-    )
-endif()
+# if(APPLE AND NOT IOS)
+#     target_include_directories(mactouchbar PRIVATE ${kdmactouchbar_SOURCE_DIR}/KDMacTouchBar)
+#     target_link_directories(mactouchbar PRIVATE ${kdmactouchbar_SOURCE_DIR}/KDMacTouchBar)
+#     target_link_libraries(${PROJECT_NAME} PRIVATE KDMacTouchBar)
+# endif()
+# if (QHotkey_FOUND)
+#     add_definitions(-DQHotkey_FOUND)
+#     target_link_libraries(${PROJECT_NAME} PRIVATE
+#         qhotkey
+#     )
+# endif()
 
-execute_process(COMMAND ${CMAKE_PREFIX_PATH}/bin/lconvert -pluralonly ${CMAKE_SOURCE_DIR}/po/qprompt_en.ts)
+# execute_process(COMMAND ${CMAKE_PREFIX_PATH}/bin/lconvert -pluralonly ${CMAKE_SOURCE_DIR}/po/qprompt_en.ts)
 
 # Installation and bundling
-if (APPLE)
-    install(TARGETS ${PROJECT_NAME} ${KDE_INSTALL_TARGETS_DEFAULT_ARGS} BUNDLE DESTINATION .)
-    install(TARGETS KF6CoreAddons ${KDE_INSTALL_TARGETS_DEFAULT_ARGS} FRAMEWORK DESTINATION QPrompt.app/Contents/Frameworks)
-    install(TARGETS Kirigami ${KDE_INSTALL_TARGETS_DEFAULT_ARGS} FRAMEWORK DESTINATION QPrompt.app/Contents/Frameworks)
-    install(DIRECTORY ../build/bin/org DESTINATION QPrompt.app/Contents/Resources/qml)
-    install(DIRECTORY ../build/bin/org DESTINATION QPrompt.app/Contents/MacOS/qml)
-elseif (WIN32 OR UNIX)
-    install(FILES com.cuperino.qprompt.appdata.xml DESTINATION ${KDE_INSTALL_METAINFODIR})
-    install(PROGRAMS com.cuperino.qprompt.desktop DESTINATION ${KDE_INSTALL_APPDIR})
-    install(TARGETS ${PROJECT_NAME} ${KDE_INSTALL_TARGETS_DEFAULT_ARGS})
-endif()
+# if (APPLE)
+#     install(TARGETS ${PROJECT_NAME} ${KDE_INSTALL_TARGETS_DEFAULT_ARGS} BUNDLE DESTINATION .)
+#     install(TARGETS KF6CoreAddons ${KDE_INSTALL_TARGETS_DEFAULT_ARGS} FRAMEWORK DESTINATION QPrompt.app/Contents/Frameworks)
+#     install(TARGETS Kirigami ${KDE_INSTALL_TARGETS_DEFAULT_ARGS} FRAMEWORK DESTINATION QPrompt.app/Contents/Frameworks)
+#     install(DIRECTORY ../build/bin/org DESTINATION QPrompt.app/Contents/Resources/qml)
+#     install(DIRECTORY ../build/bin/org DESTINATION QPrompt.app/Contents/MacOS/qml)
+# elseif (ANDROID)
+    install(TARGETS ${PROJECT_NAME}
+        BUNDLE  DESTINATION . # ${KDE_INSTALL_APPDIR}
+        RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
+        LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
+    )
+    # install(TARGETS ${PROJECT_NAME} ${KDE_INSTALL_TARGETS_DEFAULT_ARGS})
+# elseif (WIN32 OR UNIX)
+#     install(FILES com.cuperino.qprompt.appdata.xml DESTINATION ${KDE_INSTALL_METAINFODIR})
+#     install(PROGRAMS com.cuperino.qprompt.desktop DESTINATION ${KDE_INSTALL_APPDIR})
+    # install(TARGETS ${PROJECT_NAME} ${KDE_INSTALL_TARGETS_DEFAULT_ARGS})
+# endif()
 
-if(APPLE)
-    set(MACOS_SIGNING_IDENTITY "")
-    set(EXTRA_DEPLOY_QML_APP_SCRIPT_OPTIONS)
-    set(deploy_tool_options_arg "-always-overwrite -appstore-compliant -sign-for-notarization=${MACOS_SIGNING_IDENTITY}")
-    list(APPEND EXTRA_DEPLOY_QML_APP_SCRIPT_OPTIONS DEPLOY_TOOL_OPTIONS ${deploy_tool_options_arg})
-    qt_generate_deploy_qml_app_script(
-        TARGET ${PROJECT_NAME}
-        OUTPUT_SCRIPT deploy_script
-        ${EXTRA_DEPLOY_QML_APP_SCRIPT_OPTIONS}
-        MACOS_BUNDLE_POST_BUILD
-    )
-elseif(WIN32)
-    qt_generate_deploy_qml_app_script(
-        TARGET ${PROJECT_NAME}
-        OUTPUT_SCRIPT deploy_script
-        # NO_UNSUPPORTED_PLATFORM_ERROR
-        # DEPLOY_USER_QML_MODULES_ON_UNSUPPORTED_PLATFORM
-    )
-else()
+# if(APPLE)
+#     set(MACOS_SIGNING_IDENTITY "")
+#     set(EXTRA_DEPLOY_QML_APP_SCRIPT_OPTIONS)
+#     set(deploy_tool_options_arg "-always-overwrite -appstore-compliant -sign-for-notarization=${MACOS_SIGNING_IDENTITY}")
+#     list(APPEND EXTRA_DEPLOY_QML_APP_SCRIPT_OPTIONS DEPLOY_TOOL_OPTIONS ${deploy_tool_options_arg})
+#     qt_generate_deploy_qml_app_script(
+#         TARGET ${PROJECT_NAME}
+#         OUTPUT_SCRIPT deploy_script
+#         ${EXTRA_DEPLOY_QML_APP_SCRIPT_OPTIONS}
+#         MACOS_BUNDLE_POST_BUILD
+#     )
+# elseif(WIN32)
+#     qt_generate_deploy_qml_app_script(
+#         TARGET ${PROJECT_NAME}
+#         OUTPUT_SCRIPT deploy_script
+#         # NO_UNSUPPORTED_PLATFORM_ERROR
+#         # DEPLOY_USER_QML_MODULES_ON_UNSUPPORTED_PLATFORM
+#     )
+# else()
     qt_generate_deploy_qml_app_script(
         TARGET ${PROJECT_NAME}
         OUTPUT_SCRIPT deploy_script
         NO_UNSUPPORTED_PLATFORM_ERROR
+        DEPLOY_USER_QML_MODULES_ON_UNSUPPORTED_PLATFORM
     )
-endif()
-if (NOT UNIX OR APPLE)
+# endif()
+# if (ANDROID OR APPLE OR NOT UNIX)
     install(SCRIPT ${deploy_script})
-endif()
+# endif()

@@ -41,12 +41,12 @@
 
 #if defined(Q_OS_ANDROID) || defined(Q_OS_IOS) || defined(Q_OS_WASM) || defined(Q_OS_WATCHOS) || defined(Q_OS_QNX)
 #define KIRIGAMI_BUILD_TYPE_STATIC true
-#include <kirigamiplugin.h>
+// #include <kirigamiplugin.h>
 #endif
 // #include <KLocalizedContext>
 // #include <KLocalizedString>
 #ifndef Q_OS_WASM
-#include <kaboutdata.h>
+// #include <kaboutdata.h>
 #endif
 
 #if defined(KF6Crash_FOUND)
@@ -61,8 +61,8 @@
 #include <../3rdparty/KDMacTouchBar/src/kdmactouchbar.h>
 #endif
 
-#include "../qprompt_version.h"
-#include "abstractunits.hpp"
+// #include "../qprompt_version.h"
+// #include "abstractunits.hpp"
 //#include "documenthandler.h"
 //#include "qmlutil.hpp"
 #include <stdlib.h>
@@ -153,40 +153,40 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
     QString copyrightStatement1 = QStringLiteral("© 2020 Javier O. Cordero Pérez");
     QString copyrightStatement2 = QStringLiteral("© 2020-2025 Javier O. Cordero Pérez"); // , copyrightYear);
 #ifndef Q_OS_WASM
-    KAboutData aboutData(
-        QLatin1String("qprompt"),
-        QLatin1String("QPrompt"),
-        QPROMPT_VERSION_STRING " (" + QString::fromUtf8(GIT_BRANCH) + "/" + QString::fromUtf8(GIT_COMMIT_HASH) + ")",
-        QLatin1String("Personal teleprompter software for all video makers."),
-        KAboutLicense::GPL_V3,
-        (currentYear <= 2020) ? copyrightStatement1 : copyrightStatement2);
-    // Overwrite default-generated values of organizationDomain & desktopFileName
-    aboutData.setHomepage(QLatin1String("https://qprompt.app"));
-    aboutData.setProductName("cuperino/qprompt");
-    aboutData.setBugAddress("https://github.com/Cuperino/QPrompt/issues");
-    aboutData.setOrganizationDomain(QByteArray(QPROMPT_URI));
-    aboutData.setDesktopFileName(QLatin1String(QPROMPT_URI));
-    KAboutPerson author(
-        QStringLiteral("Javier O. Cordero Pérez"),
-        QLatin1String("Author"),
-        QLatin1String("javiercorderoperez@gmail.com"),
-        QLatin1String("https://javiercordero.info"),
-        QUrl("https://images.pling.com/cache/100x100-2/img/00/00/62/69/17/photo-2023-05-09-17-58-18-c.jpg"));
-    aboutData.addAuthor(author);
-    aboutData.addCredit(
-        QString::fromUtf8("Mark"),
-        QLatin1String("Wrote keycode to string QML abstraction"),
-        QString::fromUtf8(""),
-        QString::fromUtf8(""));
-    aboutData.addCredit(QString::fromUtf8("videosmith"), QLatin1String("Active software tester", "Active tester"));
-    auto localeLangName = QLocale().name();
-    if (!(language.isEmpty() || language.startsWith(QLatin1String("en"), Qt::CaseInsensitive) || localeLangName.startsWith(QLatin1String("en"), Qt::CaseInsensitive)))
-        aboutData.setTranslator(QCoreApplication::translate("NAMES OF TRANSLATORS", "Names of translators"), QCoreApplication::translate("EMAILS OF TRANSLATORS", "Emails of translators"));
-    // aboutData.addLicense(
-    //     KAboutLicense::LGPL_V3
-    //);
-    //  Set the application metadata
-    KAboutData::setApplicationData(aboutData);
+    // KAboutData aboutData(
+    //     QLatin1String("qprompt"),
+    //     QLatin1String("QPrompt"),
+    //     QPROMPT_VERSION_STRING " (" + QString::fromUtf8(GIT_BRANCH) + "/" + QString::fromUtf8(GIT_COMMIT_HASH) + ")",
+    //     QLatin1String("Personal teleprompter software for all video makers."),
+    //     KAboutLicense::GPL_V3,
+    //     (currentYear <= 2020) ? copyrightStatement1 : copyrightStatement2);
+    // // Overwrite default-generated values of organizationDomain & desktopFileName
+    // aboutData.setHomepage(QLatin1String("https://qprompt.app"));
+    // aboutData.setProductName("cuperino/qprompt");
+    // aboutData.setBugAddress("https://github.com/Cuperino/QPrompt/issues");
+    // aboutData.setOrganizationDomain(QByteArray(QPROMPT_URI));
+    // aboutData.setDesktopFileName(QLatin1String(QPROMPT_URI));
+    // KAboutPerson author(
+    //     QStringLiteral("Javier O. Cordero Pérez"),
+    //     QLatin1String("Author"),
+    //     QLatin1String("javiercorderoperez@gmail.com"),
+    //     QLatin1String("https://javiercordero.info"),
+    //     QUrl("https://images.pling.com/cache/100x100-2/img/00/00/62/69/17/photo-2023-05-09-17-58-18-c.jpg"));
+    // aboutData.addAuthor(author);
+    // aboutData.addCredit(
+    //     QString::fromUtf8("Mark"),
+    //     QLatin1String("Wrote keycode to string QML abstraction"),
+    //     QString::fromUtf8(""),
+    //     QString::fromUtf8(""));
+    // aboutData.addCredit(QString::fromUtf8("videosmith"), QLatin1String("Active software tester", "Active tester"));
+    // auto localeLangName = QLocale().name();
+    // if (!(language.isEmpty() || language.startsWith(QLatin1String("en"), Qt::CaseInsensitive) || localeLangName.startsWith(QLatin1String("en"), Qt::CaseInsensitive)))
+    //     aboutData.setTranslator(QCoreApplication::translate("NAMES OF TRANSLATORS", "Names of translators"), QCoreApplication::translate("EMAILS OF TRANSLATORS", "Emails of translators"));
+    // // aboutData.addLicense(
+    // //     KAboutLicense::LGPL_V3
+    // //);
+    // //  Set the application metadata
+    // KAboutData::setApplicationData(aboutData);
 #endif
     // qmlRegisterType<PrompterTimer>(QPROMPT_URI + ".promptertimer", 1, 0, "PrompterTimer");
     //    qmlRegisterType<DocumentHandler>(QPROMPT_URI ".document", 1, 0, "DocumentHandler");
@@ -199,7 +199,7 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
     //    qRegisterMetaType<Marker>();
 
 #if defined(Q_OS_ANDROID) || defined(Q_OS_IOS) || defined(Q_OS_WASM)
-KirigamiPlugin::getInstance().registerTypes();
+// KirigamiPlugin::getInstance().registerTypes();
 #endif
 
 #if defined(Q_OS_MACOS)
@@ -282,9 +282,9 @@ KirigamiPlugin::getInstance().registerTypes();
     engine.addImportPath(QStringLiteral("../Resources/qml/"));
     // Send context data from C++ to QML
     // engine.rootContext()->setContextObject(new KLocalizedContext(&engine));
-#ifndef Q_OS_WASM
-    engine.rootContext()->setContextProperty(QStringLiteral("aboutData"), QVariant::fromValue(KAboutData::applicationData()));
-#endif
+// #ifndef Q_OS_WASM
+//     engine.rootContext()->setContextProperty(QStringLiteral("aboutData"), QVariant::fromValue(KAboutData::applicationData()));
+// #endif
     if (positionalArguments.length())
         engine.rootContext()->setContextProperty(QStringLiteral("fileToOpen"), fileToOpen);
 #if defined(Q_OS_MACOS)
@@ -292,9 +292,9 @@ KirigamiPlugin::getInstance().registerTypes();
     engine.addImportPath(QStringLiteral("/opt/homebrew/Cellar/kf5-kirigami2/5.95.0/lib/qt6/qml"));
 #endif
 #if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
-    engine.load(QUrl(u"qrc:/qt/qml/com/cuperino/qprompt/kirigami_ui/main.qml"_s));
+    engine.load(QUrl(u"qrc:/qt/qml/com/cuperino/qprompt/src/kirigami_ui/main.qml"_s));
 #else
-    engine.load(QUrl(QStringLiteral("qrc:/qt/qml/com/cuperino/qprompt/kirigami_ui/main.qml")));
+    engine.load(QUrl(QStringLiteral("qrc:/qt/qml/com/cuperino/qprompt/src/kirigami_ui/main.qml")));
 #endif
 
     if (engine.rootObjects().isEmpty()) {
