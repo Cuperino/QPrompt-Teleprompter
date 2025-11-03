@@ -45,7 +45,7 @@
 #endif
 // #include <KLocalizedContext>
 // #include <KLocalizedString>
-#ifndef Q_OS_WASM
+#ifndef EXCLUDE_COREADDONS
 #include <kaboutdata.h>
 #endif
 
@@ -156,7 +156,7 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
     QString copyrightYear = QString::number(currentYear);
     QString copyrightStatement1 = QStringLiteral("© 2020 Javier O. Cordero Pérez");
     QString copyrightStatement2 = QStringLiteral("© 2020-2025 Javier O. Cordero Pérez"); // , copyrightYear);
-#ifndef Q_OS_WASM
+#ifndef EXCLUDE_COREADDONS
     KAboutData aboutData(
         QLatin1String("qprompt"),
         QLatin1String("QPrompt"),
@@ -291,7 +291,7 @@ KirigamiPlugin::getInstance().registerTypes();
 
     //// Send context data from C++ to QML
     // engine.rootContext()->setContextObject(new KLocalizedContext(&engine));
-#ifndef Q_OS_WASM
+#ifndef EXCLUDE_COREADDONS
     engine.rootContext()->setContextProperty(QStringLiteral("aboutData"), QVariant::fromValue(KAboutData::applicationData()));
 #endif
     if (positionalArguments.length())

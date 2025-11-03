@@ -36,8 +36,14 @@ project(qprompt
     LANGUAGES CXX)
 
 option(WASM OFF)
+option(BOOT_TO_QT OFF)
 option(USE_GIT_DEPENDENCIES_ONLY OFF)
 option(SOURCE_DEPENDENCIES_EXCLUSIVELY_FROM_SYSTEM OFF)  # Used only on Linux builds for now
+
+if(WASM OR BOOT_TO_QT)
+    set(EXCLUDE_COREADDONS ON)
+    add_definitions(-DEXCLUDE_COREADDONS)
+endif()
 
 # Find includes in corresponding build directories
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
@@ -162,7 +168,7 @@ endif()
 
 if(WIN32 OR APPLE OR ANDROID OR WASM OR USE_GIT_DEPENDENCIES_ONLY)
     set(BUILD_TESTING OFF)
-    if(NOT WASM)
+    if(NOT EXCLUDE_COREADDONS)
         FetchContent_Declare(
           CoreAddons
           GIT_REPOSITORY "${CMAKE_SOURCE_DIR}/3rdparty/kcoreaddons"
@@ -170,7 +176,8 @@ if(WIN32 OR APPLE OR ANDROID OR WASM OR USE_GIT_DEPENDENCIES_ONLY)
           SOURCE_DIR submodules/kcoreaddons
         )
         FetchContent_MakeAvailable(CoreAddons)
-    else()
+    endif()
+    if(WASM)
         set(KF_IGNORE_PLATFORM_CHECK ON)
     endif()
     FetchContent_Declare(
@@ -181,10 +188,16 @@ if(WIN32 OR APPLE OR ANDROID OR WASM OR USE_GIT_DEPENDENCIES_ONLY)
     )
     FetchContent_MakeAvailable(Kirigami)
 else()
-    find_package(KF${QT_VERSION_MAJOR} ${KF_MIN_VERSION} REQUIRED COMPONENTS
-        Kirigami
-        CoreAddons
-    )
+    if (EXCLUDE_COREADDONS)
+        find_package(KF${QT_VERSION_MAJOR} ${KF_MIN_VERSION} REQUIRED COMPONENTS
+            Kirigami
+        )
+    else()
+        find_package(KF${QT_VERSION_MAJOR} ${KF_MIN_VERSION} REQUIRED COMPONENTS
+            Kirigami
+            CoreAddons
+        )
+    endif()
 endif()
 
 if(NOT ANDROID AND NOT IOS AND NOT WASM AND NOT USE_GIT_DEPENDENCIES_ONLY)
