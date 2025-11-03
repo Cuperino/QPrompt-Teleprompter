@@ -36,6 +36,7 @@ project(qprompt
     LANGUAGES CXX)
 
 option(WASM OFF)
+option(USE_GIT_DEPENDENCIES_ONLY OFF)
 option(SOURCE_DEPENDENCIES_EXCLUSIVELY_FROM_SYSTEM OFF)  # Used only on Linux builds for now
 
 # Find includes in corresponding build directories
@@ -146,7 +147,7 @@ if(ANDROID OR IOS OR WASM)
     set(BUILD_SHARED_LIBS OFF)
 endif()
 
-if(WIN32 OR APPLE OR ANDROID OR WASM)
+if(WIN32 OR APPLE OR ANDROID OR WASM OR USE_GIT_DEPENDENCIES_ONLY)
     set(BUILD_TESTING OFF)
     if(NOT WASM)
         FetchContent_Declare(
@@ -173,7 +174,7 @@ else()
     )
 endif()
 
-if(NOT ANDROID AND NOT IOS AND NOT WASM)
+if(NOT ANDROID AND NOT IOS AND NOT WASM AND NOT USE_GIT_DEPENDENCIES_ONLY)
     if(NOT BSD AND NOT SOURCE_DEPENDENCIES_EXCLUSIVELY_FROM_SYSTEM)
         set(BUILD_SHARED_LIBS ON)
         FetchContent_Declare(
