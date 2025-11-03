@@ -79,7 +79,6 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
 #endif
 
     // Set theme
-    QQuickStyle::setStyle("Material");
     qputenv("QT_QUICK_CONTROLS_MATERIAL_THEME", QByteArray("Dark"));
     qputenv("QT_QUICK_CONTROLS_MATERIAL_ACCENT", QByteArray("#3daee9"));
 
@@ -95,6 +94,7 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
     QSettings settings(QCoreApplication::organizationName(), QCoreApplication::applicationName().toLower());
 #endif
 
+    QQuickStyle::setStyle("Material");
     // Instantiate app
 #if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
     QGuiApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
