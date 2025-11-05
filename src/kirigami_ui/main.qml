@@ -183,6 +183,7 @@ Kirigami.ApplicationWindow {
         // isMenu: true
         title: aboutData.displayName
         titleIcon: ["android"].indexOf(Qt.platform.os)===-1 ? "qrc:/qt/qml/com/cuperino/qprompt/images/qprompt.png" : "qrc:/qt/qml/com/cuperino/qprompt/images/qprompt-logo-wireframe.png"
+        resetMenuOnTriggered: globalMenu.currentSubMenu && globalMenu.currentSubMenu.name ? (["other-tweaks", "performance-tweaks", "control-settings"].indexOf(globalMenu.currentSubMenu.name)===-1) : true
         onOpened: function() {
             cursorAutoHide.reset();
         }
@@ -250,19 +251,26 @@ Kirigami.ApplicationWindow {
                 text: qsTr("&Controls Settings", "Main menu actions. Menu regarding input settings.")
                 //icon.name: "transform-browse" // "hand"
                 icon.source: "qrc:/qt/qml/com/cuperino/qprompt/icons/transform-browse.svg"
+                readonly property string name: "control-settings"
                 Kirigami.Action {
                     visible: ["android", "ios", "tvos", "ipados", "qnx"].indexOf(Qt.platform.os)===-1
                     text: qsTr("Keyboard Inputs", "Main menu and global menu actions. Opens dialog to configure keyboard inputs.")
                     //icon.name: "key-enter" // "keyboard"
                     icon.source: "qrc:/qt/qml/com/cuperino/qprompt/icons/key-enter.svg"
-                    onTriggered: root.pageStack.currentItem.keyConfigurationOverlay.open()
+                    onTriggered: {
+                        globalMenu.close()
+                        root.pageStack.currentItem.keyConfigurationOverlay.open()
+                    }
                 }
                 Kirigami.Action {
                     visible: ["android", "ios", "tvos", "ipados", "qnx"].indexOf(Qt.platform.os)===-1
                     text: qsTr("Scroll throttle settings", "Open 'scroll settings' from main menu and global menu actions")
                     //icon.name: "gnumeric-object-scrollbar" // "keyboard"
                     icon.source: "qrc:/qt/qml/com/cuperino/qprompt/icons/gnumeric-object-scrollbar.svg"
-                    onTriggered: wheelSettings.open()
+                    onTriggered: {
+                        globalMenu.close()
+                        wheelSettings.open()
+                    }
                 }
                 Kirigami.Action {
                     text: qsTr("Invert &arrow keys", "Main menu and global menu actions. Have up arrow behave like down arrow and vice versa while prompting.")
@@ -326,6 +334,7 @@ Kirigami.ApplicationWindow {
                 }
                 Kirigami.Action {
                     text: qsTr("Performance tweaks", "Main menu actions. Enters Performance tweaks submenu.")
+                    readonly property string name: "performance-tweaks"
                     Kirigami.Action {
                         text: qsTr("Disable screen projections", "Main menu actions")
                         enabled: !checked
@@ -400,7 +409,7 @@ Kirigami.ApplicationWindow {
                 }
                 Kirigami.Action {
                     text: qsTr("Other tweaks", "Main menu actions. Enters Other tweaks submenu.")
-                    icon.source: ""
+                    readonly property string name: "other-tweaks"
                     Kirigami.Action {
                         text: qsTr("Local file auto reload", "Main menu actions. Enable local file auto reload")
                         icon.source: "qrc:/qt/qml/com/cuperino/qprompt/icons/document-open.svg"
