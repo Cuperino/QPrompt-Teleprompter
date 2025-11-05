@@ -168,13 +168,6 @@ Kirigami.ApplicationWindow {
         // isMenu: true
         title: aboutData.displayName
         titleIcon: ["android"].indexOf(Qt.platform.os)===-1 ? "qrc:/qt/qml/com/cuperino/qprompt/images/qprompt.png" : "qrc:/qt/qml/com/cuperino/qprompt/images/qprompt-logo-wireframe.png"
-//        bannerVisible: true
-//        onBannerClicked: {
-//            bannerCounter++;
-//            // Enable easter eggs.
-//            if (!(bannerCounter%10))
-//                ee = true
-//        }
         onOpened: function() {
             cursorAutoHide.reset();
         }
@@ -435,11 +428,39 @@ Kirigami.ApplicationWindow {
         footer: OnlineResourceButtons{}
         topContent: RowLayout {
             Button {
+                id: welcomeButton
                 text: qsTr("Load &Welcome", "Main menu and global actions. Load document that welcomes users.")
                 flat: true
                 onClicked: {
                     root.pageStack.currentItem.document.loadGuide()
                     globalMenu.close()
+                }
+            }
+            Item {
+                width: 230
+                height: 50
+                MouseArea {
+                    anchors.fill: parent
+                    acceptedButtons: Qt.LeftButton
+                    cursorShape: undefined
+                    onPressed: {
+                        globalMenu.bannerCounter++;
+                        // Enable easter eggs.
+                        if (!(globalMenu.bannerCounter%10))
+                            root.ee = true
+                    }
+                }
+                Text {
+                    anchors.centerIn: parent
+                    visible: !root.ee && globalMenu.bannerCounter > 4
+                    text: 10 - globalMenu.bannerCounter
+                    color: "white"
+                    font.pixelSize: 24
+                    font.family: numbersFont.name
+                    FontLoader {
+                        id: numbersFont
+                        source: "../fonts/LibertinusSans-Regular.otf"
+                    }
                 }
             }
             // Button {
