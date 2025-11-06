@@ -290,6 +290,9 @@ Flickable {
 
     // Toggle prompter state
     function toggle() {
+        // Fix "free" overlay position upon toggling prompter state
+        if (overlay.positionState===3)
+            overlay.positionState++;
         // Cancel auto loop if running
         if (loop.running)
             loop.stop()
