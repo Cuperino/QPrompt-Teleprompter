@@ -47,7 +47,7 @@ if (NOT ANDROID)
 endif()
 
 if (NOT ANDROID AND NOT WASM)
-    set(ICONS_FOLDER ${CMAKE_CURRENT_SOURCE_DIR}/icons/hicolor)
+    set(ICONS_FOLDER ${CMAKE_CURRENT_SOURCE_DIR}/icons/qprompt)
     set(RASTER_ICONS
         ${ICONS_FOLDER}/16-apps-com.cuperino.qprompt.png
         ${ICONS_FOLDER}/32-apps-com.cuperino.qprompt.png
