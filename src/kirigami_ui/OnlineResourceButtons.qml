@@ -28,7 +28,7 @@ RowLayout {
     spacing: 0
     ToolButton {
         readonly property url uri: "https://qprompt.app"
-        text: "🌐"
+        icon.source: "qrc:/qt/qml/com/cuperino/qprompt/icons/map-globe.svg"
         flat: true
         onClicked: Qt.openUrlExternally(uri)
         ToolTip.text: qsTr("Website")
@@ -36,7 +36,7 @@ RowLayout {
     }
     ToolButton {
         readonly property url uri: "https://docs.qprompt.app"
-        text: "🕮"
+        icon.source: "qrc:/qt/qml/com/cuperino/qprompt/icons/insert-endnote.svg"
         flat: true
         onClicked: Qt.openUrlExternally(uri)
         ToolTip.text: qsTr("Documentation")
@@ -44,7 +44,7 @@ RowLayout {
     }
     ToolButton {
         readonly property url uri: "https://forum.qprompt.app"
-        text: "?"
+        icon.source: "qrc:/qt/qml/com/cuperino/qprompt/icons/question.svg"
         flat: true
         onClicked: Qt.openUrlExternally(uri)
         ToolTip.text: qsTr("Forum")
@@ -52,7 +52,7 @@ RowLayout {
     }
     ToolButton {
         readonly property url uri: "https://feedback.qprompt.app"
-        text: "🐛"
+        icon.source: "qrc:/qt/qml/com/cuperino/qprompt/icons/tools-report-bug.svg"
         flat: true
         onClicked: Qt.openUrlExternally(uri)
         ToolTip.text: qsTr("Feedback")
@@ -60,7 +60,7 @@ RowLayout {
     }
     ToolButton {
         readonly property url uri: "https://l10n.qprompt.app"
-        text: "🗺"
+        icon.source: "qrc:/qt/qml/com/cuperino/qprompt/icons/amarok_change_language.svg"
         flat: true
         onClicked: Qt.openUrlExternally(uri)
         ToolTip.text: qsTr("Translations")
@@ -68,7 +68,7 @@ RowLayout {
     }
     ToolButton {
         readonly property url uri: "https://donate.qprompt.app"
-        text: "$"
+        icon.source: "qrc:/qt/qml/com/cuperino/qprompt/icons/format-currency.svg"
         flat: true
         onClicked: Qt.openUrlExternally(uri)
         ToolTip.text: qsTr("Donate")

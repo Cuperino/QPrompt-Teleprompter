@@ -244,21 +244,26 @@ set(icon_files
     icons/16/format-text-direction-ltr.svg
     icons/16/view-fullscreen.svg
     icons/16/empty.svg
-    icons/16/amarok_change_language.svg
-    icons/22/akonadiconsole.svg
-    icons/22/handle-sort.svg
-    icons/22/gnumeric-object-rectangle.svg
-    icons/22/tool_color_eraser.svg
-    icons/22/newline.svg
+    icons/22/amarok_change_language.svg
     icons/22/auto-transition.svg
+    icons/22/akonadiconsole.svg
+    icons/22/contrast.svg
+    icons/22/gnumeric-object-rectangle.svg
+    icons/22/handle-sort.svg
+    icons/22/insert-endnote.svg
+    icons/22/format-currency.svg
+    icons/22/newline.svg
+    icons/22/map-globe.svg
+    icons/22/question.svg
+    icons/22/tool_color_eraser.svg
+    icons/22/transform-browse.svg
     icons/22/view-left-close.svg
     icons/22/view-right-close.svg
-    icons/22/transform-browse.svg
-    icons/22/contrast.svg
     icons/22/window-pin.svg
     icons/22/window-unpin.svg
     icons/24/go-previous-symbolic.svg
     icons/24/go-next-symbolic.svg
+    icons/24/tools-report-bug.svg
 )
 
 foreach(file IN LISTS icon_files doc)
