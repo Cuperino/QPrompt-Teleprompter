@@ -373,6 +373,19 @@ Kirigami.ApplicationWindow {
                         onTriggered: root.pageStack.currentItem.overlay.disableOverlayContrast = checked
                     }
                     Kirigami.Action {
+                        id: enableBarsSetting
+                        text: qsTr("Disable bars overlay", "Main menu actions. Disables bars surounding reading region.")
+                        icon.source: "qrc:/qt/qml/com/cuperino/qprompt/icons/auto-transition.svg"
+                        checkable: true
+                        checked: !(parseInt(root.pageStack.currentItem.overlay.styleState)>ReadRegionOverlay.PointerStates.Pointers)
+                        onTriggered: {
+                            if (parseInt(root.pageStack.currentItem.overlay.styleState)>ReadRegionOverlay.PointerStates.Pointers)
+                                root.pageStack.currentItem.overlay.styleState = parseInt(root.pageStack.currentItem.overlay.styleState) - 4;
+                            else
+                                root.pageStack.currentItem.overlay.styleState = parseInt(root.pageStack.currentItem.overlay.styleState) + 4;
+                        }
+                    }
+                    Kirigami.Action {
                         id: transparencySetting
                         property bool dirty: false
                         visible: ["android", "ios", "tvos", "ipados", "qnx"].indexOf(Qt.platform.os)===-1
