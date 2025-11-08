@@ -637,7 +637,7 @@ Kirigami.ApplicationWindow {
         }
         window: root
         height: 40
-        width: 120
+        width: 143
         enabled: !Kirigami.Settings.isMobile && pageStack.globalToolBar.actualStyle !== Kirigami.ApplicationHeaderStyle.None
         onClicked: {
             root.pageStack.layers.clear();
