@@ -336,14 +336,12 @@ Kirigami.ApplicationWindow {
                     readonly property string name: "performance-tweaks"
                     Kirigami.Action {
                         text: qsTr("Disable screen projections", "Main menu actions")
-                        enabled: !checked
                         checkable: true
                         checked: !projectionManager.isEnabled
                         onTriggered: projectionManager.toggle()
                     }
                     Kirigami.Action {
                         text: qsTr("Disable timers", "Main menu actions")
-                        enabled: !checked
                         checkable: true
                         checked: !root.pageStack.currentItem.viewport.timer.timersEnabled
                         onTriggered: root.pageStack.currentItem.viewport.timer.enabled = !checked
