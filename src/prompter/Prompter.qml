@@ -584,6 +584,8 @@ Flickable {
         // Disabling on macOS prevents bug where scrolling past prompter edges in edit mode resets prompter to a previous position. Choosing this approach under the presumption most Mac users will use Apple's inputs.
         enabled: Qt.platform.os!=="android" && Qt.platform.os!=="ios" && Qt.platform.os!=="osx"
         anchors.fill: parent
+        anchors.topMargin: -overlay.height
+        anchors.bottomMargin: -overlay.height
         scrollGestureEnabled: true
         onWheel: (wheel) => {
             mouse.scroll(wheel)
