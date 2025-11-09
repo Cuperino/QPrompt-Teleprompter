@@ -644,6 +644,16 @@ Kirigami.ApplicationWindow {
         }
     }
 
+    Image {
+        // Hack to address back icon missing from sub-pages
+        visible: root.pageStack.layers.depth > 1
+        x: 65
+        y: 13
+        width: 22
+        height: 22
+        source: "qrc:/qt/qml/com/cuperino/qprompt/icons/go-previous-symbolic.svg"
+    }
+
     // Kirigami PageStack and PageRow
     pageStack.globalToolBar.toolbarActionAlignment: Qt.AlignHCenter
     pageStack.initialPage: prompterPageComponent
