@@ -219,8 +219,8 @@ Kirigami.ApplicationWindow {
             },
             Kirigami.Action {
                 text: qsTr("&Save", "Main menu and global menu actions")
-                //icon.name: "document-save"
-                icon.source: "qrc:/qt/qml/com/cuperino/qprompt/icons/document-save.svg"
+                icon.name: "document-save"
+                // icon.source: "qrc:/qt/qml/com/cuperino/qprompt/icons/document-save.svg"
                 shortcut: StandardKey.Save
                 onTriggered: {
                     root.onDiscard = Prompter.CloseActions.Ignore
@@ -229,8 +229,8 @@ Kirigami.ApplicationWindow {
             },
             Kirigami.Action {
                 text: qsTr("Save &As", "Main menu and global menu actions")
-                //icon.name: "document-save-as"
-                icon.source: "qrc:/qt/qml/com/cuperino/qprompt/icons/document-save-as.svg"
+                icon.name: "document-save-as"
+                // icon.source: "qrc:/qt/qml/com/cuperino/qprompt/icons/document-save-as.svg"
                 shortcut: StandardKey.SaveAs
                 onTriggered: {
                     root.onDiscard = Prompter.CloseActions.Ignore

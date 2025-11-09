@@ -20,8 +20,6 @@
 #**************************************************************************
 
 include_directories(${CMAKE_SOURCE_DIR}/3rdparty/kirigami/src)
-include(${CMAKE_SOURCE_DIR}/3rdparty/kirigami/KF6KirigamiMacros.cmake)
-
 if(NOT WIN32)
     include(ECMPoQmTools)
     ecm_create_qm_loader(qprompt_QM_LOADER ../po/qprompt.pot)
@@ -436,6 +434,11 @@ endif()
 # Copy icons that are not font based
 if(ANDROID OR APPLE OR WIN32 OR IOS OR WASM)
     # Breeze icons names can be found at https://cdn.kde.org/breeze-icons/icons.html
+    set(IS_ANDROID ${ANDROID})
+    set(ANDROID)
+    set(ANDROID ON FORCE)
+    message(ANDROID ANDROID ${ANDROID} ${ANDROID} ${ANDROID} ${ANDROID})
+    include(${CMAKE_SOURCE_DIR}/3rdparty/kirigami/KF6KirigamiMacros.cmake)
     kirigami_package_breeze_icons(ICONS
         application-exit
         auto-transition
@@ -493,6 +496,10 @@ if(ANDROID OR APPLE OR WIN32 OR IOS OR WASM)
         window
         window-duplicate
     )
+
+    # set(ANDROID FORCE OFF)
+# set(CACHE ANDROID FORCE ${IS_ANDROID})
+
 endif()
 
 execute_process(COMMAND ${CMAKE_PREFIX_PATH}/bin/lconvert -pluralonly ${CMAKE_SOURCE_DIR}/po/qprompt_en.ts)
