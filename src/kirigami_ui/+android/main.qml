@@ -557,6 +557,16 @@ Kirigami.ApplicationWindow {
         anchors.fill: parent
     }
 
+    Image {
+        // Hack to address back icon missing from sub-pages
+        visible: root.pageStack.layers.depth > 1
+        x: 65
+        y: 13
+        width: 22
+        height: 22
+        source: "qrc:/qt/qml/com/cuperino/qprompt/icons/go-previous-symbolic.svg"
+    }
+
     // // This is a placeholder for projectionManager, which will not be implemented on Android
     // Item {
         // id: projectionManager
