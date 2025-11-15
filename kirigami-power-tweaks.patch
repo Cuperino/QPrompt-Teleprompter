@@ -1,0 +1,62 @@
+diff --git a/src/primitives/shaders/sdf.glsl b/src/primitives/shaders/sdf.glsl
+index 69402c5c..2a44a0f0 100644
+--- a/src/primitives/shaders/sdf.glsl
++++ b/src/primitives/shaders/sdf.glsl
+@@ -208,7 +208,8 @@ const lowp float sdf_default_smoothing = 0.625;
+ //
+ lowp vec4 sdf_render(in lowp float sdf, in lowp vec4 sourceColor, in lowp vec4 sdfColor, in lowp float alpha, in lowp float smoothing)
+ {
+-   lowp float g = fwidth(sdf);
++   // lowp float g = fwidth(sdf)
++   lowp float g = 1.0;
+    return mix(sourceColor, sdfColor, alpha * (1.0 - smoothstep(-smoothing * g, smoothing * g, sdf)));
+ }
+
+diff --git a/src/primitives/shaders/sdf_lowpower.glsl b/src/primitives/shaders/sdf_lowpower.glsl
+index 8cdc3648..35bb22f5 100644
+--- a/src/primitives/shaders/sdf_lowpower.glsl
++++ b/src/primitives/shaders/sdf_lowpower.glsl
+@@ -208,7 +208,8 @@ const lowp float sdf_default_smoothing = 0.625;
+ //
+ lowp vec4 sdf_render(in lowp float sdf, in lowp vec4 sourceColor, in lowp vec4 sdfColor, in lowp float alpha, in lowp float smoothing)
+ {
+-    lowp float g = smoothing * fwidth(sdf);
++    // lowp float g = smoothing * fwidth(sdf);
++    lowp float g = 1.0;
+     return mix(sourceColor, sdfColor, alpha * (1.0 - clamp(sdf / g, 0.0, 1.0)));
+ }
+
+diff --git a/src/primitives/shadowedrectangle.cpp b/src/primitives/shadowedrectangle.cpp
+index 9845dab0..83469dc0 100644
+--- a/src/primitives/shadowedrectangle.cpp
++++ b/src/primitives/shadowedrectangle.cpp
+@@ -312,10 +312,10 @@ QSGNode *ShadowedRectangle::updatePaintNode(QSGNode *node, QQuickItem::UpdatePai
+         shadowNode = new ShadowedRectangleNode{};
+
+         // Cache lowPower state so we only execute the full check once.
+-        static bool lowPower = QByteArrayList{"1", "true"}.contains(qgetenv("KIRIGAMI_LOWPOWER_HARDWARE").toLower());
+-        if (m_renderType == RenderType::LowQuality || (m_renderType == RenderType::Auto && lowPower)) {
++        // static bool lowPower = true;//QByteArrayList{"1", "true"}.contains(qgetenv("KIRIGAMI_LOWPOWER_HARDWARE").toLower());
++        // if (m_renderType == RenderType::LowQuality || (m_renderType == RenderType::Auto && lowPower)) {
+             shadowNode->setShaderType(ShadowedRectangleMaterial::ShaderType::LowPower);
+-        }
++        // }
+     }
+
+     shadowNode->setBorderEnabled(m_border->isEnabled());
+diff --git a/src/primitives/shadowedtexture.cpp b/src/primitives/shadowedtexture.cpp
+index b38c4d8d..52c1d636 100644
+--- a/src/primitives/shadowedtexture.cpp
++++ b/src/primitives/shadowedtexture.cpp
+@@ -64,9 +64,9 @@ QSGNode *ShadowedTexture::updatePaintNode(QSGNode *node, QQuickItem::UpdatePaint
+             shadowNode = new ShadowedRectangleNode{};
+         }
+
+-        if (qEnvironmentVariableIsSet("KIRIGAMI_LOWPOWER_HARDWARE")) {
++        // if (qEnvironmentVariableIsSet("KIRIGAMI_LOWPOWER_HARDWARE")) {
+             shadowNode->setShaderType(ShadowedRectangleMaterial::ShaderType::LowPower);
+-        }
++        // }
+     }
+
+     shadowNode->setBorderEnabled(border()->isEnabled());

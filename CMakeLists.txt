@@ -163,7 +163,7 @@ if(WIN32 OR APPLE OR ANDROID OR WASM OR USE_GIT_DEPENDENCIES_ONLY)
     FetchContent_Declare(
       Kirigami
       GIT_REPOSITORY "${CMAKE_SOURCE_DIR}/3rdparty/kirigami"
-      GIT_TAG        "v6.14.1" # "v${KF_PREFFERED_VERSION}"
+      GIT_TAG         "power-tweaks"  # "v6.14.1" # "v${KF_PREFFERED_VERSION}"
       SOURCE_DIR submodules/kirigami
     )
     FetchContent_MakeAvailable(Kirigami)
