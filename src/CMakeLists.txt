@@ -251,7 +251,7 @@ set(icon_files
     icons/22/gnumeric-object-rectangle.svg
     icons/22/handle-sort.svg
     icons/22/insert-endnote.svg
-    icons/22/format-currency.svg
+    icons/22/love-amarok.svg
     icons/22/newline.svg
     icons/22/map-globe.svg
     icons/22/question.svg

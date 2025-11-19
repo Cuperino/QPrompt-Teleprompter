@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   viewBox="0 0 22 22"
+   version="1.1"
+   id="svg1"
+   sodipodi:docname="love-amarok.svg"
+   inkscape:version="1.4.2 (ebf0e940d0, 2025-05-08)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:zoom="53.909091"
+     inkscape:cx="11"
+     inkscape:cy="11"
+     inkscape:window-width="2256"
+     inkscape:window-height="1432"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg1" />
+  <defs
+     id="defs3051">
+    <style
+       type="text/css"
+       id="current-color-scheme">
+      .ColorScheme-Text {
+        color:#232629;
+      }
+      </style>
+  </defs>
+  <path
+     style="fill:#fcfcfc;fill-opacity:1;stroke:none"
+     d="M 7 3 C 4.23858 3 2 5.23858 2 8 C 2 13 9 17 11 19 C 13 17 20 13 20 8 C 20 5.23858 17.76142 3 15 3 C 13.36041 3 11.91181 3.78077 11 5 C 10.08819 3.78077 8.6396 3 7 3 z M 7 4 C 8.3221364 4 9.4690059 4.6232029 10.199219 5.5996094 L 11 6.6699219 L 11.800781 5.5996094 C 12.530992 4.6232057 13.677876 4 15 4 C 17.220978 4 19 5.7790218 19 8 C 19 10.033333 17.487537 12.093471 15.566406 13.894531 C 13.902872 15.454095 12.231348 16.625594 11 17.703125 C 9.7686524 16.625594 8.0971281 15.454095 6.4335938 13.894531 C 4.5124626 12.093471 3 10.033333 3 8 C 3 5.7790218 4.7790218 4 7 4 z "
+     class="ColorScheme-Text"
+     id="path1" />
+</svg>
