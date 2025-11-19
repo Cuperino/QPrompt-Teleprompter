@@ -64,7 +64,7 @@ RowLayout {
     }
     ToolButton {
         readonly property url uri: "https://donate.qprompt.app"
-        icon.source: "qrc:/qt/qml/com/cuperino/qprompt/icons/format-currency.svg"
+        icon.source: "qrc:/qt/qml/com/cuperino/qprompt/icons/love-amarok.svg"
         flat: true
         onClicked: Qt.openUrlExternally(uri)
         Layout.fillWidth: true
