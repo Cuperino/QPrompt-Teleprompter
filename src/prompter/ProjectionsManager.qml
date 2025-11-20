@@ -46,6 +46,8 @@ Item {
         isEnabled = !isEnabled;
         if (!isEnabled)
             closeAll();
+        else
+            setScreensModel();
         projectionSettings.sync();
 
         // // If it was initially off, prompt to restart each time it's turned on.
@@ -81,11 +83,6 @@ Item {
                     displayModel.get(j).flipSetting = flipSetting;
                 return;
             }
-        // If configuration does not exists, add it.
-        displayModel.append({
-            "name": screenName,
-            "flipSetting": flipSetting
-        });
     }
     function addMissingProjections() {
         const totalRegisteredDisplays = displayModel.count,
@@ -131,6 +128,7 @@ Item {
         }
     }
     function closeAll() {
+        displayModel.clear()
         return projectionModel.clear()
     }
     function update() {
@@ -155,6 +153,18 @@ Item {
         }
         if (projectionManager.isEnabled)
             addMissingProjections();
+    }
+    function setScreensModel() {
+        for (var i=0; i<Qt.application.screens.length; i++) {
+            displayModel.append({
+                "name": Qt.application.screens[i].name,
+                "flipSetting": 0
+            });
+        }
+    }
+
+    Component.onCompleted: {
+        setScreensModel();
     }
     Settings {
         id: projectionSettings
