@@ -166,13 +166,13 @@ Item {
         }
         RowLayout {
             spacing: 6
-            Button {
+            ToolButton {
                 text: "\u24CD"
-                flat: true
                 onClicked: close()
                 Layout.fillHeight: true
+                Material.theme: Material.Dark
             }
-            Button {
+            ToolButton {
                 visible: !find.replace
                 icon.source: "../icons/edit-find-replace.svg"
                 onClicked: find.replace = true
@@ -196,19 +196,19 @@ Item {
                 Keys.onEscapePressed: close()
                 Material.theme: Material.Dark
             }
-            Button {
+            ToolButton {
                 text: find.replace ? "\u25B3" : "\u25B2"
                 enabled: resultsFound
                 onClicked: find.previous()
                 Material.theme: Material.Dark
             }
-            Button {
+            ToolButton {
                 text: find.replace ? "\u25BD" : "\u25BC"
                 enabled: resultsFound
                 onClicked: find.next()
                 Material.theme: Material.Dark
             }
-            Button {
+            ToolButton {
                 text: ".*"
                 checkable: true
                 checked: false
@@ -220,7 +220,7 @@ Item {
             spacing: 6
             height: find.replace ? implicitHeight : 0
             visible: height > 0
-            Button {
+            ToolButton {
                 visible: find.replace
                 icon.source: "../icons/edit-find.svg"
                 onClicked: find.replace = false;
@@ -241,19 +241,19 @@ Item {
                 Keys.onEscapePressed: close()
                 Material.theme: Material.Dark
             }
-            Button {
+            ToolButton {
                 text: "\u25B2"
                 enabled: resultsFound
                 onClicked: find.replacePrevious()
                 Material.theme: Material.Dark
             }
-            Button {
+            ToolButton {
                 text: "\u25BC"
                 enabled: resultsFound
                 onClicked: find.replaceNext()
                 Material.theme: Material.Dark
             }
-            Button {
+            ToolButton {
                 icon.source: "../icons/edit-find-replace.svg"
                 enabled: resultsFound
                 onClicked: find.replaceAll()
