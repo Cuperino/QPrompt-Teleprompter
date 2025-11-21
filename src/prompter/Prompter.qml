@@ -434,7 +434,7 @@ Flickable {
         setCursorAtCurrentPosition()
         editor.cursorPosition = document.nextMarker(editor.cursorPosition).position
         prompter.position = editor.cursorRectangle.y - (overlay.__readRegionPlacement*(overlay.height-overlay.readRegionHeight)+overlay.readRegionHeight/2) + 1
-        if (initialPrompterPosition >= prompter.position)
+        if (document.markers().rowCount()===0 || (initialPrompterPosition >= prompter.position))
             prompter.position = editor.height + fontSize - __jitterMargin - topMargin;
         __i = i
         if (prompter.__play && i!==0)
