@@ -31,8 +31,7 @@ MarkersModel::MarkersModel(QObject *parent)
 
 int MarkersModel::rowCount(const QModelIndex &parent) const
 {
-    if (!parent.isValid())
-        return m_data.size();
+    Q_UNUSED(parent)
     return m_data.size();
 }
 
