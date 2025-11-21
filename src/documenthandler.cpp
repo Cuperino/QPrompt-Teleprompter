@@ -126,7 +126,7 @@ DocumentHandler::DocumentHandler(QObject *parent)
 
     _markersModel = new MarkersModel();
     _fileSystemWatcher = new QFileSystemWatcher();
-    pdf_importer = QString::fromUtf8("TextExtraction");
+    pdf_importer = QLatin1String("TextExtraction");
 
     m_network = new QNetworkAccessManager(this);
     m_cache = new QTemporaryFile(this);
@@ -167,7 +167,7 @@ void DocumentHandler::setDocument(QQuickTextDocument *document)
         m_document->textDocument()->disconnect(this);
     m_document = document;
     if (m_document) {
-        m_document->textDocument()->setDefaultStyleSheet(QString::fromUtf8(
+        m_document->textDocument()->setDefaultStyleSheet(QLatin1String(
             "body{margin:0;padding:0;color:\"#FFFFFF\";}a:link,a:visited,a:hover,a:active,a:before,a:after{text-decoration:overline;color:\"#FFFFFF\";"
             "background-color:rgba(0,0,0,0.0);}blockquote,address,cite,code,pre,h1,h2,h3,h4,h5,h6,table,tbody,td,th,thead,tr,dl,dt,tt{white-"
             "space:pre-wrap;line-height:100%;margin:0;padding:0;border-width:2px;border-collapse:collapse;border-style:solid;border-color:\"#"
@@ -411,14 +411,14 @@ bool DocumentHandler::namedMarker() const
     return textCursor().charFormat().isAnchor() && textCursor().charFormat().anchorNames().size() > 0;
 }
 
-void DocumentHandler::setKeyMarker(QString keyCodeString = QString::fromUtf8(""))
+void DocumentHandler::setKeyMarker(QString keyCodeString = QLatin1String(""))
 {
     if (!keyCodeString.length())
         return;
     QTextCharFormat format;
     // qDebug() << keyCodeString;
     //  Dev: in future versions, append, don't replace prior non-key values.
-    format.setAnchorNames({QString::fromUtf8("key_") + keyCodeString});
+    format.setAnchorNames({QLatin1String("key_") + keyCodeString});
     format.setAnchor("#");
     format.setAnchor(true);
     format.setFontUnderline(true);
@@ -452,7 +452,7 @@ bool DocumentHandler::showFontDialog()
 
 QString DocumentHandler::getMarkerKey()
 {
-    QString key = QString::fromUtf8("");
+    QString key = QLatin1String("");
     QTextCursor cursor = textCursor();
     if (cursor.isNull())
         return key;
@@ -477,7 +477,7 @@ void DocumentHandler::setMarker(bool marker)
     format.setFontUnderline(marker);
     format.setFontOverline(marker);
     if (marker)
-        format.setAnchorHref(QString::fromUtf8("#"));
+        format.setAnchorHref(QLatin1String("#"));
     else
         format.clearProperty(QTextFormat::AnchorHref);
     mergeFormatOnWordOrSelection(format);
@@ -537,7 +537,7 @@ QUrl DocumentHandler::fileUrl() const
 void DocumentHandler::reload(const QString &fileUrl)
 {
     m_reloading = true;
-    auto url = QUrl(QString::fromUtf8("file://") + fileUrl);
+    auto url = QUrl(QLatin1String("file://") + fileUrl);
     if (url == m_fileUrl) {
         qWarning() << "reloading";
         load(url);
@@ -571,8 +571,8 @@ void DocumentHandler::loadFromNetworkFinihed()
 
     if (document != "") {
         static QRegularExpression regex_0(
-            QString::fromUtf8("((font-size|letter-spacing|word-spacing|font-weight):\\s*-?[\\d]+(?:.[\\d]+)*(?:(?:px)|(?:pt)|(?:em)|(?:ex));?\\s*)"));
-        QString html = QString::fromUtf8(document).replace(regex_0, QString::fromUtf8(""));
+            QLatin1String("((font-size|letter-spacing|word-spacing|font-weight):\\s*-?[\\d]+(?:.[\\d]+)*(?:(?:px)|(?:pt)|(?:em)|(?:ex));?\\s*)"));
+        QString html = QString::fromUtf8(document).replace(regex_0, QLatin1String(""));
         setDocumentComesFromNetwork(true);
         m_fileUrl = m_cache->fileName();
         Q_EMIT aboutToReload();
@@ -629,47 +629,47 @@ void DocumentHandler::load(const QUrl &fileUrl)
             if (QTextDocument *doc = textDocument()) {
                 doc->setBaseUrl(path.adjusted(QUrl::RemoveFilename));
                 // File formats managed by Qt
-                if (mime.inherits(QString::fromUtf8("text/html"))) {
-                    static QRegularExpression regex_0(QString::fromUtf8(
+                if (mime.inherits(QLatin1String("text/html"))) {
+                    static QRegularExpression regex_0(QLatin1String(
                         "((font-size|letter-spacing|word-spacing|font-weight):\\s*-?[\\d]+(?:.[\\d]+)*(?:(?:px)|(?:pt)|(?:em)|(?:ex));?\\s*)"));
-                    QString html = QString::fromUtf8(data).replace(regex_0, QString::fromUtf8(""));
+                    QString html = QString::fromUtf8(data).replace(regex_0, QLatin1String(""));
                     updateContents(html, Qt::RichText);
                 }
 #if QT_VERSION >= 0x050F00
-                else if (mime.inherits(QString::fromUtf8("text/markdown")))
+                else if (mime.inherits(QLatin1String("text/markdown")))
                     updateContents(QString::fromUtf8(data), Qt::MarkdownText);
 #endif
                 // File formats imported using external software
                 else {
 #if !(defined(Q_OS_ANDROID) || defined(Q_OS_IOS) || defined(Q_OS_WASM) || defined(Q_OS_WATCHOS))
                     ImportFormat type = NONE;
-                    if (mime.inherits(QString::fromUtf8("application/pdf")))
+                    if (mime.inherits(QLatin1String("application/pdf")))
                         type = PDF;
-                    else if (mime.inherits(QString::fromUtf8("application/vnd.oasis.opendocument.text"))) {
+                    else if (mime.inherits(QLatin1String("application/vnd.oasis.opendocument.text"))) {
                         type = ODT;
                         skipAutoReload = true;
-                    } else if (mime.inherits(QString::fromUtf8("application/vnd.openxmlformats-officedocument.wordprocessingml.document"))) {
+                    } else if (mime.inherits(QLatin1String("application/vnd.openxmlformats-officedocument.wordprocessingml.document"))) {
                         type = DOCX;
                         skipAutoReload = true;
-                    } else if (mime.inherits(QString::fromUtf8("application/msword"))) {
+                    } else if (mime.inherits(QLatin1String("application/msword"))) {
                         type = DOC;
                         skipAutoReload = true;
-                    } else if (mime.inherits(QString::fromUtf8("application/rtf"))) {
+                    } else if (mime.inherits(QLatin1String("application/rtf"))) {
                         type = RTF;
                         skipAutoReload = true;
-                    } else if (mime.inherits(QString::fromUtf8("application/x-abiword"))) {
+                    } else if (mime.inherits(QLatin1String("application/x-abiword"))) {
                         type = ABW;
                         skipAutoReload = true;
-                    } else if (mime.inherits(QString::fromUtf8("application/epub+zip")))
+                    } else if (mime.inherits(QLatin1String("application/epub+zip")))
                         type = EPUB;
-                    else if (mime.inherits(QString::fromUtf8("application/x-mobipocket-ebook")))
+                    else if (mime.inherits(QLatin1String("application/x-mobipocket-ebook")))
                         type = MOBI;
-                    else if (mime.inherits(QString::fromUtf8("application/vnd.amazon.ebook")))
+                    else if (mime.inherits(QLatin1String("application/vnd.amazon.ebook")))
                         type = AZW;
-                    else if (mime.inherits(QString::fromUtf8("application/x-iwork-pages-sffpages"))) {
+                    else if (mime.inherits(QLatin1String("application/x-iwork-pages-sffpages"))) {
                         type = PAGESX;
                         skipAutoReload = true;
-                    } else if (mime.inherits(QString::fromUtf8("application/vnd.apple.pages"))) {
+                    } else if (mime.inherits(QLatin1String("application/vnd.apple.pages"))) {
                         type = PAGES;
                         skipAutoReload = true;
                     }
@@ -684,8 +684,7 @@ void DocumentHandler::load(const QUrl &fileUrl)
 #endif
                         // Interpret RAW data using Qt's auto detection
 #if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
-                        // I doubt that this is a proper conversion. Needs proper testing.
-                        updateContents(QString::fromUtf8(data.toStdString()), Qt::AutoText);
+                        updateContents(QString::fromUtf8(data), Qt::AutoText);
 #else
                         QTextCodec *codec = QTextCodec::codecForName("utf-8");
                         updateContents(codec->toUnicode(data));
@@ -724,7 +723,7 @@ void DocumentHandler::load(const QUrl &fileUrl)
 #if !(defined(Q_OS_ANDROID) || defined(Q_OS_IOS) || defined(Q_OS_WASM) || defined(Q_OS_WATCHOS))
 QString DocumentHandler::import(const QString &fileName, ImportFormat type)
 {
-    QString program = QString::fromUtf8("");
+    QString program = QLatin1String("");
     QStringList arguments;
 
     //// Preferring TextExtraction over alternatives for its better support for RTL languages.
@@ -754,7 +753,7 @@ QString DocumentHandler::import(const QString &fileName, ImportFormat type)
         if (program == "")
             program = "soffice";
 #endif
-        arguments << QString::fromUtf8("--headless") << QString::fromUtf8("--cat") << QString::fromUtf8("--convert-to") << QString::fromUtf8("html:HTML")
+        arguments << QLatin1String("--headless") << QLatin1String("--cat") << QLatin1String("--convert-to") << QLatin1String("html:HTML")
                   << fileName;
     } else if (type == EPUB || type == MOBI || type == AZW) {
         // Dev: not implemented
@@ -928,17 +927,17 @@ QString DocumentHandler::filterHtml(QString html, bool ignoreBlackTextColor = tr
     // Check for native sources, such as LibreOffice, MS Office, WPS Office, and AbiWord
     // Clean RegEx:  (<meta\s?\s*name="?[gG]enerator"?\s?\s*content="(?:(?:(?:(?:Libre)|(?:Open))Office)|(?:Microsoft)))
     static QRegularExpression regex_1(
-        QString::fromUtf8("(<meta\\s?\\s*name=\"?[gG]enerator\"?\\s?\\s*content=\"(?:(?:(?:(?:Libre)|(?:Open))Office)|(?:Microsoft)))"),
+        QLatin1String("(<meta\\s?\\s*name=\"?[gG]enerator\"?\\s?\\s*content=\"(?:(?:(?:(?:Libre)|(?:Open))Office)|(?:Microsoft)))"),
         QRegularExpression::CaseInsensitiveOption);
     // Clean RegEx:  <!DOCTYPE html PUBLIC "-//ABISOURCE//DTD XHTML plus AWML
-    static QRegularExpression regex_2(QString::fromUtf8("<!DOCTYPE html PUBLIC \"-//ABISOURCE//DTD XHTML plus AWML"));
+    static QRegularExpression regex_2(QLatin1String("<!DOCTYPE html PUBLIC \"-//ABISOURCE//DTD XHTML plus AWML"));
     if (html.contains(regex_1) || html.contains(regex_2)) {
         comesFromRecognizedNativeSource = true;
         ignoreBlackTextColor = false;
     }
     // Check for Google Docs
     // Clean RegEx:  id="docs-internal-guid-
-    else if (html.contains(QString::fromUtf8("id=\"docs-internal-guid-")))
+    else if (html.contains(QLatin1String("id=\"docs-internal-guid-")))
         ignoreBlackTextColor = true;
     // No detection available for the online version of MS Office, because it contents bring no identifying signature.
     // Calligra isn't here either because it currently copies straight to text, preserving no formatting.
@@ -948,12 +947,12 @@ QString DocumentHandler::filterHtml(QString html, bool ignoreBlackTextColor = tr
     // Filters that run always:
     // 1. Remove HTML's non-scaling font-size attributes
     // Clean RegEx:  (font-size:\s*[\d]+(?:.[\d]+)*(?:(?:px)|(?:pt)|(?:em)|(?:ex));?\s*)
-    static QRegularExpression regex_3(QString::fromUtf8("(font-size:\\s*[\\d]+(?:.[\\d]+)*(?:(?:px)|(?:pt)|(?:em)|(?:ex));?\\s*)"));
-    html = html.replace(regex_3, QString::fromUtf8(""));
+    static QRegularExpression regex_3(QLatin1String("(font-size:\\s*[\\d]+(?:.[\\d]+)*(?:(?:px)|(?:pt)|(?:em)|(?:ex));?\\s*)"));
+    html = html.replace(regex_3, QLatin1String(""));
 
     // Filters that apply only to native sources:
     if (comesFromRecognizedNativeSource) {
-        static QRegularExpression regex_4(QString::fromUtf8(
+        static QRegularExpression regex_4(QLatin1String(
             "(?:(?:p\\s*{.*(\\scolor:\\s*#[0123456789abcdefABCDEF]{3}(?:[0123456789abcdefABCDEF]{3})?;))|(?:(?:<[bB][oO][dD][yY]\\s).*(\\s(?:(?:text)|("
             "?:v?"
             "link))=\"#[0123456789abcdefABCDEF]{3}(?:[0123456789abcdefABCDEF]{3})?\").*(\\s(?:(?:text)|(?:v?link))=\"#[0123456789abcdefABCDEF]{3}(?:["
@@ -961,7 +960,7 @@ QString DocumentHandler::filterHtml(QString html, bool ignoreBlackTextColor = tr
         // 2. Remove text color attributes from body and CSS portion.  Running it 3 times ensures text, link, and vlink attributes are removed, irregardless
         // of their order, while keeping regex maintainable Clean RegEx:
         // (?:(?:p\s*{.*(\scolor:\s*#[0123456789abcdefABCDEF]{3}(?:[0123456789abcdefABCDEF]{3})?;))|(?:(?:<[bB][oO][dD][yY]\s).*(\s(?:(?:text)|(?:v?link))="#[0123456789abcdefABCDEF]{3}(?:[0123456789abcdefABCDEF]{3})?").*(\s(?:(?:text)|(?:v?link))="#[0123456789abcdefABCDEF]{3}(?:[0123456789abcdefABCDEF]{3})?").*(\s(?:(?:text)|(?:v?link))="#[0123456789abcdefABCDEF]{3}(?:[0123456789abcdefABCDEF]{3})?")))
-        html = html.replace(regex_4, QString::fromUtf8(""));
+        html = html.replace(regex_4, QLatin1String(""));
         // for (int i=0; i<3; ++i)
         //     html =
         //     html.replace(QRegularExpression("(?:(?:<[bB][oO][dD][yY]\\s).*(\\s(?:(?:text)|(?:v?link))=\"#[0123456789abcdefABCDEF]{3}(?:[0123456789abcdefABCDEF]{3})?\"))"),
@@ -974,9 +973,9 @@ QString DocumentHandler::filterHtml(QString html, bool ignoreBlackTextColor = tr
         // Clean RegEx:
         // (?:<[^sS][^pP][^aA][^nN](?:\s*[^>]*(\s*background(?:-color)?:\s*(?:(?:rgba?\(\d\d?\d?,\s*\d\d?\d?,\s*\d\d?\d?(?:,\s*[01]?(?:[.]\d\d*)?)?\))|(?:#[0-9a-fA-F]{3}(?:[0-9a-fA-F]{3})?));?)\s*[^>]*)*>)
         static QRegularExpression regex_5(
-            QString::fromUtf8("(?:<[^sS][^pP][^aA][^nN](?:\\s*[^>]*(\\s*background(?:-color)?:\\s*(?:(?:rgba?\\(\\d\\d?\\d?,\\s*\\d\\d?\\d?,\\s*\\d\\d?\\d?(?"
+            QLatin1String("(?:<[^sS][^pP][^aA][^nN](?:\\s*[^>]*(\\s*background(?:-color)?:\\s*(?:(?:rgba?\\(\\d\\d?\\d?,\\s*\\d\\d?\\d?,\\s*\\d\\d?\\d?(?"
                               ":,\\s*[01]?(?:[.]\\d\\d*)?)?\\))|(?:#[0-9a-fA-F]{3}(?:[0-9a-fA-F]{3})?));?)\\s*[^>]*)*>)"));
-        html = html.replace(regex_5, QString::fromUtf8(""));
+        html = html.replace(regex_5, QLatin1String(""));
     }
     // Manual toggle filters
     if (ignoreBlackTextColor || !comesFromRecognizedNativeSource) {
@@ -987,15 +986,15 @@ QString DocumentHandler::filterHtml(QString html, bool ignoreBlackTextColor = tr
         // Clean RegEx:
         // (\s*(?:mso-style-textfill-fill-)?color:\s*(?:(?:rgba?\(\d{1,2},\s*\d{1,2},\s*\d{1,2}(?:,\s*[10]?(?:[.]00*)?)?\))|(?:black)|(?:windowtext)|(?:#0{3}(?:0{3})?));?)
         static QRegularExpression regex_6(
-            QString::fromUtf8("(\\s*(?:mso-style-textfill-fill-)?color:\\s*(?:(?:rgba?\\(\\d{1,2},\\s*\\d{1,2},\\s*\\d{"
+            QLatin1String("(\\s*(?:mso-style-textfill-fill-)?color:\\s*(?:(?:rgba?\\(\\d{1,2},\\s*\\d{1,2},\\s*\\d{"
                               "1,2}(?:,\\s*[10]?(?:[.]00*)?)?\\))|(?:black)|(?:windowtext)|(?:#0{3}(?:0{3})?));?)"));
-        html = html.replace(regex_6, QString::fromUtf8(""));
+        html = html.replace(regex_6, QLatin1String(""));
     }
 
     // Filter CSS instructions that prevent text wrapping
     static QRegularExpression regex_7(
-        QString::fromUtf8("(((white-space:\\s*(pre|nowrap))|(text-wrap-mode:\\s*nowrap))\\s*;\\s*)"));
-    html = html.replace(regex_7, QString::fromUtf8(""));
+        QLatin1String("(((white-space:\\s*(pre|nowrap))|(text-wrap-mode:\\s*nowrap))\\s*;\\s*)"));
+    html = html.replace(regex_7, QLatin1String(""));
 
     // Filtering complete
     // qDebug() << html;
@@ -1221,15 +1220,15 @@ void DocumentHandler::parse()
                     QStringList anchorNames = currentFragment.charFormat().anchorNames();
                     QStringList::const_iterator constIterator;
                     for (constIterator = anchorNames.constBegin(); constIterator != anchorNames.constEnd(); ++constIterator) {
-                        QString anchorName = QString::fromUtf8((*constIterator).toLocal8Bit().constData());
+                        QString anchorName = (*constIterator).toUtf8().constData();
                         // Assign input key
-                        if (anchorName.startsWith(QString::fromUtf8("key_"))) {
+                        if (anchorName.startsWith(QLatin1String("key_"))) {
                             marker.key = QStringView(anchorName).mid(4).toInt();
                             QKeySequence seq = QKeySequence(marker.key);
                             marker.keyLetter = seq.toString();
                         }
                         // Assign request type
-                        else if (anchorName.startsWith(QString::fromUtf8("req_")))
+                        else if (anchorName.startsWith(QLatin1String("req_")))
                             // If invalid, default to 0 (GET)
                             marker.requestType =
                                 QStringView(anchorName).mid(4).toInt(); // GET request by default  // Dev: Cast to enumerator to improve readability
