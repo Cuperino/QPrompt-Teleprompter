@@ -753,7 +753,7 @@ QString DocumentHandler::import(const QString &fileName, ImportFormat type)
         if (program == "")
             program = "soffice";
 #endif
-        arguments << QLatin1String("--headless") << QLatin1String("--cat") << QLatin1String("--convert-to") << QLatin1String("html:HTML")
+        arguments << QLatin1String("--headless") << QLatin1String("--norestore") << QLatin1String("--cat") << QLatin1String("--convert-to") << QLatin1String("html:HTML")
                   << fileName;
     } else if (type == EPUB || type == MOBI || type == AZW) {
         // Dev: not implemented
