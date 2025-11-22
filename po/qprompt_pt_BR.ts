@@ -11,7 +11,7 @@
     <message>
         <location filename="../src/documenthandler.cpp" line="751"/>
         <source>Unsupported file format</source>
-        <translation type="unfinished"></translation>
+        <translation>Formato de arquivo não suportado</translation>
     </message>
     <message>
         <location filename="../src/documenthandler.cpp" line="758"/>
@@ -260,13 +260,13 @@
         <location filename="../src/kirigami_ui/InputsOverlay.qml" line="374"/>
         <source>Set velocity modifier key</source>
         <comment>Hotkey that shifts velocoty to its negative value.</comment>
-        <translation type="unfinished"></translation>
+        <translation>Definir tecla modificadora de velocidade</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/InputsOverlay.qml" line="379"/>
         <source>Ctrl</source>
         <comment>Control key</comment>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Ctrl</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/InputsOverlay.qml" line="380"/>
@@ -278,67 +278,67 @@
         <location filename="../src/kirigami_ui/InputsOverlay.qml" line="413"/>
         <source>Set velocity to 0</source>
         <comment>Hotkey that sets velocity to a fixed value.</comment>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Definir a velocidade para 0</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/InputsOverlay.qml" line="421"/>
         <source>Set velocity to 1</source>
         <comment>Hotkey that sets velocity to a fixed value.</comment>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Definir a velocidade para 1</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/InputsOverlay.qml" line="429"/>
         <source>Set velocity to 2</source>
         <comment>Hotkey that sets velocity to a fixed value.</comment>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Definir a velocidade para 2</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/InputsOverlay.qml" line="437"/>
         <source>Set velocity to 3</source>
         <comment>Hotkey that sets velocity to a fixed value.</comment>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Definir a velocidade para 3</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/InputsOverlay.qml" line="445"/>
         <source>Set velocity to 4</source>
         <comment>Hotkey that sets velocity to a fixed value.</comment>
-        <translation type="unfinished"></translation>
+        <translation>Definir a velocidade para 4</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/InputsOverlay.qml" line="453"/>
         <source>Set velocity to 5</source>
         <comment>Hotkey that sets velocity to a fixed value.</comment>
-        <translation type="unfinished"></translation>
+        <translation>Definir a velocidade para 5</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/InputsOverlay.qml" line="461"/>
         <source>Set velocity to 6</source>
         <comment>Hotkey that sets velocity to a fixed value.</comment>
-        <translation type="unfinished"></translation>
+        <translation>Definir a velocidade para 6</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/InputsOverlay.qml" line="469"/>
         <source>Set velocity to 7</source>
         <comment>Hotkey that sets velocity to a fixed value.</comment>
-        <translation type="unfinished"></translation>
+        <translation>Definir a velocidade para 7</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/InputsOverlay.qml" line="477"/>
         <source>Set velocity to 8</source>
         <comment>Hotkey that sets velocity to a fixed value.</comment>
-        <translation type="unfinished"></translation>
+        <translation>Definir a velocidade para 8</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/InputsOverlay.qml" line="485"/>
         <source>Set velocity to 9</source>
         <comment>Hotkey that sets velocity to a fixed value.</comment>
-        <translation type="unfinished"></translation>
+        <translation>Definir a velocidade para 9</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/InputsOverlay.qml" line="493"/>
         <source>Set velocity to 10</source>
         <comment>Hotkey that sets velocity to a fixed value.</comment>
-        <translation type="unfinished"></translation>
+        <translation>Definir a velocidade para 10</translation>
     </message>
 </context>
 <context>
@@ -361,19 +361,20 @@
         <location filename="../src/kirigami_ui/LanguageSettingsOverlay.qml" line="54"/>
         <source>UI Language</source>
         <comment>Selector to choose user interface language</comment>
-        <translation type="unfinished"></translation>
+        <translation>Idioma da interface</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/LanguageSettingsOverlay.qml" line="78"/>
         <source>Use system language</source>
         <comment>Language</comment>
-        <translation type="unfinished"></translation>
+        <translation>Usar o idioma do sistema</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/LanguageSettingsOverlay.qml" line="186"/>
         <source>Is your language not here or it&apos;s incomplete?
 Help us translate QPrompt, visit:</source>
-        <translation type="unfinished"></translation>
+        <translation>Seu idioma não aparece aqui ou está incompleto?
+Ajude-nos a traduzir o QPrompt, visite:</translation>
     </message>
 </context>
 <context>
@@ -393,7 +394,7 @@ Help us translate QPrompt, visit:</source>
         <location filename="../src/kirigami_ui/LayoutDirectionSettingsOverlay.qml" line="63"/>
         <source>Auto</source>
         <comment>Short for automatic</comment>
-        <translation type="unfinished"></translation>
+        <translation>Auto</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/LayoutDirectionSettingsOverlay.qml" line="64"/>
@@ -435,7 +436,7 @@ Help us translate QPrompt, visit:</source>
     <message>
         <location filename="../src/kirigami_ui/PathsPage.qml" line="63"/>
         <source>QPrompt can make transparent use of LibreOffice to convert Microsoft Word, Open Document Format, and other office documents into a format QPrompt understands. Install LibreOffice and ensure this field points to its location, so QPrompt can open office documents.</source>
-        <translation type="unfinished"></translation>
+        <translation>O QPrompt pode utilizar de forma transparente o LibreOffice para converter documentos do Microsoft Word, Open Document Format e outros documentos para o formato aceito pelo QPrompt. Instale o LibreOffice e se certifique que este campo aponte para o local de instalação, então o QPrompt poderá abrir documentos do office.</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/PathsPage.qml" line="71"/>
