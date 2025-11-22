@@ -996,8 +996,16 @@ QString DocumentHandler::filterHtml(QString html, bool ignoreBlackTextColor = tr
         QLatin1String("(((white-space:\\s*(pre|nowrap))|(text-wrap-mode:\\s*nowrap))\\s*;\\s*)"));
     html = html.replace(regex_7, QLatin1String(""));
 
+    // Filter anchors to prevent incorrect keyboard shortcuts
+    // Remove IDs and names that don't specify a particular key
+    // Clean RegEx:
+    // <a(\s+(id|name)="(?!key_\d+).+?")?(\s+(id|name)="(?!key_\d+).+?")?
+    static QRegularExpression regex_8(
+        QLatin1String("<a(\\s+(id|name)=\"(?!key_\\d+).+?\")?(\\s+(id|name)=\"(?!key_\\d+).+?\")?"));
+    html = html.replace(regex_8, QLatin1String("<a"));
+
     // Filtering complete
-    // qDebug() << html;
+    qDebug() << html;
     return html;
 }
 
