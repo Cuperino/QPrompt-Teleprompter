@@ -759,9 +759,6 @@ QString DocumentHandler::import(const QString &fileName, ImportFormat type)
         // Dev: not implemented
     }
 
-    if (program == QString::fromLatin1(""))
-        return tr("Unsupported file format");
-
     // Begin execution of external filter
     QProcess convert(this);
     convert.start(program, arguments);
