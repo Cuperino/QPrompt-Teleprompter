@@ -15,7 +15,7 @@
 <context>
     <name>PrompterPage</name>
     <message numerus="yes">
-        <location filename="../../../../src/kirigami_ui/PrompterPage.qml" line="904"/>
+        <location filename="../../../../src/kirigami_ui/PrompterPage.qml" line="899"/>
         <source>Disappear within %n second(s) to go</source>
         <translation type="unfinished">
             <numerusform>Disappear within %n second to go</numerusform>
