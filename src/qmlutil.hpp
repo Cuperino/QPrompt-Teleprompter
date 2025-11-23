@@ -77,7 +77,7 @@ public:
     Q_INVOKABLE void restartApplication()
     {
 #if !(defined(Q_OS_ANDROID) || defined(Q_OS_IOS) || defined(Q_OS_WASM) || defined(Q_OS_WATCHOS))
-        QProcess::startDetached(QCoreApplication::applicationFilePath(), {"-q"});
+        QProcess::startDetached(QCoreApplication::applicationFilePath(), {});
 #endif
         QCoreApplication::quit();
     }
