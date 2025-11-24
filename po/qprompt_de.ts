@@ -15,7 +15,7 @@
     <message>
         <location filename="../src/documenthandler.cpp" line="767"/>
         <source>An error occurred while attempting to open file in a third party format. Go to &quot;Main Menu&quot;, &quot;Other Settings&quot;, then &quot;External Tools&quot; to make sure a corresponding import tool is properly configured.</source>
-        <translation type="unfinished"></translation>
+        <translation>Beim Öffnen einer Datei in einem Fremdformat trat ein Fehler auf. Gehen sie ins &quot;Hauptmenü&quot;, &quot;Andere Einstellungen&quot;, dann &quot;Externe Tools&quot; um sicher zu stellen, dass ein passendes Import-Tool konfiguriert ist.</translation>
     </message>
     <message>
         <location filename="../src/documenthandler.cpp" line="834"/>
@@ -450,7 +450,7 @@ Helfen sie uns QPrompt zu übersetzen und besuchen sie:</translation>
         <location filename="../src/kirigami_ui/PathsPage.qml" line="105"/>
         <source>Executable (%1)</source>
         <comment>Format name (FORMAT_EXTENSION)</comment>
-        <translation type="unfinished"></translation>
+        <translation>ausführbare Datei (%1)</translation>
     </message>
     <message>
         <source>Executable &lt;%1&gt;</source>
@@ -461,7 +461,7 @@ Helfen sie uns QPrompt zu übersetzen und besuchen sie:</translation>
         <location filename="../src/kirigami_ui/PathsPage.qml" line="107"/>
         <source>All Formats</source>
         <comment>All file formats</comment>
-        <translation>Alle Formarte</translation>
+        <translation>Alle Formate</translation>
     </message>
 </context>
 <context>
@@ -506,7 +506,7 @@ Helfen sie uns QPrompt zu übersetzen und besuchen sie:</translation>
     <message>
         <location filename="../src/prompter/PointerSettings.qml" line="222"/>
         <source>Tint</source>
-        <translation>Tönung</translation>
+        <translation>Farbton</translation>
     </message>
     <message>
         <location filename="../src/prompter/PointerSettings.qml" line="226"/>
@@ -741,14 +741,14 @@ Helfen sie uns QPrompt zu übersetzen und besuchen sie:</translation>
         <location filename="../src/prompter/Prompter.qml" line="1559"/>
         <source>Hypertext Markup Language (%1)</source>
         <comment>Format name (FORMAT_EXTENSION)</comment>
-        <translation type="unfinished"></translation>
+        <translation>Hypertext Markup Language (%1)</translation>
     </message>
     <message>
         <location filename="../src/prompter/Prompter.qml" line="1517"/>
         <location filename="../src/prompter/Prompter.qml" line="1529"/>
         <source>Markdown (%1)</source>
         <comment>Format name (FORMAT_EXTENSION)</comment>
-        <translation type="unfinished"></translation>
+        <translation>Markdown (%1)</translation>
     </message>
     <message>
         <location filename="../src/prompter/Prompter.qml" line="1518"/>
@@ -756,37 +756,37 @@ Helfen sie uns QPrompt zu übersetzen und besuchen sie:</translation>
         <location filename="../src/prompter/Prompter.qml" line="1560"/>
         <source>Plain Text (%1)</source>
         <comment>Format name (FORMAT_EXTENSION)</comment>
-        <translation type="unfinished"></translation>
+        <translation>reiner Text (%1)</translation>
     </message>
     <message>
         <location filename="../src/prompter/Prompter.qml" line="1519"/>
         <source>OpenDocument Format Text Document (%1)</source>
         <comment>Format name (FORMAT_EXTENSION)</comment>
-        <translation type="unfinished"></translation>
+        <translation>OpenDocument Format Text Dokument (%1)</translation>
     </message>
     <message>
         <location filename="../src/prompter/Prompter.qml" line="1520"/>
         <source>AbiWord Document (%1)</source>
         <comment>Format name (FORMAT_EXTENSION)</comment>
-        <translation type="unfinished"></translation>
+        <translation>AbiWord Dokument (%1)</translation>
     </message>
     <message>
         <location filename="../src/prompter/Prompter.qml" line="1521"/>
         <source>Microsoft Word document (%1)</source>
         <comment>Format name (FORMAT_EXTENSION)</comment>
-        <translation type="unfinished"></translation>
+        <translation>Microsoft Word Dokument (%1)</translation>
     </message>
     <message>
         <location filename="../src/prompter/Prompter.qml" line="1522"/>
         <source>Apple Pages Document (%1)</source>
         <comment>Format name (FORMAT_EXTENSION)</comment>
-        <translation type="unfinished"></translation>
+        <translation>Apple Pages Dokument (%1)</translation>
     </message>
     <message>
         <location filename="../src/prompter/Prompter.qml" line="1523"/>
         <source>Rich Text Format (%1)</source>
         <comment>Format name (FORMAT_EXTENSION)</comment>
-        <translation type="unfinished"></translation>
+        <translation>Rich Text Format (%1)</translation>
     </message>
     <message>
         <location filename="../src/prompter/Prompter.qml" line="1598"/>
@@ -1604,9 +1604,7 @@ Helfen sie uns QPrompt zu übersetzen und besuchen sie:</translation>
     <message>
         <location filename="../src/kirigami_ui/WheelSettingsOverlay.qml" line="104"/>
         <source>Enable throttling for use with touchpads, disable for precise scolling.</source>
-        <translation>
-Drosselung bei Verwendung eines Touchpads nutzen, abschalten für genaues
-Scrollen.</translation>
+        <translation>Drosselung bei Verwendung eines Touchpads nutzen, für genaues Scrollen abschalten.</translation>
     </message>
 </context>
 <context>
@@ -1969,7 +1967,7 @@ Scrollen.</translation>
         <location filename="../src/kirigami_ui/main.qml" line="710"/>
         <source>No pointers</source>
         <comment>Disable all reading region pointers</comment>
-        <translation type="unfinished">Keine Punkte</translation>
+        <translation>Keine Zeiger</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/main.qml" line="720"/>
