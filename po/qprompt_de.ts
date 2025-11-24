@@ -194,7 +194,7 @@
     <message>
         <location filename="../src/kirigami_ui/InputsOverlay.qml" line="278"/>
         <source>Toggle Prompter State</source>
-        <translation>Umschalten des Prompter Status</translation>
+        <translation>Prompter Status umschalten</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/InputsOverlay.qml" line="286"/>
