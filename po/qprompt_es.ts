@@ -454,7 +454,7 @@ Ayúdenos a traducir a QPrompt, visite:</translation>
         <location filename="../src/kirigami_ui/PathsPage.qml" line="105"/>
         <source>Executable (%1)</source>
         <comment>Format name (FORMAT_EXTENSION)</comment>
-        <translation type="unfinished"></translation>
+        <translation>Ejecutable (%1)</translation>
     </message>
     <message>
         <source>Executable &lt;%1&gt;</source>
@@ -745,14 +745,14 @@ Ayúdenos a traducir a QPrompt, visite:</translation>
         <location filename="../src/prompter/Prompter.qml" line="1559"/>
         <source>Hypertext Markup Language (%1)</source>
         <comment>Format name (FORMAT_EXTENSION)</comment>
-        <translation type="unfinished"></translation>
+        <translation>Lenguaje de marcado de hipertexto (%1)</translation>
     </message>
     <message>
         <location filename="../src/prompter/Prompter.qml" line="1517"/>
         <location filename="../src/prompter/Prompter.qml" line="1529"/>
         <source>Markdown (%1)</source>
         <comment>Format name (FORMAT_EXTENSION)</comment>
-        <translation type="unfinished"></translation>
+        <translation>Markdown (%1)</translation>
     </message>
     <message>
         <location filename="../src/prompter/Prompter.qml" line="1518"/>
@@ -760,37 +760,37 @@ Ayúdenos a traducir a QPrompt, visite:</translation>
         <location filename="../src/prompter/Prompter.qml" line="1560"/>
         <source>Plain Text (%1)</source>
         <comment>Format name (FORMAT_EXTENSION)</comment>
-        <translation type="unfinished"></translation>
+        <translation>Texto sin formato (%1)</translation>
     </message>
     <message>
         <location filename="../src/prompter/Prompter.qml" line="1519"/>
         <source>OpenDocument Format Text Document (%1)</source>
         <comment>Format name (FORMAT_EXTENSION)</comment>
-        <translation type="unfinished"></translation>
+        <translation>Documento de formato OpenDocument (%1)</translation>
     </message>
     <message>
         <location filename="../src/prompter/Prompter.qml" line="1520"/>
         <source>AbiWord Document (%1)</source>
         <comment>Format name (FORMAT_EXTENSION)</comment>
-        <translation type="unfinished"></translation>
+        <translation>Documento de AbiWord (%1)</translation>
     </message>
     <message>
         <location filename="../src/prompter/Prompter.qml" line="1521"/>
         <source>Microsoft Word document (%1)</source>
         <comment>Format name (FORMAT_EXTENSION)</comment>
-        <translation type="unfinished"></translation>
+        <translation>Documento de Microsoft Word (%1)</translation>
     </message>
     <message>
         <location filename="../src/prompter/Prompter.qml" line="1522"/>
         <source>Apple Pages Document (%1)</source>
         <comment>Format name (FORMAT_EXTENSION)</comment>
-        <translation type="unfinished"></translation>
+        <translation>Documento de Apple Pages (%1)</translation>
     </message>
     <message>
         <location filename="../src/prompter/Prompter.qml" line="1523"/>
         <source>Rich Text Format (%1)</source>
         <comment>Format name (FORMAT_EXTENSION)</comment>
-        <translation type="unfinished"></translation>
+        <translation>Formato de texto enriquecido (%1)</translation>
     </message>
     <message>
         <location filename="../src/prompter/Prompter.qml" line="1598"/>
