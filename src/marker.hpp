@@ -25,9 +25,13 @@
 
 struct Marker {
     Q_GADGET
+    Q_PROPERTY(QString text MEMBER text)
+    Q_PROPERTY(QString keyLetter MEMBER keyLetter)
+    Q_PROPERTY(QString url MEMBER url)
     Q_PROPERTY(int position MEMBER position)
     Q_PROPERTY(int length MEMBER length)
-    Q_PROPERTY(QString url MEMBER url)
+    Q_PROPERTY(int key MEMBER key)
+    Q_PROPERTY(int requestType MEMBER requestType)
 public:
     Marker() {
         position = 0;
@@ -38,11 +42,11 @@ public:
     };
     // Contents
     QString text;
+    QString keyLetter;
+    QString url;
     int position = 0;
     int length = 1;
     int key = 0;
-    QString keyLetter;
-    QString url;
     int requestType = 0;
 };
 Q_DECLARE_METATYPE(Marker);
