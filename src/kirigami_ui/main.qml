@@ -1004,8 +1004,8 @@ Kirigami.ApplicationWindow {
     }*/
 
     onFrameSwapped: {
-        // Thus runs from here because there's no event that occurs on each bit of scroll, and this takes much less CPU than a timer, is more precise and scales better.
-        root.pageStack.currentItem.prompter.markerCompare();
+        // // Thus runs from here because there's no event that occurs on each bit of scroll, and this takes much less CPU than a timer, is more precise and scales better.
+        // root.pageStack.currentItem.prompter.markerCompare();
         // Update Projections
         if (projectionManager.isEnabled)
             root.pageStack.currentItem.viewport.grabToImage(function(p) {
