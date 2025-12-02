@@ -615,6 +615,16 @@ Kirigami.ApplicationWindow {
         ]
     }
 
+    Rectangle {
+        id: wasmRectangleHack
+        color: "#1c1b1f"
+        visible: Qt.platform.os==="wasm"
+        width: globalDrawer.width
+        height: globalDrawer.height
+        x: globalDrawer.x
+        y: globalDrawer.y
+    }
+
     LayoutDirectionSettingsOverlay {
         id: layoutDirectionSettings
     }
