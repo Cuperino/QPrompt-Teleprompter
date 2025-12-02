@@ -92,43 +92,25 @@ else()
     list(APPEND qprompt_cpp iossavedialog.h iossavedialog.cpp)
 endif()
 
-if (WASM)
-    set(qprompt_frontend_sources
-        # Kirigami UI Frontend
-        kirigami_ui/main.qml
-        kirigami_ui/AboutPage.qml
-        kirigami_ui/PathsPage.qml
-        kirigami_ui/PrompterPage.qml
-        kirigami_ui/EditorToolbar.qml
-        kirigami_ui/MarkersDrawer.qml
-        kirigami_ui/InputsOverlay.qml
-        kirigami_ui/KeyInputButton.qml
-        kirigami_ui/WheelSettingsOverlay.qml
-        kirigami_ui/LayoutDirectionSettingsOverlay.qml
-        kirigami_ui/LanguageSettingsOverlay.qml
-        kirigami_ui/OnlineResourceButtons.qml
-    )
-else()
-    set(qprompt_frontend_sources
-        # Kirigami UI Frontend
-        kirigami_ui/main.qml
-        kirigami_ui/+android/main.qml
-        kirigami_ui/+windows/main.qml
-        kirigami_ui/AboutPage.qml
-        kirigami_ui/PathsPage.qml
-        kirigami_ui/PrompterPage.qml
-        kirigami_ui/TelemetryPage.qml
-        kirigami_ui/RemotePage.qml
-        kirigami_ui/EditorToolbar.qml
-        kirigami_ui/MarkersDrawer.qml
-        kirigami_ui/InputsOverlay.qml
-        kirigami_ui/KeyInputButton.qml
-        kirigami_ui/WheelSettingsOverlay.qml
-        kirigami_ui/LayoutDirectionSettingsOverlay.qml
-        kirigami_ui/LanguageSettingsOverlay.qml
-        kirigami_ui/OnlineResourceButtons.qml
-    )
-endif()
+set(qprompt_frontend_sources
+    # Kirigami UI Frontend
+    kirigami_ui/main.qml
+    kirigami_ui/+android/main.qml
+    kirigami_ui/+windows/main.qml
+    kirigami_ui/AboutPage.qml
+    kirigami_ui/PathsPage.qml
+    kirigami_ui/PrompterPage.qml
+    kirigami_ui/TelemetryPage.qml
+    kirigami_ui/RemotePage.qml
+    kirigami_ui/EditorToolbar.qml
+    kirigami_ui/MarkersDrawer.qml
+    kirigami_ui/InputsOverlay.qml
+    kirigami_ui/KeyInputButton.qml
+    kirigami_ui/WheelSettingsOverlay.qml
+    kirigami_ui/LayoutDirectionSettingsOverlay.qml
+    kirigami_ui/LanguageSettingsOverlay.qml
+    kirigami_ui/OnlineResourceButtons.qml
+)
 
 set(prompter_sources
     # Prompter component
@@ -155,7 +137,6 @@ set(other_sources
     qt/WindowDragger.qml
 )
 
-if (ANDROID OR IOS)
 set(image_files
     # Logos
     images/qprompt.png
@@ -164,47 +145,25 @@ set(image_files
     images/left_hand.png
     images/right_hand.png
 )
-else()
-    set(image_files
-        # Logos
-        images/qprompt.png
-        # Pointers
-        images/left_hand.png
-        images/right_hand.png
-    )
-endif()
+
 # Fonts
-if (WASM)
-    set(font_files
-        fonts/icons/fontello.ttf
-        fonts/editor/dejavu-sans/DejaVuSans.ttf
-        fonts/editor/LibertinusSans-Regular.otf
-    )
-else()
-    set(font_files
-        fonts/icons/fontello.ttf
-        fonts/editor/dejavu-sans/DejaVuSans.ttf
-        fonts/editor/LibertinusSans-Regular.otf
-        fonts/editor/OpenDyslexic-Bold.otf
-        fonts/editor/ScheherazadeNew/ScheherazadeNew-Regular.ttf
-        fonts/editor/Kalpurush/Kalpurush.ttf
-        fonts/editor/Palanquin-Regular.ttf
-        # fonts/editor/Libertinus/static/OTF/LibertinusSerif-Regular.otf
-        fonts/editor/SourceHanSans/SourceHanSans-Regular.ttc
-    )
-endif()
+set(font_files
+    fonts/icons/fontello.ttf
+    fonts/editor/dejavu-sans/DejaVuSans.ttf
+    fonts/editor/LibertinusSans-Regular.otf
+    fonts/editor/OpenDyslexic-Bold.otf
+    fonts/editor/ScheherazadeNew/ScheherazadeNew-Regular.ttf
+    fonts/editor/Kalpurush/Kalpurush.ttf
+    fonts/editor/Palanquin-Regular.ttf
+    # fonts/editor/Libertinus/static/OTF/LibertinusSerif-Regular.otf
+    fonts/editor/SourceHanSans/SourceHanSans-Regular.ttc
+)
 foreach(file IN LISTS font_files)
     get_filename_component(filename ${file} NAME)
     set_source_files_properties(${file} PROPERTIES QT_RESOURCE_ALIAS fonts/${filename})
 endforeach()
 
 # Documents
-if (WASM)
-    set(document_files
-        documents/untitled.html
-        documents/welcome_en.html
-    )
-else()
 set(document_files
     documents/untitled.html
     documents/welcome_ar.html
@@ -228,7 +187,6 @@ set(document_files
     documents/welcome_tr.html
     documents/welcome_zh.html
 )
-endif()
 set_source_files_properties(documents/untitled.html PROPERTIES QT_RESOURCE_ALIAS documents/blank.html)
 
 set(icon_files
