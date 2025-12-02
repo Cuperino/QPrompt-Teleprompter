@@ -140,17 +140,30 @@ set(image_files
 )
 
 # Fonts
-set(font_files
-    fonts/icons/fontello.ttf
-    fonts/editor/dejavu-sans/DejaVuSans.ttf
-    fonts/editor/LibertinusSans-Regular.otf
-    fonts/editor/OpenDyslexic-Bold.otf
-    fonts/editor/ScheherazadeNew/ScheherazadeNew-Regular.ttf
-    fonts/editor/Kalpurush/Kalpurush.ttf
-    fonts/editor/Palanquin-Regular.ttf
-    # fonts/editor/Libertinus/static/OTF/LibertinusSerif-Regular.otf
-    fonts/editor/SourceHanSans/SourceHanSans-Regular.ttc
-)
+if (WASM)
+    set(font_files
+        fonts/icons/fontello.ttf
+        fonts/editor/dejavu-sans/DejaVuSans.ttf
+        fonts/editor/LibertinusSans-Regular.otf
+        # fonts/editor/OpenDyslexic-Bold.otf
+        # fonts/editor/ScheherazadeNew/ScheherazadeNew-Regular.ttf
+        # fonts/editor/Kalpurush/Kalpurush.ttf
+        # fonts/editor/Palanquin-Regular.ttf
+        # fonts/editor/SourceHanSans/SourceHanSans-Regular.ttc
+    )
+else()
+    set(font_files
+        fonts/icons/fontello.ttf
+        fonts/editor/dejavu-sans/DejaVuSans.ttf
+        fonts/editor/LibertinusSans-Regular.otf
+        fonts/editor/OpenDyslexic-Bold.otf
+        fonts/editor/ScheherazadeNew/ScheherazadeNew-Regular.ttf
+        fonts/editor/Kalpurush/Kalpurush.ttf
+        fonts/editor/Palanquin-Regular.ttf
+        # fonts/editor/Libertinus/static/OTF/LibertinusSerif-Regular.otf
+        fonts/editor/SourceHanSans/SourceHanSans-Regular.ttc
+    )
+endif()
 foreach(file IN LISTS font_files)
     get_filename_component(filename ${file} NAME)
     set_source_files_properties(${file} PROPERTIES QT_RESOURCE_ALIAS fonts/${filename})
