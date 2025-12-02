@@ -365,7 +365,7 @@ if (ANDROID OR IOS)
     )
 elseif (WASM)
     target_compile_options(${PROJECT_NAME} PRIVATE -O3 -flto -sDISABLE_EXCEPTION_THROWING=0 -sDISABLE_EXCEPTION_CATCHING=0)
-    target_link_options(${PROJECT_NAME} PRIVATE -flto -fno-except -sASYNCIFY -Os -sDISABLE_EXCEPTION_THROWING=0 -sDISABLE_EXCEPTION_CATCHING=0)
+    target_link_options(${PROJECT_NAME} PRIVATE -flto -fno-except -sASYNCIFY -Oz -sDISABLE_EXCEPTION_THROWING=0 -sDISABLE_EXCEPTION_CATCHING=0)
     target_link_libraries(${PROJECT_NAME} PRIVATE
         Qt${QT_VERSION_MAJOR}::Core
         Qt${QT_VERSION_MAJOR}::Quick
