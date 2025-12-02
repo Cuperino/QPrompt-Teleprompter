@@ -101,7 +101,7 @@ ToolBar {
     readonly property bool showingFormattingTools: parseInt(viewport.prompter.state)!==Prompter.States.Editing && (!toolbar.hideFormattingToolsWhilePrompting || editor.focus)
 
     // Hide toolbar when read region is set to bottom and viewport.prompter is not in editing state.
-    enabled: !(parseInt(viewport.prompter.state)!==Prompter.States.Editing && (overlay.atBottom && !viewport.forcedOrientation || root.fullScreenOrFakeFullScreen && !editor.focus))
+    enabled: !(parseInt(viewport.prompter.state)!==Prompter.States.Editing && (overlay.atBottom && !viewport.forcedOrientation || (root.fullScreenOrFakeFullScreen && Qt.platform.os!=="wasm") && !editor.focus))
     height: enabled ? implicitHeight : 0
     //Behavior on height {
     //    id: height
@@ -759,7 +759,7 @@ ToolBar {
             ToolButton {
                 id: windowStayOnTopButton
                 readonly property bool value: checked && enabled
-                visible: !root.__isMobile && showSliderIcons
+                visible: !root.__isMobile && showSliderIcons && !(Qt.platform.os==="android" || Qt.platform.os==="ios" || Qt.platform.os==="wasm")
                 text: "\uE800"
                 checkable: true
                 checked: false
