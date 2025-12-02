@@ -615,7 +615,7 @@ Kirigami.Page {
         },
         Kirigami.Action {
             id: displaySettings
-            visible: (!Kirigami.Settings.isMobile || Qt.platform.os==='linux') && Qt.platform.os!=='haiku'
+            visible: (!Kirigami.Settings.isMobile || Qt.platform.os==='linux') && Qt.platform.os!=='haiku' &&  Qt.platform.os!=="wasm"
             text: qsTr("Screens", "Screens refers to computer displays")
 
             Kirigami.Action {
