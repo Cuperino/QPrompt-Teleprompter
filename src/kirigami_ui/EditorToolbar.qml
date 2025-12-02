@@ -562,22 +562,27 @@ ToolBar {
                     onTriggered: viewport.prompter.document.fontFamily = westernSeriousSansfFont.name
                 }
                 MenuItem {
+                    enabled: Qt.platform.os!=="wasm"
                     text: qsTr("OpenDyslexic (Roman)", "FontName (Translatable font details)")
                     onTriggered: viewport.prompter.document.fontFamily = westernDyslexicFont.name
                 }
                 MenuItem {
+                    enabled: Qt.platform.os!=="wasm"
                     text: qsTr("Source Han Sans (CH, JP, KO)", "FontName (Translatable font details)")
                     onTriggered: viewport.prompter.document.fontFamily = asianSeriousSansFont.name
                 }
                 MenuItem {
+                    enabled: Qt.platform.os!=="wasm"
                     text: qsTr("Scheherazade New (Arabic)", "FontName (Translatable font details)")
                     onTriggered: viewport.prompter.document.fontFamily = arabicHumaneSansFont.name
                 }
                 MenuItem {
+                    enabled: Qt.platform.os!=="wasm"
                     text: qsTr("Palanquin (Devangari)", "FontName (Translatable font details)")
                     onTriggered: viewport.prompter.document.fontFamily = devanagariSeriousSansFont.name
                 }
                 MenuItem {
+                    enabled: Qt.platform.os!=="wasm"
                     text: qsTr("Kalpurush (Bengali)", "FontName (Translatable font details)")
                     onTriggered: viewport.prompter.document.fontFamily = bengaliHumaneSerifFont.name
                 }

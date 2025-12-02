@@ -140,17 +140,30 @@ set(image_files
 )
 
 # Fonts
-set(font_files
-    fonts/icons/fontello.ttf
-    fonts/editor/dejavu-sans/DejaVuSans.ttf
-    fonts/editor/LibertinusSans-Regular.otf
-    fonts/editor/OpenDyslexic-Bold.otf
-    fonts/editor/ScheherazadeNew/ScheherazadeNew-Regular.ttf
-    fonts/editor/Kalpurush/Kalpurush.ttf
-    fonts/editor/Palanquin-Regular.ttf
-    # fonts/editor/Libertinus/static/OTF/LibertinusSerif-Regular.otf
-    fonts/editor/SourceHanSans/SourceHanSans-Regular.ttc
-)
+if (WASM)
+    set(font_files
+        fonts/icons/fontello.ttf
+        fonts/editor/dejavu-sans/DejaVuSans.ttf
+        fonts/editor/LibertinusSans-Regular.otf
+        # fonts/editor/OpenDyslexic-Bold.otf
+        # fonts/editor/ScheherazadeNew/ScheherazadeNew-Regular.ttf
+        # fonts/editor/Kalpurush/Kalpurush.ttf
+        # fonts/editor/Palanquin-Regular.ttf
+        # fonts/editor/SourceHanSans/SourceHanSans-Regular.ttc
+    )
+else()
+    set(font_files
+        fonts/icons/fontello.ttf
+        fonts/editor/dejavu-sans/DejaVuSans.ttf
+        fonts/editor/LibertinusSans-Regular.otf
+        fonts/editor/OpenDyslexic-Bold.otf
+        fonts/editor/ScheherazadeNew/ScheherazadeNew-Regular.ttf
+        fonts/editor/Kalpurush/Kalpurush.ttf
+        fonts/editor/Palanquin-Regular.ttf
+        # fonts/editor/Libertinus/static/OTF/LibertinusSerif-Regular.otf
+        fonts/editor/SourceHanSans/SourceHanSans-Regular.ttc
+    )
+endif()
 foreach(file IN LISTS font_files)
     get_filename_component(filename ${file} NAME)
     set_source_files_properties(${file} PROPERTIES QT_RESOURCE_ALIAS fonts/${filename})
@@ -301,6 +314,7 @@ set_target_properties(${PROJECT_NAME} PROPERTIES
     MACOSX_BUNDLE TRUE
     WIN32_EXECUTABLE TRUE
     INTERFACE_LINK_LIBRARIES "KF${QT_VERSION_MAJOR}::CoreAddons;KF${QT_VERSION_MAJOR}::Kirigami"
+    QT_QMLCACHEGEN_ARGUMENTS "--only-bytecode"
     # QT_QMLCACHEGEN_ARGUMENTS "--static"  # "--static;--verbose"
     # QT_QMLCACHEGEN_DIRECT_CALLS OFF
     # PLUGIN_TARGET qtlabsplatformplugin inhibits the creation of the backing library, thus headers can't be accessed in direct mode.
