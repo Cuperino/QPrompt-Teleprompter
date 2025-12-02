@@ -33,8 +33,8 @@ import com.cuperino.qprompt 1.0
 
 Kirigami.ApplicationWindow {
     id: root
-    property bool __fullScreen: false
-    property bool __fakeFullscreen: false
+    property bool __fullScreen: Qt.platform.os==="wasm"
+    property bool __fakeFullscreen: Qt.platform.os==="wasm"
     property bool __autoFullScreen: false
     readonly property bool fullScreenOrFakeFullScreen: visibility===Kirigami.ApplicationWindow.FullScreen || __fakeFullscreen && __fullScreen && visibility===Kirigami.ApplicationWindow.Maximized
     // The following line includes macOS among the list of platforms where full screen buttons are hidden. This is done intentionally because macOS provides its own full screen buttons on the window frame and global menu. We shall not mess with what users of each platform expect.
@@ -141,7 +141,7 @@ Kirigami.ApplicationWindow {
     }
 
     // Full screen
-    visibility: __fullScreen ? (__fakeFullscreen ? Kirigami.ApplicationWindow.Maximized : Kirigami.ApplicationWindow.FullScreen) : (!__autoFullScreen ? Kirigami.ApplicationWindow.AutomaticVisibility : (parseInt(root.pageStack.currentItem.prompter.state)===Prompter.States.Editing ? Kirigami.ApplicationWindow.Maximized : (__fakeFullscreen ? Kirigami.ApplicationWindow.Maximized : Kirigami.ApplicationWindow.FullScreen)))
+    visibility: __fullScreen ? (__fakeFullscreen ? Kirigami.ApplicationWindow.Maximized : Kirigami.ApplicationWindow.FullScreen) : (!__autoFullScreen ? Kirigami.ApplicationWindow.Maximized : (parseInt(root.pageStack.currentItem.prompter.state)===Prompter.States.Editing ? Kirigami.ApplicationWindow.Maximized : (__fakeFullscreen ? Kirigami.ApplicationWindow.Maximized : Kirigami.ApplicationWindow.FullScreen)))
 
     onWidthChanged: {
         const modified = root.pageStack.currentItem.document.modified
@@ -209,6 +209,7 @@ Kirigami.ApplicationWindow {
                 }
             },
             Kirigami.Action {
+                enabled: Qt.platform.os!=="wasm"
                 text: qsTr("&Open remote file", "Main menu and global menu actions")
                 //icon.name: "document-open-remote"
                 icon.source: "qrc:/qt/qml/com/cuperino/qprompt/icons/document-open-remote.svg"
@@ -328,6 +329,7 @@ Kirigami.ApplicationWindow {
                     onTriggered: loadPathsPage();
                 }
                 Kirigami.Action {
+                    enabled: Qt.platform.os!=="wasm"
                     text: qsTr("Layout direction", "Main menu actions. Opens dialog for choosing layout direction.")
                     icon.source: Qt.application.layoutDirection===Qt.LeftToRight ? "qrc:/qt/qml/com/cuperino/qprompt/icons/format-text-direction-rtl.svg" : "qrc:/qt/qml/com/cuperino/qprompt/icons/format-text-direction-ltr.svg"
                     onTriggered: layoutDirectionSettings.open()
@@ -422,6 +424,7 @@ Kirigami.ApplicationWindow {
                     text: qsTr("Other tweaks", "Main menu actions. Enters Other tweaks submenu.")
                     readonly property string name: "other-tweaks"
                     Kirigami.Action {
+                        enabled: Qt.platform.os!=="wasm"
                         text: qsTr("Local file auto reload", "Main menu actions. Enable local file auto reload")
                         icon.source: "qrc:/qt/qml/com/cuperino/qprompt/icons/document-open.svg"
                         checkable: true
@@ -439,6 +442,7 @@ Kirigami.ApplicationWindow {
                     }
                 }
                 Kirigami.Action {
+                    enabled: Qt.platform.os!=="wasm"
                     text: qsTr("Restore factory defaults", "Main menu actions")
                     // icon.name: "edit-clear-history"
                     icon.source: "qrc:/qt/qml/com/cuperino/qprompt/icons/edit-clear-history.svg"
@@ -449,6 +453,7 @@ Kirigami.ApplicationWindow {
             },
             Kirigami.Action {
                 id: languageConfig
+                enabled: Qt.platform.os!=="wasm"
                 text: qsTr("Language", "Main menu actions")
                 icon.source: "qrc:/qt/qml/com/cuperino/qprompt/icons/amarok_change_language.svg"
                 onTriggered: {
@@ -456,13 +461,14 @@ Kirigami.ApplicationWindow {
                 }
             },
             Kirigami.Action {
+                visible: Qt.platform.os!=="wasm"
                 text: qsTr("Abou&t %1", "Main menu actions. Load about page.").arg(aboutData.displayName)
                 //icon.name: "help-about"
                 icon.source: "qrc:/qt/qml/com/cuperino/qprompt/icons/help-about.svg"
                 onTriggered: loadAboutPage()
             },
             Kirigami.Action {
-                visible: !Kirigami.Settings.isMobile
+                visible: !Kirigami.Settings.isMobile && Qt.platform.os!=="wasm"
                 text: qsTr("&Quit", "Main menu and global menu actions")
                 //icon.name: "application-exit"
                 icon.source: "qrc:/qt/qml/com/cuperino/qprompt/icons/application-exit.svg"
@@ -517,7 +523,7 @@ Kirigami.ApplicationWindow {
             Kirigami.Action {
                 visible: false
                 onTriggered: root.__fullScreen = !root.__fullScreen
-                shortcut: StandardKey.FullScreen
+                shortcut: Qt.platform.os!=="wasm" ? StandardKey.FullScreen : false
             }
         ]
         footer: OnlineResourceButtons{}
@@ -955,7 +961,7 @@ Kirigami.ApplicationWindow {
         window: root
         height: 40
         width: 143
-        visible: root.visibility!==ApplicationWindow.FullScreen
+        visible: root.visibility!==ApplicationWindow.FullScreen && Qt.platform.os!=="wasm"
         enabled: !Kirigami.Settings.isMobile && pageStack.globalToolBar.actualStyle !== Kirigami.ApplicationHeaderStyle.None
         onClicked: {
             root.pageStack.layers.clear();
@@ -972,6 +978,16 @@ Kirigami.ApplicationWindow {
         source: "qrc:/qt/qml/com/cuperino/qprompt/icons/go-previous-symbolic.svg"
     }
 
+    Image {
+        // Hack to add menu icon to wasm build
+        visible: Qt.platform.os==="wasm"
+        x: 14
+        y: 13
+        width: 22
+        height: 22
+        source: "qrc:/qt/qml/com/cuperino/qprompt/icons/application-menu.svg"
+    }
+
     // Kirigami PageStack and PageRow
     pageStack.globalToolBar.toolbarActionAlignment: Qt.AlignHCenter
     pageStack.initialPage: prompterPageComponent
@@ -985,7 +1001,7 @@ Kirigami.ApplicationWindow {
         }
         else {
             if (parseInt(root.pageStack.currentItem.prompter.state)!==Prompter.States.Editing &&
-                    (fullScreenOrFakeFullScreen || root.pageStack.currentItem.overlay.atTop && !root.pageStack.currentItem.viewport.forcedOrientation))
+                    ((fullScreenOrFakeFullScreen && Qt.platform.os!=="wasm") || root.pageStack.currentItem.overlay.atTop && !root.pageStack.currentItem.viewport.forcedOrientation))
                 return Kirigami.ApplicationHeaderStyle.None;
             else
                 return Kirigami.ApplicationHeaderStyle.ToolBar;
