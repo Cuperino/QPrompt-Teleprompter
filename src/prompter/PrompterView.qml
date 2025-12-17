@@ -54,12 +54,6 @@ Item {
         angle: 77
     }
 
-    Find {
-        id: find
-        document: prompter.document
-        z: 6
-    }
-
     Column {
         id: upperControls
         z: 6
@@ -190,6 +184,12 @@ Item {
                 }
             }
         }
+    }
+
+    Find {
+        id: find
+        document: prompter.document
+        z: 6
     }
 
     Rectangle {
