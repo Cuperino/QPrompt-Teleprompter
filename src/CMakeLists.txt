@@ -144,7 +144,7 @@ set(image_files
 set(font_files
     fonts/icons/fontello.ttf
     fonts/editor/dejavu-sans/DejaVuSans.ttf
-    fonts/editor/Libertinus/static/OTF/LibertinusSans-Regular.otf
+    fonts/editor/LibertinusSans-Regular.otf
     fonts/editor/OpenDyslexic-Bold.otf
     fonts/editor/ScheherazadeNew/ScheherazadeNew-Regular.ttf
     fonts/editor/Kalpurush/Kalpurush.ttf
