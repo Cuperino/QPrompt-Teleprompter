@@ -265,7 +265,7 @@
         <location filename="../src/kirigami_ui/InputsOverlay.qml" line="380"/>
         <source>Ctrl</source>
         <comment>Control key</comment>
-        <translation type="unfinished">Ctrl</translation>
+        <translation>Ctrl</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/InputsOverlay.qml" line="379"/>
@@ -277,25 +277,25 @@
         <location filename="../src/kirigami_ui/InputsOverlay.qml" line="413"/>
         <source>Set velocity to 0</source>
         <comment>Hotkey that sets velocity to a fixed value.</comment>
-        <translation type="unfinished">Definir a velocidade para 0</translation>
+        <translation>Definir a velocidade para 0</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/InputsOverlay.qml" line="421"/>
         <source>Set velocity to 1</source>
         <comment>Hotkey that sets velocity to a fixed value.</comment>
-        <translation type="unfinished">Definir a velocidade para 1</translation>
+        <translation>Definir a velocidade para 1</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/InputsOverlay.qml" line="429"/>
         <source>Set velocity to 2</source>
         <comment>Hotkey that sets velocity to a fixed value.</comment>
-        <translation type="unfinished">Definir a velocidade para 2</translation>
+        <translation>Definir a velocidade para 2</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/InputsOverlay.qml" line="437"/>
         <source>Set velocity to 3</source>
         <comment>Hotkey that sets velocity to a fixed value.</comment>
-        <translation type="unfinished">Definir a velocidade para 3</translation>
+        <translation>Definir a velocidade para 3</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/InputsOverlay.qml" line="445"/>
@@ -474,17 +474,17 @@ Ajude-nos a traduzir o QPrompt, visite:</translation>
     <message>
         <location filename="../src/prompter/PointerSettings.qml" line="127"/>
         <source>Editing: </source>
-        <translation>Editando:</translation>
+        <translation>Editando: </translation>
     </message>
     <message>
         <location filename="../src/prompter/PointerSettings.qml" line="159"/>
         <source>Ready: </source>
-        <translation>Pronto:</translation>
+        <translation>Pronto: </translation>
     </message>
     <message>
         <location filename="../src/prompter/PointerSettings.qml" line="190"/>
         <source>Prompting: </source>
-        <translation>Começar o prompt</translation>
+        <translation>Prompt ativo: </translation>
     </message>
     <message>
         <location filename="../src/prompter/PointerSettings.qml" line="206"/>
@@ -545,7 +545,7 @@ Ajude-nos a traduzir o QPrompt, visite:</translation>
         <location filename="../src/prompter/PointerSettings.qml" line="554"/>
         <location filename="../src/prompter/PointerSettings.qml" line="577"/>
         <source>Left Pointer: </source>
-        <translation>&amp;Ponteiro esquerdo</translation>
+        <translation>&amp;Ponteiro esquerdo </translation>
     </message>
     <message>
         <location filename="../src/prompter/PointerSettings.qml" line="356"/>
@@ -555,7 +555,7 @@ Ajude-nos a traduzir o QPrompt, visite:</translation>
         <location filename="../src/prompter/PointerSettings.qml" line="554"/>
         <location filename="../src/prompter/PointerSettings.qml" line="577"/>
         <source>Right Pointer: </source>
-        <translation>&amp;Ponteiro direito</translation>
+        <translation>&amp;Ponteiro direito </translation>
     </message>
     <message>
         <location filename="../src/prompter/PointerSettings.qml" line="403"/>
@@ -748,7 +748,7 @@ Ajude-nos a traduzir o QPrompt, visite:</translation>
         <location filename="../src/prompter/Prompter.qml" line="1520"/>
         <source>AbiWord Document (%1)</source>
         <comment>Format name (FORMAT_EXTENSION)</comment>
-        <translation>AbiWord Document (%1)</translation>
+        <translation>Documento AbiWord (%1)</translation>
     </message>
     <message>
         <location filename="../src/prompter/Prompter.qml" line="1521"/>
@@ -760,7 +760,7 @@ Ajude-nos a traduzir o QPrompt, visite:</translation>
         <location filename="../src/prompter/Prompter.qml" line="1522"/>
         <source>Apple Pages Document (%1)</source>
         <comment>Format name (FORMAT_EXTENSION)</comment>
-        <translation type="unfinished">Apple Pages Document (%1)</translation>
+        <translation>Documento Apple Pages (%1)</translation>
     </message>
     <message>
         <location filename="../src/prompter/Prompter.qml" line="1523"/>
@@ -899,8 +899,7 @@ Ajude-nos a traduzir o QPrompt, visite:</translation>
     <message>
         <location filename="../src/kirigami_ui/PrompterPage.qml" line="126"/>
         <source>Move reading region to the top, convenient for use with webcams</source>
-        <translation>
-Mover a região de leitura para cima, mais conveniente para uso com webcams</translation>
+        <translation>Move a região de leitura para cima, mais conveniente para uso com webcams</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/PrompterPage.qml" line="137"/>
@@ -944,9 +943,7 @@ Mover a região de leitura para cima, mais conveniente para uso com webcams</tra
     <message>
         <location filename="../src/kirigami_ui/PrompterPage.qml" line="177"/>
         <source>Fix reading region to the position set using free placement mode</source>
-        <translation>
-Fixar a região de leitura pela posição configurada usando o posicionamento
-livre</translation>
+        <translation>Fixa a região de leitura para a posição configurada usando o posicionamento livre</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/PrompterPage.qml" line="202"/>
@@ -1317,19 +1314,14 @@ livre</translation>
     <message>
         <location filename="../src/kirigami_ui/TelemetryPage.qml" line="55"/>
         <source>The following page is a placeholder. Telemetry has not yet been implemented.</source>
-        <translation>
-A página seguinte é um placeholder. Telemetria ainda não foi implementada.</translation>
+        <translation>A página seguinte é um placeholder. A Telemetria ainda não foi implementada.</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/TelemetryPage.qml" line="66"/>
         <source>Please help improve QPrompt by sharing information on how you use it. Contributing this information is optional and entirely anonymous. The project nor I will never collect your personal data, files you use, contents you work with, or information that could help identify you.
 - Cuperino (QPrompt&apos;s Author)</source>
-        <translation>
-Por favor melhore o QPrompt compartilhando informações de como você usa.
-Contribuir com esta informação é opcional e inteiramente anônimo, Nem o
-projeto e nem eu vamos coletar suas informações pessoais, arquivos que você
-usa, conteúdos que você trabalha, ou informações que podem te identificar.\n
-- Cuperino (Autor do QPrompt) (Traduzido por Lia Guedes)</translation>
+        <translation>Por favor ajude a melhorar o QPrompt compartilhando informações de como você usa. Contribuir com esta informação é opcional e inteiramente anônimo, Nem o projeto e nem eu vamos coletar suas informações pessoais, arquivos que você usa, conteúdos que você trabalha, ou informações que podem te identificar.
+- Cuperino (Autor do QPrompt)</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/TelemetryPage.qml" line="69"/>
@@ -1411,9 +1403,7 @@ usa, conteúdos que você trabalha, ou informações que podem te identificar.\n
     <message>
         <location filename="../src/kirigami_ui/TelemetryPage.qml" line="138"/>
         <source>Feature use frequency: Help us know what features are most important</source>
-        <translation>
-Frequência de uso de recursos: Ajude-nos a saber quais recursos são mais
-importantes</translation>
+        <translation>Frequência de uso de recursos: Ajude-nos a saber quais recursos são mais importantes</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/TelemetryPage.qml" line="139"/>
@@ -1553,11 +1543,7 @@ importantes</translation>
     <message>
         <location filename="../src/kirigami_ui/TelemetryPage.qml" line="190"/>
         <source>This information is very important to me, Javier, the project author, and it could help make QPrompt&apos;s development sustainable. I&apos;ve gone the extra mile not to collect any of the actual text and images that you work with, so I ask you: please leave telemetry enabled.</source>
-        <translation>
-Esta informação é muito importante para mim, Javier, o autor do projeto, e
-ela poderia fazer o desenvolvimento do QPrompt sustentável. Fiz além do
-esperado pra não coletar nenhum do texto e das imagens que vocês trabalham,
-então eu vos peço: Por favor, deixem a telemetria ligada.</translation>
+        <translation>Esta informação é muito importante para mim, Javier, o autor do projeto, e ela poderia fazer o desenvolvimento do QPrompt sustentável. Fiz um esforço extra pra não coletar nenhum do texto e das imagens que vocês trabalham, então eu vos peço: Por favor, deixem a telemetria ligada.</translation>
     </message>
 </context>
 <context>
@@ -1598,8 +1584,7 @@ então eu vos peço: Por favor, deixem a telemetria ligada.</translation>
     <message>
         <location filename="../src/kirigami_ui/WheelSettingsOverlay.qml" line="104"/>
         <source>Enable throttling for use with touchpads, disable for precise scolling.</source>
-        <translation>
-Diminua a potência para uso com touchpad, desabilite para ter uma rolagem
+        <translation>Diminua a potência para uso com touchpad, desabilite para ter uma rolagem
 precisa.</translation>
     </message>
 </context>
@@ -1963,7 +1948,7 @@ precisa.</translation>
         <location filename="../src/kirigami_ui/main.qml" line="710"/>
         <source>No pointers</source>
         <comment>Disable all reading region pointers</comment>
-        <translation type="unfinished">Sem ponteiros</translation>
+        <translation>Sem ponteiros</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/main.qml" line="720"/>
