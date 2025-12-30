@@ -178,7 +178,8 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
         QLatin1String("Wrote keycode to string QML abstraction"),
         QString::fromUtf8(""),
         QString::fromUtf8(""));
-    aboutData.addCredit(QString::fromUtf8("videosmith"), QLatin1String("Active software tester", "Active tester"));
+    aboutData.addCredit(QString::fromUtf8("Stuart Scoon <videosmith>"), QLatin1String("Software Tester"));
+    aboutData.addCredit(QString::fromUtf8("Elimar Beck"), QLatin1String("Software Tester"));
     auto localeLangName = QLocale().name();
     if (!(language.isEmpty() || language.startsWith(QLatin1String("en"), Qt::CaseInsensitive) || localeLangName.startsWith(QLatin1String("en"), Qt::CaseInsensitive)))
         aboutData.setTranslator(QCoreApplication::translate("NAMES OF TRANSLATORS", "Names of translators"), QCoreApplication::translate("EMAILS OF TRANSLATORS", "Emails of translators"));
