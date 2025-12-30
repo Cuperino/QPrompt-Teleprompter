@@ -28,7 +28,7 @@
     <message>
         <location filename="../src/main.cpp" line="184"/>
         <source>Emails of translators</source>
-        <translation>, cschaer131@bluewin.ch, k.schuh@schuh-tv.at</translation>
+        <translation>mail@liebeg.eu, k.schuh@schuh-tv.at, jonasmapache@gmail.com, maximilian.efinger@gmx.de, fabianbott@gmail.com, cschaer131@bluewin.ch</translation>
     </message>
 </context>
 <context>
@@ -422,7 +422,7 @@ Helfen sie uns QPrompt zu übersetzen und besuchen sie:</translation>
     <message>
         <location filename="../src/main.cpp" line="184"/>
         <source>Names of translators</source>
-        <translation>Jonas Mapache, Maximilian Efinger, Fabian Bott, Liebeg, Christian Schaer, Karl SCHUH</translation>
+        <translation>Liebeg, Karl SCHUH, Jonas Mapache, Maximilian Efinger, Fabian Bott, Christian Schaer</translation>
     </message>
 </context>
 <context>
