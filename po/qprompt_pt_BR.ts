@@ -28,7 +28,7 @@
     <message>
         <location filename="../src/main.cpp" line="184"/>
         <source>Emails of translators</source>
-        <translation>contatoliaguedes@gmail.com, marttinhoblue@gmail.com, furtadu@hotmail.com</translation>
+        <translation>contatoliaguedes@gmail.com, marttinhoblue@gmail.com, maxwell.muzy@yahoo.com.br, furtadu@hotmail.com</translation>
     </message>
 </context>
 <context>
@@ -422,7 +422,7 @@ Ajude-nos a traduzir o QPrompt, visite:</translation>
     <message>
         <location filename="../src/main.cpp" line="184"/>
         <source>Names of translators</source>
-        <translation>Lia Guedes, Marttin Carvalho</translation>
+        <translation>Lia Guedes, Marttin Carvalho, Maxwell Muzy, Bruno Furtado</translation>
     </message>
 </context>
 <context>
