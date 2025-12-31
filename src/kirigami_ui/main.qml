@@ -932,22 +932,6 @@ Kirigami.ApplicationWindow {
         anchors.fill: parent
     }
 
-    // Top bar foreground hack for window dragging
-    WindowDragger {
-        anchors {
-            top: parent.top;
-            left: parent.left;
-        }
-        window: root
-        height: 40
-        width: 143
-        visible: root.visibility!==ApplicationWindow.FullScreen
-        enabled: !Kirigami.Settings.isMobile && pageStack.globalToolBar.actualStyle !== Kirigami.ApplicationHeaderStyle.None
-        onClicked: {
-            root.pageStack.layers.clear();
-        }
-    }
-
     Image {
         // Hack to address back icon missing from sub-pages
         visible: !(Qt.platform.os==="linux" || Qt.platform.os==="unix") && root.pageStack.layers.depth > 1
