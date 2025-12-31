@@ -633,6 +633,7 @@ Kirigami.Page {
                         enabled: Qt.platform.os!=='windows' || display.name!==screen.name// && (parseInt(prompter.state)===Prompter.States.Editing || parseInt(prompter.state)===Prompter.States.Standby)
                         activeTextColor: "#FFFFFF"
                         activeBackgroundColor: "#797979"
+                        width: parent.width
                         actions: [
                             Kirigami.Action {
                                 icon.name: switch (flipSetting) {
@@ -961,6 +962,7 @@ Kirigami.Page {
                 id: setMarkerKeyButton
                 asynchronous: true
                 Layout.fillWidth: true
+                source: "KeyInputButton.qml"
             }
             Component.onCompleted: {
                 setMarkerKeyButton.setSource("KeyInputButton.qml", { "text": "" });
