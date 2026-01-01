@@ -9,9 +9,12 @@
   <url type="bugtracker">https://feedback.qprompt.app</url>
   <url type="help">https://forum.cuperino.com/</url>
   <url type="donation">https://www.patreon.com/qpromptapp</url>
+  <url type="vcs-browser">https://github.com/Cuperino/QPrompt-Teleprompter</url>
   <metadata_license>CC-BY-4.0</metadata_license>
   <project_license>GPL-3.0</project_license>
-  <developer_name>Javier O. Cordero Pérez</developer_name>
+  <developer id="com.cuperino">
+    <name>Javier O. Cordero Pérez</name>
+  </developer>
   <update_contact>javiercorderoperez@gmail.com</update_contact>
   <description>
     <p>Open source personal teleprompter software for all video creators. Built with ease of use, control accuracy, fast performance, and cross-platform support in mind. QPrompt's convergent user interface can run on Linux, Windows, macOS, and Android.</p>
