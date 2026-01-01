@@ -195,9 +195,6 @@ set(icon_files
     icons/16/draw-rectangle.svg
     icons/16/transform-move-horizontal.svg
     icons/16/transform-move-vertical.svg
-    icons/16/sidebar-collapse-right.svg
-    icons/16/sidebar-collapse-left.svg
-    icons/16/format-justify-center.svg
     icons/16/view-list-text.svg
     icons/16/view-list-text-rtl.svg
     icons/16/keyframe.svg
@@ -233,11 +230,8 @@ set(icon_files
     icons/16/edit-opacity.svg
     icons/16/edit-undo.svg
     icons/16/edit-redo.svg
-    icons/16/mail-mark-unread.svg
     icons/16/media-playback-pause.svg
     icons/16/media-playback-start.svg
-    icons/16/media-playback-stop.svg
-    icons/16/draw-star.svg
     icons/16/edit-find.svg
     icons/16/edit-find-replace.svg
     icons/16/format-text-direction-rtl.svg
@@ -248,8 +242,6 @@ set(icon_files
     icons/22/auto-transition.svg
     icons/22/akonadiconsole.svg
     icons/22/contrast.svg
-    icons/22/gnumeric-object-rectangle.svg
-    icons/22/handle-sort.svg
     icons/22/insert-endnote.svg
     icons/22/love-amarok.svg
     icons/22/newline.svg
