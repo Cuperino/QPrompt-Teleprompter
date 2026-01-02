@@ -11,7 +11,7 @@
     <message>
         <location filename="../src/documenthandler.cpp" line="767"/>
         <source>An error occurred while attempting to open file in a third party format. Go to &quot;Main Menu&quot;, &quot;Other Settings&quot;, then &quot;External Tools&quot; to make sure a corresponding import tool is properly configured.</source>
-        <translation type="unfinished"></translation>
+        <translation>在尝试打开第三方格式文件时发生错误。请前往&quot;主菜单&quot;、&quot;其他设置&quot;，然后进入&quot;外部工具&quot;，确保相应的导入工具已正确配置。</translation>
     </message>
     <message>
         <location filename="../src/documenthandler.cpp" line="834"/>
@@ -113,7 +113,7 @@
         <location filename="../src/kirigami_ui/EditorToolbar.qml" line="1098"/>
         <source>Font size &lt;pre&gt;%1 (%2)&lt;/pre&gt;</source>
         <comment>Font size 100% (083)</comment>
-        <translation type="unfinished"></translation>
+        <translation>字体大小 &lt;pre&gt;%1 (%2)&lt;/pre&gt;</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/EditorToolbar.qml" line="1232"/>
@@ -367,7 +367,8 @@
         <location filename="../src/kirigami_ui/LanguageSettingsOverlay.qml" line="186"/>
         <source>Is your language not here or it&apos;s incomplete?
 Help us translate QPrompt, visit:</source>
-        <translation type="unfinished"></translation>
+        <translation>没有您需要的语言，或者现有翻译不完整？
+帮助我们翻译QPrompt，请访问：</translation>
     </message>
 </context>
 <context>
@@ -752,7 +753,7 @@ Help us translate QPrompt, visit:</source>
         <location filename="../src/prompter/Prompter.qml" line="1529"/>
         <source>Markdown (%1)</source>
         <comment>Format name (FORMAT_EXTENSION)</comment>
-        <translation type="unfinished"></translation>
+        <translation>Markdown文件 (%1)</translation>
     </message>
     <message>
         <location filename="../src/prompter/Prompter.qml" line="1518"/>
@@ -760,13 +761,13 @@ Help us translate QPrompt, visit:</source>
         <location filename="../src/prompter/Prompter.qml" line="1560"/>
         <source>Plain Text (%1)</source>
         <comment>Format name (FORMAT_EXTENSION)</comment>
-        <translation type="unfinished"></translation>
+        <translation>纯文本 (%1)</translation>
     </message>
     <message>
         <location filename="../src/prompter/Prompter.qml" line="1519"/>
         <source>OpenDocument Format Text Document (%1)</source>
         <comment>Format name (FORMAT_EXTENSION)</comment>
-        <translation type="unfinished"></translation>
+        <translation>ODF文档(%1)</translation>
     </message>
     <message>
         <location filename="../src/prompter/Prompter.qml" line="1520"/>
@@ -1976,7 +1977,7 @@ Help us translate QPrompt, visit:</source>
         <location filename="../src/kirigami_ui/main.qml" line="710"/>
         <source>No pointers</source>
         <comment>Disable all reading region pointers</comment>
-        <translation type="unfinished">没有指针</translation>
+        <translation>没有指针</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/main.qml" line="720"/>
@@ -2146,7 +2147,9 @@ Would you like to restart %1 now? All changes to document will be lost.</source>
         <comment>application needs to restart for this change to fully take effect.
 
 Would you like to restart application now? All changes to document will be lost.</comment>
-        <translation type="unfinished"></translation>
+        <translation>%1 需要重新启动才能使此更改完全生效。
+
+您想现在重新启动 %1 吗？所有文档的修改都将丢失。</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/main.qml" line="1070"/>
