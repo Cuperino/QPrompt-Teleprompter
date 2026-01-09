@@ -350,6 +350,7 @@ if (ANDROID OR IOS)
         Qt${QT_VERSION_MAJOR}::Qml
         Qt${QT_VERSION_MAJOR}::QuickControls2
         Qt${QT_VERSION_MAJOR}::Network
+        Qt${QT_VERSION_MAJOR}::WebSockets
         KF${QT_VERSION_MAJOR}::CoreAddons
         KF${QT_VERSION_MAJOR}::Kirigami
         Kirigamiplugin
@@ -365,6 +366,7 @@ elseif (WASM)
         Qt${QT_VERSION_MAJOR}::Qml
         Qt${QT_VERSION_MAJOR}::QuickControls2
         Qt${QT_VERSION_MAJOR}::Network
+        Qt${QT_VERSION_MAJOR}::WebSockets
         KF${QT_VERSION_MAJOR}::Kirigami
         Kirigamiplugin
     )
@@ -378,6 +380,7 @@ elseif(HAIKU)
         Qt${QT_VERSION_MAJOR}::QuickControls2
         Qt${QT_VERSION_MAJOR}::Network
         Qt${QT_VERSION_MAJOR}::Widgets
+        Qt${QT_VERSION_MAJOR}::WebSockets
         KF${QT_VERSION_MAJOR}::CoreAddons
         KF${QT_VERSION_MAJOR}::Kirigami
         KF${QT_VERSION_MAJOR}::IconThemes
@@ -392,8 +395,9 @@ elseif(WIN32 OR APPLE)
         Qt${QT_VERSION_MAJOR}::QuickControls2
         Qt${QT_VERSION_MAJOR}::Network
         Qt${QT_VERSION_MAJOR}::Widgets
-        KF${QT_VERSION_MAJOR}::Kirigami
+        Qt${QT_VERSION_MAJOR}::WebSockets
         KF${QT_VERSION_MAJOR}::CoreAddons
+        KF${QT_VERSION_MAJOR}::Kirigami
     )
 else()
     target_link_libraries(${PROJECT_NAME} PRIVATE
@@ -405,6 +409,7 @@ else()
         Qt${QT_VERSION_MAJOR}::QuickControls2
         Qt${QT_VERSION_MAJOR}::Network
         Qt${QT_VERSION_MAJOR}::Widgets
+        Qt${QT_VERSION_MAJOR}::WebSockets
         KF${QT_VERSION_MAJOR}::CoreAddons
         KF${QT_VERSION_MAJOR}::Kirigami
     )
