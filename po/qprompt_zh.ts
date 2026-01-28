@@ -16,7 +16,7 @@
     <message>
         <location filename="../src/documenthandler.cpp" line="834"/>
         <source>Cannot save: </source>
-        <translation type="unfinished"></translation>
+        <translation>无法保存 : </translation>
     </message>
 </context>
 <context>
@@ -173,8 +173,8 @@
     <message numerus="yes">
         <location filename="../src/prompter/Find.qml" line="160"/>
         <source>Replaced %n instance(s)</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>替换了 %n 个字符</numerusform>
         </translation>
     </message>
 </context>
@@ -430,14 +430,14 @@ Help us translate QPrompt, visit:</source>
     <message>
         <location filename="../src/kirigami_ui/PathsPage.qml" line="63"/>
         <source>QPrompt can make transparent use of LibreOffice to convert Microsoft Word, Open Document Format, and other office documents into a format QPrompt understands. Install LibreOffice and ensure this field points to its location, so QPrompt can open office documents.</source>
-        <translation>QPrompt可以将LibreOffice文件转换成Microsoft Word</translation>
+        <translation>QPrompt可以利用LibreOffice的开放性将Microsoft Word和其他办公文档软件及开放文档格式转化至QPrompt可识别的格式。请安装LibreOffice并确保在此处选择其所在的文件安装位置，这样才能确保QPrompt能够正确打开相关文档。</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/PathsPage.qml" line="71"/>
         <location filename="../src/kirigami_ui/PathsPage.qml" line="99"/>
         <source>Browse for %1</source>
         <comment>Browse for PROGRAM</comment>
-        <translation>浏览</translation>
+        <translation>浏览并选择 %1</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/PathsPage.qml" line="102"/>
@@ -445,7 +445,7 @@ Help us translate QPrompt, visit:</source>
         <location filename="../src/kirigami_ui/PathsPage.qml" line="105"/>
         <source>Executable (%1)</source>
         <comment>Format name (FORMAT_EXTENSION)</comment>
-        <translation type="unfinished"></translation>
+        <translation>可运行文件 (%1)</translation>
     </message>
     <message>
         <source>Executable &lt;%1&gt;</source>
@@ -474,17 +474,17 @@ Help us translate QPrompt, visit:</source>
     <message>
         <location filename="../src/prompter/PointerSettings.qml" line="127"/>
         <source>Editing: </source>
-        <translation>编辑：</translation>
+        <translation>编辑: </translation>
     </message>
     <message>
         <location filename="../src/prompter/PointerSettings.qml" line="159"/>
         <source>Ready: </source>
-        <translation>就绪：</translation>
+        <translation>准备: </translation>
     </message>
     <message>
         <location filename="../src/prompter/PointerSettings.qml" line="190"/>
         <source>Prompting: </source>
-        <translation>提词中：</translation>
+        <translation>提词: </translation>
     </message>
     <message>
         <location filename="../src/prompter/PointerSettings.qml" line="206"/>
@@ -545,7 +545,7 @@ Help us translate QPrompt, visit:</source>
         <location filename="../src/prompter/PointerSettings.qml" line="554"/>
         <location filename="../src/prompter/PointerSettings.qml" line="577"/>
         <source>Left Pointer: </source>
-        <translation>左侧箭头</translation>
+        <translation>左侧箭头: </translation>
     </message>
     <message>
         <location filename="../src/prompter/PointerSettings.qml" line="356"/>
@@ -555,12 +555,12 @@ Help us translate QPrompt, visit:</source>
         <location filename="../src/prompter/PointerSettings.qml" line="554"/>
         <location filename="../src/prompter/PointerSettings.qml" line="577"/>
         <source>Right Pointer: </source>
-        <translation>右侧箭头</translation>
+        <translation>右侧箭头: </translation>
     </message>
     <message>
         <location filename="../src/prompter/PointerSettings.qml" line="403"/>
         <source>Font: </source>
-        <translation>字体</translation>
+        <translation>字体: </translation>
     </message>
     <message>
         <location filename="../src/prompter/PointerSettings.qml" line="436"/>
@@ -605,7 +605,7 @@ Help us translate QPrompt, visit:</source>
     <message>
         <location filename="../src/prompter/PointerSettings.qml" line="634"/>
         <source>QML script</source>
-        <translation>QML script</translation>
+        <translation>QML脚本</translation>
     </message>
 </context>
 <context>
@@ -673,7 +673,7 @@ Help us translate QPrompt, visit:</source>
     <message>
         <location filename="../src/prompter/Prompter.qml" line="1394"/>
         <source>Loaded: %1</source>
-        <translation>已加载</translation>
+        <translation>已加载: %1</translation>
     </message>
     <message>
         <location filename="../src/prompter/Prompter.qml" line="1422"/>
@@ -746,7 +746,7 @@ Help us translate QPrompt, visit:</source>
         <location filename="../src/prompter/Prompter.qml" line="1559"/>
         <source>Hypertext Markup Language (%1)</source>
         <comment>Format name (FORMAT_EXTENSION)</comment>
-        <translation type="unfinished"></translation>
+        <translation>超文本标记语言 (%1)</translation>
     </message>
     <message>
         <location filename="../src/prompter/Prompter.qml" line="1517"/>
@@ -773,25 +773,25 @@ Help us translate QPrompt, visit:</source>
         <location filename="../src/prompter/Prompter.qml" line="1520"/>
         <source>AbiWord Document (%1)</source>
         <comment>Format name (FORMAT_EXTENSION)</comment>
-        <translation type="unfinished"></translation>
+        <translation>AbiWord文本文件 (%1)</translation>
     </message>
     <message>
         <location filename="../src/prompter/Prompter.qml" line="1521"/>
         <source>Microsoft Word document (%1)</source>
         <comment>Format name (FORMAT_EXTENSION)</comment>
-        <translation type="unfinished"></translation>
+        <translation>微软word文件 (%1)</translation>
     </message>
     <message>
         <location filename="../src/prompter/Prompter.qml" line="1522"/>
         <source>Apple Pages Document (%1)</source>
         <comment>Format name (FORMAT_EXTENSION)</comment>
-        <translation type="unfinished"></translation>
+        <translation>苹果Pages文档 (%1)</translation>
     </message>
     <message>
         <location filename="../src/prompter/Prompter.qml" line="1523"/>
         <source>Rich Text Format (%1)</source>
         <comment>Format name (FORMAT_EXTENSION)</comment>
-        <translation type="unfinished"></translation>
+        <translation>富文本格式 (%1)</translation>
     </message>
     <message>
         <location filename="../src/prompter/Prompter.qml" line="1598"/>
@@ -1265,7 +1265,7 @@ Help us translate QPrompt, visit:</source>
     <message>
         <location filename="../src/kirigami_ui/PrompterPage.qml" line="1011"/>
         <source>Open from network...</source>
-        <translation>从网络上打开</translation>
+        <translation>从网络位置打开……</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/PrompterPage.qml" line="1052"/>
