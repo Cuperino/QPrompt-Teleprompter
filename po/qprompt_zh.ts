@@ -1344,11 +1344,8 @@ Help us translate QPrompt, visit:</source>
         <location filename="../src/kirigami_ui/TelemetryPage.qml" line="66"/>
         <source>Please help improve QPrompt by sharing information on how you use it. Contributing this information is optional and entirely anonymous. The project nor I will never collect your personal data, files you use, contents you work with, or information that could help identify you.
 - Cuperino (QPrompt&apos;s Author)</source>
-        <translation>
-请通过共享有关如何使用QPrompt的信息来帮助改进QPrompt。提供此信息是可选的，并
-且完全匿名。该项目和我都不会收集您的个人数据、您使用的文件、您使用的内容或有
-助于识别您身份的信息。\n
-- Cuperino (QPrompt&apos;s Author)</translation>
+        <translation>请通过共享有关如何使用QPrompt的信息来帮助改进QPrompt。提供此信息是可选的，并且完全匿名。此项目和我都不会收集您的个人数据、您使用的文件、您工作中内容或有助于识别您身份的信息。
+- Cuperino (QPrompt&apos;s 作者)</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/TelemetryPage.qml" line="69"/>
@@ -1570,10 +1567,7 @@ Help us translate QPrompt, visit:</source>
     <message>
         <location filename="../src/kirigami_ui/TelemetryPage.qml" line="190"/>
         <source>This information is very important to me, Javier, the project author, and it could help make QPrompt&apos;s development sustainable. I&apos;ve gone the extra mile not to collect any of the actual text and images that you work with, so I ask you: please leave telemetry enabled.</source>
-        <translation>
-这些信息对项目作者（Javier）来说非常重要，可以帮助QPrompt实现可持续发展。我已
-经付出了额外的努力，没有收集任何实际的文本和图像，你的工作，所以我问你：请留
-下遥测启用。</translation>
+        <translation>这些信息对项目作者（Javier）来说非常重要，可以帮助QPrompt实现可持续发展。我已经付出了额外的努力来保证没有收集您工作和使用中的任何实际文本和图像，所以我诚挚的希望您保持telemetry(遥测：获取相关软件使用信息的功能)在打开状态。</translation>
     </message>
 </context>
 <context>
