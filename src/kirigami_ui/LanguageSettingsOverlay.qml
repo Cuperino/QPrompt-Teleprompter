@@ -155,7 +155,7 @@ Kirigami.OverlaySheet {
                         "value": "uk_UA"
                     },
                     {
-                        "text": "中国人",
+                        "text": "简体中文",
                         "value": "zh_CN"
                     },
                 ]
