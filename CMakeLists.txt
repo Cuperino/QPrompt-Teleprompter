@@ -62,7 +62,7 @@ endif()
 # Version with minimum required set of features
 set(KF_MIN_VERSION 6.9.0)
 # Last version known to work
-set(KF_PREFFERED_VERSION 6.14.0)
+set(KF_PREFFERED_VERSION 6.22.0)
 if (APPLE)
     set(APPLE_SUPPRESS_X11_WARNING ON)
 endif()
@@ -164,7 +164,7 @@ if(WIN32 OR APPLE OR ANDROID OR WASM OR USE_GIT_DEPENDENCIES_ONLY)
     FetchContent_Declare(
       Kirigami
       GIT_REPOSITORY "${CMAKE_SOURCE_DIR}/3rdparty/kirigami"
-      GIT_TAG        "v6.14.1" # "v${KF_PREFFERED_VERSION}"
+      GIT_TAG        "v${KF_PREFFERED_VERSION}"
       SOURCE_DIR submodules/kirigami
     )
     FetchContent_MakeAvailable(Kirigami)
