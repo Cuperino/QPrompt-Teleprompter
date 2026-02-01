@@ -409,9 +409,8 @@ ColumnLayout {
                     editable: true
                     popup: Popup {
                         width: parent.width
-                        implicitHeight: contentItem.implicitHeight
+                        implicitHeight: root.minimumHeight
                         y: parent.height - 1
-                        z: 103
                         padding: 1
                         contentItem: ListView {
                             clip: true
