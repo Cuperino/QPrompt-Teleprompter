@@ -1,7 +1,7 @@
 #**************************************************************************
 #
 # QPrompt
-# Copyright (C) 2020-2025 Javier O. Cordero Pérez
+# Copyright (C) 2020-2026 Javier O. Cordero Pérez
 #
 # This file is part of QPrompt.
 #
@@ -19,10 +19,10 @@
 #
 #**************************************************************************
 
-if(NOT WIN32)
-    include(ECMPoQmTools)
-    ecm_create_qm_loader(qprompt_QM_LOADER ../po/qprompt.pot)
-endif()
+# if(NOT WIN32)
+#     include(ECMPoQmTools)
+#     ecm_create_qm_loader(qprompt_QM_LOADER ../po/qprompt.pot)
+# endif()
 
 qt_standard_project_setup(I18N_TRANSLATED_LANGUAGES ar cs de en es fi fr he it ja ko nl oc pl pt_BR pt_PT ru tr uk zh)
 
@@ -280,7 +280,6 @@ set(icon_files
     icons/16/format-text-direction-ltr.svg
     icons/16/view-fullscreen.svg
     icons/16/empty.svg
-    icons/22/application-menu.svg
     icons/22/amarok_change_language.svg
     icons/22/auto-transition.svg
     icons/22/akonadiconsole.svg
@@ -390,7 +389,7 @@ if (ANDROID OR IOS)
         Qt${QT_VERSION_MAJOR}::Core
         Qt${QT_VERSION_MAJOR}::Quick
         Qt${QT_VERSION_MAJOR}::Svg
-        Qt${QT_VERSION_MAJOR}::Gui
+        # Qt${QT_VERSION_MAJOR}::Gui
         Qt${QT_VERSION_MAJOR}::Qml
         Qt${QT_VERSION_MAJOR}::QuickControls2
         Qt${QT_VERSION_MAJOR}::Network
@@ -416,7 +415,7 @@ elseif(HAIKU)
     target_link_libraries(${PROJECT_NAME} PRIVATE
         Qt${QT_VERSION_MAJOR}::Core
         Qt${QT_VERSION_MAJOR}::Quick
-        Qt${QT_VERSION_MAJOR}::Gui
+        # Qt${QT_VERSION_MAJOR}::Gui
         Qt${QT_VERSION_MAJOR}::Svg
         Qt${QT_VERSION_MAJOR}::Qml
         Qt${QT_VERSION_MAJOR}::QuickControls2
@@ -425,13 +424,14 @@ elseif(HAIKU)
         Qt${QT_VERSION_MAJOR}::WebSockets
         KF${QT_VERSION_MAJOR}::CoreAddons
         KF${QT_VERSION_MAJOR}::Kirigami
+        KF${QT_VERSION_MAJOR}::KirigamiPlatform
         KF${QT_VERSION_MAJOR}::IconThemes
     )
 elseif(WIN32 OR APPLE)
     target_link_libraries(${PROJECT_NAME} PRIVATE
         Qt${QT_VERSION_MAJOR}::Core
         Qt${QT_VERSION_MAJOR}::Quick
-        Qt${QT_VERSION_MAJOR}::Gui
+        # Qt${QT_VERSION_MAJOR}::Gui
         Qt${QT_VERSION_MAJOR}::Svg
         Qt${QT_VERSION_MAJOR}::Qml
         Qt${QT_VERSION_MAJOR}::QuickControls2
@@ -440,12 +440,13 @@ elseif(WIN32 OR APPLE)
         Qt${QT_VERSION_MAJOR}::WebSockets
         KF${QT_VERSION_MAJOR}::CoreAddons
         KF${QT_VERSION_MAJOR}::Kirigami
+        KF${QT_VERSION_MAJOR}::KirigamiPlatform
     )
 else()
     target_link_libraries(${PROJECT_NAME} PRIVATE
         Qt${QT_VERSION_MAJOR}::Core
         Qt${QT_VERSION_MAJOR}::Quick
-        Qt${QT_VERSION_MAJOR}::Gui
+        # Qt${QT_VERSION_MAJOR}::Gui
         Qt${QT_VERSION_MAJOR}::Svg
         Qt${QT_VERSION_MAJOR}::Qml
         Qt${QT_VERSION_MAJOR}::QuickControls2
@@ -454,6 +455,7 @@ else()
         Qt${QT_VERSION_MAJOR}::WebSockets
         KF${QT_VERSION_MAJOR}::CoreAddons
         KF${QT_VERSION_MAJOR}::Kirigami
+        KF${QT_VERSION_MAJOR}::KirigamiPlatform
     )
 endif()
 

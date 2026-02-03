@@ -22,7 +22,7 @@
 #**************************************************************************
 
 ARCHITECTURE="$(uname -m)"
-DEFAULT_QT_VER=6.7.3
+DEFAULT_QT_VER=6.10.2
 echo -e "\nArchitecture: $ARCHITECTURE"
 
 if [[ "$OSTYPE" == "linux-gnu"* ]]; then
@@ -175,6 +175,20 @@ if [[ "$PLATFORM" == "windows" ]]; then
     FILENAME="gettext0.25-iconv1.17-shared-64.zip"
     curl -Lo build/$FILENAME "https://github.com/mlocati/gettext-iconv-windows/releases/download/v0.25-v1.17/$FILENAME"
     unzip -o build/$FILENAME -d "$CMAKE_PREFIX_PATH"
+fi
+
+# OpenMP
+echo "OpenMP"
+if $CLEAR_ALL; then
+    rm -dRf 3rdparty/llvm-project/build
+fi
+$CMAKE -DCMAKE_PREFIX_PATH=$CMAKE_PREFIX_PATH -DCMAKE_INSTALL_PREFIX=$CMAKE_INSTALL_PREFIX -DLLVM_ENABLE_PROJECTS=clang -DLLVM_ENABLE_RUNTIMES=openmp -DBUILD_SHARED_LIBS=ON -DQT_DEFAULT_MAJOR_VERSION=$QT_MAJOR_VERSION -B ./3rdparty/llvm-project/build ./3rdparty/llvm-project/llvm/
+$CMAKE --build ./3rdparty/llvm-project/build --config $CMAKE_BUILD_TYPE
+if [[ "$PLATFORM" == "macos" ]]; then
+    $CMAKE --install ./3rdparty/llvm-project/build
+else
+    DESTDIR=$AppDir $CMAKE --install ./3rdparty/llvm-project/build
+    cp -r $AppDirUsr/* $CMAKE_PREFIX_PATH
 fi
 
 # KDE Frameworks
