@@ -23,6 +23,7 @@ import QtQuick 2.12
 
 // Component for dragging a window
 MouseArea {
+    enabled: Qt.platform.os!=="android" && Qt.platform.os!=="wasm"
     property var window: parent
     property int prevX: 0
     property int prevY: 0

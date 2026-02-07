@@ -85,25 +85,43 @@ set(qprompt_cpp
     ${qprompt_QM_LOADER}
 )
 
-set(qprompt_frontend_sources
-    # Kirigami UI Frontend
-    kirigami_ui/main.qml
-    kirigami_ui/+android/main.qml
-    kirigami_ui/+windows/main.qml
-    kirigami_ui/AboutPage.qml
-    kirigami_ui/PathsPage.qml
-    kirigami_ui/PrompterPage.qml
-    kirigami_ui/TelemetryPage.qml
-    kirigami_ui/RemotePage.qml
-    kirigami_ui/EditorToolbar.qml
-    kirigami_ui/MarkersDrawer.qml
-    kirigami_ui/InputsOverlay.qml
-    kirigami_ui/KeyInputButton.qml
-    kirigami_ui/WheelSettingsOverlay.qml
-    kirigami_ui/LayoutDirectionSettingsOverlay.qml
-    kirigami_ui/LanguageSettingsOverlay.qml
-    kirigami_ui/OnlineResourceButtons.qml
-)
+if (WASM)
+    set(qprompt_frontend_sources
+        # Kirigami UI Frontend
+        kirigami_ui/main.qml
+        kirigami_ui/AboutPage.qml
+        kirigami_ui/PathsPage.qml
+        kirigami_ui/PrompterPage.qml
+        kirigami_ui/EditorToolbar.qml
+        kirigami_ui/MarkersDrawer.qml
+        kirigami_ui/InputsOverlay.qml
+        kirigami_ui/KeyInputButton.qml
+        kirigami_ui/WheelSettingsOverlay.qml
+        kirigami_ui/LayoutDirectionSettingsOverlay.qml
+        kirigami_ui/LanguageSettingsOverlay.qml
+        kirigami_ui/OnlineResourceButtons.qml
+    )
+else()
+    set(qprompt_frontend_sources
+        # Kirigami UI Frontend
+        kirigami_ui/main.qml
+        kirigami_ui/+android/main.qml
+        kirigami_ui/+windows/main.qml
+        kirigami_ui/AboutPage.qml
+        kirigami_ui/PathsPage.qml
+        kirigami_ui/PrompterPage.qml
+        kirigami_ui/TelemetryPage.qml
+        kirigami_ui/RemotePage.qml
+        kirigami_ui/EditorToolbar.qml
+        kirigami_ui/MarkersDrawer.qml
+        kirigami_ui/InputsOverlay.qml
+        kirigami_ui/KeyInputButton.qml
+        kirigami_ui/WheelSettingsOverlay.qml
+        kirigami_ui/LayoutDirectionSettingsOverlay.qml
+        kirigami_ui/LanguageSettingsOverlay.qml
+        kirigami_ui/OnlineResourceButtons.qml
+    )
+endif()
 
 set(prompter_sources
     # Prompter component
@@ -130,6 +148,7 @@ set(other_sources
     qt/WindowDragger.qml
 )
 
+if (ANDROID)
 set(image_files
     # Logos
     images/qprompt.png
@@ -138,18 +157,21 @@ set(image_files
     images/left_hand.png
     images/right_hand.png
 )
-
+else()
+    set(image_files
+        # Logos
+        images/qprompt.png
+        # Pointers
+        images/left_hand.png
+        images/right_hand.png
+    )
+endif()
 # Fonts
 if (WASM)
     set(font_files
         fonts/icons/fontello.ttf
         fonts/editor/dejavu-sans/DejaVuSans.ttf
         fonts/editor/LibertinusSans-Regular.otf
-        # fonts/editor/OpenDyslexic-Bold.otf
-        # fonts/editor/ScheherazadeNew/ScheherazadeNew-Regular.ttf
-        # fonts/editor/Kalpurush/Kalpurush.ttf
-        # fonts/editor/Palanquin-Regular.ttf
-        # fonts/editor/SourceHanSans/SourceHanSans-Regular.ttc
     )
 else()
     set(font_files
@@ -170,6 +192,12 @@ foreach(file IN LISTS font_files)
 endforeach()
 
 # Documents
+if (WASM)
+    set(document_files
+        documents/untitled.html
+        documents/welcome_en.html
+    )
+else()
 set(document_files
     documents/untitled.html
     documents/welcome_ar.html
@@ -193,6 +221,7 @@ set(document_files
     documents/welcome_tr.html
     documents/welcome_zh.html
 )
+endif()
 set_source_files_properties(documents/untitled.html PROPERTIES QT_RESOURCE_ALIAS documents/blank.html)
 
 set(icon_files
@@ -369,16 +398,14 @@ if (ANDROID OR IOS)
         Kirigamiplugin
     )
 elseif (WASM)
-    target_compile_options(${PROJECT_NAME} PRIVATE -O3 -flto -sDISABLE_EXCEPTION_THROWING=0 -sDISABLE_EXCEPTION_CATCHING=0)
-    target_link_options(${PROJECT_NAME} PRIVATE -flto -fno-except -sASYNCIFY -Oz -sDISABLE_EXCEPTION_THROWING=0 -sDISABLE_EXCEPTION_CATCHING=0)
+    target_compile_options(${PROJECT_NAME} PRIVATE -O3 -flto -sDISABLE_EXCEPTION_THROWING=0 -sDISABLE_EXCEPTION_CATCHING=1)
+    target_link_options(${PROJECT_NAME} PRIVATE -flto -fno-except -Oz -sDISABLE_EXCEPTION_THROWING=0 -sDISABLE_EXCEPTION_CATCHING=1)
     target_link_libraries(${PROJECT_NAME} PRIVATE
         Qt${QT_VERSION_MAJOR}::Core
         Qt${QT_VERSION_MAJOR}::Quick
         Qt${QT_VERSION_MAJOR}::Svg
-        Qt${QT_VERSION_MAJOR}::Gui
         Qt${QT_VERSION_MAJOR}::Qml
         Qt${QT_VERSION_MAJOR}::QuickControls2
-        Qt${QT_VERSION_MAJOR}::Network
         KF${QT_VERSION_MAJOR}::Kirigami
         Kirigamiplugin
     )
