@@ -1077,14 +1077,14 @@ Kirigami.ApplicationWindow {
         id: pathsPageComponent
         PathsPage {}
     }
-    Component {
-        id: remoteControlPageComponent
-        RemotePage {}
-    }
-    Component {
-        id: telemetryPageComponent
-        TelemetryPage {}
-    }
+    // Component {
+    //     id: remoteControlPageComponent
+    //     RemotePage {}
+    // }
+    // Component {
+    //     id: telemetryPageComponent
+    //     TelemetryPage {}
+    // }
 
     // Dialogues
     MessageDialog {
