@@ -280,6 +280,7 @@ set(icon_files
     icons/16/format-text-direction-ltr.svg
     icons/16/view-fullscreen.svg
     icons/16/empty.svg
+    icons/22/application-menu.svg
     icons/22/amarok_change_language.svg
     icons/22/auto-transition.svg
     icons/22/akonadiconsole.svg
