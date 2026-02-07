@@ -86,25 +86,43 @@ set(qprompt_cpp
     ${qprompt_QM_LOADER}
 )
 
-set(qprompt_frontend_sources
-    # Kirigami UI Frontend
-    kirigami_ui/main.qml
-    kirigami_ui/+android/main.qml
-    kirigami_ui/+windows/main.qml
-    kirigami_ui/AboutPage.qml
-    kirigami_ui/PathsPage.qml
-    kirigami_ui/PrompterPage.qml
-    kirigami_ui/TelemetryPage.qml
-    kirigami_ui/RemotePage.qml
-    kirigami_ui/EditorToolbar.qml
-    kirigami_ui/MarkersDrawer.qml
-    kirigami_ui/InputsOverlay.qml
-    kirigami_ui/KeyInputButton.qml
-    kirigami_ui/WheelSettingsOverlay.qml
-    kirigami_ui/LayoutDirectionSettingsOverlay.qml
-    kirigami_ui/LanguageSettingsOverlay.qml
-    kirigami_ui/OnlineResourceButtons.qml
-)
+if (WASM)
+    set(qprompt_frontend_sources
+        # Kirigami UI Frontend
+        kirigami_ui/main.qml
+        kirigami_ui/AboutPage.qml
+        kirigami_ui/PathsPage.qml
+        kirigami_ui/PrompterPage.qml
+        kirigami_ui/EditorToolbar.qml
+        kirigami_ui/MarkersDrawer.qml
+        kirigami_ui/InputsOverlay.qml
+        kirigami_ui/KeyInputButton.qml
+        kirigami_ui/WheelSettingsOverlay.qml
+        kirigami_ui/LayoutDirectionSettingsOverlay.qml
+        kirigami_ui/LanguageSettingsOverlay.qml
+        kirigami_ui/OnlineResourceButtons.qml
+    )
+else()
+    set(qprompt_frontend_sources
+        # Kirigami UI Frontend
+        kirigami_ui/main.qml
+        kirigami_ui/+android/main.qml
+        kirigami_ui/+windows/main.qml
+        kirigami_ui/AboutPage.qml
+        kirigami_ui/PathsPage.qml
+        kirigami_ui/PrompterPage.qml
+        kirigami_ui/TelemetryPage.qml
+        kirigami_ui/RemotePage.qml
+        kirigami_ui/EditorToolbar.qml
+        kirigami_ui/MarkersDrawer.qml
+        kirigami_ui/InputsOverlay.qml
+        kirigami_ui/KeyInputButton.qml
+        kirigami_ui/WheelSettingsOverlay.qml
+        kirigami_ui/LayoutDirectionSettingsOverlay.qml
+        kirigami_ui/LanguageSettingsOverlay.qml
+        kirigami_ui/OnlineResourceButtons.qml
+    )
+endif()
 
 set(prompter_sources
     # Prompter component
@@ -131,6 +149,7 @@ set(other_sources
     qt/WindowDragger.qml
 )
 
+if (ANDROID)
 set(image_files
     # Logos
     images/qprompt.png
@@ -139,25 +158,47 @@ set(image_files
     images/left_hand.png
     images/right_hand.png
 )
-
+else()
+    set(image_files
+        # Logos
+        images/qprompt.png
+        # Pointers
+        images/left_hand.png
+        images/right_hand.png
+    )
+endif()
 # Fonts
-set(font_files
-    fonts/icons/fontello.ttf
-    fonts/editor/dejavu-sans/DejaVuSans.ttf
-    fonts/editor/LibertinusSans-Regular.otf
-    fonts/editor/OpenDyslexic-Bold.otf
-    fonts/editor/ScheherazadeNew/ScheherazadeNew-Regular.ttf
-    fonts/editor/Kalpurush/Kalpurush.ttf
-    fonts/editor/Palanquin-Regular.ttf
-    # fonts/editor/Libertinus/static/OTF/LibertinusSerif-Regular.otf
-    fonts/editor/SourceHanSans/SourceHanSans-Regular.ttc
-)
+if (WASM)
+    set(font_files
+        fonts/icons/fontello.ttf
+        fonts/editor/dejavu-sans/DejaVuSans.ttf
+        fonts/editor/LibertinusSans-Regular.otf
+    )
+else()
+    set(font_files
+        fonts/icons/fontello.ttf
+        fonts/editor/dejavu-sans/DejaVuSans.ttf
+        fonts/editor/LibertinusSans-Regular.otf
+        fonts/editor/OpenDyslexic-Bold.otf
+        fonts/editor/ScheherazadeNew/ScheherazadeNew-Regular.ttf
+        fonts/editor/Kalpurush/Kalpurush.ttf
+        fonts/editor/Palanquin-Regular.ttf
+        # fonts/editor/Libertinus/static/OTF/LibertinusSerif-Regular.otf
+        fonts/editor/SourceHanSans/SourceHanSans-Regular.ttc
+    )
+endif()
 foreach(file IN LISTS font_files)
     get_filename_component(filename ${file} NAME)
     set_source_files_properties(${file} PROPERTIES QT_RESOURCE_ALIAS fonts/${filename})
 endforeach()
 
 # Documents
+if (WASM)
+    set(document_files
+        documents/untitled.html
+        documents/welcome_en.html
+    )
+else()
 set(document_files
     documents/untitled.html
     documents/welcome_ar.html
@@ -181,6 +222,7 @@ set(document_files
     documents/welcome_tr.html
     documents/welcome_zh.html
 )
+endif()
 set_source_files_properties(documents/untitled.html PROPERTIES QT_RESOURCE_ALIAS documents/blank.html)
 
 set(icon_files
@@ -301,6 +343,7 @@ set_target_properties(${PROJECT_NAME} PROPERTIES
     MACOSX_BUNDLE TRUE
     WIN32_EXECUTABLE TRUE
     INTERFACE_LINK_LIBRARIES "KF${QT_VERSION_MAJOR}::CoreAddons;KF${QT_VERSION_MAJOR}::Kirigami"
+    QT_QMLCACHEGEN_ARGUMENTS "--only-bytecode"
     # QT_QMLCACHEGEN_ARGUMENTS "--static"  # "--static;--verbose"
     # QT_QMLCACHEGEN_DIRECT_CALLS OFF
     # PLUGIN_TARGET qtlabsplatformplugin inhibits the creation of the backing library, thus headers can't be accessed in direct mode.
@@ -350,21 +393,21 @@ if (ANDROID OR IOS)
         Qt${QT_VERSION_MAJOR}::Qml
         Qt${QT_VERSION_MAJOR}::QuickControls2
         Qt${QT_VERSION_MAJOR}::Network
+        Qt${QT_VERSION_MAJOR}::WebSockets
         KF${QT_VERSION_MAJOR}::CoreAddons
         KF${QT_VERSION_MAJOR}::Kirigami
         Kirigamiplugin
     )
 elseif (WASM)
-    target_compile_options(${PROJECT_NAME} PRIVATE -O3 -flto -sDISABLE_EXCEPTION_THROWING=0 -sDISABLE_EXCEPTION_CATCHING=0)
-    target_link_options(${PROJECT_NAME} PRIVATE -flto -fno-except -sASYNCIFY -Os -sDISABLE_EXCEPTION_THROWING=0 -sDISABLE_EXCEPTION_CATCHING=0)
+    target_compile_options(${PROJECT_NAME} PRIVATE -O3 -flto -sDISABLE_EXCEPTION_THROWING=0 -sDISABLE_EXCEPTION_CATCHING=1)
+    target_link_options(${PROJECT_NAME} PRIVATE -flto -fno-except -Oz -sDISABLE_EXCEPTION_THROWING=0 -sDISABLE_EXCEPTION_CATCHING=1)
     target_link_libraries(${PROJECT_NAME} PRIVATE
         Qt${QT_VERSION_MAJOR}::Core
         Qt${QT_VERSION_MAJOR}::Quick
         Qt${QT_VERSION_MAJOR}::Svg
-        Qt${QT_VERSION_MAJOR}::Gui
         Qt${QT_VERSION_MAJOR}::Qml
         Qt${QT_VERSION_MAJOR}::QuickControls2
-        Qt${QT_VERSION_MAJOR}::Network
+        Qt${QT_VERSION_MAJOR}::WebSockets
         KF${QT_VERSION_MAJOR}::Kirigami
         Kirigamiplugin
     )
@@ -378,6 +421,7 @@ elseif(HAIKU)
         Qt${QT_VERSION_MAJOR}::QuickControls2
         Qt${QT_VERSION_MAJOR}::Network
         Qt${QT_VERSION_MAJOR}::Widgets
+        Qt${QT_VERSION_MAJOR}::WebSockets
         KF${QT_VERSION_MAJOR}::CoreAddons
         KF${QT_VERSION_MAJOR}::Kirigami
         KF${QT_VERSION_MAJOR}::IconThemes
@@ -392,8 +436,9 @@ elseif(WIN32 OR APPLE)
         Qt${QT_VERSION_MAJOR}::QuickControls2
         Qt${QT_VERSION_MAJOR}::Network
         Qt${QT_VERSION_MAJOR}::Widgets
-        KF${QT_VERSION_MAJOR}::Kirigami
+        Qt${QT_VERSION_MAJOR}::WebSockets
         KF${QT_VERSION_MAJOR}::CoreAddons
+        KF${QT_VERSION_MAJOR}::Kirigami
     )
 else()
     target_link_libraries(${PROJECT_NAME} PRIVATE
@@ -405,6 +450,7 @@ else()
         Qt${QT_VERSION_MAJOR}::QuickControls2
         Qt${QT_VERSION_MAJOR}::Network
         Qt${QT_VERSION_MAJOR}::Widgets
+        Qt${QT_VERSION_MAJOR}::WebSockets
         KF${QT_VERSION_MAJOR}::CoreAddons
         KF${QT_VERSION_MAJOR}::Kirigami
     )

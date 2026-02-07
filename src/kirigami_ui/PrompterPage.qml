@@ -50,6 +50,7 @@ Kirigami.Page {
     property alias countdownConfiguration: countdownConfiguration
     property alias namedMarkerConfiguration: namedMarkerConfiguration
     property alias pointerConfiguration: pointerConfiguration
+    property alias obsConfiguration: obsConfiguration
     property int hideDecorations: 1
 
     // Unused signal. Leaving for reference.
@@ -1195,6 +1196,69 @@ Kirigami.Page {
         PointerSettings {
             id: pointerSettings
             prompterBackground: prompterPage.prompterBackground
+        }
+    }
+
+    Kirigami.OverlaySheet {
+        id: obsConfiguration
+        width: 300
+        header: Kirigami.Heading {
+            text: qsTr("OBS configuration", "Name of section where OBS websockets connection is configured")
+            level: 1
+        }
+        onOpened: {
+            cursorAutoHide.reset();
+            viewport.editor.enabled = false;
+        }
+        onClosed: {
+            cursorAutoHide.restart();
+            viewport.editor.enabled = true;
+            viewport.prompter.restoreFocus();
+        }
+        ColumnLayout {
+            RowLayout {
+                Label {
+                    text: qsTr("Enabled:")
+                }
+                Switch {
+                    id: enabledToggle
+                    Layout.fillWidth: true
+                    Layout.leftMargin: Kirigami.Units.smallSpacing
+                    Layout.rightMargin: Kirigami.Units.smallSpacing
+                    checked: viewport.prompter.ws.active
+                    onToggled: viewport.prompter.ws.active = checked
+                    Material.theme: Material.Dark
+                }
+            }
+            RowLayout {
+                Label {
+                    text: qsTr("URL:")
+                }
+                TextField {
+                    id: wsUrlField
+                    placeholderText: "ws://localhost:4455"
+                    Layout.fillWidth: true
+                    Layout.leftMargin: Kirigami.Units.smallSpacing
+                    Layout.rightMargin: Kirigami.Units.smallSpacing
+                    text: viewport.prompter.ws.urlString
+                    onAccepted: viewport.prompter.ws.urlString = text ?? placeholderText
+                    Material.theme: Material.Dark
+                }
+            }
+            RowLayout {
+                Label {
+                    text: qsTr("Password:")
+                }
+                Kirigami.PasswordField {
+                    id: wsPasswordField
+                    Layout.fillWidth: true
+                    Layout.leftMargin: Kirigami.Units.smallSpacing
+                    Layout.rightMargin: Kirigami.Units.smallSpacing
+                    text: viewport.prompter.ws.password
+                    onAccepted: viewport.prompter.ws.password = text
+                    Material.theme: Material.Dark
+                }
+            }
         }
     }
 

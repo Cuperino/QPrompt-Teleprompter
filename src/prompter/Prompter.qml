@@ -77,6 +77,7 @@ import QtQuick.Window 2.12
 import QtCore 6.5
 import QtQml 6.5
 import QtQuick.Dialogs 6.6
+import QtWebSockets 1.10
 import Qt.labs.platform 1.1 as Labs
 
 import com.cuperino.qprompt 1.0
@@ -140,6 +141,7 @@ Flickable {
     // Create position alias to make code more readable
     property alias position: prompter.contentY
     property alias keys: keys
+    property alias ws: ws
     // Flips
     property bool __flipX: false
     property bool __flipY: false
@@ -257,6 +259,49 @@ Flickable {
         category: "files"
         property alias lastDocument: editor.lastDocument
     }
+    Settings {
+        category: "obs"
+        property alias enabled: ws.active
+        property alias url: ws.urlString
+        property alias password: ws.password
+    }
+    WebSocket{
+        id: ws
+        property string password: ""
+        property string urlString: "ws://localhost:4455"
+        url: urlString
+        active: true
+        // onBinaryMessageReceived: (message) => {
+        //     console.log(message);
+        // }
+        // onPong: (elapsedTime, payload)
+        onStatusChanged: (status) => {
+            console.log(status);
+        }
+        onTextMessageReceived: (m) => {
+            // {"d":{"authentication":{"challenge":"9VRaSD82JrJlNiVIRrmmWSOxR2p5wb7TkHMU+kTfuAo=","salt":"tRDkvJuBARe4mWrmHO8Sea1ZGDdd6LxRsfARero3624="},"obsWebSocketVersion":"5.3.4","rpcVersion":1},"op":0}
+            const i = JSON.parse(m);
+            // 0. If Hello Opcode received...
+            switch (i.op) {
+            case 0:
+                console.log(m);
+                const challenge = i.d.authentication.challenge;
+                const salt = i.d.authentication.salt;
+                const res = {
+                    "op": 1,
+                    "d": {
+                        "rpcVersion": 1,
+                        "authentication": qmlutil.authStr(ws.password, salt, challenge),
+                        "eventSubscriptions": 33
+                    }
+                }
+                ws.sendTextMessage(JSON.stringify(res));
+                break;
+            default:
+                console.info(m);
+            }
+        }
+    }
 
     property int q: 0
     function markerCompare() {
@@ -268,8 +313,18 @@ Flickable {
             editor.cursorPosition = m.position;
             // Here, p is for position
             const p = editor.cursorRectangle.y;
-            if (q < p) {
-                console.log(m.url);
+            if (prompter.q < p) {
+                const req = {
+                  "op": 6,
+                  "d": {
+                    "requestType": "SetCurrentProgramScene",
+                    "requestId": "f819dcf0-89cc-11eb-8f0e-382c4ac93b9c",
+                    "requestData": {
+                      "sceneName": m.url.slice(1)
+                    }
+                  }
+                }
+                ws.sendTextMessage(JSON.stringify(req));
             }
             q = p;
         }

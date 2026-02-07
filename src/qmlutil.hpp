@@ -37,6 +37,8 @@
 #endif
 #include <QQmlEngine>
 #include <QSettings>
+#include <QByteArray>
+#include <QCryptographicHash>
 
 // A singleton object to implement C++ functions that can be called from QML
 class QmlUtil : public QObject
@@ -61,6 +63,7 @@ public:
 
         return false;
     }
+
     Q_INVOKABLE QString keyToString(const int key, const int modifiers)
     {
         if (!isKeyUnknown(key)) {
@@ -74,6 +77,7 @@ public:
             return modifierOnlyString;
         }
     }
+
     Q_INVOKABLE void restartApplication()
     {
 #if !(defined(Q_OS_ANDROID) || defined(Q_OS_IOS) || defined(Q_OS_WASM) || defined(Q_OS_WATCHOS))
@@ -81,6 +85,7 @@ public:
 #endif
         QCoreApplication::quit();
     }
+
     Q_INVOKABLE void hideCursor()
     {
         auto cursorPixmap = QPixmap(32, 32);
@@ -88,10 +93,12 @@ public:
         auto cursor = QCursor(cursorPixmap);
         QGuiApplication::setOverrideCursor(cursor);
     }
+
     Q_INVOKABLE void restoreCursor()
     {
         QGuiApplication::restoreOverrideCursor();
     }
+
     Q_INVOKABLE QStringList fontList()
     {
 #if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
@@ -101,6 +108,7 @@ public:
         return database.families();
 #endif
     }
+
     Q_INVOKABLE void factoryReset()
     {
 #if (defined(Q_OS_MACOS))
@@ -110,5 +118,28 @@ public:
 #endif
         settings.clear();
         restartApplication();
+    }
+
+    Q_INVOKABLE QString authStr(const QString& pass, const QString& salt, const QString& challenge)
+    {
+        // 1. Concatenate pass + salt
+        const auto secretString = (pass.toUtf8() + salt.toUtf8());
+
+        // 2. SHA256 binary hash of (pass + salt)
+        const auto secretBinaryHash =
+            QCryptographicHash::hash(secretString, QCryptographicHash::Sha256);
+
+        // 3. Base64 encode the first binary hash
+        const auto firstBase64Hash = secretBinaryHash.toBase64();
+
+        // 4. Append challenge to the Base64 result
+        const auto secondConcat = firstBase64Hash + challenge.toUtf8();
+
+        // 5. SHA256 binary hash of (Base64Hash + challenge)
+        const auto secondBinaryHash =
+            QCryptographicHash::hash(secondConcat, QCryptographicHash::Sha256);
+
+        // 6. Base64 encode the final binary hash and return
+        return QString::fromUtf8(secondBinaryHash.toBase64());
     }
 };

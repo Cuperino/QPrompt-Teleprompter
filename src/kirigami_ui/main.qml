@@ -264,6 +264,16 @@ Kirigami.ApplicationWindow {
                 }
                 Kirigami.Action {
                     visible: ["android", "ios", "tvos", "ipados", "qnx"].indexOf(Qt.platform.os)===-1
+                    text: qsTr("OBS Settings", "Main menu and global menu actions. Opens dialog to configure OBS settings.")
+                    //icon.name: "obs"
+                    icon.source: "qrc:/qt/qml/com/cuperino/qprompt/icons/obs.svg"
+                    onTriggered: {
+                        globalMenu.close()
+                        root.pageStack.currentItem.obsConfiguration.open()
+                    }
+                }
+                Kirigami.Action {
+                    visible: ["android", "ios", "tvos", "ipados", "qnx"].indexOf(Qt.platform.os)===-1
                     text: qsTr("Scroll throttle settings", "Open 'scroll settings' from main menu and global menu actions")
                     //icon.name: "gnumeric-object-scrollbar" // "keyboard"
                     icon.source: "qrc:/qt/qml/com/cuperino/qprompt/icons/gnumeric-object-scrollbar.svg"
@@ -851,6 +861,10 @@ Kirigami.ApplicationWindow {
                 text: qsTr("Keyboard Inputs", "Main menu and global menu actions. Opens dialog to configure keyboard inputs.")
                 onTriggered: root.pageStack.currentItem.keyConfigurationOverlay.open()
             }
+            Labs.MenuItem {
+                text: qsTr("OBS Settings", "Main menu and global menu actions. Opens dialog to configure OBS settings.")
+                onTriggered: root.pageStack.currentItem.obsConfiguration.open()
+            }
             Labs.MenuSeparator { }
             Labs.MenuItem {
                 text: qsTr("Disable scrolling while prompting", "Main menu and global menu actions. Touchpad scrolling and mouse wheel use have no effect while prompting.")
@@ -1002,8 +1016,8 @@ Kirigami.ApplicationWindow {
     }*/
 
     onFrameSwapped: {
-        // // Thus runs from here because there's no event that occurs on each bit of scroll, and this takes much less CPU than a timer, is more precise and scales better.
-        // root.pageStack.currentItem.prompter.markerCompare();
+        // Thus runs from here because there's no event that occurs on each bit of scroll, and this takes much less CPU than a timer, is more precise and scales better.
+        root.pageStack.currentItem.prompter.markerCompare();
         // Update Projections
         if (projectionManager.isEnabled)
             root.pageStack.currentItem.viewport.grabToImage(function(p) {

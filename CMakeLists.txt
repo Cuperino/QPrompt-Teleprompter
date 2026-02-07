@@ -139,6 +139,7 @@ find_package(Qt${QT_VERSION_MAJOR} ${QT_MIN_VERSION} REQUIRED NO_MODULE COMPONEN
     Gui
     QuickControls2
     Network
+    WebSockets
     ShaderTools
     LinguistTools
 )
