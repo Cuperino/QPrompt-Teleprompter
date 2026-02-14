@@ -78,11 +78,10 @@ endif()
 set(qprompt_cpp
     qmlutil.hpp
     abstractunits.hpp
-    documenthandler.h
-    documenthandler.cpp
     marker.hpp
-    markersmodel.h
-    markersmodel.cpp
+    documenthandler.h documenthandler.cpp
+    markersmodel.h markersmodel.cpp
+    appcontroller.h appcontroller.cpp
     ${qprompt_QM_LOADER}
 )
 
@@ -425,6 +424,7 @@ elseif(HAIKU)
         KF${QT_VERSION_MAJOR}::CoreAddons
         KF${QT_VERSION_MAJOR}::Kirigami
         KF${QT_VERSION_MAJOR}::IconThemes
+        KF${QT_VERSION_MAJOR}::GlobalAccel
     )
 elseif(WIN32 OR APPLE)
     target_link_libraries(${PROJECT_NAME} PRIVATE
@@ -453,6 +453,7 @@ else()
         Qt${QT_VERSION_MAJOR}::WebSockets
         KF${QT_VERSION_MAJOR}::CoreAddons
         KF${QT_VERSION_MAJOR}::Kirigami
+        KF${QT_VERSION_MAJOR}::GlobalAccel
     )
 endif()
 

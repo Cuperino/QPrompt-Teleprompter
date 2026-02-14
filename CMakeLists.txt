@@ -172,6 +172,7 @@ else()
     find_package(KF${QT_VERSION_MAJOR} ${KF_MIN_VERSION} REQUIRED COMPONENTS
         Kirigami
         CoreAddons
+        GlobalAccel
     )
 endif()
 

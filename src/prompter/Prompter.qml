@@ -265,6 +265,48 @@ Flickable {
         property alias url: ws.urlString
         property alias password: ws.password
     }
+    Connections {
+        target: AppController
+        function onTogglePrompter() {
+            prompter.toggle();
+        }
+        function onIncreaseVelocity() {
+            prompter.increaseVelocity();
+        }
+        function onDecreaseVelocity() {
+            prompter.decreaseVelocity();
+        }
+        function onPause() {
+            prompter.pause();
+        }
+        function onStop() {
+            prompter.stop();
+        }
+        function onReverse() {
+            prompter.reverse();
+        }
+        function onRewind() {
+            prompter.rewind();
+        }
+        function onFastForward() {
+            prompter.fastForward();
+        }
+        function onSkipBackwards() {
+            prompter.skipBackwards();
+        }
+        function onSkipForwards() {
+            prompter.skipForwards();
+        }
+        function onPreviousMarker() {
+            prompter.goToPreviousMarker();
+        }
+        function onNextMarker() {
+            prompter.goToNextMarker();
+        }
+        function onSetVelocity(velocity) {
+            prompter.setVelocity(velocity);
+        }
+    }
     WebSocket{
         id: ws
         property string password: ""
@@ -394,7 +436,8 @@ Flickable {
     }
 
     function increaseVelocity(event) {
-        event.accepted = true;
+        if (event)
+            event.accepted = true;
         if (this.__atEnd)
             this.__i=0
         else if (this.__velocity < this.__speedLimit) {
@@ -409,7 +452,8 @@ Flickable {
     }
 
     function decreaseVelocity(event) {
-        event.accepted = true;
+        if (event)
+            event.accepted = true;
         if (this.__atStart)
             this.__i=0
         else if (this.__velocity > -this.__speedLimit) {
@@ -433,6 +477,76 @@ Flickable {
                 prompter.__play = true
                 prompter.position = prompter.__destination
             }
+        }
+    }
+
+    function reverse() {
+        // Reverse
+        __i = -__i;
+        position = __destination
+    }
+
+    function stop() {
+        prompter.__i = 0;
+        prompter.__iBackup = 0;
+        prompter.position = prompter.position
+    }
+
+    function rewind() {
+        // Rewind
+        if (!winding) {
+            __iBackup = __i;
+            winding = true;
+            keyBeingPressed = event.key;
+            __i = 0;
+            position = __destination
+            __i = -fastSpeed;
+            position = __destination
+        }
+    }
+
+    function fastForward() {
+        // Fast Forward
+        if (!winding) {
+            __iBackup = __i;
+            winding = true;
+            keyBeingPressed = event.key;
+            __i = 0;
+            position = __destination
+            __i = fastSpeed;
+            position = __destination
+        }
+    }
+
+    function skipBackwards() {
+        // Move back
+        if (!this.__atStart) {
+            if (prompter.__play && __i!==0)
+                __iBackup = __i
+            __i=0;
+            prompter.position = prompter.position
+            scrollBar.decrease()
+            __i=__iBackup
+            if (prompter.__play)
+                prompter.position = __destination
+            else
+                prompter.position = prompter.position
+        }
+    }
+
+    function skipForwards() {
+        // Move Forward
+        if (!this.__atEnd) {
+            if (prompter.__play && __i!==0)
+                __iBackup = __i
+            __i=0;
+            prompter.position = prompter.position
+            scrollBar.increase()
+            __i=__iBackup
+            if (prompter.__play)
+                prompter.position = __destination
+            else
+                prompter.position = prompter.position
         }
     }
 
@@ -1763,9 +1877,7 @@ Flickable {
             }
             else if (event.key===keys.stop && event.modifiers===keys.stopModifiers) {
                 // Stop
-                prompter.__i = 0;
-                prompter.__iBackup = 0;
-                prompter.position = prompter.position
+                stop();
                 return
             }
             else if (event.key===keys.pause && event.modifiers===keys.pauseModifiers || event.key===Qt.Key_SysReq || event.key===Qt.Key_Play || event.key===Qt.Key_Pause) {
@@ -1858,35 +1970,15 @@ Flickable {
                 return;
             }
             else if (event.key===keys.reverse && event.modifiers===keys.reverseModifiers) {
-                // Reverse
-                __i = -__i;
-                position = __destination
-                return
+                reverse();
+                return;
             }
             else if (event.key===keys.rewind && event.modifiers===keys.rewindModifiers) {
-                // Rewind
-                if (!winding) {
-                    __iBackup = __i;
-                    winding = true;
-                    keyBeingPressed = event.key;
-                    __i = 0;
-                    position = __destination
-                    __i = -fastSpeed;
-                    position = __destination
-                }
+                rewind();
                 return
             }
             else if (event.key===keys.fastForward && event.modifiers===keys.fastForwardModifiers) {
-                // Fast Forward
-                if (!winding) {
-                    __iBackup = __i;
-                    winding = true;
-                    keyBeingPressed = event.key;
-                    __i = 0;
-                    position = __destination
-                    __i = fastSpeed;
-                    position = __destination
-                }
+                fastForward();
                 return
             }
             // else {
@@ -1953,40 +2045,10 @@ Flickable {
             // Toggle state
             prompter.toggle();
         else if (event.key===keys.skipBackwards && event.modifiers===keys.skipBackwardsModifiers) {
-            // Move back
-            /* if (event.modifiers & Qt.ControlModifier)
-                prompter.goToPreviousMarker();
-            else */
-            if (!this.__atStart) {
-                if (prompter.__play && __i!==0)
-                    __iBackup = __i
-                __i=0;
-                prompter.position = prompter.position
-                scrollBar.decrease()
-                __i=__iBackup
-                if (prompter.__play)
-                    prompter.position = __destination
-                else
-                    prompter.position = prompter.position
-            }
+            prompter.skipBackwards();
         }
         else if (event.key===keys.skipForward && event.modifiers===keys.skipForwardModifiers) {
-            // Move Forward
-            /* if (event.modifiers & Qt.ControlModifier)
-                prompter.goToNextMarker();
-            else */
-            if (!this.__atEnd) {
-                if (prompter.__play && __i!==0)
-                    __iBackup = __i
-                __i=0;
-                prompter.position = prompter.position
-                scrollBar.increase()
-                __i=__iBackup
-                if (prompter.__play)
-                    prompter.position = __destination
-                else
-                    prompter.position = prompter.position
-            }
+            prompter.skipForwards();
         }
         else if (event.key===keys.previousMarker && event.modifiers===keys.previousMarkerModifiers)
             prompter.goToPreviousMarker();
