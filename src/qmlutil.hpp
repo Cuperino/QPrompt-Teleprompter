@@ -37,6 +37,7 @@
 #endif
 #include <QQmlEngine>
 #include <QSettings>
+#include <QQuickItemGrabResult>
 
 // A singleton object to implement C++ functions that can be called from QML
 class QmlUtil : public QObject
@@ -111,4 +112,14 @@ public:
         settings.clear();
         restartApplication();
     }
+
+    Q_INVOKABLE void r(QQuickItemGrabResult *res) {
+        if (m_frame[m_bufferIndex] != nullptr)
+            m_frame[m_bufferIndex]->deleteLater();
+        m_bufferIndex = (m_bufferIndex + 1) % 2;
+        m_frame[m_bufferIndex] = res;
+    }
+private:
+    int m_bufferIndex = 0;
+    QQuickItemGrabResult *m_frame[2] = { nullptr };
 };
