@@ -39,6 +39,7 @@
 #include <QSettings>
 #include <QByteArray>
 #include <QCryptographicHash>
+#include <QQuickItemGrabResult>
 
 // A singleton object to implement C++ functions that can be called from QML
 class QmlUtil : public QObject
@@ -142,4 +143,14 @@ public:
         // 6. Base64 encode the final binary hash and return
         return QString::fromUtf8(secondBinaryHash.toBase64());
     }
+
+    Q_INVOKABLE void r(QQuickItemGrabResult *res) {
+        if (m_frame[m_bufferIndex] != nullptr)
+            m_frame[m_bufferIndex]->deleteLater();
+        m_bufferIndex = (m_bufferIndex + 1) % 2;
+        m_frame[m_bufferIndex] = res;
+    }
+private:
+    int m_bufferIndex = 0;
+    QQuickItemGrabResult *m_frame[2] = { nullptr };
 };

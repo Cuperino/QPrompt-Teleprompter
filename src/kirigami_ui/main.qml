@@ -1024,6 +1024,7 @@ Kirigami.ApplicationWindow {
                 // Recount projections on each for loop iteration to prevent value from going stale because a window was closed from a different thread.
                 for (var i=0; i<projectionManager.projections.count; i++)
                     projectionManager.model.setProperty(i, "p", String(p.url));
+                qmlutil.r(p);
             });
     }
 
