@@ -3,6 +3,9 @@
 #include <QObject>
 #include <QQmlEngine>
 #include <QAction>
+#if defined(QHotkey_FOUND)
+#include <QHotkey>
+#endif
 
 class AppController;
 
@@ -28,15 +31,87 @@ signals:
     void nextMarker(bool checked=false);
 protected:
     AppController *m_controller;
-    virtual void initializeSource();
+    virtual void m_initializeSource();
 };
 
 class GlobalHotkeys : public AbstractInputSource
 {
     Q_OBJECT
+    QML_ELEMENT
 public:
     GlobalHotkeys(AppController *controller);
+    enum Action {
+        TogglePrompter,
+        IncreaseVelocity,
+        DecreaseVelocity,
+        Pause,
+        Stop,
+        Reverse,
+        Rewind,
+        FastForward,
+        SkipBackwards,
+        SkipForwards,
+        PreviousMarker,
+        NextMarker,
+        VelocityToNeg10,
+        VelocityToNeg9,
+        VelocityToNeg8,
+        VelocityToNeg7,
+        VelocityToNeg6,
+        VelocityToNeg5,
+        VelocityToNeg4,
+        VelocityToNeg3,
+        VelocityToNeg2,
+        VelocityToNeg1,
+        VelocityTo0,
+        VelocityTo1,
+        VelocityTo2,
+        VelocityTo3,
+        VelocityTo4,
+        VelocityTo5,
+        VelocityTo6,
+        VelocityTo7,
+        VelocityTo8,
+        VelocityTo9,
+        VelocityTo10
+    };
+    Q_ENUM(Action)
 protected:
+#if defined(QHotkey_FOUND)
+    QHotkey *m_togglePrompterHotkey;
+    QHotkey *m_increaseVelocityHotkey;
+    QHotkey *m_decreaseVelocityHotkey;
+    QHotkey *m_pauseHotkey;
+    QHotkey *m_stopHotkey;
+    QHotkey *m_reverseHotkey;
+    QHotkey *m_rewindHotkey;
+    QHotkey *m_fastForwardHotkey;
+    QHotkey *m_skipBackwardsHotkey;
+    QHotkey *m_skipForwardsHotkey;
+    QHotkey *m_previousMarkerHotkey;
+    QHotkey *m_nextMarkerHotkey;
+    QHotkey *m_setVelocityToNeg10Hotkey;
+    QHotkey *m_setVelocityToNeg9Hotkey;
+    QHotkey *m_setVelocityToNeg8Hotkey;
+    QHotkey *m_setVelocityToNeg7Hotkey;
+    QHotkey *m_setVelocityToNeg6Hotkey;
+    QHotkey *m_setVelocityToNeg5Hotkey;
+    QHotkey *m_setVelocityToNeg4Hotkey;
+    QHotkey *m_setVelocityToNeg3Hotkey;
+    QHotkey *m_setVelocityToNeg2Hotkey;
+    QHotkey *m_setVelocityToNeg1Hotkey;
+    QHotkey *m_setVelocityTo0Hotkey;
+    QHotkey *m_setVelocityTo1Hotkey;
+    QHotkey *m_setVelocityTo2Hotkey;
+    QHotkey *m_setVelocityTo3Hotkey;
+    QHotkey *m_setVelocityTo4Hotkey;
+    QHotkey *m_setVelocityTo5Hotkey;
+    QHotkey *m_setVelocityTo6Hotkey;
+    QHotkey *m_setVelocityTo7Hotkey;
+    QHotkey *m_setVelocityTo8Hotkey;
+    QHotkey *m_setVelocityTo9Hotkey;
+    QHotkey *m_setVelocityTo10Hotkey;
+#endif
     QAction *m_togglePrompterAction;
     QAction *m_increaseVelocityAction;
     QAction *m_decreaseVelocityAction;
@@ -71,7 +146,13 @@ protected:
     QAction *m_setVelocityTo9Action;
     QAction *m_setVelocityTo10Action;
 protected:
-    void initializeSource() override;
+    void m_initializeSource() override;
+private:
+    void m_setShortcut(Qt::Key key, Qt::KeyboardModifier modifier, Action action);
+    void m_setActionShortcut(Qt::Key key, Qt::KeyboardModifier modifier, QAction *action);
+#if defined(QHotkey_FOUND)
+    void m_setHotkeyShortcut(Qt::Key key, Qt::KeyboardModifier modifier, QHotkey *hotkey);
+#endif
 };
 
 class AppController : public QObject
