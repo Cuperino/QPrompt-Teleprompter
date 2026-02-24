@@ -47,32 +47,32 @@ msgstr "حفظ"
 #: kirigami_ui/main.qml:234
 msgctxt "Main menu and global menu actions"
 msgid "Save &As"
-msgstr "حفظ بإسم"
+msgstr "حفظ باسم"
 
 #: kirigami_ui/+android/main.qml:226 kirigami_ui/+windows/main.qml:241
 #: kirigami_ui/main.qml:245
 msgctxt "Main menu actions"
 msgid "&Recent Files"
-msgstr "الملفات الاخيرة"
+msgstr "الملفات الأخيرة"
 
 #: kirigami_ui/+android/main.qml:234 kirigami_ui/+windows/main.qml:249
 #: kirigami_ui/main.qml:254
 msgctxt "Main menu actions. Menu regarding input settings."
 msgid "&Controls Settings"
-msgstr "ضبط الاعدادات"
+msgstr "إعدادات التحكم"
 
 #: kirigami_ui/+android/main.qml:238 kirigami_ui/+windows/main.qml:253
 #: kirigami_ui/main.qml:259
 msgctxt ""
 "Main menu and global menu actions. Opens dialog to configure keyboard inputs."
 msgid "Keyboard Inputs"
-msgstr "ادخالات لوحة المفاتيح"
+msgstr "إدخالات لوحة المفاتيح"
 
 #: kirigami_ui/+android/main.qml:246 kirigami_ui/+windows/main.qml:261
 #: kirigami_ui/main.qml:266
 msgctxt "Open 'scroll settings' from main menu and global menu actions"
 msgid "Scroll throttle settings"
-msgstr "اعدادات دولاب الفأرة"
+msgstr "إعدادات تقييد التمرير"
 
 #: kirigami_ui/+android/main.qml:251 kirigami_ui/+windows/main.qml:266
 #: kirigami_ui/main.qml:272 kirigami_ui/main.qml:821
@@ -80,7 +80,7 @@ msgctxt ""
 "Main menu and global menu actions. Have up arrow behave like down arrow and "
 "vice versa while prompting."
 msgid "Invert &arrow keys"
-msgstr "عكس ومفاتيح الأسهم"
+msgstr "عكس مفاتيح الأسهم"
 
 #: kirigami_ui/+android/main.qml:259 kirigami_ui/+windows/main.qml:274
 #: kirigami_ui/main.qml:281 kirigami_ui/main.qml:828
@@ -95,7 +95,7 @@ msgctxt ""
 "Main menu and global menu actions. Have touchpad and mouse wheel scrolling "
 "adjust velocity instead of scrolling like most other apps."
 msgid "Use scroll as velocity &dial"
-msgstr "استخدم التمرير كسرعة واتصال"
+msgstr "استخدام التمرير كمقياس للسرعة"
 
 #: kirigami_ui/+android/main.qml:276 kirigami_ui/+windows/main.qml:291
 #: kirigami_ui/main.qml:300 kirigami_ui/main.qml:807
@@ -314,7 +314,7 @@ msgstr "اختيار خط النظام"
 
 #: kirigami_ui/EditorToolbar.qml:586
 msgid "No glyphs selected…"
-msgstr "لم يتم تحديد أي رمز..."
+msgstr "لم يتم تحديد أي رمز…"
 
 #: kirigami_ui/EditorToolbar.qml:810
 msgctxt "Velocity {VELOCITY_STEPS}"
@@ -1241,7 +1241,7 @@ msgstr "ملف"
 #: kirigami_ui/main.qml:588
 msgctxt "Main menu and global menu actions"
 msgid "Save &As…"
-msgstr "حفظ باسم..."
+msgstr "حفظ باسم…"
 
 #: kirigami_ui/main.qml:599
 msgctxt "Global menu actions"
@@ -1442,7 +1442,7 @@ msgstr "مساعدة"
 #: kirigami_ui/main.qml:840
 msgctxt "Global menu actions"
 msgid "Report &Bug…"
-msgstr "الإبلاغ عن خطأ..."
+msgstr "الإبلاغ عن خطأ…"
 
 #: kirigami_ui/main.qml:859
 msgctxt "Global menu actions. Load about page. \"About AppName\""
@@ -1633,7 +1633,7 @@ msgstr "لعرض إسقاطات الشاشة، يجب تعيين شاشة واح
 
 #: prompter/Prompter.qml:725
 msgid "Error loading file…"
-msgstr "خطأ في تحميل الملف..."
+msgstr "خطأ في تحميل الملف…"
 
 #: prompter/Prompter.qml:845
 msgid "Press and hold to go back to the start"
@@ -1666,7 +1666,7 @@ msgstr "تم التحميل: %1"
 #: prompter/Prompter.qml:1308 prompter/Prompter.qml:1430
 msgctxt "Saved FILE_NAME"
 msgid "Saved %1"
-msgstr "تم الحفظ: %1"
+msgstr "تم حفظ %1"
 
 #: prompter/Prompter.qml:1310
 msgid "Saved"
@@ -1717,17 +1717,17 @@ msgstr "تنسيق النص المنسق (%1)"
 #: prompter/Prompter.qml:1471 prompter/Prompter.qml:1518
 msgctxt "Editor context menu actions"
 msgid "Fo&nt…"
-msgstr "الخط..."
+msgstr "الخط…"
 
 #: prompter/Prompter.qml:1475 prompter/Prompter.qml:1522
 msgctxt "Editor context menu actions"
 msgid "Co&lor…"
-msgstr "اللون..."
+msgstr "اللون…"
 
 #: prompter/Prompter.qml:1479 prompter/Prompter.qml:1526
 msgctxt "Editor context menu actions"
 msgid "Hi&ghlight…"
-msgstr "تظليل..."
+msgstr "تظليل…"
 
 #: prompter/Prompter.qml:1491
 msgctxt "Editor context menu actions"
