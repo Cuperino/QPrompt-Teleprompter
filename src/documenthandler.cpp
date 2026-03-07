@@ -401,6 +401,31 @@ void DocumentHandler::setSuperscript(bool superscript)
     Q_EMIT verticalAlignmentChanged();
 }
 
+int DocumentHandler::fontCapitalization() const
+{
+    QTextCursor cursor = textCursor();
+    if (cursor.isNull())
+        return QFont::MixedCase;
+    return textCursor().charFormat().font().capitalization();
+}
+
+void DocumentHandler::setFontCapitalization(int capitalization)
+{
+    QTextCharFormat format;
+    format.setFontCapitalization(static_cast<QFont::Capitalization>(capitalization));
+    mergeFormatOnWordOrSelection(format);
+    Q_EMIT fontCapitalizationChanged();
+}
+
+bool DocumentHandler::selectionIsLowerCase() const
+{
+    QTextCursor cursor = textCursor();
+    if (cursor.isNull())
+        return true;
+    const QString text = cursor.selectedText();
+    return text == text.toLower();
+}
+
 bool DocumentHandler::regularMarker() const
 {
     QTextCursor cursor = textCursor();
@@ -875,6 +900,7 @@ void DocumentHandler::reset()
     Q_EMIT textColorChanged();
     Q_EMIT textBackgroundChanged();
     Q_EMIT verticalAlignmentChanged();
+    Q_EMIT fontCapitalizationChanged();
 }
 
 QTextCursor DocumentHandler::textCursor() const

@@ -110,6 +110,8 @@ class DocumentHandler : public QObject
     Q_PROPERTY(bool strike READ strike WRITE setStrike NOTIFY strikeChanged)
     Q_PROPERTY(bool subscript READ subscript WRITE setSubscript NOTIFY verticalAlignmentChanged)
     Q_PROPERTY(bool superscript READ superscript WRITE setSuperscript NOTIFY verticalAlignmentChanged)
+    Q_PROPERTY(int fontCapitalization READ fontCapitalization WRITE setFontCapitalization NOTIFY fontCapitalizationChanged)
+    Q_PROPERTY(bool selectionIsLowerCase READ selectionIsLowerCase NOTIFY fontCapitalizationChanged)
     Q_PROPERTY(bool autoReload READ autoReload WRITE setAutoReload NOTIFY autoReloadChanged)
     Q_PROPERTY(bool comesFromNetwork READ documentComesFromNetwork NOTIFY documentComesFromNetworkChanged)
 
@@ -171,6 +173,11 @@ public:
 
     bool superscript() const;
     void setSuperscript(bool superscript);
+
+    int fontCapitalization() const;
+    void setFontCapitalization(int capitalization);
+
+    bool selectionIsLowerCase() const;
 
     bool autoReload() const;
     void setAutoReload(bool enable);
@@ -257,6 +264,7 @@ Q_SIGNALS:
     void underlineChanged();
     void strikeChanged();
     void verticalAlignmentChanged();
+    void fontCapitalizationChanged();
     void autoReloadChanged();
     void documentComesFromNetworkChanged();
 

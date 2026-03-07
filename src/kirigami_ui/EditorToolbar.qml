@@ -198,7 +198,7 @@ ToolBar {
             }
             ToolButton {
                 id: searchButton
-                visible: !mobileOrSmallScreen || parseInt(viewport.prompter.state)===Prompter.States.Editing && root.width > 408
+                visible: !mobileOrSmallScreen || parseInt(viewport.prompter.state)===Prompter.States.Editing && root.width > 410
                 enabled: parseInt(viewport.prompter.state)===Prompter.States.Editing || parseInt(viewport.prompter.state)===Prompter.States.Standby
                 text: Qt.application.layoutDirection===Qt.LeftToRight ? "\uE847" : "\uE848"
                 contentItem: Loader { sourceComponent: textComponent }
@@ -494,6 +494,29 @@ ToolBar {
                         viewport.prompter.document.superscript = false
                     else
                         viewport.prompter.document.subscript = true
+                }
+            }
+            ToolButton {
+                id: capitalizationButton
+                visible: root.width > 362
+                text: viewport.prompter.document.fontCapitalization === Font.AllUppercase ? "AB" : viewport.prompter.document.fontCapitalization === Font.Capitalize ? "Ab" : "ab"
+                contentItem: Loader { sourceComponent: textComponent }
+                font.family: iconFont.name
+                font.pointSize: 13
+                focusPolicy: Qt.TabFocus
+                checkable: true
+                checked: viewport.prompter.document.fontCapitalization !== Font.MixedCase
+                onClicked: {
+                    if (viewport.prompter.document.fontCapitalization === Font.MixedCase && viewport.prompter.document.selectionIsLowerCase)
+                        viewport.prompter.document.fontCapitalization = Font.Capitalize
+                    else if (viewport.prompter.document.fontCapitalization === Font.MixedCase)
+                        viewport.prompter.document.fontCapitalization = Font.AllLowercase
+                    else if (viewport.prompter.document.fontCapitalization === Font.AllLowercase)
+                        viewport.prompter.document.fontCapitalization = Font.Capitalize
+                    else if (viewport.prompter.document.fontCapitalization === Font.Capitalize)
+                        viewport.prompter.document.fontCapitalization = Font.AllUppercase
+                    else
+                        viewport.prompter.document.fontCapitalization = Font.MixedCase
                 }
             }
             //ToolButton {
@@ -869,7 +892,7 @@ ToolBar {
             }
         }
         RowLayout {
-            visible: root.__translucidBackground && (!root.__isMobile && root.width>(parseInt(viewport.prompter.state)!==Prompter.States.Prompting ? 650 : 1175) || (parseInt(viewport.prompter.state)!==Prompter.States.Editing && parseInt(viewport.prompter.state)!==Prompter.States.Prompting)) // This check isn't optimized in case more viewport.prompter states get added in the future, even tho I think that is unlikely.
+            visible: root.__translucidBackground && (!root.__isMobile && root.width>(parseInt(viewport.prompter.state)!==Prompter.States.Prompting ? 673 : 1175) || (parseInt(viewport.prompter.state)!==Prompter.States.Editing && parseInt(viewport.prompter.state)!==Prompter.States.Prompting)) // This check isn't optimized in case more viewport.prompter states get added in the future, even tho I think that is unlikely.
             ToolButton {
                 readonly property bool value: checked && enabled
                 visible: !root.__isMobile && showSliderIcons
