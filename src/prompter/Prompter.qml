@@ -1640,6 +1640,7 @@ Flickable {
                                 if (isHorizontal) {
                                     let dx = globalPos.x - startMouseX
                                     if (isStart) dx = -dx
+                                    if (imageResizeOverlay.imageAlignment === 2) dx *= 2
                                     let newWidth = Math.max(32, startWidth + dx)
                                     imageResizeOverlay.width = newWidth
                                     imageResizeOverlay.updateAnchoredX(newWidth)
@@ -1702,6 +1703,7 @@ Flickable {
 
                                     if (cornerHandle.isLeft) dx = -dx;
                                     if (cornerHandle.isTop) dy = -dy;
+                                    if (imageResizeOverlay.imageAlignment === 2) dx *= 2;
 
                                     // Use the larger delta to maintain aspect ratio
                                     let delta = Math.abs(dx) > Math.abs(dy) ? dx : dy * imageResizeOverlay.imageAspectRatio;
@@ -1767,6 +1769,7 @@ Flickable {
                                     if (edgeHandle.isHorizontal) {
                                         let dx = globalPos.x - startMouseX;
                                         if (edgeHandle.isStart) dx = -dx;
+                                        if (imageResizeOverlay.imageAlignment === 2) dx *= 2;
                                         let newWidth = Math.max(32, startWidth + dx);
                                         imageResizeOverlay.width = newWidth;
                                         imageResizeOverlay.updateAnchoredX(newWidth);
