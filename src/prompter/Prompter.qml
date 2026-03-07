@@ -1333,6 +1333,8 @@ Flickable {
                     property real imageOriginalWidth: 0
                     property real imageOriginalHeight: 0
                     property real imageAspectRatio: 1
+                    property string imageSource: ""
+                    property bool resizing: false
 
                     function updateOverlayPosition() {
                         if (imagePosition < 0)
@@ -1366,6 +1368,7 @@ Flickable {
                             return;
                         }
                         imagePosition = imgInfo.position;
+                        imageSource = imgInfo.source;
                         imageOriginalWidth = imgRect.width;
                         imageOriginalHeight = imgRect.height;
                         imageAspectRatio = imgRect.width > 0 && imgRect.height > 0 ? imgRect.width / imgRect.height : 1;
@@ -1398,6 +1401,14 @@ Flickable {
                         color: "transparent"
                         border.color: "#4D9EF3"
                         border.width: 2
+                    }
+
+                    Image {
+                        visible: imageResizeOverlay.resizing
+                        source: imageResizeOverlay.imageSource
+                        anchors.fill: parent
+                        fillMode: Image.Stretch
+                        opacity: 0.5
                     }
 
                     // Corner resize handles (aspect-ratio preserving)
@@ -1435,6 +1446,7 @@ Flickable {
                                     startMouseY = globalPos.y;
                                     startWidth = imageResizeOverlay.imageOriginalWidth;
                                     startHeight = imageResizeOverlay.imageOriginalHeight;
+                                    imageResizeOverlay.resizing = true;
                                 }
 
                                 onPositionChanged: function(mouse) {
@@ -1455,6 +1467,7 @@ Flickable {
                                 }
 
                                 onReleased: {
+                                    imageResizeOverlay.resizing = false;
                                     imageResizeOverlay.commitResize(imageResizeOverlay.width, imageResizeOverlay.height);
                                 }
                             }
@@ -1499,6 +1512,7 @@ Flickable {
                                     startMouseY = globalPos.y;
                                     startWidth = imageResizeOverlay.imageOriginalWidth;
                                     startHeight = imageResizeOverlay.imageOriginalHeight;
+                                    imageResizeOverlay.resizing = true;
                                 }
 
                                 onPositionChanged: function(mouse) {
@@ -1515,6 +1529,7 @@ Flickable {
                                 }
 
                                 onReleased: {
+                                    imageResizeOverlay.resizing = false;
                                     imageResizeOverlay.commitResize(imageResizeOverlay.width, imageResizeOverlay.height);
                                 }
                             }
