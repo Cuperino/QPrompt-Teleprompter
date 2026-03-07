@@ -387,6 +387,7 @@ Flickable {
 
     // Toggle prompter state
     function toggle() {
+        imageResizeOverlay.hide()
         // Fix "free" overlay position upon toggling prompter state
         if (overlay.positionState===3)
             overlay.positionState++;
@@ -1318,6 +1319,246 @@ Flickable {
                             if (!root.__isMobile)
                                 editor.toggleEditorFocus(mouse);
                         }
+                    }
+                }
+
+                // Image resize overlay — child of editor so coordinates are in editor-local space
+                Item {
+                    id: imageResizeOverlay
+                    visible: false
+                    parent: editor
+                    z: 10
+
+                    property int imagePosition: -1
+                    property real imageOriginalWidth: 0
+                    property real imageOriginalHeight: 0
+                    property real imageAspectRatio: 1
+
+                    function updateOverlayPosition() {
+                        if (imagePosition < 0)
+                            return;
+                        let imgRect = document.imageRect(imagePosition);
+                        if (Object.keys(imgRect).length === 0) {
+                            hide();
+                            return;
+                        }
+                        // positionToRectangle returns pixel-perfect coords in editor-local space
+                        let cursorRect = editor.positionToRectangle(imagePosition);
+                        x = cursorRect.x;
+                        y = cursorRect.y + imgRect.ascent - imgRect.height;
+                        width = imgRect.width;
+                        height = imgRect.height;
+                    }
+
+                    function tryShow(cursorPos) {
+                        if (parseInt(prompter.state) !== Prompter.States.Editing)
+                            return;
+                        let imgInfo = document.imageAt(cursorPos);
+                        if (Object.keys(imgInfo).length === 0 && cursorPos > 0)
+                            imgInfo = document.imageAt(cursorPos - 1);
+                        if (Object.keys(imgInfo).length === 0) {
+                            hide();
+                            return;
+                        }
+                        let imgRect = document.imageRect(imgInfo.position);
+                        if (Object.keys(imgRect).length === 0) {
+                            hide();
+                            return;
+                        }
+                        imagePosition = imgInfo.position;
+                        imageOriginalWidth = imgRect.width;
+                        imageOriginalHeight = imgRect.height;
+                        imageAspectRatio = imgRect.width > 0 && imgRect.height > 0 ? imgRect.width / imgRect.height : 1;
+
+                        let cursorRect = editor.positionToRectangle(imagePosition);
+                        x = cursorRect.x;
+                        y = cursorRect.y + imgRect.ascent - imgRect.height;
+                        width = imgRect.width;
+                        height = imgRect.height;
+                        visible = true;
+                    }
+
+                    function hide() {
+                        visible = false;
+                        imagePosition = -1;
+                    }
+
+                    function commitResize(newWidth, newHeight) {
+                        if (imagePosition >= 0 && newWidth > 16 && newHeight > 16) {
+                            document.resizeImage(imagePosition, newWidth, newHeight);
+                            imageOriginalWidth = newWidth;
+                            imageOriginalHeight = newHeight;
+                            imageAspectRatio = newWidth / newHeight;
+                            updateOverlayPosition();
+                        }
+                    }
+
+                    Rectangle {
+                        anchors.fill: parent
+                        color: "transparent"
+                        border.color: "#4D9EF3"
+                        border.width: 2
+                    }
+
+                    // Corner resize handles (aspect-ratio preserving)
+                    Repeater {
+                        model: 4
+                        Rectangle {
+                            id: cornerHandle
+                            width: 14
+                            height: 14
+                            radius: 2
+                            color: "#4D9EF3"
+                            border.color: "#FFFFFF"
+                            border.width: 1
+
+                            readonly property bool isLeft: index === 0 || index === 2
+                            readonly property bool isTop: index === 0 || index === 1
+
+                            x: isLeft ? -width / 2 : imageResizeOverlay.width - width / 2
+                            y: isTop ? -height / 2 : imageResizeOverlay.height - height / 2
+
+                            MouseArea {
+                                anchors.fill: parent
+                                anchors.margins: -4
+                                cursorShape: (index === 0 || index === 3) ? Qt.SizeFDiagCursor : Qt.SizeBDiagCursor
+                                preventStealing: true
+
+                                property real startMouseX: 0
+                                property real startMouseY: 0
+                                property real startWidth: 0
+                                property real startHeight: 0
+
+                                onPressed: function(mouse) {
+                                    let globalPos = mapToItem(editor, mouse.x, mouse.y);
+                                    startMouseX = globalPos.x;
+                                    startMouseY = globalPos.y;
+                                    startWidth = imageResizeOverlay.imageOriginalWidth;
+                                    startHeight = imageResizeOverlay.imageOriginalHeight;
+                                }
+
+                                onPositionChanged: function(mouse) {
+                                    let globalPos = mapToItem(editor, mouse.x, mouse.y);
+                                    let dx = globalPos.x - startMouseX;
+                                    let dy = globalPos.y - startMouseY;
+
+                                    if (cornerHandle.isLeft) dx = -dx;
+                                    if (cornerHandle.isTop) dy = -dy;
+
+                                    // Use the larger delta to maintain aspect ratio
+                                    let delta = Math.abs(dx) > Math.abs(dy) ? dx : dy * imageResizeOverlay.imageAspectRatio;
+                                    let newWidth = Math.max(32, startWidth + delta);
+                                    let newHeight = newWidth / imageResizeOverlay.imageAspectRatio;
+
+                                    imageResizeOverlay.width = newWidth;
+                                    imageResizeOverlay.height = newHeight;
+                                }
+
+                                onReleased: {
+                                    imageResizeOverlay.commitResize(imageResizeOverlay.width, imageResizeOverlay.height);
+                                }
+                            }
+                        }
+                    }
+
+                    // Edge resize handles (free resize, no aspect ratio lock)
+                    Repeater {
+                        // 0=left, 1=right, 2=top, 3=bottom
+                        model: 4
+                        Rectangle {
+                            id: edgeHandle
+                            readonly property bool isHorizontal: index <= 1
+                            readonly property bool isStart: index === 0 || index === 2
+
+                            width: isHorizontal ? 6 : Math.min(imageResizeOverlay.width * 0.4, 40)
+                            height: isHorizontal ? Math.min(imageResizeOverlay.height * 0.4, 40) : 6
+                            radius: 3
+                            color: "#4D9EF3"
+                            border.color: "#FFFFFF"
+                            border.width: 1
+
+                            x: isHorizontal ? (isStart ? -width / 2 : imageResizeOverlay.width - width / 2)
+                                            : (imageResizeOverlay.width - width) / 2
+                            y: isHorizontal ? (imageResizeOverlay.height - height) / 2
+                                            : (isStart ? -height / 2 : imageResizeOverlay.height - height / 2)
+
+                            MouseArea {
+                                anchors.fill: parent
+                                anchors.margins: -4
+                                cursorShape: edgeHandle.isHorizontal ? Qt.SizeHorCursor : Qt.SizeVerCursor
+                                preventStealing: true
+
+                                property real startMouseX: 0
+                                property real startMouseY: 0
+                                property real startWidth: 0
+                                property real startHeight: 0
+
+                                onPressed: function(mouse) {
+                                    let globalPos = mapToItem(editor, mouse.x, mouse.y);
+                                    startMouseX = globalPos.x;
+                                    startMouseY = globalPos.y;
+                                    startWidth = imageResizeOverlay.imageOriginalWidth;
+                                    startHeight = imageResizeOverlay.imageOriginalHeight;
+                                }
+
+                                onPositionChanged: function(mouse) {
+                                    let globalPos = mapToItem(editor, mouse.x, mouse.y);
+                                    if (edgeHandle.isHorizontal) {
+                                        let dx = globalPos.x - startMouseX;
+                                        if (edgeHandle.isStart) dx = -dx;
+                                        imageResizeOverlay.width = Math.max(32, startWidth + dx);
+                                    } else {
+                                        let dy = globalPos.y - startMouseY;
+                                        if (edgeHandle.isStart) dy = -dy;
+                                        imageResizeOverlay.height = Math.max(32, startHeight + dy);
+                                    }
+                                }
+
+                                onReleased: {
+                                    imageResizeOverlay.commitResize(imageResizeOverlay.width, imageResizeOverlay.height);
+                                }
+                            }
+                        }
+                    }
+                }
+
+                Connections {
+                    target: editor
+                    function onCursorPositionChanged() {
+                        imageResizeOverlay.tryShow(editor.cursorPosition);
+                    }
+                    function onWidthChanged() {
+                        if (imageResizeOverlay.visible)
+                            imageResizeOverlay.updateOverlayPosition();
+                    }
+                    // Catches line height and paragraph spacing changes
+                    function onImplicitHeightChanged() {
+                        if (imageResizeOverlay.visible)
+                            imageResizeOverlay.updateOverlayPosition();
+                    }
+                }
+
+                Connections {
+                    target: document
+                    function onAlignmentChanged() {
+                        if (imageResizeOverlay.visible)
+                            imageResizeOverlay.tryShow(editor.cursorPosition);
+                    }
+                }
+
+                Connections {
+                    target: prompter
+                    function onFontSizeChanged() {
+                        if (imageResizeOverlay.visible)
+                            imageResizeOverlay.updateOverlayPosition();
+                    }
+                    function onLetterSpacingChanged() {
+                        if (imageResizeOverlay.visible)
+                            imageResizeOverlay.updateOverlayPosition();
+                    }
+                    function onWordSpacingChanged() {
+                        if (imageResizeOverlay.visible)
+                            imageResizeOverlay.updateOverlayPosition();
                     }
                 }
 

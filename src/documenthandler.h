@@ -215,6 +215,10 @@ public:
 
     Q_INVOKABLE bool preventSleep(bool prevent);
 
+    Q_INVOKABLE QVariantMap imageAt(int position) const;
+    Q_INVOKABLE QVariantMap imageRect(int position) const;
+    Q_INVOKABLE void resizeImage(int position, qreal width, qreal height);
+
 #if !(defined(Q_OS_ANDROID) || defined(Q_OS_IOS) || defined(Q_OS_WASM) || defined(Q_OS_WATCHOS))
     Q_INVOKABLE bool showFontDialog();
 #endif

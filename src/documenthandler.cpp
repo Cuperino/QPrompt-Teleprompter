@@ -92,6 +92,9 @@
 #include <QQuickTextDocument>
 #include <QSettings>
 #include <QTextCharFormat>
+#include <QAbstractTextDocumentLayout>
+#include <QImage>
+#include <QTextImageFormat>
 #if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
 #include <QStringConverter>
 #else
@@ -1276,6 +1279,127 @@ Marker DocumentHandler::previousMarker(quint64 position)
     if (markersListDirty())
         parse();
     return _markersModel->previousMarker(position);
+}
+
+QVariantMap DocumentHandler::imageAt(int position) const
+{
+    QVariantMap result;
+    QTextDocument *doc = textDocument();
+    if (!doc)
+        return result;
+
+    QTextCursor cursor(doc);
+    cursor.setPosition(position);
+    cursor.setPosition(position + 1, QTextCursor::KeepAnchor);
+
+    QTextCharFormat fmt = cursor.charFormat();
+    if (fmt.isImageFormat()) {
+        QTextImageFormat imgFmt = fmt.toImageFormat();
+        qreal w = imgFmt.width();
+        qreal h = imgFmt.height();
+        // If dimensions are not set, get the natural size from the resource
+        if (w <= 0 || h <= 0) {
+            QVariant res = doc->resource(QTextDocument::ImageResource, QUrl(imgFmt.name()));
+            if (res.canConvert<QImage>()) {
+                QImage img = res.value<QImage>();
+                if (w <= 0) w = img.width();
+                if (h <= 0) h = img.height();
+            }
+        }
+        result[QStringLiteral("source")] = imgFmt.name();
+        result[QStringLiteral("width")] = w;
+        result[QStringLiteral("height")] = h;
+        result[QStringLiteral("position")] = position;
+    }
+    return result;
+}
+
+QVariantMap DocumentHandler::imageRect(int position) const
+{
+    QVariantMap result;
+    QTextDocument *doc = textDocument();
+    if (!doc)
+        return result;
+
+    QTextCursor cursor(doc);
+    cursor.setPosition(position);
+    cursor.setPosition(position + 1, QTextCursor::KeepAnchor);
+
+    QTextCharFormat fmt = cursor.charFormat();
+    if (!fmt.isImageFormat())
+        return result;
+
+    QTextBlock block = doc->findBlock(position);
+    if (!block.isValid())
+        return result;
+
+    QAbstractTextDocumentLayout *layout = doc->documentLayout();
+    QRectF blockRect = layout->blockBoundingRect(block);
+
+    int posInBlock = position - block.position();
+    QTextLayout *textLayout = block.layout();
+    QTextLine line = textLayout->lineForTextPosition(posInBlock);
+    if (!line.isValid())
+        return result;
+
+    qreal x1 = line.cursorToX(posInBlock);
+    qreal x2 = line.cursorToX(posInBlock + 1);
+    qreal imgWidth = qAbs(x2 - x1);
+
+    // Get the actual image height from the format or the resource, not line.height()
+    // which includes line spacing and may be taller than the image itself.
+    QTextImageFormat imgFmt = fmt.toImageFormat();
+    qreal imgHeight = imgFmt.height();
+    if (imgHeight <= 0) {
+        QVariant res = doc->resource(QTextDocument::ImageResource, QUrl(imgFmt.name()));
+        if (res.canConvert<QImage>()) {
+            QImage img = res.value<QImage>();
+            if (imgFmt.width() > 0 && img.width() > 0)
+                imgHeight = img.height() * (imgWidth / img.width());
+            else
+                imgHeight = img.height();
+        }
+    }
+    // If format has explicit height but we computed width from layout, prefer layout width
+    // but if format also has explicit width, scale the height proportionally
+    if (imgHeight > 0 && imgFmt.width() > 0 && qAbs(imgFmt.width() - imgWidth) > 1)
+        imgHeight = imgHeight * (imgWidth / imgFmt.width());
+
+    // If we still don't have a valid height, fall back to line height
+    if (imgHeight <= 0)
+        imgHeight = line.height();
+
+    // cursorToX returns x relative to the line origin; add line.x() to get block-relative coords
+    qreal lineTop = blockRect.y() + line.y();
+    // Inline images are baseline-aligned: the image bottom sits at the line's ascent
+    qreal imgY = lineTop + line.ascent() - imgHeight;
+
+    result[QStringLiteral("x")] = blockRect.x() + line.x() + qMin(x1, x2);
+    result[QStringLiteral("y")] = imgY;
+    result[QStringLiteral("width")] = imgWidth;
+    result[QStringLiteral("height")] = imgHeight;
+    result[QStringLiteral("ascent")] = line.ascent();
+    return result;
+}
+
+void DocumentHandler::resizeImage(int position, qreal width, qreal height)
+{
+    QTextDocument *doc = textDocument();
+    if (!doc)
+        return;
+
+    QTextCursor cursor(doc);
+    cursor.setPosition(position);
+    cursor.setPosition(position + 1, QTextCursor::KeepAnchor);
+
+    QTextCharFormat fmt = cursor.charFormat();
+    if (!fmt.isImageFormat())
+        return;
+
+    QTextImageFormat imgFmt = fmt.toImageFormat();
+    imgFmt.setWidth(width);
+    imgFmt.setHeight(height);
+    cursor.setCharFormat(imgFmt);
 }
 
 bool DocumentHandler::preventSleep(bool prevent)
