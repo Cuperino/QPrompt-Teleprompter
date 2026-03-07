@@ -73,8 +73,9 @@
 
 #include <vector>
 #if defined(Q_OS_ANDROID)
-#include <QAndroidJniObject>
-#include <QtAndroid>
+#include <QJniObject>
+#include <QCoreApplication>
+#include <QNativeInterface>
 #endif
 #if defined(Q_OS_ANDROID) || defined(Q_OS_IOS) || defined(Q_OS_WASM) || defined(Q_OS_WATCHOS) || defined(Q_OS_QNX)
 #include <QGuiApplication>
@@ -814,10 +815,8 @@ void DocumentHandler::saveAs(const QUrl &fileUrl)
         return;
     _fileSystemWatcher->blockSignals(true);
 #ifdef Q_OS_ANDROID
-    // https://developer.android.com/reference/android/Manifest.permission
-    const QStringList permissions = QStringList("android.permission.WRITE_EXTERNAL_STORAGE");
-    const int milisecondTimeoutWait = 120000;
-    QtAndroid::PermissionResultMap result = QtAndroid::requestPermissionsSync(permissions, milisecondTimeoutWait);
+    // On modern Android (API 30+), WRITE_EXTERNAL_STORAGE is no longer needed for app-scoped storage.
+    // Keeping this block for content URI path handling.
     QString filePath = fileUrl.toString();
     QFile file(filePath);
     const bool isHtml = true;
@@ -1282,56 +1281,27 @@ Marker DocumentHandler::previousMarker(quint64 position)
 bool DocumentHandler::preventSleep(bool prevent)
 {
 #if defined(Q_OS_ANDROID)
-    // The following code is commented out because, even tho it's technically correct, it makes QPrompt to crash on user interaction and during automatic
-    // state switching, depending on which flag is set.
-//     // Use Android Java wrapper to set flag that prevents screen from turning off.
-//
-//     // Native type list and locations:
-//     // public interface WindowManager
-//     // public static class WindowManager.LayoutParams
-//     // public abstract class Window // android.view.Window
-//
-//     // Code to wrap:
-//     // import android.view.WindowManager;
-//     // getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
-//     // getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
-//
-//     qDebug() << "Attempt to prevent sleep.";
-//     // Get pointer object to main/current Android activity.
-//     QAndroidJniObject activity = QAndroidJniObject::callStaticObjectMethod("org/qtproject/qt5/android/QtNative", "activity", "()Landroid/app/Activity;");
-//     if (activity.isValid()) {
-//         // Get window pointer object from activity.
-//         QAndroidJniObject window = activity.callObjectMethod("getWindow", "()Landroid/view/Window;");
-//         if (window.isValid()) {
-//             // Get flags to be toggled
-//             const jint dimFlag = QAndroidJniObject::getStaticField<jint>("org/qtproject/qt5/android/view/WindowManager/LayoutParams", "FLAG_DIM_BEHIND"), //
-//             2
-//                        //blurFlag = QAndroidJniObject::getStaticField<jint>("org/qtproject/qt5/android/view/WindowManager/LayoutParams", "FLAG_BLUR_BEHIND"),
-//                        // 4 screenFlag = QAndroidJniObject::getStaticField<jint>("org/qtproject/qt5/android/view/WindowManager/LayoutParams",
-//                        "FLAG_KEEP_SCREEN_ON"); // 128
-//             if (prevent) {
-//                 // Set the flag by passing integer argument to void addFlags method.
-//                 window.callMethod<void>("addFlags", "(II)V", dimFlag, screenFLag);
-//                 qDebug() << "Added window flags.";
-//             }
-//             else {
-//                 // Unset the flags.
-//                 window.callMethod<void>("clearFlags", "(II)V", dimFlag, screenFlag);
-//                 qDebug() << "Removed window flags.";
-//             }
-//         }
-//         else
-//             qDebug() << "Window is not valid.";
-//     }
-//     else
-//         qDebug() << "Activity is not valid.";
-//     qDebug() << "End: Attempt to prevent sleep";
-//     return prevent;
+    // Use Qt 6 JNI API to toggle FLAG_KEEP_SCREEN_ON on the Android window.
+    // This must run on the Android UI thread.
+    const jint FLAG_KEEP_SCREEN_ON = 128;
+    QNativeInterface::QAndroidApplication::runOnAndroidMainThread([prevent, FLAG_KEEP_SCREEN_ON]() {
+        QJniObject activity = QNativeInterface::QAndroidApplication::context();
+        if (activity.isValid()) {
+            QJniObject window = activity.callObjectMethod("getWindow", "()Landroid/view/Window;");
+            if (window.isValid()) {
+                if (prevent)
+                    window.callMethod<void>("addFlags", "(I)V", FLAG_KEEP_SCREEN_ON);
+                else
+                    window.callMethod<void>("clearFlags", "(I)V", FLAG_KEEP_SCREEN_ON);
+            }
+        }
+    });
+    return prevent;
 #elif defined(Q_OS_IOS)
     // To be implemented...
-#endif
-    // Not implemented for this operating system, always return false.
-    // Using "prevent" in fallacy statement to clear unused variable warnings. There's probably a better way of implementing this in which this method
-    // doesn't get compiled. Nevertheless, the QML layer needs something to invoke.
     return false & prevent;
+#else
+    // Not implemented for this operating system.
+    return false & prevent;
+#endif
 }
