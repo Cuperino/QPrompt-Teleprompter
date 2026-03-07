@@ -89,7 +89,7 @@ void MarkersModel::removeMarker(int row)
 
 void MarkersModel::clearMarkers()
 {
-    beginRemoveRows(QModelIndex(), 0, rowCount());
+    beginRemoveRows(QModelIndex(), 0, rowCount() - 1);
     this->resetInternalData();
     endRemoveRows();
 }
