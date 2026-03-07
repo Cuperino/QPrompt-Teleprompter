@@ -1335,6 +1335,10 @@ Flickable {
                     property real imageAspectRatio: 1
                     property string imageSource: ""
                     property bool resizing: false
+                    // 0=left/justify, 1=right, 2=center
+                    property int imageAlignment: 0
+                    // Anchor x position (left edge for left, right edge for right, center for center)
+                    property real anchorX: 0
 
                     function updateOverlayPosition() {
                         if (imagePosition < 0)
@@ -1344,12 +1348,18 @@ Flickable {
                             hide();
                             return;
                         }
-                        // positionToRectangle returns pixel-perfect coords in editor-local space
+                        imageAlignment = imgRect.alignment;
                         let cursorRect = editor.positionToRectangle(imagePosition);
                         x = cursorRect.x;
                         y = cursorRect.y + imgRect.ascent - imgRect.height;
                         width = imgRect.width;
                         height = imgRect.height;
+                        if (imageAlignment === 1)
+                            anchorX = x + width;
+                        else if (imageAlignment === 2)
+                            anchorX = x + width / 2;
+                        else
+                            anchorX = x;
                     }
 
                     function tryShow(cursorPos) {
@@ -1369,6 +1379,7 @@ Flickable {
                         }
                         imagePosition = imgInfo.position;
                         imageSource = imgInfo.source;
+                        imageAlignment = imgRect.alignment;
                         imageOriginalWidth = imgRect.width;
                         imageOriginalHeight = imgRect.height;
                         imageAspectRatio = imgRect.width > 0 && imgRect.height > 0 ? imgRect.width / imgRect.height : 1;
@@ -1378,12 +1389,27 @@ Flickable {
                         y = cursorRect.y + imgRect.ascent - imgRect.height;
                         width = imgRect.width;
                         height = imgRect.height;
+                        // Store the anchor point based on alignment
+                        if (imageAlignment === 1) // right
+                            anchorX = x + width;
+                        else if (imageAlignment === 2) // center
+                            anchorX = x + width / 2;
+                        else // left/justify
+                            anchorX = x;
                         visible = true;
                     }
 
                     function hide() {
                         visible = false;
                         imagePosition = -1;
+                    }
+
+                    function updateAnchoredX(newWidth) {
+                        if (imageAlignment === 1) // right
+                            x = anchorX - newWidth;
+                        else if (imageAlignment === 2) // center
+                            x = anchorX - newWidth / 2;
+                        // left/justify: x stays at anchorX (no change needed)
                     }
 
                     function commitResize(newWidth, newHeight) {
@@ -1464,6 +1490,7 @@ Flickable {
 
                                     imageResizeOverlay.width = newWidth;
                                     imageResizeOverlay.height = newHeight;
+                                    imageResizeOverlay.updateAnchoredX(newWidth);
                                 }
 
                                 onReleased: {
@@ -1520,7 +1547,9 @@ Flickable {
                                     if (edgeHandle.isHorizontal) {
                                         let dx = globalPos.x - startMouseX;
                                         if (edgeHandle.isStart) dx = -dx;
-                                        imageResizeOverlay.width = Math.max(32, startWidth + dx);
+                                        let newWidth = Math.max(32, startWidth + dx);
+                                        imageResizeOverlay.width = newWidth;
+                                        imageResizeOverlay.updateAnchoredX(newWidth);
                                     } else {
                                         let dy = globalPos.y - startMouseY;
                                         if (edgeHandle.isStart) dy = -dy;

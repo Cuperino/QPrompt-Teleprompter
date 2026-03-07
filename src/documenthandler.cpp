@@ -1374,11 +1374,19 @@ QVariantMap DocumentHandler::imageRect(int position) const
     // Inline images are baseline-aligned: the image bottom sits at the line's ascent
     qreal imgY = lineTop + line.ascent() - imgHeight;
 
+    Qt::Alignment blockAlign = block.blockFormat().alignment();
+    int align = 0; // 0=left, 1=right, 2=center
+    if (blockAlign & Qt::AlignRight)
+        align = 1;
+    else if (blockAlign & Qt::AlignHCenter)
+        align = 2;
+
     result[QStringLiteral("x")] = blockRect.x() + line.x() + qMin(x1, x2);
     result[QStringLiteral("y")] = imgY;
     result[QStringLiteral("width")] = imgWidth;
     result[QStringLiteral("height")] = imgHeight;
     result[QStringLiteral("ascent")] = line.ascent();
+    result[QStringLiteral("alignment")] = align;
     return result;
 }
 
