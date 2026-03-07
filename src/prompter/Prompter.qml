@@ -1277,21 +1277,51 @@ Flickable {
                     id: dragTarget
                     property alias dropProxy: dragTarget
                     property bool droppable: false
+                    property bool internalDrag: false
+                    property int dragSelectionStart: -1
+                    property int dragSelectionEnd: -1
                     anchors.fill: parent
                     onPositionChanged: {
                         if (drag.hasHtml || drag.hasText)
                             dragTarget.droppable = true
                         else
                             dragTarget.droppable = false
+                        // Update drop position indicator without changing the selection
+                        const pos = editor.positionAt(drag.x, drag.y)
+                        const rect = editor.positionToRectangle(pos)
+                        dropCursorIndicator.x = rect.x
+                        dropCursorIndicator.y = rect.y
+                        dropCursorIndicator.height = rect.height
                     }
-                    onDropped: {
+                    onDropped: (drop) => {
                         const position = editor.positionAt(drop.x, drop.y)
-                        if (drop.hasHtml) {
-                            const filteredHtml = document.filterHtml(drop.html, false)
-                            editor.insert(position, filteredHtml)
+                        if (dragTarget.internalDrag) {
+                            const selStart = dragTarget.dragSelectionStart
+                            const selEnd = dragTarget.dragSelectionEnd
+                            if (position >= selStart && position <= selEnd) {
+                                drop.accept()
+                                return
+                            }
+                            if (drop.proposedAction === Qt.MoveAction) {
+                                const endPos = document.moveText(selStart, selEnd, position)
+                                editor.cursorPosition = endPos
+                                drop.accept(Qt.MoveAction)
+                            } else {
+                                if (drop.hasHtml)
+                                    editor.insert(position, document.filterHtml(drop.html, false))
+                                else if (drop.hasText)
+                                    editor.insert(position, drop.text)
+                                editor.cursorPosition = position
+                                drop.accept(Qt.CopyAction)
+                            }
+                        } else {
+                            if (drop.hasHtml) {
+                                const filteredHtml = document.filterHtml(drop.html, false)
+                                editor.insert(position, filteredHtml)
+                            }
+                            else if (drop.hasText)
+                                editor.insert(position, drop.text)
                         }
-                        else if (drop.hasText)
-                            editor.insert(position, drop.text)
                     }
                     MouseArea {
                         acceptedButtons: Qt.RightButton
@@ -1311,13 +1341,101 @@ Flickable {
                         id: limitedMouse
                         enabled: false
                         acceptedButtons: Qt.LeftButton
-                        cursorShape: dragTarget.containsDrag ? (dragTarget.droppable ? Qt.DragCopyCursor : Qt.ForbiddenCursor) : Qt.IBeamCursor
+                        cursorShape: dragTarget.containsDrag ? (dragTarget.droppable ? Qt.DragMoveCursor : Qt.ForbiddenCursor) : Qt.IBeamCursor
                         anchors.fill: parent
                         scrollGestureEnabled: false
                         onClicked: if (editor.activeFocus) editor.cursorPosition = editor.positionAt(mouseX, mouseY);
                         onDoubleClicked: (mouse) => {
                             if (!root.__isMobile)
                                 editor.toggleEditorFocus(mouse);
+                        }
+                    }
+
+                    MouseArea {
+                        id: textDragArea
+                        anchors.fill: parent
+                        acceptedButtons: Qt.LeftButton
+                        preventStealing: true
+                        scrollGestureEnabled: false
+
+                        property bool potentialDrag: false
+                        property bool pressedOnImage: false
+                        property real pressX: 0
+                        property real pressY: 0
+
+                        function imageAtPos(pos) {
+                            let imgInfo = document.imageAt(pos)
+                            if (Object.keys(imgInfo).length === 0 && pos > 0)
+                                imgInfo = document.imageAt(pos - 1)
+                            return Object.keys(imgInfo).length > 0 ? imgInfo : null
+                        }
+
+                        onPressed: (mouse) => {
+                            if (parseInt(prompter.state) !== Prompter.States.Editing) {
+                                mouse.accepted = false
+                                return
+                            }
+                            const pos = editor.positionAt(mouse.x, mouse.y)
+                            if (editor.selectionStart !== editor.selectionEnd
+                                    && pos >= editor.selectionStart
+                                    && pos < editor.selectionEnd) {
+                                potentialDrag = true
+                                pressedOnImage = false
+                                pressX = mouse.x
+                                pressY = mouse.y
+                            } else if (imageAtPos(pos)) {
+                                potentialDrag = true
+                                pressedOnImage = true
+                                pressX = mouse.x
+                                pressY = mouse.y
+                            } else {
+                                mouse.accepted = false
+                            }
+                        }
+
+                        onPositionChanged: (mouse) => {
+                            if (!potentialDrag)
+                                return
+                            const dx = mouse.x - pressX
+                            const dy = mouse.y - pressY
+                            if (dx * dx + dy * dy > 64) {
+                                potentialDrag = false
+                                if (pressedOnImage) {
+                                    const pos = editor.positionAt(pressX, pressY)
+                                    const imgInfo = imageAtPos(pos)
+                                    if (imgInfo) {
+                                        const imgPos = imgInfo.position
+                                        if (editor.selectionStart !== editor.selectionEnd
+                                                && imgPos >= editor.selectionStart
+                                                && imgPos < editor.selectionEnd) {
+                                            dragTarget.dragSelectionStart = editor.selectionStart
+                                            dragTarget.dragSelectionEnd = editor.selectionEnd
+                                            dragTarget.internalDrag = true
+                                            document.startTextDrag()
+                                        } else {
+                                            dragTarget.dragSelectionStart = imgPos
+                                            dragTarget.dragSelectionEnd = imgPos + 1
+                                            dragTarget.internalDrag = true
+                                            document.startRangeDrag(imgPos, imgPos + 1)
+                                        }
+                                        dragTarget.internalDrag = false
+                                    }
+                                } else {
+                                    dragTarget.internalDrag = true
+                                    dragTarget.dragSelectionStart = editor.selectionStart
+                                    dragTarget.dragSelectionEnd = editor.selectionEnd
+                                    document.startTextDrag()
+                                    dragTarget.internalDrag = false
+                                }
+                            }
+                        }
+
+                        onReleased: (mouse) => {
+                            if (potentialDrag) {
+                                potentialDrag = false
+                                editor.cursorPosition = editor.positionAt(mouse.x, mouse.y)
+                            }
+                            pressedOnImage = false
                         }
                     }
                 }
@@ -1435,6 +1553,107 @@ Flickable {
                         anchors.fill: parent
                         fillMode: Image.Stretch
                         opacity: 0.5
+                    }
+
+                    // Body drag area — allows dragging the image to reposition it
+                    MouseArea {
+                        anchors.fill: parent
+                        anchors.margins: 4
+                        cursorShape: Qt.OpenHandCursor
+                        preventStealing: true
+                        scrollGestureEnabled: false
+
+                        property bool potentialDrag: false
+                        property real pressX: 0
+                        property real pressY: 0
+
+                        onPressed: function(mouse) {
+                            potentialDrag = true
+                            pressX = mouse.x
+                            pressY = mouse.y
+                        }
+
+                        onPositionChanged: function(mouse) {
+                            if (!potentialDrag)
+                                return
+                            const dx = mouse.x - pressX
+                            const dy = mouse.y - pressY
+                            if (dx * dx + dy * dy > 64) {
+                                potentialDrag = false
+                                const imgPos = imageResizeOverlay.imagePosition
+                                // Use full selection if it includes the image
+                                if (editor.selectionStart !== editor.selectionEnd
+                                        && imgPos >= editor.selectionStart
+                                        && imgPos < editor.selectionEnd) {
+                                    dragTarget.dragSelectionStart = editor.selectionStart
+                                    dragTarget.dragSelectionEnd = editor.selectionEnd
+                                    dragTarget.internalDrag = true
+                                    document.startTextDrag()
+                                } else {
+                                    dragTarget.dragSelectionStart = imgPos
+                                    dragTarget.dragSelectionEnd = imgPos + 1
+                                    dragTarget.internalDrag = true
+                                    document.startRangeDrag(imgPos, imgPos + 1)
+                                }
+                                dragTarget.internalDrag = false
+                            }
+                        }
+
+                        onReleased: {
+                            potentialDrag = false
+                        }
+                    }
+
+                    // Full-edge resize zones — allow resizing by dragging anywhere along an edge
+                    Repeater {
+                        // 0=left, 1=right, 2=top, 3=bottom
+                        model: 4
+                        MouseArea {
+                            readonly property bool isHorizontal: index <= 1
+                            readonly property bool isStart: index === 0 || index === 2
+
+                            x: isHorizontal ? (isStart ? -3 : imageResizeOverlay.width - 3) : 0
+                            y: isHorizontal ? 0 : (isStart ? -3 : imageResizeOverlay.height - 3)
+                            width: isHorizontal ? 6 : imageResizeOverlay.width
+                            height: isHorizontal ? imageResizeOverlay.height : 6
+
+                            cursorShape: isHorizontal ? Qt.SizeHorCursor : Qt.SizeVerCursor
+                            preventStealing: true
+
+                            property real startMouseX: 0
+                            property real startMouseY: 0
+                            property real startWidth: 0
+                            property real startHeight: 0
+
+                            onPressed: function(mouse) {
+                                let globalPos = mapToItem(editor, mouse.x, mouse.y)
+                                startMouseX = globalPos.x
+                                startMouseY = globalPos.y
+                                startWidth = imageResizeOverlay.imageOriginalWidth
+                                startHeight = imageResizeOverlay.imageOriginalHeight
+                                imageResizeOverlay.resizing = true
+                            }
+
+                            onPositionChanged: function(mouse) {
+                                let globalPos = mapToItem(editor, mouse.x, mouse.y)
+                                if (isHorizontal) {
+                                    let dx = globalPos.x - startMouseX
+                                    if (isStart) dx = -dx
+                                    let newWidth = Math.max(32, startWidth + dx)
+                                    imageResizeOverlay.width = newWidth
+                                    imageResizeOverlay.updateAnchoredX(newWidth)
+                                } else {
+                                    let dy = globalPos.y - startMouseY
+                                    if (isStart) dy = -dy
+                                    imageResizeOverlay.height = Math.max(32, startHeight + dy)
+                                }
+                            }
+
+                            onReleased: {
+                                imageResizeOverlay.resizing = false
+                                imageResizeOverlay.commitResize(imageResizeOverlay.width, imageResizeOverlay.height)
+                            }
+                        }
                     }
 
                     // Corner resize handles (aspect-ratio preserving)
@@ -1566,10 +1785,29 @@ Flickable {
                     }
                 }
 
+                // Drop position indicator — shows where dragged content will land
+                Rectangle {
+                    id: dropCursorIndicator
+                    parent: editor
+                    visible: dragTarget.containsDrag
+                    width: 2
+                    height: editor.cursorRectangle.height
+                    color: "#4D9EF3"
+                    z: 9
+                }
+
                 Connections {
                     target: editor
                     function onCursorPositionChanged() {
-                        imageResizeOverlay.tryShow(editor.cursorPosition);
+                        if (!dragTarget.internalDrag && !dragTarget.containsDrag) {
+                            if (editor.selectionStart === editor.selectionEnd) {
+                                imageResizeOverlay.tryShow(editor.cursorPosition);
+                            } else if (imageResizeOverlay.visible) {
+                                const imgPos = imageResizeOverlay.imagePosition
+                                if (editor.selectionStart !== imgPos || editor.selectionEnd !== imgPos + 1)
+                                    imageResizeOverlay.hide()
+                            }
+                        }
                     }
                     function onWidthChanged() {
                         if (imageResizeOverlay.visible)
@@ -1697,6 +1935,31 @@ Flickable {
                 }
 
                 Keys.onPressed: function(event) {
+                    // Clipboard operations on the image when the resize overlay is visible
+                    if (imageResizeOverlay.visible && event.modifiers & Qt.ControlModifier
+                            && editor.selectionStart === editor.selectionEnd) {
+                        const imgPos = imageResizeOverlay.imagePosition
+                        if (event.key === Qt.Key_C) {
+                            editor.select(imgPos, imgPos + 1)
+                            editor.copy()
+                            editor.deselect()
+                            event.accepted = true
+                            return
+                        } else if (event.key === Qt.Key_X) {
+                            editor.select(imgPos, imgPos + 1)
+                            editor.cut()
+                            imageResizeOverlay.hide()
+                            event.accepted = true
+                            return
+                        } else if (event.key === Qt.Key_V) {
+                            editor.select(imgPos, imgPos + 1)
+                            document.paste()
+                            imageResizeOverlay.hide()
+                            event.accepted = true
+                            return
+                        }
+                    }
+
                     // Prompter related keys are processed first for faster response times.
                     // Assumption: Editor is focused.
                     if (parseInt(prompter.state) === Prompter.States.Prompting) {

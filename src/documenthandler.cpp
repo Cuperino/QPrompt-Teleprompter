@@ -110,6 +110,8 @@
 #include <QTemporaryFile>
 #include <QTextBlock>
 #include <QTextDocument>
+#include <QDrag>
+#include <QTextDocumentFragment>
 #include <QTimer>
 
 DocumentHandler::DocumentHandler(QObject *parent)
@@ -1055,6 +1057,76 @@ QPoint DocumentHandler::replaceSelected(QString text)
         this->setSelectionEnd(cursor.selectionEnd());
     }
     return QPoint(this->selectionStart(), this->selectionEnd());
+}
+
+QString DocumentHandler::selectedHtml() const
+{
+    QTextCursor cursor = textCursor();
+    if (!cursor.hasSelection())
+        return QString();
+    return cursor.selection().toHtml();
+}
+
+int DocumentHandler::moveText(int fromStart, int fromEnd, int toPosition)
+{
+    QTextDocument *doc = textDocument();
+    if (!doc || fromStart == fromEnd)
+        return toPosition;
+
+    // Don't move if target is within the source range
+    if (toPosition >= fromStart && toPosition <= fromEnd)
+        return toPosition;
+
+    QTextCursor cursor(doc);
+    cursor.beginEditBlock();
+
+    // Select and extract the source fragment
+    cursor.setPosition(fromStart);
+    cursor.setPosition(fromEnd, QTextCursor::KeepAnchor);
+    QTextDocumentFragment fragment = cursor.selection();
+    cursor.removeSelectedText();
+
+    // Adjust target position if it was after the removed text
+    const int adjustedPos = toPosition > fromEnd ? toPosition - (fromEnd - fromStart) : toPosition;
+
+    // Insert at target
+    cursor.setPosition(adjustedPos);
+    cursor.insertFragment(fragment);
+
+    const int endPos = cursor.position();
+    cursor.endEditBlock();
+
+    return endPos;
+}
+
+int DocumentHandler::startTextDrag()
+{
+    QTextCursor cursor = textCursor();
+    if (!cursor.hasSelection())
+        return static_cast<int>(Qt::IgnoreAction);
+    return startRangeDrag(cursor.selectionStart(), cursor.selectionEnd());
+}
+
+int DocumentHandler::startRangeDrag(int start, int end)
+{
+    QTextDocument *doc = textDocument();
+    if (!doc || start >= end)
+        return static_cast<int>(Qt::IgnoreAction);
+
+    QTextCursor cursor(doc);
+    cursor.setPosition(start);
+    cursor.setPosition(end, QTextCursor::KeepAnchor);
+
+    QMimeData *mimeData = new QMimeData;
+    QString plainText = cursor.selectedText();
+    plainText.replace(QChar::ParagraphSeparator, QLatin1Char('\n'));
+    mimeData->setText(plainText);
+    mimeData->setHtml(cursor.selection().toHtml());
+
+    QDrag *drag = new QDrag(this);
+    drag->setMimeData(mimeData);
+
+    return static_cast<int>(drag->exec(Qt::CopyAction | Qt::MoveAction, Qt::MoveAction));
 }
 
 long DocumentHandler::replaceAll(const QString &searchedText, const QString &replacementText, bool regEx)

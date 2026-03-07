@@ -206,6 +206,10 @@ public:
     Q_INVOKABLE void paste();
     Q_INVOKABLE QPoint replaceSelected(QString text);
     Q_INVOKABLE long replaceAll(const QString &searchedText, const QString &replacementText, bool regEx);
+    Q_INVOKABLE QString selectedHtml() const;
+    Q_INVOKABLE int moveText(int fromStart, int fromEnd, int toPosition);
+    Q_INVOKABLE int startTextDrag();
+    Q_INVOKABLE int startRangeDrag(int start, int end);
     Q_INVOKABLE void parse();
     Q_INVOKABLE QString filterHtml(QString html, bool ignoreBlackTextColor);
 
