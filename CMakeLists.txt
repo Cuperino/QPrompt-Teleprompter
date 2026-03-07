@@ -198,11 +198,7 @@ if(NOT ANDROID AND NOT IOS AND NOT WASM)
     )
 endif()
 # Platform specific dependencies
-if(ANDROID)
-    find_package(Qt${QT_VERSION_MAJOR} ${QT_MIN_VERSION} REQUIRED NO_MODULE COMPONENTS
-        AndroidExtras
-    )
-elseif(HAIKU)
+if(HAIKU)
     # Haiku OS icons look nice
     find_package(KF${QT_VERSION_MAJOR} ${KF_MIN_VERSION} REQUIRED COMPONENTS
         IconThemes
