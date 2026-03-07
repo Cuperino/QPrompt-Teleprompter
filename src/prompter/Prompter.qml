@@ -1282,7 +1282,7 @@ Flickable {
                     property int dragSelectionEnd: -1
                     anchors.fill: parent
                     onPositionChanged: {
-                        if (drag.hasHtml || drag.hasText)
+                        if (drag.hasHtml || drag.hasText || drag.hasUrls)
                             dragTarget.droppable = true
                         else
                             dragTarget.droppable = false
@@ -1315,12 +1315,15 @@ Flickable {
                                 drop.accept(Qt.CopyAction)
                             }
                         } else {
-                            if (drop.hasHtml) {
+                            if (drop.hasUrls) {
+                                for (let i = 0; i < drop.urls.length; i++)
+                                    document.insertImageAt(position, drop.urls[i])
+                            } else if (drop.hasHtml) {
                                 const filteredHtml = document.filterHtml(drop.html, false)
-                                editor.insert(position, filteredHtml)
-                            }
-                            else if (drop.hasText)
+                                document.insertHtmlAt(position, filteredHtml)
+                            } else if (drop.hasText) {
                                 editor.insert(position, drop.text)
+                            }
                         }
                     }
                     MouseArea {

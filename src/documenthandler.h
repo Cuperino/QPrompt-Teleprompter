@@ -208,6 +208,7 @@ public:
     Q_INVOKABLE long replaceAll(const QString &searchedText, const QString &replacementText, bool regEx);
     Q_INVOKABLE QString selectedHtml() const;
     Q_INVOKABLE int moveText(int fromStart, int fromEnd, int toPosition);
+    Q_INVOKABLE void insertHtmlAt(int position, const QString &html);
     Q_INVOKABLE int startTextDrag();
     Q_INVOKABLE int startRangeDrag(int start, int end);
     Q_INVOKABLE void parse();
@@ -219,6 +220,7 @@ public:
 
     Q_INVOKABLE bool preventSleep(bool prevent);
 
+    Q_INVOKABLE void insertImageAt(int position, const QUrl &imageUrl);
     Q_INVOKABLE QVariantMap imageAt(int position) const;
     Q_INVOKABLE QVariantMap imageRect(int position) const;
     Q_INVOKABLE void resizeImage(int position, qreal width, qreal height);

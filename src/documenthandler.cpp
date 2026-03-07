@@ -1099,6 +1099,43 @@ int DocumentHandler::moveText(int fromStart, int fromEnd, int toPosition)
     return endPos;
 }
 
+void DocumentHandler::insertHtmlAt(int position, const QString &html)
+{
+    QTextDocument *doc = textDocument();
+    if (!doc)
+        return;
+
+    // Pre-load any images referenced in the HTML so they render inline
+    static QRegularExpression imgSrcRegex(
+        QLatin1String("<img[^>]+src\\s*=\\s*[\"']([^\"']+)[\"']"),
+        QRegularExpression::CaseInsensitiveOption);
+    QRegularExpressionMatchIterator it = imgSrcRegex.globalMatch(html);
+    while (it.hasNext()) {
+        QRegularExpressionMatch match = it.next();
+        const QString src = match.captured(1);
+        const QUrl url(src);
+        if (doc->resource(QTextDocument::ImageResource, url).isValid())
+            continue;
+        QImage image;
+        if (url.isLocalFile())
+            image.load(url.toLocalFile());
+        else if (url.scheme() == QLatin1String("data")) {
+            // Handle data: URIs (e.g. data:image/png;base64,...)
+            const QString dataStr = src.mid(src.indexOf(QLatin1Char(',')) + 1);
+            image.loadFromData(QByteArray::fromBase64(dataStr.toLatin1()));
+        } else if (url.scheme() == QLatin1String("http") || url.scheme() == QLatin1String("https")) {
+            // For remote images, try to load synchronously via the URL
+            image.load(src);
+        }
+        if (!image.isNull())
+            doc->addResource(QTextDocument::ImageResource, url, image);
+    }
+
+    QTextCursor cursor(doc);
+    cursor.setPosition(position);
+    cursor.insertHtml(html);
+}
+
 int DocumentHandler::startTextDrag()
 {
     QTextCursor cursor = textCursor();
@@ -1351,6 +1388,60 @@ Marker DocumentHandler::previousMarker(quint64 position)
     if (markersListDirty())
         parse();
     return _markersModel->previousMarker(position);
+}
+
+void DocumentHandler::insertImageAt(int position, const QUrl &imageUrl)
+{
+    QTextDocument *doc = textDocument();
+    if (!doc)
+        return;
+
+    const QString src = imageUrl.isLocalFile() ? imageUrl.toLocalFile() : imageUrl.toString();
+
+    // Load the image and add it as a resource so it renders
+    QImage image(src);
+    if (image.isNull()) {
+        // QImage can't load remote URLs; download the image first
+        if (!imageUrl.isLocalFile() && (imageUrl.scheme() == QLatin1String("http") || imageUrl.scheme() == QLatin1String("https"))) {
+            auto *nam = new QNetworkAccessManager(this);
+            QNetworkRequest request(imageUrl);
+            request.setAttribute(QNetworkRequest::RedirectPolicyAttribute, true);
+            QNetworkReply *reply = nam->get(request);
+            connect(reply, &QNetworkReply::finished, this, [this, reply, nam, position, imageUrl]() {
+                reply->deleteLater();
+                nam->deleteLater();
+                if (reply->error() != QNetworkReply::NoError)
+                    return;
+                QImage downloadedImage;
+                downloadedImage.loadFromData(reply->readAll());
+                if (downloadedImage.isNull())
+                    return;
+                QTextDocument *doc = textDocument();
+                if (!doc)
+                    return;
+                const QString src = imageUrl.toString();
+                doc->addResource(QTextDocument::ImageResource, imageUrl, downloadedImage);
+                QTextImageFormat imageFormat;
+                imageFormat.setName(src);
+                imageFormat.setWidth(downloadedImage.width());
+                imageFormat.setHeight(downloadedImage.height());
+                QTextCursor cursor(doc);
+                cursor.setPosition(position);
+                cursor.insertImage(imageFormat);
+            });
+        }
+        return;
+    }
+    doc->addResource(QTextDocument::ImageResource, imageUrl, image);
+
+    QTextImageFormat imageFormat;
+    imageFormat.setName(src);
+    imageFormat.setWidth(image.width());
+    imageFormat.setHeight(image.height());
+
+    QTextCursor cursor(doc);
+    cursor.setPosition(position);
+    cursor.insertImage(imageFormat);
 }
 
 QVariantMap DocumentHandler::imageAt(int position) const
