@@ -1606,6 +1606,22 @@ Flickable {
                     }
                 }
 
+                Connections {
+                    target: leftWidthAdjustmentBar
+                    function onPressedChanged() {
+                        if (leftWidthAdjustmentBar.pressed)
+                            imageResizeOverlay.hide();
+                    }
+                }
+
+                Connections {
+                    target: rightWidthAdjustmentBar
+                    function onPressedChanged() {
+                        if (rightWidthAdjustmentBar.pressed)
+                            imageResizeOverlay.hide();
+                    }
+                }
+
                 MouseArea {
                     id: leftWidthAdjustmentBar
                     anchors.top: parent.top
