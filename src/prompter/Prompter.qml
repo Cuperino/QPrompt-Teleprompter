@@ -1470,9 +1470,8 @@ Flickable {
                             return;
                         }
                         imageAlignment = imgRect.alignment;
-                        let cursorRect = editor.positionToRectangle(imagePosition);
-                        x = cursorRect.x;
-                        y = cursorRect.y + imgRect.ascent - imgRect.height;
+                        x = imgRect.x + editor.leftPadding;
+                        y = imgRect.y + editor.topPadding;
                         width = imgRect.width;
                         height = imgRect.height;
                         if (imageAlignment === 1)
@@ -1505,9 +1504,8 @@ Flickable {
                         imageOriginalHeight = imgRect.height;
                         imageAspectRatio = imgRect.width > 0 && imgRect.height > 0 ? imgRect.width / imgRect.height : 1;
 
-                        let cursorRect = editor.positionToRectangle(imagePosition);
-                        x = cursorRect.x;
-                        y = cursorRect.y + imgRect.ascent - imgRect.height;
+                        x = imgRect.x + editor.leftPadding;
+                        y = imgRect.y + editor.topPadding;
                         width = imgRect.width;
                         height = imgRect.height;
                         // Store the anchor point based on alignment
