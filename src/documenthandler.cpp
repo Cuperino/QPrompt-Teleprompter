@@ -75,7 +75,7 @@
 #if defined(Q_OS_ANDROID)
 #include <QJniObject>
 #include <QCoreApplication>
-#include <QNativeInterface>
+#include <qnativeinterface.h>
 #endif
 #if defined(Q_OS_ANDROID) || defined(Q_OS_IOS) || defined(Q_OS_WASM) || defined(Q_OS_WATCHOS) || defined(Q_OS_QNX)
 #include <QGuiApplication>

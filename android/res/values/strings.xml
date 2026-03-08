@@ -1,0 +1,4 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="unsupported_android_version" tools:ignore="UnusedResources">This application requires a newer version of Android.</string>
+</resources>

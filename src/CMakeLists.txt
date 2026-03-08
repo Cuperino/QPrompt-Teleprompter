@@ -342,12 +342,24 @@ set_target_properties(${PROJECT_NAME} PROPERTIES
     MACOSX_BUNDLE TRUE
     WIN32_EXECUTABLE TRUE
     INTERFACE_LINK_LIBRARIES "KF${QT_VERSION_MAJOR}::CoreAddons;KF${QT_VERSION_MAJOR}::Kirigami"
+    QT_ANDROID_PACKAGE_SOURCE_DIR "${CMAKE_SOURCE_DIR}/android"
     QT_QMLCACHEGEN_ARGUMENTS "--only-bytecode"
     # QT_QMLCACHEGEN_ARGUMENTS "--static"  # "--static;--verbose"
     # QT_QMLCACHEGEN_DIRECT_CALLS OFF
     # PLUGIN_TARGET qtlabsplatformplugin inhibits the creation of the backing library, thus headers can't be accessed in direct mode.
     # See issue: https://bugreports.qt.io/browse/QTBUG-117992?focusedId=750577&page=com.atlassian.jira.plugin.system.issuetabpanels%3Acomment-tabpanel#comment-750577
 )
+
+# Qt 6.10+ creates Android executables as MODULE libraries. KDECMakeSettings strips
+# the "lib" prefix from MODULE targets, but androiddeployqt expects it.
+# Also place the binary in BINARY_DIR so it's next to the deployment settings and
+# android-build dir, which Qt Creator requires for consistent path resolution.
+if (ANDROID)
+    set_target_properties(${PROJECT_NAME} PROPERTIES
+        PREFIX "lib"
+        LIBRARY_OUTPUT_DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}"
+    )
+endif()
 
 if (NOT IOS)
     qt_add_resources(${PROJECT_NAME} "fonts"

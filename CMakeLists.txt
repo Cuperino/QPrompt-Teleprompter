@@ -277,10 +277,12 @@ list(APPEND DOCS ${LICENSE_FILE} ${README_FILE} ${DESCRIPTION_FILE} "COPYING.ASS
 
 set(DOC_INSTALL_DIR "share/doc/qprompt")
 
-add_subdirectory(src build)
+add_subdirectory(src)
 
 if (ANDROID)
     configure_file(${ANDROID_PACKAGE_SOURCE_DIR}/version.gradle.in ${CMAKE_BINARY_DIR}/version.gradle)
+    # Also copy to the src subdirectory so the relative path from android-build-*/build.gradle works
+    configure_file(${ANDROID_PACKAGE_SOURCE_DIR}/version.gradle.in ${CMAKE_BINARY_DIR}/src/version.gradle)
 endif()
 
 if (UNIX AND NOT APPLE AND NOT ANDROID)

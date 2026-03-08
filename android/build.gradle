@@ -1,25 +1,27 @@
 buildscript {
     repositories {
         google()
-        jcenter()
+        mavenCentral()
     }
 
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.6.0'
+        //noinspection AndroidGradlePluginVersion
+        classpath 'com.android.tools.build:gradle:8.10.1'
     }
 }
 
 repositories {
     google()
-    jcenter()
+    mavenCentral()
 }
 
-apply plugin: 'com.android.application'
+apply plugin: qtGradlePluginType
 apply from: '../version.gradle'
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar', '*.aar'])
-        api 'com.android.support:support-v4:25.3.1'
+    //noinspection GradleDependency
+    implementation 'androidx.core:core:1.16.0'
 }
 
 def timestamp = (int)(new Date().getTime()/1000)
@@ -29,25 +31,27 @@ android {
      * The following variables:
      * - androidBuildToolsVersion,
      * - androidCompileSdkVersion
-     * - qt5AndroidDir - holds the path to qt android files
+     * - qtAndroidDir - holds the path to qt android files
      *                   needed to build any Qt application
      *                   on Android.
+     * - qtGradlePluginType - whether to build an app or a library
      *
      * are defined in gradle.properties file. This file is
      * updated by QtCreator and androiddeployqt tools.
      * Changing them manually might break the compilation!
      *******************************************************/
 
-    compileSdkVersion androidCompileSdkVersion.toInteger()
-
-    buildToolsVersion androidBuildToolsVersion
+    namespace = androidPackageName
+    compileSdk = 36
+    buildToolsVersion = androidBuildToolsVersion
+    ndkVersion = androidNdkVersion
 
     sourceSets {
         main {
             manifest.srcFile 'AndroidManifest.xml'
-            java.srcDirs = [qt5AndroidDir + '/src', 'src', 'java']
-            aidl.srcDirs = [qt5AndroidDir + '/src', 'src', 'aidl']
-            res.srcDirs = [qt5AndroidDir + '/res', 'res']
+            java.srcDirs = [qtAndroidDir + '/src', 'src', 'java']
+            aidl.srcDirs = [qtAndroidDir + '/src', 'src', 'aidl']
+            res.srcDirs = [qtAndroidDir + '/res', 'res']
             resources.srcDirs = ['resources']
             renderscript.srcDirs = ['src']
             assets.srcDirs = ['assets']
@@ -57,27 +61,28 @@ android {
 
     tasks.withType(JavaCompile) {
         options.incremental = true
+        options.compilerArgs += ['-Xlint:all']
     }
 
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
     }
 
     lintOptions {
-        abortOnError false
+        abortOnError = false
     }
 
-    // Do not compress Qt binary resources file
     aaptOptions {
+        // Do not compress Qt binary resources file
         noCompress 'rcc'
-        ignoreAssetsPattern '!<dir>ECM:!<dir>aclocal:!<dir>doc'
     }
 
     defaultConfig {
         resConfig "en"
-        minSdkVersion = qtMinSdkVersion
-        targetSdkVersion = qtTargetSdkVersion
+        minSdkVersion qtMinSdkVersion
+        targetSdkVersion qtTargetSdkVersion
+        ndk.abiFilters = qtTargetAbiList.split(",")
         applicationId "com.cuperino.qprompt"
         versionCode timestamp
         versionName projectVersionFull
