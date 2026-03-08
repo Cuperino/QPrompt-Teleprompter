@@ -12,6 +12,12 @@
     </array>
 
     <array name="qt_libs">
+        <!-- Load libomp before the main library; Kirigami links OpenMP for
+             palette generation and the dependency propagates to the app binary. -->
+        <item>arm64-v8a;omp</item>
+        <item>armeabi-v7a;omp</item>
+        <item>x86_64;omp</item>
+        <item>x86;omp</item>
         <!-- %%INSERT_QT_LIBS%% -->
     </array>
 
