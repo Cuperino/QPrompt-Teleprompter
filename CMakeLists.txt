@@ -161,6 +161,19 @@ if(WIN32 OR APPLE OR ANDROID OR WASM OR USE_GIT_DEPENDENCIES_ONLY)
     else()
         set(KF_IGNORE_PLATFORM_CHECK ON)
     endif()
+    if(ANDROID)
+        # Prevent Kirigami from finding and using OpenMP on Android.
+        # OpenMP is optional (accelerates palette generation in ImageColors)
+        # but libomp.so cannot be loaded on Android, causing a startup crash.
+        # Pre-set cache variables so FindOpenMP's checks (which use
+        # set(... CACHE ...) without FORCE) cannot overwrite them.
+        set(CMAKE_DISABLE_FIND_PACKAGE_OpenMP ON CACHE BOOL "" FORCE)
+        set(OpenMP_FOUND FALSE CACHE BOOL "" FORCE)
+        set(OpenMP_CXX_FOUND FALSE CACHE BOOL "" FORCE)
+        set(OpenMP_C_FOUND FALSE CACHE BOOL "" FORCE)
+        set(OpenMP_CXX_FLAGS "" CACHE STRING "" FORCE)
+        set(OpenMP_C_FLAGS "" CACHE STRING "" FORCE)
+    endif()
     FetchContent_Declare(
       Kirigami
       GIT_REPOSITORY "${CMAKE_SOURCE_DIR}/3rdparty/kirigami"
@@ -218,6 +231,7 @@ else()
     # KDMacTouchBar (Mac only)
     if(APPLE AND NOT IOS)
         if (NOT EXISTS "${PROJECT_SOURCE_DIR}/3rdparty/KDMacTouchBar/CMakeLists.txt")
+
             message(FATAL_ERROR "KDMacTouchBar was not downloaded. GIT_SUBMODULE was turned off or failed.")
         endif()
         # set(CMAKE_INSTALL_PREFIX ${PROJECT_SOURCE_DIR}/install/usr/)
