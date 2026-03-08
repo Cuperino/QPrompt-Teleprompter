@@ -218,6 +218,7 @@ else()
     # KDMacTouchBar (Mac only)
     if(APPLE AND NOT IOS)
         if (NOT EXISTS "${PROJECT_SOURCE_DIR}/3rdparty/KDMacTouchBar/CMakeLists.txt")
+
             message(FATAL_ERROR "KDMacTouchBar was not downloaded. GIT_SUBMODULE was turned off or failed.")
         endif()
         # set(CMAKE_INSTALL_PREFIX ${PROJECT_SOURCE_DIR}/install/usr/)

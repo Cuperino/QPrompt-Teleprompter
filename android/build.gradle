@@ -90,6 +90,9 @@ android {
     }
 
     packagingOptions {
+        // Force native library extraction so dlopen can resolve all DT_NEEDED
+        // entries (e.g. libomp.so required by Kirigami's OpenMP usage).
+        jniLibs.useLegacyPackaging true
         exclude 'lib/*/*RemoteObjects*'
         exclude 'lib/*/*_imageformats_qico_*'
         exclude 'lib/*/*_imageformats_qicns_*'

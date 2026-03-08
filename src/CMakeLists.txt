@@ -343,6 +343,7 @@ set_target_properties(${PROJECT_NAME} PROPERTIES
     WIN32_EXECUTABLE TRUE
     INTERFACE_LINK_LIBRARIES "KF${QT_VERSION_MAJOR}::CoreAddons;KF${QT_VERSION_MAJOR}::Kirigami"
     QT_ANDROID_PACKAGE_SOURCE_DIR "${CMAKE_SOURCE_DIR}/android"
+    QT_ANDROID_PACKAGE_NAME "com.cuperino.qprompt"
     QT_QMLCACHEGEN_ARGUMENTS "--only-bytecode"
     # QT_QMLCACHEGEN_ARGUMENTS "--static"  # "--static;--verbose"
     # QT_QMLCACHEGEN_DIRECT_CALLS OFF
@@ -361,27 +362,20 @@ if (ANDROID)
     )
     # Bundle libomp.so from the NDK. Kirigami uses OpenMP for palette generation
     # and its dependency propagates to the app binary when statically linked.
-    # Map Android ABI to the NDK's architecture directory name.
-    set(_omp_arch)
-    if(ANDROID_ABI STREQUAL "arm64-v8a")
-        set(_omp_arch "aarch64")
-    elseif(ANDROID_ABI STREQUAL "armeabi-v7a")
-        set(_omp_arch "arm")
-    elseif(ANDROID_ABI STREQUAL "x86_64")
-        set(_omp_arch "x86_64")
-    elseif(ANDROID_ABI STREQUAL "x86")
-        set(_omp_arch "i386")
-    endif()
-    if(_omp_arch)
-        file(GLOB_RECURSE _libomp_path
-            "${CMAKE_ANDROID_NDK}/toolchains/llvm/prebuilt/*/lib/clang/*/lib/linux/${_omp_arch}/libomp.so"
+    # Use the compiler's own resource directory to find libomp.so reliably.
+    execute_process(
+        COMMAND ${CMAKE_CXX_COMPILER} --print-file-name=libomp.so
+        OUTPUT_VARIABLE _libomp_path
+        OUTPUT_STRIP_TRAILING_WHITESPACE
+    )
+    message(STATUS "libomp.so path: ${_libomp_path}")
+    if(_libomp_path AND NOT _libomp_path STREQUAL "libomp.so" AND EXISTS "${_libomp_path}")
+        set_target_properties(${PROJECT_NAME} PROPERTIES
+            QT_ANDROID_EXTRA_LIBS "${_libomp_path}"
         )
-        if(_libomp_path)
-            list(GET _libomp_path 0 _libomp_path)
-            set_target_properties(${PROJECT_NAME} PROPERTIES
-                QT_ANDROID_EXTRA_LIBS "${_libomp_path}"
-            )
-        endif()
+        message(STATUS "Bundling libomp.so from: ${_libomp_path}")
+    else()
+        message(WARNING "libomp.so not found — app may crash on startup")
     endif()
 endif()
 
