@@ -51,6 +51,7 @@ Kirigami.Page {
     property alias namedMarkerConfiguration: namedMarkerConfiguration
     property alias pointerConfiguration: pointerConfiguration
     property alias obsConfiguration: obsConfiguration
+    property alias velocityIndicatorVisible: velocityIndicator.visible
     property int hideDecorations: 1
 
     // Unused signal. Leaving for reference.
@@ -788,6 +789,202 @@ Kirigami.Page {
             //}
         //}
     }
+    // Middle-click velocity indicator
+    Item {
+        id: velocityIndicator
+        visible: false
+        opacity: 0
+        width: 48
+        height: 48
+        z: 5
+        parent: viewport
+        anchors.centerIn: undefined
+
+        property real originX: 0
+        property real originY: 0
+        property int originalVelocity: 0
+        property bool firstResetDone: false
+
+        Rectangle {
+            anchors.fill: parent
+            radius: height / 2
+            color: "#808080"
+            opacity: 0.2
+            border.color: "#999999"
+            border.width: 3
+        }
+
+        Text {
+            id: velocityText
+            anchors.centerIn: parent
+            text: String(viewport.prompter.__i)
+            color: "#CCC"
+            font.family: velocityFont.name
+            font.pixelSize: 24
+            horizontalAlignment: Text.AlignHCenter
+            verticalAlignment: Text.AlignVCenter
+            transformOrigin: Item.Center
+
+            FontLoader {
+                id: velocityFont
+                source: "../fonts/LibertinusSans-Regular.otf"
+            }
+
+            onTextChanged: {
+                if (velocityIndicator.visible) {
+                    velocityText.scale = 1.2
+                    velocityText.color = "#BBB"
+                    velocityChangeAnim.restart()
+                }
+            }
+
+            ParallelAnimation {
+                id: velocityChangeAnim
+                ScaleAnimator {
+                    target: velocityText
+                    from: 1.2
+                    to: 1.0
+                    duration: Units.LongDuration
+                }
+                ColorAnimation {
+                    target: velocityText
+                    property: "color"
+                    from: "#FFF"
+                    to: "#CCC"
+                    duration: Units.LongDuration
+                }
+            }
+        }
+
+        OpacityAnimator {
+            id: velocityIndicatorFadeOut
+            target: velocityIndicator
+            from: velocityIndicator.opacity
+            to: 0
+            duration: Units.LongDuration
+            onFinished: velocityIndicator.visible = false
+        }
+    }
+
+    MouseArea {
+        id: velocityDragArea
+        z: 5
+        parent: viewport
+        anchors.fill: parent
+        visible: !velocityIndicator.visible
+        acceptedButtons: Qt.MiddleButton | Qt.RightButton
+
+        onPressed: activate(mouse)
+        onPressAndHold: activate(mouse)
+        property bool firstActivate: true
+        function activate(mouse) {
+            if (firstActivate) {
+                if (typeof(showPassiveNotification)!=="undefined")
+                    showPassiveNotification(qsTr("Right click to hide velocity indicator"))
+                firstActivate = false;
+            }
+            if (mouse.button === Qt.MiddleButton && parseInt(viewport.prompter.state) === Prompter.States.Prompting) {
+                if (!velocityIndicator.visible) {
+                    velocityIndicator.originX = mouse.x
+                    velocityIndicator.originY = mouse.y
+                    velocityIndicator.originalVelocity = viewport.prompter.__i
+                    velocityIndicator.x = mouse.x - velocityIndicator.width / 2
+                    velocityIndicator.y = mouse.y - velocityIndicator.height / 2
+                    velocityIndicator.firstResetDone = false
+                    velocityIndicatorFadeOut.stop()
+                    velocityIndicator.visible = true
+                    velocityIndicator.opacity = 1
+                }
+            } else if (mouse.button === Qt.RightButton && velocityIndicator.visible) {
+                velocityIndicator.opacity = velocityIndicator.opacity === 1 ? 0 : 1
+            } else {
+                mouse.accepted = false
+            }
+        }
+    }
+
+    // Full-screen overlay for velocity tracking and dismissal, visible only when indicator is active
+    MouseArea {
+        id: velocityDragOverlay
+        z: 7
+        parent: viewport
+        anchors.fill: parent
+        visible: velocityIndicator.visible
+        hoverEnabled: true
+        acceptedButtons: Qt.LeftButton | Qt.MiddleButton | Qt.RightButton
+        cursorShape: Qt.SizeAllCursor
+
+        QmlUtil {
+            id: velocityCursorUtil
+        }
+
+        function dismiss() {
+            // Warp cursor back to indicator center and restore visibility before hiding
+            var indicatorCenterX = velocityIndicator.x + velocityIndicator.width / 2
+            var indicatorCenterY = velocityIndicator.y + velocityIndicator.height / 2
+            var globalPos = velocityDragOverlay.mapToGlobal(indicatorCenterX, indicatorCenterY)
+            velocityCursorUtil.setCursorPos(globalPos.x, globalPos.y)
+            if (velocityIndicator.firstResetDone)
+                velocityCursorUtil.restoreCursor()
+            velocityIndicatorFadeOut.start()
+        }
+
+        onPositionChanged: (mouse) => {
+            if (pressedButtons)
+                return
+            var deltaX = mouse.x - velocityIndicator.originX
+            var deltaY = mouse.y - velocityIndicator.originY
+            var steps = Math.trunc(deltaY / 20)
+            var needsXReset = Math.abs(deltaX) > 20
+            if (steps !== 0 || needsXReset) {
+                var absSteps = Math.abs(steps)
+                for (var i = 0; i < absSteps; i++) {
+                    if (steps > 0)
+                        viewport.prompter.increaseVelocity(false)
+                    else
+                        viewport.prompter.decreaseVelocity(false)
+                }
+                velocityIndicator.originalVelocity = viewport.prompter.__i
+                if (!velocityIndicator.firstResetDone) {
+                    // First reset: warp cursor to indicator center
+                    var indCenterX = velocityIndicator.x + velocityIndicator.width / 2
+                    var indCenterY = velocityIndicator.y + velocityIndicator.height / 2
+                    var globalPos0 = velocityDragOverlay.mapToGlobal(indCenterX, indCenterY)
+                    velocityCursorUtil.setCursorPos(globalPos0.x, globalPos0.y)
+                    velocityIndicator.originX = indCenterX
+                    velocityIndicator.originY = indCenterY
+                    velocityIndicator.firstResetDone = true
+                    velocityCursorUtil.hideCursor()
+                } else {
+                    // Subsequent resets: warp cursor to page center (Y) and reset X
+                    var pageCenterX = viewport.width / 2
+                    var pageCenterY = steps !== 0 ? viewport.height / 2 : mouse.y
+                    var globalPos = velocityDragOverlay.mapToGlobal(pageCenterX, pageCenterY)
+                    velocityCursorUtil.setCursorPos(globalPos.x, globalPos.y)
+                    velocityIndicator.originX = pageCenterX
+                    if (steps !== 0)
+                        velocityIndicator.originY = pageCenterY
+                }
+            }
+        }
+
+        onPressed: (mouse) => {
+            if (mouse.button === Qt.RightButton)
+                velocityIndicator.opacity = velocityIndicator.opacity === 1 ? 0 : 1
+            else
+                dismiss()
+        }
+    }
+
+    Connections {
+        target: viewport.prompter
+        function onStateChanged() {
+            if (velocityIndicator.visible) {
+                velocityDragOverlay.dismiss()
+            }
+        }
+    }
+
     // The cut off line renders as a solid and doesn't cover the other rectangles to improve performance.
     Rectangle {
         id: prompterCutOffLine

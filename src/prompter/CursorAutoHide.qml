@@ -28,7 +28,7 @@ MouseArea {
     enabled: !root.pageStack.currentItem.editor.activeFocus
     focus: false
     acceptedButtons: Qt.NoButton
-    hoverEnabled: parseInt(root.pageStack.currentItem.prompter.state)===Prompter.States.Prompting
+    hoverEnabled: parseInt(root.pageStack.currentItem.prompter.state)===Prompter.States.Prompting && !root.pageStack.currentItem.velocityIndicatorVisible
     cursorShape: undefined
     onPositionChanged: function (mouse) {
         cursorUtil.restoreCursor();
