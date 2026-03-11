@@ -40,13 +40,13 @@ else()
         systemfontchooserdialog.cpp
     )
 endif()
-if (NOT ANDROID)
+if (NOT ANDROID AND NOT IOS)
     qt_wrap_ui(${PROJECT_NAME}
         qt/systemfontchooserdialog.ui
     )
 endif()
 
-if (NOT ANDROID AND NOT WASM)
+if (NOT ANDROID AND NOT WASM AND NOT IOS)
     set(ICONS_FOLDER ${CMAKE_CURRENT_SOURCE_DIR}/icons/hicolor)
     set(RASTER_ICONS
         ${ICONS_FOLDER}/16-apps-com.cuperino.qprompt.png
@@ -355,7 +355,7 @@ set_target_properties(${PROJECT_NAME} PROPERTIES
 # the "lib" prefix from MODULE targets, but androiddeployqt expects it.
 # Also place the binary in BINARY_DIR so it's next to the deployment settings and
 # android-build dir, which Qt Creator requires for consistent path resolution.
-if (ANDROID)
+if (ANDROID OR IOS)
     set_target_properties(${PROJECT_NAME} PROPERTIES
         PREFIX "lib"
         LIBRARY_OUTPUT_DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}"
@@ -507,6 +507,7 @@ if(APPLE)
         OUTPUT_SCRIPT deploy_script
         ${EXTRA_DEPLOY_QML_APP_SCRIPT_OPTIONS}
         MACOS_BUNDLE_POST_BUILD
+        NO_UNSUPPORTED_PLATFORM_ERROR
     )
 elseif(WIN32)
     qt_generate_deploy_qml_app_script(

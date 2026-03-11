@@ -146,6 +146,7 @@ find_package(Qt${QT_VERSION_MAJOR} ${QT_MIN_VERSION} REQUIRED NO_MODULE COMPONEN
 
 if(ANDROID OR IOS OR WASM)
     set(BUILD_SHARED_LIBS OFF)
+    set(DESKTOP_ENABLED OFF)
 endif()
 
 if(WIN32 OR APPLE OR ANDROID OR WASM OR USE_GIT_DEPENDENCIES_ONLY)
@@ -161,8 +162,11 @@ if(WIN32 OR APPLE OR ANDROID OR WASM OR USE_GIT_DEPENDENCIES_ONLY)
     else()
         set(KF_IGNORE_PLATFORM_CHECK ON)
     endif()
-    if(ANDROID)
-        # Prevent Kirigami from finding and using OpenMP on Android.
+    if(IOS)
+        set(KF_IGNORE_PLATFORM_CHECK ON)
+    endif()
+    if(ANDROID OR IOS)
+        # Prevent Kirigami from finding and using OpenMP on Android and iOS.
         # OpenMP is optional (accelerates palette generation in ImageColors)
         # but libomp.so cannot be loaded on Android, causing a startup crash.
         # Pre-set cache variables so FindOpenMP's checks (which use
