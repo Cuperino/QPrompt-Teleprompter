@@ -342,7 +342,7 @@ set_target_properties(${PROJECT_NAME} PROPERTIES
     OUTPUT_NAME ${OUTPUT_NAME}
     MACOSX_BUNDLE TRUE
     WIN32_EXECUTABLE TRUE
-    INTERFACE_LINK_LIBRARIES "KF${QT_VERSION_MAJOR}::CoreAddons;KF${QT_VERSION_MAJOR}::Kirigami"
+    INTERFACE_LINK_LIBRARIES "KF${QT_VERSION_MAJOR}::Kirigami"
     QT_ANDROID_PACKAGE_SOURCE_DIR "${CMAKE_SOURCE_DIR}/android"
     QT_ANDROID_PACKAGE_NAME "com.cuperino.qprompt"
     QT_QMLCACHEGEN_ARGUMENTS "--only-bytecode"
@@ -397,7 +397,7 @@ qt_add_translations(${PROJECT_NAME} SOURCE_TARGETS ${PROJECT_NAME}
 )
 
 # Libraries
-if (ANDROID OR IOS)
+if (ANDROID)
     target_link_libraries(${PROJECT_NAME} PRIVATE
         Qt${QT_VERSION_MAJOR}::Core
         Qt${QT_VERSION_MAJOR}::Quick
@@ -410,9 +410,14 @@ if (ANDROID OR IOS)
         KF${QT_VERSION_MAJOR}::Kirigami
         Kirigamiplugin
     )
-elseif (WASM)
-    target_compile_options(${PROJECT_NAME} PRIVATE -O3 -flto -sDISABLE_EXCEPTION_THROWING=0 -sDISABLE_EXCEPTION_CATCHING=1)
-    target_link_options(${PROJECT_NAME} PRIVATE -flto -fno-except -Oz -sDISABLE_EXCEPTION_THROWING=0 -sDISABLE_EXCEPTION_CATCHING=1)
+elseif (WASM OR IOS)
+    if (WASM)
+        target_compile_options(${PROJECT_NAME} PRIVATE -O3 -flto -sDISABLE_EXCEPTION_THROWING=0 -sDISABLE_EXCEPTION_CATCHING=1)
+        target_link_options(${PROJECT_NAME} PRIVATE -flto -fno-except -Oz -sDISABLE_EXCEPTION_THROWING=0 -sDISABLE_EXCEPTION_CATCHING=1)
+    else()
+        set(CMAKE_OSX_DEPLOYMENT_TARGET 13.0)
+        set(CMAKE_XCODE_ATTRIBUTE_TARGETED_DEVICE_FAMILY "1,2")
+    endif()
     target_link_libraries(${PROJECT_NAME} PRIVATE
         Qt${QT_VERSION_MAJOR}::Core
         Qt${QT_VERSION_MAJOR}::Quick
@@ -437,7 +442,7 @@ elseif(HAIKU)
         KF${QT_VERSION_MAJOR}::IconThemes
         KF${QT_VERSION_MAJOR}::GlobalAccel
     )
-elseif(WIN32 OR APPLE)
+elseif(WIN32 OR APPLE AND NOT IOS)
     target_link_libraries(${PROJECT_NAME} PRIVATE
         Qt${QT_VERSION_MAJOR}::Core
         Qt${QT_VERSION_MAJOR}::Quick
@@ -483,7 +488,9 @@ execute_process(COMMAND ${CMAKE_PREFIX_PATH}/bin/lconvert -pluralonly ${CMAKE_SO
 # Installation and bundling
 if (APPLE)
     install(TARGETS ${PROJECT_NAME} ${KDE_INSTALL_TARGETS_DEFAULT_ARGS} BUNDLE DESTINATION .)
-    install(TARGETS KF6CoreAddons ${KDE_INSTALL_TARGETS_DEFAULT_ARGS} FRAMEWORK DESTINATION QPrompt.app/Contents/Frameworks)
+    if(NOT IOS)
+        install(TARGETS KF6CoreAddons ${KDE_INSTALL_TARGETS_DEFAULT_ARGS} FRAMEWORK DESTINATION QPrompt.app/Contents/Frameworks)
+    endif()
     install(TARGETS Kirigami ${KDE_INSTALL_TARGETS_DEFAULT_ARGS} FRAMEWORK DESTINATION QPrompt.app/Contents/Frameworks)
     install(DIRECTORY ../build/bin/org DESTINATION QPrompt.app/Contents/Resources/qml)
     install(DIRECTORY ../build/bin/org DESTINATION QPrompt.app/Contents/MacOS/qml)
