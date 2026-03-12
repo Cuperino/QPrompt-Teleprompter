@@ -356,7 +356,7 @@ set_target_properties(${PROJECT_NAME} PROPERTIES
 # the "lib" prefix from MODULE targets, but androiddeployqt expects it.
 # Also place the binary in BINARY_DIR so it's next to the deployment settings and
 # android-build dir, which Qt Creator requires for consistent path resolution.
-if (ANDROID OR IOS)
+if (ANDROID)
     set_target_properties(${PROJECT_NAME} PROPERTIES
         PREFIX "lib"
         LIBRARY_OUTPUT_DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}"
@@ -417,6 +417,7 @@ elseif (WASM OR IOS)
     else()
         set(CMAKE_OSX_DEPLOYMENT_TARGET 13.0)
         set(CMAKE_XCODE_ATTRIBUTE_TARGETED_DEVICE_FAMILY "1,2")
+        set(CMAKE_XCODE_ATTRIBUTE_CODE_SIGN_STYLE "Automatic")
     endif()
     target_link_libraries(${PROJECT_NAME} PRIVATE
         Qt${QT_VERSION_MAJOR}::Core
@@ -500,17 +501,24 @@ elseif (WIN32 OR UNIX)
     install(TARGETS ${PROJECT_NAME} ${KDE_INSTALL_TARGETS_DEFAULT_ARGS})
 endif()
 
-if(APPLE)
+if(APPLE AND NOT IOS)
     set(MACOS_SIGNING_IDENTITY "")
     set(EXTRA_DEPLOY_QML_APP_SCRIPT_OPTIONS)
     set(deploy_tool_options_arg "-always-overwrite -appstore-compliant -sign-for-notarization=${MACOS_SIGNING_IDENTITY}")
     list(APPEND EXTRA_DEPLOY_QML_APP_SCRIPT_OPTIONS DEPLOY_TOOL_OPTIONS ${deploy_tool_options_arg})
+    set(CMAKE_XCODE_ATTRIBUTE_DEVELOPMENT_TEAM "")
     qt_generate_deploy_qml_app_script(
         TARGET ${PROJECT_NAME}
         OUTPUT_SCRIPT deploy_script
         ${EXTRA_DEPLOY_QML_APP_SCRIPT_OPTIONS}
         MACOS_BUNDLE_POST_BUILD
+    )
+elseif(IOS)
+    qt_generate_deploy_qml_app_script(
+        TARGET ${PROJECT_NAME}
+        OUTPUT_SCRIPT deploy_script
         NO_UNSUPPORTED_PLATFORM_ERROR
+        DEPLOY_USER_QML_MODULES_ON_UNSUPPORTED_PLATFORM
     )
 elseif(WIN32)
     qt_generate_deploy_qml_app_script(
