@@ -415,9 +415,12 @@ elseif (WASM OR IOS)
         target_compile_options(${PROJECT_NAME} PRIVATE -O3 -flto -sDISABLE_EXCEPTION_THROWING=0 -sDISABLE_EXCEPTION_CATCHING=1)
         target_link_options(${PROJECT_NAME} PRIVATE -flto -fno-except -Oz -sDISABLE_EXCEPTION_THROWING=0 -sDISABLE_EXCEPTION_CATCHING=1)
     else()
-        set(CMAKE_OSX_DEPLOYMENT_TARGET 13.0)
-        set(CMAKE_XCODE_ATTRIBUTE_TARGETED_DEVICE_FAMILY "1,2")
-        set(CMAKE_XCODE_ATTRIBUTE_CODE_SIGN_STYLE "Automatic")
+        set(CMAKE_OSX_DEPLOYMENT_TARGET 17.0)
+
+        # iOS code signing identity (use "iPhone Developer" for dev builds, "iPhone Distribution" for release)
+        set(IOS_CODE_SIGN_IDENTITY "iPhone Developer" CACHE STRING "iOS code signing identity")
+        set(IOS_ENTITLEMENTS_FILE "${CMAKE_CURRENT_SOURCE_DIR}/ios/QPrompt.entitlements" CACHE FILEPATH "iOS entitlements file")
+        set(IOS_PROVISIONING_PROFILE "" CACHE FILEPATH "Path to iOS provisioning profile (.mobileprovision)")
     endif()
     target_link_libraries(${PROJECT_NAME} PRIVATE
         Qt${QT_VERSION_MAJOR}::Core
@@ -506,7 +509,6 @@ if(APPLE AND NOT IOS)
     set(EXTRA_DEPLOY_QML_APP_SCRIPT_OPTIONS)
     set(deploy_tool_options_arg "-always-overwrite -appstore-compliant -sign-for-notarization=${MACOS_SIGNING_IDENTITY}")
     list(APPEND EXTRA_DEPLOY_QML_APP_SCRIPT_OPTIONS DEPLOY_TOOL_OPTIONS ${deploy_tool_options_arg})
-    set(CMAKE_XCODE_ATTRIBUTE_DEVELOPMENT_TEAM "")
     qt_generate_deploy_qml_app_script(
         TARGET ${PROJECT_NAME}
         OUTPUT_SCRIPT deploy_script
@@ -519,6 +521,28 @@ elseif(IOS)
         OUTPUT_SCRIPT deploy_script
         NO_UNSUPPORTED_PLATFORM_ERROR
         DEPLOY_USER_QML_MODULES_ON_UNSUPPORTED_PLATFORM
+    )
+
+    # Find provisioning profile if not explicitly set
+    if(NOT IOS_PROVISIONING_PROFILE OR IOS_PROVISIONING_PROFILE STREQUAL "")
+        file(GLOB _ios_profiles "$ENV{HOME}/Library/Developer/Xcode/UserData/Provisioning Profiles/*.mobileprovision")
+        if(_ios_profiles)
+            list(GET _ios_profiles 0 IOS_PROVISIONING_PROFILE)
+        endif()
+    endif()
+
+    # Post-build: embed provisioning profile and codesign the app bundle
+    if(IOS_PROVISIONING_PROFILE)
+        add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
+            COMMAND ${CMAKE_COMMAND} -E copy "${IOS_PROVISIONING_PROFILE}" "$<TARGET_BUNDLE_DIR:${PROJECT_NAME}>/embedded.mobileprovision"
+            COMMENT "Embedding provisioning profile into ${PROJECT_NAME}.app"
+        )
+    else()
+        message(WARNING "No iOS provisioning profile found. Set IOS_PROVISIONING_PROFILE to the path of your .mobileprovision file.")
+    endif()
+    add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
+        COMMAND codesign --force --sign "${IOS_CODE_SIGN_IDENTITY}" --entitlements "${IOS_ENTITLEMENTS_FILE}" --timestamp=none --generate-entitlement-der "$<TARGET_BUNDLE_DIR:${PROJECT_NAME}>"
+        COMMENT "Code signing ${PROJECT_NAME}.app for iOS"
     )
 elseif(WIN32)
     qt_generate_deploy_qml_app_script(
