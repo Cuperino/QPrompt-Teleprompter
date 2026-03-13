@@ -29,13 +29,13 @@ MouseArea {
     property int prevY: 0
     cursorShape: pressed ? Qt.ClosedHandCursor : Qt.OpenHandCursor
     onPressed: (mouse) => {
-        if (Qt.platform.os!=="android" && Qt.platform.os!=="wasm") {
+        if (Qt.platform.os!=="android") {
             prevX=mouse.x
             prevY=mouse.y
         }
     }
     onPositionChanged: (mouse) => {
-        if (Qt.platform.os!=="android" && Qt.platform.os!=="wasm") {
+        if (Qt.platform.os!=="android") {
             var deltaX = mouse.x - prevX;
 
             root.x += deltaX;
