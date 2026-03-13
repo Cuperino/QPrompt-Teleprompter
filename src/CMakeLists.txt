@@ -84,6 +84,11 @@ set(qprompt_cpp
     appcontroller.h appcontroller.cpp
     ${qprompt_QM_LOADER}
 )
+if(IOS)
+    list(APPEND qprompt_cpp shakedetector.h shakedetector.mm)
+else()
+    list(APPEND qprompt_cpp shakedetector.h shakedetector.cpp)
+endif()
 
 if (WASM)
     set(qprompt_frontend_sources

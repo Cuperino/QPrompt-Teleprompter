@@ -2264,6 +2264,20 @@ Flickable {
         }
     }
 
+    Connections {
+        target: ShakeDetector
+        function onShakeDetected() {
+            if (editor.activeFocus || imageResizeOverlay.activeFocus)
+                ShakeDetector.showUndoRedoDialog(editor.canUndo, editor.canRedo)
+        }
+        function onUndoRequested() {
+            editor.undo()
+        }
+        function onRedoRequested() {
+            editor.redo()
+        }
+    }
+
     Timer {
         id: delayedStartupActions
         interval: 1
