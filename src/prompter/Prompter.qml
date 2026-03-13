@@ -1387,7 +1387,7 @@ Flickable {
                                 pressedOnImage = false
                                 pressX = mouse.x
                                 pressY = mouse.y
-                            } else if (imageAtPos(pos)) {
+                            } else if (!root.__isMobile && imageAtPos(pos)) {
                                 potentialDrag = true
                                 pressedOnImage = true
                                 pressX = mouse.x
