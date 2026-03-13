@@ -123,7 +123,7 @@ DocumentHandler::DocumentHandler(QObject *parent)
     , _markersModel(nullptr)
 
 {
-#if (defined(Q_OS_MACOS))
+#if (defined(Q_OS_MACOS) or defined(Q_OS_IOS))
     QSettings settings(QCoreApplication::organizationDomain(), QCoreApplication::applicationName());
 #else
     QSettings settings(QCoreApplication::organizationName(), QCoreApplication::applicationName().toLower());
@@ -619,7 +619,7 @@ bool DocumentHandler::autoReload() const
 
 void DocumentHandler::setAutoReload(bool enable)
 {
-#if (defined(Q_OS_MACOS))
+#if (defined(Q_OS_MACOS) or defined(Q_OS_IOS))
     QSettings settings(QCoreApplication::organizationDomain(), QCoreApplication::applicationName());
 #else
     QSettings settings(QCoreApplication::organizationName(), QCoreApplication::applicationName().toLower());
@@ -765,7 +765,7 @@ QString DocumentHandler::import(const QString &fileName, ImportFormat type)
     // else
     // Using LibreOffice for most formats because of its ability to preserve formatting while converting to HTML.
     if (type == ODT || type == DOCX || type == DOC || type == RTF || type == ABW || type == PAGESX || type == PAGES) {
-#if (defined(Q_OS_MACOS))
+#if (defined(Q_OS_MACOS) or defined(Q_OS_IOS))
         QSettings settings(QCoreApplication::organizationDomain(), QCoreApplication::applicationName());
 #else
         QSettings settings(QCoreApplication::organizationName(), QCoreApplication::applicationName().toLower());
