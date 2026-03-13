@@ -782,7 +782,7 @@ ToolBar {
             ToolButton {
                 id: windowStayOnTopButton
                 readonly property bool value: checked && enabled
-                visible: !root.__isMobile && showSliderIcons
+                visible: !root.__isMobile && showSliderIcons && !(Qt.platform.os==="android" || Qt.platform.os==="ios" || Qt.platform.os==="wasm")
                 text: "\uE800"
                 checkable: true
                 checked: false
