@@ -2161,7 +2161,7 @@ Flickable {
             document.load(editor.lastDocument)
             isNewFile = false
             prompter.position = 0
-            if (root.passiveNotifications)
+            if (root.passiveNotifications && !(Qt.platform.os === "ios" || Qt.platform.os === "android" || Qt.platform.os === "wasm"))
                 showPassiveNotification(qsTr("Loaded: %1").arg(editor.lastDocument))
         }
         function open() {
@@ -2179,7 +2179,12 @@ Flickable {
                 networkDialog.open()
         }
         function saveAsDialog() {
-            saveDialog.open(parseInt(root.onDiscard)===Prompter.CloseActions.Quit)
+            if (Qt.platform.os === "ios") {
+                var suggestedName = document.fileName ? document.fileName : "script.html"
+                IosSaveDialog.saveDocument(document.toHtml(), suggestedName)
+            } else {
+                saveDialog.open(parseInt(root.onDiscard)===Prompter.CloseActions.Quit)
+            }
         }
         function saveDialog(quit=false) {
             //document.quitOnSave = quit
@@ -2188,7 +2193,7 @@ Flickable {
                     saveAsDialog()
                 else {
                     document.modified = false
-                    if (Qt.platform.os==="android" || Qt.platform.os==="ios" || visibility===ApplicationWindow.FullScreen) {
+                    if (Qt.platform.os==="android" || visibility===ApplicationWindow.FullScreen) {
                         if (document.isNewFile)
                             showPassiveNotification(qsTr("Saved %1", "Saved FILE_NAME").arg(document.fileUrl))
                         else
@@ -2376,6 +2381,24 @@ Flickable {
                 case Prompter.CloseActions.Network: document.modified = false; document.openFromNetwork(); break;
                 case Prompter.CloseActions.Quit: Qt.quit()
                 //default: Qt.quit();
+            }
+        }
+    }
+
+    Connections {
+        target: IosSaveDialog
+        enabled: Qt.platform.os === "ios"
+        function onAccepted(fileUrl) {
+            document.modified = false
+            document.isNewFile = false
+            editor.lastDocument = document.fileUrl;
+            showPassiveNotification(qsTr("Saved"))
+            switch (parseInt(root.onDiscard)) {
+                case Prompter.CloseActions.LoadGuide: document.loadGuide(); break;
+                case Prompter.CloseActions.LoadNew: document.newDocument(); break;
+                case Prompter.CloseActions.Open: document.open(); break;
+                case Prompter.CloseActions.Network: document.openFromNetwork(); break;
+                case Prompter.CloseActions.Quit: Qt.quit()
             }
         }
     }

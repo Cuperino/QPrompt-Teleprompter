@@ -838,6 +838,14 @@ void DocumentHandler::unblockFileWatcher()
     _fileSystemWatcher->blockSignals(false);
 }
 
+QString DocumentHandler::toHtml() const
+{
+    QTextDocument *doc = textDocument();
+    if (!doc)
+        return QString();
+    return doc->toHtml();
+}
+
 void DocumentHandler::saveAs(const QUrl &fileUrl)
 {
     QTextDocument *doc = textDocument();

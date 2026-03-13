@@ -86,8 +86,10 @@ set(qprompt_cpp
 )
 if(IOS)
     list(APPEND qprompt_cpp shakedetector.h shakedetector.mm)
+    list(APPEND qprompt_cpp iossavedialog.h iossavedialog.mm)
 else()
     list(APPEND qprompt_cpp shakedetector.h shakedetector.cpp)
+    list(APPEND qprompt_cpp iossavedialog.h iossavedialog.cpp)
 endif()
 
 if (WASM)
