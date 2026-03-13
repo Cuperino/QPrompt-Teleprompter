@@ -902,6 +902,9 @@ Kirigami.ApplicationWindow {
     // Right Context Drawer
     contextDrawer: Kirigami.ContextDrawer {
         id: contextDrawer
+        // In Kirigami 6, ContextDrawer no longer auto-discovers page actions.
+        // Explicitly bind to the current page's actions when on the main page.
+        actions: root.pageStack.layers.depth <= 1 && root.pageStack.currentItem ? root.pageStack.currentItem.actions : []
         onOpened: function() {
             cursorAutoHide.reset();
         }
