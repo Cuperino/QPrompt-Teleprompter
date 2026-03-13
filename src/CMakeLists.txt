@@ -426,6 +426,23 @@ elseif (WASM OR IOS)
         set(IOS_CODE_SIGN_IDENTITY "iPhone Developer" CACHE STRING "iOS code signing identity")
         set(IOS_ENTITLEMENTS_FILE "${CMAKE_CURRENT_SOURCE_DIR}/ios/QPrompt.entitlements" CACHE FILEPATH "iOS entitlements file")
         set(IOS_PROVISIONING_PROFILE "" CACHE FILEPATH "Path to iOS provisioning profile (.mobileprovision)")
+
+        # Use custom Info.plist to set display name and app icon references
+        set_target_properties(${PROJECT_NAME} PROPERTIES
+            MACOSX_BUNDLE_INFO_PLIST "${CMAKE_CURRENT_SOURCE_DIR}/ios/Info.plist.in"
+        )
+
+        # Bundle iOS app icon files
+        set(IOS_ICONS_DIR "${CMAKE_CURRENT_SOURCE_DIR}/ios/icons")
+        set(IOS_ICON_FILES
+            ${IOS_ICONS_DIR}/AppIcon120x120.png
+            ${IOS_ICONS_DIR}/AppIcon152x152.png
+            ${IOS_ICONS_DIR}/AppIcon167x167.png
+            ${IOS_ICONS_DIR}/AppIcon180x180.png
+            ${IOS_ICONS_DIR}/AppIcon1024x1024.png
+        )
+        set_source_files_properties(${IOS_ICON_FILES} PROPERTIES MACOSX_PACKAGE_LOCATION Resources)
+        target_sources(${PROJECT_NAME} PRIVATE ${IOS_ICON_FILES})
     endif()
     target_link_libraries(${PROJECT_NAME} PRIVATE
         Qt${QT_VERSION_MAJOR}::Core
