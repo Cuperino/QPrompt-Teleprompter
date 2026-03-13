@@ -1948,7 +1948,8 @@ Flickable {
                     drag.axis: Drag.XAxis
                     drag.smoothed: false
                     drag.minimumX: -editor.x + leftWidthAdjustmentBar.drag.minimumX //prompter.width - editor.x - editor.width - leftWidthAdjustmentBar.drag.maximumX
-                    drag.maximumX: prompter.width - editor.x - parent.width - leftWidthAdjustmentBar.drag.minimumX - 13
+                    readonly property int maxX: prompter.width - editor.x - parent.width - leftWidthAdjustmentBar.drag.minimumX - 13
+                    drag.maximumX: drag.minimumX < maxX ? maxX : drag.minimumX
                     cursorShape: (pressed||drag.active||prompter.dragging) ? Qt.ClosedHandCursor : flicking ? Qt.OpenHandCursor : Qt.OpenHandCursor
                     onEntered: hovered = true
                     onExited: hovered = false
