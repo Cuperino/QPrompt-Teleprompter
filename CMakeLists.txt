@@ -151,7 +151,7 @@ endif()
 
 if(WIN32 OR APPLE OR ANDROID OR WASM OR USE_GIT_DEPENDENCIES_ONLY)
     set(BUILD_TESTING OFF)
-    if(NOT WASM AND NOT IOS)
+    if(NOT WASM)
         FetchContent_Declare(
           CoreAddons
           GIT_REPOSITORY "${CMAKE_SOURCE_DIR}/3rdparty/kcoreaddons"
@@ -160,9 +160,6 @@ if(WIN32 OR APPLE OR ANDROID OR WASM OR USE_GIT_DEPENDENCIES_ONLY)
         )
         FetchContent_MakeAvailable(CoreAddons)
     else()
-        set(KF_IGNORE_PLATFORM_CHECK ON)
-    endif()
-    if(IOS)
         set(KF_IGNORE_PLATFORM_CHECK ON)
     endif()
     if(ANDROID OR IOS)

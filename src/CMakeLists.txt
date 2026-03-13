@@ -155,7 +155,7 @@ set(other_sources
     qt/WindowDragger.qml
 )
 
-if (ANDROID)
+if (ANDROID OR IOS)
 set(image_files
     # Logos
     images/qprompt.png
@@ -448,6 +448,7 @@ elseif (IOS)
         Qt${QT_VERSION_MAJOR}::Svg
         Qt${QT_VERSION_MAJOR}::Qml
         Qt${QT_VERSION_MAJOR}::QuickControls2
+        KF${QT_VERSION_MAJOR}::CoreAddons
         KF${QT_VERSION_MAJOR}::Kirigami
         Kirigamiplugin
     )

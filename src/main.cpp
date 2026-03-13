@@ -1,7 +1,7 @@
 /****************************************************************************
  **
  ** QPrompt
- ** Copyright (C) 2020-2025 Javier O. Cordero Pérez
+ ** Copyright (C) 2020-2026 Javier O. Cordero Pérez
  **
  ** This file is part of QPrompt.
  **
@@ -45,7 +45,7 @@
 #endif
 // #include <KLocalizedContext>
 // #include <KLocalizedString>
-#if !defined Q_OS_WASM && !defined Q_OS_IOS
+#if !defined Q_OS_WASM
 #include <kaboutdata.h>
 #endif
 
@@ -151,8 +151,8 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
     const int currentYear = QDate::currentDate().year();
     QString copyrightYear = QString::number(currentYear);
     QString copyrightStatement1 = QStringLiteral("© 2020 Javier O. Cordero Pérez");
-    QString copyrightStatement2 = QStringLiteral("© 2020-2025 Javier O. Cordero Pérez"); // , copyrightYear);
-#if !defined Q_OS_WASM && !defined Q_OS_IOS
+    QString copyrightStatement2 = QStringLiteral("© 2020-2026 Javier O. Cordero Pérez"); // , copyrightYear);
+#if !defined Q_OS_WASM
     KAboutData aboutData(
         QLatin1String("qprompt"),
         QLatin1String("QPrompt"),
@@ -283,7 +283,7 @@ KirigamiPlugin::getInstance().registerTypes();
     engine.addImportPath(QStringLiteral("../Resources/qml/"));
     // Send context data from C++ to QML
     // engine.rootContext()->setContextObject(new KLocalizedContext(&engine));
-#if !defined Q_OS_WASM && !defined Q_OS_IOS
+#if !defined Q_OS_WASM
     engine.rootContext()->setContextProperty(QStringLiteral("aboutData"), QVariant::fromValue(KAboutData::applicationData()));
 #endif
     if (positionalArguments.length())
