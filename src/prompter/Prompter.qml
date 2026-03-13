@@ -1278,10 +1278,11 @@ Flickable {
                     property alias dropProxy: dragTarget
                     property bool droppable: false
                     property bool internalDrag: false
+                    property bool manualDrag: false
                     property int dragSelectionStart: -1
                     property int dragSelectionEnd: -1
                     anchors.fill: parent
-                    onPositionChanged: {
+                    onPositionChanged: (drag) => {
                         if (drag.hasHtml || drag.hasText || drag.hasUrls)
                             dragTarget.droppable = true
                         else
@@ -1397,6 +1398,14 @@ Flickable {
                         }
 
                         onPositionChanged: (mouse) => {
+                            if (dragTarget.manualDrag) {
+                                const pos = editor.positionAt(mouse.x, mouse.y)
+                                const rect = editor.positionToRectangle(pos)
+                                dropCursorIndicator.x = rect.x
+                                dropCursorIndicator.y = rect.y
+                                dropCursorIndicator.height = rect.height
+                                return
+                            }
                             if (!potentialDrag)
                                 return
                             const dx = mouse.x - pressX
@@ -1413,27 +1422,35 @@ Flickable {
                                                 && imgPos < editor.selectionEnd) {
                                             dragTarget.dragSelectionStart = editor.selectionStart
                                             dragTarget.dragSelectionEnd = editor.selectionEnd
-                                            dragTarget.internalDrag = true
-                                            document.startTextDrag()
                                         } else {
                                             dragTarget.dragSelectionStart = imgPos
                                             dragTarget.dragSelectionEnd = imgPos + 1
-                                            dragTarget.internalDrag = true
-                                            document.startRangeDrag(imgPos, imgPos + 1)
                                         }
-                                        dragTarget.internalDrag = false
                                     }
                                 } else {
-                                    dragTarget.internalDrag = true
                                     dragTarget.dragSelectionStart = editor.selectionStart
                                     dragTarget.dragSelectionEnd = editor.selectionEnd
-                                    document.startTextDrag()
-                                    dragTarget.internalDrag = false
                                 }
+                                dragTarget.manualDrag = true
+                                imageResizeOverlay.hide()
                             }
                         }
 
                         onReleased: (mouse) => {
+                            if (dragTarget.manualDrag) {
+                                dragTarget.manualDrag = false
+                                const position = editor.positionAt(mouse.x, mouse.y)
+                                const selStart = dragTarget.dragSelectionStart
+                                const selEnd = dragTarget.dragSelectionEnd
+                                if (position < selStart || position > selEnd) {
+                                    const endPos = document.moveText(selStart, selEnd, position)
+                                    editor.cursorPosition = endPos
+                                } else {
+                                    editor.cursorPosition = position
+                                }
+                                pressedOnImage = false
+                                return
+                            }
                             if (potentialDrag) {
                                 potentialDrag = false
                                 editor.cursorPosition = editor.positionAt(mouse.x, mouse.y)
@@ -1560,7 +1577,7 @@ Flickable {
                     MouseArea {
                         anchors.fill: parent
                         anchors.margins: 4
-                        cursorShape: Qt.OpenHandCursor
+                        cursorShape: dragTarget.manualDrag ? Qt.ClosedHandCursor : Qt.OpenHandCursor
                         preventStealing: true
                         scrollGestureEnabled: false
 
@@ -1575,6 +1592,15 @@ Flickable {
                         }
 
                         onPositionChanged: function(mouse) {
+                            if (dragTarget.manualDrag) {
+                                const editorPt = mapToItem(editor, mouse.x, mouse.y)
+                                const pos = editor.positionAt(editorPt.x, editorPt.y)
+                                const rect = editor.positionToRectangle(pos)
+                                dropCursorIndicator.x = rect.x
+                                dropCursorIndicator.y = rect.y
+                                dropCursorIndicator.height = rect.height
+                                return
+                            }
                             if (!potentialDrag)
                                 return
                             const dx = mouse.x - pressX
@@ -1582,25 +1608,32 @@ Flickable {
                             if (dx * dx + dy * dy > 64) {
                                 potentialDrag = false
                                 const imgPos = imageResizeOverlay.imagePosition
-                                // Use full selection if it includes the image
                                 if (editor.selectionStart !== editor.selectionEnd
                                         && imgPos >= editor.selectionStart
                                         && imgPos < editor.selectionEnd) {
                                     dragTarget.dragSelectionStart = editor.selectionStart
                                     dragTarget.dragSelectionEnd = editor.selectionEnd
-                                    dragTarget.internalDrag = true
-                                    document.startTextDrag()
                                 } else {
                                     dragTarget.dragSelectionStart = imgPos
                                     dragTarget.dragSelectionEnd = imgPos + 1
-                                    dragTarget.internalDrag = true
-                                    document.startRangeDrag(imgPos, imgPos + 1)
                                 }
-                                dragTarget.internalDrag = false
+                                dragTarget.manualDrag = true
                             }
                         }
 
-                        onReleased: {
+                        onReleased: function(mouse) {
+                            if (dragTarget.manualDrag) {
+                                dragTarget.manualDrag = false
+                                const editorPt = mapToItem(editor, mouse.x, mouse.y)
+                                const position = editor.positionAt(editorPt.x, editorPt.y)
+                                const selStart = dragTarget.dragSelectionStart
+                                const selEnd = dragTarget.dragSelectionEnd
+                                if (position < selStart || position > selEnd) {
+                                    const endPos = document.moveText(selStart, selEnd, position)
+                                    editor.cursorPosition = endPos
+                                }
+                                imageResizeOverlay.tryShow(editor.cursorPosition)
+                            }
                             potentialDrag = false
                         }
                     }
@@ -1793,7 +1826,7 @@ Flickable {
                 Rectangle {
                     id: dropCursorIndicator
                     parent: editor
-                    visible: dragTarget.containsDrag
+                    visible: dragTarget.containsDrag || dragTarget.manualDrag
                     width: 2
                     height: editor.cursorRectangle.height
                     color: "#4D9EF3"
