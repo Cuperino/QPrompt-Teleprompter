@@ -103,7 +103,7 @@ public:
     }
     Q_INVOKABLE void factoryReset()
     {
-#if (defined(Q_OS_MACOS))
+#if (defined(Q_OS_MACOS) or defined(Q_OS_IOS))
         QSettings settings(QCoreApplication::organizationDomain(), QCoreApplication::applicationName());
 #else
         QSettings settings(QCoreApplication::organizationName(), QCoreApplication::applicationName().toLower());

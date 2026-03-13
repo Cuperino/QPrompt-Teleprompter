@@ -88,7 +88,7 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
     QCoreApplication::setApplicationName(QString::fromUtf8("QPrompt"));
 
     // Acquire saved settings
-#if (defined(Q_OS_MACOS))
+#if (defined(Q_OS_MACOS) or defined(Q_OS_IOS))
     QSettings settings(QCoreApplication::organizationDomain(), QCoreApplication::applicationName());
 #else
     QSettings settings(QCoreApplication::organizationName(), QCoreApplication::applicationName().toLower());
