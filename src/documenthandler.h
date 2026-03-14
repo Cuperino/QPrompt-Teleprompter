@@ -236,6 +236,8 @@ public:
     Q_INVOKABLE bool showFontDialog();
 #endif
 
+    Q_INVOKABLE QString toHtml() const;
+
     Q_INVOKABLE void loadFromNetwork(const QUrl &url);
 
 public Q_SLOTS:

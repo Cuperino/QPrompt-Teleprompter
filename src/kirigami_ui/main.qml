@@ -991,8 +991,12 @@ Kirigami.ApplicationWindow {
         if (Kirigami.Settings.isMobile) {
             if (root.pageStack.layers.depth > 1)
                 return Kirigami.ApplicationHeaderStyle.Titles
-            else
-                return Kirigami.ApplicationHeaderStyle.None
+            else {
+                if (Qt.platform.os==="ios")
+                    return Kirigami.ApplicationHeaderStyle.ToolBar
+                else
+                    return Kirigami.ApplicationHeaderStyle.None
+            }
         }
         else {
             if (parseInt(root.pageStack.currentItem.prompter.state)!==Prompter.States.Editing &&

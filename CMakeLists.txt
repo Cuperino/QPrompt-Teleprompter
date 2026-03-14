@@ -162,9 +162,6 @@ if(WIN32 OR APPLE OR ANDROID OR WASM OR USE_GIT_DEPENDENCIES_ONLY)
     else()
         set(KF_IGNORE_PLATFORM_CHECK ON)
     endif()
-    if(IOS)
-        set(KF_IGNORE_PLATFORM_CHECK ON)
-    endif()
     if(ANDROID OR IOS)
         # Prevent Kirigami from finding and using OpenMP on Android and iOS.
         # OpenMP is optional (accelerates palette generation in ImageColors)
@@ -303,7 +300,7 @@ if (ANDROID)
     configure_file(${ANDROID_PACKAGE_SOURCE_DIR}/version.gradle.in ${CMAKE_BINARY_DIR}/src/version.gradle)
 endif()
 
-if (UNIX AND NOT APPLE AND NOT ANDROID)
+if (UNIX AND NOT APPLE AND NOT IOS AND NOT ANDROID)
     set(DOC_INSTALL_DIR "share/doc/qprompt")
     set(MAN_INSTALL_DIR "share/man/")
     install(FILES docs/manpage/qprompt.1 DESTINATION ${MAN_INSTALL_DIR}/man1)
@@ -395,7 +392,8 @@ if(CMAKE_SOURCE_DIR STREQUAL CMAKE_CURRENT_SOURCE_DIR)
     include(CPack)
 endif()
 
-if(NOT WASM)
+# if(NOT WASM)
+if(NOT WASM AND NOT IOS)
     feature_summary(WHAT ALL FATAL_ON_MISSING_REQUIRED_PACKAGES) # INCLUDE_QUIET_PACKAGES
 endif()
 

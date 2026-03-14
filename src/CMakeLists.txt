@@ -84,6 +84,13 @@ set(qprompt_cpp
     appcontroller.h appcontroller.cpp
     ${qprompt_QM_LOADER}
 )
+if(IOS)
+    list(APPEND qprompt_cpp shakedetector.h shakedetector.mm)
+    list(APPEND qprompt_cpp iossavedialog.h iossavedialog.mm)
+else()
+    list(APPEND qprompt_cpp shakedetector.h shakedetector.cpp)
+    list(APPEND qprompt_cpp iossavedialog.h iossavedialog.cpp)
+endif()
 
 if (WASM)
     set(qprompt_frontend_sources
@@ -148,7 +155,7 @@ set(other_sources
     qt/WindowDragger.qml
 )
 
-if (ANDROID)
+if (ANDROID OR IOS)
 set(image_files
     # Logos
     images/qprompt.png
@@ -342,7 +349,7 @@ set_target_properties(${PROJECT_NAME} PROPERTIES
     OUTPUT_NAME ${OUTPUT_NAME}
     MACOSX_BUNDLE TRUE
     WIN32_EXECUTABLE TRUE
-    INTERFACE_LINK_LIBRARIES "KF${QT_VERSION_MAJOR}::CoreAddons;KF${QT_VERSION_MAJOR}::Kirigami"
+    INTERFACE_LINK_LIBRARIES "KF${QT_VERSION_MAJOR}::Kirigami"
     QT_ANDROID_PACKAGE_SOURCE_DIR "${CMAKE_SOURCE_DIR}/android"
     QT_ANDROID_PACKAGE_NAME "com.cuperino.qprompt"
     QT_QMLCACHEGEN_ARGUMENTS "--only-bytecode"
@@ -356,7 +363,7 @@ set_target_properties(${PROJECT_NAME} PROPERTIES
 # the "lib" prefix from MODULE targets, but androiddeployqt expects it.
 # Also place the binary in BINARY_DIR so it's next to the deployment settings and
 # android-build dir, which Qt Creator requires for consistent path resolution.
-if (ANDROID OR IOS)
+if (ANDROID)
     set_target_properties(${PROJECT_NAME} PROPERTIES
         PREFIX "lib"
         LIBRARY_OUTPUT_DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}"
@@ -397,7 +404,7 @@ qt_add_translations(${PROJECT_NAME} SOURCE_TARGETS ${PROJECT_NAME}
 )
 
 # Libraries
-if (ANDROID OR IOS)
+if (ANDROID)
     target_link_libraries(${PROJECT_NAME} PRIVATE
         Qt${QT_VERSION_MAJOR}::Core
         Qt${QT_VERSION_MAJOR}::Quick
@@ -406,7 +413,41 @@ if (ANDROID OR IOS)
         Qt${QT_VERSION_MAJOR}::Qml
         Qt${QT_VERSION_MAJOR}::QuickControls2
         Qt${QT_VERSION_MAJOR}::Network
-        Qt${QT_VERSION_MAJOR}::WebSockets
+        KF${QT_VERSION_MAJOR}::CoreAddons
+        KF${QT_VERSION_MAJOR}::Kirigami
+        Kirigamiplugin
+    )
+elseif (IOS)
+    set(CMAKE_OSX_DEPLOYMENT_TARGET 17.0)
+
+    # iOS code signing identity (use "iPhone Developer" for dev builds, "iPhone Distribution" for release)
+    set(IOS_CODE_SIGN_IDENTITY "iPhone Developer" CACHE STRING "iOS code signing identity")
+    set(IOS_ENTITLEMENTS_FILE "${CMAKE_CURRENT_SOURCE_DIR}/ios/QPrompt.entitlements" CACHE FILEPATH "iOS entitlements file")
+    set(IOS_PROVISIONING_PROFILE "" CACHE FILEPATH "Path to iOS provisioning profile (.mobileprovision)")
+
+    # Use custom Info.plist to set display name and app icon references
+    set_target_properties(${PROJECT_NAME} PROPERTIES
+        MACOSX_BUNDLE_INFO_PLIST "${CMAKE_CURRENT_SOURCE_DIR}/ios/Info.plist.in"
+    )
+
+    # Bundle iOS app icon files
+    set(IOS_ICONS_DIR "${CMAKE_CURRENT_SOURCE_DIR}/ios/icons")
+    set(IOS_ICON_FILES
+        ${IOS_ICONS_DIR}/AppIcon120x120.png
+        ${IOS_ICONS_DIR}/AppIcon152x152.png
+        ${IOS_ICONS_DIR}/AppIcon167x167.png
+        ${IOS_ICONS_DIR}/AppIcon180x180.png
+        ${IOS_ICONS_DIR}/AppIcon1024x1024.png
+    )
+    set_source_files_properties(${IOS_ICON_FILES} PROPERTIES MACOSX_PACKAGE_LOCATION Resources)
+    target_sources(${PROJECT_NAME} PRIVATE ${IOS_ICON_FILES})
+
+    target_link_libraries(${PROJECT_NAME} PRIVATE
+        Qt${QT_VERSION_MAJOR}::Core
+        Qt${QT_VERSION_MAJOR}::Quick
+        Qt${QT_VERSION_MAJOR}::Svg
+        Qt${QT_VERSION_MAJOR}::Qml
+        Qt${QT_VERSION_MAJOR}::QuickControls2
         KF${QT_VERSION_MAJOR}::CoreAddons
         KF${QT_VERSION_MAJOR}::Kirigami
         Kirigamiplugin
@@ -414,13 +455,13 @@ if (ANDROID OR IOS)
 elseif (WASM)
     target_compile_options(${PROJECT_NAME} PRIVATE -O3 -flto -sDISABLE_EXCEPTION_THROWING=0 -sDISABLE_EXCEPTION_CATCHING=1)
     target_link_options(${PROJECT_NAME} PRIVATE -flto -fno-except -Oz -sDISABLE_EXCEPTION_THROWING=0 -sDISABLE_EXCEPTION_CATCHING=1)
+
     target_link_libraries(${PROJECT_NAME} PRIVATE
         Qt${QT_VERSION_MAJOR}::Core
         Qt${QT_VERSION_MAJOR}::Quick
         Qt${QT_VERSION_MAJOR}::Svg
         Qt${QT_VERSION_MAJOR}::Qml
         Qt${QT_VERSION_MAJOR}::QuickControls2
-        Qt${QT_VERSION_MAJOR}::WebSockets
         KF${QT_VERSION_MAJOR}::Kirigami
         Kirigamiplugin
     )
@@ -434,13 +475,12 @@ elseif(HAIKU)
         Qt${QT_VERSION_MAJOR}::QuickControls2
         Qt${QT_VERSION_MAJOR}::Network
         Qt${QT_VERSION_MAJOR}::Widgets
-        Qt${QT_VERSION_MAJOR}::WebSockets
         KF${QT_VERSION_MAJOR}::CoreAddons
         KF${QT_VERSION_MAJOR}::Kirigami
         KF${QT_VERSION_MAJOR}::IconThemes
         KF${QT_VERSION_MAJOR}::GlobalAccel
     )
-elseif(WIN32 OR APPLE)
+elseif(WIN32 OR APPLE AND NOT IOS)
     target_link_libraries(${PROJECT_NAME} PRIVATE
         Qt${QT_VERSION_MAJOR}::Core
         Qt${QT_VERSION_MAJOR}::Quick
@@ -450,9 +490,8 @@ elseif(WIN32 OR APPLE)
         Qt${QT_VERSION_MAJOR}::QuickControls2
         Qt${QT_VERSION_MAJOR}::Network
         Qt${QT_VERSION_MAJOR}::Widgets
-        Qt${QT_VERSION_MAJOR}::WebSockets
-        KF${QT_VERSION_MAJOR}::CoreAddons
         KF${QT_VERSION_MAJOR}::Kirigami
+        KF${QT_VERSION_MAJOR}::CoreAddons
     )
 else()
     target_link_libraries(${PROJECT_NAME} PRIVATE
@@ -464,7 +503,6 @@ else()
         Qt${QT_VERSION_MAJOR}::QuickControls2
         Qt${QT_VERSION_MAJOR}::Network
         Qt${QT_VERSION_MAJOR}::Widgets
-        Qt${QT_VERSION_MAJOR}::WebSockets
         KF${QT_VERSION_MAJOR}::CoreAddons
         KF${QT_VERSION_MAJOR}::Kirigami
         KF${QT_VERSION_MAJOR}::GlobalAccel
@@ -488,7 +526,9 @@ execute_process(COMMAND ${CMAKE_PREFIX_PATH}/bin/lconvert -pluralonly ${CMAKE_SO
 # Installation and bundling
 if (APPLE)
     install(TARGETS ${PROJECT_NAME} ${KDE_INSTALL_TARGETS_DEFAULT_ARGS} BUNDLE DESTINATION .)
-    install(TARGETS KF6CoreAddons ${KDE_INSTALL_TARGETS_DEFAULT_ARGS} FRAMEWORK DESTINATION QPrompt.app/Contents/Frameworks)
+    if(NOT IOS)
+        install(TARGETS KF6CoreAddons ${KDE_INSTALL_TARGETS_DEFAULT_ARGS} FRAMEWORK DESTINATION QPrompt.app/Contents/Frameworks)
+    endif()
     install(TARGETS Kirigami ${KDE_INSTALL_TARGETS_DEFAULT_ARGS} FRAMEWORK DESTINATION QPrompt.app/Contents/Frameworks)
     install(DIRECTORY ../build/bin/org DESTINATION QPrompt.app/Contents/Resources/qml)
     install(DIRECTORY ../build/bin/org DESTINATION QPrompt.app/Contents/MacOS/qml)
@@ -498,7 +538,7 @@ elseif (WIN32 OR UNIX)
     install(TARGETS ${PROJECT_NAME} ${KDE_INSTALL_TARGETS_DEFAULT_ARGS})
 endif()
 
-if(APPLE)
+if(APPLE AND NOT IOS)
     set(MACOS_SIGNING_IDENTITY "")
     set(EXTRA_DEPLOY_QML_APP_SCRIPT_OPTIONS)
     set(deploy_tool_options_arg "-always-overwrite -appstore-compliant -sign-for-notarization=${MACOS_SIGNING_IDENTITY}")
@@ -508,7 +548,35 @@ if(APPLE)
         OUTPUT_SCRIPT deploy_script
         ${EXTRA_DEPLOY_QML_APP_SCRIPT_OPTIONS}
         MACOS_BUNDLE_POST_BUILD
+    )
+elseif(IOS)
+    qt_generate_deploy_qml_app_script(
+        TARGET ${PROJECT_NAME}
+        OUTPUT_SCRIPT deploy_script
         NO_UNSUPPORTED_PLATFORM_ERROR
+        DEPLOY_USER_QML_MODULES_ON_UNSUPPORTED_PLATFORM
+    )
+
+    # Find provisioning profile if not explicitly set
+    if(NOT IOS_PROVISIONING_PROFILE OR IOS_PROVISIONING_PROFILE STREQUAL "")
+        file(GLOB _ios_profiles "$ENV{HOME}/Library/Developer/Xcode/UserData/Provisioning Profiles/*.mobileprovision")
+        if(_ios_profiles)
+            list(GET _ios_profiles 0 IOS_PROVISIONING_PROFILE)
+        endif()
+    endif()
+
+    # Post-build: embed provisioning profile and codesign the app bundle
+    if(IOS_PROVISIONING_PROFILE)
+        add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
+            COMMAND ${CMAKE_COMMAND} -E copy "${IOS_PROVISIONING_PROFILE}" "$<TARGET_BUNDLE_DIR:${PROJECT_NAME}>/embedded.mobileprovision"
+            COMMENT "Embedding provisioning profile into ${PROJECT_NAME}.app"
+        )
+    else()
+        message(WARNING "No iOS provisioning profile found. Set IOS_PROVISIONING_PROFILE to the path of your .mobileprovision file.")
+    endif()
+    add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
+        COMMAND codesign --force --sign "${IOS_CODE_SIGN_IDENTITY}" --entitlements "${IOS_ENTITLEMENTS_FILE}" --timestamp=none --generate-entitlement-der "$<TARGET_BUNDLE_DIR:${PROJECT_NAME}>"
+        COMMENT "Code signing ${PROJECT_NAME}.app for iOS"
     )
 elseif(WIN32)
     qt_generate_deploy_qml_app_script(
