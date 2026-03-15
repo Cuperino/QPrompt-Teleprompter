@@ -19,7 +19,7 @@
  **
  ****************************************************************************/
 
-import QtQuick 2.12
+import QtQuick 2.15
 import org.kde.kirigami 2.11 as Kirigami
 import QtQuick.Controls 2.12
 import QtQuick.Window 2.12
@@ -943,6 +943,33 @@ Kirigami.ApplicationWindow {
         width: 22
         height: 22
         source: "qrc:/qt/qml/com/cuperino/qprompt/icons/go-previous-symbolic.svg"
+    }
+
+    // Workaround for KDE bug 515463: Kirigami's AbstractApplicationHeader
+    // setting topPadding/bottomPadding to Units.mediumSpacing, causing misalignments in Qt styles
+    Binding {
+        target: root.pageStack.currentItem?.globalToolBarItem ?? null
+        property: "topPadding"
+        value: 0
+        restoreMode: Binding.RestoreNone
+    }
+    Binding {
+        target: root.pageStack.currentItem?.globalToolBarItem ?? null
+        property: "bottomPadding"
+        value: 0
+        restoreMode: Binding.RestoreNone
+    }
+    Binding {
+        target: root.pageStack.layers.currentItem?.globalToolBarItem ?? null
+        property: "topPadding"
+        value: 0
+        restoreMode: Binding.RestoreNone
+    }
+    Binding {
+        target: root.pageStack.layers.currentItem?.globalToolBarItem ?? null
+        property: "bottomPadding"
+        value: 0
+        restoreMode: Binding.RestoreNone
     }
 
     // Kirigami PageStack and PageRow
