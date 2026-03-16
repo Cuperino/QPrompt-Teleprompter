@@ -789,6 +789,39 @@ Kirigami.Page {
             //}
         //}
     }
+    // Frames skipped indicator
+    TimedItem {
+        id: framesSkippedIndicator
+        parent: prompterPage // viewport
+        visible: true // parseInt(prompter.state) === Prompter.States.Prompting
+        measuring: parseInt(prompter.state) === Prompter.States.Prompting
+        z: 5
+        anchors.right: parent.right
+        anchors.top: parent.top
+        anchors.margins: Kirigami.Units.smallSpacing
+        width: framesSkippedLabel.implicitWidth + 2 * Kirigami.Units.smallSpacing
+        height: framesSkippedLabel.implicitHeight + 2 * Kirigami.Units.smallSpacing
+
+        onMeasuringChanged: {
+            if (measuring)
+                framesSkippedIndicator.resetFramesSkipped()
+        }
+
+        Rectangle {
+            anchors.fill: parent
+            color: framesSkippedIndicator.framesSkipped > 2 ? "#88ff0000" : "#88000000"
+            radius: 4
+
+            Label {
+                id: framesSkippedLabel
+                anchors.centerIn: parent
+                color: "#ffffff"
+                font.pixelSize: 16
+                text: qsTr("Frames skipped: %1").arg(framesSkippedIndicator.framesSkipped)
+            }
+        }
+    }
+
     // Middle-click velocity indicator
     Item {
         id: velocityIndicator

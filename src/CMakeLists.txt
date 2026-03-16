@@ -79,6 +79,7 @@ set(qprompt_cpp
     qmlutil.hpp
     abstractunits.hpp
     marker.hpp
+    timeditem.hpp
     documenthandler.h documenthandler.cpp
     markersmodel.h markersmodel.cpp
     appcontroller.h appcontroller.cpp
