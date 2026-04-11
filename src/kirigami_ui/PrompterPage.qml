@@ -1195,7 +1195,7 @@ Kirigami.Page {
                 id: markerHrefField
                 Layout.fillWidth: true
                 placeholderText: (['android', 'ios', 'wasm'].indexOf(Qt.platform.os)===-1 ?
-                                      "obs://scene/name or sys://cmd arg" :
+                                      "obs://scene/name   sys://cmd arg" :
                                       "obs://scene/name")
                 onEditingFinished: prompter.document.setMarkerHref(text)
             }
