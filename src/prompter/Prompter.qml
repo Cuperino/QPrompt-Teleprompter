@@ -386,17 +386,21 @@ Flickable {
             // Here, p is for position
             const p = editor.cursorRectangle.y;
             if (prompter.q < p) {
-                const req = {
-                  "op": 6,
-                  "d": {
-                    "requestType": "SetCurrentProgramScene",
-                    "requestId": "f819dcf0-89cc-11eb-8f0e-382c4ac93b9c",
-                    "requestData": {
-                      "sceneName": m.url.slice(1)
+                if (m.url.startsWith("obs://scene/")) {
+                    const req = {
+                      "op": 6,
+                      "d": {
+                        "requestType": "SetCurrentProgramScene",
+                        "requestId": "f819dcf0-89cc-11eb-8f0e-382c4ac93b9c",
+                        "requestData": {
+                          "sceneName": m.url.slice(12)
+                        }
+                      }
                     }
-                  }
+                    ws.sendTextMessage(JSON.stringify(req));
                 }
-                ws.sendTextMessage(JSON.stringify(req));
+                else if (m.url.startsWith("sys://"))
+                    qmlutil.run(m.url.slice(6));
             }
             q = p;
         }

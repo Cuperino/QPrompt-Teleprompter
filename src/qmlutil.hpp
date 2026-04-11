@@ -79,6 +79,19 @@ public:
         }
     }
 
+    Q_INVOKABLE void run(const QString &command)
+    {
+#if !(defined(Q_OS_ANDROID) || defined(Q_OS_IOS) || defined(Q_OS_WASM) || defined(Q_OS_WATCHOS))
+        QStringList parts = QProcess::splitCommand(command);
+        if (parts.isEmpty())
+            return;
+        const QString program = parts.takeFirst();
+        QProcess::startDetached(program, parts);
+#else
+        Q_UNUSED(command)
+#endif
+    }
+
     Q_INVOKABLE void restartApplication()
     {
 #if !(defined(Q_OS_ANDROID) || defined(Q_OS_IOS) || defined(Q_OS_WASM) || defined(Q_OS_WATCHOS))
