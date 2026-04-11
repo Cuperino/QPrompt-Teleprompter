@@ -21,7 +21,6 @@
 
 if(NOT WIN32)
     include(ECMPoQmTools)
-    ecm_create_qm_loader(qprompt_QM_LOADER ../po/qprompt.pot)
 endif()
 
 qt_standard_project_setup(I18N_TRANSLATED_LANGUAGES ar cs de en es fi fr he it ja ko nl oc pl pt_BR pt_PT ru tr uk zh)
