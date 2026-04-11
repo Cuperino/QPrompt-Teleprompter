@@ -11,12 +11,12 @@
     <message>
         <location filename="../src/documenthandler.cpp" line="767"/>
         <source>An error occurred while attempting to open file in a third party format. Go to &quot;Main Menu&quot;, &quot;Other Settings&quot;, then &quot;External Tools&quot; to make sure a corresponding import tool is properly configured.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ocorreu um erro ao tentar abrir um ficheiro num formato de terceiros. Aceda ao &quot;Menu Principal&quot;, &quot;Outras definições&quot; e, em seguida, &quot;Ferramentas externas&quot; para se certificar de que a ferramenta de importação correspondente está devidamente configurada.</translation>
     </message>
     <message>
         <location filename="../src/documenthandler.cpp" line="834"/>
         <source>Cannot save: </source>
-        <translation type="unfinished"></translation>
+        <translation>Não foi possível guardar: </translation>
     </message>
 </context>
 <context>
@@ -113,7 +113,7 @@
         <location filename="../src/kirigami_ui/EditorToolbar.qml" line="1098"/>
         <source>Font size &lt;pre&gt;%1 (%2)&lt;/pre&gt;</source>
         <comment>Font size 100% (083)</comment>
-        <translation type="unfinished"></translation>
+        <translation>Tamanho do tipo de letra &lt;pre&gt;%1 (%2)&lt;/pre&gt;</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/EditorToolbar.qml" line="1232"/>
@@ -173,9 +173,9 @@
     <message numerus="yes">
         <location filename="../src/prompter/Find.qml" line="160"/>
         <source>Replaced %n instance(s)</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>Foi substituída %n instância</numerusform>
+            <numerusform>Foram substituídas %n instâncias</numerusform>
         </translation>
     </message>
 </context>
@@ -368,7 +368,8 @@
         <location filename="../src/kirigami_ui/LanguageSettingsOverlay.qml" line="186"/>
         <source>Is your language not here or it&apos;s incomplete?
 Help us translate QPrompt, visit:</source>
-        <translation type="unfinished"></translation>
+        <translation>O seu idioma não consta aqui ou está incompleto?
+Ajude-nos a traduzir o QPrompt, visite:</translation>
     </message>
 </context>
 <context>
@@ -430,9 +431,7 @@ Help us translate QPrompt, visit:</source>
     <message>
         <location filename="../src/kirigami_ui/PathsPage.qml" line="63"/>
         <source>QPrompt can make transparent use of LibreOffice to convert Microsoft Word, Open Document Format, and other office documents into a format QPrompt understands. Install LibreOffice and ensure this field points to its location, so QPrompt can open office documents.</source>
-        <translation>
-O QPrompt pode utilizar de forma transparente o LibreOffice para converter o
-Microsoft Word,</translation>
+        <translation>O QPrompt pode utilizar o LibreOffice de forma transparente para converter documentos do Microsoft Word, do Open Document Format e outros documentos de texto para um formato compatível com o QPrompt. Instale o LibreOffice e certifique-se de que este campo aponta para a sua localização, para que o QPrompt possa abrir documentos de texto.</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/PathsPage.qml" line="71"/>
@@ -447,7 +446,7 @@ Microsoft Word,</translation>
         <location filename="../src/kirigami_ui/PathsPage.qml" line="105"/>
         <source>Executable (%1)</source>
         <comment>Format name (FORMAT_EXTENSION)</comment>
-        <translation type="unfinished"></translation>
+        <translation>Executável (%1)</translation>
     </message>
     <message>
         <source>Executable &lt;%1&gt;</source>
@@ -471,17 +470,17 @@ Microsoft Word,</translation>
     <message>
         <location filename="../src/prompter/PointerSettings.qml" line="127"/>
         <source>Editing: </source>
-        <translation>Edição:</translation>
+        <translation>Edição: </translation>
     </message>
     <message>
         <location filename="../src/prompter/PointerSettings.qml" line="159"/>
         <source>Ready: </source>
-        <translation>Pronto:</translation>
+        <translation>Pronto: </translation>
     </message>
     <message>
         <location filename="../src/prompter/PointerSettings.qml" line="190"/>
         <source>Prompting: </source>
-        <translation>Começar o prompt</translation>
+        <translation>Começar o prompt: </translation>
     </message>
     <message>
         <location filename="../src/prompter/PointerSettings.qml" line="206"/>
@@ -542,7 +541,7 @@ Microsoft Word,</translation>
         <location filename="../src/prompter/PointerSettings.qml" line="554"/>
         <location filename="../src/prompter/PointerSettings.qml" line="577"/>
         <source>Left Pointer: </source>
-        <translation>&amp;Ponteiro esquerdo</translation>
+        <translation>Ponteiro esquerdo: </translation>
     </message>
     <message>
         <location filename="../src/prompter/PointerSettings.qml" line="356"/>
@@ -552,12 +551,12 @@ Microsoft Word,</translation>
         <location filename="../src/prompter/PointerSettings.qml" line="554"/>
         <location filename="../src/prompter/PointerSettings.qml" line="577"/>
         <source>Right Pointer: </source>
-        <translation>&amp;Ponteiro direito</translation>
+        <translation>Ponteiro direito: </translation>
     </message>
     <message>
         <location filename="../src/prompter/PointerSettings.qml" line="403"/>
         <source>Font: </source>
-        <translation>Tipo de letra:</translation>
+        <translation>Tipo de letra: </translation>
     </message>
     <message>
         <location filename="../src/prompter/PointerSettings.qml" line="436"/>
@@ -738,14 +737,14 @@ Microsoft Word,</translation>
         <location filename="../src/prompter/Prompter.qml" line="1559"/>
         <source>Hypertext Markup Language (%1)</source>
         <comment>Format name (FORMAT_EXTENSION)</comment>
-        <translation type="unfinished"></translation>
+        <translation>Linguagem Hypertext Markup (%1)</translation>
     </message>
     <message>
         <location filename="../src/prompter/Prompter.qml" line="1517"/>
         <location filename="../src/prompter/Prompter.qml" line="1529"/>
         <source>Markdown (%1)</source>
         <comment>Format name (FORMAT_EXTENSION)</comment>
-        <translation type="unfinished"></translation>
+        <translation>Markdown (%1)</translation>
     </message>
     <message>
         <location filename="../src/prompter/Prompter.qml" line="1518"/>
@@ -753,37 +752,37 @@ Microsoft Word,</translation>
         <location filename="../src/prompter/Prompter.qml" line="1560"/>
         <source>Plain Text (%1)</source>
         <comment>Format name (FORMAT_EXTENSION)</comment>
-        <translation type="unfinished"></translation>
+        <translation>Texto simples (%1)</translation>
     </message>
     <message>
         <location filename="../src/prompter/Prompter.qml" line="1519"/>
         <source>OpenDocument Format Text Document (%1)</source>
         <comment>Format name (FORMAT_EXTENSION)</comment>
-        <translation type="unfinished"></translation>
+        <translation>Documento de texto no formato OpenDocument (%1)</translation>
     </message>
     <message>
         <location filename="../src/prompter/Prompter.qml" line="1520"/>
         <source>AbiWord Document (%1)</source>
         <comment>Format name (FORMAT_EXTENSION)</comment>
-        <translation type="unfinished"></translation>
+        <translation>Documento do AbiWord (%1)</translation>
     </message>
     <message>
         <location filename="../src/prompter/Prompter.qml" line="1521"/>
         <source>Microsoft Word document (%1)</source>
         <comment>Format name (FORMAT_EXTENSION)</comment>
-        <translation type="unfinished"></translation>
+        <translation>Documento do Microsoft Word (%1)</translation>
     </message>
     <message>
         <location filename="../src/prompter/Prompter.qml" line="1522"/>
         <source>Apple Pages Document (%1)</source>
         <comment>Format name (FORMAT_EXTENSION)</comment>
-        <translation type="unfinished"></translation>
+        <translation>Documento do Apple Pages (%1)</translation>
     </message>
     <message>
         <location filename="../src/prompter/Prompter.qml" line="1523"/>
         <source>Rich Text Format (%1)</source>
         <comment>Format name (FORMAT_EXTENSION)</comment>
-        <translation type="unfinished"></translation>
+        <translation>Rich Text Format (%1)</translation>
     </message>
     <message>
         <location filename="../src/prompter/Prompter.qml" line="1598"/>
@@ -916,8 +915,7 @@ Microsoft Word,</translation>
     <message>
         <location filename="../src/kirigami_ui/PrompterPage.qml" line="126"/>
         <source>Move reading region to the top, convenient for use with webcams</source>
-        <translation>
-Mover a região de leitura para cima, mais conveniente para uso com webcams</translation>
+        <translation>Mover a área de leitura para o topo, o que facilita a utilização com webcams</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/PrompterPage.qml" line="137"/>
@@ -961,9 +959,7 @@ Mover a região de leitura para cima, mais conveniente para uso com webcams</tra
     <message>
         <location filename="../src/kirigami_ui/PrompterPage.qml" line="177"/>
         <source>Fix reading region to the position set using free placement mode</source>
-        <translation>
-Fixar a região de leitura pela posição configurada usando o posicionamento
-livre</translation>
+        <translation>Fixar a área de leitura na posição definida através do modo de posicionamento livre</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/PrompterPage.qml" line="202"/>
@@ -1334,19 +1330,14 @@ livre</translation>
     <message>
         <location filename="../src/kirigami_ui/TelemetryPage.qml" line="55"/>
         <source>The following page is a placeholder. Telemetry has not yet been implemented.</source>
-        <translation>
-A página seguinte é um placeholder. Telemetria ainda não foi implementada.</translation>
+        <translation>A página seguinte é um espaço reservado. A telemetria ainda não foi implementada.</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/TelemetryPage.qml" line="66"/>
         <source>Please help improve QPrompt by sharing information on how you use it. Contributing this information is optional and entirely anonymous. The project nor I will never collect your personal data, files you use, contents you work with, or information that could help identify you.
 - Cuperino (QPrompt&apos;s Author)</source>
-        <translation>
-Por favor melhore o QPrompt compartilhando informações de como você usa.
-Contribuir com esta informação é opcional e inteiramente anônimo, Nem o
-projeto e nem eu vamos coletar suas informações pessoais, ficheiros que você
-usa, conteúdos que você trabalha, ou informações que podem te identificar.\n
-- Cuperino (Autor do QPrompt) (Traduzido por Lia Guedes)</translation>
+        <translation>Ajude a melhorar o QPrompt partilhando informações sobre como o utiliza. A partilha destas informações é opcional e totalmente anónima. Nem o projeto nem eu iremos recolher os seus dados pessoais, os ficheiros que utiliza, os conteúdos com que trabalha ou informações que possam ajudar a identificá-lo.
+- Cuperino (Autor do QPrompt)</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/TelemetryPage.qml" line="69"/>
@@ -1428,9 +1419,7 @@ usa, conteúdos que você trabalha, ou informações que podem te identificar.\n
     <message>
         <location filename="../src/kirigami_ui/TelemetryPage.qml" line="138"/>
         <source>Feature use frequency: Help us know what features are most important</source>
-        <translation>
-Frequência de utilização das funcionalidades: Ajude-nos a saber que
-funcionalidades são mais importantes</translation>
+        <translation>Frequência de utilização das funcionalidades: Ajude-nos a saber quais são as funcionalidades mais importantes</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/TelemetryPage.qml" line="139"/>
@@ -1515,9 +1504,7 @@ funcionalidades são mais importantes</translation>
     <message>
         <location filename="../src/kirigami_ui/TelemetryPage.qml" line="171"/>
         <source>Font settings per block of lines of text being prompted</source>
-        <translation>
-Definições de tipo de letra por bloco de linhas de texto que estão a ser
-apresentadas</translation>
+        <translation>Definições de tipo de letra por bloco de linhas de texto apresentadas</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/TelemetryPage.qml" line="172"/>
@@ -1572,11 +1559,7 @@ apresentadas</translation>
     <message>
         <location filename="../src/kirigami_ui/TelemetryPage.qml" line="190"/>
         <source>This information is very important to me, Javier, the project author, and it could help make QPrompt&apos;s development sustainable. I&apos;ve gone the extra mile not to collect any of the actual text and images that you work with, so I ask you: please leave telemetry enabled.</source>
-        <translation>
-Esta informação é muito importante para mim, Javier, o autor do projeto, e
-ela poderia fazer o desenvolvimento do QPrompt sustentável. Fiz além do
-esperado pra não coletar nenhum do texto e das imagens que vocês trabalham,
-então eu vos peço: Por favor, deixem a telemetria ligada.</translation>
+        <translation>Esta informação é muito importante para mim, Javier, o autor do projeto, e pode ajudar a tornar o desenvolvimento do QPrompt sustentável. Esforcei-me ao máximo para não recolher nenhum dos textos e imagens reais com que trabalha, por isso peço-lhe: por favor, mantenha a telemetria ativada.</translation>
     </message>
 </context>
 <context>
@@ -1617,9 +1600,7 @@ então eu vos peço: Por favor, deixem a telemetria ligada.</translation>
     <message>
         <location filename="../src/kirigami_ui/WheelSettingsOverlay.qml" line="104"/>
         <source>Enable throttling for use with touchpads, disable for precise scolling.</source>
-        <translation>
-Diminua a potência para uso com touchpad, desativar para ter uma rolagem
-precisa.</translation>
+        <translation>Ative a limitação de velocidade para utilização com painéis táteis; desative-a para uma navegação precisa.</translation>
     </message>
 </context>
 <context>
@@ -1982,7 +1963,7 @@ precisa.</translation>
         <location filename="../src/kirigami_ui/main.qml" line="710"/>
         <source>No pointers</source>
         <comment>Disable all reading region pointers</comment>
-        <translation type="unfinished">Sem ponteiros</translation>
+        <translation>Sem ponteiros</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/main.qml" line="720"/>
@@ -2152,7 +2133,9 @@ Would you like to restart %1 now? All changes to document will be lost.</source>
         <comment>application needs to restart for this change to fully take effect.
 
 Would you like to restart application now? All changes to document will be lost.</comment>
-        <translation type="unfinished"></translation>
+        <translation>O %1 precisa de ser reiniciado para que esta alteração entre totalmente em vigor.
+
+Pretende reiniciar o %1 agora? Todas as alterações feitas no documento serão perdidas.</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/main.qml" line="1070"/>
@@ -2166,10 +2149,7 @@ Would you like to restart application now? All changes to document will be lost.
         <location filename="../src/kirigami_ui/+android/main.qml" line="642"/>
         <location filename="../src/kirigami_ui/+windows/main.qml" line="767"/>
         <source>Restore all configurations to factory defaults? QPrompt will close if you click Yes and all unsaved document changes will be lost.</source>
-        <translation>
-Restaurar todas as configurações para as predefinições de fábrica? O QPrompt
-fechará se clicar em Sim e todas as alterações não guardadas no documento
-serão perdidas.</translation>
+        <translation>Restaurar todas as configurações para os valores predefinidos de fábrica? O QPrompt será encerrado se clicar em Sim e todas as alterações não guardadas nos documentos serão perdidas.</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/main.qml" line="1087"/>
