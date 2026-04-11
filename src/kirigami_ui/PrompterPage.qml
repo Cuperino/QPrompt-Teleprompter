@@ -1446,13 +1446,14 @@ Kirigami.Page {
                 }
                 TextField {
                     id: wsUrlField
+                    enabled: !enabledToggle.checked
                     placeholderText: "ws://localhost:4455"
+                    text: viewport.prompter.ws.urlString
                     Layout.fillWidth: true
                     Layout.leftMargin: Kirigami.Units.smallSpacing
                     Layout.rightMargin: Kirigami.Units.smallSpacing
-                    text: viewport.prompter.ws.urlString
-                    onAccepted: viewport.prompter.ws.urlString = text ?? placeholderText
                     Material.theme: Material.Dark
+                    onAccepted: viewport.prompter.ws.urlString = text ?? placeholderText
                 }
             }
             RowLayout {
@@ -1461,12 +1462,13 @@ Kirigami.Page {
                 }
                 Kirigami.PasswordField {
                     id: wsPasswordField
+                    enabled: !enabledToggle.checked
+                    text: viewport.prompter.ws.password
                     Layout.fillWidth: true
                     Layout.leftMargin: Kirigami.Units.smallSpacing
                     Layout.rightMargin: Kirigami.Units.smallSpacing
-                    text: viewport.prompter.ws.password
-                    onAccepted: viewport.prompter.ws.password = text
                     Material.theme: Material.Dark
+                    onAccepted: viewport.prompter.ws.password = text
                 }
             }
         }

@@ -342,7 +342,7 @@ Flickable {
         property string password: ""
         property string urlString: "ws://localhost:4455"
         url: urlString
-        active: true
+        active: false
         // onBinaryMessageReceived: (message) => {
         //     console.log(message);
         // }
