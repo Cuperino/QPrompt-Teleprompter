@@ -267,44 +267,74 @@ Flickable {
     }
     Connections {
         target: AppController
+        function interalFocusElsewhere() {
+            let flag = false;
+            if (root.pageStack.layers.depth > 1 ||
+                root.pageStack.currentItem.markersDrawer.drawerOpen ||
+                root.pageStack.currentItem.countdownConfiguration.opened ||
+                root.pageStack.currentItem.keyConfigurationOverlay.opened ||
+                root.pageStack.currentItem.namedMarkerConfiguration.opened ||
+                root.pageStack.currentItem.networkDialog.opened ||
+                root.pageStack.currentItem.pointerConfiguration.opened ||
+                layoutDirectionSettings.opened ||
+                languageSettings.opened ||
+                wheelSettings.opened ||
+                root.pageStack.currentItem.find.enabled ||
+                (parseInt(root.pageStack.currentItem.prompter.state)===Prompter.States.Prompting && root.pageStack.currentItem.editor.focus) )
+                flag = true;
+            return flag;
+        }
         function onTogglePrompter() {
-            prompter.toggle();
+            if (!interalFocusElsewhere())
+                prompter.toggle();
         }
         function onIncreaseVelocity() {
-            prompter.increaseVelocity();
+            if (!interalFocusElsewhere())
+                prompter.increaseVelocity();
         }
         function onDecreaseVelocity() {
-            prompter.decreaseVelocity();
+            if (!interalFocusElsewhere())
+                prompter.decreaseVelocity();
         }
         function onPause() {
-            prompter.pause();
+            if (!interalFocusElsewhere())
+                prompter.pause();
         }
         function onStop() {
-            prompter.stop();
+            if (!interalFocusElsewhere())
+                prompter.stop();
         }
         function onReverse() {
-            prompter.reverse();
+            if (!interalFocusElsewhere())
+                prompter.reverse();
         }
         function onRewind() {
-            prompter.rewind();
+            if (!interalFocusElsewhere())
+                prompter.rewind();
         }
         function onFastForward() {
-            prompter.fastForward();
+            if (!interalFocusElsewhere())
+                prompter.fastForward();
         }
         function onSkipBackwards() {
-            prompter.skipBackwards();
+            if (!interalFocusElsewhere())
+                prompter.skipBackwards();
         }
         function onSkipForwards() {
-            prompter.skipForwards();
+            if (!interalFocusElsewhere())
+                prompter.skipForwards();
         }
         function onPreviousMarker() {
-            prompter.goToPreviousMarker();
+            if (!interalFocusElsewhere())
+                prompter.goToPreviousMarker();
         }
         function onNextMarker() {
-            prompter.goToNextMarker();
+            if (!interalFocusElsewhere())
+                prompter.goToNextMarker();
         }
         function onSetVelocity(velocity) {
-            prompter.setVelocity(velocity);
+            if (!interalFocusElsewhere())
+                prompter.setVelocity(velocity);
         }
     }
     WebSocket{

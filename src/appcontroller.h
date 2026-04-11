@@ -38,6 +38,7 @@ class GlobalHotkeys : public AbstractInputSource
 {
     Q_OBJECT
     QML_ELEMENT
+    QML_UNCREATABLE("GlobalHotkeys are only to be interfaced with through the AppController")
 public:
     GlobalHotkeys(AppController *controller);
     enum Action {
@@ -145,13 +146,16 @@ protected:
     QAction *m_setVelocityTo8Action;
     QAction *m_setVelocityTo9Action;
     QAction *m_setVelocityTo10Action;
+public:
+    QString globalShortcutKey(GlobalHotkeys::Action action);
+    void setGlobalShortcut(Qt::Key key, Qt::KeyboardModifiers modifiers, Action action);
 protected:
     void m_initializeSource() override;
 private:
-    void m_setShortcut(Qt::Key key, Qt::KeyboardModifier modifier, Action action);
-    void m_setActionShortcut(Qt::Key key, Qt::KeyboardModifier modifier, QAction *action);
+    void m_setGlobalShortcut(Qt::Key key, Qt::KeyboardModifiers modifiers, Action action, bool setAsDefault=false);
+    void m_setActionShortcut(Qt::Key key, Qt::KeyboardModifiers modifiers, QAction *action, bool setAsDefault);
 #if defined(QHotkey_FOUND)
-    void m_setHotkeyShortcut(Qt::Key key, Qt::KeyboardModifier modifier, QHotkey *hotkey);
+    void m_setHotkeyShortcut(Qt::Key key, Qt::KeyboardModifiers modifiers, QHotkey *hotkey);
 #endif
 };
 
@@ -164,6 +168,8 @@ private:
     explicit AppController(QObject *parent = nullptr);
 public:
     static AppController *create(QQmlEngine *qmlEngine, QJSEngine *);
+    Q_INVOKABLE QString globalShortcutKey(GlobalHotkeys::Action action);
+    Q_INVOKABLE void setGlobalShortcut(Qt::Key key, Qt::KeyboardModifiers modifiers, GlobalHotkeys::Action action);
 signals:
     // Prompter
     void togglePrompter();

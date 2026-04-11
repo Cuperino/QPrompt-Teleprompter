@@ -30,7 +30,6 @@ RowLayout {
 
     property alias checked: keyInputButton.checked
     property alias text: keyInputButton.text
-    property alias hotkey: hotkeyButton.checked
 
     signal clicked()
     signal toggleButtonsOff()
@@ -133,12 +132,5 @@ RowLayout {
                 keyInputButton.text = "[…]";
             }
         }
-    }
-    Button {
-        id: hotkeyButton
-        text: "▼"
-        checked: true
-        checkable: true
-        Material.theme: Material.Dark
     }
 }
