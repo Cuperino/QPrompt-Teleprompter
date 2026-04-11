@@ -201,6 +201,8 @@ public:
     void setMarker(bool marker);
     Q_INVOKABLE void setKeyMarker(QString keyCode);
     Q_INVOKABLE QString getMarkerKey();
+    Q_INVOKABLE void setMarkerHref(QString href);
+    Q_INVOKABLE QString getMarkerHref();
 
     //     MarkersModel *markers() const;
     Q_INVOKABLE MarkersModel *markers() const;

@@ -444,16 +444,18 @@ bool DocumentHandler::namedMarker() const
 
 void DocumentHandler::setKeyMarker(QString keyCodeString = QLatin1String(""))
 {
-    if (!keyCodeString.length())
-        return;
+    const bool enable = keyCodeString.length();
     QTextCharFormat format;
     // qDebug() << keyCodeString;
     //  Dev: in future versions, append, don't replace prior non-key values.
-    format.setAnchorNames({QLatin1String("key_") + keyCodeString});
-    format.setAnchor("#");
-    format.setAnchor(true);
-    format.setFontUnderline(true);
-    format.setFontOverline(true);
+    if (enable)
+        format.setAnchorNames({QLatin1String("key_") + keyCodeString});
+    else
+        format.setAnchorNames(QStringList());
+    format.setAnchor(enable ? "#": "");
+    format.setAnchor(enable);
+    format.setFontUnderline(enable);
+    format.setFontOverline(enable);
     mergeFormatOnWordOrSelection(format);
     this->setMarkersListDirty();
     Q_EMIT markerChanged();
@@ -498,6 +500,31 @@ QString DocumentHandler::getMarkerKey()
         qDebug() << "Empty";
     // Return key string
     return key;
+}
+
+void DocumentHandler::setMarkerHref(QString href)
+{
+    const bool enable = !href.isEmpty();
+    QTextCharFormat format;
+    format.setAnchor(enable);
+    format.setFontUnderline(enable);
+    format.setFontOverline(enable);
+    if (!href.isEmpty())
+        format.setAnchorHref(href);
+    mergeFormatOnWordOrSelection(format);
+    this->setMarkersListDirty();
+    Q_EMIT markerChanged();
+}
+
+QString DocumentHandler::getMarkerHref()
+{
+    QTextCursor cursor = textCursor();
+    if (cursor.isNull())
+        return QLatin1String("");
+    QString href = cursor.charFormat().anchorHref();
+    if (href == QLatin1String("#"))
+        return QLatin1String("");
+    return href;
 }
 
 void DocumentHandler::setMarker(bool marker)

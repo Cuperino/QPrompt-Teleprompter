@@ -1132,15 +1132,13 @@ Kirigami.Page {
             let key = viewport.document.getMarkerKey();
             if (key)
                 column.setMarkerKeyButton.text = key;
-            else
-                column.setMarkerKeyButton.text = "[…]";
-            column.setMarkerKeyButton.toggle();
-            column.setMarkerKeyButton.checked = true;
+            column.markerHrefField.text = viewport.document.getMarkerHref();
         }
         onClosed: {
             cursorAutoHide.restart();
             column.setMarkerKeyButton.text = "";
             column.setMarkerKeyButton.checked = false;
+            column.markerHrefField.text = "";
             viewport.editor.enabled = true;
             viewport.prompter.restoreFocus();
             if (markersDrawer.reOpen) {
@@ -1152,6 +1150,7 @@ Kirigami.Page {
         ColumnLayout {
             id: column
             property alias setMarkerKeyButton: setMarkerKeyButton.item
+            property alias markerHrefField: markerHrefField
             width: parent.width
             Label {
                 text: qsTr("Key to perform skip to this marker", "Refers to a key on the keyboard used to skip to a user defined marker while prompting")
@@ -1167,7 +1166,10 @@ Kirigami.Page {
             }
             Connections {
                 target: setMarkerKeyButton.item
-                function onToggleButtonsOff() { target.checked = false; }
+                function onToggleButtonsOff() {
+                    target.checked = false;
+                    prompter.document.setKeyMarker("");
+                }
                 function onSetKey(keyCode, modifiers) {
                     prompter.document.setKeyMarker(keyCode);
                     if (keyCode)
@@ -1185,6 +1187,17 @@ Kirigami.Page {
                 repeat: false
                 interval: Units.HumanMoment
                 onTriggered: namedMarkerConfiguration.close()
+            }
+            Label {
+                text: qsTr("Command to execute")
+            }
+            TextField {
+                id: markerHrefField
+                Layout.fillWidth: true
+                placeholderText: (['android', 'ios', 'wasm'].indexOf(Qt.platform.os)===-1 ?
+                                      "obs://scene/name or sys://cmd arg" :
+                                      "obs://scene/name")
+                onEditingFinished: prompter.document.setMarkerHref(text)
             }
         }
     }
