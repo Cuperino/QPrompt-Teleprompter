@@ -1132,20 +1132,31 @@ void GlobalHotkeys::m_setGlobalShortcut(Qt::Key key, Qt::KeyboardModifiers modif
 #endif
 }
 
+// Set for QHotkey
 #if defined(QHotkey_FOUND)
 void GlobalHotkeys::m_setHotkeyShortcut(Qt::Key key, Qt::KeyboardModifiers modifiers, QHotkey *hotkey) {
     hotkey->setShortcut(key, modifiers, true);
 }
 #endif
 
+// Set for GlobalAccel
 #if defined(Use_GlobalAccel)
 void GlobalHotkeys::m_setActionShortcut(Qt::Key key, Qt::KeyboardModifiers modifiers, QAction *action, bool setAsDefault) {
-    const QKeyCombination shortcut = key | modifiers;
+#ifdef QHotkey_FOUND
+    if (QGuiApplication::platformName() != "wayland") {
+        key = Qt::Key_unknown;
+        modifiers = Qt::NoModifier;
+    }
+#endif
+    QKeyCombination shortcut = key | modifiers;
+    KGlobalAccel::self()->removeAllShortcuts(action);
     if(setAsDefault) {
         KGlobalAccel::self()->setDefaultShortcut(action, QList<QKeySequence>() << shortcut);
-        KGlobalAccel::self()->setShortcut(action, QList<QKeySequence>());
+        shortcut = Qt::Key_unknown | Qt::NoModifier;
+        KGlobalAccel::self()->setShortcut(action, QList<QKeySequence>() << shortcut);
     }
     else {
+        // Preserve default shortcut and update the rest
         const auto defaultShortcut = KGlobalAccel::self()->defaultShortcut(action);
         KGlobalAccel::self()->removeAllShortcuts(action);
         KGlobalAccel::self()->setDefaultShortcut(action, QList<QKeySequence>() << defaultShortcut);
