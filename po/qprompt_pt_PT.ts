@@ -53,7 +53,7 @@
         <location filename="../src/kirigami_ui/EditorToolbar.qml" line="561"/>
         <source>DejaVu (default, Roman, Cyrillic)</source>
         <comment>FontName (Translatable font details)</comment>
-        <translation>DejaVu (padrão, Romano, Cirílico)</translation>
+        <translation>DejaVu (predefinição, romano, cirílico)</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/EditorToolbar.qml" line="565"/>
@@ -89,7 +89,7 @@
         <location filename="../src/kirigami_ui/EditorToolbar.qml" line="587"/>
         <source>Choose System Font</source>
         <comment>Opens system font selection dialog</comment>
-        <translation>Selecionar o tipo de letra do sistema</translation>
+        <translation>Escolher tipo de letra do sistema</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/EditorToolbar.qml" line="593"/>
@@ -119,7 +119,7 @@
         <location filename="../src/kirigami_ui/EditorToolbar.qml" line="1232"/>
         <source>Line height &lt;pre&gt;%1%&lt;/pre&gt;</source>
         <comment>Line height 100%</comment>
-        <translation>Tamanho de linha &lt;pre&gt;%1%&lt;/pre&gt;</translation>
+        <translation>Altura da linha &lt;pre&gt;%1%&lt;/pre&gt;</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/EditorToolbar.qml" line="1351"/>
@@ -143,13 +143,13 @@
         <location filename="../src/kirigami_ui/EditorToolbar.qml" line="1705"/>
         <source>Step speed &lt;pre&gt;%1&lt;/pre&gt;</source>
         <comment>Step speed 1.00</comment>
-        <translation>Aumento de rapidez &lt;pre&gt;%1&lt;/pre&gt;</translation>
+        <translation>Incremento de velocidade &lt;pre&gt;%1&lt;/pre&gt;</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/EditorToolbar.qml" line="1824"/>
         <source>Step acceleration &lt;pre&gt;%1&lt;/pre&gt;</source>
         <comment>Step acceleration 1.15</comment>
-        <translation>Aumento de aceleração &lt;pre&gt;%1&lt;/pre&gt;</translation>
+        <translation>Incremento de aceleração &lt;pre&gt;%1&lt;/pre&gt;</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/EditorToolbar.qml" line="1850"/>
@@ -163,12 +163,12 @@
     <message>
         <location filename="../src/prompter/Find.qml" line="133"/>
         <source>End reached, searching from the start.</source>
-        <translation>Fim alcançado, procurando do início.</translation>
+        <translation>Fim alcançado, a procurar desde o início.</translation>
     </message>
     <message>
         <location filename="../src/prompter/Find.qml" line="135"/>
         <source>Start reached, searching from the end.</source>
-        <translation>Início alcançado, procurando do final.</translation>
+        <translation>Início alcançado, a procurar desde o fim.</translation>
     </message>
     <message numerus="yes">
         <location filename="../src/prompter/Find.qml" line="160"/>
@@ -185,7 +185,7 @@
         <location filename="../src/kirigami_ui/InputsOverlay.qml" line="35"/>
         <source>Key Bindings</source>
         <comment>Title of dialog where users customize keyboard inputs</comment>
-        <translation>Combinação de teclas</translation>
+        <translation>Atalhos de teclado</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/InputsOverlay.qml" line="278"/>
@@ -210,7 +210,7 @@
     <message>
         <location filename="../src/kirigami_ui/InputsOverlay.qml" line="310"/>
         <source>Play/Pause</source>
-        <translation>Reproduzir/Pausa</translation>
+        <translation>Reproduzir/Pausar</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/InputsOverlay.qml" line="318"/>
@@ -395,13 +395,13 @@ Ajude-nos a traduzir o QPrompt, visite:</translation>
         <location filename="../src/kirigami_ui/LayoutDirectionSettingsOverlay.qml" line="64"/>
         <source>RTL</source>
         <comment>Short for Right to Left layout</comment>
-        <translation>DPE</translation>
+        <translation>RTL</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/LayoutDirectionSettingsOverlay.qml" line="65"/>
         <source>LTR</source>
         <comment>Short for Left to Right layout</comment>
-        <translation>EPD</translation>
+        <translation>LTR</translation>
     </message>
 </context>
 <context>
@@ -431,14 +431,14 @@ Ajude-nos a traduzir o QPrompt, visite:</translation>
     <message>
         <location filename="../src/kirigami_ui/PathsPage.qml" line="63"/>
         <source>QPrompt can make transparent use of LibreOffice to convert Microsoft Word, Open Document Format, and other office documents into a format QPrompt understands. Install LibreOffice and ensure this field points to its location, so QPrompt can open office documents.</source>
-        <translation>O QPrompt pode utilizar o LibreOffice de forma transparente para converter documentos do Microsoft Word, do Open Document Format e outros documentos de texto para um formato compatível com o QPrompt. Instale o LibreOffice e certifique-se de que este campo aponta para a sua localização, para que o QPrompt possa abrir documentos de texto.</translation>
+        <translation>O QPrompt pode utilizar o LibreOffice de forma transparente para converter documentos do Microsoft Word, do formato OpenDocument e outros documentos de escritório para um formato compatível com o QPrompt. Instale o LibreOffice e certifique-se de que este campo aponta para a sua localização, para que o QPrompt possa abrir documentos de escritório.</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/PathsPage.qml" line="71"/>
         <location filename="../src/kirigami_ui/PathsPage.qml" line="99"/>
         <source>Browse for %1</source>
         <comment>Browse for PROGRAM</comment>
-        <translation>Procurar por %1</translation>
+        <translation>Localizar %1</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/PathsPage.qml" line="102"/>
@@ -480,7 +480,7 @@ Ajude-nos a traduzir o QPrompt, visite:</translation>
     <message>
         <location filename="../src/prompter/PointerSettings.qml" line="190"/>
         <source>Prompting: </source>
-        <translation>Começar o prompt: </translation>
+        <translation>Em execução: </translation>
     </message>
     <message>
         <location filename="../src/prompter/PointerSettings.qml" line="206"/>
@@ -664,7 +664,7 @@ Ajude-nos a traduzir o QPrompt, visite:</translation>
     <message>
         <location filename="../src/prompter/Prompter.qml" line="1384"/>
         <source>User welcome loaded</source>
-        <translation>Bem-vindo do utilizador carregado</translation>
+        <translation>Documento de boas-vindas carregado</translation>
     </message>
     <message>
         <location filename="../src/prompter/Prompter.qml" line="1394"/>
@@ -737,7 +737,7 @@ Ajude-nos a traduzir o QPrompt, visite:</translation>
         <location filename="../src/prompter/Prompter.qml" line="1559"/>
         <source>Hypertext Markup Language (%1)</source>
         <comment>Format name (FORMAT_EXTENSION)</comment>
-        <translation>Linguagem Hypertext Markup (%1)</translation>
+        <translation>HTML (%1)</translation>
     </message>
     <message>
         <location filename="../src/prompter/Prompter.qml" line="1517"/>
@@ -904,7 +904,7 @@ Ajude-nos a traduzir o QPrompt, visite:</translation>
         <location filename="../src/kirigami_ui/PrompterPage.qml" line="106"/>
         <source>Change reading region placement</source>
         <comment>Reading region indicates where a talent should be reading from</comment>
-        <translation>Mudar a posição da região de leitura</translation>
+        <translation>Alterar a posição da região de leitura</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/PrompterPage.qml" line="124"/>
@@ -921,7 +921,7 @@ Ajude-nos a traduzir o QPrompt, visite:</translation>
         <location filename="../src/kirigami_ui/PrompterPage.qml" line="137"/>
         <source>Middle</source>
         <comment>Align reading region to vertical center of prompter</comment>
-        <translation>Meio</translation>
+        <translation>Centro</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/PrompterPage.qml" line="139"/>
@@ -977,13 +977,13 @@ Ajude-nos a traduzir o QPrompt, visite:</translation>
         <location filename="../src/kirigami_ui/PrompterPage.qml" line="257"/>
         <source>Change reading region indicators</source>
         <comment>Indicators highlight reading region</comment>
-        <translation>Alterar indicador de região de leitura</translation>
+        <translation>Alterar os indicadores da região de leitura</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/PrompterPage.qml" line="260"/>
         <source>Pointer Configuration</source>
         <comment>Configure reading region pointer indicators</comment>
-        <translation>Configuração de ponteiro</translation>
+        <translation>Configuração dos ponteiros</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/PrompterPage.qml" line="267"/>
@@ -1046,7 +1046,7 @@ Ajude-nos a traduzir o QPrompt, visite:</translation>
     <message>
         <location filename="../src/kirigami_ui/PrompterPage.qml" line="328"/>
         <source>Enable timers</source>
-        <translation>Habilitar temporizadores</translation>
+        <translation>Ativar temporizadores</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/PrompterPage.qml" line="341"/>
@@ -1057,7 +1057,7 @@ Ajude-nos a traduzir o QPrompt, visite:</translation>
         <location filename="../src/kirigami_ui/PrompterPage.qml" line="354"/>
         <source>ETA</source>
         <comment>Estimated Time of Arrival</comment>
-        <translation>Tempo estimado de leitura</translation>
+        <translation>Tempo restante</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/PrompterPage.qml" line="363"/>
@@ -1069,7 +1069,7 @@ Ajude-nos a traduzir o QPrompt, visite:</translation>
         <location filename="../src/kirigami_ui/PrompterPage.qml" line="375"/>
         <source>Clear color</source>
         <comment>Reset color of timer text back to default</comment>
-        <translation>repor cor</translation>
+        <translation>Repor cor</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/PrompterPage.qml" line="387"/>
@@ -1081,7 +1081,7 @@ Ajude-nos a traduzir o QPrompt, visite:</translation>
         <location filename="../src/kirigami_ui/PrompterPage.qml" line="393"/>
         <source>Auto frame</source>
         <comment>Enables automatic alignment of prompter and text with the reading region</comment>
-        <translation>Ajuste automático</translation>
+        <translation>Enquadramento automático</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/PrompterPage.qml" line="427"/>
@@ -1238,8 +1238,8 @@ Ajude-nos a traduzir o QPrompt, visite:</translation>
         <location filename="../src/kirigami_ui/PrompterPage.qml" line="899"/>
         <source>Disappear within %n second(s) to go</source>
         <translation>
-            <numerusform>Desaparecer no espaço de 1 segundo para iniciar</numerusform>
-            <numerusform>Desaparecer no espaço de %n segundos para iniciar</numerusform>
+            <numerusform>Desaparece quando faltar 1 segundo</numerusform>
+            <numerusform>Desaparece quando faltarem %n segundos</numerusform>
         </translation>
     </message>
     <message>
@@ -1257,7 +1257,7 @@ Ajude-nos a traduzir o QPrompt, visite:</translation>
     <message>
         <location filename="../src/kirigami_ui/PrompterPage.qml" line="1011"/>
         <source>Open from network...</source>
-        <translation>Abrir a partir da rede...</translation>
+        <translation>Abrir da rede...</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/PrompterPage.qml" line="1052"/>
@@ -1293,7 +1293,7 @@ Ajude-nos a traduzir o QPrompt, visite:</translation>
     <message>
         <location filename="../src/kirigami_ui/PrompterPage.qml" line="1153"/>
         <source>Auto reload is not running</source>
-        <translation>O recarregamento automático não está a funcionar</translation>
+        <translation>O recarregamento automático não está ativo</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/PrompterPage.qml" line="1159"/>
@@ -1309,7 +1309,7 @@ Ajude-nos a traduzir o QPrompt, visite:</translation>
         <location filename="../src/kirigami_ui/PrompterPage.qml" line="1181"/>
         <source>Pointer configuration</source>
         <comment>Name of section where reding region pointers are configured</comment>
-        <translation>Configuração de ponteiro</translation>
+        <translation>Configuração dos ponteiros</translation>
     </message>
 </context>
 <context>
@@ -1394,12 +1394,12 @@ Ajude-nos a traduzir o QPrompt, visite:</translation>
         <location filename="../src/kirigami_ui/TelemetryPage.qml" line="99"/>
         <location filename="../src/kirigami_ui/TelemetryPage.qml" line="120"/>
         <source>Locale information (timezone and keyboard layout)</source>
-        <translation>Informações locais (fuso-horário e layout do teclado)</translation>
+        <translation>Informações regionais (fuso horário e esquema de teclado)</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/TelemetryPage.qml" line="116"/>
         <source>Program run statistics: Help us study user retention</source>
-        <translation>Estatísticas do programa: Ajude-nos a estudar retenção do usuário</translation>
+        <translation>Estatísticas de execução do programa: ajude-nos a estudar a retenção dos utilizadores</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/TelemetryPage.qml" line="117"/>
@@ -1469,7 +1469,7 @@ Ajude-nos a traduzir o QPrompt, visite:</translation>
     <message>
         <location filename="../src/kirigami_ui/TelemetryPage.qml" line="164"/>
         <source>Help us understand how users operate QPrompt</source>
-        <translation>Ajude-nos a compreender como os utilizadores utilizam o QPrompt</translation>
+        <translation>Ajude-nos a compreender como os utilizadores operam o QPrompt</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/TelemetryPage.qml" line="165"/>
@@ -1509,7 +1509,7 @@ Ajude-nos a traduzir o QPrompt, visite:</translation>
     <message>
         <location filename="../src/kirigami_ui/TelemetryPage.qml" line="172"/>
         <source>Languages likely present in the text being prompted</source>
-        <translation>Linguagens prováveis de estarem presentes no texto durante o ponto</translation>
+        <translation>Idiomas provavelmente presentes no texto</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/TelemetryPage.qml" line="173"/>
@@ -1519,22 +1519,22 @@ Ajude-nos a traduzir o QPrompt, visite:</translation>
     <message>
         <location filename="../src/kirigami_ui/TelemetryPage.qml" line="174"/>
         <source>Manual scroll start and end timestamps</source>
-        <translation>Timestamps de início e fim da rolagem manual</translation>
+        <translation>Marcas temporais de início e fim da deslocação manual</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/TelemetryPage.qml" line="175"/>
         <source>Scroll starting line number and position</source>
-        <translation>Linha e posição do início da rolagem</translation>
+        <translation>Linha e posição do início da deslocação</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/TelemetryPage.qml" line="176"/>
         <source>Scroll end line number and position</source>
-        <translation>Número e posição da última linha de rolagem</translation>
+        <translation>Linha e posição do fim da deslocação</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/TelemetryPage.qml" line="177"/>
         <source>Scroll duration</source>
-        <translation>Duração de rolagem</translation>
+        <translation>Duração da deslocação</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/TelemetryPage.qml" line="178"/>
@@ -1549,12 +1549,12 @@ Ajude-nos a traduzir o QPrompt, visite:</translation>
     <message>
         <location filename="../src/kirigami_ui/TelemetryPage.qml" line="180"/>
         <source>Source of changes to velocity</source>
-        <translation>Fonte de mudanças de velocidade</translation>
+        <translation>Origem das alterações de velocidade</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/TelemetryPage.qml" line="181"/>
         <source>Source of manual changes to scroll position</source>
-        <translation>Fonte de mudanças manuais da posição de rolagem</translation>
+        <translation>Origem das alterações manuais da posição de deslocação</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/TelemetryPage.qml" line="190"/>
@@ -1567,7 +1567,7 @@ Ajude-nos a traduzir o QPrompt, visite:</translation>
     <message>
         <location filename="../src/kirigami_ui/WheelSettingsOverlay.qml" line="31"/>
         <source>Wheel and touchpad scroll settings</source>
-        <translation>Configurações de scroll da rolagem e do touchpad</translation>
+        <translation>Definições da roda do rato e do touchpad</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/WheelSettingsOverlay.qml" line="48"/>
@@ -1590,17 +1590,17 @@ Ajude-nos a traduzir o QPrompt, visite:</translation>
     <message>
         <location filename="../src/kirigami_ui/WheelSettingsOverlay.qml" line="67"/>
         <source>Enable throttling</source>
-        <translation>Ativar diminuição de potência</translation>
+        <translation>Ativar limitação</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/WheelSettingsOverlay.qml" line="84"/>
         <source>Throttle factor</source>
-        <translation>Diminuição de potência</translation>
+        <translation>Fator de limitação</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/WheelSettingsOverlay.qml" line="104"/>
         <source>Enable throttling for use with touchpads, disable for precise scolling.</source>
-        <translation>Ative a limitação de velocidade para utilização com painéis táteis; desative-a para uma navegação precisa.</translation>
+        <translation>Ative a limitação para utilização com touchpads; desative-a para uma deslocação precisa.</translation>
     </message>
 </context>
 <context>
@@ -1673,7 +1673,7 @@ Ajude-nos a traduzir o QPrompt, visite:</translation>
         <location filename="../src/kirigami_ui/+windows/main.qml" line="256"/>
         <source>Keyboard Inputs</source>
         <comment>Main menu and global menu actions. Opens dialog to configure keyboard inputs.</comment>
-        <translation>Entradas de teclado</translation>
+        <translation>Atalhos de teclado</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/main.qml" line="266"/>
@@ -1681,7 +1681,7 @@ Ajude-nos a traduzir o QPrompt, visite:</translation>
         <location filename="../src/kirigami_ui/+windows/main.qml" line="266"/>
         <source>Scroll throttle settings</source>
         <comment>Open &apos;scroll settings&apos; from main menu and global menu actions</comment>
-        <translation>Ajustes de velocidade de rolagem</translation>
+        <translation>Definições de limitação da deslocação</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/main.qml" line="275"/>
@@ -1824,7 +1824,7 @@ Ajude-nos a traduzir o QPrompt, visite:</translation>
         <location filename="../src/kirigami_ui/+windows/main.qml" line="419"/>
         <source>Fake fullscreen behavior</source>
         <comment>Main menu actions. Fake fullscreen behavior instead of requesting true fullscreen</comment>
-        <translation>Comportamento falso de ecrã inteiro</translation>
+        <translation>Ecrã inteiro simulado</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/main.qml" line="428"/>
@@ -1832,7 +1832,7 @@ Ajude-nos a traduzir o QPrompt, visite:</translation>
         <location filename="../src/kirigami_ui/+windows/main.qml" line="427"/>
         <source>Restore factory defaults</source>
         <comment>Main menu actions</comment>
-        <translation>Repor as predefinições de fábrica</translation>
+        <translation>Repor predefinições de fábrica</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/main.qml" line="438"/>
@@ -1866,7 +1866,7 @@ Ajude-nos a traduzir o QPrompt, visite:</translation>
         <location filename="../src/kirigami_ui/+windows/main.qml" line="512"/>
         <source>Load &amp;Welcome</source>
         <comment>Main menu and global actions. Load document that welcomes users.</comment>
-        <translation>Carregar o texto de &amp;Bem-vindo</translation>
+        <translation>Carregar documento de &amp;boas-vindas</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/main.qml" line="576"/>
@@ -1927,7 +1927,7 @@ Ajude-nos a traduzir o QPrompt, visite:</translation>
         <location filename="../src/kirigami_ui/main.qml" line="673"/>
         <source>&amp;View</source>
         <comment>Global menu actions</comment>
-        <translation>&amp;Visualização</translation>
+        <translation>&amp;Ver</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/main.qml" line="676"/>
@@ -2109,7 +2109,7 @@ Ajude-nos a traduzir o QPrompt, visite:</translation>
         <location filename="../src/kirigami_ui/main.qml" line="875"/>
         <source>Report &amp;Bug…</source>
         <comment>Global menu actions</comment>
-        <translation>Reportar &amp;Bugs…</translation>
+        <translation>Reportar &amp;erro…</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/main.qml" line="894"/>
@@ -2149,7 +2149,7 @@ Pretende reiniciar o %1 agora? Todas as alterações feitas no documento serão 
         <location filename="../src/kirigami_ui/+android/main.qml" line="642"/>
         <location filename="../src/kirigami_ui/+windows/main.qml" line="767"/>
         <source>Restore all configurations to factory defaults? QPrompt will close if you click Yes and all unsaved document changes will be lost.</source>
-        <translation>Restaurar todas as configurações para os valores predefinidos de fábrica? O QPrompt será encerrado se clicar em Sim e todas as alterações não guardadas nos documentos serão perdidas.</translation>
+        <translation>Repor todas as predefinições de fábrica? O QPrompt será encerrado se clicar em Sim e todas as alterações não guardadas nos documentos serão perdidas.</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/main.qml" line="1087"/>
