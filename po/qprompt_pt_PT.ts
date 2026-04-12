@@ -24,7 +24,7 @@
     <message>
         <location filename="../src/main.cpp" line="184"/>
         <source>Emails of translators</source>
-        <translation>hugokarvalho@hotmail.com, contatoliaguedes@gmail.com, marttinhoblue@gmail.com</translation>
+        <translation>blackspirits@gmail.com, hugokarvalho@hotmail.com, contatoliaguedes@gmail.com, marttinhoblue@gmail.com</translation>
     </message>
 </context>
 <context>
