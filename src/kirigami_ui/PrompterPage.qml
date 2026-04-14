@@ -1254,6 +1254,8 @@ Kirigami.Page {
                 autoReloadRunning = true;
                 updateNextReloadTime();
             }
+            if (root.recentDocuments && !autoReloadRunning)
+                root.recentDocuments.add(address, true);
         }
         function disableAutoReload() {
             networkDialog.autoReloadRunning = false;

@@ -62,6 +62,8 @@ Kirigami.ApplicationWindow {
     property double __opacity: 1
     property int __iDefault: 3
     property int onDiscard: Prompter.CloseActions.Ignore
+    property string pendingRecentUrl: ""
+    property bool pendingRecentIsRemote: false
     property bool ee: false
     property bool theforce: false
     property int transparencyRestartModulus: 1
@@ -217,6 +219,12 @@ Kirigami.ApplicationWindow {
                 }
             },
             Kirigami.Action {
+                id: recentFilesAction
+                text: qsTr("&Recent Files", "Main menu actions. Submenu listing recently opened documents.")
+                icon.source: "qrc:/qt/qml/com/cuperino/qprompt/icons/document-open-recent.svg"
+                enabled: recentDocuments ? recentDocuments.count > 0 : false
+            },
+            Kirigami.Action {
                 text: qsTr("&Save", "Main menu and global menu actions")
                 //icon.name: "document-save"
                 icon.source: "qrc:/qt/qml/com/cuperino/qprompt/icons/document-save.svg"
@@ -235,16 +243,6 @@ Kirigami.ApplicationWindow {
                     root.onDiscard = Prompter.CloseActions.Ignore
                     root.pageStack.currentItem.document.saveAsDialog()
                 }
-            },
-            Kirigami.Action {
-                visible: false
-                text: qsTr("&Recent Files", "Main menu actions")
-                //icon.name: "document-open-recent"
-                icon.source: "qrc:/qt/qml/com/cuperino/qprompt/icons/document-open-recent.svg"
-                //Kirigami.Action {
-                    //text: qsTr("View Action 1")
-                    //onTriggered: showPassiveNotification(qsTr("View Action 1 clicked"))
-                //}
             },
             Kirigami.Action {
                 text: qsTr("&Controls Settings", "Main menu actions. Menu regarding input settings.")
@@ -833,6 +831,14 @@ Kirigami.ApplicationWindow {
                         case Prompter.CloseActions.Network:
                             root.pageStack.currentItem.networkDialog.open();
                             break;
+                        case Prompter.CloseActions.RecentLocal:
+                            root.pageStack.currentItem.document.modified = false
+                            root.pageStack.currentItem.document.loadRecent(root.pendingRecentUrl, false);
+                            break;
+                        case Prompter.CloseActions.RecentRemote:
+                            root.pageStack.currentItem.document.modified = false
+                            root.pageStack.currentItem.document.loadRecent(root.pendingRecentUrl, true);
+                            break;
                         case Prompter.CloseActions.Quit:
                             Qt.quit();
                             break;
@@ -853,5 +859,13 @@ Kirigami.ApplicationWindow {
     }
     QmlUtil {
         id: qmlutil
+    }
+
+    property RecentDocuments recentDocuments: RecentDocuments {
+        util: qmlutil
+        targetAction: recentFilesAction
+        onOpenRequested: (uri, isRemote) => {
+            root.pageStack.currentItem.document.openRecent(uri, isRemote)
+        }
     }
 }

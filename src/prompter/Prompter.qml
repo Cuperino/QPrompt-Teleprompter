@@ -97,7 +97,9 @@ Flickable {
         LoadGuide,
         Open,
         Network,
-        Ignore
+        Ignore,
+        RecentLocal,
+        RecentRemote
     }
     enum AtEndActions {
         Stop,
@@ -2212,6 +2214,31 @@ Flickable {
             else
                 networkDialog.open()
         }
+        function openRecent(url, isRemote) {
+            root.onDiscard = isRemote ? Prompter.CloseActions.RecentRemote : Prompter.CloseActions.RecentLocal
+            root.pendingRecentUrl = url
+            root.pendingRecentIsRemote = Boolean(isRemote)
+            if (document.modified)
+                closeDialog.open()
+            else
+                loadRecent(url, isRemote)
+        }
+        function loadRecent(url, isRemote) {
+            document.close()
+            if (isRemote) {
+                document.loadFromNetwork(url)
+                editor.lastDocument = ""
+            } else {
+                document.isNewFile = false
+                document.load(url)
+                editor.lastDocument = document.fileUrl
+                editor.resetPosition = true
+                if (parseInt(prompter.state)!==Prompter.States.Editing)
+                    prompter.state = Prompter.States.Editing
+            }
+            if (root.recentDocuments)
+                root.recentDocuments.add(String(url), Boolean(isRemote));
+        }
         function saveAsDialog() {
             if (Qt.platform.os === "ios") {
                 var suggestedName = document.fileName ? document.fileName : "script.html"
@@ -2242,6 +2269,8 @@ Flickable {
                         case Prompter.CloseActions.LoadNew: document.newDocument(); break;
                         case Prompter.CloseActions.Open: document.open(); break;
                         case Prompter.CloseActions.Network: document.openFromNetwork(); break;
+                        case Prompter.CloseActions.RecentLocal: document.loadRecent(root.pendingRecentUrl, false); break;
+                        case Prompter.CloseActions.RecentRemote: document.loadRecent(root.pendingRecentUrl, true); break;
                         case Prompter.CloseActions.Quit: Qt.quit()
                     }
                 }
@@ -2377,6 +2406,8 @@ Flickable {
             editor.resetPosition = true;
             if (parseInt(prompter.state)!==Prompter.States.Editing)
                 prompter.state = Prompter.States.Editing;
+            if (root.recentDocuments)
+                root.recentDocuments.add(String(document.fileUrl), false);
         }
     }
 

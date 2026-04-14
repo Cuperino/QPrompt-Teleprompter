@@ -105,6 +105,7 @@ if (WASM)
         kirigami_ui/WheelSettingsOverlay.qml
         kirigami_ui/LayoutDirectionSettingsOverlay.qml
         kirigami_ui/LanguageSettingsOverlay.qml
+        kirigami_ui/RecentDocuments.qml
         kirigami_ui/OnlineResourceButtons.qml
     )
 else()
@@ -125,6 +126,7 @@ else()
         kirigami_ui/WheelSettingsOverlay.qml
         kirigami_ui/LayoutDirectionSettingsOverlay.qml
         kirigami_ui/LanguageSettingsOverlay.qml
+        kirigami_ui/RecentDocuments.qml
         kirigami_ui/OnlineResourceButtons.qml
     )
 endif()

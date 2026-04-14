@@ -40,6 +40,8 @@
 #include <QByteArray>
 #include <QCryptographicHash>
 #include <QQuickItemGrabResult>
+#include <QFileInfo>
+#include <QUrl>
 
 // A singleton object to implement C++ functions that can be called from QML
 class QmlUtil : public QObject
@@ -160,6 +162,18 @@ public:
 
         // 6. Base64 encode the final binary hash and return
         return QString::fromUtf8(secondBinaryHash.toBase64());
+    }
+
+    Q_INVOKABLE bool fileExists(const QUrl &url)
+    {
+        if (url.isEmpty())
+            return false;
+        const QString path = url.isLocalFile() ? url.toLocalFile() : url.toString();
+        if (path.isEmpty())
+            return false;
+        if (path.startsWith(QStringLiteral("qrc:")) || path.startsWith(QStringLiteral(":/")))
+            return QFileInfo::exists(path.startsWith(QStringLiteral("qrc:")) ? path.mid(3) : path);
+        return QFileInfo::exists(path);
     }
 
     Q_INVOKABLE void r(QQuickItemGrabResult *res) {
