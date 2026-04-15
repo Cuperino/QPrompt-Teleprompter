@@ -80,6 +80,20 @@ bool SpellChecker::load(const QString &language)
     m_language = language;
     const char *enc = m_hunspell->get_dict_encoding().c_str();
     m_encoding = QByteArray(enc);
+
+    // Application's built-in dictionary: project-specific terms that should
+    // never be flagged, regardless of the active language.
+    static const QStringList appDictionary = {
+        QStringLiteral("QPrompt"),
+        QStringLiteral("QPrompt's"),
+        QStringLiteral("Cuperino"),
+        QStringLiteral("Cordero"),
+        QStringLiteral("KDE"),
+        QStringLiteral("KDAB"),
+    };
+    for (const QString &w : appDictionary)
+        m_hunspell->add(encode(w).toStdString());
+
     return true;
 }
 
