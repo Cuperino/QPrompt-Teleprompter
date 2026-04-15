@@ -71,6 +71,11 @@
 
 #include "documenthandler.h"
 
+#ifdef HUNSPELL_ENABLED
+#include "spellchecker.h"
+#include "spellhighlighter.h"
+#endif
+
 #include <vector>
 #if defined(Q_OS_ANDROID)
 #include <QJniObject>
@@ -142,14 +147,13 @@ DocumentHandler::DocumentHandler(QObject *parent)
     m_fontDialog = new SystemFontChooserDialog();
     connect(m_fontDialog, &SystemFontChooserDialog::fontFamilyChanged, this, &DocumentHandler::setFontFamily);
 #endif
-}
 
-DocumentHandler::~DocumentHandler()
-{
-#if !(defined(Q_OS_ANDROID) || defined(Q_OS_IOS) || defined(Q_OS_WASM) || defined(Q_OS_WATCHOS))
-    delete m_fontDialog;
+#ifdef HUNSPELL_ENABLED
+    m_spellChecker = std::make_unique<SpellChecker>(QStringLiteral("en_US"));
 #endif
 }
+
+DocumentHandler::~DocumentHandler() = default;
 
 QQuickTextDocument *DocumentHandler::document() const
 {
@@ -181,8 +185,96 @@ void DocumentHandler::setDocument(QQuickTextDocument *document)
             "background-color:rgba(0,0,0,0.0);}img{margin:5pt;width:50vw;}p{margin:0;}h1,h2,h3,h4,h5,h6{font-size:medium;font-weight:normal;}"));
         connect(m_document->textDocument(), &QTextDocument::modificationChanged, this, &DocumentHandler::modifiedChanged);
         connect(m_document->textDocument(), &QTextDocument::contentsChanged, this, &DocumentHandler::setMarkersListDirty);
+#ifdef HUNSPELL_ENABLED
+        m_spellHighlighter.reset();
+        if (m_spellChecker && m_spellChecker->isValid()) {
+            m_spellHighlighter = std::make_unique<SpellHighlighter>(m_spellChecker.get());
+            m_spellHighlighter->setDocument(m_document->textDocument());
+            m_spellHighlighter->setEnabled(m_spellCheckEnabled);
+        }
+#endif
     }
     Q_EMIT documentChanged();
+}
+
+bool DocumentHandler::spellCheckEnabled() const
+{
+#ifdef HUNSPELL_ENABLED
+    return m_spellCheckEnabled;
+#else
+    return false;
+#endif
+}
+
+void DocumentHandler::setSpellCheckEnabled(bool enabled)
+{
+#ifdef HUNSPELL_ENABLED
+    if (enabled == m_spellCheckEnabled)
+        return;
+    m_spellCheckEnabled = enabled;
+    if (m_spellHighlighter)
+        m_spellHighlighter->setEnabled(enabled);
+    Q_EMIT spellCheckEnabledChanged();
+#else
+    Q_UNUSED(enabled);
+#endif
+}
+
+QString DocumentHandler::spellCheckLanguage() const
+{
+#ifdef HUNSPELL_ENABLED
+    return m_spellChecker ? m_spellChecker->language() : QString();
+#else
+    return QString();
+#endif
+}
+
+void DocumentHandler::setSpellCheckLanguage(const QString &language)
+{
+#ifdef HUNSPELL_ENABLED
+    if (!m_spellChecker)
+        return;
+    if (language == m_spellChecker->language())
+        return;
+    if (m_spellChecker->setLanguage(language)) {
+        if (m_spellHighlighter)
+            m_spellHighlighter->rehighlight();
+        Q_EMIT spellCheckLanguageChanged();
+    }
+#else
+    Q_UNUSED(language);
+#endif
+}
+
+QStringList DocumentHandler::spellCheckSuggestions(int position) const
+{
+#ifdef HUNSPELL_ENABLED
+    if (!m_spellChecker || !m_document)
+        return {};
+    QTextCursor cursor(m_document->textDocument());
+    cursor.setPosition(position);
+    cursor.select(QTextCursor::WordUnderCursor);
+    const QString word = cursor.selectedText();
+    if (word.isEmpty() || m_spellChecker->spell(word))
+        return {};
+    return m_spellChecker->suggest(word);
+#else
+    Q_UNUSED(position);
+    return {};
+#endif
+}
+
+void DocumentHandler::addToDictionary(const QString &word)
+{
+#ifdef HUNSPELL_ENABLED
+    if (!m_spellChecker)
+        return;
+    m_spellChecker->addWord(word);
+    if (m_spellHighlighter)
+        m_spellHighlighter->rehighlight();
+#else
+    Q_UNUSED(word);
+#endif
 }
 
 int DocumentHandler::cursorPosition() const

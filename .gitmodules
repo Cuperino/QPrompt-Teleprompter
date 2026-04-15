@@ -25,3 +25,6 @@
 [submodule "3rdparty/vcpkg"]
 	path = 3rdparty/vcpkg
 	url = https://github.com/microsoft/vcpkg.git
+[submodule "3rdparty/hunspell"]
+	path = 3rdparty/hunspell
+	url = https://github.com/hunspell/hunspell.git

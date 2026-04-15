@@ -83,6 +83,12 @@ set(qprompt_cpp
     appcontroller.h appcontroller.cpp
     ${qprompt_QM_LOADER}
 )
+if(HUNSPELL_ENABLED)
+    list(APPEND qprompt_cpp
+        spellchecker.h spellchecker.cpp
+        spellhighlighter.h spellhighlighter.cpp
+    )
+endif()
 if(IOS)
     list(APPEND qprompt_cpp shakedetector.h shakedetector.mm)
     list(APPEND qprompt_cpp iossavedialog.h iossavedialog.mm)
@@ -520,6 +526,16 @@ if (QHotkey_FOUND)
     target_link_libraries(${PROJECT_NAME} PRIVATE
         qhotkey
     )
+endif()
+
+if(HUNSPELL_ENABLED)
+    if(TARGET Hunspell::Hunspell)
+        target_link_libraries(${PROJECT_NAME} PRIVATE Hunspell::Hunspell)
+    elseif(TARGET hunspell)
+        target_link_libraries(${PROJECT_NAME} PRIVATE hunspell)
+    elseif(TARGET PkgConfig::HUNSPELL)
+        target_link_libraries(${PROJECT_NAME} PRIVATE PkgConfig::HUNSPELL)
+    endif()
 endif()
 
 execute_process(COMMAND ${CMAKE_PREFIX_PATH}/bin/lconvert -pluralonly ${CMAKE_SOURCE_DIR}/po/qprompt_en.ts)

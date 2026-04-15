@@ -82,6 +82,11 @@
 #if !(defined(Q_OS_ANDROID) || defined(Q_OS_IOS) || defined(Q_OS_WASM) || defined(Q_OS_WATCHOS))
 #include "systemfontchooserdialog.h"
 #endif
+#ifdef HUNSPELL_ENABLED
+#include <memory>
+class SpellChecker;
+class SpellHighlighter;
+#endif
 #include <QFont>
 #include <QQuickTextDocument>
 #include <QTextCursor>
@@ -125,6 +130,9 @@ class DocumentHandler : public QObject
     Q_PROPERTY(QUrl fileUrl READ fileUrl NOTIFY fileUrlChanged)
 
     Q_PROPERTY(bool modified READ modified WRITE setModified NOTIFY modifiedChanged)
+
+    Q_PROPERTY(bool spellCheckEnabled READ spellCheckEnabled WRITE setSpellCheckEnabled NOTIFY spellCheckEnabledChanged)
+    Q_PROPERTY(QString spellCheckLanguage READ spellCheckLanguage WRITE setSpellCheckLanguage NOTIFY spellCheckLanguageChanged)
 
     //     Q_PROPERTY(MarkersModel* markers READ markers CONSTANT STORED false)
 
@@ -242,6 +250,13 @@ public:
 
     Q_INVOKABLE void loadFromNetwork(const QUrl &url);
 
+    bool spellCheckEnabled() const;
+    void setSpellCheckEnabled(bool enabled);
+    QString spellCheckLanguage() const;
+    void setSpellCheckLanguage(const QString &language);
+    Q_INVOKABLE QStringList spellCheckSuggestions(int position) const;
+    Q_INVOKABLE void addToDictionary(const QString &word);
+
 public Q_SLOTS:
     void loadFromNetworkFinihed();
     void load(const QUrl &fileUrl);
@@ -284,6 +299,9 @@ Q_SIGNALS:
 
     void modifiedChanged();
 
+    void spellCheckEnabledChanged();
+    void spellCheckLanguageChanged();
+
 private:
     void reset();
     QTextCursor textCursor() const;
@@ -318,5 +336,11 @@ private:
     QNetworkAccessManager *m_network;
     QNetworkReply *m_reply;
     QTemporaryFile *m_cache;
+
+#ifdef HUNSPELL_ENABLED
+    std::unique_ptr<SpellChecker> m_spellChecker;
+    std::unique_ptr<SpellHighlighter> m_spellHighlighter;
+    bool m_spellCheckEnabled = true;
+#endif
 };
 QT_END_NAMESPACE

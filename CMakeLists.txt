@@ -211,6 +211,30 @@ if(NOT ANDROID AND NOT IOS AND NOT WASM)
         Widgets
     )
 endif()
+# Hunspell spell checking (desktop: Windows/macOS/Linux/other Unixes). Skip Android, iOS, HaikuOS, WASM.
+if(NOT ANDROID AND NOT IOS AND NOT HAIKU AND NOT WASM)
+    if(WIN32 OR (APPLE AND NOT IOS) OR USE_GIT_DEPENDENCIES_ONLY)
+        FetchContent_Declare(
+          Hunspell
+          GIT_REPOSITORY "${CMAKE_SOURCE_DIR}/3rdparty/hunspell"
+          GIT_TAG        "v1.7.2"
+          SOURCE_DIR submodules/hunspell
+        )
+        FetchContent_MakeAvailable(Hunspell)
+    else()
+        find_package(Hunspell)
+        if(NOT Hunspell_FOUND)
+            find_package(PkgConfig QUIET)
+            if(PkgConfig_FOUND)
+                pkg_check_modules(HUNSPELL IMPORTED_TARGET hunspell)
+            endif()
+        endif()
+    endif()
+    if(TARGET Hunspell::Hunspell OR TARGET hunspell OR TARGET PkgConfig::HUNSPELL)
+        add_compile_definitions(HUNSPELL_ENABLED)
+        set(HUNSPELL_ENABLED ON)
+    endif()
+endif()
 # Platform specific dependencies
 if(HAIKU)
     # Haiku OS icons look nice
