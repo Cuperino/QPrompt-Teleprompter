@@ -16,6 +16,8 @@
 #include <QByteArray>
 #include <QString>
 #include <QStringList>
+#include <memory>
+#include <vector>
 
 class Hunspell;
 
@@ -26,23 +28,43 @@ public:
     ~SpellChecker();
 
     bool setLanguage(const QString &language);
-    QString language() const { return m_language; }
+    QString language() const { return m_dicts.empty() ? QString() : m_dicts.front().language; }
 
-    bool isValid() const { return m_hunspell != nullptr; }
+    bool setLanguages(const QStringList &languages);
+    QStringList languages() const;
+
+    bool isValid() const { return !m_dicts.empty(); }
 
     bool spell(const QString &word) const;
     QStringList suggest(const QString &word) const;
     void addWord(const QString &word);
 
+    static QStringList availableDictionaries();
+
+    QStringList customWords() const { return m_customWords; }
+    bool addCustomWord(const QString &word);
+    bool removeCustomWord(const QString &word);
+
 private:
-    bool load(const QString &language);
+    struct Dictionary {
+        std::unique_ptr<Hunspell> hunspell;
+        QString language;
+        QByteArray encoding;
+    };
+
+    bool loadOne(const QString &language, Dictionary &out);
     void unload();
     static QString locateDictionary(const QString &language, const QString &extension);
 
-    QByteArray encode(const QString &word) const;
-    QString decode(const std::string &word) const;
+    QByteArray encode(const Dictionary &d, const QString &word) const;
+    QString decode(const Dictionary &d, const std::string &word) const;
 
-    Hunspell *m_hunspell = nullptr;
-    QString m_language;
-    QByteArray m_encoding;
+    void applyBuiltInWords(Dictionary &d);
+    void applyCustomWords(Dictionary &d);
+    void loadCustomWordsFromDisk();
+    void saveCustomWordsToDisk() const;
+    static QString customWordsPath();
+
+    std::vector<Dictionary> m_dicts;
+    QStringList m_customWords;
 };

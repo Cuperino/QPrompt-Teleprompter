@@ -615,6 +615,35 @@ Kirigami.Page {
             }
         },
         Kirigami.Action {
+            id: spellcheckButton
+            text: qsTr("Spellcheck", "Spell checking menu")
+            Kirigami.Action {
+                id: toggleSpellcheckButton
+                text: qsTr("Enable Spellcheck", "Toggle spell checking on or off")
+                checkable: true
+                checked: viewport.document.spellCheckEnabled
+                onTriggered: {
+                    viewport.document.spellCheckEnabled = checked
+                }
+            }
+            Kirigami.Action {
+                id: setDictionariesButton
+                text: qsTr("Set dictionaries", "Open dictionary selection sheet")
+                onTriggered: {
+                    dictionariesSheet.open()
+                    contextDrawer.close()
+                }
+            }
+            Kirigami.Action {
+                id: editCustomWordsButton
+                text: qsTr("Edit custom words", "Open custom dictionary editor")
+                onTriggered: {
+                    customWordsSheet.open()
+                    contextDrawer.close()
+                }
+            }
+        },
+        Kirigami.Action {
             id: displaySettings
             visible: (!Kirigami.Settings.isMobile || Qt.platform.os==='linux') && Qt.platform.os!=='haiku'
             text: qsTr("Screens", "Screens refers to computer displays")
@@ -1471,6 +1500,193 @@ Kirigami.Page {
                     Layout.rightMargin: Kirigami.Units.smallSpacing
                     Material.theme: Material.Dark
                     onAccepted: viewport.prompter.ws.password = text
+                }
+            }
+        }
+    }
+
+    Kirigami.OverlaySheet {
+        id: dictionariesSheet
+        header: Kirigami.Heading {
+            text: qsTr("Set dictionaries", "Dictionary selection sheet title")
+            level: 1
+        }
+        width: 320
+        onOpened: {
+            cursorAutoHide.reset();
+            viewport.editor.enabled = false;
+            dictionariesSheet.rebuildModel();
+        }
+        onClosed: {
+            cursorAutoHide.restart();
+            viewport.editor.enabled = true;
+            viewport.prompter.restoreFocus();
+        }
+        function rebuildModel() {
+            dictModel.clear();
+            const filter = dictSearchField.text.toLowerCase();
+            const active = viewport.document.spellCheckLanguages;
+            const avail = viewport.document.availableDictionaries;
+            for (let i = 0; i < avail.length; i++) {
+                const name = avail[i];
+                const displayName = viewport.document.dictionaryDisplayName(name);
+                const label = displayName.length > 0 ? (displayName + " - " + name) : name;
+                if (filter === "" || label.toLowerCase().indexOf(filter) !== -1)
+                    dictModel.append({ name: name, label: label, checked: active.indexOf(name) !== -1 });
+            }
+        }
+        function toggleDictionary(name, checked) {
+            let active = viewport.document.spellCheckLanguages.slice();
+            const idx = active.indexOf(name);
+            if (checked && idx === -1)
+                active.push(name);
+            else if (!checked && idx !== -1)
+                active.splice(idx, 1);
+            viewport.document.spellCheckLanguages = active;
+        }
+        ColumnLayout {
+            implicitWidth: Math.min(prompterPage.width * 0.8, 480)
+            spacing: Kirigami.Units.smallSpacing
+            Kirigami.SearchField {
+                id: dictSearchField
+                Layout.fillWidth: true
+                placeholderText: qsTr("Filter dictionaries", "Dictionary filter placeholder")
+                onTextChanged: dictionariesSheet.rebuildModel()
+                Material.theme: Material.Dark
+            }
+            ListView {
+                id: dictListView
+                Layout.fillWidth: true
+                Layout.preferredHeight: Math.min(contentHeight, 420)
+                clip: true
+                model: ListModel { id: dictModel }
+                delegate: CheckBox {
+                    width: ListView.view.width
+                    text: model.label
+                    checked: model.checked
+                    onToggled: {
+                        dictModel.setProperty(index, "checked", checked);
+                        dictionariesSheet.toggleDictionary(model.name, checked);
+                    }
+                    Material.theme: Material.Dark
+                }
+            }
+            Label {
+                visible: dictModel.count === 0
+                Layout.fillWidth: true
+                horizontalAlignment: Text.AlignHCenter
+                text: viewport.document.availableDictionaries.length === 0
+                    ? qsTr("No dictionaries found on this system.")
+                    : qsTr("No dictionaries match the filter.")
+            }
+        }
+    }
+
+    Kirigami.OverlaySheet {
+        id: customWordsSheet
+        property int selectedCount: 0
+        header: Kirigami.Heading {
+            text: qsTr("Edit custom words", "Custom dictionary editor title")
+            level: 1
+        }
+        onOpened: {
+            cursorAutoHide.reset();
+            viewport.editor.enabled = false;
+            customWordsSheet.rebuildModel();
+        }
+        onClosed: {
+            cursorAutoHide.restart();
+            viewport.editor.enabled = true;
+            viewport.prompter.restoreFocus();
+        }
+        function rebuildModel() {
+            customWordsModel.clear();
+            const words = viewport.document.customWords;
+            for (let i = 0; i < words.length; i++)
+                customWordsModel.append({ word: words[i], selected: false });
+            customWordsSheet.selectedCount = 0;
+        }
+        function setItemSelected(index, checked) {
+            customWordsModel.setProperty(index, "selected", checked);
+            customWordsSheet.selectedCount += checked ? 1 : -1;
+        }
+        function tryAddWord() {
+            const w = newWordField.text.trim();
+            if (w.length === 0)
+                return;
+            if (viewport.document.addCustomWord(w)) {
+                newWordField.text = "";
+                customWordsSheet.rebuildModel();
+            } else {
+                newWordField.selectAll();
+            }
+        }
+        function deleteSelected() {
+            let toRemove = [];
+            for (let i = 0; i < customWordsModel.count; i++) {
+                const item = customWordsModel.get(i);
+                if (item.selected)
+                    toRemove.push(item.word);
+            }
+            if (toRemove.length > 0) {
+                viewport.document.removeCustomWords(toRemove);
+                customWordsSheet.rebuildModel();
+            }
+        }
+        Connections {
+            target: viewport.document
+            function onCustomWordsChanged() {
+                if (customWordsSheet.visible)
+                    customWordsSheet.rebuildModel();
+            }
+        }
+        ColumnLayout {
+            implicitWidth: Math.min(prompterPage.width * 0.8, 480)
+            spacing: Kirigami.Units.smallSpacing
+            RowLayout {
+                Layout.fillWidth: true
+                TextField {
+                    id: newWordField
+                    Layout.fillWidth: true
+                    placeholderText: qsTr("New word", "Placeholder for adding a custom dictionary word")
+                    onAccepted: customWordsSheet.tryAddWord()
+                    Material.theme: Material.Dark
+                }
+                Button {
+                    text: qsTr("Add", "Add custom word button")
+                    enabled: newWordField.text.trim().length > 0
+                    onClicked: customWordsSheet.tryAddWord()
+                    Material.theme: Material.Dark
+                }
+            }
+            ListView {
+                id: customWordsListView
+                Layout.fillWidth: true
+                Layout.preferredHeight: Math.min(contentHeight, 420)
+                clip: true
+                model: ListModel { id: customWordsModel }
+                delegate: CheckBox {
+                    width: ListView.view.width
+                    text: model.word
+                    checked: model.selected
+                    onToggled: customWordsSheet.setItemSelected(index, checked)
+                    Material.theme: Material.Dark
+                }
+            }
+            Label {
+                visible: customWordsModel.count === 0
+                Layout.fillWidth: true
+                horizontalAlignment: Text.AlignHCenter
+                text: qsTr("No custom words yet.")
+            }
+            RowLayout {
+                Layout.fillWidth: true
+                Item { Layout.fillWidth: true }
+                Button {
+                    text: qsTr("Delete selected", "Delete selected custom words")
+                    enabled: customWordsSheet.selectedCount > 0
+                    onClicked: customWordsSheet.deleteSelected()
+                    Material.theme: Material.Dark
                 }
             }
         }

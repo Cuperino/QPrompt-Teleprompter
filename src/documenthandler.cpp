@@ -95,6 +95,7 @@
 #include <QQmlFile>
 #include <QQmlFileSelector>
 #include <QQuickTextDocument>
+#include <QLocale>
 #include <QSettings>
 #include <QTextCharFormat>
 #include <QAbstractTextDocumentLayout>
@@ -149,7 +150,10 @@ DocumentHandler::DocumentHandler(QObject *parent)
 #endif
 
 #ifdef HUNSPELL_ENABLED
+    const QStringList savedLanguages = settings.value(QStringLiteral("editor/spellCheckLanguages")).toStringList();
     m_spellChecker = std::make_unique<SpellChecker>(QStringLiteral("en_US"));
+    if (!savedLanguages.isEmpty())
+        m_spellChecker->setLanguages(savedLanguages);
 #endif
 }
 
@@ -317,6 +321,133 @@ void DocumentHandler::addToDictionary(const QString &word)
         m_spellHighlighter->rehighlight();
 #else
     Q_UNUSED(word);
+#endif
+}
+
+QStringList DocumentHandler::spellCheckLanguages() const
+{
+#ifdef HUNSPELL_ENABLED
+    return m_spellChecker ? m_spellChecker->languages() : QStringList();
+#else
+    return {};
+#endif
+}
+
+void DocumentHandler::setSpellCheckLanguages(const QStringList &languages)
+{
+#ifdef HUNSPELL_ENABLED
+    if (!m_spellChecker)
+        return;
+    if (languages == m_spellChecker->languages())
+        return;
+    m_spellChecker->setLanguages(languages);
+    if (m_spellHighlighter && m_spellChecker->isValid()) {
+        m_spellHighlighter->rehighlight();
+    } else if (m_document && m_spellChecker->isValid()) {
+        m_spellHighlighter = std::make_unique<SpellHighlighter>(m_spellChecker.get());
+        m_spellHighlighter->setDocument(m_document->textDocument());
+        m_spellHighlighter->setEnabled(m_spellCheckEnabled);
+    }
+#if (defined(Q_OS_MACOS) or defined(Q_OS_IOS))
+    QSettings settings(QCoreApplication::organizationDomain(), QCoreApplication::applicationName());
+#else
+    QSettings settings(QCoreApplication::organizationName(), QCoreApplication::applicationName().toLower());
+#endif
+    settings.setValue(QStringLiteral("editor/spellCheckLanguages"), m_spellChecker->languages());
+    Q_EMIT spellCheckLanguagesChanged();
+    Q_EMIT spellCheckLanguageChanged();
+#else
+    Q_UNUSED(languages);
+#endif
+}
+
+QStringList DocumentHandler::availableDictionaries() const
+{
+#ifdef HUNSPELL_ENABLED
+    return SpellChecker::availableDictionaries();
+#else
+    return {};
+#endif
+}
+
+QStringList DocumentHandler::customWords() const
+{
+#ifdef HUNSPELL_ENABLED
+    return m_spellChecker ? m_spellChecker->customWords() : QStringList();
+#else
+    return {};
+#endif
+}
+
+bool DocumentHandler::addCustomWord(const QString &word)
+{
+#ifdef HUNSPELL_ENABLED
+    if (!m_spellChecker)
+        return false;
+    if (!m_spellChecker->addCustomWord(word))
+        return false;
+    if (m_spellHighlighter)
+        m_spellHighlighter->rehighlight();
+    Q_EMIT customWordsChanged();
+    return true;
+#else
+    Q_UNUSED(word);
+    return false;
+#endif
+}
+
+bool DocumentHandler::removeCustomWord(const QString &word)
+{
+#ifdef HUNSPELL_ENABLED
+    if (!m_spellChecker)
+        return false;
+    if (!m_spellChecker->removeCustomWord(word))
+        return false;
+    if (m_spellHighlighter)
+        m_spellHighlighter->rehighlight();
+    Q_EMIT customWordsChanged();
+    return true;
+#else
+    Q_UNUSED(word);
+    return false;
+#endif
+}
+
+QString DocumentHandler::dictionaryDisplayName(const QString &code) const
+{
+    if (code.isEmpty())
+        return QString();
+    QString normalized = code;
+    normalized.replace(QLatin1Char('-'), QLatin1Char('_'));
+    QLocale locale(normalized);
+    if (locale.language() == QLocale::C || locale.language() == QLocale::AnyLanguage)
+        return QString();
+    const QString lang = QLocale::languageToString(locale.language());
+    const QString country = locale.territory() == QLocale::AnyTerritory
+        ? QString()
+        : QLocale::territoryToString(locale.territory());
+    return country.isEmpty() ? lang : QStringLiteral("%1 (%2)").arg(lang, country);
+}
+
+bool DocumentHandler::removeCustomWords(const QStringList &words)
+{
+#ifdef HUNSPELL_ENABLED
+    if (!m_spellChecker)
+        return false;
+    bool any = false;
+    for (const QString &w : words) {
+        if (m_spellChecker->removeCustomWord(w))
+            any = true;
+    }
+    if (any) {
+        if (m_spellHighlighter)
+            m_spellHighlighter->rehighlight();
+        Q_EMIT customWordsChanged();
+    }
+    return any;
+#else
+    Q_UNUSED(words);
+    return false;
 #endif
 }
 

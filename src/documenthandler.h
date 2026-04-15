@@ -133,6 +133,9 @@ class DocumentHandler : public QObject
 
     Q_PROPERTY(bool spellCheckEnabled READ spellCheckEnabled WRITE setSpellCheckEnabled NOTIFY spellCheckEnabledChanged)
     Q_PROPERTY(QString spellCheckLanguage READ spellCheckLanguage WRITE setSpellCheckLanguage NOTIFY spellCheckLanguageChanged)
+    Q_PROPERTY(QStringList spellCheckLanguages READ spellCheckLanguages WRITE setSpellCheckLanguages NOTIFY spellCheckLanguagesChanged)
+    Q_PROPERTY(QStringList availableDictionaries READ availableDictionaries NOTIFY availableDictionariesChanged)
+    Q_PROPERTY(QStringList customWords READ customWords NOTIFY customWordsChanged)
 
     //     Q_PROPERTY(MarkersModel* markers READ markers CONSTANT STORED false)
 
@@ -254,10 +257,18 @@ public:
     void setSpellCheckEnabled(bool enabled);
     QString spellCheckLanguage() const;
     void setSpellCheckLanguage(const QString &language);
+    QStringList spellCheckLanguages() const;
+    void setSpellCheckLanguages(const QStringList &languages);
+    QStringList availableDictionaries() const;
+    QStringList customWords() const;
     Q_INVOKABLE QStringList spellCheckSuggestions(int position) const;
     Q_INVOKABLE QVariantMap spellCheckInfoAt(int position) const;
     Q_INVOKABLE void replaceRange(int start, int end, const QString &replacement);
     Q_INVOKABLE void addToDictionary(const QString &word);
+    Q_INVOKABLE bool addCustomWord(const QString &word);
+    Q_INVOKABLE bool removeCustomWord(const QString &word);
+    Q_INVOKABLE bool removeCustomWords(const QStringList &words);
+    Q_INVOKABLE QString dictionaryDisplayName(const QString &code) const;
 
 public Q_SLOTS:
     void loadFromNetworkFinihed();
@@ -303,6 +314,9 @@ Q_SIGNALS:
 
     void spellCheckEnabledChanged();
     void spellCheckLanguageChanged();
+    void spellCheckLanguagesChanged();
+    void availableDictionariesChanged();
+    void customWordsChanged();
 
 private:
     void reset();
