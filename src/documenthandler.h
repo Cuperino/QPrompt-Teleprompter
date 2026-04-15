@@ -255,6 +255,8 @@ public:
     QString spellCheckLanguage() const;
     void setSpellCheckLanguage(const QString &language);
     Q_INVOKABLE QStringList spellCheckSuggestions(int position) const;
+    Q_INVOKABLE QVariantMap spellCheckInfoAt(int position) const;
+    Q_INVOKABLE void replaceRange(int start, int end, const QString &replacement);
     Q_INVOKABLE void addToDictionary(const QString &word);
 
 public Q_SLOTS:

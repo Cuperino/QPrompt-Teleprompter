@@ -148,6 +148,17 @@ Flickable {
     property bool __flipX: false
     property bool __flipY: false
     // Scrolling settings
+    property var spellSuggestions: []
+    property string spellMisspelledWord: ""
+    property int spellWordStart: -1
+    property int spellWordEnd: -1
+
+    function applySpellSuggestion(suggestion) {
+        if (prompter.spellWordStart < 0 || prompter.spellWordEnd < 0)
+            return
+        document.replaceRange(prompter.spellWordStart, prompter.spellWordEnd, suggestion)
+    }
+
     property bool performFileOperations: false
     property bool winding: false
     property int atEndAction: Prompter.AtEndActions.Stop
@@ -1368,8 +1379,21 @@ Flickable {
                         anchors.fill: parent
                         cursorShape: limitedMouse.cursorShape
                         scrollGestureEnabled: false
-                        onClicked: {
+                        onClicked: (mouse) => {
                             if (!(parseInt(prompter.state) === Prompter.States.Prompting && !editor.focus)) {
+                                const pos = editor.positionAt(mouse.x, mouse.y)
+                                const info = document.spellCheckInfoAt(pos)
+                                if (info && info.misspelled) {
+                                    prompter.spellSuggestions = info.suggestions
+                                    prompter.spellMisspelledWord = info.word
+                                    prompter.spellWordStart = info.start
+                                    prompter.spellWordEnd = info.end
+                                } else {
+                                    prompter.spellSuggestions = []
+                                    prompter.spellMisspelledWord = ""
+                                    prompter.spellWordStart = -1
+                                    prompter.spellWordEnd = -1
+                                }
                                 if (root.__isMobile)
                                     contextMenu.popup(this)
                                 else
@@ -2477,6 +2501,39 @@ Flickable {
     Labs.Menu {
         id: nativeContextMenu
         Labs.MenuItem {
+            visible: prompter.spellSuggestions.length > 0
+            text: visible ? prompter.spellSuggestions[0] : ""
+            onTriggered: prompter.applySpellSuggestion(prompter.spellSuggestions[0])
+        }
+        Labs.MenuItem {
+            visible: prompter.spellSuggestions.length > 1
+            text: visible ? prompter.spellSuggestions[1] : ""
+            onTriggered: prompter.applySpellSuggestion(prompter.spellSuggestions[1])
+        }
+        Labs.MenuItem {
+            visible: prompter.spellSuggestions.length > 2
+            text: visible ? prompter.spellSuggestions[2] : ""
+            onTriggered: prompter.applySpellSuggestion(prompter.spellSuggestions[2])
+        }
+        Labs.MenuItem {
+            visible: prompter.spellSuggestions.length > 3
+            text: visible ? prompter.spellSuggestions[3] : ""
+            onTriggered: prompter.applySpellSuggestion(prompter.spellSuggestions[3])
+        }
+        Labs.MenuItem {
+            visible: prompter.spellSuggestions.length > 4
+            text: visible ? prompter.spellSuggestions[4] : ""
+            onTriggered: prompter.applySpellSuggestion(prompter.spellSuggestions[4])
+        }
+        Labs.MenuItem {
+            visible: prompter.spellMisspelledWord !== ""
+            text: qsTr("Add \"%1\" to dictionary", "Editor context menu actions").arg(prompter.spellMisspelledWord)
+            onTriggered: document.addToDictionary(prompter.spellMisspelledWord)
+        }
+        Labs.MenuSeparator {
+            visible: prompter.spellMisspelledWord !== ""
+        }
+        Labs.MenuItem {
             text: qsTr("&Copy", "Global menu and editor context menu actions")
             enabled: editor.selectedText
             onTriggered: editor.copy()
@@ -2511,6 +2568,46 @@ Flickable {
             color: "#DD000000"
             implicitWidth: 120
             //implicitHeight: 30
+        }
+        MenuItem {
+            visible: prompter.spellSuggestions.length > 0
+            height: visible ? implicitHeight : 0
+            text: visible ? prompter.spellSuggestions[0] : ""
+            onTriggered: prompter.applySpellSuggestion(prompter.spellSuggestions[0])
+        }
+        MenuItem {
+            visible: prompter.spellSuggestions.length > 1
+            height: visible ? implicitHeight : 0
+            text: visible ? prompter.spellSuggestions[1] : ""
+            onTriggered: prompter.applySpellSuggestion(prompter.spellSuggestions[1])
+        }
+        MenuItem {
+            visible: prompter.spellSuggestions.length > 2
+            height: visible ? implicitHeight : 0
+            text: visible ? prompter.spellSuggestions[2] : ""
+            onTriggered: prompter.applySpellSuggestion(prompter.spellSuggestions[2])
+        }
+        MenuItem {
+            visible: prompter.spellSuggestions.length > 3
+            height: visible ? implicitHeight : 0
+            text: visible ? prompter.spellSuggestions[3] : ""
+            onTriggered: prompter.applySpellSuggestion(prompter.spellSuggestions[3])
+        }
+        MenuItem {
+            visible: prompter.spellSuggestions.length > 4
+            height: visible ? implicitHeight : 0
+            text: visible ? prompter.spellSuggestions[4] : ""
+            onTriggered: prompter.applySpellSuggestion(prompter.spellSuggestions[4])
+        }
+        MenuItem {
+            visible: prompter.spellMisspelledWord !== ""
+            height: visible ? implicitHeight : 0
+            text: qsTr("Add \"%1\" to dictionary", "Editor context menu actions").arg(prompter.spellMisspelledWord)
+            onTriggered: document.addToDictionary(prompter.spellMisspelledWord)
+        }
+        MenuSeparator {
+            visible: prompter.spellMisspelledWord !== ""
+            height: visible ? implicitHeight : 0
         }
         MenuItem {
             text: qsTr("&Undo", "Editor context menu actions")

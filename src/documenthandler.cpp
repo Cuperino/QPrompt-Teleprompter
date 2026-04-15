@@ -264,6 +264,49 @@ QStringList DocumentHandler::spellCheckSuggestions(int position) const
 #endif
 }
 
+QVariantMap DocumentHandler::spellCheckInfoAt(int position) const
+{
+    QVariantMap info;
+    info.insert(QStringLiteral("misspelled"), false);
+    info.insert(QStringLiteral("word"), QString());
+    info.insert(QStringLiteral("start"), -1);
+    info.insert(QStringLiteral("end"), -1);
+    info.insert(QStringLiteral("suggestions"), QStringList());
+#ifdef HUNSPELL_ENABLED
+    if (!m_spellChecker || !m_document)
+        return info;
+    QTextCursor cursor(m_document->textDocument());
+    cursor.setPosition(position);
+    cursor.select(QTextCursor::WordUnderCursor);
+    const QString word = cursor.selectedText();
+    if (word.isEmpty() || m_spellChecker->spell(word))
+        return info;
+    QStringList suggestions = m_spellChecker->suggest(word);
+    if (suggestions.size() > 5)
+        suggestions = suggestions.mid(0, 5);
+    info.insert(QStringLiteral("misspelled"), true);
+    info.insert(QStringLiteral("word"), word);
+    info.insert(QStringLiteral("start"), cursor.selectionStart());
+    info.insert(QStringLiteral("end"), cursor.selectionEnd());
+    info.insert(QStringLiteral("suggestions"), suggestions);
+#else
+    Q_UNUSED(position);
+#endif
+    return info;
+}
+
+void DocumentHandler::replaceRange(int start, int end, const QString &replacement)
+{
+    if (!m_document || start < 0 || end < start)
+        return;
+    QTextCursor cursor(m_document->textDocument());
+    cursor.beginEditBlock();
+    cursor.setPosition(start);
+    cursor.setPosition(end, QTextCursor::KeepAnchor);
+    cursor.insertText(replacement);
+    cursor.endEditBlock();
+}
+
 void DocumentHandler::addToDictionary(const QString &word)
 {
 #ifdef HUNSPELL_ENABLED
