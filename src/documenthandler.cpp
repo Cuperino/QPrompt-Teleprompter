@@ -314,11 +314,7 @@ void DocumentHandler::replaceRange(int start, int end, const QString &replacemen
 void DocumentHandler::addToDictionary(const QString &word)
 {
 #ifdef HUNSPELL_ENABLED
-    if (!m_spellChecker)
-        return;
-    m_spellChecker->addWord(word);
-    if (m_spellHighlighter)
-        m_spellHighlighter->rehighlight();
+    addCustomWord(word);
 #else
     Q_UNUSED(word);
 #endif
