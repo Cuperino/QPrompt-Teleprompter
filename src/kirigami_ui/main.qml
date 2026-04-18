@@ -264,7 +264,7 @@ Kirigami.ApplicationWindow {
                     visible: ["android", "ios", "tvos", "ipados", "qnx"].indexOf(Qt.platform.os)===-1
                     text: qsTr("OBS Settings", "Main menu and global menu actions. Opens dialog to configure OBS settings.")
                     //icon.name: "obs"
-                    icon.source: "qrc:/qt/qml/com/cuperino/qprompt/icons/obs.svg"
+                    icon.source: "qrc:/qt/qml/com/cuperino/qprompt/icons/obs.png"
                     onTriggered: {
                         globalMenu.close()
                         root.pageStack.currentItem.obsConfiguration.open()
@@ -431,7 +431,7 @@ Kirigami.ApplicationWindow {
                     readonly property string name: "other-tweaks"
                     Kirigami.Action {
                         text: qsTr("Show justify alignment button", "Main menu actions. Show justify button on editor toolbar")
-                        icon.source: "qrc:/qt/qml/com/cuperino/qprompt/icons/document-open.svg"
+                        icon.source: "qrc:/qt/qml/com/cuperino/qprompt/icons/format-justify-fill.svg"
                         checkable: true
                         checked: root.pageStack.currentItem.footer.showJustify
                         onTriggered: root.pageStack.currentItem.footer.showJustify = checked

@@ -291,6 +291,7 @@ set(icon_files
     icons/16/edit-find-replace.svg
     icons/16/format-text-direction-rtl.svg
     icons/16/format-text-direction-ltr.svg
+    icons/16/format-justify-fill.svg
     icons/16/view-fullscreen.svg
     icons/16/empty.svg
     icons/22/application-menu.svg
@@ -312,6 +313,7 @@ set(icon_files
     icons/24/go-previous-symbolic.svg
     icons/24/go-next-symbolic.svg
     icons/24/tools-report-bug.svg
+    icons/logos/obs.png
 )
 
 foreach(file IN LISTS icon_files doc)
