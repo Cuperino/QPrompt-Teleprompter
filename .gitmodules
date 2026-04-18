@@ -1,9 +1,3 @@
-[submodule "src/fonts/editor/Palanquin"]
-	path = src/fonts/editor/Palanquin
-	url = https://github.com/VanillaandCream/Palanquin.git
-[submodule "src/fonts/editor/opendyslexic"]
-	path = src/fonts/editor/opendyslexic
-	url = https://github.com/antijingoist/opendyslexic.git
 [submodule "3rdparty/KDMacTouchBar"]
 	path = 3rdparty/KDMacTouchBar
 	url = https://github.com/KDAB/KDMacTouchBar.git
