@@ -406,6 +406,13 @@ Kirigami.ApplicationWindow {
                     text: qsTr("Other tweaks", "Main menu actions. Enters Other tweaks submenu.")
                     readonly property string name: "other-tweaks"
                     Kirigami.Action {
+                        text: qsTr("Show justify alignment button", "Main menu actions. Show justify button on editor toolbar")
+                        icon.source: "qrc:/qt/qml/com/cuperino/qprompt/icons/document-open.svg"
+                        checkable: true
+                        checked: root.pageStack.currentItem.footer.showJustify
+                        onTriggered: root.pageStack.currentItem.footer.showJustify = checked
+                    }
+                    Kirigami.Action {
                         text: qsTr("Local file auto reload", "Main menu actions. Enable local file auto reload")
                         icon.source: "qrc:/qt/qml/com/cuperino/qprompt/icons/document-open.svg"
                         checkable: true

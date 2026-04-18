@@ -1,7 +1,7 @@
 /****************************************************************************
  **
  ** QPrompt
- ** Copyright (C) 2020-2025 Javier O. Cordero Pérez
+ ** Copyright (C) 2020-2026 Javier O. Cordero Pérez
  **
  ** This file is part of QPrompt.
  **
@@ -85,6 +85,7 @@ ToolBar {
     property bool showAnimationConfigOptions: false
     property bool hideFormattingToolsWhilePrompting: true
     property bool hideFormattingToolsAlways: Qt.platform.os==="linux" && root.__isMobile || Qt.platform.os==="android" || Qt.platform.os==="ios"
+    property bool showJustify: false
 
     readonly property alias fontSizeSlider: fontSizeSlider
     readonly property alias lineHeightSlider: lineHeightSlider
@@ -141,6 +142,7 @@ ToolBar {
         category: "kirigamiUI"
         property alias showFontSpacingOptions: toolbar.showFontSpacingOptions
         property alias showAnimationConfigOptions: toolbar.showAnimationConfigOptions
+        property alias showJustify: toolbar.showJustify
         property alias onlyPositiveVelocity: positiveVelocity.checked
         property alias hideFormattingToolsAlways: toolbar.hideFormattingToolsAlways
         property alias hideFormattingToolsWhilePrompting: toolbar.hideFormattingToolsWhilePrompting
@@ -370,11 +372,13 @@ ToolBar {
                     enabled: Qt.application.layoutDirection===Qt.LeftToRight ? viewport.prompter.document.alignment !== Qt.AlignRight : viewport.prompter.document.alignment !== Qt.AlignLeft
                     onTriggered: viewport.prompter.document.alignment = Qt.AlignRight
                 }
-                //MenuItem {
-                //    text: qsTr("Editor actions. Text alignment.", "&Justify")
-                //    enabled: viewport.prompter.document.alignment !== Qt.AlignHustify
-                //    onTriggered: viewport.prompter.document.alignment = Qt.AlignJustify
-                //}
+                MenuItem {
+                    visible: toolbar.showJustify
+                    height: visible ? 48 : 0
+                    text: qsTr("&Justify", "Editor actions. Text alignment.")
+                    enabled: viewport.prompter.document.alignment !== Qt.AlignHustify
+                    onTriggered: viewport.prompter.document.alignment = Qt.AlignJustify
+                }
             }
             ToolButton {
                 id: mobileAlignLeftButton
@@ -390,7 +394,7 @@ ToolBar {
             }
             ToolButton {
                 id: mobileAlignCenterButton
-                visible: checked || !(alignLeftButton.checked||alignRightButton.checked/*||alignJustifyButton.checked*/)
+                visible: checked || !(alignLeftButton.checked || alignRightButton.checked || alignJustifyButton.checked)
                 text: "\uE809"
                 font.family: iconFont.name
                 font.pointSize: 13
@@ -413,18 +417,18 @@ ToolBar {
                 onClicked: textAlignmentMenu.popup(this)
             }
             // Justify is proven to make text harder to read for some readers. So I'm commenting out all text justification options from the program. I'm not removing them, only commenting out in case someone needs to re-enable. This article links to various sources that validate my decision: https://kaiweber.wordpress.com/2010/05/31/ragged-right-or-justified-alignment/ - Javier
-            //ToolButton {
-            //    id: mobileAlignJustifyButton
-            //    visible: checked
-            //    text: "\uE80B"
-            //    contentItem: Loader { sourceComponent: textComponent }
-            //    font.family: iconFont.name
-            //    font.pointSize: 13
-            //    focusPolicy: Qt.TabFocus
-            //    checkable: true
-            //    checked: viewport.prompter.document.alignment === Qt.AlignJustify
-            //    onClicked: textAlignmentMenu.popup(this)
-            //}
+            ToolButton {
+               id: mobileAlignJustifyButton
+               visible: checked && toolbar.showJustify
+               text: "\uE80B"
+               contentItem: Loader { sourceComponent: textComponent }
+               font.family: iconFont.name
+               font.pointSize: 13
+               focusPolicy: Qt.TabFocus
+               checkable: true
+               checked: viewport.prompter.document.alignment === Qt.AlignJustify
+               onClicked: textAlignmentMenu.popup(this)
+            }
             ToolSeparator {
                 // width: alignmentRowMobile.y === formatRow.y ? contentWidth : contentWidth / 2
                 contentItem.visible: alignmentRowMobile.y === formatRow.y
@@ -748,17 +752,18 @@ ToolBar {
                 }
             }
             // Justify is proven to make text harder to read for some readers. So I'm commenting out all text justification options from the program. I'm not removing them, only commenting out in case someone needs to re-enable. This article links to various sources that validate my decision: https://kaiweber.wordpress.com/2010/05/31/ragged-right-or-justified-alignment/ - Javier
-            //ToolButton {
-            //    id: alignJustifyButton
-            //    text: "\uE80B"
-            //    contentItem: Loader { sourceComponent: textComponent }
-            //    font.family: iconFont.name
-            //    font.pointSize: 13
-            //    focusPolicy: Qt.TabFocus
-            //    checkable: true
-            //    checked: viewport.prompter.document.alignment === Qt.AlignJustify
-            //    onClicked: viewport.prompter.document.alignment = Qt.AlignJustify
-            //}
+            ToolButton {
+                id: alignJustifyButton
+                visible: toolbar.showJustify
+                text: "\uE80B"
+                contentItem: Loader { sourceComponent: textComponent }
+                font.family: iconFont.name
+                font.pointSize: 13
+                focusPolicy: Qt.TabFocus
+                checkable: true
+                checked: viewport.prompter.document.alignment === Qt.AlignJustify
+                onClicked: viewport.prompter.document.alignment = Qt.AlignJustify
+            }
             ToolSeparator {
                 contentItem.visible: alignmentRowDesktop.y === advancedButtonsRow.y
                 Material.theme: Material.Dark
