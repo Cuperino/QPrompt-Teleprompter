@@ -1408,10 +1408,17 @@ Flickable {
                         cursorShape: dragTarget.containsDrag ? (dragTarget.droppable ? Qt.DragMoveCursor : Qt.ForbiddenCursor) : Qt.IBeamCursor
                         anchors.fill: parent
                         scrollGestureEnabled: false
-                        onClicked: if (editor.activeFocus) editor.cursorPosition = editor.positionAt(mouseX, mouseY);
+                        onClicked: {
+                            if (editor.activeFocus)
+                                editor.cursorPosition = editor.positionAt(mouseX, mouseY);
+                            if (parseInt(prompter.state) === Prompter.States.Prompting && (!editor.focus || prompter.__play))
+                                    prompter.pause();
+                        }
                         onDoubleClicked: (mouse) => {
                             if (!root.__isMobile)
                                 editor.toggleEditorFocus(mouse);
+                            if (parseInt(prompter.state) === Prompter.States.Prompting && !editor.focus && !prompter.__play)
+                                prompter.pause();
                         }
                     }
 
