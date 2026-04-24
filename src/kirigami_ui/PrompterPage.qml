@@ -1085,6 +1085,7 @@ Kirigami.Page {
 
     Kirigami.OverlaySheet {
         id: countdownConfiguration
+        width: root.minimumWidth
 
         header: Kirigami.Heading {
             text: qsTr("Countdown Setup")
@@ -1101,8 +1102,8 @@ Kirigami.Page {
             viewport.prompter.restoreFocus();
         }
 
-        RowLayout {
-            width: parent.width
+        ColumnLayout {
+            width: parent.width * 0.8
 
             ColumnLayout {
                 Label {
@@ -1118,6 +1119,7 @@ Kirigami.Page {
                         if (countdown.__disappearWithin && countdown.__disappearWithin >= countdown.__iterations)
                             countdown.__disappearWithin = countdown.__iterations
                     }
+                    // width: contentWidth
                     Layout.fillWidth: true
                     Layout.leftMargin: Kirigami.Units.smallSpacing
                     Layout.rightMargin: Kirigami.Units.smallSpacing
@@ -1138,6 +1140,7 @@ Kirigami.Page {
                         if (countdown.__iterations <= countdown.__disappearWithin)
                             countdown.__iterations = countdown.__disappearWithin
                     }
+                    // width: contentWidth
                     Layout.fillWidth: true
                     Layout.leftMargin: Kirigami.Units.smallSpacing
                     Layout.rightMargin: Kirigami.Units.smallSpacing
