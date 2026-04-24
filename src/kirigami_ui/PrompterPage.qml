@@ -903,6 +903,7 @@ Kirigami.Page {
         anchors.fill: parent
         visible: !velocityIndicator.visible
         acceptedButtons: Qt.MiddleButton | Qt.RightButton
+        cursorShape: undefined
 
         onPressed: activate(mouse)
         onPressAndHold: activate(mouse)
