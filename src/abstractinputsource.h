@@ -21,37 +21,31 @@
 
 #pragma once
 
-#include "globalhotkeys.h"
-
 #include <QObject>
-#include <QQmlEngine>
 
-class AppController : public QObject
+class AppController;
+
+class AbstractInputSource : public QObject
 {
     Q_OBJECT
-    QML_ELEMENT
-    QML_SINGLETON
-private:
-    explicit AppController(QObject *parent = nullptr);
 public:
-    static AppController *create(QQmlEngine *qmlEngine, QJSEngine *);
-    Q_INVOKABLE QString globalShortcutKey(GlobalHotkeys::Action action);
-    Q_INVOKABLE void setGlobalShortcut(Qt::Key key, Qt::KeyboardModifiers modifiers, GlobalHotkeys::Action action);
+    AbstractInputSource() = delete;
+    AbstractInputSource(AppController *controller);
 signals:
-    // Prompter
-    void togglePrompter();
-    void increaseVelocity();
-    void decreaseVelocity();
-    void pause();
-    void stop();
-    void reverse();
-    void rewind();
-    void fastForward();
-    void skipBackwards();
-    void skipForwards();
-    void previousMarker();
-    void nextMarker();
+    void togglePrompter(bool checked=false);
+    void increaseVelocity(bool checked=false);
+    void decreaseVelocity(bool checked=false);
+    void pause(bool checked=false);
+    void stop(bool checked=false);
     void setVelocity(int velocity);
-private:
-    GlobalHotkeys *m_hotkeys;
+    void reverse(bool checked=false);
+    void rewind(bool checked);
+    void fastForward(bool checked);
+    void skipBackwards(bool checked=false);
+    void skipForwards(bool checked=false);
+    void previousMarker(bool checked=false);
+    void nextMarker(bool checked=false);
+protected:
+    AppController *m_controller;
+    virtual void m_initializeSource();
 };

@@ -80,6 +80,8 @@ set(qprompt_cpp
     marker.hpp
     documenthandler.h documenthandler.cpp
     markersmodel.h markersmodel.cpp
+    abstractinputsource.h abstractinputsource.cpp
+    globalhotkeys.h globalhotkeys.cpp
     appcontroller.h appcontroller.cpp
     ${qprompt_QM_LOADER}
 )
