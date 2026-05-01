@@ -205,7 +205,7 @@
     <message>
         <location filename="../src/kirigami_ui/InputsOverlay.qml" line="302"/>
         <source>Stop</source>
-        <translation>Arrêter</translation>
+        <translation type="unfinished">Arrestar</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/InputsOverlay.qml" line="310"/>
@@ -267,73 +267,73 @@
         <location filename="../src/kirigami_ui/InputsOverlay.qml" line="379"/>
         <source>Alt</source>
         <comment>Alt key</comment>
-        <translation>Tot</translation>
+        <translation type="unfinished">Alt</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/InputsOverlay.qml" line="413"/>
         <source>Set velocity to 0</source>
         <comment>Hotkey that sets velocity to a fixed value.</comment>
-        <translation>Velocitat a la debuta</translation>
+        <translation type="unfinished">Cambiar la velocitat a 0</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/InputsOverlay.qml" line="421"/>
         <source>Set velocity to 1</source>
         <comment>Hotkey that sets velocity to a fixed value.</comment>
-        <translation>Velocitat a la debuta</translation>
+        <translation type="unfinished">Cambiar la velocitat a 1</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/InputsOverlay.qml" line="429"/>
         <source>Set velocity to 2</source>
         <comment>Hotkey that sets velocity to a fixed value.</comment>
-        <translation>Velocitat a la debuta</translation>
+        <translation type="unfinished">Cambiar la velocitat a 2</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/InputsOverlay.qml" line="437"/>
         <source>Set velocity to 3</source>
         <comment>Hotkey that sets velocity to a fixed value.</comment>
-        <translation>Velocitat a la debuta</translation>
+        <translation type="unfinished">Cambiar la velocitat a 3</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/InputsOverlay.qml" line="445"/>
         <source>Set velocity to 4</source>
         <comment>Hotkey that sets velocity to a fixed value.</comment>
-        <translation>Velocitat a la debuta</translation>
+        <translation type="unfinished">Cambiar la velocitat a 4</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/InputsOverlay.qml" line="453"/>
         <source>Set velocity to 5</source>
         <comment>Hotkey that sets velocity to a fixed value.</comment>
-        <translation>Velocitat a la debuta</translation>
+        <translation type="unfinished">Cambiar la velocitat a 5</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/InputsOverlay.qml" line="461"/>
         <source>Set velocity to 6</source>
         <comment>Hotkey that sets velocity to a fixed value.</comment>
-        <translation>Velocitat a la debuta</translation>
+        <translation type="unfinished">Cambiar la velocitat a 6</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/InputsOverlay.qml" line="469"/>
         <source>Set velocity to 7</source>
         <comment>Hotkey that sets velocity to a fixed value.</comment>
-        <translation>Velocitat a la debuta</translation>
+        <translation type="unfinished">Cambiar la velocitat a 7</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/InputsOverlay.qml" line="477"/>
         <source>Set velocity to 8</source>
         <comment>Hotkey that sets velocity to a fixed value.</comment>
-        <translation>Velocitat a la debuta</translation>
+        <translation type="unfinished">Cambiar la velocitat a 8</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/InputsOverlay.qml" line="485"/>
         <source>Set velocity to 9</source>
         <comment>Hotkey that sets velocity to a fixed value.</comment>
-        <translation>Velocitat a la debuta</translation>
+        <translation type="unfinished">Cambiar la velocitat a 9</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/InputsOverlay.qml" line="493"/>
         <source>Set velocity to 10</source>
         <comment>Hotkey that sets velocity to a fixed value.</comment>
-        <translation>Velocitat a la debuta</translation>
+        <translation type="unfinished">Cambiar la velocitat a 10</translation>
     </message>
 </context>
 <context>
@@ -486,13 +486,13 @@ Ajudatz-nos a traduire QPrompt, visitatz :</translation>
         <location filename="../src/prompter/PointerSettings.qml" line="214"/>
         <source>Reuse left pointer</source>
         <comment>Uses a mirrored copy of the first pointer as the second pointer</comment>
-        <translation>C&amp;entrat</translation>
+        <translation type="unfinished">Reütilizar lo punter esquèrra</translation>
     </message>
     <message>
         <location filename="../src/prompter/PointerSettings.qml" line="216"/>
         <source>Reuse right pointer</source>
         <comment>Uses a mirrored copy of the first pointer as the second pointer</comment>
-        <translation>C&amp;entrat</translation>
+        <translation type="unfinished">Reütilizar lo punter drech</translation>
     </message>
     <message>
         <location filename="../src/prompter/PointerSettings.qml" line="222"/>
@@ -527,7 +527,7 @@ Ajudatz-nos a traduire QPrompt, visitatz :</translation>
     <message>
         <location filename="../src/prompter/PointerSettings.qml" line="295"/>
         <source>Line width &lt;pre&gt;%1&lt;/pre&gt;</source>
-        <translation>Nautor de linha&#x202f;&lt;pre&gt;%1%&lt;/pre&gt;</translation>
+        <translation type="unfinished">Largor de linha&#x202f;&lt;pre&gt;%1&lt;/pre&gt;</translation>
     </message>
     <message>
         <location filename="../src/prompter/PointerSettings.qml" line="356"/>
@@ -536,7 +536,7 @@ Ajudatz-nos a traduire QPrompt, visitatz :</translation>
         <location filename="../src/prompter/PointerSettings.qml" line="554"/>
         <location filename="../src/prompter/PointerSettings.qml" line="577"/>
         <source>Left Pointer: </source>
-        <translation>C&amp;entrat</translation>
+        <translation type="unfinished">Punter esquèrra : </translation>
     </message>
     <message>
         <location filename="../src/prompter/PointerSettings.qml" line="356"/>
@@ -546,7 +546,7 @@ Ajudatz-nos a traduire QPrompt, visitatz :</translation>
         <location filename="../src/prompter/PointerSettings.qml" line="554"/>
         <location filename="../src/prompter/PointerSettings.qml" line="577"/>
         <source>Right Pointer: </source>
-        <translation>&amp;Drecha</translation>
+        <translation type="unfinished">Punter drech : </translation>
     </message>
     <message>
         <location filename="../src/prompter/PointerSettings.qml" line="403"/>
@@ -558,7 +558,7 @@ Ajudatz-nos a traduire QPrompt, visitatz :</translation>
         <location filename="../src/prompter/PointerSettings.qml" line="521"/>
         <source>Vertical offset &lt;pre&gt;%1&lt;/pre&gt;</source>
         <comment>Vertical offset (line height) 1.00</comment>
-        <translation>Velocitat &lt;pre&gt;%1&lt;/pre&gt;</translation>
+        <translation type="unfinished">Decalatge vertical &lt;pre&gt;%1&lt;/pre&gt;</translation>
     </message>
     <message>
         <location filename="../src/prompter/PointerSettings.qml" line="477"/>
@@ -586,12 +586,12 @@ Ajudatz-nos a traduire QPrompt, visitatz :</translation>
     <message>
         <location filename="../src/prompter/PointerSettings.qml" line="622"/>
         <source>GIF animation</source>
-        <translation>Animation GIF</translation>
+        <translation type="unfinished">Animacion GIF</translation>
     </message>
     <message>
         <location filename="../src/prompter/PointerSettings.qml" line="623"/>
         <source>WEBP image</source>
-        <translation>Imatge PNG</translation>
+        <translation type="unfinished">Imatge WEBP</translation>
     </message>
     <message>
         <location filename="../src/prompter/PointerSettings.qml" line="634"/>
@@ -671,12 +671,12 @@ Ajudatz-nos a traduire QPrompt, visitatz :</translation>
         <location filename="../src/prompter/Prompter.qml" line="1573"/>
         <source>Saved %1</source>
         <comment>Saved FILE_NAME</comment>
-        <translation>%1 enregistré</translation>
+        <translation type="unfinished">%1 enregistrat</translation>
     </message>
     <message>
         <location filename="../src/prompter/Prompter.qml" line="1424"/>
         <source>Saved</source>
-        <translation>&amp;Enregistrar</translation>
+        <translation type="unfinished">Enregistrat</translation>
     </message>
     <message>
         <location filename="../src/prompter/Prompter.qml" line="1525"/>
@@ -829,7 +829,7 @@ Ajudatz-nos a traduire QPrompt, visitatz :</translation>
     <message>
         <location filename="../src/prompter/PrompterBackground.qml" line="133"/>
         <source>GIF animation</source>
-        <translation>Animation GIF</translation>
+        <translation type="unfinished">Animacion GIF</translation>
     </message>
 </context>
 <context>
@@ -979,7 +979,7 @@ Ajudatz-nos a traduire QPrompt, visitatz :</translation>
         <location filename="../src/kirigami_ui/PrompterPage.qml" line="303"/>
         <source>No pointers</source>
         <comment>Disable all reading region pointers</comment>
-        <translation>C&amp;entrat</translation>
+        <translation type="unfinished">Cap de punter</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/PrompterPage.qml" line="305"/>
@@ -1001,7 +1001,7 @@ Ajudatz-nos a traduire QPrompt, visitatz :</translation>
     <message>
         <location filename="../src/kirigami_ui/PrompterPage.qml" line="328"/>
         <source>Enable timers</source>
-        <translation>Activat</translation>
+        <translation type="unfinished">Activar los minutadors</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/PrompterPage.qml" line="341"/>
@@ -1042,7 +1042,7 @@ Ajudatz-nos a traduire QPrompt, visitatz :</translation>
         <location filename="../src/kirigami_ui/PrompterPage.qml" line="427"/>
         <source>Auto start</source>
         <comment>Auto start countdown upon prompter getting started</comment>
-        <translation>Lectura automatica</translation>
+        <translation type="unfinished">Aviada automatica</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/PrompterPage.qml" line="430"/>
@@ -1059,7 +1059,7 @@ Ajudatz-nos a traduire QPrompt, visitatz :</translation>
         <location filename="../src/kirigami_ui/PrompterPage.qml" line="458"/>
         <source>Orientation</source>
         <comment>Prompter orientation and mirroring</comment>
-        <translation>Orientation</translation>
+        <translation type="unfinished">Orientacion</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/PrompterPage.qml" line="475"/>
@@ -1089,7 +1089,7 @@ Ajudatz-nos a traduire QPrompt, visitatz :</translation>
         <location filename="../src/kirigami_ui/PrompterPage.qml" line="544"/>
         <source>90° counter</source>
         <comment>Rotate prompter 90 degrees to the left</comment>
-        <translation>Rotacion 90° sens orari</translation>
+        <translation type="unfinished">Rotacion 90° sens contra orari</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/PrompterPage.qml" line="570"/>
@@ -1131,7 +1131,7 @@ Ajudatz-nos a traduire QPrompt, visitatz :</translation>
         <location filename="../src/kirigami_ui/PrompterPage.qml" line="658"/>
         <source>Off</source>
         <comment>Screen is disabled</comment>
-        <translation>Desactivar</translation>
+        <translation type="unfinished">Atudat</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/PrompterPage.qml" line="659"/>
@@ -1187,7 +1187,7 @@ Ajudatz-nos a traduire QPrompt, visitatz :</translation>
     <message>
         <location filename="../src/kirigami_ui/PrompterPage.qml" line="879"/>
         <source>Countdown duration</source>
-        <translation>Retardador</translation>
+        <translation type="unfinished">Durada del compte a rebors</translation>
     </message>
     <message numerus="yes">
         <location filename="../src/kirigami_ui/PrompterPage.qml" line="899"/>
@@ -1323,7 +1323,7 @@ Ajudatz-nos a traduire QPrompt, visitatz :</translation>
         <location filename="../src/kirigami_ui/TelemetryPage.qml" line="125"/>
         <location filename="../src/kirigami_ui/TelemetryPage.qml" line="151"/>
         <source>Off</source>
-        <translation>Desactivar</translation>
+        <translation type="unfinished">Atudat</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/TelemetryPage.qml" line="95"/>
@@ -1540,7 +1540,7 @@ Ajudatz-nos a traduire QPrompt, visitatz :</translation>
         <location filename="../src/kirigami_ui/WheelSettingsOverlay.qml" line="52"/>
         <location filename="../src/kirigami_ui/WheelSettingsOverlay.qml" line="71"/>
         <source>Off</source>
-        <translation>Desactivar</translation>
+        <translation type="unfinished">Atudat</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/WheelSettingsOverlay.qml" line="67"/>
@@ -1636,7 +1636,7 @@ Ajudatz-nos a traduire QPrompt, visitatz :</translation>
         <location filename="../src/kirigami_ui/+windows/main.qml" line="266"/>
         <source>Scroll throttle settings</source>
         <comment>Open &apos;scroll settings&apos; from main menu and global menu actions</comment>
-        <translation>Paramétrage de défilement</translation>
+        <translation type="unfinished">Paramètres de desfilament</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/main.qml" line="275"/>
@@ -1719,7 +1719,7 @@ Ajudatz-nos a traduire QPrompt, visitatz :</translation>
         <location filename="../src/kirigami_ui/+windows/main.qml" line="344"/>
         <source>Disable timers</source>
         <comment>Main menu actions</comment>
-        <translation>Activat</translation>
+        <translation type="unfinished">Desactivar los minutadors</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/main.qml" line="352"/>
@@ -1900,19 +1900,19 @@ Ajudatz-nos a traduire QPrompt, visitatz :</translation>
         <location filename="../src/kirigami_ui/main.qml" line="692"/>
         <source>&amp;Left Pointer</source>
         <comment>Global menu actions. Shows pointer to the left of the reading region.</comment>
-        <translation>C&amp;entrat</translation>
+        <translation type="unfinished">Punter es&amp;quèrra</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/main.qml" line="698"/>
         <source>&amp;Right Pointer</source>
         <comment>Global menu actions. Shows pointer to the right of the reading region.</comment>
-        <translation>&amp;Drecha</translation>
+        <translation type="unfinished">Punter d&amp;rech</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/main.qml" line="704"/>
         <source>B&amp;oth Pointers</source>
         <comment>Global menu actions. Shows pointers to the left and right of the reading region.</comment>
-        <translation>C&amp;entrat</translation>
+        <translation type="unfinished">Los d&amp;os punters</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/main.qml" line="710"/>
@@ -2036,7 +2036,7 @@ Ajudatz-nos a traduire QPrompt, visitatz :</translation>
         <location filename="../src/kirigami_ui/main.qml" line="828"/>
         <source>Fo&amp;nt Color</source>
         <comment>Global menu actions. Opens dialog to color currently selected text.</comment>
-        <translation>Definir color</translation>
+        <translation type="unfinished">Color de la po&amp;liça</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/main.qml" line="834"/>
