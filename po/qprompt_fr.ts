@@ -11,12 +11,12 @@
     <message>
         <location filename="../src/documenthandler.cpp" line="767"/>
         <source>An error occurred while attempting to open file in a third party format. Go to &quot;Main Menu&quot;, &quot;Other Settings&quot;, then &quot;External Tools&quot; to make sure a corresponding import tool is properly configured.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Une erreur s&apos;est produite lors de la tentative d&apos;ouverture du fichier dans un format tiers. Allez dans « Menu principal », « Autres paramètres », puis « Outils externes » pour vous assurer qu&apos;un outil d&apos;importation correspondant est correctement configuré.</translation>
     </message>
     <message>
         <location filename="../src/documenthandler.cpp" line="834"/>
         <source>Cannot save: </source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Impossible d&apos;enregistrer : </translation>
     </message>
 </context>
 <context>
@@ -113,7 +113,7 @@
         <location filename="../src/kirigami_ui/EditorToolbar.qml" line="1098"/>
         <source>Font size &lt;pre&gt;%1 (%2)&lt;/pre&gt;</source>
         <comment>Font size 100% (083)</comment>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Taille de police &lt;pre&gt;%1 (%2)&lt;/pre&gt;</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/EditorToolbar.qml" line="1232"/>
@@ -174,8 +174,8 @@
         <location filename="../src/prompter/Find.qml" line="160"/>
         <source>Replaced %n instance(s)</source>
         <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+            <numerusform>%n occurrence remplacée</numerusform>
+            <numerusform>%n occurrences remplacées</numerusform>
         </translation>
     </message>
 </context>
@@ -255,13 +255,13 @@
         <location filename="../src/kirigami_ui/InputsOverlay.qml" line="374"/>
         <source>Set velocity modifier key</source>
         <comment>Hotkey that shifts velocoty to its negative value.</comment>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Définir la touche modificatrice de vitesse</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/InputsOverlay.qml" line="380"/>
         <source>Ctrl</source>
         <comment>Control key</comment>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Ctrl</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/InputsOverlay.qml" line="379"/>
@@ -356,19 +356,20 @@
         <location filename="../src/kirigami_ui/LanguageSettingsOverlay.qml" line="54"/>
         <source>UI Language</source>
         <comment>Selector to choose user interface language</comment>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Langue de l&apos;interface</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/LanguageSettingsOverlay.qml" line="78"/>
         <source>Use system language</source>
         <comment>Language</comment>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Utiliser la langue du système</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/LanguageSettingsOverlay.qml" line="186"/>
         <source>Is your language not here or it&apos;s incomplete?
 Help us translate QPrompt, visit:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Votre langue n&apos;est pas présente ou est incomplète ?
+Aidez-nous à traduire QPrompt, visitez :</translation>
     </message>
 </context>
 <context>
@@ -376,31 +377,31 @@ Help us translate QPrompt, visit:</source>
     <message>
         <location filename="../src/kirigami_ui/LayoutDirectionSettingsOverlay.qml" line="33"/>
         <source>Layout direction</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Direction de la mise en page</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/LayoutDirectionSettingsOverlay.qml" line="53"/>
         <source>Current layout</source>
         <comment>Label at layout direction settings overlay</comment>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Disposition actuelle</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/LayoutDirectionSettingsOverlay.qml" line="63"/>
         <source>Auto</source>
         <comment>Short for automatic</comment>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Auto</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/LayoutDirectionSettingsOverlay.qml" line="64"/>
         <source>RTL</source>
         <comment>Short for Right to Left layout</comment>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">de droite à gauche</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/LayoutDirectionSettingsOverlay.qml" line="65"/>
         <source>LTR</source>
         <comment>Short for Left to Right layout</comment>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">de gauche à droite</translation>
     </message>
 </context>
 <context>
@@ -425,19 +426,19 @@ Help us translate QPrompt, visit:</source>
     <message>
         <location filename="../src/kirigami_ui/PathsPage.qml" line="42"/>
         <source>External Tools</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Outils externes</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/PathsPage.qml" line="63"/>
         <source>QPrompt can make transparent use of LibreOffice to convert Microsoft Word, Open Document Format, and other office documents into a format QPrompt understands. Install LibreOffice and ensure this field points to its location, so QPrompt can open office documents.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">QPrompt peut utiliser LibreOffice de manière transparente pour convertir Microsoft Word, Open Document Format et d&apos;autres documents bureautiques dans un format que QPrompt comprend. Installez LibreOffice et assurez-vous que ce champ pointe vers son emplacement, afin que QPrompt puisse ouvrir des documents bureautiques.</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/PathsPage.qml" line="71"/>
         <location filename="../src/kirigami_ui/PathsPage.qml" line="99"/>
         <source>Browse for %1</source>
         <comment>Browse for PROGRAM</comment>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Rechercher %1</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/PathsPage.qml" line="102"/>
@@ -445,7 +446,7 @@ Help us translate QPrompt, visit:</source>
         <location filename="../src/kirigami_ui/PathsPage.qml" line="105"/>
         <source>Executable (%1)</source>
         <comment>Format name (FORMAT_EXTENSION)</comment>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Exécutable (%1)</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/PathsPage.qml" line="107"/>
@@ -464,12 +465,12 @@ Help us translate QPrompt, visit:</source>
     <message>
         <location filename="../src/prompter/PointerSettings.qml" line="127"/>
         <source>Editing: </source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Édition : </translation>
     </message>
     <message>
         <location filename="../src/prompter/PointerSettings.qml" line="159"/>
         <source>Ready: </source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Prêt : </translation>
     </message>
     <message>
         <location filename="../src/prompter/PointerSettings.qml" line="190"/>
@@ -496,27 +497,27 @@ Help us translate QPrompt, visit:</source>
     <message>
         <location filename="../src/prompter/PointerSettings.qml" line="222"/>
         <source>Tint</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Teinte</translation>
     </message>
     <message>
         <location filename="../src/prompter/PointerSettings.qml" line="226"/>
         <source>Guides</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Repères</translation>
     </message>
     <message>
         <location filename="../src/prompter/PointerSettings.qml" line="258"/>
         <source>Arrow</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Flèche</translation>
     </message>
     <message>
         <location filename="../src/prompter/PointerSettings.qml" line="264"/>
         <source>Text</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Texte</translation>
     </message>
     <message>
         <location filename="../src/prompter/PointerSettings.qml" line="270"/>
         <source>Image</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Image</translation>
     </message>
     <message>
         <location filename="../src/prompter/PointerSettings.qml" line="276"/>
@@ -550,7 +551,7 @@ Help us translate QPrompt, visit:</source>
     <message>
         <location filename="../src/prompter/PointerSettings.qml" line="403"/>
         <source>Font: </source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Police : </translation>
     </message>
     <message>
         <location filename="../src/prompter/PointerSettings.qml" line="436"/>
@@ -565,12 +566,12 @@ Help us translate QPrompt, visit:</source>
         <location filename="../src/prompter/PointerSettings.qml" line="565"/>
         <location filename="../src/prompter/PointerSettings.qml" line="597"/>
         <source>Browse</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Parcourir</translation>
     </message>
     <message>
         <location filename="../src/prompter/PointerSettings.qml" line="548"/>
         <source>Use QML scripts to draw pointers</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Utiliser des scripts QML pour dessiner les pointeurs</translation>
     </message>
     <message>
         <location filename="../src/prompter/PointerSettings.qml" line="621"/>
@@ -595,7 +596,7 @@ Help us translate QPrompt, visit:</source>
     <message>
         <location filename="../src/prompter/PointerSettings.qml" line="634"/>
         <source>QML script</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Script QML</translation>
     </message>
 </context>
 <context>
@@ -711,14 +712,14 @@ Help us translate QPrompt, visit:</source>
         <location filename="../src/prompter/Prompter.qml" line="1559"/>
         <source>Hypertext Markup Language (%1)</source>
         <comment>Format name (FORMAT_EXTENSION)</comment>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Langage de balisage hypertexte (%1)</translation>
     </message>
     <message>
         <location filename="../src/prompter/Prompter.qml" line="1517"/>
         <location filename="../src/prompter/Prompter.qml" line="1529"/>
         <source>Markdown (%1)</source>
         <comment>Format name (FORMAT_EXTENSION)</comment>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Markdown (%1)</translation>
     </message>
     <message>
         <location filename="../src/prompter/Prompter.qml" line="1518"/>
@@ -726,37 +727,37 @@ Help us translate QPrompt, visit:</source>
         <location filename="../src/prompter/Prompter.qml" line="1560"/>
         <source>Plain Text (%1)</source>
         <comment>Format name (FORMAT_EXTENSION)</comment>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Texte brut (%1)</translation>
     </message>
     <message>
         <location filename="../src/prompter/Prompter.qml" line="1519"/>
         <source>OpenDocument Format Text Document (%1)</source>
         <comment>Format name (FORMAT_EXTENSION)</comment>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Document texte OpenDocument Format (%1)</translation>
     </message>
     <message>
         <location filename="../src/prompter/Prompter.qml" line="1520"/>
         <source>AbiWord Document (%1)</source>
         <comment>Format name (FORMAT_EXTENSION)</comment>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Document AbiWord (%1)</translation>
     </message>
     <message>
         <location filename="../src/prompter/Prompter.qml" line="1521"/>
         <source>Microsoft Word document (%1)</source>
         <comment>Format name (FORMAT_EXTENSION)</comment>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Document Microsoft Word (%1)</translation>
     </message>
     <message>
         <location filename="../src/prompter/Prompter.qml" line="1522"/>
         <source>Apple Pages Document (%1)</source>
         <comment>Format name (FORMAT_EXTENSION)</comment>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Document Apple Pages (%1)</translation>
     </message>
     <message>
         <location filename="../src/prompter/Prompter.qml" line="1523"/>
         <source>Rich Text Format (%1)</source>
         <comment>Format name (FORMAT_EXTENSION)</comment>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Rich Text Format (%1)</translation>
     </message>
     <message>
         <location filename="../src/prompter/Prompter.qml" line="1598"/>
@@ -1121,7 +1122,7 @@ Fixer la zone de lecture à la position définie en mode de placement libre</tra
         <location filename="../src/kirigami_ui/PrompterPage.qml" line="573"/>
         <source>Shadows</source>
         <comment>Enable root.shadows</comment>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Ombres</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/PrompterPage.qml" line="582"/>
@@ -1724,7 +1725,7 @@ désactivée pour un défilement précis.</translation>
         <location filename="../src/kirigami_ui/+windows/main.qml" line="323"/>
         <source>External Tools and Applications</source>
         <comment>Main menu actions. Load Path Settings page.</comment>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Outils et applications externes</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/main.qml" line="330"/>
@@ -1732,7 +1733,7 @@ désactivée pour un défilement précis.</translation>
         <location filename="../src/kirigami_ui/+windows/main.qml" line="330"/>
         <source>Layout direction</source>
         <comment>Main menu actions. Opens dialog for choosing layout direction.</comment>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Direction de la mise en page</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/main.qml" line="335"/>
@@ -1740,7 +1741,7 @@ désactivée pour un défilement précis.</translation>
         <location filename="../src/kirigami_ui/+windows/main.qml" line="335"/>
         <source>Performance tweaks</source>
         <comment>Main menu actions. Enters Performance tweaks submenu.</comment>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Ajustements de performance</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/main.qml" line="338"/>
@@ -1801,7 +1802,7 @@ désactivée pour un défilement précis.</translation>
         <location filename="../src/kirigami_ui/+windows/main.qml" line="408"/>
         <source>Other tweaks</source>
         <comment>Main menu actions. Enters Other tweaks submenu.</comment>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Autres ajustements</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/main.qml" line="411"/>
@@ -1824,7 +1825,7 @@ désactivée pour un défilement précis.</translation>
         <location filename="../src/kirigami_ui/+windows/main.qml" line="427"/>
         <source>Restore factory defaults</source>
         <comment>Main menu actions</comment>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Restaurer les paramètres d&apos;usine</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/main.qml" line="438"/>
@@ -1832,7 +1833,7 @@ désactivée pour un défilement précis.</translation>
         <location filename="../src/kirigami_ui/+windows/main.qml" line="437"/>
         <source>Language</source>
         <comment>Main menu actions</comment>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Langue</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/main.qml" line="445"/>
@@ -1955,7 +1956,7 @@ désactivée pour un défilement précis.</translation>
         <location filename="../src/kirigami_ui/main.qml" line="710"/>
         <source>No pointers</source>
         <comment>Disable all reading region pointers</comment>
-        <translation type="unfinished">Les deux pointeurs</translation>
+        <translation type="unfinished">Aucun pointeur</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/main.qml" line="720"/>
@@ -2125,21 +2126,23 @@ Would you like to restart %1 now? All changes to document will be lost.</source>
         <comment>application needs to restart for this change to fully take effect.
 
 Would you like to restart application now? All changes to document will be lost.</comment>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">%1 doit redémarrer pour que ce changement prenne pleinement effet.
+
+Voulez-vous redémarrer %1 maintenant ? Toutes les modifications du document seront perdues.</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/main.qml" line="1070"/>
         <location filename="../src/kirigami_ui/+android/main.qml" line="641"/>
         <location filename="../src/kirigami_ui/+windows/main.qml" line="766"/>
         <source>Factory Reset</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Réinitialisation d&apos;usine</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/main.qml" line="1071"/>
         <location filename="../src/kirigami_ui/+android/main.qml" line="642"/>
         <location filename="../src/kirigami_ui/+windows/main.qml" line="767"/>
         <source>Restore all configurations to factory defaults? QPrompt will close if you click Yes and all unsaved document changes will be lost.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Restaurer toutes les configurations aux paramètres d&apos;usine ? QPrompt se fermera si vous cliquez sur Oui et toutes les modifications non enregistrées du document seront perdues.</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/main.qml" line="1087"/>
