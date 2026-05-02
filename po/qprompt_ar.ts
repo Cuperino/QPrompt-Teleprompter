@@ -11,12 +11,12 @@
     <message>
         <location filename="../src/documenthandler.cpp" line="767"/>
         <source>An error occurred while attempting to open file in a third party format. Go to &quot;Main Menu&quot;, &quot;Other Settings&quot;, then &quot;External Tools&quot; to make sure a corresponding import tool is properly configured.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">حدث خطأ أثناء محاولة فتح الملف بتنسيق طرف ثالث. انتقل إلى &quot;القائمة الرئيسية&quot;، ثم &quot;إعدادات أخرى&quot;، ثم &quot;الأدوات الخارجية&quot; للتأكد من أن أداة الاستيراد المقابلة مهيأة بشكل صحيح.</translation>
     </message>
     <message>
         <location filename="../src/documenthandler.cpp" line="834"/>
         <source>Cannot save: </source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">تعذر الحفظ: </translation>
     </message>
 </context>
 <context>
@@ -435,7 +435,7 @@ Help us translate QPrompt, visit:</source>
     <message>
         <location filename="../src/kirigami_ui/PathsPage.qml" line="63"/>
         <source>QPrompt can make transparent use of LibreOffice to convert Microsoft Word, Open Document Format, and other office documents into a format QPrompt understands. Install LibreOffice and ensure this field points to its location, so QPrompt can open office documents.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">يمكن لـ QPrompt الاستفادة من LibreOffice بشكل شفاف لتحويل مستندات Microsoft Word وOpen Document Format وغيرها من المستندات المكتبية إلى تنسيق يفهمه QPrompt. قم بتثبيت LibreOffice وتأكد من أن هذا الحقل يشير إلى موقعه، حتى يتمكن QPrompt من فتح المستندات المكتبية.</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/PathsPage.qml" line="71"/>
