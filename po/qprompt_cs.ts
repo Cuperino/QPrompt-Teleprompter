@@ -155,7 +155,7 @@
         <location filename="../src/kirigami_ui/EditorToolbar.qml" line="1850"/>
         <source>Next reload starts at &lt;pre&gt;%1&lt;/pre&gt;</source>
         <comment>Next reload starts at 10:11:12</comment>
-        <translation>Zrychlení krokování &lt;pre&gt;%1&lt;/pre&gt;</translation>
+        <translation type="unfinished">Další načítání začne v &lt;pre&gt;%1&lt;/pre&gt;</translation>
     </message>
 </context>
 <context>
@@ -268,7 +268,7 @@
         <location filename="../src/kirigami_ui/InputsOverlay.qml" line="379"/>
         <source>Alt</source>
         <comment>Alt key</comment>
-        <translation>Vše</translation>
+        <translation type="unfinished">Alt</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/InputsOverlay.qml" line="413"/>
@@ -460,7 +460,7 @@ Help us translate QPrompt, visit:</source>
     <message>
         <location filename="../src/prompter/PointerSettings.qml" line="104"/>
         <source>Colors for prompter states</source>
-        <translation>Přepnutí stavu čtecího zařízení</translation>
+        <translation type="unfinished">Barvy pro stavy čtecího zařízení</translation>
     </message>
     <message>
         <location filename="../src/prompter/PointerSettings.qml" line="127"/>
@@ -475,7 +475,7 @@ Help us translate QPrompt, visit:</source>
     <message>
         <location filename="../src/prompter/PointerSettings.qml" line="190"/>
         <source>Prompting: </source>
-        <translation>Promítat</translation>
+        <translation type="unfinished">Promítání: </translation>
     </message>
     <message>
         <location filename="../src/prompter/PointerSettings.qml" line="206"/>
@@ -486,13 +486,13 @@ Help us translate QPrompt, visit:</source>
         <location filename="../src/prompter/PointerSettings.qml" line="214"/>
         <source>Reuse left pointer</source>
         <comment>Uses a mirrored copy of the first pointer as the second pointer</comment>
-        <translation>Levý ukazatel</translation>
+        <translation type="unfinished">Znovu použít levý ukazatel</translation>
     </message>
     <message>
         <location filename="../src/prompter/PointerSettings.qml" line="216"/>
         <source>Reuse right pointer</source>
         <comment>Uses a mirrored copy of the first pointer as the second pointer</comment>
-        <translation>Pravý ukazatel</translation>
+        <translation type="unfinished">Znovu použít pravý ukazatel</translation>
     </message>
     <message>
         <location filename="../src/prompter/PointerSettings.qml" line="222"/>
@@ -527,7 +527,7 @@ Help us translate QPrompt, visit:</source>
     <message>
         <location filename="../src/prompter/PointerSettings.qml" line="295"/>
         <source>Line width &lt;pre&gt;%1&lt;/pre&gt;</source>
-        <translation>Řádkování &lt;pre&gt;%1%&lt;/pre&gt;</translation>
+        <translation type="unfinished">Šířka čáry &lt;pre&gt;%1&lt;/pre&gt;</translation>
     </message>
     <message>
         <location filename="../src/prompter/PointerSettings.qml" line="356"/>
@@ -558,7 +558,7 @@ Help us translate QPrompt, visit:</source>
         <location filename="../src/prompter/PointerSettings.qml" line="521"/>
         <source>Vertical offset &lt;pre&gt;%1&lt;/pre&gt;</source>
         <comment>Vertical offset (line height) 1.00</comment>
-        <translation>Rychlost &lt;pre&gt;%1&lt;/pre&gt;</translation>
+        <translation type="unfinished">Vertikální posun &lt;pre&gt;%1&lt;/pre&gt;</translation>
     </message>
     <message>
         <location filename="../src/prompter/PointerSettings.qml" line="477"/>
@@ -591,7 +591,7 @@ Help us translate QPrompt, visit:</source>
     <message>
         <location filename="../src/prompter/PointerSettings.qml" line="623"/>
         <source>WEBP image</source>
-        <translation>PNG obrázek</translation>
+        <translation type="unfinished">WEBP obrázek</translation>
     </message>
     <message>
         <location filename="../src/prompter/PointerSettings.qml" line="634"/>
@@ -676,7 +676,7 @@ Help us translate QPrompt, visit:</source>
     <message>
         <location filename="../src/prompter/Prompter.qml" line="1424"/>
         <source>Saved</source>
-        <translation>Uložit</translation>
+        <translation type="unfinished">Uloženo</translation>
     </message>
     <message>
         <source>Plain Text &lt;%1&gt;</source>
@@ -958,7 +958,7 @@ Help us translate QPrompt, visit:</source>
         <location filename="../src/kirigami_ui/PrompterPage.qml" line="260"/>
         <source>Pointer Configuration</source>
         <comment>Configure reading region pointer indicators</comment>
-        <translation>Doba trvání promítání</translation>
+        <translation type="unfinished">Konfigurace ukazatele</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/PrompterPage.qml" line="267"/>
@@ -999,7 +999,7 @@ Help us translate QPrompt, visit:</source>
         <location filename="../src/kirigami_ui/PrompterPage.qml" line="303"/>
         <source>No pointers</source>
         <comment>Disable all reading region pointers</comment>
-        <translation>Oba ukazatelé</translation>
+        <translation type="unfinished">Žádné ukazatele</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/PrompterPage.qml" line="305"/>
@@ -1207,7 +1207,7 @@ Help us translate QPrompt, visit:</source>
     <message>
         <location filename="../src/kirigami_ui/PrompterPage.qml" line="879"/>
         <source>Countdown duration</source>
-        <translation>Opakování odpočtu</translation>
+        <translation type="unfinished">Doba trvání odpočtu</translation>
     </message>
     <message numerus="yes">
         <location filename="../src/kirigami_ui/PrompterPage.qml" line="899"/>
@@ -1243,7 +1243,7 @@ Help us translate QPrompt, visit:</source>
     <message>
         <location filename="../src/kirigami_ui/PrompterPage.qml" line="1067"/>
         <source>Auto reload</source>
-        <translation>Automatické zarámování</translation>
+        <translation type="unfinished">Automatické znovunačtení</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/PrompterPage.qml" line="1078"/>
@@ -1285,7 +1285,7 @@ Help us translate QPrompt, visit:</source>
         <location filename="../src/kirigami_ui/PrompterPage.qml" line="1181"/>
         <source>Pointer configuration</source>
         <comment>Name of section where reding region pointers are configured</comment>
-        <translation>Doba trvání promítání</translation>
+        <translation type="unfinished">Konfigurace ukazatele</translation>
     </message>
 </context>
 <context>
@@ -1745,7 +1745,7 @@ Povolit omezování pro použití s touchpady, deaktivovat pro přesné rolován
         <location filename="../src/kirigami_ui/+windows/main.qml" line="338"/>
         <source>Disable screen projections</source>
         <comment>Main menu actions</comment>
-        <translation>Povolit promítání</translation>
+        <translation type="unfinished">Zakázat promítání obrazovky</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/main.qml" line="344"/>
@@ -1753,7 +1753,7 @@ Povolit omezování pro použití s touchpady, deaktivovat pro přesné rolován
         <location filename="../src/kirigami_ui/+windows/main.qml" line="344"/>
         <source>Disable timers</source>
         <comment>Main menu actions</comment>
-        <translation>Povolit časovače</translation>
+        <translation type="unfinished">Zakázat časovače</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/main.qml" line="352"/>
@@ -1806,7 +1806,7 @@ Povolit omezování pro použití s touchpady, deaktivovat pro přesné rolován
         <location filename="../src/kirigami_ui/+windows/main.qml" line="411"/>
         <source>Local file auto reload</source>
         <comment>Main menu actions. Enable local file auto reload</comment>
-        <translation>Automatické zarámování</translation>
+        <translation type="unfinished">Automatické znovunačtení místního souboru</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/main.qml" line="419"/>
@@ -1952,7 +1952,7 @@ Povolit omezování pro použití s touchpady, deaktivovat pro přesné rolován
         <location filename="../src/kirigami_ui/main.qml" line="710"/>
         <source>No pointers</source>
         <comment>Disable all reading region pointers</comment>
-        <translation type="unfinished">Oba ukazatelé</translation>
+        <translation type="unfinished">Žádné ukazatele</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/main.qml" line="720"/>
