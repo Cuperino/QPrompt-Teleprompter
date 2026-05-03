@@ -592,32 +592,26 @@ ToolBar {
                 // MenuSeparator {}
                 MenuItem {
                     text: qsTr("DejaVu (default, Roman, Cyrillic)", "FontName (Translatable font details)")
-                    enabled: viewport.prompter.document.fontFamily !== westernSeriousSansfFont.name
                     onTriggered: viewport.prompter.document.fontFamily = westernSeriousSansfFont.name
                 }
                 MenuItem {
                     text: qsTr("OpenDyslexic (Roman)", "FontName (Translatable font details)")
-                    enabled: viewport.prompter.document.fontFamily !== westernDyslexicFont.name
                     onTriggered: viewport.prompter.document.fontFamily = westernDyslexicFont.name
                 }
                 MenuItem {
                     text: qsTr("Source Han Sans (CH, JP, KO)", "FontName (Translatable font details)")
-                    enabled: viewport.prompter.document.fontFamily !== asianSeriousSansFont.name
                     onTriggered: viewport.prompter.document.fontFamily = asianSeriousSansFont.name
                 }
                 MenuItem {
                     text: qsTr("Scheherazade New (Arabic)", "FontName (Translatable font details)")
-                    enabled: viewport.prompter.document.fontFamily !== arabicHumaneSansFont.name
                     onTriggered: viewport.prompter.document.fontFamily = arabicHumaneSansFont.name
                 }
                 MenuItem {
                     text: qsTr("Palanquin (Devangari)", "FontName (Translatable font details)")
-                    enabled: viewport.prompter.document.fontFamily !== devanagariSeriousSansFont.name
                     onTriggered: viewport.prompter.document.fontFamily = devanagariSeriousSansFont.name
                 }
                 MenuItem {
                     text: qsTr("Kalpurush (Bengali)", "FontName (Translatable font details)")
-                    enabled: viewport.prompter.document.fontFamily !== bengaliHumaneSerifFont.name
                     onTriggered: viewport.prompter.document.fontFamily = bengaliHumaneSerifFont.name
                 }
                 MenuSeparator {}
