@@ -478,8 +478,10 @@ void DocumentHandler::setMarker(bool marker)
     format.setFontOverline(marker);
     if (marker)
         format.setAnchorHref(QLatin1String("#"));
-    else
+    else {
         format.clearProperty(QTextFormat::AnchorHref);
+        format.clearProperty(QTextFormat::AnchorName);
+    }
     mergeFormatOnWordOrSelection(format);
     this->setMarkersListDirty();
     Q_EMIT markerChanged();
