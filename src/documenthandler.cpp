@@ -707,17 +707,15 @@ bool DocumentHandler::namedMarker() const
 void DocumentHandler::setKeyMarker(QString keyCodeString = QLatin1String(""))
 {
     const bool enable = keyCodeString.length();
+    if (!enable)
+        return;
     QTextCharFormat format;
     // qDebug() << keyCodeString;
-    //  Dev: in future versions, append, don't replace prior non-key values.
-    if (enable)
-        format.setAnchorNames({QLatin1String("key_") + keyCodeString});
-    else
-        format.setAnchorNames(QStringList());
-    format.setAnchor(enable ? "#": "");
-    format.setAnchor(enable);
-    format.setFontUnderline(enable);
-    format.setFontOverline(enable);
+    // Dev: in future versions, append, don't replace prior non-key values.
+    format.setAnchorNames({QLatin1String("key_") + keyCodeString});
+    format.setAnchor("#");
+    format.setFontUnderline(true);
+    format.setFontOverline(true);
     mergeFormatOnWordOrSelection(format);
     this->setMarkersListDirty();
     Q_EMIT markerChanged();
@@ -798,8 +796,10 @@ void DocumentHandler::setMarker(bool marker)
     format.setFontOverline(marker);
     if (marker)
         format.setAnchorHref(QLatin1String("#"));
-    else
+    else {
         format.clearProperty(QTextFormat::AnchorHref);
+        format.clearProperty(QTextFormat::AnchorName);
+    }
     mergeFormatOnWordOrSelection(format);
     this->setMarkersListDirty();
     Q_EMIT markerChanged();

@@ -219,7 +219,7 @@ ToolBar {
                 focusPolicy: Qt.TabFocus
                 checked: viewport.prompter.document.regularMarker
                 checkable: true
-                onClicked: viewport.prompter.document.regularMarker = !viewport.prompter.document.regularMarker
+                onClicked: viewport.prompter.document.regularMarker = !viewport.prompter.document.regularMarker && !viewport.prompter.document.namedMarker
             }
             ToolButton {
                 id: namedBookmarkButton

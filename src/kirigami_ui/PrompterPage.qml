@@ -1166,7 +1166,11 @@ Kirigami.Page {
             let key = viewport.document.getMarkerKey();
             if (key)
                 column.setMarkerKeyButton.text = key;
+            else
+                column.setMarkerKeyButton.text = "[…]";
             column.markerHrefField.text = viewport.document.getMarkerHref();
+            column.setMarkerKeyButton.toggle();
+            column.setMarkerKeyButton.checked = true;
         }
         onClosed: {
             cursorAutoHide.restart();
@@ -1231,7 +1235,17 @@ Kirigami.Page {
                 placeholderText: (['android', 'ios', 'wasm'].indexOf(Qt.platform.os)===-1 ?
                                       "obs://scene/name   sys://cmd arg" :
                                       "obs://scene/name")
-                onEditingFinished: prompter.document.setMarkerHref(text)
+                onEditingFinished: {
+                    timer.start();
+                    prompterPage.prompter.document.setMarkerHref(text);
+                }
+                onFocusChanged: {
+                    if (focus) {
+                        if (column.setMarkerKeyButton.text === "[…]")
+                            column.setMarkerKeyButton.text = "";
+                        setMarkerKeyButton.item.checked = false;
+                    }
+                }
             }
         }
     }
