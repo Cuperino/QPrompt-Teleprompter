@@ -977,7 +977,7 @@ Flickable {
 
                 onCursorRectangleChanged: prompter.ensureVisible(cursorRectangle)
                 onLinkActivated: function (link) {
-                    console.log(link);
+                    editor.cursorPosition = editor.cursorPosition
                 }
 
                 background: Item {}
