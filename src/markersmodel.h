@@ -65,6 +65,7 @@ public:
 
     // void updateMarker(int row);
 
+    void extendLastMarker(QString);
 private:
     QList<Marker> m_data;
 

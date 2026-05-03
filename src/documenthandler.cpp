@@ -1644,12 +1644,14 @@ void DocumentHandler::parse()
         }
 
         // Navigate the document's formatting and extract markers' information.
-        for (jt = it.begin(); !(jt.atEnd()); ++jt) {
+        bool lastFragmentWasAnchor = false;
+        for (jt = it.begin(); !jt.atEnd(); ++jt) {
             QTextFragment currentFragment = jt.fragment();
             if (currentFragment.isValid()) {
                 // Additional fragment processing would be done here...
                 // Extract marker information:
                 if (currentFragment.charFormat().isAnchor()) {
+                    lastFragmentWasAnchor = true;
                     Marker marker;
                     marker.text = currentFragment.text();
                     marker.position = currentFragment.position();
@@ -1674,6 +1676,12 @@ void DocumentHandler::parse()
                         //                         qDebug() << anchorName;
                     }
                     _markersModel->appendMarker(marker);
+                }
+                else {
+                    if (lastFragmentWasAnchor && currentFragment.charFormat().underlineStyle()==QTextCharFormat::SingleUnderline) {
+                        _markersModel->extendLastMarker(currentFragment.text());
+                        lastFragmentWasAnchor = false;
+                    }
                 }
             }
         }
