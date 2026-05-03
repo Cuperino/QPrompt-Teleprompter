@@ -587,7 +587,7 @@ ToolBar {
                     text: qsTr("Active font: %0").arg(viewport.prompter.document.fontFamily)
                     color: "white"
                     horizontalAlignment: Text.AlignHCenter
-                    // verticalAlignment: Text.AlignVCenter
+                    font.weight: Font.Bold
                 }
                 // MenuSeparator {}
                 MenuItem {
