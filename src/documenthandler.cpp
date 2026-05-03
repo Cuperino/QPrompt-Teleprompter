@@ -693,7 +693,7 @@ bool DocumentHandler::regularMarker() const
     QTextCursor cursor = textCursor();
     if (cursor.isNull())
         return false;
-    return textCursor().charFormat().isAnchor() && textCursor().charFormat().anchorNames().size() == 0;
+    return textCursor().charFormat().isAnchor() && textCursor().charFormat().anchorNames().size() == 0 && textCursor().charFormat().anchorHref() == "#";
 }
 
 bool DocumentHandler::namedMarker() const
@@ -701,7 +701,7 @@ bool DocumentHandler::namedMarker() const
     QTextCursor cursor = textCursor();
     if (cursor.isNull())
         return false;
-    return textCursor().charFormat().isAnchor() && textCursor().charFormat().anchorNames().size() > 0;
+    return textCursor().charFormat().isAnchor() && (textCursor().charFormat().anchorNames().size() > 0 || (textCursor().charFormat().anchorNames().size() == 0 && textCursor().charFormat().anchorHref() != "#"));
 }
 
 void DocumentHandler::setKeyMarker(QString keyCodeString = QLatin1String(""))
