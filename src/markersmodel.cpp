@@ -104,6 +104,15 @@ void MarkersModel::appendMarker(const Marker &marker)
     endInsertRows();
 }
 
+// Workaround to: https://qt-project.atlassian.net/browse/QTBUG-41834
+// Joins the text of the next fragment to the current fragment after
+void MarkersModel::extendLastMarker(QString text)
+{
+    const auto last = m_data.last();
+    if (last.text.length()==1)
+        m_data.last().text += text;
+}
+
 // Key based circular search
 int MarkersModel::keySearch(int key, int currentPosition = 0, bool reverse = false, bool wrap = true)
 {
