@@ -66,8 +66,8 @@ QtObject {
             property string uri: ""
             property bool isRemote: false
             property bool exists: true
-            text: root._elideMiddle(uri, root.displayLength)
-            tooltip: uri
+            text: root._elideMiddle(tooltip, root.displayLength)
+            tooltip: uri.startsWith("file://") ? uri.substring(7) : uri
             enabled: exists
             onTriggered: root.openRequested(uri, isRemote)
         }
