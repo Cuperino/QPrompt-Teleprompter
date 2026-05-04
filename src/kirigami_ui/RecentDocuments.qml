@@ -31,7 +31,7 @@ QtObject {
     id: root
 
     readonly property int maxEntries: 30
-    readonly property int displayLength: 64
+    readonly property int displayLength: 50
     readonly property int count: recentsModel.count
     property var util: null
     property Kirigami.Action targetAction: null
