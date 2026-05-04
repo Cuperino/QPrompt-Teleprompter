@@ -2465,6 +2465,8 @@ Flickable {
             document.saveAs(saveDialog.currentFile)
             document.isNewFile = false
             editor.lastDocument = document.fileUrl;
+            if (root.recentDocuments)
+                root.recentDocuments.add(String(document.fileUrl), false);
             showPassiveNotification(qsTr("Saved %1", "Saved FILE_NAME").arg(document.fileUrl))
             // if (document.quitOnSave)
             //     Qt.quit()
@@ -2488,6 +2490,8 @@ Flickable {
             document.modified = false
             document.isNewFile = false
             editor.lastDocument = document.fileUrl;
+            if (root.recentDocuments)
+                root.recentDocuments.add(String(document.fileUrl), false);
             showPassiveNotification(qsTr("Saved"))
             switch (parseInt(root.onDiscard)) {
                 case Prompter.CloseActions.LoadGuide: document.loadGuide(); break;
