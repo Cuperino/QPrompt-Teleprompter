@@ -1659,10 +1659,6 @@ Flickable {
         }
         MenuSeparator {}
         MenuItem {
-            text: qsTr("Fo&nt…", "Editor context menu actions")
-            onTriggered: document.showFontDialog()
-        }
-        MenuItem {
             text: qsTr("Co&lor…", "Editor context menu actions")
             onTriggered: colorDialog.open()
         }
