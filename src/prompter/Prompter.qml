@@ -1394,7 +1394,7 @@ Flickable {
                                     prompter.spellWordStart = -1
                                     prompter.spellWordEnd = -1
                                 }
-                                if (root.__isMobile)
+                                if (root.__isMobile || Qt.platform.os === "wasm")
                                     contextMenu.popup(this)
                                 else
                                     nativeContextMenu.open()
@@ -2577,7 +2577,7 @@ Flickable {
         id: contextMenu
         background: Rectangle {
             color: "#DD000000"
-            implicitWidth: 120
+            implicitWidth: 200
             //implicitHeight: 30
         }
         MenuItem {
@@ -2613,7 +2613,7 @@ Flickable {
         MenuItem {
             visible: prompter.spellMisspelledWord !== ""
             height: visible ? implicitHeight : 0
-            text: qsTr("Add \"%1\" to dictionary", "Editor context menu actions").arg(prompter.spellMisspelledWord)
+            text: qsTr("Add to dictionary", "Editor context menu actions").arg(prompter.spellMisspelledWord)
             onTriggered: document.addToDictionary(prompter.spellMisspelledWord)
         }
         MenuSeparator {
@@ -2647,10 +2647,6 @@ Flickable {
             onTriggered: document.paste()
         }
         MenuSeparator {}
-        MenuItem {
-            text: qsTr("Fo&nt…", "Editor context menu actions")
-            onTriggered: document.showFontDialog()
-        }
         MenuItem {
             text: qsTr("Co&lor…", "Editor context menu actions")
             onTriggered: colorDialog.open()

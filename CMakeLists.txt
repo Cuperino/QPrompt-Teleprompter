@@ -210,29 +210,39 @@ if(NOT ANDROID AND NOT IOS AND NOT WASM)
         Widgets
     )
 endif()
-# Hunspell spell checking (desktop: Windows/macOS/Linux/other Unixes). Skip Android, iOS, HaikuOS, WASM.
-if(NOT ANDROID AND NOT IOS AND NOT HAIKU AND NOT WASM)
-    if(WIN32 OR (APPLE AND NOT IOS) OR USE_GIT_DEPENDENCIES_ONLY)
-        FetchContent_Declare(
-          Hunspell
-          GIT_REPOSITORY "${CMAKE_SOURCE_DIR}/3rdparty/hunspell"
-          GIT_TAG        "v1.7.2"
-          SOURCE_DIR submodules/hunspell
-        )
-        FetchContent_MakeAvailable(Hunspell)
-    else()
-        find_package(Hunspell)
-        if(NOT Hunspell_FOUND)
-            find_package(PkgConfig QUIET)
-            if(PkgConfig_FOUND)
-                pkg_check_modules(HUNSPELL IMPORTED_TARGET hunspell)
-            endif()
+# Hunspell spell checking. Hunspell upstream ships only autotools/MSVC
+# project files, so on platforms where a system package or vcpkg/Craft
+# install isn't available we build the library straight from the
+# submodule sources via HunspellShim. Linux/BSD/Haiku continue to use the
+# system package (find_package or pkg-config).
+if(WIN32 OR APPLE OR ANDROID OR IOS OR WASM OR USE_GIT_DEPENDENCIES_ONLY)
+    include(HunspellShim)
+    qprompt_build_hunspell("${CMAKE_SOURCE_DIR}/3rdparty/hunspell")
+else()
+    find_package(Hunspell)
+    if(NOT Hunspell_FOUND)
+        find_package(PkgConfig QUIET)
+        if(PkgConfig_FOUND)
+            pkg_check_modules(HUNSPELL IMPORTED_TARGET hunspell)
         endif()
     endif()
-    if(TARGET Hunspell::Hunspell OR TARGET hunspell OR TARGET PkgConfig::HUNSPELL)
-        add_compile_definitions(HUNSPELL_ENABLED)
-        set(HUNSPELL_ENABLED ON)
-    endif()
+endif()
+if(TARGET Hunspell::Hunspell OR TARGET hunspell OR TARGET PkgConfig::HUNSPELL)
+    add_compile_definitions(HUNSPELL_ENABLED)
+    set(HUNSPELL_ENABLED ON)
+endif()
+
+# Bundled Hunspell dictionaries.
+#
+# Static builds (WASM/Android/iOS) and macOS DMGs embed the dictionaries
+# inside the binary as Qt resources (handled in src/CMakeLists.txt). The
+# Windows NSIS installer ships them as user-selectable components (handled
+# below in the CPack section). Linux is intentionally skipped because
+# Hunspell dictionaries are to be provided by the distribution.
+if(WASM OR ANDROID OR IOS OR APPLE OR WIN32)
+    include(HunspellDictionaries)
+    set(QPROMPT_HUNSPELL_DICT_DIR "${CMAKE_BINARY_DIR}/hunspell-dictionaries")
+    qprompt_hunspell_fetch_all("${QPROMPT_HUNSPELL_DICT_DIR}")
 endif()
 # Platform specific dependencies
 if(HAIKU)
@@ -377,6 +387,9 @@ if(CMAKE_SOURCE_DIR STREQUAL CMAKE_CURRENT_SOURCE_DIR)
 
     elseif(WIN32)
         set(CPACK_GENERATOR "NSIS")
+        # Hunspell dictionaries are installed as user-selectable NSIS
+        # components, which requires turning off monolithic install.
+        set(CPACK_MONOLITHIC_INSTALL OFF)
         set(CPACK_PACKAGE_EXECUTABLES "QPrompt" "QPrompt")
         set(CPACK_RESOURCE_FILE_LICENSE ${CMAKE_SOURCE_DIR}/${LICENSE_FILE})
         set(CPACK_NSIS_EXECUTABLES_DIRECTORY ${BIN_INSTALL_DIR})
@@ -413,6 +426,24 @@ if(CMAKE_SOURCE_DIR STREQUAL CMAKE_CURRENT_SOURCE_DIR)
     endif()
 
     include(CPack)
+
+    # Windows NSIS dictionary components (declared after include(CPack)
+    # because cpack_add_component() is provided by CPackComponent which is
+    # pulled in by include(CPack)).
+    if(WIN32)
+        cpack_add_component(Unspecified
+            DISPLAY_NAME "QPrompt"
+            DESCRIPTION  "QPrompt application files"
+            REQUIRED
+            HIDDEN
+        )
+        if(DEFINED QPROMPT_HUNSPELL_DICT_DIR)
+            qprompt_hunspell_install_components(
+                "${QPROMPT_HUNSPELL_DICT_DIR}"
+                "${KDE_INSTALL_DATADIR}/hunspell"
+            )
+        endif()
+    endif()
 endif()
 
 # if(NOT WASM)

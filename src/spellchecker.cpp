@@ -34,6 +34,23 @@
 
 #include <hunspell/hunspell.hxx>
 
+namespace {
+// Paths to scan in addition to QStandardPaths. Covers the Windows NSIS
+// install layout (<bin>/../share/hunspell) and macOS app-bundle Resources
+// (handy as a fallback even though resources are also embedded via QRC).
+QStringList applicationRelativeDictionaryDirs()
+{
+    QStringList out;
+    const QString appDir = QCoreApplication::applicationDirPath();
+    if (appDir.isEmpty())
+        return out;
+    out << appDir + QStringLiteral("/../share/hunspell")
+        << appDir + QStringLiteral("/../Resources/dictionaries")
+        << appDir + QStringLiteral("/dictionaries");
+    return out;
+}
+}
+
 SpellChecker::SpellChecker(const QString &language)
 {
     loadCustomWordsFromDisk();
@@ -195,7 +212,14 @@ QString SpellChecker::locateDictionary(const QString &language, const QString &e
         }
     }
 
-    // 3) Common system paths (Linux/BSD)
+    // 3) Application-relative install paths (Windows NSIS, macOS bundle)
+    for (const QString &base : applicationRelativeDictionaryDirs()) {
+        const QString candidate = base + QLatin1Char('/') + fileName;
+        if (QFileInfo::exists(candidate))
+            return candidate;
+    }
+
+    // 4) Common system paths (Linux/BSD)
     const QStringList systemPaths = {
         QStringLiteral("/usr/share/hunspell/"),
         QStringLiteral("/usr/share/myspell/dicts/"),
@@ -250,6 +274,9 @@ QStringList SpellChecker::availableDictionaries()
     for (const QString &base : dataDirs)
         for (const QString &sub : subDirs)
             scanDir(base + QLatin1Char('/') + sub);
+
+    for (const QString &dir : applicationRelativeDictionaryDirs())
+        scanDir(dir);
 
     const QStringList systemPaths = {
         QStringLiteral("/usr/share/hunspell"),
