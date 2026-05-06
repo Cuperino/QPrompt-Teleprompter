@@ -82,17 +82,16 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
     qputenv("QT_QUICK_CONTROLS_MATERIAL_THEME", QByteArray("Dark"));
     qputenv("QT_QUICK_CONTROLS_MATERIAL_ACCENT", QByteArray("#3daee9"));
 
-    // Initialize app metadata
+    // Initialize app metadata. The application name must match KAboutData's componentName
+    // ("qprompt"), because KAboutData::setApplicationData() later overwrites
+    // QCoreApplication::applicationName() with it.
     QCoreApplication::setOrganizationName(QString::fromUtf8("Cuperino"));
     QCoreApplication::setOrganizationDomain(QString::fromUtf8(QPROMPT_URI));
-    QCoreApplication::setApplicationName(QString::fromUtf8("QPrompt"));
+    QCoreApplication::setApplicationName(QString::fromUtf8("qprompt"));
+    QGuiApplication::setApplicationDisplayName(QString::fromUtf8("QPrompt"));
 
     // Acquire saved settings
-#if (defined(Q_OS_MACOS) or defined(Q_OS_IOS))
-    QSettings settings(QCoreApplication::organizationDomain(), QCoreApplication::applicationName());
-#else
-    QSettings settings(QCoreApplication::organizationName(), QCoreApplication::applicationName().toLower());
-#endif
+    QSettings settings;
 
     QQuickStyle::setStyle("Material");
     // Instantiate app
@@ -113,14 +112,14 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
             app.installTranslator(&translator);
     }
     else {
-        auto langCode = language.append(".UTF-8").toStdString();
-        qDebug() << langCode;
-        qputenv("LANGUAGE", langCode);
-        qputenv("LC_ALL", langCode);
-        qputenv("LANG", langCode);
-        QLocale currLocale(QLocale(langCode.c_str()));
+        const QByteArray langEnv = language.toUtf8() + ".UTF-8";
+        qputenv("LANGUAGE", langEnv);
+        qputenv("LC_ALL", langEnv);
+        qputenv("LANG", langEnv);
+        QLocale currLocale(language);
         QLocale::setDefault(currLocale);
-        if (translator.load(QLatin1String(":/i18n/qprompt_" + langCode + ".qm")))
+        // Use QLocale-aware overload so "es_ES" falls back to qprompt_es.qm and "pt_BR" loads qprompt_pt_BR.qm directly
+        if (translator.load(currLocale, QStringLiteral("qprompt"), QStringLiteral("_"), QStringLiteral(":/i18n")))
             app.installTranslator(&translator);
     }
 
