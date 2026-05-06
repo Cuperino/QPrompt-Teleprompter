@@ -304,7 +304,7 @@ ToolBar {
                 onClicked: viewport.prompter.editor.redo()
             }
             ToolSeparator {
-                contentItem.visible: undoRedoRow.y === alignmentRowMobile.y
+                contentItem.visible: undoRedoRow.y === editRow.y
                 Material.theme: Material.Dark
             }
         }
