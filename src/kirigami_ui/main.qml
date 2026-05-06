@@ -437,6 +437,7 @@ Kirigami.ApplicationWindow {
                         onTriggered: root.pageStack.currentItem.footer.showJustify = checked
                     }
                     Kirigami.Action {
+                        enabled: Qt.platform.os!=="wasm"
                         text: qsTr("Local file auto reload", "Main menu actions. Enable local file auto reload")
                         icon.source: "qrc:/qt/qml/com/cuperino/qprompt/icons/document-open.svg"
                         checkable: true
