@@ -26,10 +26,10 @@
 #if defined(Q_OS_UNIX) && !defined(Q_OS_APPLE) && !defined(Q_OS_ANDROID) && !defined(Q_OS_WASM)
 // Used to provide global shortcuts in KDE Plasma
 #include <KGlobalAccel>
-#include <QGuiApplication>
-#include <QSettings>
 #define Use_GlobalAccel = 1
 #endif
+#include <QCoreApplication>
+#include <QSettings>
 
 GlobalHotkeys::GlobalHotkeys(AppController *controller) : AbstractInputSource(controller)
 #if defined(QHotkey_FOUND)
@@ -110,7 +110,7 @@ QString GlobalHotkeys::globalShortcutKey(Action action)
     QList<QKeySequence> shortcuts;
 #if !defined(QHotkey_FOUND) && !defined(Use_GlobalAccel)
     Q_UNUSED(action)
-    return Qt::Key::Key_Return;
+    return "";
 #else
     const QString platform = QGuiApplication::platformName();
     switch (action) {
@@ -820,7 +820,7 @@ void GlobalHotkeys::m_initializeSource() {
 void GlobalHotkeys::m_setGlobalShortcut(Qt::Key key, Qt::KeyboardModifiers modifiers, Action action, bool setAsDefault) {
 #if !defined(QHotkey_FOUND) && !defined(Use_GlobalAccel)
     Q_UNUSED(key)
-    Q_UNUSED(modifier)
+    Q_UNUSED(modifiers)
     Q_UNUSED(action)
     return;
 #else

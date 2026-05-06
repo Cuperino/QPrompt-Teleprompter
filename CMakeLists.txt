@@ -204,7 +204,6 @@ if(NOT ANDROID AND NOT IOS AND NOT WASM)
         find_package(QHotkey)
     endif()
 endif()
-find_package(QHotkey)
 # Desktop only dependencies
 if(NOT ANDROID AND NOT IOS AND NOT WASM)
     find_package(Qt${QT_VERSION_MAJOR} ${QT_MIN_VERSION} REQUIRED NO_MODULE COMPONENTS
