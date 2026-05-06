@@ -477,7 +477,7 @@ Kirigami.ApplicationWindow {
                 onTriggered: loadAboutPage()
             },
             Kirigami.Action {
-                visible: !Kirigami.Settings.isMobile
+                visible: !Kirigami.Settings.isMobile && Qt.platform.os!=="wasm"
                 text: qsTr("&Quit", "Main menu and global menu actions")
                 //icon.name: "application-exit"
                 icon.source: "qrc:/qt/qml/com/cuperino/qprompt/icons/application-exit.svg"
