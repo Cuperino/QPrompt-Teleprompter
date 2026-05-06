@@ -122,6 +122,10 @@ QtObject {
         const u = uri
         if (!u.length)
             return
+        // Skip built-in/internal documents: embedded resources (untitled.html,
+        // welcome_*.html, etc.), the blank-document sentinel, and empty file://.
+        if (u.startsWith("qrc:") || u === "blank://" || u === "file://" || u === "file:")
+            return
         for (var i = 0; i < recentsModel.count; i++) {
             if (recentsModel.get(i).uri === u) {
                 if (i !== 0)
@@ -183,22 +187,33 @@ QtObject {
 
     function _load() {
         recentsModel.clear()
+        var sanitized = false
         try {
             const arr = JSON.parse(root._serialized)
             if (Array.isArray(arr)) {
                 for (var i = 0; i < arr.length && i < root.maxEntries; i++) {
                     const entry = arr[i]
-                    if (entry && entry.uri)
-                        recentsModel.append({
-                            uri: String(entry.uri),
-                            isRemote: Boolean(entry.isRemote),
-                            exists: true
-                        })
+                    if (!entry || !entry.uri)
+                        continue
+                    const uri = String(entry.uri)
+                    // Drop built-in/internal documents that may have been
+                    // persisted by older builds before this filter existed.
+                    if (uri.startsWith("qrc:") || uri === "blank://" || uri === "file://" || uri === "file:") {
+                        sanitized = true
+                        continue
+                    }
+                    recentsModel.append({
+                        uri: uri,
+                        isRemote: Boolean(entry.isRemote),
+                        exists: true
+                    })
                 }
             }
         } catch (e) {
             recentsModel.clear()
         }
+        if (sanitized)
+            _save()
         refreshExistence()
         _rebuildChildren()
     }
