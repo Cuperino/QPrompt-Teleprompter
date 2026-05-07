@@ -61,6 +61,10 @@
 #include <../3rdparty/KDMacTouchBar/src/kdmactouchbar.h>
 #endif
 
+#if defined(Q_OS_WASM)
+#include <emscripten.h>
+#endif
+
 #include "../qprompt_version.h"
 #include "abstractunits.hpp"
 //#include "documenthandler.h"
@@ -102,6 +106,12 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
     QGuiApplication app(argc, argv);
 #else
     QApplication app(argc, argv);
+#endif
+
+#if defined(Q_OS_WASM)
+    QObject::connect(&app, &QCoreApplication::aboutToQuit, []() {
+        emscripten_run_script("location.reload();");
+    });
 #endif
 
     QTranslator translator;
