@@ -22,6 +22,9 @@
 #pragma once
 
 #include "globalhotkeys.h"
+#if defined(Q_OS_WASM)
+#include "wasmintegration.h"
+#endif
 
 #include <QObject>
 #include <QQmlEngine>
@@ -31,12 +34,18 @@ class AppController : public QObject
     Q_OBJECT
     QML_ELEMENT
     QML_SINGLETON
+#if defined(Q_OS_WASM)
+    Q_PROPERTY(WasmIntegration *wasm READ wasm CONSTANT)
+#endif
 private:
     explicit AppController(QObject *parent = nullptr);
 public:
     static AppController *create(QQmlEngine *qmlEngine, QJSEngine *);
     Q_INVOKABLE QString globalShortcutKey(GlobalHotkeys::Action action);
     Q_INVOKABLE void setGlobalShortcut(Qt::Key key, Qt::KeyboardModifiers modifiers, GlobalHotkeys::Action action);
+#if defined(Q_OS_WASM)
+    WasmIntegration *wasm() const;
+#endif
 signals:
     // Prompter
     void togglePrompter();
@@ -54,4 +63,7 @@ signals:
     void setVelocity(int velocity);
 private:
     GlobalHotkeys *m_hotkeys;
+#if defined(Q_OS_WASM)
+    WasmIntegration *m_wasm;
+#endif
 };

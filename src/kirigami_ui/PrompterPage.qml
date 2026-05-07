@@ -586,7 +586,10 @@ Kirigami.Page {
                 icon.name: "insert-image"
                 icon.source: "../icons/insert-image.svg"
                 onTriggered: {
-                    prompterBackground.loadBackgroundImage()
+                    if (Qt.platform.os === "wasm")
+                        AppController.wasm.loadBackgroundImageTo(prompterBackground)
+                    else
+                        prompterBackground.loadBackgroundImage()
                     contextDrawer.close()
                     viewport.prompter.restoreFocus()
                 }

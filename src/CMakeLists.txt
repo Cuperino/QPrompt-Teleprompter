@@ -98,6 +98,9 @@ else()
     list(APPEND qprompt_cpp shakedetector.h shakedetector.cpp)
     list(APPEND qprompt_cpp iossavedialog.h iossavedialog.cpp)
 endif()
+if(WASM)
+    list(APPEND qprompt_cpp wasmintegration.h wasmintegration.cpp)
+endif()
 
 if (WASM)
     set(qprompt_frontend_sources

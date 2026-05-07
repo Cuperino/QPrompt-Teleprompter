@@ -23,6 +23,9 @@
 
 AppController::AppController(QObject *parent) : QObject(parent)
     , m_hotkeys(new GlobalHotkeys(this))
+#if defined(Q_OS_WASM)
+    , m_wasm(new WasmIntegration(this))
+#endif
 {
     QQmlEngine::setObjectOwnership(this, QQmlEngine::CppOwnership);
 }
@@ -43,3 +46,10 @@ void AppController::setGlobalShortcut(Qt::Key key, Qt::KeyboardModifiers modifie
 {
     m_hotkeys->setGlobalShortcut(key, modifiers, action);
 }
+
+#if defined(Q_OS_WASM)
+WasmIntegration *AppController::wasm() const
+{
+    return m_wasm;
+}
+#endif
