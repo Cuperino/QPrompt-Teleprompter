@@ -1114,7 +1114,7 @@ Kirigami.ApplicationWindow {
     MessageDialog {
         id: restartDialog
         title: qsTr("Restart %1", "Restart application_name").arg(aboutData.displayName)
-        text: qsTr("%1 needs to restart for this change to fully take effect.\n\nWould you like to restart %1 now? All changes to document will be lost.", "application needs to restart for this change to fully take effect.\n\nWould you like to restart application now? All changes to document will be lost.").arg(aboutData.displayName)
+        text: qsTr("%1 needs to restart for this change to fully take effect.\n\nWould you like to restart %1 now? All changes to document will be lost.", "application needs to restart for this change to fully take effect.\n\nWould you like to restart application now? All changes to document will be lost.").arg(typeof aboutData !== "undefined" ? aboutData.displayName : "QPrompt")
         buttons: MessageDialog.Yes | MessageDialog.No
         modality: Qt.WindowModal
         onButtonClicked: (button, role) => {
