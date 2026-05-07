@@ -66,6 +66,33 @@ void qprompt_wasmFileReceived(const char *filename, const char *dataUrl, int tar
 }
 }
 
+EM_JS(void, qprompt_wasmToggleFullscreen, (), {
+    var fsElement = document.fullscreenElement
+        || document.webkitFullscreenElement
+        || document.mozFullScreenElement
+        || document.msFullscreenElement;
+    if (fsElement) {
+        if (document.exitFullscreen)
+            document.exitFullscreen();
+        else if (document.webkitExitFullscreen)
+            document.webkitExitFullscreen();
+        else if (document.mozCancelFullScreen)
+            document.mozCancelFullScreen();
+        else if (document.msExitFullscreen)
+            document.msExitFullscreen();
+    } else {
+        var target = document.documentElement;
+        if (target.requestFullscreen)
+            target.requestFullscreen();
+        else if (target.webkitRequestFullscreen)
+            target.webkitRequestFullscreen();
+        else if (target.mozRequestFullScreen)
+            target.mozRequestFullScreen();
+        else if (target.msRequestFullscreen)
+            target.msRequestFullscreen();
+    }
+});
+
 EM_JS(void, qprompt_wasmPickFile, (const char *acceptCStr, int targetKind), {
     var accept = UTF8ToString(acceptCStr);
     var input = document.createElement('input');
@@ -130,4 +157,9 @@ void WasmIntegration::pickPointerQml(QObject *filenameField, QObject *sourceHold
     s_pendingSourceHolder = sourceHolder;
     s_pendingSourceProperty = sourceProperty.toUtf8();
     qprompt_wasmPickFile(".qml,.QML", kTargetText);
+}
+
+void WasmIntegration::toggleBrowserFullscreen()
+{
+    qprompt_wasmToggleFullscreen();
 }

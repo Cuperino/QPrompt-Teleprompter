@@ -741,7 +741,7 @@ Kirigami.Page {
         Kirigami.Action {
             id: fullscreenButton
             visible: !fullScreenPlatform
-            text: root.__fullScreen ? qsTr("Leave Fullscreen") : qsTr("Fullscreen")
+            text: root.__fullScreen && Qt.platform.os!=="wasm" ? qsTr("Leave Fullscreen") : qsTr("Fullscreen")
             onTriggered: {
                 root.__fullScreen = !root.__fullScreen
                 contextDrawer.close()
