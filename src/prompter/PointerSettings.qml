@@ -61,6 +61,12 @@ ColumnLayout {
     property alias qmlLeftPath: leftPointerQmlPath.value
     property alias qmlRightPath: rightPointerQmlPath.value
 
+    // WASM-only persisted file contents (data URLs). Empty on other platforms.
+    property string imageLeftSource: ""
+    property string imageRightSource: ""
+    property string qmlLeftSource: ""
+    property string qmlRightSource: ""
+
     states: [
         State {
             name: PointerSettings.States.Arrow
@@ -99,6 +105,10 @@ ColumnLayout {
         property alias tint: pointerSettings.tint
         property alias qmlLeftPath: leftPointerQmlPath.text
         property alias qmlRightPath: rightPointerQmlPath.text
+        property alias imageLeftSource: pointerSettings.imageLeftSource
+        property alias imageRightSource: pointerSettings.imageRightSource
+        property alias qmlLeftSource: pointerSettings.qmlLeftSource
+        property alias qmlRightSource: pointerSettings.qmlRightSource
     }
     Label {
         text: qsTr("Colors for prompter states")
@@ -467,16 +477,24 @@ ColumnLayout {
                 }
                 TextField {
                     id: leftPointerImagePath
-                    property url value: text ? text : placeholderText
+                    property url value: pointerSettings.imageLeftSource ? pointerSettings.imageLeftSource : (text ? text : placeholderText)
                     text: ""
                     placeholderText: Qt.application.layoutDirection === Qt.LeftToRight ? "../../images/left_hand.png" : "../../images/right_hand.png"
+                    onTextEdited: pointerSettings.imageLeftSource = ""
                     Layout.fillWidth: true
                 }
                 Button {
                     text: qsTr("Browse")
                     onPressed: {
-                        pointerImageFileDialog.source = leftPointerImagePath
-                        pointerImageFileDialog.open()
+                        if (Qt.platform.os === "wasm") {
+                            AppController.wasm.pickPointerImage(leftPointerImagePath, pointerSettings, "imageLeftSource")
+                            leftPointerImagePath.clear();
+                            pointerSettings.imageLeftSource = "";
+                        }
+                        else {
+                            pointerImageFileDialog.source = leftPointerImagePath
+                            pointerImageFileDialog.open()
+                        }
                     }
                     Material.theme: Material.Dark
                 }
@@ -490,11 +508,12 @@ ColumnLayout {
                 }
                 TextField {
                     id: rightPointerImagePath
-                    property url value: text ? text : placeholderText
+                    property url value: pointerSettings.imageRightSource ? pointerSettings.imageRightSource : (text ? text : placeholderText)
                     visible: !pointerSettings.sameAsLeftPointer
                     enabled: true
                     text: ""
                     placeholderText: Qt.application.layoutDirection === Qt.LeftToRight ? "../../images/right_hand.png" : "../../images/left_hand.png"
+                    onTextEdited: pointerSettings.imageRightSource = ""
                     Layout.fillWidth: true
                 }
                 TextField {
@@ -507,8 +526,15 @@ ColumnLayout {
                 Button {
                     text: qsTr("Browse")
                     onPressed: {
-                        pointerImageFileDialog.source = rightPointerImagePath
-                        pointerImageFileDialog.open()
+                        if (Qt.platform.os === "wasm") {
+                            AppController.wasm.pickPointerImage(rightPointerImagePath, pointerSettings, "imageRightSource")
+                            rightPointerImagePath.clear();
+                            pointerSettings.imageRightSource = "";
+                        }
+                        else {
+                            pointerImageFileDialog.source = rightPointerImagePath
+                            pointerImageFileDialog.open()
+                        }
                     }
                     Material.theme: Material.Dark
                 }
@@ -555,16 +581,24 @@ ColumnLayout {
                 }
                 TextField {
                     id: leftPointerQmlPath
-                    property url value: text ? text : placeholderText
+                    property url value: pointerSettings.qmlLeftSource ? pointerSettings.qmlLeftSource : (text ? text : placeholderText)
                     text: ""
                     placeholderText: "pointers/pointer_1.qml"
+                    onTextEdited: pointerSettings.qmlLeftSource = ""
                     Layout.fillWidth: true
                 }
                 Button {
                     text: qsTr("Browse")
                     onPressed: {
-                        pointerQmlFileDialog.source = leftPointerQmlPath
-                        pointerQmlFileDialog.open()
+                        if (Qt.platform.os === "wasm") {
+                            AppController.wasm.pickPointerQml(leftPointerQmlPath, pointerSettings, "qmlLeftSource")
+                            leftPointerQmlPath.clear();
+                            pointerSettings.qmlLeftSource = "";
+                        }
+                        else {
+                            pointerQmlFileDialog.source = leftPointerQmlPath
+                            pointerQmlFileDialog.open()
+                        }
                     }
                     Material.theme: Material.Dark
                 }
@@ -578,11 +612,12 @@ ColumnLayout {
                 }
                 TextField {
                     id: rightPointerQmlPath
-                    property url value: text ? text : placeholderText
+                    property url value: pointerSettings.qmlRightSource ? pointerSettings.qmlRightSource : (text ? text : placeholderText)
                     visible: !pointerSettings.sameAsLeftPointer
                     enabled: true
                     text: ""
                     placeholderText: "pointers/pointer_2.qml"
+                    onTextEdited: pointerSettings.qmlRightSource = ""
                     Layout.fillWidth: true
                 }
                 TextField {
@@ -595,8 +630,15 @@ ColumnLayout {
                 Button {
                     text: qsTr("Browse")
                     onPressed: {
-                        pointerQmlFileDialog.source = rightPointerQmlPath
-                        pointerQmlFileDialog.open()
+                        if (Qt.platform.os === "wasm") {
+                            AppController.wasm.pickPointerQml(rightPointerQmlPath, pointerSettings, "qmlRightSource")
+                            rightPointerQmlPath.clear();
+                            pointerSettings.qmlRightSource = "";
+                        }
+                        else {
+                            pointerQmlFileDialog.source = rightPointerQmlPath
+                            pointerQmlFileDialog.open()
+                        }
                     }
                     Material.theme: Material.Dark
                 }
