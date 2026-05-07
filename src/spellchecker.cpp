@@ -29,10 +29,17 @@
 #include <QFile>
 #include <QFileInfo>
 #include <QSet>
+#include <QSettings>
 #include <QStandardPaths>
 #include <QTextStream>
 
 #include <hunspell/hunspell.hxx>
+
+#if defined(Q_OS_WASM)
+namespace {
+constexpr auto kWasmCustomWordsKey = "spellcheck/customWords";
+}
+#endif
 
 namespace {
 // Paths to scan in addition to QStandardPaths. Covers the Windows NSIS
@@ -348,6 +355,13 @@ QString SpellChecker::customWordsPath()
 void SpellChecker::loadCustomWordsFromDisk()
 {
     m_customWords.clear();
+#if defined(Q_OS_WASM)
+    // Qt's WASM port does not mount a persistent file system; QFile writes
+    // land in MEMFS and are wiped on reload. QSettings on WASM is backed by
+    // window.localStorage, so use it for the custom dictionary instead.
+    QSettings settings;
+    m_customWords = settings.value(QLatin1String(kWasmCustomWordsKey)).toStringList();
+#else
     QFile file(customWordsPath());
     if (!file.exists() || !file.open(QIODevice::ReadOnly | QIODevice::Text))
         return;
@@ -358,6 +372,7 @@ void SpellChecker::loadCustomWordsFromDisk()
         if (!line.isEmpty() && !m_customWords.contains(line))
             m_customWords.append(line);
     }
+#endif
     QCollator collator;
     collator.setCaseSensitivity(Qt::CaseInsensitive);
     std::sort(m_customWords.begin(), m_customWords.end(), [&collator](const QString &a, const QString &b) {
@@ -367,6 +382,11 @@ void SpellChecker::loadCustomWordsFromDisk()
 
 void SpellChecker::saveCustomWordsToDisk() const
 {
+#if defined(Q_OS_WASM)
+    QSettings settings;
+    settings.setValue(QLatin1String(kWasmCustomWordsKey), m_customWords);
+    settings.sync();
+#else
     QFile file(customWordsPath());
     if (!file.open(QIODevice::WriteOnly | QIODevice::Text | QIODevice::Truncate))
         return;
@@ -374,6 +394,7 @@ void SpellChecker::saveCustomWordsToDisk() const
     out.setEncoding(QStringConverter::Utf8);
     for (const QString &w : m_customWords)
         out << w << '\n';
+#endif
 }
 
 QByteArray SpellChecker::encode(const Dictionary &d, const QString &word) const
