@@ -112,6 +112,11 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
     QObject::connect(&app, &QCoreApplication::aboutToQuit, []() {
         emscripten_run_script("location.reload();");
     });
+    // Qt for WASM only bundles DejaVu Sans, and the browser exposes no
+    // system fonts to FreeType, so emoji codepoints have nowhere to fall
+    // back to. Register a bundled color emoji font with the application
+    // database so QFontEngineMulti can use it as a fallback.
+    QFontDatabase::addApplicationFont(QStringLiteral(":/qt/qml/com/cuperino/qprompt/fonts/NotoColorEmoji-COLRv1.ttf"));
 #endif
 
     QTranslator translator;
