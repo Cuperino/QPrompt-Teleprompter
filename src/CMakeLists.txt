@@ -186,28 +186,43 @@ else()
     )
 endif()
 # Fonts
-set(font_files
-    fonts/icons/fontello.ttf
-    fonts/editor/dejavu-sans/DejaVuSans.ttf
-    fonts/editor/LibertinusSans-Regular.otf
-    fonts/editor/OpenDyslexic-Bold.otf
-    fonts/editor/ScheherazadeNew/ScheherazadeNew-Regular.ttf
-    fonts/editor/Kalpurush/Kalpurush.ttf
-    fonts/editor/Palanquin-Regular.ttf
-    # fonts/editor/Libertinus/static/OTF/LibertinusSerif-Regular.otf
-    fonts/editor/SourceHanSans/SourceHanSans-Regular.ttc
-    # Color emoji fallback. Qt's WASM platform plugin bundles only DejaVu
-    # Sans (no emoji glyphs) and the browser provides no system font
-    # fallback, so emoji render as tofu without this. Other platforms have
-    # system emoji fonts, but bundling keeps rendering consistent.
-    fonts/editor/noto-emoji/NotoColorEmoji-COLRv1.ttf
-)
+if (WASM)
+    set(font_files
+        fonts/icons/fontello.ttf
+        fonts/editor/dejavu-sans/DejaVuSans.ttf
+        fonts/editor/LibertinusSans-Regular.otf
+        # Color emoji fallback. Qt's WASM platform plugin bundles only DejaVu
+        # Sans (no emoji glyphs) and the browser provides no system font
+        # fallback, so emoji render as tofu without this. Other platforms have
+        # system emoji fonts, but bundling keeps rendering consistent.
+        fonts/editor/noto-emoji/NotoColorEmoji-COLRv1.ttf
+    )
+else()
+    set(font_files
+        fonts/icons/fontello.ttf
+        fonts/editor/dejavu-sans/DejaVuSans.ttf
+        fonts/editor/LibertinusSans-Regular.otf
+        fonts/editor/OpenDyslexic-Bold.otf
+        fonts/editor/ScheherazadeNew/ScheherazadeNew-Regular.ttf
+        fonts/editor/Kalpurush/Kalpurush.ttf
+        fonts/editor/Palanquin-Regular.ttf
+        # fonts/editor/Libertinus/static/OTF/LibertinusSerif-Regular.otf
+        fonts/editor/SourceHanSans/SourceHanSans-Regular.ttc
+        fonts/editor/noto-emoji/NotoColorEmoji-COLRv1.ttf
+    )
+endif()
 foreach(file IN LISTS font_files)
     get_filename_component(filename ${file} NAME)
     set_source_files_properties(${file} PROPERTIES QT_RESOURCE_ALIAS fonts/${filename})
 endforeach()
 
 # Documents
+if (WASM)
+    set(document_files
+        documents/untitled.html
+        documents/welcome_en.html
+    )
+else()
 set(document_files
     documents/untitled.html
     documents/welcome_ar.html
@@ -231,6 +246,7 @@ set(document_files
     documents/welcome_tr.html
     documents/welcome_zh.html
 )
+endif()
 set_source_files_properties(documents/untitled.html PROPERTIES QT_RESOURCE_ALIAS documents/blank.html)
 
 set(icon_files

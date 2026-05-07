@@ -261,6 +261,7 @@ Kirigami.Page {
 
             Kirigami.Action {
                 text: qsTr("Pointer Configuration", "Configure reading region pointer indicators")
+                enabled: Qt.platform.os!=="wasm"
                 onTriggered: {
                     pointerConfiguration.open()
                 }
