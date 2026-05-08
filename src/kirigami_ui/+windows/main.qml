@@ -237,6 +237,7 @@ Kirigami.ApplicationWindow {
             Kirigami.Action {
                 text: qsTr("Save &As", "Main menu and global menu actions")
                 //icon.name: "document-save-as"
+                visible: Qt.platform.os !== "wasm"
                 icon.source: "qrc:/qt/qml/com/cuperino/qprompt/icons/document-save-as.svg"
                 shortcut: StandardKey.SaveAs
                 onTriggered: {
