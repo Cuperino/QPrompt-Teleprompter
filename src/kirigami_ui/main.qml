@@ -211,7 +211,17 @@ Kirigami.ApplicationWindow {
                 shortcut: StandardKey.Open
                 onTriggered: {
                     root.onDiscard = Prompter.CloseActions.Open
-                    root.pageStack.currentItem.document.open()
+                    if (Qt.platform.os === "wasm") {
+                        const doc = root.pageStack.currentItem.document
+                        if (doc.modified) {
+                            AppController.wasm.saveDocument(doc.fileName ? doc.fileName : "script.html", doc.toHtml())
+                            doc.modified = false
+                        } else {
+                            AppController.wasm.openDocument(doc)
+                        }
+                    } else {
+                        root.pageStack.currentItem.document.open()
+                    }
                 }
             },
             Kirigami.Action {
@@ -661,11 +671,20 @@ Kirigami.ApplicationWindow {
             }
             Labs.MenuItem {
                 text: qsTr("&Open", "Main menu and global menu actions")
-                onTriggered: root.pageStack.currentItem.document.open()
-            }
-            Labs.MenuItem {
-                text: qsTr("&Open", "Main menu and global menu actions")
-                onTriggered: root.pageStack.currentItem.document.open()
+                onTriggered: {
+                    root.onDiscard = Prompter.CloseActions.Open
+                    if (Qt.platform.os === "wasm") {
+                        const doc = root.pageStack.currentItem.document
+                        if (doc.modified) {
+                            AppController.wasm.saveDocument(doc.fileName ? doc.fileName : "script.html", doc.toHtml())
+                            doc.modified = false
+                        } else {
+                            AppController.wasm.openDocument(doc)
+                        }
+                    } else {
+                        root.pageStack.currentItem.document.open()
+                    }
+                }
             }
             Labs.MenuItem {
                 text: qsTr("&Open remote file", "Main menu and global menu actions")

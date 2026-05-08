@@ -35,7 +35,13 @@ QPointer<QObject> s_pendingBackground;
 QPointer<QObject> s_pendingFilenameField;
 QPointer<QObject> s_pendingSourceHolder;
 QByteArray s_pendingSourceProperty;
+QPointer<QObject> s_pendingDocumentHandler;
 }
+
+EM_JS(void, qprompt_wasmSetBrowserTitle, (const char *titleCStr), {
+    var title = UTF8ToString(titleCStr);
+    document.title = title;
+});
 
 extern "C" {
 EMSCRIPTEN_KEEPALIVE
@@ -63,6 +69,22 @@ void qprompt_wasmFileReceived(const char *filename, const char *dataUrl, int tar
         if (holder && !prop.isEmpty())
             holder->setProperty(prop.constData(), QString::fromUtf8(dataUrl));
     }
+}
+
+EMSCRIPTEN_KEEPALIVE
+void qprompt_wasmDocumentTextReceived(const char *filename, const char *content)
+{
+    QPointer<QObject> handler = s_pendingDocumentHandler;
+    s_pendingDocumentHandler.clear();
+    if (!handler || !filename || !content)
+        return;
+    const QString fileNameStr = QString::fromUtf8(filename);
+    QMetaObject::invokeMethod(handler.data(),
+                              "loadFromHtml",
+                              Q_ARG(QString, fileNameStr),
+                              Q_ARG(QString, QString::fromUtf8(content)));
+    const QString title = QStringLiteral("QPrompt - ") + (fileNameStr.isEmpty() ? QStringLiteral("script.html") : fileNameStr);
+    qprompt_wasmSetBrowserTitle(title.toUtf8().constData());
 }
 }
 
@@ -107,6 +129,40 @@ EM_JS(void, qprompt_wasmDownloadFile, (const char *filenameCStr, const char *con
     a.click();
     document.body.removeChild(a);
     setTimeout(function() { URL.revokeObjectURL(url); }, 0);
+});
+
+EM_JS(void, qprompt_wasmPickTextFile, (const char *acceptCStr), {
+    var accept = UTF8ToString(acceptCStr);
+    var input = document.createElement('input');
+    input.type = 'file';
+    input.accept = accept;
+    input.style.display = 'none';
+    input.addEventListener('change', function(event) {
+        var file = event.target.files && event.target.files[0];
+        document.body.removeChild(input);
+        if (!file)
+            return;
+        var reader = new FileReader();
+        reader.onload = function() {
+            var content = reader.result || '';
+            var filename = file.name || '';
+            var encoder = new TextEncoder();
+            var nameBytes = encoder.encode(filename);
+            var namePtr = _malloc(nameBytes.length + 1);
+            HEAPU8.set(nameBytes, namePtr);
+            HEAPU8[namePtr + nameBytes.length] = 0;
+            var contentBytes = encoder.encode(content);
+            var contentPtr = _malloc(contentBytes.length + 1);
+            HEAPU8.set(contentBytes, contentPtr);
+            HEAPU8[contentPtr + contentBytes.length] = 0;
+            _qprompt_wasmDocumentTextReceived(namePtr, contentPtr);
+            _free(namePtr);
+            _free(contentPtr);
+        };
+        reader.readAsText(file);
+    });
+    document.body.appendChild(input);
+    input.click();
 });
 
 EM_JS(void, qprompt_wasmPickFile, (const char *acceptCStr, int targetKind), {
@@ -186,4 +242,12 @@ void WasmIntegration::saveDocument(const QString &filename, const QString &conte
     const QByteArray nameBytes = name.toUtf8();
     const QByteArray contentBytes = content.toUtf8();
     qprompt_wasmDownloadFile(nameBytes.constData(), contentBytes.constData(), "text/html");
+}
+
+void WasmIntegration::openDocument(QObject *documentHandler)
+{
+    if (!documentHandler)
+        return;
+    s_pendingDocumentHandler = documentHandler;
+    qprompt_wasmPickTextFile(".html,.htm,.xhtml,.txt,.text,.md,text/html,text/plain,text/markdown");
 }

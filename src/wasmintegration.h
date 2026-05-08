@@ -36,4 +36,5 @@ public:
     Q_INVOKABLE void pickPointerQml(QObject *filenameField, QObject *sourceHolder, const QString &sourceProperty);
     Q_INVOKABLE void toggleBrowserFullscreen();
     Q_INVOKABLE void saveDocument(const QString &filename, const QString &content);
+    Q_INVOKABLE void openDocument(QObject *documentHandler);
 };

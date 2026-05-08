@@ -864,6 +864,26 @@ void DocumentHandler::reload(const QString &fileUrl)
     }
 }
 
+#if defined(Q_OS_WASM)
+void DocumentHandler::loadFromHtml(const QString &fileName, const QString &html)
+{
+    QTextDocument *doc = textDocument();
+    if (!doc)
+        return;
+    static QRegularExpression regex_0(QLatin1String(
+        "((font-size|letter-spacing|word-spacing|font-weight):\\s*-?[\\d]+(?:.[\\d]+)*(?:(?:px)|(?:pt)|(?:em)|(?:ex));?\\s*)"));
+    QString sanitized = QString(html).replace(regex_0, QLatin1String(""));
+    Q_EMIT aboutToReload();
+    updateContents(sanitized, Qt::RichText);
+    const QString name = fileName.isEmpty() ? QStringLiteral("script.html") : fileName;
+    m_fileUrl = QUrl(QStringLiteral("file:///") + name);
+    Q_EMIT fileUrlChanged();
+    doc->setModified(false);
+    Q_EMIT modifiedChanged();
+    reset();
+}
+#endif
+
 void DocumentHandler::loadFromNetwork(const QUrl &url)
 {
     QUrl resultingUrl;

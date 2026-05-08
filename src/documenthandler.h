@@ -253,6 +253,10 @@ public:
 
     Q_INVOKABLE void loadFromNetwork(const QUrl &url);
 
+#if defined(Q_OS_WASM)
+    Q_INVOKABLE void loadFromHtml(const QString &fileName, const QString &html);
+#endif
+
     bool spellCheckEnabled() const;
     void setSpellCheckEnabled(bool enabled);
     QString spellCheckLanguage() const;
