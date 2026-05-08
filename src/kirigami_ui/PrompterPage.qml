@@ -53,7 +53,7 @@ Kirigami.Page {
     property alias obsConfiguration: obsConfiguration
     property alias velocityIndicatorVisible: velocityIndicator.visible
     property int hideDecorations: 1
-    property bool spellcheckUserEnabled: true
+    property bool spellcheckUserEnabled: false
 
     // Unused signal. Leaving for reference.
     //signal test( bool data )
@@ -623,7 +623,7 @@ Kirigami.Page {
             text: qsTr("Spellcheck", "Spell checking menu")
             Kirigami.Action {
                 id: toggleSpellcheckButton
-                text: qsTr("Enable Spellcheck", "Toggle spell checking on or off")
+                text: qsTr("Spellcheck", "Toggle spell checking on or off")
                 checkable: true
                 checked: prompterPage.spellcheckUserEnabled
                 onTriggered: {
