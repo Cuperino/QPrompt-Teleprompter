@@ -93,6 +93,22 @@ EM_JS(void, qprompt_wasmToggleFullscreen, (), {
     }
 });
 
+EM_JS(void, qprompt_wasmDownloadFile, (const char *filenameCStr, const char *contentCStr, const char *mimeCStr), {
+    var filename = UTF8ToString(filenameCStr);
+    var content = UTF8ToString(contentCStr);
+    var mime = UTF8ToString(mimeCStr);
+    var blob = new Blob([content], { type: mime });
+    var url = URL.createObjectURL(blob);
+    var a = document.createElement('a');
+    a.href = url;
+    a.download = filename;
+    a.style.display = 'none';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    setTimeout(function() { URL.revokeObjectURL(url); }, 0);
+});
+
 EM_JS(void, qprompt_wasmPickFile, (const char *acceptCStr, int targetKind), {
     var accept = UTF8ToString(acceptCStr);
     var input = document.createElement('input');
@@ -162,4 +178,12 @@ void WasmIntegration::pickPointerQml(QObject *filenameField, QObject *sourceHold
 void WasmIntegration::toggleBrowserFullscreen()
 {
     qprompt_wasmToggleFullscreen();
+}
+
+void WasmIntegration::saveDocument(const QString &filename, const QString &content)
+{
+    const QString name = filename.isEmpty() ? QStringLiteral("script.html") : filename;
+    const QByteArray nameBytes = name.toUtf8();
+    const QByteArray contentBytes = content.toUtf8();
+    qprompt_wasmDownloadFile(nameBytes.constData(), contentBytes.constData(), "text/html");
 }

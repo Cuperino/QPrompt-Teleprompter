@@ -231,7 +231,13 @@ Kirigami.ApplicationWindow {
                 shortcut: StandardKey.Save
                 onTriggered: {
                     root.onDiscard = Prompter.CloseActions.Ignore
-                    root.pageStack.currentItem.document.saveDialog()
+                    if (Qt.platform.os === "wasm") {
+                        const doc = root.pageStack.currentItem.document
+                        AppController.wasm.saveDocument(doc.fileName ? doc.fileName : "script.html", doc.toHtml())
+                        doc.modified = false
+                    } else {
+                        root.pageStack.currentItem.document.saveDialog()
+                    }
                 }
             },
             Kirigami.Action {

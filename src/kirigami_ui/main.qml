@@ -236,7 +236,13 @@ Kirigami.ApplicationWindow {
                 shortcut: StandardKey.Save
                 onTriggered: {
                     root.onDiscard = Prompter.CloseActions.Ignore
-                    root.pageStack.currentItem.document.saveDialog()
+                    if (Qt.platform.os === "wasm") {
+                        const doc = root.pageStack.currentItem.document
+                        AppController.wasm.saveDocument(doc.fileName ? doc.fileName : "script.html", doc.toHtml())
+                        doc.modified = false
+                    } else {
+                        root.pageStack.currentItem.document.saveDialog()
+                    }
                 }
             },
             Kirigami.Action {
@@ -670,7 +676,15 @@ Kirigami.ApplicationWindow {
             }
             Labs.MenuItem {
                 text: qsTr("&Save", "Main menu and global menu actions")
-                onTriggered: root.pageStack.currentItem.document.saveDialog()
+                onTriggered: {
+                    if (Qt.platform.os === "wasm") {
+                        const doc = root.pageStack.currentItem.document
+                        AppController.wasm.saveDocument(doc.fileName ? doc.fileName : "script.html", doc.toHtml())
+                        doc.modified = false
+                    } else {
+                        root.pageStack.currentItem.document.saveDialog()
+                    }
+                }
             }
             Labs.MenuItem {
                 text: qsTr("Save &As…", "Main menu and global menu actions")
