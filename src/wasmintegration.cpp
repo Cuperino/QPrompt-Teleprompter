@@ -251,3 +251,8 @@ void WasmIntegration::openDocument(QObject *documentHandler)
     s_pendingDocumentHandler = documentHandler;
     qprompt_wasmPickTextFile(".html,.htm,.xhtml,.txt,.text,.md,text/html,text/plain,text/markdown");
 }
+
+void WasmIntegration::setBrowserTitle(const QString &title)
+{
+    qprompt_wasmSetBrowserTitle(title.toUtf8().constData());
+}

@@ -37,4 +37,5 @@ public:
     Q_INVOKABLE void toggleBrowserFullscreen();
     Q_INVOKABLE void saveDocument(const QString &filename, const QString &content);
     Q_INVOKABLE void openDocument(QObject *documentHandler);
+    Q_INVOKABLE void setBrowserTitle(const QString &title);
 };

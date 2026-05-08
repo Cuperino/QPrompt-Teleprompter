@@ -2204,6 +2204,8 @@ Flickable {
                 clearLastDocument();
                 isNewFile = true
                 resetDocumentPosition()
+                if (Qt.platform.os === "wasm")
+                    AppController.wasm.setBrowserTitle("QPrompt - " + document.fileName)
                 if (root.passiveNotifications)
                     showPassiveNotification(qsTr("New document"))
             }
@@ -2218,6 +2220,8 @@ Flickable {
                 editor.lastDocument = ""
                 isNewFile = true
                 prompter.position = 0
+                if (Qt.platform.os === "wasm")
+                    AppController.wasm.setBrowserTitle("QPrompt - " + document.fileName)
                 if (root.passiveNotifications)
                     showPassiveNotification(qsTr("User welcome loaded"))
             }
