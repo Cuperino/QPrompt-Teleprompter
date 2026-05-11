@@ -912,10 +912,10 @@ ToolBar {
                     }
                     onAccepted: {
                         if (text !== "") {
-                            if (text >= opacitySlider.from)
-                                root.__opacity = opacitySlider.to / 100
-                            else if (text <= opacitySlider.to)
+                            if (text <= opacitySlider.from)
                                 root.__opacity = opacitySlider.from / 100
+                            else if (text >= opacitySlider.to)
+                                root.__opacity = opacitySlider.to / 100
                             else
                                 root.__opacity = text / 100
                         }
