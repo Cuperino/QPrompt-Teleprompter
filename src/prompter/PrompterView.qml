@@ -44,6 +44,9 @@ Item {
     property int forcedOrientation: 0
     property real __baseSpeed: editorToolbar.baseSpeedSlider.value
     property real __curvature: editorToolbar.baseAccelerationSlider.value
+    property double __overlayOpacity: 0.4
+    property double __overlayBrightness: 2 / 3
+    readonly property bool overlayStaysInBackground: false
     readonly property bool showingControls: root.__isMobile || root.visibility===ApplicationWindow.FullScreen || (overlay.atTop && parseInt(prompter.state)!==Prompter.States.Editing)
     readonly property bool noDistractingAnimation: parseInt(prompter.state)===Prompter.States.Editing || parseInt(prompter.state)===Prompter.States.Standby
 

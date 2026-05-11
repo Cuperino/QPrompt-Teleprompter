@@ -63,7 +63,7 @@ Item {
                                      || prompter.__flipY
                                      && !__readRegionPlacement
     readonly property Scale __flips: Flip {}
-    property double __opacity: 0.06
+    property double __opacity: viewport.__overlayOpacity
     property real linesInRegion: 3
     property color __color: 'black'
     property alias __readRegionPlacement: readRegion.__placement
@@ -577,7 +577,7 @@ Item {
                 name: ReadRegionOverlay.PositionStates.Free
                 PropertyChanges {
                     target: overlay
-                    __opacity: 0.4
+                    // __opacity: 0.4
                     z: 4
                 }
                 PropertyChanges {
@@ -629,9 +629,9 @@ Item {
         opacity: overlay.__opacity * 2 / 3
         color: overlay.__color
         Rectangle {
-            visible: !overlay.disableOverlayContrast
+            visible: !overlay.disableOverlayContrast && opacity
             anchors.fill: parent
-            opacity: overlay.__opacity * 2 / 3
+            opacity: overlay.__opacity * viewport.__overlayBrightness
             color: "#FFF"
         }
     }
@@ -645,39 +645,10 @@ Item {
         opacity: overlay.__opacity * 2 / 3
         color: overlay.__color
         Rectangle {
-            visible: !overlay.disableOverlayContrast
+            visible: !overlay.disableOverlayContrast && opacity
             anchors.fill: parent
-            opacity: overlay.__opacity * 2 / 3
+            opacity: overlay.__opacity * viewport.__overlayBrightness
             color: "#FFF"
         }
     }
-
-    states: [
-        State {
-            name: ReadRegionOverlay.States.Prompting
-            PropertyChanges {
-                target: overlay
-                __opacity: 0.4
-                enabled: false
-            }
-            //PropertyChanges {
-            //    target: overlayMouseArea
-            //    enabled: true
-            //    cursorShape: Qt.CrossCursor
-            //}
-        }
-    ]
-    state: ReadRegionOverlay.States.NotPrompting
-    transitions: [
-        Transition {
-            enabled: !root.__autoFullScreen
-            from: "*"
-            to: "*"
-            NumberAnimation {
-                targets: [overlay]
-                properties: "__opacity"
-                duration: Units.LongDuration
-            }
-        }
-    ]
 }

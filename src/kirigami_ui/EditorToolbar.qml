@@ -81,6 +81,7 @@ import com.cuperino.qprompt 1.0
 ToolBar {
     id: toolbar
 
+    property bool showOpacityOptions: false
     property bool showFontSpacingOptions: false
     property bool showAnimationConfigOptions: false
     property bool hideFormattingToolsWhilePrompting: true
@@ -903,15 +904,18 @@ ToolBar {
             }
         }
         RowLayout {
+            id: opacitySliderRow
             visible: root.__translucidBackground && (!root.__isMobile && root.width>(parseInt(viewport.prompter.state)!==Prompter.States.Prompting ? 673 : 1175) || (parseInt(viewport.prompter.state)!==Prompter.States.Editing && parseInt(viewport.prompter.state)!==Prompter.States.Prompting)) // This check isn't optimized in case more viewport.prompter states get added in the future, even tho I think that is unlikely.
             ToolButton {
                 readonly property bool value: checked && enabled
                 visible: !root.__isMobile && showSliderIcons
                 text: "\uE810"
-                enabled: false
+                checkable: true
+                checked: toolbar.showOpacityOptions
                 contentItem: Loader { sourceComponent: textComponent }
                 font.family: iconFont.name
                 font.pointSize: 13
+                onClicked: toolbar.showOpacityOptions = !toolbar.showOpacityOptions
             }
             MouseArea {
                 id: opacityDirectInput
@@ -1520,6 +1524,251 @@ ToolBar {
                 focusPolicy: Qt.TabFocus
                 onMoved: {
                     wordSpacingTextField.text = value;
+                }
+            }
+        }
+        RowLayout {
+            visible: height>0
+            height: opacitySliderRow.visible && toolbar.showOpacityOptions ? implicitHeight : 0
+            clip: true
+            Behavior on height{
+                enabled: true
+                animation: NumberAnimation {
+                    duration: Units.ShortDuration
+                    easing.type: Easing.OutQuad
+                }
+            }
+            ToolButton {
+                readonly property bool value: checked && enabled
+                visible: !root.__isMobile && showSliderIcons
+                text: "="
+                checkable: true
+                checked: parseInt(root.pageStack.currentItem.overlay.styleState) > ReadRegionOverlay.PointerStates.Pointers
+                contentItem: Loader { sourceComponent: textComponent }
+                font.family: iconFont.name
+                font.pointSize: 18
+                font.bold: true
+                onToggled: {
+                    if (parseInt(root.pageStack.currentItem.overlay.styleState)>ReadRegionOverlay.PointerStates.Pointers)
+                        root.pageStack.currentItem.overlay.styleState = parseInt(root.pageStack.currentItem.overlay.styleState) - 4;
+                    else
+                        root.pageStack.currentItem.overlay.styleState = parseInt(root.pageStack.currentItem.overlay.styleState) + 4;
+                }
+            }
+            MouseArea {
+                id: overlayOpacityDirectInput
+                property bool editText: false
+                enabled: parseInt(root.pageStack.currentItem.overlay.styleState) > ReadRegionOverlay.PointerStates.Pointers
+                height: overlayOpacityLabel.height
+                width: overlayOpacityDirectInput.editText ? overlayOpacityTextField.width : overlayOpacityLabel.width
+                onDoubleClicked: {
+                    if (Qt.platform.os !== "android")
+                        enterEditMode()
+                }
+                onPressAndHold: {
+                    if (Qt.platform.os === "android")
+                        enterEditMode();
+                }
+                function enterEditMode() {
+                    overlayOpacityDirectInput.editText = true;
+                    // overlayOpacityTextField.selectAll();  // Uncomment to autoselect when entering edit mode.
+                }
+                TextField {
+                    id: overlayOpacityTextField
+                    anchors.fill: parent
+                    anchors.leftMargin: -2
+                    anchors.rightMargin: -2
+                    visible: overlayOpacityDirectInput.editText
+                    readOnly: !visible
+                    text: ""
+                    onVisibleChanged: {
+                        if (visible) {
+                            text = overlayOpacitySlider.value;
+                            forceActiveFocus();
+                        }
+                    }
+                    onAccepted: {
+                        if (text !== "") {
+                            if (text <= overlayOpacitySlider.from)
+                                viewport.__overlayOpacity = overlayOpacitySlider.from / 100
+                            else if (text >= overlayOpacitySlider.to)
+                                viewport.__overlayOpacity = overlayOpacitySlider.to / 100
+                            else
+                                viewport.__overlayOpacity = text / 100
+                        }
+                    }
+                    onEditingFinished: {
+                        overlayOpacityDirectInput.editText = false;
+                    }
+                    Material.theme: Material.Dark
+                    Keys.onUpPressed: {
+                        const value = Number(overlayOpacityTextField.text) + 1;
+                        if (value > overlayOpacitySlider.to)
+                            overlayOpacitySlider.value = overlayOpacitySlider.to;
+                        else {
+                            if (value < overlayOpacitySlider.from)
+                                overlayOpacitySlider.value = overlayOpacitySlider.from;
+                            else
+                                overlayOpacitySlider.value = value;
+                        }
+                        overlayOpacityTextField.text = overlayOpacitySlider.value;
+                    }
+                    Keys.onDownPressed: {
+                        const value = Number(overlayOpacityTextField.text) - 1;
+                        if (value < overlayOpacitySlider.from)
+                            overlayOpacitySlider.value = overlayOpacitySlider.from;
+                        else {
+                            if (value > overlayOpacitySlider.to)
+                                overlayOpacitySlider.value = overlayOpacitySlider.to;
+                            else
+                                overlayOpacitySlider.value = value;
+                        }
+                        overlayOpacityTextField.text = overlayOpacitySlider.value;
+                    }
+                }
+                Label {
+                    id: overlayOpacityLabel
+                    text: qsTr("Bars opacity <pre>%1</pre>", "Opacity {TRANSPARENCY_PERCENTAGE}").arg((viewport.__overlayOpacity/10).toFixed(3).slice(2))
+                    visible: !overlayOpacityDirectInput.editText
+                    color: Kirigami.Theme.textColor
+                    Layout.topMargin: 4
+                    Layout.bottomMargin: -14
+                    Layout.rightMargin: 3
+                    Layout.leftMargin: toolbar.showSliderIcons ? 1 : 8
+                }
+            }
+            Slider {
+                id: overlayOpacitySlider
+                enabled: parseInt(root.pageStack.currentItem.overlay.styleState) > ReadRegionOverlay.PointerStates.Pointers
+                value: 100 * viewport.__overlayOpacity
+                from: 28
+                to: 88
+                stepSize: 1
+                focusPolicy: Qt.TabFocus
+                onMoved: {
+                    viewport.__overlayOpacity = value/100
+                }
+            }
+        }
+        RowLayout {
+            visible: height>0
+            height: opacitySliderRow.visible && toolbar.showOpacityOptions ? implicitHeight : 0
+            clip: true
+            Behavior on height{
+                enabled: true
+                animation: NumberAnimation {
+                    duration: Units.ShortDuration
+                    easing.type: Easing.OutQuad
+                }
+            }
+            ToolButton {
+                readonly property bool value: checked && enabled
+                visible: !root.__isMobile && showSliderIcons
+                text: "="
+                enabled: false
+                contentItem: Loader { sourceComponent: textComponent }
+                font.family: iconFont.name
+                font.pointSize: 18
+                font.bold: true
+                onToggled: {
+                    if (parseInt(root.pageStack.currentItem.overlay.styleState)>ReadRegionOverlay.PointerStates.Pointers)
+                        root.pageStack.currentItem.overlay.styleState = parseInt(root.pageStack.currentItem.overlay.styleState) - 4;
+                    else
+                        root.pageStack.currentItem.overlay.styleState = parseInt(root.pageStack.currentItem.overlay.styleState) + 4;
+                }
+            }
+            MouseArea {
+                id: overlayBrightnessDirectInput
+                property bool editText: false
+                enabled: parseInt(root.pageStack.currentItem.overlay.styleState) > ReadRegionOverlay.PointerStates.Pointers
+                height: overlayBrightnessLabel.height
+                width: overlayBrightnessDirectInput.editText ? overlayBrightnessTextField.width : overlayBrightnessLabel.width
+                onDoubleClicked: {
+                    if (Qt.platform.os !== "android")
+                        enterEditMode()
+                }
+                onPressAndHold: {
+                    if (Qt.platform.os === "android")
+                        enterEditMode();
+                }
+                function enterEditMode() {
+                    overlayBrightnessDirectInput.editText = true;
+                    // overlayBrightnessTextField.selectAll();  // Uncomment to autoselect when entering edit mode.
+                }
+                TextField {
+                    id: overlayBrightnessTextField
+                    anchors.fill: parent
+                    anchors.leftMargin: -2
+                    anchors.rightMargin: -2
+                    visible: overlayBrightnessDirectInput.editText
+                    readOnly: !visible
+                    text: ""
+                    onVisibleChanged: {
+                        if (visible) {
+                            text = overlayBrightnessSlider.value;
+                            forceActiveFocus();
+                        }
+                    }
+                    onAccepted: {
+                        if (text !== "") {
+                            if (text <= overlayBrightnessSlider.from)
+                                viewport.__overlayBrightness = overlayBrightnessSlider.from / 100
+                            else if (text >= overlayBrightnessSlider.to)
+                                viewport.__overlayBrightness = overlayBrightnessSlider.to / 100
+                            else
+                                viewport.__overlayBrightness = text / 100
+                        }
+                    }
+                    onEditingFinished: {
+                        overlayBrightnessDirectInput.editText = false;
+                    }
+                    Material.theme: Material.Dark
+                    Keys.onUpPressed: {
+                        const value = Number(overlayBrightnessTextField.text) + 1;
+                        if (value > overlayBrightnessSlider.to)
+                            overlayBrightnessSlider.value = overlayBrightnessSlider.to;
+                        else {
+                            if (value < overlayBrightnessSlider.from)
+                                overlayBrightnessSlider.value = overlayBrightnessSlider.from;
+                            else
+                                overlayBrightnessSlider.value = value;
+                        }
+                        overlayBrightnessTextField.text = overlayBrightnessSlider.value;
+                    }
+                    Keys.onDownPressed: {
+                        const value = Number(overlayBrightnessTextField.text) - 1;
+                        if (value < overlayBrightnessSlider.from)
+                            overlayBrightnessSlider.value = overlayBrightnessSlider.from;
+                        else {
+                            if (value > overlayBrightnessSlider.to)
+                                overlayBrightnessSlider.value = overlayBrightnessSlider.to;
+                            else
+                                overlayBrightnessSlider.value = value;
+                        }
+                        overlayBrightnessTextField.text = overlayBrightnessSlider.value;
+                    }
+                }
+                Label {
+                    id: overlayBrightnessLabel
+                    text: qsTr("Bars brightness <pre>%1</pre>", "Brightness {TRANSPARENCY_PERCENTAGE}").arg((viewport.__overlayBrightness/10).toFixed(3).slice(2))
+                    visible: !overlayBrightnessDirectInput.editText
+                    color: Kirigami.Theme.textColor
+                    Layout.topMargin: 4
+                    Layout.bottomMargin: -14
+                    Layout.rightMargin: 3
+                    Layout.leftMargin: toolbar.showSliderIcons ? 1 : 8
+                }
+            }
+            Slider {
+                id: overlayBrightnessSlider
+                enabled: parseInt(root.pageStack.currentItem.overlay.styleState) > ReadRegionOverlay.PointerStates.Pointers
+                value: 100 * viewport.__overlayBrightness
+                from: 0
+                to: 100
+                stepSize: 1
+                focusPolicy: Qt.TabFocus
+                onMoved: {
+                    viewport.__overlayBrightness = value/100
                 }
             }
         }
