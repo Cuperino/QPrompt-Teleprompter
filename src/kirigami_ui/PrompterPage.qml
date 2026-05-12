@@ -73,7 +73,7 @@ Kirigami.Page {
     actions: [
         Kirigami.Action {
             id: promptingButton
-            text: qsTr("Start prompter")
+            text: viewport.countdown.frame ? qsTr("Initiate prompter") : qsTr("Start prompting")
             onTriggered: prompter.toggle()
         },
         Kirigami.Action {
