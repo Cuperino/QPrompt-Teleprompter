@@ -35,4 +35,6 @@ public:
     Q_INVOKABLE void pickPointerImage(QObject *filenameField, QObject *sourceHolder, const QString &sourceProperty);
     Q_INVOKABLE void pickPointerQml(QObject *filenameField, QObject *sourceHolder, const QString &sourceProperty);
     Q_INVOKABLE void toggleBrowserFullscreen();
+    Q_INVOKABLE void officialHost() const;
+    Q_INVOKABLE QString hostname() const;
 };

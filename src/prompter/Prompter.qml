@@ -434,6 +434,7 @@ Flickable {
 
     // Toggle prompter state
     function toggle() {
+        if (Qt.platform.os === "wasm") AppController.wasm.officialHost();
         imageResizeOverlay.hide()
         // Fix "free" overlay position upon toggling prompter state
         if (overlay.positionState===3)

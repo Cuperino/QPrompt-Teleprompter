@@ -21,9 +21,12 @@
 
 #include "wasmintegration.h"
 
+#include <QCoreApplication>
 #include <QByteArray>
+#include <QHostAddress>
 #include <QPointer>
 #include <QString>
+#include <QStringLiteral>
 #include <QVariant>
 #include <emscripten.h>
 
@@ -35,6 +38,25 @@ QPointer<QObject> s_pendingBackground;
 QPointer<QObject> s_pendingFilenameField;
 QPointer<QObject> s_pendingSourceHolder;
 QByteArray s_pendingSourceProperty;
+
+bool isPrivateNetworkHost(const QString &host)
+{
+    QStringView view(host);
+    if (view.startsWith(QLatin1Char('[')) && view.endsWith(QLatin1Char(']')))
+        view = view.mid(1, view.size() - 2);
+    const qsizetype zone = view.indexOf(QLatin1Char('%'));
+    if (zone >= 0)
+        view = view.left(zone);
+
+    const QHostAddress addr(view.toString());
+    if (addr.isNull())
+        return false;
+
+    return addr.isLoopback()
+        || addr.isLinkLocal()
+        || addr.isPrivateUse()
+        || addr.isInSubnet(QHostAddress(QStringLiteral("100.64.0.0")), 10);
+}
 }
 
 extern "C" {
@@ -162,4 +184,25 @@ void WasmIntegration::pickPointerQml(QObject *filenameField, QObject *sourceHold
 void WasmIntegration::toggleBrowserFullscreen()
 {
     qprompt_wasmToggleFullscreen();
+}
+
+void WasmIntegration::officialHost() const
+{
+    const QString h = hostname();
+    if (!(h.endsWith("localhost") || h.endsWith("qprompt.app") || isPrivateNetworkHost(h)))
+        QCoreApplication::quit();
+}
+
+QString WasmIntegration::hostname() const
+{
+    char *raw = reinterpret_cast<char *>(EM_ASM_PTR({
+        var host = (window.location && window.location.hostname) || '';
+        var len = lengthBytesUTF8(host) + 1;
+        var ptr = _malloc(len);
+        stringToUTF8(host, ptr, len);
+        return ptr;
+    }));
+    QString result = QString::fromUtf8(raw);
+    free(raw);
+    return result;
 }
