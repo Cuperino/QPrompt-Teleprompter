@@ -81,6 +81,9 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
     // Set theme
     qputenv("QT_QUICK_CONTROLS_MATERIAL_THEME", QByteArray("Dark"));
     qputenv("QT_QUICK_CONTROLS_MATERIAL_ACCENT", QByteArray("#3daee9"));
+#if defined(Q_OS_LINUX)
+    qputenv("XDG_CURRENT_DESKTOP", QByteArray("KDE"));
+#endif
 
     // Initialize app metadata
     QCoreApplication::setOrganizationName(QString::fromUtf8("Cuperino"));
@@ -95,6 +98,7 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
 #endif
 
     QQuickStyle::setStyle("Material");
+    QIcon::setThemeName("breeze");
     // Instantiate app
 #if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
     QGuiApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
