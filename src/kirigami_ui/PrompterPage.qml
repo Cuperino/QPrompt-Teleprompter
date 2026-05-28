@@ -45,7 +45,7 @@ Kirigami.Page {
     property alias prompterBackground: viewport.prompterBackground
     property alias find: viewport.find
     property alias keyConfigurationOverlay: keyConfigurationOverlay
-    property alias displaySettings: displaySettings
+    // property alias displaySettings: displaySettings
     property alias markersDrawer: markersDrawer
     property alias countdownConfiguration: countdownConfiguration
     property alias namedMarkerConfiguration: namedMarkerConfiguration
@@ -612,87 +612,87 @@ Kirigami.Page {
                 }
             }
         },
-        Kirigami.Action {
-            id: displaySettings
-            visible: (!Kirigami.Settings.isMobile || Qt.platform.os==='linux') && Qt.platform.os!=='haiku'
-            text: qsTr("Screens", "Screens refers to computer displays")
-
-            Kirigami.Action {
-                displayComponent: ListView {
-                    height: visible ? contentHeight > 580 ? 580 : contentHeight : 0
-                    model: Qt.application.screens
-                    delegate: Kirigami.SwipeListItem {
-                        id: display
-                        property string name: model.name
-                        property int flipSetting: projectionManager.getDisplayFlip(display.name)
-                        function toggleDisplayFlip() {
-                            flipSetting = (flipSetting+1)%5
-                            projectionManager.putDisplayFlip(display.name, flipSetting)
-                            projectionManager.updateFromRoot(display.name, flipSetting)
-                        }
-                        enabled: Qt.platform.os!=='windows' || display.name!==screen.name// && (parseInt(prompter.state)===Prompter.States.Editing || parseInt(prompter.state)===Prompter.States.Standby)
-                        activeTextColor: "#FFFFFF"
-                        activeBackgroundColor: "#797979"
-                        width: parent.width
-                        actions: [
-                            Kirigami.Action {
-                                icon.name: switch (flipSetting) {
-                                    case 0 : return "window";
-                                    case 1 : return "window-duplicate";
-                                    case 2 : return "object-flip-horizontal";
-                                    case 3 : return "object-flip-vertical";
-                                    case 4 : return (Qt.LeftToRight ? "object-rotate-left" : "object-rotate-right");
-                                }
-                                icon.source: switch (flipSetting) {
-                                    case 0 : return "../icons/window.svg";
-                                    case 1 : return "../icons/window-duplicate.svg";
-                                    case 2 : return "../icons/object-flip-horizontal.svg";
-                                    case 3 : return "../icons/object-flip-vertical.svg";
-                                    case 4 : return (Qt.LeftToRight ? "../icons/object-rotate-left.svg" : "../icons/object-rotate-right.svg");
-                                }
-                                onTriggered: toggleDisplayFlip()
-                            }
-                        ]
-                        onClicked: toggleDisplayFlip()
-                        Label {
-                            text: switch (flipSetting) {
-                                case 0 : return display.name + " : " + qsTr("Off", "Screen is disabled");
-                                case 1 : return display.name + " : " + qsTr("No Mirror", "Screen is enabled but mirroring is disabled");
-                                case 2 : return display.name + " : " + qsTr("H Mirror", "Horizontal mirroring");
-                                case 3 : return display.name + " : " + qsTr("V Mirror", "Vertical mirroring");
-                                case 4 : return display.name + " : " + qsTr("HV Mirror", "Horizontal and vertical mirroring");
-                            }
-                        }
-                    }
-                    Component.onCompleted: {
-                        // By assigning visible non-declaratively, we ensure the menu's state won't be updated until the next time it's openend
-                        visible = projectionManager.isEnabled;
-                    }
-                }
-            }
-            Kirigami.Action {
-                text: qsTr("Enable projection", "Display prompter copies onto displays")
-                //tooltip: qsTr("Display prompter copies onto extended displays")
-                checkable: true
-                checked: projectionManager.isEnabled
-                onTriggered: {
-                    projectionManager.toggle()
-                    contextDrawer.close()
-                    viewport.prompter.restoreFocus()
-                }
-            }
-            Kirigami.Action {
-                enabled: projectionManager.isEnabled
-                text: qsTr("Scale projection", "Enable scaling prompter copies being projected onto displays")
-                checkable: true
-                checked: projectionManager.reScale
-                onTriggered: {
-                    projectionManager.reScale = !projectionManager.reScale;
-                    contextDrawer.close();
-                    viewport.prompter.restoreFocus()
-                }
-            }
-        },
+        // Kirigami.Action {
+        //     id: displaySettings
+        //     visible: false // (!Kirigami.Settings.isMobile || Qt.platform.os==='linux') && Qt.platform.os!=='haiku'
+        //     text: qsTr("Screens", "Screens refers to computer displays")
+        //
+        //     Kirigami.Action {
+        //         displayComponent: ListView {
+        //             height: visible ? contentHeight > 580 ? 580 : contentHeight : 0
+        //             model: Qt.application.screens
+        //             delegate: Kirigami.SwipeListItem {
+        //                 id: display
+        //                 property string name: model.name
+        //                 property int flipSetting: projectionManager.getDisplayFlip(display.name)
+        //                 function toggleDisplayFlip() {
+        //                     flipSetting = (flipSetting+1)%5
+        //                     projectionManager.putDisplayFlip(display.name, flipSetting)
+        //                     projectionManager.updateFromRoot(display.name, flipSetting)
+        //                 }
+        //                 enabled: Qt.platform.os!=='windows' || display.name!==screen.name// && (parseInt(prompter.state)===Prompter.States.Editing || parseInt(prompter.state)===Prompter.States.Standby)
+        //                 activeTextColor: "#FFFFFF"
+        //                 activeBackgroundColor: "#797979"
+        //                 width: parent.width
+        //                 actions: [
+        //                     Kirigami.Action {
+        //                         icon.name: switch (flipSetting) {
+        //                             case 0 : return "window";
+        //                             case 1 : return "window-duplicate";
+        //                             case 2 : return "object-flip-horizontal";
+        //                             case 3 : return "object-flip-vertical";
+        //                             case 4 : return (Qt.LeftToRight ? "object-rotate-left" : "object-rotate-right");
+        //                         }
+        //                         icon.source: switch (flipSetting) {
+        //                             case 0 : return "../icons/window.svg";
+        //                             case 1 : return "../icons/window-duplicate.svg";
+        //                             case 2 : return "../icons/object-flip-horizontal.svg";
+        //                             case 3 : return "../icons/object-flip-vertical.svg";
+        //                             case 4 : return (Qt.LeftToRight ? "../icons/object-rotate-left.svg" : "../icons/object-rotate-right.svg");
+        //                         }
+        //                         onTriggered: toggleDisplayFlip()
+        //                     }
+        //                 ]
+        //                 onClicked: toggleDisplayFlip()
+        //                 Label {
+        //                     text: switch (flipSetting) {
+        //                         case 0 : return display.name + " : " + qsTr("Off", "Screen is disabled");
+        //                         case 1 : return display.name + " : " + qsTr("No Mirror", "Screen is enabled but mirroring is disabled");
+        //                         case 2 : return display.name + " : " + qsTr("H Mirror", "Horizontal mirroring");
+        //                         case 3 : return display.name + " : " + qsTr("V Mirror", "Vertical mirroring");
+        //                         case 4 : return display.name + " : " + qsTr("HV Mirror", "Horizontal and vertical mirroring");
+        //                     }
+        //                 }
+        //             }
+        //             Component.onCompleted: {
+        //                 // By assigning visible non-declaratively, we ensure the menu's state won't be updated until the next time it's openend
+        //                 // visible = projectionManager.isEnabled;
+        //             }
+        //         }
+        //     }
+        //     Kirigami.Action {
+        //         text: qsTr("Enable projection", "Display prompter copies onto displays")
+        //         //tooltip: qsTr("Display prompter copies onto extended displays")
+        //         checkable: true
+        //         checked: projectionManager.isEnabled
+        //         onTriggered: {
+        //             projectionManager.toggle()
+        //             contextDrawer.close()
+        //             viewport.prompter.restoreFocus()
+        //         }
+        //     }
+        //     Kirigami.Action {
+        //         enabled: projectionManager.isEnabled
+        //         text: qsTr("Scale projection", "Enable scaling prompter copies being projected onto displays")
+        //         checkable: true
+        //         checked: projectionManager.reScale
+        //         onTriggered: {
+        //             projectionManager.reScale = !projectionManager.reScale;
+        //             contextDrawer.close();
+        //             viewport.prompter.restoreFocus()
+        //         }
+        //     }
+        // },
         //Kirigami.Action {
         //    id: debug
         //    text: qsTr("Debug")
