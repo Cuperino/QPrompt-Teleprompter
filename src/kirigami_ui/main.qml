@@ -334,12 +334,12 @@ Kirigami.ApplicationWindow {
                 Kirigami.Action {
                     text: qsTr("Performance tweaks", "Main menu actions. Enters Performance tweaks submenu.")
                     readonly property string name: "performance-tweaks"
-                    Kirigami.Action {
-                        text: qsTr("Disable screen projections", "Main menu actions")
-                        checkable: true
-                        checked: !projectionManager.isEnabled
-                        onTriggered: projectionManager.toggle()
-                    }
+                    // Kirigami.Action {
+                    //     text: qsTr("Disable screen projections", "Main menu actions")
+                    //     checkable: true
+                    //     checked: !projectionManager.isEnabled
+                    //     onTriggered: projectionManager.toggle()
+                    // }
                     Kirigami.Action {
                         text: qsTr("Disable timers", "Main menu actions")
                         checkable: true
@@ -1021,21 +1021,21 @@ Kirigami.ApplicationWindow {
         // // Thus runs from here because there's no event that occurs on each bit of scroll, and this takes much less CPU than a timer, is more precise and scales better.
         // root.pageStack.currentItem.prompter.markerCompare();
         // Update Projections
-        if (projectionManager.isEnabled)
-            root.pageStack.currentItem.viewport.grabToImage(function(p) {
-                // Recount projections on each for loop iteration to prevent value from going stale because a window was closed from a different thread.
-                for (var i=0; i<projectionManager.projections.count; i++)
-                    projectionManager.model.setProperty(i, "p", String(p.url));
-            });
+        // if (projectionManager.isEnabled)
+        //     root.pageStack.currentItem.viewport.grabToImage(function(p) {
+        //         // Recount projections on each for loop iteration to prevent value from going stale because a window was closed from a different thread.
+        //         for (var i=0; i<projectionManager.projections.count; i++)
+        //             projectionManager.model.setProperty(i, "p", String(p.url));
+        //     });
     }
 
-    ProjectionsManager {
-        id: projectionManager
-        backgroundColor: root.pageStack.currentItem.prompterBackground.color
-        backgroundOpacity: root.pageStack.currentItem.prompterBackground.opacity
-        // Forward to prompter and not editor to prevent editing from projection windows
-        forwardTo: root.pageStack.currentItem.viewport
-    }
+    // ProjectionsManager {
+    //     id: projectionManager
+    //     backgroundColor: root.pageStack.currentItem.prompterBackground.color
+    //     backgroundOpacity: root.pageStack.currentItem.prompterBackground.opacity
+    //     // Forward to prompter and not editor to prevent editing from projection windows
+    //     forwardTo: root.pageStack.currentItem.viewport
+    // }
 
     // Prompter Page Component {
     Component {

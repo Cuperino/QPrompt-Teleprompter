@@ -332,8 +332,8 @@ Flickable {
                     document.parse();
                 //if (state===Prompter.States.Prompting)
                     document.preventSleep(true);
-                if (projectionManager.isEnabled)
-                    projectionManager.addMissingProjections();
+                // if (projectionManager.isEnabled)
+                //     projectionManager.addMissingProjections();
                 //showPassiveNotification(qsTr("Prompt started"), 850*countdown.__iterations)
                 break;
         }
