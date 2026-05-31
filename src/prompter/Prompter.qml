@@ -423,8 +423,10 @@ Flickable {
         prompterPage.focus = true
         if (parseInt(state)===Prompter.States.Editing)
             editor.focus = !root.__isMobile
-        else
+        else {
             focus = true
+            forceActiveFocus();
+        }
     }
 
     function cancel() {
