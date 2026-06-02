@@ -373,14 +373,21 @@ Flickable {
     function pause() {
         if (__i) {
             if (prompter.__play) {
-                prompter.__play = false
-                prompter.position = prompter.position
+                prompter.__play = false;
+                prompter.position = prompter.position;
             }
             else {
-                prompter.__play = true
-                prompter.position = prompter.__destination
+                prompter.__play = true;
+                prompter.position = prompter.__destination;
             }
         }
+    }
+
+    function stop() {
+        prompter.__play = true;
+        prompter.__i = 0;
+        prompter.__iBackup = 0;
+        prompter.position = prompter.position;
     }
 
     function setVelocity(velocity: int, event: var) {
@@ -1698,9 +1705,7 @@ Flickable {
             }
             else if (event.key===keys.stop && event.modifiers===keys.stopModifiers) {
                 // Stop
-                prompter.__i = 0;
-                prompter.__iBackup = 0;
-                prompter.position = prompter.position
+                prompter.stop()
                 return
             }
             else if (event.key===keys.pause && event.modifiers===keys.pauseModifiers || event.key===Qt.Key_SysReq || event.key===Qt.Key_Play || event.key===Qt.Key_Pause) {
