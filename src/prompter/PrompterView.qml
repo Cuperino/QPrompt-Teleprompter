@@ -164,6 +164,7 @@ Item {
             icon.source: parseInt(prompter.state)===Prompter.States.Prompting ? (prompter.__play ? "../icons/media-playback-pause.svg" : "../icons/media-playback-start.svg") :
                                                                                 Qt.application.layoutDirection === Qt.RightToLeft ? "../icons/go-previous.svg" : "../icons/go-next.svg"
             Material.theme: Material.Dark
+            enabled: parseInt(prompter.state)!==Prompter.States.Prompting || !prompter.__play || (prompter.__play && prompter.__i !== 0)
             onClicked:
                 if (parseInt(prompter.state)===Prompter.States.Prompting)
                     prompter.pause();
