@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright 2026 Javier O. Cordero Pérez -->
 <component type="desktop-application">
   <id>com.cuperino.qprompt</id>
   <launchable type="desktop-id">com.cuperino.qprompt.desktop</launchable>
@@ -11,7 +12,7 @@
   <url type="donation">https://www.patreon.com/qpromptapp</url>
   <url type="vcs-browser">https://github.com/Cuperino/QPrompt-Teleprompter</url>
   <metadata_license>CC-BY-4.0</metadata_license>
-  <project_license>GPL-3.0</project_license>
+  <project_license>GPL-3.0-only</project_license>
   <developer id="com.cuperino">
     <name>Javier O. Cordero Pérez</name>
   </developer>
@@ -33,37 +34,182 @@
     <category>AudioVideo</category>
     <category>Video</category>
   </categories>
+  <keywords>
+    <keyword>teleprompter</keyword>
+    <keyword>autocue</keyword>
+    <keyword>broadcasting</keyword>
+    <keyword>media</keyword>
+    <keyword>production</keyword>
+    <keyword>television</keyword>
+    <keyword>tv</keyword>
+    <keyword>studio</keyword>
+    <keyword>tools</keyword>
+  </keywords>
   <provides>
     <binary>qprompt</binary>
     <mediatype>text/plain</mediatype>
     <mediatype>text/markdown</mediatype>
     <mediatype>text/html</mediatype>
   </provides>
-  <content_rating type="oars-1.0" />
+  <content_rating type="oars-1.1" />
+  <supports>
+    <control>pointing</control>
+    <control>keyboard</control>
+    <control>touch</control>
+  </supports>
+  <requires>
+    <display_length compare="ge">291</display_length>
+  </requires>
   <x-kudos>
     <kudo>HiDpiIcon</kudo>
     <kudo>HighContrast</kudo>
     <kudo>ModernToolkit</kudo>
   </x-kudos>
-  <x-supports>
-    <control>pointing</control>
-    <control>keyboard</control>
-    <control>touch</control>
-  </x-supports>
   <releases>
-    <release version="2.0.0" type="stable" date="2024-9-30">
+    <release version="2.0.2" type="stable" date="2026-6-4">
+      <description>
+        <p>QPrompt 2.0.2 is a bug fix release.</p>
+        <p>The following issues were fixedd in this release:</p>
+        <ul>
+          <li>Fix restoration of active focus to the teleprompter</li>
+          <li>Fixed opacity slider's text input field not accepting inputs correctly</li>
+          <li>Fixed the tool separator for the undo-redo row not being visible at all the times when it should be visible, including upon first startup</li>
+          <li>Fixed text being incorrectly selected after clicking on a marker from the list of markers (this was a regression present only in QPrompt 2.0.1)</li>
+          <li>Fixed un-setting of named markers not working</li>
+          <li>Fixed anchor names disappearing after loading anchors from a saved document</li>
+          <li>Removed a non-working context-menu button to show the font dialog appearing in platforms where system font selection isn't possible</li>
+          <li>Prevented automatic but invisible auto-selection of markers when clicking on them</li>
+          <li>Fixed regression in `no-screens` patch that caused focus not to be given to the prompter when starting the prompter via the mouse.</li>
+          <li>Fixed play button state inconsistencies</li>
+        </ul>
+      </description>
+      <url>https://github.com/Cuperino/QPrompt-Teleprompter/releases/tag/v2.0.2</url>
+      <artifacts>
+        <artifact type="source">
+          <location>https://github.com/Cuperino/QPrompt/archive/refs/tags/v2.0.2.tar.gz</location>
+        </artifact>
+      </artifacts>
+    </release>
+    <release version="2.0.1" type="stable" date="2026-3-28">
+      <description>
+        <p>QPrompt 2.0.1 is a bug fix release.</p>
+        <p>The following issues were fixed in this release:</p>
+        <ul>
+          <li>Improved Chinese translation</li>
+          <li>Fixed font selector popup showing up behind Pointer Settings</li>
+          <li>Removed unused icons</li>
+          <li>Improved compatibility with current versions of KDE's Kirigami framework and ExtraCMakeModules</li>
+          <li>Fixed contextual page actions not showing on context drawer on mobile Linux distros</li>
+          <li>Fixed Appdata metadata</li>
+          <li>Fixed errors with markers list that would lead to undefined behavior and assertions on debug builds</li>
+          <li>Fixed error with handle bars that would lead to an assertion on debug build for iOS</li>
+        </ul>
+      </description>
+      <url>https://github.com/Cuperino/QPrompt-Teleprompter/releases/tag/v2.0.1</url>
+      <artifacts>
+        <artifact type="source">
+          <location>https://github.com/Cuperino/QPrompt/archive/refs/tags/v2.0.1.tar.gz</location>
+          <checksum type="sha256">e7ceed01f02cbeb531e97299239ea4b3f332f8b7685cbb3c383329c2dff668a2</checksum>
+        </artifact>
+      </artifacts>
+    </release>
+    <release version="2.0.0" type="stable" date="2026-1-1">
+      <description>
+        <p>QPrompt 2.0.0 is a major release. It brings about many features and bug fixes and completes our transition to using version 6 of the Qt and KDE framework.</p>
+        <p>New features:</p>
+        <ul>
+          <li>Support for many office formats by importing through LibreOffice</li>
+          <li>Configure and add your own custom pointers</li>
+          <li>Input text in superscript and subscript</li>
+          <li>Input exact number settings via the keyboard</li>
+          <li>Reset factory settings</li>
+          <li>Fix a preferred language</li>
+          <li>Fix the UI layout direction to RTL or LTR</li>
+          <li>The settings that improve performance can now all be accessed from a single location</li>
+          <li>Button to make window stay on top of other windows</li>
+          <li>Find and replace</li>
+          <li>Search text using expressions</li>
+          <li>Ability to open remote documents</li>
+          <li>Toggable auto-refresh for local documents</li>
+          <li>Toggable auto-refresh for remote documents</li>
+          <li>Introduced support for Apple Silicon</li>
+          <li>Experimental WebAssembly build allows running from the web browser</li>
+        </ul>
+        <p>Improvements:</p>
+        <ul>
+          <li>Expanded usable prompter area</li>
+          <li>Improved application stability, confirmed bugs reduced to single digit numbers</li>
+          <li>Improved dark mode integration on Windows</li>
+          <li>Improved usability in small screens</li>
+          <li>Improved UI contrast for reduced beam-split mirror glare</li>
+          <li>Improved and expanded translations to many languages</li>
+          <li>Improved touch controls</li>
+          <li>Improved keyboard input customization experience</li>
+          <li>Improved prompter smoothness (except while using screen projections)</li>
+          <li>Improved UI layout and organization</li>
+          <li>Improved Wayland support</li>
+          <li>Expanded Unicode support</li>
+          <li>Modernized application build and distribution process</li>
+        </ul>
+      </description>
+      <url>https://github.com/Cuperino/QPrompt-Teleprompter/releases/tag/v2.0.0</url>
+      <artifacts>
+        <artifact type="source">
+          <location>https://github.com/Cuperino/QPrompt/archive/refs/tags/v2.0.0.tar.gz</location>
+          <checksum type="sha256">3392cca2a18da0ccdbee82738b2d98419a68f1be60956ce4474b1ba97fa40f94</checksum>
+        </artifact>
+      </artifacts>
     </release>
     <release version="1.2.0" type="stable" date="2024-9-30">
+      <description>
+        <p>Initially a beta released for testing, 1.2.0 fixes several bugs in v1.1.6 while introducing features that would later become finalized in QPrompt 2.0. This is the last build made using Qt 5 and KDE frameworks 5.</p>
+      </description>
+      <url>https://github.com/Cuperino/QPrompt-Teleprompter/releases/tag/v1.2.0</url>
+      <artifacts>
+        <artifact type="source">
+          <location>https://github.com/Cuperino/QPrompt/archive/refs/tags/v1.2.0.tar.gz</location>
+          <checksum type="sha256">cb8f0efc23de014666421c36f7c8fe94dd941bf29de3e92d04d7b7565245ed90</checksum>
+        </artifact>
+      </artifacts>
     </release>
     <release version="1.1.6" type="stable" date="2023-4-30">
+      <url>https://github.com/Cuperino/QPrompt-Teleprompter/releases/tag/v1.1.6</url>
+      <artifacts>
+        <artifact type="source">
+          <location>https://github.com/Cuperino/QPrompt/archive/refs/tags/v1.1.6.tar.gz</location>
+          <checksum type="sha256">a0aeee359c1ecae8fc2367f441ca3f567b445790e1136d75596413e3a50ca3e0</checksum>
+        </artifact>
+      </artifacts>
     </release>
-    <release version="1.1.5" type="stable" date="2023-2-26">
+      <release version="1.1.5" type="stable" date="2023-2-26">
+      <url>https://github.com/Cuperino/QPrompt-Teleprompter/releases/tag/v1.1.5</url>
+      <artifacts>
+        <artifact type="source">
+          <location>https://github.com/Cuperino/QPrompt/archive/refs/tags/v1.1.5.tar.gz</location>
+          <checksum type="sha256">08d11cfea8ae5db821a8af4515805e652e86e820597d1bbfa35d67f9fcdabbcd</checksum>
+        </artifact>
+      </artifacts>
     </release>
     <release version="1.1.4" type="stable" date="2023-2-7">
+      <url>https://github.com/Cuperino/QPrompt-Teleprompter/releases/tag/v1.1.4</url>
+      <artifacts>
+        <artifact type="source">
+          <location>https://github.com/Cuperino/QPrompt/archive/refs/tags/v1.1.4.tar.gz</location>
+          <checksum type="sha256">6c21bde40366fe4c11d3d174c66bb115c7e0e7acb0107c0688570534317157cc</checksum>
+        </artifact>
+      </artifacts>
     </release>
     <release version="1.1.3" type="stable" date="2022-1-16">
+      <url>https://github.com/Cuperino/QPrompt-Teleprompter/releases/tag/v1.1.3</url>
+      <artifacts>
+        <artifact type="source">
+          <location>https://github.com/Cuperino/QPrompt/archive/refs/tags/v1.1.3.tar.gz</location>
+          <checksum type="sha256">b96aaecb03d668eb043bcaf44dd8f6e0555e1f3914f7cbc03d388c765d7d09e7</checksum>
+        </artifact>
+      </artifacts>
     </release>
     <release version="1.1.2" type="stable" date="2022-9-12">
+      <url>https://github.com/Cuperino/QPrompt-Teleprompter/releases/tag/v1.1.2</url>
       <artifacts>
         <artifact type="source">
           <location>https://github.com/Cuperino/QPrompt/archive/refs/tags/v1.1.2.tar.gz</location>
@@ -96,6 +242,7 @@
       </artifacts>
     </release>
     <release version="1.1.1" type="stable" date="2022-8-18">
+      <url>https://github.com/Cuperino/QPrompt-Teleprompter/releases/tag/v1.1.1</url>
       <artifacts>
         <artifact type="source">
           <location>https://github.com/Cuperino/QPrompt/archive/refs/tags/v1.1.1.tar.gz</location>
@@ -124,6 +271,7 @@
       </artifacts>
     </release>
     <release version="1.1" type="stable" date="2022-8-5">
+      <url>https://github.com/Cuperino/QPrompt-Teleprompter/releases/tag/v1.1.0</url>
       <artifacts>
         <artifact type="source">
           <location>https://github.com/Cuperino/QPrompt/archive/refs/tags/v1.1.0.tar.gz</location>
@@ -152,6 +300,7 @@
       </artifacts>
     </release>
     <release version="1.0" type="stable" date="2021-12-31">
+      <url>https://github.com/Cuperino/QPrompt-Teleprompter/releases/tag/v1.0.0</url>
       <artifacts>
         <artifact type="binary" platform="aarch64-linux-gnu">
           <location>https://github.com/Cuperino/QPrompt/releases/download/v1.0.0/qprompt-1.0.0-Linux-aarch64.deb</location>
