@@ -174,7 +174,7 @@ Item {
             }
             ToolButton {
                 visible: !find.replace
-                icon.source: "../icons/edit-find-replace.svg"
+                icon.name: "edit-find-replace"
                 onClicked: find.replace = true
                 Material.theme: Material.Dark
             }
@@ -222,7 +222,7 @@ Item {
             visible: height > 0
             ToolButton {
                 visible: find.replace
-                icon.source: "../icons/edit-find.svg"
+                icon.name: "edit-find"
                 onClicked: find.replace = false;
                 Material.theme: Material.Dark
             }
@@ -254,7 +254,7 @@ Item {
                 Material.theme: Material.Dark
             }
             ToolButton {
-                icon.source: "../icons/edit-find-replace.svg"
+                icon.name: "edit-find-replace"
                 enabled: resultsFound
                 onClicked: find.replaceAll()
                 Material.theme: Material.Dark

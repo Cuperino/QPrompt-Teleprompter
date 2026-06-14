@@ -101,7 +101,6 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
     QSettings settings;
 
     QQuickStyle::setStyle("Material");
-    QIcon::setThemeName("breeze");
     // Instantiate app
 #if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
     QGuiApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
@@ -122,6 +121,16 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
     // database so QFontEngineMulti can use it as a fallback.
     QFontDatabase::addApplicationFont(QStringLiteral(":/qt/qml/com/cuperino/qprompt/fonts/NotoColorEmoji-COLRv1.ttf"));
 #endif
+
+    // Force QPrompt's bundled Breeze subset theme (compiled into
+    // :/icons/breeze-internal) on every platform. This is set after the
+    // QGuiApplication is constructed so it overrides any icon theme the platform
+    // integration applies during construction (e.g. KDE's platform theme reading
+    // the user's chosen theme from kdeglobals). Windows, macOS, WASM, Android and
+    // iOS provide no system icon theme at all, so without this icon.name lookups
+    // would render blank. See cmake/BreezeIconSubset.cmake.
+    QIcon::setThemeSearchPaths(QIcon::themeSearchPaths() << QStringLiteral(":/icons"));
+    QIcon::setThemeName(QStringLiteral("breeze-internal"));
 
     QTranslator translator;
     // The following code forces the use of a specific language.

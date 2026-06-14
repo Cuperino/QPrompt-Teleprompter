@@ -234,80 +234,9 @@ set(document_files
 set_source_files_properties(documents/untitled.html PROPERTIES QT_RESOURCE_ALIAS documents/blank.html)
 
 set(icon_files
-    # Icons
-    icons/16/go-next.svg
-    icons/16/go-previous.svg
-    icons/16/go-up.svg
-    icons/16/go-down.svg
-    icons/16/list-remove.svg
-    icons/16/dialog-ok-apply.svg
-    icons/16/window.svg
-    icons/16/draw-rectangle.svg
-    icons/16/transform-move-horizontal.svg
-    icons/16/transform-move-vertical.svg
-    icons/16/view-list-text.svg
-    icons/16/view-list-text-rtl.svg
-    icons/16/keyframe.svg
-    icons/16/player-time.svg
-    icons/16/format-text-color.svg
-    icons/16/chronometer.svg
-    icons/16/chronometer-pause.svg
-    icons/16/keyframe-add.svg
-    icons/16/object-flip-horizontal.svg
-    icons/16/object-flip-vertical.svg
-    icons/16/object-rotate-left.svg
-    icons/16/object-rotate-right.svg
-    icons/16/insert-image.svg
-    icons/16/fill-color.svg
-    icons/16/window-duplicate.svg
-    icons/16/document-new.svg
-    icons/16/document-save.svg
-    icons/16/document-save-as.svg
-    icons/16/document-open.svg
-    icons/16/document-open-recent.svg
-    icons/16/document-open-remote.svg
-    icons/16/format-font-size-more.svg
-    icons/16/edit-clear-history.svg
-    icons/16/configure.svg
-    icons/16/help-about.svg
-    icons/16/application-exit.svg
-    icons/16/document-properties.svg
-    icons/16/paint-none.svg
-    icons/16/filename-bpm-amarok.svg
-    icons/16/gnumeric-object-scrollbar.svg
-    icons/16/circular-arrow-shape.svg
-    icons/16/key-enter.svg
-    icons/16/edit-opacity.svg
-    icons/16/edit-undo.svg
-    icons/16/edit-redo.svg
-    icons/16/media-playback-pause.svg
-    icons/16/media-playback-start.svg
-    icons/16/edit-find.svg
-    icons/16/edit-find-replace.svg
-    icons/16/format-text-direction-rtl.svg
-    icons/16/format-text-direction-ltr.svg
-    icons/16/format-justify-fill.svg
-    icons/16/view-fullscreen.svg
-    icons/16/empty.svg
-    icons/22/application-menu.svg
-    icons/22/amarok_change_language.svg
-    icons/22/auto-transition.svg
-    icons/22/akonadiconsole.svg
-    icons/22/contrast.svg
-    icons/22/insert-endnote.svg
-    icons/22/love-amarok.svg
-    icons/22/newline.svg
-    icons/22/map-globe.svg
-    icons/22/question.svg
-    icons/22/tool_color_eraser.svg
-    icons/22/transform-browse.svg
-    icons/22/view-left-close.svg
-    icons/22/view-right-close.svg
-    icons/22/window-pin.svg
-    icons/22/window-unpin.svg
-    icons/24/go-previous-symbolic.svg
-    icons/24/go-next-symbolic.svg
-    icons/24/tools-report-bug.svg
+    # Application-specific raster icon with no Breeze equivalent; still referenced
+    # by icon.source. Every other icon is now referenced by icon.name and supplied
+    # by the bundled Breeze subset theme (see qprompt_generate_breeze_subset below).
     icons/logos/obs.png
 )
 
@@ -388,6 +317,19 @@ else()
         ${font_files}
     )
 endif()
+
+# Bundle a subset of the Breeze icon theme containing only the icons referenced
+# by name in the QML, compiled into the binary at :/icons/breeze-internal. With
+# QIcon::setThemeName("breeze-internal") (set in main.cpp) this makes icon.name
+# lookups resolve on every platform — including Windows, macOS, WASM, Android and
+# iOS, none of which provide a system icon theme — without shipping all of Breeze.
+include(BreezeIconSubset)
+qprompt_generate_breeze_subset(${PROJECT_NAME}
+    BREEZE_DIR "${CMAKE_SOURCE_DIR}/3rdparty/breeze-icons"
+    QML_DIR "${CMAKE_CURRENT_SOURCE_DIR}"
+    OUTPUT_DIR "${CMAKE_CURRENT_BINARY_DIR}/breeze-theme"
+    CUSTOM_ICON_FILES "${CMAKE_CURRENT_SOURCE_DIR}/icons/16/view-list-text-rtl.svg"
+)
 
 # Shader compilation
 qt_add_shaders(

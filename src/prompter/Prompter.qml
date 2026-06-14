@@ -2912,8 +2912,8 @@ Flickable {
             }
             PropertyChanges {
                 target: promptingButton
-                icon.source: Qt.application.layoutDirection === Qt.RightToLeft ?
-                                 "../icons/go-previous.svg" : "../icons/go-next.svg"
+                icon.name: Qt.application.layoutDirection === Qt.RightToLeft ?
+                                 "go-previous" : "go-next"
             }
             PropertyChanges {
                 target: prompter
@@ -2945,8 +2945,8 @@ Flickable {
             PropertyChanges {
                 target: promptingButton
                 text: viewport.countdown.enabled ? qsTr("Begin countdown") : qsTr("Start prompting")
-                icon.source: Qt.application.layoutDirection === Qt.RightToLeft ?
-                                 "../icons/go-previous.svg" : "../icons/go-next.svg"
+                icon.name: Qt.application.layoutDirection === Qt.RightToLeft ?
+                                 "go-previous" : "go-next"
             }
             PropertyChanges {
                 target: prompter
@@ -2993,8 +2993,8 @@ Flickable {
             PropertyChanges {
                 target: promptingButton
                 text: qsTr("Skip countdown")
-                icon.source: Qt.application.layoutDirection === Qt.RightToLeft ?
-                                 "../icons/go-previous.svg" : "../icons/go-next.svg"
+                icon.name: Qt.application.layoutDirection === Qt.RightToLeft ?
+                                 "go-previous" : "go-next"
             }
             PropertyChanges {
                 target: prompter
@@ -3038,8 +3038,8 @@ Flickable {
             PropertyChanges {
                 target: promptingButton
                 text: qsTr("Return to edit mode")
-                icon.source: Qt.application.layoutDirection === Qt.LeftToRight ?
-                                 "../icons/edit-undo.svg" : "../icons/edit-redo.svg"
+                icon.name: Qt.application.layoutDirection === Qt.LeftToRight ?
+                                 "edit-undo" : "edit-redo"
             }
             PropertyChanges {
                 target: prompter

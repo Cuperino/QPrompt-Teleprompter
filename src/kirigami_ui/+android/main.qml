@@ -195,8 +195,7 @@ Kirigami.ApplicationWindow {
             },
             Kirigami.Action {
                 text: qsTr("&Open remote file", "Main menu and global menu actions")
-                //icon.name: "document-open-remote"
-                icon.source: "qrc:/qt/qml/com/cuperino/qprompt/icons/document-open-remote.svg"
+                icon.name: "document-open-remote"
                 onTriggered: {
                     root.onDiscard = Prompter.CloseActions.Network
                     root.pageStack.currentItem.document.openFromNetwork()
@@ -228,14 +227,12 @@ Kirigami.ApplicationWindow {
             },
             Kirigami.Action {
                 text: qsTr("&Controls Settings", "Main menu actions. Menu regarding input settings.")
-                // icon.name: "transform-browse" // "hand"
-                icon.source: "qrc:/qt/qml/com/cuperino/qprompt/icons/transform-browse.svg"
+                icon.name: "transform-browse"
                 readonly property string name: "control-settings"
                 Kirigami.Action {
                     visible: ["android", "ios", "tvos", "ipados", "qnx"].indexOf(Qt.platform.os)===-1
                     text: qsTr("Keyboard Inputs", "Main menu and global menu actions. Opens dialog to configure keyboard inputs.")
-                    // icon.name: "key-enter" // "keyboard"
-                    icon.source: "qrc:/qt/qml/com/cuperino/qprompt/icons/key-enter.svg"
+                    icon.name: "key-enter"
                     onTriggered: {
                         globalMenu.close()
                         root.pageStack.currentItem.keyConfigurationOverlay.open()
@@ -244,8 +241,7 @@ Kirigami.ApplicationWindow {
                 Kirigami.Action {
                     visible: ["android", "ios", "tvos", "ipados", "qnx"].indexOf(Qt.platform.os)===-1
                     text: qsTr("Scroll throttle settings", "Open 'scroll settings' from main menu and global menu actions")
-                    // icon.name: "gnumeric-object-scrollbar" // "keyboard"
-                    icon.source: "qrc:/qt/qml/com/cuperino/qprompt/icons/gnumeric-object-scrollbar.svg"
+                    icon.name: "gnumeric-object-scrollbar"
                     onTriggered: {
                         globalMenu.close()
                         wheelSettings.open()
@@ -254,8 +250,7 @@ Kirigami.ApplicationWindow {
                 Kirigami.Action {
                     text: qsTr("Invert &arrow keys", "Main menu and global menu actions. Have up arrow behave like down arrow and vice versa while prompting.")
                     enabled: !root.__noScroll
-                    // icon.name: "circular-arrow-shape"
-                    icon.source: "qrc:/qt/qml/com/cuperino/qprompt/icons/circular-arrow-shape.svg"
+                    icon.name: "circular-arrow-shape"
                     checkable: true
                     checked: root.__invertArrowKeys
                     onTriggered: root.__invertArrowKeys = checked
@@ -263,8 +258,7 @@ Kirigami.ApplicationWindow {
                 Kirigami.Action {
                     text: qsTr("Invert &scroll direction (Natural scrolling)", "Main menu and global menu actions. Invert scroll direction while prompting.")
                     enabled: !root.__noScroll
-                    // icon.name: "gnumeric-object-scrollbar"
-                    icon.source: "qrc:/qt/qml/com/cuperino/qprompt/icons/gnumeric-object-scrollbar.svg"
+                    icon.name: "gnumeric-object-scrollbar"
                     checkable: true
                     checked: root.__invertScrollDirection
                     onTriggered: root.__invertScrollDirection = checked
@@ -272,8 +266,7 @@ Kirigami.ApplicationWindow {
                 Kirigami.Action {
                     text: qsTr("Use scroll as velocity &dial", "Main menu and global menu actions. Have touchpad and mouse wheel scrolling adjust velocity instead of scrolling like most other apps.")
                     enabled: !root.__noScroll
-                    // icon.name: "filename-bpm-amarok"
-                    icon.source: "qrc:/qt/qml/com/cuperino/qprompt/icons/filename-bpm-amarok.svg"
+                    icon.name: "filename-bpm-amarok"
                     // ToolTip.text: qsTr("Use mouse and touchpad scroll as speed dial while prompting")
                     checkable: true
                     checked: root.__scrollAsDial
@@ -281,8 +274,7 @@ Kirigami.ApplicationWindow {
                 }
                 Kirigami.Action {
                     text: qsTr("Disable scrolling while prompting", "Main menu and global menu actions. Touchpad scrolling and mouse wheel use have no effect while prompting.")
-                    //icon.name: "paint-none"
-                    icon.source: "qrc:/qt/qml/com/cuperino/qprompt/icons/paint-none.svg"
+                    icon.name: "paint-none"
                     checkable: true
                     checked: root.__noScroll
                     onTriggered: root.__noScroll = checked
@@ -300,7 +292,7 @@ Kirigami.ApplicationWindow {
 //                 }
                 Kirigami.Action {
                     text: qsTr("Layout direction", "Main menu actions. Opens dialog for choosing layout direction.")
-                    icon.source: Qt.application.layoutDirection===Qt.LeftToRight ? "qrc:/qt/qml/com/cuperino/qprompt/icons/format-text-direction-rtl.svg" : "qrc:/qt/qml/com/cuperino/qprompt/icons/format-text-direction-ltr.svg"
+                    icon.name: Qt.application.layoutDirection===Qt.LeftToRight ? "format-text-direction-rtl" : "format-text-direction-ltr"
                     onTriggered: layoutDirectionSettings.open()
                 }
                 Kirigami.Action {
@@ -322,7 +314,7 @@ Kirigami.ApplicationWindow {
                         id: hideFormattingToolsWhilePromptingSetting
                         enabled: !hideFormattingToolsAlwaysSetting.checked
                         text: qsTr("Auto hide formatting tools", "Main menu actions. Hides formatting tools while not in edit mode.")
-                        icon.source: "qrc:/qt/qml/com/cuperino/qprompt/icons/list-remove.svg"
+                        icon.name: "list-remove"
                         checkable: true
                         checked: root.pageStack.currentItem.footer.hideFormattingToolsWhilePrompting
                         onTriggered: root.pageStack.currentItem.footer.hideFormattingToolsWhilePrompting = checked
@@ -330,7 +322,7 @@ Kirigami.ApplicationWindow {
                     Kirigami.Action {
                         id: hideFormattingToolsAlwaysSetting
                         text: qsTr("Always hide formatting tools", "Main menu actions")
-                        icon.source: "qrc:/qt/qml/com/cuperino/qprompt/icons/newline.svg"
+                        icon.name: "newline"
                         checkable: true
                         checked: root.pageStack.currentItem.footer.hideFormattingToolsAlways
                         onTriggered: root.pageStack.currentItem.footer.hideFormattingToolsAlways = checked
@@ -338,8 +330,7 @@ Kirigami.ApplicationWindow {
                     Kirigami.Action {
                         id: enableOverlayContrastSetting
                         text: qsTr("Disable overlay contrast", "Main menu actions. Disables contrast effect for the reading region overlay.")
-                        //icon.name: "edit-opacity"
-                        icon.source: "qrc:/qt/qml/com/cuperino/qprompt/icons/edit-opacity.svg"
+                        icon.name: "edit-opacity"
                         checkable: true
                         checked: root.pageStack.currentItem.overlay.disableOverlayContrast
                         onTriggered: root.pageStack.currentItem.overlay.disableOverlayContrast = checked
@@ -350,14 +341,14 @@ Kirigami.ApplicationWindow {
                     readonly property string name: "other-tweaks"
                     Kirigami.Action {
                         text: qsTr("Show justify alignment button", "Main menu actions. Show justify button on editor toolbar")
-                        icon.source: "qrc:/qt/qml/com/cuperino/qprompt/icons/format-justify-fill.svg"
+                        icon.name: "format-justify-fill"
                         checkable: true
                         checked: root.pageStack.currentItem.footer.showJustify
                         onTriggered: root.pageStack.currentItem.footer.showJustify = checked
                     }
                     Kirigami.Action {
                         text: qsTr("Local file auto reload", "Main menu actions. Enable local file auto reload")
-                        icon.source: "qrc:/qt/qml/com/cuperino/qprompt/icons/document-open.svg"
+                        icon.name: "document-open"
                         checkable: true
                         checked: root.pageStack.currentItem.document.autoReload
                         onTriggered: root.pageStack.currentItem.document.autoReload = checked
@@ -365,8 +356,7 @@ Kirigami.ApplicationWindow {
                 }
                 Kirigami.Action {
                     text: qsTr("Restore factory defaults", "Main menu actions")
-                    // icon.name: "edit-clear-history"
-                    icon.source: "qrc:/qt/qml/com/cuperino/qprompt/icons/edit-clear-history.svg"
+                    icon.name: "edit-clear-history"
                     onTriggered: {
                         factoryResetDialog.open();
                     }
@@ -375,15 +365,14 @@ Kirigami.ApplicationWindow {
             Kirigami.Action {
                 id: languageConfig
                 text: qsTr("Language", "Main menu actions")
-                icon.source: "qrc:/qt/qml/com/cuperino/qprompt/icons/amarok_change_language.svg"
+                icon.name: "amarok_change_language"
                 onTriggered: {
                     languageSettings.open();
                 }
             },
             Kirigami.Action {
                 text: qsTr("Abou&t %1", "Main menu actions. Load about page.").arg(aboutData.displayName)
-                //icon.name: "help-about"
-                icon.source: "qrc:/qt/qml/com/cuperino/qprompt/icons/help-about.svg"
+                icon.name: "help-about"
                 onTriggered: loadAboutPage()
             },
             Kirigami.Action {

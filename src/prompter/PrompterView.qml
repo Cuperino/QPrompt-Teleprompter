@@ -94,7 +94,7 @@ Item {
             width: 64
             height: 64
             // flat: parseInt(prompter.state)===Prompter.States.Prompting
-            icon.source: Qt.application.layoutDirection === Qt.LeftToRight ? "../icons/edit-undo.svg" : "../icons/edit-redo.svg"
+            icon.name: Qt.application.layoutDirection === Qt.LeftToRight ? "edit-undo" : "edit-redo"
             Material.theme: Material.Dark
             onClicked: prompter.cancel()
             Behavior on opacity {
@@ -146,7 +146,7 @@ Item {
             width: 64
             height: 64
             anchors.bottom: parent.bottom
-            icon.source: Qt.application.layoutDirection === Qt.RightToLeft ? "../icons/go-next.svg" : "../icons/go-previous.svg"
+            icon.name: Qt.application.layoutDirection === Qt.RightToLeft ? "go-next" : "go-previous"
             Material.theme: Material.Dark
             onClicked: prompter.decreaseVelocity(false)
             Behavior on opacity {
@@ -161,8 +161,8 @@ Item {
             width: 82
             height: 82
             anchors.bottom: parent.bottom
-            icon.source: parseInt(prompter.state)===Prompter.States.Prompting ? (prompter.__play ? "../icons/media-playback-pause.svg" : "../icons/media-playback-start.svg") :
-                                                                                Qt.application.layoutDirection === Qt.RightToLeft ? "../icons/go-previous.svg" : "../icons/go-next.svg"
+            icon.name: parseInt(prompter.state)===Prompter.States.Prompting ? (prompter.__play ? "media-playback-pause" : "media-playback-start") :
+                                                                                Qt.application.layoutDirection === Qt.RightToLeft ? "go-previous" : "go-next"
             Material.theme: Material.Dark
             enabled: parseInt(prompter.state)!==Prompter.States.Prompting || !prompter.__play || (prompter.__play && prompter.__i !== 0)
             onClicked:
@@ -177,7 +177,7 @@ Item {
             width: 64
             height: 64
             anchors.bottom: parent.bottom
-            icon.source: Qt.application.layoutDirection === Qt.RightToLeft ? "../icons/go-previous.svg" : "../icons/go-next.svg"
+            icon.name: Qt.application.layoutDirection === Qt.RightToLeft ? "go-previous" : "go-next"
             Material.theme: Material.Dark
             onClicked: prompter.increaseVelocity(false)
             Behavior on opacity {

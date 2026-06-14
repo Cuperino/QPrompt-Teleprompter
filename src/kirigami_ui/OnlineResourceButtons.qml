@@ -28,7 +28,7 @@ RowLayout {
     spacing: 0
     ToolButton {
         readonly property url uri: "https://qprompt.app"
-        icon.source: "qrc:/qt/qml/com/cuperino/qprompt/icons/map-globe.svg"
+        icon.name: "map-globe"
         flat: true
         onClicked: Qt.openUrlExternally(uri)
         ToolTip.text: qsTr("Website")
@@ -36,7 +36,7 @@ RowLayout {
     }
     ToolButton {
         readonly property url uri: "https://docs.qprompt.app"
-        icon.source: "qrc:/qt/qml/com/cuperino/qprompt/icons/insert-endnote.svg"
+        icon.name: "insert-endnote"
         flat: true
         onClicked: Qt.openUrlExternally(uri)
         ToolTip.text: qsTr("Documentation")
@@ -44,7 +44,7 @@ RowLayout {
     }
     ToolButton {
         readonly property url uri: "https://forum.qprompt.app"
-        icon.source: "qrc:/qt/qml/com/cuperino/qprompt/icons/question.svg"
+        icon.name: "question"
         flat: true
         onClicked: Qt.openUrlExternally(uri)
         ToolTip.text: qsTr("Forum")
@@ -52,7 +52,7 @@ RowLayout {
     }
     ToolButton {
         readonly property url uri: "https://feedback.qprompt.app"
-        icon.source: "qrc:/qt/qml/com/cuperino/qprompt/icons/tools-report-bug.svg"
+        icon.name: "tools-report-bug"
         flat: true
         onClicked: Qt.openUrlExternally(uri)
         ToolTip.text: qsTr("Feedback")
@@ -60,7 +60,7 @@ RowLayout {
     }
     ToolButton {
         readonly property url uri: "https://l10n.qprompt.app"
-        icon.source: "qrc:/qt/qml/com/cuperino/qprompt/icons/amarok_change_language.svg"
+        icon.name: "amarok_change_language"
         flat: true
         onClicked: Qt.openUrlExternally(uri)
         ToolTip.text: qsTr("Translations")
@@ -68,7 +68,7 @@ RowLayout {
     }
     ToolButton {
         readonly property url uri: "https://donate.qprompt.app"
-        icon.source: "qrc:/qt/qml/com/cuperino/qprompt/icons/love-amarok.svg"
+        icon.name: "love-amarok"
         flat: true
         onClicked: Qt.openUrlExternally(uri)
         ToolTip.text: qsTr("Donate")
