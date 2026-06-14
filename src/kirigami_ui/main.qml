@@ -33,16 +33,12 @@ import com.cuperino.qprompt 1.0
 
 Kirigami.ApplicationWindow {
     id: root
-    property bool __fullScreen: false
-    on__FullScreenChanged: {
-        if (Qt.platform.os === "wasm")
-            AppController.wasm.toggleBrowserFullscreen();
-    }
-    property bool __fakeFullscreen: false
+    property bool __fullScreen: Qt.platform.os==="wasm"
+    property bool __fakeFullscreen: Qt.platform.os==="wasm"
     property bool __autoFullScreen: false
     readonly property bool fullScreenOrFakeFullScreen: visibility===Kirigami.ApplicationWindow.FullScreen || __fakeFullscreen && __fullScreen && visibility===Kirigami.ApplicationWindow.Maximized
     // The following line includes macOS among the list of platforms where full screen buttons are hidden. This is done intentionally because macOS provides its own full screen buttons on the window frame and global menu. We shall not mess with what users of each platform expect.
-    property bool fullScreenPlatform: Kirigami.Settings.isMobile || ['android', 'ios', 'tvos', 'qnx', 'ipados', 'osx'].indexOf(Qt.platform.os)!==-1
+    property bool fullScreenPlatform: Kirigami.Settings.isMobile || ['android', 'ios', 'wasm', 'tvos', 'qnx', 'ipados', 'osx'].indexOf(Qt.platform.os)!==-1
     //readonly property bool __translucidBackground: !Material.background.a // === 0
     //readonly property bool __translucidBackground: !Kirigami.Theme.backgroundColor.a && ['ios', 'wasm', 'tvos', 'qnx', 'ipados'].indexOf(Qt.platform.os)===-1
     property bool __translucidBackground: true
@@ -147,7 +143,7 @@ Kirigami.ApplicationWindow {
     }
 
     // Full screen
-    visibility: (__fullScreen && Qt.platform.os !== "wasm") ? (__fakeFullscreen ? Kirigami.ApplicationWindow.Maximized : Kirigami.ApplicationWindow.FullScreen) : (!__autoFullScreen ? Kirigami.ApplicationWindow.AutomaticVisibility : (parseInt(root.pageStack.currentItem.prompter.state)===Prompter.States.Editing ? Kirigami.ApplicationWindow.Maximized : (__fakeFullscreen ? Kirigami.ApplicationWindow.Maximized : Kirigami.ApplicationWindow.FullScreen)))
+    visibility: __fullScreen ? (__fakeFullscreen ? Kirigami.ApplicationWindow.Maximized : Kirigami.ApplicationWindow.FullScreen) : (!__autoFullScreen ? Kirigami.ApplicationWindow.Maximized : (parseInt(root.pageStack.currentItem.prompter.state)===Prompter.States.Editing ? Kirigami.ApplicationWindow.Maximized : (__fakeFullscreen ? Kirigami.ApplicationWindow.Maximized : Kirigami.ApplicationWindow.FullScreen)))
 
     onWidthChanged: {
         const modified = root.pageStack.currentItem.document.modified
@@ -213,6 +209,7 @@ Kirigami.ApplicationWindow {
                 }
             },
             Kirigami.Action {
+                enabled: Qt.platform.os!=="wasm"
                 text: qsTr("&Open remote file", "Main menu and global menu actions")
                 icon.name: "document-open-remote"
                 onTriggered: {
@@ -461,6 +458,7 @@ Kirigami.ApplicationWindow {
                 }
             },
             Kirigami.Action {
+                visible: Qt.platform.os!=="wasm"
                 text: qsTr("Abou&t %1", "Main menu actions. Load about page.").arg(aboutData.displayName)
                 icon.name: "help-about"
                 onTriggered: loadAboutPage()
@@ -520,7 +518,7 @@ Kirigami.ApplicationWindow {
             Kirigami.Action {
                 visible: false
                 onTriggered: root.__fullScreen = !root.__fullScreen
-                shortcut: StandardKey.FullScreen
+                shortcut: Qt.platform.os!=="wasm" ? StandardKey.FullScreen : false
             }
         ]
         footer: OnlineResourceButtons{}
@@ -994,6 +992,16 @@ Kirigami.ApplicationWindow {
         restoreMode: Binding.RestoreNone
     }
 
+    Image {
+        // Hack to add menu icon to wasm build
+        visible: Qt.platform.os==="wasm"
+        x: 14
+        y: 13
+        width: 22
+        height: 22
+        source: "qrc:/icons/breeze-internal/icons/open-menu-symbolic.svg"
+    }
+
     // Kirigami PageStack and PageRow
     pageStack.globalToolBar.toolbarActionAlignment: Qt.AlignHCenter
     pageStack.initialPage: prompterPageComponent
@@ -1011,7 +1019,7 @@ Kirigami.ApplicationWindow {
         }
         else {
             if (parseInt(root.pageStack.currentItem.prompter.state)!==Prompter.States.Editing &&
-                    (fullScreenOrFakeFullScreen || root.pageStack.currentItem.overlay.atTop && !root.pageStack.currentItem.viewport.forcedOrientation))
+                    ((fullScreenOrFakeFullScreen && Qt.platform.os!=="wasm") || root.pageStack.currentItem.overlay.atTop && !root.pageStack.currentItem.viewport.forcedOrientation))
                 return Kirigami.ApplicationHeaderStyle.None;
             else
                 return Kirigami.ApplicationHeaderStyle.ToolBar;
