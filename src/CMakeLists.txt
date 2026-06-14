@@ -356,6 +356,26 @@ if(DEFINED QPROMPT_HUNSPELL_DICT_DIR AND (WASM OR ANDROID OR IOS OR (APPLE AND N
     qprompt_hunspell_add_qrc(${PROJECT_NAME} "${QPROMPT_HUNSPELL_DICT_DIR}")
 endif()
 
+# Kirigami now splits its QML into several sub-modules, each shipping its own
+# static QML plugin. Static builds (WASM/Android/iOS) link the QML plugins
+# directly, and the qmlimportscanner does not pick up Kirigami's internal
+# imports such as org.kde.kirigami.private.polyfill (pulled in at runtime by
+# PassiveNotificationsManager). Linking Kirigami plugin guarantees avoids
+# runtime "module ... is not installed" errors.
+set(KIRIGAMI_STATIC_QML_PLUGINS
+    Kirigamiplugin
+    KirigamiPlatformplugin
+    # KirigamiPrimitivesplugin
+    # KirigamiDelegatesplugin
+    # KirigamiPrivateplugin
+    KirigamiPolyfillplugin
+    # KirigamiLayoutsplugin
+    # KirigamiLayoutsPrivateplugin
+    # KirigamiControlsplugin
+    # KirigamiTemplatesplugin
+    # KirigamiDialogsplugin
+)
+
 # Libraries
 if (ANDROID)
     target_link_libraries(${PROJECT_NAME} PRIVATE
@@ -368,7 +388,7 @@ if (ANDROID)
         Qt${QT_VERSION_MAJOR}::Network
         KF${QT_VERSION_MAJOR}::CoreAddons
         KF${QT_VERSION_MAJOR}::Kirigami
-        Kirigamiplugin
+        ${KIRIGAMI_STATIC_QML_PLUGINS}
     )
 elseif (IOS)
     set(CMAKE_OSX_DEPLOYMENT_TARGET 17.0)
@@ -403,7 +423,7 @@ elseif (IOS)
         Qt${QT_VERSION_MAJOR}::QuickControls2
         KF${QT_VERSION_MAJOR}::CoreAddons
         KF${QT_VERSION_MAJOR}::Kirigami
-        Kirigamiplugin
+        ${KIRIGAMI_STATIC_QML_PLUGINS}
     )
 elseif (WASM)
     target_compile_options(${PROJECT_NAME} PRIVATE -O3 -flto -sDISABLE_EXCEPTION_THROWING=0 -sDISABLE_EXCEPTION_CATCHING=1)
@@ -420,7 +440,7 @@ elseif (WASM)
         Qt${QT_VERSION_MAJOR}::Qml
         Qt${QT_VERSION_MAJOR}::QuickControls2
         KF${QT_VERSION_MAJOR}::Kirigami
-        Kirigamiplugin
+        ${KIRIGAMI_STATIC_QML_PLUGINS}
     )
 elseif(HAIKU)
     target_link_libraries(${PROJECT_NAME} PRIVATE

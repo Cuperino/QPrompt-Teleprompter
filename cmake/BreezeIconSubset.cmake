@@ -31,6 +31,10 @@
 # Android and via filesystem install(), neither of which works for WASM or iOS
 set(QPROMPT_KIRIGAMI_INTERNAL_ICONS
     application-exit
+    application-menu-symbolic
+    window-close
+    window-close-symbolic
+    overflow-menu-symbolic
     dialog-close
     dialog-error
     dialog-information

@@ -51,8 +51,10 @@ set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
 
 set(QT_DEFAULT_MAJOR_VERSION 6)
-# Qt 6.7.2 for Ubuntu 24.10, tho ideally we'd use 6.7.3 or 6.8.x.
-set(QT_MIN_VERSION 6.7.2)
+# KDE Frameworks 6.24 (the last release supporting Qt 6.8; 6.25+ require Qt 6.9)
+# needs at least Qt 6.8.0. We pin the floor to 6.8.2 to match the Qt that Debian
+# ships, keeping the frameworks on the 6.8.x series so the Linux packages build.
+set(QT_MIN_VERSION 6.8.2)
 # Enabling newer ECM appears to break AutoMOC...
 if (WIN32)
     set(ECM_MIN_VERSION 5.83.0)
@@ -61,8 +63,9 @@ else()
 endif()
 # Version with minimum required set of features
 set(KF_MIN_VERSION 6.9.0)
-# Last version known to work
-set(KF_PREFFERED_VERSION 6.14.0)
+# Last version known to work. 6.24 is the newest KDE Frameworks release that
+# still builds against Qt 6.8; 6.25+ require Qt 6.9.
+set(KF_PREFFERED_VERSION 6.24.0)
 if (APPLE)
     set(APPLE_SUPPRESS_X11_WARNING ON)
 endif()
@@ -151,6 +154,13 @@ endif()
 
 if(WIN32 OR APPLE OR ANDROID OR WASM OR USE_GIT_DEPENDENCIES_ONLY)
     set(BUILD_TESTING OFF)
+    # KDE Frameworks 6.24 use C++20 (e.g. std::span in Kirigami's scenegraph).
+    # QPrompt itself stays on C++17 (see CMAKE_CXX_STANDARD above) for broad
+    # AppImage compatibility, so we raise the standard only for the bundled
+    # frameworks built here and restore it right after. KDECompilerSettings only
+    # defaults to C++20 when CMAKE_CXX_STANDARD is unset, so without this the
+    # frameworks would inherit our 17 and fail to compile.
+    set(CMAKE_CXX_STANDARD 20)
     if(NOT WASM)
         FetchContent_Declare(
           CoreAddons
@@ -178,10 +188,12 @@ if(WIN32 OR APPLE OR ANDROID OR WASM OR USE_GIT_DEPENDENCIES_ONLY)
     FetchContent_Declare(
       Kirigami
       GIT_REPOSITORY "${CMAKE_SOURCE_DIR}/3rdparty/kirigami"
-      GIT_TAG        "v6.14.1" # "v${KF_PREFFERED_VERSION}"
+      GIT_TAG        "v${KF_PREFFERED_VERSION}"
       SOURCE_DIR submodules/kirigami
     )
     FetchContent_MakeAvailable(Kirigami)
+    # Restore QPrompt's own C++ standard for the targets defined afterwards.
+    set(CMAKE_CXX_STANDARD 17)
 else()
     find_package(KF${QT_VERSION_MAJOR} ${KF_MIN_VERSION} REQUIRED COMPONENTS
         Kirigami
@@ -281,6 +293,15 @@ if (WIN32 OR UNIX) # AND NOT ANDROID
     include(ECMGenerateHeaders)
 endif()
 include(KDECompilerSettings NO_POLICY_SCOPE)
+# Emscripten reports itself as UNIX, so KDECompilerSettings injects the
+# GNU-ld-only "-Wl,--enable-new-dtags" RPATH flag into the global linker flags.
+# wasm-ld rejects unknown arguments, breaking the final link, so strip it here.
+if (WASM)
+    foreach(_flags CMAKE_EXE_LINKER_FLAGS CMAKE_SHARED_LINKER_FLAGS CMAKE_MODULE_LINKER_FLAGS)
+        string(REPLACE "-Wl,--enable-new-dtags" "" ${_flags} "${${_flags}}")
+        string(STRIP "${${_flags}}" ${_flags})
+    endforeach()
+endif()
 include(KDEClangFormat)
 include(ECMQtDeclareLoggingCategory)
 include(ECMSetupVersion)
@@ -378,11 +399,11 @@ if(CMAKE_SOURCE_DIR STREQUAL CMAKE_CURRENT_SOURCE_DIR)
         # CPACK: DEB specific settings
         set(CPACK_DEBIAN_PACKAGE_SECTION "Multimedia")
         set(CPACK_DEBIAN_COMPRESSION_TYPE ${COMPRESION_TYPE})
-        set(CPACK_DEBIAN_PACKAGE_DEPENDS "libvulkan-dev (>= 1.4.309), libqt6svg6 (>= 6.7.2), libqt6qmlworkerscript6 (>=6.7.2), qml6-module-qt-labs-platform (>=6.7.2), qml6-module-qtqml (>=6.7.2), qml6-module-qtqml-models (>=6.7.2), qml6-module-qtqml-statemachine (>=6.7.2), qml6-module-qtquick-controls (>=6.7.2), qml6-module-qtcore (>=6.7.2), qml6-module-qt-labs-settings (>=6.7.2), qml6-module-qtquick-dialogs (>=6.7.2), qml6-module-qtquick-shapes (>=6.7.2), libkf6coreaddons6 (>= 6.9.0), libkirigami6 (>= 6.9.0), qml6-module-org-kde-kirigami (>=6.9.0), libkf6i18n6 (>= 6.9.0), libkf6crash6 (>= 6.9.0)")
+        set(CPACK_DEBIAN_PACKAGE_DEPENDS "libvulkan-dev (>= 1.4.309), libqt6svg6 (>= 6.8.2), libqt6qmlworkerscript6 (>=6.8.2), qml6-module-qt-labs-platform (>=6.8.2), qml6-module-qtqml (>=6.8.2), qml6-module-qtqml-models (>=6.8.2), qml6-module-qtqml-statemachine (>=6.8.2), qml6-module-qtquick-controls (>=6.8.2), qml6-module-qtcore (>=6.8.2), qml6-module-qt-labs-settings (>=6.8.2), qml6-module-qtquick-dialogs (>=6.8.2), qml6-module-qtquick-shapes (>=6.8.2), libkf6coreaddons6 (>= 6.9.0), libkirigami6 (>= 6.9.0), qml6-module-org-kde-kirigami (>=6.9.0), libkf6i18n6 (>= 6.9.0), libkf6crash6 (>= 6.9.0)")
 
         # CPACK: RPM specific settings
         set(CPACK_RPM_PACKAGE_GROUP "Multimedia/Video")
-        set(CPACK_RPM_PACKAGE_REQUIRES "qt6-qtbase >= 6.7.2, qt6-qtbase-gui >= 6.7.2, qt6-qtdeclarative >= 6.7.2, qt6-qtsvg >= 6.7.2, qt6-qtquickcontrols2 >= 6.7.2, kf6-kcoreaddons >= 6.9.0, kf6-kirigami >= 6.9.0, kf6-kcrash >= 6.9.0")
+        # set(CPACK_RPM_PACKAGE_REQUIRES "qt6-qtbase >= 6.8.2, qt6-qtbase-gui >= 6.8.2, qt6-qtdeclarative >= 6.8.2, qt6-qtsvg >= 6.8.2, qt6-qtquickcontrols2 >= 6.8.2, kf6-kcoreaddons >= 6.9.0, kf6-kirigami >= 6.9.0, kf6-kcrash >= 6.9.0")
         set(CPACK_RPM_COMPRESSION_TYPE ${COMPRESION_TYPE})
 
     elseif(WIN32)

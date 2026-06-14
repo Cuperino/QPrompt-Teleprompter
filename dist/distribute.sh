@@ -30,7 +30,7 @@ elif [[ "$OSTYPE" == "darwin"* ]]; then
     COMPILER="macos"
 elif [[ "$OSTYPE" == "win32" || "$OSTYPE" == "msys" ]]; then
     PLATFORM="windows"
-    COMPILER="msvc2019_64"
+    COMPILER="msvc2022_64"
 elif [[ "$OSTYPE" == "freebsd"* ]]; then
     PLATFORM="freebsd"
     COMPILER="gcc"
@@ -44,7 +44,7 @@ usage: $0 <CMAKE_BUILD_TYPE> <CMAKE_PREFIX_PATH> [<QT_MAJOR_VERSION> | ] [CLEAR 
 
 Defaults:
  * CMAKE_BUILD_TYPE: "Release"
- * CMAKE_PREFIX_PATH: "~/Qt/6.7.2/$COMPILER/"
+ * CMAKE_PREFIX_PATH: "~/Qt/6.8.2/$COMPILER/"
  * QT_MAJOR_VERSION: 6
 
 Setup script for building QPrompt
@@ -62,11 +62,11 @@ CMAKE_PREFIX_PATH=$2
 if [ "$CMAKE_PREFIX_PATH" == "" ]
     then
     if [[ "$OSTYPE" == "win32" ]]; then
-        CMAKE_PREFIX_PATH="C:\\Qt\\6.7.2\\$COMPILER"
+        CMAKE_PREFIX_PATH="C:\\Qt\\6.8.2\\$COMPILER"
     elif [[ "$OSTYPE" == "msys" ]]; then
-        CMAKE_PREFIX_PATH="/c/Qt/6.7.2/$COMPILER"
+        CMAKE_PREFIX_PATH="/c/Qt/6.8.2/$COMPILER"
     else
-        CMAKE_PREFIX_PATH="~/Qt/6.7.2/$COMPILER"
+        CMAKE_PREFIX_PATH="~/Qt/6.8.2/$COMPILER"
     fi
 fi
 QT_MAJOR_VERSION=$3

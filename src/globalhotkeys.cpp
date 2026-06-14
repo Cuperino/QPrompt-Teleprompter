@@ -822,6 +822,7 @@ void GlobalHotkeys::m_setGlobalShortcut(Qt::Key key, Qt::KeyboardModifiers modif
     Q_UNUSED(key)
     Q_UNUSED(modifiers)
     Q_UNUSED(action)
+    Q_UNUSED(setAsDefault)
     return;
 #else
 
