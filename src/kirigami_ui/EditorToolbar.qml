@@ -1612,6 +1612,7 @@ ToolBar {
                                 overlayOpacitySlider.value = value;
                         }
                         overlayOpacityTextField.text = overlayOpacitySlider.value;
+                        overlayOpacitySlider.moved();
                     }
                     Keys.onDownPressed: {
                         const value = Number(overlayOpacityTextField.text) - 1;
@@ -1624,6 +1625,7 @@ ToolBar {
                                 overlayOpacitySlider.value = value;
                         }
                         overlayOpacityTextField.text = overlayOpacitySlider.value;
+                        overlayOpacitySlider.moved();
                     }
                 }
                 Label {
@@ -1734,6 +1736,7 @@ ToolBar {
                                 overlayBrightnessSlider.value = value;
                         }
                         overlayBrightnessTextField.text = overlayBrightnessSlider.value;
+                        overlayBrightnessSlider.moved();
                     }
                     Keys.onDownPressed: {
                         const value = Number(overlayBrightnessTextField.text) - 1;
@@ -1746,6 +1749,7 @@ ToolBar {
                                 overlayBrightnessSlider.value = value;
                         }
                         overlayBrightnessTextField.text = overlayBrightnessSlider.value;
+                        overlayBrightnessSlider.moved();
                     }
                 }
                 Label {
