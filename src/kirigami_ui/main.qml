@@ -967,16 +967,6 @@ Kirigami.ApplicationWindow {
         anchors.fill: parent
     }
 
-    Image {
-        // Hack to address back icon missing from sub-pages
-        visible: !(Qt.platform.os==="linux" || Qt.platform.os==="unix") && root.pageStack.layers.depth > 1
-        x: 65
-        y: 13
-        width: 22
-        height: 22
-        source: "qrc:/qt/qml/com/cuperino/qprompt/icons/go-previous-symbolic.svg"
-    }
-
     // Workaround for KDE bug 515463: Kirigami's AbstractApplicationHeader
     // setting topPadding/bottomPadding to Units.mediumSpacing, causing misalignments in Qt styles
     Binding {
