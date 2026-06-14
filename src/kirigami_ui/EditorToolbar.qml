@@ -1583,7 +1583,7 @@ ToolBar {
                     text: ""
                     onVisibleChanged: {
                         if (visible) {
-                            text = overlayOpacitySlider.value;
+                            text = Math.round(overlayOpacitySlider.value);
                             forceActiveFocus();
                         }
                     }
@@ -1705,7 +1705,7 @@ ToolBar {
                     text: ""
                     onVisibleChanged: {
                         if (visible) {
-                            text = overlayBrightnessSlider.value;
+                            text = Math.round(overlayBrightnessSlider.value);
                             forceActiveFocus();
                         }
                     }
