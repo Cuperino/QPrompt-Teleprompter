@@ -193,12 +193,6 @@ if (WASM)
         fonts/icons/fontello.ttf
         fonts/title/Dyuthi-QPrompt.ttf
         fonts/editor/LibertinusSans-Regular.otf
-        fonts/editor/OpenDyslexic-Bold.otf
-        fonts/editor/ScheherazadeNew/ScheherazadeNew-Regular.ttf
-        fonts/editor/Kalpurush/Kalpurush.ttf
-        fonts/editor/Palanquin-Regular.ttf
-        # fonts/editor/Libertinus/static/OTF/LibertinusSerif-Regular.otf
-        fonts/editor/SourceHanSans/SourceHanSans-Regular.ttc
         fonts/editor/noto-emoji/NotoColorEmoji-COLRv1.ttf
     )
 else()
@@ -222,6 +216,12 @@ foreach(file IN LISTS font_files)
 endforeach()
 
 # Documents
+if (WASM)
+    set(document_files
+        documents/untitled.html
+        documents/welcome_en.html
+    )
+else()
 set(document_files
     documents/untitled.html
     documents/welcome_ar.html
@@ -245,6 +245,7 @@ set(document_files
     documents/welcome_tr.html
     documents/welcome_zh.html
 )
+endif()
 set_source_files_properties(documents/untitled.html PROPERTIES QT_RESOURCE_ALIAS documents/blank.html)
 
 set(icon_files
