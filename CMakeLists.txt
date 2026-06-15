@@ -161,16 +161,60 @@ if(WIN32 OR APPLE OR ANDROID OR WASM OR USE_GIT_DEPENDENCIES_ONLY)
     # defaults to C++20 when CMAKE_CXX_STANDARD is unset, so without this the
     # frameworks would inherit our 17 and fail to compile.
     set(CMAKE_CXX_STANDARD 20)
-    if(NOT WASM)
-        FetchContent_Declare(
-          CoreAddons
-          GIT_REPOSITORY "${CMAKE_SOURCE_DIR}/3rdparty/kcoreaddons"
-          GIT_TAG        "v${KF_PREFFERED_VERSION}"
-          SOURCE_DIR submodules/kcoreaddons
-        )
-        FetchContent_MakeAvailable(CoreAddons)
-    else()
+    # Emscripten isn't on KDE Frameworks' list of supported platforms, so its
+    # platform check would abort configuration of the bundled frameworks. Bypass
+    # it so both KCoreAddons and Kirigami can be built for WASM.
+    if(WASM)
         set(KF_IGNORE_PLATFORM_CHECK ON)
+        # KCoreAddons builds Shiboken/PySide Python bindings by default, which
+        # are meaningless for a WASM target and require host-only Python
+        # development packages. Force them off before the framework configures.
+        set(BUILD_PYTHON_BINDINGS OFF CACHE BOOL "" FORCE)
+        # Emscripten identifies as UNIX, so KCoreAddons would default USE_DBUS
+        # ON and look for the Qt6DBus module, which Qt for WASM does not ship.
+        set(USE_DBUS OFF CACHE BOOL "" FORCE)
+        # KCoreAddons probes for dladdr() with check_symbol_exists(); on
+        # Emscripten the probe fails and leaves HAVE_DLADDR empty, which makes
+        # the framework's add_feature_info(dladdr ${HAVE_DLADDR} ...) call abort
+        # with too few arguments. Seed the cache so the probe is skipped and the
+        # value stays a defined boolean; dladdr-based libexec lookup has no
+        # meaning on WASM anyway.
+        set(HAVE_DLADDR 0 CACHE INTERNAL "")
+        # Both KCoreAddons and Kirigami unconditionally include(ECMGenerateQDoc),
+        # which creates global doc targets without an include guard. Building
+        # both frameworks in one tree then fails with duplicate-target errors, so
+        # shadow the module with a no-op shim (see cmake/wasm-shims).
+        list(PREPEND CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake/wasm-shims")
+    endif()
+    FetchContent_Declare(
+      CoreAddons
+      GIT_REPOSITORY "${CMAKE_SOURCE_DIR}/3rdparty/kcoreaddons"
+      GIT_TAG        "v${KF_PREFFERED_VERSION}"
+      SOURCE_DIR submodules/kcoreaddons
+    )
+    FetchContent_MakeAvailable(CoreAddons)
+    if(WASM)
+        # Several KCoreAddons translation units cannot be built for Emscripten,
+        # so drop them from the bundled library. None of these classes are used
+        # by Kirigami or QPrompt (which only needs KAboutData), so removing their
+        # sources leaves no unresolved references:
+        #   * KSharedDataCache (kshareddatacache/ksdclock/ksdcmemory) relies on
+        #     POSIX mmap()/mmap64(); Qt for WASM has no shared memory.
+        #   * KProcess subclasses QProcess and KSandbox/KListOpenFilesJob/
+        #     KProcessList drive it; Qt for WASM disables QProcess. kprocess.h
+        #     must leave SOURCES too so AUTOMOC does not try to moc the broken
+        #     QProcess subclass.
+        #   * KFormat's relative-date formatting needs QTimeZone/QDateTime
+        #     time-zone APIs that our Qt for WASM build is compiled without.
+        #   * KFileSystemType has no implementation for non-Linux/BSD/Windows
+        #     UNIX platforms, and its only in-tree user (KDirWatch) is not pulled
+        #     in by Kirigami or QPrompt.
+        # The remaining *_unix files (kuser, kshell, kmacroexpander) compile
+        # cleanly and are kept.
+        get_target_property(_kca_sources KF6CoreAddons SOURCES)
+        list(FILTER _kca_sources EXCLUDE REGEX
+            "((kshareddatacache|ksdclock|ksdcmemory|klistopenfilesjob_unix|kprocesslist_unix|kprocess|ksandbox|kformat|kformatprivate|kfilesystemtype)\\.cpp|kprocess\\.h)$")
+        set_target_properties(KF6CoreAddons PROPERTIES SOURCES "${_kca_sources}")
     endif()
     if(ANDROID OR IOS)
         # Prevent Kirigami from finding and using OpenMP on Android and iOS.

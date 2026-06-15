@@ -439,6 +439,7 @@ elseif (WASM)
         Qt${QT_VERSION_MAJOR}::Svg
         Qt${QT_VERSION_MAJOR}::Qml
         Qt${QT_VERSION_MAJOR}::QuickControls2
+        KF${QT_VERSION_MAJOR}::CoreAddons
         KF${QT_VERSION_MAJOR}::Kirigami
         ${KIRIGAMI_STATIC_QML_PLUGINS}
     )
