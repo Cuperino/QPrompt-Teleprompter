@@ -103,7 +103,7 @@ ToolBar {
     readonly property bool showingFormattingTools: parseInt(viewport.prompter.state)!==Prompter.States.Editing && (!toolbar.hideFormattingToolsWhilePrompting || editor.focus)
 
     // Hide toolbar when read region is set to bottom and viewport.prompter is not in editing state.
-    enabled: !(parseInt(viewport.prompter.state)!==Prompter.States.Editing && (overlay.atBottom && !viewport.forcedOrientation || root.fullScreenOrFakeFullScreen && !editor.focus))
+    enabled: !(parseInt(viewport.prompter.state)!==Prompter.States.Editing && (overlay.atBottom && !viewport.forcedOrientation || (root.fullScreenOrFakeFullScreen && Qt.platform.os!=="wasm") && !editor.focus))
     height: enabled ? implicitHeight : 0
     //Behavior on height {
     //    id: height
@@ -596,22 +596,27 @@ ToolBar {
                     onTriggered: viewport.prompter.document.fontFamily = westernSeriousSansfFont.name
                 }
                 MenuItem {
+                    enabled: Qt.platform.os!=="wasm"
                     text: qsTr("OpenDyslexic (Roman)", "FontName (Translatable font details)")
                     onTriggered: viewport.prompter.document.fontFamily = westernDyslexicFont.name
                 }
                 MenuItem {
+                    enabled: Qt.platform.os!=="wasm"
                     text: qsTr("Source Han Sans (CH, JP, KO)", "FontName (Translatable font details)")
                     onTriggered: viewport.prompter.document.fontFamily = asianSeriousSansFont.name
                 }
                 MenuItem {
+                    enabled: Qt.platform.os!=="wasm"
                     text: qsTr("Scheherazade New (Arabic)", "FontName (Translatable font details)")
                     onTriggered: viewport.prompter.document.fontFamily = arabicHumaneSansFont.name
                 }
                 MenuItem {
+                    enabled: Qt.platform.os!=="wasm"
                     text: qsTr("Palanquin (Devangari)", "FontName (Translatable font details)")
                     onTriggered: viewport.prompter.document.fontFamily = devanagariSeriousSansFont.name
                 }
                 MenuItem {
+                    enabled: Qt.platform.os!=="wasm"
                     text: qsTr("Kalpurush (Bengali)", "FontName (Translatable font details)")
                     onTriggered: viewport.prompter.document.fontFamily = bengaliHumaneSerifFont.name
                 }
