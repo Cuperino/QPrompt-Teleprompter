@@ -47,7 +47,7 @@ Item {
     property double __overlayOpacity: 0.4
     property double __overlayBrightness: 2 / 3
     readonly property bool overlayStaysInBackground: false
-    readonly property bool showingControls: root.__isMobile || root.visibility===ApplicationWindow.FullScreen || (overlay.atTop && parseInt(prompter.state)!==Prompter.States.Editing)
+    readonly property bool showingControls: root.__isMobile || (root.visibility===ApplicationWindow.FullScreen && Qt.platform.os!=="wasm") || (overlay.atTop && parseInt(prompter.state)!==Prompter.States.Editing)
     readonly property bool noDistractingAnimation: parseInt(prompter.state)===Prompter.States.Editing || parseInt(prompter.state)===Prompter.States.Standby
 
     transform: Rotation {
