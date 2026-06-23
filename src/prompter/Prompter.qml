@@ -278,6 +278,12 @@ Flickable {
         property alias url: ws.urlString
         property alias password: ws.password
     }
+    // Off by default so an untrusted document can't run sys:// commands unprompted.
+    property bool systemCommandsEnabled: false
+    Settings {
+        category: "system"
+        property alias enabled: prompter.systemCommandsEnabled
+    }
     Connections {
         target: AppController
         function interalFocusElsewhere() {
@@ -412,7 +418,7 @@ Flickable {
                     }
                     ws.sendTextMessage(JSON.stringify(req));
                 }
-                else if (m.url.startsWith("sys://"))
+                else if (systemCommandsEnabled && m.url.startsWith("sys://"))
                     qmlutil.run(m.url.slice(6));
             }
             q = p;
