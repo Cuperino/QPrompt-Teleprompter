@@ -1117,7 +1117,7 @@ QPoint DocumentHandler::search(const QString &subString, const bool next, const 
         else
             cursor = this->textDocument()->find(searchRegEx, this->selectionStart(), QTextDocument::FindCaseSensitively);
         // If no more results, go to the corresponding start position and do the search once more
-        if (cursor.selectionStart() == -1 && cursor.selectionStart() == -1 && cursor.selectionEnd() == -1) {
+        if (loop && (cursor.selectionStart() == -1 && cursor.selectionStart() == -1 && cursor.selectionEnd() == -1)) {
             if (reverse)
                 cursor =
                     this->textDocument()->find(searchRegEx, textDocument()->characterCount(), QTextDocument::FindBackward | QTextDocument::FindCaseSensitively);
