@@ -339,7 +339,7 @@ ToolBar {
                 font.pointSize: 13
                 focusPolicy: Qt.TabFocus
                 enabled: viewport.prompter.editor.canPaste
-                onClicked: viewport.prompter.editor.paste()
+                onClicked: viewport.prompter.document.paste()
             }
             ToolSeparator {
                 contentItem.visible: mobileOrSmallScreen ? editRow.y === alignmentRowMobile.y : editRow.y === formatRow.y
