@@ -13,6 +13,9 @@
 [submodule "3rdparty/kcrash"]
 	path = 3rdparty/kcrash
 	url = https://invent.kde.org/frameworks/kcrash.git
+[submodule "3rdparty/breeze-icons"]
+	path = 3rdparty/breeze-icons
+	url = https://invent.kde.org/frameworks/breeze-icons.git
 [submodule "3rdparty/QHotkey"]
 	path = 3rdparty/QHotkey
 	url = https://github.com/Cuperino/QHotkey.git
