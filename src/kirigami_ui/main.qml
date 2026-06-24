@@ -683,7 +683,7 @@ Kirigami.ApplicationWindow {
             Labs.MenuItem {
                 text: qsTr("&Paste", "Global menu and editor context menu actions")
                 enabled: root.pageStack.currentItem.editor.canPaste
-                onTriggered: root.pageStack.currentItem.editor.paste()
+                onTriggered: root.pageStack.currentItem.document.paste()
             }
         },
 
