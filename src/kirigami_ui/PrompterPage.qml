@@ -1223,6 +1223,22 @@ Kirigami.Page {
                     }
                 }
             }
+            CheckBox {
+                id: systemCommandsCheck
+                Layout.fillWidth: true
+                visible: ['android', 'ios', 'wasm'].indexOf(Qt.platform.os) === -1
+                text: qsTr("Allow sys:// markers to run system commands", "Security opt-in beneath the marker command field. Off by default; when checked, sys:// markers in a document may execute local system commands as the prompter scrolls past them.")
+                checked: prompter.systemCommandsEnabled
+                onToggled: prompter.systemCommandsEnabled = checked
+                // Wrap rather than elide, so the label fits the fixed-width sheet in any
+                // translation — Text.Wrap also breaks overlong words (e.g. German compounds).
+                contentItem: Label {
+                    text: systemCommandsCheck.text
+                    wrapMode: Text.Wrap
+                    verticalAlignment: Text.AlignVCenter
+                    leftPadding: systemCommandsCheck.indicator.width + systemCommandsCheck.spacing
+                }
+            }
         }
     }
 
