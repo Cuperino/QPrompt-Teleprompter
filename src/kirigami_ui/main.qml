@@ -176,6 +176,10 @@ Kirigami.ApplicationWindow {
         root.pageStack.layers.clear()
         root.pageStack.layers.push(remoteControlPageComponent, {})
     }
+    function loadNewsroomPage() {
+        root.pageStack.layers.clear()
+        root.pageStack.layers.push(newsroomPageComponent, {})
+    }
     function loadTelemetryPage() {
         root.pageStack.layers.clear()
         root.pageStack.layers.push(telemetryPageComponent)
@@ -325,6 +329,12 @@ Kirigami.ApplicationWindow {
                     visible: ['android', 'ios', 'tvos', 'wasm'].indexOf(Qt.platform.os)===-1
                     icon.name: "akonadiconsole"
                     onTriggered: loadPathsPage();
+                }
+                Kirigami.Action {
+                    text: qsTr("Newsroom (MOS)", "Main menu actions. Load MOS newsroom integration settings page.")
+                    visible: AppController.mos !== undefined && AppController.mos !== null
+                    icon.name: "network-connect"
+                    onTriggered: loadNewsroomPage();
                 }
                 Kirigami.Action {
                     text: qsTr("Layout direction", "Main menu actions. Opens dialog for choosing layout direction.")
@@ -1068,6 +1078,10 @@ Kirigami.ApplicationWindow {
     Component {
         id: pathsPageComponent
         PathsPage {}
+    }
+    Component {
+        id: newsroomPageComponent
+        NewsroomPage {}
     }
     // Component {
     //     id: remoteControlPageComponent

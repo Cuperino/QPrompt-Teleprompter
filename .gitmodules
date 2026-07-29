@@ -22,3 +22,6 @@
 [submodule "3rdparty/hunspell"]
 	path = 3rdparty/hunspell
 	url = https://github.com/hunspell/hunspell.git
+[submodule "3rdparty/ImaginaryMOS"]
+	path = 3rdparty/ImaginaryMOS
+	url = git@github.com:Cuperino/ImaginaryMOS.git

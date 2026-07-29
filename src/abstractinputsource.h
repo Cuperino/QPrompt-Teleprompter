@@ -45,6 +45,12 @@ signals:
     void skipForwards(bool checked=false);
     void previousMarker(bool checked=false);
     void nextMarker(bool checked=false);
+    // Absolute controls for external systems (e.g. MOS roCtrl), where a
+    // toggle's outcome would depend on state the controller cannot see.
+    void readyPrompter(bool checked=false);
+    void startPrompter(bool checked=false);
+    void pausePrompter(bool checked=false);
+    void signalCue(QString description);
 protected:
     AppController *m_controller;
     virtual void m_initializeSource();

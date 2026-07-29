@@ -21,10 +21,17 @@
 
 #include "appcontroller.h"
 
+#if defined(QPROMPT_MOS_ENABLED)
+#include "mosinputsource.h"
+#endif
+
 AppController::AppController(QObject *parent) : QObject(parent)
     , m_hotkeys(new GlobalHotkeys(this))
 #if defined(Q_OS_WASM)
     , m_wasm(new WasmIntegration(this))
+#endif
+#if defined(QPROMPT_MOS_ENABLED)
+    , m_mos(new MosInputSource(this))
 #endif
 {
     QQmlEngine::setObjectOwnership(this, QQmlEngine::CppOwnership);
@@ -51,5 +58,12 @@ void AppController::setGlobalShortcut(Qt::Key key, Qt::KeyboardModifiers modifie
 WasmIntegration *AppController::wasm() const
 {
     return m_wasm;
+}
+#endif
+
+#if defined(QPROMPT_MOS_ENABLED)
+MosInputSource *AppController::mos() const
+{
+    return m_mos;
 }
 #endif

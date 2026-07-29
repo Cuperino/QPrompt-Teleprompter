@@ -101,12 +101,20 @@ endif()
 if(WASM)
     list(APPEND qprompt_cpp wasmintegration.h wasmintegration.cpp)
 endif()
+if(QPROMPT_MOS)
+    list(APPEND qprompt_cpp
+        mossessionsettings.h
+        mosinputsource.h mosinputsource.cpp
+        mosworker.h mosworker.cpp
+    )
+endif()
 
 if (WASM)
     set(qprompt_frontend_sources
         # Kirigami UI Frontend
         kirigami_ui/main.qml
         kirigami_ui/AboutPage.qml
+        kirigami_ui/NewsroomPage.qml
         kirigami_ui/PathsPage.qml
         kirigami_ui/PrompterPage.qml
         kirigami_ui/EditorToolbar.qml
@@ -126,6 +134,7 @@ else()
         kirigami_ui/+android/main.qml
         kirigami_ui/+windows/main.qml
         kirigami_ui/AboutPage.qml
+        kirigami_ui/NewsroomPage.qml
         kirigami_ui/PathsPage.qml
         kirigami_ui/PrompterPage.qml
         kirigami_ui/TelemetryPage.qml
@@ -483,8 +492,12 @@ else()
         Qt${QT_VERSION_MAJOR}::Widgets
         KF${QT_VERSION_MAJOR}::CoreAddons
         KF${QT_VERSION_MAJOR}::Kirigami
-        KF${QT_VERSION_MAJOR}::GlobalAccel
     )
+    # Not provided by the bundled-frameworks path (USE_GIT_DEPENDENCIES_ONLY),
+    # which only fetches CoreAddons and Kirigami.
+    if(TARGET KF${QT_VERSION_MAJOR}::GlobalAccel)
+        target_link_libraries(${PROJECT_NAME} PRIVATE KF${QT_VERSION_MAJOR}::GlobalAccel)
+    endif()
 endif()
 
 if(APPLE AND NOT IOS)
@@ -497,6 +510,22 @@ if (QHotkey_FOUND)
     target_link_libraries(${PROJECT_NAME} PRIVATE
         qhotkey
     )
+endif()
+
+if(QPROMPT_MOS)
+    target_compile_definitions(${PROJECT_NAME} PRIVATE QPROMPT_MOS_ENABLED)
+    if(NOT ANDROID AND NOT IOS AND NOT WASM)
+        # Legacy MOS 2.8 TCP transport, desktop only (matches IMOS_ENABLE_COMPAT28).
+        target_compile_definitions(${PROJECT_NAME} PRIVATE QPROMPT_MOS_TCP28)
+    endif()
+    target_link_libraries(${PROJECT_NAME} PRIVATE
+        imos::imos
+        imos::transports
+    )
+    if(WASM)
+        # Required by the ImaginaryMOS Emscripten WebSocket transport.
+        target_link_options(${PROJECT_NAME} PRIVATE -lwebsocket.js)
+    endif()
 endif()
 
 if(HUNSPELL_ENABLED)

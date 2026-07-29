@@ -44,4 +44,8 @@ void AbstractInputSource::m_initializeSource()
     connect(this, &AbstractInputSource::skipForwards, m_controller, &AppController::skipForwards);
     connect(this, &AbstractInputSource::previousMarker, m_controller, &AppController::previousMarker);
     connect(this, &AbstractInputSource::nextMarker, m_controller, &AppController::nextMarker);
+    connect(this, &AbstractInputSource::readyPrompter, m_controller, &AppController::readyPrompter);
+    connect(this, &AbstractInputSource::startPrompter, m_controller, &AppController::startPrompter);
+    connect(this, &AbstractInputSource::pausePrompter, m_controller, &AppController::pausePrompter);
+    connect(this, &AbstractInputSource::signalCue, m_controller, &AppController::signalCue);
 }

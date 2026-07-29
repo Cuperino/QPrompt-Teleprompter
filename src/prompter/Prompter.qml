@@ -355,6 +355,44 @@ Flickable {
             if (!interalFocusElsewhere())
                 prompter.setVelocity(velocity);
         }
+        // Absolute controls for external systems (MOS roCtrl). Deliberate
+        // remote commands, so they act regardless of internal focus.
+        function onReadyPrompter() {
+            // READY: leave edit mode and hold still until EXECUTE.
+            if (parseInt(prompter.state)===Prompter.States.Editing)
+                prompter.toggle();
+            if (parseInt(prompter.state)===Prompter.States.Prompting && prompter.__play && prompter.__i!==0) {
+                prompter.__play = false;
+                prompter.position = prompter.position;
+            }
+        }
+        function onStartPrompter() {
+            // EXECUTE: start or resume scrolling; idempotent while playing.
+            const state = parseInt(prompter.state);
+            if (state===Prompter.States.Editing || state===Prompter.States.Standby)
+                prompter.toggle();
+            if (parseInt(prompter.state)===Prompter.States.Countdown)
+                // On-air now: skip the countdown.
+                prompter.toggle();
+            if (parseInt(prompter.state)===Prompter.States.Prompting) {
+                if (prompter.__i===0)
+                    prompter.setVelocity(1);
+                else if (!prompter.__play) {
+                    prompter.__play = true;
+                    prompter.position = prompter.__destination;
+                }
+            }
+        }
+        function onPausePrompter() {
+            // PAUSE: hold, never resume (unlike pause(), which toggles).
+            if (parseInt(prompter.state)===Prompter.States.Prompting && prompter.__play && prompter.__i!==0) {
+                prompter.__play = false;
+                prompter.position = prompter.position;
+            }
+        }
+        function onSignalCue(description) {
+            showPassiveNotification(description);
+        }
     }
     WebSocket{
         id: ws
@@ -643,11 +681,14 @@ Flickable {
         if (parseInt(prompter.state)===Prompter.States.Prompting)
             __iBackup = 0
         setCursorAtCurrentPosition()
-        editor.cursorPosition = document.previousMarker(editor.cursorPosition).position
+        const marker = document.previousMarker(editor.cursorPosition)
+        editor.cursorPosition = marker.position
         prompter.position = editor.cursorRectangle.y - (overlay.__readRegionPlacement*(overlay.height-overlay.readRegionHeight)+overlay.readRegionHeight/2) + 1
         __i = i
         if (prompter.__play && i!==0)
             prompter.position = prompter.__destination
+        // Report the crossing so input sources (e.g. MOS roItemCue) can cue on it.
+        AppController.markerPassed(marker.position, marker.text ? marker.text : "")
     }
 
     function goToNextMarker() {
@@ -659,13 +700,16 @@ Flickable {
         const initialPrompterPosition = prompter.position;
         prompter.position += editor.cursorRectangle.height
         setCursorAtCurrentPosition()
-        editor.cursorPosition = document.nextMarker(editor.cursorPosition).position
+        const marker = document.nextMarker(editor.cursorPosition)
+        editor.cursorPosition = marker.position
         prompter.position = editor.cursorRectangle.y - (overlay.__readRegionPlacement*(overlay.height-overlay.readRegionHeight)+overlay.readRegionHeight/2) + 1
         if (document.markers().rowCount()===0 || (initialPrompterPosition >= prompter.position))
             prompter.position = editor.height + fontSize - __jitterMargin - topMargin;
         __i = i
         if (prompter.__play && i!==0)
             prompter.position = prompter.__destination
+        // Report the crossing so input sources (e.g. MOS roItemCue) can cue on it.
+        AppController.markerPassed(marker.position, marker.text ? marker.text : "")
     }
 
     function setContentWidth() {

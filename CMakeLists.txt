@@ -20,7 +20,7 @@
 #**************************************************************************
 
 
-cmake_minimum_required(VERSION 3.22)
+cmake_minimum_required(VERSION 3.24)
 
 include(FetchContent)
 
@@ -38,14 +38,17 @@ project(qprompt
 option(WASM OFF)
 option(USE_GIT_DEPENDENCIES_ONLY OFF)
 option(SOURCE_DEPENDENCIES_EXCLUSIVELY_FROM_SYSTEM OFF)  # Used only on Linux builds for now
+option(QPROMPT_MOS "Build MOS newsroom integration (ImaginaryMOS)" ON)
+option(QPROMPT_MOS_BUILD_TESTS "Build the MOS manual-test NCS peer" OFF)
 
 # Find includes in corresponding build directories
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 # Instruct CMake to create code from Qt designer ui files
 set(CMAKE_AUTOUIC ON)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
-# Leave C++ standard at version 17 to build Ubuntu 18.04 compatible AppImage
-set(CMAKE_CXX_STANDARD 17)
+# C++20: required by the bundled KDE Frameworks 6.24 and ImaginaryMOS. The
+# Qt 6.8.2 floor already rules out toolchains without C++20 support.
+set(CMAKE_CXX_STANDARD 20)
 # Instruct CMake to run moc automatically when needed
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
@@ -148,19 +151,16 @@ find_package(Qt${QT_VERSION_MAJOR} ${QT_MIN_VERSION} REQUIRED NO_MODULE COMPONEN
 )
 
 if(ANDROID OR IOS OR WASM)
-    set(BUILD_SHARED_LIBS OFF)
+    # Cache (not just normal) variable: ECM's KDECMakeSettings — included by
+    # the bundled frameworks — creates a BUILD_SHARED_LIBS=TRUE cache entry,
+    # which would flip the frameworks to shared and break the static-only
+    # WASM link (wasm-ld rejects the GNU-ld shared-lib flags).
+    set(BUILD_SHARED_LIBS OFF CACHE BOOL "" FORCE)
     set(DESKTOP_ENABLED OFF)
 endif()
 
 if(WIN32 OR APPLE OR ANDROID OR WASM OR USE_GIT_DEPENDENCIES_ONLY)
     set(BUILD_TESTING OFF)
-    # KDE Frameworks 6.24 use C++20 (e.g. std::span in Kirigami's scenegraph).
-    # QPrompt itself stays on C++17 (see CMAKE_CXX_STANDARD above) for broad
-    # AppImage compatibility, so we raise the standard only for the bundled
-    # frameworks built here and restore it right after. KDECompilerSettings only
-    # defaults to C++20 when CMAKE_CXX_STANDARD is unset, so without this the
-    # frameworks would inherit our 17 and fail to compile.
-    set(CMAKE_CXX_STANDARD 20)
     # Emscripten isn't on KDE Frameworks' list of supported platforms, so its
     # platform check would abort configuration of the bundled frameworks. Bypass
     # it so both KCoreAddons and Kirigami can be built for WASM.
@@ -180,12 +180,13 @@ if(WIN32 OR APPLE OR ANDROID OR WASM OR USE_GIT_DEPENDENCIES_ONLY)
         # value stays a defined boolean; dladdr-based libexec lookup has no
         # meaning on WASM anyway.
         set(HAVE_DLADDR 0 CACHE INTERNAL "")
-        # Both KCoreAddons and Kirigami unconditionally include(ECMGenerateQDoc),
-        # which creates global doc targets without an include guard. Building
-        # both frameworks in one tree then fails with duplicate-target errors, so
-        # shadow the module with a no-op shim (see cmake/wasm-shims).
-        list(PREPEND CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake/wasm-shims")
     endif()
+    # Both KCoreAddons and Kirigami unconditionally include(ECMGenerateQDoc),
+    # which creates global doc targets without an include guard. Building
+    # both frameworks in one tree then fails with duplicate-target errors, so
+    # shadow the module with a no-op shim (see cmake/wasm-shims). This bites
+    # on every platform that bundles both frameworks, not just WASM.
+    list(PREPEND CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake/wasm-shims")
     FetchContent_Declare(
       CoreAddons
       GIT_REPOSITORY "${CMAKE_SOURCE_DIR}/3rdparty/kcoreaddons"
@@ -236,8 +237,11 @@ if(WIN32 OR APPLE OR ANDROID OR WASM OR USE_GIT_DEPENDENCIES_ONLY)
       SOURCE_DIR submodules/kirigami
     )
     FetchContent_MakeAvailable(Kirigami)
-    # Restore QPrompt's own C++ standard for the targets defined afterwards.
-    set(CMAKE_CXX_STANDARD 17)
+    # KGlobalAccel stays a system package on Linux even when the frameworks
+    # above are bundled (e.g. libkf6globalaccel-dev on Debian).
+    if(UNIX AND NOT APPLE AND NOT ANDROID AND NOT IOS AND NOT WASM)
+        find_package(KF${QT_VERSION_MAJOR}GlobalAccel ${KF_MIN_VERSION})
+    endif()
 else()
     find_package(KF${QT_VERSION_MAJOR} ${KF_MIN_VERSION} REQUIRED COMPONENTS
         Kirigami
@@ -389,6 +393,39 @@ set(DESCRIPTION_FILE "DESCRIPTION.txt")
 list(APPEND DOCS ${LICENSE_FILE} ${README_FILE} ${DESCRIPTION_FILE} "COPYING.ASSETS")
 
 set(DOC_INSTALL_DIR "share/doc/qprompt")
+
+# MOS newsroom integration: the ImaginaryMOS protocol library (Apache-2.0,
+# one-way compatible with this project's GPLv3). Linked statically into the
+# app on every platform so no deployment or rpath handling is needed.
+if(QPROMPT_MOS)
+    # The pinned zlib/IXWebSocket submodules declare pre-3.5 CMake minimums
+    # that CMake 4.x refuses without this shim.
+    set(CMAKE_POLICY_VERSION_MINIMUM 3.5)
+    set(IMOS_BUILD_SHARED OFF)
+    set(IMOS_BUILD_STATIC ON)
+    set(IMOS_ENABLE_TLS OFF)   # ws:// for now; wss:// still works on WASM via the browser
+    set(IMOS_ENABLE_WS3 OFF)   # MOS 3.x SOAP transport is not used by QPrompt
+    if(ANDROID OR IOS OR WASM)
+        # Legacy MOS 2.8 TCP is exposed on desktop only; ImaginaryMOS
+        # hard-errors if it is left enabled for Emscripten.
+        set(IMOS_ENABLE_COMPAT28 OFF)
+    endif()
+    if(WASM)
+        # Multithreaded Qt for WASM compiles everything against shared
+        # memory; ImaginaryMOS links no Qt targets, so it would otherwise be
+        # built without -pthread and fail to link against the app's objects.
+        # Detect the Qt flavor rather than assume it.
+        get_target_property(_qt_platform_options Qt6::Platform INTERFACE_COMPILE_OPTIONS)
+        if(_qt_platform_options MATCHES "pthread")
+            add_compile_options(-pthread)
+            add_link_options(-pthread)
+        endif()
+    endif()
+    add_subdirectory(3rdparty/ImaginaryMOS)
+    if(QPROMPT_MOS_BUILD_TESTS AND NOT ANDROID AND NOT IOS AND NOT WASM AND NOT WIN32)
+        add_subdirectory(tests/mos/ncs-peer)
+    endif()
+endif()
 
 add_subdirectory(src)
 

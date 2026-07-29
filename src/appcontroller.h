@@ -29,6 +29,11 @@
 #include <QObject>
 #include <QQmlEngine>
 
+#if defined(QPROMPT_MOS_ENABLED)
+class MosInputSource;
+Q_MOC_INCLUDE("mosinputsource.h")
+#endif
+
 class AppController : public QObject
 {
     Q_OBJECT
@@ -36,6 +41,9 @@ class AppController : public QObject
     QML_SINGLETON
 #if defined(Q_OS_WASM)
     Q_PROPERTY(WasmIntegration *wasm READ wasm CONSTANT)
+#endif
+#if defined(QPROMPT_MOS_ENABLED)
+    Q_PROPERTY(MosInputSource *mos READ mos CONSTANT)
 #endif
 private:
     explicit AppController(QObject *parent = nullptr);
@@ -45,6 +53,9 @@ public:
     Q_INVOKABLE void setGlobalShortcut(Qt::Key key, Qt::KeyboardModifiers modifiers, GlobalHotkeys::Action action);
 #if defined(Q_OS_WASM)
     WasmIntegration *wasm() const;
+#endif
+#if defined(QPROMPT_MOS_ENABLED)
+    MosInputSource *mos() const;
 #endif
 signals:
     // Prompter
@@ -61,8 +72,20 @@ signals:
     void previousMarker();
     void nextMarker();
     void setVelocity(int velocity);
+    // Absolute controls for external systems (e.g. MOS roCtrl): enter
+    // standby, start or resume prompting, and surface an operator cue.
+    void readyPrompter();
+    void startPrompter();
+    void pausePrompter();
+    void signalCue(QString description);
+    // Emitted by the prompter (QML calls this signal directly) when the read
+    // line crosses a marker; input sources such as MOS listen to report cues.
+    void markerPassed(int index, QString name);
 private:
     GlobalHotkeys *m_hotkeys;
+#if defined(QPROMPT_MOS_ENABLED)
+    MosInputSource *m_mos;
+#endif
 #if defined(Q_OS_WASM)
     WasmIntegration *m_wasm;
 #endif
