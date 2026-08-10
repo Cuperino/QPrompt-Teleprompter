@@ -80,6 +80,10 @@ set(qprompt_cpp
     marker.hpp
     documenthandler.h documenthandler.cpp
     markersmodel.h markersmodel.cpp
+    scriptfollower.h scriptfollower.cpp
+    offlinespeechrecognizer.h
+    voskspeechrecognizer.h voskspeechrecognizer.cpp
+    voicefollowsession.h voicefollowsession.cpp
     abstractinputsource.h abstractinputsource.cpp
     globalhotkeys.h globalhotkeys.cpp
     appcontroller.h appcontroller.cpp
@@ -485,6 +489,11 @@ else()
         KF${QT_VERSION_MAJOR}::Kirigami
         KF${QT_VERSION_MAJOR}::GlobalAccel
     )
+endif()
+
+if(TARGET Qt${QT_VERSION_MAJOR}::Multimedia)
+    target_compile_definitions(${PROJECT_NAME} PRIVATE QPROMPT_HAVE_QT_MULTIMEDIA)
+    target_link_libraries(${PROJECT_NAME} PRIVATE Qt${QT_VERSION_MAJOR}::Multimedia)
 endif()
 
 if(APPLE AND NOT IOS)

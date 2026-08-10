@@ -50,6 +50,8 @@ Makefile
 # Build folders
 **/build*
 **/install*
+/package-stage/
+/*-smoke*.log
 *.flatpak-builder*
 /dist/Snapcraft/*.snap
 

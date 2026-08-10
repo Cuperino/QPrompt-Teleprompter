@@ -38,6 +38,7 @@ project(qprompt
 option(WASM OFF)
 option(USE_GIT_DEPENDENCIES_ONLY OFF)
 option(SOURCE_DEPENDENCIES_EXCLUSIVELY_FROM_SYSTEM OFF)  # Used only on Linux builds for now
+option(QPROMPT_BUILD_TESTS "Build QPrompt unit tests" OFF)
 
 # Find includes in corresponding build directories
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
@@ -147,6 +148,11 @@ find_package(Qt${QT_VERSION_MAJOR} ${QT_MIN_VERSION} REQUIRED NO_MODULE COMPONEN
     LinguistTools
 )
 
+# Voice following remains buildable without microphone support on platforms
+# where Qt Multimedia is unavailable. The QML session reports that condition
+# instead of making the entire application fail configuration.
+find_package(Qt${QT_VERSION_MAJOR} ${QT_MIN_VERSION} QUIET NO_MODULE COMPONENTS Multimedia)
+
 if(ANDROID OR IOS OR WASM)
     set(BUILD_SHARED_LIBS OFF)
     set(DESKTOP_ENABLED OFF)
@@ -161,6 +167,12 @@ if(WIN32 OR APPLE OR ANDROID OR WASM OR USE_GIT_DEPENDENCIES_ONLY)
     # defaults to C++20 when CMAKE_CXX_STANDARD is unset, so without this the
     # frameworks would inherit our 17 and fail to compile.
     set(CMAKE_CXX_STANDARD 20)
+    # Both KCoreAddons and Kirigami unconditionally include ECMGenerateQDoc,
+    # whose global targets collide when the frameworks share this build tree.
+    # QPrompt does not build their API documentation, so use the existing no-op
+    # shim for every bundled-framework build, not only WASM.
+    list(PREPEND CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake/wasm-shims")
+
     # Emscripten isn't on KDE Frameworks' list of supported platforms, so its
     # platform check would abort configuration of the bundled frameworks. Bypass
     # it so both KCoreAddons and Kirigami can be built for WASM.
@@ -180,11 +192,6 @@ if(WIN32 OR APPLE OR ANDROID OR WASM OR USE_GIT_DEPENDENCIES_ONLY)
         # value stays a defined boolean; dladdr-based libexec lookup has no
         # meaning on WASM anyway.
         set(HAVE_DLADDR 0 CACHE INTERNAL "")
-        # Both KCoreAddons and Kirigami unconditionally include(ECMGenerateQDoc),
-        # which creates global doc targets without an include guard. Building
-        # both frameworks in one tree then fails with duplicate-target errors, so
-        # shadow the module with a no-op shim (see cmake/wasm-shims).
-        list(PREPEND CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake/wasm-shims")
     endif()
     FetchContent_Declare(
       CoreAddons
@@ -392,6 +399,12 @@ set(DOC_INSTALL_DIR "share/doc/qprompt")
 
 add_subdirectory(src)
 
+if(QPROMPT_BUILD_TESTS)
+    enable_testing()
+    find_package(Qt${QT_VERSION_MAJOR} ${QT_MIN_VERSION} REQUIRED NO_MODULE COMPONENTS Test)
+    add_subdirectory(tests)
+endif()
+
 if (ANDROID)
     configure_file(${ANDROID_PACKAGE_SOURCE_DIR}/version.gradle.in ${CMAKE_BINARY_DIR}/version.gradle)
     # Also copy to the src subdirectory so the relative path from android-build-*/build.gradle works
@@ -408,6 +421,55 @@ if (WIN32 OR UNIX AND NOT APPLE) # AND NOT ANDROID
     install(FILES com.cuperino.qprompt.appdata.xml DESTINATION ${KDE_INSTALL_METAINFODIR})
     install(PROGRAMS com.cuperino.qprompt.desktop DESTINATION ${KDE_INSTALL_APPDIR})
     install(FILES ${DOCS} DESTINATION ${DOC_INSTALL_DIR})
+endif()
+
+# Bundle the Windows offline speech runtime and the initial English model so
+# an NSIS installation provides Voice Follow without a separate download or
+# development environment variables.
+if(WIN32)
+    option(QPROMPT_BUNDLE_VOSK "Bundle Vosk runtime and English model in Windows packages" ON)
+    set(QPROMPT_VOSK_ASSET_DIR "${CMAKE_BINARY_DIR}/voice-assets" CACHE PATH
+        "Directory prepared by scripts/setup-vosk-dev.ps1")
+
+    if(QPROMPT_BUNDLE_VOSK)
+        set(QPROMPT_VOSK_RUNTIME_DIR "${QPROMPT_VOSK_ASSET_DIR}/vosk-win64-0.3.45")
+        set(QPROMPT_VOSK_MODEL_NAME "vosk-model-small-en-us-0.15")
+        set(QPROMPT_VOSK_MODEL_DIR "${QPROMPT_VOSK_ASSET_DIR}/${QPROMPT_VOSK_MODEL_NAME}")
+        set(QPROMPT_VOSK_RUNTIME_FILES
+            "${QPROMPT_VOSK_RUNTIME_DIR}/libvosk.dll"
+            "${QPROMPT_VOSK_RUNTIME_DIR}/libgcc_s_seh-1.dll"
+            "${QPROMPT_VOSK_RUNTIME_DIR}/libstdc++-6.dll"
+            "${QPROMPT_VOSK_RUNTIME_DIR}/libwinpthread-1.dll"
+        )
+
+        foreach(required_path IN LISTS QPROMPT_VOSK_RUNTIME_FILES)
+            if(NOT EXISTS "${required_path}")
+                message(FATAL_ERROR
+                    "Voice Follow packaging asset is missing: ${required_path}\n"
+                    "Run scripts/setup-vosk-dev.ps1 before configuring QPrompt.")
+            endif()
+        endforeach()
+        if(NOT EXISTS "${QPROMPT_VOSK_MODEL_DIR}/conf/model.conf")
+            message(FATAL_ERROR
+                "Voice Follow model is missing: ${QPROMPT_VOSK_MODEL_DIR}\n"
+                "Run scripts/setup-vosk-dev.ps1 before configuring QPrompt.")
+        endif()
+        if(NOT EXISTS "${QPROMPT_VOSK_ASSET_DIR}/VOSK-COPYING")
+            message(FATAL_ERROR
+                "Vosk license file is missing: ${QPROMPT_VOSK_ASSET_DIR}/VOSK-COPYING\n"
+                "Run scripts/setup-vosk-dev.ps1 before configuring QPrompt.")
+        endif()
+
+        install(FILES ${QPROMPT_VOSK_RUNTIME_FILES}
+            DESTINATION "${CMAKE_INSTALL_BINDIR}"
+            COMPONENT Unspecified)
+        install(DIRECTORY "${QPROMPT_VOSK_MODEL_DIR}/"
+            DESTINATION "${CMAKE_INSTALL_BINDIR}/models/${QPROMPT_VOSK_MODEL_NAME}"
+            COMPONENT Unspecified)
+        install(FILES "${QPROMPT_VOSK_ASSET_DIR}/VOSK-COPYING"
+            DESTINATION "${DOC_INSTALL_DIR}/licenses"
+            COMPONENT Unspecified)
+    endif()
 endif()
 
 set(CMAKE_INSTALL_MFC_LIBRARIES On)
@@ -452,9 +514,10 @@ if(CMAKE_SOURCE_DIR STREQUAL CMAKE_CURRENT_SOURCE_DIR)
 
     elseif(WIN32)
         set(CPACK_GENERATOR "NSIS")
-        # Hunspell dictionaries are installed as user-selectable NSIS
-        # components, which requires turning off monolithic install.
-        set(CPACK_MONOLITHIC_INSTALL OFF)
+        # Qt's generated deployment script runs during a full install. Keep
+        # the Windows package monolithic so Qt, QML, Vosk and the speech model
+        # are always installed together as one self-contained application.
+        set(CPACK_MONOLITHIC_INSTALL ON)
         set(CPACK_PACKAGE_EXECUTABLES "QPrompt" "QPrompt")
         set(CPACK_RESOURCE_FILE_LICENSE ${CMAKE_SOURCE_DIR}/${LICENSE_FILE})
         set(CPACK_NSIS_EXECUTABLES_DIRECTORY ${BIN_INSTALL_DIR})
