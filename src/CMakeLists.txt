@@ -304,6 +304,17 @@ set_target_properties(${PROJECT_NAME} PROPERTIES
     # See issue: https://bugreports.qt.io/browse/QTBUG-117992?focusedId=750577&page=com.atlassian.jira.plugin.system.issuetabpanels%3Acomment-tabpanel#comment-750577
 )
 
+if(APPLE AND NOT IOS)
+    # CMake's built-in default Info.plist template has no NSMicrophoneUsageDescription
+    # key. Without one, macOS denies the process microphone access outright and
+    # silently - no prompt, no error - so Voice Follow's QAudioSource never receives
+    # any samples. The iOS branch below sets its own MACOSX_BUNDLE_INFO_PLIST later,
+    # overriding this for that target.
+    set_target_properties(${PROJECT_NAME} PROPERTIES
+        MACOSX_BUNDLE_INFO_PLIST "${CMAKE_CURRENT_SOURCE_DIR}/Info.plist.in"
+    )
+endif()
+
 # Qt 6.10+ creates Android executables as MODULE libraries. KDECMakeSettings strips
 # the "lib" prefix from MODULE targets, but androiddeployqt expects it.
 # Also place the binary in BINARY_DIR so it's next to the deployment settings and

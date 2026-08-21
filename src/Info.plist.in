@@ -40,5 +40,7 @@
     <string>True</string>
     <key>NSHumanReadableCopyright</key>
     <string>${MACOSX_BUNDLE_COPYRIGHT}</string>
+    <key>NSMicrophoneUsageDescription</key>
+    <string>QPrompt uses the microphone for Voice Follow, which advances the script by listening for the words you're speaking.</string>
 </dict>
 </plist>
