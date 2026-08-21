@@ -53,6 +53,7 @@ SIGNING_IDENTITY="-"
 JOBS="$(sysctl -n hw.ncpu 2>/dev/null || echo 4)"
 CLEAN=false
 RUN_AFTER_BUILD=false
+MAKE_PACKAGE=false
 
 usage() {
     cat <<EOF
@@ -70,6 +71,7 @@ Options:
   --jobs <n>             Parallel build jobs (default: number of CPUs)
   --clean                Remove the build directory first
   --run                  Launch QPrompt.app once the build succeeds
+  --package              Wrap the signed .app into a redistributable .dmg
   -h, --help             Show this help
 EOF
 }
@@ -83,6 +85,7 @@ while [ $# -gt 0 ]; do
         --jobs) JOBS="$2"; shift 2 ;;
         --clean) CLEAN=true; shift ;;
         --run) RUN_AFTER_BUILD=true; shift ;;
+        --package) MAKE_PACKAGE=true; shift ;;
         -h|--help) usage; exit 0 ;;
         *) echo "Unknown argument: $1" >&2; usage >&2; exit 1 ;;
     esac
@@ -182,6 +185,30 @@ codesign -v "$APP_BUNDLE"
 
 echo ""
 echo "Built app: $APP_BUNDLE"
+
+if [ "$MAKE_PACKAGE" = true ]; then
+    # CMakeLists.txt already configures CPack's DragNDrop generator for
+    # macOS, but `cpack` stages its own fresh `cmake --install` internally
+    # and would hit the exact rpath/signing issues fixed above all over
+    # again, with no hook to run the fix-up in between. Wrap the bundle
+    # we already built, fixed, and signed into a .dmg directly instead.
+    PROJECT_VERSION="$(grep -m1 'set(RELEASE_SERVICE_VERSION_MAJOR' "$SOURCE_DIR/CMakeLists.txt" | grep -o '"[0-9]*"' | tr -d '"')"
+    PROJECT_VERSION="$PROJECT_VERSION.$(grep -m1 'set(RELEASE_SERVICE_VERSION_MINOR' "$SOURCE_DIR/CMakeLists.txt" | grep -o '"[0-9]*"' | tr -d '"')"
+    PROJECT_VERSION="$PROJECT_VERSION.$(grep -m1 'set(RELEASE_SERVICE_VERSION_MICRO' "$SOURCE_DIR/CMakeLists.txt" | grep -o '"[0-9]*"' | tr -d '"')"
+    DMG_STAGING="$BUILD_DIR/dmg-staging"
+    DMG_PATH="$BUILD_DIR/QPrompt-$PROJECT_VERSION.dmg"
+
+    echo "Packaging $DMG_PATH..."
+    rm -rf "$DMG_STAGING" "$DMG_PATH"
+    mkdir -p "$DMG_STAGING"
+    cp -R "$APP_BUNDLE" "$DMG_STAGING/"
+    ln -s /Applications "$DMG_STAGING/Applications"
+    hdiutil create -volname "QPrompt" -srcfolder "$DMG_STAGING" -ov -format UDZO "$DMG_PATH"
+    rm -rf "$DMG_STAGING"
+
+    echo ""
+    echo "Packaged: $DMG_PATH"
+fi
 
 if [ "$RUN_AFTER_BUILD" = true ]; then
     echo "Launching QPrompt..."
