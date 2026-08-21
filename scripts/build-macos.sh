@@ -129,10 +129,15 @@ echo "Using Qt at $QT_PREFIX"
 echo "Updating submodules..."
 git -C "$SOURCE_DIR" submodule update --init --recursive
 
+VOSK_ASSET_DIR="$BUILD_DIR/voice-assets"
+echo "Fetching Voice Follow (Vosk) assets..."
+"$SOURCE_DIR/scripts/setup-vosk-dev.sh" --output-dir "$VOSK_ASSET_DIR" --skip-environment-instructions
+
 echo "Configuring ($BUILD_DIR)..."
 cmake -S "$SOURCE_DIR" -B "$BUILD_DIR" "${GENERATOR_ARGS[@]}" \
     -DCMAKE_BUILD_TYPE=RelWithDebInfo \
-    -DCMAKE_PREFIX_PATH="$QT_PREFIX"
+    -DCMAKE_PREFIX_PATH="$QT_PREFIX" \
+    -DQPROMPT_VOSK_ASSET_DIR="$VOSK_ASSET_DIR"
 
 echo "Building..."
 cmake --build "$BUILD_DIR" --parallel "$JOBS"

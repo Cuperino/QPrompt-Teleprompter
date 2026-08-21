@@ -489,6 +489,76 @@ if(WIN32)
             DESTINATION "${DOC_INSTALL_DIR}/licenses"
             COMPONENT Unspecified)
     endif()
+elseif(APPLE AND NOT IOS)
+    # Same idea as the Windows block above, but into the .app bundle.
+    # QCoreApplication::applicationDirPath() resolves to Contents/MacOS for
+    # a bundled app, which is what VoiceFollowSession::defaultLibraryPath()/
+    # defaultModelPath() (src/voicefollowsession.cpp) check next to the
+    # executable - so that's where the runtime and model need to land.
+    #
+    # Vosk's own releases stopped shipping a macOS runtime archive after
+    # v0.3.42 (the newest release with a vosk-osx-*.zip asset; v0.3.45,
+    # used above for Windows, only publishes Linux/Windows/Android
+    # archives), so that is the version bundled here. Its libvosk.dylib is
+    # a universal x86_64+arm64 binary linking only system frameworks, so
+    # it runs unmodified on both Intel and Apple Silicon Macs despite
+    # predating the Windows runtime version.
+    option(QPROMPT_BUNDLE_VOSK "Bundle Vosk runtime and English model in macOS packages" ON)
+    set(QPROMPT_VOSK_ASSET_DIR "${CMAKE_BINARY_DIR}/voice-assets" CACHE PATH
+        "Directory prepared by scripts/setup-vosk-dev.sh")
+
+    if(QPROMPT_BUNDLE_VOSK)
+        set(QPROMPT_VOSK_RUNTIME_DIR "${QPROMPT_VOSK_ASSET_DIR}/vosk-osx-0.3.42")
+        set(QPROMPT_VOSK_MODEL_NAME "vosk-model-small-en-us-0.15")
+        set(QPROMPT_VOSK_MODEL_DIR "${QPROMPT_VOSK_ASSET_DIR}/${QPROMPT_VOSK_MODEL_NAME}")
+        set(QPROMPT_VOSK_RUNTIME_FILES
+            "${QPROMPT_VOSK_RUNTIME_DIR}/libvosk.dylib"
+        )
+
+        foreach(required_path IN LISTS QPROMPT_VOSK_RUNTIME_FILES)
+            if(NOT EXISTS "${required_path}")
+                message(FATAL_ERROR
+                    "Voice Follow packaging asset is missing: ${required_path}\n"
+                    "Run scripts/setup-vosk-dev.sh before configuring QPrompt.")
+            endif()
+        endforeach()
+        if(NOT EXISTS "${QPROMPT_VOSK_MODEL_DIR}/conf/model.conf")
+            message(FATAL_ERROR
+                "Voice Follow model is missing: ${QPROMPT_VOSK_MODEL_DIR}\n"
+                "Run scripts/setup-vosk-dev.sh before configuring QPrompt.")
+        endif()
+        if(NOT EXISTS "${QPROMPT_VOSK_ASSET_DIR}/VOSK-COPYING")
+            message(FATAL_ERROR
+                "Vosk license file is missing: ${QPROMPT_VOSK_ASSET_DIR}/VOSK-COPYING\n"
+                "Run scripts/setup-vosk-dev.sh before configuring QPrompt.")
+        endif()
+
+        install(FILES ${QPROMPT_VOSK_RUNTIME_FILES}
+            DESTINATION "QPrompt.app/Contents/MacOS"
+            COMPONENT Unspecified)
+        # The model is a directory tree of plain data files, not code. Put
+        # it under Contents/Resources (the correct macOS location for
+        # bundled resources) rather than directly in Contents/MacOS:
+        # `codesign --deep`'s recursive bundle-format detection trips over
+        # a full directory tree sitting next to the executable, the same
+        # way it did for the Kirigami QML modules (see the comment above
+        # the `Contents/Resources/qml` install() call in src/CMakeLists.txt).
+        # A symlink at the path defaultModelPath() actually checks keeps
+        # that function working unmodified: QDir/QFileInfo follow symlinks
+        # transparently, and codesign only sees a plain symlink there
+        # rather than a directory tree that looks like a nested bundle.
+        install(DIRECTORY "${QPROMPT_VOSK_MODEL_DIR}/"
+            DESTINATION "QPrompt.app/Contents/Resources/models/${QPROMPT_VOSK_MODEL_NAME}"
+            COMPONENT Unspecified)
+        install(CODE "
+            execute_process(COMMAND \${CMAKE_COMMAND} -E create_symlink
+                ../Resources/models
+                \"\${CMAKE_INSTALL_PREFIX}/QPrompt.app/Contents/MacOS/models\")
+            " COMPONENT Unspecified)
+        install(FILES "${QPROMPT_VOSK_ASSET_DIR}/VOSK-COPYING"
+            DESTINATION "QPrompt.app/Contents/Resources/licenses"
+            COMPONENT Unspecified)
+    endif()
 endif()
 
 # QPrompt uses the standard MSVC runtime but does not use MFC. Asking CMake to
