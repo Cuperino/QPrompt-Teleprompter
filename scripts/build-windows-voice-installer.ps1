@@ -33,18 +33,12 @@ if (-not (Test-Path -LiteralPath (Join-Path $qtPath "bin\Qt6Core.dll"))) {
     throw "Qt was not found at $qtPath"
 }
 
-<<<<<<< HEAD
 & (Join-Path $PSScriptRoot "setup-vosk-dev.ps1") `
     -OutputDirectory $assetPath `
     -SkipEnvironmentInstructions
 
 & $cmake `
     -Wno-dev `
-=======
-& (Join-Path $PSScriptRoot "setup-vosk-dev.ps1") -OutputDirectory $assetPath
-
-& $cmake `
->>>>>>> 22c88cbd1500f0bf9e16afd17121cd20c6daf717
     -S $sourceDirectory `
     -B $buildPath `
     "-DCMAKE_CONFIGURATION_TYPES=Release" `
