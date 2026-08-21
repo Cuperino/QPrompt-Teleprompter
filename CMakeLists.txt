@@ -200,6 +200,14 @@ if(WIN32 OR APPLE OR ANDROID OR WASM OR USE_GIT_DEPENDENCIES_ONLY)
       SOURCE_DIR submodules/kcoreaddons
     )
     FetchContent_MakeAvailable(CoreAddons)
+    if(APPLE)
+        # KCoreAddons' KDE-style build sets an absolute INSTALL_NAME_DIR (the
+        # Linux/KDE convention). Left as-is, installing QPrompt alongside it
+        # bakes that absolute path into QPrompt's own load commands instead
+        # of the @rpath reference the macOS app bundle relies on to find its
+        # bundled copy in Contents/Frameworks.
+        set_target_properties(KF6CoreAddons PROPERTIES INSTALL_NAME_DIR "@rpath")
+    endif()
     if(WASM)
         # Several KCoreAddons translation units cannot be built for Emscripten,
         # so drop them from the bundled library. None of these classes are used
@@ -243,6 +251,16 @@ if(WIN32 OR APPLE OR ANDROID OR WASM OR USE_GIT_DEPENDENCIES_ONLY)
       SOURCE_DIR submodules/kirigami
     )
     FetchContent_MakeAvailable(Kirigami)
+    if(APPLE)
+        # See the matching KF6CoreAddons comment above: Kirigami and
+        # KirigamiPlatform are QPrompt's other direct link dependencies built
+        # the same way, so they need the same @rpath fix-up.
+        foreach(_qprompt_apple_rpath_target Kirigami KirigamiPlatform)
+            if(TARGET ${_qprompt_apple_rpath_target})
+                set_target_properties(${_qprompt_apple_rpath_target} PROPERTIES INSTALL_NAME_DIR "@rpath")
+            endif()
+        endforeach()
+    endif()
     # Restore QPrompt's own C++ standard for the targets defined afterwards.
     set(CMAKE_CXX_STANDARD 17)
 else()

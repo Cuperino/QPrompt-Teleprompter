@@ -540,8 +540,7 @@ if (APPLE)
         install(TARGETS KF6CoreAddons ${KDE_INSTALL_TARGETS_DEFAULT_ARGS} FRAMEWORK DESTINATION QPrompt.app/Contents/Frameworks)
     endif()
     install(TARGETS Kirigami ${KDE_INSTALL_TARGETS_DEFAULT_ARGS} FRAMEWORK DESTINATION QPrompt.app/Contents/Frameworks)
-    install(DIRECTORY ../build/bin/org DESTINATION QPrompt.app/Contents/Resources/qml)
-    install(DIRECTORY ../build/bin/org DESTINATION QPrompt.app/Contents/MacOS/qml)
+    install(DIRECTORY ${CMAKE_BINARY_DIR}/bin/org DESTINATION QPrompt.app/Contents/Resources/qml)
 elseif (WIN32 OR UNIX)
     install(FILES com.cuperino.qprompt.appdata.xml DESTINATION ${KDE_INSTALL_METAINFODIR})
     install(PROGRAMS com.cuperino.qprompt.desktop DESTINATION ${KDE_INSTALL_APPDIR})
@@ -549,7 +548,13 @@ elseif (WIN32 OR UNIX)
 endif()
 
 if(APPLE AND NOT IOS)
-    set(MACOS_SIGNING_IDENTITY "")
+    # "-" requests an ad-hoc signature so local/CI builds without a Developer
+    # ID still end up with a valid signature (Apple Silicon refuses to run
+    # unsigned code, and the deploy tool's install_name_tool rewrites
+    # invalidate whatever ad-hoc signature the linker originally produced).
+    # Override with a real "Developer ID Application: ..." identity to
+    # produce a notarizable build.
+    set(MACOS_SIGNING_IDENTITY "-" CACHE STRING "Code signing identity for the macOS app bundle")
     set(EXTRA_DEPLOY_QML_APP_SCRIPT_OPTIONS)
     set(deploy_tool_options_arg "-always-overwrite -appstore-compliant -sign-for-notarization=${MACOS_SIGNING_IDENTITY}")
     list(APPEND EXTRA_DEPLOY_QML_APP_SCRIPT_OPTIONS DEPLOY_TOOL_OPTIONS ${deploy_tool_options_arg})
