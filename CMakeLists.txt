@@ -473,14 +473,10 @@ if(WIN32)
     endif()
 endif()
 
-<<<<<<< HEAD
 # QPrompt uses the standard MSVC runtime but does not use MFC. Asking CMake to
 # install MFC caused misleading missing-MFC warnings on otherwise complete
 # Visual Studio installations.
 set(CMAKE_INSTALL_MFC_LIBRARIES Off)
-=======
-set(CMAKE_INSTALL_MFC_LIBRARIES On)
->>>>>>> 22c88cbd1500f0bf9e16afd17121cd20c6daf717
 set(InstallRequiredSystemLibraries On)
 include(InstallRequiredSystemLibraries)
 

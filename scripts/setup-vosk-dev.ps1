@@ -1,11 +1,7 @@
 param(
     [string]$OutputDirectory = "",
-<<<<<<< HEAD
     [switch]$ForceDownload,
     [switch]$SkipEnvironmentInstructions
-=======
-    [switch]$ForceDownload
->>>>>>> 22c88cbd1500f0bf9e16afd17121cd20c6daf717
 )
 
 $ErrorActionPreference = "Stop"
@@ -73,7 +69,6 @@ Write-Output "Library: $libraryPath"
 Write-Output "Model: $modelDirectory"
 Write-Output "Recorded sample: $sampleAudio"
 Write-Output "License: $licenseFile"
-<<<<<<< HEAD
 if (-not $SkipEnvironmentInstructions) {
     Write-Output ""
     Write-Output "For a development launch in this PowerShell session:"
@@ -81,10 +76,3 @@ if (-not $SkipEnvironmentInstructions) {
     Write-Output "`$env:QPROMPT_VOSK_LIBRARY='$libraryPath'"
     Write-Output "`$env:QPROMPT_VOSK_MODEL='$modelDirectory'"
 }
-=======
-Write-Output ""
-Write-Output "For this PowerShell session:"
-Write-Output "`$env:PATH='$runtimeDirectory;' + `$env:PATH"
-Write-Output "`$env:QPROMPT_VOSK_LIBRARY='$libraryPath'"
-Write-Output "`$env:QPROMPT_VOSK_MODEL='$modelDirectory'"
->>>>>>> 22c88cbd1500f0bf9e16afd17121cd20c6daf717

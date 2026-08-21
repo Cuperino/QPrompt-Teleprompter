@@ -74,3 +74,7 @@ Makefile
 
 # 3rd party folders
 /3rdparty*
+
+# Gradle cache and Qt installer logs
+/android/.gradle/
+aqtinstall.log

@@ -504,14 +504,11 @@ if(TARGET Qt${QT_VERSION_MAJOR}::Multimedia)
     target_link_libraries(${PROJECT_NAME} PRIVATE Qt${QT_VERSION_MAJOR}::Multimedia)
 endif()
 
-<<<<<<< HEAD
 if(TARGET KF${QT_VERSION_MAJOR}::Crash)
     target_compile_definitions(${PROJECT_NAME} PRIVATE KF6Crash_FOUND)
     target_link_libraries(${PROJECT_NAME} PRIVATE KF${QT_VERSION_MAJOR}::Crash)
 endif()
 
-=======
->>>>>>> 22c88cbd1500f0bf9e16afd17121cd20c6daf717
 if(APPLE AND NOT IOS)
     target_include_directories(mactouchbar PRIVATE ${kdmactouchbar_SOURCE_DIR}/KDMacTouchBar)
     target_link_directories(mactouchbar PRIVATE ${kdmactouchbar_SOURCE_DIR}/KDMacTouchBar)
