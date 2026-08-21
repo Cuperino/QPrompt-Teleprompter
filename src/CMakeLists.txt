@@ -45,6 +45,12 @@ if (NOT ANDROID AND NOT IOS)
     )
 endif()
 
+if(WIN32)
+    set(QPROMPT_WINDOWS_ICON "${CMAKE_CURRENT_SOURCE_DIR}/icons/qprompt.ico")
+    configure_file(qprompt.rc.in qprompt.rc @ONLY)
+    target_sources(${PROJECT_NAME} PRIVATE "${CMAKE_CURRENT_BINARY_DIR}/qprompt.rc")
+endif()
+
 if (NOT ANDROID AND NOT WASM AND NOT IOS)
     set(ICONS_FOLDER ${CMAKE_CURRENT_SOURCE_DIR}/icons/hicolor)
     set(RASTER_ICONS
@@ -69,9 +75,11 @@ if (NOT ANDROID AND NOT WASM AND NOT IOS)
             # THEME hicolor
         )
     endif()
-    ecm_add_app_icon(${PROJECT_NAME}
-        ICONS ${RASTER_ICONS}
-    )
+    if(NOT WIN32)
+        ecm_add_app_icon(${PROJECT_NAME}
+            ICONS ${RASTER_ICONS}
+        )
+    endif()
 endif()
 
 set(qprompt_cpp
@@ -496,6 +504,14 @@ if(TARGET Qt${QT_VERSION_MAJOR}::Multimedia)
     target_link_libraries(${PROJECT_NAME} PRIVATE Qt${QT_VERSION_MAJOR}::Multimedia)
 endif()
 
+<<<<<<< HEAD
+if(TARGET KF${QT_VERSION_MAJOR}::Crash)
+    target_compile_definitions(${PROJECT_NAME} PRIVATE KF6Crash_FOUND)
+    target_link_libraries(${PROJECT_NAME} PRIVATE KF${QT_VERSION_MAJOR}::Crash)
+endif()
+
+=======
+>>>>>>> 22c88cbd1500f0bf9e16afd17121cd20c6daf717
 if(APPLE AND NOT IOS)
     target_include_directories(mactouchbar PRIVATE ${kdmactouchbar_SOURCE_DIR}/KDMacTouchBar)
     target_link_directories(mactouchbar PRIVATE ${kdmactouchbar_SOURCE_DIR}/KDMacTouchBar)
@@ -579,6 +595,7 @@ elseif(WIN32)
     qt_generate_deploy_qml_app_script(
         TARGET ${PROJECT_NAME}
         OUTPUT_SCRIPT deploy_script
+        DEPLOY_TOOL_OPTIONS --no-compiler-runtime
         # NO_UNSUPPORTED_PLATFORM_ERROR
         # DEPLOY_USER_QML_MODULES_ON_UNSUPPORTED_PLATFORM
     )

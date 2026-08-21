@@ -71,3 +71,6 @@ Makefile
 
 # Python
 **/venv/**
+
+# 3rd party folders
+/3rdparty*

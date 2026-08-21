@@ -318,9 +318,10 @@ if(HAIKU)
         DESCRIPTION "Graceful handling of application crashes."
         TYPE OPTIONAL
     )
-# Windows, MacOS, and FreeBSD
-else()
-    find_package(KF${QT_VERSION_MAJOR}Crash ${REQUIRED_KF${QT_VERSION_MAJOR}_VERSION} COMPONENTS)
+# KCrash is not used by the self-contained Windows build. Probe quietly on
+# the remaining desktop platforms and enable it only when a package exists.
+elseif(NOT WIN32)
+    find_package(KF${QT_VERSION_MAJOR}Crash ${REQUIRED_KF${QT_VERSION_MAJOR}_VERSION} CONFIG QUIET)
     set_package_properties(KF${QT_VERSION_MAJOR}Crash PROPERTIES
         DESCRIPTION "Graceful handling of application crashes."
         TYPE OPTIONAL
@@ -472,7 +473,14 @@ if(WIN32)
     endif()
 endif()
 
+<<<<<<< HEAD
+# QPrompt uses the standard MSVC runtime but does not use MFC. Asking CMake to
+# install MFC caused misleading missing-MFC warnings on otherwise complete
+# Visual Studio installations.
+set(CMAKE_INSTALL_MFC_LIBRARIES Off)
+=======
 set(CMAKE_INSTALL_MFC_LIBRARIES On)
+>>>>>>> 22c88cbd1500f0bf9e16afd17121cd20c6daf717
 set(InstallRequiredSystemLibraries On)
 include(InstallRequiredSystemLibraries)
 
