@@ -513,6 +513,20 @@ endif()
 if(TARGET Qt${QT_VERSION_MAJOR}::Multimedia)
     target_compile_definitions(${PROJECT_NAME} PRIVATE QPROMPT_HAVE_QT_MULTIMEDIA)
     target_link_libraries(${PROJECT_NAME} PRIVATE Qt${QT_VERSION_MAJOR}::Multimedia)
+    if(IOS)
+        # Qt's iOS Multimedia build compiles in both the FFmpeg and the
+        # native AVFoundation ("darwin") backends, and its default
+        # static-plugin auto-import links both into any consumer - but Qt's
+        # iOS packaging doesn't ship the actual FFmpeg codec libraries
+        # (libavcodec/libavformat/etc.), only that backend's own wrapper
+        # code, so auto-importing it fails at link time with dozens of
+        # undefined "_av*"/"_sw*" symbols. AVFoundation is a real system
+        # framework with nothing missing, so just blocklist the FFmpeg one
+        # and leave the rest (including AVFoundation, and every other
+        # module's default plugins such as the iOS platform integration
+        # plugin) on their normal automatic-inclusion path.
+        qt_import_plugins(${PROJECT_NAME} EXCLUDE Qt${QT_VERSION_MAJOR}::QFFmpegMediaPlugin)
+    endif()
 endif()
 
 if(TARGET KF${QT_VERSION_MAJOR}::Crash)

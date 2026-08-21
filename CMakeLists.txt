@@ -231,6 +231,28 @@ if(WIN32 OR APPLE OR ANDROID OR WASM OR USE_GIT_DEPENDENCIES_ONLY)
             "((kshareddatacache|ksdclock|ksdcmemory|klistopenfilesjob_unix|kprocesslist_unix|kprocess|ksandbox|kformat|kformatprivate|kfilesystemtype)\\.cpp|kprocess\\.h)$")
         set_target_properties(KF6CoreAddons PROPERTIES SOURCES "${_kca_sources}")
     endif()
+    if(IOS)
+        # KCoreAddons' own CMakeLists.txt (3rdparty/kcoreaddons/src/lib/
+        # CMakeLists.txt) already guards kuser_unix.cpp, kshell_unix.cpp and
+        # kmacroexpander_unix.cpp behind `if (UNIX AND NOT IOS)`, correctly
+        # recognizing that their getpwuid()/getpwnam()/getgrgid() calls
+        # (real POSIX passwd/group database lookups) don't exist in iOS's
+        # sandboxed, single-user runtime even though <pwd.h>/<grp.h> declare
+        # them (so the calls compile, then fail to link). What upstream
+        # doesn't do is provide an iOS backend to replace them with, so the
+        # always-compiled public API files that call into that now-absent
+        # backend - kshell.cpp (whose homeDir() also pulls in all of KUser)
+        # and kmacroexpander.cpp - are left with unresolved references.
+        # Neither Kirigami nor QPrompt (which only needs KAboutData) calls
+        # into KShell, KMacroExpander, or KUser, so dropping their sources
+        # here leaves nothing unresolved - except kosrelease.cpp, which
+        # also calls KShell::splitArgs() to parse /etc/os-release (parsing
+        # a file that doesn't exist on iOS anyway); neither Kirigami nor
+        # QPrompt use KOSRelease either, so it goes too.
+        get_target_property(_kca_sources KF6CoreAddons SOURCES)
+        list(FILTER _kca_sources EXCLUDE REGEX "(kshell|kmacroexpander|kosrelease)\\.cpp$")
+        set_target_properties(KF6CoreAddons PROPERTIES SOURCES "${_kca_sources}")
+    endif()
     if(ANDROID OR IOS)
         # Prevent Kirigami from finding and using OpenMP on Android and iOS.
         # OpenMP is optional (accelerates palette generation in ImageColors)
@@ -568,7 +590,16 @@ set(CMAKE_INSTALL_MFC_LIBRARIES Off)
 set(InstallRequiredSystemLibraries On)
 include(InstallRequiredSystemLibraries)
 
-set(CMAKE_OSX_DEPLOYMENT_TARGET "10.15")
+# "10.15" is a macOS (Catalina) version number and has no meaning as an iOS
+# deployment target. CMAKE_OSX_DEPLOYMENT_TARGET doubles as both when
+# cross-compiling for iOS, though, so setting it unconditionally silently
+# drags the iOS target down to "10.15" too - below 13.0, which is where
+# Apple's std::filesystem shim (used by Qt's own QFile/QFileInfo headers)
+# becomes available, breaking the iOS build with "'path' is unavailable"
+# compiler errors.
+if(NOT IOS)
+    set(CMAKE_OSX_DEPLOYMENT_TARGET "10.15")
+endif()
 set(CMAKE_OSX_ARCHITECTURES="x86_64;arm64")
 
 if(CMAKE_SOURCE_DIR STREQUAL CMAKE_CURRENT_SOURCE_DIR)
