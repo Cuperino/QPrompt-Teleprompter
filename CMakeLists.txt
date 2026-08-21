@@ -154,7 +154,18 @@ find_package(Qt${QT_VERSION_MAJOR} ${QT_MIN_VERSION} REQUIRED NO_MODULE COMPONEN
 find_package(Qt${QT_VERSION_MAJOR} ${QT_MIN_VERSION} QUIET NO_MODULE COMPONENTS Multimedia)
 
 if(ANDROID OR IOS OR WASM)
-    set(BUILD_SHARED_LIBS OFF)
+    # A plain set() here isn't enough: Qt's own toolchain/CMake package
+    # machinery forces a BUILD_SHARED_LIBS cache entry of its own earlier in
+    # configuration, and a cache write silently drops any same-named normal
+    # variable already in scope. KCoreAddons' add_library(KF6CoreAddons)
+    # call has no explicit STATIC/SHARED keyword, so it just reads whatever
+    # BUILD_SHARED_LIBS resolves to at that point - the surviving cache
+    # value of TRUE - and produces a shared libKF6CoreAddons.*.dylib that
+    # never gets embedded in the app bundle (no Frameworks dir is created
+    # for it), crashing every launch with a dyld "Library not loaded" error
+    # once installed on a real device. Force the cache entry instead so
+    # nothing can silently resurrect it afterwards.
+    set(BUILD_SHARED_LIBS OFF CACHE BOOL "" FORCE)
     set(DESKTOP_ENABLED OFF)
 endif()
 
