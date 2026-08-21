@@ -10,7 +10,11 @@
 #include "voicefollowsession.h"
 
 #include "offlinespeechrecognizer.h"
+#ifdef Q_OS_IOS
+#include "applespeechrecognizer.h"
+#else
 #include "voskspeechrecognizer.h"
+#endif
 
 #include <QCoreApplication>
 #include <QDir>
@@ -73,7 +77,15 @@ VoiceFollowSession::VoiceFollowSession(QObject *parent)
     m_silenceTimer.setInterval(SilenceHoldMilliseconds);
     connect(&m_silenceTimer, &QTimer::timeout, this, &VoiceFollowSession::holdForSilence);
 
+    // Vosk has no iOS build, and dynamically loading an arbitrary unsigned
+    // dylib the way VoskSpeechRecognizer does via QLibrary isn't permitted
+    // under iOS's code-signing/sandbox model anyway, so iOS is backed by
+    // Apple's own on-device Speech framework instead.
+#ifdef Q_OS_IOS
+    m_recognizer = new AppleSpeechRecognizer;
+#else
     m_recognizer = new VoskSpeechRecognizer;
+#endif
     m_recognizer->moveToThread(&m_recognitionThread);
     connect(&m_recognitionThread, &QThread::finished, m_recognizer, &QObject::deleteLater);
     connect(this, &VoiceFollowSession::initializeRecognizer,

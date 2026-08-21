@@ -106,6 +106,13 @@ endif()
 if(IOS)
     list(APPEND qprompt_cpp shakedetector.h shakedetector.mm)
     list(APPEND qprompt_cpp iossavedialog.h iossavedialog.mm)
+    # Vosk has never published an iOS build, and dynamically loading an
+    # arbitrary unsigned dylib the way VoskSpeechRecognizer does via
+    # QLibrary isn't permitted under iOS's code-signing/sandbox model
+    # anyway, so Voice Follow on iOS is backed by Apple's own on-device
+    # Speech framework instead (see voicefollowsession.cpp's recognizer
+    # selection).
+    list(APPEND qprompt_cpp applespeechrecognizer.h applespeechrecognizer.mm)
 else()
     list(APPEND qprompt_cpp shakedetector.h shakedetector.cpp)
     list(APPEND qprompt_cpp iossavedialog.h iossavedialog.cpp)
@@ -527,6 +534,15 @@ if(TARGET Qt${QT_VERSION_MAJOR}::Multimedia)
         # plugin) on their normal automatic-inclusion path.
         qt_import_plugins(${PROJECT_NAME} EXCLUDE Qt${QT_VERSION_MAJOR}::QFFmpegMediaPlugin)
     endif()
+endif()
+
+if(IOS)
+    # AppleSpeechRecognizer (see voicefollowsession.cpp's recognizer
+    # selection) bridges Voice Follow to Apple's on-device Speech
+    # framework, since Vosk has no iOS build. Speech.framework isn't
+    # pulled in transitively by anything else QPrompt links.
+    find_library(SPEECH_FRAMEWORK Speech REQUIRED)
+    target_link_libraries(${PROJECT_NAME} PRIVATE ${SPEECH_FRAMEWORK})
 endif()
 
 if(TARGET KF${QT_VERSION_MAJOR}::Crash)
