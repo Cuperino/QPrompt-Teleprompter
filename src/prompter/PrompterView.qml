@@ -136,6 +136,30 @@ Item {
                 ? prompter.voiceFollowSession.errorString
                 : qsTr("Follow the script using the microphone (offline)")
         }
+        ComboBox {
+            id: voiceInputDeviceCombo
+            visible: prompter.voiceFollowSession.audioCaptureAvailable
+                && !prompter.voiceFollowSession.active
+            width: 160
+            model: prompter.voiceFollowSession.audioInputDevices
+            textRole: "description"
+            valueRole: "id"
+            Material.theme: Material.Dark
+            ToolTip.visible: hovered
+            ToolTip.text: qsTr("Microphone used for Voice Follow")
+            onActivated: prompter.voiceFollowSession.audioInputDeviceId = currentValue
+            function selectPersistedDevice() {
+                for (var i = 0; i < model.length; i++) {
+                    if (model[i].id === prompter.voiceFollowSession.audioInputDeviceId) {
+                        currentIndex = i
+                        return
+                    }
+                }
+                currentIndex = 0
+            }
+            Component.onCompleted: selectPersistedDevice()
+            onModelChanged: selectPersistedDevice()
+        }
         Label {
             visible: prompter.voiceFollowSession.active
                 || prompter.voiceFollowSession.state === VoiceFollowSession.Error

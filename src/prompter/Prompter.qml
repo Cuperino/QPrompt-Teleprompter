@@ -184,6 +184,10 @@ Flickable {
             prompter.followVoicePosition(documentPosition)
         }
     }
+    Settings {
+        category: "voiceFollow"
+        property alias audioInputDeviceId: voiceFollowSession.audioInputDeviceId
+    }
 
     Timer {
         id: voiceTrackingWindowTimer

@@ -17,6 +17,7 @@
 #include <QQuickTextDocument>
 #include <QThread>
 #include <QTimer>
+#include <QVariantList>
 
 #ifdef QPROMPT_HAVE_QT_MULTIMEDIA
 #include <QAudioFormat>
@@ -39,6 +40,8 @@ class VoiceFollowSession : public QObject
     Q_PROPERTY(State state READ state NOTIFY stateChanged)
     Q_PROPERTY(bool active READ active NOTIFY activeChanged)
     Q_PROPERTY(bool audioCaptureAvailable READ audioCaptureAvailable CONSTANT)
+    Q_PROPERTY(QVariantList audioInputDevices READ audioInputDevices NOTIFY audioInputDevicesChanged)
+    Q_PROPERTY(QString audioInputDeviceId READ audioInputDeviceId WRITE setAudioInputDeviceId NOTIFY configurationChanged)
     Q_PROPERTY(int position READ position NOTIFY matchChanged)
     Q_PROPERTY(qreal confidence READ confidence NOTIFY matchChanged)
     Q_PROPERTY(bool stable READ stable NOTIFY matchChanged)
@@ -71,6 +74,9 @@ public:
     State state() const;
     bool active() const;
     bool audioCaptureAvailable() const;
+    QVariantList audioInputDevices() const;
+    QString audioInputDeviceId() const;
+    void setAudioInputDeviceId(const QString &id);
     int position() const;
     qreal confidence() const;
     bool stable() const;
@@ -92,6 +98,7 @@ Q_SIGNALS:
     void matchChanged();
     void transcriptChanged();
     void errorStringChanged();
+    void audioInputDevicesChanged();
     void followedPosition(int documentPosition, qreal confidence);
 
     void initializeRecognizer(const QString &libraryPath, const QString &modelPath, int sampleRate);
@@ -126,6 +133,7 @@ private:
     QString m_modelPath;
     QString m_transcript;
     QString m_errorString;
+    QString m_audioInputDeviceId;
     State m_state = Disabled;
     bool m_active = false;
     bool m_stable = false;

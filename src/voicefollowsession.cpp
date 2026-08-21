@@ -17,6 +17,7 @@
 #include <QFileInfo>
 #include <QStandardPaths>
 #include <QTextDocument>
+#include <QVariantMap>
 
 #include <algorithm>
 #include <cmath>
@@ -169,6 +170,39 @@ bool VoiceFollowSession::audioCaptureAvailable() const
 #else
     return false;
 #endif
+}
+
+QVariantList VoiceFollowSession::audioInputDevices() const
+{
+    QVariantList devices;
+#ifdef QPROMPT_HAVE_QT_MULTIMEDIA
+    QVariantMap systemDefault;
+    systemDefault[QStringLiteral("id")] = QString();
+    systemDefault[QStringLiteral("description")] = tr("System Default");
+    devices.append(systemDefault);
+
+    const auto inputs = QMediaDevices::audioInputs();
+    for (const QAudioDevice &device : inputs) {
+        QVariantMap entry;
+        entry[QStringLiteral("id")] = QString::fromLatin1(device.id().toBase64());
+        entry[QStringLiteral("description")] = device.description();
+        devices.append(entry);
+    }
+#endif
+    return devices;
+}
+
+QString VoiceFollowSession::audioInputDeviceId() const
+{
+    return m_audioInputDeviceId;
+}
+
+void VoiceFollowSession::setAudioInputDeviceId(const QString &id)
+{
+    if (m_audioInputDeviceId == id)
+        return;
+    m_audioInputDeviceId = id;
+    Q_EMIT configurationChanged();
 }
 
 int VoiceFollowSession::position() const
@@ -367,7 +401,16 @@ void VoiceFollowSession::setError(const QString &message)
 bool VoiceFollowSession::startAudioCapture()
 {
 #ifdef QPROMPT_HAVE_QT_MULTIMEDIA
-    const QAudioDevice input = QMediaDevices::defaultAudioInput();
+    QAudioDevice input = QMediaDevices::defaultAudioInput();
+    if (!m_audioInputDeviceId.isEmpty()) {
+        const QByteArray wantedId = QByteArray::fromBase64(m_audioInputDeviceId.toLatin1());
+        const auto inputs = QMediaDevices::audioInputs();
+        const auto it = std::find_if(inputs.begin(), inputs.end(), [&wantedId](const QAudioDevice &device) {
+            return device.id() == wantedId;
+        });
+        if (it != inputs.end())
+            input = *it;
+    }
     if (input.isNull()) {
         recognizerError(tr("No microphone input device is available."));
         return false;
