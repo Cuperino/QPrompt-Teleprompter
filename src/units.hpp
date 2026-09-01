@@ -24,9 +24,10 @@
 #include <QObject>
 #include <QQmlEngine>
 
-class AbstractUnits : public QObject
+class Units : public QObject
 {
     Q_OBJECT
+    QML_ELEMENT
     QML_UNCREATABLE("Cannot create")
 
 public:
