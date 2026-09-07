@@ -107,6 +107,79 @@ Item {
         }
     }
 
+    Column {
+        id: voiceFollowControls
+        z: 7
+        padding: 8
+        spacing: 8
+        visible: parseInt(prompter.state)!==Prompter.States.Editing
+        anchors.top: parent.top
+        anchors.right: parent.right
+
+        Button {
+            id: voiceFollowButton
+            enabled: prompter.voiceFollowSession.audioCaptureAvailable
+            checkable: true
+            checked: prompter.voiceFollowSession.active
+            width: 96
+            height: 64
+            text: checked ? qsTr("Voice on") : qsTr("Voice follow")
+            Material.theme: Material.Dark
+            onClicked: {
+                if (checked)
+                    prompter.startVoiceFollowing()
+                else
+                    prompter.stopVoiceFollowing()
+            }
+            ToolTip.visible: hovered
+            ToolTip.text: prompter.voiceFollowSession.errorString.length > 0
+                ? prompter.voiceFollowSession.errorString
+                : qsTr("Follow the script using the microphone (offline)")
+        }
+        ComboBox {
+            id: voiceInputDeviceCombo
+            visible: prompter.voiceFollowSession.audioCaptureAvailable
+                && !prompter.voiceFollowSession.active
+            width: 160
+            model: prompter.voiceFollowSession.audioInputDevices
+            textRole: "description"
+            valueRole: "id"
+            Material.theme: Material.Dark
+            ToolTip.visible: hovered
+            ToolTip.text: qsTr("Microphone used for Voice Follow")
+            onActivated: prompter.voiceFollowSession.audioInputDeviceId = currentValue
+            function selectPersistedDevice() {
+                for (var i = 0; i < model.length; i++) {
+                    if (model[i].id === prompter.voiceFollowSession.audioInputDeviceId) {
+                        currentIndex = i
+                        return
+                    }
+                }
+                currentIndex = 0
+            }
+            Component.onCompleted: selectPersistedDevice()
+            onModelChanged: selectPersistedDevice()
+        }
+        Label {
+            visible: prompter.voiceFollowSession.active
+                || prompter.voiceFollowSession.state === VoiceFollowSession.Error
+            width: 160
+            wrapMode: Text.WordWrap
+            color: prompter.voiceFollowSession.state === VoiceFollowSession.Error
+                ? "#ff6b6b" : "white"
+            text: {
+                switch (prompter.voiceFollowSession.state) {
+                case VoiceFollowSession.Loading: return qsTr("Loading voice model")
+                case VoiceFollowSession.Listening: return qsTr("Listening")
+                case VoiceFollowSession.Following: return qsTr("Following")
+                case VoiceFollowSession.Holding: return qsTr("Waiting for speech")
+                case VoiceFollowSession.Error: return prompter.voiceFollowSession.errorString
+                default: return ""
+                }
+            }
+        }
+    }
+
     Row {
         id: bottomControls
         z: 6
@@ -142,6 +215,7 @@ Item {
         }
         Button {
             enabled: parseInt(prompter.state)===Prompter.States.Prompting
+                && !prompter.voiceFollowSession.active
             opacity: enabled ? 1 : 0.2
             width: 64
             height: 64
@@ -164,7 +238,8 @@ Item {
             icon.name: parseInt(prompter.state)===Prompter.States.Prompting ? (prompter.__play ? "media-playback-pause" : "media-playback-start") :
                                                                                 Qt.application.layoutDirection === Qt.RightToLeft ? "go-previous" : "go-next"
             Material.theme: Material.Dark
-            enabled: parseInt(prompter.state)!==Prompter.States.Prompting || !prompter.__play || (prompter.__play && prompter.__i !== 0)
+            enabled: !prompter.voiceFollowSession.active
+                && (parseInt(prompter.state)!==Prompter.States.Prompting || !prompter.__play || (prompter.__play && prompter.__i !== 0))
             onClicked:
                 if (parseInt(prompter.state)===Prompter.States.Prompting)
                     prompter.pause();
@@ -173,6 +248,7 @@ Item {
         }
         Button {
             enabled: parseInt(prompter.state)===Prompter.States.Prompting
+                && !prompter.voiceFollowSession.active
             opacity: enabled ? 1 : 0.2
             width: 64
             height: 64

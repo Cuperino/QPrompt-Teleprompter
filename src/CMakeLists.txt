@@ -45,6 +45,12 @@ if (NOT ANDROID AND NOT IOS)
     )
 endif()
 
+if(WIN32)
+    set(QPROMPT_WINDOWS_ICON "${CMAKE_CURRENT_SOURCE_DIR}/icons/qprompt.ico")
+    configure_file(qprompt.rc.in qprompt.rc @ONLY)
+    target_sources(${PROJECT_NAME} PRIVATE "${CMAKE_CURRENT_BINARY_DIR}/qprompt.rc")
+endif()
+
 if (NOT ANDROID AND NOT WASM AND NOT IOS)
     set(ICONS_FOLDER ${CMAKE_CURRENT_SOURCE_DIR}/icons/hicolor)
     set(RASTER_ICONS
@@ -69,9 +75,11 @@ if (NOT ANDROID AND NOT WASM AND NOT IOS)
             # THEME hicolor
         )
     endif()
-    ecm_add_app_icon(${PROJECT_NAME}
-        ICONS ${RASTER_ICONS}
-    )
+    if(NOT WIN32)
+        ecm_add_app_icon(${PROJECT_NAME}
+            ICONS ${RASTER_ICONS}
+        )
+    endif()
 endif()
 
 set(qprompt_cpp
@@ -80,6 +88,10 @@ set(qprompt_cpp
     marker.hpp
     documenthandler.h documenthandler.cpp
     markersmodel.h markersmodel.cpp
+    scriptfollower.h scriptfollower.cpp
+    offlinespeechrecognizer.h
+    voskspeechrecognizer.h voskspeechrecognizer.cpp
+    voicefollowsession.h voicefollowsession.cpp
     abstractinputsource.h abstractinputsource.cpp
     globalhotkeys.h globalhotkeys.cpp
     appcontroller.h appcontroller.cpp
@@ -94,6 +106,13 @@ endif()
 if(IOS)
     list(APPEND qprompt_cpp shakedetector.h shakedetector.mm)
     list(APPEND qprompt_cpp iossavedialog.h iossavedialog.mm)
+    # Vosk has never published an iOS build, and dynamically loading an
+    # arbitrary unsigned dylib the way VoskSpeechRecognizer does via
+    # QLibrary isn't permitted under iOS's code-signing/sandbox model
+    # anyway, so Voice Follow on iOS is backed by Apple's own on-device
+    # Speech framework instead (see voicefollowsession.cpp's recognizer
+    # selection).
+    list(APPEND qprompt_cpp applespeechrecognizer.h applespeechrecognizer.mm)
 else()
     list(APPEND qprompt_cpp shakedetector.h shakedetector.cpp)
     list(APPEND qprompt_cpp iossavedialog.h iossavedialog.cpp)
@@ -292,6 +311,17 @@ set_target_properties(${PROJECT_NAME} PROPERTIES
     # See issue: https://bugreports.qt.io/browse/QTBUG-117992?focusedId=750577&page=com.atlassian.jira.plugin.system.issuetabpanels%3Acomment-tabpanel#comment-750577
 )
 
+if(APPLE AND NOT IOS)
+    # CMake's built-in default Info.plist template has no NSMicrophoneUsageDescription
+    # key. Without one, macOS denies the process microphone access outright and
+    # silently - no prompt, no error - so Voice Follow's QAudioSource never receives
+    # any samples. The iOS branch below sets its own MACOSX_BUNDLE_INFO_PLIST later,
+    # overriding this for that target.
+    set_target_properties(${PROJECT_NAME} PROPERTIES
+        MACOSX_BUNDLE_INFO_PLIST "${CMAKE_CURRENT_SOURCE_DIR}/Info.plist.in"
+    )
+endif()
+
 # Qt 6.10+ creates Android executables as MODULE libraries. KDECMakeSettings strips
 # the "lib" prefix from MODULE targets, but androiddeployqt expects it.
 # Also place the binary in BINARY_DIR so it's next to the deployment settings and
@@ -487,6 +517,39 @@ else()
     )
 endif()
 
+if(TARGET Qt${QT_VERSION_MAJOR}::Multimedia)
+    target_compile_definitions(${PROJECT_NAME} PRIVATE QPROMPT_HAVE_QT_MULTIMEDIA)
+    target_link_libraries(${PROJECT_NAME} PRIVATE Qt${QT_VERSION_MAJOR}::Multimedia)
+    if(IOS)
+        # Qt's iOS Multimedia build compiles in both the FFmpeg and the
+        # native AVFoundation ("darwin") backends, and its default
+        # static-plugin auto-import links both into any consumer - but Qt's
+        # iOS packaging doesn't ship the actual FFmpeg codec libraries
+        # (libavcodec/libavformat/etc.), only that backend's own wrapper
+        # code, so auto-importing it fails at link time with dozens of
+        # undefined "_av*"/"_sw*" symbols. AVFoundation is a real system
+        # framework with nothing missing, so just blocklist the FFmpeg one
+        # and leave the rest (including AVFoundation, and every other
+        # module's default plugins such as the iOS platform integration
+        # plugin) on their normal automatic-inclusion path.
+        qt_import_plugins(${PROJECT_NAME} EXCLUDE Qt${QT_VERSION_MAJOR}::QFFmpegMediaPlugin)
+    endif()
+endif()
+
+if(IOS)
+    # AppleSpeechRecognizer (see voicefollowsession.cpp's recognizer
+    # selection) bridges Voice Follow to Apple's on-device Speech
+    # framework, since Vosk has no iOS build. Speech.framework isn't
+    # pulled in transitively by anything else QPrompt links.
+    find_library(SPEECH_FRAMEWORK Speech REQUIRED)
+    target_link_libraries(${PROJECT_NAME} PRIVATE ${SPEECH_FRAMEWORK})
+endif()
+
+if(TARGET KF${QT_VERSION_MAJOR}::Crash)
+    target_compile_definitions(${PROJECT_NAME} PRIVATE KF6Crash_FOUND)
+    target_link_libraries(${PROJECT_NAME} PRIVATE KF${QT_VERSION_MAJOR}::Crash)
+endif()
+
 if(APPLE AND NOT IOS)
     target_include_directories(mactouchbar PRIVATE ${kdmactouchbar_SOURCE_DIR}/KDMacTouchBar)
     target_link_directories(mactouchbar PRIVATE ${kdmactouchbar_SOURCE_DIR}/KDMacTouchBar)
@@ -518,8 +581,7 @@ if (APPLE)
         install(TARGETS KF6CoreAddons ${KDE_INSTALL_TARGETS_DEFAULT_ARGS} FRAMEWORK DESTINATION QPrompt.app/Contents/Frameworks)
     endif()
     install(TARGETS Kirigami ${KDE_INSTALL_TARGETS_DEFAULT_ARGS} FRAMEWORK DESTINATION QPrompt.app/Contents/Frameworks)
-    install(DIRECTORY ../build/bin/org DESTINATION QPrompt.app/Contents/Resources/qml)
-    install(DIRECTORY ../build/bin/org DESTINATION QPrompt.app/Contents/MacOS/qml)
+    install(DIRECTORY ${CMAKE_BINARY_DIR}/bin/org DESTINATION QPrompt.app/Contents/Resources/qml)
 elseif (WIN32 OR UNIX)
     install(FILES com.cuperino.qprompt.appdata.xml DESTINATION ${KDE_INSTALL_METAINFODIR})
     install(PROGRAMS com.cuperino.qprompt.desktop DESTINATION ${KDE_INSTALL_APPDIR})
@@ -527,7 +589,13 @@ elseif (WIN32 OR UNIX)
 endif()
 
 if(APPLE AND NOT IOS)
-    set(MACOS_SIGNING_IDENTITY "")
+    # "-" requests an ad-hoc signature so local/CI builds without a Developer
+    # ID still end up with a valid signature (Apple Silicon refuses to run
+    # unsigned code, and the deploy tool's install_name_tool rewrites
+    # invalidate whatever ad-hoc signature the linker originally produced).
+    # Override with a real "Developer ID Application: ..." identity to
+    # produce a notarizable build.
+    set(MACOS_SIGNING_IDENTITY "-" CACHE STRING "Code signing identity for the macOS app bundle")
     set(EXTRA_DEPLOY_QML_APP_SCRIPT_OPTIONS)
     set(deploy_tool_options_arg "-always-overwrite -appstore-compliant -sign-for-notarization=${MACOS_SIGNING_IDENTITY}")
     list(APPEND EXTRA_DEPLOY_QML_APP_SCRIPT_OPTIONS DEPLOY_TOOL_OPTIONS ${deploy_tool_options_arg})
@@ -570,6 +638,7 @@ elseif(WIN32)
     qt_generate_deploy_qml_app_script(
         TARGET ${PROJECT_NAME}
         OUTPUT_SCRIPT deploy_script
+        DEPLOY_TOOL_OPTIONS --no-compiler-runtime
         # NO_UNSUPPORTED_PLATFORM_ERROR
         # DEPLOY_USER_QML_MODULES_ON_UNSUPPORTED_PLATFORM
     )

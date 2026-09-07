@@ -77,7 +77,7 @@ import QtQuick.Window 2.12
 import QtCore 6.5
 import QtQml 6.5
 import QtQuick.Dialogs 6.6
-import QtWebSockets 1.10
+import QtWebSockets
 import Qt.labs.platform 1.1 as Labs
 
 import com.cuperino.qprompt 1.0
@@ -144,6 +144,7 @@ Flickable {
     property alias position: prompter.contentY
     property alias keys: keys
     property alias ws: ws
+    property alias voiceFollowSession: voiceFollowSession
     // Flips
     property bool __flipX: false
     property bool __flipY: false
@@ -175,6 +176,69 @@ Flickable {
     property int __iDefault:  root.__iDefault
     property bool throttleWheel: root.__throttleWheel
     property int wheelThrottleFactor: root.__wheelThrottleFactor
+
+    VoiceFollowSession {
+        id: voiceFollowSession
+        document: editor.textDocument
+        onFollowedPosition: (documentPosition, confidence) => {
+            prompter.followVoicePosition(documentPosition)
+        }
+    }
+    Settings {
+        category: "voiceFollow"
+        property alias audioInputDeviceId: voiceFollowSession.audioInputDeviceId
+    }
+
+    Timer {
+        id: voiceTrackingWindowTimer
+        interval: 150
+        repeat: false
+        onTriggered: prompter.updateVoiceTrackingWindow(false)
+    }
+
+    function voiceReadingPosition() {
+        const readingY = position
+            + overlay.__readRegionPlacement * (overlay.height - overlay.readRegionHeight)
+            + overlay.readRegionHeight / 2
+        return editor.positionAt(0, readingY)
+    }
+
+    function updateVoiceTrackingWindow(reanchor) {
+        if (!voiceFollowSession.active)
+            return
+        const lineHeight = Math.max(1, editor.cursorRectangle.height)
+        const first = editor.positionAt(0, Math.max(0, position - 2 * lineHeight))
+        const last = editor.positionAt(editor.width, position + height + 2 * lineHeight)
+        if (reanchor)
+            voiceFollowSession.reanchor(voiceReadingPosition(), first, last)
+        else
+            voiceFollowSession.setTrackingWindow(first, last)
+    }
+
+    function startVoiceFollowing() {
+        __i = 0
+        __iBackup = 0
+        __play = false
+        position = position
+        voiceFollowSession.reanchor(voiceReadingPosition(), 0, editor.length)
+        voiceFollowSession.start()
+        voiceTrackingWindowTimer.restart()
+    }
+
+    function stopVoiceFollowing() {
+        voiceFollowSession.stop()
+    }
+
+    function followVoicePosition(documentPosition) {
+        __i = 0
+        __iBackup = 0
+        __play = false
+        editor.cursorPosition = documentPosition
+        const readingOffset = overlay.__readRegionPlacement
+            * (overlay.height - overlay.readRegionHeight) + overlay.readRegionHeight / 2
+        position = editor.cursorRectangle.y - readingOffset + 1
+        voiceTrackingWindowTimer.restart()
+    }
     // Compute slider to decimal separately for performance improvements
     readonly property real __baseSpeed: viewport.__baseSpeed / 100
     readonly property real __curvature: viewport.__curvature / 100
@@ -493,6 +557,8 @@ Flickable {
     }
 
     function increaseVelocity(event) {
+        if (voiceFollowSession.active)
+            stopVoiceFollowing()
         if (event)
             event.accepted = true;
         if (this.__atEnd)
@@ -509,6 +575,8 @@ Flickable {
     }
 
     function decreaseVelocity(event) {
+        if (voiceFollowSession.active)
+            stopVoiceFollowing()
         if (event)
             event.accepted = true;
         if (this.__atStart)
@@ -589,6 +657,8 @@ Flickable {
                 prompter.position = __destination
             else
                 prompter.position = prompter.position
+            if (voiceFollowSession.active)
+                updateVoiceTrackingWindow(true)
         }
     }
 
@@ -605,10 +675,14 @@ Flickable {
                 prompter.position = __destination
             else
                 prompter.position = prompter.position
+            if (voiceFollowSession.active)
+                updateVoiceTrackingWindow(true)
         }
     }
 
     function setVelocity(velocity: int, event: var) {
+        if (voiceFollowSession.active)
+            stopVoiceFollowing()
         console.log("velocity: ", velocity)
         this.__i = velocity - 1
         this.position = this.__destination
@@ -635,6 +709,8 @@ Flickable {
         __i = i;
         if (prompter.__play && i!==0)
             prompter.position = prompter.__destination
+        if (voiceFollowSession.active)
+            updateVoiceTrackingWindow(true)
     }
 
     function goToPreviousMarker() {
@@ -648,6 +724,8 @@ Flickable {
         __i = i
         if (prompter.__play && i!==0)
             prompter.position = prompter.__destination
+        if (voiceFollowSession.active)
+            updateVoiceTrackingWindow(true)
     }
 
     function goToNextMarker() {
@@ -666,6 +744,8 @@ Flickable {
         __i = i
         if (prompter.__play && i!==0)
             prompter.position = prompter.__destination
+        if (voiceFollowSession.active)
+            updateVoiceTrackingWindow(true)
     }
 
     function setContentWidth() {
@@ -801,6 +881,8 @@ Flickable {
         }
         else
            position = position
+        if (voiceFollowSession.active)
+            updateVoiceTrackingWindow(true)
     }
     boundsBehavior: Flickable.DragOverBounds
     flickableDirection: Flickable.VerticalFlick
@@ -816,6 +898,8 @@ Flickable {
         scrollGestureEnabled: true
         onWheel: (wheel) => {
             mouse.scroll(wheel)
+            if (voiceFollowSession.active)
+                updateVoiceTrackingWindow(true)
         }
     }
     //Rectangle {
@@ -847,7 +931,7 @@ Flickable {
         enabled: true
         animation: NumberAnimation {
             id: animationX
-            duration: timeToArival
+            duration: voiceFollowSession.active ? 520 : timeToArival
             easing.type: Easing.Linear
             onRunningChanged: {
                 if (!animationX.running && prompter.__i && prompter.__play) {
@@ -3093,6 +3177,9 @@ Flickable {
     ]
     state: Prompter.States.Editing
     onStateChanged: {
+        if (parseInt(prompter.state) === Prompter.States.Editing
+            && voiceFollowSession.active)
+            stopVoiceFollowing()
         setCursorAtCurrentPosition()
         var pos = prompter.position
         position = pos

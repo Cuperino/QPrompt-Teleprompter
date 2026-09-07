@@ -78,7 +78,7 @@ set(_QPROMPT_HUNSPELL_DICT_DEFS
     "en_GB|English (GB)|https://raw.githubusercontent.com/LibreOffice/dictionaries/master/en/en_GB.aff|https://raw.githubusercontent.com/LibreOffice/dictionaries/master/en/en_GB.dic"
     "es_ES|Spanish (Spain)|https://raw.githubusercontent.com/LibreOffice/dictionaries/master/es/es_ES.aff|https://raw.githubusercontent.com/LibreOffice/dictionaries/master/es/es_ES.dic"
     "es_MX|Spanish (Mexico)|https://raw.githubusercontent.com/LibreOffice/dictionaries/master/es/es_MX.aff|https://raw.githubusercontent.com/LibreOffice/dictionaries/master/es/es_MX.dic"
-    "fr_FR|French (France)|https://raw.githubusercontent.com/LibreOffice/dictionaries/master/fr_FR/fr.aff|https://raw.githubusercontent.com/LibreOffice/dictionaries/master/fr_FR/fr.dic"
+    "fr_FR|French (France)|https://raw.githubusercontent.com/LibreOffice/dictionaries/master/fr_FR/dictionaries/fr.aff|https://raw.githubusercontent.com/LibreOffice/dictionaries/master/fr_FR/dictionaries/fr.dic"
     "it_IT|Italian|https://raw.githubusercontent.com/LibreOffice/dictionaries/master/it_IT/it_IT.aff|https://raw.githubusercontent.com/LibreOffice/dictionaries/master/it_IT/it_IT.dic"
     "nl_NL|Dutch|https://raw.githubusercontent.com/LibreOffice/dictionaries/master/nl_NL/nl_NL.aff|https://raw.githubusercontent.com/LibreOffice/dictionaries/master/nl_NL/nl_NL.dic"
     "oc_FR|Occitan|https://raw.githubusercontent.com/LibreOffice/dictionaries/master/oc_FR/oc_FR.aff|https://raw.githubusercontent.com/LibreOffice/dictionaries/master/oc_FR/oc_FR.dic"

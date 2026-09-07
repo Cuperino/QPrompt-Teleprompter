@@ -38,6 +38,7 @@ project(qprompt
 option(WASM OFF)
 option(USE_GIT_DEPENDENCIES_ONLY OFF)
 option(SOURCE_DEPENDENCIES_EXCLUSIVELY_FROM_SYSTEM OFF)  # Used only on Linux builds for now
+option(QPROMPT_BUILD_TESTS "Build QPrompt unit tests" OFF)
 
 # Find includes in corresponding build directories
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
@@ -147,8 +148,24 @@ find_package(Qt${QT_VERSION_MAJOR} ${QT_MIN_VERSION} REQUIRED NO_MODULE COMPONEN
     LinguistTools
 )
 
+# Voice following remains buildable without microphone support on platforms
+# where Qt Multimedia is unavailable. The QML session reports that condition
+# instead of making the entire application fail configuration.
+find_package(Qt${QT_VERSION_MAJOR} ${QT_MIN_VERSION} QUIET NO_MODULE COMPONENTS Multimedia)
+
 if(ANDROID OR IOS OR WASM)
-    set(BUILD_SHARED_LIBS OFF)
+    # A plain set() here isn't enough: Qt's own toolchain/CMake package
+    # machinery forces a BUILD_SHARED_LIBS cache entry of its own earlier in
+    # configuration, and a cache write silently drops any same-named normal
+    # variable already in scope. KCoreAddons' add_library(KF6CoreAddons)
+    # call has no explicit STATIC/SHARED keyword, so it just reads whatever
+    # BUILD_SHARED_LIBS resolves to at that point - the surviving cache
+    # value of TRUE - and produces a shared libKF6CoreAddons.*.dylib that
+    # never gets embedded in the app bundle (no Frameworks dir is created
+    # for it), crashing every launch with a dyld "Library not loaded" error
+    # once installed on a real device. Force the cache entry instead so
+    # nothing can silently resurrect it afterwards.
+    set(BUILD_SHARED_LIBS OFF CACHE BOOL "" FORCE)
     set(DESKTOP_ENABLED OFF)
 endif()
 
@@ -161,6 +178,12 @@ if(WIN32 OR APPLE OR ANDROID OR WASM OR USE_GIT_DEPENDENCIES_ONLY)
     # defaults to C++20 when CMAKE_CXX_STANDARD is unset, so without this the
     # frameworks would inherit our 17 and fail to compile.
     set(CMAKE_CXX_STANDARD 20)
+    # Both KCoreAddons and Kirigami unconditionally include ECMGenerateQDoc,
+    # whose global targets collide when the frameworks share this build tree.
+    # QPrompt does not build their API documentation, so use the existing no-op
+    # shim for every bundled-framework build, not only WASM.
+    list(PREPEND CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake/wasm-shims")
+
     # Emscripten isn't on KDE Frameworks' list of supported platforms, so its
     # platform check would abort configuration of the bundled frameworks. Bypass
     # it so both KCoreAddons and Kirigami can be built for WASM.
@@ -180,11 +203,6 @@ if(WIN32 OR APPLE OR ANDROID OR WASM OR USE_GIT_DEPENDENCIES_ONLY)
         # value stays a defined boolean; dladdr-based libexec lookup has no
         # meaning on WASM anyway.
         set(HAVE_DLADDR 0 CACHE INTERNAL "")
-        # Both KCoreAddons and Kirigami unconditionally include(ECMGenerateQDoc),
-        # which creates global doc targets without an include guard. Building
-        # both frameworks in one tree then fails with duplicate-target errors, so
-        # shadow the module with a no-op shim (see cmake/wasm-shims).
-        list(PREPEND CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake/wasm-shims")
     endif()
     FetchContent_Declare(
       CoreAddons
@@ -193,6 +211,14 @@ if(WIN32 OR APPLE OR ANDROID OR WASM OR USE_GIT_DEPENDENCIES_ONLY)
       SOURCE_DIR submodules/kcoreaddons
     )
     FetchContent_MakeAvailable(CoreAddons)
+    if(APPLE)
+        # KCoreAddons' KDE-style build sets an absolute INSTALL_NAME_DIR (the
+        # Linux/KDE convention). Left as-is, installing QPrompt alongside it
+        # bakes that absolute path into QPrompt's own load commands instead
+        # of the @rpath reference the macOS app bundle relies on to find its
+        # bundled copy in Contents/Frameworks.
+        set_target_properties(KF6CoreAddons PROPERTIES INSTALL_NAME_DIR "@rpath")
+    endif()
     if(WASM)
         # Several KCoreAddons translation units cannot be built for Emscripten,
         # so drop them from the bundled library. None of these classes are used
@@ -216,6 +242,28 @@ if(WIN32 OR APPLE OR ANDROID OR WASM OR USE_GIT_DEPENDENCIES_ONLY)
             "((kshareddatacache|ksdclock|ksdcmemory|klistopenfilesjob_unix|kprocesslist_unix|kprocess|ksandbox|kformat|kformatprivate|kfilesystemtype)\\.cpp|kprocess\\.h)$")
         set_target_properties(KF6CoreAddons PROPERTIES SOURCES "${_kca_sources}")
     endif()
+    if(IOS)
+        # KCoreAddons' own CMakeLists.txt (3rdparty/kcoreaddons/src/lib/
+        # CMakeLists.txt) already guards kuser_unix.cpp, kshell_unix.cpp and
+        # kmacroexpander_unix.cpp behind `if (UNIX AND NOT IOS)`, correctly
+        # recognizing that their getpwuid()/getpwnam()/getgrgid() calls
+        # (real POSIX passwd/group database lookups) don't exist in iOS's
+        # sandboxed, single-user runtime even though <pwd.h>/<grp.h> declare
+        # them (so the calls compile, then fail to link). What upstream
+        # doesn't do is provide an iOS backend to replace them with, so the
+        # always-compiled public API files that call into that now-absent
+        # backend - kshell.cpp (whose homeDir() also pulls in all of KUser)
+        # and kmacroexpander.cpp - are left with unresolved references.
+        # Neither Kirigami nor QPrompt (which only needs KAboutData) calls
+        # into KShell, KMacroExpander, or KUser, so dropping their sources
+        # here leaves nothing unresolved - except kosrelease.cpp, which
+        # also calls KShell::splitArgs() to parse /etc/os-release (parsing
+        # a file that doesn't exist on iOS anyway); neither Kirigami nor
+        # QPrompt use KOSRelease either, so it goes too.
+        get_target_property(_kca_sources KF6CoreAddons SOURCES)
+        list(FILTER _kca_sources EXCLUDE REGEX "(kshell|kmacroexpander|kosrelease)\\.cpp$")
+        set_target_properties(KF6CoreAddons PROPERTIES SOURCES "${_kca_sources}")
+    endif()
     if(ANDROID OR IOS)
         # Prevent Kirigami from finding and using OpenMP on Android and iOS.
         # OpenMP is optional (accelerates palette generation in ImageColors)
@@ -236,6 +284,16 @@ if(WIN32 OR APPLE OR ANDROID OR WASM OR USE_GIT_DEPENDENCIES_ONLY)
       SOURCE_DIR submodules/kirigami
     )
     FetchContent_MakeAvailable(Kirigami)
+    if(APPLE)
+        # See the matching KF6CoreAddons comment above: Kirigami and
+        # KirigamiPlatform are QPrompt's other direct link dependencies built
+        # the same way, so they need the same @rpath fix-up.
+        foreach(_qprompt_apple_rpath_target Kirigami KirigamiPlatform)
+            if(TARGET ${_qprompt_apple_rpath_target})
+                set_target_properties(${_qprompt_apple_rpath_target} PROPERTIES INSTALL_NAME_DIR "@rpath")
+            endif()
+        endforeach()
+    endif()
     # Restore QPrompt's own C++ standard for the targets defined afterwards.
     set(CMAKE_CXX_STANDARD 17)
 else()
@@ -311,9 +369,10 @@ if(HAIKU)
         DESCRIPTION "Graceful handling of application crashes."
         TYPE OPTIONAL
     )
-# Windows, MacOS, and FreeBSD
-else()
-    find_package(KF${QT_VERSION_MAJOR}Crash ${REQUIRED_KF${QT_VERSION_MAJOR}_VERSION} COMPONENTS)
+# KCrash is not used by the self-contained Windows build. Probe quietly on
+# the remaining desktop platforms and enable it only when a package exists.
+elseif(NOT WIN32)
+    find_package(KF${QT_VERSION_MAJOR}Crash ${REQUIRED_KF${QT_VERSION_MAJOR}_VERSION} CONFIG QUIET)
     set_package_properties(KF${QT_VERSION_MAJOR}Crash PROPERTIES
         DESCRIPTION "Graceful handling of application crashes."
         TYPE OPTIONAL
@@ -392,6 +451,12 @@ set(DOC_INSTALL_DIR "share/doc/qprompt")
 
 add_subdirectory(src)
 
+if(QPROMPT_BUILD_TESTS)
+    enable_testing()
+    find_package(Qt${QT_VERSION_MAJOR} ${QT_MIN_VERSION} REQUIRED NO_MODULE COMPONENTS Test)
+    add_subdirectory(tests)
+endif()
+
 if (ANDROID)
     configure_file(${ANDROID_PACKAGE_SOURCE_DIR}/version.gradle.in ${CMAKE_BINARY_DIR}/version.gradle)
     # Also copy to the src subdirectory so the relative path from android-build-*/build.gradle works
@@ -410,11 +475,142 @@ if (WIN32 OR UNIX AND NOT APPLE) # AND NOT ANDROID
     install(FILES ${DOCS} DESTINATION ${DOC_INSTALL_DIR})
 endif()
 
-set(CMAKE_INSTALL_MFC_LIBRARIES On)
+# Bundle the Windows offline speech runtime and the initial English model so
+# an NSIS installation provides Voice Follow without a separate download or
+# development environment variables.
+if(WIN32)
+    option(QPROMPT_BUNDLE_VOSK "Bundle Vosk runtime and English model in Windows packages" ON)
+    set(QPROMPT_VOSK_ASSET_DIR "${CMAKE_BINARY_DIR}/voice-assets" CACHE PATH
+        "Directory prepared by scripts/setup-vosk-dev.ps1")
+
+    if(QPROMPT_BUNDLE_VOSK)
+        set(QPROMPT_VOSK_RUNTIME_DIR "${QPROMPT_VOSK_ASSET_DIR}/vosk-win64-0.3.45")
+        set(QPROMPT_VOSK_MODEL_NAME "vosk-model-small-en-us-0.15")
+        set(QPROMPT_VOSK_MODEL_DIR "${QPROMPT_VOSK_ASSET_DIR}/${QPROMPT_VOSK_MODEL_NAME}")
+        set(QPROMPT_VOSK_RUNTIME_FILES
+            "${QPROMPT_VOSK_RUNTIME_DIR}/libvosk.dll"
+            "${QPROMPT_VOSK_RUNTIME_DIR}/libgcc_s_seh-1.dll"
+            "${QPROMPT_VOSK_RUNTIME_DIR}/libstdc++-6.dll"
+            "${QPROMPT_VOSK_RUNTIME_DIR}/libwinpthread-1.dll"
+        )
+
+        foreach(required_path IN LISTS QPROMPT_VOSK_RUNTIME_FILES)
+            if(NOT EXISTS "${required_path}")
+                message(FATAL_ERROR
+                    "Voice Follow packaging asset is missing: ${required_path}\n"
+                    "Run scripts/setup-vosk-dev.ps1 before configuring QPrompt.")
+            endif()
+        endforeach()
+        if(NOT EXISTS "${QPROMPT_VOSK_MODEL_DIR}/conf/model.conf")
+            message(FATAL_ERROR
+                "Voice Follow model is missing: ${QPROMPT_VOSK_MODEL_DIR}\n"
+                "Run scripts/setup-vosk-dev.ps1 before configuring QPrompt.")
+        endif()
+        if(NOT EXISTS "${QPROMPT_VOSK_ASSET_DIR}/VOSK-COPYING")
+            message(FATAL_ERROR
+                "Vosk license file is missing: ${QPROMPT_VOSK_ASSET_DIR}/VOSK-COPYING\n"
+                "Run scripts/setup-vosk-dev.ps1 before configuring QPrompt.")
+        endif()
+
+        install(FILES ${QPROMPT_VOSK_RUNTIME_FILES}
+            DESTINATION "${CMAKE_INSTALL_BINDIR}"
+            COMPONENT Unspecified)
+        install(DIRECTORY "${QPROMPT_VOSK_MODEL_DIR}/"
+            DESTINATION "${CMAKE_INSTALL_BINDIR}/models/${QPROMPT_VOSK_MODEL_NAME}"
+            COMPONENT Unspecified)
+        install(FILES "${QPROMPT_VOSK_ASSET_DIR}/VOSK-COPYING"
+            DESTINATION "${DOC_INSTALL_DIR}/licenses"
+            COMPONENT Unspecified)
+    endif()
+elseif(APPLE AND NOT IOS)
+    # Same idea as the Windows block above, but into the .app bundle.
+    # QCoreApplication::applicationDirPath() resolves to Contents/MacOS for
+    # a bundled app, which is what VoiceFollowSession::defaultLibraryPath()/
+    # defaultModelPath() (src/voicefollowsession.cpp) check next to the
+    # executable - so that's where the runtime and model need to land.
+    #
+    # Vosk's own releases stopped shipping a macOS runtime archive after
+    # v0.3.42 (the newest release with a vosk-osx-*.zip asset; v0.3.45,
+    # used above for Windows, only publishes Linux/Windows/Android
+    # archives), so that is the version bundled here. Its libvosk.dylib is
+    # a universal x86_64+arm64 binary linking only system frameworks, so
+    # it runs unmodified on both Intel and Apple Silicon Macs despite
+    # predating the Windows runtime version.
+    option(QPROMPT_BUNDLE_VOSK "Bundle Vosk runtime and English model in macOS packages" ON)
+    set(QPROMPT_VOSK_ASSET_DIR "${CMAKE_BINARY_DIR}/voice-assets" CACHE PATH
+        "Directory prepared by scripts/setup-vosk-dev.sh")
+
+    if(QPROMPT_BUNDLE_VOSK)
+        set(QPROMPT_VOSK_RUNTIME_DIR "${QPROMPT_VOSK_ASSET_DIR}/vosk-osx-0.3.42")
+        set(QPROMPT_VOSK_MODEL_NAME "vosk-model-small-en-us-0.15")
+        set(QPROMPT_VOSK_MODEL_DIR "${QPROMPT_VOSK_ASSET_DIR}/${QPROMPT_VOSK_MODEL_NAME}")
+        set(QPROMPT_VOSK_RUNTIME_FILES
+            "${QPROMPT_VOSK_RUNTIME_DIR}/libvosk.dylib"
+        )
+
+        foreach(required_path IN LISTS QPROMPT_VOSK_RUNTIME_FILES)
+            if(NOT EXISTS "${required_path}")
+                message(FATAL_ERROR
+                    "Voice Follow packaging asset is missing: ${required_path}\n"
+                    "Run scripts/setup-vosk-dev.sh before configuring QPrompt.")
+            endif()
+        endforeach()
+        if(NOT EXISTS "${QPROMPT_VOSK_MODEL_DIR}/conf/model.conf")
+            message(FATAL_ERROR
+                "Voice Follow model is missing: ${QPROMPT_VOSK_MODEL_DIR}\n"
+                "Run scripts/setup-vosk-dev.sh before configuring QPrompt.")
+        endif()
+        if(NOT EXISTS "${QPROMPT_VOSK_ASSET_DIR}/VOSK-COPYING")
+            message(FATAL_ERROR
+                "Vosk license file is missing: ${QPROMPT_VOSK_ASSET_DIR}/VOSK-COPYING\n"
+                "Run scripts/setup-vosk-dev.sh before configuring QPrompt.")
+        endif()
+
+        install(FILES ${QPROMPT_VOSK_RUNTIME_FILES}
+            DESTINATION "QPrompt.app/Contents/MacOS"
+            COMPONENT Unspecified)
+        # The model is a directory tree of plain data files, not code. Put
+        # it under Contents/Resources (the correct macOS location for
+        # bundled resources) rather than directly in Contents/MacOS:
+        # `codesign --deep`'s recursive bundle-format detection trips over
+        # a full directory tree sitting next to the executable, the same
+        # way it did for the Kirigami QML modules (see the comment above
+        # the `Contents/Resources/qml` install() call in src/CMakeLists.txt).
+        # A symlink at the path defaultModelPath() actually checks keeps
+        # that function working unmodified: QDir/QFileInfo follow symlinks
+        # transparently, and codesign only sees a plain symlink there
+        # rather than a directory tree that looks like a nested bundle.
+        install(DIRECTORY "${QPROMPT_VOSK_MODEL_DIR}/"
+            DESTINATION "QPrompt.app/Contents/Resources/models/${QPROMPT_VOSK_MODEL_NAME}"
+            COMPONENT Unspecified)
+        install(CODE "
+            execute_process(COMMAND \${CMAKE_COMMAND} -E create_symlink
+                ../Resources/models
+                \"\${CMAKE_INSTALL_PREFIX}/QPrompt.app/Contents/MacOS/models\")
+            " COMPONENT Unspecified)
+        install(FILES "${QPROMPT_VOSK_ASSET_DIR}/VOSK-COPYING"
+            DESTINATION "QPrompt.app/Contents/Resources/licenses"
+            COMPONENT Unspecified)
+    endif()
+endif()
+
+# QPrompt uses the standard MSVC runtime but does not use MFC. Asking CMake to
+# install MFC caused misleading missing-MFC warnings on otherwise complete
+# Visual Studio installations.
+set(CMAKE_INSTALL_MFC_LIBRARIES Off)
 set(InstallRequiredSystemLibraries On)
 include(InstallRequiredSystemLibraries)
 
-set(CMAKE_OSX_DEPLOYMENT_TARGET "10.15")
+# "10.15" is a macOS (Catalina) version number and has no meaning as an iOS
+# deployment target. CMAKE_OSX_DEPLOYMENT_TARGET doubles as both when
+# cross-compiling for iOS, though, so setting it unconditionally silently
+# drags the iOS target down to "10.15" too - below 13.0, which is where
+# Apple's std::filesystem shim (used by Qt's own QFile/QFileInfo headers)
+# becomes available, breaking the iOS build with "'path' is unavailable"
+# compiler errors.
+if(NOT IOS)
+    set(CMAKE_OSX_DEPLOYMENT_TARGET "10.15")
+endif()
 set(CMAKE_OSX_ARCHITECTURES="x86_64;arm64")
 
 if(CMAKE_SOURCE_DIR STREQUAL CMAKE_CURRENT_SOURCE_DIR)
@@ -452,9 +648,10 @@ if(CMAKE_SOURCE_DIR STREQUAL CMAKE_CURRENT_SOURCE_DIR)
 
     elseif(WIN32)
         set(CPACK_GENERATOR "NSIS")
-        # Hunspell dictionaries are installed as user-selectable NSIS
-        # components, which requires turning off monolithic install.
-        set(CPACK_MONOLITHIC_INSTALL OFF)
+        # Qt's generated deployment script runs during a full install. Keep
+        # the Windows package monolithic so Qt, QML, Vosk and the speech model
+        # are always installed together as one self-contained application.
+        set(CPACK_MONOLITHIC_INSTALL ON)
         set(CPACK_PACKAGE_EXECUTABLES "QPrompt" "QPrompt")
         set(CPACK_RESOURCE_FILE_LICENSE ${CMAKE_SOURCE_DIR}/${LICENSE_FILE})
         set(CPACK_NSIS_EXECUTABLES_DIRECTORY ${BIN_INSTALL_DIR})

@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -e
+
 #**************************************************************************
 #
 # QPrompt
@@ -46,7 +48,7 @@ elif [[ "$OSTYPE" == "darwin"* ]]; then
     CMAKE=~/Qt/Tools/CMake/CMake.app/Contents/bin/cmake
     CPACK=~/Qt/Tools/CMake/CMake.app/Contents/bin/cpack
     PATH=$PATH:~/Qt/Tools/QtInstallerFramework/4.8/bin
-elif [[ "$OSTYPE" == "win32" || "$OSTYPE" == "msys" ]]; then
+elif [[ "$OSTYPE" == "win32" || "$OSTYPE" == "msys" || "$OSTYPE" == "cygwin" ]]; then
     QT_VER=$DEFAULT_QT_VER
     PLATFORM="windows"
     CMAKE_INSTALL_PREFIX="install"
@@ -164,6 +166,12 @@ elif $CLEAR # QPrompt
 fi
 mkdir -p build install
 
+if [[ "$PLATFORM" == "windows" ]]; then
+    echo "Preparing offline Voice Follow runtime and English model"
+    VOICE_SETUP_SCRIPT=$(cygpath -w "$PWD/scripts/setup-vosk-dev.ps1")
+    powershell.exe -NoProfile -ExecutionPolicy Bypass -File "$VOICE_SETUP_SCRIPT"
+fi
+
 echo "Downloading git submodules"
 git submodule update --init --recursive
 
@@ -200,9 +208,9 @@ for dependency in $tier_0 $tier_1; do
     $CMAKE -DCMAKE_CONFIGURATION_TYPES=$CMAKE_CONFIGURATION_TYPES -DCMAKE_PREFIX_PATH=$CMAKE_PREFIX_PATH -DCMAKE_INSTALL_PREFIX=$CMAKE_INSTALL_PREFIX -DBUILD_TESTING=OFF -DBUILD_DOC=OFF -DBUILD_QCH=OFF -DBUILD_PYTHON_BINDINGS=OFF -B ./$dependency/build ./$dependency/
     $CMAKE --build ./$dependency/build --config $CMAKE_BUILD_TYPE
     if [[ "$PLATFORM" == "macos" ]]; then
-        $CMAKE --install ./$dependency/build
+        $CMAKE --install ./$dependency/build --config $CMAKE_BUILD_TYPE
     else
-        DESTDIR=$AppDir $CMAKE --install ./$dependency/build
+        DESTDIR=$AppDir $CMAKE --install ./$dependency/build --config $CMAKE_BUILD_TYPE
         cp -r $AppDirUsr/* $CMAKE_PREFIX_PATH
     fi
 done
@@ -214,9 +222,9 @@ fi
 $CMAKE -DCMAKE_CONFIGURATION_TYPES=$CMAKE_CONFIGURATION_TYPES -DCMAKE_PREFIX_PATH=$CMAKE_PREFIX_PATH -DCMAKE_INSTALL_PREFIX=$CMAKE_INSTALL_PREFIX -DBUILD_SHARED_LIBS=ON -DQT_DEFAULT_MAJOR_VERSION=$QT_MAJOR_VERSION -B ./3rdparty/QHotkey/build ./3rdparty/QHotkey/
 $CMAKE --build ./3rdparty/QHotkey/build --config $CMAKE_BUILD_TYPE
 if [[ "$PLATFORM" == "macos" ]]; then
-    $CMAKE --install ./3rdparty/QHotkey/build
+    $CMAKE --install ./3rdparty/QHotkey/build --config $CMAKE_BUILD_TYPE
 else
-    DESTDIR=$AppDir $CMAKE --install ./3rdparty/QHotkey/build
+    DESTDIR=$AppDir $CMAKE --install ./3rdparty/QHotkey/build --config $CMAKE_BUILD_TYPE
     cp -r $AppDirUsr/* $CMAKE_PREFIX_PATH
 fi
 
@@ -224,15 +232,15 @@ echo "QPrompt"
 $CMAKE -DCMAKE_CONFIGURATION_TYPES=$CMAKE_CONFIGURATION_TYPES -DCMAKE_PREFIX_PATH=$CMAKE_PREFIX_PATH -DCMAKE_INSTALL_PREFIX=$CMAKE_INSTALL_PREFIX -B ./build .
 $CMAKE --build ./build --config $CMAKE_BUILD_TYPE
 if [[ "$PLATFORM" == "macos" ]]; then
-    $CMAKE --install ./build
+    $CMAKE --install ./build --config $CMAKE_BUILD_TYPE
 else
-    DESTDIR=$AppDir $CMAKE --install ./build
+    DESTDIR=$AppDir $CMAKE --install ./build --config $CMAKE_BUILD_TYPE
 fi
 
 # Copy Qt libraries into install directory
 if [[ "$PLATFORM" == "windows" ]]; then
     PATH=$PATH:"C:\Program Files (x86)\NSIS"
-    $CMAKE_PREFIX_PATH/bin/windeployqt.exe ./install/bin/$CMAKE_BUILD_TYPE/QPrompt.exe
+    $CMAKE_PREFIX_PATH/bin/windeployqt.exe ./install/bin/QPrompt.exe
     cd build
     $CPACK
     cd ..
