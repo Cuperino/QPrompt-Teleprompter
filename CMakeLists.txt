@@ -248,6 +248,13 @@ else()
     )
 endif()
 
+# Qt policies for QPrompt's own QML module; deliberately set after the bundled frameworks are added.
+qt_policy(SET QTP0001 NEW)
+qt_policy(SET QTP0002 NEW)
+qt_policy(SET QTP0003 NEW)
+qt_policy(SET QTP0004 NEW)
+qt_policy(SET QTP0005 NEW)
+
 if(NOT ANDROID AND NOT IOS AND NOT WASM)
     if(NOT BSD AND NOT SOURCE_DEPENDENCIES_EXCLUSIVELY_FROM_SYSTEM AND NOT USE_GIT_DEPENDENCIES_ONLY)
         set(BUILD_SHARED_LIBS ON)
