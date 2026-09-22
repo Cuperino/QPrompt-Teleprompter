@@ -77,7 +77,7 @@ import QtQuick.Window 2.12
 import QtCore 6.5
 import QtQml 6.5
 import QtQuick.Dialogs 6.6
-import QtWebSockets 1.10
+import QtWebSockets 1.1
 import Qt.labs.platform 1.1 as Labs
 
 import com.cuperino.qprompt 1.0
