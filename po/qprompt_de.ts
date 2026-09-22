@@ -25,7 +25,7 @@
     <message>
         <location filename="../src/documenthandler.cpp" line="1989"/>
         <source>Prompting started at least once</source>
-        <translation type="unfinished"></translation>
+        <translation>Prompting min. einmal gestartet</translation>
     </message>
 </context>
 <context>
@@ -42,67 +42,67 @@
         <location filename="../src/kirigami_ui/EditorToolbar.qml" line="190"/>
         <source>Marker list</source>
         <comment>Editor toolbar button tooltip</comment>
-        <translation type="unfinished"></translation>
+        <translation>Marker-Liste</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/EditorToolbar.qml" line="207"/>
         <source>Find and replace</source>
         <comment>Editor toolbar button tooltip</comment>
-        <translation type="unfinished"></translation>
+        <translation>Suchen und Ersetzen</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/EditorToolbar.qml" line="222"/>
         <source>Toggle marker</source>
         <comment>Editor toolbar button tooltip</comment>
-        <translation type="unfinished"></translation>
+        <translation>Marker ein/aus</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/EditorToolbar.qml" line="236"/>
         <source>Named marker</source>
         <comment>Editor toolbar button tooltip</comment>
-        <translation type="unfinished"></translation>
+        <translation>Benannter Marker</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/EditorToolbar.qml" line="280"/>
         <source>Previous marker</source>
         <comment>Editor toolbar button tooltip</comment>
-        <translation type="unfinished"></translation>
+        <translation>Vorheriger Marker</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/EditorToolbar.qml" line="292"/>
         <source>Next marker</source>
         <comment>Editor toolbar button tooltip</comment>
-        <translation type="unfinished"></translation>
+        <translation>Nächster Marker</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/EditorToolbar.qml" line="311"/>
         <source>Undo</source>
         <comment>Editor toolbar button tooltip</comment>
-        <translation type="unfinished"></translation>
+        <translation>Zurück</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/EditorToolbar.qml" line="323"/>
         <source>Redo</source>
         <comment>Editor toolbar button tooltip</comment>
-        <translation type="unfinished">Wiederholen</translation>
+        <translation>Wiederholen</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/EditorToolbar.qml" line="343"/>
         <source>Copy</source>
         <comment>Editor toolbar button tooltip</comment>
-        <translation type="unfinished"></translation>
+        <translation>Kopieren</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/EditorToolbar.qml" line="356"/>
         <source>Cut</source>
         <comment>Editor toolbar button tooltip</comment>
-        <translation type="unfinished"></translation>
+        <translation>Ausschneiden</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/EditorToolbar.qml" line="369"/>
         <source>Paste</source>
         <comment>Editor toolbar button tooltip</comment>
-        <translation type="unfinished"></translation>
+        <translation>Einfügen</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/EditorToolbar.qml" line="395"/>
@@ -137,48 +137,48 @@
         <location filename="../src/kirigami_ui/EditorToolbar.qml" line="465"/>
         <source>Text alignment</source>
         <comment>Editor toolbar button tooltip</comment>
-        <translation type="unfinished"></translation>
+        <translation>Text-Ausrichtung</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/EditorToolbar.qml" line="489"/>
         <source>Bold</source>
         <comment>Editor toolbar button tooltip</comment>
-        <translation type="unfinished"></translation>
+        <translation>Fett</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/EditorToolbar.qml" line="503"/>
         <source>Italic</source>
         <comment>Editor toolbar button tooltip</comment>
-        <translation type="unfinished"></translation>
+        <translation>Kursiv</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/EditorToolbar.qml" line="517"/>
         <source>Underline</source>
         <comment>Editor toolbar button tooltip</comment>
-        <translation type="unfinished"></translation>
+        <translation>Unterstrichen</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/EditorToolbar.qml" line="531"/>
         <source>Strikethrough</source>
         <comment>Editor toolbar button tooltip</comment>
-        <translation type="unfinished"></translation>
+        <translation>Durchgestrichen</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/EditorToolbar.qml" line="545"/>
         <source>Subscript or superscript</source>
         <comment>Editor toolbar button tooltip</comment>
-        <translation type="unfinished"></translation>
+        <translation>Hoch oder Tief gestellt</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/EditorToolbar.qml" line="566"/>
         <source>Capitalization</source>
         <comment>Editor toolbar button tooltip</comment>
-        <translation type="unfinished"></translation>
+        <translation>Alles Großbuchstaben</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/EditorToolbar.qml" line="651"/>
         <source>Active font: %0</source>
-        <translation type="unfinished"></translation>
+        <translation>Aktive Schrift: %0</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/EditorToolbar.qml" line="658"/>
@@ -231,73 +231,73 @@
         <location filename="../src/kirigami_ui/EditorToolbar.qml" line="699"/>
         <source>Font family</source>
         <comment>Editor toolbar button tooltip</comment>
-        <translation type="unfinished"></translation>
+        <translation>Schriftenfamilie</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/EditorToolbar.qml" line="712"/>
         <source>Text color</source>
         <comment>Editor toolbar button tooltip</comment>
-        <translation type="unfinished"></translation>
+        <translation>Textfarbe</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/EditorToolbar.qml" line="748"/>
         <source>Text highlight</source>
         <comment>Editor toolbar button tooltip</comment>
-        <translation type="unfinished"></translation>
+        <translation>Text-Hervorhebung</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/EditorToolbar.qml" line="792"/>
         <source>Align left</source>
         <comment>Editor toolbar button tooltip</comment>
-        <translation type="unfinished"></translation>
+        <translation>Linksbündig</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/EditorToolbar.qml" line="811"/>
         <source>Align center</source>
         <comment>Editor toolbar button tooltip</comment>
-        <translation type="unfinished"></translation>
+        <translation>Zentriert</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/EditorToolbar.qml" line="825"/>
         <source>Align right</source>
         <comment>Editor toolbar button tooltip</comment>
-        <translation type="unfinished"></translation>
+        <translation>Rechtsbündig</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/EditorToolbar.qml" line="845"/>
         <source>Justify</source>
         <comment>Editor toolbar button tooltip</comment>
-        <translation type="unfinished"></translation>
+        <translation>Ausrichten</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/EditorToolbar.qml" line="868"/>
         <source>Scroll wheel settings</source>
         <comment>Editor toolbar button tooltip</comment>
-        <translation type="unfinished"></translation>
+        <translation>Mausrad Einstellungen</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/EditorToolbar.qml" line="883"/>
         <source>Window stay on top</source>
         <comment>Editor toolbar button tooltip</comment>
-        <translation type="unfinished"></translation>
+        <translation>Fenster immer oben</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/EditorToolbar.qml" line="896"/>
         <source>Text spacing options</source>
         <comment>Editor toolbar button tooltip</comment>
-        <translation type="unfinished"></translation>
+        <translation>Laufweiten-Optionen</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/EditorToolbar.qml" line="923"/>
         <source>Motion options</source>
         <comment>Editor toolbar button tooltip</comment>
-        <translation type="unfinished"></translation>
+        <translation>Bewegungs-Optionen</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/EditorToolbar.qml" line="968"/>
         <source>Prompter goes forward only</source>
         <comment>Editor toolbar button tooltip</comment>
-        <translation type="unfinished"></translation>
+        <translation>Prompter läuft nur vorwärts</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/EditorToolbar.qml" line="982"/>
@@ -309,7 +309,7 @@
         <location filename="../src/kirigami_ui/EditorToolbar.qml" line="1009"/>
         <source>Opacity options</source>
         <comment>Editor toolbar button tooltip</comment>
-        <translation type="unfinished"></translation>
+        <translation>Transparenz-Optionen</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/EditorToolbar.qml" line="1094"/>
@@ -321,7 +321,7 @@
         <location filename="../src/kirigami_ui/EditorToolbar.qml" line="1120"/>
         <source>Switch between small and large font while editing</source>
         <comment>Editor toolbar button tooltip</comment>
-        <translation type="unfinished"></translation>
+        <translation>Beim Bearbeiten zwischen großer und kleiner Schrift wechseln</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/EditorToolbar.qml" line="1240"/>
@@ -334,7 +334,7 @@
         <location filename="../src/kirigami_ui/EditorToolbar.qml" line="1292"/>
         <source>Line height</source>
         <comment>Editor toolbar button tooltip</comment>
-        <translation type="unfinished"></translation>
+        <translation>Zeilenhöhe</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/EditorToolbar.qml" line="1378"/>
@@ -346,7 +346,7 @@
         <location filename="../src/kirigami_ui/EditorToolbar.qml" line="1413"/>
         <source>Paragraph spacing</source>
         <comment>Editor toolbar button tooltip</comment>
-        <translation type="unfinished"></translation>
+        <translation>Absatz-Abstand</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/EditorToolbar.qml" line="1500"/>
@@ -358,7 +358,7 @@
         <location filename="../src/kirigami_ui/EditorToolbar.qml" line="1535"/>
         <source>Word spacing</source>
         <comment>Editor toolbar button tooltip</comment>
-        <translation type="unfinished"></translation>
+        <translation>Wortabstand</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/EditorToolbar.qml" line="1623"/>
@@ -376,25 +376,25 @@
         <location filename="../src/kirigami_ui/EditorToolbar.qml" line="1750"/>
         <source>Bars opacity &lt;pre&gt;%1&lt;/pre&gt;</source>
         <comment>Opacity {TRANSPARENCY_PERCENTAGE}</comment>
-        <translation type="unfinished"></translation>
+        <translation>Leisten-Transparenz&lt;pre&gt;%1&lt;/pre&gt;</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/EditorToolbar.qml" line="1784"/>
         <source>Bars brightness</source>
         <comment>Editor toolbar button tooltip</comment>
-        <translation type="unfinished"></translation>
+        <translation>Leisten-Helligkeit</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/EditorToolbar.qml" line="1877"/>
         <source>Bars brightness &lt;pre&gt;%1&lt;/pre&gt;</source>
         <comment>Brightness {TRANSPARENCY_PERCENTAGE}</comment>
-        <translation type="unfinished"></translation>
+        <translation>Leisten-Helligkeit&lt;pre&gt;%1&lt;/pre&gt;</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/EditorToolbar.qml" line="1911"/>
         <source>Letter spacing</source>
         <comment>Editor toolbar button tooltip</comment>
-        <translation type="unfinished"></translation>
+        <translation>Zeichenabstand</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/EditorToolbar.qml" line="1998"/>
@@ -406,7 +406,7 @@
         <location filename="../src/kirigami_ui/EditorToolbar.qml" line="2031"/>
         <source>Step speed</source>
         <comment>Editor toolbar button tooltip</comment>
-        <translation type="unfinished"></translation>
+        <translation>Schrittgeschwindigkeit</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/EditorToolbar.qml" line="2118"/>
@@ -418,7 +418,7 @@
         <location filename="../src/kirigami_ui/EditorToolbar.qml" line="2153"/>
         <source>Step acceleration</source>
         <comment>Editor toolbar button tooltip</comment>
-        <translation type="unfinished"></translation>
+        <translation>Schritt-Beschleunigung</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/EditorToolbar.qml" line="2240"/>
@@ -430,7 +430,7 @@
         <location filename="../src/kirigami_ui/EditorToolbar.qml" line="2265"/>
         <source>Auto reload settings</source>
         <comment>Editor toolbar button tooltip</comment>
-        <translation type="unfinished"></translation>
+        <translation>Einstellungen automatisch neu laden</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/EditorToolbar.qml" line="2269"/>
@@ -443,7 +443,7 @@
         <location filename="../src/kirigami_ui/EditorToolbar.qml" line="2297"/>
         <source>Reload now</source>
         <comment>Editor toolbar button tooltip</comment>
-        <translation type="unfinished"></translation>
+        <translation>Jetzt neu laden</translation>
     </message>
 </context>
 <context>
@@ -472,167 +472,167 @@
     <message>
         <location filename="../src/globalhotkeys.cpp" line="70"/>
         <source>Toggle Prompter</source>
-        <translation type="unfinished"></translation>
+        <translation>Prompter ein/aus</translation>
     </message>
     <message>
         <location filename="../src/globalhotkeys.cpp" line="71"/>
         <source>Increase Velocity</source>
-        <translation type="unfinished">Geschwindigkeit erhöhen</translation>
+        <translation>Geschwindigkeit erhöhen</translation>
     </message>
     <message>
         <location filename="../src/globalhotkeys.cpp" line="72"/>
         <source>Decrease Velocity</source>
-        <translation type="unfinished">Geschwindigkeit senken</translation>
+        <translation>Geschwindigkeit senken</translation>
     </message>
     <message>
         <location filename="../src/globalhotkeys.cpp" line="73"/>
         <source>Pause</source>
-        <translation type="unfinished"></translation>
+        <translation>Pause</translation>
     </message>
     <message>
         <location filename="../src/globalhotkeys.cpp" line="74"/>
         <source>Stop</source>
-        <translation type="unfinished">Stoppen</translation>
+        <translation>Stoppen</translation>
     </message>
     <message>
         <location filename="../src/globalhotkeys.cpp" line="75"/>
         <source>Reverse</source>
-        <translation type="unfinished">zurücksetzen</translation>
+        <translation>Rückwärts</translation>
     </message>
     <message>
         <location filename="../src/globalhotkeys.cpp" line="76"/>
         <source>Rewind</source>
-        <translation type="unfinished">zurückspulen</translation>
+        <translation>Zurückspulen</translation>
     </message>
     <message>
         <location filename="../src/globalhotkeys.cpp" line="77"/>
         <source>Fast Forward</source>
-        <translation type="unfinished">Schnell Vorwärts</translation>
+        <translation>Schnell Vorwärts</translation>
     </message>
     <message>
         <location filename="../src/globalhotkeys.cpp" line="78"/>
         <source>Skip Backwards</source>
-        <translation type="unfinished"></translation>
+        <translation>Zurückspringen</translation>
     </message>
     <message>
         <location filename="../src/globalhotkeys.cpp" line="79"/>
         <source>Skip Forwards</source>
-        <translation type="unfinished"></translation>
+        <translation>Vorwärts springen</translation>
     </message>
     <message>
         <location filename="../src/globalhotkeys.cpp" line="80"/>
         <source>Previous Marker</source>
-        <translation type="unfinished"></translation>
+        <translation>Vorheriger Marker</translation>
     </message>
     <message>
         <location filename="../src/globalhotkeys.cpp" line="81"/>
         <source>Next Marker</source>
-        <translation type="unfinished"></translation>
+        <translation>Nächster Marker</translation>
     </message>
     <message>
         <location filename="../src/globalhotkeys.cpp" line="82"/>
         <source>Set Velocity to -10</source>
-        <translation type="unfinished"></translation>
+        <translation>Geschwindigkeit auf -10 setzen</translation>
     </message>
     <message>
         <location filename="../src/globalhotkeys.cpp" line="83"/>
         <source>Set Velocity to -9</source>
-        <translation type="unfinished"></translation>
+        <translation>Geschwindigkeit auf -9 setzen</translation>
     </message>
     <message>
         <location filename="../src/globalhotkeys.cpp" line="84"/>
         <source>Set Velocity to -8</source>
-        <translation type="unfinished"></translation>
+        <translation>Geschwindigkeit auf -8 setzen</translation>
     </message>
     <message>
         <location filename="../src/globalhotkeys.cpp" line="85"/>
         <source>Set Velocity to -7</source>
-        <translation type="unfinished"></translation>
+        <translation>Geschwindigkeit auf -7 setzen</translation>
     </message>
     <message>
         <location filename="../src/globalhotkeys.cpp" line="86"/>
         <source>Set Velocity to -6</source>
-        <translation type="unfinished"></translation>
+        <translation>Geschwindigkeit auf -6 setzen</translation>
     </message>
     <message>
         <location filename="../src/globalhotkeys.cpp" line="87"/>
         <source>Set Velocity to -5</source>
-        <translation type="unfinished"></translation>
+        <translation>Geschwindigkeit auf -5 setzen</translation>
     </message>
     <message>
         <location filename="../src/globalhotkeys.cpp" line="88"/>
         <source>Set Velocity to -4</source>
-        <translation type="unfinished"></translation>
+        <translation>Geschwindigkeit auf -4 setzen</translation>
     </message>
     <message>
         <location filename="../src/globalhotkeys.cpp" line="89"/>
         <source>Set Velocity to -3</source>
-        <translation type="unfinished"></translation>
+        <translation>Geschwindigkeit auf -3 setzen</translation>
     </message>
     <message>
         <location filename="../src/globalhotkeys.cpp" line="90"/>
         <source>Set Velocity to -2</source>
-        <translation type="unfinished"></translation>
+        <translation>Geschwindigkeit auf -2 setzen</translation>
     </message>
     <message>
         <location filename="../src/globalhotkeys.cpp" line="91"/>
         <source>Set Velocity to -1</source>
-        <translation type="unfinished"></translation>
+        <translation>Geschwindigkeit auf -1 setzen</translation>
     </message>
     <message>
         <location filename="../src/globalhotkeys.cpp" line="92"/>
         <source>Set Velocity to 0</source>
-        <translation type="unfinished"></translation>
+        <translation>Geschwindigkeit auf 0 setzen</translation>
     </message>
     <message>
         <location filename="../src/globalhotkeys.cpp" line="93"/>
         <source>Set Velocity to 1</source>
-        <translation type="unfinished"></translation>
+        <translation>Geschwindigkeit auf 1 setzen</translation>
     </message>
     <message>
         <location filename="../src/globalhotkeys.cpp" line="94"/>
         <source>Set Velocity to 2</source>
-        <translation type="unfinished"></translation>
+        <translation>Geschwindigkeit auf 2 setzen</translation>
     </message>
     <message>
         <location filename="../src/globalhotkeys.cpp" line="95"/>
         <source>Set Velocity to 3</source>
-        <translation type="unfinished"></translation>
+        <translation>Geschwindigkeit auf 3 setzen</translation>
     </message>
     <message>
         <location filename="../src/globalhotkeys.cpp" line="96"/>
         <source>Set Velocity to 4</source>
-        <translation type="unfinished"></translation>
+        <translation>Geschwindigkeit auf 4 setzen</translation>
     </message>
     <message>
         <location filename="../src/globalhotkeys.cpp" line="97"/>
         <source>Set Velocity to 5</source>
-        <translation type="unfinished"></translation>
+        <translation>Geschwindigkeit auf 5 setzen</translation>
     </message>
     <message>
         <location filename="../src/globalhotkeys.cpp" line="98"/>
         <source>Set Velocity to 6</source>
-        <translation type="unfinished"></translation>
+        <translation>Geschwindigkeit auf 6 setzen</translation>
     </message>
     <message>
         <location filename="../src/globalhotkeys.cpp" line="99"/>
         <source>Set Velocity to 7</source>
-        <translation type="unfinished"></translation>
+        <translation>Geschwindigkeit auf 7 setzen</translation>
     </message>
     <message>
         <location filename="../src/globalhotkeys.cpp" line="100"/>
         <source>Set Velocity to 8</source>
-        <translation type="unfinished"></translation>
+        <translation>Geschwindigkeit auf 8 setzen</translation>
     </message>
     <message>
         <location filename="../src/globalhotkeys.cpp" line="101"/>
         <source>Set Velocity to 9</source>
-        <translation type="unfinished"></translation>
+        <translation>Geschwindigkeit auf 9 setzen</translation>
     </message>
     <message>
         <location filename="../src/globalhotkeys.cpp" line="102"/>
         <source>Set Velocity to 10</source>
-        <translation type="unfinished"></translation>
+        <translation>Geschwindigkeit auf 10 setzen</translation>
     </message>
 </context>
 <context>
@@ -646,12 +646,12 @@
     <message>
         <location filename="../src/kirigami_ui/InputsOverlay.qml" line="58"/>
         <source>Keyboard Inputs</source>
-        <translation type="unfinished">Tastatureingaben</translation>
+        <translation>Tastatureingaben</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/InputsOverlay.qml" line="62"/>
         <source>Global Hotkeys</source>
-        <translation type="unfinished"></translation>
+        <translation>Globale Abkürzungen</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/InputsOverlay.qml" line="325"/>
@@ -750,73 +750,73 @@
         <location filename="../src/kirigami_ui/InputsOverlay.qml" line="421"/>
         <source>Set velocity modifier key</source>
         <comment>Key that shifts velocoty to its negative value.</comment>
-        <translation type="unfinished">Geschwindigkeitsänderungs Taste wählen</translation>
+        <translation>Geschwindigkeitsänderungs Taste wählen</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/InputsOverlay.qml" line="460"/>
         <source>Set velocity to 0</source>
         <comment>Key that sets velocity to a fixed value.</comment>
-        <translation type="unfinished">Geschwindigkeit auf 0 setzen</translation>
+        <translation>Geschwindigkeit auf 0 setzen</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/InputsOverlay.qml" line="468"/>
         <source>Set velocity to 1</source>
         <comment>Key that sets velocity to a fixed value.</comment>
-        <translation type="unfinished">Geschwindigkeit auf 1 setzen</translation>
+        <translation>Geschwindigkeit auf 1 setzen</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/InputsOverlay.qml" line="476"/>
         <source>Set velocity to 2</source>
         <comment>Key that sets velocity to a fixed value.</comment>
-        <translation type="unfinished">Geschwindigkeit auf 2 setzen</translation>
+        <translation>Geschwindigkeit auf 2 setzen</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/InputsOverlay.qml" line="484"/>
         <source>Set velocity to 3</source>
         <comment>Key that sets velocity to a fixed value.</comment>
-        <translation type="unfinished">Geschwindigkeit auf 3 setzen</translation>
+        <translation>Geschwindigkeit auf 3 setzen</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/InputsOverlay.qml" line="492"/>
         <source>Set velocity to 4</source>
         <comment>Key that sets velocity to a fixed value.</comment>
-        <translation type="unfinished">Geschwindigkeit auf 4 setzen</translation>
+        <translation>Geschwindigkeit auf 4 setzen</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/InputsOverlay.qml" line="500"/>
         <source>Set velocity to 5</source>
         <comment>Key that sets velocity to a fixed value.</comment>
-        <translation type="unfinished">Geschwindigkeit auf 5 setzen</translation>
+        <translation>Geschwindigkeit auf 5 setzen</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/InputsOverlay.qml" line="508"/>
         <source>Set velocity to 6</source>
         <comment>Key that sets velocity to a fixed value.</comment>
-        <translation type="unfinished">Geschwindigkeit auf 6 setzen</translation>
+        <translation>Geschwindigkeit auf 6 setzen</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/InputsOverlay.qml" line="516"/>
         <source>Set velocity to 7</source>
         <comment>Key that sets velocity to a fixed value.</comment>
-        <translation type="unfinished">Geschwindigkeit auf 7 setzen</translation>
+        <translation>Geschwindigkeit auf 7 setzen</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/InputsOverlay.qml" line="524"/>
         <source>Set velocity to 8</source>
         <comment>Key that sets velocity to a fixed value.</comment>
-        <translation type="unfinished">Geschwindigkeit auf 8 setzen</translation>
+        <translation>Geschwindigkeit auf 8 setzen</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/InputsOverlay.qml" line="532"/>
         <source>Set velocity to 9</source>
         <comment>Key that sets velocity to a fixed value.</comment>
-        <translation type="unfinished">Geschwindigkeit auf 9 setzen</translation>
+        <translation>Geschwindigkeit auf 9 setzen</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/InputsOverlay.qml" line="540"/>
         <source>Set velocity to 10</source>
         <comment>Key that sets velocity to a fixed value.</comment>
-        <translation type="unfinished">Geschwindigkeit auf 10 setzen</translation>
+        <translation>Geschwindigkeit auf 10 setzen</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/InputsOverlay.qml" line="974"/>
@@ -888,61 +888,61 @@
         <location filename="../src/kirigami_ui/InputsOverlay.qml" line="1062"/>
         <source>Set velocity to -1</source>
         <comment>Hotkey that sets velocity to a fixed value.</comment>
-        <translation type="unfinished"></translation>
+        <translation>Geschwindigkeit auf -1 setzen</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/InputsOverlay.qml" line="1070"/>
         <source>Set velocity to -2</source>
         <comment>Hotkey that sets velocity to a fixed value.</comment>
-        <translation type="unfinished"></translation>
+        <translation>Geschwindigkeit auf -2 setzen</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/InputsOverlay.qml" line="1078"/>
         <source>Set velocity to -3</source>
         <comment>Hotkey that sets velocity to a fixed value.</comment>
-        <translation type="unfinished"></translation>
+        <translation>Geschwindigkeit auf -3 setzen</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/InputsOverlay.qml" line="1086"/>
         <source>Set velocity to -4</source>
         <comment>Hotkey that sets velocity to a fixed value.</comment>
-        <translation type="unfinished"></translation>
+        <translation>Geschwindigkeit auf -4 setzen</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/InputsOverlay.qml" line="1094"/>
         <source>Set velocity to -5</source>
         <comment>Hotkey that sets velocity to a fixed value.</comment>
-        <translation type="unfinished"></translation>
+        <translation>Geschwindigkeit auf -5 setzen</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/InputsOverlay.qml" line="1102"/>
         <source>Set velocity to -6</source>
         <comment>Hotkey that sets velocity to a fixed value.</comment>
-        <translation type="unfinished"></translation>
+        <translation>Geschwindigkeit auf -6 setzen</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/InputsOverlay.qml" line="1110"/>
         <source>Set velocity to -7</source>
         <comment>Hotkey that sets velocity to a fixed value.</comment>
-        <translation type="unfinished"></translation>
+        <translation>Geschwindigkeit auf -7 setzen</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/InputsOverlay.qml" line="1118"/>
         <source>Set velocity to -8</source>
         <comment>Hotkey that sets velocity to a fixed value.</comment>
-        <translation type="unfinished"></translation>
+        <translation>Geschwindigkeit auf -8 setzen</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/InputsOverlay.qml" line="1126"/>
         <source>Set velocity to -9</source>
         <comment>Hotkey that sets velocity to a fixed value.</comment>
-        <translation type="unfinished"></translation>
+        <translation>Geschwindigkeit auf -9 setzen</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/InputsOverlay.qml" line="1134"/>
         <source>Set velocity to -10</source>
         <comment>Hotkey that sets velocity to a fixed value.</comment>
-        <translation type="unfinished"></translation>
+        <translation>Geschwindigkeit auf -10 setzen</translation>
     </message>
 </context>
 <context>
@@ -1034,32 +1034,32 @@ Helfen sie uns QPrompt zu übersetzen und besuchen sie:</translation>
     <message>
         <location filename="../src/kirigami_ui/OnlineResourceButtons.qml" line="34"/>
         <source>Website</source>
-        <translation type="unfinished"></translation>
+        <translation>Website</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/OnlineResourceButtons.qml" line="42"/>
         <source>Documentation</source>
-        <translation type="unfinished"></translation>
+        <translation>Dokumentation</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/OnlineResourceButtons.qml" line="50"/>
         <source>Forum</source>
-        <translation type="unfinished"></translation>
+        <translation>Forum</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/OnlineResourceButtons.qml" line="58"/>
         <source>Feedback</source>
-        <translation type="unfinished"></translation>
+        <translation>Feedback</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/OnlineResourceButtons.qml" line="66"/>
         <source>Translations</source>
-        <translation type="unfinished"></translation>
+        <translation>Übersetzung</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/OnlineResourceButtons.qml" line="74"/>
         <source>Donate</source>
-        <translation type="unfinished"></translation>
+        <translation>Spenden</translation>
     </message>
 </context>
 <context>
@@ -1281,7 +1281,7 @@ Helfen sie uns QPrompt zu übersetzen und besuchen sie:</translation>
         <location filename="../src/prompter/Prompter.qml" line="1064"/>
         <source>Rewind to start</source>
         <comment>End of prompt button tooltip</comment>
-        <translation type="unfinished"></translation>
+        <translation>Zurück zum Start</translation>
     </message>
     <message>
         <location filename="../src/prompter/Prompter.qml" line="1107"/>
@@ -1302,19 +1302,19 @@ Helfen sie uns QPrompt zu übersetzen und besuchen sie:</translation>
         <location filename="../src/prompter/Prompter.qml" line="1167"/>
         <source>Stop at end</source>
         <comment>End of prompt button tooltip</comment>
-        <translation type="unfinished"></translation>
+        <translation>Stop am Ende</translation>
     </message>
     <message>
         <location filename="../src/prompter/Prompter.qml" line="1226"/>
         <source>Loop at end</source>
         <comment>End of prompt button tooltip</comment>
-        <translation type="unfinished"></translation>
+        <translation>Am Ende wiederholen</translation>
     </message>
     <message>
         <location filename="../src/prompter/Prompter.qml" line="1285"/>
         <source>Loop delay</source>
         <comment>End of prompt button tooltip</comment>
-        <translation type="unfinished"></translation>
+        <translation>Wiederholungs-Verzögerung</translation>
     </message>
     <message>
         <location filename="../src/prompter/Prompter.qml" line="2233"/>
@@ -1398,7 +1398,7 @@ Helfen sie uns QPrompt zu übersetzen und besuchen sie:</translation>
         <location filename="../src/prompter/Prompter.qml" line="2566"/>
         <source>Add &quot;%1&quot; to dictionary</source>
         <comment>Editor context menu actions</comment>
-        <translation type="unfinished"></translation>
+        <translation>&quot;%1&quot; in das Wörterbuch</translation>
     </message>
     <message>
         <location filename="../src/prompter/Prompter.qml" line="2425"/>
@@ -1413,7 +1413,7 @@ Helfen sie uns QPrompt zu übersetzen und besuchen sie:</translation>
         <location filename="../src/prompter/Prompter.qml" line="1196"/>
         <source>Return to edit mode at end</source>
         <comment>End of prompt button tooltip</comment>
-        <translation type="unfinished"></translation>
+        <translation>Am Ende in den Bearbeitungs-Modus zurückkehren</translation>
     </message>
     <message>
         <location filename="../src/prompter/Prompter.qml" line="2426"/>
@@ -1507,7 +1507,7 @@ Helfen sie uns QPrompt zu übersetzen und besuchen sie:</translation>
         <location filename="../src/prompter/Prompter.qml" line="2641"/>
         <source>Add to dictionary</source>
         <comment>Editor context menu actions</comment>
-        <translation type="unfinished"></translation>
+        <translation>In das Wörterbuch</translation>
     </message>
     <message>
         <location filename="../src/prompter/Prompter.qml" line="2649"/>
@@ -1723,12 +1723,12 @@ Helfen sie uns QPrompt zu übersetzen und besuchen sie:</translation>
     <message>
         <location filename="../src/kirigami_ui/PrompterPage.qml" line="76"/>
         <source>Initiate prompter</source>
-        <translation type="unfinished"></translation>
+        <translation>Prompter initiieren</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/PrompterPage.qml" line="76"/>
         <source>Start prompting</source>
-        <translation type="unfinished">Prompting beginnen</translation>
+        <translation>Prompting beginnen</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/PrompterPage.qml" line="313"/>
@@ -1862,25 +1862,25 @@ Helfen sie uns QPrompt zu übersetzen und besuchen sie:</translation>
         <location filename="../src/kirigami_ui/PrompterPage.qml" line="603"/>
         <source>Spellcheck</source>
         <comment>Spell checking menu</comment>
-        <translation type="unfinished"></translation>
+        <translation>Rechtschreibprüfung</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/PrompterPage.qml" line="606"/>
         <source>Spellcheck</source>
         <comment>Toggle spell checking on or off</comment>
-        <translation type="unfinished"></translation>
+        <translation>Rechtschreibprüfung</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/PrompterPage.qml" line="615"/>
         <source>Set dictionaries</source>
         <comment>Open dictionary selection sheet</comment>
-        <translation type="unfinished"></translation>
+        <translation>Wörterbücher einrichten</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/PrompterPage.qml" line="623"/>
         <source>Edit custom words</source>
         <comment>Open custom dictionary editor</comment>
-        <translation type="unfinished"></translation>
+        <translation>Eigene Wörter bearbeiten</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/PrompterPage.qml" line="633"/>
@@ -1943,7 +1943,7 @@ Helfen sie uns QPrompt zu übersetzen und besuchen sie:</translation>
     <message>
         <location filename="../src/kirigami_ui/PrompterPage.qml" line="890"/>
         <source>Right click to hide velocity indicator</source>
-        <translation type="unfinished"></translation>
+        <translation>Geschwindigkeitsanzeige mit Rechtsklick verstecken</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/PrompterPage.qml" line="1067"/>
@@ -1978,13 +1978,13 @@ Helfen sie uns QPrompt zu übersetzen und besuchen sie:</translation>
     <message>
         <location filename="../src/kirigami_ui/PrompterPage.qml" line="1206"/>
         <source>Command to execute</source>
-        <translation type="unfinished"></translation>
+        <translation>Auszuführender Befehl</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/PrompterPage.qml" line="1230"/>
         <source>Allow sys:// markers to run system commands</source>
         <comment>Security opt-in beneath the marker command field. Off by default; when checked, sys:// markers in a document may execute local system commands as the prompter scrolls past them.</comment>
-        <translation type="unfinished"></translation>
+        <translation>sys:// Markern das Ausführen von Systembefehlen erlauben</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/PrompterPage.qml" line="1273"/>
@@ -2048,68 +2048,68 @@ Helfen sie uns QPrompt zu übersetzen und besuchen sie:</translation>
         <location filename="../src/kirigami_ui/PrompterPage.qml" line="1467"/>
         <source>OBS configuration</source>
         <comment>Name of section where OBS websockets connection is configured</comment>
-        <translation type="unfinished"></translation>
+        <translation>OBS Konfiguration</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/PrompterPage.qml" line="1482"/>
         <source>Enabled:</source>
-        <translation type="unfinished"></translation>
+        <translation>Erlaubt:</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/PrompterPage.qml" line="1512"/>
         <source>Password:</source>
-        <translation type="unfinished"></translation>
+        <translation>Passwort:</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/PrompterPage.qml" line="1531"/>
         <source>Set dictionaries</source>
         <comment>Dictionary selection sheet title</comment>
-        <translation type="unfinished"></translation>
+        <translation>Wörterbücher einrichten</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/PrompterPage.qml" line="1573"/>
         <source>Filter dictionaries</source>
         <comment>Dictionary filter placeholder</comment>
-        <translation type="unfinished"></translation>
+        <translation>Wörterbücher filtern</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/PrompterPage.qml" line="1599"/>
         <source>No dictionaries found on this system.</source>
-        <translation type="unfinished"></translation>
+        <translation>Keine Wörterbücher auf diesem System gefunden.</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/PrompterPage.qml" line="1600"/>
         <source>No dictionaries match the filter.</source>
-        <translation type="unfinished"></translation>
+        <translation>Diesem Filter entsprechen keine Wörterbücher.</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/PrompterPage.qml" line="1609"/>
         <source>Edit custom words</source>
         <comment>Custom dictionary editor title</comment>
-        <translation type="unfinished"></translation>
+        <translation>Eigene Wörter bearbeiten</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/PrompterPage.qml" line="1671"/>
         <source>New word</source>
         <comment>Placeholder for adding a custom dictionary word</comment>
-        <translation type="unfinished"></translation>
+        <translation>Neues Wort</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/PrompterPage.qml" line="1676"/>
         <source>Add</source>
         <comment>Add custom word button</comment>
-        <translation type="unfinished"></translation>
+        <translation>Hinzufügen</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/PrompterPage.qml" line="1700"/>
         <source>No custom words yet.</source>
-        <translation type="unfinished"></translation>
+        <translation>Noch keine eigenen Wörter.</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/PrompterPage.qml" line="1706"/>
         <source>Delete selected</source>
         <comment>Delete selected custom words</comment>
-        <translation type="unfinished"></translation>
+        <translation>Auswahl löschen</translation>
     </message>
 </context>
 <context>
@@ -2118,7 +2118,7 @@ Helfen sie uns QPrompt zu übersetzen und besuchen sie:</translation>
         <location filename="../src/kirigami_ui/RecentDocuments.qml" line="53"/>
         <source>Clear List</source>
         <comment>Main menu action. Clears the list of recently opened documents.</comment>
-        <translation type="unfinished"></translation>
+        <translation>Liste leeren</translation>
     </message>
 </context>
 <context>
@@ -2494,7 +2494,7 @@ Helfen sie uns QPrompt zu übersetzen und besuchen sie:</translation>
         <location filename="../src/kirigami_ui/main.qml" line="859"/>
         <source>OBS Settings</source>
         <comment>Main menu and global menu actions. Opens dialog to configure OBS settings.</comment>
-        <translation type="unfinished"></translation>
+        <translation>OBS Einstellungen</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/main.qml" line="273"/>
@@ -2644,7 +2644,7 @@ Helfen sie uns QPrompt zu übersetzen und besuchen sie:</translation>
         <location filename="../src/kirigami_ui/+windows/main.qml" line="396"/>
         <source>Show justify alignment button</source>
         <comment>Main menu actions. Show justify button on editor toolbar</comment>
-        <translation type="unfinished"></translation>
+        <translation>Zeige Ausrichtungs-Schaltfläche</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/main.qml" line="431"/>
