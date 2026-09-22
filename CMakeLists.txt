@@ -623,6 +623,21 @@ if(CMAKE_SOURCE_DIR STREQUAL CMAKE_CURRENT_SOURCE_DIR)
             unset(_qprompt_vc_redist_name)
         endif()
 
+        # File type registration. QPrompt is always registered as an
+        # application for the file types it opens; whether it becomes their
+        # default application is asked on a page shown once QPrompt is
+        # installed, before the finish page, with every file type unticked.
+        # Called after the redistributable block because it appends to
+        # CPACK_NSIS_EXTRA_INSTALL_COMMANDS.
+        include(WindowsFileAssociations)
+        qprompt_windows_file_associations(
+            "${KDE_INSTALL_BINDIR}/QPrompt${CMAKE_EXECUTABLE_SUFFIX}"
+            PAGE      CPACK_NSIS_INSTALLER_FINISH_TITLE_3LINES_CODE
+            CODE      CPACK_NSIS_INSTALLATION_TYPES
+            INSTALL   CPACK_NSIS_EXTRA_INSTALL_COMMANDS
+            UNINSTALL CPACK_NSIS_EXTRA_UNINSTALL_COMMANDS
+        )
+
     elseif(APPLE AND NOT IOS)
         set(CPACK_GENERATOR "DragNDrop")
         set(CPACK_DMG_FORMAT "UDBZ")
