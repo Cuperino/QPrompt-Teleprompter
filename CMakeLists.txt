@@ -423,6 +423,78 @@ set(CMAKE_INSTALL_MFC_LIBRARIES On)
 set(InstallRequiredSystemLibraries On)
 include(InstallRequiredSystemLibraries)
 
+# Microsoft Visual C++ redistributable.
+#
+# InstallRequiredSystemLibraries only copies the CRT DLLs next to QPrompt.exe,
+# and only when it manages to locate them: its Visual Studio lookup knows a
+# fixed set of IDE versions, so on a newer Visual Studio it silently leaves
+# MSVC_REDIST_DIR unset and installs nothing. App-local CRT DLLs also do not
+# cover DLLs loaded by full path or by other processes. Ship the official
+# redistributable installer alongside the application and run it silently, so
+# a clean Windows machine gets a registered, serviceable runtime (see the
+# NSIS section below for the invocation).
+if(WIN32 AND MSVC)
+    set(QPROMPT_VC_REDIST_ARCH "x64")
+    if(CMAKE_SIZEOF_VOID_P EQUAL 4)
+        set(QPROMPT_VC_REDIST_ARCH "x86")
+    elseif(CMAKE_SYSTEM_PROCESSOR MATCHES "^([Aa][Rr][Mm]64|aarch64)$")
+        set(QPROMPT_VC_REDIST_ARCH "arm64")
+    endif()
+    # MSVC_REDIST_DIR is set by InstallRequiredSystemLibraries when it knows the
+    # Visual Studio version. Fall back to globbing the redist directory of the
+    # toolchain actually in use, so newer Visual Studio releases keep working.
+    set(_qprompt_vc_redist_hints "")
+    if(MSVC_REDIST_DIR)
+        list(APPEND _qprompt_vc_redist_hints "${MSVC_REDIST_DIR}")
+    endif()
+    # Walk up from the compiler until a Visual Studio root with a redist
+    # directory turns up, then take its newest entry first.
+    get_filename_component(_qprompt_vc_dir "${CMAKE_CXX_COMPILER}" DIRECTORY)
+    foreach(_qprompt_vc_depth RANGE 12)
+        if(IS_DIRECTORY "${_qprompt_vc_dir}/VC/Redist/MSVC")
+            file(GLOB _qprompt_vc_redist_globbed "${_qprompt_vc_dir}/VC/Redist/MSVC/*")
+            list(SORT _qprompt_vc_redist_globbed)
+            list(REVERSE _qprompt_vc_redist_globbed)
+            list(APPEND _qprompt_vc_redist_hints ${_qprompt_vc_redist_globbed})
+            break()
+        endif()
+        get_filename_component(_qprompt_vc_parent "${_qprompt_vc_dir}" DIRECTORY)
+        if(_qprompt_vc_parent STREQUAL _qprompt_vc_dir)
+            break()
+        endif()
+        set(_qprompt_vc_dir "${_qprompt_vc_parent}")
+    endforeach()
+
+    if(NOT DEFINED QPROMPT_VC_REDIST_EXE)
+        set(QPROMPT_VC_REDIST_EXE "QPROMPT_VC_REDIST_EXE-NOTFOUND")
+    endif()
+    foreach(_hint IN LISTS _qprompt_vc_redist_hints)
+        if(QPROMPT_VC_REDIST_EXE)
+            break()
+        endif()
+        if(EXISTS "${_hint}/vc_redist.${QPROMPT_VC_REDIST_ARCH}.exe")
+            set(QPROMPT_VC_REDIST_EXE "${_hint}/vc_redist.${QPROMPT_VC_REDIST_ARCH}.exe")
+            break()
+        endif()
+    endforeach()
+
+    if(QPROMPT_VC_REDIST_EXE)
+        message(STATUS "Bundling MSVC redistributable: ${QPROMPT_VC_REDIST_EXE}")
+        install(PROGRAMS "${QPROMPT_VC_REDIST_EXE}" DESTINATION "${KDE_INSTALL_BINDIR}")
+    else()
+        message(WARNING
+            "vc_redist.${QPROMPT_VC_REDIST_ARCH}.exe was not found. The installer will not "
+            "deploy the Microsoft Visual C++ runtime, so QPrompt may fail to start on a "
+            "machine that does not already have it. Set QPROMPT_VC_REDIST_EXE to the "
+            "redistributable installer to silence this.")
+    endif()
+    unset(_qprompt_vc_redist_hints)
+    unset(_qprompt_vc_redist_globbed)
+    unset(_qprompt_vc_dir)
+    unset(_qprompt_vc_parent)
+    unset(_qprompt_vc_depth)
+endif()
+
 set(CMAKE_OSX_DEPLOYMENT_TARGET "10.15")
 set(CMAKE_OSX_ARCHITECTURES="x86_64;arm64")
 
@@ -477,6 +549,22 @@ if(CMAKE_SOURCE_DIR STREQUAL CMAKE_CURRENT_SOURCE_DIR)
             ${CMAKE_SOURCE_DIR}/${README_FILE} "Readme"
         )
         set(CPACK_NSIS_MUI_FINISHPAGE_RUN "${CPACK_NSIS_INSTALLED_ICON_NAME}")
+
+        # Install the bundled Microsoft Visual C++ redistributable silently, then
+        # remove the installer from the installation directory. Its exit codes are
+        # deliberately ignored: 1638 means a newer runtime is already present and
+        # 3010 means a reboot is pending, neither of which should fail the install.
+        if(QPROMPT_VC_REDIST_EXE)
+            get_filename_component(_qprompt_vc_redist_name "${QPROMPT_VC_REDIST_EXE}" NAME)
+            set(_qprompt_vc_redist_path "$INSTDIR\\${KDE_INSTALL_BINDIR}\\${_qprompt_vc_redist_name}")
+            set(CPACK_NSIS_EXTRA_INSTALL_COMMANDS "
+                DetailPrint \"Installing the Microsoft Visual C++ runtime...\"
+                ExecWait '\"${_qprompt_vc_redist_path}\" /install /quiet /norestart'
+                Delete \"${_qprompt_vc_redist_path}\"
+            ")
+            unset(_qprompt_vc_redist_path)
+            unset(_qprompt_vc_redist_name)
+        endif()
 
     elseif(APPLE AND NOT IOS)
         set(CPACK_GENERATOR "DragNDrop")
