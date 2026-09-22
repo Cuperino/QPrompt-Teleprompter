@@ -548,6 +548,39 @@ if(CMAKE_SOURCE_DIR STREQUAL CMAKE_CURRENT_SOURCE_DIR)
         # Hunspell dictionaries are installed as user-selectable NSIS
         # components, which requires turning off monolithic install.
         set(CPACK_MONOLITHIC_INSTALL OFF)
+
+        # Component layout of the installer. QPrompt itself lands in the
+        # default component (ECM's KDEInstallDirs sets
+        # CMAKE_INSTALL_DEFAULT_COMPONENT_NAME to the project name), while
+        # the KDE Frameworks built as subprojects land in components named
+        # after their own projects. All of those are part of QPrompt and are
+        # installed unconditionally; only the dictionaries are optional.
+        #
+        # CPACK_COMPONENTS_ALL is spelled out so that "Devel" (headers and
+        # CMake config files installed by the KCoreAddons and Kirigami
+        # subprojects) is left out of the package entirely: we ship a
+        # Release build, not an SDK. It has to be set before include(CPack),
+        # which is why the dictionary components are asked for by name here
+        # instead of being picked up from the install rules.
+        get_cmake_property(QPROMPT_NSIS_RUNTIME_COMPONENTS COMPONENTS)
+        if(NOT QPROMPT_NSIS_RUNTIME_COMPONENTS)
+            set(QPROMPT_NSIS_RUNTIME_COMPONENTS "")
+        endif()
+        list(REMOVE_ITEM QPROMPT_NSIS_RUNTIME_COMPONENTS Devel)
+        set(QPROMPT_NSIS_DICT_COMPONENTS "")
+        if(DEFINED QPROMPT_HUNSPELL_DICT_DIR)
+            qprompt_hunspell_component_names(
+                "${QPROMPT_HUNSPELL_DICT_DIR}"
+                QPROMPT_NSIS_DICT_COMPONENTS
+            )
+        endif()
+        # Defining this also makes CPack treat the list as authoritative, so
+        # the cpack_add_component() calls below don't recompute it from the
+        # COMPONENTS property and bring Devel back in.
+        set(CPACK_COMPONENTS_ALL
+            ${QPROMPT_NSIS_RUNTIME_COMPONENTS}
+            ${QPROMPT_NSIS_DICT_COMPONENTS}
+        )
         # Install into "C:\Program Files\QPrompt". CPack would otherwise
         # default CPACK_PACKAGE_INSTALL_DIRECTORY to "<name> <version>", which
         # gives every release its own directory and leaves old installations
@@ -558,7 +591,7 @@ if(CMAKE_SOURCE_DIR STREQUAL CMAKE_CURRENT_SOURCE_DIR)
         set(CPACK_NSIS_DISPLAY_NAME "QPrompt")
         set(CPACK_PACKAGE_EXECUTABLES "QPrompt" "QPrompt")
         set(CPACK_RESOURCE_FILE_LICENSE ${CMAKE_SOURCE_DIR}/${LICENSE_FILE})
-        set(CPACK_NSIS_EXECUTABLES_DIRECTORY ${BIN_INSTALL_DIR})
+        set(CPACK_NSIS_EXECUTABLES_DIRECTORY ${KDE_INSTALL_BINDIR})
         set(CPACK_NSIS_MUI_ICON ${ICONS_DIR}/qprompt.ico)
         set(CPACK_NSIS_MUI_UNIICON ${ICONS_DIR}/qprompt.ico)
         set(CPACK_NSIS_CONTACT ${CPACK_PACKAGE_CONTACT})
@@ -613,16 +646,35 @@ if(CMAKE_SOURCE_DIR STREQUAL CMAKE_CURRENT_SOURCE_DIR)
 
     include(CPack)
 
-    # Windows NSIS dictionary components (declared after include(CPack)
-    # because cpack_add_component() is provided by CPackComponent which is
-    # pulled in by include(CPack)).
+    # Windows NSIS components (declared after include(CPack) because
+    # cpack_add_component() is provided by CPackComponent which is pulled in
+    # by include(CPack)).
     if(WIN32)
-        cpack_add_component(Unspecified
+        # QPrompt's own component is the only non-dictionary entry shown, and
+        # it cannot be deselected. The components holding the frameworks it
+        # links against are installed along with it but stay out of the
+        # component list, as they are not separate products from the user's
+        # point of view.
+        set(QPROMPT_NSIS_MAIN_COMPONENT "${CMAKE_INSTALL_DEFAULT_COMPONENT_NAME}")
+        if(NOT QPROMPT_NSIS_MAIN_COMPONENT)
+            set(QPROMPT_NSIS_MAIN_COMPONENT "Unspecified")
+        endif()
+        cpack_add_component("${QPROMPT_NSIS_MAIN_COMPONENT}"
             DISPLAY_NAME "QPrompt"
-            DESCRIPTION  "QPrompt application files"
+            DESCRIPTION  "QPrompt and the libraries it needs to run."
             REQUIRED
-            HIDDEN
         )
+        foreach(_qprompt_component IN LISTS QPROMPT_NSIS_RUNTIME_COMPONENTS)
+            if(NOT "${_qprompt_component}" STREQUAL "${QPROMPT_NSIS_MAIN_COMPONENT}")
+                cpack_add_component("${_qprompt_component}"
+                    DISPLAY_NAME "QPrompt"
+                    DESCRIPTION  "QPrompt and the libraries it needs to run."
+                    REQUIRED
+                    HIDDEN
+                )
+            endif()
+        endforeach()
+        unset(_qprompt_component)
         if(DEFINED QPROMPT_HUNSPELL_DICT_DIR)
             qprompt_hunspell_install_components(
                 "${QPROMPT_HUNSPELL_DICT_DIR}"

@@ -48,6 +48,12 @@
 #       /dictionaries/, matching the path SpellChecker::locateDictionary
 #       looks up first.
 #
+#   qprompt_hunspell_component_names(<dest_dir> <out_var>)
+#       Sets <out_var> to the list of CPack component names
+#       qprompt_hunspell_install_components() would declare for the
+#       dictionaries present under <dest_dir>. Useful before include(CPack),
+#       where CPACK_COMPONENTS_ALL has to be spelled out.
+#
 #   qprompt_hunspell_install_components(<dest_dir> <install_dir>)
 #       Adds install() rules with one CPack component per language so the
 #       NSIS installer renders them as user-selectable items. Each
@@ -157,6 +163,18 @@ function(qprompt_hunspell_add_qrc target dest_dir)
             FILES ${_files}
         )
     endif()
+endfunction()
+
+function(qprompt_hunspell_component_names dest_dir out_var)
+    set(_comps)
+    foreach(def IN LISTS _QPROMPT_HUNSPELL_DICT_DEFS)
+        _qprompt_hunspell_split_def("${def}" code _name _aff _dic)
+        if(EXISTS "${dest_dir}/${code}.aff" AND EXISTS "${dest_dir}/${code}.dic")
+            string(TOLOWER "dict_${code}" comp)
+            list(APPEND _comps "${comp}")
+        endif()
+    endforeach()
+    set(${out_var} "${_comps}" PARENT_SCOPE)
 endfunction()
 
 function(qprompt_hunspell_install_components dest_dir install_dir)
