@@ -72,6 +72,46 @@ set(QPROMPT_KIRIGAMI_INTERNAL_ICONS
     view-right-close
 )
 
+# Resolve an icon file to the real SVG behind it.
+#
+# Breeze ships thousands of its icons as aliases. On a checkout with symlink
+# support each alias is a real symlink, which REALPATH follows. Git for Windows
+# defaults to core.symlinks=false and instead materializes every alias as a
+# small text file whose contents are the link target, and REALPATH cannot follow
+# those. Copying one of those stubs into the theme yields a file named e.g.
+# application-menu-symbolic.svg whose entire contents are the text of a path, so Qt
+# renders nothing: that is why Kirigami's hamburger menu handle
+# (handleClosedIcon.name "application-menu-symbolic", an alias of
+# application-menu) came out blank on Windows while the same code was fine on
+# the Linux hosts that build WASM.
+#
+# Follow both link kinds, because aliases chain: list-remove -> edit-delete-remove
+# -> paint-none. Sets out_var to an empty string when the chain cannot be resolved.
+function(qprompt_resolve_icon_source src out_var)
+    get_filename_component(current "${src}" REALPATH)
+    # Bounded so a cyclic or self-referential alias cannot spin forever.
+    foreach(depth RANGE 8)
+        if(NOT EXISTS "${current}")
+            break()
+        endif()
+        # Any SVG starts with a tag; a link stub is a bare relative path.
+        file(READ "${current}" first_bytes LIMIT 512)
+        if(first_bytes MATCHES "<")
+            set(${out_var} "${current}" PARENT_SCOPE)
+            return()
+        endif()
+        file(READ "${current}" link_target)
+        string(STRIP "${link_target}" link_target)
+        # An alias stub holds nothing but a relative path to another SVG.
+        if(NOT link_target MATCHES "^[A-Za-z0-9._/-]+[.]svg$")
+            break()
+        endif()
+        get_filename_component(link_dir "${current}" DIRECTORY)
+        get_filename_component(current "${link_dir}/${link_target}" REALPATH)
+    endforeach()
+    set(${out_var} "" PARENT_SCOPE)
+endfunction()
+
 # Copy a Breeze (light) icon to dst, recolored to its Breeze Dark variant.
 # QPrompt's chrome (toolbars, menus, prompter) is always dark, so the dark icon
 # variant, light glyphs, is what must show; the unmodified light icons render
@@ -179,9 +219,15 @@ function(qprompt_generate_breeze_subset target)
             endif()
         endif()
         if(src)
-            # Breeze ships many icons as symlinks/aliases; qrc cannot store links,
-            # so resolve to the real file and copy its contents.
-            get_filename_component(real "${src}" REALPATH)
+            # qrc cannot store links, so resolve the alias and copy the contents
+            # of the icon it ultimately points at.
+            qprompt_resolve_icon_source("${src}" real)
+            if(NOT real)
+                message(WARNING
+                    "qprompt_generate_breeze_subset: '${name}' (${src}) is an unresolvable "
+                    "icon alias and was skipped.")
+                continue()
+            endif()
             set(dst "${theme_dir}/icons/${name}.svg")
             qprompt_write_dark_icon("${real}" "${dst}")
             list(APPEND resource_files "${dst}")
