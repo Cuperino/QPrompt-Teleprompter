@@ -556,14 +556,18 @@ if(CMAKE_SOURCE_DIR STREQUAL CMAKE_CURRENT_SOURCE_DIR)
         set(CPACK_NSIS_EXECUTABLES_DIRECTORY ${BIN_INSTALL_DIR})
         set(CPACK_NSIS_MUI_ICON ${ICONS_DIR}/qprompt.ico)
         set(CPACK_NSIS_MUI_UNIICON ${ICONS_DIR}/qprompt.ico)
-        set(CPACK_NSIS_INSTALLED_ICON_NAME ${BIN_INSTALL_DIR}/QPrompt.exe)
         set(CPACK_NSIS_CONTACT ${CPACK_PACKAGE_CONTACT})
-        set(CPACK_NSIS_INSTALLED_ICON_NAME "qprompt${CMAKE_EXECUTABLE_SUFFIX}")
+        # Written to the DisplayIcon registry value, which is what Programs and
+        # Features and Settings show next to the uninstall entry. CPack prefixes
+        # it with "$INSTDIR\" only, so this has to carry the bin subdirectory
+        # itself; without it Windows cannot resolve the file and falls back to
+        # the generic installer icon instead of the QPrompt logo.
+        set(CPACK_NSIS_INSTALLED_ICON_NAME "${KDE_INSTALL_BINDIR}\\QPrompt${CMAKE_EXECUTABLE_SUFFIX}")
         set(CPACK_NSIS_MENU_LINKS
             ${CMAKE_SOURCE_DIR}/${LICENSE_FILE} "License"
             ${CMAKE_SOURCE_DIR}/${README_FILE} "Readme"
         )
-        set(CPACK_NSIS_MUI_FINISHPAGE_RUN "${CPACK_NSIS_INSTALLED_ICON_NAME}")
+        set(CPACK_NSIS_MUI_FINISHPAGE_RUN "QPrompt${CMAKE_EXECUTABLE_SUFFIX}")
 
         # Install the bundled Microsoft Visual C++ redistributable silently, then
         # remove the installer from the installation directory. Its exit codes are
