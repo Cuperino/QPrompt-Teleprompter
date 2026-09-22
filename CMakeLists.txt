@@ -548,6 +548,9 @@ if(CMAKE_SOURCE_DIR STREQUAL CMAKE_CURRENT_SOURCE_DIR)
         # Hunspell dictionaries are installed as user-selectable NSIS
         # components, which requires turning off monolithic install.
         set(CPACK_MONOLITHIC_INSTALL OFF)
+        # Name of the entry in Programs and Features, which lists the version
+        # in its own column, so it does not belong in the name.
+        set(CPACK_NSIS_DISPLAY_NAME "QPrompt")
         set(CPACK_PACKAGE_EXECUTABLES "QPrompt" "QPrompt")
         set(CPACK_RESOURCE_FILE_LICENSE ${CMAKE_SOURCE_DIR}/${LICENSE_FILE})
         set(CPACK_NSIS_EXECUTABLES_DIRECTORY ${BIN_INSTALL_DIR})
