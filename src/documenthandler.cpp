@@ -119,6 +119,15 @@
 #include <QDrag>
 #include <QTextDocumentFragment>
 #include <QTimer>
+#if defined(Q_OS_WINDOWS)
+#ifndef WIN32_LEAN_AND_MEAN
+#define WIN32_LEAN_AND_MEAN
+#endif
+#ifndef NOMINMAX
+#define NOMINMAX
+#endif
+#include <windows.h>
+#endif
 
 DocumentHandler::DocumentHandler(QObject *parent)
     : QObject(parent)
@@ -1922,6 +1931,19 @@ bool DocumentHandler::preventSleep(bool prevent)
             }
         }
     });
+    return prevent;
+#elif defined(Q_OS_WINDOWS)
+    // Ask Windows to keep the system awake and the display on while prompting.
+    // ES_CONTINUOUS makes the request stay in effect until it is cleared; without
+    // it, the other flags would only reset the idle timers once.
+    // The execution state belongs to the calling thread and is discarded when that
+    // thread ends, so this must always be called from the same thread. Being
+    // Q_INVOKABLE, it runs on the GUI thread.
+    const EXECUTION_STATE requested = prevent ? (ES_CONTINUOUS | ES_SYSTEM_REQUIRED | ES_DISPLAY_REQUIRED) : ES_CONTINUOUS;
+    if (SetThreadExecutionState(requested) == 0) {
+        qWarning() << "Could not change the system's sleep prevention state.";
+        return false;
+    }
     return prevent;
 #elif defined(Q_OS_IOS)
     // To be implemented...
