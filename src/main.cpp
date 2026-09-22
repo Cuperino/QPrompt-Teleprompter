@@ -296,10 +296,14 @@ KirigamiPlugin::getInstance().registerTypes();
     // Linux AppImage paths
     engine.addImportPath(QStringLiteral("../usr/lib/x86_64-linux-gnu/qml/"));
     engine.addImportPath(QStringLiteral("../usr/lib/aarch64-linux-gnu/qml/"));
-    // Windows paths
-    engine.addImportPath(QStringLiteral("../../lib/qml/"));
-    engine.addImportPath(QStringLiteral("../lib/qml/"));
-    engine.addImportPath(QStringLiteral("./lib/qml/"));
+    // Windows paths. The bundled KDE frameworks follow KDEInstallDirs and place
+    // their QML modules in <prefix>/lib/qml, while Qt only searches <prefix>/qml.
+    // Anchor the extra import path to the executable rather than to the working
+    // directory, so the modules are also found when QPrompt is started with an
+    // unrelated CWD, as happens with a shortcut or a file association.
+#if defined(Q_OS_WINDOWS)
+    engine.addImportPath(QCoreApplication::applicationDirPath() + QStringLiteral("/../lib/qml"));
+#endif
     // MacOS paths
     engine.addImportPath(QStringLiteral("../../../"));
     engine.addImportPath(QStringLiteral("../build/"));

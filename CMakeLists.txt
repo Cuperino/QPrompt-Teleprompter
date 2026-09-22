@@ -180,12 +180,14 @@ if(WIN32 OR APPLE OR ANDROID OR WASM OR USE_GIT_DEPENDENCIES_ONLY)
         # value stays a defined boolean; dladdr-based libexec lookup has no
         # meaning on WASM anyway.
         set(HAVE_DLADDR 0 CACHE INTERNAL "")
-        # Both KCoreAddons and Kirigami unconditionally include(ECMGenerateQDoc),
-        # which creates global doc targets without an include guard. Building
-        # both frameworks in one tree then fails with duplicate-target errors, so
-        # shadow the module with a no-op shim (see cmake/wasm-shims).
-        list(PREPEND CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake/wasm-shims")
     endif()
+    # Both KCoreAddons and Kirigami unconditionally include(ECMGenerateQDoc),
+    # which creates global doc targets without an include guard. Building
+    # both frameworks in one tree then fails with duplicate-target errors, so
+    # shadow the module with a no-op shim (see cmake/shims).
+    list(PREPEND CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake/shims")
+    set(CMAKE_DISABLE_FIND_PACKAGE_Qt6Tools ON)
+    set(CMAKE_DISABLE_FIND_PACKAGE_Qt6ToolsTools ON)
     FetchContent_Declare(
       CoreAddons
       GIT_REPOSITORY "${CMAKE_SOURCE_DIR}/3rdparty/kcoreaddons"
