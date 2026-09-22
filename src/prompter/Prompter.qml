@@ -1061,6 +1061,9 @@ Flickable {
                             }
                             Button {
                                 id: rewindButton
+                                ToolTip.text: qsTr("Rewind to start", "End of prompt button tooltip")
+                                ToolTip.visible: hovered
+                                ToolTip.delay: Units.ToolTipDelay
                                 function rewind() {
                                     reset.toStart();
                                     //if (root.passiveNotifications) {
@@ -1161,6 +1164,9 @@ Flickable {
                             Layout.alignment: Qt.AlignCenter
                             ButtonGroup { id: atEndButtons}
                             Button {
+                                ToolTip.text: qsTr("Stop at end", "End of prompt button tooltip")
+                                ToolTip.visible: hovered
+                                ToolTip.delay: Units.ToolTipDelay
                                 text: "\uE815"
                                 font.pixelSize: (fontSize < 24 ? 24 : fontSize) / 1.5
                                 font.family: iconFont.name
@@ -1187,6 +1193,9 @@ Flickable {
                                 }
                             }
                             Button {
+                                ToolTip.text: qsTr("Return to edit mode at end", "End of prompt button tooltip")
+                                ToolTip.visible: hovered
+                                ToolTip.delay: Units.ToolTipDelay
                                 text: "\u21B6"
                                 font.pixelSize: (fontSize < 24 ? 24 : fontSize) / 1.5
                                 font.family: iconFont.name
@@ -1214,6 +1223,9 @@ Flickable {
                             }
                             Button {
                                 id: autoResetToggleButton
+                                ToolTip.text: qsTr("Loop at end", "End of prompt button tooltip")
+                                ToolTip.visible: hovered
+                                ToolTip.delay: Units.ToolTipDelay
                                 text: "\uE858"
                                 font.pixelSize: (fontSize < 24 ? 24 : fontSize) / 1.5
                                 font.family: iconFont.name
@@ -1270,6 +1282,9 @@ Flickable {
                                     }
                                 }
                                 back: Button {
+                                    ToolTip.text: qsTr("Loop delay", "End of prompt button tooltip")
+                                    ToolTip.visible: hovered
+                                    ToolTip.delay: Units.ToolTipDelay
                                     text: "🔃"
                                     anchors.centerIn: parent
                                     font.pixelSize: (fontSize < 24 ? 24 : fontSize) / 1.75

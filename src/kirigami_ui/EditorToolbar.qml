@@ -187,6 +187,9 @@ ToolBar {
             id: anchorsRow
             ToolButton {
                 id: bookmarkListButton
+                ToolTip.text: qsTr("Marker list", "Editor toolbar button tooltip")
+                ToolTip.visible: hovered
+                ToolTip.delay: Kirigami.Units.toolTipDelay
                 text: "\uF0DB" /*uE804*/
                 visible: root.__isMobile ? root.width > 339 : true // root.width > 458
                 contentItem: Loader { sourceComponent: textComponent }
@@ -201,6 +204,9 @@ ToolBar {
             }
             ToolButton {
                 id: searchButton
+                ToolTip.text: qsTr("Find and replace", "Editor toolbar button tooltip")
+                ToolTip.visible: hovered
+                ToolTip.delay: Kirigami.Units.toolTipDelay
                 visible: !mobileOrSmallScreen || parseInt(viewport.prompter.state)===Prompter.States.Editing && root.width > 410
                 enabled: parseInt(viewport.prompter.state)===Prompter.States.Editing || parseInt(viewport.prompter.state)===Prompter.States.Standby
                 text: Qt.application.layoutDirection===Qt.LeftToRight ? "\uE847" : "\uE848"
@@ -213,6 +219,9 @@ ToolBar {
             }
             ToolButton {
                 id: bookmarkToggleButton
+                ToolTip.text: qsTr("Toggle marker", "Editor toolbar button tooltip")
+                ToolTip.visible: hovered
+                ToolTip.delay: Kirigami.Units.toolTipDelay
                 text: "\uE843"
                 contentItem: Loader { sourceComponent: textComponent }
                 font.family: iconFont.name
@@ -224,6 +233,9 @@ ToolBar {
             }
             ToolButton {
                 id: namedBookmarkButton
+                ToolTip.text: qsTr("Named marker", "Editor toolbar button tooltip")
+                ToolTip.visible: hovered
+                ToolTip.delay: Kirigami.Units.toolTipDelay
                 visible: !root.__isMobile // || parseInt(viewport.prompter.state)===Prompter.States.Editing
                 text: "\uE844"
                 contentItem: Loader { sourceComponent: textComponent }
@@ -265,6 +277,9 @@ ToolBar {
                 //}
             ToolButton {
                 id: previousMarkerButton
+                ToolTip.text: qsTr("Previous marker", "Editor toolbar button tooltip")
+                ToolTip.visible: hovered
+                ToolTip.delay: Kirigami.Units.toolTipDelay
                 text: Qt.application.layoutDirection===Qt.LeftToRight?"\uE81A":"\uE818"
                 contentItem: Loader { sourceComponent: textComponent }
                 font.family: iconFont.name
@@ -274,6 +289,9 @@ ToolBar {
             }
             ToolButton {
                 id: nextMarkerButton
+                ToolTip.text: qsTr("Next marker", "Editor toolbar button tooltip")
+                ToolTip.visible: hovered
+                ToolTip.delay: Kirigami.Units.toolTipDelay
                 text: Qt.application.layoutDirection===Qt.LeftToRight?"\uE818":"\uE81A"
                 contentItem: Loader { sourceComponent: textComponent }
                 font.family: iconFont.name
@@ -290,6 +308,9 @@ ToolBar {
             id: undoRedoRow
             visible: !toolbar.hideFormattingToolsAlways && (root.__isMobile ? parseInt(viewport.prompter.state)===Prompter.States.Editing && Qt.platform.os!=='ios' :  (showingFormattingTools || parseInt(viewport.prompter.state)===Prompter.States.Editing) && root.width>458)
             ToolButton {
+                ToolTip.text: qsTr("Undo", "Editor toolbar button tooltip")
+                ToolTip.visible: hovered
+                ToolTip.delay: Kirigami.Units.toolTipDelay
                 text: Qt.application.layoutDirection===Qt.LeftToRight?"\uE74F":"\uE801"
                 contentItem: Loader { sourceComponent: textComponent }
                 font.family: iconFont.name
@@ -299,6 +320,9 @@ ToolBar {
                 onClicked: viewport.prompter.editor.undo()
             }
             ToolButton {
+                ToolTip.text: qsTr("Redo", "Editor toolbar button tooltip")
+                ToolTip.visible: hovered
+                ToolTip.delay: Kirigami.Units.toolTipDelay
                 text: Qt.application.layoutDirection===Qt.LeftToRight?"\uE801":"\uE74F"
                 contentItem: Loader { sourceComponent: textComponent }
                 font.family: iconFont.name
@@ -316,6 +340,9 @@ ToolBar {
             visible: !toolbar.hideFormattingToolsAlways && !root.__isMobile && root.width>700 && (showingFormattingTools || parseInt(viewport.prompter.state)===Prompter.States.Editing)
             ToolButton {
                 id: copyButton
+                ToolTip.text: qsTr("Copy", "Editor toolbar button tooltip")
+                ToolTip.visible: hovered
+                ToolTip.delay: Kirigami.Units.toolTipDelay
                 text: "\uF0C5"
                 contentItem: Loader { sourceComponent: textComponent }
                 font.family: iconFont.name
@@ -326,6 +353,9 @@ ToolBar {
             }
             ToolButton {
                 id: cutButton
+                ToolTip.text: qsTr("Cut", "Editor toolbar button tooltip")
+                ToolTip.visible: hovered
+                ToolTip.delay: Kirigami.Units.toolTipDelay
                 text: "\uE80C"
                 contentItem: Loader { sourceComponent: textComponent }
                 font.family: iconFont.name
@@ -336,6 +366,9 @@ ToolBar {
             }
             ToolButton {
                 id: pasteButton
+                ToolTip.text: qsTr("Paste", "Editor toolbar button tooltip")
+                ToolTip.visible: hovered
+                ToolTip.delay: Kirigami.Units.toolTipDelay
                 text: "\uF0EA"
                 contentItem: Loader { sourceComponent: textComponent }
                 font.family: iconFont.name
@@ -383,6 +416,9 @@ ToolBar {
             }
             ToolButton {
                 id: mobileAlignLeftButton
+                ToolTip.text: qsTr("Text alignment", "Editor toolbar button tooltip")
+                ToolTip.visible: hovered
+                ToolTip.delay: Kirigami.Units.toolTipDelay
                 visible: checked
                 text: Qt.application.layoutDirection===Qt.LeftToRight ? "\uE808" : "\uE80A"
                 contentItem: Loader { sourceComponent: textComponent }
@@ -395,6 +431,9 @@ ToolBar {
             }
             ToolButton {
                 id: mobileAlignCenterButton
+                ToolTip.text: qsTr("Text alignment", "Editor toolbar button tooltip")
+                ToolTip.visible: hovered
+                ToolTip.delay: Kirigami.Units.toolTipDelay
                 visible: checked || !(alignLeftButton.checked || alignRightButton.checked || alignJustifyButton.checked)
                 text: "\uE809"
                 font.family: iconFont.name
@@ -407,6 +446,9 @@ ToolBar {
             }
             ToolButton {
                 id: mobileAlignRightButton
+                ToolTip.text: qsTr("Text alignment", "Editor toolbar button tooltip")
+                ToolTip.visible: hovered
+                ToolTip.delay: Kirigami.Units.toolTipDelay
                 visible: checked
                 text: Qt.application.layoutDirection===Qt.LeftToRight ? "\uE80A" : "\uE808"
                 contentItem: Loader { sourceComponent: textComponent }
@@ -420,6 +462,9 @@ ToolBar {
             // Justify is proven to make text harder to read for some readers. So I'm commenting out all text justification options from the program. I'm not removing them, only commenting out in case someone needs to re-enable. This article links to various sources that validate my decision: https://kaiweber.wordpress.com/2010/05/31/ragged-right-or-justified-alignment/ - Javier
             ToolButton {
                id: mobileAlignJustifyButton
+                ToolTip.text: qsTr("Text alignment", "Editor toolbar button tooltip")
+                ToolTip.visible: hovered
+                ToolTip.delay: Kirigami.Units.toolTipDelay
                visible: checked && toolbar.showJustify
                text: "\uE80B"
                contentItem: Loader { sourceComponent: textComponent }
@@ -441,6 +486,9 @@ ToolBar {
             visible: !toolbar.hideFormattingToolsAlways && (!root.__isMobile && showingFormattingTools || parseInt(viewport.prompter.state)===Prompter.States.Editing)
             ToolButton {
                 id: boldButton
+                ToolTip.text: qsTr("Bold", "Editor toolbar button tooltip")
+                ToolTip.visible: hovered
+                ToolTip.delay: Kirigami.Units.toolTipDelay
                 text: "\uE802"
                 contentItem: Loader { sourceComponent: textComponent }
                 font.family: iconFont.name
@@ -452,6 +500,9 @@ ToolBar {
             }
             ToolButton {
                 id: italicButton
+                ToolTip.text: qsTr("Italic", "Editor toolbar button tooltip")
+                ToolTip.visible: hovered
+                ToolTip.delay: Kirigami.Units.toolTipDelay
                 text: "\uE803"
                 contentItem: Loader { sourceComponent: textComponent }
                 font.family: iconFont.name
@@ -463,6 +514,9 @@ ToolBar {
             }
             ToolButton {
                 id: underlineButton
+                ToolTip.text: qsTr("Underline", "Editor toolbar button tooltip")
+                ToolTip.visible: hovered
+                ToolTip.delay: Kirigami.Units.toolTipDelay
                 text: "\uF0CD"
                 contentItem: Loader { sourceComponent: textComponent }
                 font.family: iconFont.name
@@ -474,6 +528,9 @@ ToolBar {
             }
             ToolButton {
                 id: strikeOutButton
+                ToolTip.text: qsTr("Strikethrough", "Editor toolbar button tooltip")
+                ToolTip.visible: hovered
+                ToolTip.delay: Kirigami.Units.toolTipDelay
                 text: "\uF0CC"
                 contentItem: Loader { sourceComponent: textComponent }
                 font.family: iconFont.name
@@ -485,6 +542,9 @@ ToolBar {
             }
             ToolButton {
                 id: verticalAlignmentButton
+                ToolTip.text: qsTr("Subscript or superscript", "Editor toolbar button tooltip")
+                ToolTip.visible: hovered
+                ToolTip.delay: Kirigami.Units.toolTipDelay
                 text: viewport.prompter.document.superscript ? "Aᵃ" : "Aₐ"
                 contentItem: Loader { sourceComponent: textComponent }
                 font.family: iconFont.name
@@ -503,6 +563,9 @@ ToolBar {
             }
             ToolButton {
                 id: capitalizationButton
+                ToolTip.text: qsTr("Capitalization", "Editor toolbar button tooltip")
+                ToolTip.visible: hovered
+                ToolTip.delay: Kirigami.Units.toolTipDelay
                 visible: root.width > 362
                 text: viewport.prompter.document.fontCapitalization === Font.AllUppercase ? "AB" : viewport.prompter.document.fontCapitalization === Font.Capitalize ? "Ab" : "ab"
                 contentItem: Loader { sourceComponent: textComponent }
@@ -633,6 +696,9 @@ ToolBar {
             }
             ToolButton {
                 id: fontFamilyToolButton
+                ToolTip.text: qsTr("Font family", "Editor toolbar button tooltip")
+                ToolTip.visible: hovered
+                ToolTip.delay: Kirigami.Units.toolTipDelay
                 text: "\uE805"
                 contentItem: Loader { sourceComponent: textComponent }
                 font.family: iconFont.name
@@ -643,6 +709,9 @@ ToolBar {
             }
             ToolButton {
                 id: textColorButton
+                ToolTip.text: qsTr("Text color", "Editor toolbar button tooltip")
+                ToolTip.visible: hovered
+                ToolTip.delay: Kirigami.Units.toolTipDelay
                 text: "\uE83F" /*uF1FC*/
                 contentItem: Text {
                     text: parent.text
@@ -676,6 +745,9 @@ ToolBar {
             }
             ToolButton {
                 id: textBackgroundButton
+                ToolTip.text: qsTr("Text highlight", "Editor toolbar button tooltip")
+                ToolTip.visible: hovered
+                ToolTip.delay: Kirigami.Units.toolTipDelay
                 text: "\uF1FC" /*u1F3A8*/
                 contentItem: Text {
                     text: parent.text
@@ -717,6 +789,9 @@ ToolBar {
             visible: !toolbar.hideFormattingToolsAlways && !mobileOrSmallScreen && (showingFormattingTools || parseInt(viewport.prompter.state)===Prompter.States.Editing)
             ToolButton {
                 id: alignLeftButton
+                ToolTip.text: qsTr("Align left", "Editor toolbar button tooltip")
+                ToolTip.visible: hovered
+                ToolTip.delay: Kirigami.Units.toolTipDelay
                 text: Qt.application.layoutDirection===Qt.LeftToRight ? "\uE808" : "\uE80A"
                 contentItem: Loader { sourceComponent: textComponent }
                 font.family: iconFont.name
@@ -733,6 +808,9 @@ ToolBar {
             }
             ToolButton {
                 id: alignCenterButton
+                ToolTip.text: qsTr("Align center", "Editor toolbar button tooltip")
+                ToolTip.visible: hovered
+                ToolTip.delay: Kirigami.Units.toolTipDelay
                 text: "\uE809"
                 font.family: iconFont.name
                 font.pointSize: 13
@@ -744,6 +822,9 @@ ToolBar {
             }
             ToolButton {
                 id: alignRightButton
+                ToolTip.text: qsTr("Align right", "Editor toolbar button tooltip")
+                ToolTip.visible: hovered
+                ToolTip.delay: Kirigami.Units.toolTipDelay
                 text: Qt.application.layoutDirection===Qt.LeftToRight ? "\uE80A" : "\uE808"
                 contentItem: Loader { sourceComponent: textComponent }
                 font.family: iconFont.name
@@ -761,6 +842,9 @@ ToolBar {
             // Justify is proven to make text harder to read for some readers. So I'm commenting out all text justification options from the program. I'm not removing them, only commenting out in case someone needs to re-enable. This article links to various sources that validate my decision: https://kaiweber.wordpress.com/2010/05/31/ragged-right-or-justified-alignment/ - Javier
             ToolButton {
                 id: alignJustifyButton
+                ToolTip.text: qsTr("Justify", "Editor toolbar button tooltip")
+                ToolTip.visible: hovered
+                ToolTip.delay: Kirigami.Units.toolTipDelay
                 visible: toolbar.showJustify
                 text: "\uE80B"
                 contentItem: Loader { sourceComponent: textComponent }
@@ -781,6 +865,9 @@ ToolBar {
             //visible: parseInt(viewport.prompter.state)===Prompter.States.Editing
             ToolButton {
                 id: wheelThrottleSettingsButton
+                ToolTip.text: qsTr("Scroll wheel settings", "Editor toolbar button tooltip")
+                ToolTip.visible: hovered
+                ToolTip.delay: Kirigami.Units.toolTipDelay
                 visible: !(Qt.platform.os==="android" || Qt.platform.os==="ios")
                 text: "\uE7FF"
                 contentItem: Loader { sourceComponent: textComponent }
@@ -793,6 +880,9 @@ ToolBar {
             }
             ToolButton {
                 id: windowStayOnTopButton
+                ToolTip.text: qsTr("Window stay on top", "Editor toolbar button tooltip")
+                ToolTip.visible: hovered
+                ToolTip.delay: Kirigami.Units.toolTipDelay
                 readonly property bool value: checked && enabled
                 visible: !root.__isMobile && showSliderIcons && !(Qt.platform.os==="android" || Qt.platform.os==="ios" || Qt.platform.os==="wasm")
                 text: "\uE800"
@@ -803,6 +893,9 @@ ToolBar {
                 font.pointSize: 13
             }
             ToolButton {
+                ToolTip.text: qsTr("Text spacing options", "Editor toolbar button tooltip")
+                ToolTip.visible: hovered
+                ToolTip.delay: Kirigami.Units.toolTipDelay
                 text: "\uE806"
                 contentItem: Loader { sourceComponent: textComponent }
                 font.family: iconFont.name
@@ -827,6 +920,9 @@ ToolBar {
                 }
             }
             ToolButton {
+                ToolTip.text: qsTr("Motion options", "Editor toolbar button tooltip")
+                ToolTip.visible: hovered
+                ToolTip.delay: Kirigami.Units.toolTipDelay
                 text: "\uE846" /*uF141*/
                 contentItem: Loader { sourceComponent: textComponent }
                 font.family: iconFont.name
@@ -869,6 +965,9 @@ ToolBar {
             visible: !root.__isMobile && root.width>1599 /*&& (showingFormattingTools || ! toolbar.hideFormattingToolsAlways)*/ || enabled
             ToolButton {
                 id: positiveVelocity
+                ToolTip.text: qsTr("Prompter goes forward only", "Editor toolbar button tooltip")
+                ToolTip.visible: hovered
+                ToolTip.delay: Kirigami.Units.toolTipDelay
                 text: "\u002B"
                 visible: showSliderIcons
                 enabled: velocityControlSlider.enabled
@@ -907,6 +1006,9 @@ ToolBar {
             id: opacitySliderRow
             visible: root.__translucidBackground && (!root.__isMobile && root.width>(parseInt(viewport.prompter.state)!==Prompter.States.Prompting ? 673 : 1175) || (parseInt(viewport.prompter.state)!==Prompter.States.Editing && parseInt(viewport.prompter.state)!==Prompter.States.Prompting)) // This check isn't optimized in case more viewport.prompter states get added in the future, even tho I think that is unlikely.
             ToolButton {
+                ToolTip.text: qsTr("Opacity options", "Editor toolbar button tooltip")
+                ToolTip.visible: hovered
+                ToolTip.delay: Kirigami.Units.toolTipDelay
                 readonly property bool value: checked && enabled
                 visible: !root.__isMobile && showSliderIcons
                 text: "\uE810"
@@ -1015,6 +1117,9 @@ ToolBar {
             height: (parseInt(viewport.prompter.state)===Prompter.States.Editing) ? implicitHeight : 0
             clip: true
             ToolButton {
+                ToolTip.text: qsTr("Switch between small and large font while editing", "Editor toolbar button tooltip")
+                ToolTip.visible: hovered
+                ToolTip.delay: Kirigami.Units.toolTipDelay
                 enabled: !fontSizeDirectInput.editText
                 text: "\uF088"
                 //visible: showSliderIcons
@@ -1184,6 +1289,9 @@ ToolBar {
                 }
             }
             ToolButton {
+                ToolTip.text: qsTr("Line height", "Editor toolbar button tooltip")
+                ToolTip.visible: hovered
+                ToolTip.delay: Kirigami.Units.toolTipDelay
                 text: "\uE806"
                 visible: showSliderIcons
                 enabled: false
@@ -1302,6 +1410,9 @@ ToolBar {
                 }
             }
             ToolButton {
+                ToolTip.text: qsTr("Paragraph spacing", "Editor toolbar button tooltip")
+                ToolTip.visible: hovered
+                ToolTip.delay: Kirigami.Units.toolTipDelay
                 text: "\uE806"
                 visible: showSliderIcons
                 enabled: false
@@ -1421,6 +1532,9 @@ ToolBar {
                 }
             }
             ToolButton {
+                ToolTip.text: qsTr("Word spacing", "Editor toolbar button tooltip")
+                ToolTip.visible: hovered
+                ToolTip.delay: Kirigami.Units.toolTipDelay
                 text: "\uE807" // W
                 visible: showSliderIcons
                 enabled: false
@@ -1539,6 +1653,9 @@ ToolBar {
                 }
             }
             ToolButton {
+                ToolTip.text: qsTr("Toggle overlaid bars", "Editor toolbar button tooltip")
+                ToolTip.visible: hovered
+                ToolTip.delay: Kirigami.Units.toolTipDelay
                 readonly property bool value: checked && enabled
                 visible: !root.__isMobile && showSliderIcons
                 text: "="
@@ -1664,6 +1781,9 @@ ToolBar {
                 }
             }
             ToolButton {
+                ToolTip.text: qsTr("Bars brightness", "Editor toolbar button tooltip")
+                ToolTip.visible: hovered
+                ToolTip.delay: Kirigami.Units.toolTipDelay
                 readonly property bool value: checked && enabled
                 visible: !root.__isMobile && showSliderIcons
                 text: "="
@@ -1788,6 +1908,9 @@ ToolBar {
                 }
             }
             ToolButton {
+                ToolTip.text: qsTr("Letter spacing", "Editor toolbar button tooltip")
+                ToolTip.visible: hovered
+                ToolTip.delay: Kirigami.Units.toolTipDelay
                 text: "\uE807"
                 visible: showSliderIcons
                 enabled: false
@@ -1905,6 +2028,9 @@ ToolBar {
                 }
             }
             ToolButton {
+                ToolTip.text: qsTr("Step speed", "Editor toolbar button tooltip")
+                ToolTip.visible: hovered
+                ToolTip.delay: Kirigami.Units.toolTipDelay
                 text: "\uE846"
                 visible: showSliderIcons
                 enabled: false
@@ -2024,6 +2150,9 @@ ToolBar {
                 }
             }
             ToolButton {
+                ToolTip.text: qsTr("Step acceleration", "Editor toolbar button tooltip")
+                ToolTip.visible: hovered
+                ToolTip.delay: Kirigami.Units.toolTipDelay
                 text: "\uE846"
                 visible: showSliderIcons
                 enabled: false
@@ -2133,6 +2262,9 @@ ToolBar {
         }
         RowLayout {
             Button {
+                ToolTip.text: qsTr("Auto reload settings", "Editor toolbar button tooltip")
+                ToolTip.visible: hovered
+                ToolTip.delay: Kirigami.Units.toolTipDelay
                 visible: document.comesFromNetwork && networkDialog.autoReloadRunning
                 text: qsTr("Next reload starts at <pre>%1</pre>", "Next reload starts at 10:11:12").arg(networkDialog.nextReloadTime)
                 onClicked: networkDialog.open()
@@ -2143,6 +2275,9 @@ ToolBar {
                 Layout.bottomMargin: -22
                 Material.theme: Material.Dark
                 ToolButton {
+                    ToolTip.text: qsTr("Reload now", "Editor toolbar button tooltip")
+                    ToolTip.visible: hovered
+                    ToolTip.delay: Kirigami.Units.toolTipDelay
                     visible: document.comesFromNetwork
                     text: "🔄"
                     contentItem: Loader { sourceComponent: textComponent }
@@ -2159,6 +2294,9 @@ ToolBar {
                 }
             }
             ToolButton {
+                ToolTip.text: qsTr("Reload now", "Editor toolbar button tooltip")
+                ToolTip.visible: hovered
+                ToolTip.delay: Kirigami.Units.toolTipDelay
                 visible: document.comesFromNetwork && !networkDialog.autoReloadRunning
                 text: "🔄"
                 contentItem: Loader { sourceComponent: textComponent }
