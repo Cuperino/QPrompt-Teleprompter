@@ -128,6 +128,12 @@
 #endif
 #include <windows.h>
 #endif
+#ifdef DBUS_ENABLED
+#include <QDBusConnection>
+#include <QDBusMessage>
+#include <QDBusObjectPath>
+#include <QDBusReply>
+#endif
 
 DocumentHandler::DocumentHandler(QObject *parent)
     : QObject(parent)
@@ -166,7 +172,12 @@ DocumentHandler::DocumentHandler(QObject *parent)
 #endif
 }
 
-DocumentHandler::~DocumentHandler() = default;
+DocumentHandler::~DocumentHandler()
+{
+#ifdef DBUS_ENABLED
+    releaseSleepInhibition();
+#endif
+}
 
 QQuickTextDocument *DocumentHandler::document() const
 {
@@ -1945,6 +1956,11 @@ bool DocumentHandler::preventSleep(bool prevent)
         return false;
     }
     return prevent;
+#elif defined(DBUS_ENABLED)
+    if (prevent)
+        return inhibitSleep();
+    releaseSleepInhibition();
+    return false;
 #elif defined(Q_OS_IOS)
     // To be implemented...
     return false & prevent;
@@ -1953,3 +1969,120 @@ bool DocumentHandler::preventSleep(bool prevent)
     return false & prevent;
 #endif
 }
+
+#ifdef DBUS_ENABLED
+// Keep D-Bus calls from freezing the GUI thread for long if a service stops responding
+static const int sleepInhibitionTimeout = 3000;
+
+bool DocumentHandler::inhibitSleep()
+{
+    // Prompter requests this on every state it goes through before prompting; hold a single inhibition.
+    if (m_sleepInhibitor != SleepInhibitor::None)
+        return true;
+
+    QDBusConnection bus = QDBusConnection::sessionBus();
+    if (!bus.isConnected()) {
+        qWarning() << "Could not prevent sleep: no D-Bus session bus.";
+        return false;
+    }
+    const QString appName = QGuiApplication::applicationDisplayName();
+    const QString reason = tr("Prompting started at least once");
+
+    // Services release inhibitions held by a client that disconnects from the bus, so the system
+    // cannot be left unable to sleep if QPrompt were to crash.
+
+    // KDE Plasma: inhibit both sleep and screen locking with a single request, so that the
+    // "Power and Battery" applet reports "QPrompt is blocking sleep and screen locking."
+    // Neither freedesktop interface does that on its own: org.freedesktop.ScreenSaver only blocks
+    // screen locking and org.freedesktop.PowerManagement.Inhibit only blocks sleep, while the
+    // portal's requests aren't attributed to an application name when not sandboxed.
+    {
+        // PowerDevil's PolicyAgent::RequiredPolicy flags
+        const uint InterruptSession = 1;
+        const uint ChangeScreenSettings = 4;
+        QDBusMessage message = QDBusMessage::createMethodCall(QStringLiteral("org.kde.Solid.PowerManagement.PolicyAgent"),
+                                                              QStringLiteral("/org/kde/Solid/PowerManagement/PolicyAgent"),
+                                                              QStringLiteral("org.kde.Solid.PowerManagement.PolicyAgent"),
+                                                              QStringLiteral("AddInhibition"));
+        message << (InterruptSession | ChangeScreenSettings) << appName << reason;
+        const QDBusReply<uint> reply = bus.call(message, QDBus::Block, sleepInhibitionTimeout);
+        if (reply.isValid()) {
+            m_sleepInhibitionCookie = reply.value();
+            m_sleepInhibitor = SleepInhibitor::KdePolicyAgent;
+            return true;
+        }
+    }
+
+    // XDG Desktop Portal: works on other desktops and from within Flatpak and Snap sandboxes
+    {
+        // org.freedesktop.portal.Inhibit flags
+        const uint Suspend = 4;
+        const uint Idle = 8;
+        QDBusMessage message = QDBusMessage::createMethodCall(QStringLiteral("org.freedesktop.portal.Desktop"),
+                                                              QStringLiteral("/org/freedesktop/portal/desktop"),
+                                                              QStringLiteral("org.freedesktop.portal.Inhibit"),
+                                                              QStringLiteral("Inhibit"));
+        const QVariantMap options{{QStringLiteral("reason"), reason}};
+        message << QString() << (Suspend | Idle) << options;
+        const QDBusReply<QDBusObjectPath> reply = bus.call(message, QDBus::Block, sleepInhibitionTimeout);
+        if (reply.isValid()) {
+            // The inhibition lasts until the returned request object is closed
+            m_sleepInhibitionHandle = reply.value().path();
+            m_sleepInhibitor = SleepInhibitor::Portal;
+            return true;
+        }
+    }
+
+    // Screen savers that implement the freedesktop interface; these also prevent sleep due to inactivity
+    {
+        QDBusMessage message = QDBusMessage::createMethodCall(QStringLiteral("org.freedesktop.ScreenSaver"),
+                                                              QStringLiteral("/org/freedesktop/ScreenSaver"),
+                                                              QStringLiteral("org.freedesktop.ScreenSaver"),
+                                                              QStringLiteral("Inhibit"));
+        message << appName << reason;
+        const QDBusReply<uint> reply = bus.call(message, QDBus::Block, sleepInhibitionTimeout);
+        if (reply.isValid()) {
+            m_sleepInhibitionCookie = reply.value();
+            m_sleepInhibitor = SleepInhibitor::ScreenSaver;
+            return true;
+        }
+        qWarning() << "Could not prevent sleep:" << reply.error().message();
+    }
+    return false;
+}
+
+void DocumentHandler::releaseSleepInhibition()
+{
+    QDBusMessage message;
+    switch (m_sleepInhibitor) {
+    case SleepInhibitor::None:
+        return;
+    case SleepInhibitor::KdePolicyAgent:
+        message = QDBusMessage::createMethodCall(QStringLiteral("org.kde.Solid.PowerManagement.PolicyAgent"),
+                                                 QStringLiteral("/org/kde/Solid/PowerManagement/PolicyAgent"),
+                                                 QStringLiteral("org.kde.Solid.PowerManagement.PolicyAgent"),
+                                                 QStringLiteral("ReleaseInhibition"));
+        message << m_sleepInhibitionCookie;
+        break;
+    case SleepInhibitor::Portal:
+        message = QDBusMessage::createMethodCall(QStringLiteral("org.freedesktop.portal.Desktop"),
+                                                 m_sleepInhibitionHandle,
+                                                 QStringLiteral("org.freedesktop.portal.Request"),
+                                                 QStringLiteral("Close"));
+        break;
+    case SleepInhibitor::ScreenSaver:
+        message = QDBusMessage::createMethodCall(QStringLiteral("org.freedesktop.ScreenSaver"),
+                                                 QStringLiteral("/org/freedesktop/ScreenSaver"),
+                                                 QStringLiteral("org.freedesktop.ScreenSaver"),
+                                                 QStringLiteral("UnInhibit"));
+        message << m_sleepInhibitionCookie;
+        break;
+    }
+    // No reply is needed. Should this not get delivered while quitting, the service will still
+    // release the inhibition once QPrompt disconnects from the bus.
+    QDBusConnection::sessionBus().send(message);
+    m_sleepInhibitor = SleepInhibitor::None;
+    m_sleepInhibitionCookie = 0;
+    m_sleepInhibitionHandle.clear();
+}
+#endif

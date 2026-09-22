@@ -358,5 +358,15 @@ private:
     std::unique_ptr<SpellHighlighter> m_spellHighlighter;
     bool m_spellCheckEnabled = true;
 #endif
+
+#ifdef DBUS_ENABLED
+    // D-Bus service currently holding QPrompt's sleep inhibition, if any
+    enum class SleepInhibitor { None, KdePolicyAgent, Portal, ScreenSaver };
+    bool inhibitSleep();
+    void releaseSleepInhibition();
+    SleepInhibitor m_sleepInhibitor = SleepInhibitor::None;
+    uint m_sleepInhibitionCookie = 0;
+    QString m_sleepInhibitionHandle;
+#endif
 };
 QT_END_NAMESPACE

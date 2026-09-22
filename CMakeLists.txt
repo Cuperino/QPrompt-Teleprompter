@@ -287,6 +287,14 @@ if(NOT ANDROID AND NOT IOS AND NOT WASM)
         Widgets
     )
 endif()
+# D-Bus is used on Linux and BSD desktops to keep the system awake while prompting
+if(UNIX AND NOT APPLE AND NOT ANDROID AND NOT WASM AND NOT HAIKU)
+    find_package(Qt${QT_VERSION_MAJOR} ${QT_MIN_VERSION} REQUIRED NO_MODULE COMPONENTS
+        DBus
+    )
+    add_compile_definitions(DBUS_ENABLED)
+    set(DBUS_ENABLED ON)
+endif()
 # Hunspell spell checking. Hunspell upstream ships only autotools/MSVC
 # project files, so on platforms where a system package or vcpkg/Craft
 # install isn't available we build the library straight from the

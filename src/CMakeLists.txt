@@ -499,6 +499,10 @@ if (QHotkey_FOUND)
     )
 endif()
 
+if(DBUS_ENABLED)
+    target_link_libraries(${PROJECT_NAME} PRIVATE Qt${QT_VERSION_MAJOR}::DBus)
+endif()
+
 if(HUNSPELL_ENABLED)
     if(TARGET Hunspell::Hunspell)
         target_link_libraries(${PROJECT_NAME} PRIVATE Hunspell::Hunspell)

@@ -4,19 +4,24 @@
 <context>
     <name>DocumentHandler</name>
     <message>
-        <location filename="../src/documenthandler.cpp" line="739"/>
+        <location filename="../src/documenthandler.cpp" line="759"/>
         <source>%1…</source>
         <translation>%1…</translation>
     </message>
     <message>
-        <location filename="../src/documenthandler.cpp" line="1087"/>
+        <location filename="../src/documenthandler.cpp" line="1107"/>
         <source>An error occurred while attempting to open file in a third party format. Go to &quot;Main Menu&quot;, &quot;Other Settings&quot;, then &quot;External Tools&quot; to make sure a corresponding import tool is properly configured.</source>
         <translation type="unfinished">Une erreur s&apos;est produite lors de la tentative d&apos;ouverture du fichier dans un format tiers. Allez dans « Menu principal », « Autres paramètres », puis « Outils externes » pour vous assurer qu&apos;un outil d&apos;importation correspondant est correctement configuré.</translation>
     </message>
     <message>
-        <location filename="../src/documenthandler.cpp" line="1160"/>
+        <location filename="../src/documenthandler.cpp" line="1180"/>
         <source>Cannot save: </source>
         <translation type="unfinished">Impossible d&apos;enregistrer : </translation>
+    </message>
+    <message>
+        <location filename="../src/documenthandler.cpp" line="1989"/>
+        <source>Prompting started at least once</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

@@ -4,7 +4,7 @@
 <context>
     <name>DocumentHandler</name>
     <message>
-        <location filename="../src/documenthandler.cpp" line="739"/>
+        <location filename="../src/documenthandler.cpp" line="759"/>
         <source>%1…</source>
         <translation>%1…</translation>
     </message>
@@ -13,14 +13,19 @@
         <translation type="vanished">Nicht unterstützter Dateiformat</translation>
     </message>
     <message>
-        <location filename="../src/documenthandler.cpp" line="1087"/>
+        <location filename="../src/documenthandler.cpp" line="1107"/>
         <source>An error occurred while attempting to open file in a third party format. Go to &quot;Main Menu&quot;, &quot;Other Settings&quot;, then &quot;External Tools&quot; to make sure a corresponding import tool is properly configured.</source>
         <translation>Beim Öffnen einer Datei in einem Fremdformat trat ein Fehler auf. Gehen sie ins &quot;Hauptmenü&quot;, &quot;Andere Einstellungen&quot;, dann &quot;Externe Tools&quot; um sicher zu stellen, dass ein passendes Import-Tool konfiguriert ist.</translation>
     </message>
     <message>
-        <location filename="../src/documenthandler.cpp" line="1160"/>
+        <location filename="../src/documenthandler.cpp" line="1180"/>
         <source>Cannot save: </source>
         <translation>Speichern nicht möglich: </translation>
+    </message>
+    <message>
+        <location filename="../src/documenthandler.cpp" line="1989"/>
+        <source>Prompting started at least once</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
