@@ -1015,7 +1015,7 @@ Ajude-nos a traduzir o QPrompt, visite:</translation>
 <context>
     <name>MarkersDrawer</name>
     <message>
-        <location filename="../src/kirigami_ui/MarkersDrawer.qml" line="130"/>
+        <location filename="../src/kirigami_ui/MarkersDrawer.qml" line="138"/>
         <source>Close Marker List</source>
         <comment>Close sidebar listing user defined markers</comment>
         <translation>Fechar lista de marcadores</translation>
@@ -1273,151 +1273,151 @@ Ajude-nos a traduzir o QPrompt, visite:</translation>
 <context>
     <name>Prompter</name>
     <message>
-        <location filename="../src/prompter/Prompter.qml" line="975"/>
+        <location filename="../src/prompter/Prompter.qml" line="985"/>
         <source>Error loading file…</source>
         <translation>Erro ao carregar arquivo…</translation>
     </message>
     <message>
-        <location filename="../src/prompter/Prompter.qml" line="1064"/>
+        <location filename="../src/prompter/Prompter.qml" line="1074"/>
         <source>Rewind to start</source>
         <comment>End of prompt button tooltip</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/prompter/Prompter.qml" line="1107"/>
+        <location filename="../src/prompter/Prompter.qml" line="1117"/>
         <source>Press and hold to go back to the start</source>
         <translation>Pressione e segure para voltar para o inicio</translation>
     </message>
     <message>
-        <location filename="../src/prompter/Prompter.qml" line="1109"/>
+        <location filename="../src/prompter/Prompter.qml" line="1119"/>
         <source>Double tap to go back to the start</source>
         <translation>Toque duplo para voltar ao início</translation>
     </message>
     <message>
-        <location filename="../src/prompter/Prompter.qml" line="1117"/>
+        <location filename="../src/prompter/Prompter.qml" line="1127"/>
         <source>Auto rewind cancelled</source>
         <translation>Cancelar volta automática do texto</translation>
     </message>
     <message>
-        <location filename="../src/prompter/Prompter.qml" line="1167"/>
+        <location filename="../src/prompter/Prompter.qml" line="1177"/>
         <source>Stop at end</source>
         <comment>End of prompt button tooltip</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/prompter/Prompter.qml" line="1226"/>
+        <location filename="../src/prompter/Prompter.qml" line="1236"/>
         <source>Loop at end</source>
         <comment>End of prompt button tooltip</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/prompter/Prompter.qml" line="1285"/>
+        <location filename="../src/prompter/Prompter.qml" line="1295"/>
         <source>Loop delay</source>
         <comment>End of prompt button tooltip</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/prompter/Prompter.qml" line="2233"/>
+        <location filename="../src/prompter/Prompter.qml" line="2243"/>
         <source>New document</source>
         <translation>Novo documento</translation>
     </message>
     <message>
-        <location filename="../src/prompter/Prompter.qml" line="2242"/>
+        <location filename="../src/prompter/Prompter.qml" line="2252"/>
         <source>welcome_en.html</source>
         <translation>welcome_pt_BR.html</translation>
     </message>
     <message>
-        <location filename="../src/prompter/Prompter.qml" line="2247"/>
+        <location filename="../src/prompter/Prompter.qml" line="2257"/>
         <source>User welcome loaded</source>
         <translation>Boas vindas ao usuário carregadas</translation>
     </message>
     <message>
-        <location filename="../src/prompter/Prompter.qml" line="2257"/>
+        <location filename="../src/prompter/Prompter.qml" line="2267"/>
         <source>Loaded: %1</source>
         <translation>Carregado: %1</translation>
     </message>
     <message>
-        <location filename="../src/prompter/Prompter.qml" line="2315"/>
-        <location filename="../src/prompter/Prompter.qml" line="2495"/>
+        <location filename="../src/prompter/Prompter.qml" line="2325"/>
+        <location filename="../src/prompter/Prompter.qml" line="2505"/>
         <source>Saved %1</source>
         <comment>Saved FILE_NAME</comment>
         <translation>Salvo em %1</translation>
     </message>
     <message>
-        <location filename="../src/prompter/Prompter.qml" line="2317"/>
-        <location filename="../src/prompter/Prompter.qml" line="2520"/>
+        <location filename="../src/prompter/Prompter.qml" line="2327"/>
+        <location filename="../src/prompter/Prompter.qml" line="2530"/>
         <source>Saved</source>
         <translation>&amp;Salvar</translation>
     </message>
     <message>
-        <location filename="../src/prompter/Prompter.qml" line="2427"/>
-        <location filename="../src/prompter/Prompter.qml" line="2439"/>
-        <location filename="../src/prompter/Prompter.qml" line="2480"/>
+        <location filename="../src/prompter/Prompter.qml" line="2437"/>
+        <location filename="../src/prompter/Prompter.qml" line="2449"/>
+        <location filename="../src/prompter/Prompter.qml" line="2490"/>
         <source>Plain Text &lt;%1&gt;</source>
         <comment>Format name &lt;FORMAT_EXTENSION&gt;</comment>
         <translation>Apenas texto &lt;%1&gt;</translation>
     </message>
     <message>
-        <location filename="../src/prompter/Prompter.qml" line="2428"/>
+        <location filename="../src/prompter/Prompter.qml" line="2438"/>
         <source>OpenDocument Format Text Document &lt;%1&gt;</source>
         <comment>Format name &lt;FORMAT_EXTENSION&gt;</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/prompter/Prompter.qml" line="2429"/>
+        <location filename="../src/prompter/Prompter.qml" line="2439"/>
         <source>AbiWord Document &lt;%1&gt;</source>
         <comment>Format name &lt;FORMAT_EXTENSION&gt;</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/prompter/Prompter.qml" line="2430"/>
+        <location filename="../src/prompter/Prompter.qml" line="2440"/>
         <source>Microsoft Word document &lt;%1&gt;</source>
         <comment>Format name &lt;FORMAT_EXTENSION&gt;</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/prompter/Prompter.qml" line="2431"/>
+        <location filename="../src/prompter/Prompter.qml" line="2441"/>
         <source>Apple Pages Document &lt;%1&gt;</source>
         <comment>Format name &lt;FORMAT_EXTENSION&gt;</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/prompter/Prompter.qml" line="2432"/>
+        <location filename="../src/prompter/Prompter.qml" line="2442"/>
         <source>Rich Text Format &lt;%1&gt;</source>
         <comment>Format name &lt;FORMAT_EXTENSION&gt;</comment>
         <translation>Apenas texto &lt;%1&gt;</translation>
     </message>
     <message>
-        <location filename="../src/prompter/Prompter.qml" line="2434"/>
-        <location filename="../src/prompter/Prompter.qml" line="2442"/>
+        <location filename="../src/prompter/Prompter.qml" line="2444"/>
+        <location filename="../src/prompter/Prompter.qml" line="2452"/>
         <source>All Formats</source>
         <comment>All file formats</comment>
         <translation>Todos os formatos</translation>
     </message>
     <message>
-        <location filename="../src/prompter/Prompter.qml" line="2566"/>
+        <location filename="../src/prompter/Prompter.qml" line="2576"/>
         <source>Add &quot;%1&quot; to dictionary</source>
         <comment>Editor context menu actions</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/prompter/Prompter.qml" line="2425"/>
-        <location filename="../src/prompter/Prompter.qml" line="2437"/>
-        <location filename="../src/prompter/Prompter.qml" line="2475"/>
-        <location filename="../src/prompter/Prompter.qml" line="2479"/>
+        <location filename="../src/prompter/Prompter.qml" line="2435"/>
+        <location filename="../src/prompter/Prompter.qml" line="2447"/>
+        <location filename="../src/prompter/Prompter.qml" line="2485"/>
+        <location filename="../src/prompter/Prompter.qml" line="2489"/>
         <source>Hypertext Markup Language &lt;%1&gt;</source>
         <comment>Format name &lt;FORMAT_EXTENSION&gt;</comment>
         <translation>Linguagem de Marcação de HiperTexto &lt;%1&gt;</translation>
     </message>
     <message>
-        <location filename="../src/prompter/Prompter.qml" line="1196"/>
+        <location filename="../src/prompter/Prompter.qml" line="1206"/>
         <source>Return to edit mode at end</source>
         <comment>End of prompt button tooltip</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/prompter/Prompter.qml" line="2426"/>
-        <location filename="../src/prompter/Prompter.qml" line="2438"/>
+        <location filename="../src/prompter/Prompter.qml" line="2436"/>
+        <location filename="../src/prompter/Prompter.qml" line="2448"/>
         <source>Markdown &lt;%1&gt;</source>
         <comment>Format name &lt;FORMAT_EXTENSION&gt;</comment>
         <translation>Markdown &lt;%1&gt;</translation>
@@ -1463,81 +1463,81 @@ Ajude-nos a traduzir o QPrompt, visite:</translation>
         <translation type="vanished">Rich Text Format (%1)</translation>
     </message>
     <message>
-        <location filename="../src/prompter/Prompter.qml" line="2573"/>
-        <location filename="../src/prompter/Prompter.qml" line="2660"/>
+        <location filename="../src/prompter/Prompter.qml" line="2583"/>
+        <location filename="../src/prompter/Prompter.qml" line="2670"/>
         <source>&amp;Copy</source>
         <comment>Global menu and editor context menu actions</comment>
         <translation>&amp;Copiar</translation>
     </message>
     <message>
-        <location filename="../src/prompter/Prompter.qml" line="2578"/>
-        <location filename="../src/prompter/Prompter.qml" line="2665"/>
+        <location filename="../src/prompter/Prompter.qml" line="2588"/>
+        <location filename="../src/prompter/Prompter.qml" line="2675"/>
         <source>Cu&amp;t</source>
         <comment>Global menu and editor context menu actions</comment>
         <translation>Corta&amp;r</translation>
     </message>
     <message>
-        <location filename="../src/prompter/Prompter.qml" line="2583"/>
-        <location filename="../src/prompter/Prompter.qml" line="2670"/>
+        <location filename="../src/prompter/Prompter.qml" line="2593"/>
+        <location filename="../src/prompter/Prompter.qml" line="2680"/>
         <source>&amp;Paste</source>
         <comment>Global menu and editor context menu actions</comment>
         <translation>&amp;Colar</translation>
     </message>
     <message>
-        <location filename="../src/prompter/Prompter.qml" line="2589"/>
+        <location filename="../src/prompter/Prompter.qml" line="2599"/>
         <source>Fo&amp;nt…</source>
         <comment>Editor context menu actions</comment>
         <translation>Fo&amp;nte…</translation>
     </message>
     <message>
-        <location filename="../src/prompter/Prompter.qml" line="2593"/>
-        <location filename="../src/prompter/Prompter.qml" line="2676"/>
+        <location filename="../src/prompter/Prompter.qml" line="2603"/>
+        <location filename="../src/prompter/Prompter.qml" line="2686"/>
         <source>Co&amp;lor…</source>
         <comment>Editor context menu actions</comment>
         <translation>Co&amp;r…</translation>
     </message>
     <message>
-        <location filename="../src/prompter/Prompter.qml" line="2597"/>
-        <location filename="../src/prompter/Prompter.qml" line="2680"/>
+        <location filename="../src/prompter/Prompter.qml" line="2607"/>
+        <location filename="../src/prompter/Prompter.qml" line="2690"/>
         <source>Hi&amp;ghlight…</source>
         <comment>Editor context menu actions</comment>
         <translation>Re&amp;alçar texto…</translation>
     </message>
     <message>
-        <location filename="../src/prompter/Prompter.qml" line="2641"/>
+        <location filename="../src/prompter/Prompter.qml" line="2651"/>
         <source>Add to dictionary</source>
         <comment>Editor context menu actions</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/prompter/Prompter.qml" line="2649"/>
+        <location filename="../src/prompter/Prompter.qml" line="2659"/>
         <source>&amp;Undo</source>
         <comment>Editor context menu actions</comment>
         <translation>&amp;Desfazer</translation>
     </message>
     <message>
-        <location filename="../src/prompter/Prompter.qml" line="2654"/>
+        <location filename="../src/prompter/Prompter.qml" line="2664"/>
         <source>Redo</source>
         <comment>Editor context menu actions</comment>
         <translation>Refazer</translation>
     </message>
     <message>
-        <location filename="../src/prompter/Prompter.qml" line="2968"/>
+        <location filename="../src/prompter/Prompter.qml" line="2978"/>
         <source>Begin countdown</source>
         <translation>Começar contagem regressiva</translation>
     </message>
     <message>
-        <location filename="../src/prompter/Prompter.qml" line="2968"/>
+        <location filename="../src/prompter/Prompter.qml" line="2978"/>
         <source>Start prompting</source>
         <translation>Começar o prompt</translation>
     </message>
     <message>
-        <location filename="../src/prompter/Prompter.qml" line="3016"/>
+        <location filename="../src/prompter/Prompter.qml" line="3026"/>
         <source>Skip countdown</source>
         <translation>Pular a contagem regressiva</translation>
     </message>
     <message>
-        <location filename="../src/prompter/Prompter.qml" line="3061"/>
+        <location filename="../src/prompter/Prompter.qml" line="3071"/>
         <source>Return to edit mode</source>
         <translation>Voltar para o modo de edição</translation>
     </message>
