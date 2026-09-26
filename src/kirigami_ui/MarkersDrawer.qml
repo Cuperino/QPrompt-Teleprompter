@@ -99,7 +99,6 @@ Kirigami.OverlayDrawer {
                 visible: !(Qt.platform.os==="android" || Qt.platform.os==="ios")
                 icon.name: "document-properties"
                 onTriggered: {
-                    print("Edit clicked", model.position)
                     // Select marker in document
                     prompter.editMarker(model.position, model.length)
                     reOpen = true;
