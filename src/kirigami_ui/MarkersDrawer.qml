@@ -90,6 +90,13 @@ Kirigami.OverlayDrawer {
                 }
             },*/
             Kirigami.Action {
+                icon.name: "list-remove"
+                onTriggered: {
+                    prompter.deleteMarker(model.position, model.length);
+                    markerList.model.removeMarker(index);
+                }
+            },
+            Kirigami.Action {
                 visible: !(Qt.platform.os==="android" || Qt.platform.os==="ios")
                 icon.name: "document-properties"
                 onTriggered: {
@@ -111,6 +118,7 @@ Kirigami.OverlayDrawer {
         height: parent.height
         spacing: 0
         ListView {
+            id: markerList
             Layout.fillHeight: true
             Layout.fillWidth: true
             spacing: 2

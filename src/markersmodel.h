@@ -58,7 +58,7 @@ public:
     // void insertRow(int row, const QModelIndex &parent);
     void clearMarkers();
     void appendMarker(const Marker &marker);
-    void removeMarker(int row);
+    Q_INVOKABLE void removeMarker(int row);
     Marker previousMarker(int position);
     Marker nextMarker(int position);
     int keySearch(int key, int currentPosition, bool reverse, bool wrap);

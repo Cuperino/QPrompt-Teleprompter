@@ -618,10 +618,20 @@ Flickable {
         prompter.restoreFocus()
     }
 
-    function editMarker(cursorPosition, fragmentLength) {
+    function showAndSelect(cursorPosition, fragmentLength) {
         goTo(cursorPosition);
         editor.select(editor.cursorPosition, editor.cursorPosition + fragmentLength);
+    }
+
+    function editMarker(cursorPosition, fragmentLength) {
+        showAndSelect(cursorPosition, fragmentLength);
         namedMarkerConfiguration.open();
+    }
+
+    function deleteMarker(cursorPosition, fragmentLength) {
+        showAndSelect(cursorPosition, fragmentLength);
+        // document.namedMarker = false;
+        document.regularMarker = false;
     }
 
     function goTo(cursorPosition) {
