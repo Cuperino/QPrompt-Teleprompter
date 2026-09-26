@@ -36,6 +36,7 @@ Item {
     property double startTime: new Date().getTime() - elapsedMilliseconds
     property double lastTime: startTime
     property bool stopwatch: true
+    property bool showSystemTime: false
     property bool eta: true
     property real size: 0.5
     property alias textColor: timerSettings.color
@@ -69,9 +70,17 @@ Item {
             }
             etaTimer.text = timer.getTimeString(timeToEnd);
         }
-
+        const date = new Date();
+        if (clock.showSystemTime) {
+            // Detect system clock type AM/PM or 24h
+            systemTime.text = Qt.locale().amText ?
+                        // 12 hour clock
+                        Qt.formatTime(date, "hh:mm:ss AP").slice(0, 8) :
+                        // 24 hour clock
+                        Qt.formatTime(date, "hh:mm:ss")
+        }
         // Update stopwatch timer regardless of stopwatch being shown. This allows getting desired value for talent after a run has been completed with the stopwatch hidden.
-        const newLastTime = new Date().getTime()
+        const newLastTime = date.getTime()
         if (!running)
             startTime = startTime + newLastTime - lastTime
         lastTime = newLastTime
@@ -114,6 +123,7 @@ Item {
         category: "timer"
         property alias enabled: clock.enabled
         property alias stopwatch: clock.stopwatch
+        property alias clock: clock.showSystemTime
         property alias eta: clock.eta
         property color color: timerColorDialog.color
     }
@@ -141,11 +151,23 @@ Item {
         GridLayout {
             id: clockGrid
             rows: 1
-            columns: 2
+            columns: clock.stopwatch + clock.showSystemTime + clock.eta
             Label {
                 id: promptTime
                 visible: clock.stopwatch
                 text: "00:00:00"
+                font.family: "Monospace"
+                font.pixelSize: stopwatch.fontSize
+                color: clock.textColor
+                leftPadding: stopwatch.marginX
+                rightPadding: stopwatch.marginX
+                topPadding: stopwatch.marginY
+                bottomPadding: stopwatch.marginY
+            }
+            Label {
+                id: systemTime
+                visible: clock.showSystemTime
+                text: "  :  :  "
                 font.family: "Monospace"
                 font.pixelSize: stopwatch.fontSize
                 color: clock.textColor

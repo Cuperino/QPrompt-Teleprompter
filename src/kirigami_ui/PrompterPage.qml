@@ -333,11 +333,24 @@ Kirigami.Page {
                 enabled: viewport.timer.timersEnabled
                 checkable: true
                 checked: viewport.timer.stopwatch
-                icon.name: "keyframe"
+                icon.name: "keyframe-record"
                 text: qsTr("Stopwatch")
                 onTriggered: {
                     viewport.timer.stopwatch = checked
                     viewport.prompter.restoreFocus()
+                }
+            }
+            Kirigami.Action {
+                id: enableClockButton
+                enabled: viewport.timer.timersEnabled
+                checkable: true
+                checked: viewport.timer.showSystemTime
+                icon.name: "keyframe"
+                text: qsTr("Clock", "Show Current Time")
+                onTriggered: {
+                    viewport.timer.showSystemTime = checked;
+                    viewport.timer.updateTimer();
+                    viewport.prompter.restoreFocus();
                 }
             }
             Kirigami.Action {

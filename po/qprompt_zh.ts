@@ -1727,13 +1727,13 @@ Help us translate QPrompt, visit:</source>
     </message>
     <message>
         <location filename="../src/kirigami_ui/PrompterPage.qml" line="76"/>
-        <source>Initiate prompter</source>
-        <translation type="unfinished"></translation>
+        <source>Start prompting</source>
+        <translation type="unfinished">开始提示</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/PrompterPage.qml" line="76"/>
-        <source>Start prompting</source>
-        <translation type="unfinished">开始提示</translation>
+        <source>Initiate prompter</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/PrompterPage.qml" line="313"/>
@@ -1752,365 +1752,371 @@ Help us translate QPrompt, visit:</source>
     </message>
     <message>
         <location filename="../src/kirigami_ui/PrompterPage.qml" line="349"/>
+        <source>Clock</source>
+        <comment>Show Current Time</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="362"/>
         <source>ETA</source>
         <comment>Estimated Time of Arrival</comment>
         <translation>剩余时间</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/PrompterPage.qml" line="358"/>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="371"/>
         <source>Timer color</source>
         <comment>Color of timer text</comment>
         <translation>定时器颜色</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/PrompterPage.qml" line="369"/>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="382"/>
         <source>Clear color</source>
         <comment>Reset color of timer text back to default</comment>
         <translation>恢复默认颜色</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/PrompterPage.qml" line="380"/>
-        <location filename="../src/kirigami_ui/PrompterPage.qml" line="402"/>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="393"/>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="415"/>
         <source>Countdown</source>
         <translation>倒计时</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/PrompterPage.qml" line="386"/>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="399"/>
         <source>Auto frame</source>
         <comment>Enables automatic alignment of prompter and text with the reading region</comment>
         <translation>自动定格</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/PrompterPage.qml" line="418"/>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="431"/>
         <source>Auto start</source>
         <comment>Auto start countdown upon prompter getting started</comment>
         <translation>自动开始</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/PrompterPage.qml" line="420"/>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="433"/>
         <source>Start countdown automatically</source>
         <translation>自动开始倒计时</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/PrompterPage.qml" line="430"/>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="443"/>
         <source>Set duration</source>
         <comment>Configure countdown duration</comment>
         <translation>设定持续时间</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/PrompterPage.qml" line="447"/>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="460"/>
         <source>Orientation</source>
         <comment>Prompter orientation and mirroring</comment>
         <translation>方向</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/PrompterPage.qml" line="464"/>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="477"/>
         <source>Horizontal mirror</source>
         <comment>Mirrors prompter horizontally</comment>
         <translation>水平镜像</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/PrompterPage.qml" line="481"/>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="494"/>
         <source>Vertical mirror</source>
         <comment>Mirrors prompter vertically</comment>
         <translation>垂直镜像</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/PrompterPage.qml" line="509"/>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="522"/>
         <source>Don&apos;t rotate</source>
         <comment>Prompter rotation is disabled</comment>
         <translation>不旋转</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/PrompterPage.qml" line="520"/>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="533"/>
         <source>90° clockwise</source>
         <comment>Rotate prompter 90 degrees to the right</comment>
         <translation>顺时针90°</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/PrompterPage.qml" line="531"/>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="544"/>
         <source>90° counter</source>
         <comment>Rotate prompter 90 degrees to the left</comment>
         <translation>逆时针90°</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/PrompterPage.qml" line="556"/>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="569"/>
         <source>Background</source>
         <comment>Background refers to what appears behind the prompter</comment>
         <translation>背景</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/PrompterPage.qml" line="559"/>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="572"/>
         <source>Shadows</source>
         <comment>Enable root.shadows</comment>
         <translation>阴影</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/PrompterPage.qml" line="568"/>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="581"/>
         <source>Set image</source>
         <comment>Set background image</comment>
         <translation>设置背景图片</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/PrompterPage.qml" line="581"/>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="594"/>
         <source>Set color</source>
         <comment>Set background color tint</comment>
         <translation>设置背景颜色</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/PrompterPage.qml" line="591"/>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="604"/>
         <source>Clear</source>
         <comment>Set background settings back to default</comment>
         <translation>清除</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/PrompterPage.qml" line="603"/>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="616"/>
         <source>Spellcheck</source>
         <comment>Spell checking menu</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/PrompterPage.qml" line="606"/>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="619"/>
         <source>Spellcheck</source>
         <comment>Toggle spell checking on or off</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/PrompterPage.qml" line="615"/>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="628"/>
         <source>Set dictionaries</source>
         <comment>Open dictionary selection sheet</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/PrompterPage.qml" line="623"/>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="636"/>
         <source>Edit custom words</source>
         <comment>Open custom dictionary editor</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/PrompterPage.qml" line="633"/>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="646"/>
         <source>Screens</source>
         <comment>Screens refers to computer displays</comment>
         <translation>屏幕</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/PrompterPage.qml" line="667"/>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="680"/>
         <source>Off</source>
         <comment>Screen is disabled</comment>
         <translation>关闭</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/PrompterPage.qml" line="668"/>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="681"/>
         <source>No Mirror</source>
         <comment>Screen is enabled but mirroring is disabled</comment>
         <translation>无镜像</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/PrompterPage.qml" line="669"/>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="682"/>
         <source>H Mirror</source>
         <comment>Horizontal mirroring</comment>
         <translation>H 镜像</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/PrompterPage.qml" line="670"/>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="683"/>
         <source>V Mirror</source>
         <comment>Vertical mirroring</comment>
         <translation>V 镜像</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/PrompterPage.qml" line="671"/>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="684"/>
         <source>HV Mirror</source>
         <comment>Horizontal and vertical mirroring</comment>
         <translation>HV 镜像</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/PrompterPage.qml" line="682"/>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="695"/>
         <source>Enable projection</source>
         <comment>Display prompter copies onto displays</comment>
         <translation>启用投影</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/PrompterPage.qml" line="694"/>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="707"/>
         <source>Scale projection</source>
         <comment>Enable scaling prompter copies being projected onto displays</comment>
         <translation>等比例投影</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/PrompterPage.qml" line="717"/>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="730"/>
         <source>Leave Fullscreen</source>
         <translation>退出全屏</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/PrompterPage.qml" line="717"/>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="730"/>
         <source>Fullscreen</source>
         <translation>全屏</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/PrompterPage.qml" line="890"/>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="903"/>
         <source>Right click to hide velocity indicator</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/PrompterPage.qml" line="1067"/>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="1080"/>
         <source>Countdown Setup</source>
         <translation>倒计时设置</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/PrompterPage.qml" line="1086"/>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="1099"/>
         <source>Countdown duration</source>
         <translation>倒计时时长</translation>
     </message>
     <message numerus="yes">
-        <location filename="../src/kirigami_ui/PrompterPage.qml" line="1107"/>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="1120"/>
         <source>Disappear within %n second(s) to go</source>
         <translation>
             <numerusform>在 %n 秒内消失</numerusform>
         </translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/PrompterPage.qml" line="1134"/>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="1147"/>
         <source>Skip Key</source>
         <comment>Refers to a key on the keyboard used to skip to a user defined marker while prompting</comment>
         <translation>跳跃键</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/PrompterPage.qml" line="1170"/>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="1183"/>
         <source>Key to perform skip to this marker</source>
         <comment>Refers to a key on the keyboard used to skip to a user defined marker while prompting</comment>
         <translation>按此键执行跳到此标记</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/PrompterPage.qml" line="1206"/>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="1219"/>
         <source>Command to execute</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/PrompterPage.qml" line="1230"/>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="1243"/>
         <source>Allow sys:// markers to run system commands</source>
         <comment>Security opt-in beneath the marker command field. Off by default; when checked, sys:// markers in a document may execute local system commands as the prompter scrolls past them.</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/PrompterPage.qml" line="1273"/>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="1286"/>
         <source>Open from network...</source>
         <translation>从网络位置打开……</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/PrompterPage.qml" line="1316"/>
-        <location filename="../src/kirigami_ui/PrompterPage.qml" line="1496"/>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="1329"/>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="1509"/>
         <source>URL:</source>
         <translation>URL:</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/PrompterPage.qml" line="1331"/>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="1344"/>
         <source>Auto reload</source>
         <translation>自动重载</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/PrompterPage.qml" line="1342"/>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="1355"/>
         <source>Hours:</source>
         <translation>时：</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/PrompterPage.qml" line="1363"/>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="1376"/>
         <source>Minutes:</source>
         <translation>分：</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/PrompterPage.qml" line="1388"/>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="1401"/>
         <source>Seconds:</source>
         <translation>秒：</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/PrompterPage.qml" line="1416"/>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="1429"/>
         <source>Next reload starts at %1</source>
         <comment>Next reload starts at 10:11:12</comment>
         <translation>下次重新加载开始于 %1</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/PrompterPage.qml" line="1417"/>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="1430"/>
         <source>Auto reload is not running</source>
         <translation>自动重新加载未运行</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/PrompterPage.qml" line="1423"/>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="1436"/>
         <source>Load from Network</source>
         <translation>从网络加载</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/PrompterPage.qml" line="1431"/>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="1444"/>
         <source>Close</source>
         <translation>关闭</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/PrompterPage.qml" line="1445"/>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="1458"/>
         <source>Pointer configuration</source>
         <comment>Name of section where reding region pointers are configured</comment>
         <translation>指针配置</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/PrompterPage.qml" line="1467"/>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="1480"/>
         <source>OBS configuration</source>
         <comment>Name of section where OBS websockets connection is configured</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/PrompterPage.qml" line="1482"/>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="1495"/>
         <source>Enabled:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/PrompterPage.qml" line="1512"/>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="1525"/>
         <source>Password:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/PrompterPage.qml" line="1531"/>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="1544"/>
         <source>Set dictionaries</source>
         <comment>Dictionary selection sheet title</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/PrompterPage.qml" line="1573"/>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="1586"/>
         <source>Filter dictionaries</source>
         <comment>Dictionary filter placeholder</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/PrompterPage.qml" line="1599"/>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="1612"/>
         <source>No dictionaries found on this system.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/PrompterPage.qml" line="1600"/>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="1613"/>
         <source>No dictionaries match the filter.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/PrompterPage.qml" line="1609"/>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="1622"/>
         <source>Edit custom words</source>
         <comment>Custom dictionary editor title</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/PrompterPage.qml" line="1671"/>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="1684"/>
         <source>New word</source>
         <comment>Placeholder for adding a custom dictionary word</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/PrompterPage.qml" line="1676"/>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="1689"/>
         <source>Add</source>
         <comment>Add custom word button</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/PrompterPage.qml" line="1700"/>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="1713"/>
         <source>No custom words yet.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/PrompterPage.qml" line="1706"/>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="1719"/>
         <source>Delete selected</source>
         <comment>Delete selected custom words</comment>
         <translation type="unfinished"></translation>
