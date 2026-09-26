@@ -76,7 +76,7 @@ endif()
 
 set(qprompt_cpp
     qmlutil.hpp
-    abstractunits.hpp
+    units.hpp
     marker.hpp
     documenthandler.h documenthandler.cpp
     markersmodel.h markersmodel.cpp

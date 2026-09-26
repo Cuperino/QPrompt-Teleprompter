@@ -64,7 +64,7 @@
 #endif
 
 #include "../qprompt_version.h"
-#include "abstractunits.hpp"
+#include "units.hpp"
 //#include "documenthandler.h"
 //#include "qmlutil.hpp"
 #include <stdlib.h>
@@ -216,7 +216,7 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
     //    qmlRegisterType<DocumentHandler>(QPROMPT_URI ".document", 1, 0, "DocumentHandler");
     //    qmlRegisterType<MarkersModel>(QPROMPT_URI ".markers", 1, 0, "MarkersModel");
     //    qmlRegisterType<QmlUtil>(QPROMPT_URI ".qmlutil", 1, 0, "QmlUtil");
-    //    qmlRegisterUncreatableType</*AbstractUnits*/>(QPROMPT_URI ".abstractunits", 1, 0, "Units", "Access to Duration enum");
+    //    qmlRegisterUncreatableType</*Units*/>(QPROMPT_URI ".units", 1, 0, "Units", "Access to Duration enum");
     QQmlApplicationEngine engine;
     // qmlRegisterType<PrompterWindow>(QPROMPT_URI".prompterwindow", 1, 0, "PrompterWindow");
 
