@@ -46,7 +46,7 @@ QVariant MarkersModel::data(const QModelIndex &index, int role) const
     else if (role == PositionRole)
         return data.position;
     else if (role == LengthRole)
-        return data.position;
+        return data.length;
     else if (role == KeyRole)
         return data.key;
     else if (role == KeyLetterRole)
