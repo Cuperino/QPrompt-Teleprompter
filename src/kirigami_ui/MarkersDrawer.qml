@@ -65,7 +65,6 @@ Kirigami.OverlayDrawer {
     Component {
         id: markerDelegateComponent
         Kirigami.SwipeListItem {
-            width: parent.width
             supportsMouseEvents: true
             onPressed: {
                 prompter.goTo(model.position)
