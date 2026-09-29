@@ -1749,7 +1749,7 @@ Helfen sie uns QPrompt zu übersetzen und besuchen sie:</translation>
         <location filename="../src/kirigami_ui/PrompterPage.qml" line="349"/>
         <source>Clock</source>
         <comment>Show Current Time</comment>
-        <translation type="unfinished"></translation>
+        <translation>Uhr</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/PrompterPage.qml" line="362"/>
