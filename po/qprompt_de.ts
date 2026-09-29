@@ -128,7 +128,7 @@
         <location filename="../src/kirigami_ui/EditorToolbar.qml" line="412"/>
         <source>&amp;Justify</source>
         <comment>Editor actions. Text alignment.</comment>
-        <translation type="unfinished"></translation>
+        <translation>Ausric&amp;htung</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/EditorToolbar.qml" line="419"/>
@@ -370,7 +370,7 @@
         <location filename="../src/kirigami_ui/EditorToolbar.qml" line="1656"/>
         <source>Toggle overlaid bars</source>
         <comment>Editor toolbar button tooltip</comment>
-        <translation type="unfinished"></translation>
+        <translation>Lesebalken ein/aus</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/EditorToolbar.qml" line="1750"/>
@@ -2454,7 +2454,7 @@ Helfen sie uns QPrompt zu übersetzen und besuchen sie:</translation>
         <location filename="../src/kirigami_ui/+windows/main.qml" line="220"/>
         <source>&amp;Recent Files</source>
         <comment>Main menu actions. Submenu listing recently opened documents.</comment>
-        <translation type="unfinished">Kürzlich verwendete Datein</translation>
+        <translation>&amp;Zuletzt verwendete Datein</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/main.qml" line="230"/>
@@ -2621,7 +2621,7 @@ Helfen sie uns QPrompt zu übersetzen und besuchen sie:</translation>
         <location filename="../src/kirigami_ui/main.qml" line="376"/>
         <source>Disable bars overlay</source>
         <comment>Main menu actions. Disables bars surounding reading region.</comment>
-        <translation type="unfinished"></translation>
+        <translation>Lesebalken abschalten</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/main.qml" line="391"/>
