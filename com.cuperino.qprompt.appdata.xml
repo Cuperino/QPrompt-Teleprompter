@@ -66,7 +66,7 @@
     <kudo>ModernToolkit</kudo>
   </x-kudos>
   <releases>
-    <release version="2.0.2" type="stable" date="2026-6-4">
+    <release version="2.0.2" type="stable" date="2026-06-04">
       <description>
         <p>QPrompt 2.0.2 is a bug fix release.</p>
         <p>The following issues were fixedd in this release:</p>
@@ -90,7 +90,7 @@
         </artifact>
       </artifacts>
     </release>
-    <release version="2.0.1" type="stable" date="2026-3-28">
+    <release version="2.0.1" type="stable" date="2026-03-28">
       <description>
         <p>QPrompt 2.0.1 is a bug fix release.</p>
         <p>The following issues were fixed in this release:</p>
@@ -113,7 +113,7 @@
         </artifact>
       </artifacts>
     </release>
-    <release version="2.0.0" type="stable" date="2026-1-1">
+    <release version="2.0.0" type="stable" date="2026-01-01">
       <description>
         <p>QPrompt 2.0.0 is a major release. It brings about many features and bug fixes and completes our transition to using version 6 of the Qt and KDE framework.</p>
         <p>New features:</p>
@@ -160,7 +160,7 @@
         </artifact>
       </artifacts>
     </release>
-    <release version="1.2.0" type="stable" date="2024-9-30">
+    <release version="1.2.0" type="stable" date="2024-09-30">
       <description>
         <p>Initially a beta released for testing, 1.2.0 fixes several bugs in v1.1.6 while introducing features that would later become finalized in QPrompt 2.0. This is the last build made using Qt 5 and KDE frameworks 5.</p>
       </description>
@@ -172,7 +172,7 @@
         </artifact>
       </artifacts>
     </release>
-    <release version="1.1.6" type="stable" date="2023-4-30">
+    <release version="1.1.6" type="stable" date="2023-04-30">
       <url>https://github.com/Cuperino/QPrompt-Teleprompter/releases/tag/v1.1.6</url>
       <artifacts>
         <artifact type="source">
@@ -181,7 +181,7 @@
         </artifact>
       </artifacts>
     </release>
-      <release version="1.1.5" type="stable" date="2023-2-26">
+      <release version="1.1.5" type="stable" date="2023-02-26">
       <url>https://github.com/Cuperino/QPrompt-Teleprompter/releases/tag/v1.1.5</url>
       <artifacts>
         <artifact type="source">
@@ -190,7 +190,7 @@
         </artifact>
       </artifacts>
     </release>
-    <release version="1.1.4" type="stable" date="2023-2-7">
+    <release version="1.1.4" type="stable" date="2023-02-07">
       <url>https://github.com/Cuperino/QPrompt-Teleprompter/releases/tag/v1.1.4</url>
       <artifacts>
         <artifact type="source">
@@ -199,7 +199,7 @@
         </artifact>
       </artifacts>
     </release>
-    <release version="1.1.3" type="stable" date="2022-1-16">
+    <release version="1.1.3" type="stable" date="2022-01-16">
       <url>https://github.com/Cuperino/QPrompt-Teleprompter/releases/tag/v1.1.3</url>
       <artifacts>
         <artifact type="source">
@@ -208,7 +208,7 @@
         </artifact>
       </artifacts>
     </release>
-    <release version="1.1.2" type="stable" date="2022-9-12">
+    <release version="1.1.2" type="stable" date="2022-09-12">
       <url>https://github.com/Cuperino/QPrompt-Teleprompter/releases/tag/v1.1.2</url>
       <artifacts>
         <artifact type="source">
@@ -241,7 +241,7 @@
         </artifact>
       </artifacts>
     </release>
-    <release version="1.1.1" type="stable" date="2022-8-18">
+    <release version="1.1.1" type="stable" date="2022-08-18">
       <url>https://github.com/Cuperino/QPrompt-Teleprompter/releases/tag/v1.1.1</url>
       <artifacts>
         <artifact type="source">
@@ -270,7 +270,7 @@
         </artifact>
       </artifacts>
     </release>
-    <release version="1.1" type="stable" date="2022-8-5">
+    <release version="1.1" type="stable" date="2022-08-05">
       <url>https://github.com/Cuperino/QPrompt-Teleprompter/releases/tag/v1.1.0</url>
       <artifacts>
         <artifact type="source">
