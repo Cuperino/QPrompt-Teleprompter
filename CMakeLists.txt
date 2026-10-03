@@ -38,14 +38,14 @@ project(qprompt
 option(WASM OFF)
 option(USE_GIT_DEPENDENCIES_ONLY OFF)
 option(SOURCE_DEPENDENCIES_EXCLUSIVELY_FROM_SYSTEM OFF)  # Used only on Linux builds for now
+option(QPROMPT_BUNDLE_HUNSPELL_DICTIONARIES "Bundle Hunspell dictionaries (AppImage only)" OFF)
 
 # Find includes in corresponding build directories
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 # Instruct CMake to create code from Qt designer ui files
 set(CMAKE_AUTOUIC ON)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
-# Leave C++ standard at version 17 to build Ubuntu 18.04 compatible AppImage
-set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD 20)
 # Instruct CMake to run moc automatically when needed
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
@@ -154,13 +154,6 @@ endif()
 
 if(WIN32 OR APPLE OR ANDROID OR WASM OR USE_GIT_DEPENDENCIES_ONLY)
     set(BUILD_TESTING OFF)
-    # KDE Frameworks 6.24 use C++20 (e.g. std::span in Kirigami's scenegraph).
-    # QPrompt itself stays on C++17 (see CMAKE_CXX_STANDARD above) for broad
-    # AppImage compatibility, so we raise the standard only for the bundled
-    # frameworks built here and restore it right after. KDECompilerSettings only
-    # defaults to C++20 when CMAKE_CXX_STANDARD is unset, so without this the
-    # frameworks would inherit our 17 and fail to compile.
-    set(CMAKE_CXX_STANDARD 20)
     # Emscripten isn't on KDE Frameworks' list of supported platforms, so its
     # platform check would abort configuration of the bundled frameworks. Bypass
     # it so both KCoreAddons and Kirigami can be built for WASM.
@@ -250,8 +243,6 @@ if(WIN32 OR APPLE OR ANDROID OR WASM OR USE_GIT_DEPENDENCIES_ONLY)
     FetchContent_MakeAvailable(Kirigami)
     unset(CMAKE_DISABLE_FIND_PACKAGE_Qt6Tools)
     unset(CMAKE_DISABLE_FIND_PACKAGE_Qt6ToolsTools)
-    # Restore QPrompt's own C++ standard for the targets defined afterwards.
-    set(CMAKE_CXX_STANDARD 17)
 else()
     find_package(KF${QT_VERSION_MAJOR} ${KF_MIN_VERSION} REQUIRED COMPONENTS
         Kirigami
@@ -322,12 +313,23 @@ endif()
 # Static builds (WASM/Android/iOS) and macOS DMGs embed the dictionaries
 # inside the binary as Qt resources (handled in src/CMakeLists.txt). The
 # Windows NSIS installer ships them as user-selectable components (handled
-# below in the CPack section). Linux is intentionally skipped because
-# Hunspell dictionaries are to be provided by the distribution.
-if(WASM OR ANDROID OR IOS OR APPLE OR WIN32)
+# below in the CPack section). On Linux they are left to the distribution,
+# except when QPROMPT_BUNDLE_HUNSPELL_DICTIONARIES asks for a self contained
+# bundle (the AppImage), which installs them as plain files alongside their
+# licences further down. A missing dictionary is fatal there: the whole point
+# of the bundle is that spell checking works without anything installed.
+set(QPROMPT_BUNDLE_HUNSPELL_DICTIONARIES_ON_LINUX OFF)
+if(QPROMPT_BUNDLE_HUNSPELL_DICTIONARIES AND UNIX AND NOT APPLE AND NOT ANDROID AND NOT WASM)
+    set(QPROMPT_BUNDLE_HUNSPELL_DICTIONARIES_ON_LINUX ON)
+endif()
+if(WASM OR ANDROID OR IOS OR APPLE OR WIN32 OR QPROMPT_BUNDLE_HUNSPELL_DICTIONARIES_ON_LINUX)
     include(HunspellDictionaries)
     set(QPROMPT_HUNSPELL_DICT_DIR "${CMAKE_BINARY_DIR}/hunspell-dictionaries")
-    qprompt_hunspell_fetch_all("${QPROMPT_HUNSPELL_DICT_DIR}")
+    if(QPROMPT_BUNDLE_HUNSPELL_DICTIONARIES_ON_LINUX)
+        qprompt_hunspell_fetch_all("${QPROMPT_HUNSPELL_DICT_DIR}" REQUIRED)
+    else()
+        qprompt_hunspell_fetch_all("${QPROMPT_HUNSPELL_DICT_DIR}")
+    endif()
 endif()
 # Platform specific dependencies
 if(HAIKU)
@@ -439,6 +441,23 @@ if (WIN32 OR UNIX AND NOT APPLE) # AND NOT ANDROID
     install(FILES ${DOCS} DESTINATION ${DOC_INSTALL_DIR})
 endif()
 
+# Hunspell dictionaries for the self contained Linux bundle. SpellChecker
+# already searches <bin>/../share/hunspell, so the AppImage finds them without
+# any environment variable. CPackComponent is included here because
+# qprompt_hunspell_install_components() declares one component per language and
+# this build may never reach include(CPack) (the AppImage build skips CPack).
+if(QPROMPT_BUNDLE_HUNSPELL_DICTIONARIES_ON_LINUX)
+    include(CPackComponent)
+    qprompt_hunspell_install_components(
+        "${QPROMPT_HUNSPELL_DICT_DIR}"
+        "${KDE_INSTALL_DATADIR}/hunspell"
+    )
+    qprompt_hunspell_install_licenses(
+        "${QPROMPT_HUNSPELL_DICT_DIR}"
+        "${DOC_INSTALL_DIR}/hunspell"
+    )
+endif()
+
 set(CMAKE_INSTALL_MFC_LIBRARIES On)
 set(InstallRequiredSystemLibraries On)
 include(InstallRequiredSystemLibraries)
@@ -544,7 +563,9 @@ if(CMAKE_SOURCE_DIR STREQUAL CMAKE_CURRENT_SOURCE_DIR)
         # CPACK: DEB specific settings
         set(CPACK_DEBIAN_PACKAGE_SECTION "Multimedia")
         set(CPACK_DEBIAN_COMPRESSION_TYPE ${COMPRESION_TYPE})
-        set(CPACK_DEBIAN_PACKAGE_DEPENDS "libvulkan-dev (>= 1.4.309), libqt6svg6 (>= 6.8.2), libqt6qmlworkerscript6 (>=6.8.2), qml6-module-qt-labs-platform (>=6.8.2), qml6-module-qtqml (>=6.8.2), qml6-module-qtqml-models (>=6.8.2), qml6-module-qtqml-statemachine (>=6.8.2), qml6-module-qtquick-controls (>=6.8.2), qml6-module-qtcore (>=6.8.2), qml6-module-qt-labs-settings (>=6.8.2), qml6-module-qtquick-dialogs (>=6.8.2), qml6-module-qtquick-shapes (>=6.8.2), libkf6coreaddons6 (>= 6.9.0), libkirigami6 (>= 6.9.0), qml6-module-org-kde-kirigami (>=6.9.0), libkf6i18n6 (>= 6.9.0), libkf6crash6 (>= 6.9.0)")
+        # KGlobalAccel replaced KCrash in this list with the AppImage work: the
+        # Linux build links KF6::GlobalAccel and has never linked KF6::Crash.
+        set(CPACK_DEBIAN_PACKAGE_DEPENDS "libvulkan-dev (>= 1.4.309), libqt6svg6 (>= 6.8.2), libqt6qmlworkerscript6 (>=6.8.2), qml6-module-qt-labs-platform (>=6.8.2), qml6-module-qtqml (>=6.8.2), qml6-module-qtqml-models (>=6.8.2), qml6-module-qtqml-statemachine (>=6.8.2), qml6-module-qtquick-controls (>=6.8.2), qml6-module-qtcore (>=6.8.2), qml6-module-qt-labs-settings (>=6.8.2), qml6-module-qtquick-dialogs (>=6.8.2), qml6-module-qtquick-shapes (>=6.8.2), libkf6coreaddons6 (>= 6.9.0), libkirigami6 (>= 6.9.0), qml6-module-org-kde-kirigami (>=6.9.0), libkf6i18n6 (>= 6.9.0), libkf6globalaccel6 (>= 6.9.0)")
 
         # CPACK: RPM specific settings
         set(CPACK_RPM_PACKAGE_GROUP "Multimedia/Video")

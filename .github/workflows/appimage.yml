@@ -1,0 +1,206 @@
+#**************************************************************************
+#
+# QPrompt
+# Copyright (C) 2026 Javier O. Cordero Pérez
+#
+# This file is part of QPrompt.
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, version 3 of the License.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
+#**************************************************************************
+#
+# Builds the Linux AppImages for both architectures in a debian:13 container,
+# which is the oldest system they are supported on. Signing happens on v* tags
+# only, so a pull request from a fork never sees the key.
+#
+# Secrets and variables this workflow expects:
+#   secrets.QT_INSTALLER_JWT_TOKEN  Qt account token for the online installer.
+#                                   After a local login it is in
+#                                   ~/.local/share/Qt/qtaccount.ini.
+#   secrets.GPG_PRIVATE_KEY         Armored private half of the signing key.
+#   secrets.GPG_PASSPHRASE          Its passphrase.
+#   vars.GPG_KEY_ID                 Its key ID.
+#
+#**************************************************************************
+
+name: AppImage
+
+on:
+  push:
+    branches: [main]
+    tags: ['v*']
+  pull_request:
+    paths:
+      - 'setup.sh'
+      - 'CMakeLists.txt'
+      - 'cmake/**'
+      - 'src/**'
+      - 'dist/appimage/**'
+      - '.gitmodules'
+      - '.github/workflows/appimage.yml'
+  workflow_dispatch:
+
+jobs:
+  build:
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - { arch: x86_64,  runner: ubuntu-24.04,     qt_installer: qt-online-installer-linux-x64-online.run,   qt_arch: linux_gcc_64 }
+          - { arch: aarch64, runner: ubuntu-24.04-arm, qt_installer: qt-online-installer-linux-arm64-online.run, qt_arch: linux_gcc_arm64 }
+    runs-on: ${{ matrix.runner }}
+    container: debian:13
+    env:
+      DEBIAN_FRONTEND: noninteractive
+      # FUSE is unavailable in the container, and linuxdeploy and appimagetool
+      # are AppImages themselves.
+      APPIMAGE_EXTRACT_AND_RUN: 1
+      # The packages are installed by the first step, and the container has no
+      # sudo; setup.sh must not try to install them again.
+      QPROMPT_SKIP_APT: 1
+      IS_TAG: ${{ startsWith(github.ref, 'refs/tags/v') }}
+      # Pinned like the packaging tools: bump it deliberately. Latest version is
+      # at https://vulkan.lunarg.com/sdk/latest/linux.json
+      VULKAN_SDK_VERSION: 1.4.363.0
+    steps:
+      - name: Install build dependencies
+        run: |
+          apt-get update
+          apt-get install -y --no-install-recommends \
+            build-essential git curl ca-certificates file cmake gnupg \
+            libgl-dev libegl-dev libxkbcommon-dev libxkbcommon-x11-0 libx11-dev \
+            libxcb-cursor0 libxcb-icccm4 libxcb-image0 libxcb-keysyms1 libxcb-render-util0 \
+            libwayland-client0 libwayland-cursor0 libwayland-egl1 \
+            libdbus-1-3 libfontconfig1 libhunspell-dev \
+            desktop-file-utils appstream xz-utils python3
+
+      - uses: actions/checkout@v4
+        with: { submodules: recursive, fetch-depth: 0 }
+
+      # The container runs as root on a checkout owned by the runner user, and
+      # setup.sh calls git submodule.
+      - run: git config --global --add safe.directory "$GITHUB_WORKSPACE"
+
+      - id: qt-cache
+        uses: actions/cache/restore@v4
+        with: { path: ~/Qt, key: 'qt-6.8.3-${{ matrix.arch }}-v1' }
+
+      - name: Install Qt
+        if: steps.qt-cache.outputs.cache-hit != 'true'
+        env: { QT_INSTALLER_JWT_TOKEN: '${{ secrets.QT_INSTALLER_JWT_TOKEN }}' }
+        run: |
+          curl -fLO https://download.qt.io/official_releases/online_installers/${{ matrix.qt_installer }}
+          chmod +x ${{ matrix.qt_installer }}
+          ./${{ matrix.qt_installer }} --root ~/Qt \
+            --accept-licenses --accept-obligations --default-answer --confirm-command \
+            install qt.qt6.683.${{ matrix.qt_arch }} qt.qt6.683.addons.qtwebsockets qt.qt6.683.addons.qtshadertools
+
+      # Saved before setup.sh runs: the script copies the frameworks it builds
+      # into the Qt prefix, and a post-job save would cache that build too.
+      - if: steps.qt-cache.outputs.cache-hit != 'true'
+        uses: actions/cache/save@v4
+        with: { path: ~/Qt, key: 'qt-6.8.3-${{ matrix.arch }}-v1' }
+
+      # Kirigami bakes its shaders with qsb, which shells out to spirv-opt to
+      # optimize them. Without it every .qsb is written unoptimized.
+      #
+      # LunarG publishes the Vulkan SDK for x86_64 Linux only, so x86_64 takes
+      # spirv-opt out of the tarball and aarch64 builds it from the SPIRV-Tools
+      # tag that matches the same SDK version -- both architectures then bake
+      # shaders with the same spirv-opt. Either way only that one binary is kept,
+      # cached per architecture so the work happens once per SDK bump.
+      - id: spirv-cache
+        uses: actions/cache@v4
+        with: { path: /usr/local/bin/spirv-opt, key: 'spirv-opt-${{ env.VULKAN_SDK_VERSION }}-${{ matrix.arch }}' }
+
+      - name: Install spirv-opt from the Vulkan SDK
+        if: matrix.arch == 'x86_64' && steps.spirv-cache.outputs.cache-hit != 'true'
+        run: |
+          curl -fL --retry 3 -o vulkan-sdk.tar.xz \
+            "https://sdk.lunarg.com/sdk/download/${VULKAN_SDK_VERSION}/linux/vulkan_sdk.tar.xz"
+          tar -xJf vulkan-sdk.tar.xz --wildcards '*/x86_64/bin/spirv-opt'
+          spirv_opt="$(find . -type f -name spirv-opt | head -1)"
+          if [ -z "$spirv_opt" ]; then
+            echo "spirv-opt was not in the SDK tarball; check its layout." >&2
+            exit 1
+          fi
+          install -Dm755 "$spirv_opt" /usr/local/bin/spirv-opt
+          rm -rf vulkan-sdk.tar.xz "${VULKAN_SDK_VERSION}"
+          spirv-opt --version
+
+      - name: Build spirv-opt from source
+        if: matrix.arch == 'aarch64' && steps.spirv-cache.outputs.cache-hit != 'true'
+        run: |
+          tag="vulkan-sdk-${VULKAN_SDK_VERSION}"
+          git clone --depth 1 --branch "$tag" \
+            https://github.com/KhronosGroup/SPIRV-Tools.git spirv-tools
+          # SPIRV-Tools expects its headers alongside, at the matching tag.
+          git clone --depth 1 --branch "$tag" \
+            https://github.com/KhronosGroup/SPIRV-Headers.git spirv-tools/external/spirv-headers
+          cmake -S spirv-tools -B spirv-tools/build \
+            -DCMAKE_BUILD_TYPE=Release -DSPIRV_SKIP_TESTS=ON -DSPIRV_WERROR=OFF
+          cmake --build spirv-tools/build --target spirv-opt -j"$(nproc)"
+          install -Dm755 spirv-tools/build/tools/spirv-opt /usr/local/bin/spirv-opt
+          rm -rf spirv-tools
+          spirv-opt --version
+
+      - name: Fetch packaging tools
+        run: dist/appimage/fetch-tools.sh ${{ matrix.arch }}   # checks dist/appimage/tools.sha256
+
+      - name: Import signing key
+        if: env.IS_TAG == 'true'
+        run: echo "$GPG_PRIVATE_KEY" | gpg --batch --import
+        env: { GPG_PRIVATE_KEY: '${{ secrets.GPG_PRIVATE_KEY }}' }
+
+      - name: Build and package
+        run: dist/appimage/build-appimage.sh
+        env:
+          QPROMPT_SIGN_KEY: ${{ env.IS_TAG == 'true' && vars.GPG_KEY_ID || '' }}
+          APPIMAGETOOL_SIGN_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
+
+      - run: QT_QPA_PLATFORM=offscreen ./QPrompt-*-${{ matrix.arch }}-Linux.AppImage --version
+
+      - uses: actions/upload-artifact@v4
+        with: { name: 'appimage-${{ matrix.arch }}', path: 'QPrompt-*.AppImage*' }
+
+  release:
+    needs: build
+    if: startsWith(github.ref, 'refs/tags/v')
+    runs-on: ubuntu-24.04
+    permissions: { contents: write }
+    steps:
+      - uses: actions/download-artifact@v4
+        with: { merge-multiple: true }
+
+      - run: echo "$GPG_PRIVATE_KEY" | gpg --batch --import
+        env: { GPG_PRIVATE_KEY: '${{ secrets.GPG_PRIVATE_KEY }}' }
+
+      - name: Checksum and sign
+        run: |
+          sha256sum QPrompt-*.AppImage* > SHA256SUMS
+          gpg --batch --pinentry-mode loopback --passphrase "$GPG_PASSPHRASE" \
+            --local-user "$GPG_KEY_ID" --armor --detach-sign SHA256SUMS
+        env:
+          GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
+          GPG_KEY_ID: ${{ vars.GPG_KEY_ID }}
+
+      # A draft, so the DEB, DMG and EXE can be attached before publishing. The
+      # zsync "latest" channel only sees published, non-prerelease releases.
+      - uses: softprops/action-gh-release@v2
+        with:
+          draft: true
+          files: |
+            QPrompt-*.AppImage
+            QPrompt-*.AppImage.zsync
+            SHA256SUMS
+            SHA256SUMS.asc

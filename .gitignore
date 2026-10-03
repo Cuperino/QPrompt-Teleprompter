@@ -60,8 +60,14 @@ Makefile
 **/build_wasm/qtloader.js
 **/build_wasm/QPrompt.html
 
-# AppImage output
+# AppImage output and packaging tools
+# (build-appimage.sh is tracked; it is only here because of the **/build* rule above)
+!/dist/appimage/build-appimage.sh
 *.AppImage
+*.AppImage.zsync
+*.AppImage.part
+/AppDir/
+/dist/appimage/tools/
 
 # KDE Plasma and MacOS directory folders
 .directory

@@ -22,10 +22,11 @@
 # HunspellDictionaries.cmake
 #
 # Helpers to download a fixed set of Hunspell dictionaries and bundle them
-# either as Qt resources (static builds + macOS) or as user-selectable
-# CPack/NSIS components (Windows). Linux is intentionally not handled here
-# because Linux distributions ship Hunspell dictionaries through their own
-# package managers.
+# either as Qt resources (static builds + macOS), as user-selectable
+# CPack/NSIS components (Windows) or as plain files next to the binary
+# (Linux AppImage, see QPROMPT_BUNDLE_HUNSPELL_DICTIONARIES). Linux packages
+# built for a distribution leave them out: there the dictionaries come from
+# the distribution's own packages.
 #
 # All dictionary sources are taken from the upstream LibreOffice
 # dictionaries repository so licensing and provenance are consistent across
@@ -35,9 +36,16 @@
 # downloaded under the canonical name on disk.
 #
 # Public functions:
-#   qprompt_hunspell_fetch_all(<dest_dir>)
-#       Downloads any missing aff/dic into <dest_dir>. Existing files are
-#       kept (idempotent); failures are reported as warnings, not errors.
+#   qprompt_hunspell_fetch_all(<dest_dir> [REQUIRED])
+#       Downloads any missing aff/dic into <dest_dir> and each dictionary's
+#       upstream licence/README files into <dest_dir>/licenses/<code>/.
+#       Existing files are kept (idempotent). Failures are reported as
+#       warnings, or as configure errors when REQUIRED is given.
+#
+#   qprompt_hunspell_install_licenses(<dest_dir> <install_dir>)
+#       Adds install() rules placing every present licence folder at
+#       <install_dir>/<code>/, so a redistributable bundle carries the
+#       licence of each dictionary it ships.
 #
 #   qprompt_hunspell_present_files(<dest_dir> <out_var>)
 #       Sets <out_var> to the list of full paths of every aff/dic that
@@ -63,12 +71,30 @@
 
 include_guard(GLOBAL)
 
-# Language list. Format: "<basename>|<display name>|<aff url>|<dic url>"
+# Upstream revision the dictionaries are taken from.
 #
-# Sources are exclusively from LibreOffice/dictionaries (master branch).
+# Pinned to the final build tag of the LibreOffice release that
+# libreoffice.org/download currently offers as the latest stable one
+# (libreoffice-<version>.<build>, where <build> is the last RC listed in that
+# release's notes). Bump it deliberately: the DMG, EXE and mobile bundles share
+# this list, so they all move with it.
+set(QPROMPT_LIBREOFFICE_DICTIONARIES_TAG "libreoffice-26.8.0.3"
+    CACHE STRING "Tag in LibreOffice/dictionaries the bundled Hunspell dictionaries are fetched from")
+set(_QPROMPT_HUNSPELL_BASE_URL
+    "https://raw.githubusercontent.com/LibreOffice/dictionaries/${QPROMPT_LIBREOFFICE_DICTIONARIES_TAG}")
+
+# Language list.
+# Format: "<basename>|<display name>|<aff url>|<dic url>|<licence files>"
+#
+# Sources are exclusively from LibreOffice/dictionaries, at the tag above.
 # Where LibreOffice ships a dictionary under a different basename
 # (e.g. de_DE as de_DE_frami, fr_FR as fr) the URL points at the upstream
 # file and the file is downloaded under the canonical basename below.
+#
+# <licence files> is a comma separated list of the licence and README files
+# that cover the dictionary, named as they appear in the same upstream folder
+# as its aff file. They travel with the dictionary in redistributable bundles
+# (AppImage, DMG, EXE), which is what their licences require.
 #
 # Languages requested but not available from LibreOffice (French Canadian,
 # Chinese Simplified, Japanese) are intentionally omitted. They can be
@@ -77,36 +103,41 @@ include_guard(GLOBAL)
 #
 # To add or replace a language, add/edit a line and re-configure.
 set(_QPROMPT_HUNSPELL_DICT_DEFS
-    "ar_SA|Arabic|https://raw.githubusercontent.com/LibreOffice/dictionaries/master/ar/ar.aff|https://raw.githubusercontent.com/LibreOffice/dictionaries/master/ar/ar.dic"
-    "cs_CZ|Czech|https://raw.githubusercontent.com/LibreOffice/dictionaries/master/cs_CZ/cs_CZ.aff|https://raw.githubusercontent.com/LibreOffice/dictionaries/master/cs_CZ/cs_CZ.dic"
-    "de_DE|German (Germany)|https://raw.githubusercontent.com/LibreOffice/dictionaries/master/de/de_DE_frami.aff|https://raw.githubusercontent.com/LibreOffice/dictionaries/master/de/de_DE_frami.dic"
-    "en_US|English (US)|https://raw.githubusercontent.com/LibreOffice/dictionaries/master/en/en_US.aff|https://raw.githubusercontent.com/LibreOffice/dictionaries/master/en/en_US.dic"
-    "en_GB|English (GB)|https://raw.githubusercontent.com/LibreOffice/dictionaries/master/en/en_GB.aff|https://raw.githubusercontent.com/LibreOffice/dictionaries/master/en/en_GB.dic"
-    "es_ES|Spanish (Spain)|https://raw.githubusercontent.com/LibreOffice/dictionaries/master/es/es_ES.aff|https://raw.githubusercontent.com/LibreOffice/dictionaries/master/es/es_ES.dic"
-    "es_MX|Spanish (Mexico)|https://raw.githubusercontent.com/LibreOffice/dictionaries/master/es/es_MX.aff|https://raw.githubusercontent.com/LibreOffice/dictionaries/master/es/es_MX.dic"
-    "it_IT|Italian|https://raw.githubusercontent.com/LibreOffice/dictionaries/master/it_IT/it_IT.aff|https://raw.githubusercontent.com/LibreOffice/dictionaries/master/it_IT/it_IT.dic"
-    "nl_NL|Dutch|https://raw.githubusercontent.com/LibreOffice/dictionaries/master/nl_NL/nl_NL.aff|https://raw.githubusercontent.com/LibreOffice/dictionaries/master/nl_NL/nl_NL.dic"
-    "oc_FR|Occitan|https://raw.githubusercontent.com/LibreOffice/dictionaries/master/oc_FR/oc_FR.aff|https://raw.githubusercontent.com/LibreOffice/dictionaries/master/oc_FR/oc_FR.dic"
-    "pl_PL|Polish|https://raw.githubusercontent.com/LibreOffice/dictionaries/master/pl_PL/pl_PL.aff|https://raw.githubusercontent.com/LibreOffice/dictionaries/master/pl_PL/pl_PL.dic"
-    "pt_BR|Portuguese (Brazil)|https://raw.githubusercontent.com/LibreOffice/dictionaries/master/pt_BR/pt_BR.aff|https://raw.githubusercontent.com/LibreOffice/dictionaries/master/pt_BR/pt_BR.dic"
-    "pt_PT|Portuguese (Portugal)|https://raw.githubusercontent.com/LibreOffice/dictionaries/master/pt_PT/pt_PT.aff|https://raw.githubusercontent.com/LibreOffice/dictionaries/master/pt_PT/pt_PT.dic"
-    "ru_RU|Russian|https://raw.githubusercontent.com/LibreOffice/dictionaries/master/ru_RU/ru_RU.aff|https://raw.githubusercontent.com/LibreOffice/dictionaries/master/ru_RU/ru_RU.dic"
-    "uk_UA|Ukrainian|https://raw.githubusercontent.com/LibreOffice/dictionaries/master/uk_UA/uk_UA.aff|https://raw.githubusercontent.com/LibreOffice/dictionaries/master/uk_UA/uk_UA.dic"
+    "ar_SA|Arabic|${_QPROMPT_HUNSPELL_BASE_URL}/ar/ar.aff|${_QPROMPT_HUNSPELL_BASE_URL}/ar/ar.dic|README_ar.txt,COPYING.txt,AUTHORS.txt"
+    "cs_CZ|Czech|${_QPROMPT_HUNSPELL_BASE_URL}/cs_CZ/cs_CZ.aff|${_QPROMPT_HUNSPELL_BASE_URL}/cs_CZ/cs_CZ.dic|README_en.txt,README_cs.txt"
+    "de_DE|German (Germany)|${_QPROMPT_HUNSPELL_BASE_URL}/de/de_DE_frami.aff|${_QPROMPT_HUNSPELL_BASE_URL}/de/de_DE_frami.dic|README_de_DE_frami.txt,COPYING_GPLv2,COPYING_GPLv3,COPYING_OASIS.txt"
+    "en_US|English (US)|${_QPROMPT_HUNSPELL_BASE_URL}/en/en_US.aff|${_QPROMPT_HUNSPELL_BASE_URL}/en/en_US.dic|README_en_US.txt,license.txt"
+    "en_GB|English (GB)|${_QPROMPT_HUNSPELL_BASE_URL}/en/en_GB.aff|${_QPROMPT_HUNSPELL_BASE_URL}/en/en_GB.dic|README_en_GB.txt,license.txt"
+    "es_ES|Spanish (Spain)|${_QPROMPT_HUNSPELL_BASE_URL}/es/es_ES.aff|${_QPROMPT_HUNSPELL_BASE_URL}/es/es_ES.dic|README_hunspell_es.txt,LICENSE.md,GPLv3.txt,LGPLv3.txt,MPL-1.1.txt"
+    "es_MX|Spanish (Mexico)|${_QPROMPT_HUNSPELL_BASE_URL}/es/es_MX.aff|${_QPROMPT_HUNSPELL_BASE_URL}/es/es_MX.dic|README_hunspell_es.txt,LICENSE.md,GPLv3.txt,LGPLv3.txt,MPL-1.1.txt"
+    "it_IT|Italian|${_QPROMPT_HUNSPELL_BASE_URL}/it_IT/it_IT.aff|${_QPROMPT_HUNSPELL_BASE_URL}/it_IT/it_IT.dic|README_it_IT.txt"
+    "nl_NL|Dutch|${_QPROMPT_HUNSPELL_BASE_URL}/nl_NL/nl_NL.aff|${_QPROMPT_HUNSPELL_BASE_URL}/nl_NL/nl_NL.dic|README.md,LICENSE.txt"
+    "oc_FR|Occitan|${_QPROMPT_HUNSPELL_BASE_URL}/oc_FR/oc_FR.aff|${_QPROMPT_HUNSPELL_BASE_URL}/oc_FR/oc_FR.dic|README_oc_FR.txt,LICENSES-en.txt,LICENCES-fr.txt"
+    "pl_PL|Polish|${_QPROMPT_HUNSPELL_BASE_URL}/pl_PL/pl_PL.aff|${_QPROMPT_HUNSPELL_BASE_URL}/pl_PL/pl_PL.dic|README_pl_PL.txt,README_en.txt"
+    "pt_BR|Portuguese (Brazil)|${_QPROMPT_HUNSPELL_BASE_URL}/pt_BR/pt_BR.aff|${_QPROMPT_HUNSPELL_BASE_URL}/pt_BR/pt_BR.dic|README_pt_BR.txt,README_en.txt"
+    "pt_PT|Portuguese (Portugal)|${_QPROMPT_HUNSPELL_BASE_URL}/pt_PT/pt_PT.aff|${_QPROMPT_HUNSPELL_BASE_URL}/pt_PT/pt_PT.dic|README_pt_PT.txt,LICENSES.txt"
+    "ru_RU|Russian|${_QPROMPT_HUNSPELL_BASE_URL}/ru_RU/ru_RU.aff|${_QPROMPT_HUNSPELL_BASE_URL}/ru_RU/ru_RU.dic|README_ru_RU.txt"
+    "uk_UA|Ukrainian|${_QPROMPT_HUNSPELL_BASE_URL}/uk_UA/uk_UA.aff|${_QPROMPT_HUNSPELL_BASE_URL}/uk_UA/uk_UA.dic|README_uk_UA.txt"
 )
 
-function(_qprompt_hunspell_split_def def out_code out_name out_aff out_dic)
+function(_qprompt_hunspell_split_def def out_code out_name out_aff out_dic out_licenses)
     string(REPLACE "|" ";" parts "${def}")
     list(GET parts 0 code)
     list(GET parts 1 name)
     list(GET parts 2 aff)
     list(GET parts 3 dic)
-    set(${out_code} "${code}" PARENT_SCOPE)
-    set(${out_name} "${name}" PARENT_SCOPE)
-    set(${out_aff}  "${aff}"  PARENT_SCOPE)
-    set(${out_dic}  "${dic}"  PARENT_SCOPE)
+    list(GET parts 4 licenses)
+    string(REPLACE "," ";" licenses "${licenses}")
+    set(${out_code}     "${code}"     PARENT_SCOPE)
+    set(${out_name}     "${name}"     PARENT_SCOPE)
+    set(${out_aff}      "${aff}"      PARENT_SCOPE)
+    set(${out_dic}      "${dic}"      PARENT_SCOPE)
+    set(${out_licenses} "${licenses}" PARENT_SCOPE)
 endfunction()
 
-function(_qprompt_hunspell_download url dest)
+# Downloads <url> to <dest> unless it is already there. A failure is a warning
+# by default and a configure error when <required> is true.
+function(_qprompt_hunspell_download url dest required)
     if(EXISTS "${dest}")
         return()
     endif()
@@ -119,23 +150,58 @@ function(_qprompt_hunspell_download url dest)
     if(NOT _code EQUAL 0)
         list(GET _status 1 _msg)
         file(REMOVE "${dest}")
-        message(WARNING "HunspellDictionaries: failed to download ${url} → ${_msg}")
+        if(required)
+            message(FATAL_ERROR "HunspellDictionaries: failed to download ${url} → ${_msg}")
+        else()
+            message(WARNING "HunspellDictionaries: failed to download ${url} → ${_msg}")
+        endif()
     endif()
 endfunction()
 
 function(qprompt_hunspell_fetch_all dest_dir)
+    cmake_parse_arguments(ARG "REQUIRED" "" "" ${ARGN})
+    if(ARG_UNPARSED_ARGUMENTS)
+        message(FATAL_ERROR "qprompt_hunspell_fetch_all: unexpected arguments: ${ARG_UNPARSED_ARGUMENTS}")
+    endif()
     file(MAKE_DIRECTORY "${dest_dir}")
     foreach(def IN LISTS _QPROMPT_HUNSPELL_DICT_DEFS)
-        _qprompt_hunspell_split_def("${def}" code _name aff dic)
-        _qprompt_hunspell_download("${aff}" "${dest_dir}/${code}.aff")
-        _qprompt_hunspell_download("${dic}" "${dest_dir}/${code}.dic")
+        _qprompt_hunspell_split_def("${def}" code _name aff dic licenses)
+        _qprompt_hunspell_download("${aff}" "${dest_dir}/${code}.aff" "${ARG_REQUIRED}")
+        _qprompt_hunspell_download("${dic}" "${dest_dir}/${code}.dic" "${ARG_REQUIRED}")
+        # Licence and README files live in the same upstream folder as the aff.
+        get_filename_component(upstream_dir "${aff}" DIRECTORY)
+        set(license_dir "${dest_dir}/licenses/${code}")
+        file(MAKE_DIRECTORY "${license_dir}")
+        foreach(license_file IN LISTS licenses)
+            _qprompt_hunspell_download(
+                "${upstream_dir}/${license_file}"
+                "${license_dir}/${license_file}"
+                "${ARG_REQUIRED}"
+            )
+        endforeach()
+    endforeach()
+endfunction()
+
+function(qprompt_hunspell_install_licenses dest_dir install_dir)
+    foreach(def IN LISTS _QPROMPT_HUNSPELL_DICT_DEFS)
+        _qprompt_hunspell_split_def("${def}" code _name _aff _dic licenses)
+        set(license_dir "${dest_dir}/licenses/${code}")
+        set(_files)
+        foreach(license_file IN LISTS licenses)
+            if(EXISTS "${license_dir}/${license_file}")
+                list(APPEND _files "${license_dir}/${license_file}")
+            endif()
+        endforeach()
+        if(_files)
+            install(FILES ${_files} DESTINATION "${install_dir}/${code}")
+        endif()
     endforeach()
 endfunction()
 
 function(qprompt_hunspell_present_files dest_dir out_var)
     set(_files)
     foreach(def IN LISTS _QPROMPT_HUNSPELL_DICT_DEFS)
-        _qprompt_hunspell_split_def("${def}" code _name _aff _dic)
+        _qprompt_hunspell_split_def("${def}" code _name _aff _dic _licenses)
         set(aff_path "${dest_dir}/${code}.aff")
         set(dic_path "${dest_dir}/${code}.dic")
         if(EXISTS "${aff_path}" AND EXISTS "${dic_path}")
@@ -148,7 +214,7 @@ endfunction()
 function(qprompt_hunspell_add_qrc target dest_dir)
     set(_files)
     foreach(def IN LISTS _QPROMPT_HUNSPELL_DICT_DEFS)
-        _qprompt_hunspell_split_def("${def}" code _name _aff _dic)
+        _qprompt_hunspell_split_def("${def}" code _name _aff _dic _licenses)
         set(aff_path "${dest_dir}/${code}.aff")
         set(dic_path "${dest_dir}/${code}.dic")
         if(EXISTS "${aff_path}" AND EXISTS "${dic_path}")
@@ -168,7 +234,7 @@ endfunction()
 function(qprompt_hunspell_component_names dest_dir out_var)
     set(_comps)
     foreach(def IN LISTS _QPROMPT_HUNSPELL_DICT_DEFS)
-        _qprompt_hunspell_split_def("${def}" code _name _aff _dic)
+        _qprompt_hunspell_split_def("${def}" code _name _aff _dic _licenses)
         if(EXISTS "${dest_dir}/${code}.aff" AND EXISTS "${dest_dir}/${code}.dic")
             string(TOLOWER "dict_${code}" comp)
             list(APPEND _comps "${comp}")
@@ -179,7 +245,7 @@ endfunction()
 
 function(qprompt_hunspell_install_components dest_dir install_dir)
     foreach(def IN LISTS _QPROMPT_HUNSPELL_DICT_DEFS)
-        _qprompt_hunspell_split_def("${def}" code name _aff _dic)
+        _qprompt_hunspell_split_def("${def}" code name _aff _dic _licenses)
         set(aff_path "${dest_dir}/${code}.aff")
         set(dic_path "${dest_dir}/${code}.dic")
         if(NOT (EXISTS "${aff_path}" AND EXISTS "${dic_path}"))

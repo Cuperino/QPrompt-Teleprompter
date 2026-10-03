@@ -7,6 +7,9 @@
 [submodule "3rdparty/kcoreaddons"]
 	path = 3rdparty/kcoreaddons
 	url = https://invent.kde.org/frameworks/kcoreaddons.git
+[submodule "3rdparty/kglobalaccel"]
+	path = 3rdparty/kglobalaccel
+	url = https://invent.kde.org/frameworks/kglobalaccel.git
 [submodule "3rdparty/kirigami"]
 	path = 3rdparty/kirigami
 	url = https://invent.kde.org/frameworks/kirigami.git

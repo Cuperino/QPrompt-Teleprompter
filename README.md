@@ -19,6 +19,27 @@ Want the latest features? Get the latest development builds over at [Patreon](ht
 
 By becoming a [Patreon supporter](https://patreon.com/qpromptapp?utm_medium=clipboard_copy&utm_source=copyLink&utm_campaign=creatorshare_fan&utm_content=join_link) you get to vote on polls that determine where development should focus.
 
+# Packaging
+
+| Package | Built by |
+| --- | --- |
+| Linux AppImage (x86_64, aarch64) | `dist/appimage/build-appimage.sh`, which runs `setup.sh` and packages its output |
+| Linux DEB | `setup.sh`, which finishes with `cpack -G DEB` |
+| Windows EXE, macOS DMG | `setup.sh` on each platform |
+| Linux Flathub | [com.cuperino.qprompt](https://github.com/Cuperino/com.cuperino.qprompt) |
+| Linux Snapcraft | [qprompt-snap](https://github.com/Cuperino/qprompt-snap) |
+| Linux AUR | [aur.archlinux.org/packages/qprompt](https://aur.archlinux.org/packages/qprompt) (maintained by a third party) |
+
+The AppImages are built on Debian 13 and need **glibc 2.41 or newer**, so Debian 13
+is the oldest system they are supported on. Ubuntu 24.04 LTS and distributions
+based on it, such as Linux Mint 22, are below that floor; install the DEB there
+instead. Newer distributions will usually run the AppImages.
+
+Each released AppImage is signed and carries embedded update information, so
+AppImageUpdate, Gear Lever and similar tools can fetch only the blocks that
+changed. `SHA256SUMS` and its detached `SHA256SUMS.asc` are published with every
+release.
+
 # Community Translations
 Help more users access QPrompt by contributing translations to your native language. Visit [l10n.cuperino.com](https://l10n.cuperino.com/projects/qprompt-app/qprompt) to select a section of the project, find your language, and contribute translations. File an issue at [feedback.qprompt.com](https://github.com/Cuperino/QPrompt/issues/new/choose) if you can't find your language on the page and would like to contribute translations.
 
