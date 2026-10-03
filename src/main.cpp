@@ -149,30 +149,6 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
             app.installTranslator(&translator);
     }
 
-    // Parse command line arguments
-    QCommandLineParser parser;
-    parser.setApplicationDescription(
-        QLatin1String("Personal teleprompter software for all video makers. Built with ease of use, productivity, and smooth performance in mind."));
-    parser.addHelpOption();
-    parser.addVersionOption();
-    parser.addPositionalArgument(QLatin1String("source"), QLatin1String("file", "File to copy."));
-    parser.process(app);
-    QStringList positionalArguments = parser.positionalArguments();
-    QString fileToOpen = QLatin1String("");
-    if (positionalArguments.length())
-        fileToOpen = parser.positionalArguments().at(0);
-
-    // Substract from 2 because order in app is intentionally inverted from order in Qt
-    app.setLayoutDirection(static_cast<Qt::LayoutDirection>(2 - settings.value("ui/layout", 0).toInt()));
-
-#if defined(KF6Crash_FOUND)
-    // KCrash::setDrKonqiEnabled(true);
-    KCrash::initialize();
-    // KCrash::setCrashHandler( KCrash::defaultCrashHandler );
-    KCrash::setFlags(KCrash::AutoRestart); // | KCrash::SaferDialog
-    // qDebug() << "DrKonqui" << KCrash::isDrKonqiEnabled();
-#endif
-
     const int currentYear = QDate::currentDate().year();
     QString copyrightYear = QString::number(currentYear);
     QString copyrightStatement1 = QStringLiteral("© 2020 Javier O. Cordero Pérez");
@@ -212,6 +188,32 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
     //);
     //  Set the application metadata
     KAboutData::setApplicationData(aboutData);
+
+    // Parse command line arguments
+    QCommandLineParser parser;
+    aboutData.setupCommandLine(&parser);
+    // After setupCommandLine, which would otherwise override it with the shorter description.
+    parser.setApplicationDescription(
+        QLatin1String("Personal teleprompter software for all video makers. Built with ease of use, productivity, and smooth performance in mind."));
+    parser.addPositionalArgument(QLatin1String("source"), QLatin1String("file", "File to copy."));
+    parser.process(app);
+    aboutData.processCommandLine(&parser);
+    QStringList positionalArguments = parser.positionalArguments();
+    QString fileToOpen = QLatin1String("");
+    if (positionalArguments.length())
+        fileToOpen = parser.positionalArguments().at(0);
+
+    // Substract from 2 because order in app is intentionally inverted from order in Qt
+    app.setLayoutDirection(static_cast<Qt::LayoutDirection>(2 - settings.value("ui/layout", 0).toInt()));
+
+#if defined(KF6Crash_FOUND)
+    // KCrash::setDrKonqiEnabled(true);
+    KCrash::initialize();
+    // KCrash::setCrashHandler( KCrash::defaultCrashHandler );
+    KCrash::setFlags(KCrash::AutoRestart); // | KCrash::SaferDialog
+    // qDebug() << "DrKonqui" << KCrash::isDrKonqiEnabled();
+#endif
+
     // qmlRegisterType<PrompterTimer>(QPROMPT_URI + ".promptertimer", 1, 0, "PrompterTimer");
     //    qmlRegisterType<DocumentHandler>(QPROMPT_URI ".document", 1, 0, "DocumentHandler");
     //    qmlRegisterType<MarkersModel>(QPROMPT_URI ".markers", 1, 0, "MarkersModel");
