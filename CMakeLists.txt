@@ -295,11 +295,10 @@ if(UNIX AND NOT APPLE AND NOT ANDROID AND NOT WASM AND NOT HAIKU)
     add_compile_definitions(DBUS_ENABLED)
     set(DBUS_ENABLED ON)
 endif()
-# Hunspell spell checking. Hunspell upstream ships only autotools/MSVC
-# project files, so on platforms where a system package or vcpkg/Craft
-# install isn't available we build the library straight from the
-# submodule sources via HunspellShim. Linux/BSD/Haiku continue to use the
-# system package (find_package or pkg-config).
+# Hunspell spell checking, required on every platform. Hunspell upstream ships
+# only autotools/MSVC project files, so where no system package or vcpkg/Craft
+# install is available we build the library from the submodule sources via
+# HunspellShim. Linux/BSD/Haiku use the system package.
 if(WIN32 OR APPLE OR ANDROID OR IOS OR WASM OR USE_GIT_DEPENDENCIES_ONLY)
     include(HunspellShim)
     qprompt_build_hunspell("${CMAKE_SOURCE_DIR}/3rdparty/hunspell")
@@ -315,6 +314,13 @@ endif()
 if(TARGET Hunspell::Hunspell OR TARGET hunspell OR TARGET PkgConfig::HUNSPELL)
     add_compile_definitions(HUNSPELL_ENABLED)
     set(HUNSPELL_ENABLED ON)
+else()
+    message(FATAL_ERROR
+        "Hunspell is required and was not found. Install it (Debian and Ubuntu: "
+        "libhunspell-dev; Fedora: hunspell-devel; FreeBSD: textproc/hunspell; "
+        "Homebrew: hunspell) and configure again. Platforms with no Hunspell "
+        "package build it from the 3rdparty/hunspell submodule, which has to be "
+        "checked out.")
 endif()
 
 # Bundled Hunspell dictionaries.
@@ -544,11 +550,11 @@ if(CMAKE_SOURCE_DIR STREQUAL CMAKE_CURRENT_SOURCE_DIR)
         # CPACK: DEB specific settings
         set(CPACK_DEBIAN_PACKAGE_SECTION "Multimedia")
         set(CPACK_DEBIAN_COMPRESSION_TYPE ${COMPRESION_TYPE})
-        set(CPACK_DEBIAN_PACKAGE_DEPENDS "libvulkan-dev (>= 1.4.309), libqt6svg6 (>= 6.8.2), libqt6qmlworkerscript6 (>=6.8.2), qml6-module-qt-labs-platform (>=6.8.2), qml6-module-qtqml (>=6.8.2), qml6-module-qtqml-models (>=6.8.2), qml6-module-qtqml-statemachine (>=6.8.2), qml6-module-qtquick-controls (>=6.8.2), qml6-module-qtcore (>=6.8.2), qml6-module-qt-labs-settings (>=6.8.2), qml6-module-qtquick-dialogs (>=6.8.2), qml6-module-qtquick-shapes (>=6.8.2), libkf6coreaddons6 (>= 6.9.0), libkirigami6 (>= 6.9.0), qml6-module-org-kde-kirigami (>=6.9.0), libkf6i18n6 (>= 6.9.0), libkf6crash6 (>= 6.9.0)")
+        set(CPACK_DEBIAN_PACKAGE_DEPENDS "libvulkan-dev (>= 1.4.309), libqt6svg6 (>= 6.8.2), libqt6qmlworkerscript6 (>=6.8.2), qml6-module-qt-labs-platform (>=6.8.2), qml6-module-qtqml (>=6.8.2), qml6-module-qtqml-models (>=6.8.2), qml6-module-qtqml-statemachine (>=6.8.2), qml6-module-qtquick-controls (>=6.8.2), qml6-module-qtcore (>=6.8.2), qml6-module-qt-labs-settings (>=6.8.2), qml6-module-qtquick-dialogs (>=6.8.2), qml6-module-qtquick-shapes (>=6.8.2), libkf6coreaddons6 (>= 6.9.0), libkirigami6 (>= 6.9.0), qml6-module-org-kde-kirigami (>=6.9.0), libkf6i18n6 (>= 6.9.0), libkf6crash6 (>= 6.9.0), libhunspell-1.7-0")
 
         # CPACK: RPM specific settings
         set(CPACK_RPM_PACKAGE_GROUP "Multimedia/Video")
-        # set(CPACK_RPM_PACKAGE_REQUIRES "qt6-qtbase >= 6.8.2, qt6-qtbase-gui >= 6.8.2, qt6-qtdeclarative >= 6.8.2, qt6-qtsvg >= 6.8.2, qt6-qtquickcontrols2 >= 6.8.2, kf6-kcoreaddons >= 6.9.0, kf6-kirigami >= 6.9.0, kf6-kcrash >= 6.9.0")
+        # set(CPACK_RPM_PACKAGE_REQUIRES "qt6-qtbase >= 6.8.2, qt6-qtbase-gui >= 6.8.2, qt6-qtdeclarative >= 6.8.2, qt6-qtsvg >= 6.8.2, qt6-qtquickcontrols2 >= 6.8.2, kf6-kcoreaddons >= 6.9.0, kf6-kirigami >= 6.9.0, kf6-kcrash >= 6.9.0, hunspell >= 1.7")
         set(CPACK_RPM_COMPRESSION_TYPE ${COMPRESION_TYPE})
 
     elseif(WIN32)
