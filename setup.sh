@@ -78,6 +78,24 @@ else
     CPACK=cpack
 fi
 
+# Build in parallel. cmake --build invokes the native build tool without -j
+# unless it is told otherwise, so with the default Makefiles generator every
+# build below would compile one file at a time. CMAKE_BUILD_PARALLEL_LEVEL is
+# honoured by every cmake --build call, on every generator. Set it yourself to
+# cap the job count, for instance on a machine short on memory.
+if [ -z "$CMAKE_BUILD_PARALLEL_LEVEL" ]; then
+    if command -v nproc >/dev/null 2>&1; then
+        CMAKE_BUILD_PARALLEL_LEVEL="$(nproc)"
+    elif sysctl -n hw.ncpu >/dev/null 2>&1; then
+        CMAKE_BUILD_PARALLEL_LEVEL="$(sysctl -n hw.ncpu)"
+    elif [ -n "$NUMBER_OF_PROCESSORS" ]; then
+        CMAKE_BUILD_PARALLEL_LEVEL="$NUMBER_OF_PROCESSORS"
+    else
+        CMAKE_BUILD_PARALLEL_LEVEL=4
+    fi
+fi
+export CMAKE_BUILD_PARALLEL_LEVEL
+
 CMAKE_CONFIGURATION_TYPES="Debug;Release;RelWithDebInfo;MinSizeRel"
 CMAKE_BUILD_TYPE=$1
 if [ "$CMAKE_BUILD_TYPE" == "" ]; then
@@ -108,6 +126,7 @@ usage: $0 <CMAKE_BUILD_TYPE> <CMAKE_PREFIX_PATH> [CLEAR | CLEAR_ALL]
 Settings:
  * CMAKE_BUILD_TYPE: $CMAKE_BUILD_TYPE
  * CMAKE_PREFIX_PATH: $CMAKE_PREFIX_PATH
+ * CMAKE_BUILD_PARALLEL_LEVEL: $CMAKE_BUILD_PARALLEL_LEVEL
 
 Setup script for building QPrompt
 This script assumes you've already installed the following dependencies:
