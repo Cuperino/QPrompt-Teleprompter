@@ -21,9 +21,12 @@
 #
 #**************************************************************************
 
+# Stop at the first failure
+set -eo pipefail
+
 ARCHITECTURE="$(uname -m)"
-# KDE Frameworks 6.24 (Kirigami, KCoreAddons, KCrash) requires Qt 6.8.0 or newer.
-# Capped at the 6.8.x series so the Linux packages keep working on Debian.
+# KDE Frameworks 6.24 (Kirigami, KCoreAddons, KGlobalAccel) requires Qt 6.8.0 or
+# newer. Capped at the 6.8.x series so the Linux packages keep working on Debian.
 DEFAULT_QT_VER=6.8.3
 echo -e "\nArchitecture: $ARCHITECTURE"
 
@@ -139,7 +142,9 @@ This script assumes you've already installed the following dependencies:
           and accessible from PATH for all other systens)
 
  On Ubuntu and Debian Linux, install the following:
- > sudo apt install build-essential git cmake libgl1-mesa-dev libxkbcommon-x11-dev
+ > sudo apt install build-essential git cmake libgl-dev libegl-dev libxkbcommon-x11-dev
+   (this script also installs libxkbcommon-dev, libx11-dev and libhunspell-dev,
+    unless QPROMPT_SKIP_APT=1)
 
  For Windows:
  > Visual Studio (Community Edition)
@@ -189,10 +194,28 @@ fi
 mkdir -p build install
 
 echo "Downloading git submodules"
+# sync first so a clone made before the KDE submodules moved to the GitHub
+# mirrors picks up the new URLs instead of failing against the old ones.
+git submodule sync --recursive
 git submodule update --init --recursive
 
-if [[ "$PLATFORM" == "linux" ]]; then
-sudo apt install libxkbcommon-dev
+# Build dependencies that are not part of Qt. pkg-config is what finds Hunspell:
+# there is no FindHunspell module, so CMake reaches it only through
+# pkg_check_modules, and without pkg-config spell checking is quietly compiled
+# out. Set QPROMPT_SKIP_APT=1 where the packages are already in place, such as a
+# CI container that has no sudo and must not prompt.
+if [[ "$PLATFORM" == "linux" && "$QPROMPT_SKIP_APT" != "1" ]]; then
+    APT_SUDO=""
+    if [ "$(id -u)" != "0" ]; then
+        APT_SUDO="sudo"
+    fi
+    # env, not a prefix assignment: sudo resets the environment by default, so
+    # DEBIAN_FRONTEND would not reach apt-get.
+    # update first: on a fresh install the package index can be too stale for
+    # apt-get install to resolve these names.
+    $APT_SUDO env DEBIAN_FRONTEND=noninteractive apt-get update
+    $APT_SUDO env DEBIAN_FRONTEND=noninteractive apt-get install -y \
+    build-essential git curl ca-certificates pkg-config cmake extra-cmake-modules libgl-dev libegl-dev libglx-dev libxkbcommon-dev libxkbcommon-x11-dev libx11-dev libhunspell-dev appstream
 fi
 if [[ "$PLATFORM" == "windows" ]]; then
     # Download and extract gettext binary
@@ -206,10 +229,16 @@ tier_0="
     ./3rdparty/extra-cmake-modules
 "
 if [[ "$PLATFORM" == "linux" ]]; then
+    # KGlobalAccel is built here rather than taken from the distribution:
+    # Debian 13's libkf6globalaccel-dev is built against Debian's Qt, so mixing
+    # it with the Qt this script builds against would put two Qt builds in the
+    # same process. KCrash is not built at all: the Linux build never links
+    # KF6::Crash (main.cpp only calls it under a KF6Crash_FOUND define that no
+    # CMake rule sets), so there is nothing to deploy.
     tier_1="
        ./3rdparty/kcoreaddons
+       ./3rdparty/kglobalaccel
        ./3rdparty/kirigami
-       ./3rdparty/kcrash
     "
 fi
 
@@ -243,12 +272,23 @@ else
 fi
 
 echo "QPrompt"
-$CMAKE -DCMAKE_CONFIGURATION_TYPES=$CMAKE_CONFIGURATION_TYPES -DCMAKE_BUILD_TYPE=$CMAKE_BUILD_TYPE -DCMAKE_PREFIX_PATH=$CMAKE_PREFIX_PATH -DCMAKE_INSTALL_PREFIX=$CMAKE_INSTALL_PREFIX -B ./build .
+# QPROMPT_BUNDLE_HUNSPELL_DICTIONARIES is spelled out as OFF so a value cached
+# by an earlier AppImage build in the same tree cannot put dictionaries into the
+# DEB. Only dist/appimage/build-appimage.sh turns it on, through
+# QPROMPT_CMAKE_ARGS, and that build skips CPack.
+$CMAKE -DCMAKE_CONFIGURATION_TYPES=$CMAKE_CONFIGURATION_TYPES -DCMAKE_BUILD_TYPE=$CMAKE_BUILD_TYPE -DCMAKE_PREFIX_PATH=$CMAKE_PREFIX_PATH -DCMAKE_INSTALL_PREFIX=$CMAKE_INSTALL_PREFIX -DQPROMPT_BUNDLE_HUNSPELL_DICTIONARIES=OFF $QPROMPT_CMAKE_ARGS -B ./build .
 $CMAKE --build ./build --config $CMAKE_BUILD_TYPE
 if [[ "$PLATFORM" == "macos" ]]; then
     $CMAKE --install ./build
 else
     DESTDIR=$AppDir $CMAKE --install ./build
+fi
+
+# Packaging. dist/appimage/build-appimage.sh sets QPROMPT_SKIP_CPACK=1: it
+# packages the staged tree itself and has no use for a DEB.
+if [[ "$QPROMPT_SKIP_CPACK" == "1" ]]; then
+    echo -e "\nQPROMPT_SKIP_CPACK=1, skipping CPack."
+    exit 0
 fi
 
 # Copy Qt libraries into install directory

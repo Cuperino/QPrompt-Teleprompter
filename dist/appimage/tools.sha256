@@ -1,0 +1,21 @@
+# SHA-256 of the AppImage packaging tools, verified by fetch-tools.sh.
+#
+# linuxdeploy, linuxdeploy-plugin-qt and appimagetool only publish "continuous"
+# builds: the same URL serves a new binary whenever upstream pushes. Pinning the
+# digests here means a packaging change upstream shows up as a failed download
+# instead of silently altering a release. Refresh them deliberately, once per
+# release cycle: re-download the six files, check the result, and paste the new
+# digests in.
+#
+# Downloaded from, respectively:
+#   https://github.com/linuxdeploy/linuxdeploy/releases/download/continuous/
+#   https://github.com/linuxdeploy/linuxdeploy-plugin-qt/releases/download/continuous/
+#   https://github.com/AppImage/appimagetool/releases/download/continuous/
+#
+# Pinned 2026-10-01 (appimagetool git 8c8c91f, build 295).
+8aea8da0f7f7039d2a2cecb14657d752a222a5e1d3825caeef186c82f751cdd1  linuxdeploy-x86_64.AppImage
+cfc1055b2b9dbc08412b579f20990b7b41a17b61beaa5847dc9477c96c9e9617  linuxdeploy-plugin-qt-x86_64.AppImage
+a6d71e2b6cd66f8e8d16c37ad164658985e0cf5fcaa950c90a482890cb9d13e0  appimagetool-x86_64.AppImage
+5c1fddf96066891e829831cac0d84424690f3b22846c7f8f1bb9990a5c6c73f4  linuxdeploy-aarch64.AppImage
+d5b5a9020065cefda8c7af7c9500f686b23640eac50c88201a81752c6ee2e49c  linuxdeploy-plugin-qt-aarch64.AppImage
+1b00524ba8c6b678dc15ef88a5c25ec24def36cdfc7e3abb32ddcd068e8007fe  appimagetool-aarch64.AppImage
