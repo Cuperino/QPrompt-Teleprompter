@@ -61,6 +61,52 @@ Kirigami.Page {
     title: "QPrompt"
     padding: 0
 
+    // Render the toolbar title using a subset of Dyuthi. Kirigami shows any non-default titleDelegate even when the global toolbar style is None, so the default delegate is restored for styles that don't display titles.
+    Component.onCompleted: {
+        const kirigamiTitleDelegate = titleDelegate;
+        titleDelegate = Qt.binding(function() {
+            return globalToolBarStyle === Kirigami.ApplicationHeaderStyle.ToolBar || globalToolBarStyle === Kirigami.ApplicationHeaderStyle.Titles ? dyuthiTitleDelegate : kirigamiTitleDelegate;
+        });
+        //editorToolbar.lineHeightSlider.update()
+        //editorToolbar.paragraphSpacingSlider.update()
+    }
+    Component {
+        id: dyuthiTitleDelegate
+        // Based on Kirigami's DefaultPageTitleDelegate
+        Item {
+            Layout.fillWidth: true
+            Layout.minimumWidth: 0
+            Layout.maximumWidth: implicitWidth
+
+            implicitWidth: Math.ceil(pageTitle.implicitWidth)
+            implicitHeight: Math.ceil(pageTitle.implicitHeight)
+
+            Kirigami.Heading {
+                id: pageTitle
+                anchors.fill: parent
+                text: prompterPage.title
+                font.family: pageTitleFont.name
+                // Same size as the global menu's title: Kirigami's level 1 heading size, plus 2pt.
+                font.pointSize: Kirigami.Theme.defaultFont.pointSize * 1.35 + 2
+                maximumLineCount: 1
+                elide: Text.ElideRight
+                textFormat: Text.PlainText
+                // Dyuthi's line box sits lower than its glyphs. Shift the text so the center of its capitals, rather than its line box, is vertically centered.
+                transform: Translate {
+                    y: (pageTitleFontMetrics.descent - pageTitleFontMetrics.ascent - pageTitleFontMetrics.tightBoundingRect("P").y) / 2
+                }
+                FontMetrics {
+                    id: pageTitleFontMetrics
+                    font: pageTitle.font
+                }
+            }
+        }
+    }
+    FontLoader {
+        id: pageTitleFont
+        source: "qrc:/qt/qml/com/cuperino/qprompt/fonts/Dyuthi-QPrompt.ttf"
+    }
+
     onBackRequested: close()
 
     Kirigami.Theme.inherit: false
@@ -750,11 +796,6 @@ Kirigami.Page {
     // Editor Toolbar
     footer: EditorToolbar {
         id: editorToolbar
-    }
-
-    Component.onCompleted: {
-        //editorToolbar.lineHeightSlider.update()
-        //editorToolbar.paragraphSpacingSlider.update()
     }
 
     PrompterView {
