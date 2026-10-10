@@ -196,7 +196,8 @@ Kirigami.Page {
                     ]
                     onClicked: viewport.overlay.toggleLinesInRegion(false)
                     Label {
-                        text: qsTr("Height: %1", "Height of reading region relative to single line height. E.g. Height: 2.5").arg(viewport.overlay.linesInRegion.toLocaleString(Qt.locale(), "f", 2))
+                        x: 4
+                        text: qsTr("Height: %1 lines", "Height of reading region relative to single line height. E.g. Height: 2.5").arg(viewport.overlay.linesInRegion.toLocaleString(Qt.locale(), "f", 2))
                     }
                 }
             }
