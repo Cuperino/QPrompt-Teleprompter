@@ -168,6 +168,9 @@ Item {
             spacing: 6
             ToolButton {
                 text: "\u24CD"
+                ToolTip.text: qsTr("Close", "Find toolbar button tooltip")
+                ToolTip.visible: hovered
+                ToolTip.delay: Kirigami.Units.toolTipDelay
                 onClicked: close()
                 Layout.fillHeight: true
                 Material.theme: Material.Dark
@@ -175,6 +178,9 @@ Item {
             ToolButton {
                 visible: !find.replace
                 icon.name: "edit-find-replace"
+                ToolTip.text: qsTr("Show replace options", "Find toolbar button tooltip")
+                ToolTip.visible: hovered
+                ToolTip.delay: Kirigami.Units.toolTipDelay
                 onClicked: find.replace = true
                 Material.theme: Material.Dark
             }
@@ -200,12 +206,18 @@ Item {
                 text: find.replace ? "\u25B3" : "\u25B2"
                 enabled: resultsFound
                 onClicked: find.previous()
+                ToolTip.text: qsTr("Previous match", "Find toolbar button tooltip")
+                ToolTip.visible: hovered
+                ToolTip.delay: Kirigami.Units.toolTipDelay
                 Material.theme: Material.Dark
             }
             ToolButton {
                 text: find.replace ? "\u25BD" : "\u25BC"
                 enabled: resultsFound
                 onClicked: find.next()
+                ToolTip.text: qsTr("Next match", "Find toolbar button tooltip")
+                ToolTip.visible: hovered
+                ToolTip.delay: Kirigami.Units.toolTipDelay
                 Material.theme: Material.Dark
             }
             ToolButton {
@@ -213,6 +225,9 @@ Item {
                 checkable: true
                 checked: false
                 onToggled: find.regEx = checked;
+                ToolTip.text: qsTr("Regular expressions", "Find toolbar button tooltip")
+                ToolTip.visible: hovered
+                ToolTip.delay: Kirigami.Units.toolTipDelay
                 Material.theme: Material.Dark
             }
         }
@@ -224,6 +239,9 @@ Item {
                 visible: find.replace
                 icon.name: "edit-find"
                 onClicked: find.replace = false;
+                ToolTip.text: qsTr("Hide replace options", "Find toolbar button tooltip")
+                ToolTip.visible: hovered
+                ToolTip.delay: Kirigami.Units.toolTipDelay
                 Material.theme: Material.Dark
             }
             TextField {
@@ -245,18 +263,27 @@ Item {
                 text: "\u25B2"
                 enabled: resultsFound
                 onClicked: find.replacePrevious()
+                ToolTip.text: qsTr("Replace previous match", "Find toolbar button tooltip")
+                ToolTip.visible: hovered
+                ToolTip.delay: Kirigami.Units.toolTipDelay
                 Material.theme: Material.Dark
             }
             ToolButton {
                 text: "\u25BC"
                 enabled: resultsFound
                 onClicked: find.replaceNext()
+                ToolTip.text: qsTr("Replace next match", "Find toolbar button tooltip")
+                ToolTip.visible: hovered
+                ToolTip.delay: Kirigami.Units.toolTipDelay
                 Material.theme: Material.Dark
             }
             ToolButton {
                 icon.name: "edit-find-replace"
                 enabled: resultsFound
                 onClicked: find.replaceAll()
+                ToolTip.text: qsTr("Replace all matches", "Find toolbar button tooltip")
+                ToolTip.visible: hovered
+                ToolTip.delay: Kirigami.Units.toolTipDelay
                 Material.theme: Material.Dark
             }
         }
