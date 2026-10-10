@@ -43,6 +43,9 @@ Kirigami.OverlayDrawer {
     bottomPadding: 0
     topPadding: 0
     parent: prompterPage.viewport
+    // Kirigami stacks drawers above default popups, which hides tooltips behind the drawer.
+    // Use the default popup level so tooltips, which open later, are drawn in front.
+    z: 0
 
     function toggle() {
         reOpen = false
@@ -92,6 +95,7 @@ Kirigami.OverlayDrawer {
             },*/
             Kirigami.Action {
                 icon.name: "list-remove"
+                tooltip: qsTr("Delete marker", "Marker list button tooltip")
                 onTriggered: {
                     prompter.deleteMarker(model.position, model.length);
                     markerList.model.removeMarker(index);
@@ -100,6 +104,7 @@ Kirigami.OverlayDrawer {
             Kirigami.Action {
                 visible: !(Qt.platform.os==="android" || Qt.platform.os==="ios")
                 icon.name: "document-properties"
+                tooltip: qsTr("Edit marker", "Marker list button tooltip")
                 onTriggered: {
                     // Select marker in document
                     prompter.editMarker(model.position, model.length)
@@ -136,6 +141,9 @@ Kirigami.OverlayDrawer {
                 //icon: Qt.application.layoutDirection===Qt.LeftToRight ? "view-left-close" : "view-right-close"
                 icon.name: Qt.application.layoutDirection===Qt.LeftToRight ? "view-left-close" : "view-right-close"
                 text: qsTr("Close Marker List", "Close sidebar listing user defined markers")
+                ToolTip.text: qsTr("Close", "Marker list button tooltip")
+                ToolTip.visible: hovered
+                ToolTip.delay: Kirigami.Units.toolTipDelay
                 Material.theme: Material.Dark
                 onClicked: {
                     markersDrawer.toggle();
@@ -148,6 +156,9 @@ Kirigami.OverlayDrawer {
                 checkable: true
                 checked: false
                 flat: true
+                ToolTip.text: qsTr("Keep list open", "Marker list button tooltip")
+                ToolTip.visible: hovered
+                ToolTip.delay: Kirigami.Units.toolTipDelay
                 Material.theme: Material.Dark
                 Layout.maximumWidth: 50
             }

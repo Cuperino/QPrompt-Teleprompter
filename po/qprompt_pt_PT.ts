@@ -462,6 +462,60 @@
             <numerusform>Foram substituídas %n instâncias</numerusform>
         </translation>
     </message>
+    <message>
+        <location filename="../src/prompter/Find.qml" line="171"/>
+        <source>Close</source>
+        <comment>Find toolbar button tooltip</comment>
+        <translation type="unfinished">Fechar</translation>
+    </message>
+    <message>
+        <location filename="../src/prompter/Find.qml" line="181"/>
+        <source>Show replace options</source>
+        <comment>Find toolbar button tooltip</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/prompter/Find.qml" line="209"/>
+        <source>Previous match</source>
+        <comment>Find toolbar button tooltip</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/prompter/Find.qml" line="218"/>
+        <source>Next match</source>
+        <comment>Find toolbar button tooltip</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/prompter/Find.qml" line="228"/>
+        <source>Regular expressions</source>
+        <comment>Find toolbar button tooltip</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/prompter/Find.qml" line="242"/>
+        <source>Hide replace options</source>
+        <comment>Find toolbar button tooltip</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/prompter/Find.qml" line="266"/>
+        <source>Replace previous match</source>
+        <comment>Find toolbar button tooltip</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/prompter/Find.qml" line="275"/>
+        <source>Replace next match</source>
+        <comment>Find toolbar button tooltip</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/prompter/Find.qml" line="284"/>
+        <source>Replace all matches</source>
+        <comment>Find toolbar button tooltip</comment>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>GlobalHotkeys</name>
@@ -1011,10 +1065,34 @@ Ajude-nos a traduzir o QPrompt, visite:</translation>
 <context>
     <name>MarkersDrawer</name>
     <message>
-        <location filename="../src/kirigami_ui/MarkersDrawer.qml" line="138"/>
+        <location filename="../src/kirigami_ui/MarkersDrawer.qml" line="98"/>
+        <source>Delete marker</source>
+        <comment>Marker list button tooltip</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/kirigami_ui/MarkersDrawer.qml" line="107"/>
+        <source>Edit marker</source>
+        <comment>Marker list button tooltip</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/kirigami_ui/MarkersDrawer.qml" line="143"/>
         <source>Close Marker List</source>
         <comment>Close sidebar listing user defined markers</comment>
         <translation>Fechar lista de marcadores</translation>
+    </message>
+    <message>
+        <location filename="../src/kirigami_ui/MarkersDrawer.qml" line="144"/>
+        <source>Close</source>
+        <comment>Marker list button tooltip</comment>
+        <translation type="unfinished">Fechar</translation>
+    </message>
+    <message>
+        <location filename="../src/kirigami_ui/MarkersDrawer.qml" line="159"/>
+        <source>Keep list open</source>
+        <comment>Marker list button tooltip</comment>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -2112,6 +2190,14 @@ Ajude-nos a traduzir o QPrompt, visite:</translation>
         <source>Delete selected</source>
         <comment>Delete selected custom words</comment>
         <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>PrompterView</name>
+    <message>
+        <source>Start prompting</source>
+        <comment>Prompter control tooltip</comment>
+        <translation type="obsolete">Iniciar o ponto</translation>
     </message>
 </context>
 <context>
