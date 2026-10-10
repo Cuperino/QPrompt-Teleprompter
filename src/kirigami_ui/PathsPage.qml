@@ -64,6 +64,7 @@ Kirigami.ScrollablePage {
                        + "Open Document Format, and other office documents into a format QPrompt "
                        + "understands. Install LibreOffice and ensure this field points to its "
                        + "location, so QPrompt can open office documents.")
+            topPadding: 3
             Layout.fillWidth: true
         }
         RowLayout {
