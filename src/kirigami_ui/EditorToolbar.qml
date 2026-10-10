@@ -141,6 +141,7 @@ ToolBar {
 
     Settings {
         category: "kirigamiUI"
+        property alias showOpacityOptions: toolbar.showOpacityOptions
         property alias showFontSpacingOptions: toolbar.showFontSpacingOptions
         property alias showAnimationConfigOptions: toolbar.showAnimationConfigOptions
         property alias showJustify: toolbar.showJustify
@@ -904,18 +905,19 @@ ToolBar {
                 checkable: true
                 checked: showFontSpacingOptions
                 onClicked: {
-                    if (showAnimationConfigOptions) {
-                        showAnimationConfigOptions = false;
+                    if (showAnimationConfigOptions || showOpacityOptions) {
+                        toolbar.showOpacityOptions = false;
+                        toolbar.showAnimationConfigOptions = false;
                         fontSpacingOptionsTimer.start();
                     }
                     else
-                        showFontSpacingOptions = !showFontSpacingOptions;
+                        toolbar.showFontSpacingOptions = !toolbar.showFontSpacingOptions;
                 }
                 Timer {
                     id: fontSpacingOptionsTimer
                     interval: 250
                     onTriggered: {
-                        showFontSpacingOptions = !showAnimationConfigOptions;
+                        toolbar.showFontSpacingOptions = !toolbar.showFontSpacingOptions;
                     }
                 }
             }
@@ -931,18 +933,19 @@ ToolBar {
                 checkable: true
                 checked: showAnimationConfigOptions
                 onClicked: {
-                    if (showFontSpacingOptions) {
-                        showFontSpacingOptions = false;
+                    if (showFontSpacingOptions || showOpacityOptions) {
+                        toolbar.showOpacityOptions = false;
+                        toolbar.showFontSpacingOptions = false;
                         openAnimationConfigTimer.start();
                     }
                     else
-                        showAnimationConfigOptions = !showAnimationConfigOptions;
+                        toolbar.showAnimationConfigOptions = !toolbar.showAnimationConfigOptions;
                 }
                 Timer {
                     id: openAnimationConfigTimer
                     interval: 250
                     onTriggered: {
-                        showAnimationConfigOptions = !showAnimationConfigOptions;
+                        toolbar.showAnimationConfigOptions = !toolbar.showAnimationConfigOptions;
                     }
                 }
             }
@@ -1004,7 +1007,6 @@ ToolBar {
         }
         RowLayout {
             id: opacitySliderRow
-            visible: root.__translucidBackground && (!root.__isMobile && root.width>(parseInt(viewport.prompter.state)!==Prompter.States.Prompting ? 673 : 1175) || (parseInt(viewport.prompter.state)!==Prompter.States.Editing && parseInt(viewport.prompter.state)!==Prompter.States.Prompting)) // This check isn't optimized in case more viewport.prompter states get added in the future, even tho I think that is unlikely.
             ToolButton {
                 ToolTip.text: qsTr("Opacity options", "Editor toolbar button tooltip")
                 ToolTip.visible: hovered
@@ -1017,11 +1019,27 @@ ToolBar {
                 contentItem: Loader { sourceComponent: textComponent }
                 font.family: iconFont.name
                 font.pointSize: 13
-                onClicked: toolbar.showOpacityOptions = !toolbar.showOpacityOptions
+                onClicked: {
+                    if (toolbar.showFontSpacingOptions || toolbar.showAnimationConfigOptions) {
+                        toolbar.showFontSpacingOptions = false;
+                        toolbar.showAnimationConfigOptions = false;
+                        opacityOptionsTimer.start();
+                    }
+                    else
+                        toolbar.showOpacityOptions = !toolbar.showOpacityOptions;
+                }
+                Timer {
+                    id: opacityOptionsTimer
+                    interval: 250
+                    onTriggered: {
+                        toolbar.showOpacityOptions = !toolbar.showOpacityOptions;
+                    }
+                }
             }
             MouseArea {
                 id: opacityDirectInput
                 property bool editText: false
+                visible: root.__translucidBackground && (!root.__isMobile && root.width>(parseInt(viewport.prompter.state)!==Prompter.States.Prompting ? 673 : 1175) || (parseInt(viewport.prompter.state)!==Prompter.States.Editing && parseInt(viewport.prompter.state)!==Prompter.States.Prompting)) // This check isn't optimized in case more viewport.prompter states get added in the future, even tho I think that is unlikely.
                 height: opacityLabel.height
                 width: opacityDirectInput.editText ? opacityTextField.width : opacityLabel.width
                 onDoubleClicked: {
@@ -1102,6 +1120,7 @@ ToolBar {
             }
             Slider {
                 id: opacitySlider
+                visible: opacityDirectInput.visible
                 value: 100*root.__opacity
                 from: 0
                 to: 100
@@ -1643,7 +1662,7 @@ ToolBar {
         }
         RowLayout {
             visible: height>0
-            height: opacitySliderRow.visible && toolbar.showOpacityOptions ? implicitHeight : 0
+            height: toolbar.showOpacityOptions ? implicitHeight : 0
             clip: true
             Behavior on height{
                 enabled: true
@@ -1771,7 +1790,7 @@ ToolBar {
         }
         RowLayout {
             visible: height>0
-            height: opacitySliderRow.visible && toolbar.showOpacityOptions ? implicitHeight : 0
+            height: toolbar.showOpacityOptions ? implicitHeight : 0
             clip: true
             Behavior on height{
                 enabled: true
