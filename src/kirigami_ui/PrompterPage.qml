@@ -1540,11 +1540,11 @@ Kirigami.Page {
 
     Kirigami.OverlaySheet {
         id: dictionariesSheet
+        width: 320
         header: Kirigami.Heading {
             text: qsTr("Set dictionaries", "Dictionary selection sheet title")
             level: 1
         }
-        width: 320
         onOpened: {
             cursorAutoHide.reset();
             viewport.editor.enabled = false;
@@ -1618,6 +1618,7 @@ Kirigami.Page {
     Kirigami.OverlaySheet {
         id: customWordsSheet
         property int selectedCount: 0
+        width: 320
         header: Kirigami.Heading {
             text: qsTr("Edit custom words", "Custom dictionary editor title")
             level: 1
