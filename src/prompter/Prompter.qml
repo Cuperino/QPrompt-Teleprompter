@@ -2024,6 +2024,9 @@ Flickable {
                         prompter.contentsPlacement = 0.02;
                     }
                     property bool hovered: false
+                    ToolTip.text: Math.round(100*prompter.contentsPlacement)/100 === 0.02 ? qsTr("Drag to resize", "Left handle button tooltip") : qsTr("Double click to reset", "Left handle button tooltip")
+                    ToolTip.visible: hovered
+                    ToolTip.delay: Units.ToolTipDelay
                     Loader {
                         id: leftHandle
                         sourceComponent: editorSidesBorder
@@ -2060,6 +2063,9 @@ Flickable {
                         prompter.contentsPlacement = 0.02;
                     }
                     property bool hovered: false
+                    ToolTip.text: positionHandler.placement === 0 ? qsTr("Drag to displace", "Right handle button tooltip") : qsTr("Double click to reset", "Left handle button tooltip")
+                    ToolTip.visible: hovered
+                    ToolTip.delay: Units.ToolTipDelay
                     Loader {
                         id: rightHandle
                         sourceComponent: editorSidesBorder
