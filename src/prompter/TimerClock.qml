@@ -206,6 +206,10 @@ Item {
             cursorShape: (pressed||drag.active||prompter.dragging) ? Qt.ClosedHandCursor : Qt.PointingHandCursor
             onDoubleClicked: clock.reset()
             onReleased: stopwatch.customRelativeXpos = stopwatch.x / (clock.width - stopwatch.width)
+            // Bug: Doesn't disappear on mouse removal
+            // ToolTip.text: qsTr("Double click to restart chronometer", "Timer tooltip")
+            // ToolTip.visible: hovered
+            // ToolTip.delay: Units.ToolTipDelay
         }
     }
 
