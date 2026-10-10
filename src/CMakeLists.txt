@@ -188,6 +188,7 @@ endif()
 # Fonts
 set(font_files
     fonts/icons/fontello.ttf
+    fonts/title/Dyuthi-QPrompt.ttf
     fonts/editor/dejavu-sans/DejaVuSans.ttf
     fonts/editor/LibertinusSans-Regular.otf
     fonts/editor/OpenDyslexic-Bold.otf

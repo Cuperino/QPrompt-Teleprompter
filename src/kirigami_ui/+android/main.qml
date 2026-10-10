@@ -170,6 +170,41 @@ Kirigami.ApplicationWindow {
         // isMenu: true
         title: aboutData.displayName
         titleIcon: ["android"].indexOf(Qt.platform.os)===-1 ? "qrc:/qt/qml/com/cuperino/qprompt/images/qprompt.png" : "qrc:/qt/qml/com/cuperino/qprompt/images/qprompt-logo-wireframe.png"
+        // Replaces Kirigami's default header to render the title using a subset of Dyuthi.
+        header: RowLayout {
+            visible: globalMenu.title.length > 0 || Boolean(globalMenu.titleIcon)
+            spacing: Kirigami.Units.largeSpacing
+
+            Kirigami.Icon {
+                source: globalMenu.titleIcon
+                Layout.topMargin: Kirigami.Units.largeSpacing
+                Layout.leftMargin: Kirigami.Units.largeSpacing
+            }
+
+            Kirigami.Heading {
+                id: globalMenuTitle
+                text: globalMenu.title
+                font.family: titleFont.name
+                font.pointSize: Kirigami.Theme.defaultFont.pointSize * 1.35 + 2
+                elide: Text.ElideRight
+                visible: !globalMenu.collapsed
+                Layout.fillWidth: true
+                Layout.topMargin: Kirigami.Units.largeSpacing
+                Layout.alignment: Qt.AlignVCenter
+                // Dyuthi's line box sits lower than its glyphs. Shift the text so the center of its capitals, rather than its line box, aligns with the logo's center.
+                transform: Translate {
+                    y: (titleFontMetrics.descent - titleFontMetrics.ascent - titleFontMetrics.tightBoundingRect("P").y) / 2
+                }
+                FontMetrics {
+                    id: titleFontMetrics
+                    font: globalMenuTitle.font
+                }
+                FontLoader {
+                    id: titleFont
+                    source: "qrc:/qt/qml/com/cuperino/qprompt/fonts/Dyuthi-QPrompt.ttf"
+                }
+            }
+        }
         resetMenuOnTriggered: globalMenu.currentSubMenu && globalMenu.currentSubMenu.name ? (["other-tweaks", "performance-tweaks", "control-settings"].indexOf(globalMenu.currentSubMenu.name)===-1) : true
         onOpened: function() {
             cursorAutoHide.reset();

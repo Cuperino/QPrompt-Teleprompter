@@ -2600,46 +2600,46 @@ Help us translate QPrompt, visit:</source>
 <context>
     <name>main</name>
     <message>
-        <location filename="../src/kirigami_ui/main.qml" line="201"/>
-        <location filename="../src/kirigami_ui/main.qml" line="625"/>
-        <location filename="../src/kirigami_ui/+android/main.qml" line="182"/>
-        <location filename="../src/kirigami_ui/+windows/main.qml" line="196"/>
+        <location filename="../src/kirigami_ui/main.qml" line="236"/>
+        <location filename="../src/kirigami_ui/main.qml" line="660"/>
+        <location filename="../src/kirigami_ui/+android/main.qml" line="217"/>
+        <location filename="../src/kirigami_ui/+windows/main.qml" line="232"/>
         <source>&amp;New</source>
         <comment>Main menu and global menu actions</comment>
         <translation>جديد</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/main.qml" line="207"/>
-        <location filename="../src/kirigami_ui/main.qml" line="629"/>
-        <location filename="../src/kirigami_ui/main.qml" line="633"/>
-        <location filename="../src/kirigami_ui/+android/main.qml" line="188"/>
-        <location filename="../src/kirigami_ui/+windows/main.qml" line="202"/>
+        <location filename="../src/kirigami_ui/main.qml" line="242"/>
+        <location filename="../src/kirigami_ui/main.qml" line="664"/>
+        <location filename="../src/kirigami_ui/main.qml" line="668"/>
+        <location filename="../src/kirigami_ui/+android/main.qml" line="223"/>
+        <location filename="../src/kirigami_ui/+windows/main.qml" line="238"/>
         <source>&amp;Open</source>
         <comment>Main menu and global menu actions</comment>
         <translation>فتح</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/main.qml" line="216"/>
-        <location filename="../src/kirigami_ui/main.qml" line="637"/>
-        <location filename="../src/kirigami_ui/+android/main.qml" line="197"/>
-        <location filename="../src/kirigami_ui/+windows/main.qml" line="211"/>
+        <location filename="../src/kirigami_ui/main.qml" line="251"/>
+        <location filename="../src/kirigami_ui/main.qml" line="672"/>
+        <location filename="../src/kirigami_ui/+android/main.qml" line="232"/>
+        <location filename="../src/kirigami_ui/+windows/main.qml" line="247"/>
         <source>&amp;Open remote file</source>
         <comment>Main menu and global menu actions</comment>
         <translation>فتح ملف بعيد</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/main.qml" line="230"/>
-        <location filename="../src/kirigami_ui/main.qml" line="644"/>
-        <location filename="../src/kirigami_ui/+android/main.qml" line="211"/>
-        <location filename="../src/kirigami_ui/+windows/main.qml" line="225"/>
+        <location filename="../src/kirigami_ui/main.qml" line="265"/>
+        <location filename="../src/kirigami_ui/main.qml" line="679"/>
+        <location filename="../src/kirigami_ui/+android/main.qml" line="246"/>
+        <location filename="../src/kirigami_ui/+windows/main.qml" line="261"/>
         <source>&amp;Save</source>
         <comment>Main menu and global menu actions</comment>
         <translation>حفظ</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/main.qml" line="239"/>
-        <location filename="../src/kirigami_ui/+android/main.qml" line="220"/>
-        <location filename="../src/kirigami_ui/+windows/main.qml" line="234"/>
+        <location filename="../src/kirigami_ui/main.qml" line="274"/>
+        <location filename="../src/kirigami_ui/+android/main.qml" line="255"/>
+        <location filename="../src/kirigami_ui/+windows/main.qml" line="270"/>
         <source>Save &amp;As</source>
         <comment>Main menu and global menu actions</comment>
         <translation>حفظ باسم</translation>
@@ -2650,483 +2650,483 @@ Help us translate QPrompt, visit:</source>
         <translation type="vanished">الملفات الأخيرة</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/main.qml" line="249"/>
-        <location filename="../src/kirigami_ui/+android/main.qml" line="229"/>
-        <location filename="../src/kirigami_ui/+windows/main.qml" line="245"/>
+        <location filename="../src/kirigami_ui/main.qml" line="284"/>
+        <location filename="../src/kirigami_ui/+android/main.qml" line="264"/>
+        <location filename="../src/kirigami_ui/+windows/main.qml" line="281"/>
         <source>&amp;Controls Settings</source>
         <comment>Main menu actions. Menu regarding input settings.</comment>
         <translation>إعدادات التحكم</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/main.qml" line="254"/>
-        <location filename="../src/kirigami_ui/main.qml" line="855"/>
-        <location filename="../src/kirigami_ui/+android/main.qml" line="234"/>
-        <location filename="../src/kirigami_ui/+windows/main.qml" line="250"/>
+        <location filename="../src/kirigami_ui/main.qml" line="289"/>
+        <location filename="../src/kirigami_ui/main.qml" line="890"/>
+        <location filename="../src/kirigami_ui/+android/main.qml" line="269"/>
+        <location filename="../src/kirigami_ui/+windows/main.qml" line="286"/>
         <source>Keyboard Inputs</source>
         <comment>Main menu and global menu actions. Opens dialog to configure keyboard inputs.</comment>
         <translation>إدخالات لوحة المفاتيح</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/main.qml" line="263"/>
-        <location filename="../src/kirigami_ui/main.qml" line="859"/>
+        <location filename="../src/kirigami_ui/main.qml" line="298"/>
+        <location filename="../src/kirigami_ui/main.qml" line="894"/>
         <source>OBS Settings</source>
         <comment>Main menu and global menu actions. Opens dialog to configure OBS settings.</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/main.qml" line="273"/>
-        <location filename="../src/kirigami_ui/+android/main.qml" line="243"/>
-        <location filename="../src/kirigami_ui/+windows/main.qml" line="259"/>
+        <location filename="../src/kirigami_ui/main.qml" line="308"/>
+        <location filename="../src/kirigami_ui/+android/main.qml" line="278"/>
+        <location filename="../src/kirigami_ui/+windows/main.qml" line="295"/>
         <source>Scroll throttle settings</source>
         <comment>Open &apos;scroll settings&apos; from main menu and global menu actions</comment>
         <translation>إعدادات تقييد التمرير</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/main.qml" line="281"/>
-        <location filename="../src/kirigami_ui/main.qml" line="878"/>
-        <location filename="../src/kirigami_ui/+android/main.qml" line="251"/>
-        <location filename="../src/kirigami_ui/+windows/main.qml" line="267"/>
+        <location filename="../src/kirigami_ui/main.qml" line="316"/>
+        <location filename="../src/kirigami_ui/main.qml" line="913"/>
+        <location filename="../src/kirigami_ui/+android/main.qml" line="286"/>
+        <location filename="../src/kirigami_ui/+windows/main.qml" line="303"/>
         <source>Invert &amp;arrow keys</source>
         <comment>Main menu and global menu actions. Have up arrow behave like down arrow and vice versa while prompting.</comment>
         <translation>عكس مفاتيح الأسهم</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/main.qml" line="289"/>
-        <location filename="../src/kirigami_ui/main.qml" line="885"/>
-        <location filename="../src/kirigami_ui/+android/main.qml" line="259"/>
-        <location filename="../src/kirigami_ui/+windows/main.qml" line="275"/>
+        <location filename="../src/kirigami_ui/main.qml" line="324"/>
+        <location filename="../src/kirigami_ui/main.qml" line="920"/>
+        <location filename="../src/kirigami_ui/+android/main.qml" line="294"/>
+        <location filename="../src/kirigami_ui/+windows/main.qml" line="311"/>
         <source>Invert &amp;scroll direction (Natural scrolling)</source>
         <comment>Main menu and global menu actions. Invert scroll direction while prompting.</comment>
         <translation>عكس اتجاه التمرير (التمرير الطبيعي)</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/main.qml" line="297"/>
-        <location filename="../src/kirigami_ui/main.qml" line="870"/>
-        <location filename="../src/kirigami_ui/+android/main.qml" line="267"/>
-        <location filename="../src/kirigami_ui/+windows/main.qml" line="283"/>
+        <location filename="../src/kirigami_ui/main.qml" line="332"/>
+        <location filename="../src/kirigami_ui/main.qml" line="905"/>
+        <location filename="../src/kirigami_ui/+android/main.qml" line="302"/>
+        <location filename="../src/kirigami_ui/+windows/main.qml" line="319"/>
         <source>Use scroll as velocity &amp;dial</source>
         <comment>Main menu and global menu actions. Have touchpad and mouse wheel scrolling adjust velocity instead of scrolling like most other apps.</comment>
         <translation>استخدام التمرير كمقياس للسرعة</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/main.qml" line="306"/>
-        <location filename="../src/kirigami_ui/main.qml" line="864"/>
-        <location filename="../src/kirigami_ui/+android/main.qml" line="276"/>
-        <location filename="../src/kirigami_ui/+windows/main.qml" line="292"/>
+        <location filename="../src/kirigami_ui/main.qml" line="341"/>
+        <location filename="../src/kirigami_ui/main.qml" line="899"/>
+        <location filename="../src/kirigami_ui/+android/main.qml" line="311"/>
+        <location filename="../src/kirigami_ui/+windows/main.qml" line="328"/>
         <source>Disable scrolling while prompting</source>
         <comment>Main menu and global menu actions. Touchpad scrolling and mouse wheel use have no effect while prompting.</comment>
         <translation>تعطيل التمرير أثناء العرض</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/main.qml" line="314"/>
-        <location filename="../src/kirigami_ui/+android/main.qml" line="284"/>
-        <location filename="../src/kirigami_ui/+windows/main.qml" line="300"/>
+        <location filename="../src/kirigami_ui/main.qml" line="349"/>
+        <location filename="../src/kirigami_ui/+android/main.qml" line="319"/>
+        <location filename="../src/kirigami_ui/+windows/main.qml" line="336"/>
         <source>Other &amp;Settings</source>
         <comment>Main menu actions</comment>
         <translation>إعدادات أخرى</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/main.qml" line="324"/>
-        <location filename="../src/kirigami_ui/+windows/main.qml" line="310"/>
+        <location filename="../src/kirigami_ui/main.qml" line="359"/>
+        <location filename="../src/kirigami_ui/+windows/main.qml" line="346"/>
         <source>External Tools and Applications</source>
         <comment>Main menu actions. Load Path Settings page.</comment>
         <translation>الأدوات والتطبيقات الخارجية</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/main.qml" line="330"/>
-        <location filename="../src/kirigami_ui/+android/main.qml" line="294"/>
-        <location filename="../src/kirigami_ui/+windows/main.qml" line="316"/>
+        <location filename="../src/kirigami_ui/main.qml" line="365"/>
+        <location filename="../src/kirigami_ui/+android/main.qml" line="329"/>
+        <location filename="../src/kirigami_ui/+windows/main.qml" line="352"/>
         <source>Layout direction</source>
         <comment>Main menu actions. Opens dialog for choosing layout direction.</comment>
         <translation>اتجاه التخطيط</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/main.qml" line="335"/>
-        <location filename="../src/kirigami_ui/+android/main.qml" line="299"/>
-        <location filename="../src/kirigami_ui/+windows/main.qml" line="321"/>
+        <location filename="../src/kirigami_ui/main.qml" line="370"/>
+        <location filename="../src/kirigami_ui/+android/main.qml" line="334"/>
+        <location filename="../src/kirigami_ui/+windows/main.qml" line="357"/>
         <source>Performance tweaks</source>
         <comment>Main menu actions. Enters Performance tweaks submenu.</comment>
         <translation>تحسينات الأداء</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/main.qml" line="338"/>
-        <location filename="../src/kirigami_ui/+android/main.qml" line="302"/>
-        <location filename="../src/kirigami_ui/+windows/main.qml" line="324"/>
+        <location filename="../src/kirigami_ui/main.qml" line="373"/>
+        <location filename="../src/kirigami_ui/+android/main.qml" line="337"/>
+        <location filename="../src/kirigami_ui/+windows/main.qml" line="360"/>
         <source>Disable screen projections</source>
         <comment>Main menu actions</comment>
         <translation>تعطيل إسقاطات الشاشة</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/main.qml" line="344"/>
-        <location filename="../src/kirigami_ui/+android/main.qml" line="308"/>
-        <location filename="../src/kirigami_ui/+windows/main.qml" line="330"/>
+        <location filename="../src/kirigami_ui/main.qml" line="379"/>
+        <location filename="../src/kirigami_ui/+android/main.qml" line="343"/>
+        <location filename="../src/kirigami_ui/+windows/main.qml" line="366"/>
         <source>Disable timers</source>
         <comment>Main menu actions</comment>
         <translation>تعطيل المؤقتات</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/main.qml" line="352"/>
-        <location filename="../src/kirigami_ui/+android/main.qml" line="316"/>
-        <location filename="../src/kirigami_ui/+windows/main.qml" line="338"/>
+        <location filename="../src/kirigami_ui/main.qml" line="387"/>
+        <location filename="../src/kirigami_ui/+android/main.qml" line="351"/>
+        <location filename="../src/kirigami_ui/+windows/main.qml" line="374"/>
         <source>Auto hide formatting tools</source>
         <comment>Main menu actions. Hides formatting tools while not in edit mode.</comment>
         <translation>إخفاء تلقائي لأدوات التنسيق</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/main.qml" line="360"/>
-        <location filename="../src/kirigami_ui/+android/main.qml" line="324"/>
-        <location filename="../src/kirigami_ui/+windows/main.qml" line="346"/>
+        <location filename="../src/kirigami_ui/main.qml" line="395"/>
+        <location filename="../src/kirigami_ui/+android/main.qml" line="359"/>
+        <location filename="../src/kirigami_ui/+windows/main.qml" line="382"/>
         <source>Always hide formatting tools</source>
         <comment>Main menu actions</comment>
         <translation>إخفاء أدوات التنسيق دائمًا</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/main.qml" line="368"/>
-        <location filename="../src/kirigami_ui/+android/main.qml" line="332"/>
-        <location filename="../src/kirigami_ui/+windows/main.qml" line="354"/>
+        <location filename="../src/kirigami_ui/main.qml" line="403"/>
+        <location filename="../src/kirigami_ui/+android/main.qml" line="367"/>
+        <location filename="../src/kirigami_ui/+windows/main.qml" line="390"/>
         <source>Disable overlay contrast</source>
         <comment>Main menu actions. Disables contrast effect for the reading region overlay.</comment>
         <translation>تعطيل تباين طبقة القراءة</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/main.qml" line="376"/>
+        <location filename="../src/kirigami_ui/main.qml" line="411"/>
         <source>Disable bars overlay</source>
         <comment>Main menu actions. Disables bars surounding reading region.</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/main.qml" line="391"/>
-        <location filename="../src/kirigami_ui/+windows/main.qml" line="364"/>
+        <location filename="../src/kirigami_ui/main.qml" line="426"/>
+        <location filename="../src/kirigami_ui/+windows/main.qml" line="400"/>
         <source>Disable background transparency</source>
         <translation>تعطيل شفافية الخلفية</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/main.qml" line="410"/>
-        <location filename="../src/kirigami_ui/+windows/main.qml" line="383"/>
+        <location filename="../src/kirigami_ui/main.qml" line="445"/>
+        <location filename="../src/kirigami_ui/+windows/main.qml" line="419"/>
         <source>Force sub-pixel text renderer past 120px</source>
         <comment>Main menu actions. QPrompt switches between two text rendering techniques when the base font size exceeds 120px. Enabling this option forces QPrompt to always use the default renderer, which features smoother sub-pixel animations.</comment>
         <translation>إجبار محرك النص دون البكسل بعد 120 بكسل</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/main.qml" line="420"/>
-        <location filename="../src/kirigami_ui/+android/main.qml" line="340"/>
-        <location filename="../src/kirigami_ui/+windows/main.qml" line="393"/>
+        <location filename="../src/kirigami_ui/main.qml" line="455"/>
+        <location filename="../src/kirigami_ui/+android/main.qml" line="375"/>
+        <location filename="../src/kirigami_ui/+windows/main.qml" line="429"/>
         <source>Other tweaks</source>
         <comment>Main menu actions. Enters Other tweaks submenu.</comment>
         <translation>تعديلات أخرى</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/main.qml" line="423"/>
-        <location filename="../src/kirigami_ui/+android/main.qml" line="343"/>
-        <location filename="../src/kirigami_ui/+windows/main.qml" line="396"/>
+        <location filename="../src/kirigami_ui/main.qml" line="458"/>
+        <location filename="../src/kirigami_ui/+android/main.qml" line="378"/>
+        <location filename="../src/kirigami_ui/+windows/main.qml" line="432"/>
         <source>Show justify alignment button</source>
         <comment>Main menu actions. Show justify button on editor toolbar</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/main.qml" line="431"/>
-        <location filename="../src/kirigami_ui/+android/main.qml" line="350"/>
-        <location filename="../src/kirigami_ui/+windows/main.qml" line="403"/>
+        <location filename="../src/kirigami_ui/main.qml" line="466"/>
+        <location filename="../src/kirigami_ui/+android/main.qml" line="385"/>
+        <location filename="../src/kirigami_ui/+windows/main.qml" line="439"/>
         <source>Local file auto reload</source>
         <comment>Main menu actions. Enable local file auto reload</comment>
         <translation>إعادة التحميل التلقائية للملف المحلي</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/main.qml" line="439"/>
-        <location filename="../src/kirigami_ui/+windows/main.qml" line="411"/>
+        <location filename="../src/kirigami_ui/main.qml" line="474"/>
+        <location filename="../src/kirigami_ui/+windows/main.qml" line="447"/>
         <source>Fake fullscreen behavior</source>
         <comment>Main menu actions. Fake fullscreen behavior instead of requesting true fullscreen</comment>
         <translation>محاكاة سلوك الشاشة الكاملة</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/main.qml" line="448"/>
-        <location filename="../src/kirigami_ui/+android/main.qml" line="358"/>
-        <location filename="../src/kirigami_ui/+windows/main.qml" line="419"/>
+        <location filename="../src/kirigami_ui/main.qml" line="483"/>
+        <location filename="../src/kirigami_ui/+android/main.qml" line="393"/>
+        <location filename="../src/kirigami_ui/+windows/main.qml" line="455"/>
         <source>Restore factory defaults</source>
         <comment>Main menu actions</comment>
         <translation>استعادة الإعدادات الافتراضية</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/main.qml" line="457"/>
-        <location filename="../src/kirigami_ui/+android/main.qml" line="367"/>
-        <location filename="../src/kirigami_ui/+windows/main.qml" line="428"/>
+        <location filename="../src/kirigami_ui/main.qml" line="492"/>
+        <location filename="../src/kirigami_ui/+android/main.qml" line="402"/>
+        <location filename="../src/kirigami_ui/+windows/main.qml" line="464"/>
         <source>Language</source>
         <comment>Main menu actions</comment>
         <translation>اللغة</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/main.qml" line="464"/>
-        <location filename="../src/kirigami_ui/+android/main.qml" line="374"/>
-        <location filename="../src/kirigami_ui/+windows/main.qml" line="435"/>
+        <location filename="../src/kirigami_ui/main.qml" line="499"/>
+        <location filename="../src/kirigami_ui/+android/main.qml" line="409"/>
+        <location filename="../src/kirigami_ui/+windows/main.qml" line="471"/>
         <source>Abou&amp;t %1</source>
         <comment>Main menu actions. Load about page.</comment>
         <translation>حول %1</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/main.qml" line="470"/>
-        <location filename="../src/kirigami_ui/main.qml" line="654"/>
-        <location filename="../src/kirigami_ui/+android/main.qml" line="380"/>
-        <location filename="../src/kirigami_ui/+windows/main.qml" line="441"/>
+        <location filename="../src/kirigami_ui/main.qml" line="505"/>
+        <location filename="../src/kirigami_ui/main.qml" line="689"/>
+        <location filename="../src/kirigami_ui/+android/main.qml" line="415"/>
+        <location filename="../src/kirigami_ui/+windows/main.qml" line="477"/>
         <source>&amp;Quit</source>
         <comment>Main menu and global menu actions</comment>
         <translation>خروج</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/main.qml" line="530"/>
-        <location filename="../src/kirigami_ui/main.qml" line="910"/>
-        <location filename="../src/kirigami_ui/+android/main.qml" line="435"/>
-        <location filename="../src/kirigami_ui/+windows/main.qml" line="501"/>
+        <location filename="../src/kirigami_ui/main.qml" line="565"/>
+        <location filename="../src/kirigami_ui/main.qml" line="945"/>
+        <location filename="../src/kirigami_ui/+android/main.qml" line="470"/>
+        <location filename="../src/kirigami_ui/+windows/main.qml" line="537"/>
         <source>Load &amp;Welcome</source>
         <comment>Main menu and global actions. Load document that welcomes users.</comment>
         <translation>تحميل صفحة الترحيب</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/main.qml" line="593"/>
-        <location filename="../src/kirigami_ui/+android/main.qml" line="498"/>
-        <location filename="../src/kirigami_ui/+windows/main.qml" line="564"/>
+        <location filename="../src/kirigami_ui/main.qml" line="628"/>
+        <location filename="../src/kirigami_ui/+android/main.qml" line="533"/>
+        <location filename="../src/kirigami_ui/+windows/main.qml" line="600"/>
         <source>Darth mode</source>
         <translation>وضع دارث</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/main.qml" line="622"/>
+        <location filename="../src/kirigami_ui/main.qml" line="657"/>
         <source>&amp;File</source>
         <comment>Global menu actions</comment>
         <translation>ملف</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/main.qml" line="648"/>
+        <location filename="../src/kirigami_ui/main.qml" line="683"/>
         <source>Save &amp;As…</source>
         <comment>Main menu and global menu actions</comment>
         <translation>حفظ باسم…</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/main.qml" line="660"/>
+        <location filename="../src/kirigami_ui/main.qml" line="695"/>
         <source>&amp;Edit</source>
         <comment>Global menu actions</comment>
         <translation>تحرير</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/main.qml" line="663"/>
+        <location filename="../src/kirigami_ui/main.qml" line="698"/>
         <source>&amp;Undo</source>
         <comment>Global menu actions</comment>
         <translation>تراجع</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/main.qml" line="668"/>
+        <location filename="../src/kirigami_ui/main.qml" line="703"/>
         <source>&amp;Redo</source>
         <comment>Global menu actions</comment>
         <translation>إعادة</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/main.qml" line="674"/>
+        <location filename="../src/kirigami_ui/main.qml" line="709"/>
         <source>&amp;Copy</source>
         <comment>Global menu and editor context menu actions</comment>
         <translation>نسخ</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/main.qml" line="679"/>
+        <location filename="../src/kirigami_ui/main.qml" line="714"/>
         <source>Cu&amp;t</source>
         <comment>Global menu and editor context menu actions</comment>
         <translation>قص</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/main.qml" line="684"/>
+        <location filename="../src/kirigami_ui/main.qml" line="719"/>
         <source>&amp;Paste</source>
         <comment>Global menu and editor context menu actions</comment>
         <translation>لصق</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/main.qml" line="691"/>
+        <location filename="../src/kirigami_ui/main.qml" line="726"/>
         <source>&amp;View</source>
         <comment>Global menu actions</comment>
         <translation>عرض</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/main.qml" line="694"/>
+        <location filename="../src/kirigami_ui/main.qml" line="729"/>
         <source>Full &amp;screen</source>
         <comment>Global menu actions</comment>
         <translation>شاشة كاملة</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/main.qml" line="708"/>
+        <location filename="../src/kirigami_ui/main.qml" line="743"/>
         <source>&amp;Indicators</source>
         <comment>Global menu actions. Indicators highlight reading region.</comment>
         <translation>المؤشرات</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/main.qml" line="710"/>
+        <location filename="../src/kirigami_ui/main.qml" line="745"/>
         <source>&amp;Left Pointer</source>
         <comment>Global menu actions. Shows pointer to the left of the reading region.</comment>
         <translation>مؤشر يسار</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/main.qml" line="716"/>
+        <location filename="../src/kirigami_ui/main.qml" line="751"/>
         <source>&amp;Right Pointer</source>
         <comment>Global menu actions. Shows pointer to the right of the reading region.</comment>
         <translation>مؤشر يمين</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/main.qml" line="722"/>
+        <location filename="../src/kirigami_ui/main.qml" line="757"/>
         <source>B&amp;oth Pointers</source>
         <comment>Global menu actions. Shows pointers to the left and right of the reading region.</comment>
         <translation>كلا المؤشرين</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/main.qml" line="728"/>
+        <location filename="../src/kirigami_ui/main.qml" line="763"/>
         <source>No pointers</source>
         <comment>Disable all reading region pointers</comment>
         <translation>بدون مؤشرات</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/main.qml" line="738"/>
+        <location filename="../src/kirigami_ui/main.qml" line="773"/>
         <source>&amp;Bars</source>
         <comment>Global menu actions. Translucent bars indicate reading region.</comment>
         <translation>أشرطة</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/main.qml" line="735"/>
+        <location filename="../src/kirigami_ui/main.qml" line="770"/>
         <source>Readin&amp;g region</source>
         <comment>Global menu actions. Reading region indicates where a talent should be reading from.</comment>
         <translation>منطقة القراءة</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/main.qml" line="225"/>
-        <location filename="../src/kirigami_ui/+android/main.qml" line="206"/>
-        <location filename="../src/kirigami_ui/+windows/main.qml" line="220"/>
+        <location filename="../src/kirigami_ui/main.qml" line="260"/>
+        <location filename="../src/kirigami_ui/+android/main.qml" line="241"/>
+        <location filename="../src/kirigami_ui/+windows/main.qml" line="256"/>
         <source>&amp;Recent Files</source>
         <comment>Main menu actions. Submenu listing recently opened documents.</comment>
         <translation type="unfinished">الملفات الأخيرة</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/main.qml" line="750"/>
+        <location filename="../src/kirigami_ui/main.qml" line="785"/>
         <source>&amp;Top</source>
         <comment>Global menu actions. Align reading region to top of prompter.</comment>
         <translation>أعلى</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/main.qml" line="756"/>
+        <location filename="../src/kirigami_ui/main.qml" line="791"/>
         <source>&amp;Middle</source>
         <comment>Global menu actions. Align reading region to vertical center of prompter.</comment>
         <translation>وسط</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/main.qml" line="762"/>
+        <location filename="../src/kirigami_ui/main.qml" line="797"/>
         <source>&amp;Bottom</source>
         <comment>Global menu actions. Align reading region to bottom of prompter.</comment>
         <translation>أسفل</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/main.qml" line="769"/>
+        <location filename="../src/kirigami_ui/main.qml" line="804"/>
         <source>F&amp;ree placement</source>
         <comment>Global menu actions. Enables drag and drop positioning of reading region.</comment>
         <translation>توضع حر</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/main.qml" line="775"/>
+        <location filename="../src/kirigami_ui/main.qml" line="810"/>
         <source>C&amp;ustom (Fixed placement)</source>
         <comment>Global menu actions. Fix positioning of reading region to what was set in &quot;Free placement&quot; mode.</comment>
         <translation>مخصص (توضع ثابت)</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/main.qml" line="784"/>
+        <location filename="../src/kirigami_ui/main.qml" line="819"/>
         <source>For&amp;mat</source>
         <comment>Global menu actions</comment>
         <translation>تنسيق</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/main.qml" line="787"/>
+        <location filename="../src/kirigami_ui/main.qml" line="822"/>
         <source>&amp;Bold</source>
         <comment>Global menu actions</comment>
         <translation>عريض</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/main.qml" line="793"/>
+        <location filename="../src/kirigami_ui/main.qml" line="828"/>
         <source>&amp;Italic</source>
         <comment>Global menu actions</comment>
         <translation>مائل</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/main.qml" line="799"/>
+        <location filename="../src/kirigami_ui/main.qml" line="834"/>
         <source>&amp;Underline</source>
         <comment>Global menu actions</comment>
         <translation>مسطر</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/main.qml" line="806"/>
+        <location filename="../src/kirigami_ui/main.qml" line="841"/>
         <source>Align &amp;Left</source>
         <comment>Global menu and editor actions. Text alignment.</comment>
         <translation>محاذاة يسار</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/main.qml" line="806"/>
+        <location filename="../src/kirigami_ui/main.qml" line="841"/>
         <source>Align &amp;Right</source>
         <comment>Global menu and editor actions. Text alignment.</comment>
         <translation>محاذاة يمين</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/main.qml" line="817"/>
+        <location filename="../src/kirigami_ui/main.qml" line="852"/>
         <source>Align Cen&amp;ter</source>
         <comment>Global menu actions. Text alignment.</comment>
         <translation>محاذاة وسط</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/main.qml" line="823"/>
+        <location filename="../src/kirigami_ui/main.qml" line="858"/>
         <source>Align &amp;Right</source>
         <comment>Global menu actions. Text alignment.</comment>
         <translation>محاذاة يمين</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/main.qml" line="823"/>
+        <location filename="../src/kirigami_ui/main.qml" line="858"/>
         <source>Align &amp;Left</source>
         <comment>Global menu actions. Text alignment.</comment>
         <translation>محاذاة يسار</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/main.qml" line="842"/>
+        <location filename="../src/kirigami_ui/main.qml" line="877"/>
         <source>C&amp;haracter</source>
         <comment>Global menu actions. Opens dialog to format currently selected text.</comment>
         <translation>حرف</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/main.qml" line="846"/>
+        <location filename="../src/kirigami_ui/main.qml" line="881"/>
         <source>Fo&amp;nt Color</source>
         <comment>Global menu actions. Opens dialog to color currently selected text.</comment>
         <translation>لون الخط</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/main.qml" line="852"/>
+        <location filename="../src/kirigami_ui/main.qml" line="887"/>
         <source>Controls</source>
         <comment>Global menu actions. Menu regarding input settings.</comment>
         <translation>عناصر التحكم</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/main.qml" line="894"/>
+        <location filename="../src/kirigami_ui/main.qml" line="929"/>
         <source>&amp;Help</source>
         <comment>Global menu actions</comment>
         <translation>مساعدة</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/main.qml" line="897"/>
+        <location filename="../src/kirigami_ui/main.qml" line="932"/>
         <source>Report &amp;Bug…</source>
         <comment>Global menu actions</comment>
         <translation>الإبلاغ عن خطأ…</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/main.qml" line="916"/>
+        <location filename="../src/kirigami_ui/main.qml" line="951"/>
         <source>Abou&amp;t %1</source>
         <comment>Global menu actions. Load about page. &quot;About AppName&quot;</comment>
         <translation>حول %1</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/main.qml" line="1084"/>
-        <location filename="../src/kirigami_ui/+windows/main.qml" line="753"/>
+        <location filename="../src/kirigami_ui/main.qml" line="1119"/>
+        <location filename="../src/kirigami_ui/+windows/main.qml" line="789"/>
         <source>Restart %1</source>
         <comment>Restart application_name</comment>
         <translation>إعادة تشغيل %1</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/main.qml" line="1085"/>
-        <location filename="../src/kirigami_ui/+windows/main.qml" line="754"/>
+        <location filename="../src/kirigami_ui/main.qml" line="1120"/>
+        <location filename="../src/kirigami_ui/+windows/main.qml" line="790"/>
         <source>%1 needs to restart for this change to fully take effect.
 
 Would you like to restart %1 now? All changes to document will be lost.</source>
@@ -3138,31 +3138,31 @@ Would you like to restart application now? All changes to document will be lost.
 هل تريد إعادة تشغيل %1 الآن؟ ستُفقد جميع التغييرات في المستند.</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/main.qml" line="1104"/>
-        <location filename="../src/kirigami_ui/+android/main.qml" line="677"/>
-        <location filename="../src/kirigami_ui/+windows/main.qml" line="773"/>
+        <location filename="../src/kirigami_ui/main.qml" line="1139"/>
+        <location filename="../src/kirigami_ui/+android/main.qml" line="712"/>
+        <location filename="../src/kirigami_ui/+windows/main.qml" line="809"/>
         <source>Factory Reset</source>
         <translation>إعادة ضبط المصنع</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/main.qml" line="1105"/>
-        <location filename="../src/kirigami_ui/+android/main.qml" line="678"/>
-        <location filename="../src/kirigami_ui/+windows/main.qml" line="774"/>
+        <location filename="../src/kirigami_ui/main.qml" line="1140"/>
+        <location filename="../src/kirigami_ui/+android/main.qml" line="713"/>
+        <location filename="../src/kirigami_ui/+windows/main.qml" line="810"/>
         <source>Restore all configurations to factory defaults? QPrompt will close if you click Yes and all unsaved document changes will be lost.</source>
         <translation>استعادة جميع الإعدادات إلى الإعدادات الافتراضية للمصنع؟ سيتم إغلاق QPrompt إذا نقرت على نعم وستُفقد جميع التغييرات غير المحفوظة في المستند.</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/main.qml" line="1124"/>
-        <location filename="../src/kirigami_ui/+android/main.qml" line="697"/>
-        <location filename="../src/kirigami_ui/+windows/main.qml" line="793"/>
+        <location filename="../src/kirigami_ui/main.qml" line="1159"/>
+        <location filename="../src/kirigami_ui/+android/main.qml" line="732"/>
+        <location filename="../src/kirigami_ui/+windows/main.qml" line="829"/>
         <source>Save Document</source>
         <comment>Title for save before closing dialog</comment>
         <translation>حفظ المستند</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/main.qml" line="1125"/>
-        <location filename="../src/kirigami_ui/+android/main.qml" line="698"/>
-        <location filename="../src/kirigami_ui/+windows/main.qml" line="794"/>
+        <location filename="../src/kirigami_ui/main.qml" line="1160"/>
+        <location filename="../src/kirigami_ui/+android/main.qml" line="733"/>
+        <location filename="../src/kirigami_ui/+windows/main.qml" line="830"/>
         <source>Save changes to document before closing?</source>
         <translation>حفظ التغييرات على المستند قبل الإغلاق؟</translation>
     </message>
