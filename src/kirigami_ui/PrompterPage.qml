@@ -335,6 +335,7 @@ Kirigami.Page {
                 checked: viewport.timer.stopwatch
                 icon.name: "keyframe-record"
                 text: qsTr("Stopwatch")
+                tooltip: qsTr("Indicate time taken", "Stopwatch button tooltip")
                 onTriggered: {
                     viewport.timer.stopwatch = checked
                     viewport.prompter.restoreFocus()
@@ -347,6 +348,7 @@ Kirigami.Page {
                 checked: viewport.timer.showSystemTime
                 icon.name: "keyframe"
                 text: qsTr("Clock", "Show Current Time")
+                tooltip: qsTr("Show current time", "Clock button tooltip")
                 onTriggered: {
                     viewport.timer.showSystemTime = checked;
                     viewport.timer.updateTimer();
@@ -364,6 +366,7 @@ Kirigami.Page {
                     viewport.timer.eta = checked
                     viewport.prompter.restoreFocus()
                 }
+                tooltip: qsTr("Estimated Time to Arrival", "ETA button tooltip")
             }
             Kirigami.Action {
                 id: timerColorButton
@@ -397,6 +400,7 @@ Kirigami.Page {
                 checkable: true
                 checked: viewport.countdown.frame && !autoStartCountdownButton.checked
                 text: qsTr("Auto frame", "Enables automatic alignment of prompter and text with the reading region")
+                tooltip: qsTr("On start, auto-align text with reading region", "Auto frame button tooltip")
                 icon.name: "transform-move-vertical"
                 onTriggered: {
                     viewport.countdown.frame = !viewport.countdown.frame
@@ -413,6 +417,7 @@ Kirigami.Page {
                 checkable: true
                 checked: viewport.countdown.enabled
                 text: qsTr("Countdown")
+                tooltip: qsTr("Show countdown before prompting", "Countdown button tooltip")
                 icon.name: "chronometer-pause"
                 onTriggered: {
                     viewport.countdown.enabled = !viewport.countdown.enabled
@@ -429,8 +434,8 @@ Kirigami.Page {
                 checkable: true
                 checked: viewport.countdown.autoStart && enableCountdownButton.checked
                 text: qsTr("Auto start", "Auto start countdown upon prompter getting started")
+                tooltip: qsTr("Start countdown immediately", "Auto start button tooltip")
                 icon.name: "chronometer"
-                tooltip: qsTr("Start countdown automatically")
                 onTriggered: {
                     viewport.countdown.autoStart = !viewport.countdown.autoStart
                     // contextDrawer.close()
@@ -441,6 +446,7 @@ Kirigami.Page {
                 id: setCountdownButton
                 enabled: enableCountdownButton.enabled && viewport.countdown.enabled
                 text: qsTr("Set duration", "Configure countdown duration")
+                tooltip: qsTr("Set countdown duration", "Set duration button tooltip")
                 icon.name: "keyframe-add"
                 onTriggered: {
                     countdownConfiguration.open()
@@ -458,6 +464,7 @@ Kirigami.Page {
             }
 
             text: qsTr("Orientation", "Prompter orientation and mirroring")
+            tooltip: qsTr("Flip settings and more", "Orientation button tooltip")
 
             //Kirigami.Action {
                 //readonly property string shortName: qsTr("No Flip")
@@ -644,6 +651,7 @@ Kirigami.Page {
             id: displaySettings
             visible: (!Kirigami.Settings.isMobile || Qt.platform.os==='linux') && Qt.platform.os!=='haiku' &&  Qt.platform.os!=="wasm"
             text: qsTr("Screens", "Screens refers to computer displays")
+            tooltip: qsTr("Configure prompting on multiple displays", "Screens button tooltip")
 
             Kirigami.Action {
                 displayComponent: ListView {
@@ -693,6 +701,7 @@ Kirigami.Page {
             }
             Kirigami.Action {
                 text: qsTr("Enable projection", "Display prompter copies onto displays")
+                tooltip: qsTr("Display prompter copies onto displays", "Enable projections button tooltip")
                 //tooltip: qsTr("Display prompter copies onto extended displays")
                 checkable: true
                 checked: projectionManager.isEnabled
@@ -705,6 +714,7 @@ Kirigami.Page {
             Kirigami.Action {
                 enabled: projectionManager.isEnabled
                 text: qsTr("Scale projection", "Enable scaling prompter copies being projected onto displays")
+                tooltip: qsTr("Scale to fit the screen", "Scale button tooltip")
                 checkable: true
                 checked: projectionManager.reScale
                 onTriggered: {
