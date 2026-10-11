@@ -1448,20 +1448,37 @@ Help us translate QPrompt, visit:</source>
     </message>
     <message>
         <location filename="../src/prompter/Prompter.qml" line="2053"/>
-        <source>Drag to resize</source>
+        <source>Double click to reset displacement</source>
         <comment>Left handle button tooltip</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/prompter/Prompter.qml" line="2053"/>
-        <location filename="../src/prompter/Prompter.qml" line="2092"/>
-        <source>Double click to reset</source>
+        <source>Drag to adjust width</source>
+        <comment>Left handle button tooltip</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/prompter/Prompter.qml" line="2053"/>
+        <source>Double click to reset width adjustment</source>
         <comment>Left handle button tooltip</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/prompter/Prompter.qml" line="2092"/>
         <source>Drag to displace</source>
+        <comment>Right handle button tooltip</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/prompter/Prompter.qml" line="2092"/>
+        <source>Double click to reset width and displacement</source>
+        <comment>Right handle button tooltip</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/prompter/Prompter.qml" line="2092"/>
+        <source>Double click to reset displacement</source>
         <comment>Right handle button tooltip</comment>
         <translation type="unfinished"></translation>
     </message>

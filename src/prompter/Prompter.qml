@@ -2050,7 +2050,7 @@ Flickable {
                         prompter.contentsPlacement = 0.02;
                     }
                     property bool hovered: false
-                    ToolTip.text: Math.round(100*prompter.contentsPlacement)/100 === 0.02 ? qsTr("Drag to resize", "Left handle button tooltip") : qsTr("Double click to reset", "Left handle button tooltip")
+                    ToolTip.text: Math.round(100*prompter.contentsPlacement)/100 === 0.02 ? qsTr("Drag to adjust width", "Left handle button tooltip") : (positionHandler.placement === 0 ? qsTr("Double click to reset width adjustment", "Left handle button tooltip") : qsTr("Double click to reset displacement", "Left handle button tooltip"))
                     ToolTip.visible: hovered
                     ToolTip.delay: Units.ToolTipDelay
                     Loader {
@@ -2089,7 +2089,7 @@ Flickable {
                         prompter.contentsPlacement = 0.02;
                     }
                     property bool hovered: false
-                    ToolTip.text: positionHandler.placement === 0 ? qsTr("Drag to displace", "Right handle button tooltip") : qsTr("Double click to reset", "Left handle button tooltip")
+                    ToolTip.text: positionHandler.placement === 0 ? qsTr("Drag to displace", "Right handle button tooltip") : (Math.round(100*prompter.contentsPlacement)/100 === 0.02 ? qsTr("Double click to reset displacement", "Right handle button tooltip") : qsTr("Double click to reset width and displacement", "Right handle button tooltip"))
                     ToolTip.visible: hovered
                     ToolTip.delay: Units.ToolTipDelay
                     Loader {
