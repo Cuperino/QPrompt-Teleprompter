@@ -101,7 +101,6 @@ Item {
                 enabled: upperControls.visible
                 animation: OpacityAnimator {
                     duration: Units.ShortDuration
-                    easing.type: Easing.EaseOut
                 }
             }
         }
@@ -130,7 +129,6 @@ Item {
             enabled: parent.visible
             animation: OpacityAnimator {
                 duration: Units.ShortDuration
-                easing.type: Easing.EaseOut
             }
         }
         Behavior on anchors.bottomMargin {
