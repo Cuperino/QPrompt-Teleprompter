@@ -975,10 +975,10 @@ void DocumentHandler::load(const QUrl &fileUrl)
                     QString html = QString::fromUtf8(data).replace(regex_0, QLatin1String(""));
                     updateContents(html, Qt::RichText);
                 }
-#if QT_VERSION >= 0x050F00
                 else if (mime.inherits(QLatin1String("text/markdown")))
                     updateContents(QString::fromUtf8(data), Qt::MarkdownText);
-#endif
+                else if (mime.inherits(QLatin1String("text/plain")))
+                    updateContents(QString::fromUtf8(data), Qt::PlainText);
                 // File formats imported using external software
                 else {
 #if !(defined(Q_OS_ANDROID) || defined(Q_OS_IOS) || defined(Q_OS_WASM) || defined(Q_OS_WATCHOS))
@@ -1134,9 +1134,13 @@ void DocumentHandler::updateContents(const QString &text, Qt::TextFormat format)
         break;
     case Qt::RichText:
         // Document metadata extraction would happen at this time
-        Q_FALLTHROUGH();
-    case Qt::AutoText:
         cursor.insertHtml(text);
+        break;
+    case Qt::AutoText:
+        if (Qt::mightBeRichText(text))
+            cursor.insertHtml(text);
+        else
+            cursor.insertText(text);
         break;
     }
     Q_EMIT loaded(format);

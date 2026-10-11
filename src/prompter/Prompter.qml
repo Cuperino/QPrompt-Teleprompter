@@ -2410,7 +2410,8 @@ Flickable {
             positionBackup = prompter.position;
         }
         onLoaded: (format) => {
-            editor.textFormat = format
+            // Keep the editor in rich text mode after loading plain text, so it can still be formatted
+            editor.textFormat = format === Qt.PlainText ? Qt.RichText : format
             editorToolbar.lineHeightSlider.update()
             editorToolbar.paragraphSpacingSlider.update()
             if (document.comesFromNetwork) {
