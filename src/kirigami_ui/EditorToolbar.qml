@@ -109,8 +109,7 @@ ToolBar {
     //    id: height
     //    enabled: true
     //    animation: NumberAnimation {
-    //        duration: Units.ShortDuration>>1
-    //        easing.type: Easing.OutQuad
+    //        duration: Units.LongDuration
     //    }
     //}
     position: ToolBar.Footer
@@ -915,7 +914,7 @@ ToolBar {
                 }
                 Timer {
                     id: fontSpacingOptionsTimer
-                    interval: 250
+                    interval: Units.LongDuration
                     onTriggered: {
                         toolbar.showFontSpacingOptions = !toolbar.showFontSpacingOptions;
                     }
@@ -943,7 +942,7 @@ ToolBar {
                 }
                 Timer {
                     id: openAnimationConfigTimer
-                    interval: 250
+                    interval: Units.LongDuration
                     onTriggered: {
                         toolbar.showAnimationConfigOptions = !toolbar.showAnimationConfigOptions;
                     }
@@ -1030,7 +1029,7 @@ ToolBar {
                 }
                 Timer {
                     id: opacityOptionsTimer
-                    interval: 250
+                    interval: Units.LongDuration
                     onTriggered: {
                         toolbar.showOpacityOptions = !toolbar.showOpacityOptions;
                     }
@@ -1303,8 +1302,7 @@ ToolBar {
             Behavior on height{
                 enabled: true
                 animation: NumberAnimation {
-                    duration: Units.ShortDuration
-                    easing.type: Easing.OutQuad
+                    duration: Units.LongDuration
                 }
             }
             ToolButton {
@@ -1424,8 +1422,7 @@ ToolBar {
             Behavior on height{
                 enabled: true
                 animation: NumberAnimation {
-                    duration: Units.ShortDuration
-                    easing.type: Easing.OutQuad
+                    duration: Units.LongDuration
                 }
             }
             ToolButton {
@@ -1546,8 +1543,7 @@ ToolBar {
             Behavior on height{
                 enabled: true
                 animation: NumberAnimation {
-                    duration: Units.ShortDuration
-                    easing.type: Easing.OutQuad
+                    duration: Units.LongDuration
                 }
             }
             ToolButton {
@@ -1667,8 +1663,7 @@ ToolBar {
             Behavior on height{
                 enabled: true
                 animation: NumberAnimation {
-                    duration: Units.ShortDuration
-                    easing.type: Easing.OutQuad
+                    duration: Units.LongDuration
                 }
             }
             ToolButton {
@@ -1795,8 +1790,7 @@ ToolBar {
             Behavior on height{
                 enabled: true
                 animation: NumberAnimation {
-                    duration: Units.ShortDuration
-                    easing.type: Easing.OutQuad
+                    duration: Units.LongDuration
                 }
             }
             ToolButton {
@@ -1922,8 +1916,7 @@ ToolBar {
             Behavior on height{
                 enabled: true
                 animation: NumberAnimation {
-                    duration: Units.ShortDuration
-                    easing.type: Easing.OutQuad
+                    duration: Units.LongDuration
                 }
             }
             ToolButton {
@@ -2042,8 +2035,7 @@ ToolBar {
             Behavior on height{
                 enabled: true
                 animation: NumberAnimation {
-                    duration: Units.ShortDuration
-                    easing.type: Easing.OutQuad
+                    duration: Units.LongDuration
                 }
             }
             ToolButton {
@@ -2164,8 +2156,7 @@ ToolBar {
             Behavior on height{
                 enabled: true
                 animation: NumberAnimation {
-                    duration: Units.ShortDuration
-                    easing.type: Easing.OutQuad
+                    duration: Units.LongDuration
                 }
             }
             ToolButton {

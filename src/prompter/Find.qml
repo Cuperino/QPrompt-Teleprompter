@@ -89,7 +89,7 @@ Item {
     Behavior on height {
         enabled: true
         animation: NumberAnimation {
-            duration: Units.ShortDuration
+            duration: Kirigami.Units.longDuration
             easing.type: Easing.OutQuad
         }
     }

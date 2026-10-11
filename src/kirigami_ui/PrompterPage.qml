@@ -1347,7 +1347,7 @@ Kirigami.Page {
                 id: timer
                 running: false
                 repeat: false
-                interval: Units.HumanMoment
+                interval: Kirigami.Units.humanMoment
                 onTriggered: namedMarkerConfiguration.close()
             }
             Label {
