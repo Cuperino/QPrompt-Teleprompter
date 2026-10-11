@@ -78,14 +78,12 @@ Item {
             enabled: parent.visible
             animation: OpacityAnimator {
                 duration: Units.ShortDuration
-                easing.type: Easing.EaseOut
             }
         }
         Behavior on anchors.leftMargin {
             enabled: viewport.noDistractingAnimation
             animation: NumberAnimation {
                 duration: Units.ShortDuration
-                easing.type: Easing.EaseOut
             }
         }
         Button {
@@ -135,7 +133,6 @@ Item {
             enabled: viewport.noDistractingAnimation
             animation: NumberAnimation {
                 duration: Units.ShortDuration
-                easing.type: Easing.EaseOut
             }
         }
         Button {
@@ -151,7 +148,6 @@ Item {
                 enabled: bottomControls.visible
                 animation: OpacityAnimator {
                     duration: Units.ShortDuration
-                    easing.type: Easing.EaseOut
                 }
             }
         }
@@ -182,7 +178,6 @@ Item {
                 enabled: bottomControls.visible
                 animation: OpacityAnimator {
                     duration: Units.ShortDuration
-                    easing.type: Easing.EaseOut
                 }
             }
         }
