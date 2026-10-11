@@ -877,6 +877,8 @@ Kirigami.Page {
         property real originY: 0
         property int originalVelocity: 0
         property bool firstResetDone: false
+        // Vertical mouse travel, in logical pixels, required to change velocity by one step
+        readonly property int pixelsPerStep: 40
 
         Rectangle {
             anchors.fill: parent
@@ -948,8 +950,13 @@ Kirigami.Page {
         acceptedButtons: Qt.MiddleButton | Qt.RightButton
         cursorShape: undefined
 
-        onPressed: activate(mouse)
-        onPressAndHold: activate(mouse)
+        onPressed: (mouse) => {
+            activate(mouse);
+        }
+        onPressAndHold: (mouse) => {
+            activate(mouse);
+        }
+
         property bool firstActivate: true
         function activate(mouse) {
             if (firstActivate) {
@@ -965,6 +972,7 @@ Kirigami.Page {
                     velocityIndicator.x = mouse.x - velocityIndicator.width / 2
                     velocityIndicator.y = mouse.y - velocityIndicator.height / 2
                     velocityIndicator.firstResetDone = false
+                    velocityDragOverlay.reset()
                     velocityIndicatorFadeOut.stop()
                     velocityIndicator.visible = true
                     velocityIndicator.opacity = 1
@@ -992,6 +1000,74 @@ Kirigami.Page {
             id: velocityCursorUtil
         }
 
+        // Displacement is accumulated between consecutive events, rather than measured from a fixed origin, so that
+        // asynchronous (Wayland pointer-warp), coalesced (X11), or unsupported cursor warps can't cause sudden jumps
+        property bool warpPending: false
+        property real warpTargetX: 0
+        property real warpTargetY: 0
+        property real accumulatedX: 0
+        property real accumulatedY: 0
+
+        function reset() {
+            cancelTimers()
+            accumulatedX = 0
+            accumulatedY = 0
+        }
+
+        function warpCursor(x, y) {
+            var globalPos = velocityDragOverlay.mapToGlobal(x, y)
+            velocityCursorUtil.setCursorPos(globalPos.x, globalPos.y)
+            warpTargetX = x
+            warpTargetY = y
+            warpPending = true
+            warpExpiry.restart()
+        }
+
+        // Velocity changes are throttled; steps taken in between are combined into a single velocity change
+        readonly property int velocityChangeInterval: 66
+        property int pendingSteps: 0
+        property real lastVelocityChange: 0
+
+        function queueSteps(steps) {
+            pendingSteps += steps
+            if (velocityThrottle.running)
+                return
+            var elapsed = Date.now() - lastVelocityChange
+            if (elapsed >= velocityChangeInterval)
+                applyPendingSteps()
+            else {
+                // Only wait out the remainder of the interval
+                velocityThrottle.interval = velocityChangeInterval - elapsed
+                velocityThrottle.start()
+            }
+        }
+
+        function applyPendingSteps() {
+            viewport.prompter.changeVelocity(pendingSteps)
+            velocityIndicator.originalVelocity = viewport.prompter.__i
+            pendingSteps = 0
+            lastVelocityChange = Date.now()
+        }
+
+        function cancelTimers() {
+            pendingSteps = 0
+            velocityThrottle.stop()
+            warpPending = false
+            warpExpiry.stop()
+        }
+
+        Timer {
+            id: velocityThrottle
+            onTriggered: velocityDragOverlay.applyPendingSteps()
+        }
+
+        Timer {
+            id: warpExpiry
+            // Stop expecting a warp that never landed, so normal movement through the target isn't mistaken for it
+            interval: 250
+            onTriggered: velocityDragOverlay.warpPending = false
+        }
+
         function dismiss() {
             // Warp cursor back to indicator center and restore visibility before hiding
             var indicatorCenterX = velocityIndicator.x + velocityIndicator.width / 2
@@ -1000,6 +1076,7 @@ Kirigami.Page {
             velocityCursorUtil.setCursorPos(globalPos.x, globalPos.y)
             if (velocityIndicator.firstResetDone)
                 velocityCursorUtil.restoreCursor()
+            cancelTimers()
             velocityIndicatorFadeOut.start()
         }
 
@@ -1008,37 +1085,41 @@ Kirigami.Page {
                 return
             var deltaX = mouse.x - velocityIndicator.originX
             var deltaY = mouse.y - velocityIndicator.originY
-            var steps = Math.trunc(deltaY / 20)
-            var needsXReset = Math.abs(deltaX) > 20
-            if (steps !== 0 || needsXReset) {
-                var absSteps = Math.abs(steps)
-                for (var i = 0; i < absSteps; i++) {
-                    if (steps > 0)
-                        viewport.prompter.increaseVelocity(false)
-                    else
-                        viewport.prompter.decreaseVelocity(false)
+            if (warpPending) {
+                // The event closer to the warp target than to the previous position is the warp landing,
+                // possibly combined with further movement; only count movement made after the warp
+                var distToTarget = Math.hypot(mouse.x - warpTargetX, mouse.y - warpTargetY)
+                if (distToTarget < Math.hypot(deltaX, deltaY)) {
+                    deltaX = mouse.x - warpTargetX
+                    deltaY = mouse.y - warpTargetY
+                    warpPending = false
+                    warpExpiry.stop()
                 }
-                velocityIndicator.originalVelocity = viewport.prompter.__i
+            }
+            velocityIndicator.originX = mouse.x
+            velocityIndicator.originY = mouse.y
+            accumulatedX += deltaX
+            accumulatedY += deltaY
+            var steps = Math.trunc(accumulatedY / velocityIndicator.pixelsPerStep)
+            accumulatedY -= steps * velocityIndicator.pixelsPerStep
+            var needsXReset = Math.abs(accumulatedX) > 20
+            if (steps !== 0 || needsXReset) {
+                if (steps !== 0)
+                    queueSteps(steps)
+                var targetX, targetY
                 if (!velocityIndicator.firstResetDone) {
                     // First reset: warp cursor to indicator center
-                    var indCenterX = velocityIndicator.x + velocityIndicator.width / 2
-                    var indCenterY = velocityIndicator.y + velocityIndicator.height / 2
-                    var globalPos0 = velocityDragOverlay.mapToGlobal(indCenterX, indCenterY)
-                    velocityCursorUtil.setCursorPos(globalPos0.x, globalPos0.y)
-                    velocityIndicator.originX = indCenterX
-                    velocityIndicator.originY = indCenterY
+                    targetX = velocityIndicator.x + velocityIndicator.width / 2
+                    targetY = velocityIndicator.y + velocityIndicator.height / 2
                     velocityIndicator.firstResetDone = true
                     velocityCursorUtil.hideCursor()
                 } else {
                     // Subsequent resets: warp cursor to page center (Y) and reset X
-                    var pageCenterX = viewport.width / 2
-                    var pageCenterY = steps !== 0 ? viewport.height / 2 : mouse.y
-                    var globalPos = velocityDragOverlay.mapToGlobal(pageCenterX, pageCenterY)
-                    velocityCursorUtil.setCursorPos(globalPos.x, globalPos.y)
-                    velocityIndicator.originX = pageCenterX
-                    if (steps !== 0)
-                        velocityIndicator.originY = pageCenterY
+                    targetX = viewport.width / 2
+                    targetY = steps !== 0 ? viewport.height / 2 : mouse.y
                 }
+                accumulatedX = 0
+                warpCursor(targetX, targetY)
             }
         }
 

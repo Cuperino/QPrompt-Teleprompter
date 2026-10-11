@@ -27,7 +27,7 @@
 <context>
     <name>EMAILS OF TRANSLATORS</name>
     <message>
-        <location filename="../src/main.cpp" line="185"/>
+        <location filename="../src/main.cpp" line="180"/>
         <source>Emails of translators</source>
         <translation>Ваші електронні адреси, till.svit@gmail.com, rusGoldberg@gmail.com</translation>
     </message>
@@ -1108,7 +1108,7 @@ Help us translate QPrompt, visit:</source>
 <context>
     <name>NAMES OF TRANSLATORS</name>
     <message>
-        <location filename="../src/main.cpp" line="185"/>
+        <location filename="../src/main.cpp" line="180"/>
         <source>Names of translators</source>
         <translation>Ваші імена, Tymofii Lytvynenko, Goldberg</translation>
     </message>
@@ -1364,156 +1364,156 @@ Microsoft Word,</translation>
 <context>
     <name>Prompter</name>
     <message>
-        <location filename="../src/prompter/Prompter.qml" line="1011"/>
+        <location filename="../src/prompter/Prompter.qml" line="1035"/>
         <source>Error loading file…</source>
         <translation>Помилка завантаження файлу…</translation>
     </message>
     <message>
-        <location filename="../src/prompter/Prompter.qml" line="1100"/>
+        <location filename="../src/prompter/Prompter.qml" line="1124"/>
         <source>Rewind to start</source>
         <comment>End of prompt button tooltip</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/prompter/Prompter.qml" line="1143"/>
+        <location filename="../src/prompter/Prompter.qml" line="1167"/>
         <source>Press and hold to go back to the start</source>
         <translation>Натисніть і утримуйте, щоб повернутися на початок</translation>
     </message>
     <message>
-        <location filename="../src/prompter/Prompter.qml" line="1145"/>
+        <location filename="../src/prompter/Prompter.qml" line="1169"/>
         <source>Double tap to go back to the start</source>
         <translation>Двічі торкніться, щоб повернутися на початок</translation>
     </message>
     <message>
-        <location filename="../src/prompter/Prompter.qml" line="1153"/>
+        <location filename="../src/prompter/Prompter.qml" line="1177"/>
         <source>Auto rewind cancelled</source>
         <translation>Автоматична перемотка скасована</translation>
     </message>
     <message>
-        <location filename="../src/prompter/Prompter.qml" line="1203"/>
+        <location filename="../src/prompter/Prompter.qml" line="1227"/>
         <source>Stop at end</source>
         <comment>End of prompt button tooltip</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/prompter/Prompter.qml" line="1262"/>
+        <location filename="../src/prompter/Prompter.qml" line="1286"/>
         <source>Loop at end</source>
         <comment>End of prompt button tooltip</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/prompter/Prompter.qml" line="1321"/>
+        <location filename="../src/prompter/Prompter.qml" line="1345"/>
         <source>Loop delay</source>
         <comment>End of prompt button tooltip</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/prompter/Prompter.qml" line="2092"/>
+        <location filename="../src/prompter/Prompter.qml" line="2116"/>
         <source>Drag to displace</source>
         <comment>Right handle button tooltip</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/prompter/Prompter.qml" line="2092"/>
+        <location filename="../src/prompter/Prompter.qml" line="2116"/>
         <source>Double click to reset width and displacement</source>
         <comment>Right handle button tooltip</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/prompter/Prompter.qml" line="2092"/>
+        <location filename="../src/prompter/Prompter.qml" line="2116"/>
         <source>Double click to reset displacement</source>
         <comment>Right handle button tooltip</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/prompter/Prompter.qml" line="2275"/>
+        <location filename="../src/prompter/Prompter.qml" line="2299"/>
         <source>New document</source>
         <translation>Новий документ</translation>
     </message>
     <message>
-        <location filename="../src/prompter/Prompter.qml" line="2284"/>
+        <location filename="../src/prompter/Prompter.qml" line="2308"/>
         <source>welcome_en.html</source>
         <translation>welcome_uk.html</translation>
     </message>
     <message>
-        <location filename="../src/prompter/Prompter.qml" line="2289"/>
+        <location filename="../src/prompter/Prompter.qml" line="2313"/>
         <source>User welcome loaded</source>
         <translation>Завантажено привітання користувача</translation>
     </message>
     <message>
-        <location filename="../src/prompter/Prompter.qml" line="2299"/>
+        <location filename="../src/prompter/Prompter.qml" line="2323"/>
         <source>Loaded: %1</source>
         <translation>Завантажено: %1</translation>
     </message>
     <message>
-        <location filename="../src/prompter/Prompter.qml" line="2357"/>
-        <location filename="../src/prompter/Prompter.qml" line="2537"/>
+        <location filename="../src/prompter/Prompter.qml" line="2381"/>
+        <location filename="../src/prompter/Prompter.qml" line="2561"/>
         <source>Saved %1</source>
         <comment>Saved FILE_NAME</comment>
         <translation>Збережено %1</translation>
     </message>
     <message>
-        <location filename="../src/prompter/Prompter.qml" line="2359"/>
-        <location filename="../src/prompter/Prompter.qml" line="2562"/>
+        <location filename="../src/prompter/Prompter.qml" line="2383"/>
+        <location filename="../src/prompter/Prompter.qml" line="2586"/>
         <source>Saved</source>
         <translation>Збережено</translation>
     </message>
     <message>
-        <location filename="../src/prompter/Prompter.qml" line="2469"/>
-        <location filename="../src/prompter/Prompter.qml" line="2481"/>
-        <location filename="../src/prompter/Prompter.qml" line="2522"/>
+        <location filename="../src/prompter/Prompter.qml" line="2493"/>
+        <location filename="../src/prompter/Prompter.qml" line="2505"/>
+        <location filename="../src/prompter/Prompter.qml" line="2546"/>
         <source>Plain Text &lt;%1&gt;</source>
         <comment>Format name &lt;FORMAT_EXTENSION&gt;</comment>
         <translation>Звичайний текст &lt;%1&gt;</translation>
     </message>
     <message>
-        <location filename="../src/prompter/Prompter.qml" line="2470"/>
+        <location filename="../src/prompter/Prompter.qml" line="2494"/>
         <source>OpenDocument Format Text Document &lt;%1&gt;</source>
         <comment>Format name &lt;FORMAT_EXTENSION&gt;</comment>
         <translation>Текстовий документ у форматі OpenDocument &lt;%1&gt;</translation>
     </message>
     <message>
-        <location filename="../src/prompter/Prompter.qml" line="2471"/>
+        <location filename="../src/prompter/Prompter.qml" line="2495"/>
         <source>AbiWord Document &lt;%1&gt;</source>
         <comment>Format name &lt;FORMAT_EXTENSION&gt;</comment>
         <translation>Документ AbiWord &lt;%1&gt;</translation>
     </message>
     <message>
-        <location filename="../src/prompter/Prompter.qml" line="2472"/>
+        <location filename="../src/prompter/Prompter.qml" line="2496"/>
         <source>Microsoft Word document &lt;%1&gt;</source>
         <comment>Format name &lt;FORMAT_EXTENSION&gt;</comment>
         <translation>Документ Microsoft Word &lt;%1&gt;</translation>
     </message>
     <message>
-        <location filename="../src/prompter/Prompter.qml" line="2473"/>
+        <location filename="../src/prompter/Prompter.qml" line="2497"/>
         <source>Apple Pages Document &lt;%1&gt;</source>
         <comment>Format name &lt;FORMAT_EXTENSION&gt;</comment>
         <translation>Документ Apple Pages &lt;%1&gt;</translation>
     </message>
     <message>
-        <location filename="../src/prompter/Prompter.qml" line="2474"/>
+        <location filename="../src/prompter/Prompter.qml" line="2498"/>
         <source>Rich Text Format &lt;%1&gt;</source>
         <comment>Format name &lt;FORMAT_EXTENSION&gt;</comment>
         <translation>Форматований текст &lt;%1&gt;</translation>
     </message>
     <message>
-        <location filename="../src/prompter/Prompter.qml" line="2476"/>
-        <location filename="../src/prompter/Prompter.qml" line="2484"/>
+        <location filename="../src/prompter/Prompter.qml" line="2500"/>
+        <location filename="../src/prompter/Prompter.qml" line="2508"/>
         <source>All Formats</source>
         <comment>All file formats</comment>
         <translation>Усі формати</translation>
     </message>
     <message>
-        <location filename="../src/prompter/Prompter.qml" line="2608"/>
+        <location filename="../src/prompter/Prompter.qml" line="2632"/>
         <source>Add &quot;%1&quot; to dictionary</source>
         <comment>Editor context menu actions</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/prompter/Prompter.qml" line="2467"/>
-        <location filename="../src/prompter/Prompter.qml" line="2479"/>
-        <location filename="../src/prompter/Prompter.qml" line="2517"/>
-        <location filename="../src/prompter/Prompter.qml" line="2521"/>
+        <location filename="../src/prompter/Prompter.qml" line="2491"/>
+        <location filename="../src/prompter/Prompter.qml" line="2503"/>
+        <location filename="../src/prompter/Prompter.qml" line="2541"/>
+        <location filename="../src/prompter/Prompter.qml" line="2545"/>
         <source>Hypertext Markup Language &lt;%1&gt;</source>
         <comment>Format name &lt;FORMAT_EXTENSION&gt;</comment>
         <translation>Гіпертекстова розмітка &lt;%1&gt;</translation>
@@ -1545,112 +1545,112 @@ Microsoft Word,</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/prompter/Prompter.qml" line="1232"/>
+        <location filename="../src/prompter/Prompter.qml" line="1256"/>
         <source>Return to edit mode at end</source>
         <comment>End of prompt button tooltip</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/prompter/Prompter.qml" line="2053"/>
+        <location filename="../src/prompter/Prompter.qml" line="2077"/>
         <source>Double click to reset displacement</source>
         <comment>Left handle button tooltip</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/prompter/Prompter.qml" line="2053"/>
+        <location filename="../src/prompter/Prompter.qml" line="2077"/>
         <source>Drag to adjust width</source>
         <comment>Left handle button tooltip</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/prompter/Prompter.qml" line="2053"/>
+        <location filename="../src/prompter/Prompter.qml" line="2077"/>
         <source>Double click to reset width adjustment</source>
         <comment>Left handle button tooltip</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/prompter/Prompter.qml" line="2468"/>
-        <location filename="../src/prompter/Prompter.qml" line="2480"/>
+        <location filename="../src/prompter/Prompter.qml" line="2492"/>
+        <location filename="../src/prompter/Prompter.qml" line="2504"/>
         <source>Markdown &lt;%1&gt;</source>
         <comment>Format name &lt;FORMAT_EXTENSION&gt;</comment>
         <translation>Markdown &lt;%1&gt;</translation>
     </message>
     <message>
-        <location filename="../src/prompter/Prompter.qml" line="2615"/>
-        <location filename="../src/prompter/Prompter.qml" line="2702"/>
+        <location filename="../src/prompter/Prompter.qml" line="2639"/>
+        <location filename="../src/prompter/Prompter.qml" line="2726"/>
         <source>&amp;Copy</source>
         <comment>Global menu and editor context menu actions</comment>
         <translation>&amp;Копіювати</translation>
     </message>
     <message>
-        <location filename="../src/prompter/Prompter.qml" line="2620"/>
-        <location filename="../src/prompter/Prompter.qml" line="2707"/>
+        <location filename="../src/prompter/Prompter.qml" line="2644"/>
+        <location filename="../src/prompter/Prompter.qml" line="2731"/>
         <source>Cu&amp;t</source>
         <comment>Global menu and editor context menu actions</comment>
         <translation>Ви&amp;різати</translation>
     </message>
     <message>
-        <location filename="../src/prompter/Prompter.qml" line="2625"/>
-        <location filename="../src/prompter/Prompter.qml" line="2712"/>
+        <location filename="../src/prompter/Prompter.qml" line="2649"/>
+        <location filename="../src/prompter/Prompter.qml" line="2736"/>
         <source>&amp;Paste</source>
         <comment>Global menu and editor context menu actions</comment>
         <translation>Встави&amp;ти</translation>
     </message>
     <message>
-        <location filename="../src/prompter/Prompter.qml" line="2631"/>
+        <location filename="../src/prompter/Prompter.qml" line="2655"/>
         <source>Fo&amp;nt…</source>
         <comment>Editor context menu actions</comment>
         <translation>Шри&amp;фт…</translation>
     </message>
     <message>
-        <location filename="../src/prompter/Prompter.qml" line="2635"/>
-        <location filename="../src/prompter/Prompter.qml" line="2718"/>
+        <location filename="../src/prompter/Prompter.qml" line="2659"/>
+        <location filename="../src/prompter/Prompter.qml" line="2742"/>
         <source>Co&amp;lor…</source>
         <comment>Editor context menu actions</comment>
         <translation>Ко&amp;лір…</translation>
     </message>
     <message>
-        <location filename="../src/prompter/Prompter.qml" line="2639"/>
-        <location filename="../src/prompter/Prompter.qml" line="2722"/>
+        <location filename="../src/prompter/Prompter.qml" line="2663"/>
+        <location filename="../src/prompter/Prompter.qml" line="2746"/>
         <source>Hi&amp;ghlight…</source>
         <comment>Editor context menu actions</comment>
         <translation>Ви&amp;ділення…</translation>
     </message>
     <message>
-        <location filename="../src/prompter/Prompter.qml" line="2683"/>
+        <location filename="../src/prompter/Prompter.qml" line="2707"/>
         <source>Add to dictionary</source>
         <comment>Editor context menu actions</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/prompter/Prompter.qml" line="2691"/>
+        <location filename="../src/prompter/Prompter.qml" line="2715"/>
         <source>&amp;Undo</source>
         <comment>Editor context menu actions</comment>
         <translation>&amp;Скасувати</translation>
     </message>
     <message>
-        <location filename="../src/prompter/Prompter.qml" line="2696"/>
+        <location filename="../src/prompter/Prompter.qml" line="2720"/>
         <source>Redo</source>
         <comment>Editor context menu actions</comment>
         <translation>Повернути</translation>
     </message>
     <message>
-        <location filename="../src/prompter/Prompter.qml" line="3010"/>
+        <location filename="../src/prompter/Prompter.qml" line="3034"/>
         <source>Begin countdown</source>
         <translation>Розпочати зворотний відлік</translation>
     </message>
     <message>
-        <location filename="../src/prompter/Prompter.qml" line="3010"/>
+        <location filename="../src/prompter/Prompter.qml" line="3034"/>
         <source>Start prompting</source>
         <translation>Почати суфлювання</translation>
     </message>
     <message>
-        <location filename="../src/prompter/Prompter.qml" line="3058"/>
+        <location filename="../src/prompter/Prompter.qml" line="3082"/>
         <source>Skip countdown</source>
         <translation>Пропустити зворотний відлік</translation>
     </message>
     <message>
-        <location filename="../src/prompter/Prompter.qml" line="3103"/>
+        <location filename="../src/prompter/Prompter.qml" line="3127"/>
         <source>Return to edit mode</source>
         <translation>Повернутися до режиму редагування</translation>
     </message>
@@ -2132,22 +2132,22 @@ Microsoft Word,</translation>
         <translation>Повний екран</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/PrompterPage.qml" line="957"/>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="964"/>
         <source>Right click to hide velocity indicator</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/PrompterPage.qml" line="1134"/>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="1215"/>
         <source>Countdown Setup</source>
         <translation>Налаштування зворотного відліку</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/PrompterPage.qml" line="1153"/>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="1234"/>
         <source>Countdown duration</source>
         <translation>Тривалість зворотного відліку</translation>
     </message>
     <message numerus="yes">
-        <location filename="../src/kirigami_ui/PrompterPage.qml" line="1174"/>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="1255"/>
         <source>Disappear within %n second(s) to go</source>
         <translation>
             <numerusform>Зникнути за %n секунду до кінця</numerusform>
@@ -2156,174 +2156,174 @@ Microsoft Word,</translation>
         </translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/PrompterPage.qml" line="1201"/>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="1282"/>
         <source>Skip Key</source>
         <comment>Refers to a key on the keyboard used to skip to a user defined marker while prompting</comment>
         <translation>Пропустити клавішу</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/PrompterPage.qml" line="1237"/>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="1318"/>
         <source>Key to perform skip to this marker</source>
         <comment>Refers to a key on the keyboard used to skip to a user defined marker while prompting</comment>
         <translation>Клавіша для переходу до цього маркера</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/PrompterPage.qml" line="1273"/>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="1354"/>
         <source>Command to execute</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/PrompterPage.qml" line="1294"/>
-        <location filename="../src/kirigami_ui/PrompterPage.qml" line="1614"/>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="1375"/>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="1695"/>
         <source>OBS: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/PrompterPage.qml" line="1306"/>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="1387"/>
         <source>System Commands: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/PrompterPage.qml" line="1307"/>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="1388"/>
         <source>Enabled</source>
         <translation type="unfinished">Увімкнено</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/PrompterPage.qml" line="1308"/>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="1389"/>
         <source>Disabled</source>
         <translation type="unfinished">Вимкнено</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/PrompterPage.qml" line="1356"/>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="1437"/>
         <source>Open from network...</source>
         <translation>Відкрити з мережі...</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/PrompterPage.qml" line="1399"/>
-        <location filename="../src/kirigami_ui/PrompterPage.qml" line="1583"/>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="1480"/>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="1664"/>
         <source>URL:</source>
         <translation>URL:</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/PrompterPage.qml" line="1414"/>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="1495"/>
         <source>Auto reload</source>
         <translation>Автоматичне перезавантаження</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/PrompterPage.qml" line="1425"/>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="1506"/>
         <source>Hours:</source>
         <translation>Години:</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/PrompterPage.qml" line="1446"/>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="1527"/>
         <source>Minutes:</source>
         <translation>Хвилини:</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/PrompterPage.qml" line="1471"/>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="1552"/>
         <source>Seconds:</source>
         <translation>Секунди:</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/PrompterPage.qml" line="1499"/>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="1580"/>
         <source>Next reload starts at %1</source>
         <comment>Next reload starts at 10:11:12</comment>
         <translation>Наступне перезавантаження почнеться через %1</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/PrompterPage.qml" line="1500"/>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="1581"/>
         <source>Auto reload is not running</source>
         <translation>Автоматичне перезавантаження не працює</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/PrompterPage.qml" line="1506"/>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="1587"/>
         <source>Load from Network</source>
         <translation>Завантажити з мережі</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/PrompterPage.qml" line="1514"/>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="1595"/>
         <source>Close</source>
         <translation>Закрити</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/PrompterPage.qml" line="1528"/>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="1609"/>
         <source>Pointer configuration</source>
         <comment>Name of section where reding region pointers are configured</comment>
         <translation>Конфігурація покажчика</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/PrompterPage.qml" line="1550"/>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="1631"/>
         <source>OBS Configuration</source>
         <comment>Name of section where OBS websockets connection is configured</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/PrompterPage.qml" line="1569"/>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="1650"/>
         <source>Enabled:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/PrompterPage.qml" line="1599"/>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="1680"/>
         <source>Password:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/PrompterPage.qml" line="1623"/>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="1704"/>
         <source>System Commands</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/PrompterPage.qml" line="1631"/>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="1712"/>
         <source>Allow sys:// markers to execute system commands as the teleprompter scrolls past them.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/PrompterPage.qml" line="1671"/>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="1752"/>
         <source>Set dictionaries</source>
         <comment>Dictionary selection sheet title</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/PrompterPage.qml" line="1712"/>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="1793"/>
         <source>Filter dictionaries</source>
         <comment>Dictionary filter placeholder</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/PrompterPage.qml" line="1738"/>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="1819"/>
         <source>No dictionaries found on this system.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/PrompterPage.qml" line="1739"/>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="1820"/>
         <source>No dictionaries match the filter.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/PrompterPage.qml" line="1749"/>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="1830"/>
         <source>Edit custom words</source>
         <comment>Custom dictionary editor title</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/PrompterPage.qml" line="1811"/>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="1892"/>
         <source>New word</source>
         <comment>Placeholder for adding a custom dictionary word</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/PrompterPage.qml" line="1816"/>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="1897"/>
         <source>Add</source>
         <comment>Add custom word button</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/PrompterPage.qml" line="1840"/>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="1921"/>
         <source>No custom words yet.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/PrompterPage.qml" line="1846"/>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="1927"/>
         <source>Delete selected</source>
         <comment>Delete selected custom words</comment>
         <translation type="unfinished"></translation>

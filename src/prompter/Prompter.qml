@@ -550,6 +550,30 @@ Flickable {
         prompter.restoreFocus()
     }
 
+    // Apply several velocity steps as a single velocity change, following the same rules as increaseVelocity and decreaseVelocity
+    function changeVelocity(steps) {
+        if (!steps)
+            return
+        const direction = steps > 0 ? 1 : -1
+        if (direction > 0 ? this.__atEnd : this.__atStart)
+            this.__i = 0
+        else if (direction * this.__velocity < this.__speedLimit) {
+            let i = this.__i
+            // Resuming from pause consumes the first step
+            let remaining = Math.abs(steps) - (this.__play ? 0 : 1)
+            for (; remaining > 0; remaining--) {
+                const velocity = (i >= 0 ? 1 : -1) * this.__baseSpeed * Math.pow(Math.abs(i), this.__curvature)
+                if (direction * velocity >= this.__speedLimit)
+                    break
+                i += direction
+            }
+            this.__i = i
+            this.__play = true
+            this.position = this.__destination
+        }
+        prompter.restoreFocus()
+    }
+
     function pause() {
         if (__i) {
             if (prompter.__play) {
