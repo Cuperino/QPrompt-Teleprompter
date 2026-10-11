@@ -39,418 +39,418 @@
 <context>
     <name>EditorToolbar</name>
     <message>
-        <location filename="../src/kirigami_ui/EditorToolbar.qml" line="191"/>
+        <location filename="../src/kirigami_ui/EditorToolbar.qml" line="190"/>
         <source>Marker list</source>
         <comment>Editor toolbar button tooltip</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/EditorToolbar.qml" line="208"/>
+        <location filename="../src/kirigami_ui/EditorToolbar.qml" line="207"/>
         <source>Find and replace</source>
         <comment>Editor toolbar button tooltip</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/EditorToolbar.qml" line="223"/>
+        <location filename="../src/kirigami_ui/EditorToolbar.qml" line="222"/>
         <source>Toggle marker</source>
         <comment>Editor toolbar button tooltip</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/EditorToolbar.qml" line="237"/>
+        <location filename="../src/kirigami_ui/EditorToolbar.qml" line="236"/>
         <source>Named marker</source>
         <comment>Editor toolbar button tooltip</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/EditorToolbar.qml" line="281"/>
+        <location filename="../src/kirigami_ui/EditorToolbar.qml" line="280"/>
         <source>Previous marker</source>
         <comment>Editor toolbar button tooltip</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/EditorToolbar.qml" line="293"/>
+        <location filename="../src/kirigami_ui/EditorToolbar.qml" line="292"/>
         <source>Next marker</source>
         <comment>Editor toolbar button tooltip</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/EditorToolbar.qml" line="312"/>
+        <location filename="../src/kirigami_ui/EditorToolbar.qml" line="311"/>
         <source>Undo</source>
         <comment>Editor toolbar button tooltip</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/EditorToolbar.qml" line="324"/>
+        <location filename="../src/kirigami_ui/EditorToolbar.qml" line="323"/>
         <source>Redo</source>
         <comment>Editor toolbar button tooltip</comment>
         <translation type="unfinished">Rehacer</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/EditorToolbar.qml" line="344"/>
+        <location filename="../src/kirigami_ui/EditorToolbar.qml" line="343"/>
         <source>Copy</source>
         <comment>Editor toolbar button tooltip</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/EditorToolbar.qml" line="357"/>
+        <location filename="../src/kirigami_ui/EditorToolbar.qml" line="356"/>
         <source>Cut</source>
         <comment>Editor toolbar button tooltip</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/EditorToolbar.qml" line="370"/>
+        <location filename="../src/kirigami_ui/EditorToolbar.qml" line="369"/>
         <source>Paste</source>
         <comment>Editor toolbar button tooltip</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/EditorToolbar.qml" line="396"/>
-        <location filename="../src/kirigami_ui/EditorToolbar.qml" line="406"/>
+        <location filename="../src/kirigami_ui/EditorToolbar.qml" line="395"/>
+        <location filename="../src/kirigami_ui/EditorToolbar.qml" line="405"/>
         <source>&amp;Left</source>
         <comment>Editor actions. Text alignment.</comment>
         <translation>&amp;Izquierda</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/EditorToolbar.qml" line="396"/>
-        <location filename="../src/kirigami_ui/EditorToolbar.qml" line="406"/>
+        <location filename="../src/kirigami_ui/EditorToolbar.qml" line="395"/>
+        <location filename="../src/kirigami_ui/EditorToolbar.qml" line="405"/>
         <source>&amp;Right</source>
         <comment>Editor actions. Text alignment.</comment>
         <translation>&amp;Derecha</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/EditorToolbar.qml" line="401"/>
+        <location filename="../src/kirigami_ui/EditorToolbar.qml" line="400"/>
         <source>C&amp;enter</source>
         <comment>Editor actions. Text alignment.</comment>
         <translation>C&amp;entro</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/EditorToolbar.qml" line="413"/>
+        <location filename="../src/kirigami_ui/EditorToolbar.qml" line="412"/>
         <source>&amp;Justify</source>
         <comment>Editor actions. Text alignment.</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/EditorToolbar.qml" line="420"/>
-        <location filename="../src/kirigami_ui/EditorToolbar.qml" line="435"/>
-        <location filename="../src/kirigami_ui/EditorToolbar.qml" line="450"/>
-        <location filename="../src/kirigami_ui/EditorToolbar.qml" line="466"/>
+        <location filename="../src/kirigami_ui/EditorToolbar.qml" line="419"/>
+        <location filename="../src/kirigami_ui/EditorToolbar.qml" line="434"/>
+        <location filename="../src/kirigami_ui/EditorToolbar.qml" line="449"/>
+        <location filename="../src/kirigami_ui/EditorToolbar.qml" line="465"/>
         <source>Text alignment</source>
         <comment>Editor toolbar button tooltip</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/EditorToolbar.qml" line="490"/>
+        <location filename="../src/kirigami_ui/EditorToolbar.qml" line="489"/>
         <source>Bold</source>
         <comment>Editor toolbar button tooltip</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/EditorToolbar.qml" line="504"/>
+        <location filename="../src/kirigami_ui/EditorToolbar.qml" line="503"/>
         <source>Italic</source>
         <comment>Editor toolbar button tooltip</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/EditorToolbar.qml" line="518"/>
+        <location filename="../src/kirigami_ui/EditorToolbar.qml" line="517"/>
         <source>Underline</source>
         <comment>Editor toolbar button tooltip</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/EditorToolbar.qml" line="532"/>
+        <location filename="../src/kirigami_ui/EditorToolbar.qml" line="531"/>
         <source>Strikethrough</source>
         <comment>Editor toolbar button tooltip</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/EditorToolbar.qml" line="546"/>
+        <location filename="../src/kirigami_ui/EditorToolbar.qml" line="545"/>
         <source>Subscript or superscript</source>
         <comment>Editor toolbar button tooltip</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/EditorToolbar.qml" line="567"/>
+        <location filename="../src/kirigami_ui/EditorToolbar.qml" line="566"/>
         <source>Capitalization</source>
         <comment>Editor toolbar button tooltip</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/EditorToolbar.qml" line="652"/>
+        <location filename="../src/kirigami_ui/EditorToolbar.qml" line="651"/>
         <source>Active font: %0</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/EditorToolbar.qml" line="659"/>
+        <location filename="../src/kirigami_ui/EditorToolbar.qml" line="658"/>
         <source>DejaVu (default, Roman, Cyrillic)</source>
         <comment>FontName (Translatable font details)</comment>
         <translation>DejaVu (predeterminado, romano, cirílico)</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/EditorToolbar.qml" line="663"/>
+        <location filename="../src/kirigami_ui/EditorToolbar.qml" line="662"/>
         <source>OpenDyslexic (Roman)</source>
         <comment>FontName (Translatable font details)</comment>
         <translation>OpenDyslexic (romano)</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/EditorToolbar.qml" line="667"/>
+        <location filename="../src/kirigami_ui/EditorToolbar.qml" line="666"/>
         <source>Source Han Sans (CH, JP, KO)</source>
         <comment>FontName (Translatable font details)</comment>
         <translation>Source Han Sans (CH, JP, KO)</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/EditorToolbar.qml" line="671"/>
+        <location filename="../src/kirigami_ui/EditorToolbar.qml" line="670"/>
         <source>Scheherazade New (Arabic)</source>
         <comment>FontName (Translatable font details)</comment>
         <translation>Scheherazade New (árabe)</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/EditorToolbar.qml" line="675"/>
+        <location filename="../src/kirigami_ui/EditorToolbar.qml" line="674"/>
         <source>Palanquin (Devangari)</source>
         <comment>FontName (Translatable font details)</comment>
         <translation>Palanquin (devanagari)</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/EditorToolbar.qml" line="679"/>
+        <location filename="../src/kirigami_ui/EditorToolbar.qml" line="678"/>
         <source>Kalpurush (Bengali)</source>
         <comment>FontName (Translatable font details)</comment>
         <translation>Kalpurush (bengalí)</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/EditorToolbar.qml" line="685"/>
+        <location filename="../src/kirigami_ui/EditorToolbar.qml" line="684"/>
         <source>Choose System Font</source>
         <comment>Opens system font selection dialog</comment>
         <translation>Escoger letra proveniente del sistema</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/EditorToolbar.qml" line="691"/>
+        <location filename="../src/kirigami_ui/EditorToolbar.qml" line="690"/>
         <source>No glyphs selected…</source>
         <translation>No se seleccionó ningún glifo…</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/EditorToolbar.qml" line="700"/>
+        <location filename="../src/kirigami_ui/EditorToolbar.qml" line="699"/>
         <source>Font family</source>
         <comment>Editor toolbar button tooltip</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/EditorToolbar.qml" line="713"/>
+        <location filename="../src/kirigami_ui/EditorToolbar.qml" line="712"/>
         <source>Text color</source>
         <comment>Editor toolbar button tooltip</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/EditorToolbar.qml" line="749"/>
+        <location filename="../src/kirigami_ui/EditorToolbar.qml" line="748"/>
         <source>Text highlight</source>
         <comment>Editor toolbar button tooltip</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/EditorToolbar.qml" line="793"/>
+        <location filename="../src/kirigami_ui/EditorToolbar.qml" line="792"/>
         <source>Align left</source>
         <comment>Editor toolbar button tooltip</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/EditorToolbar.qml" line="812"/>
+        <location filename="../src/kirigami_ui/EditorToolbar.qml" line="811"/>
         <source>Align center</source>
         <comment>Editor toolbar button tooltip</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/EditorToolbar.qml" line="826"/>
+        <location filename="../src/kirigami_ui/EditorToolbar.qml" line="825"/>
         <source>Align right</source>
         <comment>Editor toolbar button tooltip</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/EditorToolbar.qml" line="846"/>
+        <location filename="../src/kirigami_ui/EditorToolbar.qml" line="845"/>
         <source>Justify</source>
         <comment>Editor toolbar button tooltip</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/EditorToolbar.qml" line="869"/>
+        <location filename="../src/kirigami_ui/EditorToolbar.qml" line="868"/>
         <source>Scroll wheel settings</source>
         <comment>Editor toolbar button tooltip</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/EditorToolbar.qml" line="884"/>
+        <location filename="../src/kirigami_ui/EditorToolbar.qml" line="883"/>
         <source>Window stay on top</source>
         <comment>Editor toolbar button tooltip</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/EditorToolbar.qml" line="897"/>
+        <location filename="../src/kirigami_ui/EditorToolbar.qml" line="896"/>
         <source>Text spacing options</source>
         <comment>Editor toolbar button tooltip</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/EditorToolbar.qml" line="925"/>
+        <location filename="../src/kirigami_ui/EditorToolbar.qml" line="924"/>
         <source>Motion options</source>
         <comment>Editor toolbar button tooltip</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/EditorToolbar.qml" line="971"/>
+        <location filename="../src/kirigami_ui/EditorToolbar.qml" line="970"/>
         <source>Prompter goes forward only</source>
         <comment>Editor toolbar button tooltip</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/EditorToolbar.qml" line="985"/>
+        <location filename="../src/kirigami_ui/EditorToolbar.qml" line="984"/>
         <source>Velocity &lt;pre&gt;%1&lt;/pre&gt;</source>
         <comment>Velocity {VELOCITY_STEPS}</comment>
         <translation>Velocidad &lt;pre&gt;%1&lt;/pre&gt;</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/EditorToolbar.qml" line="1011"/>
+        <location filename="../src/kirigami_ui/EditorToolbar.qml" line="1010"/>
         <source>Opacity options</source>
         <comment>Editor toolbar button tooltip</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/EditorToolbar.qml" line="1112"/>
+        <location filename="../src/kirigami_ui/EditorToolbar.qml" line="1111"/>
         <source>Opacity &lt;pre&gt;%1&lt;/pre&gt;</source>
         <comment>Opacity {TRANSPARENCY_PERCENTAGE}</comment>
         <translation>Opacidad &lt;pre&gt;%1&lt;/pre&gt;</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/EditorToolbar.qml" line="1139"/>
+        <location filename="../src/kirigami_ui/EditorToolbar.qml" line="1138"/>
         <source>Switch between small and large font while editing</source>
         <comment>Editor toolbar button tooltip</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../src/kirigami_ui/EditorToolbar.qml" line="1258"/>
         <location filename="../src/kirigami_ui/EditorToolbar.qml" line="1259"/>
-        <location filename="../src/kirigami_ui/EditorToolbar.qml" line="1260"/>
         <source>Font size &lt;pre&gt;%1 (%2)&lt;/pre&gt;</source>
         <comment>Font size 100% (083)</comment>
         <translation>Tamaño de letra &lt;pre&gt;%1 (%2)&lt;/pre&gt;</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/EditorToolbar.qml" line="1311"/>
+        <location filename="../src/kirigami_ui/EditorToolbar.qml" line="1309"/>
         <source>Line height</source>
         <comment>Editor toolbar button tooltip</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/EditorToolbar.qml" line="1397"/>
+        <location filename="../src/kirigami_ui/EditorToolbar.qml" line="1395"/>
         <source>Line height &lt;pre&gt;%1%&lt;/pre&gt;</source>
         <comment>Line height 100%</comment>
         <translation>Altura de renglón &lt;pre&gt;%1%&lt;/pre&gt;</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/EditorToolbar.qml" line="1432"/>
+        <location filename="../src/kirigami_ui/EditorToolbar.qml" line="1429"/>
         <source>Paragraph spacing</source>
         <comment>Editor toolbar button tooltip</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/EditorToolbar.qml" line="1519"/>
+        <location filename="../src/kirigami_ui/EditorToolbar.qml" line="1516"/>
         <source>Paragraph spacing &lt;pre&gt;%1%&lt;/pre&gt;</source>
         <comment>Paragraph spacing ±00</comment>
         <translation>Espacio entre párrafos &lt;pre&gt;%1&lt;/pre&gt;</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/EditorToolbar.qml" line="1554"/>
+        <location filename="../src/kirigami_ui/EditorToolbar.qml" line="1550"/>
         <source>Word spacing</source>
         <comment>Editor toolbar button tooltip</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/EditorToolbar.qml" line="1642"/>
+        <location filename="../src/kirigami_ui/EditorToolbar.qml" line="1638"/>
         <source>Word spacing &lt;pre&gt;%1&lt;/pre&gt;</source>
         <comment>Word spacing &lt;pre&gt;±00&lt;pre&gt;</comment>
         <translation>Espacio entre palabras &lt;pre&gt;%1&lt;/pre&gt;</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/EditorToolbar.qml" line="1675"/>
+        <location filename="../src/kirigami_ui/EditorToolbar.qml" line="1670"/>
         <source>Toggle overlaid bars</source>
         <comment>Editor toolbar button tooltip</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/EditorToolbar.qml" line="1769"/>
+        <location filename="../src/kirigami_ui/EditorToolbar.qml" line="1764"/>
         <source>Bars opacity &lt;pre&gt;%1&lt;/pre&gt;</source>
         <comment>Opacity {TRANSPARENCY_PERCENTAGE}</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/EditorToolbar.qml" line="1803"/>
+        <location filename="../src/kirigami_ui/EditorToolbar.qml" line="1797"/>
         <source>Bars brightness</source>
         <comment>Editor toolbar button tooltip</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/EditorToolbar.qml" line="1896"/>
+        <location filename="../src/kirigami_ui/EditorToolbar.qml" line="1890"/>
         <source>Bars brightness &lt;pre&gt;%1&lt;/pre&gt;</source>
         <comment>Brightness {TRANSPARENCY_PERCENTAGE}</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/EditorToolbar.qml" line="1930"/>
+        <location filename="../src/kirigami_ui/EditorToolbar.qml" line="1923"/>
         <source>Letter spacing</source>
         <comment>Editor toolbar button tooltip</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/EditorToolbar.qml" line="2017"/>
+        <location filename="../src/kirigami_ui/EditorToolbar.qml" line="2010"/>
         <source>Letter spacing &lt;pre&gt;%1&lt;/pre&gt;</source>
         <comment>Letter spacing ±00</comment>
         <translation>Espacio entre letras &lt;pre&gt;%1&lt;/pre&gt;</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/EditorToolbar.qml" line="2050"/>
+        <location filename="../src/kirigami_ui/EditorToolbar.qml" line="2042"/>
         <source>Step speed</source>
         <comment>Editor toolbar button tooltip</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/EditorToolbar.qml" line="2137"/>
+        <location filename="../src/kirigami_ui/EditorToolbar.qml" line="2129"/>
         <source>Step speed &lt;pre&gt;%1&lt;/pre&gt;</source>
         <comment>Step speed 1.00</comment>
         <translation>Rapidez del incremento &lt;pre&gt;%1&lt;/pre&gt;</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/EditorToolbar.qml" line="2172"/>
+        <location filename="../src/kirigami_ui/EditorToolbar.qml" line="2163"/>
         <source>Step acceleration</source>
         <comment>Editor toolbar button tooltip</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/EditorToolbar.qml" line="2259"/>
+        <location filename="../src/kirigami_ui/EditorToolbar.qml" line="2250"/>
         <source>Step acceleration &lt;pre&gt;%1&lt;/pre&gt;</source>
         <comment>Step acceleration 1.15</comment>
         <translation>Aceleración del incremento &lt;pre&gt;%1&lt;/pre&gt;</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/EditorToolbar.qml" line="2284"/>
+        <location filename="../src/kirigami_ui/EditorToolbar.qml" line="2275"/>
         <source>Auto reload settings</source>
         <comment>Editor toolbar button tooltip</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/EditorToolbar.qml" line="2297"/>
-        <location filename="../src/kirigami_ui/EditorToolbar.qml" line="2316"/>
+        <location filename="../src/kirigami_ui/EditorToolbar.qml" line="2288"/>
+        <location filename="../src/kirigami_ui/EditorToolbar.qml" line="2307"/>
         <source>Reload now</source>
         <comment>Editor toolbar button tooltip</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/EditorToolbar.qml" line="2332"/>
+        <location filename="../src/kirigami_ui/EditorToolbar.qml" line="2323"/>
         <source>OBS: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/EditorToolbar.qml" line="2343"/>
+        <location filename="../src/kirigami_ui/EditorToolbar.qml" line="2334"/>
         <source>System Commands Enabled</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/EditorToolbar.qml" line="2288"/>
+        <location filename="../src/kirigami_ui/EditorToolbar.qml" line="2279"/>
         <source>Next reload starts at &lt;pre&gt;%1&lt;/pre&gt;</source>
         <comment>Next reload starts at 10:11:12</comment>
         <translation>Próxima lectura remota en &lt;pre&gt;%1&lt;/pre&gt;</translation>
