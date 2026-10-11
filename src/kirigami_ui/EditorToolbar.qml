@@ -99,7 +99,7 @@ ToolBar {
     readonly property alias baseAccelerationSlider: baseAccelerationSlider
     readonly property alias onlyPositiveVelocity: positiveVelocity.checked
     readonly property alias windowStaysOnTop: windowStayOnTopButton.value
-    readonly property bool showSliderIcons: toolbar.width > 367
+    readonly property bool showSliderIcons: toolbar.width > 381
     readonly property bool showingFormattingTools: parseInt(viewport.prompter.state)!==Prompter.States.Editing && (!toolbar.hideFormattingToolsWhilePrompting || editor.focus)
 
     // Hide toolbar when read region is set to bottom and viewport.prompter is not in editing state.
@@ -1662,7 +1662,7 @@ ToolBar {
         }
         RowLayout {
             visible: height>0
-            height: toolbar.showOpacityOptions ? implicitHeight : 0
+            height: toolbar.showSliderIcons && toolbar.showOpacityOptions ? implicitHeight : 0
             clip: true
             Behavior on height{
                 enabled: true
@@ -1790,7 +1790,7 @@ ToolBar {
         }
         RowLayout {
             visible: height>0
-            height: toolbar.showOpacityOptions ? implicitHeight : 0
+            height: toolbar.showSliderIcons && toolbar.showOpacityOptions ? implicitHeight : 0
             clip: true
             Behavior on height{
                 enabled: true
