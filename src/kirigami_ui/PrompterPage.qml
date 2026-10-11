@@ -51,9 +51,11 @@ Kirigami.Page {
     property alias namedMarkerConfiguration: namedMarkerConfiguration
     property alias pointerConfiguration: pointerConfiguration
     property alias obsConfiguration: obsConfiguration
+    property alias systemCommandsConfiguration: systemCommandsConfiguration
     property alias velocityIndicatorVisible: velocityIndicator.visible
     property int hideDecorations: 1
     property bool spellcheckUserEnabled: false
+    property bool popoverOpennedFromAnotherPopover: false
 
     // Unused signal. Leaving for reference.
     //signal test( bool data )
@@ -1273,7 +1275,7 @@ Kirigami.Page {
             TextField {
                 id: markerHrefField
                 Layout.fillWidth: true
-                placeholderText: (['android', 'ios', 'wasm'].indexOf(Qt.platform.os)===-1 ?
+                placeholderText: (prompterPage.prompter.systemCommandsEnabled && ['android', 'ios', 'wasm'].indexOf(Qt.platform.os)===-1 ?
                                       "obs://scene/name   sys://cmd arg" :
                                       "obs://scene/name")
                 onEditingFinished: {
@@ -1288,21 +1290,37 @@ Kirigami.Page {
                     }
                 }
             }
-            CheckBox {
-                id: systemCommandsCheck
-                Layout.fillWidth: true
-                visible: ['android', 'ios', 'wasm'].indexOf(Qt.platform.os) === -1
-                text: qsTr("Allow sys:// markers to run system commands", "Security opt-in beneath the marker command field. Off by default; when checked, sys:// markers in a document may execute local system commands as the prompter scrolls past them.")
-                checked: prompter.systemCommandsEnabled
-                onToggled: prompter.systemCommandsEnabled = checked
-                // Wrap rather than elide, so the label fits the fixed-width sheet in any
-                // translation — Text.Wrap also breaks overlong words (e.g. German compounds).
-                contentItem: Label {
-                    text: systemCommandsCheck.text
-                    wrapMode: Text.Wrap
-                    verticalAlignment: Text.AlignVCenter
-                    leftPadding: systemCommandsCheck.indicator.width + systemCommandsCheck.spacing
+            Button {
+                text: qsTr("OBS: %1").arg(viewport.prompter.ws.statusText)
+                checkable: false
+                checked: viewport.prompter.ws.errorFlag
+                onClicked: {
+                    namedMarkerConfiguration.close();
+                    prompterPage.popoverOpennedFromAnotherPopover = true;
+                    prompterPage.obsConfiguration.open();
                 }
+                Layout.fillWidth: true
+            }
+            Button {
+                visible: ['android', 'ios', 'wasm'].indexOf(Qt.platform.os) === -1
+                text: qsTr("System Commands: %1").arg(prompterPage.prompter.systemCommandsEnabled ?
+                                                          qsTr("Enabled") :
+                                                          qsTr("Disabled"))
+                onClicked: {
+                    namedMarkerConfiguration.close();
+                    prompterPage.popoverOpennedFromAnotherPopover = true;
+                    prompterPage.systemCommandsConfiguration.open();
+                }
+                Layout.fillWidth: true
+            }
+            Label {
+                visible: prompterPage.prompter.systemCommandsEnabled
+                width: parent.width
+                text: "Enabling system commands can be dangerous. Only do so if you trust the contents of the script."
+                color: "red"
+                wrapMode: Text.Wrap
+                horizontalAlignment: Text.Center
+                Layout.fillWidth: true
             }
         }
     }
@@ -1529,7 +1547,7 @@ Kirigami.Page {
         id: obsConfiguration
         width: 300
         header: Kirigami.Heading {
-            text: qsTr("OBS configuration", "Name of section where OBS websockets connection is configured")
+            text: qsTr("OBS Configuration", "Name of section where OBS websockets connection is configured")
             level: 1
         }
         onOpened: {
@@ -1537,9 +1555,13 @@ Kirigami.Page {
             viewport.editor.enabled = false;
         }
         onClosed: {
-            cursorAutoHide.restart();
-            viewport.editor.enabled = true;
-            viewport.prompter.restoreFocus();
+            if (!prompterPage.popoverOpennedFromAnotherPopover) {
+                cursorAutoHide.restart();
+                viewport.editor.enabled = true;
+                viewport.prompter.restoreFocus();
+            }
+            else
+                namedMarkerConfiguration.open();
         }
         ColumnLayout {
             RowLayout {
@@ -1587,6 +1609,58 @@ Kirigami.Page {
                     onAccepted: viewport.prompter.ws.password = text
                 }
             }
+            RowLayout {
+                Label {
+                    text: qsTr("OBS: %1").arg(viewport.prompter.ws.statusText)
+                }
+            }
+        }
+    }
+
+    Kirigami.OverlaySheet {
+        id: systemCommandsConfiguration
+        header: Kirigami.Heading {
+            text: qsTr("System Commands")
+            level: 1
+        }
+        width: 300
+        ColumnLayout {
+            RowLayout {
+                CheckBox {
+                    id: systemCommandsCheck
+                    text: qsTr("Allow sys:// markers to execute system commands as the teleprompter scrolls past them.")
+                    checked: root.pageStack.currentItem.prompter.systemCommandsEnabled
+                    onToggled: root.pageStack.currentItem.prompter.systemCommandsEnabled = checked
+                    contentItem: Label {
+                        text: systemCommandsCheck.text
+                        wrapMode: Text.Wrap
+                        verticalAlignment: Text.AlignVCenter
+                        leftPadding: systemCommandsCheck.indicator.width + systemCommandsCheck.spacing
+                    }
+                    Layout.fillWidth: true
+                }
+            }
+            Label {
+                width: parent.width
+                text: "Enabling system commands can be dangerous. Only do so if you trust the contents of the script."
+                color: "red"
+                wrapMode: Text.Wrap
+                horizontalAlignment: Text.Center
+                Layout.fillWidth: true
+            }
+        }
+        onOpened: {
+            cursorAutoHide.reset();
+            viewport.editor.enabled = false;
+        }
+        onClosed: {
+            if (!prompterPage.popoverOpennedFromAnotherPopover) {
+                cursorAutoHide.restart();
+                viewport.editor.enabled = true;
+                viewport.prompter.restoreFocus();
+            }
+            else
+                namedMarkerConfiguration.open();
         }
     }
 

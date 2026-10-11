@@ -360,14 +360,40 @@ Flickable {
         id: ws
         property string password: ""
         property string urlString: "ws://localhost:4455"
+        property bool errorFlag: false
+        readonly property string statusText: {
+            if (active)
+                switch (status) {
+                    case WebSocket.Connecting:
+                        return qsTr("Connecting");
+                    case WebSocket.Open:
+                        return qsTr("Connected");
+                    case WebSocket.Closing:
+                        return qsTr("Disconnecting");
+                    case WebSocket.Closed:
+                        return qsTr("Disconnected");
+                    case WebSocket.Error:
+                        return qsTr("Connection Error");
+                }
+            else
+                return qsTr("Disconnected");
+        }
         url: urlString
         active: false
         // onBinaryMessageReceived: (message) => {
         //     console.log(message);
         // }
         // onPong: (elapsedTime, payload)
+        onActiveChanged: {
+            if (!active)
+                errorFlag = false;
+        }
         onStatusChanged: (status) => {
             console.log(status);
+            if (status===WebSocket.Error)
+                errorFlag = true;
+            else
+                errorFlag = false;
         }
         onTextMessageReceived: (m) => {
             // {"d":{"authentication":{"challenge":"9VRaSD82JrJlNiVIRrmmWSOxR2p5wb7TkHMU+kTfuAo=","salt":"tRDkvJuBARe4mWrmHO8Sea1ZGDdd6LxRsfARero3624="},"obsWebSocketVersion":"5.3.4","rpcVersion":1},"op":0}

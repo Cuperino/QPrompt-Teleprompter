@@ -2326,5 +2326,25 @@ ToolBar {
                 Material.theme: Material.Dark
             }
         }
+        RowLayout {
+            Button {
+                visible: prompter.ws.active
+                text: qsTr("OBS: %1").arg(prompter.ws.statusText)
+                onClicked: prompterPage.obsConfiguration.open()
+                checkable: false
+                checked: prompter.ws.errorFlag
+                Layout.bottomMargin: -4
+                Material.theme: Material.Dark
+            }
+        }
+        RowLayout {
+            Button {
+                visible: prompter.systemCommandsEnabled
+                text: qsTr("System Commands Enabled")
+                onClicked: viewport.parent.parent.systemCommandsConfiguration.open()
+                Layout.bottomMargin: -4
+                Material.theme: Material.Dark
+            }
+        }
     }
 }

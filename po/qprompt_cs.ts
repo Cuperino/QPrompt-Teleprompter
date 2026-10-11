@@ -429,17 +429,27 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/EditorToolbar.qml" line="2288"/>
-        <source>Next reload starts at &lt;pre&gt;%1&lt;/pre&gt;</source>
-        <comment>Next reload starts at 10:11:12</comment>
-        <translation type="unfinished">Další načítání začne v &lt;pre&gt;%1&lt;/pre&gt;</translation>
-    </message>
-    <message>
         <location filename="../src/kirigami_ui/EditorToolbar.qml" line="2297"/>
         <location filename="../src/kirigami_ui/EditorToolbar.qml" line="2316"/>
         <source>Reload now</source>
         <comment>Editor toolbar button tooltip</comment>
         <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/kirigami_ui/EditorToolbar.qml" line="2332"/>
+        <source>OBS: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/kirigami_ui/EditorToolbar.qml" line="2343"/>
+        <source>System Commands Enabled</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/kirigami_ui/EditorToolbar.qml" line="2288"/>
+        <source>Next reload starts at &lt;pre&gt;%1&lt;/pre&gt;</source>
+        <comment>Next reload starts at 10:11:12</comment>
+        <translation type="unfinished">Další načítání začne v &lt;pre&gt;%1&lt;/pre&gt;</translation>
     </message>
 </context>
 <context>
@@ -1139,27 +1149,37 @@ Help us translate QPrompt, visit:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/PathsPage.qml" line="63"/>
+        <location filename="../src/kirigami_ui/PathsPage.qml" line="83"/>
         <source>QPrompt can make transparent use of LibreOffice to convert Microsoft Word, Open Document Format, and other office documents into a format QPrompt understands. Install LibreOffice and ensure this field points to its location, so QPrompt can open office documents.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/PathsPage.qml" line="71"/>
-        <location filename="../src/kirigami_ui/PathsPage.qml" line="99"/>
+        <location filename="../src/kirigami_ui/PathsPage.qml" line="92"/>
+        <location filename="../src/kirigami_ui/PathsPage.qml" line="120"/>
         <source>Browse for %1</source>
         <comment>Browse for PROGRAM</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/PathsPage.qml" line="102"/>
-        <location filename="../src/kirigami_ui/PathsPage.qml" line="104"/>
-        <location filename="../src/kirigami_ui/PathsPage.qml" line="105"/>
+        <location filename="../src/kirigami_ui/PathsPage.qml" line="58"/>
+        <source>External tools</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/kirigami_ui/PathsPage.qml" line="64"/>
+        <source>Allow sys:// markers to execute system commands as the teleprompter scrolls past them.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/kirigami_ui/PathsPage.qml" line="123"/>
+        <location filename="../src/kirigami_ui/PathsPage.qml" line="125"/>
+        <location filename="../src/kirigami_ui/PathsPage.qml" line="126"/>
         <source>Executable &lt;%1&gt;</source>
         <comment>Format name &lt;FORMAT_EXTENSION&gt;</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/PathsPage.qml" line="107"/>
+        <location filename="../src/kirigami_ui/PathsPage.qml" line="128"/>
         <source>All Formats</source>
         <comment>All file formats</comment>
         <translation>Všechny formáty</translation>
@@ -1337,250 +1357,276 @@ Help us translate QPrompt, visit:</source>
 <context>
     <name>Prompter</name>
     <message>
-        <location filename="../src/prompter/Prompter.qml" line="985"/>
+        <location filename="../src/prompter/Prompter.qml" line="1011"/>
         <source>Error loading file…</source>
         <translation>Chyba při nahrávání souboru…</translation>
     </message>
     <message>
-        <location filename="../src/prompter/Prompter.qml" line="1074"/>
+        <location filename="../src/prompter/Prompter.qml" line="1100"/>
         <source>Rewind to start</source>
         <comment>End of prompt button tooltip</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/prompter/Prompter.qml" line="1117"/>
+        <location filename="../src/prompter/Prompter.qml" line="1143"/>
         <source>Press and hold to go back to the start</source>
         <translation>Stiskněte a podržte pro vrácení se na začátek</translation>
     </message>
     <message>
-        <location filename="../src/prompter/Prompter.qml" line="1119"/>
+        <location filename="../src/prompter/Prompter.qml" line="1145"/>
         <source>Double tap to go back to the start</source>
         <translation>Dvojitým klepnutím přetočíte zpět</translation>
     </message>
     <message>
-        <location filename="../src/prompter/Prompter.qml" line="1127"/>
+        <location filename="../src/prompter/Prompter.qml" line="1153"/>
         <source>Auto rewind cancelled</source>
         <translation>Automatické převíjení zpět zrušeno</translation>
     </message>
     <message>
-        <location filename="../src/prompter/Prompter.qml" line="1177"/>
+        <location filename="../src/prompter/Prompter.qml" line="1203"/>
         <source>Stop at end</source>
         <comment>End of prompt button tooltip</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/prompter/Prompter.qml" line="1236"/>
+        <location filename="../src/prompter/Prompter.qml" line="1262"/>
         <source>Loop at end</source>
         <comment>End of prompt button tooltip</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/prompter/Prompter.qml" line="1295"/>
+        <location filename="../src/prompter/Prompter.qml" line="1321"/>
         <source>Loop delay</source>
         <comment>End of prompt button tooltip</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/prompter/Prompter.qml" line="2027"/>
+        <location filename="../src/prompter/Prompter.qml" line="2053"/>
         <source>Drag to resize</source>
         <comment>Left handle button tooltip</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/prompter/Prompter.qml" line="2027"/>
-        <location filename="../src/prompter/Prompter.qml" line="2066"/>
+        <location filename="../src/prompter/Prompter.qml" line="2053"/>
+        <location filename="../src/prompter/Prompter.qml" line="2092"/>
         <source>Double click to reset</source>
         <comment>Left handle button tooltip</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/prompter/Prompter.qml" line="2066"/>
+        <location filename="../src/prompter/Prompter.qml" line="2092"/>
         <source>Drag to displace</source>
         <comment>Right handle button tooltip</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/prompter/Prompter.qml" line="2249"/>
+        <location filename="../src/prompter/Prompter.qml" line="2275"/>
         <source>New document</source>
         <translation>Nový dokument</translation>
     </message>
     <message>
-        <location filename="../src/prompter/Prompter.qml" line="2258"/>
+        <location filename="../src/prompter/Prompter.qml" line="2284"/>
         <source>welcome_en.html</source>
         <translation>welcome_cs.html</translation>
     </message>
     <message>
-        <location filename="../src/prompter/Prompter.qml" line="2263"/>
+        <location filename="../src/prompter/Prompter.qml" line="2289"/>
         <source>User welcome loaded</source>
         <translation>Uvítání uživatele načteno</translation>
     </message>
     <message>
-        <location filename="../src/prompter/Prompter.qml" line="2273"/>
+        <location filename="../src/prompter/Prompter.qml" line="2299"/>
         <source>Loaded: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/prompter/Prompter.qml" line="2331"/>
-        <location filename="../src/prompter/Prompter.qml" line="2511"/>
+        <location filename="../src/prompter/Prompter.qml" line="2357"/>
+        <location filename="../src/prompter/Prompter.qml" line="2537"/>
         <source>Saved %1</source>
         <comment>Saved FILE_NAME</comment>
         <translation>Uloženo %1</translation>
     </message>
     <message>
-        <location filename="../src/prompter/Prompter.qml" line="2333"/>
-        <location filename="../src/prompter/Prompter.qml" line="2536"/>
+        <location filename="../src/prompter/Prompter.qml" line="2359"/>
+        <location filename="../src/prompter/Prompter.qml" line="2562"/>
         <source>Saved</source>
         <translation type="unfinished">Uloženo</translation>
     </message>
     <message>
-        <location filename="../src/prompter/Prompter.qml" line="2443"/>
-        <location filename="../src/prompter/Prompter.qml" line="2455"/>
-        <location filename="../src/prompter/Prompter.qml" line="2496"/>
+        <location filename="../src/prompter/Prompter.qml" line="2469"/>
+        <location filename="../src/prompter/Prompter.qml" line="2481"/>
+        <location filename="../src/prompter/Prompter.qml" line="2522"/>
         <source>Plain Text &lt;%1&gt;</source>
         <comment>Format name &lt;FORMAT_EXTENSION&gt;</comment>
         <translation>Prostý text &lt;%1&gt;</translation>
     </message>
     <message>
-        <location filename="../src/prompter/Prompter.qml" line="2444"/>
+        <location filename="../src/prompter/Prompter.qml" line="2470"/>
         <source>OpenDocument Format Text Document &lt;%1&gt;</source>
         <comment>Format name &lt;FORMAT_EXTENSION&gt;</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/prompter/Prompter.qml" line="2445"/>
+        <location filename="../src/prompter/Prompter.qml" line="2471"/>
         <source>AbiWord Document &lt;%1&gt;</source>
         <comment>Format name &lt;FORMAT_EXTENSION&gt;</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/prompter/Prompter.qml" line="2446"/>
+        <location filename="../src/prompter/Prompter.qml" line="2472"/>
         <source>Microsoft Word document &lt;%1&gt;</source>
         <comment>Format name &lt;FORMAT_EXTENSION&gt;</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/prompter/Prompter.qml" line="2447"/>
+        <location filename="../src/prompter/Prompter.qml" line="2473"/>
         <source>Apple Pages Document &lt;%1&gt;</source>
         <comment>Format name &lt;FORMAT_EXTENSION&gt;</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/prompter/Prompter.qml" line="2448"/>
+        <location filename="../src/prompter/Prompter.qml" line="2474"/>
         <source>Rich Text Format &lt;%1&gt;</source>
         <comment>Format name &lt;FORMAT_EXTENSION&gt;</comment>
         <translation>Prostý text &lt;%1&gt;</translation>
     </message>
     <message>
-        <location filename="../src/prompter/Prompter.qml" line="2450"/>
-        <location filename="../src/prompter/Prompter.qml" line="2458"/>
+        <location filename="../src/prompter/Prompter.qml" line="2476"/>
+        <location filename="../src/prompter/Prompter.qml" line="2484"/>
         <source>All Formats</source>
         <comment>All file formats</comment>
         <translation>Všechny formáty</translation>
     </message>
     <message>
-        <location filename="../src/prompter/Prompter.qml" line="2582"/>
+        <location filename="../src/prompter/Prompter.qml" line="2608"/>
         <source>Add &quot;%1&quot; to dictionary</source>
         <comment>Editor context menu actions</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/prompter/Prompter.qml" line="2441"/>
-        <location filename="../src/prompter/Prompter.qml" line="2453"/>
-        <location filename="../src/prompter/Prompter.qml" line="2491"/>
-        <location filename="../src/prompter/Prompter.qml" line="2495"/>
+        <location filename="../src/prompter/Prompter.qml" line="2467"/>
+        <location filename="../src/prompter/Prompter.qml" line="2479"/>
+        <location filename="../src/prompter/Prompter.qml" line="2517"/>
+        <location filename="../src/prompter/Prompter.qml" line="2521"/>
         <source>Hypertext Markup Language &lt;%1&gt;</source>
         <comment>Format name &lt;FORMAT_EXTENSION&gt;</comment>
         <translation>Hypertext Markup Language &lt;%1&gt;</translation>
     </message>
     <message>
-        <location filename="../src/prompter/Prompter.qml" line="1206"/>
+        <location filename="../src/prompter/Prompter.qml" line="368"/>
+        <source>Connecting</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/prompter/Prompter.qml" line="370"/>
+        <source>Connected</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/prompter/Prompter.qml" line="372"/>
+        <source>Disconnecting</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/prompter/Prompter.qml" line="374"/>
+        <location filename="../src/prompter/Prompter.qml" line="379"/>
+        <source>Disconnected</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/prompter/Prompter.qml" line="376"/>
+        <source>Connection Error</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/prompter/Prompter.qml" line="1232"/>
         <source>Return to edit mode at end</source>
         <comment>End of prompt button tooltip</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/prompter/Prompter.qml" line="2442"/>
-        <location filename="../src/prompter/Prompter.qml" line="2454"/>
+        <location filename="../src/prompter/Prompter.qml" line="2468"/>
+        <location filename="../src/prompter/Prompter.qml" line="2480"/>
         <source>Markdown &lt;%1&gt;</source>
         <comment>Format name &lt;FORMAT_EXTENSION&gt;</comment>
         <translation>Markdown &lt;%1&gt;</translation>
     </message>
     <message>
-        <location filename="../src/prompter/Prompter.qml" line="2589"/>
-        <location filename="../src/prompter/Prompter.qml" line="2676"/>
+        <location filename="../src/prompter/Prompter.qml" line="2615"/>
+        <location filename="../src/prompter/Prompter.qml" line="2702"/>
         <source>&amp;Copy</source>
         <comment>Global menu and editor context menu actions</comment>
         <translation>Kopírovat</translation>
     </message>
     <message>
-        <location filename="../src/prompter/Prompter.qml" line="2594"/>
-        <location filename="../src/prompter/Prompter.qml" line="2681"/>
+        <location filename="../src/prompter/Prompter.qml" line="2620"/>
+        <location filename="../src/prompter/Prompter.qml" line="2707"/>
         <source>Cu&amp;t</source>
         <comment>Global menu and editor context menu actions</comment>
         <translation>Vyjmout</translation>
     </message>
     <message>
-        <location filename="../src/prompter/Prompter.qml" line="2599"/>
-        <location filename="../src/prompter/Prompter.qml" line="2686"/>
+        <location filename="../src/prompter/Prompter.qml" line="2625"/>
+        <location filename="../src/prompter/Prompter.qml" line="2712"/>
         <source>&amp;Paste</source>
         <comment>Global menu and editor context menu actions</comment>
         <translation>Vložit</translation>
     </message>
     <message>
-        <location filename="../src/prompter/Prompter.qml" line="2605"/>
+        <location filename="../src/prompter/Prompter.qml" line="2631"/>
         <source>Fo&amp;nt…</source>
         <comment>Editor context menu actions</comment>
         <translation>Písmo…</translation>
     </message>
     <message>
-        <location filename="../src/prompter/Prompter.qml" line="2609"/>
-        <location filename="../src/prompter/Prompter.qml" line="2692"/>
+        <location filename="../src/prompter/Prompter.qml" line="2635"/>
+        <location filename="../src/prompter/Prompter.qml" line="2718"/>
         <source>Co&amp;lor…</source>
         <comment>Editor context menu actions</comment>
         <translation>Barva…</translation>
     </message>
     <message>
-        <location filename="../src/prompter/Prompter.qml" line="2613"/>
-        <location filename="../src/prompter/Prompter.qml" line="2696"/>
+        <location filename="../src/prompter/Prompter.qml" line="2639"/>
+        <location filename="../src/prompter/Prompter.qml" line="2722"/>
         <source>Hi&amp;ghlight…</source>
         <comment>Editor context menu actions</comment>
         <translation>Zvýraznění…</translation>
     </message>
     <message>
-        <location filename="../src/prompter/Prompter.qml" line="2657"/>
+        <location filename="../src/prompter/Prompter.qml" line="2683"/>
         <source>Add to dictionary</source>
         <comment>Editor context menu actions</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/prompter/Prompter.qml" line="2665"/>
+        <location filename="../src/prompter/Prompter.qml" line="2691"/>
         <source>&amp;Undo</source>
         <comment>Editor context menu actions</comment>
         <translation>Zpět</translation>
     </message>
     <message>
-        <location filename="../src/prompter/Prompter.qml" line="2670"/>
+        <location filename="../src/prompter/Prompter.qml" line="2696"/>
         <source>Redo</source>
         <comment>Editor context menu actions</comment>
         <translation>Znovu</translation>
     </message>
     <message>
-        <location filename="../src/prompter/Prompter.qml" line="2984"/>
+        <location filename="../src/prompter/Prompter.qml" line="3010"/>
         <source>Begin countdown</source>
         <translation>Začít odpočet</translation>
     </message>
     <message>
-        <location filename="../src/prompter/Prompter.qml" line="2984"/>
+        <location filename="../src/prompter/Prompter.qml" line="3010"/>
         <source>Start prompting</source>
         <translation>Promítat</translation>
     </message>
     <message>
-        <location filename="../src/prompter/Prompter.qml" line="3032"/>
+        <location filename="../src/prompter/Prompter.qml" line="3058"/>
         <source>Skip countdown</source>
         <translation>Přeskočit odpočet</translation>
     </message>
     <message>
-        <location filename="../src/prompter/Prompter.qml" line="3077"/>
+        <location filename="../src/prompter/Prompter.qml" line="3103"/>
         <source>Return to edit mode</source>
         <translation>Návrat do módu úprav</translation>
     </message>
@@ -1610,79 +1656,79 @@ Help us translate QPrompt, visit:</source>
         <translation type="vanished">Začít promítání</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/PrompterPage.qml" line="128"/>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="130"/>
         <source>Decrease velocity</source>
         <translation>Snížení rychlosti</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/PrompterPage.qml" line="141"/>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="143"/>
         <source>Increase velocity</source>
         <translation>Zvýšení rychlosti</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/PrompterPage.qml" line="153"/>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="155"/>
         <source>Reading region</source>
         <comment>Reading region indicates where a talent should be reading from</comment>
         <translation>Oblast pro čtení</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/PrompterPage.qml" line="155"/>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="157"/>
         <source>Change reading region placement</source>
         <comment>Reading region indicates where a talent should be reading from</comment>
         <translation>Změnit umístění oblasti pro čtení</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/PrompterPage.qml" line="172"/>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="174"/>
         <source>Top</source>
         <comment>Align reading region to top of prompter</comment>
         <translation>Nahoře</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/PrompterPage.qml" line="174"/>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="176"/>
         <source>Move reading region to the top, convenient for use with webcams</source>
         <translation>Přesune oblast pro čtení nahoru, vhodné pro použití s webkamerou</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/PrompterPage.qml" line="184"/>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="186"/>
         <source>Middle</source>
         <comment>Align reading region to vertical center of prompter</comment>
         <translation>Uprostřed</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/PrompterPage.qml" line="186"/>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="188"/>
         <source>Move reading region to the vertical center</source>
         <translation>Přesune oblast pro čtení do vertikálního středu</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/PrompterPage.qml" line="196"/>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="198"/>
         <source>Bottom</source>
         <comment>Align reading region to bottom of prompter</comment>
         <translation>Vespod</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/PrompterPage.qml" line="198"/>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="200"/>
         <source>Move reading region to the bottom</source>
         <translation>Přesune oblast pro čtení dospod</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/PrompterPage.qml" line="208"/>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="210"/>
         <source>Free</source>
         <comment>Refers to free placement. Enables drag and drop positioning of reading region.</comment>
         <translation>Volná</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/PrompterPage.qml" line="210"/>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="212"/>
         <source>Move reading region freely by dragging and dropping</source>
         <translation>Oblast pro čtení lze volně posouvat chycením a táhnutím</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/PrompterPage.qml" line="220"/>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="222"/>
         <source>Custom</source>
         <comment>Fix positioning of reading region to what was set in &quot;Free placement&quot; mode</comment>
         <translation>Vlastní</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/PrompterPage.qml" line="222"/>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="224"/>
         <source>Fix reading region to the position set using free placement mode</source>
         <translation>Zafixuje oblast pro čtení v pozici nastavené pomocí volného módu</translation>
     </message>
@@ -1692,157 +1738,175 @@ Help us translate QPrompt, visit:</source>
         <translation type="vanished">Výška: %1</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/PrompterPage.qml" line="300"/>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="302"/>
         <source>Indicators</source>
         <comment>Indicators highlight reading region</comment>
         <translation>Ukazatele</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/PrompterPage.qml" line="301"/>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="303"/>
         <source>Change reading region indicators</source>
         <comment>Indicators highlight reading region</comment>
         <translation>Upravit ukazatele oblasti pro čtení</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/PrompterPage.qml" line="304"/>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="306"/>
         <source>Pointer Configuration</source>
         <comment>Configure reading region pointer indicators</comment>
         <translation type="unfinished">Konfigurace ukazatele</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/PrompterPage.qml" line="311"/>
-        <location filename="../src/kirigami_ui/PrompterPage.qml" line="323"/>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="313"/>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="325"/>
         <source>Left pointer</source>
         <comment>Shows pointer to the left of the reading region</comment>
         <translation>Levý ukazatel</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/PrompterPage.qml" line="311"/>
-        <location filename="../src/kirigami_ui/PrompterPage.qml" line="323"/>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="313"/>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="325"/>
         <source>Right pointer</source>
         <comment>Shows pointer to the right of the reading region</comment>
         <translation>Pravý ukazatel</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/PrompterPage.qml" line="313"/>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="315"/>
         <source>Left pointer indicates reading region</source>
         <translation>Levý ukazatal označuje oblast pro čtení</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/PrompterPage.qml" line="325"/>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="327"/>
         <source>Right pointer indicates reading region</source>
         <translation>Pravý ukazatal označuje oblast pro čtení</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/PrompterPage.qml" line="335"/>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="337"/>
         <source>Both pointers</source>
         <comment>Shows pointers to the left and right of the reading region</comment>
         <translation>Oba ukazatelé</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/PrompterPage.qml" line="337"/>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="339"/>
         <source>Left and right pointers indicate reading region</source>
         <translation>Levý a pravý ukazatal označují oblast pro čtení</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/PrompterPage.qml" line="347"/>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="349"/>
         <source>No pointers</source>
         <comment>Disable all reading region pointers</comment>
         <translation type="unfinished">Žádné ukazatele</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/PrompterPage.qml" line="349"/>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="351"/>
         <source>Disable reading region indicators</source>
         <comment>Disable all reading region indicators</comment>
         <translation>Vypnout ukazatele oblasti pro čtení</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/PrompterPage.qml" line="159"/>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="161"/>
         <source>Bars</source>
         <comment>Configure reading region pointer indicators</comment>
         <translation>Pruh</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/PrompterPage.qml" line="122"/>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="124"/>
         <source>Start prompting</source>
         <translation type="unfinished">Promítat</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/PrompterPage.qml" line="122"/>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="124"/>
         <source>Initiate prompter</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/PrompterPage.qml" line="246"/>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="248"/>
         <source>Height: %1 lines</source>
         <comment>Height of reading region relative to single line height. E.g. Height: 2.5</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/PrompterPage.qml" line="360"/>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="362"/>
         <source>Timer</source>
         <translation>Časovač</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/PrompterPage.qml" line="372"/>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="374"/>
         <source>Enable timers</source>
         <translation>Povolit časovače</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/PrompterPage.qml" line="384"/>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="386"/>
         <source>Stopwatch</source>
         <translation>Stopky</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/PrompterPage.qml" line="385"/>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="387"/>
         <source>Indicate time taken</source>
         <comment>Stopwatch button tooltip</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/PrompterPage.qml" line="397"/>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="399"/>
         <source>Clock</source>
         <comment>Show Current Time</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/PrompterPage.qml" line="398"/>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="400"/>
         <source>Show current time</source>
         <comment>Clock button tooltip</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/PrompterPage.qml" line="411"/>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="413"/>
         <source>ETA</source>
         <comment>Estimated Time of Arrival</comment>
         <translation>Zbývající čas</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/PrompterPage.qml" line="421"/>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="418"/>
+        <source>Estimated Time to Arrival</source>
+        <comment>ETA button tooltip</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="423"/>
         <source>Timer color</source>
         <comment>Color of timer text</comment>
         <translation>Barva časovače</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/PrompterPage.qml" line="432"/>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="434"/>
         <source>Clear color</source>
         <comment>Reset color of timer text back to default</comment>
         <translation>Odstranit barvu</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/PrompterPage.qml" line="443"/>
-        <location filename="../src/kirigami_ui/PrompterPage.qml" line="466"/>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="445"/>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="468"/>
         <source>Countdown</source>
         <translation>Odpočet</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/PrompterPage.qml" line="449"/>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="451"/>
         <source>Auto frame</source>
         <comment>Enables automatic alignment of prompter and text with the reading region</comment>
         <translation>Automatické zarámování</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/PrompterPage.qml" line="483"/>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="452"/>
+        <source>On start, auto-align text with reading region</source>
+        <comment>Auto frame button tooltip</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="469"/>
+        <source>Show countdown before prompting</source>
+        <comment>Countdown button tooltip</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="485"/>
         <source>Auto start</source>
         <comment>Auto start countdown upon prompter getting started</comment>
         <translation>Automatické spuštění</translation>
@@ -1852,230 +1916,212 @@ Help us translate QPrompt, visit:</source>
         <translation type="vanished">Spustí odpočet automaticky</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/PrompterPage.qml" line="416"/>
-        <source>Estimated Time to Arrival</source>
-        <comment>ETA button tooltip</comment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/kirigami_ui/PrompterPage.qml" line="450"/>
-        <source>On start, auto-align text with reading region</source>
-        <comment>Auto frame button tooltip</comment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/kirigami_ui/PrompterPage.qml" line="467"/>
-        <source>Show countdown before prompting</source>
-        <comment>Countdown button tooltip</comment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/kirigami_ui/PrompterPage.qml" line="484"/>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="486"/>
         <source>Start countdown immediately</source>
         <comment>Auto start button tooltip</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/PrompterPage.qml" line="495"/>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="497"/>
         <source>Set duration</source>
         <comment>Configure countdown duration</comment>
         <translation>Nastavit délku trvání</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/PrompterPage.qml" line="496"/>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="498"/>
         <source>Set countdown duration</source>
         <comment>Set duration button tooltip</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/PrompterPage.qml" line="513"/>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="515"/>
         <source>Orientation</source>
         <comment>Prompter orientation and mirroring</comment>
         <translation>Orientace</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/PrompterPage.qml" line="514"/>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="516"/>
         <source>Flip settings and more</source>
         <comment>Orientation button tooltip</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/PrompterPage.qml" line="531"/>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="533"/>
         <source>Horizontal mirror</source>
         <comment>Mirrors prompter horizontally</comment>
         <translation>Horizontální převrácení</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/PrompterPage.qml" line="548"/>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="550"/>
         <source>Vertical mirror</source>
         <comment>Mirrors prompter vertically</comment>
         <translation>Vertikální převrácení</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/PrompterPage.qml" line="576"/>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="578"/>
         <source>Don&apos;t rotate</source>
         <comment>Prompter rotation is disabled</comment>
         <translation>Bez převrácení</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/PrompterPage.qml" line="587"/>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="589"/>
         <source>90° clockwise</source>
         <comment>Rotate prompter 90 degrees to the right</comment>
         <translation>90° po směru hodinových ručiček</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/PrompterPage.qml" line="598"/>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="600"/>
         <source>90° counter</source>
         <comment>Rotate prompter 90 degrees to the left</comment>
         <translation>90° proti směru hodinových ručiček</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/PrompterPage.qml" line="623"/>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="625"/>
         <source>Background</source>
         <comment>Background refers to what appears behind the prompter</comment>
         <translation>Pozadí</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/PrompterPage.qml" line="626"/>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="628"/>
         <source>Shadows</source>
         <comment>Enable root.shadows</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/PrompterPage.qml" line="635"/>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="637"/>
         <source>Set image</source>
         <comment>Set background image</comment>
         <translation>Nastavit obrázek</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/PrompterPage.qml" line="648"/>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="650"/>
         <source>Set color</source>
         <comment>Set background color tint</comment>
         <translation>Nastavit barvu</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/PrompterPage.qml" line="658"/>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="660"/>
         <source>Clear</source>
         <comment>Set background settings back to default</comment>
         <translation>Odstranit</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/PrompterPage.qml" line="670"/>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="672"/>
         <source>Spellcheck</source>
         <comment>Spell checking menu</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/PrompterPage.qml" line="673"/>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="675"/>
         <source>Spellcheck</source>
         <comment>Toggle spell checking on or off</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/PrompterPage.qml" line="682"/>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="684"/>
         <source>Set dictionaries</source>
         <comment>Open dictionary selection sheet</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/PrompterPage.qml" line="690"/>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="692"/>
         <source>Edit custom words</source>
         <comment>Open custom dictionary editor</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/PrompterPage.qml" line="700"/>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="702"/>
         <source>Screens</source>
         <comment>Screens refers to computer displays</comment>
         <translation>Obrazovky</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/PrompterPage.qml" line="701"/>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="703"/>
         <source>Configure prompting on multiple displays</source>
         <comment>Screens button tooltip</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/PrompterPage.qml" line="735"/>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="737"/>
         <source>Off</source>
         <comment>Screen is disabled</comment>
         <translation>Vypnuto</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/PrompterPage.qml" line="736"/>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="738"/>
         <source>No Mirror</source>
         <comment>Screen is enabled but mirroring is disabled</comment>
         <translation>Bez převrácení</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/PrompterPage.qml" line="737"/>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="739"/>
         <source>H Mirror</source>
         <comment>Horizontal mirroring</comment>
         <translation>H převrácení</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/PrompterPage.qml" line="738"/>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="740"/>
         <source>V Mirror</source>
         <comment>Vertical mirroring</comment>
         <translation>V převrácení</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/PrompterPage.qml" line="739"/>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="741"/>
         <source>HV Mirror</source>
         <comment>Horizontal and vertical mirroring</comment>
         <translation>HV převrácení</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/PrompterPage.qml" line="750"/>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="752"/>
         <source>Enable projection</source>
         <comment>Display prompter copies onto displays</comment>
         <translation>Povolit promítání</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/PrompterPage.qml" line="751"/>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="753"/>
         <source>Display prompter copies onto displays</source>
         <comment>Enable projections button tooltip</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/PrompterPage.qml" line="763"/>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="765"/>
         <source>Scale projection</source>
         <comment>Enable scaling prompter copies being projected onto displays</comment>
         <translation>Škálovat promítání</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/PrompterPage.qml" line="764"/>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="766"/>
         <source>Scale to fit the screen</source>
         <comment>Scale button tooltip</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/PrompterPage.qml" line="787"/>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="789"/>
         <source>Leave Fullscreen</source>
         <translation>Ukončit celou obrazovku</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/PrompterPage.qml" line="787"/>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="789"/>
         <source>Fullscreen</source>
         <translation>Celá obrazovka</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/PrompterPage.qml" line="955"/>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="957"/>
         <source>Right click to hide velocity indicator</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/PrompterPage.qml" line="1132"/>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="1134"/>
         <source>Countdown Setup</source>
         <translation>Nastavení odpočtu</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/PrompterPage.qml" line="1151"/>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="1153"/>
         <source>Countdown duration</source>
         <translation type="unfinished">Doba trvání odpočtu</translation>
     </message>
     <message numerus="yes">
-        <location filename="../src/kirigami_ui/PrompterPage.qml" line="1172"/>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="1174"/>
         <source>Disappear within %n second(s) to go</source>
         <translation>
             <numerusform>Skryjte se do 1 sekundy</numerusform>
@@ -2084,149 +2130,174 @@ Help us translate QPrompt, visit:</source>
         </translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/PrompterPage.qml" line="1199"/>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="1201"/>
         <source>Skip Key</source>
         <comment>Refers to a key on the keyboard used to skip to a user defined marker while prompting</comment>
         <translation>Klávesa pro skok</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/PrompterPage.qml" line="1235"/>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="1237"/>
         <source>Key to perform skip to this marker</source>
         <comment>Refers to a key on the keyboard used to skip to a user defined marker while prompting</comment>
         <translation>Klávesa pro skok k této záložce</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/PrompterPage.qml" line="1271"/>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="1273"/>
         <source>Command to execute</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/PrompterPage.qml" line="1295"/>
-        <source>Allow sys:// markers to run system commands</source>
-        <comment>Security opt-in beneath the marker command field. Off by default; when checked, sys:// markers in a document may execute local system commands as the prompter scrolls past them.</comment>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="1294"/>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="1614"/>
+        <source>OBS: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/PrompterPage.qml" line="1338"/>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="1306"/>
+        <source>System Commands: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="1307"/>
+        <source>Enabled</source>
+        <translation type="unfinished">Povoleno</translation>
+    </message>
+    <message>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="1308"/>
+        <source>Disabled</source>
+        <translation type="unfinished">Zakázáno</translation>
+    </message>
+    <message>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="1356"/>
         <source>Open from network...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/PrompterPage.qml" line="1381"/>
-        <location filename="../src/kirigami_ui/PrompterPage.qml" line="1561"/>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="1399"/>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="1583"/>
         <source>URL:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/PrompterPage.qml" line="1396"/>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="1414"/>
         <source>Auto reload</source>
         <translation type="unfinished">Automatické znovunačtení</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/PrompterPage.qml" line="1407"/>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="1425"/>
         <source>Hours:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/PrompterPage.qml" line="1428"/>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="1446"/>
         <source>Minutes:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/PrompterPage.qml" line="1453"/>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="1471"/>
         <source>Seconds:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/PrompterPage.qml" line="1481"/>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="1499"/>
         <source>Next reload starts at %1</source>
         <comment>Next reload starts at 10:11:12</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/PrompterPage.qml" line="1482"/>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="1500"/>
         <source>Auto reload is not running</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/PrompterPage.qml" line="1488"/>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="1506"/>
         <source>Load from Network</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/PrompterPage.qml" line="1496"/>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="1514"/>
         <source>Close</source>
         <translation>Zavřít</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/PrompterPage.qml" line="1510"/>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="1528"/>
         <source>Pointer configuration</source>
         <comment>Name of section where reding region pointers are configured</comment>
         <translation type="unfinished">Konfigurace ukazatele</translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/PrompterPage.qml" line="1532"/>
-        <source>OBS configuration</source>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="1550"/>
+        <source>OBS Configuration</source>
         <comment>Name of section where OBS websockets connection is configured</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/PrompterPage.qml" line="1547"/>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="1569"/>
         <source>Enabled:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/PrompterPage.qml" line="1577"/>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="1599"/>
         <source>Password:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/PrompterPage.qml" line="1597"/>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="1623"/>
+        <source>System Commands</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="1631"/>
+        <source>Allow sys:// markers to execute system commands as the teleprompter scrolls past them.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="1671"/>
         <source>Set dictionaries</source>
         <comment>Dictionary selection sheet title</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/PrompterPage.qml" line="1638"/>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="1712"/>
         <source>Filter dictionaries</source>
         <comment>Dictionary filter placeholder</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/PrompterPage.qml" line="1664"/>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="1738"/>
         <source>No dictionaries found on this system.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/PrompterPage.qml" line="1665"/>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="1739"/>
         <source>No dictionaries match the filter.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/PrompterPage.qml" line="1675"/>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="1749"/>
         <source>Edit custom words</source>
         <comment>Custom dictionary editor title</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/PrompterPage.qml" line="1737"/>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="1811"/>
         <source>New word</source>
         <comment>Placeholder for adding a custom dictionary word</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/PrompterPage.qml" line="1742"/>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="1816"/>
         <source>Add</source>
         <comment>Add custom word button</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/PrompterPage.qml" line="1766"/>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="1840"/>
         <source>No custom words yet.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/kirigami_ui/PrompterPage.qml" line="1772"/>
+        <location filename="../src/kirigami_ui/PrompterPage.qml" line="1846"/>
         <source>Delete selected</source>
         <comment>Delete selected custom words</comment>
         <translation type="unfinished"></translation>

@@ -54,6 +54,26 @@ Kirigami.ScrollablePage {
         id: path_settings
         width: parent.implicitWidth
         Kirigami.Heading {
+            visible: ['android', 'ios', 'wasm'].indexOf(Qt.platform.os) === -1
+            text: qsTr("External tools")
+        }
+        CheckBox {
+            id: systemCommandsCheck
+            Layout.fillWidth: true
+            visible: ['android', 'ios', 'wasm'].indexOf(Qt.platform.os) === -1
+            text: qsTr("Allow sys:// markers to execute system commands as the teleprompter scrolls past them.")
+            checked: root.pageStack.currentItem.prompter.systemCommandsEnabled
+            onToggled: root.pageStack.currentItem.prompter.systemCommandsEnabled = checked
+            // Wrap rather than elide, so the label fits the fixed-width sheet in any
+            // translation — Text.Wrap also breaks overlong words (e.g. German compounds).
+            contentItem: Label {
+                text: systemCommandsCheck.text
+                wrapMode: Text.Wrap
+                verticalAlignment: Text.AlignVCenter
+                leftPadding: systemCommandsCheck.indicator.width + systemCommandsCheck.spacing
+            }
+        }
+        Kirigami.Heading {
             text: "LibreOffice"
         }
         TextArea {
