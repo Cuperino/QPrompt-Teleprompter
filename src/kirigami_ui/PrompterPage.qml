@@ -25,7 +25,6 @@ import QtQuick.Window 2.12
 import QtQuick.Controls 2.12
 import QtQuick.Layouts 1.12
 import QtCore 6.5
-import QtQuick.Dialogs 6.6
 
 import com.cuperino.qprompt 1.0
 
@@ -1156,30 +1155,28 @@ Kirigami.Page {
         y: parent.height
     }
 
-    ColorDialog {
+    ColorChooserDialog {
         id: colorDialog
-        options: Qt.platform.os === "ios" ? 0 : ColorDialog.DontUseNativeDialog
         property color acceptedColor
         onAccepted: {
             viewport.document.setTextColor(selectedColor);
         }
-        onVisibleChanged: {
-            if (visible)
+        onOpenedChanged: {
+            if (opened)
                 cursorAutoHide.reset();
             else
                 cursorAutoHide.restart();
         }
     }
 
-    ColorDialog {
+    ColorChooserDialog {
         id: highlightDialog
-        options: Qt.platform.os === "ios" ? 0 : ColorDialog.DontUseNativeDialog
         property color acceptedColor
         onAccepted: {
             viewport.document.setTextBackground(selectedColor);
         }
-        onVisibleChanged: {
-            if (visible)
+        onOpenedChanged: {
+            if (opened)
                 cursorAutoHide.reset();
             else
                 cursorAutoHide.restart();

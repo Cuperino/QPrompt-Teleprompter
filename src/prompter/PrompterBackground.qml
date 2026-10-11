@@ -102,10 +102,8 @@ Rectangle {
             }
         }
 
-        ColorDialog {
+        ColorChooserDialog {
             id: backgroundColorDialog
-            options: (Qt.platform.os === "ios" ? 0 : ColorDialog.DontUseNativeDialog) | (Qt.platform.os === "android" ? ColorDialog.ShowAlphaChannel : 0)
-            property color color: root.background.__backgroundColor
             selectedColor: switch(appTheme.selection) {
                            //case 0: root.background.__backgroundColor
                            //case 0: return Qt.rgba(Material.background.r/4, Material.background.g/4, Material.background.b/4, 1);
@@ -114,14 +112,9 @@ Rectangle {
                            case 1: return "#303030";
                            case 2: return "#FAFAFA";
                        }
-            onRejected: {
-                backgroundColorDialog.selectedColor = backgroundColorDialog.color
-            }
-            onVisibleChanged: {
-                if (visible) {
-                    backgroundColorDialog.color = backgroundSettings.color
+            onOpenedChanged: {
+                if (opened)
                     cursorAutoHide.reset();
-                }
                 else
                     cursorAutoHide.restart();
             }
