@@ -43,8 +43,6 @@
 #define KIRIGAMI_BUILD_TYPE_STATIC true
 #include <kirigamiplugin.h>
 #endif
-// #include <KLocalizedContext>
-// #include <KLocalizedString>
 #include <kaboutdata.h>
 
 #if defined(KF6Crash_FOUND)
@@ -64,9 +62,6 @@
 #endif
 
 #include "../qprompt_version.h"
-#include "units.hpp"
-//#include "documenthandler.h"
-//#include "qmlutil.hpp"
 #include <stdlib.h>
 
 #define QPROMPT_URI "com.cuperino.qprompt"
@@ -214,15 +209,7 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
     // qDebug() << "DrKonqui" << KCrash::isDrKonqiEnabled();
 #endif
 
-    // qmlRegisterType<PrompterTimer>(QPROMPT_URI + ".promptertimer", 1, 0, "PrompterTimer");
-    //    qmlRegisterType<DocumentHandler>(QPROMPT_URI ".document", 1, 0, "DocumentHandler");
-    //    qmlRegisterType<MarkersModel>(QPROMPT_URI ".markers", 1, 0, "MarkersModel");
-    //    qmlRegisterType<QmlUtil>(QPROMPT_URI ".qmlutil", 1, 0, "QmlUtil");
-    //    qmlRegisterUncreatableType</*Units*/>(QPROMPT_URI ".units", 1, 0, "Units", "Access to Duration enum");
     QQmlApplicationEngine engine;
-    // qmlRegisterType<PrompterWindow>(QPROMPT_URI".prompterwindow", 1, 0, "PrompterWindow");
-
-    //    qRegisterMetaType<Marker>();
 
 #if defined(Q_OS_ANDROID) || defined(Q_OS_IOS) || defined(Q_OS_WASM)
 KirigamiPlugin::getInstance().registerTypes();
@@ -298,12 +285,12 @@ KirigamiPlugin::getInstance().registerTypes();
     // Linux AppImage paths
     engine.addImportPath(QStringLiteral("../usr/lib/x86_64-linux-gnu/qml/"));
     engine.addImportPath(QStringLiteral("../usr/lib/aarch64-linux-gnu/qml/"));
+#if defined(Q_OS_WINDOWS)
     // Windows paths. The bundled KDE frameworks follow KDEInstallDirs and place
     // their QML modules in <prefix>/lib/qml, while Qt only searches <prefix>/qml.
     // Anchor the extra import path to the executable rather than to the working
     // directory, so the modules are also found when QPrompt is started with an
     // unrelated CWD, as happens with a shortcut or a file association.
-#if defined(Q_OS_WINDOWS)
     engine.addImportPath(QCoreApplication::applicationDirPath() + QStringLiteral("/../lib/qml"));
 #endif
     // MacOS paths
@@ -311,7 +298,6 @@ KirigamiPlugin::getInstance().registerTypes();
     engine.addImportPath(QStringLiteral("../build/"));
     engine.addImportPath(QStringLiteral("../Resources/qml/"));
     // Send context data from C++ to QML
-    // engine.rootContext()->setContextObject(new KLocalizedContext(&engine));
     engine.rootContext()->setContextProperty(QStringLiteral("aboutData"), QVariant::fromValue(KAboutData::applicationData()));
     if (positionalArguments.length())
         engine.rootContext()->setContextProperty(QStringLiteral("fileToOpen"), fileToOpen);
