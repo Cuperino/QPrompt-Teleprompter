@@ -167,18 +167,18 @@
         <location filename="../src/kirigami_ui/EditorToolbar.qml" line="545"/>
         <source>Subscript or superscript</source>
         <comment>Editor toolbar button tooltip</comment>
-        <translation type="unfinished"></translation>
+        <translation>Subscrito ou sobrescrito</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/EditorToolbar.qml" line="566"/>
         <source>Capitalization</source>
         <comment>Editor toolbar button tooltip</comment>
-        <translation type="unfinished"></translation>
+        <translation>Capitalização</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/EditorToolbar.qml" line="651"/>
         <source>Active font: %0</source>
-        <translation type="unfinished"></translation>
+        <translation>Fonte ativa: %0</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/EditorToolbar.qml" line="658"/>
