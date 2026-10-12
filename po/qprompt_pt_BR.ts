@@ -249,25 +249,25 @@
         <location filename="../src/kirigami_ui/EditorToolbar.qml" line="792"/>
         <source>Align left</source>
         <comment>Editor toolbar button tooltip</comment>
-        <translation type="unfinished"></translation>
+        <translation>Alinhado à esquerda</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/EditorToolbar.qml" line="811"/>
         <source>Align center</source>
         <comment>Editor toolbar button tooltip</comment>
-        <translation type="unfinished"></translation>
+        <translation>Centralizado</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/EditorToolbar.qml" line="825"/>
         <source>Align right</source>
         <comment>Editor toolbar button tooltip</comment>
-        <translation type="unfinished"></translation>
+        <translation>Alinhado à direita</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/EditorToolbar.qml" line="845"/>
         <source>Justify</source>
         <comment>Editor toolbar button tooltip</comment>
-        <translation type="unfinished"></translation>
+        <translation>Justificado</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/EditorToolbar.qml" line="868"/>
