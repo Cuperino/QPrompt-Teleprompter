@@ -279,25 +279,25 @@
         <location filename="../src/kirigami_ui/EditorToolbar.qml" line="883"/>
         <source>Window stay on top</source>
         <comment>Editor toolbar button tooltip</comment>
-        <translation type="unfinished"></translation>
+        <translation>Manter janela sempre visível</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/EditorToolbar.qml" line="896"/>
         <source>Text spacing options</source>
         <comment>Editor toolbar button tooltip</comment>
-        <translation type="unfinished"></translation>
+        <translation>Opções de espaçamento de texto</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/EditorToolbar.qml" line="924"/>
         <source>Motion options</source>
         <comment>Editor toolbar button tooltip</comment>
-        <translation type="unfinished"></translation>
+        <translation>Opções de movimento</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/EditorToolbar.qml" line="970"/>
         <source>Prompter goes forward only</source>
         <comment>Editor toolbar button tooltip</comment>
-        <translation type="unfinished"></translation>
+        <translation>O prompter apenas avança</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/EditorToolbar.qml" line="984"/>
