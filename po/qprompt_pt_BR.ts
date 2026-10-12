@@ -273,7 +273,7 @@
         <location filename="../src/kirigami_ui/EditorToolbar.qml" line="868"/>
         <source>Scroll wheel settings</source>
         <comment>Editor toolbar button tooltip</comment>
-        <translation type="unfinished"></translation>
+        <translation>Configurações da roda de rolagem</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/EditorToolbar.qml" line="883"/>
