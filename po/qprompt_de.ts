@@ -429,12 +429,12 @@
     <message>
         <location filename="../src/kirigami_ui/EditorToolbar.qml" line="2323"/>
         <source>OBS: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>OBS:%1</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/EditorToolbar.qml" line="2334"/>
         <source>System Commands Enabled</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Systembefehle aktiviert</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/EditorToolbar.qml" line="2275"/>
@@ -480,55 +480,55 @@
         <location filename="../src/prompter/Find.qml" line="171"/>
         <source>Close</source>
         <comment>Find toolbar button tooltip</comment>
-        <translation type="unfinished">Schließen</translation>
+        <translation>Schließen</translation>
     </message>
     <message>
         <location filename="../src/prompter/Find.qml" line="181"/>
         <source>Show replace options</source>
         <comment>Find toolbar button tooltip</comment>
-        <translation type="unfinished"></translation>
+        <translation>Zeige Ersetzungsoptionen</translation>
     </message>
     <message>
         <location filename="../src/prompter/Find.qml" line="209"/>
         <source>Previous match</source>
         <comment>Find toolbar button tooltip</comment>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">vorherige Übereinstimmung</translation>
     </message>
     <message>
         <location filename="../src/prompter/Find.qml" line="218"/>
         <source>Next match</source>
         <comment>Find toolbar button tooltip</comment>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">nächste Übereinstimmung</translation>
     </message>
     <message>
         <location filename="../src/prompter/Find.qml" line="228"/>
         <source>Regular expressions</source>
         <comment>Find toolbar button tooltip</comment>
-        <translation type="unfinished"></translation>
+        <translation>reguläre Ausdrücke</translation>
     </message>
     <message>
         <location filename="../src/prompter/Find.qml" line="242"/>
         <source>Hide replace options</source>
         <comment>Find toolbar button tooltip</comment>
-        <translation type="unfinished"></translation>
+        <translation>Ersetzungsoptionen verbergen</translation>
     </message>
     <message>
         <location filename="../src/prompter/Find.qml" line="266"/>
         <source>Replace previous match</source>
         <comment>Find toolbar button tooltip</comment>
-        <translation type="unfinished"></translation>
+        <translation>Vorherige Übereinstimmung ersetzen</translation>
     </message>
     <message>
         <location filename="../src/prompter/Find.qml" line="275"/>
         <source>Replace next match</source>
         <comment>Find toolbar button tooltip</comment>
-        <translation type="unfinished"></translation>
+        <translation>Nächste Übereinstimmung ersetzen</translation>
     </message>
     <message>
         <location filename="../src/prompter/Find.qml" line="284"/>
         <source>Replace all matches</source>
         <comment>Find toolbar button tooltip</comment>
-        <translation type="unfinished"></translation>
+        <translation>Alle Übereinstimmung ersetzen</translation>
     </message>
 </context>
 <context>
@@ -1082,13 +1082,13 @@ Helfen sie uns QPrompt zu übersetzen und besuchen sie:</translation>
         <location filename="../src/kirigami_ui/MarkersDrawer.qml" line="98"/>
         <source>Delete marker</source>
         <comment>Marker list button tooltip</comment>
-        <translation type="unfinished"></translation>
+        <translation>Markierung entfernen</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/MarkersDrawer.qml" line="107"/>
         <source>Edit marker</source>
         <comment>Marker list button tooltip</comment>
-        <translation type="unfinished"></translation>
+        <translation>Markierung bearbeiten</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/MarkersDrawer.qml" line="143"/>
@@ -1100,13 +1100,13 @@ Helfen sie uns QPrompt zu übersetzen und besuchen sie:</translation>
         <location filename="../src/kirigami_ui/MarkersDrawer.qml" line="144"/>
         <source>Close</source>
         <comment>Marker list button tooltip</comment>
-        <translation type="unfinished">Schließen</translation>
+        <translation>Schließen</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/MarkersDrawer.qml" line="159"/>
         <source>Keep list open</source>
         <comment>Marker list button tooltip</comment>
-        <translation type="unfinished"></translation>
+        <translation>Liste offen halten</translation>
     </message>
 </context>
 <context>
@@ -1160,7 +1160,7 @@ Helfen sie uns QPrompt zu übersetzen und besuchen sie:</translation>
     <message>
         <location filename="../src/kirigami_ui/PathsPage.qml" line="64"/>
         <source>Allow sys:// markers to execute system commands as the teleprompter scrolls past them.</source>
-        <translation type="unfinished"></translation>
+        <translation>Erlaube sys://-Markierungen Systembefehle auszuführen wenn der Teleprompter darüber läuft.</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/PathsPage.qml" line="83"/>
@@ -1177,7 +1177,7 @@ Helfen sie uns QPrompt zu übersetzen und besuchen sie:</translation>
     <message>
         <location filename="../src/kirigami_ui/PathsPage.qml" line="58"/>
         <source>External tools</source>
-        <translation type="unfinished"></translation>
+        <translation>Externe Werkzeuge</translation>
     </message>
     <message>
         <source>Allow sys:// markers to run system commands</source>
@@ -1423,13 +1423,13 @@ Helfen sie uns QPrompt zu übersetzen und besuchen sie:</translation>
         <location filename="../src/prompter/Prompter.qml" line="2116"/>
         <source>Drag to displace</source>
         <comment>Right handle button tooltip</comment>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Zum Versetzen ziehen</translation>
     </message>
     <message>
         <location filename="../src/prompter/Prompter.qml" line="2116"/>
         <source>Double click to reset displacement</source>
         <comment>Right handle button tooltip</comment>
-        <translation type="unfinished"></translation>
+        <translation>Versetzung mit Doppelklick zurück setzen</translation>
     </message>
     <message>
         <location filename="../src/prompter/Prompter.qml" line="2299"/>
@@ -1527,28 +1527,28 @@ Helfen sie uns QPrompt zu übersetzen und besuchen sie:</translation>
     <message>
         <location filename="../src/prompter/Prompter.qml" line="368"/>
         <source>Connecting</source>
-        <translation type="unfinished"></translation>
+        <translation>Verbinde</translation>
     </message>
     <message>
         <location filename="../src/prompter/Prompter.qml" line="370"/>
         <source>Connected</source>
-        <translation type="unfinished"></translation>
+        <translation>Verbunden</translation>
     </message>
     <message>
         <location filename="../src/prompter/Prompter.qml" line="372"/>
         <source>Disconnecting</source>
-        <translation type="unfinished"></translation>
+        <translation>Verbindung lösen</translation>
     </message>
     <message>
         <location filename="../src/prompter/Prompter.qml" line="374"/>
         <location filename="../src/prompter/Prompter.qml" line="379"/>
         <source>Disconnected</source>
-        <translation type="unfinished"></translation>
+        <translation>Verbindung gelöst</translation>
     </message>
     <message>
         <location filename="../src/prompter/Prompter.qml" line="376"/>
         <source>Connection Error</source>
-        <translation type="unfinished"></translation>
+        <translation>Verbindungsfehler</translation>
     </message>
     <message>
         <location filename="../src/prompter/Prompter.qml" line="1256"/>
@@ -1560,25 +1560,25 @@ Helfen sie uns QPrompt zu übersetzen und besuchen sie:</translation>
         <location filename="../src/prompter/Prompter.qml" line="2077"/>
         <source>Double click to reset displacement</source>
         <comment>Left handle button tooltip</comment>
-        <translation type="unfinished"></translation>
+        <translation>Versetzung mit Doppelklick zurück setzen</translation>
     </message>
     <message>
         <location filename="../src/prompter/Prompter.qml" line="2077"/>
         <source>Drag to adjust width</source>
         <comment>Left handle button tooltip</comment>
-        <translation type="unfinished"></translation>
+        <translation>Breite durch ziehen einstellen</translation>
     </message>
     <message>
         <location filename="../src/prompter/Prompter.qml" line="2077"/>
         <source>Double click to reset width adjustment</source>
         <comment>Left handle button tooltip</comment>
-        <translation type="unfinished"></translation>
+        <translation>Breite mit Doppelklick zurück setzen</translation>
     </message>
     <message>
         <location filename="../src/prompter/Prompter.qml" line="2116"/>
         <source>Double click to reset width and displacement</source>
         <comment>Right handle button tooltip</comment>
-        <translation type="unfinished"></translation>
+        <translation>Versetzung und Breite mit Doppelklick zurück setzen</translation>
     </message>
     <message>
         <location filename="../src/prompter/Prompter.qml" line="2493"/>
@@ -1898,7 +1898,7 @@ Helfen sie uns QPrompt zu übersetzen und besuchen sie:</translation>
         <location filename="../src/kirigami_ui/PrompterPage.qml" line="248"/>
         <source>Height: %1 lines</source>
         <comment>Height of reading region relative to single line height. E.g. Height: 2.5</comment>
-        <translation type="unfinished"></translation>
+        <translation>Höhe: %1 Zeilen</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/PrompterPage.qml" line="362"/>
@@ -1919,7 +1919,7 @@ Helfen sie uns QPrompt zu übersetzen und besuchen sie:</translation>
         <location filename="../src/kirigami_ui/PrompterPage.qml" line="387"/>
         <source>Indicate time taken</source>
         <comment>Stopwatch button tooltip</comment>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Zeige gemessene Zeit</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/PrompterPage.qml" line="399"/>
@@ -1931,7 +1931,7 @@ Helfen sie uns QPrompt zu übersetzen und besuchen sie:</translation>
         <location filename="../src/kirigami_ui/PrompterPage.qml" line="400"/>
         <source>Show current time</source>
         <comment>Clock button tooltip</comment>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Zeige aktuelle Uhrzeit</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/PrompterPage.qml" line="413"/>
@@ -1943,7 +1943,7 @@ Helfen sie uns QPrompt zu übersetzen und besuchen sie:</translation>
         <location filename="../src/kirigami_ui/PrompterPage.qml" line="418"/>
         <source>Estimated Time to Arrival</source>
         <comment>ETA button tooltip</comment>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Geschätzte Zeit zum Ende</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/PrompterPage.qml" line="423"/>
@@ -1973,13 +1973,13 @@ Helfen sie uns QPrompt zu übersetzen und besuchen sie:</translation>
         <location filename="../src/kirigami_ui/PrompterPage.qml" line="452"/>
         <source>On start, auto-align text with reading region</source>
         <comment>Auto frame button tooltip</comment>
-        <translation type="unfinished"></translation>
+        <translation>Beim Start den Text automatisch am Lesebereich ausrichten</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/PrompterPage.qml" line="469"/>
         <source>Show countdown before prompting</source>
         <comment>Countdown button tooltip</comment>
-        <translation type="unfinished"></translation>
+        <translation>Vor dem prompting einen Countdown zeigen</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/PrompterPage.qml" line="485"/>
@@ -1995,7 +1995,7 @@ Helfen sie uns QPrompt zu übersetzen und besuchen sie:</translation>
         <location filename="../src/kirigami_ui/PrompterPage.qml" line="486"/>
         <source>Start countdown immediately</source>
         <comment>Auto start button tooltip</comment>
-        <translation type="unfinished"></translation>
+        <translation>Countdown sofort starten</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/PrompterPage.qml" line="497"/>
@@ -2007,7 +2007,7 @@ Helfen sie uns QPrompt zu übersetzen und besuchen sie:</translation>
         <location filename="../src/kirigami_ui/PrompterPage.qml" line="498"/>
         <source>Set countdown duration</source>
         <comment>Set duration button tooltip</comment>
-        <translation type="unfinished"></translation>
+        <translation>Countdownlänge einstellen</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/PrompterPage.qml" line="515"/>
@@ -2019,7 +2019,7 @@ Helfen sie uns QPrompt zu übersetzen und besuchen sie:</translation>
         <location filename="../src/kirigami_ui/PrompterPage.qml" line="516"/>
         <source>Flip settings and more</source>
         <comment>Orientation button tooltip</comment>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Einstellungen umdrehen und Anderes</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/PrompterPage.qml" line="533"/>
@@ -2115,7 +2115,7 @@ Helfen sie uns QPrompt zu übersetzen und besuchen sie:</translation>
         <location filename="../src/kirigami_ui/PrompterPage.qml" line="703"/>
         <source>Configure prompting on multiple displays</source>
         <comment>Screens button tooltip</comment>
-        <translation type="unfinished"></translation>
+        <translation>Prompting für mehrere Displays einrichten</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/PrompterPage.qml" line="737"/>
@@ -2157,7 +2157,7 @@ Helfen sie uns QPrompt zu übersetzen und besuchen sie:</translation>
         <location filename="../src/kirigami_ui/PrompterPage.qml" line="753"/>
         <source>Display prompter copies onto displays</source>
         <comment>Enable projections button tooltip</comment>
-        <translation type="unfinished"></translation>
+        <translation>Prompterkopien auf Displays anzeigen</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/PrompterPage.qml" line="765"/>
@@ -2169,7 +2169,7 @@ Helfen sie uns QPrompt zu übersetzen und besuchen sie:</translation>
         <location filename="../src/kirigami_ui/PrompterPage.qml" line="766"/>
         <source>Scale to fit the screen</source>
         <comment>Scale button tooltip</comment>
-        <translation type="unfinished"></translation>
+        <translation>Auf Bildschirmgröße anpassen</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/PrompterPage.qml" line="789"/>
@@ -2225,38 +2225,38 @@ Helfen sie uns QPrompt zu übersetzen und besuchen sie:</translation>
         <location filename="../src/kirigami_ui/PrompterPage.qml" line="1375"/>
         <location filename="../src/kirigami_ui/PrompterPage.qml" line="1695"/>
         <source>OBS: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>OBS: %1</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/PrompterPage.qml" line="1387"/>
         <source>System Commands: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Systembefehle: %1</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/PrompterPage.qml" line="1388"/>
         <source>Enabled</source>
-        <translation type="unfinished">Aktiv</translation>
+        <translation>Aktiv</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/PrompterPage.qml" line="1389"/>
         <source>Disabled</source>
-        <translation type="unfinished">Inaktiv</translation>
+        <translation>Inaktiv</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/PrompterPage.qml" line="1631"/>
         <source>OBS Configuration</source>
         <comment>Name of section where OBS websockets connection is configured</comment>
-        <translation type="unfinished"></translation>
+        <translation>OBS Konfiguration</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/PrompterPage.qml" line="1704"/>
         <source>System Commands</source>
-        <translation type="unfinished"></translation>
+        <translation>Systembefehle</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/PrompterPage.qml" line="1712"/>
         <source>Allow sys:// markers to execute system commands as the teleprompter scrolls past them.</source>
-        <translation type="unfinished"></translation>
+        <translation>Erlaube sys://-Markierungen Systembefehle auszuführen wenn der Teleprompter darüber läuft.</translation>
     </message>
     <message>
         <source>Allow sys:// markers to run system commands</source>
