@@ -25,7 +25,7 @@
     <message>
         <location filename="../src/documenthandler.cpp" line="1993"/>
         <source>Prompting started at least once</source>
-        <translation type="unfinished"></translation>
+        <translation>O prompt foi iniciado pelo menos uma vez</translation>
     </message>
 </context>
 <context>
@@ -42,25 +42,25 @@
         <location filename="../src/kirigami_ui/EditorToolbar.qml" line="190"/>
         <source>Marker list</source>
         <comment>Editor toolbar button tooltip</comment>
-        <translation type="unfinished"></translation>
+        <translation>Lista de marcadores</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/EditorToolbar.qml" line="207"/>
         <source>Find and replace</source>
         <comment>Editor toolbar button tooltip</comment>
-        <translation type="unfinished"></translation>
+        <translation>Localizar e substituir</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/EditorToolbar.qml" line="222"/>
         <source>Toggle marker</source>
         <comment>Editor toolbar button tooltip</comment>
-        <translation type="unfinished"></translation>
+        <translation>Alternar marcador</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/EditorToolbar.qml" line="236"/>
         <source>Named marker</source>
         <comment>Editor toolbar button tooltip</comment>
-        <translation type="unfinished"></translation>
+        <translation>Marcador nomeado</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/EditorToolbar.qml" line="280"/>
