@@ -346,7 +346,7 @@
         <location filename="../src/kirigami_ui/EditorToolbar.qml" line="1429"/>
         <source>Paragraph spacing</source>
         <comment>Editor toolbar button tooltip</comment>
-        <translation type="unfinished"></translation>
+        <translation>Espaçamento entre parágrafos</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/EditorToolbar.qml" line="1516"/>
@@ -358,7 +358,7 @@
         <location filename="../src/kirigami_ui/EditorToolbar.qml" line="1550"/>
         <source>Word spacing</source>
         <comment>Editor toolbar button tooltip</comment>
-        <translation type="unfinished"></translation>
+        <translation>Espaçamento entre palavras</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/EditorToolbar.qml" line="1638"/>
@@ -370,31 +370,31 @@
         <location filename="../src/kirigami_ui/EditorToolbar.qml" line="1670"/>
         <source>Toggle overlaid bars</source>
         <comment>Editor toolbar button tooltip</comment>
-        <translation type="unfinished"></translation>
+        <translation>Alternar barras sobrepostas</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/EditorToolbar.qml" line="1764"/>
         <source>Bars opacity &lt;pre&gt;%1&lt;/pre&gt;</source>
         <comment>Opacity {TRANSPARENCY_PERCENTAGE}</comment>
-        <translation type="unfinished"></translation>
+        <translation>Opacidade das barras &lt;pre&gt;%1&lt;/pre&gt;</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/EditorToolbar.qml" line="1797"/>
         <source>Bars brightness</source>
         <comment>Editor toolbar button tooltip</comment>
-        <translation type="unfinished"></translation>
+        <translation>Brilho das barras</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/EditorToolbar.qml" line="1890"/>
         <source>Bars brightness &lt;pre&gt;%1&lt;/pre&gt;</source>
         <comment>Brightness {TRANSPARENCY_PERCENTAGE}</comment>
-        <translation type="unfinished"></translation>
+        <translation>Brilho das barras &lt;pre&gt;%1&lt;/pre&gt;</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/EditorToolbar.qml" line="1923"/>
         <source>Letter spacing</source>
         <comment>Editor toolbar button tooltip</comment>
-        <translation type="unfinished"></translation>
+        <translation>Espaçamento entre letras</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/EditorToolbar.qml" line="2010"/>
@@ -406,7 +406,7 @@
         <location filename="../src/kirigami_ui/EditorToolbar.qml" line="2042"/>
         <source>Step speed</source>
         <comment>Editor toolbar button tooltip</comment>
-        <translation type="unfinished"></translation>
+        <translation>Velocidade de passo</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/EditorToolbar.qml" line="2129"/>
@@ -418,7 +418,7 @@
         <location filename="../src/kirigami_ui/EditorToolbar.qml" line="2163"/>
         <source>Step acceleration</source>
         <comment>Editor toolbar button tooltip</comment>
-        <translation type="unfinished"></translation>
+        <translation>Aceleração de passo</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/EditorToolbar.qml" line="2250"/>
@@ -437,17 +437,17 @@
         <location filename="../src/kirigami_ui/EditorToolbar.qml" line="2307"/>
         <source>Reload now</source>
         <comment>Editor toolbar button tooltip</comment>
-        <translation type="unfinished"></translation>
+        <translation>Recarregar agora</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/EditorToolbar.qml" line="2323"/>
         <source>OBS: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>OBS: %1</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/EditorToolbar.qml" line="2334"/>
         <source>System Commands Enabled</source>
-        <translation type="unfinished"></translation>
+        <translation>Comandos do Sistema Habilitados</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/EditorToolbar.qml" line="2279"/>
@@ -486,7 +486,7 @@
         <location filename="../src/prompter/Find.qml" line="181"/>
         <source>Show replace options</source>
         <comment>Find toolbar button tooltip</comment>
-        <translation type="unfinished"></translation>
+        <translation>Mostrar opções de substituição</translation>
     </message>
     <message>
         <location filename="../src/prompter/Find.qml" line="209"/>
@@ -1122,32 +1122,32 @@ Ajude-nos a traduzir o QPrompt, visite:</translation>
     <message>
         <location filename="../src/kirigami_ui/OnlineResourceButtons.qml" line="34"/>
         <source>Website</source>
-        <translation type="unfinished"></translation>
+        <translation>Website</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/OnlineResourceButtons.qml" line="42"/>
         <source>Documentation</source>
-        <translation type="unfinished"></translation>
+        <translation>Documentação</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/OnlineResourceButtons.qml" line="50"/>
         <source>Forum</source>
-        <translation type="unfinished"></translation>
+        <translation>Fórum</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/OnlineResourceButtons.qml" line="58"/>
         <source>Feedback</source>
-        <translation type="unfinished"></translation>
+        <translation>Feedback</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/OnlineResourceButtons.qml" line="66"/>
         <source>Translations</source>
-        <translation type="unfinished"></translation>
+        <translation>Traduções</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/OnlineResourceButtons.qml" line="74"/>
         <source>Donate</source>
-        <translation type="unfinished"></translation>
+        <translation>Doar</translation>
     </message>
 </context>
 <context>
@@ -1160,7 +1160,7 @@ Ajude-nos a traduzir o QPrompt, visite:</translation>
     <message>
         <location filename="../src/kirigami_ui/PathsPage.qml" line="64"/>
         <source>Allow sys:// markers to execute system commands as the teleprompter scrolls past them.</source>
-        <translation type="unfinished"></translation>
+        <translation>Permite que marcadores `sys://` executem comandos do sistema à medida que o teleprompter passa por eles durante a rolagem.</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/PathsPage.qml" line="83"/>
@@ -1177,7 +1177,7 @@ Ajude-nos a traduzir o QPrompt, visite:</translation>
     <message>
         <location filename="../src/kirigami_ui/PathsPage.qml" line="58"/>
         <source>External tools</source>
-        <translation type="unfinished"></translation>
+        <translation>Ferramentas externas</translation>
     </message>
     <message>
         <source>Executable (%1)</source>
@@ -1379,7 +1379,7 @@ Ajude-nos a traduzir o QPrompt, visite:</translation>
         <location filename="../src/prompter/Prompter.qml" line="1124"/>
         <source>Rewind to start</source>
         <comment>End of prompt button tooltip</comment>
-        <translation type="unfinished"></translation>
+        <translation>Voltar ao início</translation>
     </message>
     <message>
         <location filename="../src/prompter/Prompter.qml" line="1167"/>
@@ -1400,31 +1400,31 @@ Ajude-nos a traduzir o QPrompt, visite:</translation>
         <location filename="../src/prompter/Prompter.qml" line="1227"/>
         <source>Stop at end</source>
         <comment>End of prompt button tooltip</comment>
-        <translation type="unfinished"></translation>
+        <translation>Parar no final</translation>
     </message>
     <message>
         <location filename="../src/prompter/Prompter.qml" line="1286"/>
         <source>Loop at end</source>
         <comment>End of prompt button tooltip</comment>
-        <translation type="unfinished"></translation>
+        <translation>Loop no final</translation>
     </message>
     <message>
         <location filename="../src/prompter/Prompter.qml" line="1345"/>
         <source>Loop delay</source>
         <comment>End of prompt button tooltip</comment>
-        <translation type="unfinished"></translation>
+        <translation>Atraso no loop</translation>
     </message>
     <message>
         <location filename="../src/prompter/Prompter.qml" line="2116"/>
         <source>Drag to displace</source>
         <comment>Right handle button tooltip</comment>
-        <translation type="unfinished"></translation>
+        <translation>Arraste para deslocar</translation>
     </message>
     <message>
         <location filename="../src/prompter/Prompter.qml" line="2116"/>
         <source>Double click to reset displacement</source>
         <comment>Right handle button tooltip</comment>
-        <translation type="unfinished"></translation>
+        <translation>Clique duplo para redefinir o deslocamento</translation>
     </message>
     <message>
         <location filename="../src/prompter/Prompter.qml" line="2299"/>
@@ -1471,25 +1471,25 @@ Ajude-nos a traduzir o QPrompt, visite:</translation>
         <location filename="../src/prompter/Prompter.qml" line="2495"/>
         <source>OpenDocument Format Text Document &lt;%1&gt;</source>
         <comment>Format name &lt;FORMAT_EXTENSION&gt;</comment>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Documento de texto em formato OpenDocument &lt;%1&gt;</translation>
     </message>
     <message>
         <location filename="../src/prompter/Prompter.qml" line="2496"/>
         <source>AbiWord Document &lt;%1&gt;</source>
         <comment>Format name &lt;FORMAT_EXTENSION&gt;</comment>
-        <translation type="unfinished"></translation>
+        <translation>Documento AbiWord &lt;%1&gt;</translation>
     </message>
     <message>
         <location filename="../src/prompter/Prompter.qml" line="2497"/>
         <source>Microsoft Word document &lt;%1&gt;</source>
         <comment>Format name &lt;FORMAT_EXTENSION&gt;</comment>
-        <translation type="unfinished"></translation>
+        <translation>Documento Microsoft Word &lt;%1&gt;</translation>
     </message>
     <message>
         <location filename="../src/prompter/Prompter.qml" line="2498"/>
         <source>Apple Pages Document &lt;%1&gt;</source>
         <comment>Format name &lt;FORMAT_EXTENSION&gt;</comment>
-        <translation type="unfinished"></translation>
+        <translation>Documento Apple Pages &lt;%1&gt;</translation>
     </message>
     <message>
         <location filename="../src/prompter/Prompter.qml" line="2499"/>
@@ -1508,7 +1508,7 @@ Ajude-nos a traduzir o QPrompt, visite:</translation>
         <location filename="../src/prompter/Prompter.qml" line="2633"/>
         <source>Add &quot;%1&quot; to dictionary</source>
         <comment>Editor context menu actions</comment>
-        <translation type="unfinished"></translation>
+        <translation>Adicionar &quot;%1&quot; ao dicionário</translation>
     </message>
     <message>
         <location filename="../src/prompter/Prompter.qml" line="2492"/>
@@ -1522,58 +1522,58 @@ Ajude-nos a traduzir o QPrompt, visite:</translation>
     <message>
         <location filename="../src/prompter/Prompter.qml" line="368"/>
         <source>Connecting</source>
-        <translation type="unfinished"></translation>
+        <translation>Conectando</translation>
     </message>
     <message>
         <location filename="../src/prompter/Prompter.qml" line="370"/>
         <source>Connected</source>
-        <translation type="unfinished"></translation>
+        <translation>Conectado</translation>
     </message>
     <message>
         <location filename="../src/prompter/Prompter.qml" line="372"/>
         <source>Disconnecting</source>
-        <translation type="unfinished"></translation>
+        <translation>Desconectando</translation>
     </message>
     <message>
         <location filename="../src/prompter/Prompter.qml" line="374"/>
         <location filename="../src/prompter/Prompter.qml" line="379"/>
         <source>Disconnected</source>
-        <translation type="unfinished"></translation>
+        <translation>Desconectado</translation>
     </message>
     <message>
         <location filename="../src/prompter/Prompter.qml" line="376"/>
         <source>Connection Error</source>
-        <translation type="unfinished"></translation>
+        <translation>Erro de conexão</translation>
     </message>
     <message>
         <location filename="../src/prompter/Prompter.qml" line="1256"/>
         <source>Return to edit mode at end</source>
         <comment>End of prompt button tooltip</comment>
-        <translation type="unfinished"></translation>
+        <translation>Retornar ao modo de edição ao final</translation>
     </message>
     <message>
         <location filename="../src/prompter/Prompter.qml" line="2077"/>
         <source>Double click to reset displacement</source>
         <comment>Left handle button tooltip</comment>
-        <translation type="unfinished"></translation>
+        <translation>Clique duas vezes para redefinir o deslocamento</translation>
     </message>
     <message>
         <location filename="../src/prompter/Prompter.qml" line="2077"/>
         <source>Drag to adjust width</source>
         <comment>Left handle button tooltip</comment>
-        <translation type="unfinished"></translation>
+        <translation>Arraste para ajustar a largura</translation>
     </message>
     <message>
         <location filename="../src/prompter/Prompter.qml" line="2077"/>
         <source>Double click to reset width adjustment</source>
         <comment>Left handle button tooltip</comment>
-        <translation type="unfinished"></translation>
+        <translation>Clique duas vezes para redefinir o ajuste de largura</translation>
     </message>
     <message>
         <location filename="../src/prompter/Prompter.qml" line="2116"/>
         <source>Double click to reset width and displacement</source>
         <comment>Right handle button tooltip</comment>
-        <translation type="unfinished"></translation>
+        <translation>Clique duas vezes para redefinir a largura e o deslocamento</translation>
     </message>
     <message>
         <location filename="../src/prompter/Prompter.qml" line="2493"/>
@@ -1667,7 +1667,7 @@ Ajude-nos a traduzir o QPrompt, visite:</translation>
         <location filename="../src/prompter/Prompter.qml" line="2708"/>
         <source>Add to dictionary</source>
         <comment>Editor context menu actions</comment>
-        <translation type="unfinished"></translation>
+        <translation>Adicionar ao dicionário</translation>
     </message>
     <message>
         <location filename="../src/prompter/Prompter.qml" line="2716"/>
@@ -1887,13 +1887,13 @@ Ajude-nos a traduzir o QPrompt, visite:</translation>
     <message>
         <location filename="../src/kirigami_ui/PrompterPage.qml" line="124"/>
         <source>Initiate prompter</source>
-        <translation type="unfinished"></translation>
+        <translation>Iniciar prompter</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/PrompterPage.qml" line="248"/>
         <source>Height: %1 lines</source>
         <comment>Height of reading region relative to single line height. E.g. Height: 2.5</comment>
-        <translation type="unfinished"></translation>
+        <translation>Altura: %1 linhas</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/PrompterPage.qml" line="362"/>
