@@ -309,7 +309,7 @@
         <location filename="../src/kirigami_ui/EditorToolbar.qml" line="1010"/>
         <source>Opacity options</source>
         <comment>Editor toolbar button tooltip</comment>
-        <translation type="unfinished"></translation>
+        <translation>Opções de opacidade</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/EditorToolbar.qml" line="1111"/>
@@ -321,7 +321,7 @@
         <location filename="../src/kirigami_ui/EditorToolbar.qml" line="1138"/>
         <source>Switch between small and large font while editing</source>
         <comment>Editor toolbar button tooltip</comment>
-        <translation type="unfinished"></translation>
+        <translation>Alternar entre fonte pequena e grande durante a edição</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/EditorToolbar.qml" line="1258"/>
@@ -334,7 +334,7 @@
         <location filename="../src/kirigami_ui/EditorToolbar.qml" line="1309"/>
         <source>Line height</source>
         <comment>Editor toolbar button tooltip</comment>
-        <translation type="unfinished"></translation>
+        <translation>Altura da linha</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/EditorToolbar.qml" line="1395"/>
