@@ -35,7 +35,12 @@ project(qprompt
     HOMEPAGE_URL "https://qprompt.app/"
     LANGUAGES CXX)
 
-option(WASM OFF)
+unset(WASM CACHE)
+if(EMSCRIPTEN OR CMAKE_SYSTEM_NAME STREQUAL "Emscripten")
+    set(WASM ON)
+else()
+    set(WASM OFF)
+endif()
 option(USE_GIT_DEPENDENCIES_ONLY OFF)
 option(SOURCE_DEPENDENCIES_EXCLUSIVELY_FROM_SYSTEM OFF)  # Used only on Linux builds for now
 option(QPROMPT_BUNDLE_HUNSPELL_DICTIONARIES "Bundle Hunspell dictionaries (AppImage only)" OFF)
@@ -190,7 +195,7 @@ find_package(Qt${QT_VERSION_MAJOR} ${QT_MIN_VERSION} REQUIRED NO_MODULE COMPONEN
 )
 
 if(ANDROID OR IOS OR WASM)
-    set(BUILD_SHARED_LIBS OFF)
+    set(BUILD_SHARED_LIBS OFF CACHE BOOL "Static libraries are required on Android, iOS and WASM" FORCE)
     set(DESKTOP_ENABLED OFF)
 endif()
 
