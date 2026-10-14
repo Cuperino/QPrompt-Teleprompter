@@ -186,23 +186,34 @@ else()
     )
 endif()
 # Fonts
-set(font_files
-    fonts/icons/fontello.ttf
-    fonts/title/Dyuthi-QPrompt.ttf
-    fonts/editor/dejavu-sans/DejaVuSans.ttf
-    fonts/editor/LibertinusSans-Regular.otf
-    fonts/editor/OpenDyslexic-Bold.otf
-    fonts/editor/ScheherazadeNew/ScheherazadeNew-Regular.ttf
-    fonts/editor/Kalpurush/Kalpurush.ttf
-    fonts/editor/Palanquin-Regular.ttf
-    # fonts/editor/Libertinus/static/OTF/LibertinusSerif-Regular.otf
-    fonts/editor/SourceHanSans/SourceHanSans-Regular.ttc
-    # Color emoji fallback. Qt's WASM platform plugin bundles only DejaVu
-    # Sans (no emoji glyphs) and the browser provides no system font
-    # fallback, so emoji render as tofu without this. Other platforms have
-    # system emoji fonts, but bundling keeps rendering consistent.
-    fonts/editor/noto-emoji/NotoColorEmoji-COLRv1.ttf
-)
+if (WASM)
+    set(font_files
+        fonts/icons/fontello.ttf
+        fonts/title/Dyuthi-QPrompt.ttf
+        fonts/editor/LibertinusSans-Regular.otf
+        fonts/editor/OpenDyslexic-Bold.otf
+        fonts/editor/ScheherazadeNew/ScheherazadeNew-Regular.ttf
+        fonts/editor/Kalpurush/Kalpurush.ttf
+        fonts/editor/Palanquin-Regular.ttf
+        # fonts/editor/Libertinus/static/OTF/LibertinusSerif-Regular.otf
+        fonts/editor/SourceHanSans/SourceHanSans-Regular.ttc
+        fonts/editor/noto-emoji/NotoColorEmoji-COLRv1.ttf
+    )
+else()
+    set(font_files
+        fonts/icons/fontello.ttf
+        fonts/title/Dyuthi-QPrompt.ttf
+        fonts/editor/dejavu-sans/DejaVuSans.ttf
+        fonts/editor/LibertinusSans-Regular.otf
+        fonts/editor/OpenDyslexic-Bold.otf
+        fonts/editor/ScheherazadeNew/ScheherazadeNew-Regular.ttf
+        fonts/editor/Kalpurush/Kalpurush.ttf
+        fonts/editor/Palanquin-Regular.ttf
+        # fonts/editor/Libertinus/static/OTF/LibertinusSerif-Regular.otf
+        fonts/editor/SourceHanSans/SourceHanSans-Regular.ttc
+        fonts/editor/noto-emoji/NotoColorEmoji-COLRv1.ttf
+    )
+endif()
 foreach(file IN LISTS font_files)
     get_filename_component(filename ${file} NAME)
     set_source_files_properties(${file} PROPERTIES QT_RESOURCE_ALIAS fonts/${filename})

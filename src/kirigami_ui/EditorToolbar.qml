@@ -619,7 +619,8 @@ ToolBar {
             visible: !toolbar.hideFormattingToolsAlways && (!root.__isMobile && showingFormattingTools || parseInt(viewport.prompter.state)===Prompter.States.Editing)
             FontLoader {
                 id: westernSeriousSansfFont
-                source: "../fonts/DejaVuSans.ttf"
+                // Qt's WASM platform plugin already embeds DejaVu Sans
+                source: Qt.platform.os==="wasm" ? "qrc:/fonts/DejaVuSans.ttf" : "../fonts/DejaVuSans.ttf"
             }
             FontLoader {
                 id: westernDyslexicFont

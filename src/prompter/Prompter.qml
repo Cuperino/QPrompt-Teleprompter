@@ -1060,7 +1060,8 @@ Flickable {
                 renderType: (Qt.platform.os==="ios" || Qt.platform.os==="osx") ? Text.NativeRendering : (font.pixelSize < 121 || Screen.devicePixelRatio !== 1.0 || root.forceQtTextRenderer ? Text.QtRendering : Text.NativeRendering)
                 FontLoader {
                     id: westernSeriousSansfFont
-                    source: "../fonts/DejaVuSans.ttf"
+                    // Qt's WASM platform plugin already embeds DejaVu Sans
+                    source: Qt.platform.os==="wasm" ? "qrc:/fonts/DejaVuSans.ttf" : "../fonts/DejaVuSans.ttf"
                 }
 
                 // Draggable width adjustment borders
