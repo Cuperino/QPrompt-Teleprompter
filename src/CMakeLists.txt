@@ -39,7 +39,7 @@ else()
         systemfontchooserdialog.cpp
     )
 endif()
-if (NOT ANDROID AND NOT IOS)
+if (NOT ANDROID AND NOT WASM AND NOT IOS)
     qt_wrap_ui(${PROJECT_NAME}
         qt/systemfontchooserdialog.ui
     )
