@@ -303,6 +303,7 @@ Kirigami.Page {
             tooltip: qsTr("Change reading region indicators", "Indicators highlight reading region")
 
             Kirigami.Action {
+                enabled: Qt.platform.os!=="wasm"
                 text: qsTr("Pointer Configuration", "Configure reading region pointer indicators")
                 onTriggered: {
                     pointerConfiguration.open()

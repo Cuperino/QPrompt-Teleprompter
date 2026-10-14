@@ -191,7 +191,6 @@ if (WASM)
         fonts/icons/fontello.ttf
         fonts/title/Dyuthi-QPrompt.ttf
         fonts/editor/LibertinusSans-Regular.otf
-        fonts/editor/noto-emoji/NotoColorEmoji-COLRv1.ttf
     )
 else()
     set(font_files
