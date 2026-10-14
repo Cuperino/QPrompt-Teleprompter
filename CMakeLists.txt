@@ -404,11 +404,14 @@ if(UNIX AND NOT APPLE AND NOT ANDROID AND NOT WASM AND NOT HAIKU)
     add_compile_definitions(DBUS_ENABLED)
     set(DBUS_ENABLED ON)
 endif()
-# Hunspell spell checking, required on every platform. Hunspell upstream ships
+# Hunspell spell checking, required on every platform except WASM, where spell
+# checking is disabled to keep the download small. Hunspell upstream ships
 # only autotools/MSVC project files, so where no system package or vcpkg/Craft
 # install is available we build the library from the submodule sources via
 # HunspellShim. Linux/BSD/Haiku use the system package.
-if(WIN32 OR APPLE OR ANDROID OR IOS OR WASM OR USE_GIT_DEPENDENCIES_ONLY)
+if(WASM)
+    set(HUNSPELL_ENABLED OFF)
+elseif(WIN32 OR APPLE OR ANDROID OR IOS OR USE_GIT_DEPENDENCIES_ONLY)
     include(HunspellShim)
     qprompt_build_hunspell("${CMAKE_SOURCE_DIR}/3rdparty/hunspell")
 else()
@@ -420,7 +423,10 @@ else()
         endif()
     endif()
 endif()
-if(TARGET Hunspell::Hunspell OR TARGET hunspell OR TARGET PkgConfig::HUNSPELL)
+if(WASM)
+    # Spell checking is compiled out; DocumentHandler's spell check API stays
+    # available to QML as no-ops.
+elseif(TARGET Hunspell::Hunspell OR TARGET hunspell OR TARGET PkgConfig::HUNSPELL)
     add_compile_definitions(HUNSPELL_ENABLED)
     set(HUNSPELL_ENABLED ON)
 else()
@@ -434,7 +440,7 @@ endif()
 
 # Bundled Hunspell dictionaries.
 #
-# Static builds (WASM/Android/iOS) and macOS DMGs embed the dictionaries
+# Static builds (Android/iOS) and macOS DMGs embed the dictionaries
 # inside the binary as Qt resources (handled in src/CMakeLists.txt). The
 # Windows NSIS installer ships them as user-selectable components (handled
 # below in the CPack section). On Linux they are left to the distribution,
@@ -446,7 +452,7 @@ set(QPROMPT_BUNDLE_HUNSPELL_DICTIONARIES_ON_LINUX OFF)
 if(QPROMPT_BUNDLE_HUNSPELL_DICTIONARIES AND UNIX AND NOT APPLE AND NOT ANDROID AND NOT WASM)
     set(QPROMPT_BUNDLE_HUNSPELL_DICTIONARIES_ON_LINUX ON)
 endif()
-if(WASM OR ANDROID OR IOS OR APPLE OR WIN32 OR QPROMPT_BUNDLE_HUNSPELL_DICTIONARIES_ON_LINUX)
+if(ANDROID OR IOS OR APPLE OR WIN32 OR QPROMPT_BUNDLE_HUNSPELL_DICTIONARIES_ON_LINUX)
     include(HunspellDictionaries)
     set(QPROMPT_HUNSPELL_DICT_DIR "${CMAKE_BINARY_DIR}/hunspell-dictionaries")
     if(QPROMPT_BUNDLE_HUNSPELL_DICTIONARIES_ON_LINUX)

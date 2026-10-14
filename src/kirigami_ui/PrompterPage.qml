@@ -671,6 +671,7 @@ Kirigami.Page {
             text: qsTr("Spellcheck", "Spell checking menu")
             Kirigami.Action {
                 id: toggleSpellcheckButton
+                enabled: Qt.platform.os!=="wasm"
                 text: qsTr("Spellcheck", "Toggle spell checking on or off")
                 checkable: true
                 checked: prompterPage.spellcheckUserEnabled
@@ -680,6 +681,7 @@ Kirigami.Page {
             }
             Kirigami.Action {
                 id: setDictionariesButton
+                enabled: Qt.platform.os!=="wasm"
                 text: qsTr("Set dictionaries", "Open dictionary selection sheet")
                 onTriggered: {
                     dictionariesSheet.open()
@@ -688,6 +690,7 @@ Kirigami.Page {
             }
             Kirigami.Action {
                 id: editCustomWordsButton
+                enabled: Qt.platform.os!=="wasm"
                 text: qsTr("Edit custom words", "Open custom dictionary editor")
                 onTriggered: {
                     customWordsSheet.open()
