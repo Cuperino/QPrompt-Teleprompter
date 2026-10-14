@@ -20,7 +20,7 @@
 #**************************************************************************
 
 
-cmake_minimum_required(VERSION 3.22)
+cmake_minimum_required(VERSION 3.27)
 
 include(FetchContent)
 
@@ -119,10 +119,7 @@ list(APPEND CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/cmake")
 # Send compiled program and library binaries to "build/bin"
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 
-find_package(ECM ${ECM_MIN_VERSION} REQUIRED NO_MODULE)
-list(APPEND CMAKE_MODULE_PATH ${ECM_MODULE_PATH})
-find_package(QT NAMES Qt6)
-
+# Submodules are updated first because ECM comes from one of them.
 find_package(Git QUIET)
 if(GIT_FOUND AND EXISTS "${PROJECT_SOURCE_DIR}/.git")
     option(GIT_SUBMODULE "Check submodules during build" ON)
@@ -133,6 +130,51 @@ if(GIT_FOUND AND EXISTS "${PROJECT_SOURCE_DIR}/.git")
                         RESULT_VARIABLE GIT_SUBMOD_RESULT)
     endif()
 endif()
+
+# ECM is provided by the 3rdparty/extra-cmake-modules submodule. Its modules
+# are usable straight from the source tree, which mirrors the share/ECM layout
+# of an installed ECM, so only the package config files have to be generated.
+# They are written with ECM's own template and pointed at the submodule, and
+# ECM_DIR is forced to them so every find_package(ECM), including those of the
+# bundled frameworks, resolves to this copy. Distribution packagers can opt
+# for the system ECM through SOURCE_DEPENDENCIES_EXCLUSIVELY_FROM_SYSTEM.
+if(NOT SOURCE_DEPENDENCIES_EXCLUSIVELY_FROM_SYSTEM)
+    set(QPROMPT_ECM_SOURCE_DIR "${PROJECT_SOURCE_DIR}/3rdparty/extra-cmake-modules")
+    set(QPROMPT_ECM_CONFIG_DIR "${CMAKE_BINARY_DIR}/3rdparty/ECM")
+    if(NOT EXISTS "${QPROMPT_ECM_SOURCE_DIR}/ECMConfig.cmake.in")
+        message(FATAL_ERROR "ExtraCMakeModules was not downloaded. GIT_SUBMODULE was turned off or failed.")
+    endif()
+    file(STRINGS "${QPROMPT_ECM_SOURCE_DIR}/CMakeLists.txt" QPROMPT_ECM_VERSION
+         REGEX "^set\\(VERSION \"[0-9.]+\"\\)")
+    string(REGEX REPLACE ".*\"([0-9.]+)\".*" "\\1" QPROMPT_ECM_VERSION "${QPROMPT_ECM_VERSION}")
+    include(CMakePackageConfigHelpers)
+    set(FIND_MODULES_INSTALL_DIR find-modules)
+    set(KDE_MODULES_INSTALL_DIR kde-modules)
+    set(MODULES_INSTALL_DIR modules)
+    configure_package_config_file(
+        "${QPROMPT_ECM_SOURCE_DIR}/ECMConfig.cmake.in"
+        "${QPROMPT_ECM_CONFIG_DIR}/ECMConfig.cmake"
+        INSTALL_DESTINATION "${QPROMPT_ECM_CONFIG_DIR}"
+        INSTALL_PREFIX "${QPROMPT_ECM_SOURCE_DIR}"
+        PATH_VARS FIND_MODULES_INSTALL_DIR KDE_MODULES_INSTALL_DIR MODULES_INSTALL_DIR
+    )
+    write_basic_package_version_file(
+        "${QPROMPT_ECM_CONFIG_DIR}/ECMConfigVersion.cmake"
+        VERSION "${QPROMPT_ECM_VERSION}"
+        COMPATIBILITY AnyNewerVersion
+    )
+    unset(FIND_MODULES_INSTALL_DIR)
+    unset(KDE_MODULES_INSTALL_DIR)
+    unset(MODULES_INSTALL_DIR)
+    set(ECM_DIR "${QPROMPT_ECM_CONFIG_DIR}" CACHE PATH "ECM package configuration directory" FORCE)
+elseif(ECM_DIR STREQUAL "${CMAKE_BINARY_DIR}/3rdparty/ECM")
+    # Drop the bundled copy cached by an earlier configure so the system ECM is searched for.
+    unset(ECM_DIR CACHE)
+endif()
+
+find_package(ECM ${ECM_MIN_VERSION} REQUIRED NO_MODULE)
+list(APPEND CMAKE_MODULE_PATH ${ECM_MODULE_PATH})
+find_package(QT NAMES Qt6)
 
 # Common dependencices
 find_package(Qt${QT_VERSION_MAJOR} ${QT_MIN_VERSION} REQUIRED NO_MODULE COMPONENTS
