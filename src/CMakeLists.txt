@@ -363,9 +363,9 @@ qt_add_translations(${PROJECT_NAME} SOURCE_TARGETS ${PROJECT_NAME}
 )
 
 # Bundle Hunspell dictionaries as Qt resources for static builds
-# (WASM/Android/iOS) and the macOS DMG. this allows them to be found at
+# (Android/iOS) and the macOS DMG. this allows them to be found at
 # :/dictionaries/<lang>.{aff,dic}
-if(DEFINED QPROMPT_HUNSPELL_DICT_DIR AND (WASM OR ANDROID OR IOS OR (APPLE AND NOT IOS)))
+if(DEFINED QPROMPT_HUNSPELL_DICT_DIR AND (ANDROID OR IOS OR (APPLE AND NOT IOS)))
     qprompt_hunspell_add_qrc(${PROJECT_NAME} "${QPROMPT_HUNSPELL_DICT_DIR}")
 endif()
 
