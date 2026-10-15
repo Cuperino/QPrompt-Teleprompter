@@ -199,6 +199,13 @@ if(ANDROID OR IOS OR WASM)
     set(DESKTOP_ENABLED OFF)
 endif()
 
+# Optimize WASM release builds, including the bundled KDE Frameworks, for size
+# rather than speed to reduce download size.
+if(WASM)
+    set(CMAKE_C_FLAGS_RELEASE "-Oz -DNDEBUG")
+    set(CMAKE_CXX_FLAGS_RELEASE "-Oz -DNDEBUG")
+endif()
+
 if(WIN32 OR APPLE OR ANDROID OR WASM OR USE_GIT_DEPENDENCIES_ONLY)
     set(BUILD_TESTING OFF)
     # Emscripten isn't on KDE Frameworks' list of supported platforms, so its
