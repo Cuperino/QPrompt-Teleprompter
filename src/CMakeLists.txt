@@ -443,7 +443,7 @@ elseif (IOS)
         ${KIRIGAMI_STATIC_QML_PLUGINS}
     )
 elseif (WASM)
-    target_compile_options(${PROJECT_NAME} PRIVATE -O3 -flto -sDISABLE_EXCEPTION_THROWING=0 -sDISABLE_EXCEPTION_CATCHING=1)
+    target_compile_options(${PROJECT_NAME} PRIVATE -Oz -flto -sDISABLE_EXCEPTION_THROWING=0 -sDISABLE_EXCEPTION_CATCHING=1)
     target_link_options(${PROJECT_NAME} PRIVATE -flto -fno-except -Oz -sDISABLE_EXCEPTION_THROWING=0 -sDISABLE_EXCEPTION_CATCHING=1)
 
     # Qt for WASM defaults INITIAL_MEMORY to 50MB, but bundled resources
