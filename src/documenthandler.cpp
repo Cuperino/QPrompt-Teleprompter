@@ -144,7 +144,7 @@ DocumentHandler::DocumentHandler(QObject *parent)
     , _markersModel(nullptr)
 
 {
-#if (defined(Q_OS_MACOS) or defined(Q_OS_IOS))
+#if (defined(Q_OS_MACOS) || defined(Q_OS_IOS))
     QSettings settings(QCoreApplication::organizationDomain(), QCoreApplication::applicationName());
 #else
     QSettings settings(QCoreApplication::organizationName(), QCoreApplication::applicationName().toLower());
@@ -364,7 +364,7 @@ void DocumentHandler::setSpellCheckLanguages(const QStringList &languages)
         m_spellHighlighter->setDocument(m_document->textDocument());
         m_spellHighlighter->setEnabled(m_spellCheckEnabled);
     }
-#if (defined(Q_OS_MACOS) or defined(Q_OS_IOS))
+#if (defined(Q_OS_MACOS) || defined(Q_OS_IOS))
     QSettings settings(QCoreApplication::organizationDomain(), QCoreApplication::applicationName());
 #else
     QSettings settings(QCoreApplication::organizationName(), QCoreApplication::applicationName().toLower());
@@ -928,7 +928,7 @@ bool DocumentHandler::autoReload() const
 
 void DocumentHandler::setAutoReload(bool enable)
 {
-#if (defined(Q_OS_MACOS) or defined(Q_OS_IOS))
+#if (defined(Q_OS_MACOS) || defined(Q_OS_IOS))
     QSettings settings(QCoreApplication::organizationDomain(), QCoreApplication::applicationName());
 #else
     QSettings settings(QCoreApplication::organizationName(), QCoreApplication::applicationName().toLower());

@@ -557,7 +557,7 @@ void GlobalHotkeys::m_initializeSource() {
     m_setVelocityTo10Action->setObjectName(QLatin1String("setVelocityTo10"));
 
     // Set Global Hotkeys
-#if (defined(Q_OS_MACOS) or defined(Q_OS_IOS))
+#if (defined(Q_OS_MACOS) || defined(Q_OS_IOS))
     QSettings settings(QCoreApplication::organizationDomain(), QCoreApplication::applicationName());
 #else
     QSettings settings(QCoreApplication::organizationName(), QCoreApplication::applicationName().toLower());
