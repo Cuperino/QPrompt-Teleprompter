@@ -25,9 +25,8 @@
 set -eo pipefail
 
 ARCHITECTURE="$(uname -m)"
-# KDE Frameworks 6.24 (Kirigami, KCoreAddons, KGlobalAccel) requires Qt 6.8.0 or
-# newer. Capped at the 6.8.x series so the Linux packages keep working on Debian.
-DEFAULT_QT_VER=6.8.3
+# KDE Frameworks 6.24 (Kirigami, KCoreAddons, KGlobalAccel) requires Qt 6.8.0 or newer.
+DEFAULT_QT_VER=6.12.0
 echo -e "\nArchitecture: $ARCHITECTURE"
 
 if [[ "$OSTYPE" == "linux-gnu"* ]]; then
