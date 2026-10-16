@@ -108,7 +108,8 @@ Item {
 
     readonly property bool timersEnabled: enabled && (stopwatch || eta)
     enabled: false
-    visible: enabled
+    opacity: enabled ? 1 : 0
+    visible: opacity!==0
     clip: true
     anchors.fill: parent
 //    height: prompter.height
@@ -117,6 +118,14 @@ Item {
 //        right: parent.right
 //        top: parent.top
 //    }
+
+    Behavior on opacity {
+        enabled: true
+        animation: NumberAnimation {
+            duration: Units.LongDuration
+            easing.type: Easing.OutQuad
+        }
+    }
 
     Settings {
         id: timerSettings
