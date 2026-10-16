@@ -25,3 +25,6 @@
 [submodule "3rdparty/hunspell"]
 	path = 3rdparty/hunspell
 	url = https://github.com/hunspell/hunspell.git
+[submodule "3rdparty/kcolorchooser"]
+	path = 3rdparty/kcolorchooser
+	url = https://github.com/Cuperino/KColorChooser-QtQuick.git

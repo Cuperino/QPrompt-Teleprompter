@@ -24,7 +24,6 @@ import QtQuick.Controls 2.12
 import QtQuick.Shapes 1.12
 import QtQuick.Layouts 1.12
 import QtCore 6.5
-import QtQuick.Dialogs 6.6
 
 //import com.cuperino.qprompt 1.0
 
@@ -96,6 +95,7 @@ Item {
         lastTime = startTime
     }
     function setColor() {
+        timerColorDialog.selectedColor = timerSettings.color
         timerColorDialog.open()
     }
     function clearColor() {
@@ -230,21 +230,15 @@ Item {
         onTriggered: updateTimer();
     }
 
-    ColorDialog {
+    ColorChooserDialog {
         id: timerColorDialog
-        options: (Qt.platform.os === "ios" ? 0 : ColorDialog.DontUseNativeDialog) | (Qt.platform.os === "android" ? ColorDialog.ShowAlphaChannel : 0)
         property color color: '#AAA'
         onAccepted: {
             timerSettings.color = selectedColor
         }
-        onRejected: {
-            selectedColor = timerColorDialog.color
-        }
-        onVisibleChanged: {
-            if (visible) {
-                timerColorDialog.color = timerSettings.color
+        onOpenedChanged: {
+            if (opened)
                 cursorAutoHide.reset();
-            }
             else
                 cursorAutoHide.restart();
         }

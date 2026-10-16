@@ -648,9 +648,8 @@ ColumnLayout {
             }
         }
     }
-    ColorDialog {
+    ColorChooserDialog {
         id: pointerColorDialog
-        options: ["ios", "osx"].indexOf(Qt.platform.os) ? 0 : ColorDialog.DontUseNativeDialog
         property TextField source
         selectedColor: Material.theme === Material.Light ? "#4d94cf" : "#2b72ad"
         onAccepted: {

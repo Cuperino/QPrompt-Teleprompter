@@ -47,6 +47,11 @@
 #endif
 #include <kaboutdata.h>
 
+#include "colorchooserlocalizedcontext.h"
+
+// KColorChooser's QML module, built as a static library from 3rdparty/kcolorchooser.
+Q_IMPORT_QML_PLUGIN(org_kde_kcolorchooserPlugin)
+
 #if defined(KF6Crash_FOUND)
 #include <KCrash>
 #endif
@@ -298,6 +303,7 @@ KirigamiPlugin::getInstance().registerTypes();
     engine.addImportPath(QDir::cleanPath(appDir + QStringLiteral("/../Resources/qml")));
 #endif
     // Send context data from C++ to QML
+    engine.rootContext()->setContextObject(new ColorChooserLocalizedContext(&engine));
     engine.rootContext()->setContextProperty(QStringLiteral("aboutData"), QVariant::fromValue(KAboutData::applicationData()));
     if (positionalArguments.length())
         engine.rootContext()->setContextProperty(QStringLiteral("fileToOpen"), fileToOpen);
