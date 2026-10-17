@@ -282,6 +282,9 @@ qt_add_qml_module(
     # ${qprompt_ICONS}
 )
 
+# Link the kcolorchooserqml module (defined in root CMakeLists.txt) to the main executable
+target_link_libraries(${PROJECT_NAME} PRIVATE kcolorchooserqmlplugin)
+
 if (UNIX AND NOT APPLE)
     set(OUTPUT_NAME "qprompt")
 else()
@@ -389,80 +392,6 @@ set(KIRIGAMI_STATIC_QML_PLUGINS
     # KirigamiTemplatesplugin
     KirigamiDialogsplugin  # Kirigami.Dialog, used by ColorChooserDialog
 )
-
-# KColorChooser's color chooser, as a static QML module. Its QML is shared with
-# the standalone application in the submodule, minus Main.qml.
-set(KCOLORCHOOSER_DIR "${CMAKE_SOURCE_DIR}/3rdparty/kcolorchooser")
-set(kcolorchooser_qml_sources
-    ColorChooserPage.qml
-    ColorFields.qml
-    LuminancePicker.qml
-    ColorSwatchGrid.qml
-    HueSaturationPicker.qml
-    FieldLabel.qml
-)
-# The chooser follows the operating system's look rather than QPrompt's Material,
-# so its controls import the platform's own style. Qt Quick Controls has no
-# per-item style, so this rewrites the style-neutral import in copies of the QML.
-if(IOS)
-    set(KCOLORCHOOSER_CONTROLS_STYLE iOS)
-elseif(APPLE)
-    set(KCOLORCHOOSER_CONTROLS_STYLE macOS)
-elseif(WIN32)
-    set(KCOLORCHOOSER_CONTROLS_STYLE FluentWinUI3)
-elseif(ANDROID)
-    set(KCOLORCHOOSER_CONTROLS_STYLE Material)
-elseif(LINUX)
-    set(KCOLORCHOOSER_CONTROLS_STYLE Fusion)
-else()
-    # Fusion takes its colors from the platform theme's palette.
-    set(KCOLORCHOOSER_CONTROLS_STYLE Material)
-endif()
-set(kcolorchooser_qml_files)
-foreach(file IN LISTS kcolorchooser_qml_sources)
-    set(source "${KCOLORCHOOSER_DIR}/qml/${file}")
-    set(output "${CMAKE_CURRENT_BINARY_DIR}/kcolorchooser_qml/${file}")
-    set_property(DIRECTORY APPEND PROPERTY CMAKE_CONFIGURE_DEPENDS "${source}")
-    file(READ "${source}" content)
-    string(REPLACE "import QtQuick.Controls as QQC2"
-        "import QtQuick.Controls.${KCOLORCHOOSER_CONTROLS_STYLE} as QQC2" content "${content}")
-    # Rewrite only on change, so that reconfiguring does not rebuild the module.
-    set(previous_content "")
-    if(EXISTS "${output}")
-        file(READ "${output}" previous_content)
-    endif()
-    if(NOT content STREQUAL previous_content)
-        file(WRITE "${output}" "${content}")
-    endif()
-    set_source_files_properties("${output}" PROPERTIES QT_RESOURCE_ALIAS ${file})
-    list(APPEND kcolorchooser_qml_files "${output}")
-endforeach()
-qt_add_library(kcolorchooserqml STATIC)
-qt_add_qml_module(kcolorchooserqml
-    URI org.kde.kcolorchooser
-    VERSION 1.0
-    RESOURCE_PREFIX /qt/qml/
-    # Not the default, CMAKE_CURRENT_BINARY_DIR, which is QPrompt's own module's.
-    OUTPUT_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/org/kde/kcolorchooser
-    SOURCES
-    ${KCOLORCHOOSER_DIR}/colorchooserhelper.h
-    ${KCOLORCHOOSER_DIR}/colorchooserhelper.cpp
-    QML_FILES
-    ${kcolorchooser_qml_files}
-)
-target_include_directories(kcolorchooserqml PRIVATE ${KCOLORCHOOSER_DIR})
-target_link_libraries(kcolorchooserqml PRIVATE
-    Qt${QT_VERSION_MAJOR}::Gui
-    Qt${QT_VERSION_MAJOR}::Qml
-    Qt${QT_VERSION_MAJOR}::Quick
-    KF${QT_VERSION_MAJOR}::CoreAddons
-)
-if(DBUS_ENABLED)
-    # Screen color picking goes through the XDG desktop portal.
-    target_link_libraries(kcolorchooserqml PRIVATE Qt${QT_VERSION_MAJOR}::DBus)
-    target_compile_definitions(kcolorchooserqml PRIVATE HAVE_DBUS)
-endif()
-target_link_libraries(${PROJECT_NAME} PRIVATE kcolorchooserqmlplugin)
 
 # Libraries
 if (ANDROID)
