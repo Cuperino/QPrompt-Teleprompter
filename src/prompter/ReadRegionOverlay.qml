@@ -193,6 +193,9 @@ Item {
             function fixPlacement() {
                 overlay.positionState = ReadRegionOverlay.PositionStates.Fixed;
             }
+            ToolTip.text: qsTr("Click and drag reading region to move it.\nDouble click or start prompting to fix in place.")
+            ToolTip.visible: hovered && overlay.positionState === ReadRegionOverlay.PositionStates.Free
+            ToolTip.delay: Units.ToolTipDelay
         }
         Item {
             id: pointers
