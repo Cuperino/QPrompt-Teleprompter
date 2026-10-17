@@ -279,6 +279,7 @@ KirigamiPlugin::getInstance().registerTypes();
 #endif
     // Add path to where KDE modules are installed
     // Linux paths
+    engine.addImportPath(QStringLiteral("/usr/lib/x86_64-linux-gnu/qt6/qml/"));
     engine.addImportPath(QStringLiteral("/lib/x86_64-linux-gnu/qml/"));
     engine.addImportPath(QStringLiteral("../lib/x86_64-linux-gnu/qml/"));
     engine.addImportPath(QStringLiteral("../dist/lib/x86_64-linux-gnu/qml/"));
