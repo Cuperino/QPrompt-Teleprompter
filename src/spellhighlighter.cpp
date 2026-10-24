@@ -26,6 +26,11 @@
 #include <QDebug>
 #include <QRegularExpression>
 #include <QRegularExpressionMatchIterator>
+#include <QTextBlock>
+#include <QTextFragment>
+#include <QVarLengthArray>
+
+#include <utility>
 
 SpellHighlighter::SpellHighlighter(SpellChecker *checker, QObject *parent)
     : QSyntaxHighlighter(parent)
@@ -53,11 +58,44 @@ void SpellHighlighter::highlightBlock(const QString &text)
     static const QRegularExpression wordRe(
         QStringLiteral("\\p{L}+(?:[\\x{0027}\\x{2019}\\-]\\p{L}+)*"));
 
+    QVarLengthArray<std::pair<int, int>, 8> misspelled;
     QRegularExpressionMatchIterator it = wordRe.globalMatch(text);
     while (it.hasNext()) {
         const QRegularExpressionMatch m = it.next();
-        const QString word = m.captured(0);
-        if (!m_checker->spell(word))
-            setFormat(m.capturedStart(0), m.capturedLength(0), m_misspelledFormat);
+        if (!m_checker->spell(m.captured(0)))
+            misspelled.append({m.capturedStart(0), m.capturedLength(0)});
+    }
+    if (misspelled.isEmpty())
+        return;
+
+#if QT_VERSION >= QT_VERSION_CHECK(6, 12, 0)
+    // Qt Quick 6.12's QQuickTextNodeEngine appends the document's own background/underline
+    // ranges after the highlighter's ranges and then walks them assuming they are sorted, so
+    // document highlights that start before a misspelled word are dropped. Re-emit those
+    // properties from the highlighter so the ranges Qt Quick sees are already ordered.
+    const QTextBlock block = currentBlock();
+    for (QTextBlock::iterator fit = block.begin(); !fit.atEnd(); ++fit) {
+        const QTextFragment fragment = fit.fragment();
+        if (!fragment.isValid())
+            continue;
+        const QTextCharFormat docFormat = fragment.charFormat();
+        QTextCharFormat mirrored;
+        for (const int property : {int(QTextFormat::BackgroundBrush), int(QTextFormat::TextUnderlineColor),
+                                   int(QTextFormat::TextUnderlineStyle)}) {
+            if (docFormat.hasProperty(property))
+                mirrored.setProperty(property, docFormat.property(property));
+        }
+        if (mirrored.propertyCount() > 0)
+            setFormat(fragment.position() - block.position(), fragment.length(), mirrored);
+    }
+#endif
+
+    // Merge per character so a misspelled word keeps any background mirrored above.
+    for (const auto &[start, length] : misspelled) {
+        for (int i = start; i < start + length; ++i) {
+            QTextCharFormat f = format(i);
+            f.merge(m_misspelledFormat);
+            setFormat(i, 1, f);
+        }
     }
 }
