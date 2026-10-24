@@ -36,7 +36,7 @@ SpellHighlighter::SpellHighlighter(SpellChecker *checker, QObject *parent)
     : QSyntaxHighlighter(parent)
     , m_checker(checker)
 {
-    m_misspelledFormat.setUnderlineStyle(QTextCharFormat::SingleUnderline);
+    m_misspelledFormat.setUnderlineStyle(QTextCharFormat::WaveUnderline);
     m_misspelledFormat.setUnderlineColor(Qt::red);
     m_misspelledFormat.setFontUnderline(true);
 }
