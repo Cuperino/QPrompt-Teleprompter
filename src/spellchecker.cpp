@@ -162,6 +162,7 @@ bool SpellChecker::loadOne(const QString &language, Dictionary &out)
 void SpellChecker::applyBuiltInWords(Dictionary &d)
 {
     static const QStringList appDictionary = {
+        QStringLiteral("qprompt"),
         QStringLiteral("QPrompt"),
         QStringLiteral("QPrompt's"),
         QStringLiteral("Cuperino"),
