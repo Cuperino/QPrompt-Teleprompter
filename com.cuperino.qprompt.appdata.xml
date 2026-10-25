@@ -66,6 +66,28 @@
     <kudo>ModernToolkit</kudo>
   </x-kudos>
   <releases>
+    <release version="2.0.3" type="stable" date="2026-10-25">
+      <description>
+        <p>QPrompt 2.0.3 is a bug fix release.</p>
+        <p>The following issues were fixedd in this release:</p>
+        <ul>
+          <li>Fix pasting inconsistencies depending on how pasting is triggered</li>
+          <li>Prevent Replace All from hanging on regex searches</li>
+          <li>Fix text being misinterpreted as invalid HTML tags and getting dropped from plain text files</li>
+          <li>Fix LibreOffice screen padding issues</li>
+          <li>Fix markers list having too much padding</li>
+          <li>Improve reading region'd menu having insufficient padding</li>
+          <li>Removed duplicate AppData XML from source code</li>
+          <li>Version bumped Flatpak's KDE Runtime to 6.11</li>
+        </ul>
+      </description>
+      <url>https://github.com/Cuperino/QPrompt-Teleprompter/releases/tag/v2.0.3</url>
+      <artifacts>
+        <artifact type="source">
+          <location>https://github.com/Cuperino/QPrompt/archive/refs/tags/v2.0.3.tar.gz</location>
+        </artifact>
+      </artifacts>
+    </release>
     <release version="2.0.2" type="stable" date="2026-6-4">
       <description>
         <p>QPrompt 2.0.2 is a bug fix release.</p>
