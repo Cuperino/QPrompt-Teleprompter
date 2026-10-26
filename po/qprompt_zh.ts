@@ -38,43 +38,43 @@
         <location filename="../src/kirigami_ui/EditorToolbar.qml" line="190"/>
         <source>Marker list</source>
         <comment>Editor toolbar button tooltip</comment>
-        <translation type="unfinished"></translation>
+        <translation>标注列表</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/EditorToolbar.qml" line="207"/>
         <source>Find and replace</source>
         <comment>Editor toolbar button tooltip</comment>
-        <translation type="unfinished"></translation>
+        <translation>查找并替换</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/EditorToolbar.qml" line="222"/>
         <source>Toggle marker</source>
         <comment>Editor toolbar button tooltip</comment>
-        <translation type="unfinished"></translation>
+        <translation>开关标注</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/EditorToolbar.qml" line="236"/>
         <source>Named marker</source>
         <comment>Editor toolbar button tooltip</comment>
-        <translation type="unfinished"></translation>
+        <translation>命名标注</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/EditorToolbar.qml" line="280"/>
         <source>Previous marker</source>
         <comment>Editor toolbar button tooltip</comment>
-        <translation type="unfinished"></translation>
+        <translation>前一个标注</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/EditorToolbar.qml" line="292"/>
         <source>Next marker</source>
         <comment>Editor toolbar button tooltip</comment>
-        <translation type="unfinished"></translation>
+        <translation>下一个标注</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/EditorToolbar.qml" line="311"/>
         <source>Undo</source>
         <comment>Editor toolbar button tooltip</comment>
-        <translation type="unfinished"></translation>
+        <translation>撤回</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/EditorToolbar.qml" line="323"/>
@@ -86,19 +86,19 @@
         <location filename="../src/kirigami_ui/EditorToolbar.qml" line="343"/>
         <source>Copy</source>
         <comment>Editor toolbar button tooltip</comment>
-        <translation type="unfinished"></translation>
+        <translation>拷贝</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/EditorToolbar.qml" line="356"/>
         <source>Cut</source>
         <comment>Editor toolbar button tooltip</comment>
-        <translation type="unfinished"></translation>
+        <translation>剪切</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/EditorToolbar.qml" line="369"/>
         <source>Paste</source>
         <comment>Editor toolbar button tooltip</comment>
-        <translation type="unfinished"></translation>
+        <translation>粘贴</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/EditorToolbar.qml" line="395"/>
@@ -133,25 +133,25 @@
         <location filename="../src/kirigami_ui/EditorToolbar.qml" line="465"/>
         <source>Text alignment</source>
         <comment>Editor toolbar button tooltip</comment>
-        <translation type="unfinished"></translation>
+        <translation>文字对齐</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/EditorToolbar.qml" line="489"/>
         <source>Bold</source>
         <comment>Editor toolbar button tooltip</comment>
-        <translation type="unfinished"></translation>
+        <translation>粗体</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/EditorToolbar.qml" line="503"/>
         <source>Italic</source>
         <comment>Editor toolbar button tooltip</comment>
-        <translation type="unfinished"></translation>
+        <translation>斜体</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/EditorToolbar.qml" line="517"/>
         <source>Underline</source>
         <comment>Editor toolbar button tooltip</comment>
-        <translation type="unfinished"></translation>
+        <translation>下划线</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/EditorToolbar.qml" line="531"/>
@@ -169,7 +169,7 @@
         <location filename="../src/kirigami_ui/EditorToolbar.qml" line="566"/>
         <source>Capitalization</source>
         <comment>Editor toolbar button tooltip</comment>
-        <translation type="unfinished"></translation>
+        <translation>大写转换</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/EditorToolbar.qml" line="652"/>
@@ -227,37 +227,37 @@
         <location filename="../src/kirigami_ui/EditorToolbar.qml" line="700"/>
         <source>Font family</source>
         <comment>Editor toolbar button tooltip</comment>
-        <translation type="unfinished"></translation>
+        <translation>字体库</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/EditorToolbar.qml" line="713"/>
         <source>Text color</source>
         <comment>Editor toolbar button tooltip</comment>
-        <translation type="unfinished"></translation>
+        <translation>字体颜色</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/EditorToolbar.qml" line="749"/>
         <source>Text highlight</source>
         <comment>Editor toolbar button tooltip</comment>
-        <translation type="unfinished"></translation>
+        <translation>高亮字体</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/EditorToolbar.qml" line="793"/>
         <source>Align left</source>
         <comment>Editor toolbar button tooltip</comment>
-        <translation type="unfinished"></translation>
+        <translation>左对齐</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/EditorToolbar.qml" line="812"/>
         <source>Align center</source>
         <comment>Editor toolbar button tooltip</comment>
-        <translation type="unfinished"></translation>
+        <translation>居中对齐</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/EditorToolbar.qml" line="826"/>
         <source>Align right</source>
         <comment>Editor toolbar button tooltip</comment>
-        <translation type="unfinished"></translation>
+        <translation>右对齐</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/EditorToolbar.qml" line="846"/>
@@ -269,25 +269,25 @@
         <location filename="../src/kirigami_ui/EditorToolbar.qml" line="869"/>
         <source>Scroll wheel settings</source>
         <comment>Editor toolbar button tooltip</comment>
-        <translation type="unfinished"></translation>
+        <translation>滚轮设定</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/EditorToolbar.qml" line="884"/>
         <source>Window stay on top</source>
         <comment>Editor toolbar button tooltip</comment>
-        <translation type="unfinished"></translation>
+        <translation>窗口保持前端显示</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/EditorToolbar.qml" line="897"/>
         <source>Text spacing options</source>
         <comment>Editor toolbar button tooltip</comment>
-        <translation type="unfinished"></translation>
+        <translation>文字间隔选项</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/EditorToolbar.qml" line="925"/>
         <source>Motion options</source>
         <comment>Editor toolbar button tooltip</comment>
-        <translation type="unfinished"></translation>
+        <translation>运动选项</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/EditorToolbar.qml" line="971"/>
@@ -305,7 +305,7 @@
         <location filename="../src/kirigami_ui/EditorToolbar.qml" line="1011"/>
         <source>Opacity options</source>
         <comment>Editor toolbar button tooltip</comment>
-        <translation type="unfinished"></translation>
+        <translation>透明度选项</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/EditorToolbar.qml" line="1112"/>
@@ -317,7 +317,7 @@
         <location filename="../src/kirigami_ui/EditorToolbar.qml" line="1139"/>
         <source>Switch between small and large font while editing</source>
         <comment>Editor toolbar button tooltip</comment>
-        <translation type="unfinished"></translation>
+        <translation>编辑时切换大小字体</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/EditorToolbar.qml" line="1259"/>
@@ -330,7 +330,7 @@
         <location filename="../src/kirigami_ui/EditorToolbar.qml" line="1310"/>
         <source>Line height</source>
         <comment>Editor toolbar button tooltip</comment>
-        <translation type="unfinished"></translation>
+        <translation>线高</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/EditorToolbar.qml" line="1396"/>
@@ -342,7 +342,7 @@
         <location filename="../src/kirigami_ui/EditorToolbar.qml" line="1430"/>
         <source>Paragraph spacing</source>
         <comment>Editor toolbar button tooltip</comment>
-        <translation type="unfinished"></translation>
+        <translation>段落间隔</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/EditorToolbar.qml" line="1517"/>
@@ -354,7 +354,7 @@
         <location filename="../src/kirigami_ui/EditorToolbar.qml" line="1551"/>
         <source>Word spacing</source>
         <comment>Editor toolbar button tooltip</comment>
-        <translation type="unfinished"></translation>
+        <translation>字间隔</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/EditorToolbar.qml" line="1639"/>
@@ -390,7 +390,7 @@
         <location filename="../src/kirigami_ui/EditorToolbar.qml" line="1924"/>
         <source>Letter spacing</source>
         <comment>Editor toolbar button tooltip</comment>
-        <translation type="unfinished"></translation>
+        <translation>字符间距</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/EditorToolbar.qml" line="2011"/>
@@ -402,7 +402,7 @@
         <location filename="../src/kirigami_ui/EditorToolbar.qml" line="2043"/>
         <source>Step speed</source>
         <comment>Editor toolbar button tooltip</comment>
-        <translation type="unfinished"></translation>
+        <translation>步进速度</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/EditorToolbar.qml" line="2130"/>
@@ -414,7 +414,7 @@
         <location filename="../src/kirigami_ui/EditorToolbar.qml" line="2164"/>
         <source>Step acceleration</source>
         <comment>Editor toolbar button tooltip</comment>
-        <translation type="unfinished"></translation>
+        <translation>步进加速度</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/EditorToolbar.qml" line="2251"/>
@@ -426,14 +426,14 @@
         <location filename="../src/kirigami_ui/EditorToolbar.qml" line="2276"/>
         <source>Auto reload settings</source>
         <comment>Editor toolbar button tooltip</comment>
-        <translation type="unfinished"></translation>
+        <translation>自动加载设定</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/EditorToolbar.qml" line="2289"/>
         <location filename="../src/kirigami_ui/EditorToolbar.qml" line="2308"/>
         <source>Reload now</source>
         <comment>Editor toolbar button tooltip</comment>
-        <translation type="unfinished"></translation>
+        <translation>立即加载</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/EditorToolbar.qml" line="2324"/>
@@ -443,7 +443,7 @@
     <message>
         <location filename="../src/kirigami_ui/EditorToolbar.qml" line="2335"/>
         <source>System Commands Enabled</source>
-        <translation type="unfinished"></translation>
+        <translation>允许系统命令</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/EditorToolbar.qml" line="2280"/>
@@ -481,19 +481,19 @@
         <location filename="../src/prompter/Find.qml" line="181"/>
         <source>Show replace options</source>
         <comment>Find toolbar button tooltip</comment>
-        <translation type="unfinished"></translation>
+        <translation>显示替换选项</translation>
     </message>
     <message>
         <location filename="../src/prompter/Find.qml" line="209"/>
         <source>Previous match</source>
         <comment>Find toolbar button tooltip</comment>
-        <translation type="unfinished"></translation>
+        <translation>前一个匹配</translation>
     </message>
     <message>
         <location filename="../src/prompter/Find.qml" line="218"/>
         <source>Next match</source>
         <comment>Find toolbar button tooltip</comment>
-        <translation type="unfinished"></translation>
+        <translation>下一个匹配</translation>
     </message>
     <message>
         <location filename="../src/prompter/Find.qml" line="228"/>
@@ -505,25 +505,25 @@
         <location filename="../src/prompter/Find.qml" line="242"/>
         <source>Hide replace options</source>
         <comment>Find toolbar button tooltip</comment>
-        <translation type="unfinished"></translation>
+        <translation>隐藏替换选项</translation>
     </message>
     <message>
         <location filename="../src/prompter/Find.qml" line="266"/>
         <source>Replace previous match</source>
         <comment>Find toolbar button tooltip</comment>
-        <translation type="unfinished"></translation>
+        <translation>替换前一个匹配</translation>
     </message>
     <message>
         <location filename="../src/prompter/Find.qml" line="275"/>
         <source>Replace next match</source>
         <comment>Find toolbar button tooltip</comment>
-        <translation type="unfinished"></translation>
+        <translation>替换下一个匹配</translation>
     </message>
     <message>
         <location filename="../src/prompter/Find.qml" line="284"/>
         <source>Replace all matches</source>
         <comment>Find toolbar button tooltip</comment>
-        <translation type="unfinished"></translation>
+        <translation>替换所有匹配</translation>
     </message>
 </context>
 <context>
@@ -531,7 +531,7 @@
     <message>
         <location filename="../src/globalhotkeys.cpp" line="70"/>
         <source>Toggle Prompter</source>
-        <translation type="unfinished"></translation>
+        <translation>开关提词器</translation>
     </message>
     <message>
         <location filename="../src/globalhotkeys.cpp" line="71"/>
@@ -546,7 +546,7 @@
     <message>
         <location filename="../src/globalhotkeys.cpp" line="73"/>
         <source>Pause</source>
-        <translation type="unfinished"></translation>
+        <translation>暂停</translation>
     </message>
     <message>
         <location filename="../src/globalhotkeys.cpp" line="74"/>
@@ -581,117 +581,117 @@
     <message>
         <location filename="../src/globalhotkeys.cpp" line="80"/>
         <source>Previous Marker</source>
-        <translation type="unfinished"></translation>
+        <translation>前一个标注</translation>
     </message>
     <message>
         <location filename="../src/globalhotkeys.cpp" line="81"/>
         <source>Next Marker</source>
-        <translation type="unfinished"></translation>
+        <translation>下一个标注</translation>
     </message>
     <message>
         <location filename="../src/globalhotkeys.cpp" line="82"/>
         <source>Set Velocity to -10</source>
-        <translation type="unfinished"></translation>
+        <translation>设定速度至 -10</translation>
     </message>
     <message>
         <location filename="../src/globalhotkeys.cpp" line="83"/>
         <source>Set Velocity to -9</source>
-        <translation type="unfinished"></translation>
+        <translation>设定速度至 -9</translation>
     </message>
     <message>
         <location filename="../src/globalhotkeys.cpp" line="84"/>
         <source>Set Velocity to -8</source>
-        <translation type="unfinished"></translation>
+        <translation>设定速度至 -8</translation>
     </message>
     <message>
         <location filename="../src/globalhotkeys.cpp" line="85"/>
         <source>Set Velocity to -7</source>
-        <translation type="unfinished"></translation>
+        <translation>设定速度至 -7</translation>
     </message>
     <message>
         <location filename="../src/globalhotkeys.cpp" line="86"/>
         <source>Set Velocity to -6</source>
-        <translation type="unfinished"></translation>
+        <translation>设定速度至 -6</translation>
     </message>
     <message>
         <location filename="../src/globalhotkeys.cpp" line="87"/>
         <source>Set Velocity to -5</source>
-        <translation type="unfinished"></translation>
+        <translation>设定速度至 -5</translation>
     </message>
     <message>
         <location filename="../src/globalhotkeys.cpp" line="88"/>
         <source>Set Velocity to -4</source>
-        <translation type="unfinished"></translation>
+        <translation>设定速度至 -4</translation>
     </message>
     <message>
         <location filename="../src/globalhotkeys.cpp" line="89"/>
         <source>Set Velocity to -3</source>
-        <translation type="unfinished"></translation>
+        <translation>设定速度至 -3</translation>
     </message>
     <message>
         <location filename="../src/globalhotkeys.cpp" line="90"/>
         <source>Set Velocity to -2</source>
-        <translation type="unfinished"></translation>
+        <translation>设定速度至 -2</translation>
     </message>
     <message>
         <location filename="../src/globalhotkeys.cpp" line="91"/>
         <source>Set Velocity to -1</source>
-        <translation type="unfinished"></translation>
+        <translation>设定速度至 -1</translation>
     </message>
     <message>
         <location filename="../src/globalhotkeys.cpp" line="92"/>
         <source>Set Velocity to 0</source>
-        <translation type="unfinished"></translation>
+        <translation>设定速度至 0</translation>
     </message>
     <message>
         <location filename="../src/globalhotkeys.cpp" line="93"/>
         <source>Set Velocity to 1</source>
-        <translation type="unfinished"></translation>
+        <translation>设定速度至 1</translation>
     </message>
     <message>
         <location filename="../src/globalhotkeys.cpp" line="94"/>
         <source>Set Velocity to 2</source>
-        <translation type="unfinished"></translation>
+        <translation>设定速度至 2</translation>
     </message>
     <message>
         <location filename="../src/globalhotkeys.cpp" line="95"/>
         <source>Set Velocity to 3</source>
-        <translation type="unfinished"></translation>
+        <translation>设定速度至 3</translation>
     </message>
     <message>
         <location filename="../src/globalhotkeys.cpp" line="96"/>
         <source>Set Velocity to 4</source>
-        <translation type="unfinished"></translation>
+        <translation>设定速度至 4</translation>
     </message>
     <message>
         <location filename="../src/globalhotkeys.cpp" line="97"/>
         <source>Set Velocity to 5</source>
-        <translation type="unfinished"></translation>
+        <translation>设定速度至 5</translation>
     </message>
     <message>
         <location filename="../src/globalhotkeys.cpp" line="98"/>
         <source>Set Velocity to 6</source>
-        <translation type="unfinished"></translation>
+        <translation>设定速度至 6</translation>
     </message>
     <message>
         <location filename="../src/globalhotkeys.cpp" line="99"/>
         <source>Set Velocity to 7</source>
-        <translation type="unfinished"></translation>
+        <translation>设定速度至 7</translation>
     </message>
     <message>
         <location filename="../src/globalhotkeys.cpp" line="100"/>
         <source>Set Velocity to 8</source>
-        <translation type="unfinished"></translation>
+        <translation>设定速度至 8</translation>
     </message>
     <message>
         <location filename="../src/globalhotkeys.cpp" line="101"/>
         <source>Set Velocity to 9</source>
-        <translation type="unfinished"></translation>
+        <translation>设定速度至 9</translation>
     </message>
     <message>
         <location filename="../src/globalhotkeys.cpp" line="102"/>
         <source>Set Velocity to 10</source>
-        <translation type="unfinished"></translation>
+        <translation>设定速度至 10</translation>
     </message>
 </context>
 <context>
@@ -710,7 +710,7 @@
     <message>
         <location filename="../src/kirigami_ui/InputsOverlay.qml" line="62"/>
         <source>Global Hotkeys</source>
-        <translation type="unfinished"></translation>
+        <translation>全局热键</translation>
     </message>
     <message>
         <location filename="../src/kirigami_ui/InputsOverlay.qml" line="325"/>
@@ -1185,7 +1185,7 @@ Help us translate QPrompt, visit:</source>
         <location filename="../src/kirigami_ui/PathsPage.qml" line="126"/>
         <source>Executable &lt;%1&gt;</source>
         <comment>Format name &lt;FORMAT_EXTENSION&gt;</comment>
-        <translation type="unfinished">可执行文件</translation>
+        <translation>可执行 &lt;%1&gt;</translation>
     </message>
     <message>
         <source>Executable &lt;%1&gt;</source>
