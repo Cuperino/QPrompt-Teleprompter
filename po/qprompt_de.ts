@@ -2407,7 +2407,8 @@ Helfen sie uns QPrompt zu übersetzen und besuchen sie:</translation>
         <location filename="../src/prompter/ReadRegionOverlay.qml" line="196"/>
         <source>Click and drag reading region to move it.
 Double click or start prompting to fix in place.</source>
-        <translation type="unfinished"></translation>
+        <translation>Lesebereich zum Bewegen anklicken und ziehen.
+Zum Fixieren doppelklicken oder prompting beginnen.</translation>
     </message>
 </context>
 <context>
