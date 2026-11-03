@@ -1,0 +1,8 @@
+{
+  "platform": "windows-x86_64",
+  "vosk": "0.3.45",
+  "runtime_sha256": "6994ddc68556c7e5730c3b6f6bad13320e3519b13ce3ed2aa25a86724e7c10ac",
+  "model": "vosk-model-small-en-us-0.15",
+  "model_sha256": "30f26242c4eb449f948e42cb302dd7a686cb29a3423a8367f99ff41780942498",
+  "model_license": "Apache-2.0"
+}

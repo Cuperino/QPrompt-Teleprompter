@@ -1,0 +1,9 @@
+/target/
+/dist/
+/data/
+/downloads/
+/voice/runtime/
+/voice/model/
+/voice/test.wav
+__pycache__/
+/.toolchain/

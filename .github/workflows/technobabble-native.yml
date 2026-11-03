@@ -1,0 +1,50 @@
+name: Technobabble native platforms
+on: [push, pull_request, workflow_dispatch]
+permissions:
+  contents: read
+jobs:
+  native:
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: windows-2022
+            package: technobabble-windows-amd64
+          - os: macos-15
+            package: technobabble-darwin-arm64
+          - os: ubuntu-22.04
+            package: technobabble-linux-x86_64
+    runs-on: ${{ matrix.os }}
+    defaults:
+      run:
+        working-directory: technobabble
+    env:
+      MACOSX_DEPLOYMENT_TARGET: '11.0'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@stable
+        with:
+          components: rustfmt, clippy
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - if: runner.os == 'Linux'
+        run: sudo apt-get update && sudo apt-get install -y libasound2-dev libxkbcommon-dev libxkbcommon-x11-0 libwayland-dev libgl1-mesa-dev libx11-dev libxi-dev libxcursor-dev libxrandr-dev libxcb-randr0-dev xvfb x11-utils libgl1-mesa-dri
+      - if: runner.os == 'macOS'
+        run: test "$(uname -m)" = arm64
+      - run: cargo fmt --check
+      - run: cargo clippy --locked --all-targets -- -D warnings
+      - run: cargo test --locked
+      - run: python scripts/package.py
+      - if: runner.os != 'Linux'
+        run: python scripts/check-package.py dist/${{ matrix.package }}
+      - if: runner.os == 'macOS'
+        run: codesign --verify --deep --strict dist/${{ matrix.package }}/Technobabble.app
+      - if: runner.os == 'Linux'
+        run: xvfb-run -a python scripts/check-package.py dist/${{ matrix.package }} --linux-window
+      - run: python scripts/zip-portable.py dist/${{ matrix.package }}
+      - uses: actions/upload-artifact@v4
+        with:
+          name: ${{ matrix.package }}
+          path: technobabble/dist/${{ matrix.package }}.zip
+          if-no-files-found: error

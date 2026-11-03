@@ -1,0 +1,24 @@
+[package]
+name = "technobabble"
+version = "0.2.0"
+edition = "2021"
+license = "GPL-3.0-only"
+description = "Portable cross-platform teleprompter with adjustable offline voice follow"
+
+[dependencies]
+eframe = { version = "0.33", default-features = false, features = ["default_fonts", "glow", "x11", "wayland", "accesskit"] }
+cpal = "0.16"
+libloading = "0.8"
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+rfd = "0.17.2"
+zip = { version = "7", default-features = false, features = ["deflate"] }
+roxmltree = "0.21"
+display-info = "0.5.9"
+
+[profile.release]
+lto = true
+codegen-units = 1
+strip = true
+panic = "abort"
+opt-level = 3
