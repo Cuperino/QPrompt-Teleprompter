@@ -44,17 +44,22 @@ elif [[ "$OSTYPE" == "darwin"* ]]; then
     CMAKE=~/Qt/Tools/CMake/CMake.app/Contents/bin/cmake
     CPACK=~/Qt/Tools/CMake/CMake.app/Contents/bin/cpack
     PATH=$PATH:~/Qt/Tools/QtInstallerFramework/4.8/bin
-elif [[ "$OSTYPE" == "win32" || "$OSTYPE" == "msys" ]]; then
-    QT_VER=6.7.3
+elif [[ "$OSTYPE" == "win32" || "$OSTYPE" == "msys" || "$OSTYPE" == "cygwin" ]]; then
+    QT_VER=6.8.3
     PLATFORM="windows"
     CMAKE_INSTALL_PREFIX="install"
     if [ "$ARCHITECTURE" == "aarch64" ]; then
-        COMPILER="msvc2019_arm64"
+        COMPILER="msvc2022_arm64"
     else
-        COMPILER="msvc2019_64"
+        COMPILER="msvc2022_64"
     fi
+    if [[ "$OSTYPE" == "cygwin" ]]; then
+    CMAKE="/c/Qt/Tools/CMake_64/bin/cmake.exe"
+    CPACK="/c/Qt/Tools/CMake_64/bin/cpack.exe"
+    else
     CMAKE=C:\\Qt\\Tools\\CMake_64\\bin\\cmake.exe
     CPACK=C:\\Qt\\Tools\\CMake_64\\bin\\cpack.exe
+    fi
 elif [[ "$OSTYPE" == "freebsd"* ]]; then
     QT_VER=$DEFAULT_QT_VER
     PLATFORM="freebsd"
@@ -84,7 +89,7 @@ CMAKE_PREFIX_PATH=$2
 if [ "$CMAKE_PREFIX_PATH" == "" ]; then
     if [[ "$OSTYPE" == "win32" ]]; then
         CMAKE_PREFIX_PATH="C:\\Qt\\$QT_VER\\$COMPILER\\"
-    elif [[ "$OSTYPE" == "msys" ]]; then
+    elif [[ "$OSTYPE" == "msys" || "$OSTYPE" == "cygwin" ]]; then
         CMAKE_PREFIX_PATH=/c/Qt/$QT_VER/$COMPILER/
     else
         CMAKE_PREFIX_PATH=~/Qt/$QT_VER/$COMPILER/
@@ -169,8 +174,6 @@ if [[ "$PLATFORM" == "linux" ]]; then
 sudo apt install libxkbcommon-dev
 fi
 if [[ "$PLATFORM" == "windows" ]]; then
-    # Initialize MSVC environment variables
-    "C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Auxiliary\Build\vcvarsall.bat" amd64
     # Download and extract gettext binary
     FILENAME="gettext0.25-iconv1.17-shared-64.zip"
     curl -Lo build/$FILENAME "https://github.com/mlocati/gettext-iconv-windows/releases/download/v0.25-v1.17/$FILENAME"
@@ -194,7 +197,7 @@ for dependency in $tier_0 $tier_1; do
     if $CLEAR_ALL; then
         rm -dRf $dependency/build
     fi
-    $CMAKE -DCMAKE_CONFIGURATION_TYPES=$CMAKE_CONFIGURATION_TYPES -DCMAKE_PREFIX_PATH=$CMAKE_PREFIX_PATH -DCMAKE_INSTALL_PREFIX=$CMAKE_INSTALL_PREFIX -DBUILD_TESTING=OFF -DBUILD_DOC=OFF -BUILD_QCH=OFF -B ./$dependency/build ./$dependency/
+    $CMAKE -DCMAKE_CONFIGURATION_TYPES=$CMAKE_CONFIGURATION_TYPES -DCMAKE_BUILD_TYPE=$CMAKE_BUILD_TYPE -DCMAKE_PREFIX_PATH=$CMAKE_PREFIX_PATH -DCMAKE_INSTALL_PREFIX=$CMAKE_INSTALL_PREFIX -DBUILD_TESTING=OFF -DBUILD_DOC=OFF -BUILD_QCH=OFF -B ./$dependency/build ./$dependency/
     $CMAKE --build ./$dependency/build --config $CMAKE_BUILD_TYPE
     if [[ "$PLATFORM" == "macos" ]]; then
         $CMAKE --install ./$dependency/build
@@ -208,7 +211,7 @@ echo "QHotkey"
 if $CLEAR_ALL; then
     rm -dRf 3rdparty/QHotkey/build
 fi
-$CMAKE -DCMAKE_CONFIGURATION_TYPES=$CMAKE_CONFIGURATION_TYPES -DCMAKE_PREFIX_PATH=$CMAKE_PREFIX_PATH -DCMAKE_INSTALL_PREFIX=$CMAKE_INSTALL_PREFIX -DBUILD_SHARED_LIBS=ON -DQT_DEFAULT_MAJOR_VERSION=$QT_MAJOR_VERSION -B ./3rdparty/QHotkey/build ./3rdparty/QHotkey/
+$CMAKE -DCMAKE_CONFIGURATION_TYPES=$CMAKE_CONFIGURATION_TYPES -DCMAKE_BUILD_TYPE=$CMAKE_BUILD_TYPE -DCMAKE_PREFIX_PATH=$CMAKE_PREFIX_PATH -DCMAKE_INSTALL_PREFIX=$CMAKE_INSTALL_PREFIX -DBUILD_SHARED_LIBS=ON -DQT_DEFAULT_MAJOR_VERSION=$QT_MAJOR_VERSION -B ./3rdparty/QHotkey/build ./3rdparty/QHotkey/
 $CMAKE --build ./3rdparty/QHotkey/build --config $CMAKE_BUILD_TYPE
 if [[ "$PLATFORM" == "macos" ]]; then
     $CMAKE --install ./3rdparty/QHotkey/build
@@ -218,7 +221,7 @@ else
 fi
 
 echo "QPrompt"
-$CMAKE -DCMAKE_CONFIGURATION_TYPES=$CMAKE_CONFIGURATION_TYPES -DCMAKE_PREFIX_PATH=$CMAKE_PREFIX_PATH -DCMAKE_INSTALL_PREFIX=$CMAKE_INSTALL_PREFIX -B ./build .
+$CMAKE -DCMAKE_CONFIGURATION_TYPES=$CMAKE_CONFIGURATION_TYPES -DCMAKE_BUILD_TYPE=$CMAKE_BUILD_TYPE -DCMAKE_PREFIX_PATH=$CMAKE_PREFIX_PATH -DCMAKE_INSTALL_PREFIX=$CMAKE_INSTALL_PREFIX -B ./build .
 $CMAKE --build ./build --config $CMAKE_BUILD_TYPE
 if [[ "$PLATFORM" == "macos" ]]; then
     $CMAKE --install ./build
@@ -229,7 +232,11 @@ fi
 # Copy Qt libraries into install directory
 if [[ "$PLATFORM" == "windows" ]]; then
     PATH=$PATH:"C:\Program Files (x86)\NSIS"
+    if [[ "$OSTYPE" == "cygwin" ]]; then
+    $CMAKE_PREFIX_PATH/bin/windeployqt.exe ./install/bin/QPrompt.exe
+    else
     $CMAKE_PREFIX_PATH/bin/windeployqt.exe ./install/bin/$CMAKE_BUILD_TYPE/QPrompt.exe
+    fi
     cd build
     $CPACK
     cd ..
