@@ -160,6 +160,16 @@ if(WIN32 OR APPLE OR ANDROID OR WASM OR USE_GIT_DEPENDENCIES_ONLY)
     else()
         set(KF_IGNORE_PLATFORM_CHECK ON)
     endif()
+    if(WIN32)
+        # Kirigami packages a KDevelop app template with ECM's
+        # kde_package_app_templates(), which prefers a GNU tar found on PATH.
+        # On Windows that is typically Git's MSYS tar, which reads the
+        # archive's "C:/..." path as a remote "host:path" and fails the
+        # build. Leaving _tar_executable (ECM's cache variable) empty skips
+        # that search, so ECM falls back to CMake's built-in tar. FORCE
+        # replaces a GNU tar cached by an earlier configure.
+        set(_tar_executable "" CACHE FILEPATH "Tar used by kde_package_app_templates(); left empty on Windows" FORCE)
+    endif()
     FetchContent_Declare(
       Kirigami
       GIT_REPOSITORY "${CMAKE_SOURCE_DIR}/3rdparty/kirigami"
