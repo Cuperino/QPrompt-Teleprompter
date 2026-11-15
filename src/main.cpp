@@ -27,6 +27,7 @@
 #include <QtWidgets>
 #endif
 #include <QDebug>
+#include <QDir>
 #include <QFontDatabase>
 #include <QIcon>
 #include <QQmlApplicationEngine>
@@ -269,22 +270,24 @@ KirigamiPlugin::getInstance().registerTypes();
 #else
     app.setWindowIcon(QIcon(":/qt/qml/com/cuperino/qprompt/images/qprompt.png"));
 #endif
-    // Add path to where KDE modules are installed
-    // Linux paths
-    engine.addImportPath(QStringLiteral("/lib/x86_64-linux-gnu/qml/"));
-    engine.addImportPath(QStringLiteral("../lib/x86_64-linux-gnu/qml/"));
-    engine.addImportPath(QStringLiteral("../dist/lib/x86_64-linux-gnu/qml/"));
-    // Linux AppImage paths
-    engine.addImportPath(QStringLiteral("../usr/lib/x86_64-linux-gnu/qml/"));
-    engine.addImportPath(QStringLiteral("../usr/lib/aarch64-linux-gnu/qml/"));
-    // Windows paths
-    engine.addImportPath(QStringLiteral("../../lib/qml/"));
-    engine.addImportPath(QStringLiteral("../lib/qml/"));
-    engine.addImportPath(QStringLiteral("./lib/qml/"));
-    // MacOS paths
-    engine.addImportPath(QStringLiteral("../../../"));
-    engine.addImportPath(QStringLiteral("../build/"));
-    engine.addImportPath(QStringLiteral("../Resources/qml/"));
+    // Linux KDE Frameworks built into a custom Qt prefix install their QML modules here.
+    engine.addImportPath(QLibraryInfo::path(QLibraryInfo::PrefixPath) + QStringLiteral("/lib/x86_64-linux-gnu/qml/"));
+    engine.addImportPath(QLibraryInfo::path(QLibraryInfo::PrefixPath) + QStringLiteral("/lib/aarch64-linux-gnu/qml/"));
+#if defined(Q_OS_WINDOWS)
+    // Windows paths. The bundled KDE frameworks follow KDEInstallDirs and place
+    // their QML modules in <prefix>/lib/qml, while Qt only searches <prefix>/qml.
+    // Anchor the extra import path to the executable rather than to the working
+    // directory, so the modules are also found when QPrompt is started with an
+    // unrelated CWD, as happens with a shortcut or a file association.
+    engine.addImportPath(QCoreApplication::applicationDirPath() + QStringLiteral("/../lib/qml"));
+#endif
+#if defined(Q_OS_MACOS)
+    const QString appDir = QCoreApplication::applicationDirPath();
+    // Development build: build/bin/QPrompt.app/Contents/MacOS -> build/bin
+    engine.addImportPath(QDir::cleanPath(appDir + QStringLiteral("/../../..")));
+    // Packaged bundle: QPrompt.app/Contents/Resources/qml
+    engine.addImportPath(QDir::cleanPath(appDir + QStringLiteral("/../Resources/qml")));
+#endif
     // Send context data from C++ to QML
     // engine.rootContext()->setContextObject(new KLocalizedContext(&engine));
 #ifndef Q_OS_WASM
