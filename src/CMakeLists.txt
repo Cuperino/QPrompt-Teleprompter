@@ -263,12 +263,30 @@ foreach(file IN LISTS icon_files doc)
     set_source_files_properties(${file} PROPERTIES QT_RESOURCE_ALIAS icons/${filename})
 endforeach()
 
+# Where to find the QML modules QPrompt imports at build time.
+#
+# The bundled Kirigami is built in-tree, and ECM writes its QML modules
+# (org/kde/kirigami and its sub-modules) to ${CMAKE_BINARY_DIR}/bin; see
+# QT_QML_OUTPUT_DIRECTORY in ECMQmlModule6.cmake. That setting only applies in
+# Kirigami's own directory scope, so Qt's build-time qmlimportscanner run for
+# QPrompt would otherwise only search QPrompt's build directory and Qt's qml
+# directory.
+#
+# Static builds (Android, iOS, WASM) are left as they are, because the scan also
+# decides which static QML plugins get linked there (see
+# KIRIGAMI_STATIC_QML_PLUGINS below).
+set(qprompt_qml_import_paths "")
+if(NOT ANDROID AND NOT IOS AND NOT WASM)
+    list(APPEND qprompt_qml_import_paths "${CMAKE_BINARY_DIR}/bin")
+endif()
+
 # App QML Module
 qt_add_qml_module(
     ${PROJECT_NAME}
     URI com.cuperino.qprompt
     VERSION 1.0
     RESOURCE_PREFIX /qt/qml/
+    IMPORT_PATH ${qprompt_qml_import_paths}
     IMPORTS
     "QtQuick.Controls.Material"
     DEPENDENCIES

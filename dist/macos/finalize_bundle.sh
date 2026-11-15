@@ -79,6 +79,27 @@ for rpath in $(otool -l "$PLUGIN" | awk '/cmd LC_RPATH/{getline; getline; print 
     install_name_tool -rpath "$rpath" "@executable_path/../${rpath#@loader_path/../}" "$PLUGIN" 2>/dev/null
 done
 
+# Fail if any bundled Kirigami QML module lacks its plugin. The deploy script
+# only bundles the plugins of modules found by Qt's build-time QML import scan
+# (see qprompt_qml_import_paths in src/CMakeLists.txt). If that scan resolves
+# Kirigami from somewhere other than the build tree, sub-modules go missing
+# and the app fails to start with e.g.:
+#   module "org.kde.kirigami.controls" plugin "KirigamiControlsplugin" not found
+missing=0
+while IFS= read -r -d '' qmldir; do
+    dir="$(dirname "$qmldir")"
+    for plugin in $(awk '$1 == "plugin" {print $2} $1 == "optional" && $2 == "plugin" {print $3}' "$qmldir"); do
+        lib="lib$plugin.dylib"
+        if [ ! -f "$CONTENTS/PlugIns/$lib" ] && [ ! -f "$dir/$lib" ]; then
+            echo "finalize_bundle: $lib, declared in ${qmldir#"$APP"/}, was not deployed" >&2
+            missing=1
+        fi
+    done
+done < <(find "$KIRIGAMI_QML_DST" -name qmldir -print0)
+if [ "$missing" -ne 0 ]; then
+    exit 1
+fi
+
 # Collect Mach-O files that aren't a framework's own binary
 MACHOS=()
 while IFS= read -r -d '' f; do
