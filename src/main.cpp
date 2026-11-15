@@ -27,6 +27,7 @@
 #include <QtWidgets>
 #endif
 #include <QDebug>
+#include <QDir>
 #include <QFontDatabase>
 #include <QIcon>
 #include <QLibraryInfo>
@@ -289,10 +290,13 @@ KirigamiPlugin::getInstance().registerTypes();
     // unrelated CWD, as happens with a shortcut or a file association.
     engine.addImportPath(QCoreApplication::applicationDirPath() + QStringLiteral("/../lib/qml"));
 #endif
-    // MacOS paths
-    engine.addImportPath(QStringLiteral("../../../"));
-    engine.addImportPath(QStringLiteral("../build/"));
-    engine.addImportPath(QStringLiteral("../Resources/qml/"));
+#if defined(Q_OS_MACOS)
+    const QString appDir = QCoreApplication::applicationDirPath();
+    // Development build: build/bin/QPrompt.app/Contents/MacOS -> build/bin
+    engine.addImportPath(QDir::cleanPath(appDir + QStringLiteral("/../../..")));
+    // Packaged bundle: QPrompt.app/Contents/Resources/qml
+    engine.addImportPath(QDir::cleanPath(appDir + QStringLiteral("/../Resources/qml")));
+#endif
     // Send context data from C++ to QML
     engine.rootContext()->setContextProperty(QStringLiteral("aboutData"), QVariant::fromValue(KAboutData::applicationData()));
     if (positionalArguments.length())
