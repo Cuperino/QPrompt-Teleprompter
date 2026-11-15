@@ -421,7 +421,7 @@ if (ANDROID)
         ${KIRIGAMI_STATIC_QML_PLUGINS}
     )
 elseif (IOS)
-    set(CMAKE_OSX_DEPLOYMENT_TARGET 17.0)
+    set(CMAKE_OSX_DEPLOYMENT_TARGET 18.0)
 
     # iOS code signing identity (use "iPhone Developer" for dev builds, "iPhone Distribution" for release)
     set(IOS_CODE_SIGN_IDENTITY "iPhone Developer" CACHE STRING "iOS code signing identity")
