@@ -376,6 +376,8 @@ if(CMAKE_SOURCE_DIR STREQUAL CMAKE_CURRENT_SOURCE_DIR)
         #set(CPACK_DMG_DS_STORE "${IMAGES_DIR}/DSStore")
         set(CPACK_DMG_BACKGROUND_IMAGE "${IMAGES_DIR}/DMGBackground.png")
         set(CPACK_DMG_DS_STORE_SETUP_SCRIPT "${CMAKE_SOURCE_DIR}/dist/macOS/DS_Store.scpt")
+        # Keep only QPrompt.app and a copy of the license; subprojects install unsigned libraries next to it
+        set(CPACK_PRE_BUILD_SCRIPTS "${CMAKE_SOURCE_DIR}/dist/macos/prepare_dmg_contents.cmake")
 
     elseif(BSD AND NOT APPLE)
         set(CPACK_FREEBSD_PACKAGE_MAINTAINER ${CPACK_PACKAGE_CONTACT})
