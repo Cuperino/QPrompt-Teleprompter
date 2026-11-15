@@ -303,8 +303,51 @@ if [[ "$PLATFORM" == "windows" ]]; then
     cd ..
 elif [[ "$PLATFORM" == "macos" ]]; then
     cd build
-    $CPACK
+    rm -f QPrompt-*.dmg
+    if ! $CPACK; then
+        echo "CPack failed; skipping DMG signing and notarization" >&2
+        exit 1
+    fi
     cd ..
+
+    DMG=$(ls build/QPrompt-*.dmg 2>/dev/null | head -n 1)
+    # Identity is configured once, in src/CMakeLists.txt (cache variable MACOS_SIGNING_IDENTITY)
+    SIGNING_IDENTITY=$(grep '^MACOS_SIGNING_IDENTITY:' build/CMakeCache.txt | cut -d= -f2-)
+    if [ -z "$DMG" ]; then
+        echo "No DMG was produced" >&2
+        exit 1
+    fi
+
+    echo -e "\nSigning $DMG with \"$SIGNING_IDENTITY\""
+    codesign --force --timestamp --sign "$SIGNING_IDENTITY" "$DMG" || exit 1
+
+    # Notarization uses credentials stored in the login keychain. Create them once with:
+    #   xcrun notarytool store-credentials QPrompt --apple-id <apple id> --team-id <team id>
+    # (prompts for an app-specific password from account.apple.com)
+    # Use a different profile name by setting NOTARY_PROFILE, or NOTARY_PROFILE=none to skip.
+    NOTARY_PROFILE=${NOTARY_PROFILE:-QPrompt}
+    if [ "$NOTARY_PROFILE" == "none" ]; then
+        echo "NOTARY_PROFILE=none; skipping notarization"
+    elif ! xcrun notarytool history --keychain-profile "$NOTARY_PROFILE" > /dev/null 2>&1; then
+        echo -e "\nSkipping notarization: keychain profile \"$NOTARY_PROFILE\" not found. Create it with:"
+        echo "  xcrun notarytool store-credentials $NOTARY_PROFILE --apple-id <apple id> --team-id <team id>"
+    else
+        echo -e "\nSubmitting $DMG for notarization (this can take several minutes)"
+        NOTARY_OUTPUT=$(xcrun notarytool submit "$DMG" --keychain-profile "$NOTARY_PROFILE" --wait 2>&1)
+        echo "$NOTARY_OUTPUT"
+        SUBMISSION_ID=$(echo "$NOTARY_OUTPUT" | awk '/^  id:/{print $2; exit}')
+        if echo "$NOTARY_OUTPUT" | grep -q "status: Accepted"; then
+            xcrun stapler staple "$DMG" || exit 1
+            xcrun stapler validate "$DMG" || exit 1
+            spctl --assess --type open --context context:primary-signature --verbose=2 "$DMG"
+        else
+            echo "Notarization was not accepted." >&2
+            if [ -n "$SUBMISSION_ID" ]; then
+                xcrun notarytool log "$SUBMISSION_ID" --keychain-profile "$NOTARY_PROFILE" >&2
+            fi
+            exit 1
+        fi
+    fi
 elif [[ "$PLATFORM" == "linux" ]]; then
     # Build Deb package
     cd build

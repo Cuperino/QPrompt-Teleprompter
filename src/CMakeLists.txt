@@ -529,27 +529,25 @@ execute_process(COMMAND ${CMAKE_PREFIX_PATH}/bin/lconvert -pluralonly ${CMAKE_SO
 
 # Installation and bundling
 if (APPLE)
+    # Start from a clean bundle so files left by previous installs don't break code signing
+    install(CODE "file(REMOVE_RECURSE \"\$ENV{DESTDIR}\${CMAKE_INSTALL_PREFIX}/QPrompt.app\")")
     install(TARGETS ${PROJECT_NAME} ${KDE_INSTALL_TARGETS_DEFAULT_ARGS} BUNDLE DESTINATION .)
-    if(NOT IOS)
-        install(TARGETS KF6CoreAddons ${KDE_INSTALL_TARGETS_DEFAULT_ARGS} FRAMEWORK DESTINATION QPrompt.app/Contents/Frameworks)
-    endif()
-    install(TARGETS Kirigami ${KDE_INSTALL_TARGETS_DEFAULT_ARGS} FRAMEWORK DESTINATION QPrompt.app/Contents/Frameworks)
-    install(DIRECTORY ../build/bin/org DESTINATION QPrompt.app/Contents/Resources/qml)
-    install(DIRECTORY ../build/bin/org DESTINATION QPrompt.app/Contents/MacOS/qml)
+    # Kirigami, CoreAddons, and their QML modules are bundled by the deploy script
+    # and dist/macos/finalize_bundle.sh, configured below.
 elseif (WIN32 OR UNIX)
     install(PROGRAMS com.cuperino.qprompt.desktop DESTINATION ${KDE_INSTALL_APPDIR})
     install(TARGETS ${PROJECT_NAME} ${KDE_INSTALL_TARGETS_DEFAULT_ARGS})
 endif()
 
 if(APPLE AND NOT IOS)
-    set(MACOS_SIGNING_IDENTITY "")
-    set(EXTRA_DEPLOY_QML_APP_SCRIPT_OPTIONS)
-    set(deploy_tool_options_arg "-always-overwrite -appstore-compliant -sign-for-notarization=${MACOS_SIGNING_IDENTITY}")
-    list(APPEND EXTRA_DEPLOY_QML_APP_SCRIPT_OPTIONS DEPLOY_TOOL_OPTIONS ${deploy_tool_options_arg})
+    set(MACOS_SIGNING_IDENTITY "Developer ID Application: Javier Cordero (8X4U96M2VS)" CACHE STRING "Code signing identity; leave empty to skip signing")
+    # macdeployqt doesn't sign: Qt's generated deploy script splits options on spaces,
+    # which breaks identities like the one above, and its default ad-hoc signing pass
+    # fails verification on frameworks it patches afterwards. finalize_bundle.sh signs instead.
     qt_generate_deploy_qml_app_script(
         TARGET ${PROJECT_NAME}
         OUTPUT_SCRIPT deploy_script
-        ${EXTRA_DEPLOY_QML_APP_SCRIPT_OPTIONS}
+        DEPLOY_TOOL_OPTIONS -no-codesign
         MACOS_BUNDLE_POST_BUILD
     )
 elseif(IOS)
@@ -597,4 +595,17 @@ else()
 endif()
 if (NOT UNIX OR APPLE)
     install(SCRIPT ${deploy_script})
+endif()
+if (APPLE AND NOT IOS)
+    # Must run after the deploy script: places Kirigami's QML files where its plugin
+    # looks for them, then re-signs every binary in the bundle with one identity.
+    install(CODE "
+        execute_process(
+            COMMAND \"${CMAKE_SOURCE_DIR}/dist/macos/finalize_bundle.sh\"
+                \"\$ENV{DESTDIR}\${CMAKE_INSTALL_PREFIX}/QPrompt.app\"
+                \"${MACOS_SIGNING_IDENTITY}\"
+                \"${CMAKE_BINARY_DIR}/bin/org/kde/kirigami\"
+            COMMAND_ERROR_IS_FATAL ANY
+        )
+    ")
 endif()
