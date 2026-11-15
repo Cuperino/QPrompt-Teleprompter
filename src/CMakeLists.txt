@@ -265,14 +265,7 @@ endforeach()
 # Kirigami's own directory scope, so Qt's build-time qmlimportscanner run for
 # QPrompt would otherwise only search QPrompt's build directory and Qt's qml
 # directory.
-#
-# Static builds (Android, iOS, WASM) are left as they are, because the scan also
-# decides which static QML plugins get linked there (see
-# KIRIGAMI_STATIC_QML_PLUGINS below).
-set(qprompt_qml_import_paths "")
-if(NOT ANDROID AND NOT IOS AND NOT WASM)
-    list(APPEND qprompt_qml_import_paths "${CMAKE_BINARY_DIR}/bin")
-endif()
+set(qprompt_qml_import_paths "${CMAKE_BINARY_DIR}/bin")
 
 # App QML Module
 qt_add_qml_module(
