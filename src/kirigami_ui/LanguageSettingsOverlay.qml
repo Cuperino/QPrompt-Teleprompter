@@ -73,6 +73,15 @@ Kirigami.OverlaySheet {
                         currentIndex: languageSelector.model.indexOf(languageSelector.currentIndex)
                     }
                 }
+                delegate: ItemDelegate {
+                    required property var modelData
+                    required property int index
+                    width: parent ? parent.width : implicitWidth
+                    text: modelData.text
+                    enabled: modelData.enabled !== false
+                    highlighted: languageSelector.highlightedIndex === index
+                    Material.theme: Material.Dark
+                }
                 model: [
                     {
                         "text": qsTr("Use system language", "Language"),
@@ -119,12 +128,14 @@ Kirigami.OverlaySheet {
                         "value": "nl_NL"
                     },
                     {
-                        "text": "日本語",
-                        "value": "ja_JP"
+                        "text": "Japanese",
+                        "value": "ja_JP",
+                        "enabled": false
                     },
                     {
-                        "text": "한국인",
-                        "value": "ko_KO"
+                        "text": "Korean",
+                        "value": "ko_KO",
+                        "enabled": false
                     },
                     {
                         "text": "Occitan",
@@ -155,8 +166,9 @@ Kirigami.OverlaySheet {
                         "value": "uk_UA"
                     },
                     {
-                        "text": "简体中文",
-                        "value": "zh_CN"
+                        "text": "Chinese (Simplified)",
+                        "value": "zh_CN",
+                        "enabled": false
                     },
                 ]
                 onActivated: (index) => {

@@ -23,7 +23,11 @@ if(NOT WIN32)
     include(ECMPoQmTools)
 endif()
 
-qt_standard_project_setup(I18N_TRANSLATED_LANGUAGES ar cs de en es fi fr he it ja ko nl oc pl pt_BR pt_PT ru tr uk zh)
+if (WASM)
+    qt_standard_project_setup(I18N_TRANSLATED_LANGUAGES ar cs de en es fi fr he it nl oc pl pt_BR pt_PT ru tr uk)
+else()
+    qt_standard_project_setup(I18N_TRANSLATED_LANGUAGES ar cs de en es fi fr he it ja ko nl oc pl pt_BR pt_PT ru tr uk zh)
+endif()
 
 set(CMAKE_OSX_DEPLOYMENT_TARGET "10.15")
 set(CMAKE_OSX_ARCHITECTURES="x86_64;arm64")
