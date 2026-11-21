@@ -2363,7 +2363,11 @@ Flickable {
                 root.recentDocuments.add(String(url), Boolean(isRemote));
         }
         function saveAsDialog() {
-            if (Qt.platform.os === "ios") {
+            if (Qt.platform.os === "wasm") {
+                let suggestedName = document.fileName && !String(document.fileUrl).startsWith("qrc:") ? document.fileName : "script.html"
+                suggestedName = suggestedName.replace(/\.[^.]*$/, "") + ".html"
+                AppController.wasm.saveDocument(prompter, document.toHtml(), suggestedName)
+            } else if (Qt.platform.os === "ios") {
                 var suggestedName = document.fileName ? document.fileName : "script.html"
                 IosSaveDialog.saveDocument(document.toHtml(), suggestedName)
             } else {
@@ -2372,6 +2376,12 @@ Flickable {
         }
         function saveDialog(quit=false) {
             //document.quitOnSave = quit
+            // Browsers can't write back to the file a document was opened from,
+            // so saving on WASM always goes through the browser's save flow.
+            if (Qt.platform.os === "wasm") {
+                saveAsDialog()
+                return
+            }
             if (document.modified) {
                 if (document.isNewFile)
                     saveAsDialog()
@@ -2485,8 +2495,46 @@ Flickable {
         id: scrollBar
     }
 
-    FileDialog {
+    // On WASM, Qt's FileDialog yields "weblocalfile:" URLs that can only be read
+    // by suspending the main thread, which aborts without Asyncify or JSPI. Use
+    // the browser's file picker instead, which copies the file into MEMFS.
+    QtObject {
         id: openDialog
+        function open() {
+            if (Qt.platform.os === "wasm")
+                AppController.wasm.pickDocument(prompter)
+            else
+                openFileDialog.open()
+        }
+    }
+
+    function loadPickedDocument(fileUrl) {
+        document.close()
+        const extensionList = Qt.platform.os!=="android" ?
+            ["html", "htm", "xhtml", "HTML", "HTM", "XHTML", "txt", "text", "TXT", "TEXT"] :
+            ["html", "htm", "xhtml", "HTML", "HTM", "XHTML"]
+        document.isNewFile = true;
+        for (const extension of extensionList) {
+            if (String(fileUrl).endsWith("." + extension)) {
+                document.isNewFile = false;
+                break;
+            }
+        }
+        document.load(fileUrl)
+        editor.resetPosition = true;
+        if (parseInt(prompter.state)!==Prompter.States.Editing)
+            prompter.state = Prompter.States.Editing;
+        // Files opened on WASM live in an in-memory file system that is wiped
+        // on reload, so don't remember them.
+        if (Qt.platform.os === "wasm")
+            return;
+        editor.lastDocument = document.fileUrl;
+        if (root.recentDocuments)
+            root.recentDocuments.add(String(document.fileUrl), false);
+    }
+
+    FileDialog {
+        id: openFileDialog
         nameFilters:
             ['android', 'ios', 'tvos', 'wasm'].indexOf(Qt.platform.os)===-1 ?
             [
@@ -2513,25 +2561,22 @@ Flickable {
 
         currentFolder: StandardPaths.writableLocation(StandardPaths.DocumentsLocation)
         fileMode: FileDialog.OpenFile
-        onAccepted: {
-            document.close()
-            const extensionList = Qt.platform.os!=="android" ?
-                ["html", "htm", "xhtml", "HTML", "HTM", "XHTML", "txt", "text", "TXT", "TEXT"] :
-                ["html", "htm", "xhtml", "HTML", "HTM", "XHTML"]
-            document.isNewFile = true;
-            for (const extension of extensionList) {
-                if (String(openDialog.currentFile).endsWith("." + extension)) {
-                    document.isNewFile = false;
-                    break;
-                }
-            }
-            document.load(openDialog.currentFile)
-            editor.lastDocument = document.fileUrl;
-            editor.resetPosition = true;
-            if (parseInt(prompter.state)!==Prompter.States.Editing)
-                prompter.state = Prompter.States.Editing;
-            if (root.recentDocuments)
-                root.recentDocuments.add(String(document.fileUrl), false);
+        onAccepted: prompter.loadPickedDocument(openFileDialog.currentFile)
+    }
+
+    function wasmSaveFinished(accepted) {
+        if (!accepted)
+            return
+        document.modified = false
+        document.isNewFile = false
+        showPassiveNotification(qsTr("Saved"))
+        switch (parseInt(root.onDiscard)) {
+            case Prompter.CloseActions.LoadGuide: document.loadGuide(); break;
+            case Prompter.CloseActions.LoadNew: document.newDocument(); break;
+            case Prompter.CloseActions.Open: document.open(); break;
+            case Prompter.CloseActions.Network: document.openFromNetwork(); break;
+            case Prompter.CloseActions.RecentLocal: document.loadRecent(root.pendingRecentUrl, false); break;
+            case Prompter.CloseActions.RecentRemote: document.loadRecent(root.pendingRecentUrl, true); break;
         }
     }
 

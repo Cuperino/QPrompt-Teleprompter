@@ -34,6 +34,8 @@ public:
     Q_INVOKABLE void loadBackgroundImageTo(QObject *prompterBackground);
     Q_INVOKABLE void pickPointerImage(QObject *filenameField, QObject *sourceHolder, const QString &sourceProperty);
     Q_INVOKABLE void pickPointerQml(QObject *filenameField, QObject *sourceHolder, const QString &sourceProperty);
+    Q_INVOKABLE void pickDocument(QObject *receiver);
+    Q_INVOKABLE void saveDocument(QObject *receiver, const QString &html, const QString &suggestedName);
     Q_INVOKABLE void toggleBrowserFullscreen();
     Q_INVOKABLE void officialHost() const;
     Q_INVOKABLE QString hostname() const;
