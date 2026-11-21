@@ -61,6 +61,7 @@ Kirigami.OverlaySheet {
             TabButton {
                 text: qsTr("Global Hotkeys")
                 onClicked: listView.currentIndex = 1
+                enabled: ['linux', 'windows', 'osx'].indexOf(Qt.platform.os) != -1
             }
             Layout.fillWidth: true
             Material.theme: Material.Dark
