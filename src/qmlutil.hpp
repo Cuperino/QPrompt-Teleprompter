@@ -43,6 +43,10 @@
 #include <QFileInfo>
 #include <QUrl>
 
+#if defined(Q_OS_WASM)
+#include <emscripten.h>
+#endif
+
 // A singleton object to implement C++ functions that can be called from QML
 class QmlUtil : public QObject
 {
@@ -96,6 +100,10 @@ public:
 
     Q_INVOKABLE void restartApplication()
     {
+#if defined(Q_OS_WASM)
+        EM_ASM({ window.location.reload(); });
+        return;
+#endif
 #if !(defined(Q_OS_ANDROID) || defined(Q_OS_IOS) || defined(Q_OS_WASM) || defined(Q_OS_WATCHOS))
         QProcess::startDetached(QCoreApplication::applicationFilePath(), {});
 #endif
