@@ -74,6 +74,14 @@ Kirigami.ApplicationWindow {
     property int transparencyRestartModulus: 1
 
     title: root.pageStack.currentItem.document.fileName + (root.pageStack.currentItem.document.modified?"*":"") + " - " + aboutData.displayName
+    onTitleChanged: {
+        if (Qt.platform.os === "wasm")
+            AppController.wasm.setPageTitle(root.title);
+    }
+    Component.onCompleted: {
+        if (Qt.platform.os === "wasm")
+            AppController.wasm.setPageTitle(root.title);
+    }
     width: 1220  // Set at 1220 to show all functionality at a glance. Set to 1200 to fit both 1280 4:3 and 1200 height monitors. Keep at or bellow 1024 and at or above 960, for best usability with common 4:3 resolutions
     height: 728  // Keep and test at 728 so that it works well with 1366x768 screens.
     // Making width and height start maximized

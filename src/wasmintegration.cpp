@@ -314,6 +314,11 @@ void WasmIntegration::toggleBrowserFullscreen()
     qprompt_wasmToggleFullscreen();
 }
 
+void WasmIntegration::setPageTitle(const QString &title)
+{
+    EM_ASM({ document.title = UTF8ToString($0); }, title.toUtf8().constData());
+}
+
 void WasmIntegration::officialHost() const
 {
     const QString h = hostname();

@@ -37,6 +37,7 @@ public:
     Q_INVOKABLE void pickDocument(QObject *receiver);
     Q_INVOKABLE void saveDocument(QObject *receiver, const QString &html, const QString &suggestedName);
     Q_INVOKABLE void toggleBrowserFullscreen();
+    Q_INVOKABLE void setPageTitle(const QString &title);
     Q_INVOKABLE void officialHost() const;
     Q_INVOKABLE QString hostname() const;
 };
