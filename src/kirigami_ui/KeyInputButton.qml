@@ -117,7 +117,7 @@ RowLayout {
     }
     Button {
         id: clearButton
-        text: "🧹" // qsTr("Clear", "Button to remove a keyboard shortcut")
+        text: qsTr("Clear", "Button to remove a keyboard shortcut")
         enabled: !(keyInputButton.text === "" && keyInputButton.text === "[…]")
         onClicked: {
             if (keyInputButton.text === "[…]") {
